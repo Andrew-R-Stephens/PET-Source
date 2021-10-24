@@ -1,0 +1,279 @@
+package com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
+
+import java.util.ArrayList;
+
+/**
+ * ObjectivesSpinner class
+ *
+ * TODO
+ *
+ * @author TritiumGamingStudios
+ */
+public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinner{
+
+    private ObjectivesData data = null;
+    private ObjectivesData.Objective currentObjective = null;
+
+    private ObjectiveCompletedButton checkButton = null;
+    private final Drawable[] strikeout = new Drawable[2];
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     */
+    public ObjectivesSpinner(Context context) {
+        super(context);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param mode
+     */
+    public ObjectivesSpinner(@NonNull Context context, int mode) {
+        super(context, mode);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param attrs
+     */
+    public ObjectivesSpinner(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param attrs
+     * @param data
+     */
+    public ObjectivesSpinner(@NonNull Context context, @Nullable AttributeSet attrs, ObjectivesData data) {
+        super(context, attrs);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
+    public ObjectivesSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     * @param mode
+     */
+    public ObjectivesSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode) {
+        super(context, attrs, defStyleAttr, mode);
+        init();
+    }
+
+    /**
+     * ObjectivesSpinner constructor
+     *
+     * TODO
+     *
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     * @param mode
+     * @param popupTheme
+     */
+    public ObjectivesSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode, Resources.Theme popupTheme) {
+        super(context, attrs, defStyleAttr, mode, popupTheme);
+        init();
+    }
+
+    /**
+     * performClick
+     *
+     * TODO
+     *
+     * @return
+     */
+    @Override
+    public boolean performClick() {
+        updateAdapter();
+
+        return super.performClick();
+    }
+
+    /**
+     * updateAdapter
+     *
+     * TODO
+     */
+    public void updateAdapter() {
+        ArrayList<ObjectivesData.Objective> obtainedObjectives = data.getObjectivesOfSelectedState(false);
+        ArrayAdapter<ObjectivesData.Objective> adapter = new ArrayAdapter<>(super.getContext(), R.layout.popup_spinner, obtainedObjectives);
+        setAdapter(adapter);
+    }
+
+    /**
+     * init
+     *
+     * TODO
+     */
+    public void init(){
+        setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(currentObjective != null)
+                    currentObjective.setSelected(false);
+                currentObjective = (ObjectivesData.Objective)parent.getItemAtPosition(position);
+                currentObjective.setSelected(true);
+                currentObjective.setPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    /**
+     * setData
+     *
+     * TODO
+     *
+     * @param data
+     */
+    public void setData(ObjectivesData data){
+        this.data = data;
+    }
+
+    /**
+     * setCompleted
+     *
+     * TODO
+     *
+     * @param isCompleted
+     */
+    public void setCompleted(boolean isCompleted){
+        if(isCompleted) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                setForeground(strikeout[0]);
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                setForeground(null);
+            }
+        }
+    }
+
+    /**
+     * setStrikeout
+     *
+     * TODO
+     */
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setStrikeout(){
+        strikeout[0] = super.getContext().getDrawable(R.drawable.icon_strikethrough_1);
+        //strikeout[0].setTint(Color.RED);
+        strikeout[0].setTint(checkButton.getColorStates()[1]);
+    }
+
+    /**
+     * setCheckButton
+     *
+     * TODO
+     *
+     * @param checkButton
+     */
+    public void setCheckButton(ObjectiveCompletedButton checkButton) {
+        this.checkButton = checkButton;
+    }
+
+    /**
+     * getSelectedObjective
+     *
+     * TODO
+     *
+     * @return
+     */
+    public ObjectivesData.Objective getSelectedObjective() {
+        return currentObjective;
+    }
+
+    /**
+     * setCurrentObjective
+     *
+     * TODO
+     *
+     * @param currentObjective
+     */
+    public void setCurrentObjective(ObjectivesData.Objective currentObjective){
+        this.currentObjective = data.getCopyOfObjective(currentObjective);
+
+        if(currentObjective != null)
+            setSelection(this.currentObjective.getPosition());
+    }
+
+    /**
+     * isCompleted
+     *
+     * TODO
+     *
+     * @return
+     */
+    public boolean isCompleted(){
+        return checkButton.isEnabled();
+    }
+
+    /**
+     *setObjectiveAsCompleted
+     *
+     * TODO
+     */
+    public void setObjectiveAsCompleted() {
+        checkButton.overrideStateAndIcon(true);
+    }
+
+}

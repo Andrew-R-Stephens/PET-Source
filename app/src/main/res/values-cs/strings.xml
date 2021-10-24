@@ -1,0 +1,307 @@
+<resources>
+    <!--
+        UNIVERSAL DETAILS
+    -->
+    <!-- Page Details -->
+    <string name="general_evidence_button">Evidence</string>
+    <string name="general_maps_button">Maps</string>
+    <string name="general_tasks_button">Tasks</string>
+    <string name="general_evidence_reset_button">Reset</string>
+
+    <!--
+        TITLESCREEN PAGE
+    -->
+    <!-- Page Details -->
+    <string name="titlescreen_description">The ultimate evidence tool</string>
+    <string name="titlescreen_button">Start Hunting</string>
+    <string name="titlescreen_languages_label">Select Language</string>
+
+    <!--
+         REVIEW POPUP
+    -->
+    <!-- Page Details -->
+    <string name="review_requesttitle">Please consider rating P.E.T.!</string>
+    <string name="review_accept">Sure!</string>
+    <string name="review_decline">No thanks</string>
+
+    <!--
+        ABOUT POPUP
+    -->
+    <!-- Page Details -->
+    <string name="aboutinfo_title_about">About</string>
+    <string name="aboutinfo_version">Version</string>
+    <string name="aboutinfo_aboutapp_info">
+        <![CDATA[
+            <p>As any seasoned player will tell you, <font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
+            <p><font color=#CC3C3C>P.E.T.</font> is an unofficial companion tool\-\- acting both as a guide for new players and as an assistant for the veterans.</p>
+            <p><font color=#CC3C3C>Thank you so much for using P.E.T.!</font></p>
+        ]]>
+    </string>
+    <string name="aboutinfo_developerinfo_title">Developer Info</string>
+    <string name="aboutinfo_developerinfo_developer">Developer</string>
+    <string name="aboutinfo_developerinfo_contact">Contact</string>
+    <string name="aboutinfo_joindiscord">Join the Discord</string>
+    <string name="aboutinfo_specialthanks_title">Special Thanks</string>
+
+    <!--
+        SETTINGS POPUP
+    -->
+    <!-- Page Details -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_generalsettings">General</string>
+    <string name="settings_extrasettings">Extra Settings</string>
+    <string name="settings_screenalwayson">Always keep the screen on</string>
+    <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
+    <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
+    <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
+    <string name="settings_colorblindnessmode_title">Colorblind Mode (Beta)</string>
+    <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
+    <!-- Colorblindness Types -->
+    <string name="settings_colorblindnessmode_normal">None</string>
+
+    <!--
+        EVIDENCE PAGE
+    -->
+    <!-- Page Details -->
+    <string name="evidence_timer_label">Preparation Time:</string>
+    <string name="evidence_timer_difficulty_default">None</string>
+    <string name="evidence_timer_difficulty_1">Amateur</string>
+    <string name="evidence_timer_difficulty_2">Intermediate</string>
+    <string name="evidence_timer_difficulty_3">Professional</string>
+    <string name="evidence_timer_maplabel">Map:</string>
+    <string name="evidence_timer_difficulty_label">Difficulty:</string>
+    <string name="evidence_timer_actionlabel">ACTION</string>
+    <string name="evidence_timer_setuplabel">SETUP</string>
+    <string name="evidence_sanity_huntwarn">HUNT WARN</string>
+    <string name="evidence_sanitymeter_title">MAX Sanity Level</string>
+    <string name="evidence_ghosts_title">GHOSTS</string>
+    <string name="evidence_evidence_title">EVIDENCE</string>
+    <!-- Ghost Names -->
+    <string name="evidence_ghost_type_banshee">BANSHEE</string>
+    <string name="evidence_ghost_type_demon">DEMON</string>
+    <string name="evidence_ghost_type_jinn">JINN</string>
+    <string name="evidence_ghost_type_mare">MARE</string>
+    <string name="evidence_ghost_type_oni">ONI</string>
+    <string name="evidence_ghost_type_phantom">PHANTOM</string>
+    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
+    <string name="evidence_ghost_type_revenant">REVENANT</string>
+    <string name="evidence_ghost_type_shade">SHADE</string>
+    <string name="evidence_ghost_type_spirit">SPIRIT</string>
+    <string name="evidence_ghost_type_wraith">WRAITH</string>
+    <string name="evidence_ghost_type_yurei">YUREI</string>
+    <!-- Ghost description -->
+    <string name="evidence_ghost_description_banshee">
+        <![CDATA[
+                <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>. Banshees <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them.</p>
+                <p><font color=#ff6161>Strength:</font> Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
+                <p><font color=#ff6161>Weakness:</font> Susceptible to the use of a crucifix to cull their aggression.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_demon">
+        <![CDATA[
+                <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
+                <p><font color=#ff6161>Strength:</font> They can be difficult to gather clues on as they will attack players very frequently.</p>
+                <p><font color=#ff6161>Weakness:</font> Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_jinn">
+        <![CDATA[
+                <p>A Jinn is a territorial ghost that will attack when threatened. It has also been known to be <font color=#ff6161>able to travel at high speeds</font>, and will do so while hunting distant paranormal investigators. However, <font color=#ff6161>cutting off power via the fuse box will limit its speed</font>.</p>
+                <p><font color=#ff6161>Strength:</font> A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
+                <p><font color=#ff6161>Weakness:</font> Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_mare">
+        <![CDATA[
+                <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
+                <p><font color=#ff6161>Strength:</font> Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
+                <p><font color=#ff6161>Weakness:</font> Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_oni">
+        <![CDATA[
+                <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
+                <p><font color=#ff6161>Strength:</font> Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
+                <p><font color=#ff6161>Weakness:</font> Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_phantom">
+        <![CDATA[
+                <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who view it</font>. <font color=#ff6161>Taking a picture of it will make it disappear temporarily</font>. Although rumored to possess the living, it has no ability to actually do so. It is said to be commonly summoned by a Ouija Board, although players cannot summon one themselves, nor does a Phantom\'s presence guarantee that a Ouija Board will spawn.</p>
+                <p><font color=#ff6161>Strength:</font> Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
+                <p><font color=#ff6161>Weakness:</font> Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_poltergeist">
+        <![CDATA[
+                <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
+                <p><font color=#ff6161>Strength:</font> Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
+                <p><font color=#ff6161>Weakness:</font> Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_revenant">
+        <![CDATA[
+                <p>A Revenant is a violent ghost that <font color=#ff6161>can attack indiscriminately</font>, as it is capable of switching its current target mid-hunt. <font color=#ff6161>Hiding from it will cause it to move slowly</font>, but <font color=#ff6161>it will travel faster than any other Ghost in the game if a victim is in its sights</font>.</p>
+                <p><font color=#ff6161>Strength:</font> Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
+                <p><font color=#ff6161>Weakness:</font> If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_shade">
+        <![CDATA[
+                <p>A Shade is considered to be a <font color=#ff6161>\"shy ghost\”</font>. While it is harder to find evidence while investigators remain in groups, <font color=#ff6161>a Shade is far less likely to attack if there are multiple people nearby</font>.</p>
+                <p><font color=#ff6161>Strength:</font> Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
+                <p><font color=#ff6161>Weakness:</font> There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_spirit">
+        <![CDATA[
+                <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
+                <p><font color=#ff6161>Strength:</font> Spirits have no strengths in particular, as they are geared towards new players.</p>
+                <p><font color=#ff6161>Weakness:</font> Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_wraith">
+        <![CDATA[
+                <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
+                <p><font color=#ff6161>Strength:</font> Since they fly, Wraiths cannot be tracked by their footsteps.</p>
+                <p><font color=#ff6161>Weakness:</font> Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_yurei">
+        <![CDATA[
+                <p>A Yurei is a ghost whose ability <font color=#ff6161>increases the passive drain of a player\'s sanity</font> (Although most ghosts drain your sanity rather quickly). Smudging the room a Yurei was found in will prevent it from wandering from the location for a long time.</p>
+                <p><font color=#ff6161>Strength:</font> Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
+                <p><font color=#ff6161>Weakness:</font> Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
+            ]]>
+    </string>
+    <!-- Evidence Names -->
+    <string name="evidence_evidence_type_emf">EMF 5</string>
+    <string name="evidence_evidence_type_temperatures">FREEZING TEMP</string>
+    <string name="evidence_evidence_type_box">SPIRIT BOX</string>
+    <string name="evidence_evidence_type_book">GHOST WRITING</string>
+    <string name="evidence_evidence_type_orbs">GHOST ORBS</string>
+    <string name="evidence_evidence_type_fingerprints">FINGERPRINTS</string>
+    <!-- Evidence Description -->
+    <string name="evidence_evidence_description_emf">
+        <![CDATA[
+                    <p>EMF-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
+                    <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
+            ]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures">
+        <![CDATA[
+                    <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
+                    <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C. These freezing temperatures will allow everyone within the haunted area to <font color=#ff6161>see their breath</font>. The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
+            ]]>
+    </string>
+    <string name="evidence_evidence_description_box">
+        <![CDATA[
+                    <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
+                    <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard. Should the ghost answer, the Spirit Box is confirmed Evidence. Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
+            ]]>
+    </string>
+    <string name="evidence_evidence_description_book">
+        <![CDATA[
+                    <p>Determined using the Ghost Writing Book.</p>
+                    <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
+            ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs">
+        <![CDATA[
+                    <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the truck\'s camera feed<font> from Video Cameras or Head-Mounted Cameras.</p>
+                    <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
+            ]]></string>
+    <string name="evidence_evidence_description_fingerprints">
+        <![CDATA[
+                    <p>Left on objects and surfaces by ghosts, Fingerprints can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font> and will glow green while under UV light.</p>
+                    <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>.</p>
+            ]]>
+    </string>
+
+    <!--
+        MAPS PAGE
+    -->
+    <!-- Page Details -->
+    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
+    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
+    <!-- Building Floor Names -->
+    <string name="map_floor_name_first">First Floor</string>
+    <string name="map_floor_name_second">Second Floor</string>
+    <string name="map_floor_name_attic">Attic</string>
+    <string name="map_floor_name_basement">Basement</string>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_title_optional_objectives">OPTIONAL OBJECTIVES</string>
+    <string name="objectives_title_investigation_debrief">Investigation Debrief</string>
+    <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
+    <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
+    <string name="objectives_title_response">Responds to People who are:</string>
+    <string name="objectives_title_optional_objective_1">- OBJECTIVE 1</string>
+    <string name="objectives_title_optional_objective_2">- OBJECTIVE 2</string>
+    <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
+    <string name="objectives_title_response_alone">ALONE</string>
+    <string name="objectives_title_response_everyone">GROUPED UP</string>
+    <!-- Objective Description -->
+    <string name="objective_info_ghostevent">Witness a Ghost Event</string>
+    <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
+    <string name="objective_info_emfreader">Get any EMF Reader activity</string>
+    <string name="objective_info_motionsensor">Get Motion Sensor activity</string>
+    <string name="objective_info_smudgestick">Smudge Stick the Ghost\'s location</string>
+    <string name="objective_info_crucifix">Prevent a hunt with the Crucifix</string>
+    <string name="objective_info_salt">Have the Ghost walk through Salt</string>
+    <string name="objective_info_escapehunt">Escape the ghost while it\'s hunting</string>
+    <string name="objective_info_repelwithsmudge">Repel the hunting ghost with a Smudge stick </string>
+    <string name="objective_info_extinguishcandle">Have the ghost blow out a candle</string>
+    <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
+
+    <!--
+        TOOLS PAGE
+    -->
+
+    <!--
+        SPIRITBOX TOOL PAGE
+    -->
+    <!-- All Entries -->
+    <!-- Personal Statements -->
+    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
+    <string name="spiritbox_entry_q0_5">I\'m scared!</string>
+    <string name="spiritbox_entry_q0_6">Hide!</string>
+    <string name="spiritbox_entry_q0_8">Panic!</string>
+    <string name="spiritbox_entry_q0_9">Run!</string>
+    <!-- Mental State Questions -->
+    <string name="spiritbox_entry_q1_1">Are you angry?</string>
+    <string name="spiritbox_entry_q1_2">Are you happy?</string>
+    <string name="spiritbox_entry_q1_3">Are you friendly?</string>
+    <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
+    <string name="spiritbox_entry_q1_7">Do you want us here?</string>
+    <!-- Name Questions -->
+    <string name="spiritbox_entry_q2_1">What is your name?</string>
+    <!-- Age Questions -->
+    <string name="spiritbox_entry_q3_5">How old are you?</string>
+    <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_1">Are you here?</string>
+    <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
+    <string name="spiritbox_entry_q5_7">Where are you?</string>
+    <!-- Interaction Questions -->
+    <string name="spiritbox_entry_q0_2">Attack us!</string>
+    <string name="spiritbox_entry_q6_5">Can you speak to us?</string>
+    <string name="spiritbox_entry_q6_7">Do something.</string>
+    <string name="spiritbox_entry_q6_8">Give us a sign!</string>
+    <string name="spiritbox_entry_q0_7">Hunt us!</string>
+    <string name="spiritbox_entry_q6_16">Let us know you are here.</string>
+    <string name="spiritbox_entry_q6_17">Make a noise.</string>
+    <string name="spiritbox_entry_q6_18">Open the door.</string>
+    <string name="spiritbox_entry_q6_9">Show yourself!</string>
+    <string name="spiritbox_entry_q6_12">Throw something.</string>
+    <string name="spiritbox_entry_q6_13">Turn off the light.</string>
+    <string name="spiritbox_entry_q6_14">Turn on the light.</string>
+    <!-- General Questions -->
+    <string name="spiritbox_entry_q7_2">Hello?</string>
+    <string name="spiritbox_entry_q7_3">Is there anything we can do to help?</string>
+    <string name="spiritbox_entry_q7_9">What do you want?</string>
+    <string name="spiritbox_entry_q7_11">Why are you here?</string>
+
+</resources>

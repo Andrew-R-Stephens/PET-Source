@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="titleFontColor" format="reference|color" />
+    <attr name="subtitleFontColor" format="reference|color" />
+    <attr name="splashtitleFontColor" format="reference|color" />
+
+    <attr name="bodyFontColor" format="reference|color" />
+    <attr name="bodyEmphasisFontColor" format="reference|color" />
+
+    <attr name="light_active" format="reference|color" />
+    <attr name="light_inactive" format="reference|color" />
+    <attr name="light_off" format="reference|color" />
+    <attr name="switchColor" format="reference|color" />
+    <attr name="progressBarColorStart" format="reference|color" />
+    <attr name="progressBarColorEnd" format="reference|color" />
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+
+    <attr name="selectedColor" format="reference|color" />
+    <attr name="unselectedColor" format="reference|color" />
+
+    <attr name="positiveSelColor" format="reference|color" />
+    <attr name="negativeSelColor" format="reference|color" />
+    <attr name="neutralSelColor" format="reference|color" />
+
+</resources>

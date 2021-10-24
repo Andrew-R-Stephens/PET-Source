@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentnavgraph"
+    app:startDestination="@id/multConnectFragment">
+
+    <fragment
+        android:id="@+id/hostEvidenceFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.child.EvidenceMPHostFragment"
+        android:label="EvidenceFragment">
+        <action
+            android:id="@+id/action_evidence_to_objectives"
+            app:destination="@id/objectivesFragment" />
+        <action
+            android:id="@+id/action_evidence_to_mapmenu"
+            app:destination="@id/mapMenuFragment" />
+        <action
+            android:id="@+id/action_evidenceFragment_to_lobbyConnectFragment"
+            app:destination="@id/multConnectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientEvidenceFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.child.EvidenceMPClientFragment"
+        android:label="EvidenceFragment">
+        <action
+            android:id="@+id/action_evidence_to_objectives"
+            app:destination="@id/objectivesFragment" />
+        <action
+            android:id="@+id/action_evidence_to_mapmenu"
+            app:destination="@id/mapMenuFragment" />
+        <action
+            android:id="@+id/action_evidenceFragment_to_lobbyConnectFragment"
+            app:destination="@id/multConnectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/objectivesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.objectives.ObjectivesFragment"
+        android:label="ObjectivesFragment" >
+        <action
+            android:id="@+id/action_objectivesFragment_to_clientEvidenceFragment"
+            app:destination="@id/clientEvidenceFragment" />
+        <action
+            android:id="@+id/action_objectivesFragment_to_hostEvidenceFragment"
+            app:destination="@id/hostEvidenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapMenuFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.MapMenuFragment"
+        android:label="MapMenuFragment" >
+        <action
+            android:id="@+id/action_mapmenu_to_mapview"
+            app:destination="@id/mapViewFragment" />
+        <action
+            android:id="@+id/action_mapMenuFragment_to_hostEvidenceFragment"
+            app:destination="@id/hostEvidenceFragment" />
+        <action
+            android:id="@+id/action_mapMenuFragment_to_clientEvidenceFragment"
+            app:destination="@id/clientEvidenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapViewFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.map.MapViewerFragment"
+        android:label="MapViewFragment" >
+        <action
+            android:id="@+id/action_mapview_to_mapmenu"
+            app:destination="@id/mapMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/multConnectFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.multiplayerconnect.MultiplayerConnectFragment"
+        android:label="MultConnectFragment">
+        <action
+            android:id="@+id/action_lobbyConnectFragment_to_evidenceFragment_multHost"
+            app:destination="@id/hostEvidenceFragment" />
+        <action
+            android:id="@+id/action_lobbyConnectFragment_to_evidenceFragment_multClient"
+            app:destination="@id/clientEvidenceFragment" />
+    </fragment>
+</navigation>

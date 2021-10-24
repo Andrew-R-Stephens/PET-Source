@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="evidence_ghosts_title">FANTASMAS</string>
+    <string name="evidence_evidence_title">EVIDENCIA</string>
+    <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
+    <string name="titlescreen_button">Comenzar Cacería</string>
+    <string name="evidence_timer_difficulty_label">Dificultad:</string>
+    <string name="evidence_timer_difficulty_default">Ninguna</string>
+    <string name="evidence_timer_label">Tiempo de preparacion:</string>
+    <string name="evidence_timer_difficulty_1">Aficionado</string>
+    <string name="evidence_timer_difficulty_2">Intermedia</string>
+    <string name="evidence_timer_difficulty_3">Profesional</string>
+
+    <string name="aboutinfo_aboutapp_info">
+        <![CDATA[
+            <p>Como cualquier jugador experimentado te dirá, <font color=#CC3C3C>Phasmophobia</font> es un juego fantástico, desafiante e inductor de miedo desarrollado por <font color=#CC3C3C>Kinetic Games</font>.</p>
+            <p><font color=#CC3C3C>P.E.T.</font> es una herramienta complementaria no oficial\-\- que actúa como guía para los nuevos jugadores y como asistente para los veteranos.</p>
+            <p><font color=#CC3C3C>¡Muchas gracias por usar P.E.T.!</font></p>
+        ]]>
+    </string>
+
+    <string name="evidence_ghost_description_banshee">
+        <![CDATA[
+			<p>Las banshees se describen como cazadoras naturales. Intentaran acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>apuntar selectivamente a un investigador a la vez</font>. Banshees <font color=#ff6161>teme al crucifijo</font>, Incrementando su efectividad contra ellas.</p>
+			<p><font color=#ff6161>Fuerza:</font> Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
+			<p><font color=#ff6161>Debilidad:</font> Susceptible al uso de un crucifijo para mitigar su agresion.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_demon">
+        <![CDATA[
+			<p>Un demonio es uno de los peores fantasmas que se pueden encontrar. Al ser muy agresivo, <font color=#ff6161>Atacara con mas frecuencia que cualquier otro fantasma</font>, por lo que se recomienda un crucifijo para evitar ser cazado. Sin embargo, hacer preguntas exitosas al demonio desde el tablero de ouija no agotara la cordura del jugador.</p>
+			<p><font color=#ff6161>Fuerza:</font> Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
+			<p><font color=#ff6161>Debilidad:</font> A diferencia de otros fantasmas, hacer una pregunta acertada a un demonio a traves del tablero Ouija no reducira la cordura de los jugadores. Esto hace que la tabla Ouija sea una herramienta muy útil contra los demonios.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_jinn">
+        <![CDATA[
+			<p>Un Jinn es un fantasma territorial que atacara cuando sea amenazado. También se ha sabido que <font color=#ff6161>es capaz de viajar a altas velocidades</font>, y lo hara mientras caza investigadores paranormales distantes. Sin embargo, <font color=#ff6161>cortar la energia a traves de la caja de fusibles limitara su velocidad</font>.</p>
+			<p><font color=#ff6161>Fuerza:</font> La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
+			<p><font color=#ff6161>Debilidad:</font> Los genios dependen de la fuente de energia del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para limitar las habilidades de los genios.</p>
+	]]>
+    </string>
+    <string name="evidence_ghost_description_mare">
+        <![CDATA[
+			<p>La fuente de todas los terrores nocturnos, una pesadilla es un fantasma que se vuelve <font color=#ff6161>mas agresivo en la oscuridad</font>. Mantener las luces encendidas y permanecer fuera de las áreas oscuras limitara su agresion. Cuidado, ya que también intentara apagar las luces para aumentar su poder.</p>
+			<p><font color=#ff6161>Fuerza:</font> Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
+			<p><font color=#ff6161>Debilidad:</font> Mantener las luces encendidas en el área de una pesadilla reducira la probabilidad de que comience a cazar.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_oni">
+        <![CDATA[
+			<p>Un Oni es un fantasma agresivo que <font color=#ff6161>escala su nivel de actividad con el numero de investigadores cercanos</font>. Esta es su mayor debilidad, ya que probablemente se revelara al principio de la ronda. También es probable que deambule cerca de la Habitacion del Fantasma.</p>
+			<p><font color=#ff6161>Fuerza:</font> Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
+			<p><font color=#ff6161>Debilidad:</font> Los onis son faciles de encontrar, ya que no pueden resistir causar un alboroto cuando los jugadores están cerca.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_phantom">
+        <![CDATA[
+			<p>Un fantasma es un ente que induce al miedo, <font color=#ff6161>agotando rapidamente la cordura de quienes lo ven</font>. <font color=#ff6161>Tomarle una foto hara que desaparezca temporalmente.</font>. Aunque se rumora que posee a los vivos, no tiene la capacidad de hacerlo. Se dice que es comúnmente convocado por un tablero de ouija, aunque los jugadores no pueden convocar uno por si mismos, ni la presencia de un fantasma garantiza que se genere un tablero de ouija.</p>
+			<p><font color=#ff6161>Fuerza:</font> Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
+			<p><font color=#ff6161>Debilidad:</font> Tomar una foto de un fantasma hara que desaparezca temporalmente, dando a los jugadores la oportunidad de escapar.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_poltergeist">
+        <![CDATA[
+			<p>Uno de los fantasmas mas famosos, el Poltergeist, también conocido como fantasma ruidoso, <font color=#ff6161>puede manipular varios objetos a su alrededor</font> para esparcir el miedo entre sus victimas.</p>
+			<p><font color=#ff6161>Fuerza:</font> Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
+			<p><font color=#ff6161>Debilidad:</font> Los jugadores pueden eliminar objetos fisicos de la habitacion, lo que hace que un Poltergeist sea ineficaz.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_revenant">
+        <![CDATA[
+			<p>Un Resucitado es un fantasma violento que <font color=#ff6161>puede atacar indiscriminadamente</font>, ya que es capaz de cambiar su objetivo actual a mitad de la caza. <font color=#ff6161>Esconderse de el hara que se mueva lentamente</font>, pero <font color=#ff6161>viajara mas rápido que cualquier otro fantasma en el juego si una victima esta en la mira</font>.</p>
+			<p><font color=#ff6161>Fuerza:</font> Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
+			<p><font color=#ff6161>Debilidad:</font> Si los jugadores tienen la oportunidad de esconderse de un Resucidato, su velocidad disminuira drasticamente.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_shade">
+        <![CDATA[
+			<p>Una sombra se considera un <font color=#ff6161>\"fantasma timido\”</font>. Si bien es mas difícil encontrar pruebas mientras los investigadores permanecen en grupos, <font color=#ff6161>es mucho menos probable que una Sombra ataque si hay varias personas cerca</font>.</p>
+			<p><font color=#ff6161>Fuerza:</font> Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
+			<p><font color=#ff6161>Debilidad:</font> Hay fuerza en los numeros contra una Sombra, ya que no atacaran a un grupo de personas.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_spirit">
+        <![CDATA[
+			<p>Un espíritu es el fantasma mas común con el que te encontraras, pero sigue siendo muy poderoso y peligroso. Por lo general, se descubre en uno de sus terrenos de caza después de una muerte inexplicable. No tiene fortalezas especiales. <font color=#ff6161>Los fajitos de hierbas evitan que los espiritus cacen durante unos tres minutos.</font>.</p>
+			<p><font color=#ff6161>Fuerza:</font> Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
+			<p><font color=#ff6161>Debilidad:</font> Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_wraith">
+        <![CDATA[
+			<p>Un Espectro es uno de los fantasmas mas peligrosos que encontraras. Es el único fantasma conocido que <font color=#ff6161>tiene la habilidad de volar</font>, y a veces ha sido <font color=#ff6161>conocido por ver a traves de puertas y atravesar paredes</font>. <font color=#ff6161>La sal es toxica para un Espectro</font>.</p>
+			<p><font color=#ff6161>Fuerza:</font> Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>
+			<p><font color=#ff6161>Debilidad:</font> Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_description_yurei">
+        <![CDATA[
+			<p>Una yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (Aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Barrer con fajitos de hierbas la habitacion en la que se encontro a un Yurei evitara que se aleje del lugar durante mucho tiempo.</p>
+			<p><font color=#ff6161>Fuerza:</font> La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
+			<p><font color=#ff6161>Debilidad:</font> Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
+		]]>
+    </string>
+
+    <string name="evidence_evidence_description_emf">
+        <![CDATA[
+				<p>EMF-5 es la lectura de nivel mas alto de un <font color=#ff6161>Lector de EMF</font>.</p>
+				<p>Un fantasma produce emisiones de EMF de los niveles 1 a 5 cuando interactua de algúna manera con la habitacion o la tabla Ouija. Los parpadeos de luz, los pasos y otras interacciones pasivas mas pequenas normalmente daran una lectura mas baja. Las interacciones mas intensas, como una aparicion o el timbre de un telefono, casi siempre daran una lectura mas alta. Los fantasmas que llevan esta evidencia daran EMF Nivel 5 solo por casualidad, por lo que esta evidencia <font color=#ff6161>puede llevar algún tiempo adquirir</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures">
+        <![CDATA[
+				<p>Las temperaturas gelidas son <font color=#ff6161>por debajo de 0 Celsius</font>. La temperatura se puede determinar utilizando el <font color=#ff6161>Termometro</font>.</p>
+				<p>A medida que los fantasmas extraen calor del área circundante, las temperaturas disminuyen en la habitacion o en los pasillos donde <font color=#ff6161>el fantasma pasa la mayor parte de su tiempo</font>. Todos los fantasmas eventualmente causaran que la temperatura caiga por debajo de 13 grados Celsius, pero solo ciertos tipos de fantasmas bajaran las temperaturas por debajo de 0 C.Estas temperaturas de congelacion permitiran que todos dentro del área embrujada <font color=#ff6161>puedan ver su aliento</font>. El enfriamiento de una habitacion, aunque sea leve, puede tardar mas de los primeros minutos de una investigacion. Tomar nota de las temperaturas extranamente bajas en las primeras habitaciones y luego volver de nuevo después es una buena idea.</p>
+		]]>
+    </string>
+    <string name="evidence_evidence_description_box">
+        <![CDATA[
+				<p>La caja de espiritus se utiliza para <font color=#ff6161>comunicarse con el fantasma</font>.</p>
+				<p>Un jugador debe <font color=#ff6161>hacer preguntas en el Chat de proximidad a una caja de espiritus activa, tanto mientras esta cerca del fantasma como cuando las luces están apagadas</font>. Antes de intentar esto, verifique los parametros de respuesta del fantasma, como \ "Responde a las personas que están solas \" o \ "Responde a todos \" que figuran en la pizarra del Camion. Si el fantasma responde, la caja de espiritus es una prueba confirmada. Preguntas puntuales como \ "¿Cuantos anos tienes? \" O \ "¿Donde estas? \" Son preguntas plausibles. Tenga en cuenta que el fantasma siempre esta escuchando, independientemente de si un jugador esta hablando en un Spirit Box o no, por lo que los jugadores deben tener cuidado al hablar en el chat de alrededores. Hacer que un fantasma se revele se puede hacer diciendo su nombre de pila varias veces (por lo tanto, enfureciendolo), y dandole ordenes como \ "Muestrate \" o \ "Danos una senal \" parecen ser ordenes plausibles.</p>
+		]]>
+    </string>
+    <string name="evidence_evidence_description_book">
+        <![CDATA[
+				<p>Determinado usando el Libro de escritura fantasmal.</p>
+				<p>Los fantasmas pueden escribir en el libro <font color=#ff6161>Independientemente de si el libro esta colocado o sostenido en la mano</font>. Si el fantasma escribe en el libro, esta es una prueba para ese tipo de fantasma. Si se presentan simbolos demoniacos, esto puede ser evidencia de un demonio, pero esto no es en absoluto definitivo ya que los estilos de escritura fantasmal tienden a ser al azar.</p>
+		]]>
+    </string>
+    <string name="evidence_evidence_description_orbs">
+        <![CDATA[
+				<p>Una esfera pequena y flotante que esta presente solo en la habitacion donde un fantasma esta presente. Puede ser <font color=#ff6161>visto solo a traves de visión nocturna a traves de la cámara del camion<font> desde camaras de video o camaras montadas en la cabeza.</p>
+				<p>Los orbes fantasmas se pueden detectar rapidamente, pero descartarlos demasiado rápido podria significar problemas en el futuro.</p>
+		]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints">
+        <![CDATA[
+				<p>Dejados en objetos y superficies por fantasmas, las huellas dactilares solo pueden <font color=#ff6161>ser vistas al hacer brillar la luz ultravioleta o una barra luminosa sobre las superficies afectadas</font> y brillara en verde bajo la luz ultravioleta.</p>
+				<p>La evidencia puede ser difícil de ver en elementos mas pequenos y la evidencia puede desvanecerse después de un tiempo. Si tiene problemas para localizar huellas dactilares, el uso de una cámara fotografica en elementos como una mesa de comedor que contenga platos o frascos puede dar pruebas, ya que el diario podria escribir \"huellas dactilaress\" en las fotos. Confusamente, las huellas también aparecen bajo luz ultravioleta y cuentan como interacciones en el diario, pero <font color=#ff6161>Las huellas no cuentan como evidencia de huellas dactilares</font>.</p>
+		]]>
+    </string>
+
+    <string name="objectives_title_response_everyone">AGRUPADOS</string>
+    <string name="objectives_title_optional_objectives">OBJETIVOS OPCIONALES</string>
+    <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
+    <string name="objectives_title_ghost_name">Nombre del fantasma:</string>
+    <string name="objectives_title_response">Responde a las personas que son:</string>
+    <string name="objectives_title_optional_objective_1">- OBJETIVO 1</string>
+    <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
+    <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
+    <string name="objectives_title_response_alone">SOLA</string>
+    <string name="map_floor_name_first">Primer Piso</string>
+    <string name="map_floor_name_second">Segunda Planta</string>
+    <string name="map_floor_name_attic">Atico</string>
+    <string name="map_floor_name_basement">Sótano</string>
+    <string name="general_evidence_reset_button">Reiniciar</string>
+    <string name="titlescreen_languages_label">Seleccione el Idioma</string>
+    <string name="mapview_instruction_zoom">Acercar: pellizca dos dedos</string>
+    <string name="mapview_instruction_pan">Alejar: arrastra un dedo</string>
+    <string name="evidence_evidence_type_emf">EMF 5</string>
+    <string name="evidence_evidence_type_temperatures">Temperatura Gelida</string>
+    <string name="evidence_evidence_type_box">CAJA DE ESPIRITUS</string>
+    <string name="evidence_evidence_type_book">ESCRITURA FANTASMAL</string>
+    <string name="evidence_evidence_type_orbs">ARTEFACTOS</string>
+    <string name="evidence_evidence_type_fingerprints">HUELLAS</string>
+    <string name="evidence_ghost_type_banshee">BANSHEE</string>
+    <string name="evidence_ghost_type_demon">DEMONIO</string>
+    <string name="evidence_ghost_type_jinn">GENIO</string>
+    <string name="evidence_ghost_type_mare">PESADILLA</string>
+    <string name="evidence_ghost_type_oni">ONI</string>
+    <string name="evidence_ghost_type_phantom">FANTASMA</string>
+    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
+    <string name="evidence_ghost_type_revenant">RESUCITADO</string>
+    <string name="evidence_ghost_type_shade">SOMBRA</string>
+    <string name="evidence_ghost_type_spirit">ESPIRITU</string>
+    <string name="evidence_ghost_type_wraith">ESPECTRO</string>
+    <string name="evidence_ghost_type_yurei">YUREI</string>
+    <string name="general_evidence_button">EVIDENCIA</string>
+    <string name="general_tasks_button">TAREAS</string>
+    <string name="general_maps_button">MAPAS</string>
+    <string name="aboutinfo_version">Version</string>
+    <string name="aboutinfo_title_about">Sobre el</string>
+    <string name="aboutinfo_specialthanks_title">Gracias Especiales</string>
+    <string name="aboutinfo_developerinfo_developer">Desarrollador</string>
+    <string name="aboutinfo_developerinfo_contact">Contacto</string>
+    <string name="aboutinfo_developerinfo_title">Información Para Desarrolladores</string>
+    <string name="settings_title">Configuraciones</string>
+    <string name="settings_screenalwayson">Mantenga siempre la pantalla encendida</string>
+    <string name="aboutinfo_joindiscord">Visita el Discord</string>
+
+    <string name="objective_info_ghostevent">Atestigue un evento fantasmal</string>
+    <string name="objective_info_ghostphotograph">Fotografie al fantasma</string>
+    <string name="objective_info_emfreader">Obtenga cualquier actividad del lector EMF</string>
+    <string name="objective_info_motionsensor">Obtenga actividad del sensor de movimiento</string>
+    <string name="objective_info_smudgestick">Barrer en la ubicación del fantasma</string>
+    <string name="objective_info_crucifix">Evita un ataque con el crucifijo</string>
+    <string name="objective_info_salt">Haz que el fantasma camine en la Sal</string>
+    <string name="objective_info_escapehunt">Escapa del fantasma mientras está cazando</string>
+    <string name="objective_info_repelwithsmudge">Repele al fantasma de la caza con un palo difuminado</string>
+    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una vela</string>
+    <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
+
+    <string name="evidence_timer_maplabel">Mapa:</string>
+    <string name="evidence_sanity_huntwarn">Advertencia de caza</string>
+    <string name="evidence_timer_actionlabel">acción</string>
+    <string name="evidence_timer_setuplabel">preparacion</string>
+    <string name="evidence_sanitymeter_title">máxima cordura</string>
+    <string name="settings_enablehuntaudioqueue">Habilitar advertencia de audio de búsqueda</string>
+    <string name="settings_huntwarningflashtimeout">duración para Aviso de Advertencia de cacería</string>
+    <string name="settings_huntwarningflashtimeout_never">"Timeout: Nunca "</string>
+    <string name="settings_extrasettings">Configuraciones extra</string>
+    <string name="settings_generalsettings">Configuraciones</string>
+    <string name="settings_colorblindnessmode_title">" Modo daltónico (Beta)"</string>
+    <string name="settings_colorblindnessmode_note">(Entrará en vigor después de salir de Configuración)</string>
+    <string name="settings_colorblindnessmode_normal">Ninguna</string>
+    <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
+
+    <!--
+        TOOLS PAGE
+    -->
+
+    <!--
+        SPIRITBOX TOOL PAGE
+    -->
+    <!-- All Entries -->
+    <!-- Personal Statements -->
+    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
+    <string name="spiritbox_entry_q0_5">¡Estoy asustada!</string>
+    <string name="spiritbox_entry_q0_6">¡Esconder!</string>
+    <string name="spiritbox_entry_q0_8">¡Pánico!</string>
+    <string name="spiritbox_entry_q0_9">¡Correr!</string>
+    <!-- Mental State Questions -->
+    <string name="spiritbox_entry_q1_1">¿Estas enojado?</string>
+    <string name="spiritbox_entry_q1_2">¿Estás feliz?</string>
+    <string name="spiritbox_entry_q1_3">¿Eres amistoso?</string>
+    <string name="spiritbox_entry_q1_6">¿Quieres hacernos daño?</string>
+    <string name="spiritbox_entry_q1_7">¿Nos quieres aquí?</string>
+    <!-- Name Questions -->
+    <string name="spiritbox_entry_q2_1">¿Cuál es su nombre?</string>
+    <!-- Age Questions -->
+    <string name="spiritbox_entry_q3_5">¿Cuántos años tienes?</string>
+    <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_1">¿Estás aquí?</string>
+    <string name="spiritbox_entry_q5_4">¿Eres el único aquí?</string>
+    <string name="spiritbox_entry_q5_7">¿Dónde estás?</string>
+    <!-- Interaction Questions -->
+    <string name="spiritbox_entry_q0_2">¡Atacanos!</string>
+    <string name="spiritbox_entry_q6_5">¿Puedes hablar con nosotros?</string>
+    <string name="spiritbox_entry_q6_7">Hacer algo.</string>
+    <string name="spiritbox_entry_q6_8">¡Danos una señal!</string>
+    <string name="spiritbox_entry_q0_7">¡Cazanos!</string>
+    <string name="spiritbox_entry_q6_16">Háganos saber que está aquí.</string>
+    <string name="spiritbox_entry_q6_17">Haz ruido.</string>
+    <string name="spiritbox_entry_q6_18">Abre la puerta.</string>
+    <string name="spiritbox_entry_q6_9">¡Muéstrate!</string>
+    <string name="spiritbox_entry_q6_12">Arroja algo.</string>
+    <string name="spiritbox_entry_q6_13">Apagar la luz.</string>
+    <string name="spiritbox_entry_q6_14">Enciende la luz.</string>
+    <!-- General Questions -->
+    <string name="spiritbox_entry_q7_2">¿Hola?</string>
+    <string name="spiritbox_entry_q7_3">Qué podemos hacer para ayudar?</string>
+    <string name="spiritbox_entry_q7_9">¿Qué quieres?</string>
+    <string name="spiritbox_entry_q7_11">¿Por qué estás aquí?</string>
+    <string name="review_requesttitle">¡Considere la calificación P.E.T.!</string>
+    <string name="review_accept">¡Aceptar!</string>
+    <string name="review_decline">Disminución</string>
+
+</resources>

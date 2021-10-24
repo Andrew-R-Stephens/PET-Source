@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SwitchTheme" parent="Theme.AppCompat">
+        <item name="colorControlActivated">?attr/switchColor</item>
+    </style>
+    <style name="RequestRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">?attr/bodyFontColor</item>
+        <item name="colorControlActivated">?attr/titleFontColor</item>
+    </style>
+</resources>

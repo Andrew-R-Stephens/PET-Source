@@ -1,0 +1,146 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+
+    <style name="Theme.PhasmophobiaEvidenceTool" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
+    </style>
+
+    <style name="Theme.PhasmophobiaEvidenceTool.NoActionBar" parent="Theme.AppCompat">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+
+    </style>
+
+    <style name="Theme.PhasmophobiaEvidenceTool.Normal" parent="Theme.PhasmophobiaEvidenceTool.NoActionBar">
+
+        <item name="titleFontColor">@color/red_light</item>
+        <item name="subtitleFontColor">@color/red_medHigh</item>
+        <item name="splashtitleFontColor">@color/red_med</item>
+
+        <item name="bodyFontColor">@color/white</item>
+        <item name="bodyEmphasisFontColor">@color/red_light</item>
+
+        <item name="light_active">@color/red_high</item>
+        <item name="light_inactive">@color/red_dull</item>
+        <item name="light_off">@color/cb_mono_white_lowmed</item>
+
+        <item name="switchColor">@color/red_medHigh</item>
+        <item name="progressBarColorStart">@color/red_med</item>
+        <item name="progressBarColorEnd">@color/red_med</item>
+        <item name="strikethroughColor">@color/red_medHigh</item>
+        <item name="circleColor">@color/green_bright</item>
+
+        <item name="selectedColor">@color/cb_norm_item_selected</item>
+        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
+
+        <item name="positiveSelColor">@color/green_bright</item>
+        <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
+        <item name="negativeSelColor">@color/red_medHigh</item>
+
+    </style>
+
+    <!-- -->
+    <style name="Theme.PhasmophobiaEvidenceTool.Colorblind.Monochromacy" parent="Theme.PhasmophobiaEvidenceTool.Normal">
+
+        <item name="titleFontColor">@color/cb_mono_white_high</item>
+        <item name="subtitleFontColor">@color/cb_mono_white_high</item>
+        <item name="splashtitleFontColor">@color/cb_mono_white_high</item>
+
+        <item name="bodyFontColor">@color/cb_mono_white_high</item>
+        <item name="bodyEmphasisFontColor">@color/cb_mono_white_high</item>
+
+        <item name="light_active">@color/cb_mono_white_high</item>
+        <item name="light_inactive">@color/cb_mono_white_med</item>
+
+        <item name="switchColor">@color/cb_mono_white_highmed</item>
+        <item name="strikethroughColor">@color/cb_mono_white_highmed</item>
+        <item name="circleColor">@color/cb_mono_white_high</item>
+
+        <item name="selectedColor">@color/cb_mono_white_highmed</item>
+        <item name="unselectedColor">@color/cb_mono_white_lowmed</item>
+
+        <item name="positiveSelColor">@color/cb_mono_white_high</item>
+        <item name="neutralSelColor">@color/cb_mono_white_med</item>
+        <item name="negativeSelColor">@color/cb_mono_white_lowmed</item>
+
+    </style>
+
+    <style name="Theme.PhasmophobiaEvidenceTool.Colorblind.Deuteranomaly" parent="Theme.PhasmophobiaEvidenceTool.Normal">
+
+        <item name="titleFontColor">@color/blue_light</item>
+        <item name="subtitleFontColor">@color/blue_medHigh</item>
+        <item name="splashtitleFontColor">@color/blue_med</item>
+
+        <item name="bodyFontColor">@color/white</item>
+        <item name="bodyEmphasisFontColor">@color/blue_light</item>
+
+        <item name="light_active">@color/yellow_high</item>
+        <item name="light_inactive">@color/yellow_dull</item>
+
+        <item name="switchColor">@color/yellow_medHigh</item>
+        <item name="strikethroughColor">@color/blue_light</item>
+        <item name="circleColor">@color/yellow_bright</item>
+
+        <item name="selectedColor">@color/yellow_high</item>
+        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
+
+        <item name="positiveSelColor">@color/yellow_bright</item>
+        <item name="neutralSelColor">@color/cb_mono_white_med</item>
+        <item name="negativeSelColor">@color/blue_low</item>
+
+    </style>
+
+    <style name="Theme.PhasmophobiaEvidenceTool.Colorblind.Protanomaly" parent="Theme.PhasmophobiaEvidenceTool.Normal">
+
+        <item name="titleFontColor">@color/blue_light</item>
+        <item name="subtitleFontColor">@color/blue_medHigh</item>
+        <item name="splashtitleFontColor">@color/blue_med</item>
+
+        <item name="bodyFontColor">@color/white</item>
+        <item name="bodyEmphasisFontColor">@color/blue_light</item>
+
+        <item name="light_active">@color/yellow_high</item>
+        <item name="light_inactive">@color/yellow_dull</item>
+
+        <item name="switchColor">@color/yellow_medHigh</item>
+        <item name="strikethroughColor">@color/blue_light</item>
+        <item name="circleColor">@color/yellow_bright</item>
+
+        <item name="selectedColor">@color/yellow_high</item>
+        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
+
+        <item name="positiveSelColor">@color/yellow_bright</item>
+        <item name="neutralSelColor">@color/cb_mono_white_med</item>
+        <item name="negativeSelColor">@color/blue_low</item>
+
+    </style>
+
+    <style name="Theme.PhasmophobiaEvidenceTool.Colorblind.Tritanomaly" parent="Theme.PhasmophobiaEvidenceTool.Normal">
+
+        <item name="switchColor">@color/red_high</item>
+        <item name="circleColor">@color/green_bright</item>
+        <item name="neutralSelColor">@color/white</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="red_bright">#FF6666</color>
+    <color name="red_light">#CC3C3C</color>
+    <color name="red_dull">#66FF0000</color>
+    <color name="red_high">#FF0000</color>
+    <color name="red_medHigh">#C80000</color>
+    <color name="red_med">#BA1414</color>
+    <color name="red_medlow">#9A0000</color>
+
+    <color name="yellow_bright">#ffff00</color>
+    <color name="yellow_light">#CCCC3C</color>
+    <color name="yellow_dull">#66FFFF00</color>
+    <color name="yellow_high">#FFFF00</color>
+    <color name="yellow_medHigh">#C8C800</color>
+    <color name="yellow_med">#BABA14</color>
+    <color name="yellow_medlow">#9A9A00</color>
+
+    <color name="green_bright">#00ff00</color>
+    <color name="green_light">#3CCC3C</color>
+    <color name="green_dull">#6600FF00</color>
+    <color name="green_high">#00FF00</color>
+    <color name="green_medHigh">#00C800</color>
+    <color name="green_med">#14BA14</color>
+    <color name="green_medlow">#009A00</color>
+
+    <color name="blue_bright">#6666FF</color>
+    <color name="blue_light">#3C3CCC</color>
+    <color name="blue_dull">#660000FF</color>
+    <color name="blue_high">#0000FF</color>
+    <color name="blue_medHigh">#0000C8</color>
+    <color name="blue_med">#1414BA</color>
+    <color name="blue_medlow">#00009A</color>
+    <color name="blue_low">#111167</color>
+
+    <color name="map_tint_blue">#FF8AD8FF</color>
+
+    <!-- Normal -->
+    <color name="cb_norm_item_selected">@color/red_high</color>
+    <color name="cb_norm_item_unselected">#FF444444</color>
+
+    <!-- Monochromacy -->
+    <color name="cb_mono_white_high">@color/white</color>
+    <color name="cb_mono_white_highmed">#C0C0C0</color>
+    <color name="cb_mono_white_med">#808080</color>
+    <color name="cb_mono_white_lowmed">#404040</color>
+
+</resources>

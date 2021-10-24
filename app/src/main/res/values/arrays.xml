@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        TITLESCREEN PAGE
+    -->
+    <!-- Language Data -->
+    <string-array name="languages_name">
+        <item>Deutsch</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+    </string-array>
+    <string-array name="languages_abbreviation">
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+    </string-array>
+
+    <!-- Book Writing Images -->
+    <integer-array name= "anim_bookwriting_images">
+        <item>@drawable/anim_writing_1</item>
+        <item>@drawable/anim_writing_2</item>
+        <item>@drawable/anim_writing_3</item>
+        <item>@drawable/anim_writing_4</item>
+        <item>@drawable/anim_writing_5</item>
+        <item>@drawable/anim_writing_6</item>
+    </integer-array>
+
+
+    <!--
+        ABOUT INFO PAGE
+    -->
+    <!-- Developer Info -->
+    <string-array name="aboutinfo_developerinfo_subtitles">
+        <item>@string/aboutinfo_developerinfo_developer</item>
+        <item>@string/aboutinfo_developerinfo_contact</item>
+    </string-array>
+    <string-array name="aboutinfo_developerinfo_subinfo">
+        <item>@string/aboutinfo_developerinfo_devname</item>
+        <item>@string/aboutinfo_developerinfo_address</item>
+    </string-array>
+
+    <!-- Special Thanks -->
+    <string-array name="aboutinfo_specialthanks_list">
+        <item>Bravo-1</item>
+        <item>DoctorCrow</item>
+        <item>Edahix</item>
+    </string-array>
+
+
+    <!--
+        SETTINGS PAGE
+    -->
+    <!-- Colorblind Data -->
+    <string-array name="settings_colorblindnessmode_array">
+        <item>@string/settings_colorblindnessmode_normal</item>
+        <item>@string/settings_colorblindnessmode_monochromacy</item>
+        <item>@string/settings_colorblindnessmode_deuteranomaly</item>
+        <item>@string/settings_colorblindnessmode_protanomaly</item>
+        <item>@string/settings_colorblindnessmode_tritanomaly</item>
+    </string-array>
+
+
+    <!--
+        EVIDENCE PAGE
+    -->
+    <!-- Ghost Names -->
+    <string-array name="evidence_ghost_names">
+        <item>@string/evidence_ghost_type_banshee</item>
+        <item>@string/evidence_ghost_type_demon</item>
+        <item>@string/evidence_ghost_type_goryo</item>
+        <item>@string/evidence_ghost_type_hantu</item>
+        <item>@string/evidence_ghost_type_jinn</item>
+        <item>@string/evidence_ghost_type_mare</item>
+        <item>@string/evidence_ghost_type_myling</item>
+        <item>@string/evidence_ghost_type_oni</item>
+        <item>@string/evidence_ghost_type_phantom</item>
+        <item>@string/evidence_ghost_type_poltergeist</item>
+        <item>@string/evidence_ghost_type_revenant</item>
+        <item>@string/evidence_ghost_type_shade</item>
+        <item>@string/evidence_ghost_type_spirit</item>
+        <item>@string/evidence_ghost_type_wraith</item>
+        <item>@string/evidence_ghost_type_yokai</item>
+        <item>@string/evidence_ghost_type_yurei</item>
+    </string-array>
+
+    <!-- Evidence Names -->
+    <string-array name="evidence_tool_names">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@string/evidence_evidence_type_book</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+
+    <!-- Ghost Data -->
+    <string-array name="ghost_info_array">
+        <item>@string/evidence_ghost_description_banshee</item>
+        <item>@string/evidence_ghost_description_demon</item>
+        <item>@string/evidence_ghost_description_goryo</item>
+        <item>@string/evidence_ghost_description_hantu</item>
+        <item>@string/evidence_ghost_description_jinn</item>
+        <item>@string/evidence_ghost_description_mare</item>
+        <item>@string/evidence_ghost_description_myling</item>
+        <item>@string/evidence_ghost_description_oni</item>
+        <item>@string/evidence_ghost_description_phantom</item>
+        <item>@string/evidence_ghost_description_poltergeist</item>
+        <item>@string/evidence_ghost_description_revenant</item>
+        <item>@string/evidence_ghost_description_shade</item>
+        <item>@string/evidence_ghost_description_spirit</item>
+        <item>@string/evidence_ghost_description_wraith</item>
+        <item>@string/evidence_ghost_description_yokai</item>
+        <item>@string/evidence_ghost_description_yurei</item>
+    </string-array>
+
+    <!-- Evidence Data -->
+    <string-array name="evidence_info_array">
+        <item>@string/evidence_evidence_description_dots</item>
+        <item>@string/evidence_evidence_description_emf</item>
+        <item>@string/evidence_evidence_description_fingerprints</item>
+        <item>@string/evidence_evidence_description_temperatures</item>
+        <item>@string/evidence_evidence_description_orbs</item>
+        <item>@string/evidence_evidence_description_book</item>
+        <item>@string/evidence_evidence_description_box</item>
+    </string-array>
+
+    <!-- Timer Data -->
+    <string-array name="evidence_timer_difficulty_names_array">
+        <item>@string/evidence_timer_difficulty_1</item>
+        <item>@string/evidence_timer_difficulty_2</item>
+        <item>@string/evidence_timer_difficulty_3</item>
+    </string-array>
+    <string-array name="evidence_timer_difficulty_times_array">
+        <item>@string/evidence_timer_time_1</item>
+        <item>@string/evidence_timer_time_2</item>
+        <item>@string/evidence_timer_time_3</item>
+    </string-array>
+
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Objectives -->
+    <string-array name="tasks_objectives_array">
+        <item>@string/objective_info_ghostevent</item>
+        <item>@string/objective_info_ghostphotograph</item>
+        <item>@string/objective_info_emfreader</item>
+        <item>@string/objective_info_motionsensor</item>
+        <item>@string/objective_info_smudgestick</item>
+        <item>@string/objective_info_crucifix</item>
+        <item>@string/objective_info_salt</item>
+        <item>@string/objective_info_escapehunt</item>
+        <item>@string/objective_info_repelwithsmudge</item>
+        <item>@string/objective_info_extinguishcandle</item>
+        <item>@string/objective_info_lowsanity</item>
+    </string-array>
+
+    <!--
+        SPIRIT BOX PAGE
+    -->
+    <!-- General Entries -->
+    <string-array name="ghostspeaktool_general_array">
+        <item>@string/spiritbox_entry_q6_8</item>
+        <item>@string/spiritbox_entry_q6_7</item>
+        <item>@string/spiritbox_entry_q6_9</item>
+        <item>@string/spiritbox_entry_q6_12</item>
+        <item>@string/spiritbox_entry_q6_13</item>
+        <item>@string/spiritbox_entry_q6_14</item>
+        <item>@string/spiritbox_entry_q6_16</item>
+        <item>@string/spiritbox_entry_q6_17</item>
+        <item>@string/spiritbox_entry_q6_18</item>
+        <item>@string/spiritbox_entry_q0_2</item>
+        <item>@string/spiritbox_entry_q0_5</item>
+        <item>@string/spiritbox_entry_q0_6</item>
+        <item>@string/spiritbox_entry_q0_7</item>
+        <item>@string/spiritbox_entry_q0_8</item>
+        <item>@string/spiritbox_entry_q0_9</item>
+        <item>@string/spiritbox_entry_q0_3</item>
+    </string-array>
+    <!-- Spirit Box Entries -->
+    <string-array name="ghostspeaktool_spiritbox_array">
+        <item>@string/spiritbox_entry_q5_7</item>
+        <item>@string/spiritbox_entry_q3_5</item>
+        <item>@string/spiritbox_entry_q5_1</item>
+        <item>@string/spiritbox_entry_q1_1</item>
+        <item>@string/spiritbox_entry_q1_2</item>
+        <item>@string/spiritbox_entry_q1_3</item>
+        <item>@string/spiritbox_entry_q1_6</item>
+        <item>@string/spiritbox_entry_q1_7</item>
+        <item>@string/spiritbox_entry_q6_5</item>
+        <item>@string/spiritbox_entry_q7_9</item>
+        <item>@string/spiritbox_entry_q7_11</item>
+    </string-array>
+    <!-- Ouija Board Entries -->
+    <string-array name="ghostspeaktool_oijaboard_array">
+        <item>@string/spiritbox_entry_q5_7</item>
+        <item>@string/spiritbox_entry_q6_5</item>
+        <item>@string/spiritbox_entry_q6_9</item>
+        <item>@string/spiritbox_entry_q0_2</item>
+        <item>@string/spiritbox_entry_q0_7</item>
+        <item>@string/spiritbox_entry_q1_1</item>
+        <item>@string/spiritbox_entry_q1_2</item>
+        <item>@string/spiritbox_entry_q1_3</item>
+        <item>@string/spiritbox_entry_q1_6</item>
+        <item>@string/spiritbox_entry_q1_7</item>
+        <item>@string/spiritbox_entry_q2_1</item>
+        <item>@string/spiritbox_entry_q3_5</item>
+        <item>@string/spiritbox_entry_q5_1</item>
+        <item>@string/spiritbox_entry_q6_7</item>
+        <item>@string/spiritbox_entry_q6_8</item>
+        <item>@string/spiritbox_entry_q6_12</item>
+        <item>@string/spiritbox_entry_q6_13</item>
+        <item>@string/spiritbox_entry_q6_14</item>
+        <item>@string/spiritbox_entry_q6_16</item>
+        <item>@string/spiritbox_entry_q6_17</item>
+        <item>@string/spiritbox_entry_q6_18</item>
+        <item>@string/spiritbox_entry_q7_3</item>
+        <item>@string/spiritbox_entry_q7_9</item>
+        <item>@string/spiritbox_entry_q7_11</item>
+    </string-array>
+
+
+    <!--
+        MAPS PAGE
+     -->
+    <!-- Generic array of map names -->
+    <string-array name="map_names_array">
+        <item>@string/map_name_asylum</item>
+        <item>@string/map_name_bleasdale</item>
+        <item>@string/map_name_grafton</item>
+        <item>@string/map_name_brownstone</item>
+        <item>@string/map_name_edgefield</item>
+        <item>@string/map_name_tanglewood</item>
+        <item>@string/map_name_ridgeview</item>
+        <item>@string/map_name_prison</item>
+    </string-array>
+
+    <!-- Array of references to map resource arrays-->
+    <integer-array name= "maps_resources_array">
+        <item>@array/map_asylum_array</item>
+        <item>@array/map_bleasdale_array</item>
+        <item>@array/map_grafton_array</item>
+        <item>@array/map_brownstone_array</item>
+        <item>@array/map_edgefield_array</item>
+        <item>@array/map_tanglewood_array</item>
+        <item>@array/map_ridgeview_array</item>
+        <item>@array/map_prison_array</item>
+    </integer-array>
+
+    <!-- Map-Specific arrays of all their resources -->
+    <!-- String - Map name -->
+    <!-- Bitmap - Outlines -->
+    <!-- Bitmap - Backgrounds -->
+    <!-- Bitmap - Doors -->
+    <!-- String[] - Layer names -->
+    <!-- int - Starting layer -->
+    <!-- int - Map size (1-3) -->
+    <!-- TODO Include background images and foreground objective locations-->
+    <integer-array name= "map_asylum_array">
+        <item>@string/map_name_asylum</item>
+        <item>@array/map_asylum_image_outline_array</item>
+        <item>@array/map_asylum_image_background_array</item>
+        <item>@array/map_asylum_image_doors_array</item>
+        <item>@array/map_asylum_layerName_array</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <integer-array name= "map_bleasdale_array">
+        <item>@string/map_name_bleasdale</item>
+        <item>@array/map_bleasdale_image_outline_array</item>
+        <item>@array/map_bleasdale_image_background_array</item>
+        <item>@array/map_bleasdale_image_doors_array</item>
+        <item>@array/map_bleasdale_layerName_array</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name= "map_grafton_array">
+        <item>@string/map_name_grafton</item>
+        <item>@array/map_grafton_image_outline_array</item>
+        <item>@array/map_grafton_image_background_array</item>
+        <item>@array/map_grafton_image_doors_array</item>
+        <item>@array/map_grafton_layerName_array</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name= "map_brownstone_array">
+        <item>@string/map_name_brownstone</item>
+        <item>@array/map_brownstone_image_outline_array</item>
+        <item>@array/map_brownstone_image_background_array</item>
+        <item>@array/map_brownstone_image_doors_array</item>
+        <item>@array/map_brownstone_layerName_array</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name= "map_edgefield_array">
+        <item>@string/map_name_edgefield</item>
+        <item>@array/map_edgefield_image_outline_array</item>
+        <item>@array/map_edgefield_image_background_array</item>
+        <item>@array/map_edgefield_image_doors_array</item>
+        <item>@array/map_edgefield_layerName_array</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name= "map_tanglewood_array">
+        <item>@string/map_name_tanglewood</item>
+        <item>@array/map_tanglewood_image_outline_array</item>
+        <item>@array/map_tanglewood_image_background_array</item>
+        <item>@array/map_tanglewood_image_doors_array</item>
+        <item>@array/map_tanglewood_layerName_array</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name= "map_ridgeview_array">
+        <item>@string/map_name_ridgeview</item>
+        <item>@array/map_ridgeview_image_outline_array</item>
+        <item>@array/map_ridgeview_image_background_array</item>
+        <item>@array/map_ridgeview_image_doors_array</item>
+        <item>@array/map_ridgeview_layerName_array</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name= "map_prison_array">
+        <item>@string/map_name_prison</item>
+        <item>@array/map_prison_image_outline_array</item>
+        <item>@array/map_prison_image_background_array</item>
+        <item>@array/map_prison_image_doors_array</item>
+        <item>@array/map_prison_layerName_array</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <!-- Map-Specific arrays of all their outline resources -->
+    <integer-array name= "map_asylum_image_outline_array">
+        <item>@drawable/map_asylum_layer_bottom_outline</item>
+        <item>@drawable/map_asylum_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_bleasdale_image_outline_array">
+        <item>@drawable/map_farmhouse_bleasdale_layer_bottom_outline</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_middle_outline</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_grafton_image_outline_array">
+        <item>@drawable/map_farmhouse_grafton_layer_bottom_outline</item>
+        <item>@drawable/map_farmhouse_grafton_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_brownstone_image_outline_array">
+        <item>@drawable/map_highschool_layer_bottom_outline</item>
+        <item>@drawable/map_highschool_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_edgefield_image_outline_array">
+        <item>@drawable/map_house_edgefield_layer_bottom_outline</item>
+        <item>@drawable/map_house_edgefield_layer_middle_outline</item>
+        <item>@drawable/map_house_edgefield_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_tanglewood_image_outline_array">
+        <item>@drawable/map_house_tanglewood_layer_bottom_outline</item>
+        <item>@drawable/map_house_tanglewood_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_ridgeview_image_outline_array">
+        <item>@drawable/map_house_ridgeview_layer_bottom_outline</item>
+        <item>@drawable/map_house_ridgeview_layer_middle_outline</item>
+        <item>@drawable/map_house_ridgeview_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_prison_image_outline_array">
+        <item>@drawable/map_prison_layer_outline_bottom</item>
+        <item>@drawable/map_prison_layer_outline_top</item>
+    </integer-array>
+
+    <!-- Map-Specific arrays of all their image background resources -->
+    <integer-array name= "map_asylum_image_background_array">
+        <item>@drawable/map_asylum_layer_bottom_background</item>
+        <item>@drawable/map_asylum_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_bleasdale_image_background_array">
+        <item>@drawable/map_farmhouse_bleasdale_layer_bottom_background</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_middle_background</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_grafton_image_background_array">
+        <item>@drawable/map_farmhouse_grafton_layer_bottom_background</item>
+        <item>@drawable/map_farmhouse_grafton_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_brownstone_image_background_array">
+        <item>@drawable/map_highschool_layer_top_background</item>
+        <item>@drawable/map_highschool_layer_bottom_background</item>
+    </integer-array>
+    <integer-array name= "map_edgefield_image_background_array">
+        <item>@drawable/map_house_edgefield_layer_bottom_background</item>
+        <item>@drawable/map_house_edgefield_layer_middle_background</item>
+        <item>@drawable/map_house_edgefield_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_tanglewood_image_background_array">
+        <item>@drawable/map_house_tanglewood_layer_bottom_background</item>
+        <item>@drawable/map_house_tanglewood_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_ridgeview_image_background_array">
+        <item>@drawable/map_house_ridgeview_layer_bottom_background</item>
+        <item>@drawable/map_house_ridgeview_layer_middle_background</item>
+        <item>@drawable/map_house_ridgeview_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_prison_image_background_array">
+        <item>@drawable/map_prison_layer_outline_bottom</item>
+        <item>@drawable/map_prison_layer_outline_top</item>
+    </integer-array>
+
+    <!-- Map-Specific arrays of all their image door resources -->
+    <integer-array name= "map_asylum_image_doors_array">
+        <item>@drawable/map_asylum_layer_bottom_doors</item>
+        <item>@drawable/map_asylum_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_bleasdale_image_doors_array">
+        <item>@drawable/map_farmhouse_bleasdale_layer_bottom_doors</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_middle_doors</item>
+        <item>@drawable/map_farmhouse_bleasdale_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_grafton_image_doors_array">
+        <item>@drawable/map_farmhouse_grafton_layer_bottom_doors</item>
+        <item>@drawable/map_farmhouse_grafton_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_brownstone_image_doors_array">
+        <item>@drawable/map_highschool_layer_bottom_doors</item>
+        <item>@drawable/map_highschool_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_edgefield_image_doors_array">
+        <item>@drawable/map_house_edgefield_layer_bottom_doors</item>
+        <item>@drawable/map_house_edgefield_layer_middle_doors</item>
+        <item>@drawable/map_house_edgefield_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_tanglewood_image_doors_array">
+        <item>@drawable/map_house_tanglewood_layer_bottom_doors</item>
+        <item>@drawable/map_house_tanglewood_layer_top_doors</item>
+
+    </integer-array>
+    <integer-array name= "map_ridgeview_image_doors_array">
+        <item>@drawable/map_house_ridgeview_layer_bottom_doors</item>
+        <item>@drawable/map_house_ridgeview_layer_middle_doors</item>
+        <item>@drawable/map_house_ridgeview_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_prison_image_doors_array">
+        <item>@drawable/map_prison_layer_outline_bottom</item>
+        <item>@drawable/map_prison_layer_outline_top</item>
+    </integer-array>
+
+    <!-- Map-Specific arrays of all their Layer names -->
+    <integer-array name="map_asylum_layerName_array">
+        <item>@string/map_floor_name_basement</item>
+        <item>@string/map_floor_name_first</item>
+    </integer-array>
+
+    <integer-array name= "map_bleasdale_layerName_array">
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+        <item>@string/map_floor_name_attic</item>
+    </integer-array>
+
+    <integer-array name= "map_grafton_layerName_array">
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+    <integer-array name= "map_brownstone_layerName_array">
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+    <integer-array name= "map_edgefield_layerName_array">
+        <item>@string/map_floor_name_basement</item>
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+    <integer-array name= "map_tanglewood_layerName_array">
+        <item>@string/map_floor_name_basement</item>
+        <item>@string/map_floor_name_first</item>
+    </integer-array>
+
+    <integer-array name= "map_ridgeview_layerName_array">
+        <item>@string/map_floor_name_basement</item>
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+    <integer-array name= "map_prison_layerName_array">
+        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+</resources>

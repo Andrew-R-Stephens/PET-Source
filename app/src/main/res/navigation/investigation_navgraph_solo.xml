@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentnavgraph"
+    app:startDestination="@id/evidenceFragment">
+
+    <fragment
+        android:id="@+id/evidenceFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.child.EvidenceSoloFragment"
+        android:label="EvidenceFragment">
+        <action
+            android:id="@+id/action_evidence_to_objectives"
+            app:destination="@id/objectivesFragment" />
+        <action
+            android:id="@+id/action_evidence_to_mapmenu"
+            app:destination="@id/mapMenuFragment" />
+        <action
+            android:id="@+id/action_evidenceFragment_to_toolSpiritBoxFragment"
+            app:destination="@id/toolSpiritBoxFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/objectivesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.objectives.ObjectivesFragment"
+        android:label="ObjectivesFragment" >
+        <action
+            android:id="@+id/action_objectives_to_evidence"
+            app:destination="@id/evidenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapMenuFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.MapMenuFragment"
+        android:label="MapMenuFragment" >
+        <action
+            android:id="@+id/action_mapmenu_to_evidence"
+            app:destination="@id/evidenceFragment" />
+        <action
+            android:id="@+id/action_mapmenu_to_mapview"
+            app:destination="@id/mapViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapViewFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.map.MapViewerFragment"
+        android:label="MapViewFragment" >
+        <action
+            android:id="@+id/action_mapViewFragment_to_evidenceFragment"
+            app:destination="@id/evidenceFragment" />
+        <action
+            android:id="@+id/action_mapview_to_mapmenu"
+            app:destination="@id/mapMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toolSpiritBoxFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.ToolGhostSpeakFragment"
+        android:label="ToolSpiritBoxFragment" >
+        <action
+            android:id="@+id/action_toolSpiritBoxFragment_to_evidenceFragment"
+            app:destination="@id/evidenceFragment" />
+    </fragment>
+</navigation>

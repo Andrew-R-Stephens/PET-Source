@@ -1,0 +1,15 @@
+*.iml
+/.gradle
+/.idea
+/KeyEncrypts/
+/local.properties
+/build
+Keystore.jks
+/app/.idea
+/app/build/
+/app/.cxx/
+/app/keystore.jks
+/app/release
+/app/local.properties
+/app/upload_certificate.pem
+/app/src/main/AndroidManifest.xml
