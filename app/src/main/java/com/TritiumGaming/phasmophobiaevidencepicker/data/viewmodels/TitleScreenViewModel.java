@@ -15,11 +15,11 @@ import java.util.Locale;
 /**
  * TitleScreenViewModel class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class TitleScreenViewModel extends ViewModel {
+
+    //private int latestDatabaseVersion = 0;
 
     private final AnimationData animationData = new AnimationData();
     private ReviewTrackingData reviewRequestData;
@@ -35,16 +35,14 @@ public class TitleScreenViewModel extends ViewModel {
     private boolean canRefresh = true;
 
     /**
-     * init
-     *
-     * TODO
-     *
+     * init method
      * @param context
      */
     public void init(Context context){
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
 
+        //setLatestDatabaseVersion(sharedPref.getInt(context.getResources().getString(R.string.preference_latestDatabaseVersion), -1));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setIsAlwaysOn(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()));
         setAllowHuntWarningAudio(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
@@ -61,11 +59,18 @@ public class TitleScreenViewModel extends ViewModel {
 
     }
 
+    /*
+    public void setLatestDatabaseVersion(int version){
+        this.latestDatabaseVersion = version;
+    }
+
+    public int getLatestDatabaseVersion() {
+        return latestDatabaseVersion;
+    }
+    */
+
     /**
-     * getReviewRequestData
-     *
-     * TODO
-     *
+     * getReviewRequestData method
      * @return reviewRequestData
      */
     public ReviewTrackingData getReviewRequestData(){
@@ -73,10 +78,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getAnimatedData
-     *
-     * TODO
-     *
+     * getAnimatedData method
      * @return animationData
      */
     public AnimationData getAnimationData(){
@@ -84,10 +86,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * hasAdRequest
-     *
-     * TODO
-     *
+     * hasAdRequest method
      * @return is adRequest null
      */
     public boolean hasAdRequest(){
@@ -95,10 +94,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setAdRequest
-     *
-     * TODO
-     *
+     * setAdRequest method
      * @param adRequest
      */
     public void setAdRequest(AdRequest adRequest){
@@ -106,10 +102,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getAdRequest
-     *
-     * TODO
-     *
+     * getAdRequest method
      * @return AdRequest
      */
     public AdRequest getAdRequest(){
@@ -117,20 +110,14 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setLanguage
-     *
-     * TODO
-     *
+     * setLanguage method
      * @param position
      * @param languageNames
      */
     public void setLanguage(int position, String[] languageNames) { setLanguageName(languageNames[position]); }
 
     /**
-     * setLanguageName
-     *
-     * TODO
-     *
+     * setLanguageName method
      * @param languageName
      */
     public void setLanguageName(String languageName){
@@ -138,10 +125,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getLanguageName
-     *
-     * TODO
-     *
+     * getLanguageName method
      * @return languageName
      */
     public String getLanguageName(){
@@ -149,10 +133,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setCanRefresh
-     *
-     * TODO
-     *
+     * setCanRefresh method
      * @param canRefresh
      */
     public void setCanRefresh(boolean canRefresh){
@@ -160,10 +141,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * canRefresh
-     *
-     * TODO
-     *
+     * canRefresh method
      * @return canRefresh
      */
     public boolean canRefresh(){
@@ -171,10 +149,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getIsAlwaysOn
-     *
-     * TODO
-     *
+     * getIsAlwaysOn method
      * @return isAlwaysOn
      */
     public boolean getIsAlwaysOn() {
@@ -182,10 +157,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setIsAlwaysOn
-     *
-     * TODO
-     *
+     * setIsAlwaysOn method
      * @param isAlwaysOn
      */
     public void setIsAlwaysOn(boolean isAlwaysOn) {
@@ -193,10 +165,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setAllowHuntWarningAudio
-     *
-     * TODO
-     *
+     * setAllowHuntWarningAudio method
      * @param isAllowed
      */
     public void setAllowHuntWarningAudio(boolean isAllowed) {
@@ -204,10 +173,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getIsHuntAudioAllowed
-     *
-     * TODO
-     *
+     * getIsHuntAudioAllowed method
      * @return isHuntAudioAllowed
      */
     public boolean getIsHuntAudioAllowed(){
@@ -215,10 +181,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setHuntWarningFlashTimeout
-     *
-     * TODO
-     *
+     * setHuntWarningFlashTimeout method
      * @param timeout
      */
     public void setHuntWarningFlashTimeout(int timeout){
@@ -226,10 +189,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getHuntWarningFlashTimeout
-     *
-     * TODO
-     *
+     * getHuntWarningFlashTimeout method
      * @return huntWarningFlashTimeout
      */
     public int getHuntWarningFlashTimeout(){
@@ -237,10 +197,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * setColorSpace
-     *
-     * TODO
-     *
+     * setColorSpace method
      * @param colorSpace
      */
     public void setColorSpace(int colorSpace){
@@ -248,10 +205,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * getColorSpace
-     *
-     * TODO
-     *
+     * getColorSpace method
      * @return ColorSpace
      */
     public int getColorSpace(){
@@ -259,10 +213,7 @@ public class TitleScreenViewModel extends ViewModel {
     }
 
     /**
-     * saveToFile
-     *
-     * TODO
-     *
+     * saveToFile method
      * @param c
      */
     public void saveToFile(Context c) {
@@ -270,6 +221,7 @@ public class TitleScreenViewModel extends ViewModel {
         SharedPreferences sharedPref = c.getSharedPreferences(c.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
+        //editor.putInt(c.getResources().getString(R.string.preference_latestDatabaseVersion), getLatestDatabaseVersion());
         editor.putString(c.getResources().getString(R.string.preference_language), getLanguageName());
         editor.putBoolean(c.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn());
         editor.putBoolean(c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed());

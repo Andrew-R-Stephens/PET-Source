@@ -3,8 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.data;
 /**
  * ColorSpaceData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ColorSpaceData {
@@ -13,9 +11,6 @@ public class ColorSpaceData {
     private int index = 0;
 
     /**
-     * ColorSpaceData
-     *
-     * TODO
      *
      * @param colorSpaceNames
      */
@@ -24,9 +19,6 @@ public class ColorSpaceData {
     }
 
     /**
-     * setIndex
-     *
-     * TODO
      *
      * @param index
      */
@@ -35,9 +27,6 @@ public class ColorSpaceData {
     }
 
     /**
-     * getIndex
-     *
-     * TODO
      *
      * @return
      */
@@ -46,9 +35,6 @@ public class ColorSpaceData {
     }
 
     /**
-     * iterate
-     *
-     * TODO
      *
      * @param dir
      */
@@ -63,9 +49,6 @@ public class ColorSpaceData {
     }
 
     /**
-     * getColorSpaceName
-     *
-     * TODO
      *
      * @return
      */

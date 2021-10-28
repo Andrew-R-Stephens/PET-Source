@@ -17,11 +17,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.parent.EvidenceFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.MapSelectControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.MapTrackControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TimerPlayControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.MapSelectControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.DifficultySelectControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityRunnable;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextView;
@@ -29,22 +29,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextV
 /**
  * EvidenceSoloFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class EvidenceSoloFragment extends EvidenceFragment {
 
     private Thread sanityThread; //Thread that updates the sanity levels
 
-    private MapTrackControl mapTrackControl;
-    private MapSelectControl prevNextButton;
-    private WarnTextView sanityPhase_setup, sanityPhase_action;
+    private DifficultySelectControl difficultySelectControls;
+    private WarnTextView sanityPhaseView_setup, sanityPhaseView_action;
 
     /**
-     * EvidenceSoloFragment constructor
-     *
-     * TODO
+     * EvidenceSoloFragment default constructor
      */
     public EvidenceSoloFragment(){
         super(R.layout.fragment_evidence_solo);
@@ -62,7 +57,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         if(!evidenceViewModel.hasSanityData())
             evidenceViewModel.setSanityData(new SanityData(evidenceViewModel));
 
-        // STORES MAP NAME AND SIZE
         if(evidenceViewModel.hasMapSizeData()) {
             TypedArray typedArray = getResources().obtainTypedArray(R.array.maps_resources_array);
             String[] names = new String[typedArray.length()];
@@ -79,32 +73,31 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         }
 
         // INITIALIZE VIEWS
-        AppCompatTextView evidence_timer_difficulty_title = view.findViewById(R.id.evidence_timer_difficulty_actual);
-        AppCompatTextView evidence_map_title = view.findViewById(R.id.mapchoice_actual);
-        AppCompatImageButton evidence_play_pause = view.findViewById(R.id.timer_play_pause);
-        AppCompatImageButton evidence_skip = view.findViewById(R.id.timer_skip);
-        AppCompatImageButton evidence_prev = view.findViewById(R.id.timer_prev);
-        AppCompatImageButton evidence_next = view.findViewById(R.id.timer_next);
+        AppCompatTextView difficulty_name = view.findViewById(R.id.difficulty_name);
+        AppCompatTextView map_name = view.findViewById(R.id.mapchoice_name);
+        AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
+        AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
+        AppCompatImageButton difficulty_prev = view.findViewById(R.id.difficulty_prev);
+        AppCompatImageButton difficulty_next = view.findViewById(R.id.difficulty_next);
         AppCompatImageButton map_prev = view.findViewById(R.id.mapchoice_prev);
         AppCompatImageButton map_next = view.findViewById(R.id.mapchoice_next);
-        //View navigation_fragListener_reset = view.findViewById(R.id.listener_resetAll);
-        sanityPhase_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
-        sanityPhase_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
+        View navigation_fragListener_reset = view.findViewById(R.id.listener_resetAll);
+        sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
+        sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
         // TEXT SIZE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            evidence_map_title.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
+            map_name.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
         }
 
         // LISTENERS
-        evidence_skip.setOnClickListener(v -> {
+        timer_skip.setOnClickListener(v -> {
             if(evidenceViewModel != null && evidenceViewModel.hasTimer()) {
                 evidenceViewModel.getTimer().createTimer(0L, 1000L);
                 if((!(evidenceViewModel.getTimer().getTimeRemaining() > 0L)) && evidenceViewModel.getSanityData().getSanityActual() < 50)
                     evidenceViewModel.getSanityData().setProgressManually(50);
             }
         });
-        /*
         navigation_fragListener_reset.setOnClickListener(v -> {
                 softReset();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
@@ -115,11 +108,11 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 ft.attach(EvidenceSoloFragment.this).commitNow();
                 }
         );
-        */
+
         // TIMER CONTROL
         TimerPlayControl playPauseButton = new TimerPlayControl(
                 evidenceViewModel.getTimer(),
-                evidence_play_pause,
+                timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
         if(evidenceViewModel.hasTimer()) {
@@ -130,23 +123,23 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         }
 
         // MAP SELECTION
-        mapTrackControl = new MapTrackControl(map_prev, map_next, evidence_map_title);
+        MapSelectControl mapTrackControl = new MapSelectControl(map_prev, map_next, map_name);
         mapTrackControl.init(evidenceViewModel);
-        evidence_map_title.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
-        prevNextButton = new MapSelectControl(
+        map_name.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
+        difficultySelectControls = new DifficultySelectControl(
                 evidenceViewModel.getTimer(),
-                evidence_prev,
-                evidence_next,
-                evidence_timer_difficulty_title,
+                difficulty_prev,
+                difficulty_next,
+                difficulty_name,
                 getResources().getString(R.string.evidence_timer_difficulty_default),
                 getResources().getStringArray(R.array.evidence_timer_difficulty_names_array),
                 getResources().getStringArray(R.array.evidence_timer_difficulty_times_array));
         if(evidenceViewModel != null && evidenceViewModel.hasTimer())
             evidenceViewModel.getTimer().setTimerControls(playPauseButton);
-        prevNextButton.init(evidenceViewModel);
-        prevNextButton.setTimerControl(playPauseButton);
+        difficultySelectControls.init(evidenceViewModel);
+        difficultySelectControls.setTimerControl(playPauseButton);
         if(evidenceViewModel != null)
-            prevNextButton.setState(evidenceViewModel.getDifficulty());
+            difficultySelectControls.setState(evidenceViewModel.getDifficulty());
 
         // SANITY METER
         if(sanitySeekBar != null)
@@ -161,47 +154,26 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     /**
-     * saveStates
-     *
-     * TODO
+     * saveStates method
      */
     public void saveStates() {
         if(evidenceViewModel != null)
-            evidenceViewModel.setDifficulty(prevNextButton.getState());
+            evidenceViewModel.setDifficulty(difficultySelectControls.getState());
         super.saveStates();
     }
 
     /**
-     * softReset
-     *
-     * TODO
+     * softReset method
      */
-    public void softReset() {
+    public void softReset(){
         disableUIThread();
-
-        if (prevNextButton != null) {
-            prevNextButton.reset();
-        }
-
-        if(mapTrackControl != null)
-            mapTrackControl.reset();
-
-        if (sanityPhase_setup != null) {
-            sanityPhase_setup.reset();
-            sanityPhase_setup.invalidate();
-        }
-        if(sanityPhase_action != null) {
-            sanityPhase_action.reset();
-            sanityPhase_action.invalidate();
-        }
-
+        if(difficultySelectControls != null)
+            difficultySelectControls.reset();
         super.softReset();
     }
 
     /**
-     * enableUIThread
-     *
-     * TODO
+     * enableUIThread method
      */
     public void enableUIThread(){
         if(evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
@@ -220,7 +192,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         break;
                 }
                 evidenceViewModel.setSanityRunnable(new SanityRunnable(
-                        evidenceViewModel, sanityMeterView, sanityPercent, sanitySeekBar, sanityPhase_setup, sanityPhase_action, sanityWarning, huntwarn));
+                        evidenceViewModel, sanityMeterView, sanityPercent, sanitySeekBar, sanityPhaseView_setup, sanityPhaseView_action, sanityWarning, huntwarn));
             }
 
             if (sanityThread == null) {
@@ -255,9 +227,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     /**
-     * disableUIThread
-     *
-     * TODO
+     * disableUIThread method
      */
     public void disableUIThread(){
         if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
@@ -273,9 +243,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     /**
-     * onPause
-     *
-     * TODO
+     * onPause method
      */
     @Override
     public void onPause() {
@@ -291,9 +259,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     /**
-     * onResume
-     *
-     * TODO
+     * onResume method
      */
     @Override
     public void onResume() {

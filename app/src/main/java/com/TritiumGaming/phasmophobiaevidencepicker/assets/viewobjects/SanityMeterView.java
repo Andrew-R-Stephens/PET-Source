@@ -24,8 +24,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
 /**
  * SanityMeterView class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class SanityMeterView extends View {
@@ -43,9 +41,6 @@ public class SanityMeterView extends View {
     private Bitmap sanityImg_top = null;
 
     /**
-     * SanityMeterView constructor
-     *
-     * TODO
      *
      * @param context
      */
@@ -54,9 +49,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * SanityMeterView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -66,9 +58,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * SanityMeterView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -79,9 +68,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * SanityMeterView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -93,9 +79,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * init
-     *
-     * TODO
      *
      * @param sanityData
      */
@@ -108,9 +91,7 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * buildImages
      *
-     * TODO
      */
     public void buildImages(){
         sanityImg_bottom = createBitmap(sanityImg_bottom, R.drawable.icon_sanityhead_bottom);
@@ -118,9 +99,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * hasBuiltImages
-     *
-     * TODO
      *
      * @return
      */
@@ -129,9 +107,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * createBitmap
-     *
-     * TODO
      *
      * @param toBitmap
      * @param id
@@ -147,9 +122,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * addLayer
-     *
-     * TODO
      *
      * @param baseLayer
      * @param topLayer
@@ -173,9 +145,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * createFilterColor
-     *
-     * TODO
      *
      * @param r
      * @param g
@@ -186,9 +155,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * onDraw
-     *
-     * TODO
      *
      * @param canvas
      */
@@ -263,9 +229,7 @@ public class SanityMeterView extends View {
     }
 
     /**
-     * recycleBitmaps
      *
-     * TODO
      */
     public void recycleBitmaps(){
         boolean scheduleGarbageCollect = (sanityImg_top != null || sanityImg_bottom != null);

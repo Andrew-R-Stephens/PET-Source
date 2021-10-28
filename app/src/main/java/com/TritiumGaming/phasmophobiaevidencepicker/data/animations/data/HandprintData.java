@@ -10,8 +10,6 @@ import android.graphics.PorterDuffColorFilter;
 /**
  * HandprintData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class HandprintData extends Animated {
@@ -31,9 +29,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setTickMax
-     *
-     * TODO
      *
      * @param tickMax
      */
@@ -42,9 +37,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setRotation
-     *
-     * TODO
      *
      * @param rot
      */
@@ -53,9 +45,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setX
-     *
-     * TODO
      *
      * @param x
      */
@@ -68,9 +57,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setY
-     *
-     * TODO
      *
      * @param y
      */
@@ -83,9 +69,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setWidth
-     *
-     * TODO
      *
      * @param w
      */
@@ -94,9 +77,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setHeight
-     *
-     * TODO
      *
      * @param h
      */
@@ -105,9 +85,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setScale
-     *
-     * TODO
      *
      * @param scale
      */
@@ -116,9 +93,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * getScaledWidth
-     *
-     * TODO
      *
      * @return
      */
@@ -127,9 +101,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * getScaledHeight
-     *
-     * TODO
      *
      * @return
      */
@@ -138,18 +109,13 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * setRect
      *
-     * TODO
      */
     public void setRect(){
         r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
     }
 
     /**
-     * rotateBitmap
-     *
-     * TODO
      *
      * @param original
      * @return
@@ -164,9 +130,7 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
         setRect();
@@ -180,9 +144,6 @@ public class HandprintData extends Animated {
     }
 
     /**
-     * getFilter
-     *
-     * TODO
      *
      * @return
      */

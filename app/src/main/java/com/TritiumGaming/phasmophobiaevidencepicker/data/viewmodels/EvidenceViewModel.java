@@ -8,12 +8,10 @@ import androidx.lifecycle.ViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityRunnable;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.CCountDownTimer;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.SetupPhaseTimer;
 
 /**
  * EvidenceViewModel class
- *
- * TODO
  *
  * @author TritiumGamingStudios
  */
@@ -29,16 +27,9 @@ public class EvidenceViewModel extends ViewModel {
     private MapSizeData[] mapSizeData = null;
     private int mapCurrent = 0;
 
-    private CCountDownTimer timer = null;
+    private SetupPhaseTimer timer = null;
     private int difficulty = 0;
 
-    /**
-     * init
-     *
-     * TODO
-     *
-     * @param c
-     */
     public void init(Context c) {
 
         if(!hasInvestigationData())
@@ -49,9 +40,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setInvestigationData
-     *
-     * TODO
      *
      * @param investigationData
      */
@@ -60,9 +48,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getInvestigationData
-     *
-     * TODO
      *
      * @return
      */
@@ -71,9 +56,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * hasInvestigationData
-     *
-     * TODO
      *
      * @return
      */
@@ -82,9 +64,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setSanityRunnable
-     *
-     * TODO
      *
      * @param sanityRunnable
      */
@@ -93,9 +72,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getSanityRunnable
-     *
-     * TODO
      *
      * @return
      */
@@ -104,9 +80,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * hasSanityRunnable
-     *
-     * TODO
      *
      * @return
      */
@@ -115,9 +88,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setSanityData
-     *
-     * TODO
      *
      * @param sanityData
      */
@@ -126,9 +96,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getSanityData
-     *
-     * TODO
      *
      * @return
      */
@@ -137,9 +104,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * hasSanityData
-     *
-     * TODO
      *
      * @return
      */
@@ -148,9 +112,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setMapSizeData
-     *
-     * TODO
      *
      * @param allNames
      * @param allSizes
@@ -164,9 +125,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * hasMapSizeData
-     *
-     * TODO
      *
      * @return
      */
@@ -175,9 +133,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getMapCount
-     *
-     * TODO
      *
      * @return
      */
@@ -188,9 +143,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setMapCurrent
-     *
-     * TODO
      *
      * @param index
      */
@@ -199,9 +151,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getMapCurrentIndex
-     *
-     * TODO
      *
      * @return
      */
@@ -210,9 +159,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getMapCurrentName
-     *
-     * TODO
      *
      * @return
      */
@@ -223,9 +169,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getMapCurrentSize
-     *
-     * TODO
      *
      * @return
      */
@@ -236,9 +179,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setRadioButtonsChecked
-     *
-     * TODO
      *
      * @param radioButtonsChecked
      */
@@ -247,9 +187,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getRadioButtonsChecked
-     *
-     * TODO
      *
      * @return
      */
@@ -258,31 +195,22 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setTimer
-     *
-     * TODO
      *
      * @param timer
      */
-    public void setTimer(CCountDownTimer timer) {
+    public void setTimer(SetupPhaseTimer timer) {
         this.timer = timer;
     }
 
     /**
-     * getTimer
-     *
-     * TODO
      *
      * @return
      */
-    public CCountDownTimer getTimer() {
+    public SetupPhaseTimer getTimer() {
         return timer;
     }
 
     /**
-     * hasTimer
-     *
-     * TODO
      *
      * @return
      */
@@ -291,9 +219,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * isSetup
-     *
-     * TODO
      *
      * @return
      */
@@ -302,9 +227,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setDifficulty
-     *
-     * TODO
      *
      * @param difficulty
      */
@@ -315,9 +237,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * getDifficulty
-     *
-     * TODO
      *
      * @return
      */
@@ -326,9 +245,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setHuntWarningAudioAllowed
-     *
-     * TODO
      *
      * @param huntWarningAudioAllowed
      */
@@ -337,9 +253,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * isHuntWarningAudioAllowed
-     *
-     * TODO
      *
      * @return
      */
@@ -348,21 +261,20 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     * setHuntWarningFlashTimeout
-     *
-     * TODO
      *
      * @param timeout
      */
     public void setHuntWarningFlashTimeout(int timeout) {
-        if(sanityData != null)
+        if(sanityData != null) {
             sanityData.setFlashTimeoutMax(timeout);
+            Log.d("SanityData", "is not null");
+        }
+        else
+            Log.d("SanityData", "is null");
     }
 
     /**
-     * reset
-     *
-     * TODO
+     * reset method
      */
     public void reset() {
         timer = null;
@@ -376,18 +288,13 @@ public class EvidenceViewModel extends ViewModel {
 
     /**
      * MapSizeData class
-     *
-     * TODO
      */
     private static class MapSizeData {
         private final String name;
         private final int size;
 
         /**
-         * MapSizeData constructor
-         *
-         * TODO
-         *
+         * MapSizeData parameterized constructor
          * @param name
          * @param size
          */
@@ -397,10 +304,7 @@ public class EvidenceViewModel extends ViewModel {
         }
 
         /**
-         * getSize
-         *
-         * TODO
-         *
+         * getSize method
          * @return
          */
         public int getSize(){
@@ -408,10 +312,7 @@ public class EvidenceViewModel extends ViewModel {
         }
 
         /**
-         * getName
-         *
-         * TODO
-         *
+         * getName method
          * @return
          */
         public String getName(){

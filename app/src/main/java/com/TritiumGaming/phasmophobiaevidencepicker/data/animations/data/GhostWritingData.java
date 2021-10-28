@@ -13,16 +13,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.AnimationData;
 /**
  * GhostWritingData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class GhostWritingData extends Animated{
 
     /**
-     * GhostWritingData constructor
-     *
-     * TODO
      *
      * @param screenW
      * @param screenH
@@ -54,9 +49,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setTickMax
-     *
-     * TODO
      *
      * @param tickMax
      */
@@ -65,9 +57,7 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setX
      *
-     * TODO
      */
     public void setX(){
         this.x = Math.random() * SCREENW;
@@ -78,9 +68,7 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setY
      *
-     * TODO
      */
     public void setY(){
         this.y = Math.random() * SCREENH;
@@ -91,9 +79,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setWidth
-     *
-     * TODO
      *
      * @param w
      */
@@ -102,9 +87,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setHeight
-     *
-     * TODO
      *
      * @param h
      */
@@ -113,9 +95,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setScale
-     *
-     * TODO
      *
      * @param scale
      */
@@ -124,9 +103,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * getScaledWidth
-     *
-     * TODO
      *
      * @return
      */
@@ -135,9 +111,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * getScaledHeight
-     *
-     * TODO
      *
      * @return
      */
@@ -146,18 +119,13 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * setRect
      *
-     * TODO
      */
     public void setRect(){
         r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
     }
 
     /**
-     * rotateBitmap
-     *
-     * TODO
      *
      * @param original
      * @return
@@ -172,9 +140,7 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
         setRect();
@@ -188,9 +154,6 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * getFilter
-     *
-     * TODO
      *
      * @return
      */

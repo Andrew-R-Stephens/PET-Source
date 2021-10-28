@@ -7,8 +7,6 @@ import java.text.NumberFormat;
 /**
  * SanityData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class SanityData {
@@ -34,8 +32,6 @@ public class SanityData {
     /**
      * SanityData
      *
-     * TODO
-     *
      * @param evidenceViewModel - The EvidenceViewModel created at Activity creation
      */
     public SanityData(EvidenceViewModel evidenceViewModel){
@@ -43,7 +39,7 @@ public class SanityData {
     }
 
     /**
-     * getDifficultyRate
+     * getDifficultyRate method
      *
      * Returns the difficulty rate multiplier.
      * Defaults if the selected index is out of range of available indexes.
@@ -58,7 +54,7 @@ public class SanityData {
     }
 
     /**
-     * getDropRate
+     * getDropRate method
      *
      * Returns the drop rate multiplier.
      * Based on current map size (Small, Medium, Large) and the stage of the investigation (Setup vs Hunt)
@@ -76,9 +72,7 @@ public class SanityData {
     }
 
     /**
-     * setStartTime
-     *
-     * TODO
+     * setStartTime method
      *
      * @param startTime - The Sanity Drain starting time, whenever the play button is activated.
      */
@@ -87,9 +81,7 @@ public class SanityData {
     }
 
     /**
-     * getStartTime
-     *
-     * TODO
+     * getStartTime method
      *
      * @return The Sanity drain start time.
      */
@@ -98,9 +90,7 @@ public class SanityData {
     }
 
     /**
-     * setFlashTimeoutMax
-     *
-     * TODO
+     * setFlashTimeoutMax method
      *
      * @param timeout - The maximum duration that the Warning text can flash for.
      */
@@ -111,8 +101,6 @@ public class SanityData {
     /**
      * setFlashTimeoutStart
      *
-     * TODO
-     *
      * @param timeout - The moment when the Warning began to flash.
      */
     public void setFlashTimeoutStart(long timeout){
@@ -121,8 +109,6 @@ public class SanityData {
 
     /**
      * getSanityActual
-     *
-     * TODO
      *
      * @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.
      */
@@ -138,8 +124,6 @@ public class SanityData {
     /**
      * setInsanityActual
      *
-     * TODO
-     *
      * @param insanityActual - The decimal form of the sanity level.
      */
     public void setInsanityActual(float insanityActual){
@@ -148,8 +132,6 @@ public class SanityData {
 
     /**
      * getInsanityActual
-     *
-     * TODO
      *
      * The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual.
@@ -166,8 +148,6 @@ public class SanityData {
     /**
      * getInsanityPercent
      *
-     * TODO
-     *
      * @return the sanity level missing, in percent form.
      */
     public float getInsanityPercent(){
@@ -176,8 +156,6 @@ public class SanityData {
 
     /**
      * getInsanityDegree
-     *
-     * TODO
      *
      * @return the sanity level missing, in degrees.
      */

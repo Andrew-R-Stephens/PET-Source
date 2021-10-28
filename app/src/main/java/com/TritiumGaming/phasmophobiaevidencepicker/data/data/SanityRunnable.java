@@ -31,8 +31,7 @@ public class SanityRunnable implements Runnable {
     private int flashTick = 0;
 
     /**
-     * SanityRunnable constructor
-     *
+     * SanityRunnable parameterized constructor -
      * Locally sets references to EvidenceViewModel
      * Locally sets references to Views and Resources found within the parent Fragment.
      *

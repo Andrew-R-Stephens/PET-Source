@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 /**
  * ObjectiveCompletedButton class
  *
- * TODO
- *
  * @author Tritium Gaming Studios
  */
 public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompatImageButton {
@@ -22,10 +20,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     private boolean isEnabled = false;
 
     /**
-     * ObjectiveCompletedButton constructor
-     *
-     * TODO
-     *
+     * ObjectiveCompletedButton parameterized constructor
      * @param context
      */
     public ObjectiveCompletedButton(@NonNull Context context) {
@@ -36,10 +31,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
         setOnClickListener(v -> toggleStateAndIcon());
     }
     /**
-     * ObjectiveCompletedButton constructor
-     *
-     * TODO
-     *
+     * ObjectiveCompletedButton parameterized constructor
      * @param context
      * @param attrs
      */
@@ -51,10 +43,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
         setOnClickListener(v -> toggleStateAndIcon());
     }
     /**
-     * ObjectiveCompletedButton constructor
-     *
-     * TODO
-     *
+     * ObjectiveCompletedButton parameterized constructor
      * @param context
      * @param attrs
      * @param defStyle
@@ -68,10 +57,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * setColorStates
-     *
-     * TODO
-     *
+     * setColorStates method
      * @param unselected
      * @param selected
      */
@@ -86,10 +72,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * getColorStates
-     *
-     * TODO
-     *
+     * getColorStates method
      * @return int array of set colors
      */
     public int[] getColorStates(){
@@ -97,9 +80,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * toggleStateAndIcon
-     *
-     * TODO
+     * toggleStateAndIcon method
      */
     public void toggleStateAndIcon(){
         if(isEnabled()) {
@@ -113,10 +94,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * setEnabledState
-     *
-     * TODO
-     *
+     * setEnabledState method
      * @param isEnabled
      */
     public void setEnabledState(boolean isEnabled){
@@ -124,10 +102,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * overrideStateAndIcon
-     *
-     * TODO
-     *
+     * overrideStateAndIcon method
      * @param state
      */
     public void overrideStateAndIcon(boolean state){
@@ -142,10 +117,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * isEnabled
-     *
-     * TODO
-     *
+     * isEnabled method
      * @return if the Button is enabled
      */
     public boolean isEnabled(){
@@ -153,10 +125,7 @@ public class ObjectiveCompletedButton extends androidx.appcompat.widget.AppCompa
     }
 
     /**
-     * setSpinner
-     *
-     * TODO
-     *
+     * setSpinner method
      * @param objectivesSpinner
      *
      */

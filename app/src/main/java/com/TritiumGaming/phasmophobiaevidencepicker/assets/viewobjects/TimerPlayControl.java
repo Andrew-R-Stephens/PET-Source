@@ -5,28 +5,23 @@ import androidx.appcompat.widget.AppCompatImageButton;
 /**
  * TimerPlayControl class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class TimerPlayControl {
 
-    private CCountDownTimer timer = null;
+    private SetupPhaseTimer timer = null;
     private AppCompatImageButton view = null;
 
     private int icon_play = 0, icon_pause = 0;
 
     /**
-     * TimerPlayControl constructor
-     *
-     * TODO
      *
      * @param timer
      * @param play_pause_view
      * @param icon_play
      * @param icon_pause
      */
-    public TimerPlayControl(CCountDownTimer timer, AppCompatImageButton play_pause_view, int icon_play, int icon_pause) {
+    public TimerPlayControl(SetupPhaseTimer timer, AppCompatImageButton play_pause_view, int icon_play, int icon_pause) {
         setTimer(timer);
         setTextView(play_pause_view);
 
@@ -37,9 +32,6 @@ public class TimerPlayControl {
     }
 
     /**
-     * setTextView
-     *
-     * TODO
      *
      * @param view
      */
@@ -48,20 +40,14 @@ public class TimerPlayControl {
     }
 
     /**
-     * setTimer
-     *
-     * TODO
      *
      * @param timer
      */
-    public void setTimer(CCountDownTimer timer) {
+    public void setTimer(SetupPhaseTimer timer) {
         this.timer = timer;
     }
 
     /**
-     * setPlayBackgroundResource
-     *
-     * TODO
      *
      * @param icon_play
      */
@@ -70,9 +56,6 @@ public class TimerPlayControl {
     }
 
     /**
-     * setPauseBackgroundResource
-     *
-     * TODO
      *
      * @param icon_pause
      */
@@ -81,9 +64,7 @@ public class TimerPlayControl {
     }
 
     /**
-     * checkPaused
      *
-     * TODO
      */
     public void checkPaused() {
         if(timer != null && timer.isPaused())
@@ -91,9 +72,7 @@ public class TimerPlayControl {
     }
 
     /**
-     * setPaused
      *
-     * TODO
      */
     public void setPaused() {
         view.setImageResource(icon_play);
@@ -101,9 +80,7 @@ public class TimerPlayControl {
     }
 
     /**
-     * setPlayed
      *
-     * TODO
      */
     public void setPlayed() {
         view.setImageResource(icon_pause);
@@ -111,9 +88,7 @@ public class TimerPlayControl {
     }
 
     /**
-     * toggleState
      *
-     * TODO
      */
     public void toggleState() {
         if(timer.isPaused())

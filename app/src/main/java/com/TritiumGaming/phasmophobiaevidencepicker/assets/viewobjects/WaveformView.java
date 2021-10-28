@@ -18,8 +18,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 /**
  * WaveformView class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class WaveformView extends View {
@@ -41,9 +39,6 @@ public class WaveformView extends View {
 	private final Paint bgPaint = new Paint();
 
 	/**
-	 * WaveformView constructor
-	 *
-	 * TODO
 	 *
 	 * @param context
 	 */
@@ -53,9 +48,6 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * WaveformView constructor
-	 *
-	 * TODO
 	 *
 	 * @param context
 	 * @param attrs
@@ -66,9 +58,6 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * WaveformView constructor
-	 *
-	 * TODO
 	 *
 	 * @param context
 	 * @param attrs
@@ -80,9 +69,6 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * WaveformView constructor
-	 *
-	 * TODO
 	 *
 	 * @param context
 	 * @param attrs
@@ -95,9 +81,7 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * init
 	 *
-	 * TODO
 	 */
 	public void init() {
 		mBytes = null;
@@ -138,9 +122,6 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * updateVisualizer
-	 *
-	 * TODO
 	 *
 	 * @param bytes
 	 */
@@ -150,9 +131,6 @@ public class WaveformView extends View {
 	}
 
 	/**
-	 * onDraw
-	 *
-	 * TODO
 	 *
 	 * @param canvas
 	 */

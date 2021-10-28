@@ -7,8 +7,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
 /**
  * ObjectivesViewModel class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ObjectivesViewModel extends ViewModel {
@@ -20,32 +18,19 @@ public class ObjectivesViewModel extends ViewModel {
 
     private boolean responseState = false; // alone , group
 
-    /**
-     *setObjectivesSpinnerObjectives
-     *
+    /*
      * Chosen spinner objectives
      */
     public void setObjectivesSpinnerObjectives(ObjectivesData.Objective[] objectiveSpinnerObjectives) {
         this.objectivesSpinnerObjectives = objectiveSpinnerObjectives;
     }
 
-    /**
-     * getObjectivesSpinnerObjectives
-     *
-     * TODO
-     *
-     * @return
-     */
     public ObjectivesData.Objective[] getObjectivesSpinnerObjectives() {
         return objectivesSpinnerObjectives;
     }
 
-    /**
-     * setGhostName
-     *
-     * TODO
-     *
-     * @param ghostName
+    /*
+     * Ghost name
      */
     public void setGhostName(String ghostName) {
         this.ghostName = ghostName;
@@ -55,52 +40,30 @@ public class ObjectivesViewModel extends ViewModel {
         return ghostName;
     }
 
-    /**
-     * setResponseState
-     *
-     * TODO
+    /*
+     * Response
      */
     public void setResponseState(boolean responseState){
         this.responseState = responseState;
     }
 
-    /**
-     * getResponseState
-     *
-     * TODO
-     *
-     * @return
-     */
     public boolean getResponseState(){
         return responseState;
     }
 
-    /**
-     * setObjectiveCompletion
-     *
-     * TODO
-     *
+    /*
      * Objective Completed Buttons
      */
     public void setObjectiveCompletion(boolean[] isObjectiveCompleted) {
         this.isObjectiveCompleted = isObjectiveCompleted;
     }
 
-    /**
-     * getObjectiveCompletion
-     *
-     * TODO
-     *
-     * @return
-     */
     public boolean[] getObjectiveCompletion(){
         return isObjectiveCompleted;
     }
 
-    /**
-     * reset
-     *
-     * TODO
+    /*
+     * Reset
      */
     public void reset() {
         objectivesSpinnerObjectives = null;

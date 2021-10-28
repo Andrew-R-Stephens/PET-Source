@@ -16,9 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MPClientViewModel;
 
 /**
- * EvidenceClientFragment class (Work-In-Progress)
- *
- * TODO
+ * EvidenceClientFragment class
  *
  * @author TritiumGamingStudios
  */

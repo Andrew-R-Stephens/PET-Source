@@ -6,8 +6,6 @@ import android.graphics.Matrix;
 /**
  * InteractiveViewControllerData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class InteractiveViewControllerData {
@@ -23,9 +21,6 @@ public class InteractiveViewControllerData {
     private int w, h;
 
     /**
-     * incrementZoomLevel
-     *
-     * TODO
      *
      * @param addZoom
      */
@@ -45,9 +40,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * incrementPan
-     *
-     * TODO
      *
      * @param addX
      * @param addY
@@ -64,9 +56,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * setDisplaySize
-     *
-     * TODO
      *
      * @param w
      * @param h
@@ -77,9 +66,7 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * updateMatrix
      *
-     * TODO
      */
     public void updateMatrix(){
         setAutoInSampleSize(w, h);
@@ -87,9 +74,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * getBitmapFactoryOptions
-     *
-     * TODO
      *
      * @return
      */
@@ -98,9 +82,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * postTranslateMatrix
-     *
-     * TODO
      *
      * @param imgW
      * @param imgH
@@ -146,9 +127,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * getMatrix
-     *
-     * TODO
      *
      * @return
      */
@@ -157,9 +135,6 @@ public class InteractiveViewControllerData {
     }
 
     /**
-     * setAutoInSampleSize
-     *
-     * TODO
      *
      * @param reqWidth
      * @param reqHeight

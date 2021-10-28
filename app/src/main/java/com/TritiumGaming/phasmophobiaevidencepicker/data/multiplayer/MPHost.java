@@ -6,8 +6,6 @@ import java.net.ServerSocket;
 /**
  * MPHost class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MPHost extends MPMember{
@@ -18,9 +16,6 @@ public class MPHost extends MPMember{
     private final String lobbyName;
 
     /**
-     * MPHost
-     *
-     * TODO
      *
      * @param lobbyName
      */
@@ -29,9 +24,6 @@ public class MPHost extends MPMember{
     }
 
     /**
-     * openServer
-     *
-     * TODO
      *
      * @throws IOException
      */
@@ -41,9 +33,6 @@ public class MPHost extends MPMember{
     }
 
     /**
-     * getLobbyCode
-     *
-     * TODO
      *
      * @return
      */

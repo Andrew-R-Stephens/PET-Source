@@ -12,13 +12,11 @@ import android.view.View;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InteractiveViewControllerData;
 
 /**
- * InteractiveMapController class
- *
- * TODO
+ * InteractiveMapControlView class
  *
  * @author TritiumGamingStudios
  */
-public class InteractiveMapController extends View {
+public class InteractiveMapControlView extends View {
 
     private InteractiveViewControllerData controllerData = null;
 
@@ -30,22 +28,16 @@ public class InteractiveMapController extends View {
     private View recipient = null;
 
     /**
-     * InteractiveMapController constructor
-     *
-     * TODO
-     *
+     * InteractiveMapControlView parameterized constructor
      * @param context
      * @param attrs
      */
-    public InteractiveMapController(Context context, AttributeSet attrs) {
+    public InteractiveMapControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     /**
-     * init
-     *
-     * TODO
-     *
+     * init method
      * @param controllerData
      * @param recipient
      */
@@ -58,9 +50,6 @@ public class InteractiveMapController extends View {
 
     /**
      * onTouchEvent listener
-     *
-     * TODO
-     *
      * @param event
      * @return
      */
@@ -130,9 +119,7 @@ public class InteractiveMapController extends View {
     }
 
     /**
-     * doZoomAction
-     *
-     * TODO
+     * doZoomAction method
      */
     public void doZoomAction() {
 
@@ -159,9 +146,7 @@ public class InteractiveMapController extends View {
     }
 
     /**
-     * doPanAction
-     *
-     * TODO
+     * doPanAction method
      */
     public void doPanAction() {
 

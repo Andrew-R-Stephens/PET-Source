@@ -38,8 +38,6 @@ import java.util.Locale;
 /**
  * ToolGhostSpeakFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDataCaptureListener {
@@ -49,9 +47,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     private Visualizer visualizer = null;
 
     /**
-     * ToolGhostSpeakFragment constructor
      *
-     * TODO
      */
     public ToolGhostSpeakFragment(){
         super(R.layout.fragment_tool_ghostspeak);
@@ -100,9 +96,6 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * setScrollListEntries
-     *
-     * TODO
      *
      * @param context The context
      * @param arrayRes The Resource array of Strings holding phrases
@@ -146,9 +139,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * startVisualizer
      *
-     * TODO
      */
     private void startVisualizer() {
         if(visualizer == null) {
@@ -161,9 +152,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * stopVisualizer
      *
-     * TODO
      */
     private void stopVisualizer() {
         if(visualizer != null) {
@@ -174,9 +163,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * startTextToSpeech
      *
-     * TODO
      */
     private void startTextToSpeech(){
         if(textToSpeech == null) {
@@ -198,9 +185,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * stopTextToSpeech
      *
-     * TODO
      */
     private void stopTextToSpeech(){
         if(textToSpeech != null){
@@ -211,10 +196,8 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * visitTTSVoiceDownloads
-     *
-     * The solution was to turn on Wi-Fi on the device and add German and Russian in "Settings -> Language & Input -> Google voice typing -> Voices".
-     * After that the languages were downloaded and the app worked as desired.
+     * visitTTSVoiceDownloads method
+     * The solution was to turn on Wi-Fi on the device and add German and Russian in "Settings -> Language & Input -> Google voice typing -> Voices". After that the languages were downloaded and the app worked as desired.
      */
     public void visitTTSVoiceDownloads(){
         Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
@@ -226,9 +209,6 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * onWaveFormDataCapture
-     *
-     * TODO
      *
      * @param thisVisualiser The visualizer
      * @param waveform The waveform
@@ -244,9 +224,6 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * onFftDataCapture
-     *
-     * TODO
      *
      * @param thisVisualiser The visualizer
      * @param fft The fft
@@ -258,9 +235,6 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * requestAudioPermissions
-     *
-     * TODO
      *
      * @param c The context
      * @param a The current activity
@@ -284,9 +258,7 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     }
 
     /**
-     * onDestroy
      *
-     * TODO
      */
     @Override
     public void onDestroy() {

@@ -16,8 +16,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 /**
  * WarnTextView class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class WarnTextView extends AppCompatTextView {
@@ -28,9 +26,6 @@ public class WarnTextView extends AppCompatTextView {
     private @ColorInt int color_active, color_inactive, color_off;
 
     /**
-     * WarnTextView
-     *
-     * TODO
      *
      * @param context
      */
@@ -40,9 +35,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * WarnTextView
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -53,9 +45,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * WarnTextView
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -67,9 +56,7 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * init
      *
-     * TODO
      */
     private void init(){
         TypedValue typedValue = new TypedValue();
@@ -83,9 +70,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * toggleFlash
-     *
-     * TODO
      *
      * @param canFlash
      */
@@ -103,18 +87,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * setState
-     *
-     * TODO
-     */
-    public void setState(){
-        setState(state);
-    }
-
-    /**
-     * setState
-     *
-     * TODO
      *
      * @param state
      */
@@ -134,9 +106,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     * setState
-     *
-     * TODO
      *
      * @param state
      * @param flashOn
@@ -152,13 +121,6 @@ public class WarnTextView extends AppCompatTextView {
             setBackgroundTintList(ColorStateList.valueOf(color_off));
             setTextColor(color_off);
         }
-    }
-
-    public void reset() {
-        state = false;
-        flashOn = false;
-
-        setState();
     }
 
 }

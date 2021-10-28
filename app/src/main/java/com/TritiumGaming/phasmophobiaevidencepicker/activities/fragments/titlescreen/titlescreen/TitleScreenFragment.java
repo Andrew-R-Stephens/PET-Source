@@ -63,8 +63,6 @@ import java.util.Locale;
 /**
  * TitleScreenFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class TitleScreenFragment extends Fragment {
@@ -180,9 +178,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * doReviewRequest
-     *
-     * TODO
+     * doReviewRequest method
      */
     public void doReviewRequest() {
         //Log.d("Review", titleScreenViewModel.getReviewRequestData().canRequestReview() + " " + titleScreenViewModel.getReviewRequestData().getTimesOpened());
@@ -209,9 +205,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * showInfoPopup
-     *
-     * TODO
+     * showInfoPopup method
      */
     private void showInfoPopup() {
 
@@ -370,9 +364,7 @@ public class TitleScreenFragment extends Fragment {
 
 
     /**
-     * showSettingsPopup
-     *
-     * TODO
+     * showSettingsPopup method
      */
     private void showSettingsPopup() {
 
@@ -586,9 +578,7 @@ public class TitleScreenFragment extends Fragment {
 
 
     /**
-     * showReviewPopup
-     *
-     * TODO
+     * showReviewPopup method
      */
     public void showReviewPopup(View parentView) {
 
@@ -677,9 +667,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * showLanguagesPopup
-     *
-     * TODO
+     * showLanguagesPopup method
      */
     public void showLanguagesPopup() {
 
@@ -754,9 +742,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * startAnimInitThreads
-     *
-     * TODO
+     * startAnimInitThreads method
      */
     private void startAnimInitThreads() {
 
@@ -786,9 +772,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * startAnimTickThread
-     *
-     * TODO
+     * startAnimTickThread method
      */
     private void startAnimTickThread() {
         if (animTickThread == null) {
@@ -826,9 +810,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * startAnimDrawThread
-     *
-     * TODO
+     * startAnimDrawThread method
      */
     private void startAnimDrawThread() {
         if (animDrawThread == null) {
@@ -866,9 +848,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * stopAnimInitThreads
-     *
-     * TODO
+     * stopAnimInitThreads method
      */
     public void stopAnimInitThreads() {
         if (animInitThread != null) {
@@ -882,9 +862,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * stopAnimTickThread
-     *
-     * TODO
+     * stopAnimTickThread method
      */
     public void stopAnimTickThread() {
         if (animTickThread != null) {
@@ -894,9 +872,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * stopAnimDrawThread
-     *
-     * TODO
+     * stopAnimDrawThread method
      */
     public void stopAnimDrawThread() {
         if (animDrawThread != null) {
@@ -906,9 +882,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * startAnimThreads
-     *
-     * TODO
+     * startAnimThreads method
      */
     public void startAnimThreads() {
         startAnimTickThread();
@@ -916,9 +890,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * stopAnimThreads
-     *
-     * TODO
+     * stopAnimThreads method
      */
 
     public void stopAnimThreads() {
@@ -928,8 +900,6 @@ public class TitleScreenFragment extends Fragment {
 
     /**
      * configureLanguage
-     *
-     * TODO
      */
     public void configureLanguage() {
         if (titleScreenViewModel != null) {
@@ -940,8 +910,6 @@ public class TitleScreenFragment extends Fragment {
 
     /**
      * refreshFragment
-     *
-     * TODO
      */
     public void refreshFragment() {
         //Log.d("Fragment", "Refreshing");
@@ -956,9 +924,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * saveStates
-     *
-     * TODO
+     * saveStates method
      */
     public void saveStates() {
         if (titleScreenViewModel != null && getContext() != null)
@@ -966,9 +932,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * onPause
-     *
-     * TODO
+     * onPause method
      */
     @Override
     public void onPause() {
@@ -996,9 +960,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * onResume
-     *
-     * TODO
+     * onResume method
      */
     @Override
     public void onResume() {
@@ -1012,9 +974,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * onDestroy
-     *
-     * TODO
+     * onDestroy method
      */
     @Override
     public void onDestroy() {
@@ -1028,9 +988,7 @@ public class TitleScreenFragment extends Fragment {
     }
 
     /**
-     * onLowMemory
-     *
-     * TODO
+     * onLowMemory method
      */
     @Override
     public void onLowMemory() {

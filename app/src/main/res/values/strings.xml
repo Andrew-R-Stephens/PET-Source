@@ -16,6 +16,8 @@
     <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
     <!-- Page Details -->
     <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
+    <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
+    <string name="preference_ghost_evidence" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PETData/main/Ghost-Evidence-Pair</string>
     <string name="preference_language" translatable="false">chosenLanguage</string>
     <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
     <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
@@ -127,12 +129,16 @@
     <string name="evidence_ghost_type_jinn">JINN</string>
     <string name="evidence_ghost_type_mare">MARE</string>
     <string name="evidence_ghost_type_myling" translatable="false">MYLING</string>
+    <string name="evidence_ghost_type_obake" translatable="false">OBAKE</string>
     <string name="evidence_ghost_type_oni">ONI</string>
+    <string name="evidence_ghost_type_onryo" translatable="false">ONRYO</string>
     <string name="evidence_ghost_type_phantom">PHANTOM</string>
     <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
+    <string name="evidence_ghost_type_raiju" translatable="false">RAIJU</string>
     <string name="evidence_ghost_type_revenant">REVENANT</string>
     <string name="evidence_ghost_type_shade">SHADE</string>
     <string name="evidence_ghost_type_spirit">SPIRIT</string>
+    <string name="evidence_ghost_type_thetwins" translatable="false">THE TWINS</string>
     <string name="evidence_ghost_type_wraith">WRAITH</string>
     <string name="evidence_ghost_type_yokai" translatable="false">YOKAI</string>
     <string name="evidence_ghost_type_yurei">YUREI</string>
@@ -186,11 +192,25 @@
                 <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
             ]]>
     </string>
+    <string name="evidence_ghost_description_obake" translatable="false">
+        <![CDATA[
+                <p>DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+            ]]>
+    </string>
     <string name="evidence_ghost_description_oni">
         <![CDATA[
                 <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
                 <p><font color=#ff6161>Strength:</font> Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
                 <p><font color=#ff6161>Weakness:</font> Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_onryo" translatable="false">
+        <![CDATA[
+                <p>DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_phantom">
@@ -205,6 +225,13 @@
                 <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
                 <p><font color=#ff6161>Strength:</font> Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
                 <p><font color=#ff6161>Weakness:</font> Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_raiju" translatable="false">
+        <![CDATA[
+                <p>DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_revenant">
@@ -228,6 +255,13 @@
                 <p><font color=#ff6161>Weakness:</font> Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
             ]]>
     </string>
+    <string name="evidence_ghost_description_thetwins" translatable="false">
+        <![CDATA[
+                <p>DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
+                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+            ]]>
+    </string>
     <string name="evidence_ghost_description_wraith">
         <![CDATA[
                 <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
@@ -249,6 +283,7 @@
                 <p><font color=#ff6161>Weakness:</font> Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
             ]]>
     </string>
+
     <!-- Evidence Names -->
     <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>

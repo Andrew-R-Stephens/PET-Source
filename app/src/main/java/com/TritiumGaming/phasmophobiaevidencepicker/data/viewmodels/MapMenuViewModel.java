@@ -12,8 +12,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
 /**
  * MapMenuViewModel class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MapMenuViewModel extends ViewModel {
@@ -24,10 +22,7 @@ public class MapMenuViewModel extends ViewModel {
     private int currentMap = 0;
 
     /**
-     * setMapData
-     *
-     * TODO
-     *
+     * setMapData method
      * @param context
      */
     @SuppressLint("ResourceType")
@@ -81,10 +76,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * setMapData
-     *
-     * TODO
-     *
+     * setMapData method
      * @param mapData array
      */
     public void setMapData(MapData[] mapData){
@@ -92,10 +84,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * hasMapData
-     *
-     * TODO
-     *
+     * hasMapData method
      * @return isMapData null
      */
     public boolean hasMapData(){
@@ -103,10 +92,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * setMapData
-     *
-     * TODO
-     *
+     * setMapData method
      * @return mapData array
      */
     public MapData[] getMapData(){
@@ -114,10 +100,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * getMapDataLength
-     *
-     * TODO
-     *
+     * getMapDataLength method
      * @return the size of the mapData array
      */
     public int getMapDataLength(){
@@ -127,10 +110,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * hasCurrentMapData
-     *
-     * TODO
-     *
+     * hasCurrentMapData method
      * @return hasMapData
      */
     public boolean hasCurrentMapData(){
@@ -138,10 +118,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * setCurrentMapData
-     *
-     * TODO
-     *
+     * setCurrentMapData method
      * @param currentMapPos
      */
     public void setCurrentMapData(int currentMapPos) {
@@ -150,10 +127,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * getCurrentMapData
-     *
-     * TODO
-     *
+     * getCurrentMapData method
      * @return MapData
      */
     public MapData getCurrentMapData() {
@@ -163,10 +137,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * setImageDisplayThread
-     *
-     * TODO
-     *
+     * setImageDisplayThread method
      * @param thread
      */
     public void setImageDisplayThread(Thread thread){
@@ -174,10 +145,7 @@ public class MapMenuViewModel extends ViewModel {
     }
 
     /**
-     * getImageDisplayThread
-     *
-     * TODO
-     *
+     * getImageDisplayThread method
      * @return imageDisplayThread
      */
     public Thread getImageDisplayThread(){

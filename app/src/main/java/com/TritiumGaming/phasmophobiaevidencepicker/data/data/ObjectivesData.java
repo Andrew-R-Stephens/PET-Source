@@ -10,8 +10,6 @@ import java.util.ArrayList;
 /**
  * ObjectivesData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ObjectivesData {
@@ -19,9 +17,6 @@ public class ObjectivesData {
     private final ArrayList<Objective> objectivePool = new ArrayList<>();
 
     /**
-     * ObjectivesData
-     *
-     * TODO
      *
      * @param context
      */
@@ -33,9 +28,6 @@ public class ObjectivesData {
     }
 
     /**
-     * getCopyOfObjective
-     *
-     * TODO
      *
      * @param o
      * @return
@@ -48,9 +40,6 @@ public class ObjectivesData {
     }
 
     /**
-     * getObjectivesOfSelectedState
-     *
-     * TODO
      *
      * @param selectedState
      * @return
@@ -65,8 +54,6 @@ public class ObjectivesData {
 
     /**
      * Objective class
-     *
-     * TODO
      */
     public static class Objective {
 
@@ -75,9 +62,6 @@ public class ObjectivesData {
         private boolean isSelected = false;
 
         /**
-         * Objective
-         *
-         * TODO
          *
          * @param content
          * @param position
@@ -88,9 +72,6 @@ public class ObjectivesData {
         }
 
         /**
-         * setPosition
-         *
-         * TODO
          *
          * @param i
          */
@@ -99,9 +80,6 @@ public class ObjectivesData {
         }
 
         /**
-         * getPosition
-         *
-         * TODO
          *
          * @return
          */
@@ -110,9 +88,6 @@ public class ObjectivesData {
         }
 
         /**
-         * setSelected
-         *
-         * TODO
          *
          * @param isSelected
          */
@@ -121,9 +96,6 @@ public class ObjectivesData {
         }
 
         /**
-         * isSelected
-         *
-         * TODO
          *
          * @return
          */
@@ -132,9 +104,6 @@ public class ObjectivesData {
         }
 
         /**
-         * getContent
-         *
-         * TODO
          *
          * @return
          */
@@ -143,9 +112,6 @@ public class ObjectivesData {
         }
 
         /**
-         * toString
-         *
-         * TODO
          *
          * @return
          */

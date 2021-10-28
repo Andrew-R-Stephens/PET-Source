@@ -3,8 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent;
 /**
  * ReviewTrackingData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ReviewTrackingData {
@@ -18,10 +16,7 @@ public class ReviewTrackingData {
     protected final int TARGET_TIMES_OPENED = 5;
 
     /**
-     * ReviewTrackingData constructor
-     *
-     * TODO
-     *
+     * ReviewTrackingData parameterized constructor
      * @param wasRequested
      * @param timeActive
      * @param timesOpened
@@ -33,9 +28,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * setTimeActive
-     *
-     * TODO
      *
      * @param timeActive
      */
@@ -44,9 +36,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * addTimeActive
-     *
-     * TODO
      *
      * @param timeActive
      */
@@ -55,9 +44,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * getTimeActive
-     *
-     * TODO
      *
      * @return
      */
@@ -66,9 +52,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * setTimesOpened
-     *
-     * TODO
      *
      * @param timesOpened
      */
@@ -77,9 +60,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * addTimesOpened
-     *
-     * TODO
      *
      * @param timesOpened
      */
@@ -88,9 +68,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * getTimesOpened
-     *
-     * TODO
      *
      * @return
      */
@@ -99,9 +76,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * setWasRequested
-     *
-     * TODO
      *
      * @param wasRequested
      */
@@ -110,9 +84,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * getWasRequested
-     *
-     * TODO
      *
      * @return
      */
@@ -121,9 +92,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * canRequestReview
-     *
-     * TODO
      *
      * @return
      */

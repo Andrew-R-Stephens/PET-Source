@@ -31,8 +31,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesVi
 /**
  * ObjectivesFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ObjectivesFragment extends Fragment {
@@ -230,10 +228,7 @@ public class ObjectivesFragment extends Fragment {
     }
 
     /**
-     * setSpinnerData
-     *
-     * TODO
-     *
+     * setSpinnerData method
      * @param spinner the spinner who's data will be set
      */
     private void setSpinnerData(@NonNull ObjectivesSpinner spinner) {
@@ -241,10 +236,7 @@ public class ObjectivesFragment extends Fragment {
     }
 
     /**
-     * findObjectiveSpinnerObjective
-     *
-     * TODO
-     *
+     * findObjectiveSpinnerObjective method
      * @return array of Objectives contained within a spinner
      */
     private ObjectivesData.Objective[] findObjectiveSpinnerObjectives(){
@@ -258,10 +250,7 @@ public class ObjectivesFragment extends Fragment {
     }
 
     /**
-     * findObjectiveCompletion
-     *
-     * TODO
-     *
+     * findObjectiveCompletion method
      * @return an array of completed objectives
      */
     private boolean[] findObjectiveCompletion(){
@@ -274,9 +263,7 @@ public class ObjectivesFragment extends Fragment {
     }
 
     /**
-     * saveStates
-     *
-     * TODO
+     * saveStates method
      */
     public void saveStates(){
         if(objectivesViewModel != null) {
@@ -286,11 +273,6 @@ public class ObjectivesFragment extends Fragment {
         }
     }
 
-    /**
-     * onPause
-     *
-     * TODO
-     */
     @Override
     public void onPause() {
         saveStates();

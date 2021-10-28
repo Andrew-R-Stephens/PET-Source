@@ -66,26 +66,6 @@
     <!--
         EVIDENCE PAGE
     -->
-    <!-- Ghost Names -->
-    <string-array name="evidence_ghost_names">
-        <item>@string/evidence_ghost_type_banshee</item>
-        <item>@string/evidence_ghost_type_demon</item>
-        <item>@string/evidence_ghost_type_goryo</item>
-        <item>@string/evidence_ghost_type_hantu</item>
-        <item>@string/evidence_ghost_type_jinn</item>
-        <item>@string/evidence_ghost_type_mare</item>
-        <item>@string/evidence_ghost_type_myling</item>
-        <item>@string/evidence_ghost_type_oni</item>
-        <item>@string/evidence_ghost_type_phantom</item>
-        <item>@string/evidence_ghost_type_poltergeist</item>
-        <item>@string/evidence_ghost_type_revenant</item>
-        <item>@string/evidence_ghost_type_shade</item>
-        <item>@string/evidence_ghost_type_spirit</item>
-        <item>@string/evidence_ghost_type_wraith</item>
-        <item>@string/evidence_ghost_type_yokai</item>
-        <item>@string/evidence_ghost_type_yurei</item>
-    </string-array>
-
     <!-- Evidence Names -->
     <string-array name="evidence_tool_names">
         <item>@string/evidence_evidence_type_dots</item>
@@ -97,27 +77,7 @@
         <item>@string/evidence_evidence_type_box</item>
     </string-array>
 
-    <!-- Ghost Data -->
-    <string-array name="ghost_info_array">
-        <item>@string/evidence_ghost_description_banshee</item>
-        <item>@string/evidence_ghost_description_demon</item>
-        <item>@string/evidence_ghost_description_goryo</item>
-        <item>@string/evidence_ghost_description_hantu</item>
-        <item>@string/evidence_ghost_description_jinn</item>
-        <item>@string/evidence_ghost_description_mare</item>
-        <item>@string/evidence_ghost_description_myling</item>
-        <item>@string/evidence_ghost_description_oni</item>
-        <item>@string/evidence_ghost_description_phantom</item>
-        <item>@string/evidence_ghost_description_poltergeist</item>
-        <item>@string/evidence_ghost_description_revenant</item>
-        <item>@string/evidence_ghost_description_shade</item>
-        <item>@string/evidence_ghost_description_spirit</item>
-        <item>@string/evidence_ghost_description_wraith</item>
-        <item>@string/evidence_ghost_description_yokai</item>
-        <item>@string/evidence_ghost_description_yurei</item>
-    </string-array>
-
-    <!-- Evidence Data -->
+    <!-- Evidence Description -->
     <string-array name="evidence_info_array">
         <item>@string/evidence_evidence_description_dots</item>
         <item>@string/evidence_evidence_description_emf</item>
@@ -127,6 +87,196 @@
         <item>@string/evidence_evidence_description_book</item>
         <item>@string/evidence_evidence_description_box</item>
     </string-array>
+
+    <!-- Evidence Description -->
+    <integer-array name="evidence_icon_array">
+        <item>@drawable/icon_dots</item>
+        <item>@drawable/icon_emf5</item>
+        <item>@drawable/icon_fingerprints</item>
+        <item>@drawable/icon_freezing</item>
+        <item>@drawable/icon_orbs</item>
+        <item>@drawable/icon_writing</item>
+        <item>@drawable/icon_spiritbox</item>
+    </integer-array>
+
+
+    <!-- Ghost Names -->
+    <string-array name="evidence_ghost_names">
+        <item>@string/evidence_ghost_type_banshee</item>
+        <item>@string/evidence_ghost_type_demon</item>
+        <item>@string/evidence_ghost_type_goryo</item>
+        <item>@string/evidence_ghost_type_hantu</item>
+        <item>@string/evidence_ghost_type_jinn</item>
+        <item>@string/evidence_ghost_type_mare</item>
+        <item>@string/evidence_ghost_type_myling</item>
+        <item>@string/evidence_ghost_type_obake</item>
+        <item>@string/evidence_ghost_type_oni</item>
+        <item>@string/evidence_ghost_type_onryo</item>
+        <item>@string/evidence_ghost_type_phantom</item>
+        <item>@string/evidence_ghost_type_poltergeist</item>
+        <item>@string/evidence_ghost_type_raiju</item>
+        <item>@string/evidence_ghost_type_revenant</item>
+        <item>@string/evidence_ghost_type_shade</item>
+        <item>@string/evidence_ghost_type_spirit</item>
+        <item>@string/evidence_ghost_type_thetwins</item>
+        <item>@string/evidence_ghost_type_wraith</item>
+        <item>@string/evidence_ghost_type_yokai</item>
+        <item>@string/evidence_ghost_type_yurei</item>
+    </string-array>
+
+    <!-- Ghost Descriptions -->
+    <string-array name="ghost_info_array">
+        <item>@string/evidence_ghost_description_banshee</item>
+        <item>@string/evidence_ghost_description_demon</item>
+        <item>@string/evidence_ghost_description_goryo</item>
+        <item>@string/evidence_ghost_description_hantu</item>
+        <item>@string/evidence_ghost_description_jinn</item>
+        <item>@string/evidence_ghost_description_mare</item>
+        <item>@string/evidence_ghost_description_myling</item>
+        <item>@string/evidence_ghost_description_obake</item>
+        <item>@string/evidence_ghost_description_oni</item>
+        <item>@string/evidence_ghost_description_onryo</item>
+        <item>@string/evidence_ghost_description_phantom</item>
+        <item>@string/evidence_ghost_description_poltergeist</item>
+        <item>@string/evidence_ghost_description_raiju</item>
+        <item>@string/evidence_ghost_description_revenant</item>
+        <item>@string/evidence_ghost_description_shade</item>
+        <item>@string/evidence_ghost_description_spirit</item>
+        <item>@string/evidence_ghost_description_thetwins</item>
+        <item>@string/evidence_ghost_description_wraith</item>
+        <item>@string/evidence_ghost_description_yokai</item>
+        <item>@string/evidence_ghost_description_yurei</item>
+    </string-array>
+
+
+    <!-- Ghost Evidence Arrays -->
+    <integer-array name="ghost_evidence_arrays">
+        <item>@array/evidence_ghost_evidence_banshee</item>
+        <item>@array/evidence_ghost_evidence_demon</item>
+        <item>@array/evidence_ghost_evidence_goryo</item>
+        <item>@array/evidence_ghost_evidence_hantu</item>
+        <item>@array/evidence_ghost_evidence_jinn</item>
+        <item>@array/evidence_ghost_evidence_mare</item>
+        <item>@array/evidence_ghost_evidence_myling</item>
+        <item>@array/evidence_ghost_evidence_obake</item>
+        <item>@array/evidence_ghost_evidence_oni</item>
+        <item>@array/evidence_ghost_evidence_onryo</item>
+        <item>@array/evidence_ghost_evidence_phantom</item>
+        <item>@array/evidence_ghost_evidence_poltergeist</item>
+        <item>@array/evidence_ghost_evidence_raiju</item>
+        <item>@array/evidence_ghost_evidence_revenant</item>
+        <item>@array/evidence_ghost_evidence_shade</item>
+        <item>@array/evidence_ghost_evidence_spirit</item>
+        <item>@array/evidence_ghost_evidence_thetwins</item>
+        <item>@array/evidence_ghost_evidence_wraith</item>
+        <item>@array/evidence_ghost_evidence_yokai</item>
+        <item>@array/evidence_ghost_evidence_yurei</item>
+    </integer-array>
+
+    <!--
+        All Ghost Evidence
+    -->
+    <string-array name="evidence_ghost_evidence_banshee">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_demon">
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_book</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_goryo">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_hantu">
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_jinn">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_mare">
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@string/evidence_evidence_type_book</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_myling">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_book</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_obake">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_oni">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_onryo">
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_phantom">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_poltergeist">
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@string/evidence_evidence_type_book</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_raiju">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_revenant">
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@string/evidence_evidence_type_book</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_shade">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_book</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_spirit">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_box</item>
+        <item>@string/evidence_evidence_type_book</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_thetwins">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_wraith">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_box</item>
+        <item>@string/evidence_evidence_type_dots</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_yokai">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_yurei">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+
 
     <!-- Timer Data -->
     <string-array name="evidence_timer_difficulty_names_array">
@@ -158,6 +308,7 @@
         <item>@string/objective_info_extinguishcandle</item>
         <item>@string/objective_info_lowsanity</item>
     </string-array>
+
 
     <!--
         SPIRIT BOX PAGE

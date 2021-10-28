@@ -17,8 +17,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 /**
  * LobbyConnectFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MultiplayerConnectFragment extends Fragment {

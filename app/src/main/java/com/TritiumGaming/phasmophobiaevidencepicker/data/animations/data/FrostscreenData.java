@@ -9,15 +9,10 @@ import android.graphics.Rect;
 /**
  * FrostscreenData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class FrostscreenData extends Animated {
     /**
-     * FrostscreenData constructor
-     *
-     * TODO
      *
      * @param screenW
      * @param screenH
@@ -37,9 +32,6 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * setTickMax
-     *
-     * TODO
      *
      * @param tickMax
      */
@@ -48,9 +40,7 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * setX
      *
-     * TODO
      */
     public void setX(){
         this.x = 0;
@@ -59,9 +49,7 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * setY
      *
-     * TODO
      */
     public void setY(){
         this.y = 0;
@@ -70,9 +58,6 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * getScaledWidth
-     *
-     * TODO
      *
      * @return
      */
@@ -81,9 +66,6 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * getScaledHeight
-     *
-     * TODO
      *
      * @return
      */
@@ -92,18 +74,14 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * setRect
      *
-     * TODO
      */
     public void setRect(){
         r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
         setRect();
@@ -117,9 +95,6 @@ public class FrostscreenData extends Animated {
     }
 
     /**
-     * getFilter
-     *
-     * TODO
      *
      * @return
      */

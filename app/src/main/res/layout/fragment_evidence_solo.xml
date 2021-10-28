@@ -199,7 +199,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/timer_difficulty_title"
+                            android:id="@+id/difficulty_title"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginEnd="4dp"
@@ -214,14 +214,14 @@
                             app:autoSizeStepGranularity="1sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/timer_prev"
+                            app:layout_constraintEnd_toStartOf="@+id/difficulty_prev"
                             app:layout_constraintHorizontal_chainStyle="spread"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintWidth_percent=".35" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/timer_prev"
+                            android:id="@+id/difficulty_prev"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:adjustViewBounds="true"
@@ -231,12 +231,12 @@
                             android:src="@drawable/icon_prev"
                             android:tint="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/evidence_timer_difficulty_actual"
-                            app:layout_constraintStart_toEndOf="@+id/timer_difficulty_title"
+                            app:layout_constraintEnd_toStartOf="@+id/difficulty_name"
+                            app:layout_constraintStart_toEndOf="@+id/difficulty_title"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/evidence_timer_difficulty_actual"
+                            android:id="@+id/difficulty_name"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:fontFamily="@font/eastseadokdo_regular"
@@ -248,13 +248,13 @@
                             app:autoSizeStepGranularity="1sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/timer_next"
-                            app:layout_constraintStart_toEndOf="@+id/timer_prev"
+                            app:layout_constraintEnd_toStartOf="@+id/difficulty_next"
+                            app:layout_constraintStart_toEndOf="@+id/difficulty_prev"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintWidth_percent=".35" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/timer_next"
+                            android:id="@+id/difficulty_next"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:adjustViewBounds="true"
@@ -265,7 +265,7 @@
                             android:tint="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/evidence_timer_difficulty_actual"
+                            app:layout_constraintStart_toEndOf="@+id/difficulty_name"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -314,12 +314,12 @@
                             android:src="@drawable/icon_prev"
                             android:tint="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/mapchoice_actual"
+                            app:layout_constraintEnd_toStartOf="@+id/mapchoice_name"
                             app:layout_constraintStart_toEndOf="@+id/mapchoice_title"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/mapchoice_actual"
+                            android:id="@+id/mapchoice_name"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:fontFamily="@font/eastseadokdo_regular"
@@ -348,7 +348,7 @@
                             android:tint="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/mapchoice_actual"
+                            app:layout_constraintStart_toEndOf="@+id/mapchoice_name"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

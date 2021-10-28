@@ -5,8 +5,6 @@ import java.util.ArrayList;
 /**
  * MapData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MapData {
@@ -19,9 +17,6 @@ public class MapData {
 
     /**
      * setMapName
-     *
-     * TODO
-     *
      * @param mapName
      */
     public void setMapName(String mapName){
@@ -29,9 +24,6 @@ public class MapData {
     }
 
     /**
-     * getMapName
-     *
-     * TODO
      *
      * @return
      */
@@ -40,9 +32,6 @@ public class MapData {
     }
 
     /**
-     * getFloorCount
-     *
-     * TODO
      *
      * @return
      */
@@ -50,17 +39,11 @@ public class MapData {
 
     /**
      * setDefaultFloor
-     *
-     * TODO
-     *
      * @param index
      */
     public void setDefaultFloor(int index) { this.currentFloorIndex = this.defaultFloorIndex = index; }
 
     /**
-     * getDefaultFloor
-     *
-     * TODO
      *
      * @return
      */
@@ -69,18 +52,12 @@ public class MapData {
     }
 
     /**
-     * setCurrentFloor
-     *
-     * TODO
      *
      * @param index
      */
     public void setCurrentFloor(int index) { this.currentFloorIndex = index; }
 
     /**
-     * getCurrentFloor
-     *
-     * TODO
      *
      * @return
      */
@@ -89,18 +66,12 @@ public class MapData {
     }
 
     /**
-     * addFloorName
-     *
-     * TODO
      *
      * @param id
      */
     public void addFloorName(int id){ floorNames.add(id); }
 
     /**
-     * getFloorName
-     *
-     * TODO
      *
      * @return
      */
@@ -109,9 +80,6 @@ public class MapData {
     }
 
     /**
-     * addFloorLayer
-     *
-     * TODO
      *
      * @param floorIndex
      * @param layer
@@ -127,9 +95,6 @@ public class MapData {
     }
 
     /**
-     * getAllCurrentFloorLayers
-     *
-     * TODO
      *
      * @return
      */
@@ -138,9 +103,6 @@ public class MapData {
     }
 
     /**
-     * getAllFloorLayers
-     *
-     * TODO
      *
      * @return
      */

@@ -9,13 +9,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 import java.text.DecimalFormat;
 
 /**
- * CCountDownTimer class
- *
- * TODO
+ * SetupPhaseTimer class
  *
  * @author TritiumGamingStudios
  */
-public class CCountDownTimer {
+public class SetupPhaseTimer {
 
     private EvidenceViewModel evidenceViewModel;
 
@@ -28,23 +26,17 @@ public class CCountDownTimer {
     private long timeRemaining = 0L;
 
     /**
-     * CCountDownTimer constructor
-     *
-     * TODO
-     *
+     * SetupPhaseTimer parameterized constructor
      * @param recipientView
      */
-    public CCountDownTimer(AppCompatTextView recipientView) {
+    public SetupPhaseTimer(AppCompatTextView recipientView) {
         setRecipientView(recipientView);
         setText();
         setPaused(true);
     }
 
     /**
-     * init
-     *
-     * TODO
-     *
+     * init method
      * @param evidenceViewModel
      */
     public void init(EvidenceViewModel evidenceViewModel) {
@@ -52,10 +44,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * createTimer
-     *
-     * TODO
-     *
+     * createTimer method
      * @param millisInFuture
      * @param countDownInterval
      */
@@ -90,9 +79,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * pause
-     *
-     * TODO
+     * pause method
      */
     public void pause() {
         if (!isPaused()) {
@@ -104,9 +91,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * unPause
-     *
-     * TODO
+     * unPause method
      */
     public void unPause() {
         if (isPaused()) {
@@ -120,10 +105,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * setTimerControls
-     *
-     * TODO
-     *
+     * setTimerControls method
      * @param stateControl
      */
     public void setTimerControls(TimerPlayControl stateControl) {
@@ -131,10 +113,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * setPaused
-     *
-     * TODO
-     *
+     * setPaused method
      * @param isPaused
      */
     public void setPaused(boolean isPaused) {
@@ -142,10 +121,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * isPaused
-     *
-     * TODO
-     *
+     * isPaused method
      * @return
      */
     public boolean isPaused() {
@@ -153,10 +129,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * setTimeRemaining
-     *
-     * TODO
-     *
+     * setTimeRemaining method
      * @param timeRemaining
      */
     public void setTimeRemaining(long timeRemaining) {
@@ -164,10 +137,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * getTimeRemaining
-     *
-     * TODO
-     *
+     * getTimeRemaining method
      * @return
      */
     public long getTimeRemaining() {
@@ -175,10 +145,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * setRecipientView
-     *
-     * TODO
-     *
+     * setRecipientView method
      * @param recipientView
      */
     public void setRecipientView(AppCompatTextView recipientView) {
@@ -186,9 +153,7 @@ public class CCountDownTimer {
     }
 
     /**
-     * setText
-     *
-     * TODO
+     * setText method
      */
     public void setText() {
         String text = String.format(
@@ -208,13 +173,6 @@ public class CCountDownTimer {
 
         if (recipientView != null)
             recipientView.setText(text);
-    }
-
-    /**
-     *
-     */
-    public void reset() {
-        setText();
     }
 
 }

@@ -21,8 +21,6 @@ import java.util.ArrayList;
 /**
  * ObjectivesSpinner class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinner{
@@ -34,9 +32,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     private final Drawable[] strikeout = new Drawable[2];
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      */
@@ -46,9 +41,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param mode
@@ -59,9 +51,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -72,9 +61,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -86,9 +72,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -100,9 +83,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -115,9 +95,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * ObjectivesSpinner constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -131,9 +108,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * performClick
-     *
-     * TODO
      *
      * @return
      */
@@ -145,9 +119,7 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * updateAdapter
      *
-     * TODO
      */
     public void updateAdapter() {
         ArrayList<ObjectivesData.Objective> obtainedObjectives = data.getObjectivesOfSelectedState(false);
@@ -156,9 +128,7 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * init
      *
-     * TODO
      */
     public void init(){
         setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -179,9 +149,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * setData
-     *
-     * TODO
      *
      * @param data
      */
@@ -190,9 +157,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * setCompleted
-     *
-     * TODO
      *
      * @param isCompleted
      */
@@ -209,9 +173,7 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * setStrikeout
      *
-     * TODO
      */
     @SuppressLint("UseCompatLoadingForDrawables")
     public void setStrikeout(){
@@ -221,9 +183,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * setCheckButton
-     *
-     * TODO
      *
      * @param checkButton
      */
@@ -232,9 +191,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * getSelectedObjective
-     *
-     * TODO
      *
      * @return
      */
@@ -243,9 +199,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * setCurrentObjective
-     *
-     * TODO
      *
      * @param currentObjective
      */
@@ -257,9 +210,6 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     * isCompleted
-     *
-     * TODO
      *
      * @return
      */
@@ -268,9 +218,7 @@ public class ObjectivesSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     /**
-     *setObjectiveAsCompleted
      *
-     * TODO
      */
     public void setObjectiveAsCompleted() {
         checkButton.overrideStateAndIcon(true);

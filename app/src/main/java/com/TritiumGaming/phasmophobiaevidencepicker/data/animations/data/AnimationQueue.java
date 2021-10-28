@@ -7,8 +7,6 @@ import java.util.ArrayList;
 /**
  * AdnimationQueue class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class AnimationQueue {
@@ -19,9 +17,6 @@ public class AnimationQueue {
     private final ArrayList<Integer> queue = new ArrayList<>();
 
     /**
-     * AnimationQueue
-     *
-     * TODO
      *
      * @param maxSize
      * @param maxTimeout
@@ -35,9 +30,6 @@ public class AnimationQueue {
     }
 
     /**
-     * setTick
-     *
-     * TODO
      *
      * @param tick
      */
@@ -46,18 +38,13 @@ public class AnimationQueue {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
         tick++;
     }
 
     /**
-     * canDequeue
-     *
-     * TODO
      *
      * @return
      */
@@ -71,9 +58,6 @@ public class AnimationQueue {
     }
 
     /**
-     * setMaxTimeout
-     *
-     * TODO
      *
      * @param maxTimeout
      */
@@ -82,9 +66,6 @@ public class AnimationQueue {
     }
 
     /**
-     * setTimeout
-     *
-     * TODO
      *
      * @param timeout
      */
@@ -93,9 +74,7 @@ public class AnimationQueue {
     }
 
     /**
-     * refill
      *
-     * TODO
      */
     public void refill(){
         for(int i = 0; i < maxSize; i++)
@@ -103,9 +82,6 @@ public class AnimationQueue {
     }
 
     /**
-     * enqueue
-     *
-     * TODO
      *
      * @param num
      */
@@ -116,9 +92,6 @@ public class AnimationQueue {
     }
 
     /**
-     * enqueue
-     *
-     * TODO
      *
      * @param index
      * @param num
@@ -130,9 +103,6 @@ public class AnimationQueue {
     }
 
     /**
-     * enqueueRandomPos
-     *
-     * TODO
      *
      * @param num
      */
@@ -141,9 +111,6 @@ public class AnimationQueue {
     }
 
     /**
-     * dequeue
-     *
-     * TODO
      *
      * @return
      */
@@ -155,9 +122,6 @@ public class AnimationQueue {
     }
 
     /**
-     * getSize
-     *
-     * TODO
      *
      * @return
      */
@@ -166,9 +130,6 @@ public class AnimationQueue {
     }
 
     /**
-     * toString
-     *
-     * TODO
      *
      * @return
      */

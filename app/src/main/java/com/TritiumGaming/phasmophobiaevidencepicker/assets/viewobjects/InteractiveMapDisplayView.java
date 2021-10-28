@@ -18,13 +18,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
 import java.util.ArrayList;
 
 /**
- * InteractiveMapDisplay class
- *
- * TODO
+ * InteractiveMapDisplayView class
  *
  * @author TritiumGamingStudios
  */
-public class InteractiveMapDisplay extends View {
+public class InteractiveMapDisplayView extends View {
 
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
@@ -37,14 +35,11 @@ public class InteractiveMapDisplay extends View {
     private final Paint paint;
 
     /**
-     * InteractiveMapDisplay constructor
-     *
-     * TODO
-     *
+     * InteractiveMapDisplayView parameterized constructor
      * @param context
      * @param attrs
      */
-    public InteractiveMapDisplay(Context context, AttributeSet attrs) {
+    public InteractiveMapDisplayView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         paint = new Paint();
@@ -54,10 +49,7 @@ public class InteractiveMapDisplay extends View {
     }
 
     /**
-     * init
-     *
-     * TODO
-     *
+     * init method
      * @param controllerData
      */
     public void init(InteractiveViewControllerData controllerData){
@@ -67,10 +59,7 @@ public class InteractiveMapDisplay extends View {
     }
 
     /**
-     * setMapData
-     *
-     * TODO
-     *
+     * setMapData method
      * @param mapData
      */
     public void setMapData(MapData mapData){
@@ -78,10 +67,7 @@ public class InteractiveMapDisplay extends View {
     }
 
     /**
-     * setMapImages
-     *
-     * TODO
-     *
+     * setMapImages method
      * @param a
      */
     public void setMapImages(Activity a){
@@ -117,10 +103,7 @@ public class InteractiveMapDisplay extends View {
     }
 
     /**
-     * onDraw
-     *
-     * TODO
-     *
+     * onDraw method
      * @param canvas
      */
     @Override
@@ -153,9 +136,7 @@ public class InteractiveMapDisplay extends View {
     }
 
     /**
-     * recycleBitmaps
-     *
-     * TODO
+     * recycleBitmaps method
      */
     public void recycleBitmaps(){
 

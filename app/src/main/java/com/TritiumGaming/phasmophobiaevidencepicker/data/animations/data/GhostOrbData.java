@@ -7,8 +7,6 @@ import android.graphics.PorterDuffColorFilter;
 /**
  * GhostOrbData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class GhostOrbData extends Animated {
@@ -22,9 +20,6 @@ public class GhostOrbData extends Animated {
     private float velX = 0f, velY = 0f;
 
     /**
-     * GhostOrbData
-     *
-     * TODO
      *
      * @param screenW
      * @param screenH
@@ -40,27 +35,21 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * setX
      *
-     * TODO
      */
     private void setX() {
         x = (float)(Math.random()*SCREENW);
     }
 
     /**
-     * setY
      *
-     * TODO
      */
     private void setY() {
         y = (float)(Math.random()*SCREENH);
     }
 
     /**
-     * setDest
      *
-     * TODO
      */
     public void setDest(){
         destX = (float) Math.random() * SCREENW;
@@ -68,9 +57,6 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * getRandTickMax
-     *
-     * TODO
      *
      * @param min
      * @param max
@@ -81,9 +67,6 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * calcSlope
-     *
-     * TODO
      *
      * @param from
      * @param dest
@@ -94,9 +77,7 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
         animTick += animDir;
@@ -163,9 +144,7 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * setAlpha
      *
-     * TODO
      */
     public void setAlpha(){
         double alphaMult = (double) animTick / (double) ANIM_TICK_MAX / fadeTick * MAX_ALPHA;
@@ -177,9 +156,6 @@ public class GhostOrbData extends Animated {
     }
 
     /**
-     * getFilter
-     *
-     * TODO
      *
      * @return
      */

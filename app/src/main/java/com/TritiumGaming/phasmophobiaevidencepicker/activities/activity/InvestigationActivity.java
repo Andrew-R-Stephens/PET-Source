@@ -18,19 +18,6 @@ import java.util.Locale;
 /**
  * InvestigationActivity class
  *
- * - Contains Navigation between Fragments with relation to Investigation activities:
- *      Evidence Fragment
- *          Solo Evidence Fragment
- *          Multiplayer Host Evidence Fragment
- *          Multiplayer Client Evidence Fragment
- *      Objectives Fragment
- *      Map Menu Fragment
- *          Map Viewer Fragment
- *      Utilities Fragment
- *          Ghost Speak Tool Fragment
- * - Sets the Activity's global Language for all Fragments
- * - Sets the chosen Theme (Set in Colorblindness settings
- *
  * @author TritiumGamingStudios
  */
 public class InvestigationActivity extends AppCompatActivity {
@@ -73,9 +60,8 @@ public class InvestigationActivity extends AppCompatActivity {
     }
 
     /**
-     * setLanguage
-     *
-     * @param lang The desired new language abbreviation
+     * setLanguage method
+     * @param lang The desired new language
      */
     public void setLanguage(String lang){
         Locale locale = new Locale(lang);
@@ -86,43 +72,32 @@ public class InvestigationActivity extends AppCompatActivity {
     }
 
     /**
-     * getAppLanguage
-     *
-     * @return the abbreviation of the chosen language that's saved to Shared Preferences
+     * getAppLanguage method
+     * @return the abbreviation of the chosen language that's saved to file
      */
     public String getAppLanguage(){
         return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString("chosenLanguage", "en");
     }
 
     /**
-     * getHuntWarningAllowed
-     *
-     * Based on value stored in Shared Preferences
-     *
-     * @return if Hunt Warning audio can be played
+     * getHuntWarningAllowed method
+     * @return the decided ability to emanate audio that has been saved to file
      */
     public boolean getHuntWarningAllowed(){
         return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
     }
 
     /**
-     * getHuntWarningFlashTimeout
-     *
-     * Based on value stored in Shared Preferences
-     *
-     * @return the total time that the Hunt Warning indicator can flash
-     *
+     * getHuntWarningFlashTimeout method
+     * @return the decided ability to flash the HuntWarning indicator that has been saved to file
      */
     public int getHuntWarningFlashTimeout(){
         return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getInt(getString(R.string.preference_huntWarningFlashTimeout),-1);
     }
 
     /**
-     * changeTheme
-     *
-     * Sets the Theme (based on Color Blindness settings) of the Fragments found within the Investigation Activity
-     *
-     * @param colorSpace - value representing the colorSpace
+     * changeTheme method
+     * @param colorSpace to be set
      */
     public void changeTheme(int colorSpace) {
         switch(colorSpace){
@@ -150,8 +125,6 @@ public class InvestigationActivity extends AppCompatActivity {
     }
 
     /**
-     * onBackPressed
-     *
      * Resets ObjectiveViewModel and EvidenceViewModel data upon Activity exit
      */
     @Override

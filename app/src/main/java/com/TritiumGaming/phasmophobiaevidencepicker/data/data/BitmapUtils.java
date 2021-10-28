@@ -20,8 +20,6 @@ import javax.microedition.khronos.egl.EGLDisplay;
 /**
  * BitmapUtils class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class BitmapUtils {
@@ -32,18 +30,13 @@ public class BitmapUtils {
     public ArrayList<Integer> resources = new ArrayList<>();
 
     /**
-     * BitmapUtils
      *
-     * TODO
      */
     public BitmapUtils(){
         setMaxTextureSize();
     }
 
     /**
-     * setResource
-     *
-     * TODO
      *
      * @param resource
      * @return
@@ -56,9 +49,6 @@ public class BitmapUtils {
     }
 
     /**
-     * setResources
-     *
-     * TODO
      *
      * @param resources
      */
@@ -67,9 +57,6 @@ public class BitmapUtils {
     }
 
     /**
-     * addResource
-     *
-     * TODO
      *
      * @param resource
      */
@@ -78,9 +65,7 @@ public class BitmapUtils {
     }
 
     /**
-     * clearResources
      *
-     * TODO
      */
     public void clearResources(){
         resources = new ArrayList<>();
@@ -88,9 +73,7 @@ public class BitmapUtils {
     }
 
     /**
-     * setMaxTextureSize
      *
-     * TODO
      */
     private void setMaxTextureSize(){
         // Safe minimum default size
@@ -131,9 +114,6 @@ public class BitmapUtils {
     }
 
     /**
-     * compileBitmaps
-     *
-     * TODO
      *
      * @param c
      * @return
@@ -146,9 +126,6 @@ public class BitmapUtils {
     }
 
     /**
-     * compileNextBitmap
-     *
-     * TODO
      *
      * @param c
      * @param previousBitmap
@@ -160,9 +137,6 @@ public class BitmapUtils {
     }
 
     /**
-     * hasNextBitmap
-     *
-     * TODO
      *
      * @return
      */
@@ -171,9 +145,6 @@ public class BitmapUtils {
     }
 
     /**
-     * createBitmap
-     *
-     * TODO
      *
      * @param c
      * @param baseLayer
@@ -205,9 +176,6 @@ public class BitmapUtils {
     }
 
     /**
-     * addLayer
-     *
-     * TODO
      *
      * @param baseLayer
      * @param topLayer
@@ -230,9 +198,6 @@ public class BitmapUtils {
     }
 
     /**
-     * bitmapExists
-     *
-     * TODO
      *
      * @param b
      * @return

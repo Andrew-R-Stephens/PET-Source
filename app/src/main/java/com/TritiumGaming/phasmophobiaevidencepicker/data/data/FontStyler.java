@@ -6,16 +6,11 @@ import android.view.View;
 /**
  * FontStyler class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class FontStyler {
 
     /**
-     * setColor
-     *
-     * TODO
      *
      * @param plainStr
      * @param colorHex
@@ -26,9 +21,6 @@ public class FontStyler {
     }
 
     /**
-     * dpToSp
-     *
-     * TODO
      *
      * @param view
      * @param dpActual

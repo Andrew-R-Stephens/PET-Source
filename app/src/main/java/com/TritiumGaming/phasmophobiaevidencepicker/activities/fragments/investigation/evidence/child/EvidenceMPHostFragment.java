@@ -17,9 +17,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MPClientView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MPHostViewModel;
 
 /**
- * EvidenceClientFragment class (Work-In-Progress)
- *
- * TODO
+ * EvidenceClientFragment class
  *
  * @author TritiumGamingStudios
  */

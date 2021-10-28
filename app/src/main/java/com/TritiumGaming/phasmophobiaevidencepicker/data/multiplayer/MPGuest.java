@@ -3,8 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.multiplayer;
 /**
  * MPGuest class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MPGuest extends MPMember{
@@ -13,17 +11,13 @@ public class MPGuest extends MPMember{
 
     /**
      * MPGuest constructor
-     *
-     * TODO
      */
     public MPGuest(){
 
     }
 
     /**
-     * connectToHost
-     *
-     * TODO
+     * connectToHost method
      */
     public void connectToHost(){
 

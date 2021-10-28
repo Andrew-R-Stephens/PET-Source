@@ -28,8 +28,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
 /**
  * MapMenuFragment class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class MapMenuFragment extends Fragment {
@@ -140,8 +138,6 @@ public class MapMenuFragment extends Fragment {
     }
 
     /**
-     * onLowMemory
-     *
      * Enforces garbage collection on low memory
      */
     @Override

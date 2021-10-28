@@ -9,17 +9,12 @@ import androidx.annotation.NonNull;
 /**
  * GhostSpeakData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class ToolGhostSpeakData {
 
     /**
-     * getEntries
-     *
-     * TODO
-     *
+     * getEntries method
      * @param context
      * @param resourceArray
      * @return

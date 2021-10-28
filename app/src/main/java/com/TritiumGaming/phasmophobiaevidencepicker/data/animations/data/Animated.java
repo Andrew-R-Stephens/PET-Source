@@ -11,8 +11,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
 /**
  * Animated class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public abstract class Animated {
@@ -28,9 +26,6 @@ public abstract class Animated {
     protected boolean isAlive = true;
 
     /**
-     * Animated
-     *
-     * TODO
      *
      * @param screenW
      * @param screenH
@@ -41,9 +36,6 @@ public abstract class Animated {
     }
 
     /**
-     * setScreenW
-     *
-     * TODO
      *
      * @param screenW
      */
@@ -52,9 +44,6 @@ public abstract class Animated {
     }
 
     /**
-     * setScreenH
-     *
-     * TODO
      *
      * @param screenH
      */
@@ -63,9 +52,6 @@ public abstract class Animated {
     }
 
     /**
-     * setScale
-     *
-     * TODO
      *
      * @param scale
      */
@@ -74,9 +60,6 @@ public abstract class Animated {
     }
 
     /**
-     * setWidth
-     *
-     * TODO
      *
      * @param w
      */
@@ -85,9 +68,6 @@ public abstract class Animated {
     }
 
     /**
-     * setHeight
-     *
-     * TODO
      *
      * @param h
      */
@@ -96,9 +76,6 @@ public abstract class Animated {
     }
 
     /**
-     * setRotation
-     *
-     * TODO
      *
      * @param rot
      */
@@ -107,9 +84,6 @@ public abstract class Animated {
     }
 
     /**
-     * isAlive
-     *
-     * TODO
      *
      * @return
      */
@@ -118,9 +92,6 @@ public abstract class Animated {
     }
 
     /**
-     * getRect
-     *
-     * TODO
      *
      * @return
      */
@@ -129,16 +100,12 @@ public abstract class Animated {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public abstract void tick();
 
     /**
-     * setAlpha
      *
-     * TODO
      */
     public void setAlpha(){
         double alphaMult = (double) currentTick /(double) MAX_TICK /fadeTick* MAX_ALPHA;
@@ -150,18 +117,12 @@ public abstract class Animated {
     }
 
     /**
-     * getFilter
-     *
-     * TODO
      *
      * @return
      */
     public abstract PorterDuffColorFilter getFilter();
 
     /**
-     * draw
-     *
-     * TODO
      *
      * @param canvas
      * @param paint

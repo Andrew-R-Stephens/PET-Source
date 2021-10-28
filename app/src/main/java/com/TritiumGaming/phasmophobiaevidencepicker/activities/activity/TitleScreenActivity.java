@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,27 +14,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
- * TitleScreenActivity class
- *
- * - The first Activity a user enters. Navigates to and from the Investigation Activity.
- *
- * - Contains Navigation between Fragments with relation to TitleScreen activities:
- *      TitleScreen Fragment
- *      MultiplayerConnect Fragment
+ * MainActivity class
  *
  * @author TritiumGamingStudios
  */
@@ -67,9 +78,11 @@ public class TitleScreenActivity extends AppCompatActivity {
         //Set the Parent View
         setContentView(R.layout.activity_titlescreen);
 
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             loadWebSources();
         }
+        */
     }
 
     /**
@@ -132,11 +145,10 @@ public class TitleScreenActivity extends AppCompatActivity {
     }
 
     /**
-     * loadWebSources
-     *
      * Creates the GhostEvidencePair.json file.
-     * Initializes the GhostEvidencePair file with content. Used to keep the data up-to-date.
+     * Initializes the file with content. Used to keep the data up-to-date.
      */
+    /*
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void loadWebSources() {
         Log.d("WEB", "Loading Web Sources");
@@ -144,34 +156,50 @@ public class TitleScreenActivity extends AppCompatActivity {
             ArrayList<String> lines = new ArrayList<String>();
             try {
                 // Create a URL for the desired page
-                URL url = new URL("https://raw.githubusercontent.com/TRITIUMNITR0X/PETData/main/Ghost-Evidence-Pair");
+                URL url = new URL(getResources().getString(R.string.preference_ghost_evidence));
                 //First open the connection
                 HttpURLConnection conn=(HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(10000); // times out in 10 seconds
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String str;
-                while ((str = in.readLine()) != null) {
-                    lines.add(str);
+                String str = in.readLine();
+                try {
+                    int version = Integer.parseInt(str);
+                    if (version > titleScreenViewModel.getLatestDatabaseVersion()) {
+                        Log.d("TitleScreenActivity", "loadWebSources: PET-Data requires update from " + titleScreenViewModel.getLatestDatabaseVersion() + " -> " + version);
+                        while ((str = in.readLine()) != null) {
+                            lines.add(str);
+                        }
+                        in.close();
+                        conn.disconnect();
+
+                        File file = new File(getFilesDir(), getResources().getString(R.string.localFile_ghostEvidencePair_name));
+                        file.delete();
+                        file.createNewFile();
+
+                        BufferedWriter writer = null;
+                        writer = new BufferedWriter(new FileWriter(file, true));
+                        for (int i = 0; i < lines.size(); i++) {
+                            writer.append(lines.get(i) + "\n");
+                        }
+                        writer.close();
+
+                        titleScreenViewModel.setLatestDatabaseVersion(version);
+                        Log.d("TitleScreenActivity", "loadWebSources: PET-Data should be updated to version " + version);
+                        //titleScreenViewModel.saveToFile(getApplicationContext());
+
+                    } else {
+                        in.close();
+                        conn.disconnect();
+                        Log.d("TitleScreenActivity", "loadWebSources: PET-Data already up to date.");
+                    }
+                } catch (NumberFormatException nfe) {
+                    Log.e("TitleScreenActivity", "loadWebSources: NumberFormatException on first line");
                 }
-                in.close();
-                conn.disconnect();
-
-                File file = new File(getFilesDir(), getResources().getString(R.string.localFile_ghostEvidencePair_name));
-                file.delete();
-                file.createNewFile();
-
-                BufferedWriter writer = null;
-                writer = new BufferedWriter(new FileWriter(file, true));
-                for(int i = 0; i < lines.size(); i++) {
-                    writer.append(lines.get(i) + "\n");
-                }
-                writer.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
     }
-
+    */
 }

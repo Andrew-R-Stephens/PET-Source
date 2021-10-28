@@ -22,16 +22,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapDisplayView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InteractiveViewControllerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapController;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapDisplay;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 /**
  * MapViewerFragment class
- *
- * TODO
  *
  * @author TritiumGamingStudios
  */
@@ -41,7 +39,7 @@ public class MapViewerFragment extends Fragment {
 
     private final InteractiveViewControllerData controllerData = new InteractiveViewControllerData();
 
-    private InteractiveMapDisplay imageDisplay = null;
+    private InteractiveMapDisplayView imageDisplay = null;
     private LayerSelectorGroup selectorGroup = null;
     private AppCompatTextView layerName = null;
 
@@ -84,7 +82,7 @@ public class MapViewerFragment extends Fragment {
         AppCompatTextView instructions_zoom = view.findViewById(R.id.textview_controller_help_zoom);
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
-        InteractiveMapController touchInput = view.findViewById(R.id.interactiveMapController);
+        InteractiveMapControlView touchInput = view.findViewById(R.id.interactiveMapController);
         imageDisplay = view.findViewById(R.id.interactiveMapDisplay);
         layerName = view.findViewById(R.id.textview_floorname);
 
@@ -175,7 +173,7 @@ public class MapViewerFragment extends Fragment {
     /**
      * startThreads
      *
-     * Starts a Thread which loads images into the InteractiveMapDisplay
+     * Starts a Thread which loads images into the InteractiveMapDisplayView
      */
     public void startThreads() {
         stopThreads();

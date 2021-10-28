@@ -8,8 +8,6 @@ import java.util.ArrayList;
 /**
  * AnimationData class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class AnimationData {
@@ -21,9 +19,6 @@ public class AnimationData {
     private float rotWriting, rotHand;
 
     /**
-     * addToAllPool
-     *
-     * TODO
      *
      * @param animatedItem
      */
@@ -32,9 +27,6 @@ public class AnimationData {
     }
 
     /**
-     * setToAllPool
-     *
-     * TODO
      *
      * @param pos
      * @param animated
@@ -44,9 +36,6 @@ public class AnimationData {
     }
 
     /**
-     * getAllPool
-     *
-     * TODO
      *
      * @return
      */
@@ -55,9 +44,6 @@ public class AnimationData {
     }
 
     /**
-     * getFromAllPool
-     *
-     * TODO
      *
      * @param i
      * @return
@@ -65,9 +51,6 @@ public class AnimationData {
     public Animated getFromAllPool(int i) { return allPool.get(i); }
 
     /**
-     * getLastFromAllPool
-     *
-     * TODO
      *
      * @return
      */
@@ -76,18 +59,12 @@ public class AnimationData {
     }
 
     /**
-     * getAllPoolSize
-     *
-     * TODO
      *
      * @return
      */
     public int getAllPoolSize(){ return allPool.size(); }
 
     /**
-     * addToCurrentPool
-     *
-     * TODO
      *
      * @param animatedItem
      */
@@ -96,9 +73,6 @@ public class AnimationData {
     }
 
     /**
-     * getFromCurrentPool
-     *
-     * TODO
      *
      * @param i
      * @return
@@ -106,27 +80,22 @@ public class AnimationData {
     public Animated getFromCurrentPool(int i) { return currentPool.get(i); }
 
     /**
-     * getLastFromCurrentPool
-     *
-     * TODO
      *
      * @return
      */
-    public Animated getLastFromCurrentPool() { return currentPool.get(currentPool.size()-1); }
+    public Animated getLastFromCurrentPool() {
+        int index = currentPool.size()-1;
+        if(index < 0)
+            index = 0;
+        return currentPool.get(index); }
 
     /**
-     * removeFromCurrentPool
-     *
-     * TODO
      *
      * @param animated
      */
     public void removeFromCurrentPool(Animated animated) { currentPool.remove(animated); }
 
     /**
-     * getCurrentPool
-     *
-     * TODO
      *
      * @return
      */
@@ -135,18 +104,12 @@ public class AnimationData {
     }
 
     /**
-     * getCurrentPoolSize
-     *
-     * TODO
      *
      * @return
      */
     public int getCurrentPoolSize(){ return currentPool.size(); }
 
     /**
-     * setQueue
-     *
-     * TODO
      *
      * @param animationQueue
      */
@@ -155,9 +118,6 @@ public class AnimationData {
     }
 
     /**
-     * hasQueue
-     *
-     * TODO
      *
      * @return
      */
@@ -166,9 +126,6 @@ public class AnimationData {
     }
 
     /**
-     * getQueue
-     *
-     * TODO
      *
      * @return
      */
@@ -177,16 +134,11 @@ public class AnimationData {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){ queue.tick(); }
 
     /**
-     * setSelectedWriting
-     *
-     * TODO
      *
      * @param selectedWriting
      */
@@ -195,9 +147,6 @@ public class AnimationData {
     }
 
     /**
-     * getSelectedWriting
-     *
-     * TODO
      *
      * @return
      */
@@ -206,9 +155,6 @@ public class AnimationData {
     }
 
     /**
-     * setRotWriting
-     *
-     * TODO
      *
      * @param rot
      */
@@ -217,9 +163,6 @@ public class AnimationData {
     }
 
     /**
-     * getRotWriting
-     *
-     * TODO
      *
      * @return
      */
@@ -228,9 +171,6 @@ public class AnimationData {
     }
 
     /**
-     * setRotHand
-     *
-     * TODO
      *
      * @param rot
      */
@@ -239,9 +179,6 @@ public class AnimationData {
     }
 
     /**
-     * getRotHand
-     *
-     * TODO
      *
      * @return
      */
@@ -250,9 +187,6 @@ public class AnimationData {
     }
 
     /**
-     * hasData
-     *
-     * TODO
      *
      * @return
      */

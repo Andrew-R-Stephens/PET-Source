@@ -28,8 +28,6 @@ import java.util.ArrayList;
 /**
  * TitleScreenAnimationView class
  *
- * TODO
- *
  * @author TritiumGamingStudios
  */
 public class TitleScreenAnimationView extends View {
@@ -48,9 +46,6 @@ public class TitleScreenAnimationView extends View {
             bitmap_handRot = null, bitmap_writingRot = null;
 
     /**
-     * TitleScreenAnimationView constructor
-     *
-     * TODO
      *
      * @param context
      */
@@ -59,9 +54,6 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * TitleScreenAnimationView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -71,9 +63,6 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * TitleScreenAnimationView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -84,9 +73,6 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * TitleScreenAnimationView constructor
-     *
-     * TODO
      *
      * @param context
      * @param attrs
@@ -98,9 +84,6 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * init
-     *
-     * TODO
      *
      * @param titleScreenViewModel
      * @param bitmapUtils
@@ -122,9 +105,7 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * buildImages
      *
-     * TODO
      */
     public void buildImages() {
         //Log.d("BuildImages", "Orb");
@@ -138,9 +119,7 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * buildData
      *
-     * TODO
      */
     public void buildData(){
 
@@ -203,9 +182,7 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * tick
      *
-     * TODO
      */
     public void tick(){
 
@@ -303,9 +280,6 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * onDraw
-     *
-     * TODO
      *
      * @param canvas
      */
@@ -335,9 +309,7 @@ public class TitleScreenAnimationView extends View {
     }
 
     /**
-     * recycleBitmaps
      *
-     * TODO
      */
     public void recycleBitmaps(){
         if(bitmap_orb != null)

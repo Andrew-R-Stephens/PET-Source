@@ -1,51 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Html;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatSeekBar;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.CCountDownTimer;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.SanityMeterView;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 /**
  * EvidenceFragment class
- *
- * TODO
  *
  * @author TritiumGamingStudios
  */
