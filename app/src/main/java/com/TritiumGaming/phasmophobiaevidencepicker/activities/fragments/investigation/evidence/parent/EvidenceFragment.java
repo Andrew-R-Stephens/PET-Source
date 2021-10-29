@@ -139,15 +139,13 @@ public class EvidenceFragment extends Fragment {
 
 
         // TEXT SIZES
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            timer_text.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
-            label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(5, 25, 1, TypedValue.COMPLEX_UNIT_SP);
-            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
-            sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
-            sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(5,50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        timer_text.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
+        label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(5, 25, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
+        sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
+        sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(5,50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_goto_left.setOnClickListener(v -> {
@@ -243,12 +241,10 @@ public class EvidenceFragment extends Fragment {
         icon_circle = getResources().getDrawable(R.drawable.icon_circle);
 
         // DRAWABLE TINTS
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            for(Drawable d: icon_strikethroughs) {
-                d.setTint(color_strikethrough);
-            }
-            icon_circle.setTint(color_circle);
+        for(Drawable d: icon_strikethroughs) {
+            d.setTint(color_strikethrough);
         }
+        icon_circle.setTint(color_circle);
 
         // COUNTDOWN TIMER
         if(evidenceViewModel.hasTimer()) {
@@ -466,8 +462,7 @@ public class EvidenceFragment extends Fragment {
                 labels_evidence[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT, 1f));
                 labels_evidence[i].setTypeface(font_normal, Typeface.NORMAL);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    labels_evidence[i].setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                labels_evidence[i].setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
                 labels_evidence[i].setTextColor(Color.WHITE);
                 String evidenceName = getResources().getStringArray(R.array.evidence_tool_names)[i];
                 labels_evidence[i].setText(evidenceName);
@@ -493,12 +488,10 @@ public class EvidenceFragment extends Fragment {
                     closeButton.setOnClickListener(v1 -> popup.dismiss());
 
                     AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                        name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                    name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
                     name.setText(evidenceName);
                     AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                        info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                    info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
                     info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[num]));
 
                     popup.setAnimationStyle(R.anim.nav_default_enter_anim);
@@ -692,9 +685,7 @@ public class EvidenceFragment extends Fragment {
                     LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
             setTypeface(font_normal, Typeface.NORMAL);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
-            }
+            setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
             String ghostTempName = "N/A";
             //if(getResources().getStringArray(R.array.evidence_ghost_names).length > id)
             //    ghostTempName = getResources().getStringArray(R.array.evidence_ghost_names)[id];
@@ -720,12 +711,10 @@ public class EvidenceFragment extends Fragment {
                 );
 
                 AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
                 name.setText(ghostName);
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
                 String[] ghostInfoArray = getResources().getStringArray(R.array.ghost_info_array);
                 if(ghostInfoArray.length > id)
                     info.setText(Html.fromHtml(getResources().getStringArray(R.array.ghost_info_array)[id]));
@@ -735,7 +724,6 @@ public class EvidenceFragment extends Fragment {
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
-
             });
         }
 
@@ -891,8 +879,7 @@ public class EvidenceFragment extends Fragment {
                     LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
             setTypeface(font_normal, Typeface.NORMAL);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+            setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
             setTextColor(Color.WHITE);
             String evidenceName = getResources().getStringArray(R.array.evidence_tool_names)[index];
             setText(evidenceName);
@@ -911,12 +898,10 @@ public class EvidenceFragment extends Fragment {
                 AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
                 AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
                 name.setText(evidenceName);
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
                 info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[index]));
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);

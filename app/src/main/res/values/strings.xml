@@ -109,8 +109,9 @@
     <string name="evidence_timer_difficulty_1">Amateur</string>
     <string name="evidence_timer_difficulty_2">Intermediate</string>
     <string name="evidence_timer_difficulty_3">Professional</string>
-    <string name="evidence_timer_maplabel">Map:</string>
+    <string name="evidence_timer_difficulty_4">Nightmare</string>
     <string name="evidence_timer_difficulty_label">Difficulty:</string>
+    <string name="evidence_timer_maplabel">Map:</string>
     <string name="evidence_timer_actionlabel">ACTION</string>
     <string name="evidence_timer_setuplabel">SETUP</string>
     <string name="evidence_sanity_huntwarn">HUNT WARN</string>
@@ -159,16 +160,16 @@
     </string>
     <string name="evidence_ghost_description_goryo" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
+                <p><font color=#ff6161>Strength:</font> A Goryo often only shows itself on camera when there are no people nearby.</p>
+                <p><font color=#ff6161>Weakness:</font> Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_hantu" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
+                <p><font color=#ff6161>Strength:</font> Lower temperatures allow the Hantu to move at faster speeds.</p>
+                <p><font color=#ff6161>Weakness:</font> A Hantu\'s movement will be slower than normal in warmer areas.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_jinn">
@@ -187,16 +188,16 @@
     </string>
     <string name="evidence_ghost_description_myling" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>The Myling will emit strange noises which can be picked up by the Parabolic Microphone. Its footsteps can also only be heard within the electronic interference range (which is around 10 meters) during a Hunt.</p>
+                <p><font color=#ff6161>Strength:</font> A Myling is not as vocal as other Ghosts while Hunting.</p>
+                <p><font color=#ff6161>Weakness:</font> Mylings will more frequently emit paranormal sounds.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_obake" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>An Obake is a shape shifter which promotes some unusual evidence at times. By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake.
+                <p><font color=#ff6161>Strength:</font> An Obake may not leave a trace when manipulating the environment.</p>
+                <p><font color=#ff6161>Weakness:</font> The unique evidence left by an Obake may be used to determine the Ghost type.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_oni">
@@ -208,9 +209,9 @@
     </string>
     <string name="evidence_ghost_description_onryo" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc).</p>
+                <p><font color=#ff6161>Strength:</font> Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
+                <p><font color=#ff6161>Weakness:</font> A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_phantom">
@@ -229,9 +230,9 @@
     </string>
     <string name="evidence_ghost_description_raiju" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>A Raiju is a ghost which <font color=#ff6161>siphons electrical power</font> from the devices around it. Too much electrical stimulation nearby it will cause it to become agitated and hunt more frequently.</p>
+                <p><font color=#ff6161>Strength:</font> Raijus become much faster while nearby electrical devices.</p>
+                <p><font color=#ff6161>Weakness:</font> It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_revenant">
@@ -257,9 +258,9 @@
     </string>
     <string name="evidence_ghost_description_thetwins" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
+                <p><font color=#ff6161>Strength:</font> Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
+                <p><font color=#ff6161>Weakness:</font> Due to their combined activity, locating The Twins should be much easier.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_wraith">
@@ -271,9 +272,9 @@
     </string>
     <string name="evidence_ghost_description_yokai" translatable="false">
         <![CDATA[
-                <p>DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Strength:</font> DESCRIPTION NEEDED</p>
-                <p><font color=#ff6161>Weakness:</font> DESCRIPTION NEEDED</p>
+                <p>The Yokai is highly <font color=#ff6161>sensitive to voices</font>, making the Yokai extremely dangerous. However, speaking nearby it may also trigger activity, making finding the Ghost room easier.</p>
+                <p><font color=#ff6161>Strength:</font> Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
+                <p><font color=#ff6161>Weakness:</font> While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_yurei">
@@ -296,8 +297,8 @@
     <!-- Evidence Description -->
     <string name="evidence_evidence_description_dots" translatable="false">
         <![CDATA[
-                    <p>DESCRIPTION NEEDED</p>
-                    <p>DESCRIPTION NEEDED</p>
+                    <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
+                    <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
             ]]>
     </string>
     <string name="evidence_evidence_description_emf">
@@ -309,7 +310,7 @@
     <string name="evidence_evidence_description_fingerprints">
         <![CDATA[
                     <p>Left on objects and surfaces by ghosts, Fingerprints can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font> and will glow green while under UV light.</p>
-                    <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>.</p>
+                    <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>. A 6-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
             ]]>
     </string>
     <string name="evidence_evidence_description_temperatures">
@@ -326,7 +327,7 @@
     </string>
     <string name="evidence_evidence_description_orbs">
         <![CDATA[
-                    <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the truck\'s camera feed<font> from Video Cameras or Head-Mounted Cameras.</p>
+                    <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through Thermals on the Video Camera<font> or Head-Mounted Camera truck feed.</p>
                     <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
             ]]></string>
     <string name="evidence_evidence_description_box">
@@ -344,11 +345,13 @@
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
     <!-- Map Names -->
     <string name="map_name_asylum" translatable="false">Asylum</string>
+    <string name="map_name_campsite" translatable="false">Campsite</string>
     <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
     <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>
     <string name="map_name_brownstone" translatable="false">Brownstone Highschool</string>
     <string name="map_name_edgefield" translatable="false">Edgefield Streethouse</string>
     <string name="map_name_tanglewood" translatable="false">Tanglewood Streethouse</string>
+    <string name="map_name_willow" translatable="false">Willow Streethouse</string>
     <string name="map_name_ridgeview" translatable="false">Ridgeview Roadhouse</string>
     <string name="map_name_prison" translatable="false">Prison</string>
     <!-- Building Floor Names -->

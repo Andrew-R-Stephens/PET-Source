@@ -1,7 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.data;
 
+import android.text.Html;
+import android.text.Spanned;
+import android.text.SpannedString;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 /**
  * FontStyler class
@@ -28,6 +33,10 @@ public class FontStyler {
      */
     public static float dpToSp(View view, float dpActual){
         return (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, dpActual, view.getContext().getResources().getDisplayMetrics())) / view.getContext().getResources().getDisplayMetrics().scaledDensity;
+    }
+
+    public static Spanned htmlToStyled(String str) {
+        return Html.fromHtml("<![CDATA[" + str + "]]>");
     }
 
 }

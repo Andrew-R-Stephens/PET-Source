@@ -283,10 +283,12 @@
         <item>@string/evidence_timer_difficulty_1</item>
         <item>@string/evidence_timer_difficulty_2</item>
         <item>@string/evidence_timer_difficulty_3</item>
+        <item>@string/evidence_timer_difficulty_4</item>
     </string-array>
     <string-array name="evidence_timer_difficulty_times_array">
         <item>@string/evidence_timer_time_1</item>
         <item>@string/evidence_timer_time_2</item>
+        <item>@string/evidence_timer_time_3</item>
         <item>@string/evidence_timer_time_3</item>
     </string-array>
 
@@ -381,11 +383,13 @@
     <!-- Generic array of map names -->
     <string-array name="map_names_array">
         <item>@string/map_name_asylum</item>
+        <item>@string/map_name_campsite</item>
         <item>@string/map_name_bleasdale</item>
         <item>@string/map_name_grafton</item>
         <item>@string/map_name_brownstone</item>
         <item>@string/map_name_edgefield</item>
         <item>@string/map_name_tanglewood</item>
+        <item>@string/map_name_willow</item>
         <item>@string/map_name_ridgeview</item>
         <item>@string/map_name_prison</item>
     </string-array>
@@ -393,11 +397,13 @@
     <!-- Array of references to map resource arrays-->
     <integer-array name= "maps_resources_array">
         <item>@array/map_asylum_array</item>
+        <item>@array/map_campsite_array</item>
         <item>@array/map_bleasdale_array</item>
         <item>@array/map_grafton_array</item>
         <item>@array/map_brownstone_array</item>
         <item>@array/map_edgefield_array</item>
         <item>@array/map_tanglewood_array</item>
+        <item>@array/map_willow_array</item>
         <item>@array/map_ridgeview_array</item>
         <item>@array/map_prison_array</item>
     </integer-array>
@@ -420,7 +426,15 @@
         <item>1</item>
         <item>2</item>
     </integer-array>
-
+    <integer-array name= "map_campsite_array">
+        <item>@string/map_name_campsite</item>
+        <item>@array/map_campsite_image_outline_array</item>
+        <item>@array/map_campsite_image_background_array</item>
+        <item>@array/map_campsite_image_doors_array</item>
+        <item>@array/map_campsite_layerName_array</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
     <integer-array name= "map_bleasdale_array">
         <item>@string/map_name_bleasdale</item>
         <item>@array/map_bleasdale_image_outline_array</item>
@@ -430,7 +444,6 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
-
     <integer-array name= "map_grafton_array">
         <item>@string/map_name_grafton</item>
         <item>@array/map_grafton_image_outline_array</item>
@@ -440,7 +453,6 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
-
     <integer-array name= "map_brownstone_array">
         <item>@string/map_name_brownstone</item>
         <item>@array/map_brownstone_image_outline_array</item>
@@ -450,7 +462,6 @@
         <item>0</item>
         <item>1</item>
     </integer-array>
-
     <integer-array name= "map_edgefield_array">
         <item>@string/map_name_edgefield</item>
         <item>@array/map_edgefield_image_outline_array</item>
@@ -460,7 +471,6 @@
         <item>1</item>
         <item>0</item>
     </integer-array>
-
     <integer-array name= "map_tanglewood_array">
         <item>@string/map_name_tanglewood</item>
         <item>@array/map_tanglewood_image_outline_array</item>
@@ -470,7 +480,15 @@
         <item>1</item>
         <item>0</item>
     </integer-array>
-
+    <integer-array name= "map_willow_array">
+        <item>@string/map_name_willow</item>
+        <item>@array/map_willow_image_outline_array</item>
+        <item>@array/map_willow_image_background_array</item>
+        <item>@array/map_willow_image_doors_array</item>
+        <item>@array/map_willow_layerName_array</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
     <integer-array name= "map_ridgeview_array">
         <item>@string/map_name_ridgeview</item>
         <item>@array/map_ridgeview_image_outline_array</item>
@@ -480,7 +498,6 @@
         <item>1</item>
         <item>0</item>
     </integer-array>
-
     <integer-array name= "map_prison_array">
         <item>@string/map_name_prison</item>
         <item>@array/map_prison_image_outline_array</item>
@@ -495,6 +512,9 @@
     <integer-array name= "map_asylum_image_outline_array">
         <item>@drawable/map_asylum_layer_bottom_outline</item>
         <item>@drawable/map_asylum_layer_top_outline</item>
+    </integer-array>
+    <integer-array name= "map_campsite_image_outline_array">
+        <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_outline_array">
         <item>@drawable/map_farmhouse_bleasdale_layer_bottom_outline</item>
@@ -518,6 +538,10 @@
         <item>@drawable/map_house_tanglewood_layer_bottom_outline</item>
         <item>@drawable/map_house_tanglewood_layer_top_outline</item>
     </integer-array>
+    <integer-array name= "map_willow_image_outline_array">
+        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
     <integer-array name= "map_ridgeview_image_outline_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_outline</item>
         <item>@drawable/map_house_ridgeview_layer_middle_outline</item>
@@ -532,6 +556,9 @@
     <integer-array name= "map_asylum_image_background_array">
         <item>@drawable/map_asylum_layer_bottom_background</item>
         <item>@drawable/map_asylum_layer_top_background</item>
+    </integer-array>
+    <integer-array name= "map_campsite_image_background_array">
+        <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_background_array">
         <item>@drawable/map_farmhouse_bleasdale_layer_bottom_background</item>
@@ -555,6 +582,10 @@
         <item>@drawable/map_house_tanglewood_layer_bottom_background</item>
         <item>@drawable/map_house_tanglewood_layer_top_background</item>
     </integer-array>
+    <integer-array name= "map_willow_image_background_array">
+        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
     <integer-array name= "map_ridgeview_image_background_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_background</item>
         <item>@drawable/map_house_ridgeview_layer_middle_background</item>
@@ -569,6 +600,9 @@
     <integer-array name= "map_asylum_image_doors_array">
         <item>@drawable/map_asylum_layer_bottom_doors</item>
         <item>@drawable/map_asylum_layer_top_doors</item>
+    </integer-array>
+    <integer-array name= "map_campsite_image_doors_array">
+        <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_doors_array">
         <item>@drawable/map_farmhouse_bleasdale_layer_bottom_doors</item>
@@ -591,7 +625,10 @@
     <integer-array name= "map_tanglewood_image_doors_array">
         <item>@drawable/map_house_tanglewood_layer_bottom_doors</item>
         <item>@drawable/map_house_tanglewood_layer_top_doors</item>
-
+    </integer-array>
+    <integer-array name= "map_willow_image_doors_array">
+        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_ridgeview_image_doors_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_doors</item>
@@ -608,40 +645,40 @@
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
     </integer-array>
-
+    <integer-array name="map_campsite_layerName_array">
+        <item>@string/map_floor_name_first</item>
+    </integer-array>
     <integer-array name= "map_bleasdale_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
         <item>@string/map_floor_name_attic</item>
     </integer-array>
-
     <integer-array name= "map_grafton_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
     </integer-array>
-
     <integer-array name= "map_brownstone_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
     </integer-array>
-
     <integer-array name= "map_edgefield_layerName_array">
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
     </integer-array>
-
     <integer-array name= "map_tanglewood_layerName_array">
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
     </integer-array>
-
+    <integer-array name="map_willow_layerName_array">
+        <item>@string/map_floor_name_basement</item>
+        <item>@string/map_floor_name_first</item>
+    </integer-array>
     <integer-array name= "map_ridgeview_layerName_array">
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
     </integer-array>
-
     <integer-array name= "map_prison_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>

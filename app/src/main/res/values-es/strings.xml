@@ -265,5 +265,6 @@
     <string name="review_requesttitle">¡Considere la calificación P.E.T.!</string>
     <string name="review_accept">¡Aceptar!</string>
     <string name="review_decline">Disminución</string>
+    <string name="evidence_timer_difficulty_4">Pesadilla</string>
 
 </resources>

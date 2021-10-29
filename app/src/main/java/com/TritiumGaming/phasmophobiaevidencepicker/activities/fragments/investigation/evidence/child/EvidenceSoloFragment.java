@@ -86,9 +86,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            map_name.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        map_name.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {

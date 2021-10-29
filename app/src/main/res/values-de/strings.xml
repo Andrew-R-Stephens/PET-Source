@@ -271,5 +271,6 @@
     <string name="review_requesttitle">Bitte beachten Sie die Bewertung P.E.T.!</string>
     <string name="review_accept">Akzeptieren!</string>
     <string name="review_decline">Ablehnen</string>
+    <string name="evidence_timer_difficulty_4">Albtraum</string>
 
 </resources>

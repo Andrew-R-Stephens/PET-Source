@@ -268,5 +268,6 @@
     <string name="review_requesttitle">Veuillez considérer la note P.E.T.!</string>
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
+    <string name="evidence_timer_difficulty_4">Cauchemar</string>
 
 </resources>

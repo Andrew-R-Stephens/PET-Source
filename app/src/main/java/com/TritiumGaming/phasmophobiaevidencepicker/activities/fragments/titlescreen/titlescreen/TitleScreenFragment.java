@@ -121,12 +121,10 @@ public class TitleScreenFragment extends Fragment {
             icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            label_languageName.setAutoSizeTextTypeUniformWithConfiguration(5, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            button_startSolo.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            button_startMult.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_languageName.setAutoSizeTextTypeUniformWithConfiguration(5, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        button_startSolo.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        button_startMult.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();
@@ -174,6 +172,10 @@ public class TitleScreenFragment extends Fragment {
         }
         // REQUEST REVIEW PROMPT
         doReviewRequest();
+
+    }
+
+    public void doDailyMessage() {
 
     }
 
@@ -257,14 +259,12 @@ public class TitleScreenFragment extends Fragment {
 
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            version.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            aboutapp_info.setAutoSizeTextTypeUniformWithConfiguration(16, 100, 1, TypedValue.COMPLEX_UNIT_SP);
-            developerInfo_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            specialThanks_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            discordLabel.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        version.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        aboutapp_info.setAutoSizeTextTypeUniformWithConfiguration(16, 100, 1, TypedValue.COMPLEX_UNIT_SP);
+        developerInfo_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        specialThanks_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        discordLabel.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // ABOUT APP - TITLE
         String abouttitle = getResources().getString(R.string.aboutinfo_title_about);
@@ -410,21 +410,19 @@ public class TitleScreenFragment extends Fragment {
         ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            primarytitle.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            generalsettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            othersettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            text_screenIsAlwaysOn_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            text_colorblindmode_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            text_colorblindmode_selectedname.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            text_colorblindmode_sidenote.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        primarytitle.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        generalsettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        othersettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        text_screenIsAlwaysOn_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        text_colorblindmode_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        text_colorblindmode_selectedname.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        text_colorblindmode_sidenote.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
-            switch_huntwarningaudio_text.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        switch_huntwarningaudio_text.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
-            switch_huntwarning_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            switch_huntwarning_timetext.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            switch_huntwarning_othertext.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        switch_huntwarning_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        switch_huntwarning_timetext.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        switch_huntwarning_othertext.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // COLORBLIND DATA
         TypedArray typedArray = getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
@@ -604,11 +602,9 @@ public class TitleScreenFragment extends Fragment {
         AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            acceptButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            declineButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        declineButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         acceptButton.setOnClickListener(v -> {
@@ -693,8 +689,7 @@ public class TitleScreenFragment extends Fragment {
         LinearLayout languages_layout = customView.findViewById(R.id.languages_verticallayout);
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         closeButton.setOnClickListener(v -> {
@@ -715,9 +710,7 @@ public class TitleScreenFragment extends Fragment {
                     name.setTypeface(getResources().getFont(R.font.norse_regular), Typeface.NORMAL);
                 else
                     name.setTypeface(ResourcesCompat.getFont(getContext(), R.font.norse_regular));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    name.setAutoSizeTextTypeUniformWithConfiguration(12, 30, 1, TypedValue.COMPLEX_UNIT_SP);
-                }
+                name.setAutoSizeTextTypeUniformWithConfiguration(12, 30, 1, TypedValue.COMPLEX_UNIT_SP);
                 name.setTextColor(Color.WHITE);
                 name.setText(langNames[i]);
 
