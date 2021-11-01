@@ -8,8 +8,6 @@ import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.AnimationData;
-
 /**
  * GhostWritingData class
  *
@@ -126,11 +124,14 @@ public class GhostWritingData extends Animated{
     }
 
     /**
+     * rotateBitmap
      *
-     * @param original
-     * @return
+     * Creates a rotated copy of the original Bitmap
+     *
+     * @param original- original Bitmap
+     * @return new rotated Bitmap
      */
-    public Bitmap rotateBitmap(@NonNull Bitmap original) {
+    public Bitmap rotateBitmap(Bitmap original) {
         int width = original.getWidth();
         int height = original.getHeight();
         Matrix matrix = new Matrix();

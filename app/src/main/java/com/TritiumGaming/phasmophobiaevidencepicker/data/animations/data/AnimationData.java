@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.Animated;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationQueue;

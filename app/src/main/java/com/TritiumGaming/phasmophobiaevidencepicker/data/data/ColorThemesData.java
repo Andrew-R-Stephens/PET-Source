@@ -5,17 +5,17 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.data;
  *
  * @author TritiumGamingStudios
  */
-public class ColorSpaceData {
+public class ColorThemesData {
 
-    private final String[] colorSpaceNames;
+    private final String[] themeNames;
     private int index = 0;
 
     /**
      *
      * @param colorSpaceNames
      */
-    public ColorSpaceData(String[] colorSpaceNames){
-        this.colorSpaceNames = colorSpaceNames;
+    public ColorThemesData(String[] colorSpaceNames){
+        this.themeNames = colorSpaceNames;
     }
 
     /**
@@ -42,9 +42,9 @@ public class ColorSpaceData {
         index += dir;
 
         if(index < 0)
-            index = colorSpaceNames.length-1;
+            index = themeNames.length-1;
         else
-            if(index >= colorSpaceNames.length)
+            if(index >= themeNames.length)
                 index = 0;
     }
 
@@ -53,7 +53,7 @@ public class ColorSpaceData {
      * @return
      */
     public String getColorSpaceName() {
-        return colorSpaceNames[index];
+        return themeNames[index];
     }
 
 }

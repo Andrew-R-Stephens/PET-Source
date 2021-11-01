@@ -47,7 +47,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.TitleScreenActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ColorSpaceData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ColorThemesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.FontStyler;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TitleScreenAnimationView;
@@ -176,6 +176,154 @@ public class TitleScreenFragment extends Fragment {
     }
 
     public void doDailyMessage() {
+        // DESTROY PREVIOUS POPUP
+        if (popup != null)
+            popup.dismiss();
+
+
+        // INFLATE LAYOUT
+        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View customView = inflater.inflate(R.layout.popup_aboutinfo, null);
+
+
+        // CREATE POPUP WINDOW
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+
+
+        // INITIALIZE VIEWS
+        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+
+        AppCompatTextView title = customView.findViewById(R.id.label_settingstitle);
+        AppCompatTextView version = customView.findViewById(R.id.label_version);
+        AppCompatTextView aboutapp_info = customView.findViewById(R.id.aboutinfo_aboutapp_info);
+        AppCompatTextView developerInfo_title = customView.findViewById(R.id.aboutinfo_developerinfo_title);
+        AppCompatTextView discordLabel = customView.findViewById(R.id.appinfo_joinDiscord);
+
+        LinearLayout linearLayout_developerInfo_subtitles = customView.findViewById(R.id.appinfo_developerinfo_subtitles);
+        LinearLayout linearLayout_developerInfo_subinfo = customView.findViewById(R.id.appinfo_developerinfo_subinfo);
+
+        View appinfo_discordclickbutton = customView.findViewById(R.id.appinfo_discordclickbox);
+
+        AppCompatTextView specialThanks_title = customView.findViewById(R.id.aboutinfo_specialthanks_title);
+        LinearLayout linearLayout_specialThanks = customView.findViewById(R.id.scrollview_list_specialthanks);
+        TypedArray typedArray = getResources().obtainTypedArray(R.array.aboutinfo_specialthanks_list);
+        AppCompatTextView[] names = new AppCompatTextView[typedArray.length()];
+
+
+        // LISTENERS
+        closeButton.setOnClickListener(v -> {
+            popup.dismiss();
+            popup = null;
+        });
+        appinfo_discordclickbutton.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
+
+
+        // TEXT SIZE
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        version.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        aboutapp_info.setAutoSizeTextTypeUniformWithConfiguration(16, 100, 1, TypedValue.COMPLEX_UNIT_SP);
+        developerInfo_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        specialThanks_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        discordLabel.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+
+        // ABOUT APP - TITLE
+        String abouttitle = getResources().getString(R.string.aboutinfo_title_about);
+        Spannable aboutPET = (Spannable) Html.fromHtml(getResources().getString(R.string.aboutinfo_title_petstylized));
+        title.setText(TextUtils.concat(abouttitle, " ", aboutPET));
+
+        // ABOUT APP - VERSION
+        String versionData = getResources().getString(R.string.aboutinfo_version) + ": ";
+        try {
+            if (getContext() != null) {
+                PackageInfo pInfo = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
+                versionData += pInfo.versionName;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            versionData = "Version Unknown";
+        }
+        version.setText(versionData);
+
+        // ABOUT APP - DESCRIPTION
+        aboutapp_info.setText(Html.fromHtml(getResources().getString(R.string.aboutinfo_aboutapp_info)));
+
+
+        // DEVELOPER DATA
+        @ColorInt int color_title, color_body;
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
+        color_title = typedValue.data;
+        String colorHex = String.format("%06X", (0xFFFFFF & color_title));
+        theme.resolveAttribute(R.attr.bodyFontColor, typedValue, true);
+        color_body = typedValue.data;
+
+        String[] subTitles = getResources().getStringArray(R.array.aboutinfo_developerinfo_subtitles);
+        String[] subInfo = getResources().getStringArray(R.array.aboutinfo_developerinfo_subinfo);
+
+        for (int i = 0; i < subTitles.length; i++) {
+
+            AppCompatTextView developerInfo_subtitle = new AppCompatTextView(getContext());
+            Spannable subtitle = (Spannable) Html.fromHtml(FontStyler.setColor(subTitles[i], colorHex));
+            Spannable subinfo = (Spannable) Html.fromHtml(subInfo[i]);
+
+            developerInfo_subtitle.setText(TextUtils.concat(subtitle, ":"));
+            developerInfo_subtitle.setTypeface(bodyFont);
+            developerInfo_subtitle.setTextColor(color_body);
+            developerInfo_subtitle.setMaxLines(1);
+            developerInfo_subtitle.setEllipsize(null);
+            developerInfo_subtitle.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            developerInfo_subtitle.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+            if (getView() != null)
+                developerInfo_subtitle.setAutoSizeTextTypeUniformWithConfiguration(1, (int) (FontStyler.dpToSp(getView(), developerInfo_title.getTextSize())), 1, TypedValue.COMPLEX_UNIT_SP);
+
+            AppCompatTextView developerInfo_subinfo = new AppCompatTextView(getContext());
+            developerInfo_subinfo.setText(subinfo);
+            developerInfo_subinfo.setTypeface(bodyFont);
+            developerInfo_subinfo.setTextColor(color_body);
+            developerInfo_subinfo.setMaxLines(1);
+            developerInfo_subinfo.setEllipsize(null);
+            developerInfo_subinfo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            developerInfo_subinfo.setGravity(Gravity.CENTER);
+            if (getView() != null)
+                developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(1, (int) (FontStyler.dpToSp(getView(), developerInfo_subtitle.getTextSize()) * .95), 1, TypedValue.COMPLEX_UNIT_SP);
+
+            linearLayout_developerInfo_subtitles.addView(developerInfo_subtitle);
+            linearLayout_developerInfo_subinfo.addView(developerInfo_subinfo);
+        }
+
+
+        // DISCORD LABEL
+        discordLabel.setMaxLines(1);
+        discordLabel.setEllipsize(null);
+
+
+        // SPECIAL THANKS
+        for (int i = 0; i < names.length; i++) {
+            names[i] = new AppCompatTextView(getContext());
+            names[i].setText(typedArray.getString(i));
+            names[i].setTypeface(bodyFont);
+            names[i].setTextColor(color_body);
+            names[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            names[i].setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            names[i].setTextSize((int) (FontStyler.dpToSp(customView, specialThanks_title.getTextSize()) * .9));
+
+            linearLayout_specialThanks.addView(names[i]);
+        }
+        typedArray.recycle();
+
+
+        // FINALIZE
+        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
 
     }
 
@@ -204,6 +352,65 @@ public class TitleScreenFragment extends Fragment {
         } else {
             // Log.d("Review", "Review Request Denied");
         }
+    }
+
+    public void showMessageOfTheDayPopup() {
+        // DESTROY PREVIOUS POPUP
+        if (popup != null)
+            popup.dismiss();
+
+
+        // INFLATE LAYOUT
+        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View customView = inflater.inflate(R.layout.popup_motd, null);
+
+
+        // CREATE POPUP WINDOW
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+
+
+        // INITIALIZE VIEWS
+        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+
+        AppCompatTextView title = customView.findViewById(R.id.label_motd_title);
+        AppCompatTextView message = customView.findViewById(R.id.textView_motd);
+
+
+        // LISTENERS
+        closeButton.setOnClickListener(v -> {
+            popup.dismiss();
+            popup = null;
+        });
+
+
+        // TEXT SIZE
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        message.setAutoSizeTextTypeUniformWithConfiguration(16, 100, 1, TypedValue.COMPLEX_UNIT_SP);
+
+
+        // ABOUT APP - DESCRIPTION
+        message.setText(Html.fromHtml(getResources().getString(R.string.aboutinfo_aboutapp_info)));
+
+
+        // DEVELOPER DATA
+        @ColorInt int color_title, color_body;
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
+        color_title = typedValue.data;
+        String colorHex = String.format("%06X", (0xFFFFFF & color_title));
+        theme.resolveAttribute(R.attr.bodyFontColor, typedValue, true);
+        color_body = typedValue.data;
+
+
+        // FINALIZE
+        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
     }
 
     /**
@@ -430,7 +637,7 @@ public class TitleScreenFragment extends Fragment {
         for (int i = 0; i < colorspaceNames.length; i++)
             colorspaceNames[i] = typedArray.getString(i);
         typedArray.recycle();
-        ColorSpaceData colorSpaceData = new ColorSpaceData(colorspaceNames);
+        ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
         int oldIndex = 0;
         if (titleScreenViewModel != null)
             oldIndex = titleScreenViewModel.getColorSpace();

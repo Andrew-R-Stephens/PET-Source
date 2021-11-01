@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
 import com.google.android.gms.ads.AdRequest;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.AnimationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationData;
 
 import java.util.Locale;
 

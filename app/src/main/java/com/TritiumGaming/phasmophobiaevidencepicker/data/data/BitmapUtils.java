@@ -206,4 +206,11 @@ public class BitmapUtils {
         return b != null && !b.isRecycled();
     }
 
+    public static void destroyBitmap(Bitmap b) {
+        if(bitmapExists(b)) {
+            b.recycle();
+            b = null;
+        }
+    }
+
 }

@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -19,7 +18,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.Frostsc
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostOrbData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostWritingData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.HandprintData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.AnimationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 
@@ -108,13 +107,9 @@ public class TitleScreenAnimationView extends View {
      *
      */
     public void buildImages() {
-        //Log.d("BuildImages", "Orb");
         bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).compileBitmaps(getContext());
-        //Log.d("BuildImages", "Frost");
         bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).compileBitmaps(getContext());
-        //Log.d("BuildImages", "Hand");
         bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).compileBitmaps(getContext());
-        //Log.d("BuildImages", "Writing");
         bitmap_writing = bitmapUtils.setResource(bookwritingResId.get(titleScreenViewModel.getAnimationData().getSelectedWriting())).compileBitmaps(getContext());
     }
 
@@ -127,7 +122,6 @@ public class TitleScreenAnimationView extends View {
             AnimationData animationData = titleScreenViewModel.getAnimationData();
 
             if(animationData.hasData()) {
-
                 for(Animated animated: animationData.getAllPool()) {
                     if(animated instanceof HandprintData) {
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
@@ -147,7 +141,6 @@ public class TitleScreenAnimationView extends View {
             int numOrbs = 3; //3
             for (int i = 0; i < numOrbs; i++)
                 if(BitmapUtils.bitmapExists(bitmap_orb)) {
-                    //animationData.addToAllPool(createNewGhostOrbData(screenW, screenH));
                     animationData.addToAllPool(new GhostOrbData(screenW, screenH));
                 }
 
@@ -155,7 +148,6 @@ public class TitleScreenAnimationView extends View {
             int numHands = 1; //1
             for (int i = 0; i < numHands; i++)
                 if(BitmapUtils.bitmapExists(bitmap_hand)) {
-                    //animationData.addToAllPool(createNewHandprintData(screenW, screenH));
                     animationData.addToAllPool(new HandprintData(screenW, screenH, bitmap_hand.getWidth(), bitmap_hand.getHeight()));
                     bitmap_handRot = ((HandprintData) animationData.getLastFromAllPool()).rotateBitmap(bitmap_hand);
                 }
@@ -164,7 +156,6 @@ public class TitleScreenAnimationView extends View {
             int numWriting = 1; //1
             for (int i = 0; i < numWriting; i++)
                 if(BitmapUtils.bitmapExists(bitmap_writing)) {
-                    //animationData.addToAllPool(createNewGhostWritingData(screenW, screenH));
                     animationData.addToAllPool(new GhostWritingData(screenW, screenH, bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
                     bitmap_writingRot = ((GhostWritingData) animationData.getLastFromAllPool()).rotateBitmap(bitmap_writing);
                 }
@@ -173,7 +164,6 @@ public class TitleScreenAnimationView extends View {
             int numFrost = 1; //1
             for (int i = 0; i < numFrost; i++)
                 if(BitmapUtils.bitmapExists(bitmap_frost)) {
-                    //animationData.addToAllPool(createNewFrostData(screenW, screenH));
                     animationData.addToAllPool(new FrostscreenData(screenW, screenH));
                 }
             //Create Queue
@@ -211,24 +201,20 @@ public class TitleScreenAnimationView extends View {
 
                 if (animationData.getLastFromCurrentPool() instanceof GhostOrbData) {
                     if(BitmapUtils.bitmapExists(bitmap_orb)) {
-                        //animationData.setToAllPool(index, createNewGhostOrbData());
                         animationData.setToAllPool(index, new GhostOrbData(getWidth(), getHeight()));
                     }
                 } else if (animationData.getLastFromCurrentPool() instanceof HandprintData) {
                     if(BitmapUtils.bitmapExists(bitmap_hand)) {
-                        //animationData.setToAllPool(index, createNewHandprintData());
                         animationData.setToAllPool(index, new HandprintData(getWidth(), getHeight(), bitmap_hand.getWidth(), bitmap_hand.getHeight()));
                         bitmap_handRot = ((HandprintData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
                     }
                 } else if (animationData.getLastFromCurrentPool() instanceof GhostWritingData) {
                     if(BitmapUtils.bitmapExists(bitmap_writing)) {
-                        //animationData.setToAllPool(index, createNewGhostWritingData());
                         animationData.setToAllPool(index, new GhostWritingData(getWidth(), getHeight(), bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
                         bitmap_writingRot = ((GhostWritingData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
                     }
                 } else if (animationData.getLastFromCurrentPool() instanceof FrostscreenData) {
                     if(BitmapUtils.bitmapExists(bitmap_frost)) {
-                        //animationData.setToAllPool(index, createNewFrostData());
                         animationData.setToAllPool(index, new FrostscreenData(getWidth(), getHeight()));
                     }
                 }
@@ -249,19 +235,14 @@ public class TitleScreenAnimationView extends View {
                 if (!currentAnim.isAlive()) {
                     if (currentAnim instanceof HandprintData) {
                         HandprintData data = ((HandprintData) currentAnim);
-                        if (bitmap_handRot != null)
-                            bitmap_handRot.recycle();
+                        BitmapUtils.destroyBitmap(bitmap_handRot);
                         if(BitmapUtils.bitmapExists(bitmap_hand))
                             bitmap_handRot = data.rotateBitmap(bitmap_hand);
                     } else if (currentAnim instanceof GhostWritingData) {
                         GhostWritingData data = ((GhostWritingData) currentAnim);
                         animationData.setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
-                        if (bitmap_writing != null)
-                            bitmap_writing.recycle();
-                        bitmap_writing = null;
-                        if (bitmap_writingRot != null)
-                            bitmap_writingRot.recycle();
-                        bitmap_writingRot = null;
+                        BitmapUtils.destroyBitmap(bitmap_writing);
+                        BitmapUtils.destroyBitmap(bitmap_writingRot);
                         bitmapUtils.setResource(bookwritingResId.get(animationData.getSelectedWriting()));
                         bitmap_writing = bitmapUtils.compileBitmaps(getContext());
                         if(BitmapUtils.bitmapExists(bitmap_writing))
@@ -312,20 +293,12 @@ public class TitleScreenAnimationView extends View {
      *
      */
     public void recycleBitmaps(){
-        if(bitmap_orb != null)
-            bitmap_orb.recycle();
-        if(bitmap_frost != null)
-            bitmap_frost.recycle();
-        if(bitmap_hand != null)
-            bitmap_hand.recycle();
-        if(bitmap_writing != null)
-            bitmap_writing.recycle();
-        if(bitmap_handRot != null)
-            bitmap_handRot.recycle();
-        if(bitmap_writingRot != null)
-            bitmap_writingRot.recycle();
-
-        System.gc();
+        BitmapUtils.destroyBitmap(bitmap_orb);
+        BitmapUtils.destroyBitmap(bitmap_frost);
+        BitmapUtils.destroyBitmap(bitmap_hand);
+        BitmapUtils.destroyBitmap(bitmap_writing);
+        BitmapUtils.destroyBitmap(bitmap_handRot);
+        BitmapUtils.destroyBitmap(bitmap_writingRot);
 
         bitmap_orb = null;
         bitmap_frost = null;
@@ -333,5 +306,8 @@ public class TitleScreenAnimationView extends View {
         bitmap_writing = null;
         bitmap_handRot = null;
         bitmap_writingRot = null;
+
+        System.gc();
     }
+
 }

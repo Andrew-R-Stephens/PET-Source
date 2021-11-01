@@ -46,6 +46,12 @@
     <string name="review_decline">No thanks</string>
     <string name="review_storelink" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
 
+    <!--
+        MESSAGE OF THE DAY POPUP
+    -->
+    <!-- Page Details -->
+    <string name="motd_title" translatable="false">Message of the Day</string>
+    <string name="motd_message" translatable="false">No new messages.</string>
 
     <!--
         ABOUT POPUP
