@@ -213,7 +213,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                                 evidenceViewModel.getSanityRunnable().setWait(wait);
                                 Thread.sleep(wait);
                             } catch (InterruptedException e) {
-                                Log.e("EvidenceFragment", "InterruptedException error handled.");
+                                Log.e("EvidenceFragment", "(SanityThread) InterruptedException error handled.");
                             }
                         }
                         }

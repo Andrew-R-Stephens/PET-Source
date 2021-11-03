@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,11 +50,26 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_info"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_review"
+                app:layout_constraintEnd_toStartOf="@+id/button_inbox"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/button_inbox"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_newspaper"
+                app:layout_constraintBottom_toBottomOf="@+id/button_info"
+                app:layout_constraintEnd_toStartOf="@+id/button_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button_info"
+                app:layout_constraintTop_toTopOf="@+id/button_info" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_review"
@@ -67,7 +83,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/button_info"
                 app:layout_constraintEnd_toStartOf="@+id/button_settings"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_info"
+                app:layout_constraintStart_toEndOf="@+id/button_inbox"
                 app:layout_constraintTop_toTopOf="@+id/button_info" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -79,11 +95,11 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_gear"
-                app:layout_constraintBottom_toBottomOf="@+id/button_review"
+                app:layout_constraintBottom_toBottomOf="@+id/button_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button_review"
-                app:layout_constraintTop_toTopOf="@+id/button_review" />
+                app:layout_constraintTop_toTopOf="@+id/button_info" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

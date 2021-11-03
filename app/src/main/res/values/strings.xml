@@ -465,5 +465,7 @@
     <string name="spiritbox_entry_q7_3">What can we do to help?</string>
     <string name="spiritbox_entry_q7_9">What do you want?</string>
     <string name="spiritbox_entry_q7_11">Why are you here?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
