@@ -19,7 +19,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostOr
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostWritingData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.HandprintData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 
 import java.util.ArrayList;

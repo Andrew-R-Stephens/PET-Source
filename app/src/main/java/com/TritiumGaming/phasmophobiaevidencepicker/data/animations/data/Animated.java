@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
 /**
  * Animated class

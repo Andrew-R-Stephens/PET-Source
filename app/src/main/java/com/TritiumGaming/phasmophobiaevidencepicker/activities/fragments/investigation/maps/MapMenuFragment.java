@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 /**

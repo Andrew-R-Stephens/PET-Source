@@ -7,11 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.text.StaticLayout;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InteractiveViewControllerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
 

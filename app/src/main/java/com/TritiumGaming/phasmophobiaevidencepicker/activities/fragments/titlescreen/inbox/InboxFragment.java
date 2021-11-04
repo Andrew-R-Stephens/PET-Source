@@ -1,66 +1,36 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
 
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.TitleScreenActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ColorThemesData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.FontStyler;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TitleScreenAnimationView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
-import com.google.android.play.core.review.ReviewInfo;
-import com.google.android.play.core.review.ReviewManager;
-import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.Task;
 
-import java.text.DecimalFormat;
-import java.util.Locale;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 /**
  * TitleScreenFragment class
@@ -73,7 +43,7 @@ public class InboxFragment extends Fragment {
 
     private PopupWindow popup = null;
 
-    //private Typeface bodyFont = null;
+    private Typeface bodyFont = null;
 
 
     @Nullable
@@ -91,14 +61,12 @@ public class InboxFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         // SET FONT
-        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
         else {
             if (getContext() != null)
                 bodyFont = ResourcesCompat.getFont(getContext(), R.font.eastseadokdo_regular);
         }
-        */
 
         // INITIALIZE VIEWS
         AppCompatTextView label_title = view.findViewById(R.id.textview_title);
@@ -120,7 +88,7 @@ public class InboxFragment extends Fragment {
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
         button_extranews.setOnClickListener(v -> showGeneralNewsPopup());
         button_petnews.setOnClickListener(v -> showPetNewsPopup());
-        button_phasnews.setOnClickListener(v -> showPhasNewsPopup());
+        button_phasnews.setOnClickListener(v -> showPhasNewsPopup(v));
 
     }
 
@@ -129,7 +97,6 @@ public class InboxFragment extends Fragment {
      * showExtraNewsPopup method
      */
     private void showGeneralNewsPopup() {
-
 
     }
 
@@ -145,8 +112,40 @@ public class InboxFragment extends Fragment {
     /**
      * showPhasNewsPopup method
      */
-    public void showPhasNewsPopup() {
+    public void showPhasNewsPopup(View v) {
+        RSSParser rss = null;
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            rss = new RSSParser(factory,"https://steamcommunity.com/games/739630/rss/");
+            while(!rss.isReady()){}
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
 
+        if (popup != null)
+            popup.dismiss();
+
+        LayoutInflater inflater = (LayoutInflater) getView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View customView = inflater.inflate(R.layout.popup_info, null);
+
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+        ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+        closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+        AppCompatTextView name = customView.findViewById(R.id.label_queryName);
+        name.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        name.setText(rss.getTitle(8));
+        AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
+        info.setAutoSizeTextTypeUniformWithConfiguration(12, 30, 1, TypedValue.COMPLEX_UNIT_SP);
+        info.setText(Html.fromHtml(rss.getDescription(8)));
+
+        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
     }
 
 
