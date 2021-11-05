@@ -43,6 +43,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParser;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -58,6 +60,9 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
 
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.text.DecimalFormat;
 import java.util.Locale;
 
@@ -69,6 +74,7 @@ import java.util.Locale;
 public class TitleScreenFragment extends Fragment {
 
     private TitleScreenViewModel titleScreenViewModel = null;
+    private MessageCenterViewModel messageCenterViewModel = null;
 
     private final BitmapUtils bitmapUtils = new BitmapUtils();
 
@@ -90,11 +96,16 @@ public class TitleScreenFragment extends Fragment {
         if (getContext() != null)
             titleScreenViewModel.init(getContext());
 
+        if (messageCenterViewModel == null)
+            messageCenterViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+
+
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         // SET FONT
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
@@ -176,8 +187,48 @@ public class TitleScreenFragment extends Fragment {
         // REQUEST REVIEW PROMPT
         requestReview();
 
+        startInboxThread();
     }
 
+
+    public void startInboxThread() {
+        Thread messageCenterThread = new Thread(() -> {
+            while (!messageCenterViewModel.isUpToDate()) {
+                Log.d("registerMessageInboxes", "Attempting to load documents...");
+                registerMessageInboxes();
+                if (!messageCenterViewModel.isUpToDate()) {
+                    Log.d("registerMessageInboxes", "Read attempts failed!");
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            Log.d("registerMessageInboxes", "Read attempts completed.");
+        });
+        messageCenterThread.start();
+    }
+
+    public void registerMessageInboxes() {
+        try {
+            XmlPullParserFactory xmlPullParserFactory_gen = XmlPullParserFactory.newInstance();
+            RSSParser rss_gen = new RSSParser(xmlPullParserFactory_gen,"https://steamcommunity.com/games/578080/rss/", MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
+            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
+
+            XmlPullParserFactory xmlPullParserFactory_pet = XmlPullParserFactory.newInstance();
+            RSSParser rss_pet = new RSSParser(xmlPullParserFactory_pet,"https://steamcommunity.com/games/252490/rss/", MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
+            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
+
+            XmlPullParserFactory xmlPullParserFactory_phas = XmlPullParserFactory.newInstance();
+            RSSParser rss_phas = new RSSParser(xmlPullParserFactory_phas,"https://steamcommunity.com/games/739630/rss/", MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
+            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
+
+            messageCenterViewModel.setIsUpToDate(true);
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * doReviewRequest method

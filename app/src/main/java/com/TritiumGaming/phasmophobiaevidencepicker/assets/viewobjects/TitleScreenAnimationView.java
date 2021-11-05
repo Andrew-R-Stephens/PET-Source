@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.room.Index;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.Animated;
@@ -198,24 +199,26 @@ public class TitleScreenAnimationView extends View {
                 e.printStackTrace();
             }
             if(aTemp != null) {
-
-                if (animationData.getLastFromCurrentPool() instanceof GhostOrbData) {
-                    if(BitmapUtils.bitmapExists(bitmap_orb)) {
-                        animationData.setToAllPool(index, new GhostOrbData(getWidth(), getHeight()));
-                    }
-                } else if (animationData.getLastFromCurrentPool() instanceof HandprintData) {
-                    if(BitmapUtils.bitmapExists(bitmap_hand)) {
-                        animationData.setToAllPool(index, new HandprintData(getWidth(), getHeight(), bitmap_hand.getWidth(), bitmap_hand.getHeight()));
-                        bitmap_handRot = ((HandprintData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
-                    }
-                } else if (animationData.getLastFromCurrentPool() instanceof GhostWritingData) {
-                    if(BitmapUtils.bitmapExists(bitmap_writing)) {
-                        animationData.setToAllPool(index, new GhostWritingData(getWidth(), getHeight(), bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
-                        bitmap_writingRot = ((GhostWritingData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
-                    }
-                } else if (animationData.getLastFromCurrentPool() instanceof FrostscreenData) {
-                    if(BitmapUtils.bitmapExists(bitmap_frost)) {
-                        animationData.setToAllPool(index, new FrostscreenData(getWidth(), getHeight()));
+                Animated lastAnimInList = animationData.getLastFromCurrentPool();
+                if(lastAnimInList != null) {
+                    if (lastAnimInList instanceof GhostOrbData) {
+                        if (BitmapUtils.bitmapExists(bitmap_orb)) {
+                            animationData.setToAllPool(index, new GhostOrbData(getWidth(), getHeight()));
+                        }
+                    } else if (lastAnimInList instanceof HandprintData) {
+                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                            animationData.setToAllPool(index, new HandprintData(getWidth(), getHeight(), bitmap_hand.getWidth(), bitmap_hand.getHeight()));
+                            bitmap_handRot = ((HandprintData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
+                        }
+                    } else if (lastAnimInList instanceof GhostWritingData) {
+                        if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                            animationData.setToAllPool(index, new GhostWritingData(getWidth(), getHeight(), bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
+                            bitmap_writingRot = ((GhostWritingData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
+                        }
+                    } else if (lastAnimInList instanceof FrostscreenData) {
+                        if (BitmapUtils.bitmapExists(bitmap_frost)) {
+                            animationData.setToAllPool(index, new FrostscreenData(getWidth(), getHeight()));
+                        }
                     }
                 }
             }

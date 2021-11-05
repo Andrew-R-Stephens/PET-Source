@@ -83,11 +83,13 @@ public class AnimationData {
      *
      * @return
      */
-    public Animated getLastFromCurrentPool() {
+    public Animated getLastFromCurrentPool() throws IndexOutOfBoundsException{
+        if(currentPool.size() <= 0)
+            return null;
         int index = currentPool.size()-1;
-        if(index < 0)
-            index = 0;
-        return currentPool.get(index); }
+
+        return currentPool.get(index);
+    }
 
     /**
      *

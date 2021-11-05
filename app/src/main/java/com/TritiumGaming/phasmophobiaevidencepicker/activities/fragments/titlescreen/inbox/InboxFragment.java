@@ -1,36 +1,24 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParser;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
-
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 /**
  * TitleScreenFragment class
@@ -40,11 +28,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 public class InboxFragment extends Fragment {
 
     private TitleScreenViewModel titleScreenViewModel = null;
-
-    private PopupWindow popup = null;
-
-    private Typeface bodyFont = null;
-
+    private MessageCenterViewModel messageInboxViewModel = null;
 
     @Nullable
     @Override
@@ -55,17 +39,14 @@ public class InboxFragment extends Fragment {
         if (getContext() != null)
             titleScreenViewModel.init(getContext());
 
+
         return inflater.inflate(R.layout.fragment_msginbox, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // SET FONT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
-        else {
-            if (getContext() != null)
-                bodyFont = ResourcesCompat.getFont(getContext(), R.font.eastseadokdo_regular);
+        if (messageInboxViewModel == null) {
+            messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
         }
 
         // INITIALIZE VIEWS
@@ -86,75 +67,54 @@ public class InboxFragment extends Fragment {
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
-        button_extranews.setOnClickListener(v -> showGeneralNewsPopup());
-        button_petnews.setOnClickListener(v -> showPetNewsPopup());
-        button_phasnews.setOnClickListener(v -> showPhasNewsPopup(v));
+        button_extranews.setOnClickListener(this::gotoGeneralNews);
+        button_petnews.setOnClickListener(this::gotoPetNews);
+        button_phasnews.setOnClickListener(this::gotoPhasNews);
 
     }
 
+    public void navigateToInboxFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_inboxFragment_to_inboxMessageListFragment);
+    }
 
     /**
      * showExtraNewsPopup method
      */
-    private void showGeneralNewsPopup() {
-
+    private void gotoGeneralNews(View v) {
+        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.GENERAL);
+        navigateToInboxFragment(v);
     }
-
 
     /**
      * showPetNewsPopup method
      */
-    private void showPetNewsPopup() {
-
+    private void gotoPetNews(View v) {
+        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.PET);
+        navigateToInboxFragment(v);
     }
-
 
     /**
      * showPhasNewsPopup method
      */
-    public void showPhasNewsPopup(View v) {
-        RSSParser rss = null;
-        try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            rss = new RSSParser(factory,"https://steamcommunity.com/games/739630/rss/");
-            while(!rss.isReady()){}
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-
-        if (popup != null)
-            popup.dismiss();
-
-        LayoutInflater inflater = (LayoutInflater) getView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.popup_info, null);
-
-        popup = new PopupWindow(
-                customView,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-        );
-        ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-        closeButton.setOnClickListener(v1 -> popup.dismiss());
-
-        AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-        name.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        name.setText(rss.getTitle(8));
-        AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-        info.setAutoSizeTextTypeUniformWithConfiguration(12, 30, 1, TypedValue.COMPLEX_UNIT_SP);
-        info.setText(Html.fromHtml(rss.getDescription(8)));
-
-        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
-        popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
+    public void gotoPhasNews(View v) {
+        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.PHASMOPHOBIA);
+        navigateToInboxFragment(v);
     }
+
 
 
     /**
      * saveStates method
+     *
+     * TODO
      */
     public void saveStates() {
         if (titleScreenViewModel != null && getContext() != null)
             titleScreenViewModel.saveToFile(getContext());
+        /*
+        if (messageInboxViewModel != null && getContext() != null)
+            messageInboxViewModel.saveToFile(getContext());
+        */
     }
 
     /**
@@ -162,14 +122,6 @@ public class InboxFragment extends Fragment {
      */
     @Override
     public void onPause() {
-        //Log.d("Fragment", "Pausing");
-
-        // DESTROY POPUP
-        if (popup != null) {
-            popup.dismiss();
-            popup = null;
-        }
-
         // SAVE PERSISTENT DATA
         saveStates();
 
@@ -181,8 +133,6 @@ public class InboxFragment extends Fragment {
      */
     @Override
     public void onResume() {
-        //Log.d("Fragment", "Resuming");
-
         // STOP THREADS
 
         super.onResume();

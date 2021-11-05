@@ -31,9 +31,31 @@
     <fragment
         android:id="@+id/inboxFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox.InboxFragment"
-        android:label="InboxFragment">
+        android:label="InboxFragment" >
         <action
             android:id="@+id/action_inboxFragment_to_titleScreenFragment"
             app:destination="@id/titleScreenFragment" />
+        <action
+            android:id="@+id/action_inboxFragment_to_inboxMessageListFragment"
+            app:destination="@id/inboxMessageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inboxMessageListFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox.InboxMessageListFragment"
+        android:label="InboxMessageListFragment" >
+        <action
+            android:id="@+id/action_inboxMessageListFragment_to_inboxFragment"
+            app:destination="@id/inboxFragment" />
+        <action
+            android:id="@+id/action_inboxMessageListFragment_to_inboxMessageFragment"
+            app:destination="@id/inboxMessageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inboxMessageFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox.InboxMessageFragment"
+        android:label="InboxMessageFragment" >
+        <action
+            android:id="@+id/action_inboxMessageFragment_to_inboxMessageListFragment"
+            app:destination="@id/inboxMessageListFragment" />
     </fragment>
 </navigation>

@@ -30,39 +30,62 @@
             app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_percent=".8">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/button_prev"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout66"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_prev"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textview_title"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/subtitleFontColor" />
+                app:layout_constraintWidth_percent=".2"
+                app:layout_constraintHeight_percent=".8">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_title"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/button_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_prev"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/subtitleFontColor" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:fontFamily="@font/norse"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:text="Notifications"
-                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".8"
-                app:layout_constraintStart_toEndOf="@+id/button_prev"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout66"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_title"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/norse"
+                    android:gravity="center"
+                    android:scaleType="centerInside"
+                    android:text="Message Center"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".8" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -324,8 +347,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--Start Hunting Solo-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
