@@ -86,7 +86,6 @@ public class TitleScreenFragment extends Fragment {
     private boolean canRunAnim = true;
     private Thread animInitThread = null, initReadyThread = null, animTickThread = null, animDrawThread = null;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
@@ -213,16 +212,13 @@ public class TitleScreenFragment extends Fragment {
     public void registerMessageInboxes() {
         try {
             XmlPullParserFactory xmlPullParserFactory_gen = XmlPullParserFactory.newInstance();
-            RSSParser rss_gen = new RSSParser(xmlPullParserFactory_gen,"https://steamcommunity.com/games/578080/rss/", MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
-            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
+            RSSParser rss_gen = new RSSParser(xmlPullParserFactory_gen,"https://raw.githubusercontent.com/TRITIUMNITR0X/PET-News/master/GeneralNews", MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
 
             XmlPullParserFactory xmlPullParserFactory_pet = XmlPullParserFactory.newInstance();
-            RSSParser rss_pet = new RSSParser(xmlPullParserFactory_pet,"https://steamcommunity.com/games/252490/rss/", MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
-            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
+            RSSParser rss_pet = new RSSParser(xmlPullParserFactory_pet,"https://raw.githubusercontent.com/TRITIUMNITR0X/PET-News/master/UpdateChangelog", MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
 
             XmlPullParserFactory xmlPullParserFactory_phas = XmlPullParserFactory.newInstance();
             RSSParser rss_phas = new RSSParser(xmlPullParserFactory_phas,"https://steamcommunity.com/games/739630/rss/", MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
-            Log.d("registerMessageInboxes", "Inbox Count: " + messageCenterViewModel.getInboxCount() + "");
 
             messageCenterViewModel.setIsUpToDate(true);
         } catch (XmlPullParserException e) {
@@ -257,64 +253,6 @@ public class TitleScreenFragment extends Fragment {
         }
     }
 
-    public void navigateToInbox() {
-        // DESTROY PREVIOUS POPUP
-        if (popup != null)
-            popup.dismiss();
-
-
-        // INFLATE LAYOUT
-        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.popup_motd, null);
-
-
-        // CREATE POPUP WINDOW
-        popup = new PopupWindow(
-                customView,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-        );
-
-
-        // INITIALIZE VIEWS
-        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-
-        AppCompatTextView title = customView.findViewById(R.id.label_motd_title);
-        AppCompatTextView message = customView.findViewById(R.id.textView_motd);
-
-
-        // LISTENERS
-        closeButton.setOnClickListener(v -> {
-            popup.dismiss();
-            popup = null;
-        });
-
-
-        // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        message.setAutoSizeTextTypeUniformWithConfiguration(16, 100, 1, TypedValue.COMPLEX_UNIT_SP);
-
-
-        // ABOUT APP - DESCRIPTION
-        message.setText(Html.fromHtml(getResources().getString(R.string.aboutinfo_aboutapp_info)));
-
-
-        // DEVELOPER DATA
-        @ColorInt int color_title, color_body;
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
-        color_title = typedValue.data;
-        String colorHex = String.format("%06X", (0xFFFFFF & color_title));
-        theme.resolveAttribute(R.attr.bodyFontColor, typedValue, true);
-        color_body = typedValue.data;
-
-
-        // FINALIZE
-        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
-        popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
-    }
 
     /**
      * showInfoPopup method

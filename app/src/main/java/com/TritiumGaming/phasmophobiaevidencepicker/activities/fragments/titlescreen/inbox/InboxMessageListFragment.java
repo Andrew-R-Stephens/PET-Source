@@ -43,7 +43,6 @@ public class InboxMessageListFragment extends Fragment {
         if (messageInboxViewModel == null)
             messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
 
-
         return inflater.inflate(R.layout.fragment_msginbox_listmessages, container, false);
     }
 
@@ -53,28 +52,29 @@ public class InboxMessageListFragment extends Fragment {
         // INITIALIZE VIEWS
         AppCompatTextView label_title = view.findViewById(R.id.textview_title);
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
-        RecyclerView recyclerViewMessages = (RecyclerView)view.findViewById(R.id.recyclerview_messageslist);
-
+        RecyclerView recyclerViewMessages = view.findViewById(R.id.recyclerview_messageslist);
         // TEXT SIZE
         label_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
+        // SET VIEW TEXT
+        label_title.setText(messageInboxViewModel.getCurrentInboxType().getName());
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-        label_title.setText(messageInboxViewModel.getCurrentInboxType().getName());
-
-        if(messageInboxViewModel == null) {
-            Log.d("InboxMessageListFrag", "messageInboxViewModel is null!");
+        if(messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
+            MessagesAdapter adapter = new MessagesAdapter(messageInboxViewModel.getCurrentInbox().getMessages(), new MessagesAdapter.OnMessageListener() {
+                @Override
+                public void onNoteClick(int position) {
+                    messageInboxViewModel.setCurrentMessageId(position);
+                    Navigation.findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
+                }
+            });
+            recyclerViewMessages.setAdapter(adapter);
+            recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
         } else {
-            if(messageInboxViewModel.getCurrentInbox() == null) {
-                Log.d("InboxMessageListFrag", "inbox is null!");
-            }
+            Log.d("InboxMessageListFrag", "Inbox does not exist!");
         }
-        MessagesAdapter adapter = new MessagesAdapter(messageInboxViewModel.getCurrentInbox().getMessages());
-        recyclerViewMessages.setAdapter(adapter);
-        recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
-
 
     /**
      * saveStates method

@@ -626,7 +626,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * addGhostLabel
          *
-         *
+         * TODO
          *
          * @param label GhostLabel
          */
@@ -638,7 +638,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * addGhostIcons
          *
-         *
+         * TODO
          *
          * @param icons GhostIcons
          */
@@ -649,7 +649,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * getID
          *
-         *
+         * TODO
          *
          * @return id
          */
@@ -662,7 +662,7 @@ public class EvidenceFragment extends Fragment {
     /**
      * GhostLabel class
      *
-     *
+     * TODO
      */
     public class GhostLabel extends androidx.appcompat.widget.AppCompatTextView {
         private int id = -1;
@@ -670,7 +670,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * GhostLabel constructor
          *
-         *
+         * TODO
          *
          * @param context The Context of the current Activity
          * @param id The ghost label id

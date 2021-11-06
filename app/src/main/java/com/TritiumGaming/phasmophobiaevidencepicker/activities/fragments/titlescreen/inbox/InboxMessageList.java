@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
 
+import android.provider.Telephony;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 
 import java.util.ArrayList;
@@ -25,4 +27,16 @@ public class InboxMessageList {
         return messages;
     }
 
+    public int getMessageCount() {
+        return messages.size();
+    }
+
+    public String toString() {
+        String t = "";
+
+        for(InboxMessage m: messages)
+            t += "\n[" + m.getTitle() + " " + m.getDate() + " " + m.getDescription() + "]";
+
+        return t;
+    }
 }

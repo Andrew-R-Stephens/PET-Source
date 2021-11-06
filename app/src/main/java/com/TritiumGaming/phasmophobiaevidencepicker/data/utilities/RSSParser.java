@@ -64,43 +64,46 @@ public class RSSParser {
                 int eventType = xpp.getEventType();
 
                 InboxMessageList messageList = new InboxMessageList();
+                String title = null, date = null, description = null;
 
                 while(eventType != XmlPullParser.END_DOCUMENT) {
                     //Log.d("RSSParser", "Looping through Document");
                     if(eventType == XmlPullParser.START_TAG){
-                        InboxMessage inboxMessage = new InboxMessage();
                         if(xpp.getName().equalsIgnoreCase("item")){
                             insideItem = true;
                         } else if (xpp.getName().equalsIgnoreCase("title")){
                             if(insideItem) {
-                                Log.d("RSSParser", "Inside Title");
-                                String title = xpp.nextText();
-                                inboxMessage.setTitle(title);
+                                title = xpp.nextText();
                                 Log.d("RSSParser", "Title: " + title.substring(0,5));
                             }
                         } else if (xpp.getName().equalsIgnoreCase("description")) {
                             if(insideItem) {
-                                Log.d("RSSParser", "Inside Description");
-                                String desc = xpp.nextText();
-                                inboxMessage.setDescription(desc);
-                                Log.d("RSSParser", "Desc: " + desc.substring(0,5));
+                                description = xpp.nextText();
+                                Log.d("RSSParser", "Desc: " + description.substring(0,5));
                             }
                         } else if (xpp.getName().equalsIgnoreCase("pubdate")) {
                             if(insideItem) {
-                                String pub = xpp.nextText();
-                                inboxMessage.setDate(pub);
-                                Log.d("RSSParser", "PubDate: " + pub.substring(0,5));
+                                date = xpp.nextText();
+                                Log.d("RSSParser", "PubDate: " + date.substring(0,5));
                             }
                         }
-                        messageList.add(inboxMessage);
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
+                        InboxMessage message = new InboxMessage(title, description, date);
+                        if(message.hasContent())
+                            messageList.add(message);
+                        title = null;
+                        date = null;
+                        description = null;
                     }
                     eventType = xpp.next();
                 }
+                in.close();
 
                 messageCenterViewModel.addInbox(messageList, inboxType);
+                Log.d("Saving InboxMessageList", "Count: " + messageList.getMessageCount());
                 Log.d("RSSParser", "End of Document");
+
             } catch (XmlPullParserException | IOException e) {
                 e.printStackTrace();
             }

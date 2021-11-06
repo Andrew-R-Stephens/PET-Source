@@ -111,10 +111,6 @@ public class InboxFragment extends Fragment {
     public void saveStates() {
         if (titleScreenViewModel != null && getContext() != null)
             titleScreenViewModel.saveToFile(getContext());
-        /*
-        if (messageInboxViewModel != null && getContext() != null)
-            messageInboxViewModel.saveToFile(getContext());
-        */
     }
 
     /**
