@@ -113,7 +113,7 @@
             app:layout_constraintHeight_percent=".8"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout27"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27"
-            app:layout_constraintVertical_bias="0.17000002">
+            app:layout_constraintVertical_bias="0.3">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout43"
@@ -167,6 +167,7 @@
                     android:id="@+id/constraintlayout_generalsettings"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    app:layout_constraintHeight_percent=".7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -177,19 +178,18 @@
                         android:id="@+id/constrainlayout_alwayson"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_colorspace"
+                        app:layout_constraintBottom_toTopOf="@+id/constrainlayout_network"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".3"
-                        app:layout_constraintWidth_percent=".75"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002"
-                        app:layout_constraintVertical_chainStyle="spread">
+                        app:layout_constraintWidth_percent=".75">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_alwayson_text"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
                             android:fontFamily="@font/norse_regular"
                             android:gravity="center_horizontal|center_vertical"
                             android:text="@string/settings_screenalwayson"
@@ -216,6 +216,47 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constrainlayout_network"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_colorspace"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson"
+                        app:layout_constraintWidth_percent=".75">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/switch_network_text"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/norse_regular"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/settings_networktitle"
+                            android:textColor="?attr/bodyFontColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/switch_network_switch"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
+                            app:layout_constraintTop_toTopOf="@+id/switch_network_switch" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_network_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/norse_regular"
+                            android:gravity="start|center_vertical"
+                            android:inputType="text"
+                            android:textColor="?attr/switchColor"
+                            android:textIsSelectable="false"
+                            android:theme="@style/SwitchTheme"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/switch_network_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintlayout_colorspace"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -223,7 +264,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".4"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson">
+                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_network">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout45"
@@ -231,7 +272,6 @@
                             android:layout_height="0dp"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent=".7"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_chainStyle="packed"
@@ -247,7 +287,7 @@
                                 android:textColor="?attr/bodyFontColor"
                                 app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".43"
+                                app:layout_constraintHeight_percent=".7"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_chainStyle="packed" />
@@ -262,7 +302,7 @@
                                 android:textColor="?attr/neutralSelColor"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".25"
+                                app:layout_constraintHeight_percent=".3"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title" />
 
@@ -271,7 +311,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout71"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/constraintLayout45"
                             app:layout_constraintStart_toStartOf="@+id/constraintLayout45"
@@ -280,7 +320,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/colorblindmode_leftbutton"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_height="48dp"
                                 android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
@@ -301,11 +341,12 @@
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="@string/settings_colorblindnessmode_normal"
                                 android:textColor="?attr/neutralSelColor"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintBottom_toBottomOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintEnd_toStartOf="@+id/colorblindmode_rightbutton"
+                                app:layout_constraintHeight_percent=".6"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/colorblindmode_leftbutton"
-                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintWidth_percent=".5" />
 
                             <androidx.appcompat.widget.AppCompatImageButton
@@ -318,11 +359,11 @@
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_next"
                                 android:tint="?attr/bodyFontColor"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintBottom_toBottomOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/colorblindmode_selectedname"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -395,11 +436,11 @@
                         android:id="@+id/constraintLayout57"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        app:layout_constraintWidth_percent=".75"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent=".75">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_text"
@@ -435,9 +476,9 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout57"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout57"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout57">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -472,7 +513,7 @@
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
                             app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintWidth_percent=".4" />
+                            app:layout_constraintWidth_percent=".6" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_othertext"

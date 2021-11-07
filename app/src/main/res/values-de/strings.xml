@@ -272,5 +272,10 @@
     <string name="review_accept">Akzeptieren!</string>
     <string name="review_decline">Ablehnen</string>
     <string name="evidence_timer_difficulty_4">Albtraum</string>
+    <string name="messagecenter_inboxestitle_label">Nachrichtenzentrum</string>
+    <string name="messagecenter_inbox_pet">P.E.T.-Änderungsprotokoll</string>
+    <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>
+    <string name="messagecenter_inbox_general">Allgemeine Nachrichten</string>
+    <string name="settings_networktitle">Mobile Datennutzung zulassen</string>
 
 </resources>

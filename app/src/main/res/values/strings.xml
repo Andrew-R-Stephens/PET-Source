@@ -17,8 +17,11 @@
     <!-- Page Details -->
     <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
     <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
-    <string name="preference_ghost_evidence" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PETData/main/Ghost-Evidence-Pair</string>
+    <string name="preference_general_news_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
+    <string name="preference_pet_changelog_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
+    <string name="preference_phasmophobia_changelog_link" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
     <string name="preference_language" translatable="false">chosenLanguage</string>
+    <string name="preference_network" translatable="false">networkPreference</string>
     <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
     <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
@@ -45,13 +48,6 @@
     <string name="review_accept">Sure!</string>
     <string name="review_decline">No thanks</string>
     <string name="review_storelink" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
-
-    <!--
-        MESSAGE OF THE DAY POPUP
-    -->
-    <!-- Page Details -->
-    <string name="motd_title" translatable="false">Message of the Day</string>
-    <string name="motd_message" translatable="false">No new messages.</string>
 
     <!--
         ABOUT POPUP
@@ -89,6 +85,7 @@
     <string name="settings_generalsettings">General</string>
     <string name="settings_extrasettings">Extra Settings</string>
     <string name="settings_screenalwayson">Always keep the screen on</string>
+    <string name="settings_networktitle">Allow Message Center to use Mobile Data</string>
     <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
     <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
@@ -100,6 +97,15 @@
     <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranomaly</string>
     <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanomaly</string>
     <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanomaly</string>
+
+    <!--
+        MESSAGE CENTER PAGE
+    -->
+    <!-- Page Details -->
+    <string name="messagecenter_inboxestitle_label">Message Center</string>
+    <string name="messagecenter_inbox_general">General News</string>
+    <string name="messagecenter_inbox_pet">P.E.T. Change-log</string>
+    <string name="messagecenter_inbox_phas">Phasmophobia Change-log</string>
 
     <!--
         EVIDENCE PAGE
@@ -465,7 +471,5 @@
     <string name="spiritbox_entry_q7_3">What can we do to help?</string>
     <string name="spiritbox_entry_q7_9">What do you want?</string>
     <string name="spiritbox_entry_q7_11">Why are you here?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

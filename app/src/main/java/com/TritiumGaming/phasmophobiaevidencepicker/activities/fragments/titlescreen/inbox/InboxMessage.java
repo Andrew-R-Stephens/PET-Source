@@ -9,7 +9,7 @@ public class InboxMessage {
     public InboxMessage(String title, String description, String date) {
         setTitle(cleanupHTML(title));
         setDescription(cleanupHTML(description));
-        setDate(cleanupHTML(date));
+        setDate(cleanupDate(cleanupHTML(date)));
     }
 
     public void setTitle(String title) {
@@ -61,6 +61,8 @@ public class InboxMessage {
      * @return trimmedHTML
      */
     private String cleanupHTML(String msg) {
+        if(msg == null)
+            return "";
         int indexStart = msg.indexOf("<img src=");
         while(indexStart >= 0) {
             Log.d("MsgOutput", indexStart + "");
@@ -74,6 +76,15 @@ public class InboxMessage {
             indexStart = msg.indexOf("<img src=");
         }
         return msg;
+    }
+
+    public String cleanupDate(String msg) {
+        if(msg == null)
+            return "";
+        int endIndex = msg.indexOf('+');
+        if(endIndex < 0)
+            return msg;
+        return msg.substring(0, endIndex).trim();
     }
 
 }

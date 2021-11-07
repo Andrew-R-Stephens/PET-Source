@@ -244,29 +244,22 @@ public class InvestigationData {
             return newEvidence;
         }
 
-        /**
-         *
-         */
+        /*
         public ArrayList<Evidence> getEvidenceList() {
             return thisGhostEvidence;
         }
 
-        /**
-         *
-         */
         public Evidence getEvidence(int index) {
             return thisGhostEvidence.get(index);
         }
 
-        /**
-         *
-         */
         public boolean containsEvidence(Evidence pe) {
             for(Evidence e: thisGhostEvidence)
                 if(e == pe)
                     return true;
             return false;
         }
+        */
 
         /**
          * getEvidenceScore method

@@ -17,6 +17,14 @@
     <string name="titlescreen_languages_label">Select Language</string>
 
     <!--
+        MESSAGE CENTER PAGE
+    -->
+    <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
+    <string name="messagecenter_inbox_general">Obecné zprávy</string>
+    <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>
+    <string name="messagecenter_inbox_phas">Protokol změn Phasmophobia</string>
+
+    <!--
          REVIEW POPUP
     -->
     <!-- Page Details -->
@@ -304,5 +312,6 @@
     <string name="spiritbox_entry_q7_9">What do you want?</string>
     <string name="spiritbox_entry_q7_11">Why are you here?</string>
     <string name="evidence_timer_difficulty_4">Noční můra</string>
+    <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
 
 </resources>

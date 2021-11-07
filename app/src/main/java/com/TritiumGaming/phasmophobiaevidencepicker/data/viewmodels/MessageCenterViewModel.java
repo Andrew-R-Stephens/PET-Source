@@ -1,7 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
+import android.content.Context;
+
 import androidx.lifecycle.ViewModel;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox.InboxMessage;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox.InboxMessageList;
 
@@ -60,6 +63,10 @@ public class MessageCenterViewModel extends ViewModel {
         return null;
     }
 
+    public InboxType getInboxType(int pos) {
+        return InboxType.values()[pos];
+    }
+
     public InboxType getCurrentInboxType() {
         return type;
     }
@@ -74,7 +81,6 @@ public class MessageCenterViewModel extends ViewModel {
 
     public enum InboxType {
         GENERAL(0), PET(1), PHASMOPHOBIA(2);
-        private final String[] name = {"General News", "P.E.T. Updates", "Official Phasmophobia Updates"};
 
         int id;
 
@@ -82,7 +88,9 @@ public class MessageCenterViewModel extends ViewModel {
             this.id = id;
         }
 
-        public String getName(){
+        public String getName(Context context){
+            String[] name = context.getResources().getStringArray(R.array.messagecenter_inboxtitles);
+
             return name[id];
         }
     }

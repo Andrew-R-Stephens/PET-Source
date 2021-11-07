@@ -29,7 +29,6 @@ public class TitleScreenActivity extends AppCompatActivity {
 
     TitleScreenViewModel titleScreenViewModel;
     MessageCenterViewModel messageCenterViewModel;
-    Thread messageCenterThread = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +59,8 @@ public class TitleScreenActivity extends AppCompatActivity {
      */
     public void init() {
         //set language
-        setLanguage(getLanguage());
+        if(setLanguage(getLanguage()))
+            recreate();
         //set isAlwaysOn
         if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(getString(R.string.preference_isAlwaysOn), false))
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -108,12 +108,17 @@ public class TitleScreenActivity extends AppCompatActivity {
      *
      * @param language
      */
-    public void setLanguage(String language){
+    public boolean setLanguage(String language){
+        boolean isChanged = false;
+        Locale defaultLocale = Locale.getDefault();
         Locale locale = new Locale(language);
+        if(!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage())))
+            isChanged = true;
         Locale.setDefault(locale);
         Configuration config = getResources().getConfiguration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        return isChanged;
     }
 
     /**
@@ -125,7 +130,9 @@ public class TitleScreenActivity extends AppCompatActivity {
      * @return The language specified in the Preferences data, or otherwise English
      */
     public String getLanguage(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString("chosenLanguage", "en");
+        String lang = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString("chosenLanguage", "en");
+        Log.d("Current Chosen Language", lang);
+        return lang;
     }
 
 }

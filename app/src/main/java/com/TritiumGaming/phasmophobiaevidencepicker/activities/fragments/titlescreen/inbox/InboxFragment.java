@@ -71,6 +71,14 @@ public class InboxFragment extends Fragment {
         button_petnews.setOnClickListener(this::gotoPetNews);
         button_phasnews.setOnClickListener(this::gotoPhasNews);
 
+        label_title.setText(R.string.messagecenter_inboxestitle_label);
+        label_extranews.setText(messageInboxViewModel.getInboxType(0).getName(view.getContext()));
+        label_petnews.setText(messageInboxViewModel.getInboxType(1).getName(view.getContext()));
+        label_phasnews.setText(messageInboxViewModel.getInboxType(2).getName(view.getContext()));
+/*
+        setMaxLines(label_extranews, 10);
+        setMaxLines(label_petnews, 10);
+        setMaxLines(label_phasnews, 10);*/
     }
 
     public void navigateToInboxFragment(View v) {
@@ -101,7 +109,11 @@ public class InboxFragment extends Fragment {
         navigateToInboxFragment(v);
     }
 
-
+    public void setMaxLines(AppCompatTextView v, int maxChars){
+        int linesMax = v.getText().length() % maxChars;
+        v.setMaxLines(linesMax+1);
+        v.invalidate();
+    }
 
     /**
      * saveStates method

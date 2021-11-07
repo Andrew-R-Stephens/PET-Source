@@ -57,17 +57,14 @@ public class InboxMessageListFragment extends Fragment {
         label_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // SET VIEW TEXT
-        label_title.setText(messageInboxViewModel.getCurrentInboxType().getName());
+        label_title.setText(messageInboxViewModel.getCurrentInboxType().getName(view.getContext()));
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
         if(messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
-            MessagesAdapter adapter = new MessagesAdapter(messageInboxViewModel.getCurrentInbox().getMessages(), new MessagesAdapter.OnMessageListener() {
-                @Override
-                public void onNoteClick(int position) {
-                    messageInboxViewModel.setCurrentMessageId(position);
-                    Navigation.findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
-                }
+            MessagesAdapter adapter = new MessagesAdapter(messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
+                messageInboxViewModel.setCurrentMessageId(position);
+                Navigation.findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
             });
             recyclerViewMessages.setAdapter(adapter);
             recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));

@@ -19,13 +19,12 @@ import java.util.Locale;
  */
 public class TitleScreenViewModel extends ViewModel {
 
-    //private int latestDatabaseVersion = 0;
-
     private final AnimationData animationData = new AnimationData();
     private ReviewTrackingData reviewRequestData;
 
     private AdRequest adRequest = null;
 
+    private boolean networkPreference = true;
     private String languageName = Locale.getDefault().getLanguage();
     private int colorSpace = 0;
 
@@ -42,7 +41,7 @@ public class TitleScreenViewModel extends ViewModel {
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
 
-        //setLatestDatabaseVersion(sharedPref.getInt(context.getResources().getString(R.string.preference_latestDatabaseVersion), -1));
+        setNetworkPreference(sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setIsAlwaysOn(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()));
         setAllowHuntWarningAudio(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
@@ -56,18 +55,15 @@ public class TitleScreenViewModel extends ViewModel {
         );
 
         saveToFile(context);
-
     }
 
-    /*
-    public void setLatestDatabaseVersion(int version){
-        this.latestDatabaseVersion = version;
+    public void setNetworkPreference(boolean preference) {
+        this.networkPreference = preference;
     }
 
-    public int getLatestDatabaseVersion() {
-        return latestDatabaseVersion;
+    public boolean getNetworkPreference() {
+        return networkPreference;
     }
-    */
 
     /**
      * getReviewRequestData method
@@ -221,7 +217,7 @@ public class TitleScreenViewModel extends ViewModel {
         SharedPreferences sharedPref = c.getSharedPreferences(c.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        //editor.putInt(c.getResources().getString(R.string.preference_latestDatabaseVersion), getLatestDatabaseVersion());
+        editor.putBoolean(c.getResources().getString(R.string.preference_network), getNetworkPreference());
         editor.putString(c.getResources().getString(R.string.preference_language), getLanguageName());
         editor.putBoolean(c.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn());
         editor.putBoolean(c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed());

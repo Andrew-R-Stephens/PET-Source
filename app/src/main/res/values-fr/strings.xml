@@ -269,5 +269,10 @@
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
     <string name="evidence_timer_difficulty_4">Cauchemar</string>
+    <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
+    <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
+    <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>
+    <string name="messagecenter_inbox_general">Les nouvelles Générales</string>
+    <string name="settings_networktitle">Autoriser l\'utilisation des Données Mobiles</string>
 
 </resources>

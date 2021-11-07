@@ -11,6 +11,8 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -63,6 +65,7 @@ import com.google.android.play.core.tasks.Task;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
@@ -148,7 +151,7 @@ public class TitleScreenFragment extends Fragment {
         button_info.setOnClickListener(v -> showInfoPopup());
         button_settings.setOnClickListener(v -> showSettingsPopup());
         button_language.setOnClickListener(v -> showLanguagesPopup());
-        button_msgInbox.setOnClickListener((View.OnClickListener) v -> Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment));
+        button_msgInbox.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment));
         button_startSolo.setOnClickListener(v -> {
                     Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                     intent.putExtra("lobby", 0);
@@ -186,9 +189,52 @@ public class TitleScreenFragment extends Fragment {
         // REQUEST REVIEW PROMPT
         requestReview();
 
-        startInboxThread();
+        if(isNetworkAvailable())
+            startInboxThread();
+        else
+            Log.d("registerMessageInboxes", "Could not load Document data");
     }
 
+    private boolean isNetworkAvailable() {
+
+        if(getActivity() != null) {
+
+            ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+
+                Log.d("isNetworkAvailable", "Network Available: Determining Network type...");
+
+                if (!connectivityManager.isActiveNetworkMetered()) {
+
+                    Log.d("isNetworkAvailable", "Connected to Wifi Network: Connection success!");
+                    return true;
+
+                } else {
+
+                    Log.d("isNetworkAvailable", "Connected to Metered Network: Checking if allowed to use...");
+
+                    if (!titleScreenViewModel.getNetworkPreference()) {
+                        Log.d("isNetworkAvailable", "Metered Network Disallowed: Unable to connect.");
+                        return false;
+                    } else {
+                        Log.d("isNetworkAvailable", "Metered Network Allowed: Connection success!");
+                        return true;
+                    }
+
+                }
+            } else {
+
+                Log.d("isNetworkAvailable", "Network Unavailable: Unable to connect.");
+                return false;
+
+            }
+        }
+
+        Log.d("isNetworkAvailable", "Activity read as null. Connection forcefully rejected.");
+        return false;
+    }
 
     public void startInboxThread() {
         Thread messageCenterThread = new Thread(() -> {
@@ -204,7 +250,7 @@ public class TitleScreenFragment extends Fragment {
                     }
                 }
             }
-            Log.d("registerMessageInboxes", "Read attempts completed.");
+            Log.d("registerMessageInboxes", "Document load completed.");
         });
         messageCenterThread.start();
     }
@@ -212,13 +258,13 @@ public class TitleScreenFragment extends Fragment {
     public void registerMessageInboxes() {
         try {
             XmlPullParserFactory xmlPullParserFactory_gen = XmlPullParserFactory.newInstance();
-            RSSParser rss_gen = new RSSParser(xmlPullParserFactory_gen,"https://raw.githubusercontent.com/TRITIUMNITR0X/PET-News/master/GeneralNews", MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
+            RSSParser rss_gen = new RSSParser(xmlPullParserFactory_gen,getResources().getString(R.string.preference_general_news_link), MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
 
             XmlPullParserFactory xmlPullParserFactory_pet = XmlPullParserFactory.newInstance();
-            RSSParser rss_pet = new RSSParser(xmlPullParserFactory_pet,"https://raw.githubusercontent.com/TRITIUMNITR0X/PET-News/master/UpdateChangelog", MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
+            RSSParser rss_pet = new RSSParser(xmlPullParserFactory_pet,getResources().getString(R.string.preference_pet_changelog_link), MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
 
             XmlPullParserFactory xmlPullParserFactory_phas = XmlPullParserFactory.newInstance();
-            RSSParser rss_phas = new RSSParser(xmlPullParserFactory_phas,"https://steamcommunity.com/games/739630/rss/", MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
+            RSSParser rss_phas = new RSSParser(xmlPullParserFactory_phas, getResources().getString(R.string.preference_phasmophobia_changelog_link), MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
 
             messageCenterViewModel.setIsUpToDate(true);
         } catch (XmlPullParserException e) {
@@ -437,7 +483,9 @@ public class TitleScreenFragment extends Fragment {
         AppCompatTextView generalsettings_title = customView.findViewById(R.id.settings_generalsettings_title);
         AppCompatTextView othersettings_title = customView.findViewById(R.id.settings_othersettings_title);
 
-        AppCompatTextView text_screenIsAlwaysOn_title = customView.findViewById(R.id.switch_alwayson_text);
+        AppCompatTextView switch_screenIsAlwaysOn_title = customView.findViewById(R.id.switch_alwayson_text);
+
+        AppCompatTextView switch_network_title = customView.findViewById(R.id.switch_network_text);
 
         AppCompatTextView text_colorblindmode_title = customView.findViewById(R.id.colorblindmode_title);
         AppCompatTextView text_colorblindmode_selectedname = customView.findViewById(R.id.colorblindmode_selectedname);
@@ -449,6 +497,7 @@ public class TitleScreenFragment extends Fragment {
         AppCompatTextView switch_huntwarning_othertext = customView.findViewById(R.id.seekbar_huntwarningtimeout_othertext);
 
         SwitchCompat switch_isAlwaysOn_switch = customView.findViewById(R.id.switch_alwayson_switch);
+        SwitchCompat switch_network_switch = customView.findViewById(R.id.switch_network_switch);
         SwitchCompat switch_huntwarningaudio_switch = customView.findViewById(R.id.switch_huntwarningaudio_switch);
 
         SeekBar seekBar_huntwarningTimeout = customView.findViewById(R.id.settings_huntwarning_seekbar);
@@ -461,7 +510,10 @@ public class TitleScreenFragment extends Fragment {
         primarytitle.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
         generalsettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
         othersettings_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        text_screenIsAlwaysOn_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+
+        switch_screenIsAlwaysOn_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        switch_network_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+
         text_colorblindmode_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
         text_colorblindmode_selectedname.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
         text_colorblindmode_sidenote.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
@@ -521,6 +573,7 @@ public class TitleScreenFragment extends Fragment {
 
         // SWITCHES
         if (titleScreenViewModel != null) {
+            // Screen Always On
             if (switch_isAlwaysOn_switch != null) {
                 switch_isAlwaysOn_switch.setChecked(titleScreenViewModel.getIsAlwaysOn());
                 switch_isAlwaysOn_switch.setOnClickListener(v -> {
@@ -530,6 +583,15 @@ public class TitleScreenFragment extends Fragment {
                         getView().setKeepScreenOn(true);
                 });
             }
+            // Allow Mobile Data
+            if (switch_network_switch != null) {
+                switch_network_switch.setChecked(titleScreenViewModel.getNetworkPreference());
+                switch_network_switch.setOnClickListener(v -> {
+                    if (titleScreenViewModel != null)
+                        titleScreenViewModel.setNetworkPreference(switch_network_switch.isChecked());
+                });
+            }
+            // Allow Hunt Warning Audio
             if (switch_huntwarningaudio_switch != null) {
                 switch_huntwarningaudio_switch.setChecked(titleScreenViewModel.getIsHuntAudioAllowed());
                 switch_huntwarningaudio_switch.setOnClickListener(v -> {

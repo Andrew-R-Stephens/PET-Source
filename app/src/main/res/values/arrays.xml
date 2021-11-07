@@ -28,6 +28,15 @@
         <item>@drawable/anim_writing_6</item>
     </integer-array>
 
+    <!--
+        MESSAGE CENTER PAGE
+    -->
+    <!-- Developer Info -->
+    <string-array name="messagecenter_inboxtitles">
+        <item>@string/messagecenter_inbox_general</item>
+        <item>@string/messagecenter_inbox_pet</item>
+        <item>@string/messagecenter_inbox_phas</item>
+    </string-array>
 
     <!--
         ABOUT INFO PAGE
