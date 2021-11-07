@@ -15,8 +15,8 @@
             android:id="@+id/action_evidence_to_mapmenu"
             app:destination="@id/mapMenuFragment" />
         <action
-            android:id="@+id/action_evidenceFragment_to_toolSpiritBoxFragment"
-            app:destination="@id/toolSpiritBoxFragment" />
+            android:id="@+id/action_evidenceFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
@@ -50,10 +50,21 @@
     </fragment>
     <fragment
         android:id="@+id/toolSpiritBoxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.ToolGhostSpeakFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.ToolGhostBoxFragment"
         android:label="ToolSpiritBoxFragment" >
         <action
-            android:id="@+id/action_toolSpiritBoxFragment_to_evidenceFragment"
+            android:id="@+id/action_toolSpiritBoxFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/utilitiesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.UtilitiesFragment"
+        android:label="UtilitiesFragment" >
+        <action
+            android:id="@+id/action_utilitiesFragment_to_evidenceFragment"
             app:destination="@id/evidenceFragment" />
+        <action
+            android:id="@+id/action_utilitiesFragment_to_toolSpiritBoxFragment"
+            app:destination="@id/toolSpiritBoxFragment" />
     </fragment>
 </navigation>

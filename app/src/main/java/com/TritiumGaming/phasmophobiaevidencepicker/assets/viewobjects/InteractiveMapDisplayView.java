@@ -10,9 +10,9 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InteractiveViewControllerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.animations;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -8,24 +7,41 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
 /**
- * HandprintData class
+ * GhostWritingData class
  *
  * @author TritiumGamingStudios
  */
-public class HandprintData extends Animated {
+public class GhostWritingData extends Animated{
 
-    public HandprintData(int screenW, int screenH, int bitmapW, int bitmapH){
+    /**
+     *
+     * @param screenW
+     * @param screenH
+     * @param bitmapW
+     * @param bitmapH
+     * @param animationData
+     */
+    public GhostWritingData(int screenW, int screenH, int bitmapW, int bitmapH, AnimationData animationData){
         super(screenW, screenH);
 
-        MAX_SIZE = 6; MIN_SIZE = 3; MAX_ROTATION = 25; MAX_TICK = 500;
+        MAX_ALPHA = 200;
+        MAX_SIZE = 3;
+        MIN_SIZE = 2;
+        MAX_ROTATION = 45;
+        MAX_TICK = 500;
 
-        setScale((Math.random()*(MAX_SIZE-MIN_SIZE)+MIN_SIZE) * .1);
+        scale = (Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1;
+
+        setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
+        setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
         setWidth(bitmapW);
         setHeight(bitmapH);
-        setX(Math.random()*SCREENW);
-        setY(Math.random()*SCREENH);
-        setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
-        setTickMax((int)((Math.random()*(MAX_TICK-(MAX_TICK*.5)))+(MAX_TICK*.5)));
+        setX();
+        setY();
+
+        setTickMax((int) ((Math.random() * (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
+
+        animationData.setRotWriting(rotation);
     }
 
     /**
@@ -33,24 +49,15 @@ public class HandprintData extends Animated {
      * @param tickMax
      */
     public void setTickMax(int tickMax){
-        MAX_TICK = tickMax;
+        this.MAX_TICK = tickMax;
     }
 
     /**
      *
-     * @param rot
      */
-    public void setRotation(float rot){
-        this.rotation = rot;
-    }
-
-    /**
-     *
-     * @param x
-     */
-    public void setX(double x){
-        this.x = x;
-        if(this.x+getScaledWidth() > SCREENW /*Resources.getSystem().getDisplayMetrics().widthPixels*/)
+    public void setX(){
+        this.x = Math.random() * SCREENW;
+        if(this.x+getScaledWidth() > SCREENW )
             this.x -= getScaledWidth();
         else if(this.x < getScaledWidth()*-1)
             this.x = 0;
@@ -58,11 +65,10 @@ public class HandprintData extends Animated {
 
     /**
      *
-     * @param y
      */
-    public void setY(double y){
-        this.y = y;
-        if(this.y+getScaledHeight() > SCREENH /*Resources.getSystem().getDisplayMetrics().heightPixels*/)
+    public void setY(){
+        this.y = Math.random() * SCREENH;
+        if(this.y+getScaledHeight() > SCREENH )
             this.y -= getScaledHeight();
         else if(this.y < getScaledHeight()*-1)
             this.y = 0;
@@ -97,7 +103,7 @@ public class HandprintData extends Animated {
      * @return
      */
     public double getScaledWidth(){
-        return scale * width;
+        return this.scale * width;
     }
 
     /**
@@ -105,7 +111,7 @@ public class HandprintData extends Animated {
      * @return
      */
     public double getScaledHeight(){
-        return scale * height;
+        return this.scale * height;
     }
 
     /**
@@ -116,9 +122,12 @@ public class HandprintData extends Animated {
     }
 
     /**
+     * rotateBitmap
      *
-     * @param original
-     * @return
+     * Creates a rotated copy of the original Bitmap
+     *
+     * @param original- original Bitmap
+     * @return new rotated Bitmap
      */
     public Bitmap rotateBitmap(Bitmap original) {
         int width = original.getWidth();
@@ -148,7 +157,7 @@ public class HandprintData extends Animated {
      * @return
      */
     public PorterDuffColorFilter getFilter(){
-        return new PorterDuffColorFilter(Color.argb(alpha, 0, 255, 0), PorterDuff.Mode.MULTIPLY);
+        return new PorterDuffColorFilter(Color.argb(alpha, 100, 100, 100), PorterDuff.Mode.MULTIPLY);
     }
 
 }

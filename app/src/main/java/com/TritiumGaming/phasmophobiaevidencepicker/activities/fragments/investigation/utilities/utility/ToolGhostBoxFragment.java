@@ -40,7 +40,7 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDataCaptureListener {
+public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataCaptureListener {
 
     private WaveformView waveFormView = null;
     private TextToSpeech textToSpeech = null;
@@ -49,8 +49,8 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
     /**
      *
      */
-    public ToolGhostSpeakFragment(){
-        super(R.layout.fragment_tool_ghostspeak);
+    public ToolGhostBoxFragment(){
+        super(R.layout.fragment_utility_ghostbox);
     }
 
     @Nullable
@@ -72,10 +72,8 @@ public class ToolGhostSpeakFragment extends Fragment implements Visualizer.OnDat
 
         waveFormView = view.findViewById(R.id.waveFormView);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            title.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            button_gotoEvidence_label.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        }
+        title.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        button_gotoEvidence_label.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         button_gotoEvidence.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
+package com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,15 +12,16 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.inbox.InboxMessage;
 
 import java.util.ArrayList;
 
-public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
+public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
 
     private ArrayList<InboxMessage> messages;
     private OnMessageListener onMessageListener;
 
-    public MessagesAdapter(ArrayList<InboxMessage> messages, OnMessageListener onMessageListener) {
+    public MessagesAdapterView(ArrayList<InboxMessage> messages, OnMessageListener onMessageListener) {
         this.messages = messages;
         this.onMessageListener = onMessageListener;
     }
@@ -44,7 +45,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
 
     @NonNull
     @Override
-    public MessagesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MessagesAdapterView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View messageView = inflater.inflate(R.layout.item_msginbox_message, parent, false);

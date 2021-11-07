@@ -22,10 +22,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapDisplayView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InteractiveViewControllerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.InteractiveMapControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 /**

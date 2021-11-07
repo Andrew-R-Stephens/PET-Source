@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.animations;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -6,44 +6,25 @@ import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
-import androidx.annotation.NonNull;
-
 /**
- * GhostWritingData class
+ * HandprintData class
  *
  * @author TritiumGamingStudios
  */
-public class GhostWritingData extends Animated{
+public class HandprintData extends Animated {
 
-    /**
-     *
-     * @param screenW
-     * @param screenH
-     * @param bitmapW
-     * @param bitmapH
-     * @param animationData
-     */
-    public GhostWritingData(int screenW, int screenH, int bitmapW, int bitmapH, AnimationData animationData){
+    public HandprintData(int screenW, int screenH, int bitmapW, int bitmapH){
         super(screenW, screenH);
 
-        MAX_ALPHA = 200;
-        MAX_SIZE = 3;
-        MIN_SIZE = 2;
-        MAX_ROTATION = 45;
-        MAX_TICK = 500;
+        MAX_SIZE = 6; MIN_SIZE = 3; MAX_ROTATION = 25; MAX_TICK = 500;
 
-        scale = (Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1;
-
-        setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
-        setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
+        setScale((Math.random()*(MAX_SIZE-MIN_SIZE)+MIN_SIZE) * .1);
         setWidth(bitmapW);
         setHeight(bitmapH);
-        setX();
-        setY();
-
-        setTickMax((int) ((Math.random() * (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
-
-        animationData.setRotWriting(rotation);
+        setX(Math.random()*SCREENW);
+        setY(Math.random()*SCREENH);
+        setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
+        setTickMax((int)((Math.random()*(MAX_TICK-(MAX_TICK*.5)))+(MAX_TICK*.5)));
     }
 
     /**
@@ -51,15 +32,24 @@ public class GhostWritingData extends Animated{
      * @param tickMax
      */
     public void setTickMax(int tickMax){
-        this.MAX_TICK = tickMax;
+        MAX_TICK = tickMax;
     }
 
     /**
      *
+     * @param rot
      */
-    public void setX(){
-        this.x = Math.random() * SCREENW;
-        if(this.x+getScaledWidth() > SCREENW )
+    public void setRotation(float rot){
+        this.rotation = rot;
+    }
+
+    /**
+     *
+     * @param x
+     */
+    public void setX(double x){
+        this.x = x;
+        if(this.x+getScaledWidth() > SCREENW /*Resources.getSystem().getDisplayMetrics().widthPixels*/)
             this.x -= getScaledWidth();
         else if(this.x < getScaledWidth()*-1)
             this.x = 0;
@@ -67,10 +57,11 @@ public class GhostWritingData extends Animated{
 
     /**
      *
+     * @param y
      */
-    public void setY(){
-        this.y = Math.random() * SCREENH;
-        if(this.y+getScaledHeight() > SCREENH )
+    public void setY(double y){
+        this.y = y;
+        if(this.y+getScaledHeight() > SCREENH /*Resources.getSystem().getDisplayMetrics().heightPixels*/)
             this.y -= getScaledHeight();
         else if(this.y < getScaledHeight()*-1)
             this.y = 0;
@@ -105,7 +96,7 @@ public class GhostWritingData extends Animated{
      * @return
      */
     public double getScaledWidth(){
-        return this.scale * width;
+        return scale * width;
     }
 
     /**
@@ -113,7 +104,7 @@ public class GhostWritingData extends Animated{
      * @return
      */
     public double getScaledHeight(){
-        return this.scale * height;
+        return scale * height;
     }
 
     /**
@@ -124,12 +115,9 @@ public class GhostWritingData extends Animated{
     }
 
     /**
-     * rotateBitmap
      *
-     * Creates a rotated copy of the original Bitmap
-     *
-     * @param original- original Bitmap
-     * @return new rotated Bitmap
+     * @param original
+     * @return
      */
     public Bitmap rotateBitmap(Bitmap original) {
         int width = original.getWidth();
@@ -159,7 +147,7 @@ public class GhostWritingData extends Animated{
      * @return
      */
     public PorterDuffColorFilter getFilter(){
-        return new PorterDuffColorFilter(Color.argb(alpha, 100, 100, 100), PorterDuff.Mode.MULTIPLY);
+        return new PorterDuffColorFilter(Color.argb(alpha, 0, 255, 0), PorterDuff.Mode.MULTIPLY);
     }
 
 }

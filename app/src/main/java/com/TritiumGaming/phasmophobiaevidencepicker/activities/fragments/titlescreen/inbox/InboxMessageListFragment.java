@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.MessagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 
@@ -62,7 +63,7 @@ public class InboxMessageListFragment extends Fragment {
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
         if(messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
-            MessagesAdapter adapter = new MessagesAdapter(messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
+            MessagesAdapterView adapter = new MessagesAdapterView(messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
                 messageInboxViewModel.setCurrentMessageId(position);
                 Navigation.findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
             });

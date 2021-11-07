@@ -1,6 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
-
-import android.provider.Telephony;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.inbox;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 

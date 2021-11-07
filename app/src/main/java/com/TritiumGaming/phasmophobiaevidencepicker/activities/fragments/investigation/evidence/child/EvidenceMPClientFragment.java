@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.parent.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MPClientViewModel;
 
 /**

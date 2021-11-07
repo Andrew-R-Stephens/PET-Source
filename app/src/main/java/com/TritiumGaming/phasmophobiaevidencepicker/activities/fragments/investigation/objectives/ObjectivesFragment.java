@@ -23,9 +23,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.ObjectiveCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.ObjectivesSpinner;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 
 /**

@@ -10,16 +10,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.room.Index;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.Animated;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationQueue;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.FrostscreenData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostOrbData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.GhostWritingData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.HandprintData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data.AnimationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.Animated;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.AnimationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.AnimationQueue;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.FrostscreenData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.GhostOrbData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.GhostWritingData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.HandprintData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 

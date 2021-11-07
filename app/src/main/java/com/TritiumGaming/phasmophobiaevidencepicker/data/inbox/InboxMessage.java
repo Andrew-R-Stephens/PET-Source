@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.inbox;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.inbox;
 
 import android.util.Log;
 

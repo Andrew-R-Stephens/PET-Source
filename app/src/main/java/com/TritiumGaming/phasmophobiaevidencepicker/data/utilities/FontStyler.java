@@ -2,11 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
 import android.text.Html;
 import android.text.Spanned;
-import android.text.SpannedString;
 import android.util.TypedValue;
 import android.view.View;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 /**
  * FontStyler class

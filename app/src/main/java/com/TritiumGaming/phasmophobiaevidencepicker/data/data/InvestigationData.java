@@ -2,18 +2,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.data;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 
 /**

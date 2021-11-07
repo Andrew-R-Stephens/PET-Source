@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.animations;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;

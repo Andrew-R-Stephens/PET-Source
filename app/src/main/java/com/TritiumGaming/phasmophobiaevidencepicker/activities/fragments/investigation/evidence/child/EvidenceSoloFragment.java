@@ -12,19 +12,21 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.parent.EvidenceFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.DifficultySelectControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.MapSelectControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TimerPlayControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TimerPlayControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.DifficultySelectControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityRunnable;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextView;
 
 /**
  * EvidenceSoloFragment class
@@ -75,6 +77,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // INITIALIZE VIEWS
         AppCompatTextView difficulty_name = view.findViewById(R.id.difficulty_name);
         AppCompatTextView map_name = view.findViewById(R.id.mapchoice_name);
+        AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_tools);
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
         AppCompatImageButton difficulty_prev = view.findViewById(R.id.difficulty_prev);
@@ -106,6 +109,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 ft.attach(EvidenceSoloFragment.this).commitNow();
                 }
         );
+        btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
 
         // TIMER CONTROL
         TimerPlayControl playPauseButton = new TimerPlayControl(

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+
 import java.util.ArrayList;
 
 /**

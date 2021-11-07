@@ -45,18 +45,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.TitleScreenActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TitleScreenAnimationView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ColorThemesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontStyler;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.TitleScreenActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ColorThemesData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.activity.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontStyler;
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.TitleScreenAnimationView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitleScreenViewModel;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
@@ -65,7 +65,6 @@ import com.google.android.play.core.tasks.Task;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.Locale;
 

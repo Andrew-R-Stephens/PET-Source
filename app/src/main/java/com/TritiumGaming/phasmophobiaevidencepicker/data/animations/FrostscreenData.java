@@ -1,10 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.animations.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.animations;
 
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 
 /**
  * FrostscreenData class
