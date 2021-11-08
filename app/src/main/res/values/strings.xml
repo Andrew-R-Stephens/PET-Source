@@ -104,8 +104,8 @@
     <!-- Page Details -->
     <string name="messagecenter_inboxestitle_label">Message Center</string>
     <string name="messagecenter_inbox_general">General News</string>
-    <string name="messagecenter_inbox_pet">P.E.T. Change-log</string>
-    <string name="messagecenter_inbox_phas">Phasmophobia Change-log</string>
+    <string name="messagecenter_inbox_pet">P.E.T. Changelog</string>
+    <string name="messagecenter_inbox_phas">Phasmophobia Changelog</string>
 
     <!--
         EVIDENCE PAGE

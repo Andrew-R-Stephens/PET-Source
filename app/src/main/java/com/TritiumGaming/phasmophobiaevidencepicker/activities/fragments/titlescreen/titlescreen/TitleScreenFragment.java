@@ -202,18 +202,12 @@ public class TitleScreenFragment extends Fragment {
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
             if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-
                 Log.d("isNetworkAvailable", "Network Available: Determining Network type...");
-
                 if (!connectivityManager.isActiveNetworkMetered()) {
-
                     Log.d("isNetworkAvailable", "Connected to Wifi Network: Connection success!");
                     return true;
-
                 } else {
-
                     Log.d("isNetworkAvailable", "Connected to Metered Network: Checking if allowed to use...");
-
                     if (!titleScreenViewModel.getNetworkPreference()) {
                         Log.d("isNetworkAvailable", "Metered Network Disallowed: Unable to connect.");
                         return false;
@@ -221,16 +215,12 @@ public class TitleScreenFragment extends Fragment {
                         Log.d("isNetworkAvailable", "Metered Network Allowed: Connection success!");
                         return true;
                     }
-
                 }
             } else {
-
                 Log.d("isNetworkAvailable", "Network Unavailable: Unable to connect.");
                 return false;
-
             }
         }
-
         Log.d("isNetworkAvailable", "Activity read as null. Connection forcefully rejected.");
         return false;
     }
