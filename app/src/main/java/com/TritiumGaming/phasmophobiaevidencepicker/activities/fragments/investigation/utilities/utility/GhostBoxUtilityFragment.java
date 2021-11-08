@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataCaptureListener {
+public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDataCaptureListener {
 
     private WaveformView waveFormView = null;
     private TextToSpeech textToSpeech = null;
@@ -49,7 +50,7 @@ public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataC
     /**
      *
      */
-    public ToolGhostBoxFragment(){
+    public GhostBoxUtilityFragment(){
         super(R.layout.fragment_utility_ghostbox);
     }
 
@@ -123,13 +124,16 @@ public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataC
             entry.setMinimumHeight((int)px);
             entry.setText(getResources().getString(e));
             entry.setMaxLines(1);
-            linearLayout.setOnClickListener(v -> {
+            linearLayout.setOnClickListener(v -> new Thread(() -> {
                 startTextToSpeech();
                 if(textToSpeech != null) {
                     startVisualizer();
                     textToSpeech.speak(entry.getText(), TextToSpeech.QUEUE_FLUSH, null, null);
+                } else {
+                    Log.d("TTS", "TTS is null");
                 }
-            });
+
+            }).start());
 
             linearLayout.addView(entry);
             destination.addView(linearLayout);
@@ -174,7 +178,7 @@ public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataC
                         visitTTSVoiceDownloads();
                     }
                 } else {
-                    //Log.d("TTS", "Initialization failed");
+                    Log.d("TTS", "Initialization failed");
                     stopTextToSpeech();
                     visitTTSVoiceDownloads();
                 }
@@ -195,15 +199,28 @@ public class ToolGhostBoxFragment extends Fragment implements Visualizer.OnDataC
 
     /**
      * visitTTSVoiceDownloads method
-     * The solution was to turn on Wi-Fi on the device and add German and Russian in "Settings -> Language & Input -> Google voice typing -> Voices". After that the languages were downloaded and the app worked as desired.
+     *
+     * The solution was to turn on Wi-Fi on the device and add German and Russian in
+     * "Settings -> Language & Input -> Google voice typing -> Voices".
+     * After that the languages were downloaded and the app worked as desired.
      */
     public void visitTTSVoiceDownloads(){
-        Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if(getContext() != null)
-            getContext().startActivity(intent);
-        else
-            Log.e("TTS", "Content is null");
+        try {
+            Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (getContext() != null)
+                getContext().startActivity(intent);
+            else
+                Log.e("TTS", "Context is null");
+        } catch (Exception e) {
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    Toast toast = Toast.makeText(getContext(), "Could not locate Text to Speech Settings Page", Toast.LENGTH_LONG);
+                    toast.show();
+                });
+            }
+            e.printStackTrace();
+        }
     }
 
     /**

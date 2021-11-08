@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,8 +14,10 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -35,6 +38,7 @@ public class SanityMeterView extends View {
     private final RectF containerRect = new RectF();
     private final Rect sanityRect = new Rect();
 
+    @ColorInt int themeColor = 0;
     private ColorFilter filter = null;
 
     private Bitmap sanityImg_bottom = null;
@@ -88,6 +92,12 @@ public class SanityMeterView extends View {
         filter = new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.map_tint_blue), PorterDuff.Mode.MULTIPLY);
 
         buildImages();
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
+        //themeColor = typedValue.data;
+        themeColor = Color.WHITE;
     }
 
     /**
@@ -174,6 +184,7 @@ public class SanityMeterView extends View {
 
         paint.setStrokeWidth(1f);
         paint.setColor(Color.argb(0, 255, 255, 255));
+        //paint.setColor(Color.argb(0, 255, 255, 255));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawOval(containerRect, paint);
 
@@ -201,7 +212,7 @@ public class SanityMeterView extends View {
                     containerRect.bottom-inset, paint);
             */
 
-            createFilterColor((255), (int) (255 * sanityData.getInsanityPercent()), (int) (255 * sanityData.getInsanityPercent()));
+            createFilterColor(Color.red(themeColor), (int) (Color.green(themeColor) * sanityData.getInsanityPercent()), (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));
         }
 
 

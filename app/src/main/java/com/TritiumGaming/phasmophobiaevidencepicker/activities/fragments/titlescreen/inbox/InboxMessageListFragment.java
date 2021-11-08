@@ -70,7 +70,7 @@ public class InboxMessageListFragment extends Fragment {
             recyclerViewMessages.setAdapter(adapter);
             recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
         } else {
-            Log.d("InboxMessageListFrag", "Inbox does not exist!");
+            Log.d("InboxMessageListFrag", "Inbox does not exist!" + messageInboxViewModel.getCurrentInboxType().getName(getContext()));
         }
     }
 

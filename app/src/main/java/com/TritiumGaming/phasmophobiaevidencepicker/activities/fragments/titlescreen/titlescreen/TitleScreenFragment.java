@@ -308,12 +308,10 @@ public class TitleScreenFragment extends Fragment {
         if (popup != null)
             popup.dismiss();
 
-
         // INFLATE LAYOUT
         LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams")
         View customView = inflater.inflate(R.layout.popup_aboutinfo, null);
-
 
         // CREATE POPUP WINDOW
         popup = new PopupWindow(
@@ -322,6 +320,14 @@ public class TitleScreenFragment extends Fragment {
                 RelativeLayout.LayoutParams.MATCH_PARENT
         );
 
+        // INITIALIZE FONT EMPHASIS COLOR
+        TypedValue typedValue = new TypedValue();
+        @ColorInt int color = 0;
+        if(getContext() != null) {
+            Resources.Theme theme = getContext().getTheme();
+            theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
+        }
+        color = typedValue.data;
 
         // INITIALIZE VIEWS
         AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
@@ -361,7 +367,7 @@ public class TitleScreenFragment extends Fragment {
 
         // ABOUT APP - TITLE
         String abouttitle = getResources().getString(R.string.aboutinfo_title_about);
-        Spannable aboutPET = (Spannable) Html.fromHtml(getResources().getString(R.string.aboutinfo_title_petstylized));
+        Spannable aboutPET = (Spannable) Html.fromHtml(FontStyler.replaceHTMLFontColor(getResources().getString(R.string.aboutinfo_title_petstylized), "#FF0000", color + ""));
         title.setText(TextUtils.concat(abouttitle, " ", aboutPET));
 
         // ABOUT APP - VERSION
@@ -378,12 +384,11 @@ public class TitleScreenFragment extends Fragment {
         version.setText(versionData);
 
         // ABOUT APP - DESCRIPTION
-        aboutapp_info.setText(Html.fromHtml(getResources().getString(R.string.aboutinfo_aboutapp_info)));
+        aboutapp_info.setText(Html.fromHtml(FontStyler.replaceHTMLFontColor(getResources().getString(R.string.aboutinfo_aboutapp_info), "#CC3C3C", color + "")));
 
 
         // DEVELOPER DATA
         @ColorInt int color_title, color_body;
-        TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
         color_title = typedValue.data;

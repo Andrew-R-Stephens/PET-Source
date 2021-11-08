@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/toolSpiritBoxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.ToolGhostBoxFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.GhostBoxUtilityFragment"
         android:label="ToolSpiritBoxFragment" >
         <action
             android:id="@+id/action_toolSpiritBoxFragment_to_utilitiesFragment"

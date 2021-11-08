@@ -2,14 +2,16 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.inbox;
 
 import android.util.Log;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontStyler;
+
 public class InboxMessage {
 
     private String title, description, date;
 
     public InboxMessage(String title, String description, String date) {
-        setTitle(cleanupHTML(title));
-        setDescription(cleanupHTML(description));
-        setDate(cleanupDate(cleanupHTML(date)));
+        setTitle(FontStyler.removeXMLImgSrcTags(title));
+        setDescription(FontStyler.removeXMLImgSrcTags(description));
+        setDate(FontStyler.removeXMLPubDateClockTime(FontStyler.removeXMLPubDateClockTime(date)));
     }
 
     public void setTitle(String title) {
@@ -52,39 +54,5 @@ public class InboxMessage {
         return getTitle() != null && !getTitle().equals("");
     }
 
-    /**
-     * cleanupHTML
-     *
-     * Removes img sources. Pretty inefficient, but fine for now.
-     *
-     * @param msg - raw HTML message
-     * @return trimmedHTML
-     */
-    private String cleanupHTML(String msg) {
-        if(msg == null)
-            return "";
-        int indexStart = msg.indexOf("<img src=");
-        while(indexStart >= 0) {
-            Log.d("MsgOutput", indexStart + "");
-            String newStr = msg.substring(indexStart);
-            int indexEnd = newStr.indexOf("/>");
-            newStr = msg.substring(indexStart, indexStart + indexEnd + 2);
-            Log.d("MsgOutput", indexEnd + "");
-            Log.d("MsgOutputSubstring", newStr);
-            msg = msg.replaceFirst(newStr, "");
-
-            indexStart = msg.indexOf("<img src=");
-        }
-        return msg;
-    }
-
-    public String cleanupDate(String msg) {
-        if(msg == null)
-            return "";
-        int endIndex = msg.indexOf('+');
-        if(endIndex < 0)
-            return msg;
-        return msg.substring(0, endIndex).trim();
-    }
 
 }

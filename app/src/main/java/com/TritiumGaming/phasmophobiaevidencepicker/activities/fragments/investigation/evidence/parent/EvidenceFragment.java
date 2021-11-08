@@ -41,6 +41,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.SanityMet
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.SetupPhaseTimer;
 import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontStyler;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 /**
@@ -71,6 +72,8 @@ public class EvidenceFragment extends Fragment {
     protected Drawable[] icon_strikethroughs;
     protected Typeface font_normal;
     protected int[] fontSize;
+
+    @ColorInt int fontEmphasisColor = 0;
 
     /**
      * EvidenceFragment constructor
@@ -110,8 +113,17 @@ public class EvidenceFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             font_normal = getResources().getFont(R.font.norse_regular);
         else
-        if(getContext() != null)
+        if(getContext() != null) {
             font_normal = ResourcesCompat.getFont(getContext(), R.font.norse_regular);
+        }
+
+        if(getContext() != null) {
+            Resources.Theme theme = getContext().getTheme();
+            TypedValue typedValue = new TypedValue();
+            theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
+            fontEmphasisColor = typedValue.data;
+            Log.d("Theme Emphasis Color", fontEmphasisColor + "");
+        }
 
         // GHOST / EVIDENCE CONTAINERS
         LinearLayout ghostContainer = view.findViewById(R.id.layout_ghostList);
@@ -492,7 +504,9 @@ public class EvidenceFragment extends Fragment {
                     name.setText(evidenceName);
                     AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
                     info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
-                    info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[num]));
+                    info.setText(Html.fromHtml(FontStyler.replaceHTMLFontColor(
+                            getResources().getStringArray(R.array.evidence_info_array)[num],
+                            "ff6161", fontEmphasisColor + "")));
 
                     popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                     popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
@@ -716,8 +730,13 @@ public class EvidenceFragment extends Fragment {
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
                 info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
                 String[] ghostInfoArray = getResources().getStringArray(R.array.ghost_info_array);
-                if(ghostInfoArray.length > id)
-                    info.setText(Html.fromHtml(getResources().getStringArray(R.array.ghost_info_array)[id]));
+                if(ghostInfoArray.length > id) {
+                    //info.setText(Html.fromHtml(getResources().getStringArray(R.array.ghost_info_array)[id]));
+                    info.setText(Html.fromHtml(FontStyler.replaceHTMLFontColor(
+                            getResources().getStringArray(R.array.ghost_info_array)[id],
+                            "#ff6161", fontEmphasisColor + "")));
+                }
+
                 //else
                    // info.setText("Missing details");
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
@@ -902,7 +921,12 @@ public class EvidenceFragment extends Fragment {
                 name.setText(evidenceName);
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
                 info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
-                info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[index]));
+
+                //info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[index]));
+                info.setText(Html.fromHtml(FontStyler.replaceHTMLFontColor(
+                        getResources().getStringArray(R.array.evidence_info_array)[index],
+                        "#ff6161", fontEmphasisColor + "")
+                ));
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
             });
