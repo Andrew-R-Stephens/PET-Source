@@ -173,10 +173,11 @@
                         android:id="@+id/textView_messageContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/eastseadokdo"
+                        android:fontFamily="serif-monospace"
                         android:text="Message Content"
-                        android:textColor="@color/white"
-                        android:textSize="30sp" />
+                        android:textColor="?attr/neutralSelColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
