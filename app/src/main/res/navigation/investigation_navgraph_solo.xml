@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/evidenceFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.child.EvidenceSoloFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.evidence.children.solo.EvidenceSoloFragment"
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.objectives.ObjectivesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.objectives.ObjectivesFragment"
         android:label="ObjectivesFragment" >
         <action
             android:id="@+id/action_objectives_to_evidence"
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapMenuFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.MapMenuFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.maps.MapMenuFragment"
         android:label="MapMenuFragment" >
         <action
             android:id="@+id/action_mapmenu_to_evidence"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapViewFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.maps.map.MapViewerFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.maps.map.MapViewerFragment"
         android:label="MapViewFragment" >
         <action
             android:id="@+id/action_mapViewFragment_to_evidenceFragment"
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/toolSpiritBoxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.utility.GhostBoxUtilityFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.utilities.utility.GhostBoxUtilityFragment"
         android:label="ToolSpiritBoxFragment" >
         <action
             android:id="@+id/action_toolSpiritBoxFragment_to_utilitiesFragment"
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/utilitiesFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.UtilitiesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.utilities.UtilitiesFragment"
         android:label="UtilitiesFragment" >
         <action
             android:id="@+id/action_utilitiesFragment_to_evidenceFragment"

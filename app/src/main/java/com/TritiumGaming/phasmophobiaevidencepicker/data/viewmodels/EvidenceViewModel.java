@@ -5,10 +5,10 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.assets.viewobjects.SetupPhaseTimer;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityRunnable;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.runnables.SanityRunnable;
 
 /**
  * EvidenceViewModel class
@@ -27,7 +27,7 @@ public class EvidenceViewModel extends ViewModel {
     private MapSizeData[] mapSizeData = null;
     private int mapCurrent = 0;
 
-    private SetupPhaseTimer timer = null;
+    private PhaseTimerView timer = null;
     private int difficulty = 0;
 
     public void init(Context c) {
@@ -198,7 +198,7 @@ public class EvidenceViewModel extends ViewModel {
      *
      * @param timer
      */
-    public void setTimer(SetupPhaseTimer timer) {
+    public void setTimer(PhaseTimerView timer) {
         this.timer = timer;
     }
 
@@ -206,7 +206,7 @@ public class EvidenceViewModel extends ViewModel {
      *
      * @return
      */
-    public SetupPhaseTimer getTimer() {
+    public PhaseTimerView getTimer() {
         return timer;
     }
 

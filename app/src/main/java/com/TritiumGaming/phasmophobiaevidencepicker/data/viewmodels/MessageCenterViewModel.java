@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.inbox.InboxMessage;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.inbox.InboxMessageList;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessagesData;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class MessageCenterViewModel extends ViewModel {
 
     private InboxType type = InboxType.GENERAL;
     private int currentMessageID = 0;
-    private ArrayList<InboxMessageList> inboxMessageList;
+    private ArrayList<MessageCenterMessagesData> inboxMessageList;
 
     public void setIsUpToDate(boolean isUpToDate){
         this.isUpToDate = isUpToDate;
@@ -29,7 +29,7 @@ public class MessageCenterViewModel extends ViewModel {
         return isUpToDate;
     }
 
-    public void addInbox(InboxMessageList inbox, InboxType type) {
+    public void addInbox(MessageCenterMessagesData inbox, InboxType type) {
         if(inboxMessageList == null)
             inboxMessageList = new ArrayList<>();
 
@@ -47,11 +47,11 @@ public class MessageCenterViewModel extends ViewModel {
         return inboxMessageList.size();
     }
 
-    public InboxMessageList getCurrentInbox(int index) {
+    public MessageCenterMessagesData getCurrentInbox(int index) {
         return inboxMessageList.get(index);
     }
 
-    public InboxMessageList getCurrentInbox() {
+    public MessageCenterMessagesData getCurrentInbox() {
         if(inboxMessageList == null)
             return null;
 
@@ -75,7 +75,7 @@ public class MessageCenterViewModel extends ViewModel {
         currentMessageID = position;
     }
 
-    public InboxMessage getCurrentMessage() {
+    public MessageCenterMessageData getCurrentMessage() {
         return getCurrentInbox().getMessages().get(currentMessageID);
     }
 

@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MissionsData;
 
 /**
  * ObjectivesViewModel class
@@ -11,7 +11,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.data.ObjectivesData;
  */
 public class ObjectivesViewModel extends ViewModel {
 
-    private ObjectivesData.Objective[] objectivesSpinnerObjectives = null;
+    private MissionsData.Objective[] objectivesSpinnerObjectives = null;
     private boolean[] isObjectiveCompleted = null;
 
     private String ghostName = null;
@@ -21,11 +21,11 @@ public class ObjectivesViewModel extends ViewModel {
     /*
      * Chosen spinner objectives
      */
-    public void setObjectivesSpinnerObjectives(ObjectivesData.Objective[] objectiveSpinnerObjectives) {
+    public void setObjectivesSpinnerObjectives(MissionsData.Objective[] objectiveSpinnerObjectives) {
         this.objectivesSpinnerObjectives = objectiveSpinnerObjectives;
     }
 
-    public ObjectivesData.Objective[] getObjectivesSpinnerObjectives() {
+    public MissionsData.Objective[] getObjectivesSpinnerObjectives() {
         return objectivesSpinnerObjectives;
     }
 
