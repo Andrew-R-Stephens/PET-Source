@@ -17,6 +17,15 @@
         <action
             android:id="@+id/action_titleScreenFragment_to_inboxFragment"
             app:destination="@id/inboxFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_appInfoFragment"
+            app:destination="@id/appInfoFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_appSettingsFragment"
+            app:destination="@id/appSettingsFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_appLanguageFragment"
+            app:destination="@id/appLanguageFragment" />
     </fragment>
 
     <activity
@@ -56,5 +65,25 @@
         <action
             android:id="@+id/action_inboxMessageFragment_to_inboxMessageListFragment"
             app:destination="@id/inboxMessageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appInfoFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appinfo.AppInfoFragment"
+        android:label="AppInfoFragment" />
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.AppSettingsFragment"
+        android:label="AppSettingsFragment" >
+        <action
+            android:id="@+id/action_appSettingsFragment_to_titleScreenFragment"
+            app:destination="@id/titleScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appLanguageFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.AppLanguageFragment"
+        android:label="AppLanguageFragment" >
+        <action
+            android:id="@+id/action_appLanguageFragment_to_titleScreenFragment"
+            app:destination="@id/titleScreenFragment" />
     </fragment>
 </navigation>

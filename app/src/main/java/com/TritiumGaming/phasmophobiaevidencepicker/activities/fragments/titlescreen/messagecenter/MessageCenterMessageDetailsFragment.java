@@ -17,7 +17,6 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 /**
  * TitleScreenFragment class
@@ -26,7 +25,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenV
  */
 public class MessageCenterMessageDetailsFragment extends Fragment {
 
-    private TitlescreenViewModel titleScreenViewModel = null;
     private MessageCenterViewModel messageInboxViewModel = null;
 
     @Override
@@ -37,11 +35,6 @@ public class MessageCenterMessageDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (titleScreenViewModel == null)
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null)
-            titleScreenViewModel.init(getContext());
 
         if (messageInboxViewModel == null)
             messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);

@@ -18,9 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.views.MessagesAdapterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 
 /**
  * TitleScreenFragment class
@@ -29,17 +28,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  */
 public class MessageCenterInboxMessagesFragment extends Fragment {
 
-    private TitlescreenViewModel titleScreenViewModel = null;
     private MessageCenterViewModel messageInboxViewModel = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (titleScreenViewModel == null)
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null)
-            titleScreenViewModel.init(getContext());
 
         if (messageInboxViewModel == null)
             messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
@@ -72,24 +65,6 @@ public class MessageCenterInboxMessagesFragment extends Fragment {
         } else {
             Log.d("InboxMessageListFrag", "Inbox does not exist!" + messageInboxViewModel.getCurrentInboxType().getName(getContext()));
         }
-    }
-
-    /**
-     * saveStates method
-     */
-    public void saveStates() {
-        if (titleScreenViewModel != null && getContext() != null)
-            titleScreenViewModel.saveToFile(getContext());
-    }
-
-    /**
-     * onPause method
-     */
-    @Override
-    public void onPause() {
-        saveStates();
-
-        super.onPause();
     }
 
 }

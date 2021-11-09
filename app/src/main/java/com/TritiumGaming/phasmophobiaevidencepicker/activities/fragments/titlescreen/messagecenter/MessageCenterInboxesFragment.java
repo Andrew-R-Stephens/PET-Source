@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
@@ -26,18 +27,22 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenV
  */
 public class MessageCenterInboxesFragment extends Fragment {
 
+    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
+
     private TitlescreenViewModel titleScreenViewModel = null;
     private MessageCenterViewModel messageInboxViewModel = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (titleScreenViewModel == null)
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+        if (globalPreferencesViewModel == null)
+            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
         // INITIALIZE VIEW MODEL
         if (getContext() != null)
-            titleScreenViewModel.init(getContext());
+            globalPreferencesViewModel.init(getContext());
 
+        if (titleScreenViewModel == null)
+            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
 
         return inflater.inflate(R.layout.fragment_msginbox, container, false);
     }
@@ -72,8 +77,8 @@ public class MessageCenterInboxesFragment extends Fragment {
 
         label_title.setText(R.string.messagecenter_inboxestitle_label);
         label_extranews.setText(messageInboxViewModel.getInboxType(0).getName(view.getContext()));
-        label_petnews.setText(messageInboxViewModel.getInboxType(2).getName(view.getContext()));
-        label_phasnews.setText(messageInboxViewModel.getInboxType(1).getName(view.getContext()));
+        label_petnews.setText(messageInboxViewModel.getInboxType(1).getName(view.getContext()));
+        label_phasnews.setText(messageInboxViewModel.getInboxType(2).getName(view.getContext()));
 
     }
 
@@ -117,8 +122,8 @@ public class MessageCenterInboxesFragment extends Fragment {
      * TODO
      */
     public void saveStates() {
-        if (titleScreenViewModel != null && getContext() != null)
-            titleScreenViewModel.saveToFile(getContext());
+        if (globalPreferencesViewModel != null && getContext() != null)
+            globalPreferencesViewModel.saveToFile(getContext());
     }
 
     /**

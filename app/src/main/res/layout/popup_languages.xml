@@ -4,7 +4,6 @@
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/popup_bg"
     android:gravity="center_horizontal|center_vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +13,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/popup_info_fg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,12 +72,14 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/titlescreen_languages_label"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/languages_verticallayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".07"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.07999998" />
+                app:layout_constraintVertical_bias="0.07999998"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <LinearLayout
                 android:id="@+id/languages_verticallayout"
@@ -95,6 +95,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".5"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_languages"
                 app:layout_constraintVertical_bias="0.0" />

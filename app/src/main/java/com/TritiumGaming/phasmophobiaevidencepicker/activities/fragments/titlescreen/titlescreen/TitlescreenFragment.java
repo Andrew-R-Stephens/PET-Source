@@ -4,21 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -26,19 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,10 +32,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ColorThemesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.AdRequest;
@@ -65,7 +49,6 @@ import com.google.android.play.core.tasks.Task;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.text.DecimalFormat;
 import java.util.Locale;
 
 /**
@@ -75,6 +58,8 @@ import java.util.Locale;
  */
 public class TitlescreenFragment extends Fragment {
 
+    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
+
     private TitlescreenViewModel titleScreenViewModel = null;
     private MessageCenterViewModel messageCenterViewModel = null;
 
@@ -83,19 +68,20 @@ public class TitlescreenFragment extends Fragment {
     private TitlescreenAnimationView animationView = null;
     private PopupWindow popup = null;
 
-    private Typeface bodyFont = null;
-
     private boolean canRunAnim = true;
     private Thread animInitThread = null, initReadyThread = null, animTickThread = null, animDrawThread = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (titleScreenViewModel == null)
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+        if (globalPreferencesViewModel == null)
+            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
         // INITIALIZE VIEW MODEL
         if (getContext() != null)
-            titleScreenViewModel.init(getContext());
+            globalPreferencesViewModel.init(getContext());
+
+        if (titleScreenViewModel == null)
+            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
 
         if (messageCenterViewModel == null)
             messageCenterViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
@@ -106,14 +92,6 @@ public class TitlescreenFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        // SET FONT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
-        else {
-            if (getContext() != null)
-                bodyFont = ResourcesCompat.getFont(getContext(), R.font.eastseadokdo_regular);
-        }
 
         // INITIALIZE VIEWS
         animationView = view.findViewById(R.id.titlescreen_backgroundanimation);
@@ -142,15 +120,15 @@ public class TitlescreenFragment extends Fragment {
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();
-        if (titleScreenViewModel.getLanguageName().equalsIgnoreCase("fr"))
+        if (globalPreferencesViewModel.getLanguageName().equalsIgnoreCase("fr"))
             appendedLanguage += " (" + getString(R.string.titlescreen_beta_label) + ")";
         label_languageName.setText(appendedLanguage);
 
         // LISTENERS
-        button_info.setOnClickListener(v -> showInfoPopup());
-        button_settings.setOnClickListener(v -> showSettingsPopup());
-        button_language.setOnClickListener(v -> showLanguagesPopup());
-        button_msgInbox.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment));
+        button_info.setOnClickListener(this::gotoAppInfoFragment);
+        button_settings.setOnClickListener(this::gotoAppSettingsFragment);
+        button_language.setOnClickListener(this::gotoLanguagesFragment);
+        button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
         button_startSolo.setOnClickListener(v -> {
                     Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                     intent.putExtra("lobby", 0);
@@ -179,7 +157,7 @@ public class TitlescreenFragment extends Fragment {
         }
 
         // REQUEST REVIEW LISTENER
-        if (titleScreenViewModel != null && titleScreenViewModel.getReviewRequestData().getTimesOpened() > 2) {
+        if (globalPreferencesViewModel != null && globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {
             button_review.setOnClickListener(v -> showReviewPopup(getView()));
         } else {
             button_review.setEnabled(false);
@@ -188,45 +166,14 @@ public class TitlescreenFragment extends Fragment {
         // REQUEST REVIEW PROMPT
         requestReview();
 
-        if(isNetworkAvailable())
-            startInboxThread();
+        if(NetworkUtils.isNetworkAvailable(getContext(), globalPreferencesViewModel.getNetworkPreference()))
+            startLoadMessageCenterThread();
         else
             Log.d("registerMessageInboxes", "Could not load Document data");
     }
 
-    private boolean isNetworkAvailable() {
-
-        if(getActivity() != null) {
-
-            ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-            if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-                Log.d("isNetworkAvailable", "Network Available: Determining Network type...");
-                if (!connectivityManager.isActiveNetworkMetered()) {
-                    Log.d("isNetworkAvailable", "Connected to Wifi Network: Connection success!");
-                    return true;
-                } else {
-                    Log.d("isNetworkAvailable", "Connected to Metered Network: Checking if allowed to use...");
-                    if (!titleScreenViewModel.getNetworkPreference()) {
-                        Log.d("isNetworkAvailable", "Metered Network Disallowed: Unable to connect.");
-                        return false;
-                    } else {
-                        Log.d("isNetworkAvailable", "Metered Network Allowed: Connection success!");
-                        return true;
-                    }
-                }
-            } else {
-                Log.d("isNetworkAvailable", "Network Unavailable: Unable to connect.");
-                return false;
-            }
-        }
-        Log.d("isNetworkAvailable", "Activity read as null. Connection forcefully rejected.");
-        return false;
-    }
-
-    public void startInboxThread() {
-        Thread messageCenterThread = new Thread(() -> {
+    public void startLoadMessageCenterThread() {
+        Thread loadMessageCenterThread = new Thread(() -> {
             while (!messageCenterViewModel.isUpToDate()) {
                 Log.d("registerMessageInboxes", "Attempting to load documents...");
                 registerMessageInboxes();
@@ -241,7 +188,7 @@ public class TitlescreenFragment extends Fragment {
             }
             Log.d("registerMessageInboxes", "Document load completed.");
         });
-        messageCenterThread.start();
+        loadMessageCenterThread.start();
     }
 
     public void registerMessageInboxes() {
@@ -267,7 +214,7 @@ public class TitlescreenFragment extends Fragment {
     public void requestReview() {
         //Log.d("Review", titleScreenViewModel.getReviewRequestData().canRequestReview() + " " + titleScreenViewModel.getReviewRequestData().getTimesOpened());
 
-        if (titleScreenViewModel != null && titleScreenViewModel.getReviewRequestData().canRequestReview()) {
+        if (globalPreferencesViewModel != null && globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
             //Log.d("Review", "Review Request Accepted");
             Thread tempThread = new Thread(() -> {
                 try {
@@ -276,10 +223,10 @@ public class TitlescreenFragment extends Fragment {
                     e.printStackTrace();
                 }
                 if (getActivity() != null && getContext() != null) {
-                    titleScreenViewModel.getReviewRequestData().setWasRequested(true);
+                    globalPreferencesViewModel.getReviewRequestData().setWasRequested(true);
                     getActivity().runOnUiThread(() -> showReviewPopup(getView()));
                     if (getContext() != null)
-                        titleScreenViewModel.saveToFile(getContext());
+                        globalPreferencesViewModel.saveToFile(getContext());
                 }
             });
             tempThread.start();
@@ -288,12 +235,16 @@ public class TitlescreenFragment extends Fragment {
         }
     }
 
+    private void gotoMessageCenterFragment(View v){
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment);
+    }
 
     /**
-     * showInfoPopup method
+     * gotoAppInfoFragment method
      */
-    private void showInfoPopup() {
-
+    private void gotoAppInfoFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appInfoFragment);
+        /*
         // DESTROY PREVIOUS POPUP
         if (popup != null)
             popup.dismiss();
@@ -447,15 +398,17 @@ public class TitlescreenFragment extends Fragment {
         // FINALIZE
         popup.setAnimationStyle(R.anim.nav_default_enter_anim);
         popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
-
+*/
     }
 
 
     /**
-     * showSettingsPopup method
+     * gotoAppSettingsFragment method
      */
-    private void showSettingsPopup() {
+    private void gotoAppSettingsFragment(View v) {
 
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
+        /*
         // DESTROY PREVIOUS POPUP
         if (popup != null)
             popup.dismiss();
@@ -526,8 +479,8 @@ public class TitlescreenFragment extends Fragment {
         typedArray.recycle();
         ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
         int oldIndex = 0;
-        if (titleScreenViewModel != null)
-            oldIndex = titleScreenViewModel.getColorSpace();
+        if (globalPreferencesViewModel != null)
+            oldIndex = globalPreferencesViewModel.getColorSpace();
         colorSpaceData.setIndex(oldIndex);
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
@@ -535,86 +488,86 @@ public class TitlescreenFragment extends Fragment {
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (titleScreenViewModel != null)
-                titleScreenViewModel.setColorSpace(colorSpaceData.getIndex());
+            if (globalPreferencesViewModel != null)
+                globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
 
             SharedPreferences sharedPref = requireActivity().getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace), titleScreenViewModel.getColorSpace());
+            editor.putInt(getString(R.string.preference_colorSpace), globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
 
             if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).changeTheme(titleScreenViewModel.getColorSpace());
+                ((TitleScreenActivity) getActivity()).changeTheme(globalPreferencesViewModel.getColorSpace());
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
             colorSpaceData.iterate(1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (titleScreenViewModel != null)
-                titleScreenViewModel.setColorSpace(colorSpaceData.getIndex());
+            if (globalPreferencesViewModel != null)
+                globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
 
             SharedPreferences sharedPref = requireActivity().getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace), titleScreenViewModel.getColorSpace());
+            editor.putInt(getString(R.string.preference_colorSpace), globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
 
             if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).changeTheme(titleScreenViewModel.getColorSpace());
+                ((TitleScreenActivity) getActivity()).changeTheme(globalPreferencesViewModel.getColorSpace());
         });
 
 
         // SWITCHES
-        if (titleScreenViewModel != null) {
+        if (globalPreferencesViewModel != null) {
             // Screen Always On
             if (switch_isAlwaysOn_switch != null) {
-                switch_isAlwaysOn_switch.setChecked(titleScreenViewModel.getIsAlwaysOn());
+                switch_isAlwaysOn_switch.setChecked(globalPreferencesViewModel.getIsAlwaysOn());
                 switch_isAlwaysOn_switch.setOnClickListener(v -> {
-                    if (titleScreenViewModel != null)
-                        titleScreenViewModel.setIsAlwaysOn(switch_isAlwaysOn_switch.isChecked());
+                    if (globalPreferencesViewModel != null)
+                        globalPreferencesViewModel.setIsAlwaysOn(switch_isAlwaysOn_switch.isChecked());
                     if (getView() != null)
                         getView().setKeepScreenOn(true);
                 });
             }
             // Allow Mobile Data
             if (switch_network_switch != null) {
-                switch_network_switch.setChecked(titleScreenViewModel.getNetworkPreference());
+                switch_network_switch.setChecked(globalPreferencesViewModel.getNetworkPreference());
                 switch_network_switch.setOnClickListener(v -> {
-                    if (titleScreenViewModel != null)
-                        titleScreenViewModel.setNetworkPreference(switch_network_switch.isChecked());
+                    if (globalPreferencesViewModel != null)
+                        globalPreferencesViewModel.setNetworkPreference(switch_network_switch.isChecked());
                 });
             }
             // Allow Hunt Warning Audio
             if (switch_huntwarningaudio_switch != null) {
-                switch_huntwarningaudio_switch.setChecked(titleScreenViewModel.getIsHuntAudioAllowed());
+                switch_huntwarningaudio_switch.setChecked(globalPreferencesViewModel.getIsHuntAudioAllowed());
                 switch_huntwarningaudio_switch.setOnClickListener(v -> {
-                    if (titleScreenViewModel != null)
-                        titleScreenViewModel.setAllowHuntWarningAudio(switch_huntwarningaudio_switch.isChecked());
+                    if (globalPreferencesViewModel != null)
+                        globalPreferencesViewModel.setAllowHuntWarningAudio(switch_huntwarningaudio_switch.isChecked());
                 });
             }
         }
 
 
         // TIMEOUT SEEKBAR
-        if (titleScreenViewModel != null) {
+        if (globalPreferencesViewModel != null) {
             if (seekBar_huntwarningTimeout != null) {
                 seekBar_huntwarningTimeout.setMax(300001);
-                if (titleScreenViewModel.getHuntWarningFlashTimeout() < 0)
+                if (globalPreferencesViewModel.getHuntWarningFlashTimeout() < 0)
                     seekBar_huntwarningTimeout.setProgress(seekBar_huntwarningTimeout.getMax());
                 else
-                    seekBar_huntwarningTimeout.setProgress(titleScreenViewModel.getHuntWarningFlashTimeout());
+                    seekBar_huntwarningTimeout.setProgress(globalPreferencesViewModel.getHuntWarningFlashTimeout());
 
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         if (fromUser) {
 
-                            titleScreenViewModel.setHuntWarningFlashTimeout(progress);
+                            globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
 
                             double progressMax = 300000 / (double) seekBar_huntwarningTimeout.getMax();
 
-                            if (/*progress > 0 &&*/ progress < seekBar_huntwarningTimeout.getMax()) {
+                            if (progress < seekBar_huntwarningTimeout.getMax()) {
                                 long breakdown = (long) (progressMax * progress / 1000L);
                                 long minutes = breakdown / 60L;
                                 long seconds = breakdown % 60L;
@@ -669,109 +622,25 @@ public class TitlescreenFragment extends Fragment {
                 popup.dismiss();
                 popup = null;
 
-                if (titleScreenViewModel != null && finalOldIndex != titleScreenViewModel.getColorSpace()) {
-                    titleScreenViewModel.setCanRefresh(true);
+                if (globalPreferencesViewModel != null &&
+                        finalOldIndex != globalPreferencesViewModel.getColorSpace() &&
+                        titleScreenViewModel != null) {
+                    titleScreenViewModel.setCanRefreshFragment(true);
                     refreshFragment();
                 }
             });
         // FINALIZE
         popup.setAnimationStyle(R.anim.nav_default_enter_anim);
         popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
-    }
-
-
-    /**
-     * showReviewPopup method
-     */
-    public void showReviewPopup(View parentView) {
-
-        //DESTROY PREVIOUS POPUP
-        if (popup != null)
-            popup.dismiss();
-
-        //INFLATE LAYOUT
-        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.popup_requestreview, null);
-
-        // INITIALIZE POPUPWINDOW
-        popup = new PopupWindow(
-                customView,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-        );
-        popup.setOutsideTouchable(false);
-
-        AppCompatTextView title = customView.findViewById(R.id.label_ratingstitle);
-        AppCompatTextView acceptButton = customView.findViewById(R.id.label_accept);
-        AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
-
-        // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        declineButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-
-        // LISTENERS
-        acceptButton.setOnClickListener(v -> {
-            popup.dismiss();
-            popup = null;
-
-            //THIS IS FOR THE IN APP REVIEW
-            if (getContext() != null) {
-                ReviewManager manager =
-                        //new FakeReviewManager(getContext());
-                        ReviewManagerFactory.create(getContext());
-                Task<ReviewInfo> request = manager.requestReviewFlow();
-                request.addOnCompleteListener(requestTask -> {
-                    if (requestTask.isSuccessful()) {
-                        Log.e("ReviewManager", "Task Successful");
-                        // We can get the ReviewInfo object
-                        ReviewInfo reviewInfo = requestTask.getResult();
-                        if (getActivity() != null) {
-                            Task<Void> flow = manager.launchReviewFlow(getActivity(), reviewInfo);
-                            flow.addOnCompleteListener(flowTask -> {
-                                // The flow has finished. The API does not indicate whether the user
-                                // reviewed or not, or even whether the review dialog was shown. Thus, no
-                                // matter the result, we continue our app flow.
-                            });
-                        }
-                    } else {
-                        //Log.e("ReviewManager", "Task Failed");
-                        if (requestTask.getException() != null)
-                            (requestTask.getException()).printStackTrace();
-
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(getResources().getString(R.string.review_storelink)));
-                        intent.setPackage("com.android.vending");
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        });
-        declineButton.setOnClickListener(v -> {
-            popup.dismiss();
-            popup = null;
-        });
-
-        // FINALIZE
-        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
-        //Log.d("Review", "Preparing to display");
-        boolean success = parentView.post(() -> {
-            //Log.d("Review", "Is displaying");
-            popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
-        });
-        //Log.d("Review", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+        */
     }
 
     /**
-     * showLanguagesPopup method
+     * gotoLanguagesFragment method
      */
-    public void showLanguagesPopup() {
-
+    public void gotoLanguagesFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment);
+        /*
         // DESTROY PREVIOUS POPUP
         if (popup != null)
             popup.dismiss();
@@ -821,9 +690,9 @@ public class TitlescreenFragment extends Fragment {
 
                 int loc = i;
                 name.setOnClickListener(v -> {
-                    if (titleScreenViewModel != null) {
-                        titleScreenViewModel.setLanguage(loc, getResources().getStringArray(R.array.languages_abbreviation));
-                        titleScreenViewModel.setCanRefresh(true);
+                    if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+                        globalPreferencesViewModel.setLanguage(loc, getResources().getStringArray(R.array.languages_abbreviation));
+                        titleScreenViewModel.setCanRefreshFragment(true);
                     }
                     configureLanguage();
                     popup.dismiss();
@@ -837,6 +706,94 @@ public class TitlescreenFragment extends Fragment {
         // FINALIZE
         popup.setAnimationStyle(R.anim.nav_default_enter_anim);
         popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
+        */
+    }
+
+    /**
+     * showReviewPopup method
+     */
+    public void showReviewPopup(View parentView) {
+
+        //DESTROY PREVIOUS POPUP
+        if (popup != null)
+            popup.dismiss();
+
+        //INFLATE LAYOUT
+        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View customView = inflater.inflate(R.layout.popup_requestreview, null);
+
+        // INITIALIZE POPUPWINDOW
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+        popup.setOutsideTouchable(false);
+
+        AppCompatTextView title = customView.findViewById(R.id.label_ratingstitle);
+        AppCompatTextView acceptButton = customView.findViewById(R.id.label_accept);
+        AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
+
+        // TEXT SIZE
+        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        declineButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+
+        // LISTENERS
+        acceptButton.setOnClickListener(v -> {
+            popup.dismiss();
+            popup = null;
+
+            //THIS IS FOR THE IN-APP REVIEW
+            if (getContext() != null) {
+                ReviewManager manager =
+                        //new FakeReviewManager(getContext());
+                        ReviewManagerFactory.create(getContext());
+                Task<ReviewInfo> request = manager.requestReviewFlow();
+                request.addOnCompleteListener(requestTask -> {
+                    if (requestTask.isSuccessful()) {
+                        Log.e("ReviewManager", "Task Successful");
+                        // We can get the ReviewInfo object
+                        ReviewInfo reviewInfo = requestTask.getResult();
+                        if (getActivity() != null) {
+                            Task<Void> flow = manager.launchReviewFlow(getActivity(), reviewInfo);
+                            flow.addOnCompleteListener(flowTask -> {
+                                // The flow has finished. The API does not indicate whether the user
+                                // reviewed or not, or even whether the review dialog was shown. Thus, no
+                                // matter the result, we continue our app flow.
+                            });
+                        }
+                    } else {
+                        //Log.e("ReviewManager", "Task Failed");
+                        if (requestTask.getException() != null)
+                            (requestTask.getException()).printStackTrace();
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(getResources().getString(R.string.review_storelink)));
+                        intent.setPackage("com.android.vending");
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+        declineButton.setOnClickListener(v -> {
+            popup.dismiss();
+            popup = null;
+        });
+
+        // FINALIZE
+        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        //Log.d("Review", "Preparing to display");
+        boolean success = parentView.post(() -> {
+            //Log.d("Review", "Is displaying");
+            popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+        });
+        //Log.d("Review", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
     }
 
     /**
@@ -997,36 +954,11 @@ public class TitlescreenFragment extends Fragment {
     }
 
     /**
-     * configureLanguage
-     */
-    public void configureLanguage() {
-        if (titleScreenViewModel != null) {
-            if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).setLanguage(titleScreenViewModel.getLanguageName());
-        }
-    }
-
-    /**
-     * refreshFragment
-     */
-    public void refreshFragment() {
-        //Log.d("Fragment", "Refreshing");
-        if (titleScreenViewModel != null && titleScreenViewModel.canRefresh()) {
-            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            if (Build.VERSION.SDK_INT >= 26)
-                ft.setReorderingAllowed(false);
-            ft.detach(TitlescreenFragment.this).commitNow();
-            ft.attach(TitlescreenFragment.this).commitNow();
-            titleScreenViewModel.setCanRefresh(false);
-        }
-    }
-
-    /**
      * saveStates method
      */
     public void saveStates() {
-        if (titleScreenViewModel != null && getContext() != null)
-            titleScreenViewModel.saveToFile(getContext());
+        if (globalPreferencesViewModel != null && getContext() != null)
+            globalPreferencesViewModel.saveToFile(getContext());
     }
 
     /**

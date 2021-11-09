@@ -1,16 +1,15 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
@@ -23,6 +22,8 @@ import java.util.Locale;
  */
 public class TitleScreenActivity extends AppCompatActivity {
 
+    GlobalPreferencesViewModel globalPreferencesViewModel;
+
     TitlescreenViewModel titleScreenViewModel;
     MessageCenterViewModel messageCenterViewModel;
 
@@ -30,38 +31,41 @@ public class TitleScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Create View Models
-        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+        ViewModelProvider.AndroidViewModelFactory factory =
+                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
+        globalPreferencesViewModel.init(TitleScreenActivity.this);
         titleScreenViewModel = factory.create(TitlescreenViewModel.class);
         messageCenterViewModel = factory.create(MessageCenterViewModel.class);
 
-        titleScreenViewModel.init(TitleScreenActivity.this);
-
-        //Set Immediately Important Review Tracking Data
-        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getResources().getString(R.string.reviewtracking_appTimesOpened), titleScreenViewModel.getReviewRequestData().getTimesOpened()+1);
-        editor.apply();
-
+        // Immediately initialize Activity with Preferences
         init();
 
-        //Set the Parent View
+        //Set the Parent View, Late call
         setContentView(R.layout.activity_titlescreen);
 
     }
 
     /**
-     * Sets Immediately Important Preferences Data
+     * Immediately initialize Activity with Preferences
      *
      */
     public void init() {
+        globalPreferencesViewModel.incrementAppOpenCount(getApplicationContext());
+
         //set language
-        if(setLanguage(getLanguage()))
+        if(setLanguage(globalPreferencesViewModel.getLanguage(getApplicationContext())))
             recreate();
+
         //set isAlwaysOn
-        if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(getString(R.string.preference_isAlwaysOn), false))
+        if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(
+                getString(R.string.preference_isAlwaysOn), false))
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         //set colorSpace
-        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getInt(getString(R.string.preference_colorSpace), titleScreenViewModel.getColorSpace());
+        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getInt(
+                getString(R.string.preference_colorSpace), globalPreferencesViewModel.getColorSpace());
+
         changeTheme(colorSpace);
     }
 
@@ -106,29 +110,18 @@ public class TitleScreenActivity extends AppCompatActivity {
      */
     public boolean setLanguage(String language){
         boolean isChanged = false;
+
         Locale defaultLocale = Locale.getDefault();
         Locale locale = new Locale(language);
         if(!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage())))
             isChanged = true;
+
         Locale.setDefault(locale);
         Configuration config = getResources().getConfiguration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-        return isChanged;
-    }
 
-    /**
-     * getLanguage
-     *
-     * Returns the current applications language.
-     * Defaults to return 'en' if there is no previously saved preference.
-     *
-     * @return The language specified in the Preferences data, or otherwise English
-     */
-    public String getLanguage(){
-        String lang = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString("chosenLanguage", "en");
-        Log.d("Current Chosen Language", lang);
-        return lang;
+        return isChanged;
     }
 
 }

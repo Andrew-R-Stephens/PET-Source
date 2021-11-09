@@ -30,8 +30,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.views.WaveformView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.data.GhostBoxUtilityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.views.WaveformView;
 
 import java.util.Arrays;
 import java.util.Locale;
