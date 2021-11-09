@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/hostEvidenceFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.evidence.children.mp.EvidenceMPHostFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.mp.EvidenceMPHostFragment"
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/clientEvidenceFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.evidence.children.mp.EvidenceMPClientFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.mp.EvidenceMPClientFragment"
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.objectives.ObjectivesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.MissionsFragment"
         android:label="ObjectivesFragment" >
         <action
             android:id="@+id/action_objectivesFragment_to_clientEvidenceFragment"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapMenuFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.maps.MapMenuFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.MapMenuFragment"
         android:label="MapMenuFragment" >
         <action
             android:id="@+id/action_mapmenu_to_mapview"
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapViewFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.investigation.maps.map.MapViewerFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.MapViewerFragment"
         android:label="MapViewFragment" >
         <action
             android:id="@+id/action_mapview_to_mapmenu"
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/multConnectFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.titlescreen.multiplayerconnect.MultiplayerConnectFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.multiplayerconnect.MultiplayerConnectFragment"
         android:label="MultConnectFragment">
         <action
             android:id="@+id/action_lobbyConnectFragment_to_evidenceFragment_multHost"

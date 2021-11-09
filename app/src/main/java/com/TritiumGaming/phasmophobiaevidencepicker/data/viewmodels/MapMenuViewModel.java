@@ -7,7 +7,7 @@ import android.content.res.TypedArray;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
 
 /**
  * MapMenuViewModel class

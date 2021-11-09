@@ -2,8 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessagesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
 
 import org.xmlpull.v1.XmlPullParser;

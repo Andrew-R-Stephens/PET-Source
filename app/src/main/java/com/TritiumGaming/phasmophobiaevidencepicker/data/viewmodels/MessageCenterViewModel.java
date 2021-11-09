@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.messagecenter.MessageCenterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessagesData;
 
 import java.util.ArrayList;
 

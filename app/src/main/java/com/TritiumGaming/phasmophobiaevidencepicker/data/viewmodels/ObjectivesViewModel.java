@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.MissionsData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.data.MissionsData;
 
 /**
  * ObjectivesViewModel class

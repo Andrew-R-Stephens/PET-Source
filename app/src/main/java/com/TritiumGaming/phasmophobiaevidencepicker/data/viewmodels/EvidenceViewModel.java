@@ -5,10 +5,10 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.views.PhaseTimerView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.runnables.SanityRunnable;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
 
 /**
  * EvidenceViewModel class

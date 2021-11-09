@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.animations.animatedgraphics.data.AnimatedGraphicData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedGraphicData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
 import com.google.android.gms.ads.AdRequest;
 

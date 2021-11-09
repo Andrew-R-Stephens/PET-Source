@@ -511,7 +511,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent=".6">
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.views.SanityMeterView
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView
                         android:id="@+id/evidence_sanitymeter_progressbar"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -604,7 +604,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_chainStyle="spread_inside">
 
-                        <com.TritiumGaming.phasmophobiaevidencepicker.views.WarnTextView
+                        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                             android:id="@+id/evidence_sanitymeter_phase_action"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
@@ -624,7 +624,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintWidth_percent=".495" />
 
-                        <com.TritiumGaming.phasmophobiaevidencepicker.views.WarnTextView
+                        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                             android:id="@+id/evidence_sanitymeter_phase_setup"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
@@ -646,7 +646,7 @@
                             app:layout_constraintWidth_percent=".495" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.views.WarnTextView
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                         android:id="@+id/evidence_sanitymeter_huntwarning"
                         android:layout_width="0dp"
                         android:layout_height="0dp"

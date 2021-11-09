@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/titleScreenFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.titlescreen.titlescreen.TitlescreenFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.TitlescreenFragment"
         android:label="TitleScreenFragment" >
         <action
             android:id="@+id/action_titleScreenFragment_to_investigationActivity_Solo"
@@ -29,7 +29,7 @@
         android:label="InvestigationActivity_Mult" />
     <fragment
         android:id="@+id/inboxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.titlescreen.messagecenter.MessageCenterInboxesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.MessageCenterInboxesFragment"
         android:label="InboxFragment" >
         <action
             android:id="@+id/action_inboxFragment_to_titleScreenFragment"
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/inboxMessageListFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.titlescreen.messagecenter.MessageCenterInboxMessagesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.MessageCenterInboxMessagesFragment"
         android:label="InboxMessageListFragment" >
         <action
             android:id="@+id/action_inboxMessageListFragment_to_inboxFragment"
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/inboxMessageFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.fragments.titlescreen.messagecenter.MessageCenterMessageDetailsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.MessageCenterMessageDetailsFragment"
         android:label="InboxMessageFragment" >
         <action
             android:id="@+id/action_inboxMessageFragment_to_inboxMessageListFragment"
