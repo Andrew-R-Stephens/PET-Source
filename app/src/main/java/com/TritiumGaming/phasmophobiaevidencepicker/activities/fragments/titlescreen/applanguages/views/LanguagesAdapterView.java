@@ -1,15 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.
+        views;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -25,7 +22,9 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
     private final ArrayList<String> languages;
     private final OnLanguageListener onLanguageListener;
 
-    public LanguagesAdapterView(ArrayList<String> languages, OnLanguageListener onLanguageListener) {
+    public LanguagesAdapterView(
+            ArrayList<String> languages,
+            OnLanguageListener onLanguageListener) {
         this.languages = languages;
         this.onLanguageListener = onLanguageListener;
     }
@@ -60,9 +59,14 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
     public void onBindViewHolder(ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_languageTitle;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            textView.setAutoSizeTextTypeUniformWithConfiguration(12, 30, 1, TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            textView.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    30,
+                    1,
+                    TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         }
         textView.setText(languages.get(position));
+
     }
 
     @Override

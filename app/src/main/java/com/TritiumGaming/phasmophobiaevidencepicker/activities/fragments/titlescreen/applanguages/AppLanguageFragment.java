@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.views.LanguagesAdapterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.
+        views.LanguagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
@@ -77,17 +77,20 @@ public class AppLanguageFragment extends Fragment {
         if (getContext() != null) {
             for (int i = 0; i < languageNames.size(); i++) {
                 LanguagesAdapterView adapter = new LanguagesAdapterView(
-                        languageNames, position -> {
-                            if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
-                                globalPreferencesViewModel.setLanguage(
-                                        position,
-                                        AppLanguageFragment.this.getResources().getStringArray(
-                                                R.array.languages_abbreviation));
-                                titleScreenViewModel.setCanRefreshFragment(true);
-                            }
-                            AppLanguageFragment.this.configureLanguage();
-                            AppLanguageFragment.this.refreshFragment();
-                        });
+                        languageNames, new LanguagesAdapterView.OnLanguageListener() {
+                    @Override
+                    public void onNoteClick(int position) {
+                        if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+                            globalPreferencesViewModel.setLanguage(
+                                    position,
+                                    AppLanguageFragment.this.getResources().getStringArray(
+                                            R.array.languages_abbreviation));
+                            titleScreenViewModel.setCanRefreshFragment(true);
+                        }
+                        AppLanguageFragment.this.configureLanguage();
+                        AppLanguageFragment.this.refreshFragment();
+                    }
+                });
                 recyclerViewLanguages.setAdapter(adapter);
                 recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(view.getContext()));
             }
@@ -98,9 +101,9 @@ public class AppLanguageFragment extends Fragment {
      * configureLanguage
      */
     public void configureLanguage() {
-        if (globalPreferencesViewModel != null) {
-            if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).setLanguage(globalPreferencesViewModel.getLanguageName());
+        if (globalPreferencesViewModel != null && getActivity() != null) {
+                ((TitleScreenActivity) getActivity()).setLanguage(
+                        globalPreferencesViewModel.getLanguageName());
         }
     }
 
