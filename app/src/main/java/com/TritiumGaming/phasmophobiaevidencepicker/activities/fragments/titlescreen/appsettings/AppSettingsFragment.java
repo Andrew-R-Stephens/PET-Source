@@ -45,7 +45,7 @@ public class AppSettingsFragment extends Fragment {
         if (titleScreenViewModel == null)
             titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
 
-        return inflater.inflate(R.layout.popup_settings, container, false);
+        return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
 
     @Override

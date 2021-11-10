@@ -54,7 +54,7 @@ public class AppInfoFragment extends Fragment {
         if (titleScreenViewModel == null)
             titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
 
-        return inflater.inflate(R.layout.popup_aboutinfo, container, false);
+        return inflater.inflate(R.layout.fragment_appinfo, container, false);
     }
 
     @Override

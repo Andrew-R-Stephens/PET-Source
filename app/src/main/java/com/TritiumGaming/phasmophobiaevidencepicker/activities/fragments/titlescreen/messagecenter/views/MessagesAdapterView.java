@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
 
-    private ArrayList<MessageCenterMessageData> messages;
-    private OnMessageListener onMessageListener;
+    private final ArrayList<MessageCenterMessageData> messages;
+    private final OnMessageListener onMessageListener;
 
     public MessagesAdapterView(ArrayList<MessageCenterMessageData> messages, OnMessageListener onMessageListener) {
         this.messages = messages;
@@ -28,7 +28,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public AppCompatTextView label_messageTitle;
-        private OnMessageListener onMessageListener;
+        private final OnMessageListener onMessageListener;
 
         public ViewHolder(View view, OnMessageListener onMessageListener) {
             super(view);

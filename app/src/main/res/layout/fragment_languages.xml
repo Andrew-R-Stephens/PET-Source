@@ -72,7 +72,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/titlescreen_languages_label"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/languages_verticallayout"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout68"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".07"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -81,24 +81,27 @@
                 app:layout_constraintVertical_bias="0.07999998"
                 app:layout_constraintVertical_chainStyle="packed" />
 
-            <LinearLayout
-                android:id="@+id/languages_verticallayout"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout68"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#00FFFFFF"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".5"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHeight_percent=".7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_languages"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintWidth_percent=".8">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_languageslist"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

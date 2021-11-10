@@ -110,12 +110,6 @@ public class MessageCenterInboxesFragment extends Fragment {
         navigateToInboxFragment(v);
     }
 
-    public void setMaxLines(AppCompatTextView v, int maxChars){
-        int linesMax = v.getText().length() % maxChars;
-        v.setMaxLines(linesMax+1);
-        v.invalidate();
-    }
-
     /**
      * saveStates method
      *
