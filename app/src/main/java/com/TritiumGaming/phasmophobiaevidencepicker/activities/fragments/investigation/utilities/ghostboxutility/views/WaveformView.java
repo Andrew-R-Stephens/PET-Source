@@ -127,6 +127,7 @@ public class WaveformView extends View {
 	 */
 	public void updateVisualizer(byte[] bytes) {
 		this.mBytes = bytes;
+
 		invalidate();
 	}
 
@@ -151,7 +152,7 @@ public class WaveformView extends View {
 			canvas.drawLine(x, 0, x, frameRect.height(), gridPaint);
 
 		if (mBytes == null) {
-			canvas.drawLine(0, (int)waveformRect.height(), waveformRect.width(), waveformRect.height(), waveformPaint);
+			canvas.drawLine(0, waveformRect.height(), waveformRect.width(), waveformRect.height(), waveformPaint);
 			return;
 		}
 
@@ -160,9 +161,9 @@ public class WaveformView extends View {
 
 		for (int i = 0; i < mBytes.length - 1; i++) {
 			mPoints[i * 4] = (float)waveformRect.width() * i / (float)(mBytes.length - 1);
-			mPoints[i * 4 + 1] = (float) ((float)waveformRect.height() + ((byte) (mBytes[i] + sampleRate)) * (float)(waveformRect.height()*peakAmplitude) / sampleRate);
+			mPoints[i * 4 + 1] = (float)waveformRect.height() + ((byte) (mBytes[i] + sampleRate)) * (waveformRect.height()*peakAmplitude) / sampleRate;
 			mPoints[i * 4 + 2] = (float)waveformRect.width() * (i + 1) / ((float)mBytes.length - 1);
-			mPoints[i * 4 + 3] = (float) ((float)waveformRect.height() + ((byte) (mBytes[i + 1] + sampleRate)) * (float)(waveformRect.height()*peakAmplitude) / sampleRate);
+			mPoints[i * 4 + 3] = (float)waveformRect.height() + ((byte) (mBytes[i + 1] + sampleRate)) * (waveformRect.height()*peakAmplitude) / sampleRate;
 		}
 
 		canvas.drawLines(mPoints, waveformPaint);

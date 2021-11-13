@@ -1,10 +1,14 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 
 import java.util.Locale;
 
@@ -22,8 +27,12 @@ import java.util.Locale;
  */
 public class InvestigationActivity extends AppCompatActivity {
 
+    private PermissionsViewModel permissionsViewModel;
     private EvidenceViewModel evidence;
     private ObjectivesViewModel objectives;
+
+    // Requesting permission to RECORD_AUDIO
+    public static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +57,10 @@ public class InvestigationActivity extends AppCompatActivity {
         }
 
         ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+
+        permissionsViewModel = factory.create(PermissionsViewModel.class);
+        //if(permissionsViewModel == null)
+        permissionsViewModel = new ViewModelProvider(this).get(PermissionsViewModel.class);
 
         evidence = factory.create(EvidenceViewModel.class);
         evidence.init(getApplicationContext());

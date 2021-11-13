@@ -44,7 +44,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/divider1"
+            app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title">
@@ -53,12 +53,12 @@
                 android:id="@+id/waveFormView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent=".1"
-                app:layout_constraintWidth_percent=".75"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout_body"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".75" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_body"
@@ -75,13 +75,13 @@
                     android:id="@+id/constraintLayout62"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintWidth_percent=".75"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".75">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView"
@@ -104,10 +104,10 @@
                         android:id="@+id/scrollView_list1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:fadeScrollbars="false"
                         android:fillViewport="true"
                         android:scrollbarAlwaysDrawVerticalTrack="true"
                         android:scrollbarSize="3dp"
-                        android:fadeScrollbars="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".8"
@@ -127,12 +127,12 @@
                     android:id="@+id/constraintLayout4"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintWidth_percent=".75"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout63"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".3"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout62">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout62"
+                    app:layout_constraintWidth_percent=".75">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView2"
@@ -155,10 +155,10 @@
                         android:id="@+id/scrollView_list2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:fadeScrollbars="false"
                         android:fillViewport="true"
                         android:scrollbarAlwaysDrawVerticalTrack="true"
                         android:scrollbarSize="3dp"
-                        android:fadeScrollbars="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".8"
@@ -180,12 +180,12 @@
                     android:id="@+id/constraintLayout63"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintWidth_percent=".75"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".3"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+                    app:layout_constraintWidth_percent=".75">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView3"
@@ -208,10 +208,10 @@
                         android:id="@+id/scrollView_list3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:fadeScrollbars="false"
                         android:fillViewport="true"
                         android:scrollbarAlwaysDrawVerticalTrack="true"
                         android:scrollbarSize="3dp"
-                        android:fadeScrollbars="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".8"
@@ -222,9 +222,9 @@
                             android:id="@+id/linearlayout_scrollview_list3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fadeScrollbars="false"
                             android:foregroundTint="@color/white"
                             android:orientation="vertical"
-                            android:fadeScrollbars="false"
                             android:scrollbarAlwaysDrawVerticalTrack="true"
                             android:scrollbarSize="3dp" />
                     </ScrollView>
@@ -233,151 +233,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:id="@+id/divider1"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:background="@drawable/icon_strikethrough_1"
-            android:backgroundTint="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_navigationbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_navigationbar"
+        <include
+            android:id="@+id/layout_navigation"
+            layout="@layout/layout_navigation"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".1"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_nav1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_nav2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/goto_evidence_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:background="#00000000"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_evidence"
-                    android:tint="#FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/goto_evidence_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".55"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/goto_evidence_title"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/norse_regular"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/general_evidence_button"
-                    android:textColor="?attr/bodyFontColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/goto_evidence_button"
-                    app:layout_constraintHeight_percent=".3"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/goto_evidence_button"
-                    app:layout_constraintTop_toBottomOf="@+id/goto_evidence_button" />
-
-                <View
-                    android:id="@+id/fragnavlistener_evidence"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/goto_evidence_title"
-                    app:layout_constraintEnd_toEndOf="@+id/goto_evidence_button"
-                    app:layout_constraintStart_toStartOf="@+id/goto_evidence_button"
-                    app:layout_constraintTop_toTopOf="@+id/goto_evidence_button" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_nav2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_nav3"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout_nav1"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <View
-                    android:id="@+id/fragnavlistener_evidence2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/goto_evidence_title2"
-                    app:layout_constraintEnd_toEndOf="@+id/goto_evidence_button2"
-                    app:layout_constraintStart_toStartOf="@+id/goto_evidence_button2"
-                    app:layout_constraintTop_toTopOf="@+id/goto_evidence_button2" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/goto_evidence_button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:background="#00000000"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_inconclusive_selected"
-                    android:tint="#FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/goto_evidence_title2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".55"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/goto_evidence_title2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/norse_regular"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:autoSizeMaxTextSize="50sp"
-                    android:autoSizeMinTextSize="10sp"
-                    android:autoSizeStepGranularity="1sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="Help!"
-                    android:textColor="?attr/bodyFontColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/goto_evidence_button2"
-                    app:layout_constraintHeight_percent=".3"
-                    app:layout_constraintStart_toStartOf="@+id/goto_evidence_button2"
-                    app:layout_constraintTop_toBottomOf="@+id/goto_evidence_button2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_nav3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout_nav2"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

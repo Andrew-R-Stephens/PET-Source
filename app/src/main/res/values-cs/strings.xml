@@ -313,5 +313,9 @@
     <string name="spiritbox_entry_q7_11">Why are you here?</string>
     <string name="evidence_timer_difficulty_4">Noční můra</string>
     <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
+    <string name="spiritbox_entry_q8_1">Jaký je můj zdravý rozum?</string>
+    <string name="spiritbox_entry_q8_2">Jak moc jsem blázen?</string>
+    <string name="spiritbox_entry_q8_3">Jak moc jsem blázen?</string>
+    <string name="spiritbox_entry_q8_4">Jsem blázen?</string>
 
 </resources>

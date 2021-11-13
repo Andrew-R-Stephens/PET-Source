@@ -277,5 +277,9 @@
     <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>
     <string name="messagecenter_inbox_general">Allgemeine Nachrichten</string>
     <string name="settings_networktitle">Mobile Datennutzung zulassen</string>
+    <string name="spiritbox_entry_q8_1">Was ist mein Verstand?</string>
+    <string name="spiritbox_entry_q8_2">Wie verrückt bin ich?</string>
+    <string name="spiritbox_entry_q8_3">Wie verrückt bin ich?</string>
+    <string name="spiritbox_entry_q8_4">Bin ich verrückt?</string>
 
 </resources>

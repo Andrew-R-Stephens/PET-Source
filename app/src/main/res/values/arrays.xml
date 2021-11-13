@@ -383,6 +383,10 @@
         <item>@string/spiritbox_entry_q7_3</item>
         <item>@string/spiritbox_entry_q7_9</item>
         <item>@string/spiritbox_entry_q7_11</item>
+        <item>@string/spiritbox_entry_q8_1</item>
+        <item>@string/spiritbox_entry_q8_2</item>
+        <item>@string/spiritbox_entry_q8_3</item>
+        <item>@string/spiritbox_entry_q8_4</item>
     </string-array>
 
 

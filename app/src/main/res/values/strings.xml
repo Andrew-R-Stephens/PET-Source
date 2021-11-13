@@ -413,43 +413,18 @@
     <string name="spiritbox_entry_q0_6">Hide!</string>
     <string name="spiritbox_entry_q0_8">Panic!</string>
     <string name="spiritbox_entry_q0_9">Run!</string>
-    <!-- Mental State Questions -->
+    <!-- Preferential Questions -->
     <string name="spiritbox_entry_q1_1">Are you angry?</string>
     <string name="spiritbox_entry_q1_2">Are you happy?</string>
     <string name="spiritbox_entry_q1_3">Are you friendly?</string>
-    <!--
-    <string name="spiritbox_entry_q1_4" translatable="false">Are you waiting?</string>
-    -->
     <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
     <string name="spiritbox_entry_q1_7">Do you want us here?</string>
     <!-- Name Questions -->
     <string name="spiritbox_entry_q2_1">What is your name?</string>
-    <!--<string name="spiritbox_entry_q2_2" translatable="false">Who are we talking to?</string>-->
     <!-- Age Questions -->
-    <!--
-    <string name="spiritbox_entry_q3_1" translatable="false">Are you young?</string>
-    <string name="spiritbox_entry_q3_2" translatable="false">Are you old?</string>
-    <string name="spiritbox_entry_q3_3" translatable="false">Are you a child?</string>
-    <string name="spiritbox_entry_q3_4" translatable="false">Are you an adult?</string>
-    -->
     <string name="spiritbox_entry_q3_5">How old are you?</string>
-    <!--
-    <string name="spiritbox_entry_q3_6" translatable="false">How young are you?</string>
-    <string name="spiritbox_entry_q3_7" translatable="false">When were you born?</string>
-    <string name="spiritbox_entry_q3_8" translatable="false">What is your age?</string>
-    -->
-    <!-- Gender Questions -->
-    <!--
-    <string name="spiritbox_entry_q4_1" translatable="false">What is your gender?</string>
-    <string name="spiritbox_entry_q4_2" translatable="false">Are you a boy?</string>
-    <string name="spiritbox_entry_q4_3" translatable="false">Are you a girl?</string>
-    <string name="spiritbox_entry_q4_4" translatable="false">Are you a man?</string>
-    <string name="spiritbox_entry_q4_5" translatable="false">Are you a woman?</string>
-    <string name="spiritbox_entry_q4_6" translatable="false">Are you male?</string>
-    <string name="spiritbox_entry_q4_7" translatable="false">Are you female?</string>
-    <string name="spiritbox_entry_q4_8" translatable="false">Are you male or female?</string>
-    -->
     <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_8" translatable="false">Where are you?</string>
     <string name="spiritbox_entry_q5_1">Are you here?</string>
     <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
     <string name="spiritbox_entry_q5_7">Where are you?</string>
@@ -459,7 +434,7 @@
     <string name="spiritbox_entry_q6_7">Do something.</string>
     <string name="spiritbox_entry_q6_8">Give us a sign!</string>
     <string name="spiritbox_entry_q0_7">Hunt us!</string>
-    <string name="spiritbox_entry_q6_16">Let us know you are here.</string>
+    <string name="spiritbox_entry_q6_16">Why are you here?</string>
     <string name="spiritbox_entry_q6_17">Make a noise.</string>
     <string name="spiritbox_entry_q6_18">Open the door.</string>
     <string name="spiritbox_entry_q6_9">Show yourself!</string>
@@ -471,5 +446,9 @@
     <string name="spiritbox_entry_q7_3">What can we do to help?</string>
     <string name="spiritbox_entry_q7_9">What do you want?</string>
     <string name="spiritbox_entry_q7_11">Why are you here?</string>
-
+    <!-- Sanity Questions -->
+    <string name="spiritbox_entry_q8_1">What is my sanity?</string>
+    <string name="spiritbox_entry_q8_2">How crazy am I?</string>
+    <string name="spiritbox_entry_q8_3">How insane am I?</string>
+    <string name="spiritbox_entry_q8_4">Am I insane?</string>
 </resources>

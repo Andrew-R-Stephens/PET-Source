@@ -271,5 +271,9 @@
     <string name="messagecenter_inbox_phas">Registro de Cambios de Phasmophobia</string>
     <string name="messagecenter_inbox_general">Noticias Generales</string>
     <string name="settings_networktitle">Permitir el uso de Datos Móviles</string>
+    <string name="spiritbox_entry_q8_1">¿Cuál es mi cordura?</string>
+    <string name="spiritbox_entry_q8_2">¿Que loco estoy?</string>
+    <string name="spiritbox_entry_q8_3">¿Que loco estoy?</string>
+    <string name="spiritbox_entry_q8_4">¿Estoy loco?</string>
 
 </resources>
