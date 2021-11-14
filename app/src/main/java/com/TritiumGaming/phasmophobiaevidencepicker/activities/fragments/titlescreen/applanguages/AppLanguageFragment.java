@@ -20,8 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.
-        views.LanguagesAdapterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.views.LanguagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 

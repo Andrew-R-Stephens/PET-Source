@@ -77,7 +77,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // INITIALIZE VIEWS
         AppCompatTextView difficulty_name = view.findViewById(R.id.difficulty_name);
         AppCompatTextView map_name = view.findViewById(R.id.mapchoice_name);
-        AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_tools);
+        AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_medleft);
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
         AppCompatImageButton difficulty_prev = view.findViewById(R.id.difficulty_prev);

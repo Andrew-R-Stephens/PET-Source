@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -31,12 +32,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.data.GhostBoxUtilityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.views.WaveformView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -79,7 +77,11 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
 
         AppCompatTextView title = view.findViewById(R.id.toolspiritbox_title);
         AppCompatTextView button_gotoEvidence_label = view.findViewById(R.id.label_goto_left);
+        AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
+        AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
+        View listener_reset = view.findViewById(R.id.listener_resetAll);
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
+        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
 
         LinearLayout scrollview_list1 = view.findViewById(R.id.linearlayout_scrollview_list1);
         LinearLayout scrollview_list2 = view.findViewById(R.id.linearlayout_scrollview_list2);
@@ -97,6 +99,11 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );
 
+        label_reset.setEnabled(false);
+        image_reset.setEnabled(false);
+        listener_reset.setEnabled(false);
+        listener_goto_right.setEnabled(false);
+
         if(getContext() != null) {
             setScrollListEntries(
                     getContext(), R.array.ghostspeaktool_general_array, scrollview_list1);
@@ -113,7 +120,6 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         //waveFormView.invalidate();
 
         startTextToSpeech();
-
     }
 
     /**
@@ -164,9 +170,9 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                     textToSpeech.speak(
                             entry.getText(), TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
-                        Log.d("TTS",
-                                "TTS is null, or RECORD_AUDIO is " +
-                                        permissionsViewModel.isRecordAudioAllowed());
+                    Log.d( "TTS",
+                            "TTS is null, or RECORD_AUDIO is " +
+                                    permissionsViewModel.isRecordAudioAllowed());
                 }
 
             }).start());
@@ -304,7 +310,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     private void requestAudioPermissions(Context c, Activity a) {
         if (ContextCompat.checkSelfPermission(
                 c, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            //When permission is not granted by user, show them message why this permission is needed.
+            // When permission is not granted by user,
+            // show them message why this permission is needed.
             int MY_PERMISSIONS_RECORD_AUDIO = 1;
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     a,
@@ -323,7 +330,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
             }
         }
 
-        //If permission is granted, then go ahead recording audio
+        // If permission is granted, then go ahead recording audio
         if (ContextCompat.checkSelfPermission(c,
                 Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
             permissionsViewModel.setRecordAudioAllowed(true);
