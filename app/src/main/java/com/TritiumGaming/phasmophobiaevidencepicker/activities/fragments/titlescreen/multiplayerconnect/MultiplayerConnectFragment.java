@@ -23,20 +23,27 @@ public class MultiplayerConnectFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_lobbyconnect, container, false);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(
+            @NonNull View view,
+            @Nullable Bundle savedInstanceState) {
 
         AppCompatTextView createLobby = view.findViewById(R.id.lobbyconnect_createlobby);
         AppCompatTextView joinLobby = view.findViewById(R.id.lobbyconnect_joinlobby);
 
-        createLobby.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multHost));
+        createLobby.setOnClickListener(v -> Navigation.findNavController(v).
+                navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multHost));
 
-        joinLobby.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multClient));
+        joinLobby.setOnClickListener(v -> Navigation.findNavController(v).
+                navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multClient));
 
     }
 

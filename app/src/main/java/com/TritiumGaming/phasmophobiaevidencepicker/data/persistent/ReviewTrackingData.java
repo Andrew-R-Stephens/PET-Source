@@ -68,8 +68,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     *
-     * @param timesOpened
      */
     public void incrementTimesOpened(){
         this.timesOpened += 1;

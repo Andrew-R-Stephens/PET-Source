@@ -21,7 +21,9 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
     private final ArrayList<MessageCenterMessageData> messages;
     private final OnMessageListener onMessageListener;
 
-    public MessagesAdapterView(ArrayList<MessageCenterMessageData> messages, OnMessageListener onMessageListener) {
+    public MessagesAdapterView(
+            ArrayList<MessageCenterMessageData> messages,
+            OnMessageListener onMessageListener) {
         this.messages = messages;
         this.onMessageListener = onMessageListener;
     }
@@ -48,7 +50,8 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
     public MessagesAdapterView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View messageView = inflater.inflate(R.layout.item_msginbox_message, parent, false);
+        View messageView = inflater.inflate(
+                R.layout.item_msginbox_message, parent, false);
         return new ViewHolder(messageView, this.onMessageListener);
     }
 
@@ -57,7 +60,9 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
         TextView textView = holder.label_messageTitle;
         textView.setText(messages.get(position).getTitle());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            textView.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            textView.setAutoSizeTextTypeUniformWithConfiguration(
+                    12, 24, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         }
     }
 

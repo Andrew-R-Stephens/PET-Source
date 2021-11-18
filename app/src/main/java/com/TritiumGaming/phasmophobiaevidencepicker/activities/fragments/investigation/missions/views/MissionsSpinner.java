@@ -66,7 +66,10 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      * @param attrs
      * @param data
      */
-    public MissionsSpinner(@NonNull Context context, @Nullable AttributeSet attrs, MissionsData data) {
+    public MissionsSpinner(
+            @NonNull Context context,
+            @Nullable AttributeSet attrs,
+            MissionsData data) {
         super(context, attrs);
         init();
     }
@@ -77,7 +80,10 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      * @param attrs
      * @param defStyleAttr
      */
-    public MissionsSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MissionsSpinner(
+            @NonNull Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -89,7 +95,11 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      * @param defStyleAttr
      * @param mode
      */
-    public MissionsSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode) {
+    public MissionsSpinner(
+            @NonNull Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr,
+            int mode) {
         super(context, attrs, defStyleAttr, mode);
         init();
     }
@@ -102,7 +112,12 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      * @param mode
      * @param popupTheme
      */
-    public MissionsSpinner(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int mode, Resources.Theme popupTheme) {
+    public MissionsSpinner(
+            @NonNull Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr,
+            int mode,
+            Resources.Theme popupTheme) {
         super(context, attrs, defStyleAttr, mode, popupTheme);
         init();
     }
@@ -122,8 +137,10 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      *
      */
     public void updateAdapter() {
-        ArrayList<MissionsData.Objective> obtainedObjectives = data.getObjectivesOfSelectedState(false);
-        ArrayAdapter<MissionsData.Objective> adapter = new ArrayAdapter<>(super.getContext(), R.layout.popup_spinner, obtainedObjectives);
+        ArrayList<MissionsData.Objective> obtainedObjectives =
+                data.getObjectivesOfSelectedState(false);
+        ArrayAdapter<MissionsData.Objective> adapter =
+                new ArrayAdapter<>(super.getContext(), R.layout.popup_spinner, obtainedObjectives);
         setAdapter(adapter);
     }
 

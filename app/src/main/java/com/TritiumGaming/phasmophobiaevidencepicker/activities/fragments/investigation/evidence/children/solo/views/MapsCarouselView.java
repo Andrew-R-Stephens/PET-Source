@@ -22,7 +22,10 @@ public class MapsCarouselView {
      * @param next
      * @param mapNameView
      */
-    public MapsCarouselView(AppCompatImageButton prev, AppCompatImageButton next, AppCompatTextView mapNameView) {
+    public MapsCarouselView(
+            AppCompatImageButton prev,
+            AppCompatImageButton next,
+            AppCompatTextView mapNameView) {
         setDifficultyDisplay(mapNameView);
         setPrev(prev);
         setNext(next);

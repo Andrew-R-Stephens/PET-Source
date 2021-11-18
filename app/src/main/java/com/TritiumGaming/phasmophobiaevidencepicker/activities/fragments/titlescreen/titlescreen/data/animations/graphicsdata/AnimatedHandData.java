@@ -51,7 +51,7 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      */
     public void setX(double x){
         this.x = x;
-        if(this.x+getScaledWidth() > SCREENW /*Resources.getSystem().getDisplayMetrics().widthPixels*/)
+        if(this.x+getScaledWidth() > SCREENW )
             this.x -= getScaledWidth();
         else if(this.x < getScaledWidth()*-1)
             this.x = 0;
@@ -63,7 +63,7 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      */
     public void setY(double y){
         this.y = y;
-        if(this.y+getScaledHeight() > SCREENH /*Resources.getSystem().getDisplayMetrics().heightPixels*/)
+        if(this.y+getScaledHeight() > SCREENH )
             this.y -= getScaledHeight();
         else if(this.y < getScaledHeight()*-1)
             this.y = 0;
@@ -149,7 +149,9 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      * @return
      */
     public PorterDuffColorFilter getFilter(){
-        return new PorterDuffColorFilter(Color.argb(alpha, 0, 255, 0), PorterDuff.Mode.MULTIPLY);
+        return new PorterDuffColorFilter(
+                Color.argb(alpha, 0, 255, 0),
+                PorterDuff.Mode.MULTIPLY);
     }
 
 }

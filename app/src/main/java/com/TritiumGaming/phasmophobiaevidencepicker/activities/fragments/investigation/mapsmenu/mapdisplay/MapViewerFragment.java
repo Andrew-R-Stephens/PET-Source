@@ -37,7 +37,8 @@ public class MapViewerFragment extends Fragment {
 
     private MapMenuViewModel mapViewViewModel = null;
 
-    private final InteractiveMapControlViewData controllerData = new InteractiveMapControlViewData();
+    private final InteractiveMapControlViewData controllerData =
+            new InteractiveMapControlViewData();
 
     private InteractiveMapDisplayView imageDisplay = null;
     private MapLayerSelectorGroup selectorGroup = null;
@@ -52,7 +53,10 @@ public class MapViewerFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         if (mapViewViewModel == null)
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
 
@@ -88,11 +92,21 @@ public class MapViewerFragment extends Fragment {
 
         // TEXT SIZE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            instructions_pan.setAutoSizeTextTypeUniformWithConfiguration(5, 20, 1, TypedValue.COMPLEX_UNIT_SP);
-            instructions_zoom.setAutoSizeTextTypeUniformWithConfiguration(5, 20, 1, TypedValue.COMPLEX_UNIT_SP);
-            mapName.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            layerName.setAutoSizeTextTypeUniformWithConfiguration(8, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+            instructions_pan.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
+            instructions_zoom.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
+            mapName.setAutoSizeTextTypeUniformWithConfiguration(
+                    20, 50, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
+            layerName.setAutoSizeTextTypeUniformWithConfiguration(
+                    8, 50, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
+            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 50, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
         }
 
         // SET VIEWS DISABLED
@@ -206,7 +220,8 @@ public class MapViewerFragment extends Fragment {
             if (selectorGroup != null)
                 selectorGroup.setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
             if (layerName != null)
-                layerName.setText(getResources().getString(mapViewViewModel.getCurrentMapData().getFloorName()));
+                layerName.setText(getResources().getString(
+                        mapViewViewModel.getCurrentMapData().getFloorName()));
             if (imageDisplay != null)
                 imageDisplay.invalidate();
         }
@@ -219,7 +234,8 @@ public class MapViewerFragment extends Fragment {
      */
     public void saveStates() {
         if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData())
-            mapViewViewModel.getCurrentMapData().setDefaultFloor(mapViewViewModel.getCurrentMapData().getCurrentFloor());
+            mapViewViewModel.getCurrentMapData().setDefaultFloor(
+                    mapViewViewModel.getCurrentMapData().getCurrentFloor());
     }
 
     /**
@@ -334,7 +350,9 @@ public class MapViewerFragment extends Fragment {
          */
         private class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
 
-            private final int[] selectorImages = new int[]{R.drawable.icon_selector_unselected, R.drawable.icon_selector_selected};
+            private final int[] selectorImages = new int[]{
+                    R.drawable.icon_selector_unselected,
+                    R.drawable.icon_selector_selected};
             private boolean isSelected = false;
 
             /**
@@ -343,7 +361,8 @@ public class MapViewerFragment extends Fragment {
             public MapLayerSelector(Context context) {
                 super(context);
 
-                setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT, 1f));
                 setScaleType(ImageView.ScaleType.FIT_CENTER);
                 setAdjustViewBounds(true);

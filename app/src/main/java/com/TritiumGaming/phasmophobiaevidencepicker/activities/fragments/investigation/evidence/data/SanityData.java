@@ -47,8 +47,14 @@ public class SanityData {
      * @return 1 - default. 0-2 Depending on Map Size.
      */
     public double getDifficultyRate(){
-        if(difficultyRate != null && (evidenceViewModel.getDifficulty() >= 0 && evidenceViewModel.getDifficulty() < difficultyRate.length))
-            return difficultyRate[evidenceViewModel.getDifficulty()];
+        if(evidenceViewModel == null || !evidenceViewModel.hasDifficultyCarouselData())
+            return 1;
+
+        int diffIndex = evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex();
+
+        if(difficultyRate != null &&
+                (diffIndex >= 0 && diffIndex < difficultyRate.length))
+            return difficultyRate[diffIndex];
 
         return 1;
     }
@@ -64,7 +70,8 @@ public class SanityData {
      */
     public double getDropRate(){
         if(evidenceViewModel != null) {
-            if (evidenceViewModel.hasTimer() && evidenceViewModel.getTimer().getTimeRemaining() <= 0L)
+            if (evidenceViewModel.hasTimer() &&
+                    evidenceViewModel.getTimer().getTimeRemaining() <= 0L)
                 return dropRate_normal[evidenceViewModel.getMapCurrentSize()];
             return dropRate_setup[evidenceViewModel.getMapCurrentSize()];
         }
@@ -185,7 +192,8 @@ public class SanityData {
      * Sets the Start Time of the Sanity Drain, based on remaining time, sanity, difficulty and map size.
      */
     public void setProgressManually(long progressOverride){
-        double newStartTime = (System.currentTimeMillis() + (MAX_SANITY-progressOverride/getDifficultyRate()/getDropRate()/.001));
+        double newStartTime = (System.currentTimeMillis() +
+                (MAX_SANITY-progressOverride/getDifficultyRate()/getDropRate()/.001));
         setStartTime((long)newStartTime);
         setFlashTimeoutStart(-1);
     }
@@ -263,12 +271,14 @@ public class SanityData {
     public void tick(){
         double multiplier = .001; // Multiplier which drops the rate to appropriate levels
         //Algorithm which mimics in-game sanity drop, based on map size, difficulty level and investigation phase.
-        insanityActual = (float) ((((System.currentTimeMillis() - (getStartTime() == -1 ? System.currentTimeMillis() : getStartTime())) * multiplier * getDropRate()) * getDifficultyRate()));
+        insanityActual = (float) ((((System.currentTimeMillis() - (getStartTime() == -1 ? System.currentTimeMillis() :
+                getStartTime())) * multiplier * getDropRate()) * getDifficultyRate()));
         if(insanityActual >= 100L)
             insanityActual = 100L;
         if(evidenceViewModel != null) {
             // If the Countdown timer still has time, and the player's sanity is less than or equal to halfway gone, set the remaining sanity to half.
-            if (getInsanityPercent() <= .5 && evidenceViewModel.getTimer() != null && evidenceViewModel.getTimer().getTimeRemaining() > 0L)
+            if (getInsanityPercent() <= .5 && evidenceViewModel.getTimer() != null &&
+                    evidenceViewModel.getTimer().getTimeRemaining() > 0L)
                 setProgressManually(50);
         }
     }

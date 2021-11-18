@@ -4,9 +4,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 
 public class EvidenceSanitySectionData {
 
-    private DifficultyCarouselViewData difficultyCarouselViewData;
-    private MapCarouselViewData mapCarouselViewData;
-    private PhaseTimerControlViewData phaseTimerControlViewData;
+    private DifficultyCarouselData difficultyCarouselViewData;
+    private MapCarouselData mapCarouselViewData;
+    private PhaseTimerControlData phaseTimerControlViewData;
     private PhaseTimerViewData phaseTimerViewData;
     private WarnTextViewData warnTextViewData;
 

@@ -44,8 +44,15 @@ public class SanityRunnable implements Runnable {
      * @param huntWarningTextView
      * @param audio_huntWarn
      */
-    public SanityRunnable(EvidenceViewModel evidenceViewModel, SanityMeterView sanityMeterSoloView, AppCompatTextView sanityMeterTextView, AppCompatSeekBar sanityMeterSeekBar,
-                          WarnTextView setupPhaseTextView, WarnTextView actionPhaseTextView, WarnTextView huntWarningTextView, MediaPlayer audio_huntWarn){
+    public SanityRunnable(
+            EvidenceViewModel evidenceViewModel,
+            SanityMeterView sanityMeterSoloView,
+            AppCompatTextView sanityMeterTextView,
+            AppCompatSeekBar sanityMeterSeekBar,
+            WarnTextView setupPhaseTextView,
+            WarnTextView actionPhaseTextView,
+            WarnTextView huntWarningTextView,
+            MediaPlayer audio_huntWarn){
 
         this.evidenceViewModel = evidenceViewModel;
 
@@ -79,12 +86,17 @@ public class SanityRunnable implements Runnable {
     @Override
     public void run() {
 
-        if(evidenceViewModel != null && evidenceViewModel.hasSanityData() && evidenceViewModel.getSanityData().getStartTime() == -1)
+        if(evidenceViewModel != null &&
+                evidenceViewModel.hasSanityData() &&
+                evidenceViewModel.getSanityData().getStartTime() == -1)
             evidenceViewModel.getSanityData().setStartTime(System.currentTimeMillis());
 
-        if(evidenceViewModel != null && evidenceViewModel.hasSanityData() && !evidenceViewModel.getSanityData().isPaused()) {
+        if(evidenceViewModel != null &&
+                evidenceViewModel.hasSanityData() &&
+                !evidenceViewModel.getSanityData().isPaused()) {
 
-            if(evidenceViewModel.hasTimer() && !evidenceViewModel.getTimer().isPaused()) {
+            if(evidenceViewModel.hasTimer() &&
+                    !evidenceViewModel.getTimer().isPaused()) {
 
                 evidenceViewModel.getSanityData().tick();
                 sanityMeterTextView.setText(evidenceViewModel.getSanityData().toPercentString());
@@ -100,7 +112,9 @@ public class SanityRunnable implements Runnable {
                     }
 
                     if (audio_huntWarn != null) {
-                        if (evidenceViewModel.isHuntWarningAudioAllowed() && !evidenceViewModel.isSetup() && evidenceViewModel.getSanityData().canWarn()) {
+                        if (evidenceViewModel.isHuntWarningAudioAllowed() &&
+                                !evidenceViewModel.isSetup() &&
+                                evidenceViewModel.getSanityData().canWarn()) {
                             audio_huntWarn.start();
                             if (evidenceViewModel.hasSanityData())
                                 evidenceViewModel.getSanityData().setCanWarn(false);
@@ -122,8 +136,10 @@ public class SanityRunnable implements Runnable {
                     } else
                         huntWarningTextView.setState(false);
 
-                    if (evidenceViewModel.hasSanityData() && !evidenceViewModel.getSanityData().isPaused())
-                        sanityMeterSeekBar.setProgress((int) evidenceViewModel.getSanityData().getSanityActual());
+                    if (evidenceViewModel.hasSanityData() &&
+                            !evidenceViewModel.getSanityData().isPaused())
+                        sanityMeterSeekBar.setProgress(
+                                (int) evidenceViewModel.getSanityData().getSanityActual());
 
                 }
             }

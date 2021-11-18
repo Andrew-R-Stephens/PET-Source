@@ -29,11 +29,16 @@ public class EvidenceMPClientFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         if(MPClientViewModel == null)
-            MPClientViewModel = new ViewModelProvider(requireActivity()).get(MPClientViewModel.class);
+            MPClientViewModel =
+                    new ViewModelProvider(requireActivity()).get(MPClientViewModel.class);
 
-        return inflater.inflate(R.layout.fragment_evidence_mult_client, container, false);
+        return inflater.inflate(
+                R.layout.fragment_evidence_mult_client, container, false);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

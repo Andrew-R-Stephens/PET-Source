@@ -25,7 +25,10 @@ public class UtilitiesFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_utilities, container, false);
     }
 
@@ -42,6 +45,7 @@ public class UtilitiesFragment extends Fragment {
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         goto_spiritboxtool.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_utilitiesFragment_to_toolSpiritBoxFragment));
+                Navigation.findNavController(v).
+                        navigate(R.id.action_utilitiesFragment_to_toolSpiritBoxFragment));
     }
 }

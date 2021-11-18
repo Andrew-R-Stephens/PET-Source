@@ -34,10 +34,14 @@ public class MessageCenterMessageDetailsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
         if (messageInboxViewModel == null)
-            messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+            messageInboxViewModel =
+                    new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
 
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
     }
@@ -52,8 +56,12 @@ public class MessageCenterMessageDetailsFragment extends Fragment {
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
 
         // TEXT SIZE
-        label_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_date.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_title.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_date.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
         //label_content.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS

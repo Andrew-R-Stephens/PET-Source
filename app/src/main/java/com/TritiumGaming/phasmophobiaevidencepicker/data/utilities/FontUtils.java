@@ -29,7 +29,9 @@ public class FontUtils {
      * @return
      */
     public static float dpToSp(View view, float dpActual){
-        return (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, dpActual, view.getContext().getResources().getDisplayMetrics())) / view.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, dpActual, view.getContext().
+                getResources().getDisplayMetrics())) /
+                view.getContext().getResources().getDisplayMetrics().scaledDensity;
     }
 
     /**

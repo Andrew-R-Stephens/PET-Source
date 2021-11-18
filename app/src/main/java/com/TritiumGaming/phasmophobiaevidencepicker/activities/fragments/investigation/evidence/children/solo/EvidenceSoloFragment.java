@@ -37,7 +37,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
     private Thread sanityThread; //Thread that updates the sanity levels
 
-    private DifficultyCarouselView difficultySelectControls;
+    private DifficultyCarouselView difficultyCarouselView;
+
     private WarnTextView sanityPhaseView_setup, sanityPhaseView_action;
 
     /**
@@ -64,7 +65,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             String[] names = new String[typedArray.length()];
             int[] sizes = new int[typedArray.length()];
             for(int i = 0; i < typedArray.length(); i++) {
-                TypedArray mapTypedArray = getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
+                TypedArray mapTypedArray =
+                        getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
                 names[i] = mapTypedArray.getString(0);
                 int sizeLayer = 6;
                 sizes[i] = mapTypedArray.getInt(sizeLayer, 0);
@@ -89,13 +91,16 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
         // TEXT SIZE
-        map_name.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
+        map_name.setAutoSizeTextTypeUniformWithConfiguration(
+                5,50,1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
             if(evidenceViewModel != null && evidenceViewModel.hasTimer()) {
                 evidenceViewModel.getTimer().createTimer(0L, 1000L);
-                if((!(evidenceViewModel.getTimer().getTimeRemaining() > 0L)) && evidenceViewModel.getSanityData().getSanityActual() < 50)
+                if((!(evidenceViewModel.getTimer().getTimeRemaining() > 0L)) &&
+                        evidenceViewModel.getSanityData().getSanityActual() < 50)
                     evidenceViewModel.getSanityData().setProgressManually(50);
             }
         });
@@ -109,7 +114,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 ft.attach(EvidenceSoloFragment.this).commitNow();
                 }
         );
-        btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
+        btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).
+                navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
 
         // TIMER CONTROL
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
@@ -128,20 +134,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         MapsCarouselView mapTrackControl = new MapsCarouselView(map_prev, map_next, map_name);
         mapTrackControl.init(evidenceViewModel);
         map_name.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
-        difficultySelectControls = new DifficultyCarouselView(
+        difficultyCarouselView = new DifficultyCarouselView(
+                evidenceViewModel.getDifficultyCarouselData(),
                 evidenceViewModel.getTimer(),
                 difficulty_prev,
                 difficulty_next,
-                difficulty_name,
-                getResources().getString(R.string.evidence_timer_difficulty_default),
-                getResources().getStringArray(R.array.evidence_timer_difficulty_names_array),
-                getResources().getStringArray(R.array.evidence_timer_difficulty_times_array));
+                difficulty_name);
         if(evidenceViewModel != null && evidenceViewModel.hasTimer())
             evidenceViewModel.getTimer().setTimerControls(playPauseButton);
-        difficultySelectControls.init(evidenceViewModel);
-        difficultySelectControls.setTimerControl(playPauseButton);
+        difficultyCarouselView.setTimerControl(playPauseButton);
         if(evidenceViewModel != null)
-            difficultySelectControls.setState(evidenceViewModel.getDifficulty());
+            difficultyCarouselView.setState(
+                    evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex());
 
         // SANITY METER
         if(sanitySeekBar != null)
@@ -159,8 +163,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      * saveStates method
      */
     public void saveStates() {
-        if(evidenceViewModel != null)
-            evidenceViewModel.setDifficulty(difficultySelectControls.getState());
         super.saveStates();
     }
 
@@ -169,8 +171,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      */
     public void softReset(){
         disableUIThread();
-        if(difficultySelectControls != null)
-            difficultySelectControls.reset();
+        if(difficultyCarouselView != null)
+            difficultyCarouselView.reset();
         super.softReset();
     }
 
@@ -194,7 +196,14 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         break;
                 }
                 evidenceViewModel.setSanityRunnable(new SanityRunnable(
-                        evidenceViewModel, sanityMeterView, sanityPercent, sanitySeekBar, sanityPhaseView_setup, sanityPhaseView_action, sanityWarning, huntwarn));
+                        evidenceViewModel,
+                        sanityMeterView,
+                        sanityPercent,
+                        sanitySeekBar,
+                        sanityPhaseView_setup,
+                        sanityPhaseView_action,
+                        sanityWarning,
+                        huntwarn));
             }
 
             if (sanityThread == null) {
@@ -203,10 +212,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 if (evidenceViewModel.hasSanityRunnable()) {
                     sanityThread = new Thread() {
                         public void run() {
-                        while (evidenceViewModel != null && evidenceViewModel.hasSanityData() && !evidenceViewModel.getSanityData().isPaused()) {
+                        while (evidenceViewModel != null && evidenceViewModel.hasSanityData() &&
+                                !evidenceViewModel.getSanityData().isPaused()) {
                             try {
-                                if (getActivity() != null)
-                                    getActivity().runOnUiThread(evidenceViewModel.getSanityRunnable());
+                                if (getActivity() != null) {
+                                    getActivity().runOnUiThread(
+                                            evidenceViewModel.getSanityRunnable());
+                                }
                                 long now = System.nanoTime();
                                 long updateTime = System.nanoTime() - now;
                                 int TARGET_FPS = 30;
@@ -217,7 +229,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                                 evidenceViewModel.getSanityRunnable().setWait(wait);
                                 Thread.sleep(wait);
                             } catch (InterruptedException e) {
-                                Log.e("EvidenceFragment", "(SanityThread) InterruptedException error handled.");
+                                Log.e("EvidenceFragment",
+                                        "(SanityThread) InterruptedException error handled.");
                             }
                         }
                         }

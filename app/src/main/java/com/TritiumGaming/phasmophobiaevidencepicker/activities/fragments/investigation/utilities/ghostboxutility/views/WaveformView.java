@@ -75,7 +75,11 @@ public class WaveformView extends View {
 	 * @param defStyleAttr
 	 * @param defStyleRes
 	 */
-	public WaveformView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public WaveformView(
+			Context context,
+			@Nullable AttributeSet attrs,
+			int defStyleAttr,
+			int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 		init();
 	}

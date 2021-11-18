@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
@@ -29,15 +29,30 @@ public class EvidenceViewModel extends ViewModel {
     private int mapCurrent = 0;
 
     private PhaseTimerView timer = null;
-    private int difficulty = 0;
+
+    private DifficultyCarouselData difficultyCarouselData = null;
 
     public void init(Context c) {
 
-        if(!hasInvestigationData())
+        if(!hasInvestigationData()) {
             setInvestigationData(new InvestigationData(c));
+        }
 
-        if(!hasSanityData())
+        if(!hasDifficultyCarouselData()){
+            difficultyCarouselData = new DifficultyCarouselData(this, c);
+        }
+
+        if(!hasSanityData()) {
             sanityData = new SanityData(this);
+        }
+    }
+
+    public DifficultyCarouselData getDifficultyCarouselData() {
+        return difficultyCarouselData;
+    }
+
+    public boolean hasDifficultyCarouselData() {
+        return difficultyCarouselData != null;
     }
 
     /**
@@ -227,23 +242,6 @@ public class EvidenceViewModel extends ViewModel {
         return getTimer().getTimeRemaining() > 0L;
     }
 
-    /**
-     *
-     * @param difficulty
-     */
-    public void setDifficulty(int difficulty){
-        this.difficulty = difficulty;
-        if(hasSanityData())
-            getSanityData().setCanWarn(true);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getDifficulty(){
-        return difficulty;
-    }
 
     /**
      *
@@ -279,7 +277,6 @@ public class EvidenceViewModel extends ViewModel {
      */
     public void reset() {
         timer = null;
-        difficulty = 0;
         investigationData.resetAll();
         radioButtonsChecked = null;
         if (sanityData != null)

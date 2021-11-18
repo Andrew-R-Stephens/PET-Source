@@ -42,7 +42,10 @@ public class MapMenuFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
 
         if(mapViewViewModel == null)
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
@@ -84,8 +87,12 @@ public class MapMenuFragment extends Fragment {
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
 
         // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        title.setAutoSizeTextTypeUniformWithConfiguration(
+                20, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                10, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
@@ -115,11 +122,14 @@ public class MapMenuFragment extends Fragment {
                 mapViewViewModel.setMapData(getContext());
         for(int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
             AppCompatTextView mapName = new AppCompatTextView(view.getContext());
-            mapName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            mapName.setLayoutParams(
+                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
             mapName.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             mapName.setTypeface(universalFont);
-            mapName.setAutoSizeTextTypeUniformWithConfiguration(10, 30, 1, TypedValue.COMPLEX_UNIT_SP);
+            mapName.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 30, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
             mapName.setText(mapViewViewModel.getMapData()[i].getMapName());
             mapName.setTextColor(Color.WHITE);
             int mapPos = i;

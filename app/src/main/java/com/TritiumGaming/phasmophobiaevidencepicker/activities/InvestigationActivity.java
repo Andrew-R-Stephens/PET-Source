@@ -37,7 +37,8 @@ public class InvestigationActivity extends AppCompatActivity {
 
         setLanguage(getAppLanguage());
 
-        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getInt(getString(R.string.preference_colorSpace), 0);
+        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+                getInt(getString(R.string.preference_colorSpace), 0);
         changeTheme(colorSpace);
 
         int intentFragment = getIntent().getExtras().getInt("lobby");
@@ -52,7 +53,8 @@ public class InvestigationActivity extends AppCompatActivity {
             }
         }
 
-        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+        ViewModelProvider.AndroidViewModelFactory factory =
+                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
 
         permissionsViewModel = factory.create(PermissionsViewModel.class);
         //if(permissionsViewModel == null)
@@ -63,7 +65,8 @@ public class InvestigationActivity extends AppCompatActivity {
 
         objectives = factory.create(ObjectivesViewModel.class);
 
-        if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(getString(R.string.preference_isAlwaysOn), false))
+        if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+                getBoolean(getString(R.string.preference_isAlwaysOn), false))
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
@@ -85,7 +88,8 @@ public class InvestigationActivity extends AppCompatActivity {
      * @return the abbreviation of the chosen language that's saved to file
      */
     public String getAppLanguage(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString("chosenLanguage", "en");
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+                getString("chosenLanguage", "en");
     }
 
     /**
@@ -93,7 +97,8 @@ public class InvestigationActivity extends AppCompatActivity {
      * @return the decided ability to emanate audio that has been saved to file
      */
     public boolean getHuntWarningAllowed(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+                getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
     }
 
     /**
@@ -101,7 +106,8 @@ public class InvestigationActivity extends AppCompatActivity {
      * @return the decided ability to flash the HuntWarning indicator that has been saved to file
      */
     public int getHuntWarningFlashTimeout(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getInt(getString(R.string.preference_huntWarningFlashTimeout),-1);
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+                getInt(getString(R.string.preference_huntWarningFlashTimeout),-1);
     }
 
     /**

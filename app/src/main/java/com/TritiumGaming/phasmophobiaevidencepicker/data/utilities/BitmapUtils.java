@@ -92,7 +92,11 @@ public class BitmapUtils {
 
         // Query actual list configurations
         EGLConfig[] configurationsList = new EGLConfig[totalConfigurations[0]];
-        egl.eglGetConfigs(display, configurationsList, totalConfigurations[0], totalConfigurations);
+        egl.eglGetConfigs(
+                display,
+                configurationsList,
+                totalConfigurations[0],
+                totalConfigurations);
 
         int[] textureSize = new int[1];
         int maximumTextureSize = 0;
@@ -100,7 +104,11 @@ public class BitmapUtils {
         // Iterate through all the configurations to located the maximum texture size
         for (int i = 0; i < totalConfigurations[0]; i++) {
             // Only need to check for width since opengl textures are always squared
-            egl.eglGetConfigAttrib(display, configurationsList[i], EGL10.EGL_MAX_PBUFFER_WIDTH, textureSize);
+            egl.eglGetConfigAttrib(
+                    display,
+                    configurationsList[i],
+                    EGL10.EGL_MAX_PBUFFER_WIDTH,
+                    textureSize);
 
             // Keep track of the maximum texture size
             if (maximumTextureSize < textureSize[0])
@@ -158,16 +166,14 @@ public class BitmapUtils {
         options.inSampleSize = 1;
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(c.getResources(), id, options);
-        //Log.d(getClass().getName(), "Image Before: InSampleSize- " + options.inSampleSize + ", OW- " + options.outWidth + ", OH- " + options.outHeight + ", SW- " + screenW + ", SH- " + screenH);
 
         // Raw height and width of image with respect to starting sampleSize
         final int height = options.outHeight, width = options.outWidth;
-        int highestDim = Math.max(height, width); //Get biggest image dimension between both width and height
+        //Get biggest image dimension between both width and height
+        int highestDim = Math.max(height, width);
         double dimScale = (double)maxTextureSize/(double)highestDim*options.inDensity;
-        //Log.d(getClass().getName(), "Scaling: DimScale: " + dimScale + " MaxDim: " + maxTextureSize + " highestDim: " + highestDim);
         if(dimScale < 1)
             options.inSampleSize += (int)Math.ceil(Math.abs(dimScale));
-        //Log.d(getClass().getName(), "Image After: InSampleSize- " + options.inSampleSize + ", OW- " + options.outWidth + ", OH- " + options.outHeight + ", SW- " + screenW + ", SH- " + screenH);
 
         options.inJustDecodeBounds = false;
 
@@ -183,7 +189,10 @@ public class BitmapUtils {
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) throws OutOfMemoryError {
         if(baseLayer == null && BitmapUtils.bitmapExists(topLayer))
-            baseLayer = Bitmap.createBitmap(topLayer.getWidth(), topLayer.getHeight(), topLayer.getConfig());
+            baseLayer = Bitmap.createBitmap(
+                    topLayer.getWidth(),
+                    topLayer.getHeight(),
+                    topLayer.getConfig());
         if(baseLayer != null && !baseLayer.isRecycled()) {
             Canvas canvas = new Canvas(baseLayer);
             if (topLayer != null) {

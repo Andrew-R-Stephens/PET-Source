@@ -41,7 +41,8 @@ public class MapData {
      * setDefaultFloor
      * @param index
      */
-    public void setDefaultFloor(int index) { this.currentFloorIndex = this.defaultFloorIndex = index; }
+    public void setDefaultFloor(int index) {
+        this.currentFloorIndex = this.defaultFloorIndex = index; }
 
     /**
      *

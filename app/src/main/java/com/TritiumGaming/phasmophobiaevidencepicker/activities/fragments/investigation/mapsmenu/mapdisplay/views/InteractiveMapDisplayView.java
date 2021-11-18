@@ -87,7 +87,9 @@ public class InteractiveMapDisplayView extends View {
                 for(int j = 0; j < floor.size(); j++) {
                     bitmapUtils.setResources(floor);
                     while (bitmapUtils.hasNextBitmap()) {
-                        mapImages.set(index, bitmapUtils.compileNextBitmap(getContext(), mapImages.get(index)));
+                        mapImages.set(
+                                index,
+                                bitmapUtils.compileNextBitmap(getContext(), mapImages.get(index)));
                         a.runOnUiThread(this::invalidate);
                     }
                 }
@@ -115,7 +117,11 @@ public class InteractiveMapDisplayView extends View {
             if(mapImages != null && mapData != null && mapData.getCurrentFloor() < mapImages.size()){
                 Bitmap b = mapImages.get(mapData.getCurrentFloor());
                 if(BitmapUtils.bitmapExists(b)) {
-                    controllerData.postTranslateMatrix(b.getWidth(), b.getHeight(), getWidth(), getHeight());
+                    controllerData.postTranslateMatrix(
+                            b.getWidth(),
+                            b.getHeight(),
+                            getWidth(),
+                            getHeight());
                     canvas.drawBitmap(b, controllerData.getMatrix(), paint);
                 }
             }

@@ -65,23 +65,30 @@ public class TitlescreenFragment extends Fragment {
     private PopupWindow popup = null;
 
     private boolean canRunAnim = true, canRunMessageCenter = true;
-    private Thread animInitThread = null, initReadyThread = null, animTickThread = null, animDrawThread = null;
+    private Thread animInitThread = null, animTickThread = null, animDrawThread = null,
+            initReadyThread = null;
     private Thread messageCenterThread = null;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null)
-            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
+                    get(GlobalPreferencesViewModel.class);
         // INITIALIZE VIEW MODEL
         if (getContext() != null)
             globalPreferencesViewModel.init(getContext());
 
         if (titleScreenViewModel == null)
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+            titleScreenViewModel = new ViewModelProvider(requireActivity()).
+                    get(TitlescreenViewModel.class);
 
         if (messageCenterViewModel == null)
-            messageCenterViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+            messageCenterViewModel = new ViewModelProvider(requireActivity()).
+                    get(MessageCenterViewModel.class);
 
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
@@ -110,10 +117,18 @@ public class TitlescreenFragment extends Fragment {
             icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
 
         // TEXT SIZE
-        label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_languageName.setAutoSizeTextTypeUniformWithConfiguration(5, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        button_startSolo.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        button_startMult.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_languageName.setAutoSizeTextTypeUniformWithConfiguration(
+                5, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        button_startSolo.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        button_startMult.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();
@@ -154,7 +169,8 @@ public class TitlescreenFragment extends Fragment {
         }
 
         // REQUEST REVIEW LISTENER
-        if (globalPreferencesViewModel != null && globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {
+        if (globalPreferencesViewModel != null &&
+                globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {
             button_review.setOnClickListener(v -> showReviewPopup(getView()));
         } else {
             button_review.setEnabled(false);
@@ -171,22 +187,36 @@ public class TitlescreenFragment extends Fragment {
             boolean isUpToDate = true;
 
             if(messageCenterViewModel != null) {
+
                 if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_phas = XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_phas, getContext().getResources().getString(R.string.preference_phasmophobia_changelog_link), MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
-                } else {
-                    isUpToDate = false;
-                }
-                if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_gen = XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_gen, getContext().getResources().getString(R.string.preference_general_news_link), MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
+                    XmlPullParserFactory xmlPullParserFactory_phas =
+                            XmlPullParserFactory.newInstance();
+                    new RSSParserUtils(xmlPullParserFactory_phas,
+                            getContext().getResources().
+                                    getString(R.string.preference_phasmophobia_changelog_link),
+                            MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
                 } else {
                     isUpToDate = false;
                 }
 
                 if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_pet = XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_pet, getContext().getResources().getString(R.string.preference_pet_changelog_link), MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
+                    XmlPullParserFactory xmlPullParserFactory_gen =
+                            XmlPullParserFactory.newInstance();
+                    new RSSParserUtils(xmlPullParserFactory_gen,
+                            getContext().getResources().
+                                    getString(R.string.preference_general_news_link),
+                            MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
+                } else {
+                    isUpToDate = false;
+                }
+
+                if (getContext() != null) {
+                    XmlPullParserFactory xmlPullParserFactory_pet =
+                            XmlPullParserFactory.newInstance();
+                    new RSSParserUtils(xmlPullParserFactory_pet,
+                            getContext().getResources().
+                                    getString(R.string.preference_pet_changelog_link),
+                            MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
                 } else {
                     isUpToDate = false;
                 }
@@ -204,9 +234,11 @@ public class TitlescreenFragment extends Fragment {
      * doReviewRequest method
      */
     public void requestReview() {
-        //Log.d("Review", titleScreenViewModel.getReviewRequestData().canRequestReview() + " " + titleScreenViewModel.getReviewRequestData().getTimesOpened());
+        //Log.d("Review", titleScreenViewModel.getReviewRequestData().canRequestReview() +
+        // " " + titleScreenViewModel.getReviewRequestData().getTimesOpened());
 
-        if (globalPreferencesViewModel != null && globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
+        if (globalPreferencesViewModel != null &&
+                globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
 
             Log.d("Review", "Review Request Accepted");
             Thread tempThread = new Thread(() -> {
@@ -231,14 +263,16 @@ public class TitlescreenFragment extends Fragment {
     }
 
     private void gotoMessageCenterFragment(View v){
-        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment);
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_inboxFragment);
     }
 
     /**
      * gotoAppInfoFragment method
      */
     private void gotoAppInfoFragment(View v) {
-        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appInfoFragment);
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_appInfoFragment);
     }
 
 
@@ -247,14 +281,16 @@ public class TitlescreenFragment extends Fragment {
      */
     private void gotoAppSettingsFragment(View v) {
 
-        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
     }
 
     /**
      * gotoLanguagesFragment method
      */
     public void gotoLanguagesFragment(View v) {
-        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment);
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_appLanguageFragment);
     }
 
     /**
@@ -267,7 +303,8 @@ public class TitlescreenFragment extends Fragment {
             popup.dismiss();
 
         //INFLATE LAYOUT
-        LayoutInflater inflater = (LayoutInflater) requireView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) requireView().getContext().
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams")
         View customView = inflater.inflate(R.layout.popup_requestreview, null);
 
@@ -284,9 +321,15 @@ public class TitlescreenFragment extends Fragment {
         AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
 
         // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        declineButton.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        title.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        declineButton.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         acceptButton.setOnClickListener(v -> {
@@ -318,17 +361,16 @@ public class TitlescreenFragment extends Fragment {
                             (requestTask.getException()).printStackTrace();
 
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(getResources().getString(R.string.review_storelink)));
+                        intent.setData(Uri.parse(getResources().
+                                getString(R.string.review_storelink)));
                         intent.setPackage("com.android.vending");
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        try { startActivity(intent); }
+                        catch (ActivityNotFoundException e) { e.printStackTrace(); }
                     }
                 });
             }
         });
+
         declineButton.setOnClickListener(v -> {
             popup.dismiss();
             popup = null;
@@ -336,34 +378,44 @@ public class TitlescreenFragment extends Fragment {
 
         // FINALIZE
         popup.setAnimationStyle(R.anim.nav_default_enter_anim);
-        //Log.d("Review", "Preparing to display");
+
         boolean success = parentView.post(() -> {
+
             //Log.d("Review", "Is displaying");
             popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+
         });
-        //Log.d("Review", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+
+        Log.d("Review", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+
     }
 
     private void startLoadMessageCenterThread() {
 
         messageCenterThread = new Thread(() -> {
 
-            while (canRunMessageCenter && !messageCenterViewModel.isUpToDate()) {
+            Log.d("MessageCenter", "Attempting to load inboxes...");
 
-                Log.d("registerMessageInboxes", "Attempting to load inboxes...");
+            final int MAX_CYCLES = 3;
+            int currentCycle = 0;
+
+            while (canRunMessageCenter &&
+                    (!messageCenterViewModel.isUpToDate()) || (currentCycle < MAX_CYCLES)) {
+
                 registerMessageInboxes();
 
                 if (!messageCenterViewModel.isUpToDate()) {
-                    Log.d("registerMessageInboxes", "Load attempts failed!");
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                    Log.d("MessageCenter", "Load failed!");
+
+                    try { Thread.sleep(10000); }
+                    catch (InterruptedException e) { e.printStackTrace(); }
+
                 }
 
+                currentCycle++;
             }
-            Log.d("registerMessageInboxes", "Document load completed.");
+            Log.d("MessageCenter", "Load completed.");
 
         });
 
@@ -372,17 +424,24 @@ public class TitlescreenFragment extends Fragment {
     }
 
     private void startInitMessageCenterThread() {
-        if(NetworkUtils.isNetworkAvailable(getContext(), globalPreferencesViewModel.getNetworkPreference()))
+
+        if(NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference()))
             startLoadMessageCenterThread();
         else
-            Log.d("registerMessageInboxes", "Could not load Document data");
+            Log.d("MessageCenter", "Could not obtain external data");
+
     }
 
     private void stopLoadMessageCenterThread(){
+
         if (messageCenterThread != null) {
+
             messageCenterThread.interrupt();
             messageCenterThread = null;
+
         }
+
     }
 
     /**
@@ -391,27 +450,33 @@ public class TitlescreenFragment extends Fragment {
     private void startAnimInitThreads() {
 
         if (animInitThread == null) {
+
             animInitThread = new Thread() {
+
                 public void run() {
                     animationView.init(titleScreenViewModel, bitmapUtils);
                     animationView.buildImages();
                     animationView.buildData();
                 }
+
             };
             animInitThread.start();
+
         }
         if (initReadyThread == null) {
+
             initReadyThread = new Thread(() -> {
+
                 while (!canRunAnim) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    try { Thread.sleep(100); }
+                    catch (InterruptedException e) { e.printStackTrace(); }
                 }
                 startAnimThreads();
+
             });
+
             initReadyThread.start();
+
         }
     }
 
@@ -430,7 +495,8 @@ public class TitlescreenFragment extends Fragment {
                             long now = System.nanoTime();
                             long updateTime = System.nanoTime() - now;
                             double TARGET_FPS = 30;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && (getContext() != null && getContext().getDisplay() != null)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                                    (getContext() != null && getContext().getDisplay() != null)) {
                                 TARGET_FPS = getContext().getDisplay().getRefreshRate();
                                 if (TARGET_FPS > 60)
                                     TARGET_FPS = 60;
@@ -468,7 +534,8 @@ public class TitlescreenFragment extends Fragment {
                             long now = System.nanoTime();
                             long updateTime = System.nanoTime() - now;
                             double TARGET_FPS = 30;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && (getContext() != null && getContext().getDisplay() != null)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                                    (getContext() != null && getContext().getDisplay() != null)) {
                                 TARGET_FPS = getContext().getDisplay().getRefreshRate();
                                 if (TARGET_FPS > 60)
                                     TARGET_FPS = 60;

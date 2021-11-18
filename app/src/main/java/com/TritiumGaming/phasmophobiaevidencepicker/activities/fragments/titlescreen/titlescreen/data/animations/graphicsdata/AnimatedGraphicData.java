@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class AnimatedGraphicData {
 
     private AnimatedGraphicQueue queue = new AnimatedGraphicQueue(10, 500);
-    private final ArrayList<AbstractAnimatedGraphic> allPool = new ArrayList<>(), currentPool = new ArrayList<>();
+    private final ArrayList<AbstractAnimatedGraphic> allPool = new ArrayList<>(),
+            currentPool = new ArrayList<>();
 
     private int selectedWriting = -1;
     private float rotWriting, rotHand;
@@ -95,7 +96,8 @@ public class AnimatedGraphicData {
      *
      * @param animated
      */
-    public void removeFromCurrentPool(AbstractAnimatedGraphic animated) { currentPool.remove(animated); }
+    public void removeFromCurrentPool(
+            AbstractAnimatedGraphic animated) { currentPool.remove(animated); }
 
     /**
      *

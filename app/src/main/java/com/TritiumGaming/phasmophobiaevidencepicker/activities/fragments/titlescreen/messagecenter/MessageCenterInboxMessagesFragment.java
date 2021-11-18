@@ -32,12 +32,19 @@ public class MessageCenterInboxMessagesFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
         if (messageInboxViewModel == null)
-            messageInboxViewModel = new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+            messageInboxViewModel =
+                    new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
 
-        return inflater.inflate(R.layout.fragment_msginbox_listmessages, container, false);
+        return inflater.inflate(
+                R.layout.fragment_msginbox_listmessages,
+                container,
+                false);
     }
 
     @Override
@@ -48,7 +55,9 @@ public class MessageCenterInboxMessagesFragment extends Fragment {
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
         RecyclerView recyclerViewMessages = view.findViewById(R.id.recyclerview_messageslist);
         // TEXT SIZE
-        label_title.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_title.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // SET VIEW TEXT
         label_title.setText(messageInboxViewModel.getCurrentInboxType().getName(view.getContext()));
@@ -56,14 +65,17 @@ public class MessageCenterInboxMessagesFragment extends Fragment {
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
         if(messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
-            MessagesAdapterView adapter = new MessagesAdapterView(messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
+            MessagesAdapterView adapter = new MessagesAdapterView(
+                    messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
                 messageInboxViewModel.setCurrentMessageId(position);
-                Navigation.findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
+                Navigation.findNavController(view).
+                        navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
             });
             recyclerViewMessages.setAdapter(adapter);
             recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
         } else {
-            Log.d("InboxMessageListFrag", "Inbox does not exist!" + messageInboxViewModel.getCurrentInboxType().getName(getContext()));
+            Log.d("InboxMessageListFrag", "Inbox does not exist!" +
+                    messageInboxViewModel.getCurrentInboxType().getName(getContext()));
         }
     }
 

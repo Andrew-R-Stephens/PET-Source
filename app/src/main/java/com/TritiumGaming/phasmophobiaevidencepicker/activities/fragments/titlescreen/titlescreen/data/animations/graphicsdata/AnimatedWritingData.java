@@ -23,7 +23,12 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      * @param bitmapH
      * @param animationData
      */
-    public AnimatedWritingData(int screenW, int screenH, int bitmapW, int bitmapH, AnimatedGraphicData animationData){
+    public AnimatedWritingData(
+            int screenW,
+            int screenH,
+            int bitmapW,
+            int bitmapH,
+            AnimatedGraphicData animationData){
         super(screenW, screenH);
 
         MAX_ALPHA = 200;
@@ -41,7 +46,9 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
         setX();
         setY();
 
-        setTickMax((int) ((Math.random() * (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
+        setTickMax(
+                (int) ((Math.random() *
+                        (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
 
         animationData.setRotWriting(rotation);
     }
@@ -159,7 +166,9 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      * @return
      */
     public PorterDuffColorFilter getFilter(){
-        return new PorterDuffColorFilter(Color.argb(alpha, 100, 100, 100), PorterDuff.Mode.MULTIPLY);
+        return new PorterDuffColorFilter(
+                Color.argb(alpha, 100, 100, 100),
+                PorterDuff.Mode.MULTIPLY);
     }
 
 }

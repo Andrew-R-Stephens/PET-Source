@@ -21,7 +21,11 @@ public class PhaseTimerControlView {
      * @param icon_play
      * @param icon_pause
      */
-    public PhaseTimerControlView(PhaseTimerView timer, AppCompatImageButton play_pause_view, int icon_play, int icon_pause) {
+    public PhaseTimerControlView(
+            PhaseTimerView timer,
+            AppCompatImageButton play_pause_view,
+            int icon_play,
+            int icon_pause) {
         setTimer(timer);
         setTextView(play_pause_view);
 

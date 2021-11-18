@@ -99,7 +99,9 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      * @return
      */
     public PorterDuffColorFilter getFilter(){
-        return new PorterDuffColorFilter(Color.argb(alpha, 230, 255, 255), PorterDuff.Mode.MULTIPLY);
+        return new PorterDuffColorFilter(
+                Color.argb(alpha, 230, 255, 255),
+                PorterDuff.Mode.MULTIPLY);
     }
 
 }

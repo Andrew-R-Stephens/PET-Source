@@ -35,8 +35,10 @@ public class InvestigationData {
         for(int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
             ghost.setName(ghostNames[i]);
-            TypedArray typedArray = c.getResources().obtainTypedArray(R.array.ghost_evidence_arrays);
-            TypedArray nameTypedArray = c.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
+            TypedArray typedArray =
+                    c.getResources().obtainTypedArray(R.array.ghost_evidence_arrays);
+            TypedArray nameTypedArray =
+                    c.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
             typedArray.recycle();
             for(int j = 0; j < nameTypedArray.length(); j++)
                 ghost.addEvidence(nameTypedArray.getString(j));

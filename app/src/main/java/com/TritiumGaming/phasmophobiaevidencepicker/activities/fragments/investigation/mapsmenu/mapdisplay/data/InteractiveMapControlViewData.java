@@ -99,7 +99,9 @@ public class InteractiveMapControlViewData {
         }
 
         matrix.setScale(zoomLevel, zoomLevel);
-        matrix.postTranslate((viewW / 2f) - (imgW / 2f * zoomLevel) + (panX * zoomLevel), (viewH / 2f) - (imgH / 2f * zoomLevel) + (panY * zoomLevel));
+        matrix.postTranslate(
+                (viewW / 2f) - (imgW / 2f * zoomLevel) + (panX * zoomLevel),
+                (viewH / 2f) - (imgH / 2f * zoomLevel) + (panY * zoomLevel));
 
         float[] vals = new float[9];
         matrix.getValues(vals);

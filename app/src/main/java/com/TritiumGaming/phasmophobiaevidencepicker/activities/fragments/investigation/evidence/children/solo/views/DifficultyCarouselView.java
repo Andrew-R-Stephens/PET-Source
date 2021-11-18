@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 
 /**
  * DifficultySelectControl class
@@ -12,46 +12,41 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
  */
 public class DifficultyCarouselView {
 
-    private EvidenceViewModel evidenceViewModel = null;
+    private DifficultyCarouselData difficultyCarouselData;
 
-    private PhaseTimerView timer = null;
-    private PhaseTimerControlView timerPlayControl = null;
+    private PhaseTimerView timerView;
+    private PhaseTimerControlView timerControlView;
+    private AppCompatTextView difficultyNameView;
 
-    private AppCompatTextView difficultyNameView = null;
-
-    private String defaultDifficultyName = null;
-    private String[] difficultyNames = null;
-    private long[] difficultyTimes = null;
 
     /**
      * DifficultySelectControl parameterized constructor
-     * @param timer -
-     * @param evidence_prev -
-     * @param evidence_next -
-     * @param difficultyNameView -
-     * @param defaultDifficultyName -
-     * @param difficultyNames -
-     * @param difficultyTimes -
      */
-    public DifficultyCarouselView(PhaseTimerView timer,
-                                  AppCompatImageButton evidence_prev, AppCompatImageButton evidence_next, AppCompatTextView difficultyNameView,
-                                  String defaultDifficultyName, String[] difficultyNames, String[] difficultyTimes) {
-        setTimer(timer);
+    public DifficultyCarouselView(
+            DifficultyCarouselData difficultyCarouselData,
+            PhaseTimerView timerView,
+            AppCompatImageButton prevButton,
+            AppCompatImageButton nextButton,
+            AppCompatTextView difficultyNameView ) {
 
-        setPrev(evidence_prev);
-        setNext(evidence_next);
+        setDifficultyCarouselData(difficultyCarouselData);
 
-        setDifficultyName(difficultyNameView);
-        setDifficultyNames(defaultDifficultyName, difficultyNames);
-        setDifficultyTimes(difficultyTimes);
+        setDifficultyNameView(difficultyNameView);
+        setTimerView(timerView);
+        setPrev(prevButton);
+        setNext(nextButton);
+
     }
 
     /**
      * init method
-     * @param evidenceViewModel -
      */
-    public void init(EvidenceViewModel evidenceViewModel){
-        this.evidenceViewModel = evidenceViewModel;
+    public void init(DifficultyCarouselData difficultyCarouselData) {
+        this.difficultyCarouselData = difficultyCarouselData;
+    }
+
+    public void setDifficultyCarouselData(DifficultyCarouselData difficultyCarouselData) {
+        this.difficultyCarouselData = difficultyCarouselData;
     }
 
     /**
@@ -61,17 +56,9 @@ public class DifficultyCarouselView {
     private void setPrev(AppCompatImageButton prev){
         prev.setOnClickListener(v -> {
 
-            if(evidenceViewModel != null) {
-                int state = evidenceViewModel.getDifficulty() - 1;
-                if (state < 0)
-                    state = difficultyNames.length - 1;
-                evidenceViewModel.setDifficulty(state);
+            if(difficultyCarouselData.decrementDifficulty())
+                createTimerView();
 
-                createTimer();
-
-                if(evidenceViewModel.hasSanityData())
-                    evidenceViewModel.getSanityData().setCanWarn(true);
-            }
         });
     }
 
@@ -82,17 +69,8 @@ public class DifficultyCarouselView {
     private void setNext(AppCompatImageButton next){
         next.setOnClickListener(v -> {
 
-            if(evidenceViewModel != null) {
-                int state = evidenceViewModel.getDifficulty() + 1;
-                if (state >= difficultyNames.length)
-                    state = 0;
-                evidenceViewModel.setDifficulty(state);
-
-                createTimer();
-
-                if(evidenceViewModel.hasSanityData())
-                    evidenceViewModel.getSanityData().setCanWarn(true);
-            }
+            if(difficultyCarouselData.incrementDifficulty())
+                createTimerView();
 
         });
     }
@@ -102,54 +80,32 @@ public class DifficultyCarouselView {
      * @param stateControl
      */
     public void setTimerControl(PhaseTimerControlView stateControl) {
-        this.timerPlayControl = stateControl;
+        this.timerControlView = stateControl;
     }
 
     /**
      * createTimer method
      */
-    private void createTimer() {
-        timer.createTimer(difficultyTimes[evidenceViewModel.getDifficulty()], 1000L);
-        difficultyNameView.setText(difficultyNames[evidenceViewModel.getDifficulty()]);
-        timerPlayControl.setPaused();
-    }
-
-    /**
-     * setDifficultyName method
-     * @param difficultyNameView
-     */
-    private void setDifficultyName(AppCompatTextView difficultyNameView){
-        this.difficultyNameView = difficultyNameView;
-    }
-
-    /**
-     * setDifficultyNames method
-     * @param defaultDifficultyName
-     * @param difficultyNames
-     */
-    private void setDifficultyNames(String defaultDifficultyName, String[] difficultyNames) {
-        this.defaultDifficultyName = defaultDifficultyName;
-        this.difficultyNames = difficultyNames;
-    }
-
-    /**
-     * setDifficultyTimes
-     * @param dt
-     */
-    private void setDifficultyTimes(String[] dt) {
-        long[] temp = new long[dt.length];
-        for(int i = 0; i < dt.length; i++)
-            temp[i] = Long.parseLong(dt[i]);
-
-        this.difficultyTimes = temp;
+    private void createTimerView() {
+        timerView.createTimer(difficultyCarouselData.getCurrentDifficultyTime(), 1000L);
+        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
+        timerControlView.setPaused();
     }
 
     /**
      * setTimer method
      * @param timer
      */
-    public void setTimer(PhaseTimerView timer) {
-        this.timer = timer;
+    public void setTimerView(PhaseTimerView timer) {
+        this.timerView = timer;
+    }
+
+    /**
+     * setDifficultyName method
+     * @param difficultyNameView
+     */
+    private void setDifficultyNameView(AppCompatTextView difficultyNameView){
+        this.difficultyNameView = difficultyNameView;
     }
 
     /**
@@ -157,7 +113,7 @@ public class DifficultyCarouselView {
      * @return
      */
     public int getState() {
-        return evidenceViewModel.getDifficulty();
+        return difficultyCarouselData.getDifficultyIndex();
     }
 
     /**
@@ -165,13 +121,8 @@ public class DifficultyCarouselView {
      * @param state
      */
     public void setState(int state) {
-        if(evidenceViewModel != null)
-            evidenceViewModel.setDifficulty(state);
-
-        if(state == -1)
-            difficultyNameView.setText(defaultDifficultyName);
-        else
-            difficultyNameView.setText(difficultyNames[state]);
+        difficultyCarouselData.setDifficulty(state);
+        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
     }
 
     /**

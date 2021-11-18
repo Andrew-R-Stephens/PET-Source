@@ -88,7 +88,10 @@ public class EvidenceFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_evidence_solo, container, false);
     }
 
@@ -99,13 +102,16 @@ public class EvidenceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if(evidenceViewModel == null) {
-            evidenceViewModel = new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
+            evidenceViewModel =
+                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
             evidenceViewModel.init(getContext());
         }
 
         if(getActivity() != null) {
-            evidenceViewModel.setHuntWarningAudioAllowed(((InvestigationActivity) getActivity()).getHuntWarningAllowed());
-            evidenceViewModel.setHuntWarningFlashTimeout(((InvestigationActivity) getActivity()).getHuntWarningFlashTimeout());
+            evidenceViewModel.setHuntWarningAudioAllowed(
+                    ((InvestigationActivity) getActivity()).getHuntWarningAllowed());
+            evidenceViewModel.setHuntWarningFlashTimeout(
+                    ((InvestigationActivity) getActivity()).getHuntWarningFlashTimeout());
         }
 
         // FONT FAMILY
@@ -151,13 +157,27 @@ public class EvidenceFragment extends Fragment {
 
 
         // TEXT SIZES
-        timer_text.setAutoSizeTextTypeUniformWithConfiguration(5,50,1, TypedValue.COMPLEX_UNIT_SP);
-        label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(5, 25, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
-        sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(5,20, 1, TypedValue.COMPLEX_UNIT_SP);
-        sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(5,50, 1, TypedValue.COMPLEX_UNIT_SP);
+        timer_text.setAutoSizeTextTypeUniformWithConfiguration(
+                5,50,1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
+                5, 25, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                10, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
+                10, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(
+                5,20, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
+                5,20, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(
+                5,50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_goto_left.setOnClickListener(v -> {
@@ -200,7 +220,8 @@ public class EvidenceFragment extends Fragment {
                         evidenceViewModel.getSanityData().tick();
 
                         if (sanityPercent != null) {
-                            sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
+                            sanityPercent.setText(
+                                    evidenceViewModel.getSanityData().toPercentString());
                             sanityPercent.invalidate();
                         }
                         sanityMeterView.invalidate();
@@ -221,12 +242,17 @@ public class EvidenceFragment extends Fragment {
             // EVIDENCE RADIO BUTTON GROUPS
         evidenceRadioGroups = new EvidenceRadioGroup[InvestigationData.getEvidenceCount()];
         EvidenceRadioButton[][] radioButtons_evidence =
-                new EvidenceRadioButton[InvestigationData.getEvidenceCount()][InvestigationData.Evidence.Ruling.values().length];
-        Log.d("EvidenceRadioButton", radioButtons_evidence.length + " " + radioButtons_evidence[0].length);
+                new EvidenceRadioButton
+                        [InvestigationData.getEvidenceCount()]
+                        [InvestigationData.Evidence.Ruling.values().length];
+        Log.d("EvidenceRadioButton",
+                radioButtons_evidence.length + " " + radioButtons_evidence[0].length);
             // GHOST LABELS
         ghostLabels = new GhostLabel[InvestigationData.getGhostCount()];
             // EVIDENCE ICONS
-        ghostEvidenceIcons = new GhostIcon[InvestigationData.getGhostCount()][InvestigationData.Evidence.Ruling.values().length];
+        ghostEvidenceIcons = new GhostIcon
+                [InvestigationData.getGhostCount()]
+                [InvestigationData.Evidence.Ruling.values().length];
         //ghostEvidenceIcons = new GhostIcon[InvestigationData.Ghost.values().length][InvestigationData.Evidence.Ruling.values().length];
 
         // FONT SIZES
@@ -266,7 +292,9 @@ public class EvidenceFragment extends Fragment {
         else {
             evidenceViewModel.setTimer(new PhaseTimerView(timer_text));
             evidenceViewModel.getTimer().init(evidenceViewModel);
-            evidenceViewModel.getTimer().createTimer(Long.parseLong(getResources().getStringArray(R.array.evidence_timer_difficulty_times_array)[evidenceViewModel.getDifficulty()]), 1000L);
+            evidenceViewModel.getTimer().createTimer(
+                    evidenceViewModel.getDifficultyCarouselData().getCurrentDifficultyTime(),
+                    1000L);
         }
 
         // SANITY
@@ -340,7 +368,8 @@ public class EvidenceFragment extends Fragment {
         // SET VALUES FOR GHOST ITEMS
         for(int i = 0; i < ghostItems.length; i++) {
             int ghostID = ghostItems[i].getID();
-            int rating = evidenceViewModel.getInvestigationData().getGhost(ghostID).getEvidenceScore();
+            int rating =
+                    evidenceViewModel.getInvestigationData().getGhost(ghostID).getEvidenceScore();
 
             // OLD CODE
             if(ghostLabels[ghostID] != null) {
@@ -357,7 +386,9 @@ public class EvidenceFragment extends Fragment {
                     ghostLabels[ghostID].setBackground(icon_circle);
                 } else if (rating <= -3) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        ghostLabels[ghostID].setForeground(icon_strikethroughs[(int) (Math.random() * icon_strikethroughs.length)]);
+                        ghostLabels[ghostID].setForeground(
+                                icon_strikethroughs[
+                                        (int) (Math.random() * icon_strikethroughs.length)]);
                     } else {
                         ghostLabels[ghostID].setTextColor(Color.DKGRAY);
                     }
@@ -376,8 +407,10 @@ public class EvidenceFragment extends Fragment {
         // BUBBLE SORT THE GHOST LIST
         for (int i = 0; i < newReorderedList.length - 1;) {
 
-            int ratingA = evidenceViewModel.getInvestigationData().getGhost(newReorderedList[i].getID()).getEvidenceScore(),
-                    ratingB = evidenceViewModel.getInvestigationData().getGhost(newReorderedList[i+1].getID()).getEvidenceScore();
+            int ratingA = evidenceViewModel.getInvestigationData().getGhost(
+                    newReorderedList[i].getID()).getEvidenceScore();
+            int ratingB = evidenceViewModel.getInvestigationData().getGhost(
+                    newReorderedList[i+1].getID()).getEvidenceScore();
 
             if (ratingA < ratingB) {
                 GhostItem t = newReorderedList[i + 1];
@@ -405,7 +438,9 @@ public class EvidenceFragment extends Fragment {
      * @param evidenceContainer
      * @param radioButtons_evidence
      */
-    public void initEvidenceList(LinearLayout evidenceContainer, EvidenceRadioButton[][] radioButtons_evidence) {
+    public void initEvidenceList(
+            LinearLayout evidenceContainer,
+            EvidenceRadioButton[][] radioButtons_evidence) {
         // EVIDENCE LIST
         // LOAD CHECKED RADIO BUTTONS
         int[] checkedStorage = null;
@@ -453,8 +488,11 @@ public class EvidenceFragment extends Fragment {
             evidenceContainer_inner.removeAllViews();
         }
 
-        AppCompatTextView[] labels_evidence = new AppCompatTextView[InvestigationData.getEvidenceCount()];
-        EvidenceRadioButton[][] radioButtons_evidence = new EvidenceRadioButton[InvestigationData.getEvidenceCount()][InvestigationData.Evidence.Ruling.values().length];
+        AppCompatTextView[] labels_evidence =
+                new AppCompatTextView[InvestigationData.getEvidenceCount()];
+        EvidenceRadioButton[][] radioButtons_evidence = new EvidenceRadioButton
+                        [InvestigationData.getEvidenceCount()]
+                        [InvestigationData.Evidence.Ruling.values().length];
 
         int[] checkedStorage = getSelectedRadioButtons();
         // Evidence Body
@@ -463,18 +501,22 @@ public class EvidenceFragment extends Fragment {
             //Create Evidence group containers
             LinearLayout evidence_labelAndRadios = new LinearLayout(getContext());
             evidence_labelAndRadios.setOrientation(LinearLayout.VERTICAL);
-            LinearLayout.LayoutParams evidenceLabelParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            LinearLayout.LayoutParams evidenceLabelParams =
+                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             evidence_labelAndRadios.setLayoutParams(evidenceLabelParams);
             evidence_labelAndRadios.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 
             //create and add evidence labels
             if(getContext() != null) {
                 labels_evidence[i] = new AppCompatTextView(getContext());
-                labels_evidence[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+                labels_evidence[i].setLayoutParams(
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT, 1f));
                 labels_evidence[i].setTypeface(font_normal, Typeface.NORMAL);
-                labels_evidence[i].setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                labels_evidence[i].setAutoSizeTextTypeUniformWithConfiguration(
+                        fontSize[0], fontSize[1], 1,
+                        TypedValue.COMPLEX_UNIT_SP);
                 labels_evidence[i].setTextColor(Color.WHITE);
                 String evidenceName = getResources().getStringArray(R.array.evidence_tool_names)[i];
                 labels_evidence[i].setText(evidenceName);
@@ -487,7 +529,9 @@ public class EvidenceFragment extends Fragment {
                     if (popup != null)
                         popup.dismiss();
 
-                    LayoutInflater inflater = (LayoutInflater) getView().getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater inflater =
+                            (LayoutInflater) getView().getContext().getSystemService(
+                                    Context.LAYOUT_INFLATER_SERVICE);
                     @SuppressLint("InflateParams")
                     View customView = inflater.inflate(R.layout.popup_info, null);
 
@@ -500,10 +544,18 @@ public class EvidenceFragment extends Fragment {
                     closeButton.setOnClickListener(v1 -> popup.dismiss());
 
                     AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                    name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                    name.setAutoSizeTextTypeUniformWithConfiguration(
+                            fontSize[0],
+                            50,
+                            1,
+                            TypedValue.COMPLEX_UNIT_SP);
                     name.setText(evidenceName);
                     AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                    info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                    info.setAutoSizeTextTypeUniformWithConfiguration(
+                            fontSize[0],
+                            fontSize[1],
+                            1,
+                            TypedValue.COMPLEX_UNIT_SP);
                     info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                             getResources().getStringArray(R.array.evidence_info_array)[num],
                             "ff6161", fontEmphasisColor + "")));
@@ -523,8 +575,11 @@ public class EvidenceFragment extends Fragment {
                         /*evidenceViewModel.getInvestigationData(),*/
                         InvestigationData.getEvidence(i),
                         InvestigationData.Evidence.Ruling.values()[j]);
-                LinearLayout.LayoutParams radioButtonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT, 1f);
+                LinearLayout.LayoutParams radioButtonLayoutParams =
+                        new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                1f);
                 radioButtonLayoutParams.setMargins(0,0,0,0);
                 radioButtons_evidence[i][j].setLayoutParams(radioButtonLayoutParams);
                 radioButtons_evidence[i][j].setPadding(0,0,0,0);
@@ -534,8 +589,11 @@ public class EvidenceFragment extends Fragment {
             }
 
             evidenceRadioGroups[i] = new EvidenceRadioGroup(getContext(), radioButtons_evidence[i]);
-            evidenceRadioGroups[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            evidenceRadioGroups[i].setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            1f));
             evidenceRadioGroups[i].setOrientation(RadioGroup.HORIZONTAL);
 
             evidenceRadioGroups[i].setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
@@ -699,12 +757,17 @@ public class EvidenceFragment extends Fragment {
                     LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
             setTypeface(font_normal, Typeface.NORMAL);
 
-            setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+            setAutoSizeTextTypeUniformWithConfiguration(
+                    fontSize[0],
+                    fontSize[1],
+                    1,
+                    TypedValue.COMPLEX_UNIT_SP);
             String ghostTempName = "N/A";
             //if(getResources().getStringArray(R.array.evidence_ghost_names).length > id)
             //    ghostTempName = getResources().getStringArray(R.array.evidence_ghost_names)[id];
             //else
-                ghostTempName = evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
+                ghostTempName =
+                        evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
             String ghostName = ghostTempName;
 
             setText(ghostName);
@@ -715,7 +778,8 @@ public class EvidenceFragment extends Fragment {
             setOnClickListener(v -> {
                 if (popup != null)
                     popup.dismiss();
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("InflateParams")
                 View customView = inflater.inflate(R.layout.popup_info, null);
                 popup = new PopupWindow(
@@ -725,10 +789,14 @@ public class EvidenceFragment extends Fragment {
                 );
 
                 AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        fontSize[0], 50, 1,
+                        TypedValue.COMPLEX_UNIT_SP);
                 name.setText(ghostName);
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                info.setAutoSizeTextTypeUniformWithConfiguration(
+                        fontSize[0], fontSize[1], 1,
+                        TypedValue.COMPLEX_UNIT_SP);
                 String[] ghostInfoArray = getResources().getStringArray(R.array.ghost_info_array);
                 if(ghostInfoArray.length > id) {
                     //info.setText(Html.fromHtml(getResources().getStringArray(R.array.ghost_info_array)[id]));
@@ -898,7 +966,9 @@ public class EvidenceFragment extends Fragment {
                     LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
             setTypeface(font_normal, Typeface.NORMAL);
-            setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+            setAutoSizeTextTypeUniformWithConfiguration(
+                    fontSize[0], fontSize[1], 1,
+                    TypedValue.COMPLEX_UNIT_SP);
             setTextColor(Color.WHITE);
             String evidenceName = getResources().getStringArray(R.array.evidence_tool_names)[index];
             setText(evidenceName);
@@ -906,7 +976,8 @@ public class EvidenceFragment extends Fragment {
             setOnClickListener(v -> {
                 if (popup != null)
                     popup.dismiss();
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater =
+                        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("InflateParams")
                 View customView = inflater.inflate(R.layout.popup_info, null);
                 popup = new PopupWindow(
@@ -917,10 +988,14 @@ public class EvidenceFragment extends Fragment {
                 AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
                 AppCompatTextView name = customView.findViewById(R.id.label_queryName);
-                name.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], 50, 1, TypedValue.COMPLEX_UNIT_SP);
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        fontSize[0], 50, 1,
+                        TypedValue.COMPLEX_UNIT_SP);
                 name.setText(evidenceName);
                 AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
-                info.setAutoSizeTextTypeUniformWithConfiguration(fontSize[0], fontSize[1], 1, TypedValue.COMPLEX_UNIT_SP);
+                info.setAutoSizeTextTypeUniformWithConfiguration(
+                        fontSize[0], fontSize[1], 1,
+                        TypedValue.COMPLEX_UNIT_SP);
 
                 //info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[index]));
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
@@ -952,7 +1027,11 @@ public class EvidenceFragment extends Fragment {
         public EvidenceRadioGroup(Context context, EvidenceRadioButton[] buttons) {
             super(context);
 
-            setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            1f));
             setOrientation(RadioGroup.HORIZONTAL);
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
 
@@ -1077,13 +1156,20 @@ public class EvidenceFragment extends Fragment {
          * @param evidenceType The Evidence name
          * @param ruling The Ruling of the Evidence
          */
-        public EvidenceRadioButton(Context context, InvestigationData.Evidence evidenceType, InvestigationData.Evidence.Ruling ruling) {
+        public EvidenceRadioButton(
+                Context context,
+                InvestigationData.Evidence evidenceType,
+                InvestigationData.Evidence.Ruling ruling) {
             super(context);
 
             this.evidenceType = evidenceType;
             this.ruling = ruling;
 
-            LinearLayout.LayoutParams radioButtonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f);
+            LinearLayout.LayoutParams radioButtonLayoutParams =
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            1f);
             radioButtonLayoutParams.setMargins(0,0,0,0);
             setLayoutParams(radioButtonLayoutParams);
             setPadding(0,0,0,0);
@@ -1106,17 +1192,23 @@ public class EvidenceFragment extends Fragment {
             if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEGATIVE.name())) {
                 theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
                 checkedColor = typedValue.data;
-                setStateImages(R.drawable.icon_negative_unselected, R.drawable.icon_negative_selected);
+                setStateImages(
+                        R.drawable.icon_negative_unselected,
+                        R.drawable.icon_negative_selected);
             }
             else if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEUTRAL.name())) {
                 theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
                 checkedColor = typedValue.data;
-                setStateImages(R.drawable.icon_inconclusive_unselected, R.drawable.icon_inconclusive_selected);
+                setStateImages(
+                        R.drawable.icon_inconclusive_unselected,
+                        R.drawable.icon_inconclusive_selected);
             }
             else if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.POSITIVE.name())) {
                 theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
                 checkedColor = typedValue.data;
-                setStateImages(R.drawable.icon_positive_unselected, R.drawable.icon_positive_selected);
+                setStateImages(
+                        R.drawable.icon_positive_unselected,
+                        R.drawable.icon_positive_selected);
             }
 
             updateImage();

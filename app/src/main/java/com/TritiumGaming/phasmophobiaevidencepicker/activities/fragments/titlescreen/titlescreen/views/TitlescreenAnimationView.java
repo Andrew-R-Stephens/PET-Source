@@ -67,7 +67,10 @@ public class TitlescreenAnimationView extends View {
      * @param attrs
      * @param defStyleAttr
      */
-    public TitlescreenAnimationView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TitlescreenAnimationView(
+            Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -78,7 +81,11 @@ public class TitlescreenAnimationView extends View {
      * @param defStyleAttr
      * @param defStyleRes
      */
-    public TitlescreenAnimationView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public TitlescreenAnimationView(
+            Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -87,19 +94,24 @@ public class TitlescreenAnimationView extends View {
      * @param titleScreenViewModel
      * @param bitmapUtils
      */
-    public void init(TitlescreenViewModel titleScreenViewModel, BitmapUtils bitmapUtils) {
+    public void init(
+            TitlescreenViewModel titleScreenViewModel,
+            BitmapUtils bitmapUtils) {
         this.titleScreenViewModel = titleScreenViewModel;
         this.bitmapUtils = bitmapUtils;
 
         //Set writing resources
-        TypedArray bookwritingArray = getResources().obtainTypedArray(R.array.anim_bookwriting_images);
+        TypedArray bookwritingArray =
+                getResources().obtainTypedArray(R.array.anim_bookwriting_images);
         bookwritingResId = new ArrayList<>();
         for (int i = 0; i < bookwritingArray.length(); i++)
             bookwritingResId.add(bookwritingArray.getResourceId(i, 0));
         bookwritingArray.recycle();
 
-        if(titleScreenViewModel != null && titleScreenViewModel.getAnimationData().getSelectedWriting() == -1) {
-            titleScreenViewModel.getAnimationData().setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
+        if(titleScreenViewModel != null &&
+                titleScreenViewModel.getAnimationData().getSelectedWriting() == -1) {
+            titleScreenViewModel.getAnimationData().
+                    setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
         }
     }
 
@@ -107,10 +119,15 @@ public class TitlescreenAnimationView extends View {
      *
      */
     public void buildImages() {
-        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).compileBitmaps(getContext());
-        bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).compileBitmaps(getContext());
-        bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).compileBitmaps(getContext());
-        bitmap_writing = bitmapUtils.setResource(bookwritingResId.get(titleScreenViewModel.getAnimationData().getSelectedWriting())).compileBitmaps(getContext());
+        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
+                compileBitmaps(getContext());
+        bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).
+                compileBitmaps(getContext());
+        bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).
+                compileBitmaps(getContext());
+        bitmap_writing = bitmapUtils.setResource(
+                bookwritingResId.get(titleScreenViewModel.getAnimationData().getSelectedWriting())).
+                compileBitmaps(getContext());
     }
 
     /**
@@ -125,12 +142,14 @@ public class TitlescreenAnimationView extends View {
                 for(AbstractAnimatedGraphic animated: animationData.getAllPool()) {
                     if(animated instanceof AnimatedHandData) {
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
-                            bitmap_handRot = ((AnimatedHandData) animated).rotateBitmap(bitmap_hand);
+                            bitmap_handRot = ((AnimatedHandData) animated).
+                                    rotateBitmap(bitmap_hand);
                         }
                     }
                     else if(animated instanceof AnimatedWritingData) {
                         if (BitmapUtils.bitmapExists(bitmap_writing)) {
-                            bitmap_writingRot = ((AnimatedWritingData) animated).rotateBitmap(bitmap_writing);
+                            bitmap_writingRot = ((AnimatedWritingData) animated).
+                                    rotateBitmap(bitmap_writing);
                         }
                     }
                 }
@@ -141,33 +160,49 @@ public class TitlescreenAnimationView extends View {
             int numOrbs = 3; //3
             for (int i = 0; i < numOrbs; i++)
                 if(BitmapUtils.bitmapExists(bitmap_orb)) {
-                    animationData.addToAllPool(new AnimatedOrbData(screenW, screenH));
+                    animationData.addToAllPool(new AnimatedOrbData(
+                            screenW,
+                            screenH));
                 }
 
             //Add hands
             int numHands = 1; //1
             for (int i = 0; i < numHands; i++)
                 if(BitmapUtils.bitmapExists(bitmap_hand)) {
-                    animationData.addToAllPool(new AnimatedHandData(screenW, screenH, bitmap_hand.getWidth(), bitmap_hand.getHeight()));
-                    bitmap_handRot = ((AnimatedHandData) animationData.getLastFromAllPool()).rotateBitmap(bitmap_hand);
+                    animationData.addToAllPool(new AnimatedHandData(
+                            screenW,
+                            screenH,
+                            bitmap_hand.getWidth(),
+                            bitmap_hand.getHeight()));
+                    bitmap_handRot = ((AnimatedHandData) animationData.getLastFromAllPool()).
+                            rotateBitmap(bitmap_hand);
                 }
 
             //Add writing
             int numWriting = 1; //1
             for (int i = 0; i < numWriting; i++)
                 if(BitmapUtils.bitmapExists(bitmap_writing)) {
-                    animationData.addToAllPool(new AnimatedWritingData(screenW, screenH, bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
-                    bitmap_writingRot = ((AnimatedWritingData) animationData.getLastFromAllPool()).rotateBitmap(bitmap_writing);
+                    animationData.addToAllPool(new AnimatedWritingData(
+                            screenW,
+                            screenH,
+                            bitmap_writing.getWidth(),
+                            bitmap_writing.getHeight(),
+                            animationData));
+                    bitmap_writingRot = ((AnimatedWritingData) animationData.
+                            getLastFromAllPool()).rotateBitmap(bitmap_writing);
                 }
 
             //Add Frost
             int numFrost = 1; //1
             for (int i = 0; i < numFrost; i++)
                 if(BitmapUtils.bitmapExists(bitmap_frost)) {
-                    animationData.addToAllPool(new AnimatedFrostData(screenW, screenH));
+                    animationData.addToAllPool(new AnimatedFrostData(
+                            screenW,
+                            screenH));
                 }
             //Create Queue
-            animationData.setQueue(new AnimatedGraphicQueue(animationData.getAllPoolSize(), 750));
+            animationData.setQueue(
+                    new AnimatedGraphicQueue(animationData.getAllPoolSize(), 750));
         }
     }
 
@@ -183,7 +218,8 @@ public class TitlescreenAnimationView extends View {
         animationData.tick();
 
         int maxQueue = 3;
-        if((animationData.hasQueue() && animationData.getQueue().canDequeue()) && animationData.getCurrentPoolSize() < maxQueue) {
+        if((animationData.hasQueue() && animationData.getQueue().canDequeue()) &&
+                animationData.getCurrentPoolSize() < maxQueue) {
 
             AnimatedGraphicQueue animationQueue = animationData.getQueue();
 
@@ -202,21 +238,35 @@ public class TitlescreenAnimationView extends View {
                 if(lastAnimInList != null) {
                     if (lastAnimInList instanceof AnimatedOrbData) {
                         if (BitmapUtils.bitmapExists(bitmap_orb)) {
-                            animationData.setToAllPool(index, new AnimatedOrbData(getWidth(), getHeight()));
+                            animationData.setToAllPool(index, new AnimatedOrbData(
+                                    getWidth(),
+                                    getHeight()));
                         }
                     } else if (lastAnimInList instanceof AnimatedHandData) {
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
-                            animationData.setToAllPool(index, new AnimatedHandData(getWidth(), getHeight(), bitmap_hand.getWidth(), bitmap_hand.getHeight()));
-                            bitmap_handRot = ((AnimatedHandData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
+                            animationData.setToAllPool(index, new AnimatedHandData(
+                                    getWidth(),
+                                    getHeight(),
+                                    bitmap_hand.getWidth(),
+                                    bitmap_hand.getHeight()));
+                            bitmap_handRot = ((AnimatedHandData) animationData.
+                                    getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
                         }
                     } else if (lastAnimInList instanceof AnimatedWritingData) {
                         if (BitmapUtils.bitmapExists(bitmap_writing)) {
-                            animationData.setToAllPool(index, new AnimatedWritingData(getWidth(), getHeight(), bitmap_writing.getWidth(), bitmap_writing.getHeight(), animationData));
-                            bitmap_writingRot = ((AnimatedWritingData) animationData.getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
+                            animationData.setToAllPool(index, new AnimatedWritingData(
+                                    getWidth(),
+                                    getHeight(),
+                                    bitmap_writing.getWidth(),
+                                    bitmap_writing.getHeight(),
+                                    animationData));
+                            bitmap_writingRot = ((AnimatedWritingData) animationData.
+                                    getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
                         }
                     } else if (lastAnimInList instanceof AnimatedFrostData) {
                         if (BitmapUtils.bitmapExists(bitmap_frost)) {
-                            animationData.setToAllPool(index, new AnimatedFrostData(getWidth(), getHeight()));
+                            animationData.setToAllPool(index, new AnimatedFrostData(
+                                    getWidth(), getHeight()));
                         }
                     }
                 }
@@ -242,10 +292,12 @@ public class TitlescreenAnimationView extends View {
                             bitmap_handRot = data.rotateBitmap(bitmap_hand);
                     } else if (currentAnim instanceof AnimatedWritingData) {
                         AnimatedWritingData data = ((AnimatedWritingData) currentAnim);
-                        animationData.setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
+                        animationData.setSelectedWriting(
+                                (int) (Math.random() * bookwritingResId.size()));
                         BitmapUtils.destroyBitmap(bitmap_writing);
                         BitmapUtils.destroyBitmap(bitmap_writingRot);
-                        bitmapUtils.setResource(bookwritingResId.get(animationData.getSelectedWriting()));
+                        bitmapUtils.setResource(
+                                bookwritingResId.get(animationData.getSelectedWriting()));
                         bitmap_writing = bitmapUtils.compileBitmaps(getContext());
                         if(BitmapUtils.bitmapExists(bitmap_writing))
                             bitmap_writingRot = data.rotateBitmap(bitmap_writing);

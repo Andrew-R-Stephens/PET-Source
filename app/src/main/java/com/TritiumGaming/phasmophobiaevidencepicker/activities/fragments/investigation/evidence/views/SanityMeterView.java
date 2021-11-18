@@ -78,7 +78,11 @@ public class SanityMeterView extends View {
      * @param defStyleAttr
      * @param defStyleRes
      */
-    public SanityMeterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SanityMeterView(
+            Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -89,7 +93,11 @@ public class SanityMeterView extends View {
     public void init(SanityData sanityData) {
         this.sanityData = sanityData;
 
-        filter = new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.map_tint_blue), PorterDuff.Mode.MULTIPLY);
+        filter = new PorterDuffColorFilter(
+                ContextCompat.getColor(
+                        getContext(),
+                        R.color.map_tint_blue),
+                PorterDuff.Mode.MULTIPLY);
 
         buildImages();
 
@@ -139,7 +147,10 @@ public class SanityMeterView extends View {
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) {
         if(baseLayer == null && topLayer != null)
-            baseLayer = Bitmap.createBitmap(topLayer.getWidth(), topLayer.getHeight(), topLayer.getConfig());
+            baseLayer = Bitmap.createBitmap(
+                    topLayer.getWidth(),
+                    topLayer.getHeight(),
+                    topLayer.getConfig());
 
         if(baseLayer != null) {
             Canvas canvas = new Canvas(baseLayer);
@@ -178,7 +189,10 @@ public class SanityMeterView extends View {
             w *= (float) getHeight() / (float) getWidth();
 
         if (containerRect != null)
-            containerRect.set((float) ((getWidth() * .5) - (w * .5) + padding), (float) ((getHeight() * .5) - (h * .5) + padding), (float) (w + ((getWidth() * .5) - (w * .5)) - padding), (float) (h + ((getHeight() * .5) - (h * .5))) - padding);
+            containerRect.set((float) ((getWidth() * .5) - (w * .5) + padding),
+                    (float) ((getHeight() * .5) - (h * .5) + padding),
+                    (float) (w + ((getWidth() * .5) - (w * .5)) - padding),
+                    (float) (h + ((getHeight() * .5) - (h * .5))) - padding);
 
         paint.setAntiAlias(true);
 
@@ -191,7 +205,10 @@ public class SanityMeterView extends View {
         float insanityDegree;
         if(sanityData != null) {
             insanityDegree = sanityData.getInsanityDegree();
-            paint.setColor(Color.rgb((255), (int) (255 * sanityData.getInsanityPercent()), (int) (255 * sanityData.getInsanityPercent())));
+            paint.setColor(
+                    Color.rgb((255),
+                    (int) (255 * sanityData.getInsanityPercent()),
+                    (int) (255 * sanityData.getInsanityPercent())));
             if (sanityData != null)
                 canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
 
@@ -212,19 +229,26 @@ public class SanityMeterView extends View {
                     containerRect.bottom-inset, paint);
             */
 
-            createFilterColor(Color.red(themeColor), (int) (Color.green(themeColor) * sanityData.getInsanityPercent()), (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));
+            createFilterColor(
+                    Color.red(themeColor),
+                    (int) (Color.green(themeColor) * sanityData.getInsanityPercent()),
+                    (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));
         }
 
 
         if(sanityRect != null) {
             if(sanityImg_bottom != null) {
                 paint.setColorFilter(filter);
-                sanityRect.set(0, 0, sanityImg_bottom.getWidth(), sanityImg_bottom.getHeight());
+                sanityRect.set(0, 0,
+                        sanityImg_bottom.getWidth(),
+                        sanityImg_bottom.getHeight());
                 canvas.drawBitmap(sanityImg_bottom, sanityRect, containerRect, paint);
                 paint.setColorFilter(null);
             }
             if(sanityImg_top != null) {
-                sanityRect.set(0, 0, sanityImg_top.getWidth(), sanityImg_top.getHeight());
+                sanityRect.set(0, 0,
+                        sanityImg_top.getWidth(),
+                        sanityImg_top.getHeight());
                 canvas.drawBitmap(sanityImg_top, sanityRect, containerRect, paint);
             }
         }

@@ -45,10 +45,14 @@ public class MissionsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
 
         if(objectivesViewModel == null)
-            objectivesViewModel = new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
+            objectivesViewModel =
+                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
 
         return inflater.inflate(R.layout.fragment_objectives, container, false);
 
@@ -99,24 +103,48 @@ public class MissionsFragment extends Fragment {
         }
 
         // TEXT SIZES
-        title_optionals.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
-        title_debrief.setAutoSizeTextTypeUniformWithConfiguration(20, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        title_optionals.setAutoSizeTextTypeUniformWithConfiguration(
+                20, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        title_debrief.setAutoSizeTextTypeUniformWithConfiguration(
+                20, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
-        label_objective1.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_objective2.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_objective3.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_objective1.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_objective2.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_objective3.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
-        label_ghostName.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_ghostName.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            name_input.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
+            name_input.setAutoSizeTextTypeUniformWithConfiguration(
+                    12, 24, 1,
+                    TypedValue.COMPLEX_UNIT_SP);
         else
             name_input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
-        label_response.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_alone.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_everyone.setAutoSizeTextTypeUniformWithConfiguration(12, 24, 1, TypedValue.COMPLEX_UNIT_SP);
-        label_reset.setAutoSizeTextTypeUniformWithConfiguration(5, 25, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_response.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_alone.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_everyone.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 24, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_reset.setAutoSizeTextTypeUniformWithConfiguration(
+                5, 25, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
-        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(10, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
+                10, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_resetAll.setOnClickListener(v -> {
@@ -173,7 +201,8 @@ public class MissionsFragment extends Fragment {
                 view.findViewById(R.id.objectives_item_3)
         };
 
-        MissionsData.Objective[] tempObjectives = objectivesViewModel.getObjectivesSpinnerObjectives();
+        MissionsData.Objective[] tempObjectives =
+                objectivesViewModel.getObjectivesSpinnerObjectives();
         boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
         if(objectiveSpinner != null)
             for (int i = 0; i < objectiveSpinner.length; i++) {
@@ -189,7 +218,8 @@ public class MissionsFragment extends Fragment {
                     }
                 }
 
-                if((tempIsCompleted != null) && (tempIsCompleted[i]) && objectiveSpinner[i] != null)
+                if((tempIsCompleted != null) &&
+                        (tempIsCompleted[i]) && objectiveSpinner[i] != null)
                     objectiveSpinner[i].setObjectiveAsCompleted();
 
             }
