@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,17 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.views.MessagesAdapterView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.views.MessagesAdapterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 
 /**
  * TitleScreenFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MessageCenterInboxMessagesFragment extends Fragment {
+public class NewsletterMessagesFragment extends Fragment {
 
-    private MessageCenterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel messageInboxViewModel = null;
 
     @Nullable
     @Override
@@ -39,7 +39,7 @@ public class MessageCenterInboxMessagesFragment extends Fragment {
 
         if (messageInboxViewModel == null)
             messageInboxViewModel =
-                    new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
 
         return inflater.inflate(
                 R.layout.fragment_msginbox_listmessages,

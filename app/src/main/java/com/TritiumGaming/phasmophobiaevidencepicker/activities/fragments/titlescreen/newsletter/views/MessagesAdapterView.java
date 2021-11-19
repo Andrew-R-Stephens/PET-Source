@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.views;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,17 +12,17 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
 
 import java.util.ArrayList;
 
 public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
 
-    private final ArrayList<MessageCenterMessageData> messages;
+    private final ArrayList<NewsletterMessageData> messages;
     private final OnMessageListener onMessageListener;
 
     public MessagesAdapterView(
-            ArrayList<MessageCenterMessageData> messages,
+            ArrayList<NewsletterMessageData> messages,
             OnMessageListener onMessageListener) {
         this.messages = messages;
         this.onMessageListener = onMessageListener;
@@ -47,7 +47,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
 
     @NonNull
     @Override
-    public MessagesAdapterView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View messageView = inflater.inflate(

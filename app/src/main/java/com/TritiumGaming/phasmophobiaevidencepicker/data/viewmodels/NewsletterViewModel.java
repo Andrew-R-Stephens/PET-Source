@@ -5,21 +5,21 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
 
 import java.util.ArrayList;
 
 /**
  * TODO
  */
-public class MessageCenterViewModel extends ViewModel {
+public class NewsletterViewModel extends ViewModel {
 
     private boolean isUpToDate = false;
 
     private InboxType type = InboxType.GENERAL;
     private int currentMessageID = 0;
-    private ArrayList<MessageCenterMessagesData> inboxMessageList;
+    private ArrayList<NewsletterMessagesData> inboxMessageList;
 
     public void setIsUpToDate(boolean isUpToDate){
         this.isUpToDate = isUpToDate;
@@ -29,7 +29,7 @@ public class MessageCenterViewModel extends ViewModel {
         return isUpToDate;
     }
 
-    public void addInbox(MessageCenterMessagesData inbox, InboxType type) {
+    public void addInbox(NewsletterMessagesData inbox, InboxType type) {
         if(inboxMessageList == null)
             inboxMessageList = new ArrayList<>();
 
@@ -47,11 +47,11 @@ public class MessageCenterViewModel extends ViewModel {
         return inboxMessageList.size();
     }
 
-    public MessageCenterMessagesData getCurrentInbox(int index) {
+    public NewsletterMessagesData getCurrentInbox(int index) {
         return inboxMessageList.get(index);
     }
 
-    public MessageCenterMessagesData getCurrentInbox() {
+    public NewsletterMessagesData getCurrentInbox() {
         if(inboxMessageList == null)
             return null;
 
@@ -75,7 +75,7 @@ public class MessageCenterViewModel extends ViewModel {
         currentMessageID = position;
     }
 
-    public MessageCenterMessageData getCurrentMessage() {
+    public NewsletterMessageData getCurrentMessage() {
         return getCurrentInbox().getMessages().get(currentMessageID);
     }
 

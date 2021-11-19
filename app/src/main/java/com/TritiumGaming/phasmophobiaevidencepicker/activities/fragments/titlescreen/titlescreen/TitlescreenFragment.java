@@ -32,7 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -57,7 +57,7 @@ public class TitlescreenFragment extends Fragment {
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
 
     private TitlescreenViewModel titleScreenViewModel = null;
-    private MessageCenterViewModel messageCenterViewModel = null;
+    private NewsletterViewModel newsLetterViewModel = null;
 
     private final BitmapUtils bitmapUtils = new BitmapUtils();
 
@@ -86,9 +86,9 @@ public class TitlescreenFragment extends Fragment {
             titleScreenViewModel = new ViewModelProvider(requireActivity()).
                     get(TitlescreenViewModel.class);
 
-        if (messageCenterViewModel == null)
-            messageCenterViewModel = new ViewModelProvider(requireActivity()).
-                    get(MessageCenterViewModel.class);
+        if (newsLetterViewModel == null)
+            newsLetterViewModel = new ViewModelProvider(requireActivity()).
+                    get(NewsletterViewModel.class);
 
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
@@ -186,7 +186,7 @@ public class TitlescreenFragment extends Fragment {
         try {
             boolean isUpToDate = true;
 
-            if(messageCenterViewModel != null) {
+            if(newsLetterViewModel != null) {
 
                 if (getContext() != null) {
                     XmlPullParserFactory xmlPullParserFactory_phas =
@@ -194,7 +194,7 @@ public class TitlescreenFragment extends Fragment {
                     new RSSParserUtils(xmlPullParserFactory_phas,
                             getContext().getResources().
                                     getString(R.string.preference_phasmophobia_changelog_link),
-                            MessageCenterViewModel.InboxType.PHASMOPHOBIA, messageCenterViewModel);
+                            NewsletterViewModel.InboxType.PHASMOPHOBIA, newsLetterViewModel);
                 } else {
                     isUpToDate = false;
                 }
@@ -205,7 +205,7 @@ public class TitlescreenFragment extends Fragment {
                     new RSSParserUtils(xmlPullParserFactory_gen,
                             getContext().getResources().
                                     getString(R.string.preference_general_news_link),
-                            MessageCenterViewModel.InboxType.GENERAL, messageCenterViewModel);
+                            NewsletterViewModel.InboxType.GENERAL, newsLetterViewModel);
                 } else {
                     isUpToDate = false;
                 }
@@ -216,12 +216,12 @@ public class TitlescreenFragment extends Fragment {
                     new RSSParserUtils(xmlPullParserFactory_pet,
                             getContext().getResources().
                                     getString(R.string.preference_pet_changelog_link),
-                            MessageCenterViewModel.InboxType.PET, messageCenterViewModel);
+                            NewsletterViewModel.InboxType.PET, newsLetterViewModel);
                 } else {
                     isUpToDate = false;
                 }
 
-                messageCenterViewModel.setIsUpToDate(isUpToDate);
+                newsLetterViewModel.setIsUpToDate(isUpToDate);
             }
 
         } catch (XmlPullParserException e) {
@@ -400,11 +400,11 @@ public class TitlescreenFragment extends Fragment {
             int currentCycle = 0;
 
             while (canRunMessageCenter &&
-                    (!messageCenterViewModel.isUpToDate()) || (currentCycle < MAX_CYCLES)) {
+                    (!newsLetterViewModel.isUpToDate()) || (currentCycle < MAX_CYCLES)) {
 
                 registerMessageInboxes();
 
-                if (!messageCenterViewModel.isUpToDate()) {
+                if (!newsLetterViewModel.isUpToDate()) {
 
                     Log.d("MessageCenter", "Load failed!");
 

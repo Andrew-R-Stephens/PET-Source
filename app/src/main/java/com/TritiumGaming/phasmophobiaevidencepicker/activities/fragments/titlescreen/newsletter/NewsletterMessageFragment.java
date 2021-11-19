@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -16,16 +16,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 
 /**
  * TitleScreenFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MessageCenterMessageDetailsFragment extends Fragment {
+public class NewsletterMessageFragment extends Fragment {
 
-    private MessageCenterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel messageInboxViewModel = null;
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MessageCenterMessageDetailsFragment extends Fragment {
 
         if (messageInboxViewModel == null)
             messageInboxViewModel =
-                    new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
 
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
     }

@@ -2,9 +2,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data.MessageCenterMessagesData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -16,12 +16,12 @@ import java.net.URL;
 
 public class RSSParserUtils {
 
-    private final MessageCenterViewModel messageCenterViewModel;
+    private final NewsletterViewModel newsLetterViewModel;
 
-    private MessageCenterViewModel.InboxType inboxType;
+    private NewsletterViewModel.InboxType inboxType;
 
-    public RSSParserUtils(XmlPullParserFactory factory, String urlStr, MessageCenterViewModel.InboxType type, MessageCenterViewModel messageCenterViewModel) {
-        this.messageCenterViewModel = messageCenterViewModel;
+    public RSSParserUtils(XmlPullParserFactory factory, String urlStr, NewsletterViewModel.InboxType type, NewsletterViewModel newsLetterViewModel) {
+        this.newsLetterViewModel = newsLetterViewModel;
         this.inboxType = type;
 
         new Thread(new RSSThread(factory, urlStr)).start();
@@ -63,7 +63,7 @@ public class RSSParserUtils {
                 boolean insideItem = false;
                 int eventType = xpp.getEventType();
 
-                MessageCenterMessagesData messageList = new MessageCenterMessagesData();
+                NewsletterMessagesData messageList = new NewsletterMessagesData();
                 String title = null, date = null, description = null;
 
                 while(eventType != XmlPullParser.END_DOCUMENT) {
@@ -89,7 +89,7 @@ public class RSSParserUtils {
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
-                        MessageCenterMessageData message = new MessageCenterMessageData(title, description, date);
+                        NewsletterMessageData message = new NewsletterMessageData(title, description, date);
                         if(message.hasContent())
                             messageList.add(message);
                         title = null;
@@ -100,7 +100,7 @@ public class RSSParserUtils {
                 }
                 in.close();
 
-                messageCenterViewModel.addInbox(messageList, inboxType);
+                newsLetterViewModel.addInbox(messageList, inboxType);
                 Log.d("Saving InboxMessageList", "Count: " + messageList.getMessageCount());
                 Log.d("RSSParser", "End of Document");
 

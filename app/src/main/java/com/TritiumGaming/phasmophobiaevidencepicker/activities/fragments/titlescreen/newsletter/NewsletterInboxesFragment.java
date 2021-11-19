@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter;
 
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -17,7 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 /**
@@ -25,12 +25,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenV
  *
  * @author TritiumGamingStudios
  */
-public class MessageCenterInboxesFragment extends Fragment {
+public class NewsletterInboxesFragment extends Fragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
 
     private TitlescreenViewModel titleScreenViewModel = null;
-    private MessageCenterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel messageInboxViewModel = null;
 
     @Nullable
     @Override
@@ -56,7 +56,7 @@ public class MessageCenterInboxesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (messageInboxViewModel == null) {
             messageInboxViewModel =
-                    new ViewModelProvider(requireActivity()).get(MessageCenterViewModel.class);
+                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
         }
 
         // INITIALIZE VIEWS
@@ -116,7 +116,7 @@ public class MessageCenterInboxesFragment extends Fragment {
      * showExtraNewsPopup method
      */
     private void gotoGeneralNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.GENERAL);
+        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.GENERAL);
         navigateToInboxFragment(v);
     }
 
@@ -124,7 +124,7 @@ public class MessageCenterInboxesFragment extends Fragment {
      * showPetNewsPopup method
      */
     private void gotoPetNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.PET);
+        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PET);
         navigateToInboxFragment(v);
     }
 
@@ -132,7 +132,7 @@ public class MessageCenterInboxesFragment extends Fragment {
      * showPhasNewsPopup method
      */
     public void gotoPhasNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(MessageCenterViewModel.InboxType.PHASMOPHOBIA);
+        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PHASMOPHOBIA);
         navigateToInboxFragment(v);
     }
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MessageCenterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 import java.util.Locale;
@@ -25,7 +25,7 @@ public class TitleScreenActivity extends AppCompatActivity {
     GlobalPreferencesViewModel globalPreferencesViewModel;
 
     TitlescreenViewModel titleScreenViewModel;
-    MessageCenterViewModel messageCenterViewModel;
+    NewsletterViewModel newsLetterViewModel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class TitleScreenActivity extends AppCompatActivity {
         globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
         globalPreferencesViewModel.init(TitleScreenActivity.this);
         titleScreenViewModel = factory.create(TitlescreenViewModel.class);
-        messageCenterViewModel = factory.create(MessageCenterViewModel.class);
+        newsLetterViewModel = factory.create(NewsletterViewModel.class);
 
         // Immediately initialize Activity with Preferences
         init();

@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.messagecenter.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 
-public class MessageCenterMessageData {
+public class NewsletterMessageData {
 
     private String title, description, date;
 
-    public MessageCenterMessageData(String title, String description, String date) {
+    public NewsletterMessageData(String title, String description, String date) {
         setTitle(FontUtils.removeXMLImgSrcTags(title));
         setDescription(FontUtils.removeXMLImgSrcTags(description));
         setDate(FontUtils.removeXMLPubDateClockTime(FontUtils.removeXMLPubDateClockTime(date)));
