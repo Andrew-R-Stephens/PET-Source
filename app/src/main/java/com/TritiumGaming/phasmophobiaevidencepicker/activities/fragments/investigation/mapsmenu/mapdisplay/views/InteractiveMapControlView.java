@@ -9,7 +9,7 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
 
 /**
  * InteractiveMapControlView class
@@ -18,7 +18,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class InteractiveMapControlView extends View {
 
-    private InteractiveMapControlViewData controllerData = null;
+    private InteractiveMapControlData controllerData = null;
 
     private SparseArray<PointF> mActivePointers;
 
@@ -41,7 +41,7 @@ public class InteractiveMapControlView extends View {
      * @param controllerData
      * @param recipient
      */
-    public void init(InteractiveMapControlViewData controllerData, View recipient){
+    public void init(InteractiveMapControlData controllerData, View recipient){
         this.controllerData = controllerData;
         this.recipient = recipient;
 

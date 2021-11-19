@@ -24,6 +24,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private boolean isHuntAudioAllowed = true;
     private boolean networkPreference = true;
 
+    private boolean huntWarningAudioAllowed = false;
+
     /**
      * init method
      * @param context
@@ -186,6 +188,22 @@ public class GlobalPreferencesViewModel extends ViewModel {
      */
     public int getColorSpace(){
         return colorSpace;
+    }
+
+    /**
+     *
+     * @param huntWarningAudioAllowed
+     */
+    public void setHuntWarningAudioAllowed(boolean huntWarningAudioAllowed) {
+        this.huntWarningAudioAllowed = huntWarningAudioAllowed;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isHuntWarningAudioAllowed(){
+        return huntWarningAudioAllowed;
     }
 
     /**

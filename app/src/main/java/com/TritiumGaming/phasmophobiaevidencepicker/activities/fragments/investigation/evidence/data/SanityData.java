@@ -71,7 +71,7 @@ public class SanityData {
     public double getDropRate(){
         if(evidenceViewModel != null) {
             if (evidenceViewModel.hasTimer() &&
-                    evidenceViewModel.getTimer().getTimeRemaining() <= 0L)
+                    evidenceViewModel.getTimerView().getTimeRemaining() <= 0L)
                 return dropRate_normal[evidenceViewModel.getMapCurrentSize()];
             return dropRate_setup[evidenceViewModel.getMapCurrentSize()];
         }
@@ -277,8 +277,8 @@ public class SanityData {
             insanityActual = 100L;
         if(evidenceViewModel != null) {
             // If the Countdown timer still has time, and the player's sanity is less than or equal to halfway gone, set the remaining sanity to half.
-            if (getInsanityPercent() <= .5 && evidenceViewModel.getTimer() != null &&
-                    evidenceViewModel.getTimer().getTimeRemaining() > 0L)
+            if (getInsanityPercent() <= .5 && evidenceViewModel.getTimerView() != null &&
+                    evidenceViewModel.getTimerView().getTimeRemaining() > 0L)
                 setProgressManually(50);
         }
     }

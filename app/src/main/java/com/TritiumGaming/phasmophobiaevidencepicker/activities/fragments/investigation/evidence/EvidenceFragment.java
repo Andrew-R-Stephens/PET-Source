@@ -43,6 +43,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * EvidenceFragment class
@@ -52,6 +53,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 public class EvidenceFragment extends Fragment {
 
     protected EvidenceViewModel evidenceViewModel;
+    protected GlobalPreferencesViewModel globalPreferencesViewModel;
 
     protected PopupWindow popup;
 
@@ -107,12 +109,21 @@ public class EvidenceFragment extends Fragment {
             evidenceViewModel.init(getContext());
         }
 
+        if(globalPreferencesViewModel == null) {
+            globalPreferencesViewModel =
+                    new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+            if(getContext() != null)
+                globalPreferencesViewModel.init(getContext());
+        }
+
+
         if(getActivity() != null) {
-            evidenceViewModel.setHuntWarningAudioAllowed(
+            globalPreferencesViewModel.setHuntWarningAudioAllowed(
                     ((InvestigationActivity) getActivity()).getHuntWarningAllowed());
-            evidenceViewModel.setHuntWarningFlashTimeout(
+            globalPreferencesViewModel.setHuntWarningFlashTimeout(
                     ((InvestigationActivity) getActivity()).getHuntWarningFlashTimeout());
         }
+
 
         // FONT FAMILY
         font_normal = Typeface.MONOSPACE;
@@ -286,13 +297,13 @@ public class EvidenceFragment extends Fragment {
 
         // COUNTDOWN TIMER
         if(evidenceViewModel.hasTimer()) {
-            evidenceViewModel.getTimer().setRecipientView(timer_text);
-            evidenceViewModel.getTimer().setText();
+            evidenceViewModel.getTimerView().setRecipientView(timer_text);
+            evidenceViewModel.getTimerView().setText();
         }
         else {
-            evidenceViewModel.setTimer(new PhaseTimerView(timer_text));
-            evidenceViewModel.getTimer().init(evidenceViewModel);
-            evidenceViewModel.getTimer().createTimer(
+            evidenceViewModel.setTimerView(new PhaseTimerView(timer_text));
+            evidenceViewModel.getTimerView().init(evidenceViewModel);
+            evidenceViewModel.getTimerView().createTimer(
                     evidenceViewModel.getDifficultyCarouselData().getCurrentDifficultyTime(),
                     1000L);
         }
@@ -636,7 +647,7 @@ public class EvidenceFragment extends Fragment {
         if(evidenceViewModel != null) {
             evidenceViewModel.setRadioButtonsChecked(getSelectedRadioButtons());
             if(evidenceViewModel.hasTimer())
-                evidenceViewModel.getTimer().setRecipientView(null);
+                evidenceViewModel.getTimerView().setRecipientView(null);
         }
     }
 
@@ -649,7 +660,7 @@ public class EvidenceFragment extends Fragment {
     public void softReset(){
         if(evidenceViewModel != null) {
             evidenceViewModel.reset();
-            evidenceViewModel.setTimer(null);
+            evidenceViewModel.setTimerView(null);
         }
 
         for(EvidenceRadioGroup g: evidenceRadioGroups)
@@ -1333,7 +1344,7 @@ public class EvidenceFragment extends Fragment {
     @Override
     public void onResume() {
         if(evidenceViewModel.hasTimer())
-            evidenceViewModel.getTimer().setRecipientView(timer_text);
+            evidenceViewModel.getTimerView().setRecipientView(timer_text);
         if(!sanityMeterView.hasBuiltImages())
             sanityMeterView.buildImages();
         super.onResume();

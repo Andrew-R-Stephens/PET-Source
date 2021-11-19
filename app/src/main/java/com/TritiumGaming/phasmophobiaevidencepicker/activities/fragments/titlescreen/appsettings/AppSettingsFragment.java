@@ -39,12 +39,13 @@ public class AppSettingsFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null)
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel =
                     new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null)
-            globalPreferencesViewModel.init(getContext());
+            // INITIALIZE VIEW MODEL
+            if (getContext() != null)
+                globalPreferencesViewModel.init(getContext());
+        }
 
         if (titleScreenViewModel == null)
             titleScreenViewModel =

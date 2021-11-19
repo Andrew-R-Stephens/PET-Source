@@ -23,7 +23,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapDisplayView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -37,8 +37,8 @@ public class MapViewerFragment extends Fragment {
 
     private MapMenuViewModel mapViewViewModel = null;
 
-    private final InteractiveMapControlViewData controllerData =
-            new InteractiveMapControlViewData();
+    private final InteractiveMapControlData controllerData =
+            new InteractiveMapControlData();
 
     private InteractiveMapDisplayView imageDisplay = null;
     private MapLayerSelectorGroup selectorGroup = null;

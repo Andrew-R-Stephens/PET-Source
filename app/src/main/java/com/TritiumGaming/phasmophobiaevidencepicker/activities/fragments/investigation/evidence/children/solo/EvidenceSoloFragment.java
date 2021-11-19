@@ -98,8 +98,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
             if(evidenceViewModel != null && evidenceViewModel.hasTimer()) {
-                evidenceViewModel.getTimer().createTimer(0L, 1000L);
-                if((!(evidenceViewModel.getTimer().getTimeRemaining() > 0L)) &&
+                evidenceViewModel.getTimerView().createTimer(0L, 1000L);
+                if((!(evidenceViewModel.getTimerView().getTimeRemaining() > 0L)) &&
                         evidenceViewModel.getSanityData().getSanityActual() < 50)
                     evidenceViewModel.getSanityData().setProgressManually(50);
             }
@@ -119,12 +119,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // TIMER CONTROL
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
-                evidenceViewModel.getTimer(),
+                evidenceViewModel.getTimerView(),
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
         if(evidenceViewModel.hasTimer()) {
-            if (evidenceViewModel.getTimer().isPaused())
+            if (evidenceViewModel.getTimerView().isPaused())
                 playPauseButton.setPaused();
             else
                 playPauseButton.setPlayed();
@@ -136,12 +136,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         map_name.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
         difficultyCarouselView = new DifficultyCarouselView(
                 evidenceViewModel.getDifficultyCarouselData(),
-                evidenceViewModel.getTimer(),
+                evidenceViewModel.getTimerView(),
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name);
         if(evidenceViewModel != null && evidenceViewModel.hasTimer())
-            evidenceViewModel.getTimer().setTimerControls(playPauseButton);
+            evidenceViewModel.getTimerView().setTimerControls(playPauseButton);
         difficultyCarouselView.setTimerControl(playPauseButton);
         if(evidenceViewModel != null)
             difficultyCarouselView.setState(
@@ -197,6 +197,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 }
                 evidenceViewModel.setSanityRunnable(new SanityRunnable(
                         evidenceViewModel,
+                        globalPreferencesViewModel,
                         sanityMeterView,
                         sanityPercent,
                         sanitySeekBar,

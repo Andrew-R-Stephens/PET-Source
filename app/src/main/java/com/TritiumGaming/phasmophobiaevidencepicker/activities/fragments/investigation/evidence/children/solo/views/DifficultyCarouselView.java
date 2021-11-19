@@ -93,7 +93,7 @@ public class DifficultyCarouselView {
     }
 
     /**
-     * setTimer method
+     * setTimerView method
      * @param timer
      */
     public void setTimerView(PhaseTimerView timer) {

@@ -7,8 +7,8 @@ public class EvidenceSanitySectionData {
     private DifficultyCarouselData difficultyCarouselViewData;
     private MapCarouselData mapCarouselViewData;
     private PhaseTimerControlData phaseTimerControlViewData;
-    private PhaseTimerViewData phaseTimerViewData;
-    private WarnTextViewData warnTextViewData;
+    private PhaseTimerData phaseTimerViewData;
+    private WarnTextData warnTextViewData;
 
     private SanityData sanityData;
 

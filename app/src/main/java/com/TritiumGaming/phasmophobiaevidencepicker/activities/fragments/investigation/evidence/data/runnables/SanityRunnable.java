@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * SanityRunnable class
@@ -19,6 +20,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 public class SanityRunnable implements Runnable {
 
     private final EvidenceViewModel evidenceViewModel;
+    private final GlobalPreferencesViewModel globalPreferencesViewModel;
 
     private final SanityMeterView sanityMeterSoloView;
     private final AppCompatSeekBar sanityMeterSeekBar;
@@ -46,6 +48,7 @@ public class SanityRunnable implements Runnable {
      */
     public SanityRunnable(
             EvidenceViewModel evidenceViewModel,
+            GlobalPreferencesViewModel globalPreferencesViewModel,
             SanityMeterView sanityMeterSoloView,
             AppCompatTextView sanityMeterTextView,
             AppCompatSeekBar sanityMeterSeekBar,
@@ -55,6 +58,7 @@ public class SanityRunnable implements Runnable {
             MediaPlayer audio_huntWarn){
 
         this.evidenceViewModel = evidenceViewModel;
+        this.globalPreferencesViewModel = globalPreferencesViewModel;
 
         this.sanityMeterSoloView = sanityMeterSoloView;
         this.sanityMeterTextView = sanityMeterTextView;
@@ -96,7 +100,7 @@ public class SanityRunnable implements Runnable {
                 !evidenceViewModel.getSanityData().isPaused()) {
 
             if(evidenceViewModel.hasTimer() &&
-                    !evidenceViewModel.getTimer().isPaused()) {
+                    !evidenceViewModel.getTimerView().isPaused()) {
 
                 evidenceViewModel.getSanityData().tick();
                 sanityMeterTextView.setText(evidenceViewModel.getSanityData().toPercentString());
@@ -112,7 +116,7 @@ public class SanityRunnable implements Runnable {
                     }
 
                     if (audio_huntWarn != null) {
-                        if (evidenceViewModel.isHuntWarningAudioAllowed() &&
+                        if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
                                 !evidenceViewModel.isSetup() &&
                                 evidenceViewModel.getSanityData().canWarn()) {
                             audio_huntWarn.start();

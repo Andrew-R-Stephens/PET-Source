@@ -6,6 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.EvidenceSanitySectionData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.WarnTextData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
@@ -18,19 +22,20 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class EvidenceViewModel extends ViewModel {
 
-    private InvestigationData investigationData = null;
-    private int[] radioButtonsChecked = null;
+    private InvestigationData investigationData;
+    private SanityRunnable sanityRunnable;
+    private SanityData sanityData;
+    private MapSizeData[] mapSizeData;
 
-    private SanityRunnable sanityRunnable = null;
-    private SanityData sanityData = null;
-    private boolean huntWarningAudioAllowed = false;
-
-    private MapSizeData[] mapSizeData = null;
+    private int[] radioButtonsChecked;
     private int mapCurrent = 0;
 
-    private PhaseTimerView timer = null;
-
-    private DifficultyCarouselData difficultyCarouselData = null;
+    // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
+    private PhaseTimerData timerData;
+    private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
+    private WarnTextData warnTextData;
+    private MapCarouselData mapCarouselData;
+    private DifficultyCarouselData difficultyCarouselData;
 
     public void init(Context c) {
 
@@ -212,18 +217,18 @@ public class EvidenceViewModel extends ViewModel {
 
     /**
      *
-     * @param timer
+     * @param timerView
      */
-    public void setTimer(PhaseTimerView timer) {
-        this.timer = timer;
+    public void setTimerView(PhaseTimerView timerView) {
+        this.timerView = timerView;
     }
 
     /**
      *
      * @return
      */
-    public PhaseTimerView getTimer() {
-        return timer;
+    public PhaseTimerView getTimerView() {
+        return timerView;
     }
 
     /**
@@ -231,7 +236,7 @@ public class EvidenceViewModel extends ViewModel {
      * @return
      */
     public boolean hasTimer(){
-        return timer != null;
+        return timerView != null;
     }
 
     /**
@@ -239,24 +244,7 @@ public class EvidenceViewModel extends ViewModel {
      * @return
      */
     public boolean isSetup(){
-        return getTimer().getTimeRemaining() > 0L;
-    }
-
-
-    /**
-     *
-     * @param huntWarningAudioAllowed
-     */
-    public void setHuntWarningAudioAllowed(boolean huntWarningAudioAllowed) {
-        this.huntWarningAudioAllowed = huntWarningAudioAllowed;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isHuntWarningAudioAllowed(){
-        return huntWarningAudioAllowed;
+        return getTimerView().getTimeRemaining() > 0L;
     }
 
     /**
@@ -276,7 +264,7 @@ public class EvidenceViewModel extends ViewModel {
      * reset method
      */
     public void reset() {
-        timer = null;
+        timerView = null;
         investigationData.resetAll();
         radioButtonsChecked = null;
         if (sanityData != null)

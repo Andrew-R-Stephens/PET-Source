@@ -8,7 +8,7 @@ import android.graphics.Matrix;
  *
  * @author TritiumGamingStudios
  */
-public class InteractiveMapControlViewData {
+public class InteractiveMapControlData {
 
     private boolean canSetDefaultZoomLevel = true;
 

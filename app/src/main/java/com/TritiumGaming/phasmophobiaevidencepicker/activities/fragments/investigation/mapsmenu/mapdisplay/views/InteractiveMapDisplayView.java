@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class InteractiveMapDisplayView extends View {
 
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private InteractiveMapControlViewData controllerData = null;
+    private InteractiveMapControlData controllerData = null;
 
     private MapData mapData = null;
     private final ArrayList<Bitmap> mapImages = new ArrayList<>();
@@ -51,7 +51,7 @@ public class InteractiveMapDisplayView extends View {
      * init method
      * @param controllerData
      */
-    public void init(InteractiveMapControlViewData controllerData){
+    public void init(InteractiveMapControlData controllerData){
         this.controllerData = controllerData;
 
         //updateLoadingText();
