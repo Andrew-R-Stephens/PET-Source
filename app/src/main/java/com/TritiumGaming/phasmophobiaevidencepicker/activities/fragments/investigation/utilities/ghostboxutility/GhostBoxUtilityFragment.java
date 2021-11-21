@@ -55,7 +55,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     /**
      *
      */
-    public GhostBoxUtilityFragment(){
+    public GhostBoxUtilityFragment() {
         super(R.layout.fragment_utility_ghostbox);
     }
 
@@ -65,7 +65,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-       return super.onCreateView(inflater, container, savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
@@ -104,7 +104,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         listener_reset.setEnabled(false);
         listener_goto_right.setEnabled(false);
 
-        if(getContext() != null) {
+        if (getContext() != null) {
             setScrollListEntries(
                     getContext(), R.array.ghostspeaktool_general_array, scrollview_list1);
             setScrollListEntries(
@@ -112,7 +112,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
             setScrollListEntries(
                     getContext(), R.array.ghostspeaktool_oijaboard_array, scrollview_list3);
 
-            if(!permissionsViewModel.isRecordAudioAllowed())
+            if (!permissionsViewModel.isRecordAudioAllowed())
                 requestAudioPermissions(getContext(), getActivity());
         }
 
@@ -123,24 +123,23 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     }
 
     /**
-     *
-     * @param context The context
-     * @param arrayRes The Resource array of Strings holding phrases
+     * @param context     The context
+     * @param arrayRes    The Resource array of Strings holding phrases
      * @param destination The target LinearLayout
      */
     public void setScrollListEntries(@NonNull Context context,
                                      @ArrayRes int arrayRes,
-                                     LinearLayout destination){
+                                     LinearLayout destination) {
         GhostBoxUtilityData toolGhostSpeakData = new GhostBoxUtilityData();
         int[] spiritBoxEntries = toolGhostSpeakData.getEntries(context, arrayRes);
-        for(int e: spiritBoxEntries) {
+        for (int e : spiritBoxEntries) {
             LinearLayout linearLayout = new LinearLayout(context);
             LinearLayout.LayoutParams linearParams =
                     new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             1f);
-            linearParams.setMargins(0,8,0,8);
+            linearParams.setMargins(0, 8, 0, 8);
             linearLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             linearLayout.setLayoutParams(linearParams);
 
@@ -160,17 +159,17 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                     TypedValue.COMPLEX_UNIT_DIP,
                     dip,
                     getResources().getDisplayMetrics());
-            entry.setMinimumHeight((int)px);
+            entry.setMinimumHeight((int) px);
             entry.setText(getResources().getString(e));
             entry.setMaxLines(1);
             linearLayout.setOnClickListener(v -> new Thread(() -> {
                 startTextToSpeech();
-                if(textToSpeech != null && permissionsViewModel.isRecordAudioAllowed()) {
+                if (textToSpeech != null && permissionsViewModel.isRecordAudioAllowed()) {
                     startVisualizer();
                     textToSpeech.speak(
                             entry.getText(), TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
-                    Log.d( "TTS",
+                    Log.d("TTS",
                             "TTS is null, or RECORD_AUDIO is " +
                                     permissionsViewModel.isRecordAudioAllowed());
                 }
@@ -186,7 +185,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
      *
      */
     private void startVisualizer() {
-        if(visualizer == null) {
+        if (visualizer == null) {
             visualizer = new Visualizer(0);
             visualizer.setDataCaptureListener(
                     this, Visualizer.getMaxCaptureRate(), true, false);
@@ -200,7 +199,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
      *
      */
     private void stopVisualizer() {
-        if(visualizer != null) {
+        if (visualizer != null) {
             visualizer.setEnabled(false);
             visualizer.release();
             visualizer = null;
@@ -210,8 +209,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     /**
      *
      */
-    private void startTextToSpeech(){
-        if(textToSpeech == null) {
+    private void startTextToSpeech() {
+        if (textToSpeech == null) {
             textToSpeech = new TextToSpeech(getContext(), status -> {
                 if (status == TextToSpeech.SUCCESS) {
                     int result = textToSpeech.setLanguage(Locale.getDefault());
@@ -235,8 +234,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     /**
      *
      */
-    private void stopTextToSpeech(){
-        if(textToSpeech != null){
+    private void stopTextToSpeech() {
+        if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
             textToSpeech = null;
@@ -245,12 +244,12 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
 
     /**
      * visitTTSVoiceDownloads method
-     *
+     * <p>
      * The solution was to turn on Wi-Fi on the device and add German and Russian in
      * "Settings -> Language & Input -> Google voice typing -> Voices".
      * After that the languages were downloaded and the app worked as desired.
      */
-    public void visitTTSVoiceDownloads(){
+    public void visitTTSVoiceDownloads() {
         try {
             Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -259,7 +258,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
             else
                 Log.e("TTS", "Context is null");
         } catch (Exception e) {
-            if(getActivity() != null) {
+            if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     Toast toast = Toast.makeText(getContext(),
                             "Could not locate Text to Speech Settings Page", Toast.LENGTH_LONG);
@@ -271,16 +270,15 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     }
 
     /**
-     *
      * @param thisVisualiser The visualizer
-     * @param waveform The waveform
-     * @param samplingRate The sample rate
+     * @param waveform       The waveform
+     * @param samplingRate   The sample rate
      */
     @Override
     public void onWaveFormDataCapture(Visualizer thisVisualiser,
                                       byte[] waveform,
                                       int samplingRate) {
-        if(waveFormView != null)
+        if (waveFormView != null)
             if (textToSpeech != null && textToSpeech.isSpeaking()) {
                 waveFormView.updateVisualizer(Arrays.copyOf(waveform, waveform.length));
             } else
@@ -288,10 +286,9 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     }
 
     /**
-     *
      * @param thisVisualiser The visualizer
-     * @param fft The fft
-     * @param samplingRate The sampling rate
+     * @param fft            The fft
+     * @param samplingRate   The sampling rate
      */
     @Override
     public void onFftDataCapture(Visualizer thisVisualiser, byte[] fft, int samplingRate) {
@@ -300,7 +297,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
 
     /**
      * requestAudioPermissions
-     *
+     * <p>
      * Allows the user to allow or deny RECORD_AUDIO system function. This will restrict
      * the Sprit Box utility at its most fundamental level.
      *

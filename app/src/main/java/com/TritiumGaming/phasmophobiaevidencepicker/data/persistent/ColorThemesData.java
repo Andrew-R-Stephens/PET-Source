@@ -11,45 +11,39 @@ public class ColorThemesData {
     private int index = 0;
 
     /**
-     *
      * @param colorSpaceNames
      */
-    public ColorThemesData(String[] colorSpaceNames){
+    public ColorThemesData(String[] colorSpaceNames) {
         this.themeNames = colorSpaceNames;
     }
 
     /**
-     *
      * @param index
      */
-    public void setIndex(int index){
+    public void setIndex(int index) {
         this.index = index;
     }
 
     /**
-     *
      * @return
      */
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
 
     /**
-     *
      * @param dir
      */
-    public void iterate(int dir){
+    public void iterate(int dir) {
         index += dir;
 
-        if(index < 0)
-            index = themeNames.length-1;
-        else
-            if(index >= themeNames.length)
-                index = 0;
+        if (index < 0)
+            index = themeNames.length - 1;
+        else if (index >= themeNames.length)
+            index = 0;
     }
 
     /**
-     *
      * @return
      */
     public String getColorSpaceName() {

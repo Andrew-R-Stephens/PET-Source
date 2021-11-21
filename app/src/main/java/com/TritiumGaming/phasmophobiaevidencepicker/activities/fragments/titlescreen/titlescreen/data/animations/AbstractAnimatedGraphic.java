@@ -26,17 +26,15 @@ public abstract class AbstractAnimatedGraphic {
     protected boolean isAlive = true;
 
     /**
-     *
      * @param screenW
      * @param screenH
      */
-    public AbstractAnimatedGraphic(int screenW, int screenH){
+    public AbstractAnimatedGraphic(int screenW, int screenH) {
         setScreenW(screenW);
         setScreenH(screenH);
     }
 
     /**
-     *
      * @param screenW
      */
     public void setScreenW(int screenW) {
@@ -44,7 +42,6 @@ public abstract class AbstractAnimatedGraphic {
     }
 
     /**
-     *
      * @param screenH
      */
     public void setScreenH(int screenH) {
@@ -52,50 +49,44 @@ public abstract class AbstractAnimatedGraphic {
     }
 
     /**
-     *
      * @param scale
      */
-    public void setScale(double scale){
+    public void setScale(double scale) {
         this.scale = scale;
     }
 
     /**
-     *
      * @param w
      */
-    public void setWidth(double w){
+    public void setWidth(double w) {
         this.width = w;
     }
 
     /**
-     *
      * @param h
      */
-    public void setHeight(double h){
+    public void setHeight(double h) {
         this.height = h;
     }
 
     /**
-     *
      * @param rot
      */
-    public void setRotation(float rot){
+    public void setRotation(float rot) {
         rotation = rot;
     }
 
     /**
-     *
      * @return
      */
-    public boolean isAlive(){
+    public boolean isAlive() {
         return isAlive;
     }
 
     /**
-     *
      * @return
      */
-    public Rect getRect(){
+    public Rect getRect() {
         return r;
     }
 
@@ -107,28 +98,26 @@ public abstract class AbstractAnimatedGraphic {
     /**
      *
      */
-    public void setAlpha(){
-        double alphaMult = (double) currentTick /(double) MAX_TICK /fadeTick* MAX_ALPHA;
-        alpha = (int)alphaMult;
-        if(alpha > MAX_ALPHA)
+    public void setAlpha() {
+        double alphaMult = (double) currentTick / (double) MAX_TICK / fadeTick * MAX_ALPHA;
+        alpha = (int) alphaMult;
+        if (alpha > MAX_ALPHA)
             alpha = MAX_ALPHA;
-        else if(alpha < 0)
+        else if (alpha < 0)
             alpha = 0;
     }
 
     /**
-     *
      * @return
      */
     public abstract PorterDuffColorFilter getFilter();
 
     /**
-     *
      * @param canvas
      * @param paint
      * @param bitmap
      */
-    public void draw(Canvas canvas, Paint paint, Bitmap bitmap){
+    public void draw(Canvas canvas, Paint paint, Bitmap bitmap) {
         if (BitmapUtils.bitmapExists(bitmap)) {
             canvas.drawBitmap(bitmap, null, getRect(), paint);
         }

@@ -64,7 +64,7 @@ public class NewsletterMessagesFragment extends Fragment {
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-        if(messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
+        if (messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
             MessagesAdapterView adapter = new MessagesAdapterView(
                     messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
                 messageInboxViewModel.setCurrentMessageId(position);

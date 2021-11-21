@@ -16,7 +16,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
 public class AnimatedWritingData extends AbstractAnimatedGraphic {
 
     /**
-     *
      * @param screenW
      * @param screenH
      * @param bitmapW
@@ -28,7 +27,7 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
             int screenH,
             int bitmapW,
             int bitmapH,
-            AnimatedGraphicData animationData){
+            AnimatedGraphicData animationData) {
         super(screenW, screenH);
 
         MAX_ALPHA = 200;
@@ -54,85 +53,79 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
     }
 
     /**
-     *
      * @param tickMax
      */
-    public void setTickMax(int tickMax){
+    public void setTickMax(int tickMax) {
         this.MAX_TICK = tickMax;
     }
 
     /**
      *
      */
-    public void setX(){
+    public void setX() {
         this.x = Math.random() * SCREENW;
-        if(this.x+getScaledWidth() > SCREENW )
+        if (this.x + getScaledWidth() > SCREENW)
             this.x -= getScaledWidth();
-        else if(this.x < getScaledWidth()*-1)
+        else if (this.x < getScaledWidth() * -1)
             this.x = 0;
     }
 
     /**
      *
      */
-    public void setY(){
+    public void setY() {
         this.y = Math.random() * SCREENH;
-        if(this.y+getScaledHeight() > SCREENH )
+        if (this.y + getScaledHeight() > SCREENH)
             this.y -= getScaledHeight();
-        else if(this.y < getScaledHeight()*-1)
+        else if (this.y < getScaledHeight() * -1)
             this.y = 0;
     }
 
     /**
-     *
      * @param w
      */
-    public void setWidth(double w){
+    public void setWidth(double w) {
         this.width = w;
     }
 
     /**
-     *
      * @param h
      */
-    public void setHeight(double h){
+    public void setHeight(double h) {
         this.height = h;
     }
 
     /**
-     *
      * @param scale
      */
-    public void setScale(double scale){
+    public void setScale(double scale) {
         this.scale = scale;
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledWidth(){
+    public double getScaledWidth() {
         return this.scale * width;
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledHeight(){
+    public double getScaledHeight() {
         return this.scale * height;
     }
 
     /**
      *
      */
-    public void setRect(){
-        r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
+    public void setRect() {
+        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**
      * rotateBitmap
-     *
+     * <p>
      * Creates a rotated copy of the original Bitmap
      *
      * @param original- original Bitmap
@@ -150,22 +143,21 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
     /**
      *
      */
-    public void tick(){
+    public void tick() {
         setRect();
-        if(currentTick >= 0)
+        if (currentTick >= 0)
             currentTick += tickIncrementDirection;
         else
             isAlive = false;
-        if(currentTick >= this.MAX_TICK)
+        if (currentTick >= this.MAX_TICK)
             tickIncrementDirection *= -1;
         setAlpha();
     }
 
     /**
-     *
      * @return
      */
-    public PorterDuffColorFilter getFilter(){
+    public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(
                 Color.argb(alpha, 100, 100, 100),
                 PorterDuff.Mode.MULTIPLY);

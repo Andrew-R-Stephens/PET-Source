@@ -28,7 +28,7 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
         this.onLanguageListener = onLanguageListener;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatTextView label_languageTitle;
         private final OnLanguageListener onLanguageListener;
 

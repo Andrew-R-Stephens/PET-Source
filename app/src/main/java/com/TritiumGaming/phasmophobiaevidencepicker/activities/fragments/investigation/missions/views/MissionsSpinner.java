@@ -23,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author TritiumGamingStudios
  */
-public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
+public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner {
 
     private MissionsData data = null;
     private MissionsData.Objective currentObjective = null;
@@ -32,7 +32,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     private final Drawable[] strikeout = new Drawable[2];
 
     /**
-     *
      * @param context
      */
     public MissionsSpinner(Context context) {
@@ -41,7 +40,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param mode
      */
@@ -51,7 +49,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param attrs
      */
@@ -61,7 +58,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param data
@@ -75,7 +71,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -89,7 +84,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -105,7 +99,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -123,7 +116,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -147,13 +139,13 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     /**
      *
      */
-    public void init(){
+    public void init() {
         setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(currentObjective != null)
+                if (currentObjective != null)
                     currentObjective.setSelected(false);
-                currentObjective = (MissionsData.Objective)parent.getItemAtPosition(position);
+                currentObjective = (MissionsData.Objective) parent.getItemAtPosition(position);
                 currentObjective.setSelected(true);
                 currentObjective.setPosition(position);
             }
@@ -166,19 +158,17 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param data
      */
-    public void setData(MissionsData data){
+    public void setData(MissionsData data) {
         this.data = data;
     }
 
     /**
-     *
      * @param isCompleted
      */
-    public void setCompleted(boolean isCompleted){
-        if(isCompleted) {
+    public void setCompleted(boolean isCompleted) {
+        if (isCompleted) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 setForeground(strikeout[0]);
             }
@@ -193,14 +183,13 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
      *
      */
     @SuppressLint("UseCompatLoadingForDrawables")
-    public void setStrikeout(){
+    public void setStrikeout() {
         strikeout[0] = super.getContext().getDrawable(R.drawable.icon_strikethrough_1);
         //strikeout[0].setTint(Color.RED);
         strikeout[0].setTint(checkButton.getColorStates()[1]);
     }
 
     /**
-     *
      * @param checkButton
      */
     public void setCheckButton(MissionsCompletedButton checkButton) {
@@ -208,7 +197,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @return
      */
     public MissionsData.Objective getSelectedObjective() {
@@ -216,21 +204,19 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner{
     }
 
     /**
-     *
      * @param currentObjective
      */
-    public void setCurrentObjective(MissionsData.Objective currentObjective){
+    public void setCurrentObjective(MissionsData.Objective currentObjective) {
         this.currentObjective = data.getCopyOfObjective(currentObjective);
 
-        if(currentObjective != null)
+        if (currentObjective != null)
             setSelection(this.currentObjective.getPosition());
     }
 
     /**
-     *
      * @return
      */
-    public boolean isCompleted(){
+    public boolean isCompleted() {
         return checkButton.isEnabled();
     }
 

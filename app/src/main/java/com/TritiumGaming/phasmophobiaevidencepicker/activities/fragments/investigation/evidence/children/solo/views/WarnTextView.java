@@ -23,10 +23,10 @@ public class WarnTextView extends AppCompatTextView {
     private boolean state = false;
     private boolean flashOn = false;
 
-    private @ColorInt int color_active, color_inactive, color_off;
+    private @ColorInt
+    int color_active, color_inactive, color_off;
 
     /**
-     *
      * @param context
      */
     public WarnTextView(@NonNull Context context) {
@@ -35,7 +35,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     *
      * @param context
      * @param attrs
      */
@@ -45,7 +44,6 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -58,7 +56,7 @@ public class WarnTextView extends AppCompatTextView {
     /**
      *
      */
-    private void init(){
+    private void init() {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.light_active, typedValue, true);
@@ -70,12 +68,11 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     *
      * @param canFlash
      */
-    public void toggleFlash(boolean canFlash){
+    public void toggleFlash(boolean canFlash) {
         int c;
-        if(this.state){
+        if (this.state) {
             if (canFlash && (flashOn = !flashOn))
                 c = color_active;
             else
@@ -87,15 +84,14 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     *
      * @param state
      */
-    public void setState(boolean state){
+    public void setState(boolean state) {
 
-        if(this.state = state){
+        if (this.state = state) {
             setBackgroundTintList(ColorStateList.valueOf(color_active));
 
-            if(flashOn)
+            if (flashOn)
                 setTextColor(color_active);
             else
                 setTextColor(color_inactive);
@@ -106,14 +102,13 @@ public class WarnTextView extends AppCompatTextView {
     }
 
     /**
-     *
      * @param state
      * @param flashOn
      */
-    public void setState(boolean state, boolean flashOn){
-        if(this.state = state){
+    public void setState(boolean state, boolean flashOn) {
+        if (this.state = state) {
             setBackgroundTintList(ColorStateList.valueOf(color_active));
-            if(this.flashOn = flashOn)
+            if (this.flashOn = flashOn)
                 setTextColor(color_active);
             else
                 setTextColor(color_inactive);

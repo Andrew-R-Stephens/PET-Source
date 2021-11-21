@@ -24,31 +24,41 @@ public class EvidenceViewModel extends ViewModel {
     private InvestigationData investigationData;
     private SanityRunnable sanityRunnable;
     private SanityData sanityData;
-    private MapSizeData[] mapSizeData;
 
     private int[] radioButtonsChecked;
-    private int mapCurrent = 0;
 
     // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
-    private PhaseTimerData timerData;
+    // private PhaseTimerData timerData;
     private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
-    private WarnTextData warnTextData;
+    // private WarnTextData warnTextData;
     private MapCarouselData mapCarouselData;
     private DifficultyCarouselData difficultyCarouselData;
 
     public void init(Context c) {
 
-        if(!hasInvestigationData()) {
+        if (!hasInvestigationData()) {
             setInvestigationData(new InvestigationData(c));
         }
 
-        if(!hasDifficultyCarouselData()){
+        if (!hasDifficultyCarouselData()) {
             difficultyCarouselData = new DifficultyCarouselData(this, c);
         }
 
-        if(!hasSanityData()) {
+        if (!hasMapCarouselData()) {
+            mapCarouselData = new MapCarouselData(this);
+        }
+
+        if (!hasSanityData()) {
             sanityData = new SanityData(this);
         }
+    }
+
+    private boolean hasMapCarouselData() {
+        return mapCarouselData != null;
+    }
+
+    public MapCarouselData getMapCarouselData() {
+        return mapCarouselData;
     }
 
     public DifficultyCarouselData getDifficultyCarouselData() {
@@ -60,31 +70,27 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     *
      * @param investigationData
      */
-    public void setInvestigationData(InvestigationData investigationData){
+    public void setInvestigationData(InvestigationData investigationData) {
         this.investigationData = investigationData;
     }
 
     /**
-     *
      * @return
      */
-    public InvestigationData getInvestigationData(){
+    public InvestigationData getInvestigationData() {
         return investigationData;
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasInvestigationData(){
+    public boolean hasInvestigationData() {
         return investigationData != null;
     }
 
     /**
-     *
      * @param sanityRunnable
      */
     public void setSanityRunnable(SanityRunnable sanityRunnable) {
@@ -92,23 +98,20 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     *
      * @return
      */
-    public SanityRunnable getSanityRunnable(){
+    public SanityRunnable getSanityRunnable() {
         return sanityRunnable;
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasSanityRunnable(){
+    public boolean hasSanityRunnable() {
         return sanityRunnable != null;
     }
 
     /**
-     *
      * @param sanityData
      */
     public void setSanityData(SanityData sanityData) {
@@ -116,106 +119,34 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     *
      * @return
      */
-    public SanityData getSanityData(){
+    public SanityData getSanityData() {
         return sanityData;
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasSanityData(){
+    public boolean hasSanityData() {
         return sanityData != null;
     }
 
     /**
-     *
-     * @param allNames
-     * @param allSizes
-     */
-    public void setMapSizeData(String[] allNames, int[] allSizes){
-        if(allNames.length == allSizes.length) {
-            mapSizeData = new MapSizeData[allSizes.length];
-            for (int i = 0; i < allNames.length; i++)
-                mapSizeData[i] = new MapSizeData(allNames[i], allSizes[i]);
-        }
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean hasMapSizeData() {
-        return mapSizeData == null;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMapCount(){
-        if(mapSizeData == null)
-            return 0;
-        return mapSizeData.length;
-    }
-
-    /**
-     *
-     * @param index
-     */
-    public void setMapCurrent(int index){
-        this.mapCurrent = index;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMapCurrentIndex(){
-        return mapCurrent;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getMapCurrentName(){
-        if(mapSizeData != null)
-            return mapSizeData[mapCurrent].getName();
-        return "???";
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMapCurrentSize(){
-        if(mapSizeData != null)
-            return mapSizeData[mapCurrent].getSize();
-        return 1;
-    }
-
-    /**
-     *
      * @param radioButtonsChecked
      */
-    public void setRadioButtonsChecked(int[] radioButtonsChecked){
+    public void setRadioButtonsChecked(int[] radioButtonsChecked) {
         this.radioButtonsChecked = radioButtonsChecked;
     }
 
     /**
-     *
      * @return
      */
-    public int[] getRadioButtonsChecked(){
+    public int[] getRadioButtonsChecked() {
         return radioButtonsChecked;
     }
 
     /**
-     *
      * @param timerView
      */
     public void setTimerView(PhaseTimerView timerView) {
@@ -223,7 +154,6 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     *
      * @return
      */
     public PhaseTimerView getTimerView() {
@@ -231,32 +161,17 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasTimer(){
+    public boolean hasTimer() {
         return timerView != null;
     }
 
     /**
-     *
      * @return
      */
-    public boolean isSetup(){
+    public boolean isSetup() {
         return getTimerView().getTimeRemaining() > 0L;
-    }
-
-    /**
-     *
-     * @param timeout
-     */
-    public void setHuntWarningFlashTimeout(int timeout) {
-        if(sanityData != null) {
-            sanityData.setFlashTimeoutMax(timeout);
-            Log.d("SanityData", "is not null");
-        }
-        else
-            Log.d("SanityData", "is null");
     }
 
     /**
@@ -264,45 +179,17 @@ public class EvidenceViewModel extends ViewModel {
      */
     public void reset() {
         timerView = null;
-        investigationData.resetAll();
+
         radioButtonsChecked = null;
-        if (sanityData != null)
+
+        if(hasInvestigationData())
+            investigationData.resetAll();
+
+        if (hasSanityData())
             sanityData.reset();
-        mapCurrent = 0;
+        if(hasMapCarouselData())
+            mapCarouselData.setMapCurrentIndex(0);
     }
 
-    /**
-     * MapSizeData class
-     */
-    private static class MapSizeData {
-        private final String name;
-        private final int size;
-
-        /**
-         * MapSizeData parameterized constructor
-         * @param name
-         * @param size
-         */
-        public MapSizeData(String name, int size){
-            this.name = name;
-            this.size = size;
-        }
-
-        /**
-         * getSize method
-         * @return
-         */
-        public int getSize(){
-            return size;
-        }
-
-        /**
-         * getName method
-         * @return
-         */
-        public String getName(){
-            return name;
-        }
-    }
 }
 

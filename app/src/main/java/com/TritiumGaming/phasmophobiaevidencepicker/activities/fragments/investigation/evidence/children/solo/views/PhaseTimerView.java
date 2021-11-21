@@ -27,24 +27,19 @@ public class PhaseTimerView {
 
     /**
      * SetupPhaseTimer parameterized constructor
+     *
      * @param recipientView
      */
-    public PhaseTimerView(AppCompatTextView recipientView) {
+    public PhaseTimerView(EvidenceViewModel evidenceViewModel, AppCompatTextView recipientView) {
+        this.evidenceViewModel = evidenceViewModel;
         setRecipientView(recipientView);
         setText();
         setPaused(true);
     }
 
     /**
-     * init method
-     * @param evidenceViewModel
-     */
-    public void init(EvidenceViewModel evidenceViewModel) {
-        this.evidenceViewModel = evidenceViewModel;
-    }
-
-    /**
      * createTimer method
+     *
      * @param millisInFuture
      * @param countDownInterval
      */
@@ -106,6 +101,7 @@ public class PhaseTimerView {
 
     /**
      * setTimerControls method
+     *
      * @param stateControl
      */
     public void setTimerControls(PhaseTimerControlView stateControl) {
@@ -114,6 +110,7 @@ public class PhaseTimerView {
 
     /**
      * setPaused method
+     *
      * @param isPaused
      */
     public void setPaused(boolean isPaused) {
@@ -122,6 +119,7 @@ public class PhaseTimerView {
 
     /**
      * isPaused method
+     *
      * @return
      */
     public boolean isPaused() {
@@ -130,6 +128,7 @@ public class PhaseTimerView {
 
     /**
      * setTimeRemaining method
+     *
      * @param timeRemaining
      */
     public void setTimeRemaining(long timeRemaining) {
@@ -138,6 +137,7 @@ public class PhaseTimerView {
 
     /**
      * getTimeRemaining method
+     *
      * @return
      */
     public long getTimeRemaining() {
@@ -146,6 +146,7 @@ public class PhaseTimerView {
 
     /**
      * setRecipientView method
+     *
      * @param recipientView
      */
     public void setRecipientView(AppCompatTextView recipientView) {

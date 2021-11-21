@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 
-public class EvidenceSanitySectionData {
+public class SanityTrackerData {
 
     private DifficultyCarouselData difficultyCarouselViewData;
     private MapCarouselData mapCarouselViewData;

@@ -186,7 +186,7 @@ public class TitlescreenFragment extends Fragment {
         try {
             boolean isUpToDate = true;
 
-            if(newsLetterViewModel != null) {
+            if (newsLetterViewModel != null) {
 
                 if (getContext() != null) {
                     XmlPullParserFactory xmlPullParserFactory_phas =
@@ -262,7 +262,7 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
-    private void gotoMessageCenterFragment(View v){
+    private void gotoMessageCenterFragment(View v) {
         Navigation.findNavController(v).
                 navigate(R.id.action_titleScreenFragment_to_inboxFragment);
     }
@@ -351,7 +351,8 @@ public class TitlescreenFragment extends Fragment {
                             Task<Void> flow = manager.launchReviewFlow(getActivity(), reviewInfo);
                             flow.addOnCompleteListener(flowTask -> {
                                 // The flow has finished. The API does not indicate whether the user
-                                // reviewed or not, or even whether the review dialog was shown. Thus, no
+                                // reviewed or not, or even whether the review dialog was shown.
+                                // Thus, no
                                 // matter the result, we continue our app flow.
                             });
                         }
@@ -364,8 +365,11 @@ public class TitlescreenFragment extends Fragment {
                         intent.setData(Uri.parse(getResources().
                                 getString(R.string.review_storelink)));
                         intent.setPackage("com.android.vending");
-                        try { startActivity(intent); }
-                        catch (ActivityNotFoundException e) { e.printStackTrace(); }
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
@@ -408,8 +412,11 @@ public class TitlescreenFragment extends Fragment {
 
                     Log.d("MessageCenter", "Load failed!");
 
-                    try { Thread.sleep(10000); }
-                    catch (InterruptedException e) { e.printStackTrace(); }
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                 }
 
@@ -425,7 +432,7 @@ public class TitlescreenFragment extends Fragment {
 
     private void startInitMessageCenterThread() {
 
-        if(NetworkUtils.isNetworkAvailable(getContext(),
+        if (NetworkUtils.isNetworkAvailable(getContext(),
                 globalPreferencesViewModel.getNetworkPreference()))
             startLoadMessageCenterThread();
         else
@@ -433,7 +440,7 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
-    private void stopLoadMessageCenterThread(){
+    private void stopLoadMessageCenterThread() {
 
         if (messageCenterThread != null) {
 
@@ -468,8 +475,11 @@ public class TitlescreenFragment extends Fragment {
             initReadyThread = new Thread(() -> {
 
                 while (!canRunAnim) {
-                    try { Thread.sleep(100); }
-                    catch (InterruptedException e) { e.printStackTrace(); }
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 startAnimThreads();
 

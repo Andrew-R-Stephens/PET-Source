@@ -6,13 +6,14 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * SanityRunnable class
- *
+ * <p>
  * Contains references to all Views for Sanity-specific UI and updates them via Runnable.
  *
  * @author TritiumGamingStudios
@@ -37,14 +38,14 @@ public class SanityRunnable implements Runnable {
      * Locally sets references to EvidenceViewModel
      * Locally sets references to Views and Resources found within the parent Fragment.
      *
-     * @param evidenceViewModel
-     * @param sanityMeterSoloView
-     * @param sanityMeterTextView
-     * @param sanityMeterSeekBar
-     * @param setupPhaseTextView
-     * @param actionPhaseTextView
-     * @param huntWarningTextView
-     * @param audio_huntWarn
+     * @param evidenceViewModel -
+     * @param sanityMeterSoloView -
+     * @param sanityMeterTextView -
+     * @param sanityMeterSeekBar -
+     * @param setupPhaseTextView -
+     * @param actionPhaseTextView -
+     * @param huntWarningTextView -
+     * @param audio_huntWarn -
      */
     public SanityRunnable(
             EvidenceViewModel evidenceViewModel,
@@ -55,7 +56,7 @@ public class SanityRunnable implements Runnable {
             WarnTextView setupPhaseTextView,
             WarnTextView actionPhaseTextView,
             WarnTextView huntWarningTextView,
-            MediaPlayer audio_huntWarn){
+            MediaPlayer audio_huntWarn) {
 
         this.evidenceViewModel = evidenceViewModel;
         this.globalPreferencesViewModel = globalPreferencesViewModel;
@@ -71,54 +72,57 @@ public class SanityRunnable implements Runnable {
 
     /**
      * setWait
-     *
+     * <p>
      * Set the time that the parent Thread will wait between local run() calls.
      * Used to properly time the Flash Warning in the local run() method.
      *
      * @param wait
      */
-    public void setWait(long wait){
+    public void setWait(long wait) {
         this.wait = wait;
     }
 
     /**
      * run
-     *
+     * <p>
      * Updates both the Sanity Image, the Sanity Percent,
      * the Hunting Phase Warnings, the Low Sanity Warning, and the Sanity Seek Bar.
      */
     @Override
     public void run() {
 
-        if(evidenceViewModel != null &&
+        // SanityData sanityData = evidenceViewModel.getSanityData();
+
+        if (evidenceViewModel != null &&
                 evidenceViewModel.hasSanityData() &&
                 evidenceViewModel.getSanityData().getStartTime() == -1)
             evidenceViewModel.getSanityData().setStartTime(System.currentTimeMillis());
 
-        if(evidenceViewModel != null &&
+        if (evidenceViewModel != null &&
                 evidenceViewModel.hasSanityData() &&
                 !evidenceViewModel.getSanityData().isPaused()) {
 
-            if(evidenceViewModel.hasTimer() &&
+            if (evidenceViewModel.hasTimer() &&
                     !evidenceViewModel.getTimerView().isPaused()) {
 
                 evidenceViewModel.getSanityData().tick();
                 sanityMeterTextView.setText(evidenceViewModel.getSanityData().toPercentString());
 
-                if(evidenceViewModel.hasTimer()) {
+                if (evidenceViewModel.hasTimer()) {
 
-                    if(setupPhaseTextView != null) {
+                    if (setupPhaseTextView != null) {
                         setupPhaseTextView.setState(evidenceViewModel.isSetup(), true);
                     }
 
-                    if(actionPhaseTextView != null) {
+                    if (actionPhaseTextView != null) {
                         actionPhaseTextView.setState(!evidenceViewModel.isSetup(), true);
                     }
 
                     if (audio_huntWarn != null) {
                         if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
                                 !evidenceViewModel.isSetup() &&
-                                evidenceViewModel.getSanityData().canWarn()) {
+                                evidenceViewModel.getSanityData().canWarn())
+                        {
                             audio_huntWarn.start();
                             if (evidenceViewModel.hasSanityData())
                                 evidenceViewModel.getSanityData().setCanWarn(false);
@@ -148,7 +152,7 @@ public class SanityRunnable implements Runnable {
                 }
             }
 
-            if(sanityMeterSoloView != null)
+            if (sanityMeterSoloView != null)
                 sanityMeterSoloView.invalidate();
 
         }
@@ -156,12 +160,12 @@ public class SanityRunnable implements Runnable {
 
     /**
      * haltMediaPlayer
-     *
+     * <p>
      * Releases the audio stream of Hunt Warning audio.
      */
-    public void haltMediaPlayer(){
+    public void haltMediaPlayer() {
 
-        if(audio_huntWarn != null) {
+        if (audio_huntWarn != null) {
             audio_huntWarn.stop();
             audio_huntWarn.release();
             audio_huntWarn = null;

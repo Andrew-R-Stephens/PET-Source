@@ -32,7 +32,7 @@ public class InvestigationData {
     public void initGhosts(Context c) {
         allGhosts = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.evidence_ghost_names);
-        for(int i = 0; i < ghostNames.length; i++) {
+        for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
             ghost.setName(ghostNames[i]);
             TypedArray typedArray =
@@ -40,7 +40,7 @@ public class InvestigationData {
             TypedArray nameTypedArray =
                     c.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
             typedArray.recycle();
-            for(int j = 0; j < nameTypedArray.length(); j++)
+            for (int j = 0; j < nameTypedArray.length(); j++)
                 ghost.addEvidence(nameTypedArray.getString(j));
             nameTypedArray.recycle();
             allGhosts.add(ghost);
@@ -53,7 +53,7 @@ public class InvestigationData {
     public void initEvidence(Context c) {
         allEvidence = new ArrayList<>();
         String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_tool_names);
-        for(int i = 0; i < evidenceNames.length; i++) {
+        for (int i = 0; i < evidenceNames.length; i++) {
             Evidence evidence = new Evidence();
             evidence.setName(evidenceNames[i]);
             TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
@@ -96,8 +96,8 @@ public class InvestigationData {
     /**
      * Resets the Ruling for each Evidence type
      */
-    public void resetAll(){
-        for(int i = 0; i < allEvidence.size(); i++)
+    public void resetAll() {
+        for (int i = 0; i < allEvidence.size(); i++)
             allEvidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
     }
 
@@ -120,7 +120,7 @@ public class InvestigationData {
         /**
          *
          */
-        public Ghost(int id, String ghostName, Evidence e1, Evidence e2, Evidence e3){
+        public Ghost(int id, String ghostName, Evidence e1, Evidence e2, Evidence e3) {
             setId(id);
             setName(ghostName);
             addEvidence(e1);
@@ -131,7 +131,7 @@ public class InvestigationData {
         /**
          *
          */
-        public Ghost(int id, String ghostName, Evidence[] e){
+        public Ghost(int id, String ghostName, Evidence[] e) {
             setId(id);
             setName(ghostName);
             addEvidence(e);
@@ -169,7 +169,7 @@ public class InvestigationData {
          *
          */
         public void addEvidence(Evidence e) {
-            if(thisGhostEvidence.size() < MAX_EVIDENCE_COUNT)
+            if (thisGhostEvidence.size() < MAX_EVIDENCE_COUNT)
                 thisGhostEvidence.add(e);
         }
 
@@ -177,13 +177,13 @@ public class InvestigationData {
          *
          */
         public void addEvidence(Evidence[] pe) {
-            for(Evidence e: pe)
+            for (Evidence e : pe)
                 addEvidence(e);
         }
 
         public void addEvidence(String evidence) {
-            for(Evidence e: allEvidence)
-                if(evidence.equals(e.getName())) {
+            for (Evidence e : allEvidence)
+                if (evidence.equals(e.getName())) {
                     addEvidence(e);
                     break;
                 }
@@ -194,7 +194,7 @@ public class InvestigationData {
          */
         public Evidence[] getEvidenceArray() {
             Evidence[] newEvidence = new Evidence[thisGhostEvidence.size()];
-            for(int i = 0; i < newEvidence.length; i++)
+            for (int i = 0; i < newEvidence.length; i++)
                 newEvidence[i] = thisGhostEvidence.get(i);
             return newEvidence;
         }
@@ -207,24 +207,25 @@ public class InvestigationData {
          * Score cannot surpass a positive value of '3'
          * Score sets to '-5' if an Evidence type is positive but not found in Ghost's Evidence list
          * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list
+         *
          * @return numerical representation of the Ghost's Evidence score
          */
         public int getEvidenceScore() {
 
             int rating = 0;
-            for(Evidence e: thisGhostEvidence) {
+            for (Evidence e : thisGhostEvidence) {
                 if (e.getRuling() == Evidence.Ruling.POSITIVE)
                     rating++;
                 else if (e.getRuling() == Evidence.Ruling.NEGATIVE)
                     return -5;
             }
 
-            for(int i = 0; i < allEvidence.size(); i++){
+            for (int i = 0; i < allEvidence.size(); i++) {
                 boolean isContained = false;
                 for (Evidence value : thisGhostEvidence)
                     if (allEvidence.get(i).getName().equals(value.getName()))
                         isContained = true;
-                if(!isContained && allEvidence.get(i).getRuling() == Evidence.Ruling.POSITIVE)
+                if (!isContained && allEvidence.get(i).getRuling() == Evidence.Ruling.POSITIVE)
                     return -5;
             }
             return rating;
@@ -266,7 +267,6 @@ public class InvestigationData {
         }
 
         /**
-         *
          * @param ruling
          */
         public void setRuling(Ruling ruling) {
@@ -274,7 +274,6 @@ public class InvestigationData {
         }
 
         /**
-         *
          * @return
          */
         public Ruling getRuling() {
@@ -282,7 +281,6 @@ public class InvestigationData {
         }
 
         /**
-         *
          * @return
          */
         public String toString() {

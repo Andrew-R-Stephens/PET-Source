@@ -17,86 +17,85 @@ public class MapData {
 
     /**
      * setMapName
+     *
      * @param mapName
      */
-    public void setMapName(String mapName){
+    public void setMapName(String mapName) {
         this.mapName = mapName;
     }
 
     /**
-     *
      * @return
      */
-    public String getMapName(){
+    public String getMapName() {
         return mapName;
     }
 
     /**
-     *
      * @return
      */
-    public int getFloorCount(){ return floorNames.size(); }
+    public int getFloorCount() {
+        return floorNames.size();
+    }
 
     /**
      * setDefaultFloor
+     *
      * @param index
      */
     public void setDefaultFloor(int index) {
-        this.currentFloorIndex = this.defaultFloorIndex = index; }
+        this.currentFloorIndex = this.defaultFloorIndex = index;
+    }
 
     /**
-     *
      * @return
      */
-    public int getDefaultFloor(){
+    public int getDefaultFloor() {
         return defaultFloorIndex;
     }
 
     /**
-     *
      * @param index
      */
-    public void setCurrentFloor(int index) { this.currentFloorIndex = index; }
+    public void setCurrentFloor(int index) {
+        this.currentFloorIndex = index;
+    }
 
     /**
-     *
      * @return
      */
-    public int getCurrentFloor(){
+    public int getCurrentFloor() {
         return currentFloorIndex;
     }
 
     /**
-     *
      * @param id
      */
-    public void addFloorName(int id){ floorNames.add(id); }
+    public void addFloorName(int id) {
+        floorNames.add(id);
+    }
 
     /**
-     *
      * @return
      */
-    public int getFloorName(){
+    public int getFloorName() {
         return floorNames.get(currentFloorIndex);
     }
 
     /**
-     *
      * @param floorIndex
      * @param layer
      */
-    public void addFloorLayer(int floorIndex, int layer){
-        if(floorLayers.size() <= 0 || floorIndex >= floorLayers.size()) {
+    public void addFloorLayer(int floorIndex, int layer) {
+        if (floorLayers.size() <= 0 || floorIndex >= floorLayers.size()) {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(layer);
             floorLayers.add(temp);
-        }
-        else
+        } else
             floorLayers.get(floorIndex).add(layer);
     }
 
     /**
-     *
      * @return
      */
     public ArrayList<Integer> getAllCurrentFloorLayers() {
@@ -104,7 +103,6 @@ public class MapData {
     }
 
     /**
-     *
      * @return
      */
     public ArrayList<ArrayList<Integer>> getAllFloorLayers() {

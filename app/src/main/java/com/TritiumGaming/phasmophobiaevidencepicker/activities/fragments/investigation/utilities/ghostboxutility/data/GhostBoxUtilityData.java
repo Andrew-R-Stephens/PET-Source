@@ -15,6 +15,7 @@ public class GhostBoxUtilityData {
 
     /**
      * getEntries method
+     *
      * @param context
      * @param resourceArray
      * @return

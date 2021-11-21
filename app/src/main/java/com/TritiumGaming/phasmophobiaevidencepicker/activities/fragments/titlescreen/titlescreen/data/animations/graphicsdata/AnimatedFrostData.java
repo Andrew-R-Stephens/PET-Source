@@ -13,7 +13,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  */
 public class AnimatedFrostData extends AbstractAnimatedGraphic {
     /**
-     *
      * @param screenW
      * @param screenH
      */
@@ -27,78 +26,74 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
         setHeight(SCREENH);
         setX();
         setY();
-        setTickMax((int)((Math.random()*(MAX_TICK-(MAX_TICK*.5)))+(MAX_TICK*.5)));
+        setTickMax((int) ((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)));
         fadeTick = .7;
     }
 
     /**
-     *
      * @param tickMax
      */
-    public void setTickMax(int tickMax){
+    public void setTickMax(int tickMax) {
         this.MAX_TICK = tickMax;
     }
 
     /**
      *
      */
-    public void setX(){
+    public void setX() {
         this.x = 0;
-        if(getScaledWidth() > SCREENW )
-            this.x -= (getScaledHeight()/2.0);
+        if (getScaledWidth() > SCREENW)
+            this.x -= (getScaledHeight() / 2.0);
     }
 
     /**
      *
      */
-    public void setY(){
+    public void setY() {
         this.y = 0;
-        if(getScaledHeight() > SCREENH )
-            this.y -= (getScaledHeight()/2.0);
+        if (getScaledHeight() > SCREENH)
+            this.y -= (getScaledHeight() / 2.0);
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledWidth(){
+    public double getScaledWidth() {
         return scale * width;
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledHeight(){
+    public double getScaledHeight() {
         return scale * height;
     }
 
     /**
      *
      */
-    public void setRect(){
-        r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
+    public void setRect() {
+        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**
      *
      */
-    public void tick(){
+    public void tick() {
         setRect();
-        if(currentTick >= 0)
+        if (currentTick >= 0)
             currentTick += tickIncrementDirection;
         else
             isAlive = false;
-        if(currentTick >= MAX_TICK)
+        if (currentTick >= MAX_TICK)
             tickIncrementDirection *= -1;
         setAlpha();
     }
 
     /**
-     *
      * @return
      */
-    public PorterDuffColorFilter getFilter(){
+    public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(
                 Color.argb(alpha, 230, 255, 255),
                 PorterDuff.Mode.MULTIPLY);

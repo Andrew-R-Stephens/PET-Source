@@ -17,92 +17,86 @@ public class ReviewTrackingData {
 
     /**
      * ReviewTrackingData parameterized constructor
+     *
      * @param wasRequested
      * @param timeActive
      * @param timesOpened
      */
-    public ReviewTrackingData(boolean wasRequested, long timeActive, int timesOpened){
+    public ReviewTrackingData(boolean wasRequested, long timeActive, int timesOpened) {
         setWasRequested(wasRequested);
         setTimeActive(timeActive);
         setTimesOpened(timesOpened);
     }
 
     /**
-     *
      * @param timeActive
      */
-    public void setTimeActive(long timeActive){
+    public void setTimeActive(long timeActive) {
         this.timeActive = timeActive;
     }
 
     /**
-     *
      * @param timeActive
      */
-    public void addTimeActive(long timeActive){
+    public void addTimeActive(long timeActive) {
         this.timeActive += timeActive;
     }
 
     /**
-     *
      * @return
      */
-    public long getTimeActive(){
+    public long getTimeActive() {
         return timeActive;
     }
 
     /**
-     *
      * @param timesOpened
      */
-    public void setTimesOpened(int timesOpened){
+    public void setTimesOpened(int timesOpened) {
         this.timesOpened = timesOpened;
     }
 
     /**
-     *
      * @param timesOpened
      */
-    public void addTimesOpened(int timesOpened){
+    public void addTimesOpened(int timesOpened) {
         this.timesOpened += timesOpened;
     }
 
     /**
+     *
      */
-    public void incrementTimesOpened(){
+    public void incrementTimesOpened() {
         this.timesOpened += 1;
     }
 
     /**
-     *
      * @return
      */
-    public int getTimesOpened(){
+    public int getTimesOpened() {
         return timesOpened;
     }
 
     /**
-     *
      * @param wasRequested
      */
-    public void setWasRequested(boolean wasRequested){
+    public void setWasRequested(boolean wasRequested) {
         this.wasRequested = wasRequested;
     }
 
     /**
-     *
      * @return
      */
-    public boolean getWasRequested(){
+    public boolean getWasRequested() {
         return wasRequested;
     }
 
     /**
-     *
      * @return
      */
     public boolean canRequestReview() {
-        return (!wasRequested) && /*(timeActive >= TARGET_TIME_ACTIVE ||*/ (timesOpened >= TARGET_TIMES_OPENED);
+        return (!wasRequested) && /*(timeActive >= TARGET_TIME_ACTIVE
+        ||*/ (timesOpened >= TARGET_TIMES_OPENED);
     }
 
 }

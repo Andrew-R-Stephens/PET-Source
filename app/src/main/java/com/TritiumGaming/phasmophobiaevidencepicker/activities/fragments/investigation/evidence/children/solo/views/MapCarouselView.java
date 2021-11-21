@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 /**
@@ -10,48 +11,46 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
  *
  * @author TritiumGamingStudios
  */
-public class MapsCarouselView {
+public class MapCarouselView {
 
-    private EvidenceViewModel evidenceViewModel = null;
+    private MapCarouselData mapCarouselData;
 
     private AppCompatTextView mapNameView = null;
 
     /**
      * MapSelectControl parameterized constructor
+     *
      * @param prev
      * @param next
      * @param mapNameView
      */
-    public MapsCarouselView(
+    public MapCarouselView(
+            MapCarouselData mapsCarouselData,
             AppCompatImageButton prev,
             AppCompatImageButton next,
             AppCompatTextView mapNameView) {
+
+        this.mapCarouselData = mapsCarouselData;
+
         setDifficultyDisplay(mapNameView);
         setPrev(prev);
         setNext(next);
     }
 
     /**
-     * init method
-     * @param evidenceViewModel
-     */
-    public void init(EvidenceViewModel evidenceViewModel){
-        this.evidenceViewModel = evidenceViewModel;
-    }
-
-    /**
      * setPrev method
+     *
      * @param prev
      */
-    private void setPrev(AppCompatImageButton prev){
+    private void setPrev(AppCompatImageButton prev) {
         prev.setOnClickListener(v -> {
 
-            if(evidenceViewModel != null) {
-                int i = evidenceViewModel.getMapCurrentIndex() - 1;
+            if (mapCarouselData != null) {
+                int i = mapCarouselData.getMapCurrentIndex() - 1;
                 if (i < 0)
-                    i = evidenceViewModel.getMapCount() - 1;
-                evidenceViewModel.setMapCurrent(i);
-                mapNameView.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
+                    i = mapCarouselData.getMapCount() - 1;
+                mapCarouselData.setMapCurrentIndex(i);
+                mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
             }
 
         });
@@ -59,25 +58,27 @@ public class MapsCarouselView {
 
     /**
      * setNext method
+     *
      * @param next
      */
-    private void setNext(AppCompatImageButton next){
+    private void setNext(AppCompatImageButton next) {
         next.setOnClickListener(v -> {
-            if(evidenceViewModel != null) {
-                int i = evidenceViewModel.getMapCurrentIndex() + 1;
-                if (i >= evidenceViewModel.getMapCount())
+            if (mapCarouselData != null) {
+                int i = mapCarouselData.getMapCurrentIndex() + 1;
+                if (i >= mapCarouselData.getMapCount())
                     i = 0;
-                evidenceViewModel.setMapCurrent(i);
-                mapNameView.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
+                mapCarouselData.setMapCurrentIndex(i);
+                mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
             }
         });
     }
 
     /**
      * setDifficultyDisplay method
+     *
      * @param display
      */
-    private void setDifficultyDisplay(AppCompatTextView display){
+    private void setDifficultyDisplay(AppCompatTextView display) {
         this.mapNameView = display;
     }
 

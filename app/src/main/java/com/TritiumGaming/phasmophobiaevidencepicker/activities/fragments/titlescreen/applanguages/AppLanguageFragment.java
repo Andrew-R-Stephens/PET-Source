@@ -101,8 +101,8 @@ public class AppLanguageFragment extends Fragment {
      */
     public void configureLanguage() {
         if (globalPreferencesViewModel != null && getActivity() != null) {
-                ((TitleScreenActivity) getActivity()).setLanguage(
-                        globalPreferencesViewModel.getLanguageName());
+            ((TitleScreenActivity) getActivity()).setLanguage(
+                    globalPreferencesViewModel.getLanguageName());
         }
     }
 
@@ -124,7 +124,7 @@ public class AppLanguageFragment extends Fragment {
 
     /**
      * saveStates method
-     *
+     * <p>
      * TODO
      */
     public void saveStates() {

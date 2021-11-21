@@ -28,7 +28,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
         this.onMessageListener = onMessageListener;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatTextView label_messageTitle;
         private final OnMessageListener onMessageListener;
 

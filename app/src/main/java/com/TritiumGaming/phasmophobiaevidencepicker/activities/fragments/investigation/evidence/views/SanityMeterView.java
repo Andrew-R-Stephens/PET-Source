@@ -38,14 +38,14 @@ public class SanityMeterView extends View {
     private final RectF containerRect = new RectF();
     private final Rect sanityRect = new Rect();
 
-    @ColorInt int themeColor = 0;
+    @ColorInt
+    int themeColor = 0;
     private ColorFilter filter = null;
 
     private Bitmap sanityImg_bottom = null;
     private Bitmap sanityImg_top = null;
 
     /**
-     *
      * @param context
      */
     public SanityMeterView(Context context) {
@@ -53,7 +53,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     *
      * @param context
      * @param attrs
      */
@@ -62,7 +61,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -72,7 +70,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     *
      * @param context
      * @param attrs
      * @param defStyleAttr
@@ -87,7 +84,6 @@ public class SanityMeterView extends View {
     }
 
     /**
-     *
      * @param sanityData
      */
     public void init(SanityData sanityData) {
@@ -111,48 +107,45 @@ public class SanityMeterView extends View {
     /**
      *
      */
-    public void buildImages(){
+    public void buildImages() {
         sanityImg_bottom = createBitmap(sanityImg_bottom, R.drawable.icon_sanityhead_bottom);
         sanityImg_top = createBitmap(sanityImg_top, R.drawable.icon_sanityhead_top);
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasBuiltImages(){
+    public boolean hasBuiltImages() {
         return sanityImg_bottom != null && sanityImg_top != null;
     }
 
     /**
-     *
      * @param toBitmap
      * @param id
      * @return
      */
-    public Bitmap createBitmap(Bitmap toBitmap, int id){
+    public Bitmap createBitmap(Bitmap toBitmap, int id) {
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inSampleSize = 2;
         o.inJustDecodeBounds = false;
 
         return addLayer(toBitmap, BitmapFactory.decodeResource(getContext().getResources(),
-               id, o));
+                id, o));
     }
 
     /**
-     *
      * @param baseLayer
      * @param topLayer
      * @return
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) {
-        if(baseLayer == null && topLayer != null)
+        if (baseLayer == null && topLayer != null)
             baseLayer = Bitmap.createBitmap(
                     topLayer.getWidth(),
                     topLayer.getHeight(),
                     topLayer.getConfig());
 
-        if(baseLayer != null) {
+        if (baseLayer != null) {
             Canvas canvas = new Canvas(baseLayer);
 
             if (topLayer != null) {
@@ -166,17 +159,15 @@ public class SanityMeterView extends View {
     }
 
     /**
-     *
      * @param r
      * @param g
      * @param b
      */
-    public void createFilterColor(int r, int g, int b){
+    public void createFilterColor(int r, int g, int b) {
         filter = new PorterDuffColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY);
     }
 
     /**
-     *
      * @param canvas
      */
     @Override
@@ -203,12 +194,12 @@ public class SanityMeterView extends View {
         canvas.drawOval(containerRect, paint);
 
         float insanityDegree;
-        if(sanityData != null) {
+        if (sanityData != null) {
             insanityDegree = sanityData.getInsanityDegree();
             paint.setColor(
                     Color.rgb((255),
-                    (int) (255 * sanityData.getInsanityPercent()),
-                    (int) (255 * sanityData.getInsanityPercent())));
+                            (int) (255 * sanityData.getInsanityPercent()),
+                            (int) (255 * sanityData.getInsanityPercent())));
             if (sanityData != null)
                 canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
 
@@ -236,8 +227,8 @@ public class SanityMeterView extends View {
         }
 
 
-        if(sanityRect != null) {
-            if(sanityImg_bottom != null) {
+        if (sanityRect != null) {
+            if (sanityImg_bottom != null) {
                 paint.setColorFilter(filter);
                 sanityRect.set(0, 0,
                         sanityImg_bottom.getWidth(),
@@ -245,7 +236,7 @@ public class SanityMeterView extends View {
                 canvas.drawBitmap(sanityImg_bottom, sanityRect, containerRect, paint);
                 paint.setColorFilter(null);
             }
-            if(sanityImg_top != null) {
+            if (sanityImg_top != null) {
                 sanityRect.set(0, 0,
                         sanityImg_top.getWidth(),
                         sanityImg_top.getHeight());
@@ -257,7 +248,7 @@ public class SanityMeterView extends View {
         paint.setStrokeWidth(5f);
         paint.setStyle(Paint.Style.STROKE);
 
-        if(containerRect != null)
+        if (containerRect != null)
             canvas.drawOval(containerRect, paint);
 
         super.onDraw(canvas);
@@ -266,19 +257,19 @@ public class SanityMeterView extends View {
     /**
      *
      */
-    public void recycleBitmaps(){
+    public void recycleBitmaps() {
         boolean scheduleGarbageCollect = (sanityImg_top != null || sanityImg_bottom != null);
 
-        if(sanityImg_top != null) {
+        if (sanityImg_top != null) {
             sanityImg_top.recycle();
             sanityImg_top = null;
         }
-        if(sanityImg_bottom != null) {
+        if (sanityImg_bottom != null) {
             sanityImg_bottom.recycle();
             sanityImg_bottom = null;
         }
 
-        if(scheduleGarbageCollect)
+        if (scheduleGarbageCollect)
             System.gc();
     }
 

@@ -18,49 +18,55 @@ public class TitlescreenViewModel extends ViewModel {
 
     /**
      * getAnimatedData method
+     *
      * @return animationData
      */
-    public AnimatedGraphicData getAnimationData(){
+    public AnimatedGraphicData getAnimationData() {
         return animationData;
     }
 
     /**
      * hasAdRequest method
+     *
      * @return is adRequest null
      */
-    public boolean hasAdRequest(){
+    public boolean hasAdRequest() {
         return adRequest != null;
     }
 
     /**
      * setAdRequest method
+     *
      * @param adRequest
      */
-    public void setAdRequest(AdRequest adRequest){
+    public void setAdRequest(AdRequest adRequest) {
         this.adRequest = adRequest;
     }
 
     /**
      * getAdRequest method
+     *
      * @return AdRequest
      */
-    public AdRequest getAdRequest(){
+    public AdRequest getAdRequest() {
         return adRequest;
     }
 
     /**
      * setCanRefreshFragment method
+     *
      * @param canRefreshFragment
      */
-    public void setCanRefreshFragment(boolean canRefreshFragment){
+    public void setCanRefreshFragment(boolean canRefreshFragment) {
         this.canRefreshFragment = canRefreshFragment;
     }
 
     /**
      * canRefreshFragment method
+     *
      * @return canRefresh
      */
-    public boolean canRefreshFragment(){
+    public boolean canRefreshFragment() {
         return canRefreshFragment;
     }
 

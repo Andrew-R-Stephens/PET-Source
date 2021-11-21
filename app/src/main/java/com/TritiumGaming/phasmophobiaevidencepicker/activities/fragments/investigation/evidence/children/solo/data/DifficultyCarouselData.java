@@ -21,7 +21,7 @@ public class DifficultyCarouselData {
         String[] difficultyNames = null;
         String[] difficultyTimes = null;
 
-        if(c != null) {
+        if (c != null) {
             difficultyNames =
                     c.getResources().getStringArray(R.array.evidence_timer_difficulty_names_array);
             difficultyTimes =
@@ -63,14 +63,15 @@ public class DifficultyCarouselData {
 
     /**
      * setDifficultyTimes
+     *
      * @param dt
      */
     private void setDifficultyTimes(String[] dt) {
         long[] temp = new long[0];
-        if(dt != null) {
+        if (dt != null) {
             temp = new long[dt.length];
         }
-        for(int i = 0; i < dt.length; i++)
+        for (int i = 0; i < dt.length; i++)
             temp[i] = Long.parseLong(dt[i]);
 
         setDifficultyTimes(temp);
@@ -81,18 +82,16 @@ public class DifficultyCarouselData {
     }
 
     /**
-     *
      * @param difficulty
      */
-    public void setDifficulty(int difficulty){
+    public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
     /**
-     *
      * @return
      */
-    public int getDifficultyIndex(){
+    public int getDifficultyIndex() {
         return difficulty;
     }
 
@@ -105,7 +104,7 @@ public class DifficultyCarouselData {
     }
 
     public boolean decrementDifficulty() {
-        if(evidenceViewModel != null) {
+        if (evidenceViewModel != null) {
             int state = getDifficultyIndex() - 1;
             if (state < 0)
                 state = difficultyNames.length - 1;
@@ -121,13 +120,13 @@ public class DifficultyCarouselData {
     }
 
     public boolean incrementDifficulty() {
-        if(evidenceViewModel != null) {
+        if (evidenceViewModel != null) {
             int state = getDifficultyIndex() + 1;
             if (state >= difficultyNames.length)
                 state = 0;
             setDifficulty(state);
 
-            if(evidenceViewModel.hasSanityData())
+            if (evidenceViewModel.hasSanityData())
                 evidenceViewModel.getSanityData().setCanWarn(true);
 
             return true;

@@ -37,12 +37,13 @@ public class InvestigationActivity extends AppCompatActivity {
 
         setLanguage(getAppLanguage());
 
-        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
                 getInt(getString(R.string.preference_colorSpace), 0);
         changeTheme(colorSpace);
 
         int intentFragment = getIntent().getExtras().getInt("lobby");
-        switch (intentFragment){
+        switch (intentFragment) {
             case 0: {
                 setContentView(R.layout.activity_investigation_solo);
                 break;
@@ -65,7 +66,8 @@ public class InvestigationActivity extends AppCompatActivity {
 
         objectives = factory.create(ObjectivesViewModel.class);
 
-        if(getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+        if (getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
                 getBoolean(getString(R.string.preference_isAlwaysOn), false))
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -73,9 +75,10 @@ public class InvestigationActivity extends AppCompatActivity {
 
     /**
      * setLanguage method
+     *
      * @param lang The desired new language
      */
-    public void setLanguage(String lang){
+    public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = getResources().getConfiguration();
@@ -85,37 +88,44 @@ public class InvestigationActivity extends AppCompatActivity {
 
     /**
      * getAppLanguage method
+     *
      * @return the abbreviation of the chosen language that's saved to file
      */
-    public String getAppLanguage(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+    public String getAppLanguage() {
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
                 getString("chosenLanguage", "en");
     }
 
     /**
      * getHuntWarningAllowed method
+     *
      * @return the decided ability to emanate audio that has been saved to file
      */
-    public boolean getHuntWarningAllowed(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
+    public boolean getHuntWarningAllowed() {
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
                 getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
     }
 
     /**
      * getHuntWarningFlashTimeout method
+     *
      * @return the decided ability to flash the HuntWarning indicator that has been saved to file
      */
-    public int getHuntWarningFlashTimeout(){
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE).
-                getInt(getString(R.string.preference_huntWarningFlashTimeout),-1);
+    public int getHuntWarningFlashTimeout() {
+        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
+                getInt(getString(R.string.preference_huntWarningFlashTimeout), -1);
     }
 
     /**
      * changeTheme method
+     *
      * @param colorSpace to be set
      */
     public void changeTheme(int colorSpace) {
-        switch(colorSpace){
+        switch (colorSpace) {
             case 0: {
                 setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Normal);
                 break;

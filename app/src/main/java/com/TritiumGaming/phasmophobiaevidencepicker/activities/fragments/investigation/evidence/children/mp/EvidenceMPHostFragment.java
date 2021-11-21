@@ -23,7 +23,7 @@ public class EvidenceMPHostFragment extends Fragment {
 
     private MPHostViewModel MPHostViewModel;
 
-    public EvidenceMPHostFragment(){
+    public EvidenceMPHostFragment() {
         super(R.layout.fragment_evidence_mult_host);
     }
 
@@ -33,7 +33,7 @@ public class EvidenceMPHostFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        if(MPHostViewModel == null)
+        if (MPHostViewModel == null)
             MPHostViewModel = new ViewModelProvider(requireActivity()).get(MPHostViewModel.class);
 
         return inflater.inflate(R.layout.fragment_evidence_mult_host, container, false);

@@ -75,16 +75,17 @@ public class EvidenceFragment extends Fragment {
     protected Typeface font_normal;
     protected int[] fontSize;
 
-    @ColorInt int fontEmphasisColor = 0;
+    @ColorInt
+    int fontEmphasisColor = 0;
 
     /**
      * EvidenceFragment constructor
-     *
+     * <p>
      * TODO
      *
-     * @param layout
+     * @param layout -
      */
-    public EvidenceFragment(int layout){
+    public EvidenceFragment(int layout) {
         super(layout);
     }
 
@@ -103,21 +104,21 @@ public class EvidenceFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        if(evidenceViewModel == null) {
+        if (evidenceViewModel == null) {
             evidenceViewModel =
                     new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
             evidenceViewModel.init(getContext());
         }
 
-        if(globalPreferencesViewModel == null) {
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel =
                     new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-            if(getContext() != null)
+            if (getContext() != null)
                 globalPreferencesViewModel.init(getContext());
         }
 
 
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             globalPreferencesViewModel.setHuntWarningAudioAllowed(
                     ((InvestigationActivity) getActivity()).getHuntWarningAllowed());
             globalPreferencesViewModel.setHuntWarningFlashTimeout(
@@ -129,12 +130,11 @@ public class EvidenceFragment extends Fragment {
         font_normal = Typeface.MONOSPACE;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             font_normal = getResources().getFont(R.font.norse_regular);
-        else
-        if(getContext() != null) {
+        else if (getContext() != null) {
             font_normal = ResourcesCompat.getFont(getContext(), R.font.norse_regular);
         }
 
-        if(getContext() != null) {
+        if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
             TypedValue typedValue = new TypedValue();
             theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
@@ -169,7 +169,7 @@ public class EvidenceFragment extends Fragment {
 
         // TEXT SIZES
         timer_text.setAutoSizeTextTypeUniformWithConfiguration(
-                5,50,1,
+                5, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
                 5, 25, 1,
@@ -181,13 +181,13 @@ public class EvidenceFragment extends Fragment {
                 10, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(
-                5,20, 1,
+                5, 20, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
-                5,20, 1,
+                5, 20, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(
-                5,50, 1,
+                5, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
@@ -198,7 +198,7 @@ public class EvidenceFragment extends Fragment {
                 }
         );
         listener_goto_right.setOnClickListener(v -> {
-                    if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                    if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
                         evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
                     Navigation.findNavController(v).navigate(R.id.action_evidence_to_mapmenu);
                 }
@@ -218,7 +218,8 @@ public class EvidenceFragment extends Fragment {
         navigation_fraglistener_spiritbox.setOnClickListener(v -> {
                     if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
                         evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                    Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_toolSpiritBoxFragment);
+                    Navigation.findNavController(v).navigate(R.id
+                    .action_evidenceFragment_to_toolSpiritBoxFragment);
                 }
         );
         */
@@ -239,18 +240,22 @@ public class EvidenceFragment extends Fragment {
                     }
                 }
             }
+
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
 
         // INITIALIZE OBJECTS
-            // GHOST GROUPS
+        // GHOST GROUPS
         ghostItems = new GhostItem[InvestigationData.getGhostCount()];
-            // EVIDENCE GROUPS
+        // EVIDENCE GROUPS
         evidenceItems = new EvidenceItem[InvestigationData.getEvidenceCount()];
-            // EVIDENCE RADIO BUTTON GROUPS
+        // EVIDENCE RADIO BUTTON GROUPS
         evidenceRadioGroups = new EvidenceRadioGroup[InvestigationData.getEvidenceCount()];
         EvidenceRadioButton[][] radioButtons_evidence =
                 new EvidenceRadioButton
@@ -258,21 +263,22 @@ public class EvidenceFragment extends Fragment {
                         [InvestigationData.Evidence.Ruling.values().length];
         Log.d("EvidenceRadioButton",
                 radioButtons_evidence.length + " " + radioButtons_evidence[0].length);
-            // GHOST LABELS
+        // GHOST LABELS
         ghostLabels = new GhostLabel[InvestigationData.getGhostCount()];
-            // EVIDENCE ICONS
+        // EVIDENCE ICONS
         ghostEvidenceIcons = new GhostIcon
                 [InvestigationData.getGhostCount()]
                 [InvestigationData.Evidence.Ruling.values().length];
-        //ghostEvidenceIcons = new GhostIcon[InvestigationData.Ghost.values().length][InvestigationData.Evidence.Ruling.values().length];
+        //ghostEvidenceIcons = new GhostIcon[InvestigationData.Ghost.values()
+        // .length][InvestigationData.Evidence.Ruling.values().length];
 
         // FONT SIZES
-        fontSize = new int[]{12,40}; //min - max
+        fontSize = new int[]{12, 40}; //min - max
 
         // COLORS
         @ColorInt int color_strikethrough = Color.WHITE, color_circle = Color.WHITE;
         TypedValue typedValue = new TypedValue();
-        if(getContext() != null && getContext().getTheme() != null) {
+        if (getContext() != null && getContext().getTheme() != null) {
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.strikethroughColor, typedValue, true);
             color_strikethrough = typedValue.data;
@@ -290,28 +296,26 @@ public class EvidenceFragment extends Fragment {
         icon_circle = getResources().getDrawable(R.drawable.icon_circle);
 
         // DRAWABLE TINTS
-        for(Drawable d: icon_strikethroughs) {
+        for (Drawable d : icon_strikethroughs) {
             d.setTint(color_strikethrough);
         }
         icon_circle.setTint(color_circle);
 
         // COUNTDOWN TIMER
-        if(evidenceViewModel.hasTimer()) {
+        if (evidenceViewModel.hasTimer()) {
             evidenceViewModel.getTimerView().setRecipientView(timer_text);
             evidenceViewModel.getTimerView().setText();
-        }
-        else {
-            evidenceViewModel.setTimerView(new PhaseTimerView(timer_text));
-            evidenceViewModel.getTimerView().init(evidenceViewModel);
+        } else {
+            evidenceViewModel.setTimerView(new PhaseTimerView(evidenceViewModel, timer_text));
             evidenceViewModel.getTimerView().createTimer(
                     evidenceViewModel.getDifficultyCarouselData().getCurrentDifficultyTime(),
                     1000L);
         }
 
         // SANITY
-        if(sanitySeekBar != null)
+        if (sanitySeekBar != null)
             sanitySeekBar.setProgress(0);
-        if(evidenceViewModel != null) {
+        if (evidenceViewModel != null) {
             sanityMeterView.init(evidenceViewModel.getSanityData());
             if (evidenceViewModel.hasSanityData())
                 sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
@@ -328,15 +332,17 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * initGhostList
-     *
+     * <p>
      * TODO
      *
      * @param ghostContainer
      * @param view
      */
     public void initGhostList(LinearLayout ghostContainer, View view) {
+        Log.d("Evidence", "Initiating Ghost list");
+
         // LOOP THROUGH GHOST LIST BODY
-        for(int i = 0; i < ghostLabels.length; i++) {
+        for (int i = 0; i < ghostLabels.length; i++) {
             // CREATE LABEL FOR GHOST ITEM
             ghostLabels[i] = new GhostLabel(view.getContext(), i);
             // CREATE GHOST EVIDENCE ICON LIST
@@ -344,6 +350,7 @@ public class EvidenceFragment extends Fragment {
             // CREATE GHOST ICONS AND ADD THEM TO ICON LIST
             InvestigationData.Evidence[] gE =
                     evidenceViewModel.getInvestigationData().getGhost(i).getEvidenceArray();
+
             for (int j = 0; j < gE.length; j++) {
                 ghostEvidenceIcons[i][j] = new GhostIcon(getContext(), gE[j]);
                 iconLayout.addView(ghostEvidenceIcons[i][j]);
@@ -354,21 +361,25 @@ public class EvidenceFragment extends Fragment {
             // ADD GHOST LABEL TO GHOST ITEM
             ghostContainer.addView(ghostItems[i]);
         }
+
+        Log.d("Evidence", "Finished Init Ghost list");
     }
 
 
     /**
      * updateGhostsLists
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * Rebuilds the Ghost List
      */
     public void updateGhostsList() {
 
+        Log.d("Evidence", "Updating Ghost list");
+
         // FIND GHOST LIST AND REMOVE CONTAINED VIEWS
         LinearLayout ghostContainer_inner = null;
-        if(getView() != null) {
+        if (getView() != null) {
             ghostContainer_inner = getView().findViewById(R.id.layout_ghostList);
             ghostContainer_inner.removeAllViews();
         }
@@ -377,13 +388,13 @@ public class EvidenceFragment extends Fragment {
         GhostItem[] newReorderedList = new GhostItem[ghostItems.length];
 
         // SET VALUES FOR GHOST ITEMS
-        for(int i = 0; i < ghostItems.length; i++) {
+        for (int i = 0; i < ghostItems.length; i++) {
             int ghostID = ghostItems[i].getID();
             int rating =
                     evidenceViewModel.getInvestigationData().getGhost(ghostID).getEvidenceScore();
 
             // OLD CODE
-            if(ghostLabels[ghostID] != null) {
+            if (ghostLabels[ghostID] != null) {
                 //Clear FG and BG Images
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     ghostLabels[ghostID].setForeground(null);
@@ -408,7 +419,7 @@ public class EvidenceFragment extends Fragment {
 
             //Set Colors of Ghost icons
             for (int j = 0; j < ghostEvidenceIcons[ghostID].length; j++)
-                if(ghostEvidenceIcons[ghostID][j] != null)
+                if (ghostEvidenceIcons[ghostID][j] != null)
                     ghostEvidenceIcons[ghostID][j].updateColor();
 
 
@@ -416,34 +427,38 @@ public class EvidenceFragment extends Fragment {
         }
 
         // BUBBLE SORT THE GHOST LIST
-        for (int i = 0; i < newReorderedList.length - 1;) {
+        for (int i = 0; i < newReorderedList.length - 1; ) {
 
             int ratingA = evidenceViewModel.getInvestigationData().getGhost(
                     newReorderedList[i].getID()).getEvidenceScore();
             int ratingB = evidenceViewModel.getInvestigationData().getGhost(
-                    newReorderedList[i+1].getID()).getEvidenceScore();
+                    newReorderedList[i + 1].getID()).getEvidenceScore();
 
             if (ratingA < ratingB) {
                 GhostItem t = newReorderedList[i + 1];
                 newReorderedList[i + 1] = newReorderedList[i];
                 newReorderedList[i] = t;
 
-                if(i > 0)
+                if (i > 0)
                     i--;
             } else
                 i++;
         }
 
         // Set Ghost list with reorder
-        if(ghostContainer_inner != null)
-            for (GhostItem ghostMasterItem : newReorderedList)
+        if (ghostContainer_inner != null) {
+            for (GhostItem ghostMasterItem : newReorderedList) {
                 ghostContainer_inner.addView(ghostMasterItem);
+            }
+        }
+
+        Log.d("Evidence", "Finished Update Ghost list");
 
     }
 
     /**
      * initEvidenceList
-     *
+     * <p>
      * TODO
      *
      * @param evidenceContainer
@@ -452,6 +467,9 @@ public class EvidenceFragment extends Fragment {
     public void initEvidenceList(
             LinearLayout evidenceContainer,
             EvidenceRadioButton[][] radioButtons_evidence) {
+
+        Log.d("Evidence", "Initiating Evidence list");
+
         // EVIDENCE LIST
         // LOAD CHECKED RADIO BUTTONS
         int[] checkedStorage = null;
@@ -479,22 +497,27 @@ public class EvidenceFragment extends Fragment {
         }
 
         // FINALIZE EVIDENCE LIST
-        for (EvidenceItem evidence_masterItem : evidenceItems)
+        for (EvidenceItem evidence_masterItem : evidenceItems) {
             evidenceContainer.addView(evidence_masterItem);
+        }
+
+        Log.d("Evidence", "Finished Initiating Ghost list");
     }
 
     /**
      * updateEvidenceLists
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * Rebuilds the Evidence List
      */
     public void updateEvidenceList() {
 
+        Log.d("Evidence", "Updating Evidence list");
+
         // FIND EVIDENCE LIST AND REMOVE CONTAINED VIEWS
         LinearLayout evidenceContainer_inner = null;
-        if(getView() != null) {
+        if (getView() != null) {
             evidenceContainer_inner = getView().findViewById(R.id.layout_evidenceList);
             evidenceContainer_inner.removeAllViews();
         }
@@ -502,13 +525,13 @@ public class EvidenceFragment extends Fragment {
         AppCompatTextView[] labels_evidence =
                 new AppCompatTextView[InvestigationData.getEvidenceCount()];
         EvidenceRadioButton[][] radioButtons_evidence = new EvidenceRadioButton
-                        [InvestigationData.getEvidenceCount()]
-                        [InvestigationData.Evidence.Ruling.values().length];
+                [InvestigationData.getEvidenceCount()]
+                [InvestigationData.Evidence.Ruling.values().length];
 
         int[] checkedStorage = getSelectedRadioButtons();
         // Evidence Body
         // Create Evidence group containers
-        for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
+        for (int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
             //Create Evidence group containers
             LinearLayout evidence_labelAndRadios = new LinearLayout(getContext());
             evidence_labelAndRadios.setOrientation(LinearLayout.VERTICAL);
@@ -519,7 +542,7 @@ public class EvidenceFragment extends Fragment {
             evidence_labelAndRadios.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 
             //create and add evidence labels
-            if(getContext() != null) {
+            if (getContext() != null) {
                 labels_evidence[i] = new AppCompatTextView(getContext());
                 labels_evidence[i].setLayoutParams(
                         new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -581,7 +604,7 @@ public class EvidenceFragment extends Fragment {
             }
 
             //create radio group
-            for(int j = 0; j < radioButtons_evidence[i].length; j++) {
+            for (int j = 0; j < radioButtons_evidence[i].length; j++) {
                 radioButtons_evidence[i][j] = new EvidenceRadioButton(getContext(),
                         /*evidenceViewModel.getInvestigationData(),*/
                         InvestigationData.getEvidence(i),
@@ -591,9 +614,9 @@ public class EvidenceFragment extends Fragment {
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 1f);
-                radioButtonLayoutParams.setMargins(0,0,0,0);
+                radioButtonLayoutParams.setMargins(0, 0, 0, 0);
                 radioButtons_evidence[i][j].setLayoutParams(radioButtonLayoutParams);
-                radioButtons_evidence[i][j].setPadding(0,0,0,0);
+                radioButtons_evidence[i][j].setPadding(0, 0, 0, 0);
                 radioButtons_evidence[i][j].setBackgroundResource(0);
                 radioButtons_evidence[i][j].setScaleType(ImageView.ScaleType.CENTER_CROP);
                 radioButtons_evidence[i][j].setAdjustViewBounds(true);
@@ -609,7 +632,7 @@ public class EvidenceFragment extends Fragment {
 
             evidenceRadioGroups[i].setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
 
-            if(checkedStorage != null) {
+            if (checkedStorage != null) {
                 evidenceRadioGroups[i].check(checkedStorage[i]);
             } else
                 evidenceRadioGroups[i].check(1);
@@ -617,21 +640,24 @@ public class EvidenceFragment extends Fragment {
             //add radio group to evidence container
             evidence_labelAndRadios.addView(evidenceRadioGroups[i]);
 
-            if(evidenceContainer_inner != null)
+            if (evidenceContainer_inner != null) {
                 evidenceContainer_inner.addView(evidence_labelAndRadios);
+            }
         }
+
+        Log.d("Evidence", "Finished Updating Ghost list");
     }
 
     /**
      * getSelectedRatioButtons
-     *
+     * <p>
      * TODO
      *
      * @return int[] of checkedButton ID's
      */
     public int[] getSelectedRadioButtons() {
         int[] selected = new int[evidenceRadioGroups.length];
-        for(int i = 0; i < evidenceRadioGroups.length; i++)
+        for (int i = 0; i < evidenceRadioGroups.length; i++)
             selected[i] = evidenceRadioGroups[i].getCheckedButtonID();
 
         return selected;
@@ -639,47 +665,42 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * saveStates
-     *
+     * <p>
      * TODO
-     *
      */
     public void saveStates() {
-        if(evidenceViewModel != null) {
+        if (evidenceViewModel != null) {
             evidenceViewModel.setRadioButtonsChecked(getSelectedRadioButtons());
-            if(evidenceViewModel.hasTimer())
+            if (evidenceViewModel.hasTimer())
                 evidenceViewModel.getTimerView().setRecipientView(null);
         }
     }
 
     /**
      * softReset
-     *
+     * <p>
      * TODO
-     *
      */
-    public void softReset(){
-        if(evidenceViewModel != null) {
+    public void softReset() {
+        if (evidenceViewModel != null) {
             evidenceViewModel.reset();
             evidenceViewModel.setTimerView(null);
         }
 
-        for(EvidenceRadioGroup g: evidenceRadioGroups)
-            if(g != null)
+        for (EvidenceRadioGroup g : evidenceRadioGroups)
+            if (g != null)
                 g.reset();
 
         updateGhostsList();
         updateEvidenceList();
 
-        if(sanitySeekBar != null)
+        if (sanitySeekBar != null)
             sanitySeekBar.setProgress(0);
     }
 
 
     /**
      * GhostItem class
-     *
-     *
-     *
      */
     public class GhostItem extends LinearLayout {
         private GhostLabel ghostLabel = null;
@@ -687,11 +708,9 @@ public class EvidenceFragment extends Fragment {
         /**
          * GhostItem constructor
          *
-         *
-         *
          * @param context Context
-         * @param label GhostLabel
-         * @param icons GhostIcons
+         * @param label   GhostLabel
+         * @param icons   GhostIcons
          */
         public GhostItem(Context context, GhostLabel label, GhostIcons icons) {
             super(context);
@@ -700,7 +719,7 @@ public class EvidenceFragment extends Fragment {
             setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.MATCH_PARENT, 1f));
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            setPadding(10,10,10,10);
+            setPadding(10, 10, 10, 10);
             //add ghost label and icons to ghost group
             addGhostLabel(label);
             addGhostIcons(icons);
@@ -708,30 +727,30 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * addGhostLabel
-         *
+         * <p>
          * TODO
          *
          * @param label GhostLabel
          */
-        public void addGhostLabel(GhostLabel label){
+        public void addGhostLabel(GhostLabel label) {
             this.ghostLabel = label;
             addView(label);
         }
 
         /**
          * addGhostIcons
-         *
+         * <p>
          * TODO
          *
          * @param icons GhostIcons
          */
-        public void addGhostIcons(GhostIcons icons){
+        public void addGhostIcons(GhostIcons icons) {
             addView(icons);
         }
 
         /**
          * getID
-         *
+         * <p>
          * TODO
          *
          * @return id
@@ -744,7 +763,7 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * GhostLabel class
-     *
+     * <p>
      * TODO
      */
     public class GhostLabel extends androidx.appcompat.widget.AppCompatTextView {
@@ -752,11 +771,11 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * GhostLabel constructor
-         *
+         * <p>
          * TODO
          *
          * @param context The Context of the current Activity
-         * @param id The ghost label id
+         * @param id      The ghost label id
          */
         @SuppressLint("RestrictedApi")
         public GhostLabel(@NonNull Context context, int id) {
@@ -777,20 +796,20 @@ public class EvidenceFragment extends Fragment {
             //if(getResources().getStringArray(R.array.evidence_ghost_names).length > id)
             //    ghostTempName = getResources().getStringArray(R.array.evidence_ghost_names)[id];
             //else
-                ghostTempName =
-                        evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
+            ghostTempName =
+                    evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
             String ghostName = ghostTempName;
 
             setText(ghostName);
             setTextColor(Color.WHITE);
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            setMaxHeight(getHeight()/2);
+            setMaxHeight(getHeight() / 2);
 
             setOnClickListener(v -> {
                 if (popup != null)
                     popup.dismiss();
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
-                                Context.LAYOUT_INFLATER_SERVICE);
+                        Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("InflateParams")
                 View customView = inflater.inflate(R.layout.popup_info, null);
                 popup = new PopupWindow(
@@ -809,15 +828,16 @@ public class EvidenceFragment extends Fragment {
                         fontSize[0], fontSize[1], 1,
                         TypedValue.COMPLEX_UNIT_SP);
                 String[] ghostInfoArray = getResources().getStringArray(R.array.ghost_info_array);
-                if(ghostInfoArray.length > id) {
-                    //info.setText(Html.fromHtml(getResources().getStringArray(R.array.ghost_info_array)[id]));
+                if (ghostInfoArray.length > id) {
+                    //info.setText(Html.fromHtml(getResources().getStringArray(R.array
+                    // .ghost_info_array)[id]));
                     info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                             getResources().getStringArray(R.array.ghost_info_array)[id],
                             "#ff6161", fontEmphasisColor + "")));
                 }
 
                 //else
-                   // info.setText("Missing details");
+                // info.setText("Missing details");
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
@@ -828,22 +848,18 @@ public class EvidenceFragment extends Fragment {
         /**
          * setID
          *
-         *
-         *
          * @param id The ghost label id
          */
-        private void setID(int id){
+        private void setID(int id) {
             this.id = id;
         }
 
         /**
          * getID
          *
-         *
-         *
          * @return id
          */
-        public int getID(){
+        public int getID() {
             return id;
         }
 
@@ -851,16 +867,11 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * GhostIcons class
-     *
-     *
-     *
      */
     public static class GhostIcons extends LinearLayout {
 
         /**
          * GhostIcons constructor
-         *
-         *
          *
          * @param context The Context of the current Activity
          */
@@ -873,14 +884,12 @@ public class EvidenceFragment extends Fragment {
             iconLayoutParams.setMargins(5, 0, 5, 0);
             setLayoutParams(iconLayoutParams);
 
-            setGravity(Gravity.END| Gravity.CENTER_VERTICAL);
+            setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
         }
     }
 
     /**
      * GhostIcon class
-     *
-     *
      */
     @SuppressLint("ViewConstructor")
     public static class GhostIcon extends androidx.appcompat.widget.AppCompatImageView {
@@ -889,9 +898,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * GhostIcon constructor
          *
-         *
-         *
-         * @param context The Context of the current Activity
+         * @param context  The Context of the current Activity
          * @param evidence The Evidence name
          */
         public GhostIcon(Context context, InvestigationData.Evidence evidence) {
@@ -902,28 +909,24 @@ public class EvidenceFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
             setScaleType(ImageView.ScaleType.FIT_CENTER);
             setAdjustViewBounds(true);
-            setPadding(10,2,2, 2);
+            setPadding(10, 2, 2, 2);
             setImageResource(evidence.getIcon());
             updateColor();
         }
 
         /**
          * updateColor
-         *
-         *
          */
         public void updateColor() {
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
-            if(evidence.getRuling() == InvestigationData.Evidence.Ruling.NEUTRAL) {
+            if (evidence.getRuling() == InvestigationData.Evidence.Ruling.NEUTRAL) {
                 theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
                 setColorFilter(typedValue.data);
-            }
-            else if(evidence.getRuling() == InvestigationData.Evidence.Ruling.NEGATIVE) {
+            } else if (evidence.getRuling() == InvestigationData.Evidence.Ruling.NEGATIVE) {
                 theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
                 setColorFilter(typedValue.data);
-            }
-            else if(evidence.getRuling() == InvestigationData.Evidence.Ruling.POSITIVE) {
+            } else if (evidence.getRuling() == InvestigationData.Evidence.Ruling.POSITIVE) {
                 theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
                 setColorFilter(typedValue.data);
             }
@@ -932,11 +935,9 @@ public class EvidenceFragment extends Fragment {
         /**
          * setEvidence
          *
-         *
-         *
          * @param evidence The Evidence name
          */
-        private void setEvidence(InvestigationData.Evidence evidence){
+        private void setEvidence(InvestigationData.Evidence evidence) {
             this.evidence = evidence;
         }
     }
@@ -949,11 +950,9 @@ public class EvidenceFragment extends Fragment {
         /**
          * EvidenceItem constructor
          *
-         *
-         *
          * @param context The Context of the current Activity
          */
-        public EvidenceItem(Context context){
+        public EvidenceItem(Context context) {
             super(context);
 
             setOrientation(LinearLayout.VERTICAL);
@@ -965,12 +964,10 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * EvidenceLabel class
-     *
-     *
      */
     public class EvidenceLabel extends AppCompatTextView {
 
-        public EvidenceLabel(Context context, int index){
+        public EvidenceLabel(Context context, int index) {
             super(context);
 
             setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -1008,7 +1005,8 @@ public class EvidenceFragment extends Fragment {
                         fontSize[0], fontSize[1], 1,
                         TypedValue.COMPLEX_UNIT_SP);
 
-                //info.setText(Html.fromHtml(getResources().getStringArray(R.array.evidence_info_array)[index]));
+                //info.setText(Html.fromHtml(getResources().getStringArray(R.array
+                // .evidence_info_array)[index]));
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         getResources().getStringArray(R.array.evidence_info_array)[index],
                         "#ff6161", fontEmphasisColor + "")
@@ -1021,16 +1019,12 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * CRadioGroup class
-     *
-     *
      */
     public class EvidenceRadioGroup extends LinearLayout {
         private final EvidenceRadioButton[] group;
 
         /**
          * EvidenceRadioGroup constructor
-         *
-         *
          *
          * @param context Context
          * @param buttons EvidenceRadioButton array
@@ -1047,7 +1041,7 @@ public class EvidenceFragment extends Fragment {
             setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
 
             group = buttons;
-            for(int i = 0; i < buttons.length; i++) {
+            for (int i = 0; i < buttons.length; i++) {
                 buttons[i].setRadioGroup(this, i);
                 addView(buttons[i]);
             }
@@ -1056,31 +1050,24 @@ public class EvidenceFragment extends Fragment {
         /**
          * setCheckedStorage
          *
-         *
-         *
          * @param checkedStorage The checked Ruling that's stored before onDestroy
          */
-        public void setCheckedStorage(int checkedStorage){
+        public void setCheckedStorage(int checkedStorage) {
             check(checkedStorage);
         }
 
         /**
          * updateGroupImages
-         *
-         *
-         *
          */
         public void updateGroupImages() {
 
-            for(EvidenceRadioButton b: group) {
+            for (EvidenceRadioButton b : group) {
                 b.updateImage();
             }
         }
 
         /**
          * check
-         *
-         *
          *
          * @param groupID The group ID of Evidence Rulings that's paired with each Ghost ID
          */
@@ -1094,8 +1081,6 @@ public class EvidenceFragment extends Fragment {
         /**
          * uncheck
          *
-         *
-         *
          * @param index The
          */
         public void uncheck(int index) {
@@ -1104,25 +1089,20 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * uncheckAll
-         *
-         *
-         *
          */
-        public void uncheckAll(){
-            for(int i = 0; i < group.length; i++)
+        public void uncheckAll() {
+            for (int i = 0; i < group.length; i++)
                 uncheck(i);
         }
 
         /**
          * getCheckedButtonID
          *
-         *
-         *
          * @return the id of the CheckedButton
          */
-        public int getCheckedButtonID(){
-            for(int i = 0; i < group.length; i++){
-                if(group[i].isChecked())
+        public int getCheckedButtonID() {
+            for (int i = 0; i < group.length; i++) {
+                if (group[i].isChecked())
                     return i;
             }
             return 1;
@@ -1130,11 +1110,8 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * reset
-         *
-         *
-         *
          */
-        public void reset(){
+        public void reset() {
             uncheckAll();
             check(1);
         }
@@ -1142,9 +1119,6 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * CRadioButton class
-     *
-     *
-     *
      */
     public class EvidenceRadioButton extends androidx.appcompat.widget.AppCompatImageButton {
 
@@ -1161,11 +1135,9 @@ public class EvidenceFragment extends Fragment {
         /**
          * EvidenceRadioButton constructor
          *
-         *
-         *
-         * @param context The Context of the current Activity
+         * @param context      The Context of the current Activity
          * @param evidenceType The Evidence name
-         * @param ruling The Ruling of the Evidence
+         * @param ruling       The Ruling of the Evidence
          */
         public EvidenceRadioButton(
                 Context context,
@@ -1181,15 +1153,15 @@ public class EvidenceFragment extends Fragment {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             1f);
-            radioButtonLayoutParams.setMargins(0,0,0,0);
+            radioButtonLayoutParams.setMargins(0, 0, 0, 0);
             setLayoutParams(radioButtonLayoutParams);
-            setPadding(0,0,0,0);
+            setPadding(0, 0, 0, 0);
             setBackgroundResource(0);
             setScaleType(ImageView.ScaleType.CENTER_CROP);
             setAdjustViewBounds(true);
 
             setOnClickListener(v -> {
-                if(!isChecked()) {
+                if (!isChecked()) {
                     group.check(groupID);
                     doEvidenceAction();
 
@@ -1200,21 +1172,19 @@ public class EvidenceFragment extends Fragment {
 
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
-            if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEGATIVE.name())) {
+            if (this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEGATIVE.name())) {
                 theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
                 checkedColor = typedValue.data;
                 setStateImages(
                         R.drawable.icon_negative_unselected,
                         R.drawable.icon_negative_selected);
-            }
-            else if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEUTRAL.name())) {
+            } else if (this.ruling.name().equals(InvestigationData.Evidence.Ruling.NEUTRAL.name())) {
                 theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
                 checkedColor = typedValue.data;
                 setStateImages(
                         R.drawable.icon_inconclusive_unselected,
                         R.drawable.icon_inconclusive_selected);
-            }
-            else if(this.ruling.name().equals(InvestigationData.Evidence.Ruling.POSITIVE.name())) {
+            } else if (this.ruling.name().equals(InvestigationData.Evidence.Ruling.POSITIVE.name())) {
                 theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
                 checkedColor = typedValue.data;
                 setStateImages(
@@ -1229,41 +1199,33 @@ public class EvidenceFragment extends Fragment {
         /**
          * setRadioGroup
          *
-         *
-         *
-         *
-         * @param group The target Radio Button Group
+         * @param group   The target Radio Button Group
          * @param groupID The ID of the Radio Button Group
          */
-        public void setRadioGroup(EvidenceRadioGroup group, int groupID){
+        public void setRadioGroup(EvidenceRadioGroup group, int groupID) {
             this.group = group;
             this.groupID = groupID;
         }
 
         /**
          * doEvidenceAction
-         *
-         *
          */
         public void doEvidenceAction() {
-            if(evidenceViewModel.hasInvestigationData())
+            if (evidenceViewModel.hasInvestigationData())
                 evidenceViewModel.getInvestigationData().setEvidenceRuling(evidenceType, ruling);
         }
 
         /**
          * updateImage
-         *
-         *
          */
         public void updateImage() {
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
-            if(!isChecked()) {
+            if (!isChecked()) {
                 setImageResource(checkedState_images[0]);
                 setColorFilter(typedValue.data);
-            }
-            else {
+            } else {
                 setImageResource(checkedState_images[1]);
                 setColorFilter(checkedColor);
             }
@@ -1271,8 +1233,6 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * check
-         *
-         *
          */
         public void check() {
             isChecked = true;
@@ -1280,8 +1240,6 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * uncheck
-         *
-         *
          */
         public void uncheck() {
             isChecked = false;
@@ -1289,8 +1247,6 @@ public class EvidenceFragment extends Fragment {
 
         /**
          * isChecked
-         *
-         *
          *
          * @return if the RadioButton is checked
          */
@@ -1301,9 +1257,7 @@ public class EvidenceFragment extends Fragment {
         /**
          * setStateImages
          *
-         *
-         *
-         * @param checkedImage The Resource ID of the checked image
+         * @param checkedImage   The Resource ID of the checked image
          * @param uncheckedImage The Resource ID of the unchecked image
          */
         public void setStateImages(int checkedImage, int uncheckedImage) {
@@ -1315,8 +1269,6 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * onPause
-     *
-     *
      */
     @Override
     public void onPause() {
@@ -1326,26 +1278,22 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * onDestroyView
-     *
-     *
      */
     @Override
     public void onDestroyView() {
-        if(sanityMeterView != null)
+        if (sanityMeterView != null)
             sanityMeterView.recycleBitmaps();
         super.onDestroyView();
     }
 
     /**
      * onResume
-     *
-     *
      */
     @Override
     public void onResume() {
-        if(evidenceViewModel.hasTimer())
+        if (evidenceViewModel.hasTimer())
             evidenceViewModel.getTimerView().setRecipientView(timer_text);
-        if(!sanityMeterView.hasBuiltImages())
+        if (!sanityMeterView.hasBuiltImages())
             sanityMeterView.buildImages();
         super.onResume();
     }

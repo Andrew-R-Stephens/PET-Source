@@ -8,7 +8,7 @@ import android.util.Log;
 public class NetworkUtils {
 
     public static boolean isNetworkAvailable(Context context, boolean isMeteredNetworkAllowed) {
-        if(context != null) {
+        if (context != null) {
             ConnectivityManager connectivityManager =
                     (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

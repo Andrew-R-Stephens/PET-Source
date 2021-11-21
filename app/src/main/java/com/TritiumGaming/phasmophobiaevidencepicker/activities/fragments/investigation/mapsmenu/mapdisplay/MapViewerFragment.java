@@ -186,7 +186,7 @@ public class MapViewerFragment extends Fragment {
 
     /**
      * startThreads
-     *
+     * <p>
      * Starts a Thread which loads images into the InteractiveMapDisplayView
      */
     public void startThreads() {
@@ -229,7 +229,7 @@ public class MapViewerFragment extends Fragment {
 
     /**
      * saveStates
-     *
+     * <p>
      * Saves states of the MapViewer to the MapViewModel
      */
     public void saveStates() {
@@ -240,13 +240,13 @@ public class MapViewerFragment extends Fragment {
 
     /**
      * onPause
-     *
+     * <p>
      * Destroys all threads and releases resource memory
      */
     @Override
     public void onPause() {
         stopThreads();
-        if(imageDisplay != null)
+        if (imageDisplay != null)
             imageDisplay.recycleBitmaps();
 
         super.onPause();
@@ -254,13 +254,13 @@ public class MapViewerFragment extends Fragment {
 
     /**
      * onDestroy
-     *
+     * <p>
      * Destroys all threads and releases resource memory
      */
     @Override
     public void onDestroy() {
         stopThreads();
-        if(imageDisplay != null)
+        if (imageDisplay != null)
             imageDisplay.recycleBitmaps();
 
         super.onDestroy();
@@ -278,7 +278,7 @@ public class MapViewerFragment extends Fragment {
 
     /**
      * LayerSelectorGroup class
-     *
+     * <p>
      * The group of selectors which act to cycle between image layers
      */
     private class MapLayerSelectorGroup {
@@ -287,6 +287,7 @@ public class MapViewerFragment extends Fragment {
 
         /**
          * LayerSelectorGroup constructor
+         *
          * @param count - the total number of Selectors, based on map layers
          */
         public MapLayerSelectorGroup(int count) {
@@ -299,7 +300,7 @@ public class MapViewerFragment extends Fragment {
 
         /**
          * setSelected
-         *
+         * <p>
          * Selects a specific Selector
          *
          * @param index - the index of Selector
@@ -313,7 +314,7 @@ public class MapViewerFragment extends Fragment {
 
         /**
          * deSelectAll
-         *
+         * <p>
          * Deselects all Selectors
          */
         public void deSelectAll() {
@@ -345,7 +346,7 @@ public class MapViewerFragment extends Fragment {
 
         /**
          * Selector class
-         *
+         * <p>
          * A Selector which represents the current layer of the selected map
          */
         private class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
@@ -374,7 +375,7 @@ public class MapViewerFragment extends Fragment {
              * setSelected
              *
              * @param isSelected - the state of the Selector
-             * Sets the Selector as selected
+             *                   Sets the Selector as selected
              */
             public void setSelected(boolean isSelected) {
                 this.isSelected = isSelected;
@@ -384,7 +385,7 @@ public class MapViewerFragment extends Fragment {
 
             /**
              * updateImage
-             *
+             * <p>
              * Updates the Selector icon to reflect its current selection state
              */
             private void updateImage() {

@@ -62,7 +62,8 @@ public class NewsletterMessageFragment extends Fragment {
         label_date.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        //label_content.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue.COMPLEX_UNIT_SP);
+        //label_content.setAutoSizeTextTypeUniformWithConfiguration(12, 50, 1, TypedValue
+        // .COMPLEX_UNIT_SP);
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());

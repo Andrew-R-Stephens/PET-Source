@@ -36,18 +36,18 @@ public class ObjectivesViewModel extends ViewModel {
         this.ghostName = ghostName;
     }
 
-    public String getGhostName(){
+    public String getGhostName() {
         return ghostName;
     }
 
     /*
      * Response
      */
-    public void setResponseState(boolean responseState){
+    public void setResponseState(boolean responseState) {
         this.responseState = responseState;
     }
 
-    public boolean getResponseState(){
+    public boolean getResponseState() {
         return responseState;
     }
 
@@ -58,7 +58,7 @@ public class ObjectivesViewModel extends ViewModel {
         this.isObjectiveCompleted = isObjectiveCompleted;
     }
 
-    public boolean[] getObjectiveCompletion(){
+    public boolean[] getObjectiveCompletion() {
         return isObjectiveCompleted;
     }
 

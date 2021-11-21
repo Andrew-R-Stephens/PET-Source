@@ -23,43 +23,47 @@ public class MapMenuViewModel extends ViewModel {
 
     /**
      * setMapData method
+     *
      * @param context
      */
     @SuppressLint("ResourceType")
-    public void setMapData(Context context){
-
-        TypedArray typedArray = context.getResources().obtainTypedArray(R.array.maps_resources_array);
+    public void setMapData(Context context) {
+        TypedArray typedArray =
+                context.getResources().obtainTypedArray(R.array.maps_resources_array);
         MapData[] mapData = new MapData[typedArray.length()];
-        for(int i = 0; i < typedArray.length(); i++) {
+        for (int i = 0; i < typedArray.length(); i++) {
             mapData[i] = new MapData();
 
-            TypedArray mapTypedArray = context.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
+            TypedArray mapTypedArray =
+                    context.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
 
             //Set map name
             mapData[i].setMapName(mapTypedArray.getString(0));
 
             //Set map layer background images
-            TypedArray mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(2, 0));
-            for(int j = 0; j < mapImages.length(); j++){
+            TypedArray mapImages =
+                    context.getResources().obtainTypedArray(mapTypedArray.getResourceId(2, 0));
+            for (int j = 0; j < mapImages.length(); j++) {
                 mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
             }
             mapImages.recycle(); //cleanup
 
             //Set map layer outline images
             mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(1, 0));
-            for(int j = 0; j < mapImages.length(); j++)
+            for (int j = 0; j < mapImages.length(); j++)
                 mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
             mapImages.recycle(); //cleanup
 
             //Set map layer door images
             mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(3, 0));
-            for(int j = 0; j < mapImages.length(); j++){
+            for (int j = 0; j < mapImages.length(); j++) {
                 mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
             }
             mapImages.recycle(); //cleanup
 
             //Set map layer names
-            TypedArray mapLayerNamesIDs = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(4, 0));
+            TypedArray mapLayerNamesIDs =
+                    context.getResources().obtainTypedArray(mapTypedArray.getResourceId(4, 0));
             for (int j = 0; j < mapLayerNamesIDs.length(); j++) {
                 mapData[i].addFloorName(mapLayerNamesIDs.getResourceId(j, 0));
             }
@@ -77,78 +81,87 @@ public class MapMenuViewModel extends ViewModel {
 
     /**
      * setMapData method
+     *
      * @param mapData array
      */
-    public void setMapData(MapData[] mapData){
+    public void setMapData(MapData[] mapData) {
         this.mapData = mapData;
     }
 
     /**
      * hasMapData method
+     *
      * @return isMapData null
      */
-    public boolean hasMapData(){
+    public boolean hasMapData() {
         return mapData != null;
     }
 
     /**
      * setMapData method
+     *
      * @return mapData array
      */
-    public MapData[] getMapData(){
+    public MapData[] getMapData() {
         return mapData;
     }
 
     /**
      * getMapDataLength method
+     *
      * @return the size of the mapData array
      */
-    public int getMapDataLength(){
-        if(!hasMapData())
+    public int getMapDataLength() {
+        if (!hasMapData())
             return 0;
         return mapData.length;
     }
 
     /**
      * hasCurrentMapData method
+     *
      * @return hasMapData
      */
-    public boolean hasCurrentMapData(){
+    public boolean hasCurrentMapData() {
         return hasMapData() && currentMap < mapData.length && mapData[currentMap] != null;
     }
 
     /**
      * setCurrentMapData method
+     *
      * @param currentMapPos
      */
     public void setCurrentMapData(int currentMapPos) {
-        if(hasMapData() && currentMapPos < mapData.length)
+        if (hasMapData() && currentMapPos < mapData.length)
             this.currentMap = currentMapPos;
     }
 
     /**
      * getCurrentMapData method
+     *
      * @return MapData
      */
     public MapData getCurrentMapData() {
-        if(!hasMapData())
+        if (!hasMapData())
             return null;
         return mapData[currentMap];
     }
 
     /**
      * setImageDisplayThread method
+     *
      * @param thread
      */
-    public void setImageDisplayThread(Thread thread){
+    public void setImageDisplayThread(Thread thread) {
         imageDisplayThread = thread;
     }
 
     /**
      * getImageDisplayThread method
+     *
      * @return imageDisplayThread
      */
-    public Thread getImageDisplayThread(){
+    public Thread getImageDisplayThread() {
         return imageDisplayThread;
     }
 

@@ -20,8 +20,9 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapsCarouselView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
@@ -44,7 +45,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     /**
      * EvidenceSoloFragment default constructor
      */
-    public EvidenceSoloFragment(){
+    public EvidenceSoloFragment() {
         super(R.layout.fragment_evidence_solo);
     }
 
@@ -54,17 +55,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        if(!evidenceViewModel.hasInvestigationData() && getContext() != null)
+        if (!evidenceViewModel.hasInvestigationData() && getContext() != null)
             evidenceViewModel.setInvestigationData(new InvestigationData(getContext()));
 
-        if(!evidenceViewModel.hasSanityData())
+        if (!evidenceViewModel.hasSanityData())
             evidenceViewModel.setSanityData(new SanityData(evidenceViewModel));
 
-        if(evidenceViewModel.hasMapSizeData()) {
+        MapCarouselData mapCarouselData = evidenceViewModel.getMapCarouselData();
+        if (mapCarouselData.hasMapSizeData()) {
             TypedArray typedArray = getResources().obtainTypedArray(R.array.maps_resources_array);
             String[] names = new String[typedArray.length()];
             int[] sizes = new int[typedArray.length()];
-            for(int i = 0; i < typedArray.length(); i++) {
+            for (int i = 0; i < typedArray.length(); i++) {
                 TypedArray mapTypedArray =
                         getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
                 names[i] = mapTypedArray.getString(0);
@@ -73,7 +75,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 mapTypedArray.recycle();
             }
             typedArray.recycle();
-            evidenceViewModel.setMapSizeData(names, sizes);
+            mapCarouselData.setMapSizeData(names, sizes);
         }
 
         // INITIALIZE VIEWS
@@ -92,26 +94,26 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // TEXT SIZE
         map_name.setAutoSizeTextTypeUniformWithConfiguration(
-                5,50,1,
+                5, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
-            if(evidenceViewModel != null && evidenceViewModel.hasTimer()) {
+            if (evidenceViewModel != null && evidenceViewModel.hasTimer()) {
                 evidenceViewModel.getTimerView().createTimer(0L, 1000L);
-                if((!(evidenceViewModel.getTimerView().getTimeRemaining() > 0L)) &&
+                if ((!(evidenceViewModel.getTimerView().getTimeRemaining() > 0L)) &&
                         evidenceViewModel.getSanityData().getSanityActual() < 50)
                     evidenceViewModel.getSanityData().setProgressManually(50);
             }
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
-                softReset();
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                if (Build.VERSION.SDK_INT >= 26) {
-                    ft.setReorderingAllowed(false);
-                }
-                ft.detach(EvidenceSoloFragment.this).commitNow();
-                ft.attach(EvidenceSoloFragment.this).commitNow();
+                    softReset();
+                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        ft.setReorderingAllowed(false);
+                    }
+                    ft.detach(EvidenceSoloFragment.this).commitNow();
+                    ft.attach(EvidenceSoloFragment.this).commitNow();
                 }
         );
         btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).
@@ -123,7 +125,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
-        if(evidenceViewModel.hasTimer()) {
+        if (evidenceViewModel.hasTimer()) {
             if (evidenceViewModel.getTimerView().isPaused())
                 playPauseButton.setPaused();
             else
@@ -131,26 +133,29 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         }
 
         // MAP SELECTION
-        MapsCarouselView mapTrackControl = new MapsCarouselView(map_prev, map_next, map_name);
-        mapTrackControl.init(evidenceViewModel);
-        map_name.setText(evidenceViewModel.getMapCurrentName().split(" ")[0]);
+        MapCarouselView mapTrackControl =
+                new MapCarouselView(
+                        mapCarouselData,
+                        map_prev, map_next, map_name);
+        //mapTrackControl.init(evidenceViewModel);
+        map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
         difficultyCarouselView = new DifficultyCarouselView(
                 evidenceViewModel.getDifficultyCarouselData(),
                 evidenceViewModel.getTimerView(),
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name);
-        if(evidenceViewModel != null && evidenceViewModel.hasTimer())
+        if (evidenceViewModel != null && evidenceViewModel.hasTimer())
             evidenceViewModel.getTimerView().setTimerControls(playPauseButton);
         difficultyCarouselView.setTimerControl(playPauseButton);
-        if(evidenceViewModel != null)
+        if (evidenceViewModel != null)
             difficultyCarouselView.setState(
                     evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex());
 
         // SANITY METER
-        if(sanitySeekBar != null)
+        if (sanitySeekBar != null)
             sanitySeekBar.setProgress(0);
-        if(evidenceViewModel != null) {
+        if (evidenceViewModel != null) {
             sanityMeterView.init(evidenceViewModel.getSanityData());
             if (evidenceViewModel.hasSanityData())
                 sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
@@ -169,9 +174,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     /**
      * softReset method
      */
-    public void softReset(){
+    public void softReset() {
         disableUIThread();
-        if(difficultyCarouselView != null)
+        if (difficultyCarouselView != null)
             difficultyCarouselView.reset();
         super.softReset();
     }
@@ -179,8 +184,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     /**
      * enableUIThread method
      */
-    public void enableUIThread(){
-        if(evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
+    public void enableUIThread() {
+        if (evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
             if (getActivity() != null) {
                 String appLang = ((InvestigationActivity) getActivity()).getAppLanguage();
                 MediaPlayer huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_en);
@@ -213,27 +218,27 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 if (evidenceViewModel.hasSanityRunnable()) {
                     sanityThread = new Thread() {
                         public void run() {
-                        while (evidenceViewModel != null && evidenceViewModel.hasSanityData() &&
-                                !evidenceViewModel.getSanityData().isPaused()) {
-                            try {
-                                if (getActivity() != null) {
-                                    getActivity().runOnUiThread(
-                                            evidenceViewModel.getSanityRunnable());
+                            while (evidenceViewModel != null && evidenceViewModel.hasSanityData() &&
+                                    !evidenceViewModel.getSanityData().isPaused()) {
+                                try {
+                                    if (getActivity() != null) {
+                                        getActivity().runOnUiThread(
+                                                evidenceViewModel.getSanityRunnable());
+                                    }
+                                    long now = System.nanoTime();
+                                    long updateTime = System.nanoTime() - now;
+                                    int TARGET_FPS = 30;
+                                    long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+                                    long wait = (OPTIMAL_TIME - updateTime) / 1000000;
+                                    if (wait < 0)
+                                        wait = 1;
+                                    evidenceViewModel.getSanityRunnable().setWait(wait);
+                                    Thread.sleep(wait);
+                                } catch (InterruptedException e) {
+                                    Log.e("EvidenceFragment",
+                                            "(SanityThread) InterruptedException error handled.");
                                 }
-                                long now = System.nanoTime();
-                                long updateTime = System.nanoTime() - now;
-                                int TARGET_FPS = 30;
-                                long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-                                long wait = (OPTIMAL_TIME - updateTime) / 1000000;
-                                if(wait < 0)
-                                    wait = 1;
-                                evidenceViewModel.getSanityRunnable().setWait(wait);
-                                Thread.sleep(wait);
-                            } catch (InterruptedException e) {
-                                Log.e("EvidenceFragment",
-                                        "(SanityThread) InterruptedException error handled.");
                             }
-                        }
                         }
                     };
                     sanityThread.start();
@@ -245,12 +250,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     /**
      * disableUIThread method
      */
-    public void disableUIThread(){
-        if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
+    public void disableUIThread() {
+        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
             evidenceViewModel.getSanityData().setIsPaused(true);
-        if(sanityThread != null) {
+        if (sanityThread != null) {
             sanityThread.interrupt();
-            if(evidenceViewModel.hasSanityRunnable()) {
+            if (evidenceViewModel.hasSanityRunnable()) {
                 evidenceViewModel.getSanityRunnable().haltMediaPlayer();
                 evidenceViewModel.setSanityRunnable(null);
             }
@@ -264,12 +269,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     @Override
     public void onPause() {
         disableUIThread();
-        if(evidenceViewModel != null)
-            if(evidenceViewModel.hasSanityData()) {
+        if (evidenceViewModel != null)
+            if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(false);
-            if(evidenceViewModel.hasSanityRunnable())
-                evidenceViewModel.getSanityRunnable().haltMediaPlayer();
-        }
+                if (evidenceViewModel.hasSanityRunnable())
+                    evidenceViewModel.getSanityRunnable().haltMediaPlayer();
+            }
         saveStates();
         super.onPause();
     }

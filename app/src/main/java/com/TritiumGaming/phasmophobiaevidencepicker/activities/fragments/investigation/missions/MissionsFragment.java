@@ -50,7 +50,7 @@ public class MissionsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if(objectivesViewModel == null)
+        if (objectivesViewModel == null)
             objectivesViewModel =
                     new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
 
@@ -94,7 +94,7 @@ public class MissionsFragment extends Fragment {
         // COLORS
         @ColorInt int color_unselectedItem = Color.LTGRAY, color_selectedItem = Color.RED;
         TypedValue typedValue = new TypedValue();
-        if(getContext() != null && getContext().getTheme() != null) {
+        if (getContext() != null && getContext().getTheme() != null) {
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.unselectedColor, typedValue, true);
             color_unselectedItem = typedValue.data;
@@ -123,7 +123,7 @@ public class MissionsFragment extends Fragment {
         label_ghostName.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 24, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             name_input.setAutoSizeTextTypeUniformWithConfiguration(
                     12, 24, 1,
                     TypedValue.COMPLEX_UNIT_SP);
@@ -204,21 +204,21 @@ public class MissionsFragment extends Fragment {
         MissionsData.Objective[] tempObjectives =
                 objectivesViewModel.getObjectivesSpinnerObjectives();
         boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
-        if(objectiveSpinner != null)
+        if (objectiveSpinner != null)
             for (int i = 0; i < objectiveSpinner.length; i++) {
-                if(objectiveSpinner[i] != null) {
+                if (objectiveSpinner[i] != null) {
                     objectiveSpinner[i].setCheckButton(button_check_evidence[i]);
                     objectiveSpinner[i].setStrikeout();
                     button_check_evidence[i].setSpinner(objectiveSpinner[i]);
                     setSpinnerData(objectiveSpinner[i]);
 
-                    if(tempObjectives != null && tempObjectives[i] != null) {
+                    if (tempObjectives != null && tempObjectives[i] != null) {
                         objectiveSpinner[i].updateAdapter();
                         objectiveSpinner[i].setCurrentObjective(tempObjectives[i]);
                     }
                 }
 
-                if((tempIsCompleted != null) &&
+                if ((tempIsCompleted != null) &&
                         (tempIsCompleted[i]) && objectiveSpinner[i] != null)
                     objectiveSpinner[i].setObjectiveAsCompleted();
 
@@ -226,12 +226,12 @@ public class MissionsFragment extends Fragment {
 
         // GHOST NAME
         String ghostName = objectivesViewModel.getGhostName();
-        if(name_input != null && ghostName != null)
+        if (name_input != null && ghostName != null)
             name_input.setText(ghostName);
 
         // RESPONDS TO
         final int selC = color_selectedItem, unselC = color_unselectedItem;
-        if(objectivesViewModel.getResponseState()) {
+        if (objectivesViewModel.getResponseState()) {
             button_alone.setColorFilter(selC);
             button_everyone.setColorFilter(unselC);
         } else {
@@ -239,22 +239,23 @@ public class MissionsFragment extends Fragment {
             button_everyone.setColorFilter(selC);
         }
         button_alone.setOnClickListener(v -> {
-            objectivesViewModel.setResponseState(true);
-            button_alone.setColorFilter(selC);
-            button_everyone.setColorFilter(unselC);
-            }
+                    objectivesViewModel.setResponseState(true);
+                    button_alone.setColorFilter(selC);
+                    button_everyone.setColorFilter(unselC);
+                }
         );
         button_everyone.setOnClickListener(v -> {
-            objectivesViewModel.setResponseState(false);
-            button_everyone.setColorFilter(selC);
-            button_alone.setColorFilter(unselC);
-            }
+                    objectivesViewModel.setResponseState(false);
+                    button_everyone.setColorFilter(selC);
+                    button_alone.setColorFilter(unselC);
+                }
         );
 
     }
 
     /**
      * setSpinnerData method
+     *
      * @param spinner the spinner who's data will be set
      */
     private void setSpinnerData(@NonNull MissionsSpinner spinner) {
@@ -263,12 +264,13 @@ public class MissionsFragment extends Fragment {
 
     /**
      * findObjectiveSpinnerObjective method
+     *
      * @return array of Objectives contained within a spinner
      */
-    private MissionsData.Objective[] findObjectiveSpinnerObjectives(){
+    private MissionsData.Objective[] findObjectiveSpinnerObjectives() {
 
         MissionsData.Objective[] temp = new MissionsData.Objective[objectiveSpinner.length];
-        for(int i = 0; i < objectiveSpinner.length; i++){
+        for (int i = 0; i < objectiveSpinner.length; i++) {
             temp[i] = objectiveSpinner[i].getSelectedObjective();
         }
         return temp;
@@ -277,12 +279,13 @@ public class MissionsFragment extends Fragment {
 
     /**
      * findObjectiveCompletion method
+     *
      * @return an array of completed objectives
      */
-    private boolean[] findObjectiveCompletion(){
+    private boolean[] findObjectiveCompletion() {
 
         boolean[] temp = new boolean[objectiveSpinner.length];
-        for(int i = 0; i < temp.length; i++)
+        for (int i = 0; i < temp.length; i++)
             temp[i] = objectiveSpinner[i].isCompleted();
         return temp;
 
@@ -291,8 +294,8 @@ public class MissionsFragment extends Fragment {
     /**
      * saveStates method
      */
-    public void saveStates(){
-        if(objectivesViewModel != null) {
+    public void saveStates() {
+        if (objectivesViewModel != null) {
             objectivesViewModel.setObjectiveCompletion(findObjectiveCompletion());
             objectivesViewModel.setObjectivesSpinnerObjectives(findObjectiveSpinnerObjectives());
             objectivesViewModel.setGhostName(name_input.getText().toString());

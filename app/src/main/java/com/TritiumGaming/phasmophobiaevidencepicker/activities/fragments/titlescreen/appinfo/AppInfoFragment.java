@@ -72,7 +72,7 @@ public class AppInfoFragment extends Fragment {
         TypedValue typedValue = new TypedValue();
         @ColorInt
         int color = 0;
-        if(getContext() != null) {
+        if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
         }
@@ -130,13 +130,13 @@ public class AppInfoFragment extends Fragment {
                 TypedValue.COMPLEX_UNIT_SP);
 
 
-
         // LISTENERS
         closeButton.setOnClickListener(v -> {
             Navigation.findNavController(v).popBackStack();
         });
         appinfo_discordclickbutton.setOnClickListener(v -> startActivity(
-                new Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
+                new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
 
         // ABOUT APP - TITLE
         String abouttitle = getResources().getString(R.string.aboutinfo_title_about);
@@ -214,7 +214,7 @@ public class AppInfoFragment extends Fragment {
             developerInfo_subinfo.setEllipsize(null);
             developerInfo_subinfo.setLayoutParams(
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subinfo.setGravity(Gravity.CENTER);
             if (getView() != null)
                 developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(
@@ -242,7 +242,7 @@ public class AppInfoFragment extends Fragment {
             names[i].setTextColor(color_body);
             names[i].setLayoutParams(
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
+                            LinearLayout.LayoutParams.WRAP_CONTENT));
             names[i].setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             names[i].setTextSize(
                     (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));

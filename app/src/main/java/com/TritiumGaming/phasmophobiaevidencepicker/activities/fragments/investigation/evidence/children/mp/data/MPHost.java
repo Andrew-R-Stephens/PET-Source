@@ -16,15 +16,13 @@ public class MPHost extends AbstractMPMember {
     private final String lobbyName;
 
     /**
-     *
      * @param lobbyName
      */
-    public MPHost(String lobbyName){
+    public MPHost(String lobbyName) {
         this.lobbyName = lobbyName;
     }
 
     /**
-     *
      * @throws IOException
      */
     public void openServer() throws IOException {
@@ -33,10 +31,9 @@ public class MPHost extends AbstractMPMember {
     }
 
     /**
-     *
      * @return
      */
-    public String getLobbyCode(){
+    public String getLobbyCode() {
         String lobbyCode = "";
 
         String ip = "24.47.180.250";
@@ -53,9 +50,9 @@ public class MPHost extends AbstractMPMember {
                 //System.out.print("Binary: " + binary[i]);
                 hexa[i] = (Integer.toHexString(temp));
                 System.out.print(", Hex: " + hexa[i]);
-                for(int j = 0; j < hexa[i].length(); j++) {
+                for (int j = 0; j < hexa[i].length(); j++) {
                     int loc = hexa[i].charAt(j);
-                    lobbyCode += alphabet.charAt(alphabet.indexOf(loc)+9);
+                    lobbyCode += alphabet.charAt(alphabet.indexOf(loc) + 9);
                 }
                 /*
                 hexa[i] = tempHexa;

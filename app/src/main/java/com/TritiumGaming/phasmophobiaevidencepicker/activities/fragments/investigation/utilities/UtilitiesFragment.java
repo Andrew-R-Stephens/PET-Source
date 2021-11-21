@@ -16,7 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 /**
  * EvidenceFragment class
- *
+ * <p>
  * TODO
  *
  * @author TritiumGamingStudios

@@ -164,7 +164,8 @@ public class AppSettingsFragment extends Fragment {
                             getString(R.string.preferences_globalFile_name),
                             Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace), globalPreferencesViewModel.getColorSpace());
+            editor.putInt(getString(R.string.preference_colorSpace),
+                    globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
             //TODO: -----
@@ -185,7 +186,8 @@ public class AppSettingsFragment extends Fragment {
                     requireActivity().getSharedPreferences(
                             getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace), globalPreferencesViewModel.getColorSpace());
+            editor.putInt(getString(R.string.preference_colorSpace),
+                    globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
             //TODO: ------
@@ -244,42 +246,43 @@ public class AppSettingsFragment extends Fragment {
                 }
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
                         new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        if (fromUser) {
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress,
+                                                          boolean fromUser) {
+                                if (fromUser) {
 
-                            globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
+                                    globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
 
-                            double progressMax = 300000 /
-                                    (double) seekBar_huntwarningTimeout.getMax();
+                                    double progressMax = 300000 /
+                                            (double) seekBar_huntwarningTimeout.getMax();
 
-                            if (progress < seekBar_huntwarningTimeout.getMax()) {
-                                long breakdown = (long) (progressMax * progress / 1000L);
-                                long minutes = breakdown / 60L;
-                                long seconds = breakdown % 60L;
-                                String text = String.format(
-                                        "%sm %ss",
-                                        new DecimalFormat("0").format(minutes),
-                                        new DecimalFormat("00").format(seconds));
+                                    if (progress < seekBar_huntwarningTimeout.getMax()) {
+                                        long breakdown = (long) (progressMax * progress / 1000L);
+                                        long minutes = breakdown / 60L;
+                                        long seconds = breakdown % 60L;
+                                        String text = String.format(
+                                                "%sm %ss",
+                                                new DecimalFormat("0").format(minutes),
+                                                new DecimalFormat("00").format(seconds));
 
-                                switch_huntwarning_timetext.setText(text);
-                                switch_huntwarning_othertext.setText("");
-                            } else if (progress == seekBar_huntwarningTimeout.getMax()) {
-                                switch_huntwarning_timetext.setText("");
-                                switch_huntwarning_othertext.setText(R.string.settings_huntwarningflashtimeout_never);
+                                        switch_huntwarning_timetext.setText(text);
+                                        switch_huntwarning_othertext.setText("");
+                                    } else if (progress == seekBar_huntwarningTimeout.getMax()) {
+                                        switch_huntwarning_timetext.setText("");
+                                        switch_huntwarning_othertext.setText(R.string.settings_huntwarningflashtimeout_never);
+                                    }
+                                }
                             }
-                        }
-                    }
 
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+                            }
 
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+                            }
 
-                });
+                        });
 
                 double progressMax = 300000 / (double) seekBar_huntwarningTimeout.getMax();
 

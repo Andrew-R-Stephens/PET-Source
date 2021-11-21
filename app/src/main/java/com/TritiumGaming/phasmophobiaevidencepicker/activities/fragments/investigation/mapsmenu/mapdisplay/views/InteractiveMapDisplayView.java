@@ -35,6 +35,7 @@ public class InteractiveMapDisplayView extends View {
 
     /**
      * InteractiveMapDisplayView parameterized constructor
+     *
      * @param context
      * @param attrs
      */
@@ -49,9 +50,10 @@ public class InteractiveMapDisplayView extends View {
 
     /**
      * init method
+     *
      * @param controllerData
      */
-    public void init(InteractiveMapControlData controllerData){
+    public void init(InteractiveMapControlData controllerData) {
         this.controllerData = controllerData;
 
         //updateLoadingText();
@@ -59,32 +61,34 @@ public class InteractiveMapDisplayView extends View {
 
     /**
      * setMapData method
+     *
      * @param mapData
      */
-    public void setMapData(MapData mapData){
+    public void setMapData(MapData mapData) {
         this.mapData = mapData;
     }
 
     /**
      * setMapImages method
+     *
      * @param a
      */
-    public void setMapImages(Activity a){
+    public void setMapImages(Activity a) {
 
-        if(controllerData != null && controllerData.getBitmapFactoryOptions() != null) {
+        if (controllerData != null && controllerData.getBitmapFactoryOptions() != null) {
 
-            for(int i = 0; i < mapData.getAllFloorLayers().size(); i++)
+            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++)
                 mapImages.add(null);
 
-            for(int i = 0; i < mapData.getAllFloorLayers().size(); i++){
+            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++) {
                 int index = i + mapData.getDefaultFloor();
-                if(mapData.getAllFloorLayers().size() <= index)
+                if (mapData.getAllFloorLayers().size() <= index)
                     index = 0;
 
                 // IMAGE LOADING ----
                 //
                 ArrayList<Integer> floor = mapData.getAllFloorLayers().get(index);
-                for(int j = 0; j < floor.size(); j++) {
+                for (int j = 0; j < floor.size(); j++) {
                     bitmapUtils.setResources(floor);
                     while (bitmapUtils.hasNextBitmap()) {
                         mapImages.set(
@@ -105,6 +109,7 @@ public class InteractiveMapDisplayView extends View {
 
     /**
      * onDraw method
+     *
      * @param canvas
      */
     @Override
@@ -112,11 +117,11 @@ public class InteractiveMapDisplayView extends View {
 
         super.onDraw(canvas);
 
-        if(controllerData != null) {
+        if (controllerData != null) {
             controllerData.updateMatrix();
-            if(mapImages != null && mapData != null && mapData.getCurrentFloor() < mapImages.size()){
+            if (mapImages != null && mapData != null && mapData.getCurrentFloor() < mapImages.size()) {
                 Bitmap b = mapImages.get(mapData.getCurrentFloor());
-                if(BitmapUtils.bitmapExists(b)) {
+                if (BitmapUtils.bitmapExists(b)) {
                     controllerData.postTranslateMatrix(
                             b.getWidth(),
                             b.getHeight(),
@@ -127,14 +132,14 @@ public class InteractiveMapDisplayView extends View {
             }
         }
 
-        if(frameRect == null)
-            frameRect = new Rect(1, 1, getWidth()-1, getHeight()-1);
+        if (frameRect == null)
+            frameRect = new Rect(1, 1, getWidth() - 1, getHeight() - 1);
 
-        if(paint != null) {
+        if (paint != null) {
             paint.setColorFilter(null);
             paint.setColor(Color.WHITE);
             paint.setStyle(Paint.Style.STROKE);
-            if(frameRect != null)
+            if (frameRect != null)
                 canvas.drawRect(frameRect, paint);
         }
 
@@ -143,11 +148,11 @@ public class InteractiveMapDisplayView extends View {
     /**
      * recycleBitmaps method
      */
-    public void recycleBitmaps(){
+    public void recycleBitmaps() {
 
-        if(mapImages != null)
-            for(Bitmap b: mapImages){
-                if(BitmapUtils.bitmapExists(b)) {
+        if (mapImages != null)
+            for (Bitmap b : mapImages) {
+                if (BitmapUtils.bitmapExists(b)) {
                     b.recycle();
                 }
             }

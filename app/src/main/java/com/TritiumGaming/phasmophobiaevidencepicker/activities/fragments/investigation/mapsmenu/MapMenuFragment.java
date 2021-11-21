@@ -36,7 +36,7 @@ public class MapMenuFragment extends Fragment {
 
     private AppCompatImageView backgroundImage = null;
 
-    public MapMenuFragment(){
+    public MapMenuFragment() {
         super(R.layout.fragment_mapmenu);
     }
 
@@ -47,7 +47,7 @@ public class MapMenuFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if(mapViewViewModel == null)
+        if (mapViewViewModel == null)
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -117,14 +117,14 @@ public class MapMenuFragment extends Fragment {
         icon_goto_left.setImageResource(R.drawable.icon_evidence);
 
         // SET DATA
-        if(!mapViewViewModel.hasMapData())
-            if(getContext() != null)
+        if (!mapViewViewModel.hasMapData())
+            if (getContext() != null)
                 mapViewViewModel.setMapData(getContext());
-        for(int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
+        for (int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
             AppCompatTextView mapName = new AppCompatTextView(view.getContext());
             mapName.setLayoutParams(
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
             mapName.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             mapName.setTypeface(universalFont);
             mapName.setAutoSizeTextTypeUniformWithConfiguration(
@@ -135,7 +135,7 @@ public class MapMenuFragment extends Fragment {
             int mapPos = i;
             mapName.setOnClickListener(v -> {
                 System.gc();
-                if(mapViewViewModel != null)
+                if (mapViewViewModel != null)
                     mapViewViewModel.setCurrentMapData(mapPos);
                 Navigation.findNavController(v).navigate(R.id.action_mapmenu_to_mapview);
             });

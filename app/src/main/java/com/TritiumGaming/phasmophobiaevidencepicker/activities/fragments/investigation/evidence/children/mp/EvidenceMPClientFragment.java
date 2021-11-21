@@ -23,7 +23,7 @@ public class EvidenceMPClientFragment extends Fragment {
 
     private MPClientViewModel MPClientViewModel;
 
-    public EvidenceMPClientFragment(){
+    public EvidenceMPClientFragment() {
         super(R.layout.fragment_evidence_mult_client);
     }
 
@@ -33,7 +33,7 @@ public class EvidenceMPClientFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        if(MPClientViewModel == null)
+        if (MPClientViewModel == null)
             MPClientViewModel =
                     new ViewModelProvider(requireActivity()).get(MPClientViewModel.class);
 

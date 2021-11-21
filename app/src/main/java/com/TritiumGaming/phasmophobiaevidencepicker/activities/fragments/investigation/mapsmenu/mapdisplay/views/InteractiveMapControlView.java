@@ -29,6 +29,7 @@ public class InteractiveMapControlView extends View {
 
     /**
      * InteractiveMapControlView parameterized constructor
+     *
      * @param context
      * @param attrs
      */
@@ -38,10 +39,11 @@ public class InteractiveMapControlView extends View {
 
     /**
      * init method
+     *
      * @param controllerData
      * @param recipient
      */
-    public void init(InteractiveMapControlData controllerData, View recipient){
+    public void init(InteractiveMapControlData controllerData, View recipient) {
         this.controllerData = controllerData;
         this.recipient = recipient;
 
@@ -50,6 +52,7 @@ public class InteractiveMapControlView extends View {
 
     /**
      * onTouchEvent listener
+     *
      * @param event
      * @return
      */
@@ -69,7 +72,7 @@ public class InteractiveMapControlView extends View {
                 PointF f = new PointF();
                 f.x = event.getX(pointerIndex);
                 f.y = event.getY(pointerIndex);
-                if(mActivePointers != null)
+                if (mActivePointers != null)
                     mActivePointers.put(pointerId, f);
                 break;
             }
@@ -85,22 +88,19 @@ public class InteractiveMapControlView extends View {
                     }
                 }
 
-                if(event.getPointerCount() == 1) {
+                if (event.getPointerCount() == 1) {
                     doPanAction();
-                }
-                else
-                    if(event.getPointerCount() == 2) {
-                        doZoomAction();
-                    }
-                    else
-                        acceptedAction = false;
+                } else if (event.getPointerCount() == 2) {
+                    doZoomAction();
+                } else
+                    acceptedAction = false;
 
                 break;
             }
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL: {
-                if(mActivePointers != null)
+                if (mActivePointers != null)
                     mActivePointers.remove(pointerId);
 
                 pinchDistance = 0;
@@ -109,8 +109,8 @@ public class InteractiveMapControlView extends View {
             }
         }
 
-        if(acceptedAction)
-            if(recipient != null) {
+        if (acceptedAction)
+            if (recipient != null) {
                 controllerData.setDisplaySize(recipient.getWidth(), recipient.getHeight());
                 recipient.invalidate();
             }
@@ -126,20 +126,20 @@ public class InteractiveMapControlView extends View {
         PointF p1 = mActivePointers.get(0);
         PointF p2 = mActivePointers.get(1);
 
-        if(p1 != null && p2 != null){
+        if (p1 != null && p2 != null) {
 
             double distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
             double delta = distance - pinchDistance;
 
             pinchDistance = distance;
 
-            if(Math.abs(delta) > 2) {
+            if (Math.abs(delta) > 2) {
                 double zoomSense = .02;
                 int zoomDir = 1;
                 if (delta < 0)
                     zoomDir = -1;
 
-                if(controllerData != null)
+                if (controllerData != null)
                     controllerData.incrementZoomLevel(zoomSense * zoomDir);
             }
         }
@@ -152,15 +152,15 @@ public class InteractiveMapControlView extends View {
 
         PointF p = mActivePointers.get(0);
 
-        if(p != null && panOrigin != null) {
+        if (p != null && panOrigin != null) {
             double dX = panOrigin.x - p.x;
             double dY = panOrigin.y - p.y;
 
-            if(controllerData != null)
+            if (controllerData != null)
                 controllerData.incrementPan(dX, dY);
         }
 
-        if(p != null)
+        if (p != null)
             panOrigin = new Point((int) p.x, (int) p.y);
 
     }

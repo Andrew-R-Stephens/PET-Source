@@ -28,11 +28,13 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * init method
+     *
      * @param context
      */
-    public void init(Context context){
+    public void init(Context context) {
 
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref =
+                context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
 
         setNetworkPreference(sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
@@ -76,38 +78,41 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * getReviewRequestData method
+     *
      * @return reviewRequestData
      */
-    public ReviewTrackingData getReviewRequestData(){
+    public ReviewTrackingData getReviewRequestData() {
         return reviewRequestData;
     }
 
 
     /**
      * setLanguageName method
+     *
      * @param languageName
      */
-    public void setLanguageName(String languageName){
+    public void setLanguageName(String languageName) {
         this.languageName = languageName;
     }
 
     /**
      * getLanguageName method
+     *
      * @return languageName
      */
-    public String getLanguageName(){
+    public String getLanguageName() {
         return languageName;
     }
 
     /**
      * getLanguage
-     *
+     * <p>
      * Gets the language saved to GlobalPreferences.
      * Defaults to return 'en' if there is no previously saved preference.
      *
      * @return The language specified in the Preferences data, or otherwise English
      */
-    public String getLanguage(Context context){
+    public String getLanguage(Context context) {
         String lang = context.getSharedPreferences(
                 context.getResources().getString(
                         R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString(
@@ -120,14 +125,18 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * setLanguage method
+     *
      * @param position
      * @param languageNames
      */
-    public void setLanguage(int position, String[] languageNames) { setLanguageName(languageNames[position]); }
+    public void setLanguage(int position, String[] languageNames) {
+        setLanguageName(languageNames[position]);
+    }
 
 
     /**
      * getIsAlwaysOn method
+     *
      * @return isAlwaysOn
      */
     public boolean getIsAlwaysOn() {
@@ -136,6 +145,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * setIsAlwaysOn method
+     *
      * @param isAlwaysOn
      */
     public void setIsAlwaysOn(boolean isAlwaysOn) {
@@ -144,6 +154,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * setAllowHuntWarningAudio method
+     *
      * @param isAllowed
      */
     public void setAllowHuntWarningAudio(boolean isAllowed) {
@@ -152,46 +163,50 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     /**
      * getIsHuntAudioAllowed method
+     *
      * @return isHuntAudioAllowed
      */
-    public boolean getIsHuntAudioAllowed(){
+    public boolean getIsHuntAudioAllowed() {
         return isHuntAudioAllowed;
     }
 
     /**
      * setHuntWarningFlashTimeout method
+     *
      * @param timeout
      */
-    public void setHuntWarningFlashTimeout(int timeout){
+    public void setHuntWarningFlashTimeout(int timeout) {
         huntWarningFlashTimeout = timeout;
     }
 
     /**
      * getHuntWarningFlashTimeout method
+     *
      * @return huntWarningFlashTimeout
      */
-    public int getHuntWarningFlashTimeout(){
+    public int getHuntWarningFlashTimeout() {
         return huntWarningFlashTimeout;
     }
 
     /**
      * setColorSpace method
+     *
      * @param colorSpace
      */
-    public void setColorSpace(int colorSpace){
+    public void setColorSpace(int colorSpace) {
         this.colorSpace = colorSpace;
     }
 
     /**
      * getColorSpace method
+     *
      * @return ColorSpace
      */
-    public int getColorSpace(){
+    public int getColorSpace() {
         return colorSpace;
     }
 
     /**
-     *
      * @param huntWarningAudioAllowed
      */
     public void setHuntWarningAudioAllowed(boolean huntWarningAudioAllowed) {
@@ -199,32 +214,40 @@ public class GlobalPreferencesViewModel extends ViewModel {
     }
 
     /**
-     *
      * @return
      */
-    public boolean isHuntWarningAudioAllowed(){
+    public boolean isHuntWarningAudioAllowed() {
         return huntWarningAudioAllowed;
     }
 
     /**
      * saveToFile method
+     *
      * @param c
      */
     public void saveToFile(Context c) {
 
-        SharedPreferences sharedPref = c.getSharedPreferences(c.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref =
+                c.getSharedPreferences(c.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putBoolean(c.getResources().getString(R.string.preference_network), getNetworkPreference());
-        editor.putString(c.getResources().getString(R.string.preference_language), getLanguageName());
-        editor.putBoolean(c.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn());
+        editor.putBoolean(c.getResources().getString(R.string.preference_network),
+                getNetworkPreference());
+        editor.putString(c.getResources().getString(R.string.preference_language),
+                getLanguageName());
+        editor.putBoolean(c.getResources().getString(R.string.preference_isAlwaysOn),
+                getIsAlwaysOn());
         editor.putBoolean(c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed());
-        editor.putInt(c.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout());
+        editor.putInt(c.getResources().getString(R.string.preference_huntWarningFlashTimeout),
+                getHuntWarningFlashTimeout());
         editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
 
-        editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview), getReviewRequestData().getWasRequested());
-        editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened), getReviewRequestData().getTimesOpened());
-        editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive), getReviewRequestData().getTimeActive());
+        editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview),
+                getReviewRequestData().getWasRequested());
+        editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened),
+                getReviewRequestData().getTimesOpened());
+        editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive),
+                getReviewRequestData().getTimeActive());
 
         editor.apply();
 

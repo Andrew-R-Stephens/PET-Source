@@ -15,109 +15,102 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  */
 public class AnimatedHandData extends AbstractAnimatedGraphic {
 
-    public AnimatedHandData(int screenW, int screenH, int bitmapW, int bitmapH){
+    public AnimatedHandData(int screenW, int screenH, int bitmapW, int bitmapH) {
         super(screenW, screenH);
 
-        MAX_SIZE = 6; MIN_SIZE = 3; MAX_ROTATION = 25; MAX_TICK = 500;
+        MAX_SIZE = 6;
+        MIN_SIZE = 3;
+        MAX_ROTATION = 25;
+        MAX_TICK = 500;
 
-        setScale((Math.random()*(MAX_SIZE-MIN_SIZE)+MIN_SIZE) * .1);
+        setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
         setWidth(bitmapW);
         setHeight(bitmapH);
-        setX(Math.random()*SCREENW);
-        setY(Math.random()*SCREENH);
+        setX(Math.random() * SCREENW);
+        setY(Math.random() * SCREENH);
         setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
-        setTickMax((int)((Math.random()*(MAX_TICK-(MAX_TICK*.5)))+(MAX_TICK*.5)));
+        setTickMax((int) ((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)));
     }
 
     /**
-     *
      * @param tickMax
      */
-    public void setTickMax(int tickMax){
+    public void setTickMax(int tickMax) {
         MAX_TICK = tickMax;
     }
 
     /**
-     *
      * @param rot
      */
-    public void setRotation(float rot){
+    public void setRotation(float rot) {
         this.rotation = rot;
     }
 
     /**
-     *
      * @param x
      */
-    public void setX(double x){
+    public void setX(double x) {
         this.x = x;
-        if(this.x+getScaledWidth() > SCREENW )
+        if (this.x + getScaledWidth() > SCREENW)
             this.x -= getScaledWidth();
-        else if(this.x < getScaledWidth()*-1)
+        else if (this.x < getScaledWidth() * -1)
             this.x = 0;
     }
 
     /**
-     *
      * @param y
      */
-    public void setY(double y){
+    public void setY(double y) {
         this.y = y;
-        if(this.y+getScaledHeight() > SCREENH )
+        if (this.y + getScaledHeight() > SCREENH)
             this.y -= getScaledHeight();
-        else if(this.y < getScaledHeight()*-1)
+        else if (this.y < getScaledHeight() * -1)
             this.y = 0;
     }
 
     /**
-     *
      * @param w
      */
-    public void setWidth(double w){
+    public void setWidth(double w) {
         this.width = w;
     }
 
     /**
-     *
      * @param h
      */
-    public void setHeight(double h){
+    public void setHeight(double h) {
         this.height = h;
     }
 
     /**
-     *
      * @param scale
      */
-    public void setScale(double scale){
+    public void setScale(double scale) {
         this.scale = scale;
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledWidth(){
+    public double getScaledWidth() {
         return scale * width;
     }
 
     /**
-     *
      * @return
      */
-    public double getScaledHeight(){
+    public double getScaledHeight() {
         return scale * height;
     }
 
     /**
      *
      */
-    public void setRect(){
-        r.set((int)x, (int)y, (int)(x+getScaledWidth()), (int)(y+getScaledHeight()));
+    public void setRect() {
+        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**
-     *
      * @param original
      * @return
      */
@@ -133,22 +126,21 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
     /**
      *
      */
-    public void tick(){
+    public void tick() {
         setRect();
-        if(currentTick >= 0)
+        if (currentTick >= 0)
             currentTick += tickIncrementDirection;
         else
             isAlive = false;
-        if(currentTick >= this.MAX_TICK)
+        if (currentTick >= this.MAX_TICK)
             tickIncrementDirection *= -1;
         setAlpha();
     }
 
     /**
-     *
      * @return
      */
-    public PorterDuffColorFilter getFilter(){
+    public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(
                 Color.argb(alpha, 0, 255, 0),
                 PorterDuff.Mode.MULTIPLY);

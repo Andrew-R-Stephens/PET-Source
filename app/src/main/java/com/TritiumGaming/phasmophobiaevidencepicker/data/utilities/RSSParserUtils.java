@@ -20,7 +20,9 @@ public class RSSParserUtils {
 
     private NewsletterViewModel.InboxType inboxType;
 
-    public RSSParserUtils(XmlPullParserFactory factory, String urlStr, NewsletterViewModel.InboxType type, NewsletterViewModel newsLetterViewModel) {
+    public RSSParserUtils(XmlPullParserFactory factory, String urlStr,
+                          NewsletterViewModel.InboxType type,
+                          NewsletterViewModel newsLetterViewModel) {
         this.newsLetterViewModel = newsLetterViewModel;
         this.inboxType = type;
 
@@ -42,7 +44,7 @@ public class RSSParserUtils {
         private XmlPullParserFactory factory;
         private String urlStr;
 
-        public RSSThread(XmlPullParserFactory factory, String urlStr){
+        public RSSThread(XmlPullParserFactory factory, String urlStr) {
             this.factory = factory;
             this.factory.setNamespaceAware(false);
 
@@ -54,8 +56,9 @@ public class RSSParserUtils {
 
             try {
                 InputStream in = getInputStream(urlStr);
-                if(in == null)
-                    throw new IOException("RSSParser: InputStream is null! Cannot retrieve database info. Is the internet connected?");
+                if (in == null)
+                    throw new IOException("RSSParser: InputStream is null! Cannot retrieve " +
+                            "database info. Is the internet connected?");
 
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput(in, "UTF_8");
@@ -66,31 +69,32 @@ public class RSSParserUtils {
                 NewsletterMessagesData messageList = new NewsletterMessagesData();
                 String title = null, date = null, description = null;
 
-                while(eventType != XmlPullParser.END_DOCUMENT) {
+                while (eventType != XmlPullParser.END_DOCUMENT) {
                     //Log.d("RSSParser", "Looping through Document");
-                    if(eventType == XmlPullParser.START_TAG){
-                        if(xpp.getName().equalsIgnoreCase("item")){
+                    if (eventType == XmlPullParser.START_TAG) {
+                        if (xpp.getName().equalsIgnoreCase("item")) {
                             insideItem = true;
-                        } else if (xpp.getName().equalsIgnoreCase("title")){
-                            if(insideItem) {
+                        } else if (xpp.getName().equalsIgnoreCase("title")) {
+                            if (insideItem) {
                                 title = xpp.nextText();
-                                Log.d("RSSParser", "Title: " + title.substring(0,5));
+                                //Log.d("RSSParser", "Title: " + title.substring(0, 5));
                             }
                         } else if (xpp.getName().equalsIgnoreCase("description")) {
-                            if(insideItem) {
+                            if (insideItem) {
                                 description = xpp.nextText();
-                                Log.d("RSSParser", "Desc: " + description.substring(0,5));
+                                //Log.d("RSSParser", "Desc: " + description.substring(0, 5));
                             }
                         } else if (xpp.getName().equalsIgnoreCase("pubdate")) {
-                            if(insideItem) {
+                            if (insideItem) {
                                 date = xpp.nextText();
-                                Log.d("RSSParser", "PubDate: " + date.substring(0,5));
+                                //Log.d("RSSParser", "PubDate: " + date.substring(0, 5));
                             }
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
-                        NewsletterMessageData message = new NewsletterMessageData(title, description, date);
-                        if(message.hasContent())
+                        NewsletterMessageData message = new NewsletterMessageData(title,
+                                description, date);
+                        if (message.hasContent())
                             messageList.add(message);
                         title = null;
                         date = null;

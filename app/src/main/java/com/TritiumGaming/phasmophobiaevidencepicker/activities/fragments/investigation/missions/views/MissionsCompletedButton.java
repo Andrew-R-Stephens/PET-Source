@@ -16,11 +16,13 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
     private MissionsSpinner objectivesSpinner = null;
 
-    @ColorInt private final int[] colorState = {Color.LTGRAY, Color.RED}; // unselected, selected
+    @ColorInt
+    private final int[] colorState = {Color.LTGRAY, Color.RED}; // unselected, selected
     private boolean isEnabled = false;
 
     /**
      * ObjectiveCompletedButton parameterized constructor
+     *
      * @param context
      */
     public MissionsCompletedButton(@NonNull Context context) {
@@ -30,8 +32,10 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
         setOnClickListener(v -> toggleStateAndIcon());
     }
+
     /**
      * ObjectiveCompletedButton parameterized constructor
+     *
      * @param context
      * @param attrs
      */
@@ -42,8 +46,10 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
         setOnClickListener(v -> toggleStateAndIcon());
     }
+
     /**
      * ObjectiveCompletedButton parameterized constructor
+     *
      * @param context
      * @param attrs
      * @param defStyle
@@ -58,14 +64,15 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
     /**
      * setColorStates method
+     *
      * @param unselected
      * @param selected
      */
-    public void setColorStates(@ColorInt int unselected, @ColorInt int selected){
+    public void setColorStates(@ColorInt int unselected, @ColorInt int selected) {
         colorState[0] = unselected;
         colorState[1] = selected;
 
-        if(isEnabled())
+        if (isEnabled())
             setColorFilter(colorState[1]);
         else
             setColorFilter(colorState[0]);
@@ -73,17 +80,18 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
     /**
      * getColorStates method
+     *
      * @return int array of set colors
      */
-    public int[] getColorStates(){
+    public int[] getColorStates() {
         return colorState;
     }
 
     /**
      * toggleStateAndIcon method
      */
-    public void toggleStateAndIcon(){
-        if(isEnabled()) {
+    public void toggleStateAndIcon() {
+        if (isEnabled()) {
             setEnabledState(false);
             setColorFilter(colorState[0]);
         } else {
@@ -95,18 +103,20 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
     /**
      * setEnabledState method
+     *
      * @param isEnabled
      */
-    public void setEnabledState(boolean isEnabled){
+    public void setEnabledState(boolean isEnabled) {
         this.isEnabled = isEnabled;
     }
 
     /**
      * overrideStateAndIcon method
+     *
      * @param state
      */
-    public void overrideStateAndIcon(boolean state){
-        if(!state) {
+    public void overrideStateAndIcon(boolean state) {
+        if (!state) {
             setEnabledState(false);
             setColorFilter(colorState[0]);
         } else {
@@ -118,16 +128,17 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
 
     /**
      * isEnabled method
+     *
      * @return if the Button is enabled
      */
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return isEnabled;
     }
 
     /**
      * setSpinner method
-     * @param objectivesSpinner
      *
+     * @param objectivesSpinner
      */
     public void setSpinner(MissionsSpinner objectivesSpinner) {
         this.objectivesSpinner = objectivesSpinner;

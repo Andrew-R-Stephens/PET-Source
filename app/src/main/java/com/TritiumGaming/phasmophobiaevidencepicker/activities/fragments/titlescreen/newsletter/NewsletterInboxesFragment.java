@@ -138,7 +138,7 @@ public class NewsletterInboxesFragment extends Fragment {
 
     /**
      * saveStates method
-     *
+     * <p>
      * TODO
      */
     public void saveStates() {

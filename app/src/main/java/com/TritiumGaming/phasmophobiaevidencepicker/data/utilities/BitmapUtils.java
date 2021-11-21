@@ -31,16 +31,15 @@ public class BitmapUtils {
     /**
      *
      */
-    public BitmapUtils(){
+    public BitmapUtils() {
         setMaxTextureSize();
     }
 
     /**
-     *
      * @param resource
      * @return
      */
-    public BitmapUtils setResource(@DrawableRes int resource){
+    public BitmapUtils setResource(@DrawableRes int resource) {
         clearResources();
         addResource(resource);
 
@@ -48,25 +47,23 @@ public class BitmapUtils {
     }
 
     /**
-     *
      * @param resources
      */
-    public void setResources(ArrayList<Integer> resources){
+    public void setResources(ArrayList<Integer> resources) {
         this.resources = resources;
     }
 
     /**
-     *
      * @param resource
      */
-    public void addResource(@DrawableRes int resource){
+    public void addResource(@DrawableRes int resource) {
         this.resources.add(resource);
     }
 
     /**
      *
      */
-    public void clearResources(){
+    public void clearResources() {
         resources = new ArrayList<>();
         currentLayer = -1;
     }
@@ -74,7 +71,7 @@ public class BitmapUtils {
     /**
      *
      */
-    private void setMaxTextureSize(){
+    private void setMaxTextureSize() {
         // Safe minimum default size
         final int IMAGE_MAX_BITMAP_DIMENSION = 2048;
 
@@ -121,19 +118,17 @@ public class BitmapUtils {
     }
 
     /**
-     *
      * @param c
      * @return
      */
-    public Bitmap compileBitmaps(Context c){
+    public Bitmap compileBitmaps(Context c) {
         Bitmap b = null;
-        for(@DrawableRes int r: resources)
+        for (@DrawableRes int r : resources)
             b = createBitmap(c, b, r);
         return b;
     }
 
     /**
-     *
      * @param c
      * @param previousBitmap
      * @return
@@ -144,21 +139,19 @@ public class BitmapUtils {
     }
 
     /**
-     *
      * @return
      */
-    public boolean hasNextBitmap(){
-        return currentLayer < resources.size()-1;
+    public boolean hasNextBitmap() {
+        return currentLayer < resources.size() - 1;
     }
 
     /**
-     *
      * @param c
      * @param baseLayer
      * @param id
      * @return
      */
-    private Bitmap createBitmap(Context c, Bitmap baseLayer, int id){
+    private Bitmap createBitmap(Context c, Bitmap baseLayer, int id) {
         final int screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
                 screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
@@ -171,9 +164,9 @@ public class BitmapUtils {
         final int height = options.outHeight, width = options.outWidth;
         //Get biggest image dimension between both width and height
         int highestDim = Math.max(height, width);
-        double dimScale = (double)maxTextureSize/(double)highestDim*options.inDensity;
-        if(dimScale < 1)
-            options.inSampleSize += (int)Math.ceil(Math.abs(dimScale));
+        double dimScale = (double) maxTextureSize / (double) highestDim * options.inDensity;
+        if (dimScale < 1)
+            options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
 
         options.inJustDecodeBounds = false;
 
@@ -181,19 +174,18 @@ public class BitmapUtils {
     }
 
     /**
-     *
      * @param baseLayer
      * @param topLayer
      * @return
      * @throws OutOfMemoryError
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) throws OutOfMemoryError {
-        if(baseLayer == null && BitmapUtils.bitmapExists(topLayer))
+        if (baseLayer == null && BitmapUtils.bitmapExists(topLayer))
             baseLayer = Bitmap.createBitmap(
                     topLayer.getWidth(),
                     topLayer.getHeight(),
                     topLayer.getConfig());
-        if(baseLayer != null && !baseLayer.isRecycled()) {
+        if (baseLayer != null && !baseLayer.isRecycled()) {
             Canvas canvas = new Canvas(baseLayer);
             if (topLayer != null) {
                 canvas.drawBitmap(topLayer, new Matrix(), null);
@@ -206,16 +198,15 @@ public class BitmapUtils {
     }
 
     /**
-     *
      * @param b
      * @return
      */
-    public static boolean bitmapExists(Bitmap b){
+    public static boolean bitmapExists(Bitmap b) {
         return b != null && !b.isRecycled();
     }
 
     public static void destroyBitmap(Bitmap b) {
-        if(bitmapExists(b)) {
+        if (bitmapExists(b)) {
             b.recycle();
             b = null;
         }

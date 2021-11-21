@@ -22,54 +22,51 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
     private float velX = 0f, velY = 0f;
 
     /**
-     *
      * @param screenW
      * @param screenH
      */
-    public AnimatedOrbData(int screenW, int screenH){
+    public AnimatedOrbData(int screenW, int screenH) {
         super(screenW, screenH);
 
         setX();
         setY();
         setDest();
-        ANIM_TICK_MAX = getRandTickMax((int)(ANIM_TICK_MAX*.5), ANIM_TICK_MAX);
-        DEST_TICK_MAX = getRandTickMax((int)(DEST_TICK_MAX*.5), DEST_TICK_MAX);
+        ANIM_TICK_MAX = getRandTickMax((int) (ANIM_TICK_MAX * .5), ANIM_TICK_MAX);
+        DEST_TICK_MAX = getRandTickMax((int) (DEST_TICK_MAX * .5), DEST_TICK_MAX);
     }
 
     /**
      *
      */
     private void setX() {
-        x = (float)(Math.random()*SCREENW);
+        x = (float) (Math.random() * SCREENW);
     }
 
     /**
      *
      */
     private void setY() {
-        y = (float)(Math.random()*SCREENH);
+        y = (float) (Math.random() * SCREENH);
     }
 
     /**
      *
      */
-    public void setDest(){
+    public void setDest() {
         destX = (float) Math.random() * SCREENW;
         destY = (float) Math.random() * SCREENH;
     }
 
     /**
-     *
      * @param min
      * @param max
      * @return
      */
-    public int getRandTickMax(int min, int max){
-        return (int)((Math.random() * (max - min)) + min);
+    public int getRandTickMax(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
     /**
-     *
      * @param from
      * @param dest
      * @return
@@ -81,15 +78,15 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
     /**
      *
      */
-    public void tick(){
+    public void tick() {
         animTick += animDir;
-        if(animTick >= ANIM_TICK_MAX)
+        if (animTick >= ANIM_TICK_MAX)
             animDir = -1;
-        if(animTick < 0)
+        if (animTick < 0)
             isAlive = false;
 
-        destTick ++;
-        if(destTick >= DEST_TICK_MAX) {
+        destTick++;
+        if (destTick >= DEST_TICK_MAX) {
             getRandTickMax((int) (DEST_TICK_MAX * .5), DEST_TICK_MAX);
             destTick = 0;
             setDest();
@@ -105,42 +102,40 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
 
         float VEL_MAX = (float) Math.PI / 2f;
         float VEL_MIN = -1 * VEL_MAX;
-        if(velX > VEL_MAX)
+        if (velX > VEL_MAX)
             velX = VEL_MAX;
-        else if(velX < VEL_MIN)
+        else if (velX < VEL_MIN)
             velX = VEL_MIN;
 
-        if(velY > VEL_MAX)
+        if (velY > VEL_MAX)
             velY = VEL_MAX;
-        else if(velY < VEL_MIN)
+        else if (velY < VEL_MIN)
             velY = VEL_MIN;
 
         x += velX;
         y += velY;
 
-        if(x > SCREENW * 1.1f ) {
+        if (x > SCREENW * 1.1f) {
             x = SCREENW * 1.1f;
             velX = 0;
             setDest();
-        }
-        else if(x < (SCREENW * -.1f) - SIZE) {
+        } else if (x < (SCREENW * -.1f) - SIZE) {
             x = (SCREENW * -.1f) - SIZE;
             velX = 0;
             setDest();
         }
 
-        if(y > SCREENH * 1.1f) {
+        if (y > SCREENH * 1.1f) {
             y = SCREENH * 1.1f;
             velY = 0;
             setDest();
-        }
-        else if(y < (SCREENH * - .1f) - SIZE) {
-            y = (SCREENH * - .1f) - SIZE;
+        } else if (y < (SCREENH * -.1f) - SIZE) {
+            y = (SCREENH * -.1f) - SIZE;
             velY = 0;
             setDest();
         }
 
-        r.set((int)x, (int)y, (int)(x + SIZE), (int)(y + SIZE));
+        r.set((int) x, (int) y, (int) (x + SIZE), (int) (y + SIZE));
 
         setAlpha();
     }
@@ -148,20 +143,19 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
     /**
      *
      */
-    public void setAlpha(){
+    public void setAlpha() {
         double alphaMult = (double) animTick / (double) ANIM_TICK_MAX / fadeTick * MAX_ALPHA;
-        alpha = (int)alphaMult;
-        if(alpha > MAX_ALPHA)
+        alpha = (int) alphaMult;
+        if (alpha > MAX_ALPHA)
             alpha = MAX_ALPHA;
-        else if(alpha < 0)
+        else if (alpha < 0)
             alpha = 0;
     }
 
     /**
-     *
      * @return
      */
-    public PorterDuffColorFilter getFilter(){
+    public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(Color.argb(alpha, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
     }
 

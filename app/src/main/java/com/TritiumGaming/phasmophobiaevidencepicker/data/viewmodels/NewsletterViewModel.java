@@ -21,7 +21,7 @@ public class NewsletterViewModel extends ViewModel {
     private int currentMessageID = 0;
     private ArrayList<NewsletterMessagesData> inboxMessageList;
 
-    public void setIsUpToDate(boolean isUpToDate){
+    public void setIsUpToDate(boolean isUpToDate) {
         this.isUpToDate = isUpToDate;
     }
 
@@ -30,19 +30,19 @@ public class NewsletterViewModel extends ViewModel {
     }
 
     public void addInbox(NewsletterMessagesData inbox, InboxType type) {
-        if(inboxMessageList == null)
+        if (inboxMessageList == null)
             inboxMessageList = new ArrayList<>();
 
         inbox.setInboxType(type);
         inboxMessageList.add(inbox);
     }
 
-    public void chooseCurrentInbox(InboxType type){
+    public void chooseCurrentInbox(InboxType type) {
         this.type = type;
     }
 
     public int getInboxCount() {
-        if(inboxMessageList == null)
+        if (inboxMessageList == null)
             return 0;
         return inboxMessageList.size();
     }
@@ -52,11 +52,11 @@ public class NewsletterViewModel extends ViewModel {
     }
 
     public NewsletterMessagesData getCurrentInbox() {
-        if(inboxMessageList == null)
+        if (inboxMessageList == null)
             return null;
 
-        for(int i = 0; i < inboxMessageList.size(); i++){
-            if(inboxMessageList.get(i).getInboxType() == type){
+        for (int i = 0; i < inboxMessageList.size(); i++) {
+            if (inboxMessageList.get(i).getInboxType() == type) {
                 return inboxMessageList.get(i);
             }
         }
@@ -88,8 +88,9 @@ public class NewsletterViewModel extends ViewModel {
             this.id = id;
         }
 
-        public String getName(Context context){
-            String[] name = context.getResources().getStringArray(R.array.messagecenter_inboxtitles);
+        public String getName(Context context) {
+            String[] name =
+                    context.getResources().getStringArray(R.array.messagecenter_inboxtitles);
 
             return name[id];
         }

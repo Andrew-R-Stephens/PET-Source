@@ -15,7 +15,6 @@ public class PhaseTimerControlView {
     private int icon_play = 0, icon_pause = 0;
 
     /**
-     *
      * @param timer
      * @param play_pause_view
      * @param icon_play
@@ -36,15 +35,13 @@ public class PhaseTimerControlView {
     }
 
     /**
-     *
      * @param view
      */
-    private void setTextView(AppCompatImageButton view){
+    private void setTextView(AppCompatImageButton view) {
         this.view = view;
     }
 
     /**
-     *
      * @param timer
      */
     public void setTimer(PhaseTimerView timer) {
@@ -52,7 +49,6 @@ public class PhaseTimerControlView {
     }
 
     /**
-     *
      * @param icon_play
      */
     private void setPlayBackgroundResource(int icon_play) {
@@ -60,7 +56,6 @@ public class PhaseTimerControlView {
     }
 
     /**
-     *
      * @param icon_pause
      */
     private void setPauseBackgroundResource(int icon_pause) {
@@ -71,7 +66,7 @@ public class PhaseTimerControlView {
      *
      */
     public void checkPaused() {
-        if(timer != null && timer.isPaused())
+        if (timer != null && timer.isPaused())
             view.setImageResource(icon_play);
     }
 
@@ -95,7 +90,7 @@ public class PhaseTimerControlView {
      *
      */
     public void toggleState() {
-        if(timer.isPaused())
+        if (timer.isPaused())
             setPlayed();
         else
             setPaused();

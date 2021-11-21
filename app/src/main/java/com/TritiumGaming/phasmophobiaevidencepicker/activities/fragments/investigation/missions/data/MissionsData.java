@@ -18,7 +18,6 @@ public class MissionsData {
     private final ArrayList<Objective> objectivePool = new ArrayList<>();
 
     /**
-     *
      * @param context
      */
     public MissionsData(Context context) {
@@ -29,26 +28,24 @@ public class MissionsData {
     }
 
     /**
-     *
      * @param o
      * @return
      */
-    public Objective getCopyOfObjective(Objective o){
-        for(Objective objective: objectivePool)
-            if(o.getContent().equals(objective.getContent()))
+    public Objective getCopyOfObjective(Objective o) {
+        for (Objective objective : objectivePool)
+            if (o.getContent().equals(objective.getContent()))
                 return objective;
         return null;
     }
 
     /**
-     *
      * @param selectedState
      * @return
      */
     public ArrayList<Objective> getObjectivesOfSelectedState(boolean selectedState) {
         ArrayList<Objective> temp = new ArrayList<>();
-        for(Objective o : objectivePool)
-            if(o.isSelected() == selectedState)
+        for (Objective o : objectivePool)
+            if (o.isSelected() == selectedState)
                 temp.add(o);
         return temp;
     }
@@ -63,61 +60,54 @@ public class MissionsData {
         private boolean isSelected = false;
 
         /**
-         *
          * @param content
          * @param position
          */
-        public Objective(String content, int position){
+        public Objective(String content, int position) {
             this.content = content;
             this.position = position;
         }
 
         /**
-         *
          * @param i
          */
-        public void setPosition(int i){
+        public void setPosition(int i) {
             position = i;
         }
 
         /**
-         *
          * @return
          */
-        public int getPosition(){
+        public int getPosition() {
             return position;
         }
 
         /**
-         *
          * @param isSelected
          */
-        public void setSelected(boolean isSelected){
-            this.isSelected= isSelected;
+        public void setSelected(boolean isSelected) {
+            this.isSelected = isSelected;
         }
 
         /**
-         *
          * @return
          */
-        private boolean isSelected(){
+        private boolean isSelected() {
             return isSelected;
         }
 
         /**
-         *
          * @return
          */
-        public String getContent(){
+        public String getContent() {
             return content;
         }
 
         /**
-         *
          * @return
          */
         @NonNull
-        public String toString(){
+        public String toString() {
             return content;
         }
 

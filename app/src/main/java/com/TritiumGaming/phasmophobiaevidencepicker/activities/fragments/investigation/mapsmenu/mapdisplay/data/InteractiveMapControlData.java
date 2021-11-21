@@ -21,46 +21,42 @@ public class InteractiveMapControlData {
     private int w, h;
 
     /**
-     *
      * @param addZoom
      */
-    public void incrementZoomLevel(double addZoom){
+    public void incrementZoomLevel(double addZoom) {
 
         float ZOOM_SENSE = 2f;//1.5f;
         float MIN = .8f, MAX = 4f;
 
-        if((this.zoomLevel += addZoom* ZOOM_SENSE) < MIN)
+        if ((this.zoomLevel += addZoom * ZOOM_SENSE) < MIN)
             this.zoomLevel = MIN;
-        else
-            if(zoomLevel > MAX)
-                this.zoomLevel = MAX;
+        else if (zoomLevel > MAX)
+            this.zoomLevel = MAX;
 
         updateMatrix();
 
     }
 
     /**
-     *
      * @param addX
      * @param addY
      */
-    public void incrementPan(double addX, double addY){
+    public void incrementPan(double addX, double addY) {
 
         float PAN_SENSE = 1.5f;
 
-        this.panX += -addX* PAN_SENSE;
-        this.panY += -addY* PAN_SENSE;
+        this.panX += -addX * PAN_SENSE;
+        this.panY += -addY * PAN_SENSE;
 
         updateMatrix();
 
     }
 
     /**
-     *
      * @param w
      * @param h
      */
-    public void setDisplaySize(int w, int h){
+    public void setDisplaySize(int w, int h) {
         this.w = w;
         this.h = h;
     }
@@ -68,21 +64,19 @@ public class InteractiveMapControlData {
     /**
      *
      */
-    public void updateMatrix(){
+    public void updateMatrix() {
         setAutoInSampleSize(w, h);
         options.inJustDecodeBounds = false;
     }
 
     /**
-     *
      * @return
      */
-    public BitmapFactory.Options getBitmapFactoryOptions(){
+    public BitmapFactory.Options getBitmapFactoryOptions() {
         return options;
     }
 
     /**
-     *
      * @param imgW
      * @param imgH
      * @param viewW
@@ -90,9 +84,9 @@ public class InteractiveMapControlData {
      */
     public void postTranslateMatrix(float imgW, float imgH, float viewW, float viewH) {
 
-        if(canSetDefaultZoomLevel){
-            float zoomW = viewW/imgW;
-            float zoomH = viewH/imgH;
+        if (canSetDefaultZoomLevel) {
+            float zoomW = viewW / imgW;
+            float zoomH = viewH / imgH;
             zoomLevel = Math.min(zoomW, zoomH);
 
             canSetDefaultZoomLevel = false;
@@ -110,34 +104,32 @@ public class InteractiveMapControlData {
 
         //RIGHT
         float BOUNDS_PADDING = .2f;
-        if ((distance = ((vals[2]) + (imgW*zoomLevel))) < viewW* BOUNDS_PADDING) {
-            panX -= distance - (viewW* BOUNDS_PADDING);
+        if ((distance = ((vals[2]) + (imgW * zoomLevel))) < viewW * BOUNDS_PADDING) {
+            panX -= distance - (viewW * BOUNDS_PADDING);
         }
         //LEFT
-        if ((vals[2]) > viewW-(viewW* BOUNDS_PADDING)) {
-            panX += ((viewW) - (vals[2]))-(viewW* BOUNDS_PADDING);
+        if ((vals[2]) > viewW - (viewW * BOUNDS_PADDING)) {
+            panX += ((viewW) - (vals[2])) - (viewW * BOUNDS_PADDING);
         }
         //BOTTOM
-        if ((distance = ((vals[5]) + (imgH*zoomLevel))) < viewH* BOUNDS_PADDING) {
-            panY -= distance - (viewH* BOUNDS_PADDING);
+        if ((distance = ((vals[5]) + (imgH * zoomLevel))) < viewH * BOUNDS_PADDING) {
+            panY -= distance - (viewH * BOUNDS_PADDING);
         }
         //TOP
-        if ((vals[5]) > viewH-(viewH* BOUNDS_PADDING)) {
-            panY += ((viewH) - (vals[5]))-(viewH* BOUNDS_PADDING);
+        if ((vals[5]) > viewH - (viewH * BOUNDS_PADDING)) {
+            panY += ((viewH) - (vals[5])) - (viewH * BOUNDS_PADDING);
         }
 
     }
 
     /**
-     *
      * @return
      */
-    public Matrix getMatrix(){
+    public Matrix getMatrix() {
         return matrix;
     }
 
     /**
-     *
      * @param reqWidth
      * @param reqHeight
      */

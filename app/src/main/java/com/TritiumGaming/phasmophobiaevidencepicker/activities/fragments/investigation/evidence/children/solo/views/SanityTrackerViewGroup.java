@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views;
 
-public class EvidenceSanitySectionView {
-
+public class SanityTrackerViewGroup {
 
 
 }

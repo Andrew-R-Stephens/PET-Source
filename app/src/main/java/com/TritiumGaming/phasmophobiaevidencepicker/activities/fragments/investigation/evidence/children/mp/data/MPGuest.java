@@ -12,14 +12,14 @@ public class MPGuest extends AbstractMPMember {
     /**
      * MPGuest constructor
      */
-    public MPGuest(){
+    public MPGuest() {
 
     }
 
     /**
      * connectToHost method
      */
-    public void connectToHost(){
+    public void connectToHost() {
 
     }
 

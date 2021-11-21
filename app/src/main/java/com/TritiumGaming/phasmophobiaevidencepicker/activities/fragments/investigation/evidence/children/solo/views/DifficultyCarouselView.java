@@ -27,7 +27,7 @@ public class DifficultyCarouselView {
             PhaseTimerView timerView,
             AppCompatImageButton prevButton,
             AppCompatImageButton nextButton,
-            AppCompatTextView difficultyNameView ) {
+            AppCompatTextView difficultyNameView) {
 
         setDifficultyCarouselData(difficultyCarouselData);
 
@@ -51,12 +51,13 @@ public class DifficultyCarouselView {
 
     /**
      * setPrev method
+     *
      * @param prev -
      */
-    private void setPrev(AppCompatImageButton prev){
+    private void setPrev(AppCompatImageButton prev) {
         prev.setOnClickListener(v -> {
 
-            if(difficultyCarouselData.decrementDifficulty())
+            if (difficultyCarouselData.decrementDifficulty())
                 createTimerView();
 
         });
@@ -64,12 +65,13 @@ public class DifficultyCarouselView {
 
     /**
      * setNext method
+     *
      * @param next
      */
-    private void setNext(AppCompatImageButton next){
+    private void setNext(AppCompatImageButton next) {
         next.setOnClickListener(v -> {
 
-            if(difficultyCarouselData.incrementDifficulty())
+            if (difficultyCarouselData.incrementDifficulty())
                 createTimerView();
 
         });
@@ -77,6 +79,7 @@ public class DifficultyCarouselView {
 
     /**
      * setTimerControl method
+     *
      * @param stateControl
      */
     public void setTimerControl(PhaseTimerControlView stateControl) {
@@ -94,6 +97,7 @@ public class DifficultyCarouselView {
 
     /**
      * setTimerView method
+     *
      * @param timer
      */
     public void setTimerView(PhaseTimerView timer) {
@@ -102,14 +106,16 @@ public class DifficultyCarouselView {
 
     /**
      * setDifficultyName method
+     *
      * @param difficultyNameView
      */
-    private void setDifficultyNameView(AppCompatTextView difficultyNameView){
+    private void setDifficultyNameView(AppCompatTextView difficultyNameView) {
         this.difficultyNameView = difficultyNameView;
     }
 
     /**
      * getState method
+     *
      * @return
      */
     public int getState() {
@@ -118,6 +124,7 @@ public class DifficultyCarouselView {
 
     /**
      * setState method
+     *
      * @param state
      */
     public void setState(int state) {
@@ -128,7 +135,7 @@ public class DifficultyCarouselView {
     /**
      * reset method
      */
-    public void reset(){
+    public void reset() {
         setState(0);
     }
 
