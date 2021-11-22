@@ -4,7 +4,8 @@ import android.os.CountDownTimer;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 
 import java.text.DecimalFormat;
 
@@ -15,26 +16,32 @@ import java.text.DecimalFormat;
  */
 public class PhaseTimerView {
 
-    private EvidenceViewModel evidenceViewModel;
+    private SanityData sanityData;
+    private PhaseTimerData phaseTimerData;
 
     private CountDownTimer timer = null;
     private PhaseTimerControlView stateControl = null;
 
     private AppCompatTextView recipientView = null;
-
+    /*
     private boolean isPaused = true;
     private long timeRemaining = 0L;
+     */
 
     /**
      * SetupPhaseTimer parameterized constructor
      *
      * @param recipientView
      */
-    public PhaseTimerView(EvidenceViewModel evidenceViewModel, AppCompatTextView recipientView) {
-        this.evidenceViewModel = evidenceViewModel;
+    public PhaseTimerView(SanityData sanityData,
+                          PhaseTimerData phaseTimerData,
+                          AppCompatTextView recipientView) {
+        this.sanityData = sanityData;
+        this.phaseTimerData = phaseTimerData;
+
         setRecipientView(recipientView);
         setText();
-        setPaused(true);
+        phaseTimerData.setPaused(true);
     }
 
     /**
@@ -50,15 +57,15 @@ public class PhaseTimerView {
             timer = null;
         }
 
-        setTimeRemaining(millisInFuture);
+        phaseTimerData.setTimeRemaining(millisInFuture);
         setText();
 
         timer = new CountDownTimer(millisInFuture, countDownInterval) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if (!isPaused() && millisUntilFinished > 0L) {
-                    setTimeRemaining(millisUntilFinished);
+                if (!phaseTimerData.isPaused() && millisUntilFinished > 0L) {
+                    phaseTimerData.setTimeRemaining(millisUntilFinished);
                     setText();
                 }
             }
@@ -67,7 +74,7 @@ public class PhaseTimerView {
             public void onFinish() {
                 if (stateControl != null)
                     stateControl.checkPaused();
-                setTimeRemaining(0L);
+                phaseTimerData.setTimeRemaining(0L);
                 setText();
             }
         };
@@ -77,8 +84,8 @@ public class PhaseTimerView {
      * pause method
      */
     public void pause() {
-        if (!isPaused()) {
-            setPaused(true);
+        if (!phaseTimerData.isPaused()) {
+            phaseTimerData.setPaused(true);
             if (timer != null)
                 timer.cancel();
             timer = null;
@@ -89,14 +96,16 @@ public class PhaseTimerView {
      * unPause method
      */
     public void unPause() {
-        if (isPaused()) {
-            if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
-                evidenceViewModel.getSanityData().setProgressManually();
-            setPaused(false);
-            createTimer(timeRemaining, 1000L);
+
+        if (phaseTimerData.isPaused()) {
+            if (sanityData != null)
+                sanityData.setProgressManually();
+            phaseTimerData.setPaused(false);
+            createTimer(phaseTimerData.getTimeRemaining(), 1000L);
             if (timer != null)
                 timer.start();
         }
+
     }
 
     /**
@@ -106,42 +115,6 @@ public class PhaseTimerView {
      */
     public void setTimerControls(PhaseTimerControlView stateControl) {
         this.stateControl = stateControl;
-    }
-
-    /**
-     * setPaused method
-     *
-     * @param isPaused
-     */
-    public void setPaused(boolean isPaused) {
-        this.isPaused = isPaused;
-    }
-
-    /**
-     * isPaused method
-     *
-     * @return
-     */
-    public boolean isPaused() {
-        return isPaused;
-    }
-
-    /**
-     * setTimeRemaining method
-     *
-     * @param timeRemaining
-     */
-    public void setTimeRemaining(long timeRemaining) {
-        this.timeRemaining = timeRemaining;
-    }
-
-    /**
-     * getTimeRemaining method
-     *
-     * @return
-     */
-    public long getTimeRemaining() {
-        return timeRemaining;
     }
 
     /**
@@ -162,8 +135,8 @@ public class PhaseTimerView {
                 new DecimalFormat("0").format(0),
                 new DecimalFormat("00").format(0));
 
-        if (timeRemaining > 0L) {
-            long breakdown = timeRemaining / 1000L;
+        if (phaseTimerData.getTimeRemaining() > 0L) {
+            long breakdown = phaseTimerData.getTimeRemaining() / 1000L;
             long minutes = breakdown / 60L;
             long seconds = breakdown % 60L;
             text = String.format(

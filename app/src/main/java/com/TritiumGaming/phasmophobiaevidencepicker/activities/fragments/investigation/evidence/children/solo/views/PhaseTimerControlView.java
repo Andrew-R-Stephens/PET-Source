@@ -2,6 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import androidx.appcompat.widget.AppCompatImageButton;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+
 /**
  * TimerPlayControl class
  *
@@ -9,6 +11,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
  */
 public class PhaseTimerControlView {
 
+    private PhaseTimerData phaseTimerData;
     private PhaseTimerView timer = null;
     private AppCompatImageButton view = null;
 
@@ -21,10 +24,13 @@ public class PhaseTimerControlView {
      * @param icon_pause
      */
     public PhaseTimerControlView(
+            PhaseTimerData phaseTimerData,
             PhaseTimerView timer,
             AppCompatImageButton play_pause_view,
             int icon_play,
             int icon_pause) {
+        this.phaseTimerData = phaseTimerData;
+
         setTimer(timer);
         setTextView(play_pause_view);
 
@@ -66,7 +72,7 @@ public class PhaseTimerControlView {
      *
      */
     public void checkPaused() {
-        if (timer != null && timer.isPaused())
+        if (timer != null && phaseTimerData.isPaused())
             view.setImageResource(icon_play);
     }
 
@@ -90,7 +96,7 @@ public class PhaseTimerControlView {
      *
      */
     public void toggleState() {
-        if (timer.isPaused())
+        if (phaseTimerData.isPaused())
             setPlayed();
         else
             setPaused();

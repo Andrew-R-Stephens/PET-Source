@@ -99,9 +99,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
-            if (evidenceViewModel != null && evidenceViewModel.hasTimer()) {
+            if (evidenceViewModel != null && evidenceViewModel.hasTimerView()) {
                 evidenceViewModel.getTimerView().createTimer(0L, 1000L);
-                if ((!(evidenceViewModel.getTimerView().getTimeRemaining() > 0L)) &&
+                if ((!(evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L)) &&
                         evidenceViewModel.getSanityData().getSanityActual() < 50)
                     evidenceViewModel.getSanityData().setProgressManually(50);
             }
@@ -121,12 +121,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // TIMER CONTROL
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
+                evidenceViewModel.getPhaseTimerData(),
                 evidenceViewModel.getTimerView(),
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
-        if (evidenceViewModel.hasTimer()) {
-            if (evidenceViewModel.getTimerView().isPaused())
+        if (evidenceViewModel.hasTimerView()) {
+            if (evidenceViewModel.getPhaseTimerData().isPaused())
                 playPauseButton.setPaused();
             else
                 playPauseButton.setPlayed();
@@ -145,7 +146,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name);
-        if (evidenceViewModel != null && evidenceViewModel.hasTimer())
+        if (evidenceViewModel != null && evidenceViewModel.hasTimerView())
             evidenceViewModel.getTimerView().setTimerControls(playPauseButton);
         difficultyCarouselView.setTimerControl(playPauseButton);
         if (evidenceViewModel != null)

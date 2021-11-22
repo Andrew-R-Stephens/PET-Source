@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
@@ -25,7 +26,7 @@ public class EvidenceViewModel extends ViewModel {
     private int[] radioButtonsChecked;
 
     // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
-    // private PhaseTimerData timerData;
+    private PhaseTimerData phaseTimerData;
     private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
     // private WarnTextData warnTextData;
     private MapCarouselData mapCarouselData;
@@ -48,6 +49,18 @@ public class EvidenceViewModel extends ViewModel {
         if (!hasSanityData()) {
             sanityData = new SanityData(this);
         }
+
+        if (!hasPhaseTimerData()) {
+            phaseTimerData = new PhaseTimerData();
+        }
+    }
+
+    private boolean hasPhaseTimerData() {
+        return phaseTimerData != null;
+    }
+
+    public PhaseTimerData getPhaseTimerData() {
+        return phaseTimerData;
     }
 
     private boolean hasMapCarouselData() {
@@ -160,15 +173,8 @@ public class EvidenceViewModel extends ViewModel {
     /**
      * @return
      */
-    public boolean hasTimer() {
+    public boolean hasTimerView() {
         return timerView != null;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isSetup() {
-        return getTimerView().getTimeRemaining() > 0L;
     }
 
     /**

@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
@@ -93,7 +93,7 @@ public class SanityRunnable implements Runnable {
     public void run() {
 
         SanityData sanityData = evidenceViewModel.getSanityData();
-        PhaseTimerView phaseTimerView = evidenceViewModel.getTimerView();
+        PhaseTimerData phaseTimerData = evidenceViewModel.getPhaseTimerData();
 
         if (sanityData != null) {
             if (sanityData.getStartTime() == -1) {
@@ -101,29 +101,29 @@ public class SanityRunnable implements Runnable {
             }
 
             if (!sanityData.isPaused()) {
-                if (phaseTimerView != null && !phaseTimerView.isPaused()) {
+                if (phaseTimerData != null && !phaseTimerData.isPaused()) {
 
                     sanityData.tick();
                     sanityMeterTextView.setText(sanityData.toPercentString());
 
                     if (setupPhaseTextView != null) {
-                        setupPhaseTextView.setState(evidenceViewModel.isSetup(), true);
+                        setupPhaseTextView.setState(phaseTimerData.isSetupPhase(), true);
                     }
 
                     if (actionPhaseTextView != null) {
-                        actionPhaseTextView.setState(!evidenceViewModel.isSetup(), true);
+                        actionPhaseTextView.setState(!phaseTimerData.isSetupPhase(), true);
                     }
 
                     if (audio_huntWarn != null) {
                         if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
-                                !evidenceViewModel.isSetup() && sanityData.canWarn()) {
+                                !phaseTimerData.isSetupPhase() && sanityData.canWarn()) {
                             audio_huntWarn.start();
                             sanityData.setCanWarn(false);
                         }
                     }
 
                     if (sanityData.getInsanityPercent() < .7) {
-                        if (!evidenceViewModel.isSetup()) {
+                        if (!phaseTimerData.isSetupPhase()) {
                             if (sanityData.canFlashWarning()) {
                                 if ((wait * (double) ++flashTick) > 1000L / 2.0) {
                                     if (huntWarningTextView != null)

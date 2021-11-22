@@ -40,6 +40,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
@@ -71,7 +72,7 @@ public class EvidenceFragment extends Fragment {
     protected AppCompatSeekBar sanitySeekBar;
 
     protected Drawable icon_circle;
-    protected Drawable[] icon_strikethroughs;
+    protected Drawable[] icons_strikethrough;
     protected Typeface font_normal;
     protected int[] fontSize;
 
@@ -117,7 +118,7 @@ public class EvidenceFragment extends Fragment {
                 globalPreferencesViewModel.init(getContext());
         }
 
-
+        // LATE INIT PREFERENCES
         if (getActivity() != null) {
             globalPreferencesViewModel.setHuntWarningAudioAllowed(
                     ((InvestigationActivity) getActivity()).getHuntWarningAllowed());
@@ -134,6 +135,7 @@ public class EvidenceFragment extends Fragment {
             font_normal = ResourcesCompat.getFont(getContext(), R.font.norse_regular);
         }
 
+        // THEME
         if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
             TypedValue typedValue = new TypedValue();
@@ -141,6 +143,9 @@ public class EvidenceFragment extends Fragment {
             fontEmphasisColor = typedValue.data;
             Log.d("Theme Emphasis Color", fontEmphasisColor + "");
         }
+
+        // DATA
+        SanityData sanityData = evidenceViewModel.getSanityData();
 
         // GHOST / EVIDENCE CONTAINERS
         LinearLayout ghostContainer = view.findViewById(R.id.layout_ghostList);
@@ -191,38 +196,7 @@ public class EvidenceFragment extends Fragment {
                 TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
-        listener_goto_left.setOnClickListener(v -> {
-                    if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
-                        evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                    Navigation.findNavController(v).navigate(R.id.action_evidence_to_objectives);
-                }
-        );
-        listener_goto_right.setOnClickListener(v -> {
-                    if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
-                        evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                    Navigation.findNavController(v).navigate(R.id.action_evidence_to_mapmenu);
-                }
-        );
-        listener_resetAll.setOnClickListener(v -> {
-                    softReset();
-
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        ft.setReorderingAllowed(false);
-                    }
-                    ft.detach(EvidenceFragment.this).commitNow();
-                    ft.attach(EvidenceFragment.this).commitNow();
-                }
-        );
-        /*
-        navigation_fraglistener_spiritbox.setOnClickListener(v -> {
-                    if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
-                        evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                    Navigation.findNavController(v).navigate(R.id
-                    .action_evidenceFragment_to_toolSpiritBoxFragment);
-                }
-        );
-        */
+        initNavListeners(listener_goto_left, null, listener_goto_right, null, listener_resetAll);
         sanitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -269,8 +243,6 @@ public class EvidenceFragment extends Fragment {
         ghostEvidenceIcons = new GhostIcon
                 [InvestigationData.getGhostCount()]
                 [InvestigationData.Evidence.Ruling.values().length];
-        //ghostEvidenceIcons = new GhostIcon[InvestigationData.Ghost.values()
-        // .length][InvestigationData.Evidence.Ruling.values().length];
 
         // FONT SIZES
         fontSize = new int[]{12, 40}; //min - max
@@ -288,7 +260,7 @@ public class EvidenceFragment extends Fragment {
         }
 
         // DRAWABLES
-        icon_strikethroughs = new Drawable[]{
+        icons_strikethrough = new Drawable[]{
                 getResources().getDrawable(R.drawable.icon_strikethrough_1),
                 getResources().getDrawable(R.drawable.icon_strikethrough_2),
                 getResources().getDrawable(R.drawable.icon_strikethrough_3)
@@ -296,29 +268,35 @@ public class EvidenceFragment extends Fragment {
         icon_circle = getResources().getDrawable(R.drawable.icon_circle);
 
         // DRAWABLE TINTS
-        for (Drawable d : icon_strikethroughs) {
+        for (Drawable d : icons_strikethrough) {
             d.setTint(color_strikethrough);
         }
         icon_circle.setTint(color_circle);
 
         // COUNTDOWN TIMER
-        if (evidenceViewModel.hasTimer()) {
+        if (evidenceViewModel.hasTimerView()) {
             evidenceViewModel.getTimerView().setRecipientView(timer_text);
             evidenceViewModel.getTimerView().setText();
         } else {
-            evidenceViewModel.setTimerView(new PhaseTimerView(evidenceViewModel, timer_text));
+            evidenceViewModel.setTimerView(
+                    new PhaseTimerView(
+                            evidenceViewModel.getSanityData(),
+                            evidenceViewModel.getPhaseTimerData(),
+                            timer_text));
             evidenceViewModel.getTimerView().createTimer(
                     evidenceViewModel.getDifficultyCarouselData().getCurrentDifficultyTime(),
                     1000L);
         }
 
         // SANITY
-        if (sanitySeekBar != null)
+        if (sanitySeekBar != null) {
             sanitySeekBar.setProgress(0);
+        }
         if (evidenceViewModel != null) {
             sanityMeterView.init(evidenceViewModel.getSanityData());
-            if (evidenceViewModel.hasSanityData())
+            if (evidenceViewModel.hasSanityData()) {
                 sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
+            }
         }
 
         //Initialize Ghost and Evidence Lists
@@ -328,6 +306,51 @@ public class EvidenceFragment extends Fragment {
         // FINALIZE BY REORDERING GHOST LIST
         updateGhostsList();
 
+    }
+
+    private void initNavListeners(View navLeft, View navMedLeft, View navRight,
+                                  View navMedRight, View navCenter) {
+        if(navLeft != null) {
+            navLeft.setOnClickListener(v -> {
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidence_to_objectives);
+                    }
+            );
+        }
+        if(navMedLeft != null) {
+            navMedLeft.setOnClickListener(v -> {
+                        if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
+                    }
+            );
+        }
+        if(navLeft != null) {
+            navRight.setOnClickListener(v -> {
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidence_to_mapmenu);
+                    }
+            );
+        }
+        if(navCenter != null) {
+            navCenter.setOnClickListener(v -> {
+                        softReset();
+
+                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                        if (Build.VERSION.SDK_INT >= 26) {
+                            ft.setReorderingAllowed(false);
+                        }
+                        ft.detach(EvidenceFragment.this).commitNow();
+                        ft.attach(EvidenceFragment.this).commitNow();
+                    }
+            );
+        }
+        if(navMedRight != null) {}
     }
 
     /**
@@ -409,8 +432,8 @@ public class EvidenceFragment extends Fragment {
                 } else if (rating <= -3) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         ghostLabels[ghostID].setForeground(
-                                icon_strikethroughs[
-                                        (int) (Math.random() * icon_strikethroughs.length)]);
+                                icons_strikethrough[
+                                        (int) (Math.random() * icons_strikethrough.length)]);
                     } else {
                         ghostLabels[ghostID].setTextColor(Color.DKGRAY);
                     }
@@ -671,7 +694,7 @@ public class EvidenceFragment extends Fragment {
     public void saveStates() {
         if (evidenceViewModel != null) {
             evidenceViewModel.setRadioButtonsChecked(getSelectedRadioButtons());
-            if (evidenceViewModel.hasTimer())
+            if (evidenceViewModel.hasTimerView())
                 evidenceViewModel.getTimerView().setRecipientView(null);
         }
     }
@@ -1291,7 +1314,7 @@ public class EvidenceFragment extends Fragment {
      */
     @Override
     public void onResume() {
-        if (evidenceViewModel.hasTimer())
+        if (evidenceViewModel.hasTimerView())
             evidenceViewModel.getTimerView().setRecipientView(timer_text);
         if (!sanityMeterView.hasBuiltImages())
             sanityMeterView.buildImages();
