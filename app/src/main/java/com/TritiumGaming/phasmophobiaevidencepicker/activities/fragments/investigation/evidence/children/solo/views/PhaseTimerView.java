@@ -1,9 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 
@@ -16,17 +18,13 @@ import java.text.DecimalFormat;
  */
 public class PhaseTimerView {
 
-    private SanityData sanityData;
-    private PhaseTimerData phaseTimerData;
+    private final SanityData sanityData;
+    private final PhaseTimerData phaseTimerData;
 
     private CountDownTimer timer = null;
     private PhaseTimerControlView stateControl = null;
 
     private AppCompatTextView recipientView = null;
-    /*
-    private boolean isPaused = true;
-    private long timeRemaining = 0L;
-     */
 
     /**
      * SetupPhaseTimer parameterized constructor
@@ -35,13 +33,21 @@ public class PhaseTimerView {
      */
     public PhaseTimerView(SanityData sanityData,
                           PhaseTimerData phaseTimerData,
+                          DifficultyCarouselData difficultyCarouselData,
                           AppCompatTextView recipientView) {
+        Log.d("Timer", "Creating Phase Timer");
+
         this.sanityData = sanityData;
         this.phaseTimerData = phaseTimerData;
 
         setRecipientView(recipientView);
         setText();
-        phaseTimerData.setPaused(true);
+
+        if(phaseTimerData.getTimeRemaining() == -1) {
+            createTimer(
+                    difficultyCarouselData.getCurrentDifficultyTime(),
+                    1000L);
+        }
     }
 
     /**

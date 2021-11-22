@@ -65,7 +65,8 @@ public class EvidenceFragment extends Fragment {
     protected GhostLabel[] ghostLabels;
     protected GhostIcon[][] ghostEvidenceIcons;
 
-    protected AppCompatTextView timer_text;
+    protected PhaseTimerView phaseTimerCountdownView;
+    protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercent;
     protected SanityMeterView sanityMeterView;
     protected WarnTextView sanityWarning;
@@ -141,7 +142,6 @@ public class EvidenceFragment extends Fragment {
             TypedValue typedValue = new TypedValue();
             theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
             fontEmphasisColor = typedValue.data;
-            Log.d("Theme Emphasis Color", fontEmphasisColor + "");
         }
 
         // DATA
@@ -155,7 +155,7 @@ public class EvidenceFragment extends Fragment {
         AppCompatTextView sanityMeterTitle = view.findViewById(R.id.evidence_sanitymeter_title);
         sanityPercent = view.findViewById(R.id.evidence_sanitymeter_percentage);
         // TIMER VIEW
-        timer_text = view.findViewById(R.id.evidence_timer_text);
+        phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
         // NAVIGATION VIEWS
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
         AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
@@ -173,7 +173,7 @@ public class EvidenceFragment extends Fragment {
 
 
         // TEXT SIZES
-        timer_text.setAutoSizeTextTypeUniformWithConfiguration(
+        phaseTimerTextView.setAutoSizeTextTypeUniformWithConfiguration(
                 5, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
@@ -201,13 +201,13 @@ public class EvidenceFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    if (evidenceViewModel.hasSanityData()) {
-                        evidenceViewModel.getSanityData().setProgressManually(progress);
-                        evidenceViewModel.getSanityData().tick();
+                    if (sanityData != null) {
+                        sanityData.setProgressManually(progress);
+                        sanityData.tick();
 
                         if (sanityPercent != null) {
                             sanityPercent.setText(
-                                    evidenceViewModel.getSanityData().toPercentString());
+                                    sanityData.toPercentString());
                             sanityPercent.invalidate();
                         }
                         sanityMeterView.invalidate();
@@ -235,8 +235,6 @@ public class EvidenceFragment extends Fragment {
                 new EvidenceRadioButton
                         [InvestigationData.getEvidenceCount()]
                         [InvestigationData.Evidence.Ruling.values().length];
-        Log.d("EvidenceRadioButton",
-                radioButtons_evidence.length + " " + radioButtons_evidence[0].length);
         // GHOST LABELS
         ghostLabels = new GhostLabel[InvestigationData.getGhostCount()];
         // EVIDENCE ICONS
@@ -273,29 +271,21 @@ public class EvidenceFragment extends Fragment {
         }
         icon_circle.setTint(color_circle);
 
-        // COUNTDOWN TIMER
-        if (evidenceViewModel.hasTimerView()) {
-            evidenceViewModel.getTimerView().setRecipientView(timer_text);
-            evidenceViewModel.getTimerView().setText();
-        } else {
-            evidenceViewModel.setTimerView(
-                    new PhaseTimerView(
-                            evidenceViewModel.getSanityData(),
-                            evidenceViewModel.getPhaseTimerData(),
-                            timer_text));
-            evidenceViewModel.getTimerView().createTimer(
-                    evidenceViewModel.getDifficultyCarouselData().getCurrentDifficultyTime(),
-                    1000L);
-        }
+        // PHASE TIMER
+        phaseTimerCountdownView = new PhaseTimerView(
+                sanityData,
+                evidenceViewModel.getPhaseTimerData(),
+                evidenceViewModel.getDifficultyCarouselData(),
+                phaseTimerTextView);
 
         // SANITY
         if (sanitySeekBar != null) {
             sanitySeekBar.setProgress(0);
         }
         if (evidenceViewModel != null) {
-            sanityMeterView.init(evidenceViewModel.getSanityData());
+            sanityMeterView.init(sanityData);
             if (evidenceViewModel.hasSanityData()) {
-                sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
+                sanityPercent.setText(sanityData.toPercentString());
             }
         }
 
@@ -629,7 +619,6 @@ public class EvidenceFragment extends Fragment {
             //create radio group
             for (int j = 0; j < radioButtons_evidence[i].length; j++) {
                 radioButtons_evidence[i][j] = new EvidenceRadioButton(getContext(),
-                        /*evidenceViewModel.getInvestigationData(),*/
                         InvestigationData.getEvidence(i),
                         InvestigationData.Evidence.Ruling.values()[j]);
                 LinearLayout.LayoutParams radioButtonLayoutParams =
@@ -694,8 +683,8 @@ public class EvidenceFragment extends Fragment {
     public void saveStates() {
         if (evidenceViewModel != null) {
             evidenceViewModel.setRadioButtonsChecked(getSelectedRadioButtons());
-            if (evidenceViewModel.hasTimerView())
-                evidenceViewModel.getTimerView().setRecipientView(null);
+            if (phaseTimerCountdownView != null)
+                phaseTimerCountdownView.setRecipientView(null);
         }
     }
 
@@ -707,7 +696,7 @@ public class EvidenceFragment extends Fragment {
     public void softReset() {
         if (evidenceViewModel != null) {
             evidenceViewModel.reset();
-            evidenceViewModel.setTimerView(null);
+            evidenceViewModel.getPhaseTimerData().reset();
         }
 
         for (EvidenceRadioGroup g : evidenceRadioGroups)
@@ -1314,8 +1303,6 @@ public class EvidenceFragment extends Fragment {
      */
     @Override
     public void onResume() {
-        if (evidenceViewModel.hasTimerView())
-            evidenceViewModel.getTimerView().setRecipientView(timer_text);
         if (!sanityMeterView.hasBuiltImages())
             sanityMeterView.buildImages();
         super.onResume();

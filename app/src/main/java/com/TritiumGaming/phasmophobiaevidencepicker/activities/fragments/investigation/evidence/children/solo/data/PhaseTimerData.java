@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 public class PhaseTimerData {
 
     private boolean isPaused = true;
-    private long timeRemaining = 0L;
+    private long timeRemaining = -1L;
 
     public boolean isPaused() {
         return isPaused;
@@ -23,5 +23,10 @@ public class PhaseTimerData {
 
     public boolean isSetupPhase() {
         return timeRemaining > 0L;
+    }
+
+    public void reset() {
+        isPaused = true;
+        timeRemaining = 0L;
     }
 }

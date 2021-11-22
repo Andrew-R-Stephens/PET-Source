@@ -47,14 +47,15 @@ public class SanityData {
      * @return 1 - default. 0-2 Depending on Map Size.
      */
     public double getDifficultyRate() {
-        if (evidenceViewModel == null || !evidenceViewModel.hasDifficultyCarouselData())
+        if (evidenceViewModel == null || !evidenceViewModel.hasDifficultyCarouselData()) {
             return 1;
+        }
 
         int diffIndex = evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex();
 
-        if (difficultyRate != null &&
-                (diffIndex >= 0 && diffIndex < difficultyRate.length))
+        if (difficultyRate != null && (diffIndex >= 0 && diffIndex < difficultyRate.length)) {
             return difficultyRate[diffIndex];
+        }
 
         return 1;
     }
@@ -71,9 +72,9 @@ public class SanityData {
      */
     public double getDropRate() {
         if (evidenceViewModel != null) {
-            if (evidenceViewModel.hasTimerView() &&
-                    evidenceViewModel.getPhaseTimerData().getTimeRemaining() <= 0L)
+            if (evidenceViewModel.getPhaseTimerData().getTimeRemaining() <= 0L) {
                 return dropRate_normal[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
+            }
             return dropRate_setup[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
         }
         return 1;
@@ -113,10 +114,12 @@ public class SanityData {
      */
     public long getSanityActual() {
         long insanityActualTemp = (int) (insanityActual);
-        if (insanityActualTemp > 100L)
+        if (insanityActualTemp > 100L) {
             return 100L;
-        else if (insanityActualTemp < 0L)
+        }
+        else if (insanityActualTemp < 0L) {
             return 0L;
+        }
         return insanityActualTemp;
     }
 
@@ -138,10 +141,12 @@ public class SanityData {
      */
     public long getInsanityActual() {
         long insanityActualTemp = (int) (MAX_SANITY - insanityActual);
-        if (insanityActualTemp > 100L)
+        if (insanityActualTemp > 100L) {
             return 100L;
-        else if (insanityActualTemp < 0L)
+        }
+        else if (insanityActualTemp < 0L) {
             return 0L;
+        }
         return insanityActualTemp;
     }
 
@@ -207,8 +212,9 @@ public class SanityData {
      */
     public boolean canWarn() {
         boolean temp = false;
-        if (evidenceViewModel.hasSanityData())
+        if (evidenceViewModel.hasSanityData()) {
             temp = evidenceViewModel.getSanityData().getInsanityPercent() < .7;
+        }
         return canWarn && temp;
     }
 
@@ -224,14 +230,17 @@ public class SanityData {
      */
     public boolean canFlashWarning() {
         boolean temp = false;
-        if (evidenceViewModel.hasSanityData())
+        if (evidenceViewModel.hasSanityData()) {
             temp = evidenceViewModel.getSanityData().getInsanityPercent() < .7;
+        }
 
-        if (temp && flashTimeoutMax == -1)
+        if (temp && flashTimeoutMax == -1) {
             return true;
+        }
 
-        if (temp && flashTimeoutStart == -1)
+        if (temp && flashTimeoutStart == -1) {
             setFlashTimeoutStart(System.currentTimeMillis());
+        }
 
         return (System.currentTimeMillis() - flashTimeoutStart) < flashTimeoutMax;
     }
@@ -263,20 +272,23 @@ public class SanityData {
      * time remaining.
      */
     public void tick() {
-        double multiplier = .001; // Multiplier which drops the rate to appropriate levels
-        //Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
+        double multiplier = .001;
+        // Multiplier which drops the rate to appropriate levels
+        // Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
         // investigation phase.
         insanityActual = (float) ((((System.currentTimeMillis() - (getStartTime() == -1 ?
                 System.currentTimeMillis() :
                 getStartTime())) * multiplier * getDropRate()) * getDifficultyRate()));
-        if (insanityActual >= 100L)
+        if (insanityActual >= 100L) {
             insanityActual = 100L;
+        }
         if (evidenceViewModel != null) {
             // If the Countdown timer still has time, and the player's sanity is less than or
             // equal to halfway gone, set the remaining sanity to half.
-            if (getInsanityPercent() <= .5 && evidenceViewModel.getTimerView() != null &&
-                    evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L)
+            if (getInsanityPercent() <= .5 &&
+                    evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L) {
                 setProgressManually(50);
+            }
         }
     }
 

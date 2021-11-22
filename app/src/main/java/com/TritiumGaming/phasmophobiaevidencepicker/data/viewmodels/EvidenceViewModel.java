@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
@@ -27,7 +26,7 @@ public class EvidenceViewModel extends ViewModel {
 
     // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
     private PhaseTimerData phaseTimerData;
-    private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
+    //private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
     // private WarnTextData warnTextData;
     private MapCarouselData mapCarouselData;
     private DifficultyCarouselData difficultyCarouselData;
@@ -156,34 +155,26 @@ public class EvidenceViewModel extends ViewModel {
         return radioButtonsChecked;
     }
 
-    /**
-     * @param timerView
-     */
+    /*
     public void setTimerView(PhaseTimerView timerView) {
         this.timerView = timerView;
     }
 
-    /**
-     * @return
-     */
     public PhaseTimerView getTimerView() {
         return timerView;
     }
 
-    /**
-     * @return
-     */
     public boolean hasTimerView() {
         return timerView != null;
     }
-
-    /**
-     * reset method
-     */
+    */
     public void reset() {
-        timerView = null;
+        //timerView = null;
+
         radioButtonsChecked = null;
 
+        //if(hasPhaseTimerData())
+            //phaseTimerData.reset();
         if(hasInvestigationData())
             investigationData.reset();
         if (hasSanityData())

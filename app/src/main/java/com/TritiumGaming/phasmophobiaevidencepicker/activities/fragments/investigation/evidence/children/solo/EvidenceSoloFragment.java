@@ -99,12 +99,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
-            if (evidenceViewModel != null && evidenceViewModel.hasTimerView()) {
-                evidenceViewModel.getTimerView().createTimer(0L, 1000L);
-                if ((!(evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L)) &&
-                        evidenceViewModel.getSanityData().getSanityActual() < 50)
-                    evidenceViewModel.getSanityData().setProgressManually(50);
-            }
+            phaseTimerCountdownView.createTimer(0L, 1000L);
+            if ((!(evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L)) &&
+                    evidenceViewModel.getSanityData().getSanityActual() < 50)
+                evidenceViewModel.getSanityData().setProgressManually(50);
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
                     softReset();
@@ -122,32 +120,30 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // TIMER CONTROL
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
                 evidenceViewModel.getPhaseTimerData(),
-                evidenceViewModel.getTimerView(),
+                phaseTimerCountdownView,
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
-        if (evidenceViewModel.hasTimerView()) {
-            if (evidenceViewModel.getPhaseTimerData().isPaused())
-                playPauseButton.setPaused();
-            else
-                playPauseButton.setPlayed();
+
+        if (evidenceViewModel.getPhaseTimerData().isPaused()) {
+            playPauseButton.setPaused();
+        }
+        else {
+            playPauseButton.setPlayed();
         }
 
         // MAP SELECTION
-        MapCarouselView mapTrackControl =
-                new MapCarouselView(
-                        mapCarouselData,
-                        map_prev, map_next, map_name);
-        //mapTrackControl.init(evidenceViewModel);
+        MapCarouselView mapTrackControl = new MapCarouselView(
+            mapCarouselData,
+            map_prev, map_next, map_name);
         map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
         difficultyCarouselView = new DifficultyCarouselView(
                 evidenceViewModel.getDifficultyCarouselData(),
-                evidenceViewModel.getTimerView(),
+                phaseTimerCountdownView,
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name);
-        if (evidenceViewModel != null && evidenceViewModel.hasTimerView())
-            evidenceViewModel.getTimerView().setTimerControls(playPauseButton);
+        phaseTimerCountdownView.setTimerControls(playPauseButton);
         difficultyCarouselView.setTimerControl(playPauseButton);
         if (evidenceViewModel != null)
             difficultyCarouselView.setState(
