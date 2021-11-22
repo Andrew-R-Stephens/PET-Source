@@ -96,7 +96,7 @@ public class InvestigationData {
     /**
      * Resets the Ruling for each Evidence type
      */
-    public void resetAll() {
+    public void reset() {
         for (int i = 0; i < allEvidence.size(); i++)
             allEvidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
     }

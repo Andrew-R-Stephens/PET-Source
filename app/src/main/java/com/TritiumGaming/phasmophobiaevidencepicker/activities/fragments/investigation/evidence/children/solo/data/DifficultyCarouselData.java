@@ -32,7 +32,7 @@ public class DifficultyCarouselData {
         setDifficultyTimes(difficultyTimes);
 
     }
-
+    /*
     public String[] getDifficultyNames() {
         return difficultyNames;
     }
@@ -40,11 +40,13 @@ public class DifficultyCarouselData {
     public boolean hasDifficultyNames() {
         return difficultyNames != null;
     }
+    */
 
     public void setDifficultyNames(String[] difficultyNames) {
         this.difficultyNames = difficultyNames;
     }
 
+    /*
     public int getDifficultyNameCount() {
         return this.difficultyNames.length;
     }
@@ -60,6 +62,7 @@ public class DifficultyCarouselData {
     public int getDifficultyTimeCount() {
         return difficultyTimes.length;
     }
+    */
 
     /**
      * setDifficultyTimes

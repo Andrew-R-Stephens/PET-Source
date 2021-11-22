@@ -1,14 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.WarnTextData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
@@ -179,12 +176,10 @@ public class EvidenceViewModel extends ViewModel {
      */
     public void reset() {
         timerView = null;
-
         radioButtonsChecked = null;
 
         if(hasInvestigationData())
-            investigationData.resetAll();
-
+            investigationData.reset();
         if (hasSanityData())
             sanityData.reset();
         if(hasMapCarouselData())

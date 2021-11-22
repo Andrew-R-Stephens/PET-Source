@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
@@ -91,24 +92,19 @@ public class SanityRunnable implements Runnable {
     @Override
     public void run() {
 
-        // SanityData sanityData = evidenceViewModel.getSanityData();
+        SanityData sanityData = evidenceViewModel.getSanityData();
+        PhaseTimerView phaseTimerView = evidenceViewModel.getTimerView();
 
-        if (evidenceViewModel != null &&
-                evidenceViewModel.hasSanityData() &&
-                evidenceViewModel.getSanityData().getStartTime() == -1)
-            evidenceViewModel.getSanityData().setStartTime(System.currentTimeMillis());
+        if (sanityData != null) {
+            if (sanityData.getStartTime() == -1) {
+                sanityData.setStartTime(System.currentTimeMillis());
+            }
 
-        if (evidenceViewModel != null &&
-                evidenceViewModel.hasSanityData() &&
-                !evidenceViewModel.getSanityData().isPaused()) {
+            if (!sanityData.isPaused()) {
+                if (phaseTimerView != null && !phaseTimerView.isPaused()) {
 
-            if (evidenceViewModel.hasTimer() &&
-                    !evidenceViewModel.getTimerView().isPaused()) {
-
-                evidenceViewModel.getSanityData().tick();
-                sanityMeterTextView.setText(evidenceViewModel.getSanityData().toPercentString());
-
-                if (evidenceViewModel.hasTimer()) {
+                    sanityData.tick();
+                    sanityMeterTextView.setText(sanityData.toPercentString());
 
                     if (setupPhaseTextView != null) {
                         setupPhaseTextView.setState(evidenceViewModel.isSetup(), true);
@@ -120,18 +116,15 @@ public class SanityRunnable implements Runnable {
 
                     if (audio_huntWarn != null) {
                         if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
-                                !evidenceViewModel.isSetup() &&
-                                evidenceViewModel.getSanityData().canWarn())
-                        {
+                                !evidenceViewModel.isSetup() && sanityData.canWarn()) {
                             audio_huntWarn.start();
-                            if (evidenceViewModel.hasSanityData())
-                                evidenceViewModel.getSanityData().setCanWarn(false);
+                            sanityData.setCanWarn(false);
                         }
                     }
 
-                    if (evidenceViewModel.getSanityData().getInsanityPercent() < .7) {
+                    if (sanityData.getInsanityPercent() < .7) {
                         if (!evidenceViewModel.isSetup()) {
-                            if (evidenceViewModel.getSanityData().canFlashWarning()) {
+                            if (sanityData.canFlashWarning()) {
                                 if ((wait * (double) ++flashTick) > 1000L / 2.0) {
                                     if (huntWarningTextView != null)
                                         huntWarningTextView.toggleFlash(true);
@@ -140,21 +133,21 @@ public class SanityRunnable implements Runnable {
                                 } else
                                     huntWarningTextView.setState(true);
                             }
+                        } else {
+                            huntWarningTextView.setState(false);
                         }
-                    } else
+                    } else {
                         huntWarningTextView.setState(false);
+                    }
+                    if (!sanityData.isPaused()) {
+                        sanityMeterSeekBar.setProgress((int) sanityData.getSanityActual());
+                    }
+                }
 
-                    if (evidenceViewModel.hasSanityData() &&
-                            !evidenceViewModel.getSanityData().isPaused())
-                        sanityMeterSeekBar.setProgress(
-                                (int) evidenceViewModel.getSanityData().getSanityActual());
-
+                if (sanityMeterSoloView != null) {
+                    sanityMeterSoloView.invalidate();
                 }
             }
-
-            if (sanityMeterSoloView != null)
-                sanityMeterSoloView.invalidate();
-
         }
     }
 

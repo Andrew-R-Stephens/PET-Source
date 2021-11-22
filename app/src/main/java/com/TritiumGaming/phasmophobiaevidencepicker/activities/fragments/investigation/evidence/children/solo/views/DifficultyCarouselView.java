@@ -38,13 +38,6 @@ public class DifficultyCarouselView {
 
     }
 
-    /**
-     * init method
-     */
-    public void init(DifficultyCarouselData difficultyCarouselData) {
-        this.difficultyCarouselData = difficultyCarouselData;
-    }
-
     public void setDifficultyCarouselData(DifficultyCarouselData difficultyCarouselData) {
         this.difficultyCarouselData = difficultyCarouselData;
     }
@@ -57,8 +50,9 @@ public class DifficultyCarouselView {
     private void setPrev(AppCompatImageButton prev) {
         prev.setOnClickListener(v -> {
 
-            if (difficultyCarouselData.decrementDifficulty())
+            if (difficultyCarouselData.decrementDifficulty()) {
                 createTimerView();
+            }
 
         });
     }
@@ -71,8 +65,9 @@ public class DifficultyCarouselView {
     private void setNext(AppCompatImageButton next) {
         next.setOnClickListener(v -> {
 
-            if (difficultyCarouselData.incrementDifficulty())
+            if (difficultyCarouselData.incrementDifficulty()) {
                 createTimerView();
+            }
 
         });
     }
@@ -80,7 +75,7 @@ public class DifficultyCarouselView {
     /**
      * setTimerControl method
      *
-     * @param stateControl
+     * @param stateControl -
      */
     public void setTimerControl(PhaseTimerControlView stateControl) {
         this.timerControlView = stateControl;
@@ -98,7 +93,7 @@ public class DifficultyCarouselView {
     /**
      * setTimerView method
      *
-     * @param timer
+     * @param timer -
      */
     public void setTimerView(PhaseTimerView timer) {
         this.timerView = timer;
@@ -107,7 +102,7 @@ public class DifficultyCarouselView {
     /**
      * setDifficultyName method
      *
-     * @param difficultyNameView
+     * @param difficultyNameView -
      */
     private void setDifficultyNameView(AppCompatTextView difficultyNameView) {
         this.difficultyNameView = difficultyNameView;
@@ -116,7 +111,7 @@ public class DifficultyCarouselView {
     /**
      * getState method
      *
-     * @return
+     * @return index of difficulty array
      */
     public int getState() {
         return difficultyCarouselData.getDifficultyIndex();
@@ -125,7 +120,7 @@ public class DifficultyCarouselView {
     /**
      * setState method
      *
-     * @param state
+     * @param state -
      */
     public void setState(int state) {
         difficultyCarouselData.setDifficulty(state);
