@@ -563,7 +563,7 @@
                             app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_seekbar"
                             app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_title" />
 
-                        <androidx.appcompat.widget.AppCompatSeekBar
+                        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView
                             android:id="@+id/evidence_sanitymeter_seekbar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

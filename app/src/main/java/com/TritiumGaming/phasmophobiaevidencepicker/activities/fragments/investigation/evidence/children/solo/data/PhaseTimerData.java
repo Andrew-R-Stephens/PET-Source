@@ -1,9 +1,18 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerControlView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+
 public class PhaseTimerData {
+
+    private DifficultyCarouselData difficultyCarouselData;
 
     private boolean isPaused = true;
     private long timeRemaining = -1L;
+
+    public PhaseTimerData(DifficultyCarouselData difficultyCarouselData) {
+        this.difficultyCarouselData = difficultyCarouselData;
+    }
 
     public boolean isPaused() {
         return isPaused;
@@ -27,6 +36,6 @@ public class PhaseTimerData {
 
     public void reset() {
         isPaused = true;
-        timeRemaining = 0L;
+        timeRemaining = difficultyCarouselData.getCurrentDifficultyTime();
     }
 }

@@ -17,6 +17,8 @@ public class DifficultyCarouselView {
     private PhaseTimerView timerView;
     private PhaseTimerControlView timerControlView;
     private AppCompatTextView difficultyNameView;
+    private SanitySeekBarView sanityProgressBar;
+    private WarnTextView warnTextView;
 
 
     /**
@@ -25,21 +27,24 @@ public class DifficultyCarouselView {
     public DifficultyCarouselView(
             DifficultyCarouselData difficultyCarouselData,
             PhaseTimerView timerView,
+            PhaseTimerControlView timerControlView,
             AppCompatImageButton prevButton,
             AppCompatImageButton nextButton,
-            AppCompatTextView difficultyNameView) {
+            AppCompatTextView difficultyNameView,
+            WarnTextView warnTextView,
+            SanitySeekBarView sanityProgressBar) {
 
-        setDifficultyCarouselData(difficultyCarouselData);
+        this.difficultyCarouselData = difficultyCarouselData;
 
-        setDifficultyNameView(difficultyNameView);
-        setTimerView(timerView);
+        this.timerControlView = timerControlView;
+        this.difficultyNameView = difficultyNameView;
+        this.timerView = timerView;
+        this.sanityProgressBar = sanityProgressBar;
+        this.warnTextView = warnTextView;
+
         setPrev(prevButton);
         setNext(nextButton);
 
-    }
-
-    public void setDifficultyCarouselData(DifficultyCarouselData difficultyCarouselData) {
-        this.difficultyCarouselData = difficultyCarouselData;
     }
 
     /**
@@ -51,7 +56,12 @@ public class DifficultyCarouselView {
         prev.setOnClickListener(v -> {
 
             if (difficultyCarouselData.decrementDifficulty()) {
+                difficultyCarouselData.resetSanityData();
+                sanityProgressBar.updateProgress();
+                difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
+                timerControlView.pause();
                 createTimerView();
+                warnTextView.invalidate();
             }
 
         });
@@ -66,19 +76,15 @@ public class DifficultyCarouselView {
         next.setOnClickListener(v -> {
 
             if (difficultyCarouselData.incrementDifficulty()) {
+                difficultyCarouselData.resetSanityData();
+                sanityProgressBar.updateProgress();
+                difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
+                timerControlView.pause();
                 createTimerView();
+                warnTextView.invalidate();
             }
 
         });
-    }
-
-    /**
-     * setTimerControl method
-     *
-     * @param stateControl -
-     */
-    public void setTimerControl(PhaseTimerControlView stateControl) {
-        this.timerControlView = stateControl;
     }
 
     /**
@@ -86,26 +92,8 @@ public class DifficultyCarouselView {
      */
     private void createTimerView() {
         timerView.createTimer(difficultyCarouselData.getCurrentDifficultyTime(), 1000L);
-        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
-        timerControlView.setPaused();
-    }
-
-    /**
-     * setTimerView method
-     *
-     * @param timer -
-     */
-    public void setTimerView(PhaseTimerView timer) {
-        this.timerView = timer;
-    }
-
-    /**
-     * setDifficultyName method
-     *
-     * @param difficultyNameView -
-     */
-    private void setDifficultyNameView(AppCompatTextView difficultyNameView) {
-        this.difficultyNameView = difficultyNameView;
+        //timerControlView.pause();
+        //timerView.setText();
     }
 
     /**
@@ -113,7 +101,7 @@ public class DifficultyCarouselView {
      *
      * @return index of difficulty array
      */
-    public int getState() {
+    public int getIndex() {
         return difficultyCarouselData.getDifficultyIndex();
     }
 
@@ -122,7 +110,7 @@ public class DifficultyCarouselView {
      *
      * @param state -
      */
-    public void setState(int state) {
+    public void setIndex(int state) {
         difficultyCarouselData.setDifficulty(state);
         difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
     }
@@ -131,7 +119,8 @@ public class DifficultyCarouselView {
      * reset method
      */
     public void reset() {
-        setState(0);
+        setIndex(0);
+        createTimerView();
     }
 
 }

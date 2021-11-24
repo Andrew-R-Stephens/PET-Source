@@ -30,7 +30,7 @@ public class NewsletterInboxesFragment extends Fragment {
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
 
     private TitlescreenViewModel titleScreenViewModel = null;
-    private NewsletterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel newsletterViewModel = null;
 
     @Nullable
     @Override
@@ -54,8 +54,8 @@ public class NewsletterInboxesFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        if (messageInboxViewModel == null) {
-            messageInboxViewModel =
+        if (newsletterViewModel == null) {
+            newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
         }
 
@@ -99,11 +99,11 @@ public class NewsletterInboxesFragment extends Fragment {
 
         label_title.setText(R.string.messagecenter_inboxestitle_label);
         label_extranews.setText(
-                messageInboxViewModel.getInboxType(0).getName(view.getContext()));
+                newsletterViewModel.getInboxType(0).getName(view.getContext()));
         label_petnews.setText(
-                messageInboxViewModel.getInboxType(1).getName(view.getContext()));
+                newsletterViewModel.getInboxType(1).getName(view.getContext()));
         label_phasnews.setText(
-                messageInboxViewModel.getInboxType(2).getName(view.getContext()));
+                newsletterViewModel.getInboxType(2).getName(view.getContext()));
 
     }
 
@@ -116,7 +116,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showExtraNewsPopup method
      */
     private void gotoGeneralNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.GENERAL);
+        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.GENERAL);
         navigateToInboxFragment(v);
     }
 
@@ -124,7 +124,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showPetNewsPopup method
      */
     private void gotoPetNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PET);
+        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PET);
         navigateToInboxFragment(v);
     }
 
@@ -132,7 +132,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showPhasNewsPopup method
      */
     public void gotoPhasNews(View v) {
-        messageInboxViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PHASMOPHOBIA);
+        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PHASMOPHOBIA);
         navigateToInboxFragment(v);
     }
 

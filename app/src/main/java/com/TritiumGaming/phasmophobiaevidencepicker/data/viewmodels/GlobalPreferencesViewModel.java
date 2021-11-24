@@ -23,8 +23,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private boolean isAlwaysOn = false;
     private boolean isHuntAudioAllowed = true;
     private boolean networkPreference = true;
-
-    private boolean huntWarningAudioAllowed = false;
+    //private boolean huntWarningAudioAllowed = false;
 
     /**
      * init method
@@ -39,7 +38,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         setNetworkPreference(sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setIsAlwaysOn(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()));
-        setAllowHuntWarningAudio(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
+        setHuntWarningAudioAllowed(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
         setHuntWarningFlashTimeout(sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()));
         setColorSpace(sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()));
 
@@ -153,11 +152,11 @@ public class GlobalPreferencesViewModel extends ViewModel {
     }
 
     /**
-     * setAllowHuntWarningAudio method
+     * setHuntWarningAudioAllowed method
      *
      * @param isAllowed
      */
-    public void setAllowHuntWarningAudio(boolean isAllowed) {
+    public void setHuntWarningAudioAllowed(boolean isAllowed) {
         isHuntAudioAllowed = isAllowed;
     }
 
@@ -167,6 +166,13 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @return isHuntAudioAllowed
      */
     public boolean getIsHuntAudioAllowed() {
+        return isHuntAudioAllowed;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isHuntWarningAudioAllowed() {
         return isHuntAudioAllowed;
     }
 
@@ -204,20 +210,6 @@ public class GlobalPreferencesViewModel extends ViewModel {
      */
     public int getColorSpace() {
         return colorSpace;
-    }
-
-    /**
-     * @param huntWarningAudioAllowed
-     */
-    public void setHuntWarningAudioAllowed(boolean huntWarningAudioAllowed) {
-        this.huntWarningAudioAllowed = huntWarningAudioAllowed;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isHuntWarningAudioAllowed() {
-        return huntWarningAudioAllowed;
     }
 
     /**

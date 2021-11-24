@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
@@ -32,37 +33,10 @@ public class DifficultyCarouselData {
         setDifficultyTimes(difficultyTimes);
 
     }
-    /*
-    public String[] getDifficultyNames() {
-        return difficultyNames;
-    }
-
-    public boolean hasDifficultyNames() {
-        return difficultyNames != null;
-    }
-    */
 
     public void setDifficultyNames(String[] difficultyNames) {
         this.difficultyNames = difficultyNames;
     }
-
-    /*
-    public int getDifficultyNameCount() {
-        return this.difficultyNames.length;
-    }
-
-    public boolean hasDifficultyTimes() {
-        return difficultyTimes != null;
-    }
-
-    public long[] getDifficultyTimes() {
-        return difficultyTimes;
-    }
-
-    public int getDifficultyTimeCount() {
-        return difficultyTimes.length;
-    }
-    */
 
     /**
      * setDifficultyTimes
@@ -73,10 +47,9 @@ public class DifficultyCarouselData {
         long[] temp = new long[0];
         if (dt != null) {
             temp = new long[dt.length];
+            for (int i = 0; i < dt.length; i++)
+                temp[i] = Long.parseLong(dt[i]);
         }
-        for (int i = 0; i < dt.length; i++)
-            temp[i] = Long.parseLong(dt[i]);
-
         setDifficultyTimes(temp);
     }
 
@@ -113,8 +86,9 @@ public class DifficultyCarouselData {
                 state = difficultyNames.length - 1;
             setDifficulty(state);
 
-            if (evidenceViewModel.hasSanityData())
+            if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(true);
+            }
 
             return true;
         }
@@ -137,4 +111,9 @@ public class DifficultyCarouselData {
 
         return false;
     }
+
+    public void resetSanityData() {
+        evidenceViewModel.getSanityData().reset();
+    }
+
 }

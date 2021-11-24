@@ -27,9 +27,6 @@ public class InvestigationActivity extends AppCompatActivity {
     private EvidenceViewModel evidence;
     private ObjectivesViewModel objectives;
 
-    // Requesting permission to RECORD_AUDIO
-    public static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -102,22 +99,26 @@ public class InvestigationActivity extends AppCompatActivity {
      *
      * @return the decided ability to emanate audio that has been saved to file
      */
+    /*
     public boolean getHuntWarningAllowed() {
         return getSharedPreferences(getString(R.string.preferences_globalFile_name),
                 Context.MODE_PRIVATE).
                 getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
     }
+    */
 
     /**
      * getHuntWarningFlashTimeout method
      *
      * @return the decided ability to flash the HuntWarning indicator that has been saved to file
      */
+    /*
     public int getHuntWarningFlashTimeout() {
         return getSharedPreferences(getString(R.string.preferences_globalFile_name),
                 Context.MODE_PRIVATE).
                 getInt(getString(R.string.preference_huntWarningFlashTimeout), -1);
     }
+    */
 
     /**
      * changeTheme method

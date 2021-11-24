@@ -26,7 +26,6 @@ public class EvidenceViewModel extends ViewModel {
 
     // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
     private PhaseTimerData phaseTimerData;
-    //private PhaseTimerView timerView; // TODO: replace with PhaseTimerData
     // private WarnTextData warnTextData;
     private MapCarouselData mapCarouselData;
     private DifficultyCarouselData difficultyCarouselData;
@@ -50,7 +49,7 @@ public class EvidenceViewModel extends ViewModel {
         }
 
         if (!hasPhaseTimerData()) {
-            phaseTimerData = new PhaseTimerData();
+            phaseTimerData = new PhaseTimerData(difficultyCarouselData);
         }
     }
 
@@ -155,26 +154,11 @@ public class EvidenceViewModel extends ViewModel {
         return radioButtonsChecked;
     }
 
-    /*
-    public void setTimerView(PhaseTimerView timerView) {
-        this.timerView = timerView;
-    }
-
-    public PhaseTimerView getTimerView() {
-        return timerView;
-    }
-
-    public boolean hasTimerView() {
-        return timerView != null;
-    }
-    */
     public void reset() {
-        //timerView = null;
-
         radioButtonsChecked = null;
 
-        //if(hasPhaseTimerData())
-            //phaseTimerData.reset();
+        if(hasPhaseTimerData())
+            phaseTimerData.reset();
         if(hasInvestigationData())
             investigationData.reset();
         if (hasSanityData())

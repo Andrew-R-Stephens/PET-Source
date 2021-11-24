@@ -1,11 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables;
 
 import android.media.MediaPlayer;
+import android.util.Log;
 
-import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
@@ -25,7 +26,7 @@ public class SanityRunnable implements Runnable {
     private final GlobalPreferencesViewModel globalPreferencesViewModel;
 
     private final SanityMeterView sanityMeterSoloView;
-    private final AppCompatSeekBar sanityMeterSeekBar;
+    private final SanitySeekBarView sanityMeterSeekBar;
     private final AppCompatTextView sanityMeterTextView;
     private final WarnTextView setupPhaseTextView, actionPhaseTextView, huntWarningTextView;
 
@@ -53,7 +54,7 @@ public class SanityRunnable implements Runnable {
             GlobalPreferencesViewModel globalPreferencesViewModel,
             SanityMeterView sanityMeterSoloView,
             AppCompatTextView sanityMeterTextView,
-            AppCompatSeekBar sanityMeterSeekBar,
+            SanitySeekBarView sanityMeterSeekBar,
             WarnTextView setupPhaseTextView,
             WarnTextView actionPhaseTextView,
             WarnTextView huntWarningTextView,
@@ -119,6 +120,11 @@ public class SanityRunnable implements Runnable {
                                 !phaseTimerData.isSetupPhase() && sanityData.canWarn()) {
                             audio_huntWarn.start();
                             sanityData.setCanWarn(false);
+                            Log.d("Warning Audio", "Should execute!");
+                        } else {
+                            Log.d("Warning Audio", "Should not execute!" +
+                                    globalPreferencesViewModel.isHuntWarningAudioAllowed() + " " +
+                                    !phaseTimerData.isSetupPhase() + " " + sanityData.canWarn());
                         }
                     }
 
@@ -140,7 +146,7 @@ public class SanityRunnable implements Runnable {
                         huntWarningTextView.setState(false);
                     }
                     if (!sanityData.isPaused()) {
-                        sanityMeterSeekBar.setProgress((int) sanityData.getSanityActual());
+                        sanityMeterSeekBar.updateProgress();
                     }
                 }
 

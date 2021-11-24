@@ -25,7 +25,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterVi
  */
 public class NewsletterMessageFragment extends Fragment {
 
-    private NewsletterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel newsletterViewModel = null;
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class NewsletterMessageFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
-        if (messageInboxViewModel == null)
-            messageInboxViewModel =
+        if (newsletterViewModel == null)
+            newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
 
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
@@ -69,9 +69,9 @@ public class NewsletterMessageFragment extends Fragment {
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
         // SET CONTENT
-        label_title.setText(Html.fromHtml(messageInboxViewModel.getCurrentMessage().getTitle()));
-        label_date.setText(Html.fromHtml(messageInboxViewModel.getCurrentMessage().getDate()));
-        label_content.setText(Html.fromHtml(messageInboxViewModel.getCurrentMessage().getDescription()));
+        label_title.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getTitle()));
+        label_date.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDate()));
+        label_content.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDescription()));
 
     }
 

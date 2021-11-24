@@ -58,12 +58,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    /*
     externalNativeBuild {
         cmake {
             path 'src/main/CMakeLists.txt'
             version "3.18.1"
         }
     }
+    */
 
 }
 

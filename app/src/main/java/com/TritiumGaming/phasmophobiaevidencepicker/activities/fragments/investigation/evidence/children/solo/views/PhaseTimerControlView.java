@@ -37,7 +37,7 @@ public class PhaseTimerControlView {
         setPlayBackgroundResource(icon_play);
         setPauseBackgroundResource(icon_pause);
 
-        play_pause_view.setOnClickListener(v -> toggleState());
+        play_pause_view.setOnClickListener(v -> toggle());
     }
 
     /**
@@ -79,7 +79,7 @@ public class PhaseTimerControlView {
     /**
      *
      */
-    public void setPaused() {
+    public void pause() {
         view.setImageResource(icon_play);
         timer.pause();
     }
@@ -87,7 +87,7 @@ public class PhaseTimerControlView {
     /**
      *
      */
-    public void setPlayed() {
+    public void play() {
         view.setImageResource(icon_pause);
         timer.unPause();
     }
@@ -95,11 +95,11 @@ public class PhaseTimerControlView {
     /**
      *
      */
-    public void toggleState() {
+    public void toggle() {
         if (phaseTimerData.isPaused())
-            setPlayed();
+            play();
         else
-            setPaused();
+            pause();
     }
 
 

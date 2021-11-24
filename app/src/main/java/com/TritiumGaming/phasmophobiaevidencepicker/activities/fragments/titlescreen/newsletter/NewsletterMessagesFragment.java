@@ -28,17 +28,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterVi
  */
 public class NewsletterMessagesFragment extends Fragment {
 
-    private NewsletterViewModel messageInboxViewModel = null;
+    private NewsletterViewModel newsletterViewModel = null;
 
     @Nullable
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
+            @Nullable Bundle savedInstanceState) {
 
-        if (messageInboxViewModel == null)
-            messageInboxViewModel =
+        if (newsletterViewModel == null)
+            newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
 
         return inflater.inflate(
@@ -54,28 +54,40 @@ public class NewsletterMessagesFragment extends Fragment {
         AppCompatTextView label_title = view.findViewById(R.id.textview_title);
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
         RecyclerView recyclerViewMessages = view.findViewById(R.id.recyclerview_messageslist);
+
+        // SCROLL BAR
+        recyclerViewMessages.setScrollBarFadeDuration(-1);
+
         // TEXT SIZE
         label_title.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
         // SET VIEW TEXT
-        label_title.setText(messageInboxViewModel.getCurrentInboxType().getName(view.getContext()));
+        label_title.setText(newsletterViewModel.getCurrentInboxType().getName(view.getContext()));
+
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-        if (messageInboxViewModel != null && messageInboxViewModel.getCurrentInbox() != null) {
+        // SET CONTENT
+        if (newsletterViewModel != null && newsletterViewModel.getCurrentInbox() != null) {
             MessagesAdapterView adapter = new MessagesAdapterView(
-                    messageInboxViewModel.getCurrentInbox().getMessages(), position -> {
-                messageInboxViewModel.setCurrentMessageId(position);
+                    newsletterViewModel.getCurrentInbox().getMessages(), position -> {
+                newsletterViewModel.setCurrentMessageId(position);
                 Navigation.findNavController(view).
                         navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment);
             });
             recyclerViewMessages.setAdapter(adapter);
             recyclerViewMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
         } else {
-            Log.d("InboxMessageListFrag", "Inbox does not exist!" +
-                    messageInboxViewModel.getCurrentInboxType().getName(getContext()));
+            if(newsletterViewModel != null && getContext() != null) {
+                Log.d("InboxMessageListFrag", "Inbox does not exist!" +
+                        newsletterViewModel.getCurrentInboxType().getName(getContext()));
+            } else {
+                Log.d("InboxMessageListFrag",
+                        "Either MessageInboxViewModel does not exist " +
+                                "or Context does not exist!");
+            }
         }
     }
 

@@ -21,13 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -37,7 +35,12 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
@@ -58,6 +61,11 @@ public class EvidenceFragment extends Fragment {
 
     protected PopupWindow popup;
 
+    protected SanityData sanityData;
+    protected PhaseTimerData phaseTimerData;
+    protected DifficultyCarouselData difficultyCarouselData;
+    protected MapCarouselData mapCarouselData;
+
     protected EvidenceItem[] evidenceItems;
     protected EvidenceRadioGroup[] evidenceRadioGroups;
 
@@ -65,12 +73,13 @@ public class EvidenceFragment extends Fragment {
     protected GhostLabel[] ghostLabels;
     protected GhostIcon[][] ghostEvidenceIcons;
 
+    protected DifficultyCarouselView difficultyCarouselView;
     protected PhaseTimerView phaseTimerCountdownView;
     protected AppCompatTextView phaseTimerTextView;
-    protected AppCompatTextView sanityPercent;
+    protected SanitySeekBarView sanitySeekBarView;
+    protected AppCompatTextView sanityPercentTextView;
     protected SanityMeterView sanityMeterView;
-    protected WarnTextView sanityWarning;
-    protected AppCompatSeekBar sanitySeekBar;
+    protected WarnTextView sanityWarningTextView;
 
     protected Drawable icon_circle;
     protected Drawable[] icons_strikethrough;
@@ -119,14 +128,11 @@ public class EvidenceFragment extends Fragment {
                 globalPreferencesViewModel.init(getContext());
         }
 
-        // LATE INIT PREFERENCES
-        if (getActivity() != null) {
-            globalPreferencesViewModel.setHuntWarningAudioAllowed(
-                    ((InvestigationActivity) getActivity()).getHuntWarningAllowed());
-            globalPreferencesViewModel.setHuntWarningFlashTimeout(
-                    ((InvestigationActivity) getActivity()).getHuntWarningFlashTimeout());
+        if(evidenceViewModel != null) {
+            sanityData = evidenceViewModel.getSanityData();
+            phaseTimerData = evidenceViewModel.getPhaseTimerData();
+            difficultyCarouselData = evidenceViewModel.getDifficultyCarouselData();
         }
-
 
         // FONT FAMILY
         font_normal = Typeface.MONOSPACE;
@@ -144,16 +150,13 @@ public class EvidenceFragment extends Fragment {
             fontEmphasisColor = typedValue.data;
         }
 
-        // DATA
-        SanityData sanityData = evidenceViewModel.getSanityData();
-
         // GHOST / EVIDENCE CONTAINERS
         LinearLayout ghostContainer = view.findViewById(R.id.layout_ghostList);
         LinearLayout evidenceContainer = view.findViewById(R.id.layout_evidenceList);
 
         // SANITY METER VIEWS
         AppCompatTextView sanityMeterTitle = view.findViewById(R.id.evidence_sanitymeter_title);
-        sanityPercent = view.findViewById(R.id.evidence_sanitymeter_percentage);
+        sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
         // NAVIGATION VIEWS
@@ -168,8 +171,8 @@ public class EvidenceFragment extends Fragment {
 
         // SANITY METER VIEWS
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
-        sanitySeekBar = view.findViewById(R.id.evidence_sanitymeter_seekbar);
-        sanityWarning = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
+        sanitySeekBarView = (SanitySeekBarView) view.findViewById(R.id.evidence_sanitymeter_seekbar);
+        sanityWarningTextView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
 
         // TEXT SIZES
@@ -185,44 +188,27 @@ public class EvidenceFragment extends Fragment {
         label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
                 10, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        sanityPercent.setAutoSizeTextTypeUniformWithConfiguration(
+        sanityPercentTextView.setAutoSizeTextTypeUniformWithConfiguration(
                 5, 20, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
                 5, 20, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        sanityWarning.setAutoSizeTextTypeUniformWithConfiguration(
+        sanityWarningTextView.setAutoSizeTextTypeUniformWithConfiguration(
                 5, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
-        initNavListeners(listener_goto_left, null, listener_goto_right, null, listener_resetAll);
-        sanitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    if (sanityData != null) {
-                        sanityData.setProgressManually(progress);
-                        sanityData.tick();
+        initNavListeners(
+                listener_goto_left,
+                null,
+                listener_goto_right,
+                null,
+                listener_resetAll);
 
-                        if (sanityPercent != null) {
-                            sanityPercent.setText(
-                                    sanityData.toPercentString());
-                            sanityPercent.invalidate();
-                        }
-                        sanityMeterView.invalidate();
-                    }
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
+        sanitySeekBarView.init(
+                sanityData,
+                sanityPercentTextView);
 
         // INITIALIZE OBJECTS
         // GHOST GROUPS
@@ -274,19 +260,18 @@ public class EvidenceFragment extends Fragment {
         // PHASE TIMER
         phaseTimerCountdownView = new PhaseTimerView(
                 sanityData,
-                evidenceViewModel.getPhaseTimerData(),
-                evidenceViewModel.getDifficultyCarouselData(),
+                phaseTimerData,
+                difficultyCarouselData,
                 phaseTimerTextView);
 
         // SANITY
-        if (sanitySeekBar != null) {
-            sanitySeekBar.setProgress(0);
+        if (sanitySeekBarView != null) {
+            sanitySeekBarView.setProgress(0);
         }
-        if (evidenceViewModel != null) {
-            sanityMeterView.init(sanityData);
-            if (evidenceViewModel.hasSanityData()) {
-                sanityPercent.setText(sanityData.toPercentString());
-            }
+
+        sanityMeterView.init(sanityData);
+        if (sanityData != null) {
+            sanityPercentTextView.setText(sanityData.toPercentString());
         }
 
         //Initialize Ghost and Evidence Lists
@@ -340,7 +325,9 @@ public class EvidenceFragment extends Fragment {
                     }
             );
         }
-        if(navMedRight != null) {}
+        if(navMedRight != null) {
+            Log.d("Navigation", "Med Right Navigation not defined.");
+        }
     }
 
     /**
@@ -690,24 +677,26 @@ public class EvidenceFragment extends Fragment {
 
     /**
      * softReset
-     * <p>
+     *
      * TODO
      */
     public void softReset() {
         if (evidenceViewModel != null) {
             evidenceViewModel.reset();
-            evidenceViewModel.getPhaseTimerData().reset();
         }
 
-        for (EvidenceRadioGroup g : evidenceRadioGroups)
-            if (g != null)
+        for (EvidenceRadioGroup g : evidenceRadioGroups) {
+            if (g != null) {
                 g.reset();
+            }
+        }
 
         updateGhostsList();
         updateEvidenceList();
 
-        if (sanitySeekBar != null)
-            sanitySeekBar.setProgress(0);
+        if (sanitySeekBarView != null) {
+            sanitySeekBarView.updateProgress();
+        }
     }
 
 
@@ -804,13 +793,9 @@ public class EvidenceFragment extends Fragment {
                     fontSize[1],
                     1,
                     TypedValue.COMPLEX_UNIT_SP);
-            String ghostTempName = "N/A";
-            //if(getResources().getStringArray(R.array.evidence_ghost_names).length > id)
-            //    ghostTempName = getResources().getStringArray(R.array.evidence_ghost_names)[id];
-            //else
-            ghostTempName =
+
+            String ghostName =
                     evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
-            String ghostName = ghostTempName;
 
             setText(ghostName);
             setTextColor(Color.WHITE);
@@ -841,15 +826,11 @@ public class EvidenceFragment extends Fragment {
                         TypedValue.COMPLEX_UNIT_SP);
                 String[] ghostInfoArray = getResources().getStringArray(R.array.ghost_info_array);
                 if (ghostInfoArray.length > id) {
-                    //info.setText(Html.fromHtml(getResources().getStringArray(R.array
-                    // .ghost_info_array)[id]));
                     info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                             getResources().getStringArray(R.array.ghost_info_array)[id],
                             "#ff6161", fontEmphasisColor + "")));
                 }
 
-                //else
-                // info.setText("Missing details");
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
@@ -1017,8 +998,6 @@ public class EvidenceFragment extends Fragment {
                         fontSize[0], fontSize[1], 1,
                         TypedValue.COMPLEX_UNIT_SP);
 
-                //info.setText(Html.fromHtml(getResources().getStringArray(R.array
-                // .evidence_info_array)[index]));
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         getResources().getStringArray(R.array.evidence_info_array)[index],
                         "#ff6161", fontEmphasisColor + "")

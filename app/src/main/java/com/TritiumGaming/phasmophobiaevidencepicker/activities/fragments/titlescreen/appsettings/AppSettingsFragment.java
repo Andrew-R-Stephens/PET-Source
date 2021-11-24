@@ -227,7 +227,7 @@ public class AppSettingsFragment extends Fragment {
                         globalPreferencesViewModel.getIsHuntAudioAllowed());
                 switch_huntwarningaudio_switch.setOnClickListener(v -> {
                     if (globalPreferencesViewModel != null)
-                        globalPreferencesViewModel.setAllowHuntWarningAudio(
+                        globalPreferencesViewModel.setHuntWarningAudioAllowed(
                                 switch_huntwarningaudio_switch.isChecked());
                 });
             }

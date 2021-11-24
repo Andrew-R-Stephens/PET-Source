@@ -21,40 +21,41 @@ public class PhaseTimerView {
     private final SanityData sanityData;
     private final PhaseTimerData phaseTimerData;
 
-    private CountDownTimer timer = null;
-    private PhaseTimerControlView stateControl = null;
-
-    private AppCompatTextView recipientView = null;
+    private CountDownTimer timer;
+    private PhaseTimerControlView stateControl;
+    private AppCompatTextView recipientView;
 
     /**
      * SetupPhaseTimer parameterized constructor
      *
-     * @param recipientView
+     * @param recipientView -
      */
     public PhaseTimerView(SanityData sanityData,
                           PhaseTimerData phaseTimerData,
                           DifficultyCarouselData difficultyCarouselData,
                           AppCompatTextView recipientView) {
+
         Log.d("Timer", "Creating Phase Timer");
 
         this.sanityData = sanityData;
         this.phaseTimerData = phaseTimerData;
 
         setRecipientView(recipientView);
-        setText();
 
         if(phaseTimerData.getTimeRemaining() == -1) {
             createTimer(
                     difficultyCarouselData.getCurrentDifficultyTime(),
                     1000L);
         }
+
+        setText();
     }
 
     /**
      * createTimer method
      *
-     * @param millisInFuture
-     * @param countDownInterval
+     * @param millisInFuture -
+     * @param countDownInterval -
      */
     public void createTimer(long millisInFuture, long countDownInterval) {
 
@@ -117,7 +118,7 @@ public class PhaseTimerView {
     /**
      * setTimerControls method
      *
-     * @param stateControl
+     * @param stateControl -
      */
     public void setTimerControls(PhaseTimerControlView stateControl) {
         this.stateControl = stateControl;
@@ -126,7 +127,7 @@ public class PhaseTimerView {
     /**
      * setRecipientView method
      *
-     * @param recipientView
+     * @param recipientView -
      */
     public void setRecipientView(AppCompatTextView recipientView) {
         this.recipientView = recipientView;

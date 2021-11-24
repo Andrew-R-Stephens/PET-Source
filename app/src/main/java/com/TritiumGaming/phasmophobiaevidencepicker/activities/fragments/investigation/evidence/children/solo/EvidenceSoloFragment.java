@@ -20,7 +20,9 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerControlView;
@@ -38,8 +40,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
     private Thread sanityThread; //Thread that updates the sanity levels
 
-    private DifficultyCarouselView difficultyCarouselView;
-
     private WarnTextView sanityPhaseView_setup, sanityPhaseView_action;
 
     /**
@@ -54,14 +54,16 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+/*
 
         if (!evidenceViewModel.hasInvestigationData() && getContext() != null)
             evidenceViewModel.setInvestigationData(new InvestigationData(getContext()));
 
         if (!evidenceViewModel.hasSanityData())
             evidenceViewModel.setSanityData(new SanityData(evidenceViewModel));
+*/
 
-        MapCarouselData mapCarouselData = evidenceViewModel.getMapCarouselData();
+        mapCarouselData = evidenceViewModel.getMapCarouselData();
         if (mapCarouselData.hasMapSizeData()) {
             TypedArray typedArray = getResources().obtainTypedArray(R.array.maps_resources_array);
             String[] names = new String[typedArray.length()];
@@ -100,9 +102,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
             phaseTimerCountdownView.createTimer(0L, 1000L);
-            if ((!(evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L)) &&
-                    evidenceViewModel.getSanityData().getSanityActual() < 50)
-                evidenceViewModel.getSanityData().setProgressManually(50);
+            if ((!(phaseTimerData.getTimeRemaining() > 0L)) &&
+                    sanityData.getSanityActual() < 50)
+                sanityData.setProgressManually(50);
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
                     softReset();
@@ -118,44 +120,56 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
 
         // TIMER CONTROL
+        PhaseTimerData phaseTimerData = evidenceViewModel.getPhaseTimerData();
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
-                evidenceViewModel.getPhaseTimerData(),
+                phaseTimerData,
                 phaseTimerCountdownView,
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
 
-        if (evidenceViewModel.getPhaseTimerData().isPaused()) {
-            playPauseButton.setPaused();
+        if (phaseTimerData.isPaused()) {
+            playPauseButton.pause();
         }
         else {
-            playPauseButton.setPlayed();
+            playPauseButton.play();
         }
 
         // MAP SELECTION
+
         MapCarouselView mapTrackControl = new MapCarouselView(
             mapCarouselData,
             map_prev, map_next, map_name);
+
         map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
+
+        // DIFFICULTY SELECTION
+
         difficultyCarouselView = new DifficultyCarouselView(
-                evidenceViewModel.getDifficultyCarouselData(),
+                difficultyCarouselData,
                 phaseTimerCountdownView,
+                playPauseButton,
                 difficulty_prev,
                 difficulty_next,
-                difficulty_name);
+                difficulty_name,
+                sanityWarningTextView,
+                sanitySeekBarView);
+
         phaseTimerCountdownView.setTimerControls(playPauseButton);
-        difficultyCarouselView.setTimerControl(playPauseButton);
+
         if (evidenceViewModel != null)
-            difficultyCarouselView.setState(
-                    evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex());
+            difficultyCarouselView.setIndex(difficultyCarouselData.getDifficultyIndex());
 
         // SANITY METER
-        if (sanitySeekBar != null)
-            sanitySeekBar.setProgress(0);
+
+        if (sanitySeekBarView != null) {
+            sanitySeekBarView.resetProgress();
+        }
+
         if (evidenceViewModel != null) {
-            sanityMeterView.init(evidenceViewModel.getSanityData());
-            if (evidenceViewModel.hasSanityData())
-                sanityPercent.setText(evidenceViewModel.getSanityData().toPercentString());
+            sanityMeterView.init(sanityData);
+            if (sanityData != null)
+                sanityPercentTextView.setText(sanityData.toPercentString());
         }
 
         enableUIThread();
@@ -173,8 +187,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      */
     public void softReset() {
         disableUIThread();
-        if (difficultyCarouselView != null)
+        if (difficultyCarouselView != null) {
             difficultyCarouselView.reset();
+        }
         super.softReset();
     }
 
@@ -201,39 +216,49 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         evidenceViewModel,
                         globalPreferencesViewModel,
                         sanityMeterView,
-                        sanityPercent,
-                        sanitySeekBar,
+                        sanityPercentTextView,
+                        sanitySeekBarView,
                         sanityPhaseView_setup,
                         sanityPhaseView_action,
-                        sanityWarning,
+                        sanityWarningTextView,
                         huntwarn));
             }
 
             if (sanityThread == null) {
+
                 if (evidenceViewModel.hasSanityData())
                     evidenceViewModel.getSanityData().setIsPaused(false);
+
                 if (evidenceViewModel.hasSanityRunnable()) {
+
                     sanityThread = new Thread() {
                         public void run() {
                             while (evidenceViewModel != null && evidenceViewModel.hasSanityData() &&
                                     !evidenceViewModel.getSanityData().isPaused()) {
                                 try {
+
                                     if (getActivity() != null) {
                                         getActivity().runOnUiThread(
                                                 evidenceViewModel.getSanityRunnable());
                                     }
+
                                     long now = System.nanoTime();
                                     long updateTime = System.nanoTime() - now;
                                     int TARGET_FPS = 30;
                                     long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
                                     long wait = (OPTIMAL_TIME - updateTime) / 1000000;
-                                    if (wait < 0)
+
+                                    if (wait < 0) {
                                         wait = 1;
+                                    }
+
                                     evidenceViewModel.getSanityRunnable().setWait(wait);
                                     Thread.sleep(wait);
+
                                 } catch (InterruptedException e) {
                                     Log.e("EvidenceFragment",
-                                            "(SanityThread) InterruptedException error handled.");
+                                            "(SanityThread) InterruptedException error " +
+                                                    "handled.");
                                 }
                             }
                         }
@@ -248,14 +273,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      * disableUIThread method
      */
     public void disableUIThread() {
-        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
+        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
             evidenceViewModel.getSanityData().setIsPaused(true);
+        }
+
         if (sanityThread != null) {
             sanityThread.interrupt();
+
             if (evidenceViewModel.hasSanityRunnable()) {
                 evidenceViewModel.getSanityRunnable().haltMediaPlayer();
                 evidenceViewModel.setSanityRunnable(null);
             }
+
             sanityThread = null;
         }
     }
@@ -266,12 +295,16 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     @Override
     public void onPause() {
         disableUIThread();
-        if (evidenceViewModel != null)
-            if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.getSanityData().setCanWarn(false);
-                if (evidenceViewModel.hasSanityRunnable())
+
+        if (evidenceViewModel != null) {
+            if (sanityData != null) {
+                //sanityData.setCanWarn(false);
+                if (evidenceViewModel.hasSanityRunnable()) {
                     evidenceViewModel.getSanityRunnable().haltMediaPlayer();
+                }
             }
+        }
+
         saveStates();
         super.onPause();
     }
