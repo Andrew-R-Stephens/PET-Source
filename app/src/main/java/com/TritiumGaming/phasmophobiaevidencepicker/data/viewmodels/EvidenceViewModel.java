@@ -167,5 +167,6 @@ public class EvidenceViewModel extends ViewModel {
             mapCarouselData.setMapCurrentIndex(0);
     }
 
+
 }
 

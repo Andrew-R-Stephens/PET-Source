@@ -23,7 +23,7 @@ public class PhaseTimerView {
 
     private CountDownTimer timer;
     private PhaseTimerControlView stateControl;
-    private AppCompatTextView recipientView;
+    private AppCompatTextView timerTextView;
 
     /**
      * SetupPhaseTimer parameterized constructor
@@ -32,23 +32,20 @@ public class PhaseTimerView {
      */
     public PhaseTimerView(SanityData sanityData,
                           PhaseTimerData phaseTimerData,
-                          DifficultyCarouselData difficultyCarouselData,
                           AppCompatTextView recipientView) {
-
-        Log.d("Timer", "Creating Phase Timer");
 
         this.sanityData = sanityData;
         this.phaseTimerData = phaseTimerData;
 
-        setRecipientView(recipientView);
+        setTimerTextView(recipientView);
 
-        if(phaseTimerData.getTimeRemaining() == -1) {
-            createTimer(
-                    difficultyCarouselData.getCurrentDifficultyTime(),
-                    1000L);
+        createTimer(
+                phaseTimerData.getTimeRemaining(),
+                1000L);
+
+        if(!phaseTimerData.isPaused()) {
+            timer.start();
         }
-
-        setText();
     }
 
     /**
@@ -59,13 +56,9 @@ public class PhaseTimerView {
      */
     public void createTimer(long millisInFuture, long countDownInterval) {
 
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
+        destroyTimer();
 
         phaseTimerData.setTimeRemaining(millisInFuture);
-        setText();
 
         timer = new CountDownTimer(millisInFuture, countDownInterval) {
 
@@ -85,6 +78,9 @@ public class PhaseTimerView {
                 setText();
             }
         };
+
+        setText();
+
     }
 
     /**
@@ -93,24 +89,24 @@ public class PhaseTimerView {
     public void pause() {
         if (!phaseTimerData.isPaused()) {
             phaseTimerData.setPaused(true);
-            if (timer != null)
-                timer.cancel();
-            timer = null;
+            destroyTimer();
         }
     }
 
     /**
      * unPause method
      */
-    public void unPause() {
+    public void play() {
 
         if (phaseTimerData.isPaused()) {
             if (sanityData != null)
                 sanityData.setProgressManually();
             phaseTimerData.setPaused(false);
             createTimer(phaseTimerData.getTimeRemaining(), 1000L);
-            if (timer != null)
+            if (timer != null) {
+                Log.d("Timer", "Playing!");
                 timer.start();
+            }
         }
 
     }
@@ -125,12 +121,12 @@ public class PhaseTimerView {
     }
 
     /**
-     * setRecipientView method
+     * setTimerTextView method
      *
-     * @param recipientView -
+     * @param timerTextView -
      */
-    public void setRecipientView(AppCompatTextView recipientView) {
-        this.recipientView = recipientView;
+    public void setTimerTextView(AppCompatTextView timerTextView) {
+        this.timerTextView = timerTextView;
     }
 
     /**
@@ -152,8 +148,15 @@ public class PhaseTimerView {
                     new DecimalFormat("00").format(seconds));
         }
 
-        if (recipientView != null)
-            recipientView.setText(text);
+        if (timerTextView != null)
+            timerTextView.setText(text);
+    }
+
+    public void destroyTimer() {
+        if(timer != null) {
+            timer.cancel();
+        }
+        timer = null;
     }
 
 }

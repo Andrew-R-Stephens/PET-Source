@@ -34,7 +34,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
@@ -257,16 +256,9 @@ public class EvidenceFragment extends Fragment {
         }
         icon_circle.setTint(color_circle);
 
-        // PHASE TIMER
-        phaseTimerCountdownView = new PhaseTimerView(
-                sanityData,
-                phaseTimerData,
-                difficultyCarouselData,
-                phaseTimerTextView);
-
         // SANITY
         if (sanitySeekBarView != null) {
-            sanitySeekBarView.setProgress(0);
+            sanitySeekBarView.resetProgress();
         }
 
         sanityMeterView.init(sanityData);
@@ -670,8 +662,6 @@ public class EvidenceFragment extends Fragment {
     public void saveStates() {
         if (evidenceViewModel != null) {
             evidenceViewModel.setRadioButtonsChecked(getSelectedRadioButtons());
-            if (phaseTimerCountdownView != null)
-                phaseTimerCountdownView.setRecipientView(null);
         }
     }
 
@@ -696,6 +686,14 @@ public class EvidenceFragment extends Fragment {
 
         if (sanitySeekBarView != null) {
             sanitySeekBarView.updateProgress();
+        }
+
+        if (difficultyCarouselView != null) {
+            difficultyCarouselView.reset();
+        }
+
+        if(phaseTimerCountdownView != null) {
+            phaseTimerCountdownView.destroyTimer();
         }
     }
 
@@ -1264,6 +1262,9 @@ public class EvidenceFragment extends Fragment {
     @Override
     public void onPause() {
         saveStates();
+
+        phaseTimerCountdownView.destroyTimer();
+
         super.onPause();
     }
 

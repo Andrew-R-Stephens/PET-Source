@@ -11,9 +11,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class PhaseTimerControlView {
 
-    private PhaseTimerData phaseTimerData;
-    private PhaseTimerView timer = null;
-    private AppCompatImageButton view = null;
+    private final PhaseTimerData phaseTimerData;
+    private PhaseTimerView timer;
+    private AppCompatImageButton view;
 
     private int icon_play = 0, icon_pause = 0;
 
@@ -38,6 +38,8 @@ public class PhaseTimerControlView {
         setPauseBackgroundResource(icon_pause);
 
         play_pause_view.setOnClickListener(v -> toggle());
+
+        checkPaused();
     }
 
     /**
@@ -72,8 +74,11 @@ public class PhaseTimerControlView {
      *
      */
     public void checkPaused() {
-        if (timer != null && phaseTimerData.isPaused())
+        if (timer != null && phaseTimerData.isPaused()) {
             view.setImageResource(icon_play);
+        } else {
+            play();
+        }
     }
 
     /**
@@ -89,7 +94,7 @@ public class PhaseTimerControlView {
      */
     public void play() {
         view.setImageResource(icon_pause);
-        timer.unPause();
+        timer.play();
     }
 
     /**

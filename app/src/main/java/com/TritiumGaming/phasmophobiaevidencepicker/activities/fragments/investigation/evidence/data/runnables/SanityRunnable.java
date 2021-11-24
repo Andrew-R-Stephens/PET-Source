@@ -25,10 +25,10 @@ public class SanityRunnable implements Runnable {
     private final EvidenceViewModel evidenceViewModel;
     private final GlobalPreferencesViewModel globalPreferencesViewModel;
 
-    private final SanityMeterView sanityMeterSoloView;
-    private final SanitySeekBarView sanityMeterSeekBar;
-    private final AppCompatTextView sanityMeterTextView;
-    private final WarnTextView setupPhaseTextView, actionPhaseTextView, huntWarningTextView;
+    private SanityMeterView sanityMeterSoloView;
+    private SanitySeekBarView sanityMeterSeekBar;
+    private AppCompatTextView sanityMeterTextView;
+    private WarnTextView setupPhaseTextView, actionPhaseTextView, huntWarningTextView;
 
     private MediaPlayer audio_huntWarn;
 
@@ -155,6 +155,17 @@ public class SanityRunnable implements Runnable {
                 }
             }
         }
+    }
+
+    public void dereferenceViews() {
+        sanityMeterSoloView = null;
+        sanityMeterSeekBar = null;
+        sanityMeterTextView = null;
+        setupPhaseTextView = null;
+        actionPhaseTextView = null;
+        huntWarningTextView = null;
+
+        audio_huntWarn = null;
     }
 
     /**

@@ -117,7 +117,7 @@
             android:layout_width="0dp"
             android:layout_height="5dp"
             android:background="@drawable/icon_strikethrough_1"
-            android:backgroundTint="#878787"
+            android:backgroundTint="#4AFFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout68"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout68"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout68" />
@@ -127,7 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="5dp"
             android:background="@drawable/icon_strikethrough_1"
-            android:backgroundTint="#878787"
+            android:backgroundTint="#4AFFFFFF"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout68"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout68"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout68" />

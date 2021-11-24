@@ -31,8 +31,9 @@ public class SanitySeekBarView extends AppCompatSeekBar {
 
     public void init(SanityData sanityData, AppCompatTextView sanityPercentTextView){
         this.sanityData = sanityData;
-
         this.sanityPercentTextView = sanityPercentTextView;
+
+        setProgress((int)sanityData.getSanityActual());
 
         setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
@@ -72,10 +73,4 @@ public class SanitySeekBarView extends AppCompatSeekBar {
         sanityPercentTextView.invalidate();
     }
 
-    public void fillProgress() {
-        setProgress(100);
-        invalidate();
-        sanityPercentTextView.setText(sanityData.toPercentString());
-        sanityPercentTextView.invalidate();
-    }
 }

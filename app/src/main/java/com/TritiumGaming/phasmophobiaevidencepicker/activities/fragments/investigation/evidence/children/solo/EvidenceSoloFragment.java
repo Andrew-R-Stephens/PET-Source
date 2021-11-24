@@ -20,14 +20,12 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerControlView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
 
@@ -54,14 +52,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-/*
-
-        if (!evidenceViewModel.hasInvestigationData() && getContext() != null)
-            evidenceViewModel.setInvestigationData(new InvestigationData(getContext()));
-
-        if (!evidenceViewModel.hasSanityData())
-            evidenceViewModel.setSanityData(new SanityData(evidenceViewModel));
-*/
 
         mapCarouselData = evidenceViewModel.getMapCarouselData();
         if (mapCarouselData.hasMapSizeData()) {
@@ -107,7 +97,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 sanityData.setProgressManually(50);
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
-                    softReset();
+                    reset();
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     if (Build.VERSION.SDK_INT >= 26) {
                         ft.setReorderingAllowed(false);
@@ -120,20 +110,17 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
 
         // TIMER CONTROL
-        PhaseTimerData phaseTimerData = evidenceViewModel.getPhaseTimerData();
+        phaseTimerCountdownView = new PhaseTimerView(
+                sanityData,
+                phaseTimerData,
+                phaseTimerTextView);
+
         PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
                 phaseTimerData,
                 phaseTimerCountdownView,
                 timer_play_pause,
                 R.drawable.icon_play,
                 R.drawable.icon_pause);
-
-        if (phaseTimerData.isPaused()) {
-            playPauseButton.pause();
-        }
-        else {
-            playPauseButton.play();
-        }
 
         // MAP SELECTION
 
@@ -157,20 +144,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         phaseTimerCountdownView.setTimerControls(playPauseButton);
 
-        if (evidenceViewModel != null)
-            difficultyCarouselView.setIndex(difficultyCarouselData.getDifficultyIndex());
+        difficultyCarouselView.setIndex(difficultyCarouselData.getDifficultyIndex());
 
         // SANITY METER
 
-        if (sanitySeekBarView != null) {
-            sanitySeekBarView.resetProgress();
-        }
-
-        if (evidenceViewModel != null) {
-            sanityMeterView.init(sanityData);
-            if (sanityData != null)
-                sanityPercentTextView.setText(sanityData.toPercentString());
-        }
+        sanityMeterView.init(sanityData);
+        if (sanityData != null)
+            sanityPercentTextView.setText(sanityData.toPercentString());
 
         enableUIThread();
     }
@@ -183,13 +163,11 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     /**
-     * softReset method
+     * reset method
      */
-    public void softReset() {
+    public void reset() {
         disableUIThread();
-        if (difficultyCarouselView != null) {
-            difficultyCarouselView.reset();
-        }
+
         super.softReset();
     }
 
@@ -273,20 +251,28 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      * disableUIThread method
      */
     public void disableUIThread() {
-        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
-            evidenceViewModel.getSanityData().setIsPaused(true);
+
+        SanityRunnable sanityRunnable = null;
+
+        if (evidenceViewModel != null) {
+            if (evidenceViewModel.hasSanityData()) {
+                evidenceViewModel.getSanityData().setIsPaused(true);
+            }
+            sanityRunnable = evidenceViewModel.getSanityRunnable();
         }
 
         if (sanityThread != null) {
             sanityThread.interrupt();
 
-            if (evidenceViewModel.hasSanityRunnable()) {
-                evidenceViewModel.getSanityRunnable().haltMediaPlayer();
+            if (sanityRunnable != null) {
+                sanityRunnable.haltMediaPlayer();
+                sanityRunnable.dereferenceViews();
                 evidenceViewModel.setSanityRunnable(null);
             }
 
             sanityThread = null;
         }
+
     }
 
     /**
@@ -298,14 +284,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         if (evidenceViewModel != null) {
             if (sanityData != null) {
+
                 //sanityData.setCanWarn(false);
+
                 if (evidenceViewModel.hasSanityRunnable()) {
                     evidenceViewModel.getSanityRunnable().haltMediaPlayer();
+                    evidenceViewModel.getSanityRunnable().dereferenceViews();
                 }
             }
         }
 
         saveStates();
+
         super.onPause();
     }
 
@@ -314,7 +304,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      */
     @Override
     public void onResume() {
+
         enableUIThread();
+
         super.onResume();
     }
 
