@@ -552,8 +552,8 @@
         <item>@drawable/map_house_tanglewood_layer_top_outline</item>
     </integer-array>
     <integer-array name= "map_willow_image_outline_array">
-        <item>@drawable/map_coming_soon</item>
-        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_house_willow_layer_bottom_outline</item>
+        <item>@drawable/map_house_willow_layer_top_outline</item>
     </integer-array>
     <integer-array name= "map_ridgeview_image_outline_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_outline</item>
@@ -596,8 +596,8 @@
         <item>@drawable/map_house_tanglewood_layer_top_background</item>
     </integer-array>
     <integer-array name= "map_willow_image_background_array">
-        <item>@drawable/map_coming_soon</item>
-        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_house_willow_layer_bottom_background</item>
+        <item>@drawable/map_house_willow_layer_top_background</item>
     </integer-array>
     <integer-array name= "map_ridgeview_image_background_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_background</item>
@@ -640,8 +640,8 @@
         <item>@drawable/map_house_tanglewood_layer_top_doors</item>
     </integer-array>
     <integer-array name= "map_willow_image_doors_array">
-        <item>@drawable/map_coming_soon</item>
-        <item>@drawable/map_coming_soon</item>
+        <item>@drawable/map_house_willow_layer_bottom_doors</item>
+        <item>@drawable/map_house_willow_layer_top_doors</item>
     </integer-array>
     <integer-array name= "map_ridgeview_image_doors_array">
         <item>@drawable/map_house_ridgeview_layer_bottom_doors</item>
