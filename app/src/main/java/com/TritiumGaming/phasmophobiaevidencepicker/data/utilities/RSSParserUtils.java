@@ -18,7 +18,7 @@ public class RSSParserUtils {
 
     private final NewsletterViewModel newsLetterViewModel;
 
-    private NewsletterViewModel.InboxType inboxType;
+    private final NewsletterViewModel.InboxType inboxType;
 
     public RSSParserUtils(XmlPullParserFactory factory, String urlStr,
                           NewsletterViewModel.InboxType type,
@@ -41,8 +41,8 @@ public class RSSParserUtils {
 
     public class RSSThread implements Runnable {
 
-        private XmlPullParserFactory factory;
-        private String urlStr;
+        private final XmlPullParserFactory factory;
+        private final String urlStr;
 
         public RSSThread(XmlPullParserFactory factory, String urlStr) {
             this.factory = factory;

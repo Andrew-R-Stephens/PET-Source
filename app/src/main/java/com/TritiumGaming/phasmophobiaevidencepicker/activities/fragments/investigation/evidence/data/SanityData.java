@@ -26,7 +26,7 @@ public class SanityData {
     private boolean canWarn = true;
     private boolean isPaused = false;
 
-    private long flashTimeoutMax = -1;
+    private final long flashTimeoutMax = -1;
     private long flashTimeoutStart = -1;
 
     /**

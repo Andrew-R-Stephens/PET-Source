@@ -82,12 +82,16 @@ public class AppLanguageFragment extends Fragment {
         }
 
         // DATA
-        ArrayList<String> languageNames = new ArrayList<>(Arrays.asList(
-                getResources().getStringArray(R.array.languages_name)));
         if (getContext() != null) {
+
+            ArrayList<String> languageNames = new ArrayList<>(Arrays.asList(
+                    getContext().getResources().getStringArray(R.array.languages_name)));
+            int selected = globalPreferencesViewModel.getLanguageIndex(new ArrayList<>(Arrays.asList(
+                    getContext().getResources().getStringArray(R.array.languages_abbreviation))));
+
             for (int i = 0; i < languageNames.size(); i++) {
                 LanguagesAdapterView adapter = new LanguagesAdapterView(
-                        languageNames, position -> {
+                        languageNames, selected, position -> {
                             if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
                                 globalPreferencesViewModel.setLanguage(
                                         position,

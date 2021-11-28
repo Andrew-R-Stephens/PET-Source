@@ -3,12 +3,14 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,24 +19,28 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import java.util.ArrayList;
 
 public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterView.ViewHolder> {
-
+    private static int mPreviousIndex = 0;
     private final ArrayList<String> languages;
     private final OnLanguageListener onLanguageListener;
 
     public LanguagesAdapterView(
             ArrayList<String> languages,
+            int selected,
             OnLanguageListener onLanguageListener) {
+        mPreviousIndex = selected;
         this.languages = languages;
         this.onLanguageListener = onLanguageListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatTextView label_languageTitle;
+        public AppCompatImageView image;
         private final OnLanguageListener onLanguageListener;
 
         public ViewHolder(View view, OnLanguageListener onLanguageListener) {
             super(view);
             label_languageTitle = itemView.findViewById(R.id.textView_languageName);
+            image = itemView.findViewById(R.id.imageView_languageChoiceIcon);
             view.setOnClickListener(this);
             this.onLanguageListener = onLanguageListener;
         }
@@ -42,6 +48,7 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
         @Override
         public void onClick(View v) {
             this.onLanguageListener.onNoteClick(getAdapterPosition());
+            mPreviousIndex = getAdapterPosition();
         }
     }
 
@@ -66,6 +73,8 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
         }
         textView.setText(languages.get(position));
 
+        //color on item unselecting item
+        holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);
     }
 
     @Override

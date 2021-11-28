@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class NewsletterMessagesData {
 
     private NewsletterViewModel.InboxType type;
-    private ArrayList<NewsletterMessageData> messages = new ArrayList<>();
+    private final ArrayList<NewsletterMessageData> messages = new ArrayList<>();
 
     public void setInboxType(NewsletterViewModel.InboxType type) {
         this.type = type;

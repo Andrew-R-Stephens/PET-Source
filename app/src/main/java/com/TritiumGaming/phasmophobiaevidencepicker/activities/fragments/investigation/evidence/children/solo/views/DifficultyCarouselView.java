@@ -12,13 +12,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class DifficultyCarouselView {
 
-    private DifficultyCarouselData difficultyCarouselData;
+    private final DifficultyCarouselData difficultyCarouselData;
 
-    private PhaseTimerView timerView;
-    private PhaseTimerControlView timerControlView;
-    private AppCompatTextView difficultyNameView;
-    private SanitySeekBarView sanityProgressBar;
-    private WarnTextView warnTextView;
+    private final PhaseTimerView timerView;
+    private final PhaseTimerControlView timerControlView;
+    private final AppCompatTextView difficultyNameView;
+    private final SanitySeekBarView sanityProgressBar;
+    private final WarnTextView warnTextView;
 
 
     /**

@@ -12,7 +12,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class MapCarouselView {
 
-    private MapCarouselData mapCarouselData;
+    private final MapCarouselData mapCarouselData;
 
     private AppCompatTextView mapNameView = null;
 

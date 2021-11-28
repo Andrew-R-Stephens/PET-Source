@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class GlobalPreferencesViewModel extends ViewModel {
@@ -118,6 +119,14 @@ public class GlobalPreferencesViewModel extends ViewModel {
         Log.d("Current Chosen Language", lang);
 
         return lang;
+    }
+
+    public int getLanguageIndex(ArrayList<String> languageNames) {
+        for(int i = 0; i < languageNames.size(); i++) {
+            if(getLanguageName().equalsIgnoreCase(languageNames.get(i)))
+                return i;
+        }
+        return 0;
     }
 
     /**

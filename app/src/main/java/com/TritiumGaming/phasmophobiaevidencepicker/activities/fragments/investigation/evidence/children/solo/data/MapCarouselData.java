@@ -4,7 +4,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 
 public class MapCarouselData {
 
-    private EvidenceViewModel evidenceViewModel;
+    private final EvidenceViewModel evidenceViewModel;
     private MapSizeData[] mapSizeData;
 
     private int mapCurrent = 0;
