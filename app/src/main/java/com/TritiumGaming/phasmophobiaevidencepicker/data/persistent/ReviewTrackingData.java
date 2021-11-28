@@ -85,4 +85,9 @@ public class ReviewTrackingData {
         ||*/ (timesOpened >= TARGET_TIMES_OPENED);
     }
 
+    public String toString() {
+        return "Time Active: " + getTimeActive() + "; Times Opened: " + getTimesOpened() +
+                "; Can Request Review: " + canRequestReview();
+    }
+
 }

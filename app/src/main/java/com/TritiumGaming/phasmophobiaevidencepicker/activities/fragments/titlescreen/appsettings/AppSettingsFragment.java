@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,8 @@ public class AppSettingsFragment extends Fragment {
 
         ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
         ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        ImageButton closeButton = view.findViewById(R.id.popup_close_button);
+        ImageButton btn_confirmClose = view.findViewById(R.id.popup_confirm_button);
+        ImageButton btn_cancelClose = view.findViewById(R.id.popup_cancel_button);
 
         // TEXT SIZE
         primarytitle.setAutoSizeTextTypeUniformWithConfiguration(
@@ -139,12 +141,14 @@ public class AppSettingsFragment extends Fragment {
                 TypedValue.COMPLEX_UNIT_SP);
 
         // COLORBLIND DATA
+
         TypedArray typedArray =
                 getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
         String[] colorspaceNames = new String[typedArray.length()];
         for (int i = 0; i < colorspaceNames.length; i++)
             colorspaceNames[i] = typedArray.getString(i);
         typedArray.recycle();
+
         ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
         int oldIndex = 0;
         if (globalPreferencesViewModel != null)
@@ -153,13 +157,16 @@ public class AppSettingsFragment extends Fragment {
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
         // LISTENERS
+
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (globalPreferencesViewModel != null)
+            if (globalPreferencesViewModel != null && getContext() != null) {
                 globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
-
+                //globalPreferencesViewModel.saveColorSpace(getContext(), null, true); // new
+            }
             //TODO: call globalPreferencesViewModel function instead
+            /*
             SharedPreferences sharedPref =
                     requireActivity().getSharedPreferences(
                             getString(R.string.preferences_globalFile_name),
@@ -169,20 +176,25 @@ public class AppSettingsFragment extends Fragment {
                     globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
+            */
             //TODO: -----
-
+            /*
             if (getActivity() != null)
                 ((TitleScreenActivity) getActivity()).changeTheme(
                         globalPreferencesViewModel.getColorSpace());
+            */
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
             colorSpaceData.iterate(1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (globalPreferencesViewModel != null)
+            if (globalPreferencesViewModel != null) {
                 globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
+                //globalPreferencesViewModel.saveColorSpace(getContext(), null, true); // new
+            }
 
             //TODO: call globalPreferencesViewModel function instead
+            /*
             SharedPreferences sharedPref =
                     requireActivity().getSharedPreferences(
                             getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
@@ -191,11 +203,12 @@ public class AppSettingsFragment extends Fragment {
                     globalPreferencesViewModel.getColorSpace());
             editor.apply();
             editor.commit();
+            */
             //TODO: ------
 
-            if (getActivity() != null)
+            /*if (getActivity() != null)
                 ((TitleScreenActivity) getActivity()).
-                        changeTheme(globalPreferencesViewModel.getColorSpace());
+                        changeTheme(globalPreferencesViewModel.getColorSpace());*/
         });
 
         // SWITCHES
@@ -204,11 +217,15 @@ public class AppSettingsFragment extends Fragment {
             if (switch_isAlwaysOn_switch != null) {
                 switch_isAlwaysOn_switch.setChecked(globalPreferencesViewModel.getIsAlwaysOn());
                 switch_isAlwaysOn_switch.setOnClickListener(v -> {
-                    if (globalPreferencesViewModel != null)
+                    if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setIsAlwaysOn(
                                 switch_isAlwaysOn_switch.isChecked());
-                    if (getView() != null)
+                    }
+                    /*
+                    if (getView() != null) {
                         getView().setKeepScreenOn(true);
+                    }
+                    */
                 });
             }
             // Allow Mobile Data
@@ -307,9 +324,30 @@ public class AppSettingsFragment extends Fragment {
             }
         }
 
-        // ACCEPT BUTTON
-        if (closeButton != null) {
-            closeButton.setOnClickListener(v -> {
+        // CANCEL BUTTON
+        if (btn_cancelClose != null) {
+            btn_cancelClose.setOnClickListener(v -> {
+                Log.d("GlobalPreferences", "Cancel/Close - Before...");
+                globalPreferencesViewModel.printFromFile(getContext());
+                globalPreferencesViewModel.printFromVariables();
+                Log.d("GlobalPreferences", "Cancel/Close - After...");
+                globalPreferencesViewModel.printFromFile(getContext());
+                globalPreferencesViewModel.printFromVariables();
+                Navigation.findNavController(v).popBackStack();
+            });
+        }
+
+        // CONFIRM BUTTON
+        if (btn_confirmClose != null) {
+            btn_confirmClose.setOnClickListener(v -> {
+                Log.d("GlobalPreferences", "Confirm/Close - Before Saving...");
+                globalPreferencesViewModel.printFromFile(getContext());
+                globalPreferencesViewModel.printFromVariables();
+                Log.d("GlobalPreferences", "Confirm/Close - Now Saving ...");
+                saveStates();
+                Log.d("GlobalPreferences", "Confirm/Close - After Saving...");
+                globalPreferencesViewModel.printFromFile(getContext());
+                globalPreferencesViewModel.printFromVariables();
                 Navigation.findNavController(v).popBackStack();
             });
         }
@@ -331,8 +369,18 @@ public class AppSettingsFragment extends Fragment {
      * TODO
      */
     public void saveStates() {
+
         if (globalPreferencesViewModel != null && getContext() != null)
             globalPreferencesViewModel.saveToFile(getContext());
+
+        if (getActivity() != null)
+            ((TitleScreenActivity) getActivity()).
+                    changeTheme(globalPreferencesViewModel.getColorSpace());
+
+        if (getView() != null) {
+            getView().setKeepScreenOn(globalPreferencesViewModel.getIsAlwaysOn());
+        }
+
     }
 
     /**
@@ -341,7 +389,7 @@ public class AppSettingsFragment extends Fragment {
     @Override
     public void onPause() {
         // SAVE PERSISTENT DATA
-        saveStates();
+        //saveStates();
 
         super.onPause();
     }

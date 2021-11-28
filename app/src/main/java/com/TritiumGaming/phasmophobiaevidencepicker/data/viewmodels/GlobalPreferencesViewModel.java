@@ -32,8 +32,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      */
     public void init(Context context) {
 
-        SharedPreferences sharedPref =
-                context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(context);
 
         setNetworkPreference(sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
@@ -51,6 +50,20 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveToFile(context);
     }
 
+    public static SharedPreferences getSharedPreferences(Context context) {
+        return context.getSharedPreferences(
+                context.getResources().getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE);
+    }
+
+    public static SharedPreferences.Editor getEditor(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getResources().getString(
+                        R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE);
+        return sharedPref.edit();
+    }
+
     public void setNetworkPreference(boolean preference) {
         this.networkPreference = preference;
     }
@@ -63,15 +76,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
         getReviewRequestData().incrementTimesOpened();
 
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        saveTimesOpened(context, getEditor(context), true);
 
-        saveTimesOpened(context, editor);
-
-        editor.apply();
     }
 
     /**
@@ -219,53 +225,134 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return colorSpace;
     }
 
-    public void saveNetworkPreference(Context c, SharedPreferences.Editor editor) {
+    public void saveNetworkPreference(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_network),
                 getNetworkPreference());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    public void saveChosenLanguage(Context c, SharedPreferences.Editor editor) {
+    public void saveChosenLanguage(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putString(
                 c.getResources().getString(R.string.preference_language),
                 getLanguageName());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    public void saveAlwaysOnState(Context c, SharedPreferences.Editor editor) {
+    public void saveAlwaysOnState(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_isAlwaysOn),
                 getIsAlwaysOn());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    public void saveHuntWarningAudioAllowed(Context c, SharedPreferences.Editor editor) {
+    public void saveHuntWarningAudioAllowed(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed),
                 getIsHuntAudioAllowed());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    public void saveHuntWarningFlashTimeout(Context c, SharedPreferences.Editor editor) {
+    public void saveHuntWarningFlashTimeout(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putInt(
                 c.getResources().getString(R.string.preference_huntWarningFlashTimeout),
                 getHuntWarningFlashTimeout());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    private void saveColorSpace(Context c, SharedPreferences.Editor editor) {
+    public void saveColorSpace(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    private void saveAppTimeAlive(Context c, SharedPreferences.Editor editor) {
+    public void saveAppTimeAlive(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive),
                 getReviewRequestData().getTimeActive());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    private void saveTimesOpened(Context c, SharedPreferences.Editor editor) {
+    public void saveTimesOpened(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened),
                 getReviewRequestData().getTimesOpened());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
-    private void saveCanRequestReview(Context c, SharedPreferences.Editor editor) {
+    public void saveCanRequestReview(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
         editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview),
                 getReviewRequestData().getWasRequested());
+
+        if(localApply) {
+            editor.apply();
+        }
     }
 
     /**
@@ -275,22 +362,45 @@ public class GlobalPreferencesViewModel extends ViewModel {
      */
     public void saveToFile(Context context) {
 
-        SharedPreferences sharedPref =
-                context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        SharedPreferences.Editor editor = getEditor(context);
 
-        saveNetworkPreference(context, editor);
-        saveChosenLanguage(context, editor);
-        saveAlwaysOnState(context, editor);
-        saveHuntWarningAudioAllowed(context, editor);
-        saveHuntWarningFlashTimeout(context, editor);
-        saveColorSpace(context, editor);
-        saveCanRequestReview(context, editor);
-        saveTimesOpened(context, editor);
-        saveAppTimeAlive(context, editor);
-
+        saveNetworkPreference(context, editor, false);
+        saveChosenLanguage(context, editor, false);
+        saveAlwaysOnState(context, editor, false);
+        saveHuntWarningAudioAllowed(context, editor, false);
+        saveHuntWarningFlashTimeout(context, editor, false);
+        saveColorSpace(context, editor, false);
+        saveCanRequestReview(context, editor, false);
+        saveTimesOpened(context, editor, false);
+        saveAppTimeAlive(context, editor, false);
 
         editor.apply();
     }
 
+    public void printFromFile(Context context) {
+        SharedPreferences sharedPref = getSharedPreferences(context);
+
+        Log.d("GlobalPreferencesFile",
+                "NetworkPreference: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()) +
+                "; Language: " + sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()) +
+                "; Always On: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()) +
+                "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()) +
+                "; Hunt Warning Flash Timeout: " + sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()) +
+                "; Color Space: " + sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()) +
+                "; ReviewRequestData: [" +
+                "Time Alive: " + sharedPref.getLong(context.getResources().getString(R.string.reviewtracking_appTimeAlive), 0) +
+                "; Times Opened: " + sharedPref.getInt(context.getResources().getString(R.string.reviewtracking_appTimesOpened), 0) +
+                "; Can Request Review: " +sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false) + "]");
+    }
+
+    public void printFromVariables() {
+        Log.d("GlobalPreferencesVars",
+                "NetworkPreference: " + getNetworkPreference() +
+                "; Language: " + getLanguageName() +
+                "; Always On: " + getIsAlwaysOn() +
+                "; Is Hunt Audio Allowed: " + getIsHuntAudioAllowed() +
+                "; Hunt Warning Flash Timeout: " + getHuntWarningFlashTimeout() +
+                "; Color Space: " +getColorSpace() +
+                "; ReviewRequestData: [" + getReviewRequestData().toString() + "]");
+    }
 }
