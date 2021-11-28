@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -22,53 +23,50 @@ import java.util.Locale;
  */
 public class TitleScreenActivity extends AppCompatActivity {
 
-    GlobalPreferencesViewModel globalPreferencesViewModel;
+    private GlobalPreferencesViewModel globalPreferencesViewModel;
 
-    TitlescreenViewModel titleScreenViewModel;
-    NewsletterViewModel newsLetterViewModel;
+    private TitlescreenViewModel titleScreenViewModel;
+    private NewsletterViewModel newsLetterViewModel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Create View Models
+        initViewModels();
+        initPrefs();
+
+        setContentView(R.layout.activity_titlescreen);
+    }
+
+    private void initViewModels() {
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+
         globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
         globalPreferencesViewModel.init(TitleScreenActivity.this);
+
         titleScreenViewModel = factory.create(TitlescreenViewModel.class);
+
         newsLetterViewModel = factory.create(NewsletterViewModel.class);
-
-        // Immediately initialize Activity with Preferences
-        init();
-
-        //Set the Parent View, Late call
-        setContentView(R.layout.activity_titlescreen);
-
     }
 
     /**
      * Immediately initialize Activity with Preferences
      */
-    public void init() {
+    public void initPrefs() {
         globalPreferencesViewModel.incrementAppOpenCount(getApplicationContext());
 
         //set language
-        if (setLanguage(globalPreferencesViewModel.getLanguage(getApplicationContext())))
+        if (setLanguage(globalPreferencesViewModel.getLanguage(getApplicationContext()))) {
             recreate();
+        }
 
         //set isAlwaysOn
-        if (getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).getBoolean(
-                getString(R.string.preference_isAlwaysOn), false))
+        if(globalPreferencesViewModel.getIsAlwaysOn()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
 
         //set colorSpace
-        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).getInt(
-                getString(R.string.preference_colorSpace),
-                globalPreferencesViewModel.getColorSpace());
-
-        changeTheme(colorSpace);
+        changeTheme(globalPreferencesViewModel.getColorSpace());
     }
 
     /**
@@ -79,6 +77,7 @@ public class TitleScreenActivity extends AppCompatActivity {
      * @param colorSpace to be set
      */
     public void changeTheme(int colorSpace) {
+
         switch (colorSpace) {
             case 0: {
                 setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Normal);

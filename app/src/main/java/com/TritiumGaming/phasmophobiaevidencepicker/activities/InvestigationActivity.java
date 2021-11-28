@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 
@@ -23,22 +25,63 @@ import java.util.Locale;
  */
 public class InvestigationActivity extends AppCompatActivity {
 
+    private GlobalPreferencesViewModel globalPreferencesViewModel;
     private PermissionsViewModel permissionsViewModel;
-    private EvidenceViewModel evidence;
-    private ObjectivesViewModel objectives;
+    private EvidenceViewModel evidenceViewModel;
+    private ObjectivesViewModel objectivesViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
+        initViewModels();
+        initPrefs();
+
+        determineInvestigationFragment();
+
+    }
+
+    private void initViewModels() {
+        ViewModelProvider.AndroidViewModelFactory factory =
+                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+
+        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
+        globalPreferencesViewModel.init(InvestigationActivity.this);
+
+        permissionsViewModel = factory.create(
+                PermissionsViewModel.class);
+        permissionsViewModel = new ViewModelProvider(this).get(
+                PermissionsViewModel.class);
+
+        evidenceViewModel = factory.create(
+                EvidenceViewModel.class);
+        evidenceViewModel.init(getApplicationContext());
+
+        objectivesViewModel = factory.create(
+                ObjectivesViewModel.class);
+    }
+
+    private void initPrefs() {
+
         setLanguage(getAppLanguage());
 
-        int colorSpace = getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getInt(getString(R.string.preference_colorSpace), 0);
-        changeTheme(colorSpace);
+        changeTheme();
 
+       /*
+        if (getSharedPreferences(getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE).
+                getBoolean(getString(R.string.preference_isAlwaysOn), false))
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        */
+
+        if (globalPreferencesViewModel.getIsAlwaysOn()) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
+    }
+
+    private void determineInvestigationFragment() {
         int intentFragment = getIntent().getExtras().getInt("lobby");
         switch (intentFragment) {
             case 0: {
@@ -50,24 +93,6 @@ public class InvestigationActivity extends AppCompatActivity {
                 break;
             }
         }
-
-        ViewModelProvider.AndroidViewModelFactory factory =
-                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
-
-        permissionsViewModel = factory.create(PermissionsViewModel.class);
-        //if(permissionsViewModel == null)
-        permissionsViewModel = new ViewModelProvider(this).get(PermissionsViewModel.class);
-
-        evidence = factory.create(EvidenceViewModel.class);
-        evidence.init(getApplicationContext());
-
-        objectives = factory.create(ObjectivesViewModel.class);
-
-        if (getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getBoolean(getString(R.string.preference_isAlwaysOn), false))
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
     }
 
     /**
@@ -89,43 +114,17 @@ public class InvestigationActivity extends AppCompatActivity {
      * @return the abbreviation of the chosen language that's saved to file
      */
     public String getAppLanguage() {
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getString("chosenLanguage", "en");
+        return globalPreferencesViewModel.getLanguageName();
     }
-
-    /**
-     * getHuntWarningAllowed method
-     *
-     * @return the decided ability to emanate audio that has been saved to file
-     */
-    /*
-    public boolean getHuntWarningAllowed() {
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getBoolean(getString(R.string.preference_isHuntAudioWarningAllowed), false);
-    }
-    */
-
-    /**
-     * getHuntWarningFlashTimeout method
-     *
-     * @return the decided ability to flash the HuntWarning indicator that has been saved to file
-     */
-    /*
-    public int getHuntWarningFlashTimeout() {
-        return getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getInt(getString(R.string.preference_huntWarningFlashTimeout), -1);
-    }
-    */
 
     /**
      * changeTheme method
      *
-     * @param colorSpace to be set
      */
-    public void changeTheme(int colorSpace) {
+    public void changeTheme() {
+
+        int colorSpace = globalPreferencesViewModel.getColorSpace();
+
         switch (colorSpace) {
             case 0: {
                 setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Normal);
@@ -156,8 +155,8 @@ public class InvestigationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        objectives.reset();
-        evidence.reset();
+        objectivesViewModel.reset();
+        evidenceViewModel.reset();
 
         super.onBackPressed();
     }

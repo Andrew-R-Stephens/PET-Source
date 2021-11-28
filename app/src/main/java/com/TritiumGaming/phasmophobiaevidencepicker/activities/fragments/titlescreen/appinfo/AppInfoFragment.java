@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -137,6 +138,16 @@ public class AppInfoFragment extends Fragment {
         appinfo_discordclickbutton.setOnClickListener(v -> startActivity(
                 new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
 
         // ABOUT APP - TITLE
         String abouttitle = getResources().getString(R.string.aboutinfo_title_about);

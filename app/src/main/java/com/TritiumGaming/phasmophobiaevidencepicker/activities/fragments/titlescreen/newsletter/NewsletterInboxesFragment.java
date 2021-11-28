@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -96,6 +97,16 @@ public class NewsletterInboxesFragment extends Fragment {
         button_extranews.setOnClickListener(this::gotoGeneralNews);
         button_petnews.setOnClickListener(this::gotoPetNews);
         button_phasnews.setOnClickListener(this::gotoPhasNews);
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
 
         label_title.setText(R.string.messagecenter_inboxestitle_label);
         label_extranews.setText(

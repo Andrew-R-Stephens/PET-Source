@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -40,16 +41,16 @@ public class AppSettingsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel =
-                    new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+            globalPreferencesViewModel = new ViewModelProvider(
+                    requireActivity()).get(GlobalPreferencesViewModel.class);
             // INITIALIZE VIEW MODEL
             if (getContext() != null)
                 globalPreferencesViewModel.init(getContext());
         }
 
         if (titleScreenViewModel == null)
-            titleScreenViewModel =
-                    new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+            titleScreenViewModel = new ViewModelProvider(
+                    requireActivity()).get(TitlescreenViewModel.class);
 
         return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
@@ -197,7 +198,6 @@ public class AppSettingsFragment extends Fragment {
                         changeTheme(globalPreferencesViewModel.getColorSpace());
         });
 
-
         // SWITCHES
         if (globalPreferencesViewModel != null) {
             // Screen Always On
@@ -307,12 +307,22 @@ public class AppSettingsFragment extends Fragment {
             }
         }
 
-        // CLOSE BUTTON
-        int finalOldIndex = oldIndex;
-        if (closeButton != null)
+        // ACCEPT BUTTON
+        if (closeButton != null) {
             closeButton.setOnClickListener(v -> {
                 Navigation.findNavController(v).popBackStack();
             });
+        }
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
     }
 
     /**

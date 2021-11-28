@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -30,7 +31,6 @@ import java.util.Arrays;
 public class AppLanguageFragment extends Fragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-
     private TitlescreenViewModel titleScreenViewModel = null;
 
     @Nullable
@@ -38,16 +38,17 @@ public class AppLanguageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null)
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel = new ViewModelProvider(
                     requireActivity()).get(GlobalPreferencesViewModel.class);
-        // INITIALIZE VIEW MODEL
+        }
         if (getContext() != null)
             globalPreferencesViewModel.init(getContext());
 
-        if (titleScreenViewModel == null)
+        if (titleScreenViewModel == null) {
             titleScreenViewModel = new ViewModelProvider(
                     requireActivity()).get(TitlescreenViewModel.class);
+        }
 
         return inflater.inflate(R.layout.fragment_languages, container, false);
     }
@@ -70,28 +71,35 @@ public class AppLanguageFragment extends Fragment {
         // LISTENERS
         closeButton.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    Navigation.findNavController(view).popBackStack();
+                }
+            });
+        }
+
         // DATA
         ArrayList<String> languageNames = new ArrayList<>(Arrays.asList(
                 getResources().getStringArray(R.array.languages_name)));
         if (getContext() != null) {
             for (int i = 0; i < languageNames.size(); i++) {
                 LanguagesAdapterView adapter = new LanguagesAdapterView(
-                        languageNames, new LanguagesAdapterView.OnLanguageListener() {
-                    @Override
-                    public void onNoteClick(int position) {
-                        if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
-                            globalPreferencesViewModel.setLanguage(
-                                    position,
-                                    AppLanguageFragment.this.getResources().getStringArray(
-                                            R.array.languages_abbreviation));
-                            titleScreenViewModel.setCanRefreshFragment(true);
-                        }
-                        AppLanguageFragment.this.configureLanguage();
-                        AppLanguageFragment.this.refreshFragment();
-                    }
-                });
+                        languageNames, position -> {
+                            if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+                                globalPreferencesViewModel.setLanguage(
+                                        position,
+                                        AppLanguageFragment.this.getResources().getStringArray(
+                                                R.array.languages_abbreviation));
+                                titleScreenViewModel.setCanRefreshFragment(true);
+                            }
+                            AppLanguageFragment.this.configureLanguage();
+                            AppLanguageFragment.this.refreshFragment();
+                        });
                 recyclerViewLanguages.setAdapter(adapter);
-                recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(getContext()));
             }
         }
     }
@@ -110,7 +118,6 @@ public class AppLanguageFragment extends Fragment {
      * refreshFragment
      */
     public void refreshFragment() {
-        //Log.d("Fragment", "Refreshing");
         if (titleScreenViewModel != null && titleScreenViewModel.canRefreshFragment()) {
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             if (Build.VERSION.SDK_INT >= 26)
@@ -142,5 +149,7 @@ public class AppLanguageFragment extends Fragment {
 
         super.onPause();
     }
+
+
 
 }

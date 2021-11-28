@@ -23,7 +23,6 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private boolean isAlwaysOn = false;
     private boolean isHuntAudioAllowed = true;
     private boolean networkPreference = true;
-    //private boolean huntWarningAudioAllowed = false;
 
     /**
      * init method
@@ -60,18 +59,17 @@ public class GlobalPreferencesViewModel extends ViewModel {
     }
 
     public void incrementAppOpenCount(Context context) {
+
         getReviewRequestData().incrementTimesOpened();
 
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getResources().getString(
                         R.string.preferences_globalFile_name),
                 Context.MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putInt(context.getResources().getString(
-                R.string.reviewtracking_appTimesOpened),
-                getReviewRequestData().getTimesOpened());
+        saveTimesOpened(context, editor);
+
         editor.apply();
     }
 
@@ -212,36 +210,78 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return colorSpace;
     }
 
+    public void saveNetworkPreference(Context c, SharedPreferences.Editor editor) {
+        editor.putBoolean(
+                c.getResources().getString(R.string.preference_network),
+                getNetworkPreference());
+    }
+
+    public void saveChosenLanguage(Context c, SharedPreferences.Editor editor) {
+        editor.putString(
+                c.getResources().getString(R.string.preference_language),
+                getLanguageName());
+    }
+
+    public void saveAlwaysOnState(Context c, SharedPreferences.Editor editor) {
+        editor.putBoolean(
+                c.getResources().getString(R.string.preference_isAlwaysOn),
+                getIsAlwaysOn());
+    }
+
+    public void saveHuntWarningAudioAllowed(Context c, SharedPreferences.Editor editor) {
+        editor.putBoolean(
+                c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed),
+                getIsHuntAudioAllowed());
+    }
+
+    public void saveHuntWarningFlashTimeout(Context c, SharedPreferences.Editor editor) {
+        editor.putInt(
+                c.getResources().getString(R.string.preference_huntWarningFlashTimeout),
+                getHuntWarningFlashTimeout());
+    }
+
+    private void saveColorSpace(Context c, SharedPreferences.Editor editor) {
+        editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
+    }
+
+    private void saveAppTimeAlive(Context c, SharedPreferences.Editor editor) {
+        editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive),
+                getReviewRequestData().getTimeActive());
+    }
+
+    private void saveTimesOpened(Context c, SharedPreferences.Editor editor) {
+        editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened),
+                getReviewRequestData().getTimesOpened());
+    }
+
+    private void saveCanRequestReview(Context c, SharedPreferences.Editor editor) {
+        editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview),
+                getReviewRequestData().getWasRequested());
+    }
+
     /**
      * saveToFile method
      *
-     * @param c
+     * @param context
      */
-    public void saveToFile(Context c) {
+    public void saveToFile(Context context) {
 
         SharedPreferences sharedPref =
-                c.getSharedPreferences(c.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
+                context.getSharedPreferences(context.getResources().getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putBoolean(c.getResources().getString(R.string.preference_network),
-                getNetworkPreference());
-        editor.putString(c.getResources().getString(R.string.preference_language),
-                getLanguageName());
-        editor.putBoolean(c.getResources().getString(R.string.preference_isAlwaysOn),
-                getIsAlwaysOn());
-        editor.putBoolean(c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed());
-        editor.putInt(c.getResources().getString(R.string.preference_huntWarningFlashTimeout),
-                getHuntWarningFlashTimeout());
-        editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
+        saveNetworkPreference(context, editor);
+        saveChosenLanguage(context, editor);
+        saveAlwaysOnState(context, editor);
+        saveHuntWarningAudioAllowed(context, editor);
+        saveHuntWarningFlashTimeout(context, editor);
+        saveColorSpace(context, editor);
+        saveCanRequestReview(context, editor);
+        saveTimesOpened(context, editor);
+        saveAppTimeAlive(context, editor);
 
-        editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview),
-                getReviewRequestData().getWasRequested());
-        editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened),
-                getReviewRequestData().getTimesOpened());
-        editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive),
-                getReviewRequestData().getTimeActive());
 
         editor.apply();
-
     }
+
 }

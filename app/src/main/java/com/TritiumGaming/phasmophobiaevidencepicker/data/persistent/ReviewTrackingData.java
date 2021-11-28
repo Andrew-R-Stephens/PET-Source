@@ -36,13 +36,6 @@ public class ReviewTrackingData {
     }
 
     /**
-     * @param timeActive
-     */
-    public void addTimeActive(long timeActive) {
-        this.timeActive += timeActive;
-    }
-
-    /**
      * @return
      */
     public long getTimeActive() {
@@ -54,13 +47,6 @@ public class ReviewTrackingData {
      */
     public void setTimesOpened(int timesOpened) {
         this.timesOpened = timesOpened;
-    }
-
-    /**
-     * @param timesOpened
-     */
-    public void addTimesOpened(int timesOpened) {
-        this.timesOpened += timesOpened;
     }
 
     /**
