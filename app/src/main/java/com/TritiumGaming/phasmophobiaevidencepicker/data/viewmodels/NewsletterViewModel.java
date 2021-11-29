@@ -30,25 +30,19 @@ public class NewsletterViewModel extends ViewModel {
     }
 
     public void addInbox(NewsletterMessagesData inbox, InboxType type) {
-        if (inboxMessageList == null)
-            inboxMessageList = new ArrayList<>();
-
+        if (inboxMessageList == null) {
+            inboxMessageList = new ArrayList<>(10);
+        }
         inbox.setInboxType(type);
-        inboxMessageList.add(inbox);
+        try {
+            inboxMessageList.add(inbox);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void chooseCurrentInbox(InboxType type) {
         this.type = type;
-    }
-
-    public int getInboxCount() {
-        if (inboxMessageList == null)
-            return 0;
-        return inboxMessageList.size();
-    }
-
-    public NewsletterMessagesData getCurrentInbox(int index) {
-        return inboxMessageList.get(index);
     }
 
     public NewsletterMessagesData getCurrentInbox() {

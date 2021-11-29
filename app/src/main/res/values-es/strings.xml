@@ -275,5 +275,7 @@
     <string name="spiritbox_entry_q8_2">¿Que loco estoy?</string>
     <string name="spiritbox_entry_q8_3">¿Que loco estoy?</string>
     <string name="spiritbox_entry_q8_4">¿Estoy loco?</string>
+    <string name="settings_confirm" translatable="false">Cancelar</string>
+    <string name="settings_cancel" translatable="false">Confirmar</string>
 
 </resources>

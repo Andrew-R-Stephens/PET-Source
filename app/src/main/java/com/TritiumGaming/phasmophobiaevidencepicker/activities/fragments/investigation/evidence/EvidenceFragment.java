@@ -133,6 +133,10 @@ public class EvidenceFragment extends Fragment {
             difficultyCarouselData = evidenceViewModel.getDifficultyCarouselData();
         }
 
+        if(sanityData != null) {
+            sanityData.setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
+        }
+
         // FONT FAMILY
         font_normal = Typeface.MONOSPACE;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -381,6 +385,7 @@ public class EvidenceFragment extends Fragment {
 
         // SET VALUES FOR GHOST ITEMS
         for (int i = 0; i < ghostItems.length; i++) {
+
             int ghostID = ghostItems[i].getID();
             int rating =
                     evidenceViewModel.getInvestigationData().getGhost(ghostID).getEvidenceScore();

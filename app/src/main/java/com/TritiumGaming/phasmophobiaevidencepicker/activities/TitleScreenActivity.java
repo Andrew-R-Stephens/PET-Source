@@ -1,12 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;

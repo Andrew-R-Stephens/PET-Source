@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,31 +29,46 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_invisbutton"
+                android:id="@+id/constraintlayout_cancelbutton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_settingstitle"
                 app:layout_constraintEnd_toStartOf="@+id/label_settingstitle"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".2">
 
-                <ImageButton
-                    android:id="@+id/popup_cancel_button"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_negative_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_cancel_button"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/norse"
+                    android:gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_negative_unselected"
-                    app:tint="?attr/subtitleFontColor"
+                    android:text="@string/settings_cancel"
+                    android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:tint="?attr/subtitleFontColor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,50 +76,63 @@
                 android:id="@+id/label_settingstitle"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/norse_regular"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/settings_title"
                 android:textColor="?attr/bodyFontColor"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
+                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintlayout_invisbutton"
+                app:layout_constraintStart_toEndOf="@+id/constraintlayout_cancelbutton"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".5" />
+                app:layout_constraintWidth_percent=".4" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_1"
+                android:id="@+id/constraintlayout_confirmbutton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_settingstitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/label_settingstitle"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".2">
 
-                <ImageButton
-                    android:id="@+id/popup_confirm_button"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_positive_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_confirm_button"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/norse"
+                    android:gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_positive_unselected"
-                    app:tint="?attr/subtitleFontColor"
+                    android:text="@string/settings_confirm"
+                    android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHeight_percent=".4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:tint="?attr/subtitleFontColor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout81"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -122,7 +150,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".75">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout47"
@@ -147,8 +176,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/divider7"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".75" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <View
                         android:id="@+id/divider7"
@@ -166,9 +194,9 @@
                     android:id="@+id/constraintlayout_generalsettings"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintHeight_percent=".7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".7"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout47">
@@ -181,8 +209,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".3"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".75">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_alwayson_text"
@@ -222,8 +249,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".3"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson"
-                        app:layout_constraintWidth_percent=".75">
+                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_network_text"
@@ -273,8 +299,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            app:layout_constraintWidth_percent=".75">
+                            app:layout_constraintVertical_chainStyle="packed">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/colorblindmode_title"
@@ -286,7 +311,7 @@
                                 android:textColor="?attr/bodyFontColor"
                                 app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".7"
+                                app:layout_constraintHeight_percent=".65"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_chainStyle="packed" />
@@ -301,7 +326,7 @@
                                 android:textColor="?attr/neutralSelColor"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".3"
+                                app:layout_constraintHeight_percent=".35"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title" />
 
@@ -379,7 +404,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout43">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout43"
+                app:layout_constraintWidth_percent=".75">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout48"
@@ -404,8 +430,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/divider9"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".75" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <View
                         android:id="@+id/divider9"
@@ -438,8 +463,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".75">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_text"

@@ -5,9 +5,9 @@ import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 
 import java.text.DecimalFormat;
 
@@ -140,12 +140,7 @@ public class PhaseTimerView {
 
         if (phaseTimerData.getTimeRemaining() > 0L) {
             long breakdown = phaseTimerData.getTimeRemaining() / 1000L;
-            long minutes = breakdown / 60L;
-            long seconds = breakdown % 60L;
-            text = String.format(
-                    "%s:%s",
-                    new DecimalFormat("0").format(minutes),
-                    new DecimalFormat("00").format(seconds));
+            text = FormatterUtils.millisToTime("%s:%s", breakdown);
         }
 
         if (timerTextView != null)

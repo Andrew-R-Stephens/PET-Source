@@ -1,14 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 
@@ -17,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -24,23 +23,25 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ColorThemesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
-
-import java.text.DecimalFormat;
 
 public class AppSettingsFragment extends Fragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-
     private TitlescreenViewModel titleScreenViewModel = null;
+
+    private boolean mustRefresh;
 
     @Nullable
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
+            @Nullable Bundle savedInstanceState) {
+
+        // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel = new ViewModelProvider(
                     requireActivity()).get(GlobalPreferencesViewModel.class);
@@ -95,8 +96,10 @@ public class AppSettingsFragment extends Fragment {
 
         ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
         ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        ImageButton btn_confirmClose = view.findViewById(R.id.popup_confirm_button);
-        ImageButton btn_cancelClose = view.findViewById(R.id.popup_cancel_button);
+        AppCompatTextView btn_confirmClose = view.findViewById(R.id.settings_confirm_button);
+        AppCompatTextView btn_cancelClose = view.findViewById(R.id.settings_cancel_button);
+        ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
+        ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
         // TEXT SIZE
         primarytitle.setAutoSizeTextTypeUniformWithConfiguration(
@@ -140,6 +143,13 @@ public class AppSettingsFragment extends Fragment {
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
+        btn_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        btn_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+
         // COLORBLIND DATA
 
         TypedArray typedArray =
@@ -163,26 +173,7 @@ public class AppSettingsFragment extends Fragment {
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
             if (globalPreferencesViewModel != null && getContext() != null) {
                 globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
-                //globalPreferencesViewModel.saveColorSpace(getContext(), null, true); // new
             }
-            //TODO: call globalPreferencesViewModel function instead
-            /*
-            SharedPreferences sharedPref =
-                    requireActivity().getSharedPreferences(
-                            getString(R.string.preferences_globalFile_name),
-                            Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace),
-                    globalPreferencesViewModel.getColorSpace());
-            editor.apply();
-            editor.commit();
-            */
-            //TODO: -----
-            /*
-            if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).changeTheme(
-                        globalPreferencesViewModel.getColorSpace());
-            */
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
@@ -190,25 +181,7 @@ public class AppSettingsFragment extends Fragment {
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
             if (globalPreferencesViewModel != null) {
                 globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
-                //globalPreferencesViewModel.saveColorSpace(getContext(), null, true); // new
             }
-
-            //TODO: call globalPreferencesViewModel function instead
-            /*
-            SharedPreferences sharedPref =
-                    requireActivity().getSharedPreferences(
-                            getString(R.string.preferences_globalFile_name), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.preference_colorSpace),
-                    globalPreferencesViewModel.getColorSpace());
-            editor.apply();
-            editor.commit();
-            */
-            //TODO: ------
-
-            /*if (getActivity() != null)
-                ((TitleScreenActivity) getActivity()).
-                        changeTheme(globalPreferencesViewModel.getColorSpace());*/
         });
 
         // SWITCHES
@@ -221,11 +194,6 @@ public class AppSettingsFragment extends Fragment {
                         globalPreferencesViewModel.setIsAlwaysOn(
                                 switch_isAlwaysOn_switch.isChecked());
                     }
-                    /*
-                    if (getView() != null) {
-                        getView().setKeepScreenOn(true);
-                    }
-                    */
                 });
             }
             // Allow Mobile Data
@@ -264,8 +232,9 @@ public class AppSettingsFragment extends Fragment {
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
                         new SeekBar.OnSeekBarChangeListener() {
                             @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress,
-                                                          boolean fromUser) {
+                            public void onProgressChanged(
+                                    SeekBar seekBar, int progress, boolean fromUser) {
+
                                 if (fromUser) {
 
                                     globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
@@ -275,13 +244,8 @@ public class AppSettingsFragment extends Fragment {
 
                                     if (progress < seekBar_huntwarningTimeout.getMax()) {
                                         long breakdown = (long) (progressMax * progress / 1000L);
-                                        long minutes = breakdown / 60L;
-                                        long seconds = breakdown % 60L;
-                                        String text = String.format(
-                                                "%sm %ss",
-                                                new DecimalFormat("0").format(minutes),
-                                                new DecimalFormat("00").format(seconds));
-
+                                        String text = FormatterUtils.millisToTime(
+                                                "%sm %ss", breakdown);
                                         switch_huntwarning_timetext.setText(text);
                                         switch_huntwarning_othertext.setText("");
                                     } else if (progress == seekBar_huntwarningTimeout.getMax()) {
@@ -308,12 +272,7 @@ public class AppSettingsFragment extends Fragment {
                                 seekBar_huntwarningTimeout.getMax()) {
                     long breakdown =
                             (long) (progressMax * seekBar_huntwarningTimeout.getProgress() / 1000L);
-                    long minutes = breakdown / 60L;
-                    long seconds = breakdown % 60L;
-                    String text = String.format(
-                            "%s:%s",
-                            new DecimalFormat("0").format(minutes),
-                            new DecimalFormat("00").format(seconds));
+                    String text = FormatterUtils.millisToTime("%sm %ss", breakdown);
 
                     switch_huntwarning_othertext.setText("");
                     switch_huntwarning_timetext.setText(text);
@@ -325,39 +284,22 @@ public class AppSettingsFragment extends Fragment {
         }
 
         // CANCEL BUTTON
-        if (btn_cancelClose != null) {
-            btn_cancelClose.setOnClickListener(v -> {
-                Log.d("GlobalPreferences", "Cancel/Close - Before...");
-                globalPreferencesViewModel.printFromFile(getContext());
-                globalPreferencesViewModel.printFromVariables();
-                Log.d("GlobalPreferences", "Cancel/Close - After...");
-                globalPreferencesViewModel.printFromFile(getContext());
-                globalPreferencesViewModel.printFromVariables();
-                Navigation.findNavController(v).popBackStack();
-            });
-        }
+        listener_cancelClose.setOnClickListener(v -> {
+            Navigation.findNavController(v).popBackStack();
+        });
 
         // CONFIRM BUTTON
-        if (btn_confirmClose != null) {
-            btn_confirmClose.setOnClickListener(v -> {
-                Log.d("GlobalPreferences", "Confirm/Close - Before Saving...");
-                globalPreferencesViewModel.printFromFile(getContext());
-                globalPreferencesViewModel.printFromVariables();
-                Log.d("GlobalPreferences", "Confirm/Close - Now Saving ...");
-                saveStates();
-                Log.d("GlobalPreferences", "Confirm/Close - After Saving...");
-                globalPreferencesViewModel.printFromFile(getContext());
-                globalPreferencesViewModel.printFromVariables();
-                Navigation.findNavController(v).popBackStack();
-            });
-        }
+        listener_confirmClose.setOnClickListener(v -> {
+            saveStates();
+            Navigation.findNavController(v).popBackStack();
+        });
 
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(this,
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
+                            //THIS SHOULD DISABLE BACK PRESSED
                         }
                     });
         }
@@ -377,9 +319,19 @@ public class AppSettingsFragment extends Fragment {
             ((TitleScreenActivity) getActivity()).
                     changeTheme(globalPreferencesViewModel.getColorSpace());
 
+        if(globalPreferencesViewModel.getIsAlwaysOn()) {
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
+        /*
+        if(getActivity() != null && mustRefresh) {
+            getActivity().recreate();
+        }
+
         if (getView() != null) {
             getView().setKeepScreenOn(globalPreferencesViewModel.getIsAlwaysOn());
         }
+        */
 
     }
 
@@ -388,8 +340,6 @@ public class AppSettingsFragment extends Fragment {
      */
     @Override
     public void onPause() {
-        // SAVE PERSISTENT DATA
-        //saveStates();
 
         super.onPause();
     }

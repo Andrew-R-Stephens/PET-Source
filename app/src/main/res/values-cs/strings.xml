@@ -317,5 +317,7 @@
     <string name="spiritbox_entry_q8_2">Jak moc jsem blázen?</string>
     <string name="spiritbox_entry_q8_3">Jak moc jsem blázen?</string>
     <string name="spiritbox_entry_q8_4">Jsem blázen?</string>
+    <string name="settings_confirm">Potvrdit</string>
+    <string name="settings_cancel">Zrušení</string>
 
 </resources>

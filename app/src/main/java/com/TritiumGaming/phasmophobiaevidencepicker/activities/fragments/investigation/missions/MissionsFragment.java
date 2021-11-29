@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,6 +27,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.data.MissionsData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.views.MissionsCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.views.MissionsSpinner;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 
 /**
@@ -35,13 +37,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesVi
  */
 public class MissionsFragment extends Fragment {
 
-    private ObjectivesViewModel objectivesViewModel = null;
+    private EvidenceViewModel evidenceViewModel;
+    private ObjectivesViewModel objectivesViewModel;
 
-    private MissionsData data = null;
+    private MissionsData data;
 
-    private MissionsSpinner[] objectiveSpinner = null;
-    private EditText name_input = null;
-    private AppCompatImageButton button_alone = null, button_everyone = null;
+    private MissionsSpinner[] objectiveSpinner;
+    private EditText name_input;
+    private AppCompatImageButton button_alone, button_everyone;
 
     @Nullable
     @Override
@@ -50,9 +53,16 @@ public class MissionsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if (objectivesViewModel == null)
+        if (evidenceViewModel == null) {
+            evidenceViewModel =
+                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
+            evidenceViewModel.init(getContext());
+        }
+
+        if (objectivesViewModel == null) {
             objectivesViewModel =
                     new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
+        }
 
         return inflater.inflate(R.layout.fragment_objectives, container, false);
 
@@ -79,6 +89,7 @@ public class MissionsFragment extends Fragment {
         AppCompatTextView label_ghostName = view.findViewById(R.id.label_ghostName);
         name_input = view.findViewById(R.id.textInput_ghostName);
         // RESPONSE TYPE
+        ConstraintLayout blocking_responds = view.findViewById(R.id.blocking_group);
         button_alone = view.findViewById(R.id.button_alone);
         button_everyone = view.findViewById(R.id.button_everyone);
         // FOOTERS
@@ -231,25 +242,33 @@ public class MissionsFragment extends Fragment {
 
         // RESPONDS TO
         final int selC = color_selectedItem, unselC = color_unselectedItem;
-        if (objectivesViewModel.getResponseState()) {
-            button_alone.setColorFilter(selC);
-            button_everyone.setColorFilter(unselC);
+        if(evidenceViewModel.getDifficultyCarouselData().isResponseTypeKnown()) {
+            if (objectivesViewModel.getResponseState()) {
+                button_alone.setColorFilter(selC);
+                button_everyone.setColorFilter(unselC);
+            } else {
+                button_alone.setColorFilter(unselC);
+                button_everyone.setColorFilter(selC);
+            }
+            button_alone.setOnClickListener(v -> {
+                        objectivesViewModel.setResponseState(true);
+                        button_alone.setColorFilter(selC);
+                        button_everyone.setColorFilter(unselC);
+                    }
+            );
+            button_everyone.setOnClickListener(v -> {
+                        objectivesViewModel.setResponseState(false);
+                        button_everyone.setColorFilter(selC);
+                        button_alone.setColorFilter(unselC);
+                    }
+            );
         } else {
             button_alone.setColorFilter(unselC);
-            button_everyone.setColorFilter(selC);
+            button_everyone.setColorFilter(unselC);
+            label_alone.setTextColor(unselC);
+            label_everyone.setTextColor(unselC);
+            blocking_responds.setVisibility(View.VISIBLE);
         }
-        button_alone.setOnClickListener(v -> {
-                    objectivesViewModel.setResponseState(true);
-                    button_alone.setColorFilter(selC);
-                    button_everyone.setColorFilter(unselC);
-                }
-        );
-        button_everyone.setOnClickListener(v -> {
-                    objectivesViewModel.setResponseState(false);
-                    button_everyone.setColorFilter(selC);
-                    button_alone.setColorFilter(unselC);
-                }
-        );
 
     }
 

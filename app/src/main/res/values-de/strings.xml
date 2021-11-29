@@ -281,5 +281,7 @@
     <string name="spiritbox_entry_q8_2">Wie verrückt bin ich?</string>
     <string name="spiritbox_entry_q8_3">Wie verrückt bin ich?</string>
     <string name="spiritbox_entry_q8_4">Bin ich verrückt?</string>
+    <string name="settings_confirm">Bestätigen Sie</string>
+    <string name="settings_cancel">Abbrechen</string>
 
 </resources>

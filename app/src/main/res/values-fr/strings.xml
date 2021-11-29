@@ -278,5 +278,7 @@
     <string name="spiritbox_entry_q8_2">A quel point suis-je fou?</string>
     <string name="spiritbox_entry_q8_3">A quel point suis-je fou ?</string>
     <string name="spiritbox_entry_q8_4">Suis je fou?</string>
+    <string name="settings_cancel">Annuler</string>
+    <string name="settings_confirm">Confirmer</string>
 
 </resources>

@@ -26,7 +26,7 @@ public class SanityData {
     private boolean canWarn = true;
     private boolean isPaused = false;
 
-    private final long flashTimeoutMax = -1;
+    private long flashTimeoutMax = -1;
     private long flashTimeoutStart = -1;
 
     /**
@@ -96,6 +96,10 @@ public class SanityData {
      */
     public long getStartTime() {
         return startTime;
+    }
+
+    public void setFlashTimeoutMax(int flashTimeoutMax) {
+        this.flashTimeoutMax = flashTimeoutMax;
     }
 
     /**

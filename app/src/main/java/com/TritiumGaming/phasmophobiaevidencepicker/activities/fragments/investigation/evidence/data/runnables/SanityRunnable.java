@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables;
 
 import android.media.MediaPlayer;
-import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -120,11 +119,6 @@ public class SanityRunnable implements Runnable {
                                 !phaseTimerData.isSetupPhase() && sanityData.canWarn()) {
                             audio_huntWarn.start();
                             sanityData.setCanWarn(false);
-                            Log.d("Warning Audio", "Should execute!");
-                        } else {
-                            Log.d("Warning Audio", "Should not execute!" +
-                                    globalPreferencesViewModel.isHuntWarningAudioAllowed() + " " +
-                                    !phaseTimerData.isSetupPhase() + " " + sanityData.canWarn());
                         }
                     }
 

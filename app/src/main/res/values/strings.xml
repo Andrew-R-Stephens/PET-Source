@@ -82,6 +82,8 @@
     <!-- Page Details -->
 
     <string name="settings_title">Settings</string>
+    <string name="settings_confirm">Confirm</string>
+    <string name="settings_cancel">Cancel</string>
     <string name="settings_generalsettings">General</string>
     <string name="settings_extrasettings">Extra Settings</string>
     <string name="settings_screenalwayson">Always keep the screen on</string>
