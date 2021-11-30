@@ -39,17 +39,18 @@ public class NewsletterInboxesFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null)
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel =
                     new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+        }
         // INITIALIZE VIEW MODEL
-        if (getContext() != null)
+        if (getContext() != null) {
             globalPreferencesViewModel.init(getContext());
-
-        if (titleScreenViewModel == null)
+        }
+        if (titleScreenViewModel == null) {
             titleScreenViewModel =
                     new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
-
+        }
         return inflater.inflate(R.layout.fragment_msginbox, container, false);
     }
 
@@ -153,8 +154,9 @@ public class NewsletterInboxesFragment extends Fragment {
      * TODO
      */
     public void saveStates() {
-        if (globalPreferencesViewModel != null && getContext() != null)
+        if (globalPreferencesViewModel != null && getContext() != null) {
             globalPreferencesViewModel.saveToFile(getContext());
+        }
     }
 
     /**

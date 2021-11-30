@@ -40,10 +40,10 @@ public class NewsletterMessageFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
-        if (newsletterViewModel == null)
+        if (newsletterViewModel == null) {
             newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
-
+        }
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
     }
 

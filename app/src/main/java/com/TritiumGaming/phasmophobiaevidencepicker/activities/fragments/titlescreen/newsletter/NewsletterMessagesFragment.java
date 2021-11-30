@@ -38,10 +38,10 @@ public class NewsletterMessagesFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if (newsletterViewModel == null)
+        if (newsletterViewModel == null) {
             newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
-
+        }
         return inflater.inflate(
                 R.layout.fragment_msginbox_listmessages,
                 container,

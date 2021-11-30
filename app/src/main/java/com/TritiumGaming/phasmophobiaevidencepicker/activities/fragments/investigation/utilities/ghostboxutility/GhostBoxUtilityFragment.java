@@ -71,9 +71,10 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        if (permissionsViewModel == null)
+        if (permissionsViewModel == null) {
             permissionsViewModel = new ViewModelProvider(
                     requireActivity()).get(PermissionsViewModel.class);
+        }
 
         AppCompatTextView title = view.findViewById(R.id.toolspiritbox_title);
         AppCompatTextView button_gotoEvidence_label = view.findViewById(R.id.label_goto_left);
@@ -112,8 +113,9 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
             setScrollListEntries(
                     getContext(), R.array.ghostspeaktool_oijaboard_array, scrollview_list3);
 
-            if (!permissionsViewModel.isRecordAudioAllowed())
+            if (!permissionsViewModel.isRecordAudioAllowed()) {
                 requestAudioPermissions(getContext(), getActivity());
+            }
         }
 
         waveFormView.updateVisualizer(null);
@@ -150,10 +152,11 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                     1f);
             entry.setLayoutParams(textParams);
             entry.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 entry.setAutoSizeTextTypeUniformWithConfiguration(
                         12, 50, 1,
                         TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            }
             float dip = 24f;
             float px = TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
@@ -253,10 +256,12 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         try {
             Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (getContext() != null)
+            if (getContext() != null) {
                 getContext().startActivity(intent);
-            else
+            }
+            else {
                 Log.e("TTS", "Context is null");
+            }
         } catch (Exception e) {
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
@@ -278,11 +283,13 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     public void onWaveFormDataCapture(Visualizer thisVisualiser,
                                       byte[] waveform,
                                       int samplingRate) {
-        if (waveFormView != null)
+        if (waveFormView != null) {
             if (textToSpeech != null && textToSpeech.isSpeaking()) {
                 waveFormView.updateVisualizer(Arrays.copyOf(waveform, waveform.length));
-            } else
+            } else {
                 waveFormView.updateVisualizer(null);
+            }
+        }
     }
 
     /**

@@ -139,12 +139,12 @@ public class SanityMeterView extends View {
      * @return
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) {
-        if (baseLayer == null && topLayer != null)
+        if (baseLayer == null && topLayer != null) {
             baseLayer = Bitmap.createBitmap(
                     topLayer.getWidth(),
                     topLayer.getHeight(),
                     topLayer.getConfig());
-
+        }
         if (baseLayer != null) {
             Canvas canvas = new Canvas(baseLayer);
 
@@ -174,16 +174,18 @@ public class SanityMeterView extends View {
     protected void onDraw(Canvas canvas) {
         float padding = 5;
         float h = getHeight(), w = getWidth();
-        if (getWidth() <= getHeight())
+        if (getWidth() <= getHeight()) {
             h *= (float) getWidth() / (float) getHeight();
-        else
+        }
+        else {
             w *= (float) getHeight() / (float) getWidth();
-
-        if (containerRect != null)
+        }
+        if (containerRect != null) {
             containerRect.set((float) ((getWidth() * .5) - (w * .5) + padding),
                     (float) ((getHeight() * .5) - (h * .5) + padding),
                     (float) (w + ((getWidth() * .5) - (w * .5)) - padding),
                     (float) (h + ((getHeight() * .5) - (h * .5))) - padding);
+        }
 
         paint.setAntiAlias(true);
 
@@ -200,9 +202,9 @@ public class SanityMeterView extends View {
                     Color.rgb((255),
                             (int) (255 * sanityData.getInsanityPercent()),
                             (int) (255 * sanityData.getInsanityPercent())));
-            if (sanityData != null)
+            if (sanityData != null) {
                 canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
-
+            }
             paint.setStrokeWidth(5f);
             paint.setColor(Color.BLACK);
             paint.setStyle(Paint.Style.STROKE);
@@ -248,9 +250,9 @@ public class SanityMeterView extends View {
         paint.setStrokeWidth(5f);
         paint.setStyle(Paint.Style.STROKE);
 
-        if (containerRect != null)
+        if (containerRect != null) {
             canvas.drawOval(containerRect, paint);
-
+        }
         super.onDraw(canvas);
     }
 
@@ -269,8 +271,9 @@ public class SanityMeterView extends View {
             sanityImg_bottom = null;
         }
 
-        if (scheduleGarbageCollect)
+        if (scheduleGarbageCollect) {
             System.gc();
+        }
     }
 
 }

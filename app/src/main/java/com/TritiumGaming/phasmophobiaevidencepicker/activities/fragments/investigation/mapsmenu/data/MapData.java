@@ -91,8 +91,9 @@ public class MapData {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(layer);
             floorLayers.add(temp);
-        } else
+        } else {
             floorLayers.get(floorIndex).add(layer);
+        }
     }
 
     /**

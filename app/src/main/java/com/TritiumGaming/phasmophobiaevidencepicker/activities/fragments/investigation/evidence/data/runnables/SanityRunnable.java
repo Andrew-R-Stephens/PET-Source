@@ -126,12 +126,14 @@ public class SanityRunnable implements Runnable {
                         if (!phaseTimerData.isSetupPhase()) {
                             if (sanityData.canFlashWarning()) {
                                 if ((wait * (double) ++flashTick) > 1000L / 2.0) {
-                                    if (huntWarningTextView != null)
+                                    if (huntWarningTextView != null) {
                                         huntWarningTextView.toggleFlash(true);
+                                    }
                                     flashTick = 0;
 
-                                } else
+                                } else {
                                     huntWarningTextView.setState(true);
+                                }
                             }
                         } else {
                             huntWarningTextView.setState(false);

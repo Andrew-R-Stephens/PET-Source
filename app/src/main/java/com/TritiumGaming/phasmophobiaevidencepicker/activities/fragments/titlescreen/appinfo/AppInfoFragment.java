@@ -48,16 +48,19 @@ public class AppInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null)
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel =
                     new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+        }
         // INITIALIZE VIEW MODEL
-        if (getContext() != null)
+        if (getContext() != null) {
             globalPreferencesViewModel.init(getContext());
+        }
 
-        if (titleScreenViewModel == null)
+        if (titleScreenViewModel == null) {
             titleScreenViewModel =
                     new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+        }
 
         return inflater.inflate(R.layout.fragment_appinfo, container, false);
     }
@@ -72,7 +75,7 @@ public class AppInfoFragment extends Fragment {
         // INITIALIZE FONT EMPHASIS COLOR
         TypedValue typedValue = new TypedValue();
         @ColorInt
-        int color = 0;
+        int color;
         if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
@@ -80,11 +83,13 @@ public class AppInfoFragment extends Fragment {
         color = typedValue.data;
 
         // SET FONT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
+        }
         else {
-            if (getContext() != null)
+            if (getContext() != null) {
                 bodyFont = ResourcesCompat.getFont(getContext(), R.font.eastseadokdo_regular);
+            }
         }
 
         // INITIALIZE VIEWS
@@ -209,14 +214,14 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subtitle.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-            if (getView() != null)
+            if (getView() != null) {
                 developerInfo_subtitle.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
                         (int) (FontUtils.dpToSp(getView(),
                                 developerInfo_title.getTextSize())),
                         1,
                         TypedValue.COMPLEX_UNIT_SP);
-
+            }
             AppCompatTextView developerInfo_subinfo = new AppCompatTextView(getContext());
             developerInfo_subinfo.setText(subinfo);
             developerInfo_subinfo.setTypeface(bodyFont);
@@ -227,14 +232,14 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subinfo.setGravity(Gravity.CENTER);
-            if (getView() != null)
+            if (getView() != null) {
                 developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
                         (int) (FontUtils.dpToSp(
                                 getView(), developerInfo_subtitle.getTextSize()) * .95),
                         1,
                         TypedValue.COMPLEX_UNIT_SP);
-
+            }
             linearLayout_developerInfo_subtitles.addView(developerInfo_subtitle);
             linearLayout_developerInfo_subinfo.addView(developerInfo_subinfo);
         }

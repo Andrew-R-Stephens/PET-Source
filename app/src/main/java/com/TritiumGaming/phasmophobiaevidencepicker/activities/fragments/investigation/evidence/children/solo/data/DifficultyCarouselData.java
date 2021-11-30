@@ -80,9 +80,11 @@ public class DifficultyCarouselData {
 
     public boolean decrementDifficulty() {
         if (evidenceViewModel != null) {
+
             int state = getDifficultyIndex() - 1;
-            if (state < 0)
+            if (state < 0) {
                 state = difficultyNames.length - 1;
+            }
             setDifficulty(state);
 
             if (evidenceViewModel.hasSanityData()) {
@@ -97,13 +99,16 @@ public class DifficultyCarouselData {
 
     public boolean incrementDifficulty() {
         if (evidenceViewModel != null) {
+
             int state = getDifficultyIndex() + 1;
-            if (state >= difficultyNames.length)
+            if (state >= difficultyNames.length) {
                 state = 0;
+            }
             setDifficulty(state);
 
-            if (evidenceViewModel.hasSanityData())
+            if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(true);
+            }
 
             return true;
         }

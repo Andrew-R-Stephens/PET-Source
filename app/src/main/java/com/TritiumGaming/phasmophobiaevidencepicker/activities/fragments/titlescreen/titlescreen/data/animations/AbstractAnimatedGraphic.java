@@ -101,10 +101,12 @@ public abstract class AbstractAnimatedGraphic {
     public void setAlpha() {
         double alphaMult = (double) currentTick / (double) MAX_TICK / fadeTick * MAX_ALPHA;
         alpha = (int) alphaMult;
-        if (alpha > MAX_ALPHA)
+        if (alpha > MAX_ALPHA) {
             alpha = MAX_ALPHA;
-        else if (alpha < 0)
+        }
+        else if (alpha < 0) {
             alpha = 0;
+        }
     }
 
     /**

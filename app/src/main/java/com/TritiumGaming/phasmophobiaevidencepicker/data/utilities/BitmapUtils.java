@@ -108,8 +108,9 @@ public class BitmapUtils {
                     textureSize);
 
             // Keep track of the maximum texture size
-            if (maximumTextureSize < textureSize[0])
+            if (maximumTextureSize < textureSize[0]) {
                 maximumTextureSize = textureSize[0];
+            }
         }
         // Release
         egl.eglTerminate(display);
@@ -123,8 +124,9 @@ public class BitmapUtils {
      */
     public Bitmap compileBitmaps(Context c) {
         Bitmap b = null;
-        for (@DrawableRes int r : resources)
+        for (@DrawableRes int r : resources) {
             b = createBitmap(c, b, r);
+        }
         return b;
     }
 
@@ -165,9 +167,9 @@ public class BitmapUtils {
         //Get biggest image dimension between both width and height
         int highestDim = Math.max(height, width);
         double dimScale = (double) maxTextureSize / (double) highestDim * options.inDensity;
-        if (dimScale < 1)
+        if (dimScale < 1) {
             options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
-
+        }
         options.inJustDecodeBounds = false;
 
         return addLayer(baseLayer, BitmapFactory.decodeResource(c.getResources(), id, options));
@@ -180,11 +182,12 @@ public class BitmapUtils {
      * @throws OutOfMemoryError
      */
     private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) throws OutOfMemoryError {
-        if (baseLayer == null && BitmapUtils.bitmapExists(topLayer))
+        if (baseLayer == null && BitmapUtils.bitmapExists(topLayer)) {
             baseLayer = Bitmap.createBitmap(
                     topLayer.getWidth(),
                     topLayer.getHeight(),
                     topLayer.getConfig());
+        }
         if (baseLayer != null && !baseLayer.isRecycled()) {
             Canvas canvas = new Canvas(baseLayer);
             if (topLayer != null) {

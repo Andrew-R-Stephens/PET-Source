@@ -72,10 +72,12 @@ public class MissionsCompletedButton extends androidx.appcompat.widget.AppCompat
         colorState[0] = unselected;
         colorState[1] = selected;
 
-        if (isEnabled())
+        if (isEnabled()) {
             setColorFilter(colorState[1]);
-        else
+        }
+        else {
             setColorFilter(colorState[0]);
+        }
     }
 
     /**

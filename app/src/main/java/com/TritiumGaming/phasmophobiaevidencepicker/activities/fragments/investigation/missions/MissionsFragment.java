@@ -134,12 +134,14 @@ public class MissionsFragment extends Fragment {
         label_ghostName.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 24, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             name_input.setAutoSizeTextTypeUniformWithConfiguration(
                     12, 24, 1,
                     TypedValue.COMPLEX_UNIT_SP);
-        else
+        }
+        else {
             name_input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
+        }
         label_response.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 24, 1,
                 TypedValue.COMPLEX_UNIT_SP);
@@ -168,8 +170,9 @@ public class MissionsFragment extends Fragment {
                     data = null;
 
                     objectiveSpinner = null;
-                    if (name_input != null)
+                    if (name_input != null) {
                         name_input.setText("");
+                    }
 
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     if (Build.VERSION.SDK_INT >= 26) {
@@ -215,7 +218,7 @@ public class MissionsFragment extends Fragment {
         MissionsData.Objective[] tempObjectives =
                 objectivesViewModel.getObjectivesSpinnerObjectives();
         boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
-        if (objectiveSpinner != null)
+        if (objectiveSpinner != null) {
             for (int i = 0; i < objectiveSpinner.length; i++) {
                 if (objectiveSpinner[i] != null) {
                     objectiveSpinner[i].setCheckButton(button_check_evidence[i]);
@@ -230,15 +233,18 @@ public class MissionsFragment extends Fragment {
                 }
 
                 if ((tempIsCompleted != null) &&
-                        (tempIsCompleted[i]) && objectiveSpinner[i] != null)
+                        (tempIsCompleted[i]) && objectiveSpinner[i] != null) {
                     objectiveSpinner[i].setObjectiveAsCompleted();
+                }
 
             }
+        }
 
         // GHOST NAME
         String ghostName = objectivesViewModel.getGhostName();
-        if (name_input != null && ghostName != null)
+        if (name_input != null && ghostName != null) {
             name_input.setText(ghostName);
+        }
 
         // RESPONDS TO
         final int selC = color_selectedItem, unselC = color_unselectedItem;
@@ -304,8 +310,9 @@ public class MissionsFragment extends Fragment {
     private boolean[] findObjectiveCompletion() {
 
         boolean[] temp = new boolean[objectiveSpinner.length];
-        for (int i = 0; i < temp.length; i++)
+        for (int i = 0; i < temp.length; i++) {
             temp[i] = objectiveSpinner[i].isCompleted();
+        }
         return temp;
 
     }

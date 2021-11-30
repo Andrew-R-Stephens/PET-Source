@@ -42,8 +42,9 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      */
     public void setX() {
         this.x = 0;
-        if (getScaledWidth() > SCREENW)
+        if (getScaledWidth() > SCREENW) {
             this.x -= (getScaledHeight() / 2.0);
+        }
     }
 
     /**
@@ -51,8 +52,9 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      */
     public void setY() {
         this.y = 0;
-        if (getScaledHeight() > SCREENH)
+        if (getScaledHeight() > SCREENH) {
             this.y -= (getScaledHeight() / 2.0);
+        }
     }
 
     /**
@@ -81,12 +83,15 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      */
     public void tick() {
         setRect();
-        if (currentTick >= 0)
+        if (currentTick >= 0) {
             currentTick += tickIncrementDirection;
-        else
+        }
+        else {
             isAlive = false;
-        if (currentTick >= MAX_TICK)
+        }
+        if (currentTick >= MAX_TICK) {
             tickIncrementDirection *= -1;
+        }
         setAlpha();
     }
 

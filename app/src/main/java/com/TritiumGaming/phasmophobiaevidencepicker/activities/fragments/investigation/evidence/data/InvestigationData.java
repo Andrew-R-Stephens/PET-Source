@@ -40,8 +40,9 @@ public class InvestigationData {
             TypedArray nameTypedArray =
                     c.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
             typedArray.recycle();
-            for (int j = 0; j < nameTypedArray.length(); j++)
+            for (int j = 0; j < nameTypedArray.length(); j++) {
                 ghost.addEvidence(nameTypedArray.getString(j));
+            }
             nameTypedArray.recycle();
             allGhosts.add(ghost);
         }
@@ -97,8 +98,9 @@ public class InvestigationData {
      * Resets the Ruling for each Evidence type
      */
     public void reset() {
-        for (int i = 0; i < allEvidence.size(); i++)
+        for (int i = 0; i < allEvidence.size(); i++) {
             allEvidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
+        }
     }
 
     /**
@@ -169,24 +171,27 @@ public class InvestigationData {
          *
          */
         public void addEvidence(Evidence e) {
-            if (thisGhostEvidence.size() < MAX_EVIDENCE_COUNT)
+            if (thisGhostEvidence.size() < MAX_EVIDENCE_COUNT) {
                 thisGhostEvidence.add(e);
+            }
         }
 
         /**
          *
          */
         public void addEvidence(Evidence[] pe) {
-            for (Evidence e : pe)
+            for (Evidence e : pe) {
                 addEvidence(e);
+            }
         }
 
         public void addEvidence(String evidence) {
-            for (Evidence e : allEvidence)
+            for (Evidence e : allEvidence) {
                 if (evidence.equals(e.getName())) {
                     addEvidence(e);
                     break;
                 }
+            }
         }
 
         /**
@@ -194,8 +199,9 @@ public class InvestigationData {
          */
         public Evidence[] getEvidenceArray() {
             Evidence[] newEvidence = new Evidence[thisGhostEvidence.size()];
-            for (int i = 0; i < newEvidence.length; i++)
+            for (int i = 0; i < newEvidence.length; i++) {
                 newEvidence[i] = thisGhostEvidence.get(i);
+            }
             return newEvidence;
         }
 
@@ -214,19 +220,24 @@ public class InvestigationData {
 
             int rating = 0;
             for (Evidence e : thisGhostEvidence) {
-                if (e.getRuling() == Evidence.Ruling.POSITIVE)
+                if (e.getRuling() == Evidence.Ruling.POSITIVE) {
                     rating++;
-                else if (e.getRuling() == Evidence.Ruling.NEGATIVE)
+                }
+                else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
                     return -5;
+                }
             }
 
             for (int i = 0; i < allEvidence.size(); i++) {
                 boolean isContained = false;
-                for (Evidence value : thisGhostEvidence)
-                    if (allEvidence.get(i).getName().equals(value.getName()))
+                for (Evidence value : thisGhostEvidence) {
+                    if (allEvidence.get(i).getName().equals(value.getName())) {
                         isContained = true;
-                if (!isContained && allEvidence.get(i).getRuling() == Evidence.Ruling.POSITIVE)
+                    }
+                }
+                if (!isContained && allEvidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
                     return -5;
+                }
             }
             return rating;
         }

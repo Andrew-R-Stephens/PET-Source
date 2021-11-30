@@ -157,14 +157,18 @@ public class EvidenceViewModel extends ViewModel {
     public void reset() {
         radioButtonsChecked = null;
 
-        if(hasPhaseTimerData())
+        if(hasPhaseTimerData()) {
             phaseTimerData.reset();
-        if(hasInvestigationData())
+        }
+        if(hasInvestigationData()) {
             investigationData.reset();
-        if (hasSanityData())
+        }
+        if (hasSanityData()) {
             sanityData.reset();
-        if(hasMapCarouselData())
+        }
+        if(hasMapCarouselData()) {
             mapCarouselData.setMapCurrentIndex(0);
+        }
     }
 
 

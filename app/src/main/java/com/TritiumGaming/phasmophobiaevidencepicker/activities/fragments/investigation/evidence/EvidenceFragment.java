@@ -123,8 +123,9 @@ public class EvidenceFragment extends Fragment {
         if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel =
                     new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-            if (getContext() != null)
+            if (getContext() != null) {
                 globalPreferencesViewModel.init(getContext());
+            }
         }
 
         if(evidenceViewModel != null) {
@@ -139,8 +140,9 @@ public class EvidenceFragment extends Fragment {
 
         // FONT FAMILY
         font_normal = Typeface.MONOSPACE;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             font_normal = getResources().getFont(R.font.norse_regular);
+        }
         else if (getContext() != null) {
             font_normal = ResourcesCompat.getFont(getContext(), R.font.norse_regular);
         }
@@ -283,8 +285,9 @@ public class EvidenceFragment extends Fragment {
                                   View navMedRight, View navCenter) {
         if(navLeft != null) {
             navLeft.setOnClickListener(v -> {
-                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
                         Navigation.findNavController(v)
                                 .navigate(R.id.action_evidence_to_objectives);
                     }
@@ -292,8 +295,9 @@ public class EvidenceFragment extends Fragment {
         }
         if(navMedLeft != null) {
             navMedLeft.setOnClickListener(v -> {
-                        if(evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                        if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
                         Navigation.findNavController(v)
                                 .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
                     }
@@ -301,8 +305,9 @@ public class EvidenceFragment extends Fragment {
         }
         if(navLeft != null) {
             navRight.setOnClickListener(v -> {
-                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData())
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
                         Navigation.findNavController(v)
                                 .navigate(R.id.action_evidence_to_mapmenu);
                     }
@@ -415,10 +420,11 @@ public class EvidenceFragment extends Fragment {
             }
 
             //Set Colors of Ghost icons
-            for (int j = 0; j < ghostEvidenceIcons[ghostID].length; j++)
-                if (ghostEvidenceIcons[ghostID][j] != null)
+            for (int j = 0; j < ghostEvidenceIcons[ghostID].length; j++) {
+                if (ghostEvidenceIcons[ghostID][j] != null) {
                     ghostEvidenceIcons[ghostID][j].updateColor();
-
+                }
+            }
 
             newReorderedList[i] = ghostItems[i];
         }
@@ -436,10 +442,12 @@ public class EvidenceFragment extends Fragment {
                 newReorderedList[i + 1] = newReorderedList[i];
                 newReorderedList[i] = t;
 
-                if (i > 0)
+                if (i > 0) {
                     i--;
-            } else
+                }
+            } else {
                 i++;
+            }
         }
 
         // Set Ghost list with reorder
@@ -470,8 +478,9 @@ public class EvidenceFragment extends Fragment {
         // EVIDENCE LIST
         // LOAD CHECKED RADIO BUTTONS
         int[] checkedStorage = null;
-        if (evidenceViewModel != null)
+        if (evidenceViewModel != null) {
             checkedStorage = evidenceViewModel.getRadioButtonsChecked();
+        }
 
         // LOOP THROUGH EVIDENCE LIST BODY
         for (int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
@@ -486,10 +495,12 @@ public class EvidenceFragment extends Fragment {
                         InvestigationData.Evidence.Ruling.values()[j]);
             }
             evidenceRadioGroups[i] = new EvidenceRadioGroup(getContext(), radioButtons_evidence[i]);
-            if (checkedStorage != null)
+            if (checkedStorage != null) {
                 evidenceRadioGroups[i].setCheckedStorage(checkedStorage[i]);
-            else
+            }
+            else {
                 evidenceRadioGroups[i].setCheckedStorage(1);
+            }
             evidenceItems[i].addView(evidenceRadioGroups[i]);
         }
 
@@ -557,8 +568,9 @@ public class EvidenceFragment extends Fragment {
                 int num = i;
                 labels_evidence[i].setOnClickListener(v -> {
 
-                    if (popup != null)
+                    if (popup != null) {
                         popup.dismiss();
+                    }
 
                     LayoutInflater inflater =
                             (LayoutInflater) getView().getContext().getSystemService(
@@ -630,8 +642,9 @@ public class EvidenceFragment extends Fragment {
 
             if (checkedStorage != null) {
                 evidenceRadioGroups[i].check(checkedStorage[i]);
-            } else
+            } else {
                 evidenceRadioGroups[i].check(1);
+            }
 
             //add radio group to evidence container
             evidence_labelAndRadios.addView(evidenceRadioGroups[i]);
@@ -653,8 +666,9 @@ public class EvidenceFragment extends Fragment {
      */
     public int[] getSelectedRadioButtons() {
         int[] selected = new int[evidenceRadioGroups.length];
-        for (int i = 0; i < evidenceRadioGroups.length; i++)
+        for (int i = 0; i < evidenceRadioGroups.length; i++) {
             selected[i] = evidenceRadioGroups[i].getCheckedButtonID();
+        }
 
         return selected;
     }
@@ -806,8 +820,10 @@ public class EvidenceFragment extends Fragment {
             setMaxHeight(getHeight() / 2);
 
             setOnClickListener(v -> {
-                if (popup != null)
+                if (popup != null) {
                     popup.dismiss();
+                }
+
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("InflateParams")
@@ -978,8 +994,10 @@ public class EvidenceFragment extends Fragment {
             setText(evidenceName);
 
             setOnClickListener(v -> {
-                if (popup != null)
+                if (popup != null) {
                     popup.dismiss();
+                }
+
                 LayoutInflater inflater =
                         (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 @SuppressLint("InflateParams")
@@ -1085,8 +1103,9 @@ public class EvidenceFragment extends Fragment {
          * uncheckAll
          */
         public void uncheckAll() {
-            for (int i = 0; i < group.length; i++)
+            for (int i = 0; i < group.length; i++) {
                 uncheck(i);
+            }
         }
 
         /**
@@ -1096,8 +1115,9 @@ public class EvidenceFragment extends Fragment {
          */
         public int getCheckedButtonID() {
             for (int i = 0; i < group.length; i++) {
-                if (group[i].isChecked())
+                if (group[i].isChecked()) {
                     return i;
+                }
             }
             return 1;
         }
@@ -1205,8 +1225,9 @@ public class EvidenceFragment extends Fragment {
          * doEvidenceAction
          */
         public void doEvidenceAction() {
-            if (evidenceViewModel.hasInvestigationData())
+            if (evidenceViewModel.hasInvestigationData()) {
                 evidenceViewModel.getInvestigationData().setEvidenceRuling(evidenceType, ruling);
+            }
         }
 
         /**
@@ -1278,8 +1299,9 @@ public class EvidenceFragment extends Fragment {
      */
     @Override
     public void onDestroyView() {
-        if (sanityMeterView != null)
+        if (sanityMeterView != null) {
             sanityMeterView.recycleBitmaps();
+        }
         super.onDestroyView();
     }
 
@@ -1288,8 +1310,9 @@ public class EvidenceFragment extends Fragment {
      */
     @Override
     public void onResume() {
-        if (!sanityMeterView.hasBuiltImages())
+        if (!sanityMeterView.hasBuiltImages()) {
             sanityMeterView.buildImages();
+        }
         super.onResume();
     }
 

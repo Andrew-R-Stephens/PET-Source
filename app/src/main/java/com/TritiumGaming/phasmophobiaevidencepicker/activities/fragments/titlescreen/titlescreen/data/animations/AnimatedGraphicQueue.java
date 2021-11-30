@@ -72,8 +72,9 @@ public class AnimatedGraphicQueue {
      *
      */
     public void refill() {
-        for (int i = 0; i < maxSize; i++)
+        for (int i = 0; i < maxSize; i++) {
             enqueueRandomPos(i);
+        }
     }
 
     /**
@@ -125,8 +126,9 @@ public class AnimatedGraphicQueue {
     @NonNull
     public String toString() {
         String s = "Queue List (" + getSize() + ") [";
-        for (int i = 0; i < queue.size(); i++)
+        for (int i = 0; i < queue.size(); i++) {
             s += queue.get(i) + " ";
+        }
         return s + "]";
     }
 }

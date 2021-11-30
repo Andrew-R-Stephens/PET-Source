@@ -57,9 +57,9 @@ public class MapViewerFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        if (mapViewViewModel == null)
+        if (mapViewViewModel == null) {
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-
+        }
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -91,23 +91,21 @@ public class MapViewerFragment extends Fragment {
         layerName = view.findViewById(R.id.textview_floorname);
 
         // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            instructions_pan.setAutoSizeTextTypeUniformWithConfiguration(
-                    5, 20, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-            instructions_zoom.setAutoSizeTextTypeUniformWithConfiguration(
-                    5, 20, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-            mapName.setAutoSizeTextTypeUniformWithConfiguration(
-                    20, 50, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-            layerName.setAutoSizeTextTypeUniformWithConfiguration(
-                    8, 50, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
-                    10, 50, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-        }
+        instructions_pan.setAutoSizeTextTypeUniformWithConfiguration(
+                5, 20, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        instructions_zoom.setAutoSizeTextTypeUniformWithConfiguration(
+                5, 20, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        mapName.setAutoSizeTextTypeUniformWithConfiguration(
+                20, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        layerName.setAutoSizeTextTypeUniformWithConfiguration(
+                8, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                10, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // SET VIEWS DISABLED
         listener_goto_right.setEnabled(false);
@@ -131,12 +129,14 @@ public class MapViewerFragment extends Fragment {
             if (mapViewViewModel != null && mapViewViewModel.hasMapData()) {
 
                 int layerIndex = mapViewViewModel.getCurrentMapData().getCurrentFloor();
-                if (++layerIndex >= mapViewViewModel.getCurrentMapData().getFloorCount())
+                if (++layerIndex >= mapViewViewModel.getCurrentMapData().getFloorCount()) {
                     layerIndex = 0;
+                }
 
                 MapData d;
-                if ((d = mapViewViewModel.getCurrentMapData()) != null)
+                if ((d = mapViewViewModel.getCurrentMapData()) != null) {
                     d.setCurrentFloor(layerIndex);
+                }
 
                 updateComponents();
             }
@@ -145,12 +145,14 @@ public class MapViewerFragment extends Fragment {
         button_prevLayer.setOnClickListener(v -> {
             if (mapViewViewModel != null && mapViewViewModel.hasMapData()) {
                 int layerIndex = mapViewViewModel.getCurrentMapData().getCurrentFloor();
-                if (--layerIndex < 0)
+                if (--layerIndex < 0) {
                     layerIndex = mapViewViewModel.getCurrentMapData().getFloorCount() - 1;
+                }
 
                 MapData d;
-                if ((d = mapViewViewModel.getCurrentMapData()) != null)
+                if ((d = mapViewViewModel.getCurrentMapData()) != null) {
                     d.setCurrentFloor(layerIndex);
+                }
 
                 updateComponents();
             }
@@ -161,11 +163,13 @@ public class MapViewerFragment extends Fragment {
             Navigation.findNavController(v).popBackStack();
         });
 
-        if (imageDisplay != null)
+        if (imageDisplay != null) {
             imageDisplay.init(controllerData);
+        }
 
-        if (touchInput != null)
+        if (touchInput != null) {
             touchInput.init(controllerData, imageDisplay);
+        }
 
         if (mapViewViewModel != null && imageDisplay != null) {
             imageDisplay.setMapData(mapViewViewModel.getCurrentMapData());
@@ -173,8 +177,9 @@ public class MapViewerFragment extends Fragment {
             MapData tempData = mapViewViewModel.getCurrentMapData();
             if (tempData != null) {
                 selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
-                for (int i = 0; i < selectorGroup.getSize(); i++)
+                for (int i = 0; i < selectorGroup.getSize(); i++) {
                     selectorLayout.addView(selectorGroup.getSelectors()[i]);
+                }
                 mapName.setText(tempData.getMapName());
             }
         }
@@ -217,13 +222,16 @@ public class MapViewerFragment extends Fragment {
      */
     public void updateComponents() {
         if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
-            if (selectorGroup != null)
+            if (selectorGroup != null) {
                 selectorGroup.setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
-            if (layerName != null)
+            }
+            if (layerName != null) {
                 layerName.setText(getResources().getString(
                         mapViewViewModel.getCurrentMapData().getFloorName()));
-            if (imageDisplay != null)
+            }
+            if (imageDisplay != null) {
                 imageDisplay.invalidate();
+            }
         }
     }
 
@@ -233,9 +241,10 @@ public class MapViewerFragment extends Fragment {
      * Saves states of the MapViewer to the MapViewModel
      */
     public void saveStates() {
-        if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData())
+        if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
             mapViewViewModel.getCurrentMapData().setDefaultFloor(
                     mapViewViewModel.getCurrentMapData().getCurrentFloor());
+        }
     }
 
     /**
@@ -246,8 +255,9 @@ public class MapViewerFragment extends Fragment {
     @Override
     public void onPause() {
         stopThreads();
-        if (imageDisplay != null)
+        if (imageDisplay != null) {
             imageDisplay.recycleBitmaps();
+        }
 
         super.onPause();
     }
@@ -260,8 +270,9 @@ public class MapViewerFragment extends Fragment {
     @Override
     public void onDestroy() {
         stopThreads();
-        if (imageDisplay != null)
+        if (imageDisplay != null) {
             imageDisplay.recycleBitmaps();
+        }
 
         super.onDestroy();
     }
@@ -292,10 +303,12 @@ public class MapViewerFragment extends Fragment {
          */
         public MapLayerSelectorGroup(int count) {
             selectors = new MapLayerSelector[count];
-            for (int i = 0; i < selectors.length; i++)
+            for (int i = 0; i < selectors.length; i++) {
                 selectors[i] = new MapLayerSelector(getContext());
-            if (mapViewViewModel != null)
+            }
+            if (mapViewViewModel != null) {
                 setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
+            }
         }
 
         /**
@@ -308,8 +321,9 @@ public class MapViewerFragment extends Fragment {
         public void setSelected(int index) {
             deSelectAll();
 
-            if (selectors[index] != null)
+            if (selectors[index] != null) {
                 selectors[index].setSelected(true);
+            }
         }
 
         /**
@@ -318,9 +332,11 @@ public class MapViewerFragment extends Fragment {
          * Deselects all Selectors
          */
         public void deSelectAll() {
-            for (MapLayerSelector selector : selectors)
-                if (selector != null)
+            for (MapLayerSelector selector : selectors) {
+                if (selector != null) {
                     selector.setSelected(false);
+                }
+            }
         }
 
         /**
@@ -338,8 +354,9 @@ public class MapViewerFragment extends Fragment {
          * @return number of Selectors
          */
         public int getSize() {
-            if (selectors == null)
+            if (selectors == null) {
                 return 0;
+            }
 
             return selectors.length;
         }
@@ -389,11 +406,13 @@ public class MapViewerFragment extends Fragment {
              * Updates the Selector icon to reflect its current selection state
              */
             private void updateImage() {
-                if (selectorImages != null && selectorImages.length == 2)
-                    if (!isSelected)
+                if (selectorImages != null && selectorImages.length == 2) {
+                    if (!isSelected) {
                         setImageResource(selectorImages[0]);
-                    else
+                    } else {
                         setImageResource(selectorImages[1]);
+                    }
+                }
             }
 
             /**

@@ -145,19 +145,24 @@ public class WaveformView extends View {
 
         canvas.drawRect(frameRect, bgPaint);
 
-        for (int y = 0; y < frameRect.height(); y += (frameRect.height() * ySpace))
+        for (int y = 0; y < frameRect.height(); y += (frameRect.height() * ySpace)) {
             canvas.drawLine(0, y, frameRect.width(), y, gridPaint);
-        for (int x = 0; x < frameRect.width(); x += (frameRect.width() * xSpace))
+        }
+        for (int x = 0; x < frameRect.width(); x += (frameRect.width() * xSpace)) {
             canvas.drawLine(x, 0, x, frameRect.height(), gridPaint);
+        }
 
         if (mBytes == null) {
-            canvas.drawLine(0, waveformRect.height(), waveformRect.width(), waveformRect.height()
-                    , waveformPaint);
+            canvas.drawLine(
+                    0, waveformRect.height(),
+                    waveformRect.width(), waveformRect.height(),
+                    waveformPaint);
             return;
         }
 
-        if (mPoints == null || mPoints.length < mBytes.length * 4)
+        if (mPoints == null || mPoints.length < mBytes.length * 4) {
             mPoints = new float[mBytes.length * 4];
+        }
 
         for (int i = 0; i < mBytes.length - 1; i++) {
             mPoints[i * 4] = (float) waveformRect.width() * i / (float) (mBytes.length - 1);

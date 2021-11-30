@@ -92,8 +92,6 @@ public class DifficultyCarouselView {
      */
     private void createTimerView() {
         timerView.createTimer(difficultyCarouselData.getCurrentDifficultyTime(), 1000L);
-        //timerControlView.pause();
-        //timerView.setText();
     }
 
     /**

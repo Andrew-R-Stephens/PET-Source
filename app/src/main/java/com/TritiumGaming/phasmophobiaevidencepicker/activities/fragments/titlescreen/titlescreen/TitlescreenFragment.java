@@ -75,21 +75,24 @@ public class TitlescreenFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null)
+        if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
                     get(GlobalPreferencesViewModel.class);
+        }
         // INITIALIZE VIEW MODEL
-        if (getContext() != null)
+        if (getContext() != null) {
             globalPreferencesViewModel.init(getContext());
+        }
 
-        if (titleScreenViewModel == null)
+        if (titleScreenViewModel == null) {
             titleScreenViewModel = new ViewModelProvider(requireActivity()).
                     get(TitlescreenViewModel.class);
+        }
 
-        if (newsLetterViewModel == null)
+        if (newsLetterViewModel == null) {
             newsLetterViewModel = new ViewModelProvider(requireActivity()).
                     get(NewsletterViewModel.class);
-
+        }
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
     }
@@ -113,8 +116,9 @@ public class TitlescreenFragment extends Fragment {
         // SET APP-ICON
         bitmapUtils.clearResources();
         bitmapUtils.setResource(R.drawable.app_icon_sm);
-        if (getContext() != null)
+        if (getContext() != null) {
             icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
+        }
 
         // TEXT SIZE
         label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(
@@ -132,8 +136,9 @@ public class TitlescreenFragment extends Fragment {
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();
-        if (globalPreferencesViewModel.getLanguageName().equalsIgnoreCase("fr"))
+        if (globalPreferencesViewModel.getLanguageName().equalsIgnoreCase("fr")) {
             appendedLanguage += " (" + getString(R.string.titlescreen_beta_label) + ")";
+        }
         label_languageName.setText(appendedLanguage);
 
         // LISTENERS
@@ -250,8 +255,9 @@ public class TitlescreenFragment extends Fragment {
                 if (getActivity() != null && getContext() != null) {
                     globalPreferencesViewModel.getReviewRequestData().setWasRequested(true);
                     getActivity().runOnUiThread(() -> showReviewPopup(getView()));
-                    if (getContext() != null)
+                    if (getContext() != null) {
                         globalPreferencesViewModel.saveToFile(getContext());
+                    }
                 }
             });
             tempThread.start();
@@ -299,9 +305,9 @@ public class TitlescreenFragment extends Fragment {
     public void showReviewPopup(View parentView) {
 
         //DESTROY PREVIOUS POPUP
-        if (popup != null)
+        if (popup != null) {
             popup.dismiss();
-
+        }
         //INFLATE LAYOUT
         LayoutInflater inflater = (LayoutInflater) requireView().getContext().
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -358,8 +364,9 @@ public class TitlescreenFragment extends Fragment {
                         }
                     } else {
                         //Log.e("ReviewManager", "Task Failed");
-                        if (requestTask.getException() != null)
+                        if (requestTask.getException() != null) {
                             (requestTask.getException()).printStackTrace();
+                        }
 
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(getResources().
@@ -433,11 +440,12 @@ public class TitlescreenFragment extends Fragment {
     private void startInitMessageCenterThread() {
 
         if (NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference()))
+                globalPreferencesViewModel.getNetworkPreference())) {
             startLoadMessageCenterThread();
-        else
+        }
+        else {
             Log.d("MessageCenter", "Could not obtain external data");
-
+        }
     }
 
     private void stopLoadMessageCenterThread() {
@@ -508,14 +516,16 @@ public class TitlescreenFragment extends Fragment {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                                     (getContext() != null && getContext().getDisplay() != null)) {
                                 TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                                if (TARGET_FPS > 60)
+                                if (TARGET_FPS > 60) {
                                     TARGET_FPS = 60;
+                                }
                             }
                             long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
                             long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
 
-                            if (wait < 0)
+                            if (wait < 0) {
                                 wait = 1;
+                            }
 
                             Thread.sleep(wait);
 
@@ -538,23 +548,25 @@ public class TitlescreenFragment extends Fragment {
                 public void run() {
                     while (canRunAnim) {
                         try {
-                            if (getActivity() != null)
+                            if (getActivity() != null) {
                                 getActivity().runOnUiThread(() -> animationView.invalidate());
-
+                            }
                             long now = System.nanoTime();
                             long updateTime = System.nanoTime() - now;
                             double TARGET_FPS = 30;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                                     (getContext() != null && getContext().getDisplay() != null)) {
                                 TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                                if (TARGET_FPS > 60)
+                                if (TARGET_FPS > 60) {
                                     TARGET_FPS = 60;
+                                }
                             }
                             long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
                             long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
 
-                            if (wait < 0)
+                            if (wait < 0) {
                                 wait = 1;
+                            }
 
                             Thread.sleep(wait);
 
@@ -623,8 +635,9 @@ public class TitlescreenFragment extends Fragment {
      * saveStates method
      */
     public void saveStates() {
-        if (globalPreferencesViewModel != null && getContext() != null)
+        if (globalPreferencesViewModel != null && getContext() != null) {
             globalPreferencesViewModel.saveToFile(getContext());
+        }
     }
 
     /**
@@ -651,9 +664,9 @@ public class TitlescreenFragment extends Fragment {
         canRunMessageCenter = false;
 
         // RECYCLE ANIMATION VIEW
-        if (animationView != null)
+        if (animationView != null) {
             animationView.recycleBitmaps();
-
+        }
         super.onPause();
     }
 
@@ -680,9 +693,9 @@ public class TitlescreenFragment extends Fragment {
         //Log.d("Fragment", "Destroying");
 
         // DESTROY AD-REQUEST
-        if (titleScreenViewModel != null)
+        if (titleScreenViewModel != null) {
             titleScreenViewModel.setAdRequest(null);
-
+        }
         super.onDestroy();
     }
 
@@ -694,9 +707,9 @@ public class TitlescreenFragment extends Fragment {
         //Log.d("Fragment", "Low Memory!");
 
         // RECYCLE ANIMATION VIEW BITMAPS
-        if (animationView != null)
+        if (animationView != null) {
             animationView.recycleBitmaps();
-
+        }
         super.onLowMemory();
     }
 }

@@ -44,14 +44,15 @@ public class AppSettingsFragment extends Fragment {
             globalPreferencesViewModel = new ViewModelProvider(
                     requireActivity()).get(GlobalPreferencesViewModel.class);
             // INITIALIZE VIEW MODEL
-            if (getContext() != null)
+            if (getContext() != null) {
                 globalPreferencesViewModel.init(getContext());
+            }
         }
 
-        if (titleScreenViewModel == null)
+        if (titleScreenViewModel == null) {
             titleScreenViewModel = new ViewModelProvider(
                     requireActivity()).get(TitlescreenViewModel.class);
-
+        }
         return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
 
@@ -153,14 +154,16 @@ public class AppSettingsFragment extends Fragment {
         TypedArray typedArray =
                 getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
         String[] colorspaceNames = new String[typedArray.length()];
-        for (int i = 0; i < colorspaceNames.length; i++)
+        for (int i = 0; i < colorspaceNames.length; i++) {
             colorspaceNames[i] = typedArray.getString(i);
+        }
         typedArray.recycle();
 
         ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
         int oldIndex = 0;
-        if (globalPreferencesViewModel != null)
+        if (globalPreferencesViewModel != null) {
             oldIndex = globalPreferencesViewModel.getColorSpace();
+        }
         colorSpaceData.setIndex(oldIndex);
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
@@ -199,9 +202,10 @@ public class AppSettingsFragment extends Fragment {
                 switch_network_switch.setChecked(
                         globalPreferencesViewModel.getNetworkPreference());
                 switch_network_switch.setOnClickListener(v -> {
-                    if (globalPreferencesViewModel != null)
+                    if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setNetworkPreference(
                                 switch_network_switch.isChecked());
+                    }
                 });
             }
             // Allow Hunt Warning Audio
@@ -209,9 +213,10 @@ public class AppSettingsFragment extends Fragment {
                 switch_huntwarningaudio_switch.setChecked(
                         globalPreferencesViewModel.getIsHuntAudioAllowed());
                 switch_huntwarningaudio_switch.setOnClickListener(v -> {
-                    if (globalPreferencesViewModel != null)
+                    if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setHuntWarningAudioAllowed(
                                 switch_huntwarningaudio_switch.isChecked());
+                    }
                 });
             }
         }
@@ -310,13 +315,13 @@ public class AppSettingsFragment extends Fragment {
      */
     public void saveStates() {
 
-        if (globalPreferencesViewModel != null && getContext() != null)
+        if (globalPreferencesViewModel != null && getContext() != null) {
             globalPreferencesViewModel.saveToFile(getContext());
-
-        if (getActivity() != null)
+        }
+        if (getActivity() != null) {
             ((TitleScreenActivity) getActivity()).
                     changeTheme(globalPreferencesViewModel.getColorSpace());
-
+        }
         if(globalPreferencesViewModel.getIsAlwaysOn()) {
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }

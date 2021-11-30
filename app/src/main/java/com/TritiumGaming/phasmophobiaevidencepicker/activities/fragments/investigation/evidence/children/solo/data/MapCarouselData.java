@@ -41,8 +41,9 @@ public class MapCarouselData {
     }
 
     public int getMapCount() {
-        if (mapSizeData == null)
+        if (mapSizeData == null) {
             return 0;
+        }
         return mapSizeData.length;
     }
 

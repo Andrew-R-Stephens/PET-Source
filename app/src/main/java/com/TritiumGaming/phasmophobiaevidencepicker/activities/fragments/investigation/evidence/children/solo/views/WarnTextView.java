@@ -73,12 +73,15 @@ public class WarnTextView extends AppCompatTextView {
     public void toggleFlash(boolean canFlash) {
         int c;
         if (this.state) {
-            if (canFlash && (flashOn = !flashOn))
+            if (canFlash && (flashOn = !flashOn)) {
                 c = color_active;
-            else
+            }
+            else {
                 c = color_inactive;
-        } else
+            }
+        } else {
             c = color_off;
+        }
 
         setTextColor(c);
     }
@@ -91,10 +94,12 @@ public class WarnTextView extends AppCompatTextView {
         if (this.state = state) {
             setBackgroundTintList(ColorStateList.valueOf(color_active));
 
-            if (flashOn)
+            if (flashOn) {
                 setTextColor(color_active);
-            else
+            }
+            else {
                 setTextColor(color_inactive);
+            }
         } else {
             setBackgroundTintList(ColorStateList.valueOf(color_off));
             setTextColor(color_off);
@@ -108,10 +113,12 @@ public class WarnTextView extends AppCompatTextView {
     public void setState(boolean state, boolean flashOn) {
         if (this.state = state) {
             setBackgroundTintList(ColorStateList.valueOf(color_active));
-            if (this.flashOn = flashOn)
+            if (this.flashOn = flashOn) {
                 setTextColor(color_active);
-            else
+            }
+            else {
                 setTextColor(color_inactive);
+            }
         } else {
             setBackgroundTintList(ColorStateList.valueOf(color_off));
             setTextColor(color_off);

@@ -72,8 +72,9 @@ public class InteractiveMapControlView extends View {
                 PointF f = new PointF();
                 f.x = event.getX(pointerIndex);
                 f.y = event.getY(pointerIndex);
-                if (mActivePointers != null)
+                if (mActivePointers != null) {
                     mActivePointers.put(pointerId, f);
+                }
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
@@ -92,16 +93,18 @@ public class InteractiveMapControlView extends View {
                     doPanAction();
                 } else if (event.getPointerCount() == 2) {
                     doZoomAction();
-                } else
+                } else {
                     acceptedAction = false;
+                }
 
                 break;
             }
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL: {
-                if (mActivePointers != null)
+                if (mActivePointers != null) {
                     mActivePointers.remove(pointerId);
+                }
 
                 pinchDistance = 0;
                 panOrigin = null;
@@ -109,11 +112,12 @@ public class InteractiveMapControlView extends View {
             }
         }
 
-        if (acceptedAction)
+        if (acceptedAction) {
             if (recipient != null) {
                 controllerData.setDisplaySize(recipient.getWidth(), recipient.getHeight());
                 recipient.invalidate();
             }
+        }
 
         return true;
     }
@@ -136,11 +140,13 @@ public class InteractiveMapControlView extends View {
             if (Math.abs(delta) > 2) {
                 double zoomSense = .02;
                 int zoomDir = 1;
-                if (delta < 0)
+                if (delta < 0) {
                     zoomDir = -1;
+                }
 
-                if (controllerData != null)
+                if (controllerData != null) {
                     controllerData.incrementZoomLevel(zoomSense * zoomDir);
+                }
             }
         }
     }
@@ -156,12 +162,14 @@ public class InteractiveMapControlView extends View {
             double dX = panOrigin.x - p.x;
             double dY = panOrigin.y - p.y;
 
-            if (controllerData != null)
+            if (controllerData != null) {
                 controllerData.incrementPan(dX, dY);
+            }
         }
 
-        if (p != null)
+        if (p != null) {
             panOrigin = new Point((int) p.x, (int) p.y);
+        }
 
     }
 

@@ -37,10 +37,12 @@ public class ColorThemesData {
     public void iterate(int dir) {
         index += dir;
 
-        if (index < 0)
+        if (index < 0) {
             index = themeNames.length - 1;
-        else if (index >= themeNames.length)
+        }
+        else if (index >= themeNames.length) {
             index = 0;
+        }
     }
 
     /**

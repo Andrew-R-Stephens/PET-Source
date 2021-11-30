@@ -32,9 +32,9 @@ public class NewsletterMessagesData {
     public String toString() {
         String t = "";
 
-        for (NewsletterMessageData m : messages)
+        for (NewsletterMessageData m : messages) {
             t += "\n[" + m.getTitle() + " " + m.getDate() + " " + m.getDescription() + "]";
-
+        }
         return t;
     }
 }

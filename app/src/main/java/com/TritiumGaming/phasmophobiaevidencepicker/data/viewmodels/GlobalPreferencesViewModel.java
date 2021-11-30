@@ -129,8 +129,9 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     public int getLanguageIndex(ArrayList<String> languageNames) {
         for(int i = 0; i < languageNames.size(); i++) {
-            if(getLanguageName().equalsIgnoreCase(languageNames.get(i)))
+            if(getLanguageName().equalsIgnoreCase(languageNames.get(i))) {
                 return i;
+            }
         }
         return 0;
     }

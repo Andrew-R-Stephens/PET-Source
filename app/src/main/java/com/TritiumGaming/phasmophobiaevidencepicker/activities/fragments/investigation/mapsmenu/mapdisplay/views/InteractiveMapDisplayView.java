@@ -77,13 +77,15 @@ public class InteractiveMapDisplayView extends View {
 
         if (controllerData != null && controllerData.getBitmapFactoryOptions() != null) {
 
-            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++)
+            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++) {
                 mapImages.add(null);
+            }
 
             for (int i = 0; i < mapData.getAllFloorLayers().size(); i++) {
                 int index = i + mapData.getDefaultFloor();
-                if (mapData.getAllFloorLayers().size() <= index)
+                if (mapData.getAllFloorLayers().size() <= index) {
                     index = 0;
+                }
 
                 // IMAGE LOADING ----
                 //
@@ -132,15 +134,17 @@ public class InteractiveMapDisplayView extends View {
             }
         }
 
-        if (frameRect == null)
+        if (frameRect == null) {
             frameRect = new Rect(1, 1, getWidth() - 1, getHeight() - 1);
+        }
 
         if (paint != null) {
             paint.setColorFilter(null);
             paint.setColor(Color.WHITE);
             paint.setStyle(Paint.Style.STROKE);
-            if (frameRect != null)
+            if (frameRect != null) {
                 canvas.drawRect(frameRect, paint);
+            }
         }
 
     }

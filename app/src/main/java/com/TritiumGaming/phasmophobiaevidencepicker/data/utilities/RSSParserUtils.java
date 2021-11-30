@@ -56,10 +56,10 @@ public class RSSParserUtils {
 
             try {
                 InputStream in = getInputStream(urlStr);
-                if (in == null)
+                if (in == null) {
                     throw new IOException("RSSParser: InputStream is null! Cannot retrieve " +
                             "database info. Is the internet connected?");
-
+                }
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput(in, "UTF_8");
 
@@ -94,8 +94,9 @@ public class RSSParserUtils {
                         insideItem = false;
                         NewsletterMessageData message = new NewsletterMessageData(title,
                                 description, date);
-                        if (message.hasContent())
+                        if (message.hasContent()) {
                             messageList.add(message);
+                        }
                         title = null;
                         date = null;
                         description = null;

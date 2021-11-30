@@ -112,8 +112,9 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         Locale defaultLocale = Locale.getDefault();
         Locale locale = new Locale(language);
-        if (!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage())))
+        if (!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage()))) {
             isChanged = true;
+        }
 
         Locale.setDefault(locale);
         Configuration config = getResources().getConfiguration();

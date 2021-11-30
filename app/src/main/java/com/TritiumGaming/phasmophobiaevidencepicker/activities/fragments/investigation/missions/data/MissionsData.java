@@ -32,9 +32,11 @@ public class MissionsData {
      * @return
      */
     public Objective getCopyOfObjective(Objective o) {
-        for (Objective objective : objectivePool)
-            if (o.getContent().equals(objective.getContent()))
+        for (Objective objective : objectivePool) {
+            if (o.getContent().equals(objective.getContent())) {
                 return objective;
+            }
+        }
         return null;
     }
 
@@ -44,9 +46,11 @@ public class MissionsData {
      */
     public ArrayList<Objective> getObjectivesOfSelectedState(boolean selectedState) {
         ArrayList<Objective> temp = new ArrayList<>();
-        for (Objective o : objectivePool)
-            if (o.isSelected() == selectedState)
+        for (Objective o : objectivePool) {
+            if (o.isSelected() == selectedState) {
                 temp.add(o);
+            }
+        }
         return temp;
     }
 

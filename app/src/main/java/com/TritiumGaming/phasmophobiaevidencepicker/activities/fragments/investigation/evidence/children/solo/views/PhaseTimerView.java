@@ -72,8 +72,9 @@ public class PhaseTimerView {
 
             @Override
             public void onFinish() {
-                if (stateControl != null)
+                if (stateControl != null) {
                     stateControl.checkPaused();
+                }
                 phaseTimerData.setTimeRemaining(0L);
                 setText();
             }
@@ -99,8 +100,9 @@ public class PhaseTimerView {
     public void play() {
 
         if (phaseTimerData.isPaused()) {
-            if (sanityData != null)
+            if (sanityData != null) {
                 sanityData.setProgressManually();
+            }
             phaseTimerData.setPaused(false);
             createTimer(phaseTimerData.getTimeRemaining(), 1000L);
             if (timer != null) {
@@ -143,8 +145,9 @@ public class PhaseTimerView {
             text = FormatterUtils.millisToTime("%s:%s", breakdown);
         }
 
-        if (timerTextView != null)
+        if (timerTextView != null) {
             timerTextView.setText(text);
+        }
     }
 
     public void destroyTimer() {

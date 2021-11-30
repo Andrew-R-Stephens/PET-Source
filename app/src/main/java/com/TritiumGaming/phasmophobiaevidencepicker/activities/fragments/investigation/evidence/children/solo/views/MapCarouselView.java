@@ -46,8 +46,9 @@ public class MapCarouselView {
 
             if (mapCarouselData != null) {
                 int i = mapCarouselData.getMapCurrentIndex() - 1;
-                if (i < 0)
+                if (i < 0) {
                     i = mapCarouselData.getMapCount() - 1;
+                }
                 mapCarouselData.setMapCurrentIndex(i);
                 mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
             }
@@ -64,8 +65,9 @@ public class MapCarouselView {
         next.setOnClickListener(v -> {
             if (mapCarouselData != null) {
                 int i = mapCarouselData.getMapCurrentIndex() + 1;
-                if (i >= mapCarouselData.getMapCount())
+                if (i >= mapCarouselData.getMapCount()) {
                     i = 0;
+                }
                 mapCarouselData.setMapCurrentIndex(i);
                 mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
             }

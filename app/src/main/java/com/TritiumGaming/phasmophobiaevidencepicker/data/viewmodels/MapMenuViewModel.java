@@ -50,8 +50,9 @@ public class MapMenuViewModel extends ViewModel {
 
             //Set map layer outline images
             mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(1, 0));
-            for (int j = 0; j < mapImages.length(); j++)
+            for (int j = 0; j < mapImages.length(); j++) {
                 mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
+            }
             mapImages.recycle(); //cleanup
 
             //Set map layer door images
@@ -112,8 +113,9 @@ public class MapMenuViewModel extends ViewModel {
      * @return the size of the mapData array
      */
     public int getMapDataLength() {
-        if (!hasMapData())
+        if (!hasMapData()) {
             return 0;
+        }
         return mapData.length;
     }
 
@@ -132,8 +134,9 @@ public class MapMenuViewModel extends ViewModel {
      * @param currentMapPos
      */
     public void setCurrentMapData(int currentMapPos) {
-        if (hasMapData() && currentMapPos < mapData.length)
+        if (hasMapData() && currentMapPos < mapData.length) {
             this.currentMap = currentMapPos;
+        }
     }
 
     /**
@@ -142,8 +145,9 @@ public class MapMenuViewModel extends ViewModel {
      * @return MapData
      */
     public MapData getCurrentMapData() {
-        if (!hasMapData())
+        if (!hasMapData()) {
             return null;
+        }
         return mapData[currentMap];
     }
 

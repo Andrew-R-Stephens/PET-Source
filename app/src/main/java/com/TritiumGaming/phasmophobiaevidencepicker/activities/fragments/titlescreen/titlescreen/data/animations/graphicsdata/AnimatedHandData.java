@@ -51,10 +51,12 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      */
     public void setX(double x) {
         this.x = x;
-        if (this.x + getScaledWidth() > SCREENW)
+        if (this.x + getScaledWidth() > SCREENW) {
             this.x -= getScaledWidth();
-        else if (this.x < getScaledWidth() * -1)
+        }
+        else if (this.x < getScaledWidth() * -1) {
             this.x = 0;
+        }
     }
 
     /**
@@ -62,10 +64,12 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      */
     public void setY(double y) {
         this.y = y;
-        if (this.y + getScaledHeight() > SCREENH)
+        if (this.y + getScaledHeight() > SCREENH) {
             this.y -= getScaledHeight();
-        else if (this.y < getScaledHeight() * -1)
+        }
+        else if (this.y < getScaledHeight() * -1) {
             this.y = 0;
+        }
     }
 
     /**
@@ -128,12 +132,15 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      */
     public void tick() {
         setRect();
-        if (currentTick >= 0)
+        if (currentTick >= 0) {
             currentTick += tickIncrementDirection;
-        else
+        }
+        else {
             isAlive = false;
-        if (currentTick >= this.MAX_TICK)
+        }
+        if (currentTick >= this.MAX_TICK) {
             tickIncrementDirection *= -1;
+        }
         setAlpha();
     }
 

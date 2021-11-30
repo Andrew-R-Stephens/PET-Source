@@ -143,8 +143,9 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
         setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (currentObjective != null)
+                if (currentObjective != null) {
                     currentObjective.setSelected(false);
+                }
                 currentObjective = (MissionsData.Objective) parent.getItemAtPosition(position);
                 currentObjective.setSelected(true);
                 currentObjective.setPosition(position);
@@ -209,8 +210,9 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     public void setCurrentObjective(MissionsData.Objective currentObjective) {
         this.currentObjective = data.getCopyOfObjective(currentObjective);
 
-        if (currentObjective != null)
+        if (currentObjective != null) {
             setSelection(this.currentObjective.getPosition());
+        }
     }
 
     /**

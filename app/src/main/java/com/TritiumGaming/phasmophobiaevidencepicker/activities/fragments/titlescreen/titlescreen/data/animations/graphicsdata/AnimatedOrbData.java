@@ -80,10 +80,12 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
      */
     public void tick() {
         animTick += animDir;
-        if (animTick >= ANIM_TICK_MAX)
+        if (animTick >= ANIM_TICK_MAX) {
             animDir = -1;
-        if (animTick < 0)
+        }
+        if (animTick < 0) {
             isAlive = false;
+        }
 
         destTick++;
         if (destTick >= DEST_TICK_MAX) {
@@ -102,15 +104,19 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
 
         float VEL_MAX = (float) Math.PI / 2f;
         float VEL_MIN = -1 * VEL_MAX;
-        if (velX > VEL_MAX)
+        if (velX > VEL_MAX) {
             velX = VEL_MAX;
-        else if (velX < VEL_MIN)
+        }
+        else if (velX < VEL_MIN) {
             velX = VEL_MIN;
+        }
 
-        if (velY > VEL_MAX)
+        if (velY > VEL_MAX) {
             velY = VEL_MAX;
-        else if (velY < VEL_MIN)
+        }
+        else if (velY < VEL_MIN) {
             velY = VEL_MIN;
+        }
 
         x += velX;
         y += velY;
@@ -146,10 +152,12 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
     public void setAlpha() {
         double alphaMult = (double) animTick / (double) ANIM_TICK_MAX / fadeTick * MAX_ALPHA;
         alpha = (int) alphaMult;
-        if (alpha > MAX_ALPHA)
+        if (alpha > MAX_ALPHA) {
             alpha = MAX_ALPHA;
-        else if (alpha < 0)
+        }
+        else if (alpha < 0) {
             alpha = 0;
+        }
     }
 
     /**

@@ -42,8 +42,9 @@ public class AppLanguageFragment extends Fragment {
             globalPreferencesViewModel = new ViewModelProvider(
                     requireActivity()).get(GlobalPreferencesViewModel.class);
         }
-        if (getContext() != null)
+        if (getContext() != null) {
             globalPreferencesViewModel.init(getContext());
+        }
 
         if (titleScreenViewModel == null) {
             titleScreenViewModel = new ViewModelProvider(
@@ -152,8 +153,9 @@ public class AppLanguageFragment extends Fragment {
     public void refreshFragment() {
         if (titleScreenViewModel != null && titleScreenViewModel.canRefreshFragment()) {
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            if (Build.VERSION.SDK_INT >= 26)
+            if (Build.VERSION.SDK_INT >= 26) {
                 ft.setReorderingAllowed(false);
+            }
             ft.detach(AppLanguageFragment.this).commitNow();
             ft.attach(AppLanguageFragment.this).commitNow();
             titleScreenViewModel.setCanRefreshFragment(false);
@@ -167,8 +169,9 @@ public class AppLanguageFragment extends Fragment {
      * TODO
      */
     public void saveStates() {
-        if (globalPreferencesViewModel != null && getContext() != null)
+        if (globalPreferencesViewModel != null && getContext() != null) {
             globalPreferencesViewModel.saveToFile(getContext());
+        }
     }
 
     /**

@@ -46,8 +46,9 @@ public class NewsletterViewModel extends ViewModel {
     }
 
     public NewsletterMessagesData getCurrentInbox() {
-        if (inboxMessageList == null)
+        if (inboxMessageList == null) {
             return null;
+        }
 
         for (int i = 0; i < inboxMessageList.size(); i++) {
             if (inboxMessageList.get(i).getInboxType() == type) {

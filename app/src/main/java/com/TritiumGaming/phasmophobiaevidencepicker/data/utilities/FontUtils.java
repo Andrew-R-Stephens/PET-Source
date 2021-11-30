@@ -45,8 +45,9 @@ public class FontUtils {
      * @return
      */
     public static String replaceHTMLFontColor(String msg, String oldColor, String newColor) {
-        if (msg == null)
+        if (msg == null) {
             return "";
+        }
         String startTag = "<font color=";
         String endTag = ">";
         String targetTag = startTag + oldColor + endTag;
@@ -69,8 +70,9 @@ public class FontUtils {
      * @return trimmedHTML
      */
     public static String removeXMLImgSrcTags(String msg) {
-        if (msg == null)
+        if (msg == null) {
             return "";
+        }
         int indexStart = msg.indexOf("<img src=");
         while (indexStart >= 0) {
             String newStr = msg.substring(indexStart);
@@ -92,11 +94,13 @@ public class FontUtils {
      * @return trimmed content
      */
     public static String removeXMLPubDateClockTime(String msg) {
-        if (msg == null)
+        if (msg == null) {
             return "";
+        }
         int endIndex = msg.indexOf('+');
-        if (endIndex < 0)
+        if (endIndex < 0) {
             return msg;
+        }
         return msg.substring(0, endIndex).trim();
     }
 

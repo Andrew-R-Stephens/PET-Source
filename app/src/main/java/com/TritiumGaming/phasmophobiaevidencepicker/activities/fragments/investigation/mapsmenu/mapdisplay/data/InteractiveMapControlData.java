@@ -28,10 +28,12 @@ public class InteractiveMapControlData {
         float ZOOM_SENSE = 2f;//1.5f;
         float MIN = .8f, MAX = 4f;
 
-        if ((this.zoomLevel += addZoom * ZOOM_SENSE) < MIN)
+        if ((this.zoomLevel += addZoom * ZOOM_SENSE) < MIN) {
             this.zoomLevel = MIN;
-        else if (zoomLevel > MAX)
+        }
+        else if (zoomLevel > MAX) {
             this.zoomLevel = MAX;
+        }
 
         updateMatrix();
 

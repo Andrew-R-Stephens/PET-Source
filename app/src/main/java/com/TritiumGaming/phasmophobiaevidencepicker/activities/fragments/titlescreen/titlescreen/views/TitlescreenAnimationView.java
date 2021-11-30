@@ -100,8 +100,9 @@ public class TitlescreenAnimationView extends View {
         TypedArray bookwritingArray =
                 getResources().obtainTypedArray(R.array.anim_bookwriting_images);
         bookwritingResId = new ArrayList<>();
-        for (int i = 0; i < bookwritingArray.length(); i++)
+        for (int i = 0; i < bookwritingArray.length(); i++) {
             bookwritingResId.add(bookwritingArray.getResourceId(i, 0));
+        }
         bookwritingArray.recycle();
 
         if (titleScreenViewModel != null &&
@@ -153,16 +154,16 @@ public class TitlescreenAnimationView extends View {
 
             //Add orbs
             int numOrbs = 3; //3
-            for (int i = 0; i < numOrbs; i++)
+            for (int i = 0; i < numOrbs; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_orb)) {
                     animationData.addToAllPool(new AnimatedOrbData(
                             screenW,
                             screenH));
                 }
-
+            }
             //Add hands
             int numHands = 1; //1
-            for (int i = 0; i < numHands; i++)
+            for (int i = 0; i < numHands; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_hand)) {
                     animationData.addToAllPool(new AnimatedHandData(
                             screenW,
@@ -172,10 +173,10 @@ public class TitlescreenAnimationView extends View {
                     bitmap_handRot = ((AnimatedHandData) animationData.getLastFromAllPool()).
                             rotateBitmap(bitmap_hand);
                 }
-
+            }
             //Add writing
             int numWriting = 1; //1
-            for (int i = 0; i < numWriting; i++)
+            for (int i = 0; i < numWriting; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_writing)) {
                     animationData.addToAllPool(new AnimatedWritingData(
                             screenW,
@@ -186,15 +187,16 @@ public class TitlescreenAnimationView extends View {
                     bitmap_writingRot = ((AnimatedWritingData) animationData.
                             getLastFromAllPool()).rotateBitmap(bitmap_writing);
                 }
-
+            }
             //Add Frost
             int numFrost = 1; //1
-            for (int i = 0; i < numFrost; i++)
+            for (int i = 0; i < numFrost; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_frost)) {
                     animationData.addToAllPool(new AnimatedFrostData(
                             screenW,
                             screenH));
                 }
+            }
             //Create Queue
             animationData.setQueue(
                     new AnimatedGraphicQueue(animationData.getAllPoolSize(), 750));
@@ -283,8 +285,9 @@ public class TitlescreenAnimationView extends View {
                     if (currentAnim instanceof AnimatedHandData) {
                         AnimatedHandData data = ((AnimatedHandData) currentAnim);
                         BitmapUtils.destroyBitmap(bitmap_handRot);
-                        if (BitmapUtils.bitmapExists(bitmap_hand))
+                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
                             bitmap_handRot = data.rotateBitmap(bitmap_hand);
+                        }
                     } else if (currentAnim instanceof AnimatedWritingData) {
                         AnimatedWritingData data = ((AnimatedWritingData) currentAnim);
                         animationData.setSelectedWriting(
@@ -294,8 +297,9 @@ public class TitlescreenAnimationView extends View {
                         bitmapUtils.setResource(
                                 bookwritingResId.get(animationData.getSelectedWriting()));
                         bitmap_writing = bitmapUtils.compileBitmaps(getContext());
-                        if (BitmapUtils.bitmapExists(bitmap_writing))
+                        if (BitmapUtils.bitmapExists(bitmap_writing)) {
                             bitmap_writingRot = data.rotateBitmap(bitmap_writing);
+                        }
                     }
                     try {
                         animationData.removeFromCurrentPool(currentAnim);
@@ -316,8 +320,9 @@ public class TitlescreenAnimationView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (titleScreenViewModel == null)
+        if (titleScreenViewModel == null) {
             return;
+        }
 
         paint.setStyle(Paint.Style.FILL);
 

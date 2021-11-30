@@ -91,8 +91,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         timer_skip.setOnClickListener(v -> {
             phaseTimerCountdownView.createTimer(0L, 1000L);
             if ((!(phaseTimerData.getTimeRemaining() > 0L)) &&
-                    sanityData.getSanityActual() < 50)
+                    sanityData.getSanityActual() < 50) {
                 sanityData.setProgressManually(50);
+            }
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
                     reset();
@@ -147,8 +148,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // SANITY METER
 
         sanityMeterView.init(sanityData);
-        if (sanityData != null)
+        if (sanityData != null) {
             sanityPercentTextView.setText(sanityData.toPercentString());
+        }
 
         enableUIThread();
     }
@@ -202,8 +204,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
             if (sanityThread == null) {
 
-                if (evidenceViewModel.hasSanityData())
+                if (evidenceViewModel.hasSanityData()) {
                     evidenceViewModel.getSanityData().setIsPaused(false);
+                }
 
                 if (evidenceViewModel.hasSanityRunnable()) {
 
@@ -256,6 +259,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setIsPaused(true);
             }
+
             sanityRunnable = evidenceViewModel.getSanityRunnable();
         }
 
