@@ -32,8 +32,6 @@ public class AppSettingsFragment extends Fragment {
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
 
-    private boolean mustRefresh;
-
     @Nullable
     @Override
     public View onCreateView(
@@ -96,8 +94,8 @@ public class AppSettingsFragment extends Fragment {
 
         ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
         ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        AppCompatTextView btn_confirmClose = view.findViewById(R.id.settings_confirm_button);
-        AppCompatTextView btn_cancelClose = view.findViewById(R.id.settings_cancel_button);
+        AppCompatTextView label_confirmClose = view.findViewById(R.id.settings_confirm_label);
+        AppCompatTextView label_cancelClose = view.findViewById(R.id.settings_cancel_label);
         ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
@@ -143,10 +141,10 @@ public class AppSettingsFragment extends Fragment {
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
-        btn_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
+        label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-        btn_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
+        label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
 
@@ -295,7 +293,7 @@ public class AppSettingsFragment extends Fragment {
         });
 
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

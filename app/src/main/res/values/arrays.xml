@@ -6,16 +6,16 @@
     -->
     <!-- Language Data -->
     <string-array name="languages_name">
-        <item>Deutsch</item>
-        <item>English</item>
-        <item>Español</item>
-        <item>Français</item>
+        <item>@string/language_fullName_german</item>
+        <item>@string/language_fullName_english</item>
+        <item>@string/language_fullName_spanish</item>
+        <item>@string/language_fullName_french</item>
     </string-array>
     <string-array name="languages_abbreviation">
-        <item>de</item>
-        <item>en</item>
-        <item>es</item>
-        <item>fr</item>
+        <item>@string/language_abbrName_german</item>
+        <item>@string/language_abbrName_english</item>
+        <item>@string/language_abbrName_spanish</item>
+        <item>@string/language_abbrName_french</item>
     </string-array>
 
     <!-- Book Writing Images -->
@@ -26,6 +26,8 @@
         <item>@drawable/anim_writing_4</item>
         <item>@drawable/anim_writing_5</item>
         <item>@drawable/anim_writing_6</item>
+        <item>@drawable/anim_writing_7</item>
+        <item>@drawable/anim_writing_8</item>
     </integer-array>
 
     <!--

@@ -44,14 +44,14 @@
                     android:id="@+id/imageView2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_button"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/icon_negative_unselected" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_cancel_button"
+                    android:id="@+id/settings_cancel_label"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -80,6 +80,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/settings_title"
                 android:textColor="?attr/bodyFontColor"
+                android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -102,14 +103,14 @@
                     android:id="@+id/imageView3"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_button"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/icon_positive_unselected" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_confirm_button"
+                    android:id="@+id/settings_confirm_label"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"

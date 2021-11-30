@@ -6,12 +6,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -57,8 +57,11 @@ public class AppLanguageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         // INITIALIZE VIEWS
-        AppCompatTextView title = view.findViewById(R.id.label_languages);
-        ImageButton closeButton = view.findViewById(R.id.popup_close_button);
+        AppCompatTextView title = view.findViewById(R.id.label_languagesTitle);
+        ConstraintLayout btn_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
+        ConstraintLayout btn_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
+        AppCompatTextView label_confirmClose = view.findViewById(R.id.language_confirm_label);
+        AppCompatTextView label_cancelClose = view.findViewById(R.id.language_cancel_label);
         RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
 
         // TEXT SIZE
@@ -67,16 +70,36 @@ public class AppLanguageFragment extends Fragment {
                 50,
                 1,
                 TypedValue.COMPLEX_UNIT_SP);
+        label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
+        label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
+                12, 50, 1,
+                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
-        closeButton.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+        btn_confirmClose.setOnClickListener(v -> {
+            titleScreenViewModel.setLanguageSelectedOriginal(-1);
+            Navigation.findNavController(v).popBackStack();
+        });
+        btn_cancelClose.setOnClickListener(v -> {
+                    if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+                        globalPreferencesViewModel.setLanguage(
+                                titleScreenViewModel.getLanguageSelectedOriginal(),
+                                getResources().getStringArray(
+                                        R.array.languages_abbreviation));
+                    }
+                    configureLanguage();
+                    Navigation.findNavController(v).popBackStack();
+                }
+        );
 
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(this,
                     new OnBackPressedCallback(true) {
                 @Override
                 public void handleOnBackPressed() {
-                    Navigation.findNavController(view).popBackStack();
+                    // Disables OnBackPressed
                 }
             });
         }
@@ -86,8 +109,13 @@ public class AppLanguageFragment extends Fragment {
 
             ArrayList<String> languageNames = new ArrayList<>(Arrays.asList(
                     getContext().getResources().getStringArray(R.array.languages_name)));
-            int selected = globalPreferencesViewModel.getLanguageIndex(new ArrayList<>(Arrays.asList(
-                    getContext().getResources().getStringArray(R.array.languages_abbreviation))));
+            int selected = globalPreferencesViewModel.getLanguageIndex(
+                    new ArrayList<>(Arrays.asList(
+                        getContext().getResources().getStringArray(
+                                R.array.languages_abbreviation))));
+            if(titleScreenViewModel.getLanguageSelectedOriginal() == -1) {
+                titleScreenViewModel.setLanguageSelectedOriginal(selected);
+            }
 
             for (int i = 0; i < languageNames.size(); i++) {
                 LanguagesAdapterView adapter = new LanguagesAdapterView(
@@ -153,7 +181,5 @@ public class AppLanguageFragment extends Fragment {
 
         super.onPause();
     }
-
-
 
 }

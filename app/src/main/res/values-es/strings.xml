@@ -150,14 +150,19 @@
     <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
     <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
     <string name="objectives_title_response_alone">SOLA</string>
+
     <string name="map_floor_name_first">Primer Piso</string>
     <string name="map_floor_name_second">Segunda Planta</string>
     <string name="map_floor_name_attic">Atico</string>
     <string name="map_floor_name_basement">Sótano</string>
+
     <string name="general_evidence_reset_button">Reiniciar</string>
+
     <string name="titlescreen_languages_label">Seleccione el Idioma</string>
+
     <string name="mapview_instruction_zoom">Acercar: pellizca dos dedos</string>
     <string name="mapview_instruction_pan">Alejar: arrastra un dedo</string>
+
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Temperatura Gelida</string>
     <string name="evidence_evidence_type_box">CAJA DE ESPIRITUS</string>
@@ -176,18 +181,21 @@
     <string name="evidence_ghost_type_spirit">ESPIRITU</string>
     <string name="evidence_ghost_type_wraith">ESPECTRO</string>
     <string name="evidence_ghost_type_yurei">YUREI</string>
+
     <string name="general_evidence_button">EVIDENCIA</string>
     <string name="general_tasks_button">TAREAS</string>
     <string name="general_maps_button">MAPAS</string>
+
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Sobre el</string>
     <string name="aboutinfo_specialthanks_title">Gracias Especiales</string>
     <string name="aboutinfo_developerinfo_developer">Desarrollador</string>
     <string name="aboutinfo_developerinfo_contact">Contacto</string>
     <string name="aboutinfo_developerinfo_title">Información Para Desarrolladores</string>
+    <string name="aboutinfo_joindiscord">Visita el Discord</string>
+
     <string name="settings_title">Configuraciones</string>
     <string name="settings_screenalwayson">Mantenga siempre la pantalla encendida</string>
-    <string name="aboutinfo_joindiscord">Visita el Discord</string>
 
     <string name="objective_info_ghostevent">Atestigue un evento fantasmal</string>
     <string name="objective_info_ghostphotograph">Fotografie al fantasma</string>
@@ -200,6 +208,7 @@
     <string name="objective_info_repelwithsmudge">Repele al fantasma de la caza con un palo difuminado</string>
     <string name="objective_info_extinguishcandle">Haz que el fantasma apague una vela</string>
     <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
+    <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
 
     <string name="evidence_timer_maplabel">Mapa:</string>
     <string name="evidence_sanity_huntwarn">Advertencia de caza</string>
@@ -214,7 +223,6 @@
     <string name="settings_colorblindnessmode_title">" Modo daltónico (Beta)"</string>
     <string name="settings_colorblindnessmode_note">(Entrará en vigor después de salir de Configuración)</string>
     <string name="settings_colorblindnessmode_normal">Ninguna</string>
-    <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
 
     <!--
         TOOLS PAGE
@@ -275,7 +283,7 @@
     <string name="spiritbox_entry_q8_2">¿Que loco estoy?</string>
     <string name="spiritbox_entry_q8_3">¿Que loco estoy?</string>
     <string name="spiritbox_entry_q8_4">¿Estoy loco?</string>
-    <string name="settings_confirm" translatable="false">Cancelar</string>
-    <string name="settings_cancel" translatable="false">Confirmar</string>
+    <string name="settings_confirm">Confirmar</string>
+    <string name="settings_cancel">Cancelar</string>
 
 </resources>

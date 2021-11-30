@@ -15,6 +15,7 @@ public class TitlescreenViewModel extends ViewModel {
     private final AnimatedGraphicData animationData = new AnimatedGraphicData();
     private AdRequest adRequest = null;
     private boolean canRefreshFragment = true;
+    private int languageSelectedOriginal = -1;
 
     /**
      * getAnimatedData method
@@ -70,4 +71,11 @@ public class TitlescreenViewModel extends ViewModel {
         return canRefreshFragment;
     }
 
+    public int getLanguageSelectedOriginal() {
+        return languageSelectedOriginal;
+    }
+
+    public void setLanguageSelectedOriginal(int languageSelectedOriginal) {
+        this.languageSelectedOriginal = languageSelectedOriginal;
+    }
 }

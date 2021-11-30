@@ -36,7 +36,8 @@ public class TitlescreenAnimationView extends View {
 
     private ArrayList<Integer> bookwritingResId = new ArrayList<>();
 
-    private final int screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
+    private final int
+            screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
             screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
     private final Paint paint = new Paint();
@@ -114,7 +115,7 @@ public class TitlescreenAnimationView extends View {
      *
      */
     public void buildImages() {
-        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
+        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb2).
                 compileBitmaps(getContext());
         bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).
                 compileBitmaps(getContext());

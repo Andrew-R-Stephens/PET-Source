@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/popup_main_relativelayout"
+    android:id="@+id/popup_main_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal|center_vertical">
@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,38 +19,117 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/constraintLayout27"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/divider_1"
-            app:layout_constraintEnd_toEndOf="@+id/popup_contentbody_constraintlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".075"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:id="@+id/popup_close_button"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintlayout_cancelbutton"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                app:tint="?attr/subtitleFontColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/label_languagesTitle"
+                app:layout_constraintEnd_toStartOf="@+id/label_languagesTitle"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".2">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/language_cancel_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_negative_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/language_cancel_label"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/norse"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_negative_unselected"
+                    android:text="@string/settings_cancel"
+                    android:textColor="?attr/selectedColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="?attr/subtitleFontColor" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_languagesTitle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/norse_regular"
+                android:gravity="center_horizontal|center_vertical"
+                android:maxLines="1"
+                android:text="@string/titlescreen_languages_label"
+                android:textColor="?attr/bodyFontColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/constraintlayout_cancelbutton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintlayout_confirmbutton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/label_languagesTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/label_languagesTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".2">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/language_confirm_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_positive_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/language_confirm_label"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/norse"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_positive_unselected"
+                    android:text="@string/settings_confirm"
+                    android:textColor="?attr/selectedColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="?attr/subtitleFontColor" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:id="@+id/divider_1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintBottom_toBottomOf="@+id/popup_contentbody_constraintlayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/popup_contentbody_constraintlayout"
@@ -58,11 +137,10 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_1">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout27">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_languages"
@@ -72,6 +150,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/titlescreen_languages_label"
                 android:textColor="@color/white"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout68"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".07"

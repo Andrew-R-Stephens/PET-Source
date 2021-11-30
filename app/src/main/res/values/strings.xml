@@ -32,7 +32,7 @@
     <string name="reviewtracking_appTimesOpened" translatable="false">appTimesOpened</string>
 
     <!--
-        TITLESCREEN PAGE
+        TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
     <string name="titlescreen_beta_label" translatable="false">Beta</string>
@@ -50,7 +50,20 @@
     <string name="review_storelink" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
 
     <!--
-        ABOUT POPUP
+        LANGUAGE FRAGMENT
+    -->
+    <!-- Languages -->
+    <string name="language_fullName_german" translatable="false">Deutsch</string>
+    <string name="language_fullName_english" translatable="false">English</string>
+    <string name="language_fullName_spanish" translatable="false">Español</string>
+    <string name="language_fullName_french" translatable="false">Français</string>
+    <string name="language_abbrName_german" translatable="false">de</string>
+    <string name="language_abbrName_english" translatable="false">en</string>
+    <string name="language_abbrName_spanish" translatable="false">es</string>
+    <string name="language_abbrName_french" translatable="false">fr</string>
+
+    <!--
+        ABOUT FRAGMENT
     -->
     <!-- Page Details -->
     <string name="aboutinfo_discordInvite" translatable="false">RawQP9H7y7</string>
@@ -77,7 +90,7 @@
     <string name="aboutinfo_specialthanks_title">Special Thanks</string>
 
     <!--
-        SETTINGS POPUP
+        SETTINGS FRAGMENT
     -->
     <!-- Page Details -->
 
@@ -95,13 +108,13 @@
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
-    <string name="settings_colorblindnessmode_monochromacy" translatable="false">Monochromacy</string>
-    <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranomaly</string>
-    <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanomaly</string>
-    <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanomaly</string>
+    <string name="settings_colorblindnessmode_monochromacy" translatable="false">Achromatopsia</string>
+    <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranopia</string>
+    <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanopia</string>
+    <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanopia</string>
 
     <!--
-        MESSAGE CENTER PAGE
+        MESSAGE CENTER FRAGMENTS
     -->
     <!-- Page Details -->
     <string name="messagecenter_inboxestitle_label">Message Center</string>
@@ -110,7 +123,7 @@
     <string name="messagecenter_inbox_phas">Phasmophobia Changelog</string>
 
     <!--
-        EVIDENCE PAGE
+        EVIDENCE FRAGMENT
     -->
     <!-- Page Details -->
     <!-- Team Data -->
