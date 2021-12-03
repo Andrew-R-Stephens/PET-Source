@@ -156,6 +156,7 @@
     <string name="evidence_ghost_type_hantu" translatable="false">HANTU</string>
     <string name="evidence_ghost_type_jinn">JINN</string>
     <string name="evidence_ghost_type_mare">MARE</string>
+    <string name="evidence_ghost_type_mimic" translatable="false">MIMIC</string>
     <string name="evidence_ghost_type_myling" translatable="false">MYLING</string>
     <string name="evidence_ghost_type_obake" translatable="false">OBAKE</string>
     <string name="evidence_ghost_type_oni">ONI</string>
@@ -211,6 +212,13 @@
                 <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
                 <p><font color=#ff6161>Strength:</font> Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
                 <p><font color=#ff6161>Weakness:</font> Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
+            ]]>
+    </string>
+    <string name="evidence_ghost_description_mimic" translatable="false">
+        <![CDATA[
+                <p>Unknown</p>
+                <p><font color=#ff6161>Strength:</font> Unknown</p>
+                <p><font color=#ff6161>Weakness:</font> Unknown</p>
             ]]>
     </string>
     <string name="evidence_ghost_description_myling" translatable="false">

@@ -15,22 +15,22 @@ import java.util.ArrayList;
 public class InvestigationData {
 
     private static final short MAX_EVIDENCE_COUNT = 3;
-    private static ArrayList<Ghost> allGhosts = null;
-    private static ArrayList<Evidence> allEvidence = null;
+    private static ArrayList<Ghost> ghostsList = null;
+    private static ArrayList<Evidence> evidenceList = null;
 
     /**
      *
      */
     public InvestigationData(Context c) {
-        initEvidence(c);
-        initGhosts(c);
+        initEvidenceList(c);
+        initGhostsList(c);
     }
 
     /**
      *
      */
-    public void initGhosts(Context c) {
-        allGhosts = new ArrayList<>();
+    public void initGhostsList(Context c) {
+        ghostsList = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.evidence_ghost_names);
         for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
@@ -44,15 +44,15 @@ public class InvestigationData {
                 ghost.addEvidence(nameTypedArray.getString(j));
             }
             nameTypedArray.recycle();
-            allGhosts.add(ghost);
+            ghostsList.add(ghost);
         }
     }
 
     /**
      *
      */
-    public void initEvidence(Context c) {
-        allEvidence = new ArrayList<>();
+    public void initEvidenceList(Context c) {
+        evidenceList = new ArrayList<>();
         String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_tool_names);
         for (int i = 0; i < evidenceNames.length; i++) {
             Evidence evidence = new Evidence();
@@ -60,7 +60,7 @@ public class InvestigationData {
             TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
             evidence.setIcon(typedArray.getResourceId(i, 0));
             typedArray.recycle();
-            allEvidence.add(evidence);
+            evidenceList.add(evidence);
         }
     }
 
@@ -75,31 +75,31 @@ public class InvestigationData {
     }
 
     public static int getGhostCount() {
-        return allGhosts.size();
+        return ghostsList.size();
     }
 
     public static int getEvidenceCount() {
-        return allEvidence.size();
+        return evidenceList.size();
     }
 
     public static Evidence getEvidence(int index) {
-        return allEvidence.get(index);
+        return evidenceList.get(index);
     }
 
     public Ghost getGhost(int index) {
-        return allGhosts.get(index);
+        return ghostsList.get(index);
     }
 
     public ArrayList<Ghost> getGhostsList() {
-        return allGhosts;
+        return ghostsList;
     }
 
     /**
      * Resets the Ruling for each Evidence type
      */
     public void reset() {
-        for (int i = 0; i < allEvidence.size(); i++) {
-            allEvidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
+        for (int i = 0; i < evidenceList.size(); i++) {
+            evidenceList.get(i).setRuling(Evidence.Ruling.NEUTRAL);
         }
     }
 
@@ -186,7 +186,7 @@ public class InvestigationData {
         }
 
         public void addEvidence(String evidence) {
-            for (Evidence e : allEvidence) {
+            for (Evidence e : evidenceList) {
                 if (evidence.equals(e.getName())) {
                     addEvidence(e);
                     break;
@@ -228,14 +228,14 @@ public class InvestigationData {
                 }
             }
 
-            for (int i = 0; i < allEvidence.size(); i++) {
+            for (int i = 0; i < evidenceList.size(); i++) {
                 boolean isContained = false;
                 for (Evidence value : thisGhostEvidence) {
-                    if (allEvidence.get(i).getName().equals(value.getName())) {
+                    if (evidenceList.get(i).getName().equals(value.getName())) {
                         isContained = true;
                     }
                 }
-                if (!isContained && allEvidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
+                if (!isContained && evidenceList.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
                     return -5;
                 }
             }

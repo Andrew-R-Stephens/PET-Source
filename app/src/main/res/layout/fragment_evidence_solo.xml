@@ -26,9 +26,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout50"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_sanityTracking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -55,9 +54,9 @@
                     app:autoSizeStepGranularity="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toTopOf="@+id/dividerA"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/layout_ghostList"
                     app:layout_constraintHeight_percent=".08"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/layout_ghostList"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
@@ -112,9 +111,10 @@
                     app:autoSizeMinTextSize="20sp"
                     app:autoSizeStepGranularity="1sp"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/divider2"
+                    app:layout_constraintEnd_toEndOf="@+id/layout_evidenceList"
                     app:layout_constraintHeight_percent=".08"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/layout_evidenceList"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
@@ -153,10 +153,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout50"
+            android:id="@+id/constraintLayout_sanityTracking"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="5dp"
+            app:layout_constraintHeight_percent=".2"
             app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

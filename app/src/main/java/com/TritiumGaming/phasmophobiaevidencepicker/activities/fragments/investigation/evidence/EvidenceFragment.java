@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -21,15 +22,17 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -65,13 +68,15 @@ public class EvidenceFragment extends Fragment {
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
-    protected EvidenceItem[] evidenceItems;
+    protected EvidenceView[] evidenceItems;
     protected EvidenceRadioGroup[] evidenceRadioGroups;
 
-    protected GhostItem[] ghostItems;
+    protected GhostView[] ghostItems;
     protected GhostLabel[] ghostLabels;
     protected GhostIcon[][] ghostEvidenceIcons;
 
+    protected ConstraintLayout mainConstraintLayout;
+    protected ConstraintLayout sanityTrackingConstraintLayout;
     protected DifficultyCarouselView difficultyCarouselView;
     protected PhaseTimerView phaseTimerCountdownView;
     protected AppCompatTextView phaseTimerTextView;
@@ -172,13 +177,16 @@ public class EvidenceFragment extends Fragment {
         // RESET VIEWS
         AppCompatTextView label_resetAll = view.findViewById(R.id.label_resetAll);
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
-        //View navigation_fraglistener_spiritbox = view.findViewById(R.id.goto_spiritboxtool);
+        AppCompatImageView navigation_goto_medLeft = view.findViewById(R.id.icon_goto_medLeft);
+        AppCompatImageView navigation_goto_medRight = view.findViewById(R.id.icon_goto_medRight);
 
         // SANITY METER VIEWS
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
-        sanitySeekBarView = (SanitySeekBarView) view.findViewById(R.id.evidence_sanitymeter_seekbar);
+        sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
         sanityWarningTextView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
+        mainConstraintLayout = view.findViewById(R.id.layout_main);
+        sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
         // TEXT SIZES
         phaseTimerTextView.setAutoSizeTextTypeUniformWithConfiguration(
@@ -206,9 +214,9 @@ public class EvidenceFragment extends Fragment {
         // LISTENERS
         initNavListeners(
                 listener_goto_left,
-                null,
+                navigation_goto_medLeft,
                 listener_goto_right,
-                null,
+                navigation_goto_medRight,
                 listener_resetAll);
 
         sanitySeekBarView.init(
@@ -217,9 +225,9 @@ public class EvidenceFragment extends Fragment {
 
         // INITIALIZE OBJECTS
         // GHOST GROUPS
-        ghostItems = new GhostItem[InvestigationData.getGhostCount()];
+        ghostItems = new GhostView[InvestigationData.getGhostCount()];
         // EVIDENCE GROUPS
-        evidenceItems = new EvidenceItem[InvestigationData.getEvidenceCount()];
+        evidenceItems = new EvidenceView[InvestigationData.getEvidenceCount()];
         // EVIDENCE RADIO BUTTON GROUPS
         evidenceRadioGroups = new EvidenceRadioGroup[InvestigationData.getEvidenceCount()];
         EvidenceRadioButton[][] radioButtons_evidence =
@@ -279,6 +287,28 @@ public class EvidenceFragment extends Fragment {
         // FINALIZE BY REORDERING GHOST LIST
         updateGhostsList();
 
+        //createGhostItems(ghostContainer, view);
+
+    }
+
+    public void createGhostItems(LinearLayout ghostContainer, View view) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        //Avoid pass null in the root it ignores spaces in the child layout
+        for(int i = 0; i < evidenceViewModel.getInvestigationData().getGhostsList().size(); i++) {
+            ghostContainer.setWeightSum(ghostContainer.getWeightSum()+1);
+            View inflatedLayout = inflater.inflate(
+                    R.layout.item_evidence_ghost,
+                    (ViewGroup) view,
+                    false);
+            AppCompatTextView name = inflatedLayout.findViewById(R.id.textView9);
+            name.setText(evidenceViewModel.getInvestigationData().getGhost(i).getName());
+            name.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    30, 1,
+                    TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            ghostContainer.addView(inflatedLayout);
+        }
     }
 
     private void initNavListeners(View navLeft, View navMedLeft, View navRight,
@@ -303,7 +333,35 @@ public class EvidenceFragment extends Fragment {
                     }
             );
         }
-        if(navLeft != null) {
+
+        if(navCenter != null) {
+            navCenter.setOnClickListener(v -> {
+                        softReset();
+                        /*
+                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                        if (Build.VERSION.SDK_INT >= 26) {
+                            ft.setReorderingAllowed(false);
+                        }
+                        ft.detach(EvidenceFragment.this).commitNow();
+                        ft.attach(EvidenceFragment.this).commitNow();
+                        */
+                    }
+            );
+        }
+
+        if(navMedRight != null) {
+            //Log.d("Navigation", "Med Right Navigation not defined.");
+            navMedRight.setOnClickListener(v -> {
+                        if(sanityTrackingConstraintLayout.getVisibility() == View.VISIBLE) {
+                            sanityTrackingConstraintLayout.setVisibility(View.GONE);
+                        } else if(sanityTrackingConstraintLayout.getVisibility() == View.GONE) {
+                            sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
+                        }
+                    }
+            );
+        }
+
+        if(navRight != null) {
             navRight.setOnClickListener(v -> {
                         if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
@@ -313,22 +371,7 @@ public class EvidenceFragment extends Fragment {
                     }
             );
         }
-        if(navCenter != null) {
-            navCenter.setOnClickListener(v -> {
-                        softReset();
 
-                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                        if (Build.VERSION.SDK_INT >= 26) {
-                            ft.setReorderingAllowed(false);
-                        }
-                        ft.detach(EvidenceFragment.this).commitNow();
-                        ft.attach(EvidenceFragment.this).commitNow();
-                    }
-            );
-        }
-        if(navMedRight != null) {
-            Log.d("Navigation", "Med Right Navigation not defined.");
-        }
     }
 
     /**
@@ -358,7 +401,7 @@ public class EvidenceFragment extends Fragment {
             }
 
             // CREATE NEW CONTAINER FOR GHOST ITEM
-            ghostItems[i] = new GhostItem(getContext(), ghostLabels[i], iconLayout);
+            ghostItems[i] = new GhostView(getContext(), ghostLabels[i], iconLayout);
             // ADD GHOST LABEL TO GHOST ITEM
             ghostContainer.addView(ghostItems[i]);
         }
@@ -386,7 +429,7 @@ public class EvidenceFragment extends Fragment {
         }
 
         // CREATE NEW GHOST ARRAY FOR REORDERING ITEMS
-        GhostItem[] newReorderedList = new GhostItem[ghostItems.length];
+        GhostView[] newReorderedList = new GhostView[ghostItems.length];
 
         // SET VALUES FOR GHOST ITEMS
         for (int i = 0; i < ghostItems.length; i++) {
@@ -438,7 +481,7 @@ public class EvidenceFragment extends Fragment {
                     newReorderedList[i + 1].getID()).getEvidenceScore();
 
             if (ratingA < ratingB) {
-                GhostItem t = newReorderedList[i + 1];
+                GhostView t = newReorderedList[i + 1];
                 newReorderedList[i + 1] = newReorderedList[i];
                 newReorderedList[i] = t;
 
@@ -452,7 +495,7 @@ public class EvidenceFragment extends Fragment {
 
         // Set Ghost list with reorder
         if (ghostContainer_inner != null) {
-            for (GhostItem ghostMasterItem : newReorderedList) {
+            for (GhostView ghostMasterItem : newReorderedList) {
                 ghostContainer_inner.addView(ghostMasterItem);
             }
         }
@@ -484,17 +527,24 @@ public class EvidenceFragment extends Fragment {
 
         // LOOP THROUGH EVIDENCE LIST BODY
         for (int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
+
             // CREATE NEW CONTAINER FOR EVIDENCE ITEM
-            evidenceItems[i] = new EvidenceItem(getContext());
+            evidenceItems[i] = new EvidenceView(getContext());
+
             // CREATE LABEL FOR EVIDENCE ITEM AND ADD IT
             evidenceItems[i].addView(new EvidenceLabel(getContext(), i));
+
             // CREATE EVIDENCERADIOGROUP
             for (int j = 0; j < radioButtons_evidence[i].length; j++) {
-                radioButtons_evidence[i][j] = new EvidenceRadioButton(getContext(),
+                radioButtons_evidence[i][j] = new EvidenceRadioButton(
+                        getContext(),
                         InvestigationData.getEvidence(i),
                         InvestigationData.Evidence.Ruling.values()[j]);
             }
-            evidenceRadioGroups[i] = new EvidenceRadioGroup(getContext(), radioButtons_evidence[i]);
+            evidenceRadioGroups[i] = new EvidenceRadioGroup(
+                    getContext(),
+                    radioButtons_evidence[i]);
+
             if (checkedStorage != null) {
                 evidenceRadioGroups[i].setCheckedStorage(checkedStorage[i]);
             }
@@ -502,10 +552,11 @@ public class EvidenceFragment extends Fragment {
                 evidenceRadioGroups[i].setCheckedStorage(1);
             }
             evidenceItems[i].addView(evidenceRadioGroups[i]);
+
         }
 
         // FINALIZE EVIDENCE LIST
-        for (EvidenceItem evidence_masterItem : evidenceItems) {
+        for (EvidenceView evidence_masterItem : evidenceItems) {
             evidenceContainer.addView(evidence_masterItem);
         }
 
@@ -720,7 +771,7 @@ public class EvidenceFragment extends Fragment {
     /**
      * GhostItem class
      */
-    public class GhostItem extends LinearLayout {
+    public class GhostView extends LinearLayout {
         private GhostLabel ghostLabel = null;
 
         /**
@@ -730,7 +781,7 @@ public class EvidenceFragment extends Fragment {
          * @param label   GhostLabel
          * @param icons   GhostIcons
          */
-        public GhostItem(Context context, GhostLabel label, GhostIcons icons) {
+        public GhostView(Context context, GhostLabel label, GhostIcons icons) {
             super(context);
 
             setOrientation(LinearLayout.HORIZONTAL);
@@ -957,14 +1008,14 @@ public class EvidenceFragment extends Fragment {
     /**
      * GhostIcon class
      */
-    public static class EvidenceItem extends LinearLayout {
+    public static class EvidenceView extends LinearLayout {
 
         /**
          * EvidenceItem constructor
          *
          * @param context The Context of the current Activity
          */
-        public EvidenceItem(Context context) {
+        public EvidenceView(Context context) {
             super(context);
 
             setOrientation(LinearLayout.VERTICAL);
