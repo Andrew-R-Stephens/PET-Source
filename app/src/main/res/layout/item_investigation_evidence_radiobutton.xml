@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView9"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/radioIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="@font/norse"
-        android:gravity="center"
-        android:text="@string/evidence_ghost_type_banshee"
-        android:textColor="@color/red_med"
+        android:layout_margin="5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_inconclusive_unselected" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

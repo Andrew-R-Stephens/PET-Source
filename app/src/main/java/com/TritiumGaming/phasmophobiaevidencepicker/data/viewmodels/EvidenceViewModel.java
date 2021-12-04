@@ -11,6 +11,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
 
+import java.util.Arrays;
+
 /**
  * EvidenceViewModel class
  *
@@ -151,7 +153,16 @@ public class EvidenceViewModel extends ViewModel {
      * @return
      */
     public int[] getRadioButtonsChecked() {
+        if(radioButtonsChecked == null) {
+            radioButtonsChecked = new int[InvestigationData.getEvidenceCount()];
+            Arrays.fill(radioButtonsChecked, 1);
+        }
+
         return radioButtonsChecked;
+    }
+
+    public void setRadioButtonChecked(int evidenceIndex, int buttonIndex) {
+        radioButtonsChecked[evidenceIndex] = buttonIndex;
     }
 
     public void reset() {

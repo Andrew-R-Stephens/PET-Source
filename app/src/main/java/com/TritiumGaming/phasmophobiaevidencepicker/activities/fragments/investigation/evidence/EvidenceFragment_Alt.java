@@ -56,7 +56,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPrefer
  *
  * @author TritiumGamingStudios
  */
-public class EvidenceFragment extends Fragment {
+public class EvidenceFragment_Alt extends Fragment {
 
     protected EvidenceViewModel evidenceViewModel;
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
@@ -100,7 +100,7 @@ public class EvidenceFragment extends Fragment {
      *
      * @param layout -
      */
-    public EvidenceFragment(int layout) {
+    public EvidenceFragment_Alt(int layout) {
         super(layout);
     }
 
@@ -287,6 +287,142 @@ public class EvidenceFragment extends Fragment {
         // FINALIZE BY REORDERING GHOST LIST
         updateGhosts();
 
+        //createGhostItems(view, ghostContainer);
+        //createEvidenceItems(view, evidenceContainer);
+
+    }
+
+    private void createEvidenceItems(View view, LinearLayout evidenceContainer) {
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        String[] names = getResources().getStringArray(R.array.evidence_tool_names);
+
+        //Avoid pass null in the root it ignores spaces in the child layout
+        for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
+
+            View evidenceParent = inflater.inflate(
+                    R.layout.item_investigation_evidence,
+                    (ViewGroup) view,
+                    false);
+            ConstraintLayout mainLayout = evidenceParent.findViewById(R.id.layout_main);
+            AppCompatTextView name = evidenceParent.findViewById(R.id.label_name);
+
+            View radioGroup = evidenceParent.findViewById(R.id.radioGroup);
+
+            View radioButton1 = radioGroup.findViewById(R.id.radio1);
+            View radioButton2 = radioGroup.findViewById(R.id.radio2);
+            View radioButton3 = radioGroup.findViewById(R.id.radio3);
+
+            AppCompatImageView icon1 = radioButton1.findViewById(R.id.radioIcon);
+            AppCompatImageView icon2 = radioButton2.findViewById(R.id.radioIcon);
+            AppCompatImageView icon3 = radioButton3.findViewById(R.id.radioIcon);
+
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            mainLayout.setLayoutParams(params);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        12,
+                        30, 1,
+                        TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            }
+            name.setText(names[i]);
+
+            if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
+                icon1.setImageResource(R.drawable.icon_positive_selected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
+                icon3.setImageResource(R.drawable.icon_negative_unselected);
+            }
+            if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {
+                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_selected);
+                icon3.setImageResource(R.drawable.icon_negative_unselected);
+            }
+            if(evidenceViewModel.getRadioButtonsChecked()[i] == 2) {
+                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
+                icon3.setImageResource(R.drawable.icon_negative_selected);
+            }
+
+            int index = i;
+            icon1.setOnClickListener(v -> {
+                icon1.setImageResource(R.drawable.icon_positive_selected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
+                icon3.setImageResource(R.drawable.icon_negative_unselected);
+                evidenceViewModel.setRadioButtonChecked(index, 0);
+                updateGhosts();
+            });
+            icon2.setOnClickListener(v -> {
+                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_selected);
+                icon3.setImageResource(R.drawable.icon_negative_unselected);
+                evidenceViewModel.setRadioButtonChecked(index, 1);
+                updateGhosts();
+            });
+            icon3.setOnClickListener(v -> {
+                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
+                icon3.setImageResource(R.drawable.icon_negative_selected);
+                evidenceViewModel.setRadioButtonChecked(index, 2);
+                updateGhosts();
+            });
+
+            evidenceContainer.addView(evidenceParent);
+
+        }
+
+    }
+
+    public void createGhostItems(View view, LinearLayout ghostContainer) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        //Avoid pass null in the root it ignores spaces in the child layout
+        for(int i = 0; i < evidenceViewModel.getInvestigationData().getGhostsList().size(); i++) {
+
+            View inflatedLayout = inflater.inflate(
+                    R.layout.item_investigation_ghost,
+                    (ViewGroup) view,
+                    false);
+            AppCompatTextView name = inflatedLayout.findViewById(R.id.label_name);
+            AppCompatImageView icon1 = inflatedLayout.findViewById(R.id.icon1);
+            AppCompatImageView icon2 = inflatedLayout.findViewById(R.id.icon2);
+            AppCompatImageView icon3 = inflatedLayout.findViewById(R.id.icon3);
+            ConstraintLayout mainLayout = inflatedLayout.findViewById(R.id.layout_main);
+
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            mainLayout.setLayoutParams(params);
+
+            name.setText(evidenceViewModel.getInvestigationData().getGhost(i).getName());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        12,
+                        30, 1,
+                        TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            }
+
+            icon1.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(i)
+                            .getEvidenceArray()[0]
+                            .getIcon());
+            icon2.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(i)
+                            .getEvidenceArray()[1]
+                            .getIcon());
+            icon3.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(i)
+                            .getEvidenceArray()[2]
+                            .getIcon());
+
+            ghostContainer.addView(inflatedLayout);
+
+        }
     }
 
     private void initNavListeners(View navLeft, View navMedLeft, View navRight,
