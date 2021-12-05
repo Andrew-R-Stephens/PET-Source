@@ -33,7 +33,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  *
  * @author TritiumGamingStudios
  */
-public class EvidenceSoloFragment extends EvidenceFragment {
+public class EvidenceSoloFragment extends EvidenceFragment_Alt {
 
     private Thread sanityThread; //Thread that updates the sanity levels
 

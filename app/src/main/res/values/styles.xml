@@ -7,4 +7,16 @@
         <item name="colorControlNormal">?attr/bodyFontColor</item>
         <item name="colorControlActivated">?attr/titleFontColor</item>
     </style>
+
+    <declare-styleable name="GhostView">
+        <attr name="showText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="EvidenceView">
+        <attr name="color" format="color" />
+    </declare-styleable>
 </resources>

@@ -25,10 +25,9 @@ public class EvidenceViewModel extends ViewModel {
     private SanityData sanityData;
 
     private int[] radioButtonsChecked;
+    private int[] ghostOrder;
 
-    // private EvidenceSanitySectionData sanitySectionData; TODO: place following content inside
     private PhaseTimerData phaseTimerData;
-    // private WarnTextData warnTextData;
     private MapCarouselData mapCarouselData;
     private DifficultyCarouselData difficultyCarouselData;
 
@@ -142,6 +141,11 @@ public class EvidenceViewModel extends ViewModel {
         return sanityData != null;
     }
 
+    public void createRadioButtonsChecked() {
+        radioButtonsChecked = new int[InvestigationData.getEvidenceCount()];
+        Arrays.fill(radioButtonsChecked, 1);
+    }
+
     /**
      * @param radioButtonsChecked
      */
@@ -154,8 +158,7 @@ public class EvidenceViewModel extends ViewModel {
      */
     public int[] getRadioButtonsChecked() {
         if(radioButtonsChecked == null) {
-            radioButtonsChecked = new int[InvestigationData.getEvidenceCount()];
-            Arrays.fill(radioButtonsChecked, 1);
+            createRadioButtonsChecked();
         }
 
         return radioButtonsChecked;
@@ -165,8 +168,56 @@ public class EvidenceViewModel extends ViewModel {
         radioButtonsChecked[evidenceIndex] = buttonIndex;
     }
 
+    public void createGhostOrder() {
+        ghostOrder = new int[InvestigationData.getGhostCount()];
+
+        for(int i = 0; i < ghostOrder.length; i++) {
+            ghostOrder[i] = i;
+        }
+    }
+
+    public void updateGhostOrder() {
+
+        int[] newGhostOrder = new int[InvestigationData.getGhostCount()];
+
+        for(int i = 0; i < newGhostOrder.length; i++) {
+            newGhostOrder[i] = i;
+        }
+
+        for (int i = 0; i < newGhostOrder.length - 1; ) {
+
+            int ratingA = investigationData.getGhost(
+                    newGhostOrder[i]).getEvidenceScore();
+            int ratingB = investigationData.getGhost(
+                    newGhostOrder[i + 1]).getEvidenceScore();
+
+            if (ratingA < ratingB) {
+                int t = newGhostOrder[i + 1];
+                newGhostOrder[i + 1] = newGhostOrder[i];
+                newGhostOrder[i] = t;
+
+                if (i > 0) {
+                    i--;
+                }
+            } else {
+                i++;
+            }
+        }
+
+        ghostOrder = newGhostOrder;
+    }
+
+    public int[] getGhostOrder() {
+        if(ghostOrder == null) {
+            updateGhostOrder();
+        }
+
+        return ghostOrder;
+    }
+
     public void reset() {
-        radioButtonsChecked = null;
+        createRadioButtonsChecked();
+        createGhostOrder();
 
         if(hasPhaseTimerData()) {
             phaseTimerData.reset();

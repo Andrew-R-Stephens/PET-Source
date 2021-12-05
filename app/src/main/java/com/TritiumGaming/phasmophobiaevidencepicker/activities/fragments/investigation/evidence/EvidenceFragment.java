@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -38,7 +37,6 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
@@ -66,7 +64,6 @@ public class EvidenceFragment extends Fragment {
     protected SanityData sanityData;
     protected PhaseTimerData phaseTimerData;
     protected DifficultyCarouselData difficultyCarouselData;
-    protected MapCarouselData mapCarouselData;
 
     protected EvidenceView[] evidenceItems;
     protected EvidenceRadioGroup[] evidenceRadioGroups;
@@ -843,7 +840,7 @@ public class EvidenceFragment extends Fragment {
                     TypedValue.COMPLEX_UNIT_SP);
 
             String ghostName =
-                    evidenceViewModel.getInvestigationData().getGhostsList().get(id).getName();
+                    evidenceViewModel.getInvestigationData().getGhosts().get(id).getName();
 
             setText(ghostName);
             setTextColor(Color.WHITE);

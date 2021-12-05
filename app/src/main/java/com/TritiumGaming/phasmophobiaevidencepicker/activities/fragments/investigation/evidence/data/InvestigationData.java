@@ -15,22 +15,22 @@ import java.util.ArrayList;
 public class InvestigationData {
 
     private static final short MAX_EVIDENCE_COUNT = 3;
-    private static ArrayList<Ghost> ghostsList = null;
-    private static ArrayList<Evidence> evidenceList = null;
+    private static ArrayList<Ghost> ghosts = null;
+    private static ArrayList<Evidence> evidence = null;
 
     /**
      *
      */
     public InvestigationData(Context c) {
-        initEvidenceList(c);
-        initGhostsList(c);
+        initEvidence(c);
+        initGhosts(c);
     }
 
     /**
      *
      */
-    public void initGhostsList(Context c) {
-        ghostsList = new ArrayList<>();
+    public void initGhosts(Context c) {
+        ghosts = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.evidence_ghost_names);
         for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
@@ -44,15 +44,15 @@ public class InvestigationData {
                 ghost.addEvidence(nameTypedArray.getString(j));
             }
             nameTypedArray.recycle();
-            ghostsList.add(ghost);
+            ghosts.add(ghost);
         }
     }
 
     /**
      *
      */
-    public void initEvidenceList(Context c) {
-        evidenceList = new ArrayList<>();
+    public void initEvidence(Context c) {
+        evidence = new ArrayList<>();
         String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_tool_names);
         for (int i = 0; i < evidenceNames.length; i++) {
             Evidence evidence = new Evidence();
@@ -60,7 +60,7 @@ public class InvestigationData {
             TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
             evidence.setIcon(typedArray.getResourceId(i, 0));
             typedArray.recycle();
-            evidenceList.add(evidence);
+            InvestigationData.evidence.add(evidence);
         }
     }
 
@@ -75,31 +75,35 @@ public class InvestigationData {
     }
 
     public static int getGhostCount() {
-        return ghostsList.size();
+        return ghosts.size();
     }
 
     public static int getEvidenceCount() {
-        return evidenceList.size();
+        return evidence.size();
     }
 
     public static Evidence getEvidence(int index) {
-        return evidenceList.get(index);
+        return evidence.get(index);
     }
 
     public Ghost getGhost(int index) {
-        return ghostsList.get(index);
+        return ghosts.get(index);
     }
 
-    public ArrayList<Ghost> getGhostsList() {
-        return ghostsList;
+    public ArrayList<Ghost> getGhosts() {
+        return ghosts;
+    }
+
+    public ArrayList<Evidence> getEvidences() {
+        return evidence;
     }
 
     /**
      * Resets the Ruling for each Evidence type
      */
     public void reset() {
-        for (int i = 0; i < evidenceList.size(); i++) {
-            evidenceList.get(i).setRuling(Evidence.Ruling.NEUTRAL);
+        for (int i = 0; i < evidence.size(); i++) {
+            evidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
         }
     }
 
@@ -186,7 +190,7 @@ public class InvestigationData {
         }
 
         public void addEvidence(String evidence) {
-            for (Evidence e : evidenceList) {
+            for (Evidence e : InvestigationData.evidence) {
                 if (evidence.equals(e.getName())) {
                     addEvidence(e);
                     break;
@@ -228,14 +232,14 @@ public class InvestigationData {
                 }
             }
 
-            for (int i = 0; i < evidenceList.size(); i++) {
+            for (int i = 0; i < evidence.size(); i++) {
                 boolean isContained = false;
                 for (Evidence value : thisGhostEvidence) {
-                    if (evidenceList.get(i).getName().equals(value.getName())) {
+                    if (evidence.get(i).getName().equals(value.getName())) {
                         isContained = true;
                     }
                 }
-                if (!isContained && evidenceList.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
+                if (!isContained && evidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
                     return -5;
                 }
             }
