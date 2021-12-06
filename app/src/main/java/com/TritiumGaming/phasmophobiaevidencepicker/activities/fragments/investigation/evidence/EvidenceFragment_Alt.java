@@ -1,18 +1,23 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
@@ -37,6 +42,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
@@ -57,16 +63,6 @@ public class EvidenceFragment_Alt extends Fragment {
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
-    /*
-    protected EvidenceView[] evidenceItems;
-    protected EvidenceRadioGroup[] evidenceRadioGroups;
-
-    protected GhostView[] ghostItems;
-    protected GhostLabel[] ghostLabels;
-
-    protected GhostIcon[][] ghostEvidenceIcons;
-    */
-
     protected ConstraintLayout mainConstraintLayout;
     protected ConstraintLayout sanityTrackingConstraintLayout;
     protected DifficultyCarouselView difficultyCarouselView;
@@ -80,7 +76,6 @@ public class EvidenceFragment_Alt extends Fragment {
     protected Drawable icon_circle;
     protected Drawable[] icons_strikethrough;
     protected Typeface font_normal;
-    protected int[] fontSize;
 
     @ColorInt
     int fontEmphasisColor = 0;
@@ -181,27 +176,52 @@ public class EvidenceFragment_Alt extends Fragment {
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
         // TEXT SIZES
-        phaseTimerTextView.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 25, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        sanityPercentTextView.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 20, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 20, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        sanityWarningTextView.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            phaseTimerTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 50, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 25, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 50, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 50, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            sanityPercentTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            sanityWarningTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 50, 1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        } else {
+            phaseTimerTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 50, 1,
+                    1);
+            label_resetAll.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 25, 1,
+                    1);
+            label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 50, 1,
+                    1);
+            label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
+                    10, 50, 1,
+                    1);
+            sanityPercentTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    1);
+            sanityMeterTitle.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 20, 1,
+                    1);
+            sanityWarningTextView.setAutoSizeTextTypeUniformWithConfiguration(
+                    5, 50, 1,
+                    1);
+        }
 
         // LISTENERS
         initNavListeners(
@@ -260,10 +280,13 @@ public class EvidenceFragment_Alt extends Fragment {
                                      LinearLayout ghostContainer) {
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        String[] names = getResources().getStringArray(R.array.evidence_tool_names);
+        String[] evidenceNames = getResources().getStringArray(R.array.evidence_tool_names);
 
         //Avoid pass null in the root it ignores spaces in the child layout
         for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
+
+            String evidenceName = evidenceNames[i];
+            String evidenceInfo = getResources().getStringArray(R.array.evidence_info_array)[i];
 
             View evidenceParent = inflater.inflate(
                     R.layout.item_investigation_evidence,
@@ -290,10 +313,81 @@ public class EvidenceFragment_Alt extends Fragment {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 name.setAutoSizeTextTypeUniformWithConfiguration(
                         12,
-                        30, 1,
-                        TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                        30,
+                        1,
+                        AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            } else {
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        12,
+                        30,
+                        1,
+                        1);
             }
-            name.setText(names[i]);
+
+            name.setText(evidenceName);
+
+            name.setOnClickListener(v -> {
+
+                if(getView() == null || getView().getContext() == null) {
+                    return;
+                }
+
+                if (popup != null) {
+                    popup.dismiss();
+                }
+
+                LayoutInflater inflaterPopup =
+                        (LayoutInflater) getView().getContext().getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
+                @SuppressLint("InflateParams")
+                View customView = inflaterPopup.inflate(R.layout.popup_info, null);
+
+                popup = new PopupWindow(
+                        customView,
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT
+                );
+
+                ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+                AppCompatTextView label = customView.findViewById(R.id.label_queryName);
+                AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    label.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            50,
+                            1,
+                            AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                    info.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            35,
+                            1,
+                            AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                } else {
+                    label.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            50,
+                            1,
+                            1);
+                    info.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            35,
+                            1,
+                            1);
+                }
+
+                closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+                label.setText(evidenceName);
+                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        evidenceInfo,
+                        "ff6161", fontEmphasisColor + "")));
+
+                popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+                popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
+
+            });
 
             if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
                 icon1.setImageResource(R.drawable.icon_positive_selected);
@@ -364,14 +458,15 @@ public class EvidenceFragment_Alt extends Fragment {
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrder();
 
-        int[] strikethrough = {
-                R.drawable.icon_strikethrough_1,
-                R.drawable.icon_strikethrough_2,
-                R.drawable.icon_strikethrough_3
-        };
-
         //Avoid pass null in the root it ignores spaces in the child layout
         for (int j : newGhostOrder) {
+
+            if(getContext() == null) {
+                return;
+            }
+
+            String ghostName = evidenceViewModel.getInvestigationData().getGhost(j).getName();
+            String ghostInfo = getResources().getStringArray(R.array.ghost_info_array)[j];
 
             View inflatedLayout = inflater.inflate(
                     R.layout.item_investigation_ghost,
@@ -389,21 +484,92 @@ public class EvidenceFragment_Alt extends Fragment {
                             LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             mainLayout.setLayoutParams(params);
 
-            name.setText(evidenceViewModel.getInvestigationData().getGhost(j).getName());
+            name.setText(ghostName);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 name.setAutoSizeTextTypeUniformWithConfiguration(
                         12,
-                        30, 1,
-                        TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                        30,
+                        1,
+                        AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            } else {
+                name.setAutoSizeTextTypeUniformWithConfiguration(
+                        12,
+                        30,
+                        1,
+                        1);
             }
+
+            name.setOnClickListener(v -> {
+
+                if(getView() == null || getView().getContext() == null) {
+                    return;
+                }
+
+                if (popup != null) {
+                    popup.dismiss();
+                }
+
+                LayoutInflater inflaterPopup =
+                        (LayoutInflater) getView().getContext().getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
+                @SuppressLint("InflateParams")
+                View customView = inflaterPopup.inflate(R.layout.popup_info, null);
+
+                popup = new PopupWindow(
+                        customView,
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT
+                );
+
+                ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+                AppCompatTextView label = customView.findViewById(R.id.label_queryName);
+                AppCompatTextView info = customView.findViewById(R.id.label_queryInfo);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    label.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            50,
+                            1,
+                            AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
+                    info.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            35,
+                            1,
+                            AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                } else {
+                    label.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            50,
+                            1,
+                            1);
+
+                    info.setAutoSizeTextTypeUniformWithConfiguration(
+                            12,
+                            35,
+                            1,
+                            1);
+                }
+
+                closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+                label.setText(ghostName);
+                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        ghostInfo,
+                        "ff6161", fontEmphasisColor + "")));
+
+                popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+                popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
+
+            });
 
             int score = evidenceViewModel.getInvestigationData().getGhost(j)
                     .getEvidenceScore();
             if (score == -5) {
-                statusIcon.setImageResource(strikethrough[(int) (Math.random() * 3)]);
+                statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
                 statusIcon.setVisibility(View.VISIBLE);
             } else if (score == 3) {
-                statusIcon.setImageResource(R.drawable.icon_circle);
+                statusIcon.setImageDrawable(icon_circle);
                 statusIcon.setVisibility(View.VISIBLE);
             } else {
                 statusIcon.setVisibility(View.INVISIBLE);
@@ -531,16 +697,6 @@ public class EvidenceFragment_Alt extends Fragment {
 
     }
 
-
-    /**
-     * saveStates
-     * <p>
-     * TODO
-     */
-    public void saveStates() {
-        // NOTHING YET
-    }
-
     /**
      * softReset
      *
@@ -569,7 +725,6 @@ public class EvidenceFragment_Alt extends Fragment {
      */
     @Override
     public void onPause() {
-        saveStates();
 
         phaseTimerCountdownView.destroyTimer();
 

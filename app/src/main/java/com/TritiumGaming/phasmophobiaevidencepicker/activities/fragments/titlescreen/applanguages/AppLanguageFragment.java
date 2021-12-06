@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -66,17 +67,40 @@ public class AppLanguageFragment extends Fragment {
         RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
 
         // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(
-                12,
-                50,
-                1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            title.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        } else {
+            title.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    1);
+            label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    1);
+            label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    50,
+                    1,
+                    1);
+        }
+
 
         // LISTENERS
         btn_confirmClose.setOnClickListener(v -> {

@@ -110,7 +110,7 @@
                         android:adjustViewBounds="true"
                         android:background="#00000000"
                         android:contentDescription="@string/app_name"
-                        android:fontFamily="@font/norse"
+                        android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:maxLines="2"
                         android:scaleType="centerInside"
@@ -132,11 +132,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout75"
                     app:layout_constraintWidth_percent=".75">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_messageDate"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:fontFamily="@font/norse"
+                        android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:text="1/1/1969"
                         android:textColor="@color/cb_mono_white_med"
@@ -156,7 +156,6 @@
                 app:layout_constraintHeight_percent=".85"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout76"
-                app:layout_constraintVertical_bias="0.20"
                 app:layout_constraintWidth_percent=".75">
 
                 <ScrollView
@@ -169,7 +168,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_messageContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

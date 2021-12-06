@@ -233,6 +233,5 @@ public class EvidenceViewModel extends ViewModel {
         }
     }
 
-
 }
 

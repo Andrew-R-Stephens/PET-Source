@@ -338,6 +338,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         if (ContextCompat.checkSelfPermission(c,
                 Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
             permissionsViewModel.setRecordAudioAllowed(true);
+
         }
     }
 

@@ -4,8 +4,8 @@
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:background="@color/black">
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_constraintLayout"
@@ -426,7 +426,7 @@
                                 android:id="@+id/evidence_timer_text"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                android:fontFamily="@font/digitaldream_regular"
+                                app:fontFamily="@font/digitaldream_fat"
                                 android:gravity="center"
                                 android:hint="@string/app_name"
                                 android:maxLines="1"
@@ -538,7 +538,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/digitaldream_regular"
+                            app:fontFamily="@font/digitaldream_regular"
                             android:gravity="center_horizontal|center_vertical"
                             android:maxLines="1"
                             android:text="@string/evidence_sanitymeter_title"
@@ -555,7 +555,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/digitaldream_regular"
+                            app:fontFamily="@font/digitaldream_regular"
                             android:gravity="center|center_vertical"
                             android:maxLines="1"
                             android:text="@string/evidence_timer_time_3"

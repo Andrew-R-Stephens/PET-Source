@@ -19,7 +19,6 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment_Alt;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapCarouselView;
@@ -154,13 +153,6 @@ public class EvidenceSoloFragment extends EvidenceFragment_Alt {
         }
 
         enableUIThread();
-    }
-
-    /**
-     * saveStates method
-     */
-    public void saveStates() {
-        super.saveStates();
     }
 
     /**

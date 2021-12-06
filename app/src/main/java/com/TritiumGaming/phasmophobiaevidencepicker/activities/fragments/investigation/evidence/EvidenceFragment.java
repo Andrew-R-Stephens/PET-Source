@@ -54,6 +54,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPrefer
  *
  * @author TritiumGamingStudios
  */
+@Deprecated
 public class EvidenceFragment extends Fragment {
 
     protected EvidenceViewModel evidenceViewModel;

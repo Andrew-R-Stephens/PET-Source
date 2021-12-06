@@ -155,6 +155,9 @@ public class PhaseTimerView {
             timer.cancel();
         }
         timer = null;
+        Log.d("Timer",
+                phaseTimerData.getTimeRemaining() -
+                        (sanityData.getStartTime() - System.currentTimeMillis())+"");
     }
 
 }

@@ -57,13 +57,23 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        TextView textView = holder.label_messageTitle;
-        textView.setText(messages.get(position).getTitle());
+        AppCompatTextView textView = holder.label_messageTitle;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             textView.setAutoSizeTextTypeUniformWithConfiguration(
-                    12, 24, 1,
+                    12,
+                    35,
+                    1,
                     AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        } else {
+            textView.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    35,
+                    1,
+                    1);
         }
+        textView.setText(messages.get(position).getTitle());
+
     }
 
     @Override

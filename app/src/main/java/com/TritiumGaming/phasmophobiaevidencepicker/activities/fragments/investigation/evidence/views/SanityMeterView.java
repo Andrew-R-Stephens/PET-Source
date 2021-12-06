@@ -100,7 +100,6 @@ public class SanityMeterView extends View {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
-        //themeColor = typedValue.data;
         themeColor = Color.WHITE;
     }
 

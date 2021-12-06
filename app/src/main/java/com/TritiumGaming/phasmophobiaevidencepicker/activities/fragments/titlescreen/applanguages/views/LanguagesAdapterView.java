@@ -68,7 +68,13 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
                     12,
                     30,
                     1,
-                    TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        } else {
+            textView.setAutoSizeTextTypeUniformWithConfiguration(
+                    12,
+                    30,
+                    1,
+                    1);
         }
         textView.setText(languages.get(position));
 
