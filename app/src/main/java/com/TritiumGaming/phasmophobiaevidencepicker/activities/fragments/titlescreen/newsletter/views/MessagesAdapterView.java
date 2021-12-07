@@ -5,7 +5,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -58,7 +57,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_messageTitle;
-
+/*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             textView.setAutoSizeTextTypeUniformWithConfiguration(
                     12,
@@ -71,7 +70,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
                     35,
                     1,
                     1);
-        }
+        }*/
         textView.setText(messages.get(position).getTitle());
 
     }

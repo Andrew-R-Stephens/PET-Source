@@ -43,7 +43,7 @@
             android:id="@+id/textView_messageListName"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fontFamily="@font/eastseadokdo_regular"
+            style="@style/TypewriterRegular"
             android:gravity="center"
             android:textColor="?attr/titleFontColor"
             app:layout_constraintBottom_toBottomOf="parent"

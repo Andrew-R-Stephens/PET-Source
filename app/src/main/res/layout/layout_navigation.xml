@@ -63,12 +63,11 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_left"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/norse_regular"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:gravity="center"
                     android:text="@string/general_tasks_button"
-                    android:textColor="?attr/bodyFontColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/icon_goto_left"
                     app:layout_constraintHeight_percent=".3"
@@ -144,12 +143,11 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_resetAll"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/norse_regular"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:gravity="center"
                     android:text="@string/general_evidence_reset_button"
-                    android:textColor="?attr/bodyFontColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".3"
@@ -226,12 +224,11 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_right"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/norse_regular"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:gravity="center"
                     android:text="@string/general_maps_button"
-                    android:textColor="?attr/bodyFontColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/icon_goto_right"
                     app:layout_constraintHeight_percent=".3"

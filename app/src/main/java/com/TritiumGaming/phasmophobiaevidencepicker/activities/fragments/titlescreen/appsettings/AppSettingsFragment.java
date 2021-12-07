@@ -101,6 +101,7 @@ public class AppSettingsFragment extends Fragment {
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
         // TEXT SIZE
+        /*
         primarytitle.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
@@ -148,7 +149,7 @@ public class AppSettingsFragment extends Fragment {
         label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-
+        */
         // COLORBLIND DATA
 
         TypedArray typedArray =

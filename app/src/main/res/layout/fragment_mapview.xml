@@ -20,13 +20,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_title"
+            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fontFamily="@font/norse_regular"
             android:gravity="center"
             android:text="@string/general_maps_button"
-            android:textColor="?attr/bodyFontColor"
-            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".075"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,12 +150,11 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/textview_floorname"
+                                style="@style/NorseRegular"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                android:fontFamily="@font/norse_regular"
-                                android:gravity="center_horizontal|center_vertical"
+                                android:gravity="center"
                                 android:text="@string/app_name"
-                                android:textColor="?attr/bodyFontColor"
                                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout_floorindicators"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHeight_percent=".4"
@@ -179,7 +176,7 @@
                                     android:id="@+id/linearlayout_floorindicators"
                                     android:layout_width="wrap_content"
                                     android:layout_height="0dp"
-                                    android:gravity="center_horizontal|center_vertical"
+                                    android:gravity="center"
                                     android:orientation="horizontal"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -212,12 +209,11 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textview_controller_help_pan"
+                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:fontFamily="@font/norse_regular"
                             android:gravity="center"
                             android:text="@string/mapview_instruction_pan"
-                            android:textColor="?attr/bodyFontColor"
                             app:layout_constraintBottom_toTopOf="@+id/textview_controller_help_zoom"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -226,12 +222,11 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textview_controller_help_zoom"
+                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:fontFamily="@font/norse_regular"
                             android:gravity="center"
                             android:text="@string/mapview_instruction_zoom"
-                            android:textColor="?attr/bodyFontColor"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

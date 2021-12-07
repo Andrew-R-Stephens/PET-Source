@@ -51,12 +51,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_cancel_label"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
-                    android:fontFamily="@font/norse_regular"
                     android:gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_negative_unselected"
@@ -73,13 +73,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_languagesTitle"
+                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/norse_regular"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/titlescreen_languages_label"
-                android:textColor="?attr/bodyFontColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -110,12 +109,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_confirm_label"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
-                    android:fontFamily="@font/norse_regular"
                     android:gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_positive_unselected"
@@ -144,12 +143,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_languages"
+                style="@style/EastRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/eastseadokdo_regular"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center"
                 android:text="@string/titlescreen_languages_label"
-                android:textColor="@color/white"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout68"
                 app:layout_constraintEnd_toEndOf="parent"

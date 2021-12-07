@@ -116,6 +116,7 @@ public class AppInfoFragment extends Fragment {
 
 
         // TEXT SIZE
+        /*
         title.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
@@ -134,7 +135,7 @@ public class AppInfoFragment extends Fragment {
         discordLabel.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
-
+        */
 
         // LISTENERS
         closeButton.setOnClickListener(v -> {

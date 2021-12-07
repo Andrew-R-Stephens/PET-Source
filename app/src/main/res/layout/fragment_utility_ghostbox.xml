@@ -29,12 +29,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toolspiritbox_title"
+                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/norse_regular"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center"
                 android:text="Ghost-Speak Tool"
-                android:textColor="?attr/bodyFontColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,13 +84,9 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView"
+                        style="@style/NorseRegular"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:autoSizeMaxTextSize="50sp"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="1sp"
-                        android:autoSizeTextType="uniform"
-                        android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:text="Aggression Prompts"
                         android:textColor="?attr/titleFontColor"
@@ -136,13 +131,9 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView2"
+                        style="@style/NorseRegular"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:autoSizeMaxTextSize="50sp"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="1sp"
-                        android:autoSizeTextType="uniform"
-                        android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:text="Spirit Box Prompts"
                         android:textColor="?attr/titleFontColor"
@@ -189,12 +180,9 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView3"
+                        style="@style/NorseRegular"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:autoSizeMaxTextSize="50sp"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeStepGranularity="1sp"
-                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:text="Ouija Board Prompts"

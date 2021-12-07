@@ -29,9 +29,10 @@
 
         <TextView
             android:id="@+id/textView8"
+            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="TextView"
+            android:text="Tools!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_prev"
@@ -70,9 +71,9 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView6"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/norse"
                     android:gravity="bottom|center"
                     android:text="Spirit Box"
                     app:layout_constraintBottom_toBottomOf="parent"

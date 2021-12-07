@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables;
 
 import android.media.MediaPlayer;
-import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
