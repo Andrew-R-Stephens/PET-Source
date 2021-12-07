@@ -121,6 +121,7 @@ public class TitlescreenFragment extends Fragment {
         }
 
         // TEXT SIZE
+        /*
         label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
@@ -133,6 +134,7 @@ public class TitlescreenFragment extends Fragment {
         button_startMult.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
+        */
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();

@@ -57,12 +57,14 @@ public class NewsletterMessageFragment extends Fragment {
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
 
         // TEXT SIZE
+        /*
         label_title.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
         label_date.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
+        */
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());

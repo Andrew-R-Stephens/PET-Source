@@ -21,6 +21,15 @@ public class MapMenuViewModel extends ViewModel {
     private MapData[] mapData;
     private int currentMap = 0;
 
+    public void init(Context context) {
+
+        // SET DATA
+        if (!hasMapData()) {
+            setMapData(context);
+        }
+
+    }
+
     /**
      * setMapData method
      *
@@ -28,6 +37,7 @@ public class MapMenuViewModel extends ViewModel {
      */
     @SuppressLint("ResourceType")
     public void setMapData(Context context) {
+
         TypedArray typedArray =
                 context.getResources().obtainTypedArray(R.array.maps_resources_array);
         MapData[] mapData = new MapData[typedArray.length()];

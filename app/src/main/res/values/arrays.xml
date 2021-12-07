@@ -75,8 +75,114 @@
 
 
     <!--
-        EVIDENCE PAGE
+        GHOST ARRAYS
     -->
+
+    <!-- Ghost Names -->
+    <string-array name="evidence_ghost_names">
+        <item>@string/evidence_ghost_type_banshee</item>
+        <item>@string/evidence_ghost_type_demon</item>
+        <item>@string/evidence_ghost_type_goryo</item>
+        <item>@string/evidence_ghost_type_hantu</item>
+        <item>@string/evidence_ghost_type_jinn</item>
+        <item>@string/evidence_ghost_type_mare</item>
+        <item>@string/evidence_ghost_type_mimic</item>
+        <item>@string/evidence_ghost_type_myling</item>
+        <item>@string/evidence_ghost_type_obake</item>
+        <item>@string/evidence_ghost_type_oni</item>
+        <item>@string/evidence_ghost_type_onryo</item>
+        <item>@string/evidence_ghost_type_phantom</item>
+        <item>@string/evidence_ghost_type_poltergeist</item>
+        <item>@string/evidence_ghost_type_raiju</item>
+        <item>@string/evidence_ghost_type_revenant</item>
+        <item>@string/evidence_ghost_type_shade</item>
+        <item>@string/evidence_ghost_type_spirit</item>
+        <item>@string/evidence_ghost_type_thetwins</item>
+        <item>@string/evidence_ghost_type_wraith</item>
+        <item>@string/evidence_ghost_type_yokai</item>
+        <item>@string/evidence_ghost_type_yurei</item>
+    </string-array>
+
+    <!-- Ghost Descriptions -->
+    <string-array name="ghost_info_array">
+        <item>@string/evidence_ghost_info_banshee</item>
+        <item>@string/evidence_ghost_info_demon</item>
+        <item>@string/evidence_ghost_info_goryo</item>
+        <item>@string/evidence_ghost_info_hantu</item>
+        <item>@string/evidence_ghost_info_jinn</item>
+        <item>@string/evidence_ghost_info_mare</item>
+        <item>@string/evidence_ghost_info_mimic</item>
+        <item>@string/evidence_ghost_info_myling</item>
+        <item>@string/evidence_ghost_info_obake</item>
+        <item>@string/evidence_ghost_info_oni</item>
+        <item>@string/evidence_ghost_info_onryo</item>
+        <item>@string/evidence_ghost_info_phantom</item>
+        <item>@string/evidence_ghost_info_poltergeist</item>
+        <item>@string/evidence_ghost_info_raiju</item>
+        <item>@string/evidence_ghost_info_revenant</item>
+        <item>@string/evidence_ghost_info_shade</item>
+        <item>@string/evidence_ghost_info_spirit</item>
+        <item>@string/evidence_ghost_info_thetwins</item>
+        <item>@string/evidence_ghost_info_wraith</item>
+        <item>@string/evidence_ghost_info_yokai</item>
+        <item>@string/evidence_ghost_info_yurei</item>
+    </string-array>
+
+    <!-- Ghost Strengths -->
+    <string-array name="ghost_strengths_array">
+        <item>@string/evidence_ghost_strengths_banshee</item>
+        <item>@string/evidence_ghost_strengths_demon</item>
+        <item>@string/evidence_ghost_strengths_goryo</item>
+        <item>@string/evidence_ghost_strengths_hantu</item>
+        <item>@string/evidence_ghost_strengths_jinn</item>
+        <item>@string/evidence_ghost_strengths_mare</item>
+        <item>@string/evidence_ghost_strengths_mimic</item>
+        <item>@string/evidence_ghost_strengths_myling</item>
+        <item>@string/evidence_ghost_strengths_obake</item>
+        <item>@string/evidence_ghost_strengths_oni</item>
+        <item>@string/evidence_ghost_strengths_onryo</item>
+        <item>@string/evidence_ghost_strengths_phantom</item>
+        <item>@string/evidence_ghost_strengths_poltergeist</item>
+        <item>@string/evidence_ghost_strengths_raiju</item>
+        <item>@string/evidence_ghost_strengths_revenant</item>
+        <item>@string/evidence_ghost_strengths_shade</item>
+        <item>@string/evidence_ghost_strengths_spirit</item>
+        <item>@string/evidence_ghost_strengths_thetwins</item>
+        <item>@string/evidence_ghost_strengths_wraith</item>
+        <item>@string/evidence_ghost_strengths_yokai</item>
+        <item>@string/evidence_ghost_strengths_yurei</item>
+    </string-array>
+
+    <!-- Ghost Weaknesses -->
+    <string-array name="ghost_weaknesses_array">
+        <item>@string/evidence_ghost_weaknesses_banshee</item>
+        <item>@string/evidence_ghost_weaknesses_demon</item>
+        <item>@string/evidence_ghost_weaknesses_goryo</item>
+        <item>@string/evidence_ghost_weaknesses_hantu</item>
+        <item>@string/evidence_ghost_weaknesses_jinn</item>
+        <item>@string/evidence_ghost_weaknesses_mare</item>
+        <item>@string/evidence_ghost_weaknesses_mimic</item>
+        <item>@string/evidence_ghost_weaknesses_myling</item>
+        <item>@string/evidence_ghost_weaknesses_obake</item>
+        <item>@string/evidence_ghost_weaknesses_oni</item>
+        <item>@string/evidence_ghost_weaknesses_onryo</item>
+        <item>@string/evidence_ghost_weaknesses_phantom</item>
+        <item>@string/evidence_ghost_weaknesses_poltergeist</item>
+        <item>@string/evidence_ghost_weaknesses_raiju</item>
+        <item>@string/evidence_ghost_weaknesses_revenant</item>
+        <item>@string/evidence_ghost_weaknesses_shade</item>
+        <item>@string/evidence_ghost_weaknesses_spirit</item>
+        <item>@string/evidence_ghost_weaknesses_thetwins</item>
+        <item>@string/evidence_ghost_weaknesses_wraith</item>
+        <item>@string/evidence_ghost_weaknesses_yokai</item>
+        <item>@string/evidence_ghost_weaknesses_yurei</item>
+    </string-array>
+
+
+    <!--
+        EVIDENCE ARRAYS
+    -->
+
     <!-- Evidence Names -->
     <string-array name="evidence_tool_names">
         <item>@string/evidence_evidence_type_dots</item>
@@ -109,58 +215,6 @@
         <item>@drawable/icon_writing</item>
         <item>@drawable/icon_spiritbox</item>
     </integer-array>
-
-
-    <!-- Ghost Names -->
-    <string-array name="evidence_ghost_names">
-        <item>@string/evidence_ghost_type_banshee</item>
-        <item>@string/evidence_ghost_type_demon</item>
-        <item>@string/evidence_ghost_type_goryo</item>
-        <item>@string/evidence_ghost_type_hantu</item>
-        <item>@string/evidence_ghost_type_jinn</item>
-        <item>@string/evidence_ghost_type_mare</item>
-        <item>@string/evidence_ghost_type_mimic</item>
-        <item>@string/evidence_ghost_type_myling</item>
-        <item>@string/evidence_ghost_type_obake</item>
-        <item>@string/evidence_ghost_type_oni</item>
-        <item>@string/evidence_ghost_type_onryo</item>
-        <item>@string/evidence_ghost_type_phantom</item>
-        <item>@string/evidence_ghost_type_poltergeist</item>
-        <item>@string/evidence_ghost_type_raiju</item>
-        <item>@string/evidence_ghost_type_revenant</item>
-        <item>@string/evidence_ghost_type_shade</item>
-        <item>@string/evidence_ghost_type_spirit</item>
-        <item>@string/evidence_ghost_type_thetwins</item>
-        <item>@string/evidence_ghost_type_wraith</item>
-        <item>@string/evidence_ghost_type_yokai</item>
-        <item>@string/evidence_ghost_type_yurei</item>
-    </string-array>
-
-    <!-- Ghost Descriptions -->
-    <string-array name="ghost_info_array">
-        <item>@string/evidence_ghost_description_banshee</item>
-        <item>@string/evidence_ghost_description_demon</item>
-        <item>@string/evidence_ghost_description_goryo</item>
-        <item>@string/evidence_ghost_description_hantu</item>
-        <item>@string/evidence_ghost_description_jinn</item>
-        <item>@string/evidence_ghost_description_mare</item>
-        <item>@string/evidence_ghost_description_mimic</item>
-        <item>@string/evidence_ghost_description_myling</item>
-        <item>@string/evidence_ghost_description_obake</item>
-        <item>@string/evidence_ghost_description_oni</item>
-        <item>@string/evidence_ghost_description_onryo</item>
-        <item>@string/evidence_ghost_description_phantom</item>
-        <item>@string/evidence_ghost_description_poltergeist</item>
-        <item>@string/evidence_ghost_description_raiju</item>
-        <item>@string/evidence_ghost_description_revenant</item>
-        <item>@string/evidence_ghost_description_shade</item>
-        <item>@string/evidence_ghost_description_spirit</item>
-        <item>@string/evidence_ghost_description_thetwins</item>
-        <item>@string/evidence_ghost_description_wraith</item>
-        <item>@string/evidence_ghost_description_yokai</item>
-        <item>@string/evidence_ghost_description_yurei</item>
-    </string-array>
-
 
     <!-- Ghost Evidence Arrays -->
     <integer-array name="ghost_evidence_arrays">

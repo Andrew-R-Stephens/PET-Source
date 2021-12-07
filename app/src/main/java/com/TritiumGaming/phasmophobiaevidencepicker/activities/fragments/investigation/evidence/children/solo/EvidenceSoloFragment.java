@@ -19,7 +19,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment_Alt;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerControlView;
@@ -32,7 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  *
  * @author TritiumGamingStudios
  */
-public class EvidenceSoloFragment extends EvidenceFragment_Alt {
+public class EvidenceSoloFragment extends EvidenceFragment {
 
     private Thread sanityThread; //Thread that updates the sanity levels
 

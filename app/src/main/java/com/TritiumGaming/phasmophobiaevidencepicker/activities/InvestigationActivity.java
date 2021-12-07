@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 
@@ -27,6 +28,7 @@ public class InvestigationActivity extends AppCompatActivity {
     private PermissionsViewModel permissionsViewModel;
     private EvidenceViewModel evidenceViewModel;
     private ObjectivesViewModel objectivesViewModel;
+    private MapMenuViewModel mapMenuViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class InvestigationActivity extends AppCompatActivity {
 
         objectivesViewModel = factory.create(
                 ObjectivesViewModel.class);
+
+        mapMenuViewModel = factory.create(
+                MapMenuViewModel.class);
     }
 
     private void initPrefs() {
@@ -65,13 +70,6 @@ public class InvestigationActivity extends AppCompatActivity {
         setLanguage(getAppLanguage());
 
         changeTheme();
-
-       /*
-        if (getSharedPreferences(getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE).
-                getBoolean(getString(R.string.preference_isAlwaysOn), false))
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        */
 
         if (globalPreferencesViewModel.getIsAlwaysOn()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

@@ -119,25 +119,25 @@ public class BitmapUtils {
     }
 
     /**
-     * @param c
+     * @param context
      * @return
      */
-    public Bitmap compileBitmaps(Context c) {
-        Bitmap b = null;
-        for (@DrawableRes int r : resources) {
-            b = createBitmap(c, b, r);
+    public Bitmap compileBitmaps(Context context) {
+        Bitmap bitmap = null;
+        for (@DrawableRes int resource : resources) {
+            bitmap = createBitmap(context, bitmap, resource);
         }
-        return b;
+        return bitmap;
     }
 
     /**
-     * @param c
+     * @param context
      * @param previousBitmap
      * @return
      */
-    public Bitmap compileNextBitmap(Context c, Bitmap previousBitmap) {
+    public Bitmap compileNextBitmap(Context context, Bitmap previousBitmap) {
         currentLayer++;
-        return createBitmap(c, previousBitmap, resources.get(currentLayer));
+        return createBitmap(context, previousBitmap, resources.get(currentLayer));
     }
 
     /**

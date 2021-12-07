@@ -80,6 +80,7 @@ public class NewsletterInboxesFragment extends Fragment {
                 view.findViewById(R.id.constraintLayout_phasnews_listener);
 
         // TEXT SIZE
+        /*
         label_title.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 50, 1,
                 TypedValue.COMPLEX_UNIT_SP);
@@ -92,6 +93,7 @@ public class NewsletterInboxesFragment extends Fragment {
         label_phasnews.setAutoSizeTextTypeUniformWithConfiguration(
                 12, 30, 1,
                 TypedValue.COMPLEX_UNIT_SP);
+        */
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());

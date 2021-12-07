@@ -59,11 +59,6 @@ public class NewsletterMessagesFragment extends Fragment {
         // SCROLL BAR
         recyclerViewMessages.setScrollBarFadeDuration(-1);
 
-        // TEXT SIZE
-        label_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
         // SET VIEW TEXT
         label_title.setText(newsletterViewModel.getCurrentInboxType().getName(view.getContext()));
 

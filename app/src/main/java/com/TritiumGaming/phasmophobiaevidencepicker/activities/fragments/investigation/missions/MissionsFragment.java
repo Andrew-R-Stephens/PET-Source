@@ -74,30 +74,22 @@ public class MissionsFragment extends Fragment {
 
         data = new MissionsData(view.getContext());
 
-        // TITLES
-        AppCompatTextView title_optionals = view.findViewById(R.id.label_objectivesTitle);
-        AppCompatTextView title_debrief = view.findViewById(R.id.label_debriefTitle);
-        // OBJECTIVES
-        AppCompatTextView label_objective1 = view.findViewById(R.id.label_objectivetitle1);
-        AppCompatTextView label_objective2 = view.findViewById(R.id.label_objectivetitle2);
-        AppCompatTextView label_objective3 = view.findViewById(R.id.label_objectivetitle3);
-        // DEBRIEF
-        AppCompatTextView label_response = view.findViewById(R.id.label_repondsTo);
         AppCompatTextView label_alone = view.findViewById(R.id.label_alone);
         AppCompatTextView label_everyone = view.findViewById(R.id.label_everyone);
+
         // GHOST NAME
-        AppCompatTextView label_ghostName = view.findViewById(R.id.label_ghostName);
         name_input = view.findViewById(R.id.textInput_ghostName);
+
         // RESPONSE TYPE
         ConstraintLayout blocking_responds = view.findViewById(R.id.blocking_group);
         button_alone = view.findViewById(R.id.button_alone);
         button_everyone = view.findViewById(R.id.button_everyone);
+
         // FOOTERS
         AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
         AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
         AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
-        AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
@@ -112,52 +104,6 @@ public class MissionsFragment extends Fragment {
             theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
             color_selectedItem = typedValue.data;
         }
-
-        // TEXT SIZES
-        title_optionals.setAutoSizeTextTypeUniformWithConfiguration(
-                20, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        title_debrief.setAutoSizeTextTypeUniformWithConfiguration(
-                20, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        label_objective1.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_objective2.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_objective3.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        label_ghostName.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            name_input.setAutoSizeTextTypeUniformWithConfiguration(
-                    12, 24, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
-        }
-        else {
-            name_input.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
-        }
-        label_response.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_alone.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_everyone.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 24, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_reset.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 25, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        label_goto_right.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_resetAll.setOnClickListener(v -> {

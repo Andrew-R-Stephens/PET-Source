@@ -76,8 +76,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                     requireActivity()).get(PermissionsViewModel.class);
         }
 
-        AppCompatTextView title = view.findViewById(R.id.toolspiritbox_title);
-        AppCompatTextView button_gotoEvidence_label = view.findViewById(R.id.label_goto_left);
+        //AppCompatTextView title = view.findViewById(R.id.toolspiritbox_title);
+        //AppCompatTextView button_gotoEvidence_label = view.findViewById(R.id.label_goto_left);
         AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
         AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
         View listener_reset = view.findViewById(R.id.listener_resetAll);
@@ -89,13 +89,6 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         LinearLayout scrollview_list3 = view.findViewById(R.id.linearlayout_scrollview_list3);
 
         waveFormView = view.findViewById(R.id.waveFormView);
-
-        title.setAutoSizeTextTypeUniformWithConfiguration(
-                20, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        button_gotoEvidence_label.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
 
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );
@@ -119,7 +112,6 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         }
 
         waveFormView.updateVisualizer(null);
-        //waveFormView.invalidate();
 
         startTextToSpeech();
     }
@@ -142,7 +134,7 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             1f);
             linearParams.setMargins(0, 8, 0, 8);
-            linearLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            linearLayout.setGravity(Gravity.CENTER);
             linearLayout.setLayoutParams(linearParams);
 
             AppCompatTextView entry = new AppCompatTextView(context);
@@ -151,12 +143,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     1f);
             entry.setLayoutParams(textParams);
-            entry.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                entry.setAutoSizeTextTypeUniformWithConfiguration(
-                        12, 50, 1,
-                        TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            }
+            entry.setGravity(Gravity.CENTER);
+
             float dip = 24f;
             float px = TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,

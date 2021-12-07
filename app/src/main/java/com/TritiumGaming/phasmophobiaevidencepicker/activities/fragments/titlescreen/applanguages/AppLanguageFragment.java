@@ -57,47 +57,9 @@ public class AppLanguageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         // INITIALIZE VIEWS
-        AppCompatTextView title = view.findViewById(R.id.label_languagesTitle);
         ConstraintLayout btn_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout btn_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
-        AppCompatTextView label_confirmClose = view.findViewById(R.id.language_confirm_label);
-        AppCompatTextView label_cancelClose = view.findViewById(R.id.language_cancel_label);
         RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
-
-        // TEXT SIZE
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            title.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        } else {
-            title.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    1);
-            label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    1);
-            label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    50,
-                    1,
-                    1);
-        }
 
 
         // LISTENERS

@@ -215,6 +215,7 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subtitle.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
+            /*
             if (getView() != null) {
                 developerInfo_subtitle.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
@@ -223,6 +224,7 @@ public class AppInfoFragment extends Fragment {
                         1,
                         TypedValue.COMPLEX_UNIT_SP);
             }
+            */
             AppCompatTextView developerInfo_subinfo = new AppCompatTextView(getContext());
             developerInfo_subinfo.setText(subinfo);
             developerInfo_subinfo.setTypeface(bodyFont);
@@ -233,6 +235,7 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subinfo.setGravity(Gravity.CENTER);
+            /*
             if (getView() != null) {
                 developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
@@ -241,6 +244,7 @@ public class AppInfoFragment extends Fragment {
                         1,
                         TypedValue.COMPLEX_UNIT_SP);
             }
+            */
             linearLayout_developerInfo_subtitles.addView(developerInfo_subtitle);
             linearLayout_developerInfo_subinfo.addView(developerInfo_subinfo);
         }

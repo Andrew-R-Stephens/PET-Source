@@ -1,10 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,9 +34,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
  */
 public class MapMenuFragment extends Fragment {
 
-    private MapMenuViewModel mapViewViewModel = null;
-
-    private AppCompatImageView backgroundImage = null;
+    private MapMenuViewModel mapViewViewModel;
 
     public MapMenuFragment() {
         super(R.layout.fragment_mapmenu);
@@ -49,6 +49,7 @@ public class MapMenuFragment extends Fragment {
 
         if (mapViewViewModel == null) {
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
+            mapViewViewModel.init(getContext());
         }
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -59,19 +60,7 @@ public class MapMenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        //set universal font
-        Typeface universalFont = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            universalFont = getResources().getFont(R.font.norse_regular);
-        }
-        else {
-            if (getContext() != null) {
-                universalFont = ResourcesCompat.getFont(getContext(), R.font.norse_regular);
-            }
-        }
-
         // INITIALIZE VIEWS
-        AppCompatTextView title = view.findViewById(R.id.mapmenu_title);
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
         AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
         AppCompatTextView label_resetAll = view.findViewById(R.id.label_resetAll);
@@ -81,21 +70,13 @@ public class MapMenuFragment extends Fragment {
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
-        backgroundImage = view.findViewById(R.id.imageView);
+        AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
         LinearLayout mapList = view.findViewById(R.id.mapmenu_body_verticallayout);
 
         // BACKGROUND IMAGE
         BitmapUtils bitmapUtils = new BitmapUtils();
         bitmapUtils.setResource(R.drawable.icon_map_sm);
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
-
-        // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(
-                20, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
@@ -105,12 +86,12 @@ public class MapMenuFragment extends Fragment {
         listener_goto_right.setEnabled(false);
         label_goto_right.setEnabled(false);
         icon_goto_right.setEnabled(false);
-        listener_goto_right.setVisibility(View.INVISIBLE);
-        label_goto_right.setVisibility(View.INVISIBLE);
-        icon_goto_right.setVisibility(View.INVISIBLE);
         listener_resetAll.setEnabled(false);
         label_resetAll.setEnabled(false);
         icon_resetAll.setEnabled(false);
+        listener_goto_right.setVisibility(View.INVISIBLE);
+        label_goto_right.setVisibility(View.INVISIBLE);
+        icon_goto_right.setVisibility(View.INVISIBLE);
         listener_resetAll.setVisibility(View.INVISIBLE);
         label_resetAll.setVisibility(View.INVISIBLE);
         icon_resetAll.setVisibility(View.INVISIBLE);
@@ -119,24 +100,25 @@ public class MapMenuFragment extends Fragment {
         label_goto_left.setText(R.string.general_evidence_button);
         icon_goto_left.setImageResource(R.drawable.icon_evidence);
 
-        // SET DATA
-        if (!mapViewViewModel.hasMapData()) {
-            if (getContext() != null) {
-                mapViewViewModel.setMapData(getContext());
-            }
-        }
         for (int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
-            AppCompatTextView mapName = new AppCompatTextView(view.getContext());
-            mapName.setLayoutParams(
+            if(getContext() == null) {
+                return;
+            }
+
+            LayoutInflater inflaterPopup =
+                    (LayoutInflater) getContext().getSystemService(
+                            Context.LAYOUT_INFLATER_SERVICE);
+            @SuppressLint("InflateParams")
+            View mapView = inflaterPopup.inflate(R.layout.item_mapmenu_map, null);
+
+            AppCompatTextView mapName = mapView.findViewById(R.id.label_mapName);
+
+            mapView.setLayoutParams(
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
-            mapName.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            mapName.setTypeface(universalFont);
-            mapName.setAutoSizeTextTypeUniformWithConfiguration(
-                    10, 30, 1,
-                    TypedValue.COMPLEX_UNIT_SP);
+
             mapName.setText(mapViewViewModel.getMapData()[i].getMapName());
-            mapName.setTextColor(Color.WHITE);
+
             int mapPos = i;
             mapName.setOnClickListener(v -> {
                 System.gc();
@@ -145,7 +127,8 @@ public class MapMenuFragment extends Fragment {
                 }
                 Navigation.findNavController(v).navigate(R.id.action_mapmenu_to_mapview);
             });
-            mapList.addView(mapName);
+
+            mapList.addView(mapView);
         }
     }
 
