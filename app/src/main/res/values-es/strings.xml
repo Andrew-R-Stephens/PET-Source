@@ -18,410 +18,201 @@
             <p><font color=#CC3C3C>¡Muchas gracias por usar P.E.T.!</font></p>
         ]]>
     </string>
+    
+    
+    <!--
+        GHOSTS
+    -->
 
     <!-- Ghost description -->
-    <string name="evidence_ghost_info_banshee" translatable="false">
-        <![CDATA[
-            <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>. Banshees <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_demon" translatable="false">
-        <![CDATA[
-            <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_goryo" translatable="false">
-        <![CDATA[
-            <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_hantu" translatable="false">
-        <![CDATA[
-            <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_jinn" translatable="false">
-        <![CDATA[
-            <p>A Jinn is a territorial ghost that will attack when threatened. It has also been known to be <font color=#ff6161>able to travel at high speeds</font>, and will do so while hunting distant paranormal investigators. However, <font color=#ff6161>cutting off power via the fuse box will limit its speed</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mare" translatable="false">
-        <![CDATA[
-            <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mimic" translatable="false">
-        <![CDATA[
-            <p>Unknown</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_myling" translatable="false">
-        <![CDATA[
-            <p>The Myling will emit strange noises which can be picked up by the Parabolic Microphone. Its footsteps can also only be heard within the electronic interference range (which is around 10 meters) during a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_obake" translatable="false">
-        <![CDATA[
-            <p>An Obake is a shape shifter which promotes some unusual evidence at times. By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake.
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_oni" translatable="false">
-        <![CDATA[
-            <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_onryo" translatable="false">
-        <![CDATA[
-            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc).</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_phantom" translatable="false">
-        <![CDATA[
-            <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who view it</font>. <font color=#ff6161>Taking a picture of it will make it disappear temporarily</font>. Although rumored to possess the living, it has no ability to actually do so. It is said to be commonly summoned by a Ouija Board, although players cannot summon one themselves, nor does a Phantom\'s presence guarantee that a Ouija Board will spawn.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_poltergeist" translatable="false">
-        <![CDATA[
-            <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_raiju" translatable="false">
-        <![CDATA[
-            <p>A Raiju is a ghost which <font color=#ff6161>siphons electrical power</font> from the devices around it. Too much electrical stimulation nearby it will cause it to become agitated and hunt more frequently.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_revenant" translatable="false">
-        <![CDATA[
-            <p>A Revenant is a violent ghost that <font color=#ff6161>can attack indiscriminately</font>, as it is capable of switching its current target mid-hunt. <font color=#ff6161>Hiding from it will cause it to move slowly</font>, but <font color=#ff6161>it will travel faster than any other Ghost in the game if a victim is in its sights</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_shade" translatable="false">
-        <![CDATA[
-            <p>A Shade is considered to be a <font color=#ff6161>\"shy ghost\”</font>. While it is harder to find evidence while investigators remain in groups, <font color=#ff6161>a Shade is far less likely to attack if there are multiple people nearby</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_spirit" translatable="false">
-        <![CDATA[
-            <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_thetwins" translatable="false">
-        <![CDATA[
-            <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_wraith" translatable="false">
-        <![CDATA[
-            <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yokai" translatable="false">
-        <![CDATA[
-            <p>The Yokai is highly <font color=#ff6161>sensitive to voices</font>, making the Yokai extremely dangerous. However, speaking nearby it may also trigger activity, making finding the Ghost room easier.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yurei" translatable="false">
-        <![CDATA[
-            <p>A Yurei is a ghost whose ability <font color=#ff6161>increases the passive drain of a player\'s sanity</font> (Although most ghosts drain your sanity rather quickly). Smudging the room a Yurei was found in will prevent it from wandering from the location for a long time.</p>
-        ]]>
-    </string>
-
-    <string name="evidence_ghost_strengths_banshee" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_demon" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> They can be difficult to gather clues on as they will attack players very frequently.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_goryo" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Goryo often only shows itself on camera when there are no people nearby.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_hantu" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Lower temperatures allow the Hantu to move at faster speeds.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_jinn" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_mare" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_mimic" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Unknown</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_myling" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Myling is not as vocal as other Ghosts while Hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_obake" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> An Obake may not leave a trace when manipulating the environment.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_oni" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_onryo" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_phantom" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_poltergeist" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_raiju" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Raijus become much faster while nearby electrical devices.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_revenant" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_shade" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_spirit" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Spirits have no strengths in particular, as they are geared towards new players.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_thetwins" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_wraith" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Since they fly, Wraiths cannot be tracked by their footsteps.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yokai" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yurei" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
-        ]]>
-    </string>
-
-    <string name="evidence_ghost_weaknesses_banshee" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Susceptible to the use of a crucifix to cull their aggression.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_demon" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_goryo" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_hantu" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> A Hantu\'s movement will be slower than normal in warmer areas.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_jinn" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mare" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mimic" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Unknown</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_myling" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Mylings will more frequently emit paranormal sounds.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_obake" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> The unique evidence left by an Obake may be used to determine the Ghost type.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_oni" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_onryo" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_phantom" translatable="false">
-        <![CDATA[
-               <p><font color=#ff6161>Weakness:</font> Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_poltergeist" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_raiju" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_revenant" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_shade" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_spirit" translatable="false">
-        <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_thetwins" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Due to their combined activity, locating The Twins should be much easier.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_wraith" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yokai" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yurei" translatable="false">
-        <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
-        ]]>
-    </string>
-
-    <string name="evidence_ghost_description_banshee">
+    <string name="evidence_ghost_info_banshee">
         <![CDATA[
 			<p>Las banshees se describen como cazadoras naturales. Intentaran acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>apuntar selectivamente a un investigador a la vez</font>. Banshees <font color=#ff6161>teme al crucifijo</font>, Incrementando su efectividad contra ellas.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_demon">
+        <![CDATA[
+			<p>Un demonio es uno de los peores fantasmas que se pueden encontrar. Al ser muy agresivo, <font color=#ff6161>Atacara con mas frecuencia que cualquier otro fantasma</font>, por lo que se recomienda un crucifijo para evitar ser cazado. Sin embargo, hacer preguntas exitosas al demonio desde el tablero de ouija no agotara la cordura del jugador.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_jinn">
+        <![CDATA[
+			<p>Un Jinn es un fantasma territorial que atacara cuando sea amenazado. También se ha sabido que <font color=#ff6161>es capaz de viajar a altas velocidades</font>, y lo hara mientras caza investigadores paranormales distantes. Sin embargo, <font color=#ff6161>cortar la energia a traves de la caja de fusibles limitara su velocidad</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_mare">
+        <![CDATA[
+			<p>La fuente de todas los terrores nocturnos, una pesadilla es un fantasma que se vuelve <font color=#ff6161>mas agresivo en la oscuridad</font>. Mantener las luces encendidas y permanecer fuera de las áreas oscuras limitara su agresion. Cuidado, ya que también intentara apagar las luces para aumentar su poder.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_oni">
+        <![CDATA[
+			<p>Un Oni es un fantasma agresivo que <font color=#ff6161>escala su nivel de actividad con el numero de investigadores cercanos</font>. Esta es su mayor debilidad, ya que probablemente se revelara al principio de la ronda. También es probable que deambule cerca de la Habitacion del Fantasma.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_phantom">
+        <![CDATA[
+			<p>Un fantasma es un ente que induce al miedo, <font color=#ff6161>agotando rapidamente la cordura de quienes lo ven</font>. <font color=#ff6161>Tomarle una foto hara que desaparezca temporalmente.</font>. Aunque se rumora que posee a los vivos, no tiene la capacidad de hacerlo. Se dice que es comúnmente convocado por un tablero de ouija, aunque los jugadores no pueden convocar uno por si mismos, ni la presencia de un fantasma garantiza que se genere un tablero de ouija.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_poltergeist">
+        <![CDATA[
+			<p>Uno de los fantasmas mas famosos, el Poltergeist, también conocido como fantasma ruidoso, <font color=#ff6161>puede manipular varios objetos a su alrededor</font> para esparcir el miedo entre sus victimas.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_revenant">
+        <![CDATA[
+			<p>Un Resucitado es un fantasma violento que <font color=#ff6161>puede atacar indiscriminadamente</font>, ya que es capaz de cambiar su objetivo actual a mitad de la caza. <font color=#ff6161>Esconderse de el hara que se mueva lentamente</font>, pero <font color=#ff6161>viajara mas rápido que cualquier otro fantasma en el juego si una victima esta en la mira</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_shade">
+        <![CDATA[
+			<p>Una sombra se considera un <font color=#ff6161>\"fantasma timido\”</font>. Si bien es mas difícil encontrar pruebas mientras los investigadores permanecen en grupos, <font color=#ff6161>es mucho menos probable que una Sombra ataque si hay varias personas cerca</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_spirit">
+        <![CDATA[
+			<p>Un espíritu es el fantasma mas común con el que te encontraras, pero sigue siendo muy poderoso y peligroso. Por lo general, se descubre en uno de sus terrenos de caza después de una muerte inexplicable. No tiene fortalezas especiales. <font color=#ff6161>Los fajitos de hierbas evitan que los espiritus cacen durante unos tres minutos.</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_wraith">
+        <![CDATA[
+			<p>Un Espectro es uno de los fantasmas mas peligrosos que encontraras. Es el único fantasma conocido que <font color=#ff6161>tiene la habilidad de volar</font>, y a veces ha sido <font color=#ff6161>conocido por ver a traves de puertas y atravesar paredes</font>. <font color=#ff6161>La sal es toxica para un Espectro</font>.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_info_yurei">
+        <![CDATA[
+			<p>Una yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (Aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Barrer con fajitos de hierbas la habitacion en la que se encontro a un Yurei evitara que se aleje del lugar durante mucho tiempo.</p>
+	    ]]>
+    </string>
+    
+    <!-- Ghost Strengths -->
+
+    <string name="evidence_ghost_strengths_banshee">
+        <![CDATA[
 			<p><font color=#ff6161>Fuerza:</font> Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_demon">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_jinn">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_mare">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_oni">
+        <![CDATA[
+        <p><font color=#ff6161>Fuerza:</font> Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_phantom">
+        <![CDATA[<p><font color=#ff6161>Fuerza:</font> Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_poltergeist">
+        <![CDATA[
+        <p><font color=#ff6161>Fuerza:</font> Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_revenant">
+        <![CDATA[
+        <p><font color=#ff6161>Fuerza:</font> Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_shade">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_spirit">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_strengths_wraith">
+        <![CDATA[
+			<p><font color=#ff6161>Fuerza:</font> Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>]]>
+    </string>
+    <string name="evidence_ghost_strengths_yurei">
+        <![CDATA[
+        <p><font color=#ff6161>Fuerza:</font> La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
+		]]>
+    </string>
+    
+    <!-- Ghost Weaknesses -->
+
+    <string name="evidence_ghost_weaknesses_banshee">
+        <![CDATA[
 			<p><font color=#ff6161>Debilidad:</font> Susceptible al uso de un crucifijo para mitigar su agresion.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_demon">
+    <string name="evidence_ghost_weaknesses_demon">
         <![CDATA[
-			<p>Un demonio es uno de los peores fantasmas que se pueden encontrar. Al ser muy agresivo, <font color=#ff6161>Atacara con mas frecuencia que cualquier otro fantasma</font>, por lo que se recomienda un crucifijo para evitar ser cazado. Sin embargo, hacer preguntas exitosas al demonio desde el tablero de ouija no agotara la cordura del jugador.</p>
-			<p><font color=#ff6161>Fuerza:</font> Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
 			<p><font color=#ff6161>Debilidad:</font> A diferencia de otros fantasmas, hacer una pregunta acertada a un demonio a traves del tablero Ouija no reducira la cordura de los jugadores. Esto hace que la tabla Ouija sea una herramienta muy útil contra los demonios.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_jinn">
+    <string name="evidence_ghost_weaknesses_jinn">
         <![CDATA[
-			<p>Un Jinn es un fantasma territorial que atacara cuando sea amenazado. También se ha sabido que <font color=#ff6161>es capaz de viajar a altas velocidades</font>, y lo hara mientras caza investigadores paranormales distantes. Sin embargo, <font color=#ff6161>cortar la energia a traves de la caja de fusibles limitara su velocidad</font>.</p>
-			<p><font color=#ff6161>Fuerza:</font> La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
 			<p><font color=#ff6161>Debilidad:</font> Los genios dependen de la fuente de energia del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para limitar las habilidades de los genios.</p>
-	]]>
+	    ]]>
     </string>
-    <string name="evidence_ghost_description_mare">
+    <string name="evidence_ghost_weaknesses_mare">
         <![CDATA[
-			<p>La fuente de todas los terrores nocturnos, una pesadilla es un fantasma que se vuelve <font color=#ff6161>mas agresivo en la oscuridad</font>. Mantener las luces encendidas y permanecer fuera de las áreas oscuras limitara su agresion. Cuidado, ya que también intentara apagar las luces para aumentar su poder.</p>
-			<p><font color=#ff6161>Fuerza:</font> Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
 			<p><font color=#ff6161>Debilidad:</font> Mantener las luces encendidas en el área de una pesadilla reducira la probabilidad de que comience a cazar.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_oni">
+    <string name="evidence_ghost_weaknesses_oni">
         <![CDATA[
-			<p>Un Oni es un fantasma agresivo que <font color=#ff6161>escala su nivel de actividad con el numero de investigadores cercanos</font>. Esta es su mayor debilidad, ya que probablemente se revelara al principio de la ronda. También es probable que deambule cerca de la Habitacion del Fantasma.</p>
-			<p><font color=#ff6161>Fuerza:</font> Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
 			<p><font color=#ff6161>Debilidad:</font> Los onis son faciles de encontrar, ya que no pueden resistir causar un alboroto cuando los jugadores están cerca.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_phantom">
+    <string name="evidence_ghost_weaknesses_phantom">
         <![CDATA[
-			<p>Un fantasma es un ente que induce al miedo, <font color=#ff6161>agotando rapidamente la cordura de quienes lo ven</font>. <font color=#ff6161>Tomarle una foto hara que desaparezca temporalmente.</font>. Aunque se rumora que posee a los vivos, no tiene la capacidad de hacerlo. Se dice que es comúnmente convocado por un tablero de ouija, aunque los jugadores no pueden convocar uno por si mismos, ni la presencia de un fantasma garantiza que se genere un tablero de ouija.</p>
-			<p><font color=#ff6161>Fuerza:</font> Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
 			<p><font color=#ff6161>Debilidad:</font> Tomar una foto de un fantasma hara que desaparezca temporalmente, dando a los jugadores la oportunidad de escapar.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_poltergeist">
+    <string name="evidence_ghost_weaknesses_poltergeist">
         <![CDATA[
-			<p>Uno de los fantasmas mas famosos, el Poltergeist, también conocido como fantasma ruidoso, <font color=#ff6161>puede manipular varios objetos a su alrededor</font> para esparcir el miedo entre sus victimas.</p>
-			<p><font color=#ff6161>Fuerza:</font> Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
 			<p><font color=#ff6161>Debilidad:</font> Los jugadores pueden eliminar objetos fisicos de la habitacion, lo que hace que un Poltergeist sea ineficaz.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_revenant">
+    <string name="evidence_ghost_weaknesses_revenant">
         <![CDATA[
-			<p>Un Resucitado es un fantasma violento que <font color=#ff6161>puede atacar indiscriminadamente</font>, ya que es capaz de cambiar su objetivo actual a mitad de la caza. <font color=#ff6161>Esconderse de el hara que se mueva lentamente</font>, pero <font color=#ff6161>viajara mas rápido que cualquier otro fantasma en el juego si una victima esta en la mira</font>.</p>
-			<p><font color=#ff6161>Fuerza:</font> Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
 			<p><font color=#ff6161>Debilidad:</font> Si los jugadores tienen la oportunidad de esconderse de un Resucidato, su velocidad disminuira drasticamente.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_shade">
+    <string name="evidence_ghost_weaknesses_shade">
         <![CDATA[
-			<p>Una sombra se considera un <font color=#ff6161>\"fantasma timido\”</font>. Si bien es mas difícil encontrar pruebas mientras los investigadores permanecen en grupos, <font color=#ff6161>es mucho menos probable que una Sombra ataque si hay varias personas cerca</font>.</p>
-			<p><font color=#ff6161>Fuerza:</font> Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
 			<p><font color=#ff6161>Debilidad:</font> Hay fuerza en los numeros contra una Sombra, ya que no atacaran a un grupo de personas.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_spirit">
-        <![CDATA[
-			<p>Un espíritu es el fantasma mas común con el que te encontraras, pero sigue siendo muy poderoso y peligroso. Por lo general, se descubre en uno de sus terrenos de caza después de una muerte inexplicable. No tiene fortalezas especiales. <font color=#ff6161>Los fajitos de hierbas evitan que los espiritus cacen durante unos tres minutos.</font>.</p>
-			<p><font color=#ff6161>Fuerza:</font> Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
-			<p><font color=#ff6161>Debilidad:</font> Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
+    <string name="evidence_ghost_weaknesses_spirit">
+        <![CDATA[<p><font color=#ff6161>Debilidad:</font> Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_wraith">
+    <string name="evidence_ghost_weaknesses_wraith">
         <![CDATA[
-			<p>Un Espectro es uno de los fantasmas mas peligrosos que encontraras. Es el único fantasma conocido que <font color=#ff6161>tiene la habilidad de volar</font>, y a veces ha sido <font color=#ff6161>conocido por ver a traves de puertas y atravesar paredes</font>. <font color=#ff6161>La sal es toxica para un Espectro</font>.</p>
-			<p><font color=#ff6161>Fuerza:</font> Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>
-			<p><font color=#ff6161>Debilidad:</font> Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
+        <p><font color=#ff6161>Debilidad:</font> Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
 		]]>
     </string>
-    <string name="evidence_ghost_description_yurei">
+    <string name="evidence_ghost_weaknesses_yurei">
         <![CDATA[
-			<p>Una yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (Aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Barrer con fajitos de hierbas la habitacion en la que se encontro a un Yurei evitara que se aleje del lugar durante mucho tiempo.</p>
-			<p><font color=#ff6161>Fuerza:</font> La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
-			<p><font color=#ff6161>Debilidad:</font> Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
+        <p><font color=#ff6161>Debilidad:</font> Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
 		]]>
     </string>
+    
+    
+    <!--
+        EVIDENCE
+    -->
 
     <string name="evidence_evidence_description_emf">
         <![CDATA[
@@ -604,5 +395,8 @@
     <string name="spiritbox_entry_q8_4">¿Estoy loco?</string>
     <string name="settings_confirm">Confirmar</string>
     <string name="settings_cancel">Cancelar</string>
+    <string name="evidence_popup_ghost_strength">Fortalezas</string>
+    <string name="evidence_popup_ghost_weakness">Debilidades</string>
+    <string name="evidence_popup_ghost_info">Información</string>
 
 </resources>

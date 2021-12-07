@@ -33,16 +33,11 @@
     <string name="evidence_ghost_info_banshee">
         <![CDATA[
             <p>Les banshees sont décrits comme des chasseurs naturels. Ils essaieront lentement de traquer et d\'éliminer les chasseurs de fantômes un par un. <font color=#ff6161>ciblant selectivement un enqueteur a la fois</font>. Banshees <font color=#ff6161>peur du crucifix</font>, accroitre son efficacite contre eux.</p>
-                <p><font color=#ff6161>Force:</font> Se concentrera sur un joueur, en particulier ceux qui tentent d\'affronter le Banshee seul.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Sensible a l\'utilisation d\'un crucifix pour reprimer leur agression.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_demon">
         <![CDATA[
             <p> Un démon est l\'un des pires fantômes à affronter. Étant très agressif, il <font color=#ff6161> attaquera plus fréquemment que tout les autres fantômes</font >, donc l\'utilisation d\'un crucifix est fortement conseillée pour prévenir les attaques. Cependant, poser de justes questions au démon depuis la planche de Ouija ne dépouillera pas la santé mentale du joueur.</p>
-                <p><font color=#ff6161>Force:</font> Ils peuvent rendre complexe la cueillette de preuves, car ils harcelleront les joueurs sans cesse.</p>
-                <p><font color=#ff6161>Faiblesse:</font> Contrairement à d\'autres fantômes, poser une question exacte à un démon via la planche de Ouija n\'aura aucun effet sur la santé mentale du joueur. Cela rend la manipulation de cet outil très pratique contre les démons.</p>
-
         ]]>
     </string>
     <string name="evidence_ghost_info_goryo">
@@ -57,17 +52,12 @@
     </string>
     <string name="evidence_ghost_info_jinn">
         <![CDATA[
-                <p>Un Djinn est un fantôme territorial qui attaquera lorsqu’il est menacé. Il est également connu pour être<font color=#ff6161> capable de se déplacer à grande vitesse, </font>ce qui lui procure pour avantage de raccourcir l’écart qu\'il possède avec les enquêteurs. Cependant, <font color=#ff6161>couper le courant à partir du disjoncteur limitera sa vitesse</font>.</p>
-                <p> <font color=#ff6161>Force: </font>La vitesse d\'un Djinn en fait un fantôme extrêmement laborieux à échapper une fois qu\'il entame une poursuite.</p>
-                <p><font color=#ff6161>Faiblesse: </font>Le Djinn compte sur la présence du courant électrique pour atteindre sa vitesse élevée, les joueurs doivent donc chercher le disjoncteur du bâtiment afin de bloquer cette habileté</p>
-
+            <p>Un Djinn est un fantôme territorial qui attaquera lorsqu’il est menacé. Il est également connu pour être<font color=#ff6161> capable de se déplacer à grande vitesse, </font>ce qui lui procure pour avantage de raccourcir l’écart qu\'il possède avec les enquêteurs. Cependant, <font color=#ff6161>couper le courant à partir du disjoncteur limitera sa vitesse</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_mare">
         <![CDATA[
-                <p>Source de toutes vos angoisses, Un Cauchemar est un fantôme qui devient <font color=#ff6161>plus agressif dans le noir</font>. Gardez les lumières allumées et restez à l\'écart des zones sombres limitera son agressivité. Attention, car il tentera également d\'éteindre les lumières pour s\'aider.</p>
-                 <p><font color=#ff6161>Force: </font>Les Cauchemars s\'épanouisse dans l\'obscurité et ils commenceront très probablement à attaquer dès que les lumières s\'éteindront.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Garder les lumières allumées dans la zone d\'un Cauchemar réduira les probabilités qu\'il commence à chasser.</p>
+            <p>Source de toutes vos angoisses, Un Cauchemar est un fantôme qui devient <font color=#ff6161>plus agressif dans le noir</font>. Gardez les lumières allumées et restez à l\'écart des zones sombres limitera son agressivité. Attention, car il tentera également d\'éteindre les lumières pour s\'aider.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_mimic">
@@ -87,10 +77,8 @@
     </string>
     <string name="evidence_ghost_info_oni">
         <![CDATA[
-                <p>Un Oni est un fantôme agressif qui <font color=#ff6161>ajuste son niveau d\'activité selon le nombre d\'enquêteurs à proximité</font>. Cela en devient sa plus grande faiblesse, car il se révélera probablement au début du tour. Il est également susceptible de se promener près de la salle hantée.</p>
-                 <p><font color=#ff6161>Force: </font>L\'Oni possède la capacité de déplacer des objets physiques comme un Poltergeist, tout en arborant également l\'agressivité d\'un Démon : cela rend alors plus difficile à assembler les preuves sans le mettre en colère.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Les Onis sont faciles à trouver, car ils ne peuvent pas résister à provoquer un vacarme lorsque les joueurs sont à proximité.</p>
-            ]]>
+            <p>Un Oni est un fantôme agressif qui <font color=#ff6161>ajuste son niveau d\'activité selon le nombre d\'enquêteurs à proximité</font>. Cela en devient sa plus grande faiblesse, car il se révélera probablement au début du tour. Il est également susceptible de se promener près de la salle hantée.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_onryo">
         <![CDATA[
@@ -99,17 +87,13 @@
     </string>
     <string name="evidence_ghost_info_phantom">
         <![CDATA[
-                <p>Un Fantôme est une entité terrifiant, <font color=#ff6161>qui vide rapidement la santé mentale de lui qui l’observe</font>.<font color=#ff6161> Le prendre en photo le fera disparaître temporairement</font>. Bien que selon les rumeurs, il peut posséder les vivants, il n\'a pas la capacité de le faire. On dit qu\'il est couramment invoqué par une planche de Ouija, cependant, cela ne garantit pas non plus qu\'une planche sera présente sur les lieux.</p>
-                 <p><font color=#ff6161>Force: </font>Les Fantômes auront un effet énorme sur la santé mentale des joueurs. Évitez d\'être en présence d\'un fantôme ou de le regarder pendant trop longtemps.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Prendre une photo d\'un Fantôme le fera disparaître temporairement, donnant aux joueurs une opportunité de s\'échapper.</p>
-            ]]>
+            <p>Un Fantôme est une entité terrifiant, <font color=#ff6161>qui vide rapidement la santé mentale de lui qui l’observe</font>.<font color=#ff6161> Le prendre en photo le fera disparaître temporairement</font>. Bien que selon les rumeurs, il peut posséder les vivants, il n\'a pas la capacité de le faire. On dit qu\'il est couramment invoqué par une planche de Ouija, cependant, cela ne garantit pas non plus qu\'une planche sera présente sur les lieux.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_poltergeist">
         <![CDATA[
-                <p>L\'un des fantômes les plus célèbres, le Poltergeist, également connu sous le nom du fantôme bruyant, <font color=#ff6161> peut manipuler plusieurs objets autour de lui</font> pour semer la peur chez ses victimes.</p>
-                 <p><font color=#ff6161>Force: </font>Les Poltergeists peuvent avoir une forte influence sur l\'espace dans lequel se trouvent les joueurs, étant capables de jeter de nombreux objets et de produire des bruits bruyants.</p>
-                 <p><font color=#ff6161>Faiblesse:</font> Les joueurs peuvent retirer les objets de la pièce, ce qui rend le Poltergeist inefficace.</p>
-            ]]>
+            <p>L\'un des fantômes les plus célèbres, le Poltergeist, également connu sous le nom du fantôme bruyant, <font color=#ff6161> peut manipuler plusieurs objets autour de lui</font> pour semer la peur chez ses victimes.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_raiju">
         <![CDATA[
@@ -118,24 +102,18 @@
     </string>
     <string name="evidence_ghost_info_revenant">
         <![CDATA[
-                <p>Le Revenant est un fantôme violent qui <font color=#ff6161>peut attaquer sans focaliser une personne en particulier</font>, car il est capable de changer de cible en cours de chasse.<font color=#ff6161> Vous cachez de lui le fera bouger lentement</font>, mais<font color=#ff6161> il avancera plus vite que tous les autres fantômes si vous vous trouvez dans son champ de vision</ font >.</p>
-                 <p><font color=#ff6161>Force: </font>Les Revenants se déplaceront extrêmement rapidement lorsqu\'ils commenceront à pourchasser quelqu\'un, ce qui donnera aux joueurs peu de chances pour s\'échapper.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Si les joueurs sont cacher du Revenant, sa vitesse diminuera considérablement.</p>
-            ]]>
+            <p>Le Revenant est un fantôme violent qui <font color=#ff6161>peut attaquer sans focaliser une personne en particulier</font>, car il est capable de changer de cible en cours de chasse.<font color=#ff6161> Vous cachez de lui le fera bouger lentement</font>, mais<font color=#ff6161> il avancera plus vite que tous les autres fantômes si vous vous trouvez dans son champ de vision</ font >.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_shade">
         <![CDATA[
-                <p>Un Ombre est considérée comme un <font color=#ff6161>fantôme timide</font>. Bien qu\'il soit plus difficile de trouver des preuves lorsque les enquêteurs restent groupés, <font color=#ff6161>il sera moins susceptible de les attaquer</font>.</p>
-                 <p><font color=#ff6161>Force:</font> Les Ombres peuvent être difficiles à trouver, et donc rendant difficiles la récolte de preuves.</p>
-                 <p><font color=# ff6161>Faiblesse:</font> Être en nombre est votre force contre un Ombre, car il n\'attaquera pas un groupe de personnes.</p>
-            ]]>
+            <p>Un Ombre est considérée comme un <font color=#ff6161>fantôme timide</font>. Bien qu\'il soit plus difficile de trouver des preuves lorsque les enquêteurs restent groupés, <font color=#ff6161>il sera moins susceptible de les attaquer</font>.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_spirit">
         <![CDATA[
-                <p>Un Esprit est le fantome le plus courant que vous rencontrerez, mais il est toujours tres puissant et dangereux. Il est generalement decouvert sur l\'un de ses terrains de chasse apres une mort inexpliquee. Il n\'a pas de forces speciales. <font color=#ff6161>Les batons de maculage empechent les esprits de chasser pendant environ trois minutes</font>.</p>
-                <p><font color=#ff6161>Force:</font> Les esprits n\'ont pas de forces en particulier, car ils sont orientes vers les nouveaux joueurs.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Smudge Sticks empechera les esprits d\'attaquer pendant un certain temps, permettant aux joueurs de collecter librement des preuves.</p>
-            ]]>
+            <p>Un Esprit est le fantome le plus courant que vous rencontrerez, mais il est toujours tres puissant et dangereux. Il est generalement decouvert sur l\'un de ses terrains de chasse apres une mort inexpliquee. Il n\'a pas de forces speciales. <font color=#ff6161>Les batons de maculage empechent les esprits de chasser pendant environ trois minutes</font>.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_thetwins">
         <![CDATA[
@@ -144,10 +122,8 @@
     </string>
     <string name="evidence_ghost_info_wraith">
         <![CDATA[
-                <p>Un Wraith est l\'un des fantomes les plus dangereux que vous puissiez trouver. C\'est le seul fantome connu qui <font color=#ff6161>a la capacite de voler</font>, et a parfois ete <font color=#ff6161>connu pour voir a travers les portes et traverser les murs</font>. <font color=#ff6161>Le sel est toxique pour un Wraith</font>.</p>
-                <p><font color=#ff6161>Force:</font> Puisqu\'ils volent, les spectres ne peuvent pas etre suivis par leurs pas.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les spectres sont faibles pour le sel et cesseront d\'attaquer en entrant en contact avec lui. Cela peut etre plus facile a dire qu\'a faire, car le Wraith volera generalement juste au-dessus des tas de sel.</p>
-            ]]>
+            <p>Un Wraith est l\'un des fantomes les plus dangereux que vous puissiez trouver. C\'est le seul fantome connu qui <font color=#ff6161>a la capacite de voler</font>, et a parfois ete <font color=#ff6161>connu pour voir a travers les portes et traverser les murs</font>. <font color=#ff6161>Le sel est toxique pour un Wraith</font>.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_info_yokai">
         <![CDATA[
@@ -156,10 +132,8 @@
     </string>
     <string name="evidence_ghost_info_yurei">
         <![CDATA[
-                <p>Un Yurei est un fantome dont la capacite <font color=#ff6161>augmente le drain passif de la sante mentale d\'un joueur</font> (Bien que la plupart des fantomes vident votre sante mentale assez rapidement). Tacher la piece dans laquelle un Yurei a ete trouve l\'empechera de s\'eloigner de l\'endroit pendant longtemps.</p>
-                <p><font color=#ff6161>Force:</font> Les Yureis perdront la sante mentale des joueurs lorsqu\'ils le regardent plus rapidement que tout autre fantome, mais peuvent egalement diminuer la sante mentale meme lorsqu\'un joueur est refuse.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les Yureis sont vulnerables aux batonnets de maculage, et le fait de maculer la piece avec succes permettra au Yurei de rester en place pendant un certain temps.</p>
-            ]]>
+            <p>Un Yurei est un fantome dont la capacite <font color=#ff6161>augmente le drain passif de la sante mentale d\'un joueur</font> (Bien que la plupart des fantomes vident votre sante mentale assez rapidement). Tacher la piece dans laquelle un Yurei a ete trouve l\'empechera de s\'eloigner de l\'endroit pendant longtemps.</p>
+        ]]>
     </string>
 
 
@@ -167,17 +141,12 @@
 
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
-            <p>Les banshees sont décrits comme des chasseurs naturels. Ils essaieront lentement de traquer et d\'éliminer les chasseurs de fantômes un par un. <font color=#ff6161>ciblant selectivement un enqueteur a la fois</font>. Banshees <font color=#ff6161>peur du crucifix</font>, accroitre son efficacite contre eux.</p>
-                <p><font color=#ff6161>Force:</font> Se concentrera sur un joueur, en particulier ceux qui tentent d\'affronter le Banshee seul.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Sensible a l\'utilisation d\'un crucifix pour reprimer leur agression.</p>
+            <p><font color=#ff6161>Force:</font> Se concentrera sur un joueur, en particulier ceux qui tentent d\'affronter le Banshee seul.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_demon">
         <![CDATA[
-            <p> Un démon est l\'un des pires fantômes à affronter. Étant très agressif, il <font color=#ff6161> attaquera plus fréquemment que tout les autres fantômes</font >, donc l\'utilisation d\'un crucifix est fortement conseillée pour prévenir les attaques. Cependant, poser de justes questions au démon depuis la planche de Ouija ne dépouillera pas la santé mentale du joueur.</p>
-                <p><font color=#ff6161>Force:</font> Ils peuvent rendre complexe la cueillette de preuves, car ils harcelleront les joueurs sans cesse.</p>
-                <p><font color=#ff6161>Faiblesse:</font> Contrairement à d\'autres fantômes, poser une question exacte à un démon via la planche de Ouija n\'aura aucun effet sur la santé mentale du joueur. Cela rend la manipulation de cet outil très pratique contre les démons.</p>
-
+            <p><font color=#ff6161>Force:</font> Ils peuvent rendre complexe la cueillette de preuves, car ils harcelleront les joueurs sans cesse.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_goryo">
@@ -192,17 +161,12 @@
     </string>
     <string name="evidence_ghost_strengths_jinn">
         <![CDATA[
-            <p>Un Djinn est un fantôme territorial qui attaquera lorsqu’il est menacé. Il est également connu pour être<font color=#ff6161> capable de se déplacer à grande vitesse, </font>ce qui lui procure pour avantage de raccourcir l’écart qu\'il possède avec les enquêteurs. Cependant, <font color=#ff6161>couper le courant à partir du disjoncteur limitera sa vitesse</font>.</p>
-                <p> <font color=#ff6161>Force: </font>La vitesse d\'un Djinn en fait un fantôme extrêmement laborieux à échapper une fois qu\'il entame une poursuite.</p>
-                <p><font color=#ff6161>Faiblesse: </font>Le Djinn compte sur la présence du courant électrique pour atteindre sa vitesse élevée, les joueurs doivent donc chercher le disjoncteur du bâtiment afin de bloquer cette habileté</p>
-
+            <p> <font color=#ff6161>Force: </font>La vitesse d\'un Djinn en fait un fantôme extrêmement laborieux à échapper une fois qu\'il entame une poursuite.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mare">
         <![CDATA[
-                <p>Source de toutes vos angoisses, Un Cauchemar est un fantôme qui devient <font color=#ff6161>plus agressif dans le noir</font>. Gardez les lumières allumées et restez à l\'écart des zones sombres limitera son agressivité. Attention, car il tentera également d\'éteindre les lumières pour s\'aider.</p>
-                 <p><font color=#ff6161>Force: </font>Les Cauchemars s\'épanouisse dans l\'obscurité et ils commenceront très probablement à attaquer dès que les lumières s\'éteindront.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Garder les lumières allumées dans la zone d\'un Cauchemar réduira les probabilités qu\'il commence à chasser.</p>
+            <p><font color=#ff6161>Force: </font>Les Cauchemars s\'épanouisse dans l\'obscurité et ils commenceront très probablement à attaquer dès que les lumières s\'éteindront.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mimic">
@@ -222,9 +186,7 @@
     </string>
     <string name="evidence_ghost_strengths_oni">
         <![CDATA[
-                <p>Un Oni est un fantôme agressif qui <font color=#ff6161>ajuste son niveau d\'activité selon le nombre d\'enquêteurs à proximité</font>. Cela en devient sa plus grande faiblesse, car il se révélera probablement au début du tour. Il est également susceptible de se promener près de la salle hantée.</p>
-                 <p><font color=#ff6161>Force: </font>L\'Oni possède la capacité de déplacer des objets physiques comme un Poltergeist, tout en arborant également l\'agressivité d\'un Démon : cela rend alors plus difficile à assembler les preuves sans le mettre en colère.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Les Onis sont faciles à trouver, car ils ne peuvent pas résister à provoquer un vacarme lorsque les joueurs sont à proximité.</p>
+                <p><font color=#ff6161>Force: </font>L\'Oni possède la capacité de déplacer des objets physiques comme un Poltergeist, tout en arborant également l\'agressivité d\'un Démon : cela rend alors plus difficile à assembler les preuves sans le mettre en colère.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_onryo">
@@ -234,17 +196,13 @@
     </string>
     <string name="evidence_ghost_strengths_phantom">
         <![CDATA[
-                <p>Un Fantôme est une entité terrifiant, <font color=#ff6161>qui vide rapidement la santé mentale de lui qui l’observe</font>.<font color=#ff6161> Le prendre en photo le fera disparaître temporairement</font>. Bien que selon les rumeurs, il peut posséder les vivants, il n\'a pas la capacité de le faire. On dit qu\'il est couramment invoqué par une planche de Ouija, cependant, cela ne garantit pas non plus qu\'une planche sera présente sur les lieux.</p>
-                 <p><font color=#ff6161>Force: </font>Les Fantômes auront un effet énorme sur la santé mentale des joueurs. Évitez d\'être en présence d\'un fantôme ou de le regarder pendant trop longtemps.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Prendre une photo d\'un Fantôme le fera disparaître temporairement, donnant aux joueurs une opportunité de s\'échapper.</p>
-            ]]>
+            <p><font color=#ff6161>Force: </font>Les Fantômes auront un effet énorme sur la santé mentale des joueurs. Évitez d\'être en présence d\'un fantôme ou de le regarder pendant trop longtemps.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist">
         <![CDATA[
-                <p>L\'un des fantômes les plus célèbres, le Poltergeist, également connu sous le nom du fantôme bruyant, <font color=#ff6161> peut manipuler plusieurs objets autour de lui</font> pour semer la peur chez ses victimes.</p>
-                 <p><font color=#ff6161>Force: </font>Les Poltergeists peuvent avoir une forte influence sur l\'espace dans lequel se trouvent les joueurs, étant capables de jeter de nombreux objets et de produire des bruits bruyants.</p>
-                 <p><font color=#ff6161>Faiblesse:</font> Les joueurs peuvent retirer les objets de la pièce, ce qui rend le Poltergeist inefficace.</p>
-            ]]>
+            <p><font color=#ff6161>Force: </font>Les Poltergeists peuvent avoir une forte influence sur l\'espace dans lequel se trouvent les joueurs, étant capables de jeter de nombreux objets et de produire des bruits bruyants.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_raiju">
         <![CDATA[
@@ -253,48 +211,38 @@
     </string>
     <string name="evidence_ghost_strengths_revenant">
         <![CDATA[
-                <p>Le Revenant est un fantôme violent qui <font color=#ff6161>peut attaquer sans focaliser une personne en particulier</font>, car il est capable de changer de cible en cours de chasse.<font color=#ff6161> Vous cachez de lui le fera bouger lentement</font>, mais<font color=#ff6161> il avancera plus vite que tous les autres fantômes si vous vous trouvez dans son champ de vision</ font >.</p>
-                 <p><font color=#ff6161>Force: </font>Les Revenants se déplaceront extrêmement rapidement lorsqu\'ils commenceront à pourchasser quelqu\'un, ce qui donnera aux joueurs peu de chances pour s\'échapper.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Si les joueurs sont cacher du Revenant, sa vitesse diminuera considérablement.</p>
-            ]]>
+            <p><font color=#ff6161>Force: </font>Les Revenants se déplaceront extrêmement rapidement lorsqu\'ils commenceront à pourchasser quelqu\'un, ce qui donnera aux joueurs peu de chances pour s\'échapper.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_shade">
         <![CDATA[
-                <p>Un Ombre est considérée comme un <font color=#ff6161>fantôme timide</font>. Bien qu\'il soit plus difficile de trouver des preuves lorsque les enquêteurs restent groupés, <font color=#ff6161>il sera moins susceptible de les attaquer</font>.</p>
-                 <p><font color=#ff6161>Force:</font> Les Ombres peuvent être difficiles à trouver, et donc rendant difficiles la récolte de preuves.</p>
-                 <p><font color=# ff6161>Faiblesse:</font> Être en nombre est votre force contre un Ombre, car il n\'attaquera pas un groupe de personnes.</p>
-            ]]>
+            <p><font color=#ff6161>Force:</font> Les Ombres peuvent être difficiles à trouver, et donc rendant difficiles la récolte de preuves.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_spirit">
         <![CDATA[
-                <p>Un Esprit est le fantome le plus courant que vous rencontrerez, mais il est toujours tres puissant et dangereux. Il est generalement decouvert sur l\'un de ses terrains de chasse apres une mort inexpliquee. Il n\'a pas de forces speciales. <font color=#ff6161>Les batons de maculage empechent les esprits de chasser pendant environ trois minutes</font>.</p>
-                <p><font color=#ff6161>Force:</font> Les esprits n\'ont pas de forces en particulier, car ils sont orientes vers les nouveaux joueurs.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Smudge Sticks empechera les esprits d\'attaquer pendant un certain temps, permettant aux joueurs de collecter librement des preuves.</p>
-            ]]>
+            <p><font color=#ff6161>Force:</font> Les esprits n\'ont pas de forces en particulier, car ils sont orientes vers les nouveaux joueurs.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_thetwins">
         <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
+            <p><font color=#ff6161>Strength:</font> Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
-                <p>Un Wraith est l\'un des fantomes les plus dangereux que vous puissiez trouver. C\'est le seul fantome connu qui <font color=#ff6161>a la capacite de voler</font>, et a parfois ete <font color=#ff6161>connu pour voir a travers les portes et traverser les murs</font>. <font color=#ff6161>Le sel est toxique pour un Wraith</font>.</p>
-                <p><font color=#ff6161>Force:</font> Puisqu\'ils volent, les spectres ne peuvent pas etre suivis par leurs pas.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les spectres sont faibles pour le sel et cesseront d\'attaquer en entrant en contact avec lui. Cela peut etre plus facile a dire qu\'a faire, car le Wraith volera generalement juste au-dessus des tas de sel.</p>
-            ]]>
+            <p><font color=#ff6161>Force:</font> Puisqu\'ils volent, les spectres ne peuvent pas etre suivis par leurs pas.</p><p><font color=#ff6161>
+        ]]>
     </string>
     <string name="evidence_ghost_strengths_yokai" >
         <![CDATA[
-                <p><font color=#ff6161>Strength:</font> Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
+            <p><font color=#ff6161>Strength:</font> Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yurei" >
         <![CDATA[
-                <p>Un Yurei est un fantome dont la capacite <font color=#ff6161>augmente le drain passif de la sante mentale d\'un joueur</font> (Bien que la plupart des fantomes vident votre sante mentale assez rapidement). Tacher la piece dans laquelle un Yurei a ete trouve l\'empechera de s\'eloigner de l\'endroit pendant longtemps.</p>
-                <p><font color=#ff6161>Force:</font> Les Yureis perdront la sante mentale des joueurs lorsqu\'ils le regardent plus rapidement que tout autre fantome, mais peuvent egalement diminuer la sante mentale meme lorsqu\'un joueur est refuse.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les Yureis sont vulnerables aux batonnets de maculage, et le fait de maculer la piece avec succes permettra au Yurei de rester en place pendant un certain temps.</p>
-            ]]>
+            <p><font color=#ff6161>Force:</font> Les Yureis perdront la sante mentale des joueurs lorsqu\'ils le regardent plus rapidement que tout autre fantome, mais peuvent egalement diminuer la sante mentale meme lorsqu\'un joueur est refuse.</p>
+        ]]>
     </string>
 
 
@@ -302,41 +250,32 @@
 
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
-                <p>Les banshees sont décrits comme des chasseurs naturels. Ils essaieront lentement de traquer et d\'éliminer les chasseurs de fantômes un par un. <font color=#ff6161>ciblant selectivement un enqueteur a la fois</font>. Banshees <font color=#ff6161>peur du crucifix</font>, accroitre son efficacite contre eux.</p>
-                <p><font color=#ff6161>Force:</font> Se concentrera sur un joueur, en particulier ceux qui tentent d\'affronter le Banshee seul.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Sensible a l\'utilisation d\'un crucifix pour reprimer leur agression.</p>
+            <p><font color=#ff6161>La faiblesse:</font> Sensible a l\'utilisation d\'un crucifix pour reprimer leur agression.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_demon" >
         <![CDATA[
-                <p> Un démon est l\'un des pires fantômes à affronter. Étant très agressif, il <font color=#ff6161> attaquera plus fréquemment que tout les autres fantômes</font >, donc l\'utilisation d\'un crucifix est fortement conseillée pour prévenir les attaques. Cependant, poser de justes questions au démon depuis la planche de Ouija ne dépouillera pas la santé mentale du joueur.</p>
-                <p><font color=#ff6161>Force:</font> Ils peuvent rendre complexe la cueillette de preuves, car ils harcelleront les joueurs sans cesse.</p>
-                <p><font color=#ff6161>Faiblesse:</font> Contrairement à d\'autres fantômes, poser une question exacte à un démon via la planche de Ouija n\'aura aucun effet sur la santé mentale du joueur. Cela rend la manipulation de cet outil très pratique contre les démons.</p>
-
+            <p><font color=#ff6161>Faiblesse:</font> Contrairement à d\'autres fantômes, poser une question exacte à un démon via la planche de Ouija n\'aura aucun effet sur la santé mentale du joueur. Cela rend la manipulation de cet outil très pratique contre les démons.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_goryo" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
+            <p><font color=#ff6161>Weakness:</font> Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_hantu" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> A Hantu\'s movement will be slower than normal in warmer areas.</p>
+            <p><font color=#ff6161>Weakness:</font> A Hantu\'s movement will be slower than normal in warmer areas.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_jinn" >
         <![CDATA[
-                <p>Un Djinn est un fantôme territorial qui attaquera lorsqu’il est menacé. Il est également connu pour être<font color=#ff6161> capable de se déplacer à grande vitesse, </font>ce qui lui procure pour avantage de raccourcir l’écart qu\'il possède avec les enquêteurs. Cependant, <font color=#ff6161>couper le courant à partir du disjoncteur limitera sa vitesse</font>.</p>
-                <p> <font color=#ff6161>Force: </font>La vitesse d\'un Djinn en fait un fantôme extrêmement laborieux à échapper une fois qu\'il entame une poursuite.</p>
-                <p><font color=#ff6161>Faiblesse: </font>Le Djinn compte sur la présence du courant électrique pour atteindre sa vitesse élevée, les joueurs doivent donc chercher le disjoncteur du bâtiment afin de bloquer cette habileté</p>
+            <p><font color=#ff6161>Faiblesse: </font>Le Djinn compte sur la présence du courant électrique pour atteindre sa vitesse élevée, les joueurs doivent donc chercher le disjoncteur du bâtiment afin de bloquer cette habileté</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
-                <p>Source de toutes vos angoisses, Un Cauchemar est un fantôme qui devient <font color=#ff6161>plus agressif dans le noir</font>. Gardez les lumières allumées et restez à l\'écart des zones sombres limitera son agressivité. Attention, car il tentera également d\'éteindre les lumières pour s\'aider.</p>
-                 <p><font color=#ff6161>Force: </font>Les Cauchemars s\'épanouisse dans l\'obscurité et ils commenceront très probablement à attaquer dès que les lumières s\'éteindront.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Garder les lumières allumées dans la zone d\'un Cauchemar réduira les probabilités qu\'il commence à chasser.</p>
+            <p><font color=#ff6161>Faiblesse: </font>Garder les lumières allumées dans la zone d\'un Cauchemar réduira les probabilités qu\'il commence à chasser.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_mimic" >
@@ -346,89 +285,73 @@
     </string>
     <string name="evidence_ghost_weaknesses_myling" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Mylings will more frequently emit paranormal sounds.</p>
+            <p><font color=#ff6161>Weakness:</font> Mylings will more frequently emit paranormal sounds.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_obake" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> The unique evidence left by an Obake may be used to determine the Ghost type.</p>
+            <p><font color=#ff6161>Weakness:</font> The unique evidence left by an Obake may be used to determine the Ghost type.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_oni" >
         <![CDATA[
-                <p>Un Oni est un fantôme agressif qui <font color=#ff6161>ajuste son niveau d\'activité selon le nombre d\'enquêteurs à proximité</font>. Cela en devient sa plus grande faiblesse, car il se révélera probablement au début du tour. Il est également susceptible de se promener près de la salle hantée.</p>
-                 <p><font color=#ff6161>Force: </font>L\'Oni possède la capacité de déplacer des objets physiques comme un Poltergeist, tout en arborant également l\'agressivité d\'un Démon : cela rend alors plus difficile à assembler les preuves sans le mettre en colère.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Les Onis sont faciles à trouver, car ils ne peuvent pas résister à provoquer un vacarme lorsque les joueurs sont à proximité.</p>
-            ]]>
+            <p><font color=#ff6161>Faiblesse: </font>Les Onis sont faciles à trouver, car ils ne peuvent pas résister à provoquer un vacarme lorsque les joueurs sont à proximité.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_onryo" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
+            <p><font color=#ff6161>Weakness:</font> A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_phantom" >
         <![CDATA[
-                <p>Un Fantôme est une entité terrifiant, <font color=#ff6161>qui vide rapidement la santé mentale de lui qui l’observe</font>.<font color=#ff6161> Le prendre en photo le fera disparaître temporairement</font>. Bien que selon les rumeurs, il peut posséder les vivants, il n\'a pas la capacité de le faire. On dit qu\'il est couramment invoqué par une planche de Ouija, cependant, cela ne garantit pas non plus qu\'une planche sera présente sur les lieux.</p>
-                 <p><font color=#ff6161>Force: </font>Les Fantômes auront un effet énorme sur la santé mentale des joueurs. Évitez d\'être en présence d\'un fantôme ou de le regarder pendant trop longtemps.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Prendre une photo d\'un Fantôme le fera disparaître temporairement, donnant aux joueurs une opportunité de s\'échapper.</p>
-            ]]>
+            <p><font color=#ff6161>Faiblesse: </font>Prendre une photo d\'un Fantôme le fera disparaître temporairement, donnant aux joueurs une opportunité de s\'échapper.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist" >
         <![CDATA[
-                <p>L\'un des fantômes les plus célèbres, le Poltergeist, également connu sous le nom du fantôme bruyant, <font color=#ff6161> peut manipuler plusieurs objets autour de lui</font> pour semer la peur chez ses victimes.</p>
-                 <p><font color=#ff6161>Force: </font>Les Poltergeists peuvent avoir une forte influence sur l\'espace dans lequel se trouvent les joueurs, étant capables de jeter de nombreux objets et de produire des bruits bruyants.</p>
-                 <p><font color=#ff6161>Faiblesse:</font> Les joueurs peuvent retirer les objets de la pièce, ce qui rend le Poltergeist inefficace.</p>
-            ]]>
+            <p><font color=#ff6161>Faiblesse:</font> Les joueurs peuvent retirer les objets de la pièce, ce qui rend le Poltergeist inefficace.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_raiju" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
+            <p><font color=#ff6161>Weakness:</font> It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_revenant" >
         <![CDATA[
-                <p>Le Revenant est un fantôme violent qui <font color=#ff6161>peut attaquer sans focaliser une personne en particulier</font>, car il est capable de changer de cible en cours de chasse.<font color=#ff6161> Vous cachez de lui le fera bouger lentement</font>, mais<font color=#ff6161> il avancera plus vite que tous les autres fantômes si vous vous trouvez dans son champ de vision</ font >.</p>
-                 <p><font color=#ff6161>Force: </font>Les Revenants se déplaceront extrêmement rapidement lorsqu\'ils commenceront à pourchasser quelqu\'un, ce qui donnera aux joueurs peu de chances pour s\'échapper.</p>
-                 <p><font color=#ff6161>Faiblesse: </font>Si les joueurs sont cacher du Revenant, sa vitesse diminuera considérablement.</p>
-            ]]>
+            <p><font color=#ff6161>Faiblesse: </font>Si les joueurs sont cacher du Revenant, sa vitesse diminuera considérablement.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_shade" >
         <![CDATA[
-                <p>Un Ombre est considérée comme un <font color=#ff6161>fantôme timide</font>. Bien qu\'il soit plus difficile de trouver des preuves lorsque les enquêteurs restent groupés, <font color=#ff6161>il sera moins susceptible de les attaquer</font>.</p>
-                 <p><font color=#ff6161>Force:</font> Les Ombres peuvent être difficiles à trouver, et donc rendant difficiles la récolte de preuves.</p>
-                 <p><font color=# ff6161>Faiblesse:</font> Être en nombre est votre force contre un Ombre, car il n\'attaquera pas un groupe de personnes.</p>
-            ]]>
+            <p><font color=#ff6161>Faiblesse:</font> Être en nombre est votre force contre un Ombre, car il n\'attaquera pas un groupe de personnes.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_spirit" >
         <![CDATA[
-                <p>Un Esprit est le fantome le plus courant que vous rencontrerez, mais il est toujours tres puissant et dangereux. Il est generalement decouvert sur l\'un de ses terrains de chasse apres une mort inexpliquee. Il n\'a pas de forces speciales. <font color=#ff6161>Les batons de maculage empechent les esprits de chasser pendant environ trois minutes</font>.</p>
-                <p><font color=#ff6161>Force:</font> Les esprits n\'ont pas de forces en particulier, car ils sont orientes vers les nouveaux joueurs.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Smudge Sticks empechera les esprits d\'attaquer pendant un certain temps, permettant aux joueurs de collecter librement des preuves.</p>
-            ]]>
+            <p><font color=#ff6161>La faiblesse:</font> Smudge Sticks empechera les esprits d\'attaquer pendant un certain temps, permettant aux joueurs de collecter librement des preuves.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> Due to their combined activity, locating The Twins should be much easier.</p>
+            <p><font color=#ff6161>Weakness:</font> Due to their combined activity, locating The Twins should be much easier.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith" >
         <![CDATA[
-                <p>Un Wraith est l\'un des fantomes les plus dangereux que vous puissiez trouver. C\'est le seul fantome connu qui <font color=#ff6161>a la capacite de voler</font>, et a parfois ete <font color=#ff6161>connu pour voir a travers les portes et traverser les murs</font>. <font color=#ff6161>Le sel est toxique pour un Wraith</font>.</p>
-                <p><font color=#ff6161>Force:</font> Puisqu\'ils volent, les spectres ne peuvent pas etre suivis par leurs pas.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les spectres sont faibles pour le sel et cesseront d\'attaquer en entrant en contact avec lui. Cela peut etre plus facile a dire qu\'a faire, car le Wraith volera generalement juste au-dessus des tas de sel.</p>
-            ]]>
+            <p><font color=#ff6161>La faiblesse:</font> Les spectres sont faibles pour le sel et cesseront d\'attaquer en entrant en contact avec lui. Cela peut etre plus facile a dire qu\'a faire, car le Wraith volera generalement juste au-dessus des tas de sel.</p>
+        ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yokai" >
         <![CDATA[
-                <p><font color=#ff6161>Weakness:</font> While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
+            <p><font color=#ff6161>Weakness:</font> While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yurei" >
         <![CDATA[
-                <p>Un Yurei est un fantome dont la capacite <font color=#ff6161>augmente le drain passif de la sante mentale d\'un joueur</font> (Bien que la plupart des fantomes vident votre sante mentale assez rapidement). Tacher la piece dans laquelle un Yurei a ete trouve l\'empechera de s\'eloigner de l\'endroit pendant longtemps.</p>
-                <p><font color=#ff6161>Force:</font> Les Yureis perdront la sante mentale des joueurs lorsqu\'ils le regardent plus rapidement que tout autre fantome, mais peuvent egalement diminuer la sante mentale meme lorsqu\'un joueur est refuse.</p>
-                <p><font color=#ff6161>La faiblesse:</font> Les Yureis sont vulnerables aux batonnets de maculage, et le fait de maculer la piece avec succes permettra au Yurei de rester en place pendant un certain temps.</p>
-            ]]>
+            <p><font color=#ff6161>La faiblesse:</font> Les Yureis sont vulnerables aux batonnets de maculage, et le fait de maculer la piece avec succes permettra au Yurei de rester en place pendant un certain temps.</p>
+        ]]>
     </string>
 
     <!--
@@ -520,39 +443,39 @@
 
     <string name="evidence_evidence_description_emf">
         <![CDATA[
-                    <p>EMF-5 est la lecture de niveau le plus eleve d\'un <font color=#ff6161>Lecteur EMF</font>.</p>
-                    <p>Un fantome produit des emissions EMF des niveaux 1 a 5 lorsqu\'il interagit d\'une maniere ou d\'une autre avec la piece ou la planche Ouija. Les scintillements legers, les pas et d\'autres interactions passives plus petites donneront generalement une lecture plus faible. Des interactions plus intenses, telles qu\'une apparence ou une sonnerie de telephone, donneront presque toujours une lecture plus elevee. Les fantomes portant cette preuve ne donneront le niveau EMF 5 que par hasard, donc cette preuve <font color=#ff6161>peut prendre un certain temps a acquerir</font>.</p>
-            ]]>
+            <p>EMF-5 est la lecture de niveau le plus eleve d\'un <font color=#ff6161>Lecteur EMF</font>.</p>
+            <p>Un fantome produit des emissions EMF des niveaux 1 a 5 lorsqu\'il interagit d\'une maniere ou d\'une autre avec la piece ou la planche Ouija. Les scintillements legers, les pas et d\'autres interactions passives plus petites donneront generalement une lecture plus faible. Des interactions plus intenses, telles qu\'une apparence ou une sonnerie de telephone, donneront presque toujours une lecture plus elevee. Les fantomes portant cette preuve ne donneront le niveau EMF 5 que par hasard, donc cette preuve <font color=#ff6161>peut prendre un certain temps a acquerir</font>.</p>
+        ]]>
     </string>
     <string name="evidence_evidence_description_temperatures">
         <![CDATA[
-                    <p>Les temperatures de congelation sont <font color=#ff6161>en dessous de 0 Celsius</font>. La temperature peut etre determinee en utilisant le <font color=#ff6161>Thermometer</font>.</p>
-                    <p>A mesure que les fantomes extraient la chaleur de la zone environnante, les temperatures diminuent dans la piece ou les couloirs ou le <font color=#ff6161>le fantome passe le plus clair de son temps</font>. Tous les fantomes le feront finalement causent des temperatures inferieures a 13 degres Celsius, mais seuls certains types de fantomes feront baisser les temperatures en dessous de 0 C. Ces temperatures glaciales permettront a tout le monde dans la zone hantee de <font color=#ff6161>voir leur souffle</font>. Le refroidissement d\'une piece, meme legerement, peut prendre plus de temps que les premieres minutes d\'une enquete. Prendre note des temperatures etrangement basses dans les premieres pieces, puis les redoubler est une bonne idee.</p>
-            ]]>
+            <p>Les temperatures de congelation sont <font color=#ff6161>en dessous de 0 Celsius</font>. La temperature peut etre determinee en utilisant le <font color=#ff6161>Thermometer</font>.</p>
+            <p>A mesure que les fantomes extraient la chaleur de la zone environnante, les temperatures diminuent dans la piece ou les couloirs ou le <font color=#ff6161>le fantome passe le plus clair de son temps</font>. Tous les fantomes le feront finalement causent des temperatures inferieures a 13 degres Celsius, mais seuls certains types de fantomes feront baisser les temperatures en dessous de 0 C. Ces temperatures glaciales permettront a tout le monde dans la zone hantee de <font color=#ff6161>voir leur souffle</font>. Le refroidissement d\'une piece, meme legerement, peut prendre plus de temps que les premieres minutes d\'une enquete. Prendre note des temperatures etrangement basses dans les premieres pieces, puis les redoubler est une bonne idee.</p>
+        ]]>
     </string>
     <string name="evidence_evidence_description_box">
         <![CDATA[
-                    <p>La Spirit Box est un objet utilise pour <font color=#ff6161>communiquer avec le fantome</font>.</p>
-                    <p>Un joueur doit <font color=#ff6161>poser des questions dans le chat de proximite a une Spirit Box active, a la fois a proximite du fantome et lorsque les lumieres sont eteintes</font>. Avant de tenter cela, verifiez les parametres de reponse du fantome tels que \ "Repond aux personnes qui sont seules \" ou \ "Repond a tout le monde \" figurant sur le tableau blanc du camion. Si le fantome repond, la Spirit Box est une preuve confirmee. Les questions pointues telles que «Quel age avez-vous?» Ou «Ou etes-vous?» Sont des questions plausibles. Gardez a l\'esprit que le fantome est toujours a l\'ecoute, que le joueur parle ou non dans une Spirit Box. Dessiner un fantome peut etre fait en disant son prenom plusieurs fois (donc en le mettant en colere), et en lui donnant des commandes telles que «Montre-toi» ou «Donne-nous un signe» semblent etre des commandes plausibles.</p>
-            ]]>
+            <p>La Spirit Box est un objet utilise pour <font color=#ff6161>communiquer avec le fantome</font>.</p>
+            <p>Un joueur doit <font color=#ff6161>poser des questions dans le chat de proximite a une Spirit Box active, a la fois a proximite du fantome et lorsque les lumieres sont eteintes</font>. Avant de tenter cela, verifiez les parametres de reponse du fantome tels que \ "Repond aux personnes qui sont seules \" ou \ "Repond a tout le monde \" figurant sur le tableau blanc du camion. Si le fantome repond, la Spirit Box est une preuve confirmee. Les questions pointues telles que «Quel age avez-vous?» Ou «Ou etes-vous?» Sont des questions plausibles. Gardez a l\'esprit que le fantome est toujours a l\'ecoute, que le joueur parle ou non dans une Spirit Box. Dessiner un fantome peut etre fait en disant son prenom plusieurs fois (donc en le mettant en colere), et en lui donnant des commandes telles que «Montre-toi» ou «Donne-nous un signe» semblent etre des commandes plausibles.</p>
+        ]]>
     </string>
     <string name="evidence_evidence_description_book">
         <![CDATA[
-                    <p>Determine a l\'aide du livre d\'ecriture Ghost.</p>
-                    <p>Les fantomes peuvent ecrire dans le livre <font color=#ff6161>peu importe si le livre est pose ou tenu en main</font>. Si le fantome ecrit dans le livre, il s\'agit d\'un element de preuve pour ce type de fantome. Si des symboles demoniaques sont ecrits, cela peut etre une preuve d\'un demon, mais ce n\'est absolument pas definitif car les styles d\'ecriture fantome ont tendance a s\'ecarter au hasard.</p>
-            ]]>
+            <p>Determine a l\'aide du livre d\'ecriture Ghost.</p>
+            <p>Les fantomes peuvent ecrire dans le livre <font color=#ff6161>peu importe si le livre est pose ou tenu en main</font>. Si le fantome ecrit dans le livre, il s\'agit d\'un element de preuve pour ce type de fantome. Si des symboles demoniaques sont ecrits, cela peut etre une preuve d\'un demon, mais ce n\'est absolument pas definitif car les styles d\'ecriture fantome ont tendance a s\'ecarter au hasard.</p>
+        ]]>
     </string>
     <string name="evidence_evidence_description_orbs">
         <![CDATA[
-                    <p>Un petit orbe flottant qui n\'est present que dans la piece qu\'un fantome hante. ua peut etre <font color=#ff6161>vu uniquement par vision nocturne a travers le flux de la camera du camion<font> des cameras video ou des cameras montees sur la tete.</p>
-                    <p>Les orbes fantomes peuvent etre rapides a reperer, mais l\'exclure trop rapidement pourrait causer des problemes sur la route.</p>
-            ]]>
+            <p>Un petit orbe flottant qui n\'est present que dans la piece qu\'un fantome hante. ua peut etre <font color=#ff6161>vu uniquement par vision nocturne a travers le flux de la camera du camion<font> des cameras video ou des cameras montees sur la tete.</p>
+            <p>Les orbes fantomes peuvent etre rapides a reperer, mais l\'exclure trop rapidement pourrait causer des problemes sur la route.</p>
+        ]]>
     </string>
     <string name="evidence_evidence_description_fingerprints">
         <![CDATA[
-                    <p>Laissees sur des objets et des surfaces par des fantomes, les empreintes digitales ne peuvent etre <font color=#ff6161>vu en faisant briller la lumiere UV ou un baton lumineux sur les surfaces affectees</font> et brillera en vert sous la lumiere UV.</p>
-                    <p>Les preuves peuvent etre difficiles a voir sur des elements plus petits, et les preuves peuvent s\'estomper apres un certain temps. Si vous ne parvenez pas a localiser les empreintes digitales, l\'utilisation d\'un appareil photo sur des objets tels qu\'une table contenant de la vaisselle ou des bocaux peut fournir des preuves, car le journal pourrait ecrire des «empreintes digitales» sur les photos. De maniere deroutante, les empreintes apparaissent egalement sous la lumiere UV et comptent comme des interactions dans le journal, mais <font color=#ff6161>Les empreintes de pas ne comptent pas comme preuve des empreintes digitales</font>.</p>
-            ]]>
+            <p>Laissees sur des objets et des surfaces par des fantomes, les empreintes digitales ne peuvent etre <font color=#ff6161>vu en faisant briller la lumiere UV ou un baton lumineux sur les surfaces affectees</font> et brillera en vert sous la lumiere UV.</p>
+            <p>Les preuves peuvent etre difficiles a voir sur des elements plus petits, et les preuves peuvent s\'estomper apres un certain temps. Si vous ne parvenez pas a localiser les empreintes digitales, l\'utilisation d\'un appareil photo sur des objets tels qu\'une table contenant de la vaisselle ou des bocaux peut fournir des preuves, car le journal pourrait ecrire des «empreintes digitales» sur les photos. De maniere deroutante, les empreintes apparaissent egalement sous la lumiere UV et comptent comme des interactions dans le journal, mais <font color=#ff6161>Les empreintes de pas ne comptent pas comme preuve des empreintes digitales</font>.</p>
+        ]]>
     </string>
 
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
@@ -691,5 +614,8 @@
     <string name="spiritbox_entry_q8_4">Suis je fou?</string>
     <string name="settings_cancel">Annuler</string>
     <string name="settings_confirm">Confirmer</string>
+    <string name="evidence_popup_ghost_strength">Forces</string>
+    <string name="evidence_popup_ghost_weakness">Faiblesses</string>
+    <string name="evidence_popup_ghost_info">Informations</string>
 
 </resources>
