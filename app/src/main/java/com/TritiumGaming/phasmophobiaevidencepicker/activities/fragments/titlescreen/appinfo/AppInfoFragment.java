@@ -215,16 +215,15 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subtitle.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-            /*
+
             if (getView() != null) {
                 developerInfo_subtitle.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
                         (int) (FontUtils.dpToSp(getView(),
                                 developerInfo_title.getTextSize())),
                         1,
-                        TypedValue.COMPLEX_UNIT_SP);
+                        1);
             }
-            */
             AppCompatTextView developerInfo_subinfo = new AppCompatTextView(getContext());
             developerInfo_subinfo.setText(subinfo);
             developerInfo_subinfo.setTypeface(bodyFont);
@@ -235,16 +234,16 @@ public class AppInfoFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT, 1f));
             developerInfo_subinfo.setGravity(Gravity.CENTER);
-            /*
+
             if (getView() != null) {
                 developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(
                         1,
                         (int) (FontUtils.dpToSp(
                                 getView(), developerInfo_subtitle.getTextSize()) * .95),
                         1,
-                        TypedValue.COMPLEX_UNIT_SP);
+                        1);
             }
-            */
+
             linearLayout_developerInfo_subtitles.addView(developerInfo_subtitle);
             linearLayout_developerInfo_subinfo.addView(developerInfo_subinfo);
         }
@@ -264,7 +263,7 @@ public class AppInfoFragment extends Fragment {
             names[i].setLayoutParams(
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
-            names[i].setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            names[i].setGravity(Gravity.CENTER);
             names[i].setTextSize(
                     (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));
 

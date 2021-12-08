@@ -5,41 +5,53 @@
         <item name="autoSizeMaxTextSize">50sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
-        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
     <style name="TypewriterRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <style name="TypewriterRegular_Manual">
+        <item name="android:fontFamily">serif-monospace</item>
+        <item name="fontFamily">serif-monospace</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
     <style name="NorseRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
     <style name="EastRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
     <style name="TimeRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
     <style name="TimeBold" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
     <style name="TimeBoldNarrow" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat">

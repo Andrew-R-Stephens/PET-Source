@@ -149,7 +149,7 @@
     <string name="evidence_evidence_title">EVIDENCE</string>
     <string name="evidence_popup_ghost_strength">Strengths</string>
     <string name="evidence_popup_ghost_weakness">Weaknesses</string>
-    <string name="evidence_popup_ghost_info">Info</string>
+    <string name="evidence_popup_ghost_info">Information</string>
 
     <!-- Timer Difficulty Times -->
     <string name="evidence_timer_time_1" translatable="false">300000</string>
@@ -288,213 +288,213 @@
 
     <string name="evidence_ghost_strengths_banshee" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
+            <p>Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_demon" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> They can be difficult to gather clues on as they will attack players very frequently.</p>
+            <p>They can be difficult to gather clues on as they will attack players very frequently.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_goryo" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Goryo often only shows itself on camera when there are no people nearby.</p>
+            <p>A Goryo often only shows itself on camera when there are no people nearby.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_hantu" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Lower temperatures allow the Hantu to move at faster speeds.</p>
+            <p>Lower temperatures allow the Hantu to move at faster speeds.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_jinn" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
+            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mare" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
+            <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mimic" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Unknown</p>
+            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_myling" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> A Myling is not as vocal as other Ghosts while Hunting.</p>
+            <p>A Myling is not as vocal as other Ghosts while Hunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_obake" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> An Obake may not leave a trace when manipulating the environment.</p>
+            <p>An Obake may not leave a trace when manipulating the environment.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_oni" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
+            <p>Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_onryo" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
+            <p>Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_phantom" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
+            <p>Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
+            <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_raiju" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Raijus become much faster while nearby electrical devices.</p>
+            <p>Raijus become much faster while nearby electrical devices.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_revenant" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
+            <p>Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_shade" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
+            <p>Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_spirit" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Spirits have no strengths in particular, as they are geared towards new players.</p>
+            <p>Spirits have no strengths in particular, as they are geared towards new players.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_thetwins" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
+            <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Since they fly, Wraiths cannot be tracked by their footsteps.</p>
+            <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yokai" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
+            <p>Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yurei" >
         <![CDATA[
-            <p><font color=#ff6161>Strength:</font> Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
+            <p>Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
         ]]>
     </string>
 
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Susceptible to the use of a crucifix to cull their aggression.</p>
+            <p>Susceptible to the use of a crucifix to cull their aggression.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_demon" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
+            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_goryo" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
+            <p>Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_hantu" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> A Hantu\'s movement will be slower than normal in warmer areas.</p>
+            <p>A Hantu\'s movement will be slower than normal in warmer areas.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_jinn" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
+            <p>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
+            <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_mimic" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Unknown</p>
+            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_myling" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Mylings will more frequently emit paranormal sounds.</p>
+            <p>Mylings will more frequently emit paranormal sounds.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_obake" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> The unique evidence left by an Obake may be used to determine the Ghost type.</p>
+            <p>The unique evidence left by an Obake may be used to determine the Ghost type.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_oni" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
+            <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_onryo" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
+            <p>A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_phantom" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
+            <p>Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
+            <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_raiju" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
+            <p>It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_revenant" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
+            <p>If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_shade" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
+            <p>There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_spirit" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
+            <p>Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thetwins" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Due to their combined activity, locating The Twins should be much easier.</p>
+            <p>Due to their combined activity, locating The Twins should be much easier.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
+            <p>Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yokai" translatable="false">
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
+            <p>While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yurei" >
         <![CDATA[
-            <p><font color=#ff6161>Weakness:</font> Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
+            <p>Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
         ]]>
     </string>
 

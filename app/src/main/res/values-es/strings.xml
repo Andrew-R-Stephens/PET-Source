@@ -90,60 +90,60 @@
 
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
+			<p>Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_demon">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
+			<p>Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_jinn">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
+			<p>La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mare">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
+			<p>Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_oni">
         <![CDATA[
-        <p><font color=#ff6161>Fuerza:</font> Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
+        <p>Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_phantom">
-        <![CDATA[<p><font color=#ff6161>Fuerza:</font> Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
+        <![CDATA[<p>Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist">
         <![CDATA[
-        <p><font color=#ff6161>Fuerza:</font> Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
+        <p>Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_revenant">
         <![CDATA[
-        <p><font color=#ff6161>Fuerza:</font> Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
+        <p>Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_shade">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
+			<p>Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_spirit">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
+			<p>Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_wraith">
         <![CDATA[
-			<p><font color=#ff6161>Fuerza:</font> Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>]]>
+			<p>Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>]]>
     </string>
     <string name="evidence_ghost_strengths_yurei">
         <![CDATA[
-        <p><font color=#ff6161>Fuerza:</font> La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
+        <p>La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
 		]]>
     </string>
     
@@ -151,61 +151,61 @@
 
     <string name="evidence_ghost_weaknesses_banshee">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Susceptible al uso de un crucifijo para mitigar su agresion.</p>
+			<p>Susceptible al uso de un crucifijo para mitigar su agresion.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_demon">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> A diferencia de otros fantasmas, hacer una pregunta acertada a un demonio a traves del tablero Ouija no reducira la cordura de los jugadores. Esto hace que la tabla Ouija sea una herramienta muy útil contra los demonios.</p>
+			<p>A diferencia de otros fantasmas, hacer una pregunta acertada a un demonio a traves del tablero Ouija no reducira la cordura de los jugadores. Esto hace que la tabla Ouija sea una herramienta muy útil contra los demonios.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_jinn">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Los genios dependen de la fuente de energia del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para limitar las habilidades de los genios.</p>
+			<p>Los genios dependen de la fuente de energia del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para limitar las habilidades de los genios.</p>
 	    ]]>
     </string>
     <string name="evidence_ghost_weaknesses_mare">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Mantener las luces encendidas en el área de una pesadilla reducira la probabilidad de que comience a cazar.</p>
+			<p>Mantener las luces encendidas en el área de una pesadilla reducira la probabilidad de que comience a cazar.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_oni">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Los onis son faciles de encontrar, ya que no pueden resistir causar un alboroto cuando los jugadores están cerca.</p>
+			<p>Los onis son faciles de encontrar, ya que no pueden resistir causar un alboroto cuando los jugadores están cerca.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_phantom">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Tomar una foto de un fantasma hara que desaparezca temporalmente, dando a los jugadores la oportunidad de escapar.</p>
+			<p>Tomar una foto de un fantasma hara que desaparezca temporalmente, dando a los jugadores la oportunidad de escapar.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Los jugadores pueden eliminar objetos fisicos de la habitacion, lo que hace que un Poltergeist sea ineficaz.</p>
+			<p>Los jugadores pueden eliminar objetos fisicos de la habitacion, lo que hace que un Poltergeist sea ineficaz.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_revenant">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Si los jugadores tienen la oportunidad de esconderse de un Resucidato, su velocidad disminuira drasticamente.</p>
+			<p>Si los jugadores tienen la oportunidad de esconderse de un Resucidato, su velocidad disminuira drasticamente.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_shade">
         <![CDATA[
-			<p><font color=#ff6161>Debilidad:</font> Hay fuerza en los numeros contra una Sombra, ya que no atacaran a un grupo de personas.</p>
+			<p>Hay fuerza en los numeros contra una Sombra, ya que no atacaran a un grupo de personas.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_spirit">
-        <![CDATA[<p><font color=#ff6161>Debilidad:</font> Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
+        <![CDATA[<p>Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith">
         <![CDATA[
-        <p><font color=#ff6161>Debilidad:</font> Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
+        <p>Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_yurei">
         <![CDATA[
-        <p><font color=#ff6161>Debilidad:</font> Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
+        <p>Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
 		]]>
     </string>
     

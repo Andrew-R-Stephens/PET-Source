@@ -89,64 +89,64 @@
 
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Wird einen Spieler ins Visier nehmen, besonders wenn diese alleine sind.</p>
+                <p>Wird einen Spieler ins Visier nehmen, besonders wenn diese alleine sind.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_demon">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Die erhöhte Anzahl an Angriffen kann das Sammeln von Beweisen erschweren.</p>
+                <p>Die erhöhte Anzahl an Angriffen kann das Sammeln von Beweisen erschweren.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_jinn">
         <![CDATA[
 
-                <p><font color=#ff6161>Stärke</font>: Aufgrund seiner Geschwindigkeit ist es schwierig, einem Dschinn zu entkommen, sobald er anfängt zu jagen.</p>
+                <p>Aufgrund seiner Geschwindigkeit ist es schwierig, einem Dschinn zu entkommen, sobald er anfängt zu jagen.</p>
 		]]>
     </string>
     <string name="evidence_ghost_strengths_mare">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Maren lieben die Dunkelheit und haben eine erhöhte Chance anzugreifen, wenn das Licht aus ist.</p>
+                <p>Maren lieben die Dunkelheit und haben eine erhöhte Chance anzugreifen, wenn das Licht aus ist.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_oni">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Ein Oni kann, ähnlich wie ein Poltergeist, Objekte mit hoher Geschwindigkeit bewegen und zeigt die Aggressivität eines Dämons. Das macht es schwierig, Beweise zu sammeln, ohne ihn zu verärgern.</p>
+                <p>Ein Oni kann, ähnlich wie ein Poltergeist, Objekte mit hoher Geschwindigkeit bewegen und zeigt die Aggressivität eines Dämons. Das macht es schwierig, Beweise zu sammeln, ohne ihn zu verärgern.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_phantom">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Phantome haben einen starken Einfluss auf die geistige Gesundheit des Spielers. Daher sollte es grundsätzlich nicht zu lange angeschaut werden. Der Spieler sollte auch darauf achten, nicht zu lange in der Anwesenheit des Geistes zu bleiben.</p>
+                <p>Phantome haben einen starken Einfluss auf die geistige Gesundheit des Spielers. Daher sollte es grundsätzlich nicht zu lange angeschaut werden. Der Spieler sollte auch darauf achten, nicht zu lange in der Anwesenheit des Geistes zu bleiben.</p>
 
             ]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Poltergeister haben einen starken Einfluss auf den Bereich um den Spieler und können zahlreiche Objekte werfen und laute Geräusche erzeugen.</p>
+                <p>Poltergeister haben einen starken Einfluss auf den Bereich um den Spieler und können zahlreiche Objekte werfen und laute Geräusche erzeugen.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_revenant">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Revenants bewegen sich extrem schnell, wenn sie angreifen, was den Spielern wenig Chance gibt, zu entkommen.</p>
+                <p>Revenants bewegen sich extrem schnell, wenn sie angreifen, was den Spielern wenig Chance gibt, zu entkommen.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_shade">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Beweise können nur schwer zu finden sein, was die Identifikation des Geistes erschwert.</p>
+                <p>Beweise können nur schwer zu finden sein, was die Identifikation des Geistes erschwert.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_spirit">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Der Spirit hat keine besonderen Stärken, da er besonders auf neue Spieler ausgerichtet ist.</p>
+                <p>Der Spirit hat keine besonderen Stärken, da er besonders auf neue Spieler ausgerichtet ist.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_wraith">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Da sie fliegen, können Gespenster nicht durch ihre Schritte lokalisiert werden.</p>
+                <p>Da sie fliegen, können Gespenster nicht durch ihre Schritte lokalisiert werden.</p>
             ]]>
     </string>
     <string name="evidence_ghost_strengths_yurei">
         <![CDATA[
-                <p><font color=#ff6161>Stärke</font>: Der Yurei hat einen höheren Einfluss auf die geistige Gesundheit des Spielers als jeder andere Geist, egal ob der Spieler ihn anschaut oder nicht.</p>
+                <p>Der Yurei hat einen höheren Einfluss auf die geistige Gesundheit des Spielers als jeder andere Geist, egal ob der Spieler ihn anschaut oder nicht.</p>
             ]]>
     </string>
 
@@ -154,57 +154,57 @@
 
     <string name="evidence_ghost_weaknesses_banshee">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Anfällig für das Kruzifix, was ihre Aggression verringert.</p>
+        <p>Anfällig für das Kruzifix, was ihre Aggression verringert.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_demon">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Da das Ouija-Brett die geistige Gesundheit nicht verringert, ist es ein nützliches Werkzeug gegen Dämonen.</p>
+        <p>Da das Ouija-Brett die geistige Gesundheit nicht verringert, ist es ein nützliches Werkzeug gegen Dämonen.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_jinn">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Dschinns brauchen Strom, um ihre Fähigkeiten nutzen zu können. Es empfiehlt sich also, möglichst früh den Sicherungskasten zu finden, um den Dschinn zu schwächen.</p>
+        <p>Dschinns brauchen Strom, um ihre Fähigkeiten nutzen zu können. Es empfiehlt sich also, möglichst früh den Sicherungskasten zu finden, um den Dschinn zu schwächen.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_mare">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Ist das Licht eingeschaltet, ist die Chance, dass ein Mare angreift, eher gering.</p>
+        <p>Ist das Licht eingeschaltet, ist die Chance, dass ein Mare angreift, eher gering.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_oni">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Aufgrund ihrer hohen Aktivität sind Onis leicht zu finden und zu identifizieren.</p>
+        <p>Aufgrund ihrer hohen Aktivität sind Onis leicht zu finden und zu identifizieren.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_phantom">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Fotografiert man ein Phantom, verschwindet es für eine gewisse Zeit, was einem die Möglichkeit zur Flucht gibt.</p>
+        <p>Fotografiert man ein Phantom, verschwindet es für eine gewisse Zeit, was einem die Möglichkeit zur Flucht gibt.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist">
-        <![CDATA[<p><font color=#ff6161>Schwäche</font>: Spieler können physische Objekte im Raum entfernen, was einen Poltergeist praktisch unwirksam macht.</p>
+        <![CDATA[<p>Spieler können physische Objekte im Raum entfernen, was einen Poltergeist praktisch unwirksam macht.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_revenant">
-        <![CDATA[<p><font color=#ff6161>Schwäche</font>: Schafft man es, sich vor einem Revenant zu verstecken, verringert sich dessen Geschwindigkeit drastisch.</p>
+        <![CDATA[<p>Schafft man es, sich vor einem Revenant zu verstecken, verringert sich dessen Geschwindigkeit drastisch.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_shade">
-        <![CDATA[<p><font color=#ff6161>Schwäche</font>: Shades werden keine Gruppen angreifen, sodass man mit mehreren Spielern relativ sicher ist.</p>
+        <![CDATA[<p>Shades werden keine Gruppen angreifen, sodass man mit mehreren Spielern relativ sicher ist.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_spirit">
-        <![CDATA[<p><font color=#ff6161>Schwäche</font>: Räucherstäbchen werden den Spirit für einen bestimmten Zeitraum am Jagen hindern, sodass man sicher Beweise sammeln kann.</p>
+        <![CDATA[<p>Räucherstäbchen werden den Spirit für einen bestimmten Zeitraum am Jagen hindern, sodass man sicher Beweise sammeln kann.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith">
-        <![CDATA[<p><font color=#ff6161>Schwäche</font>: Kommt ein Gespenst in Kontakt mit Salz, beendet er seinen Angriff. Dies ist jedoch leichter gesagt als getan, da Gespenster meistens über Salzhaufen hinwegfliegen.</p>
+        <![CDATA[<p>Kommt ein Gespenst in Kontakt mit Salz, beendet er seinen Angriff. Dies ist jedoch leichter gesagt als getan, da Gespenster meistens über Salzhaufen hinwegfliegen.</p>
             ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yurei">
         <![CDATA[
-        <p><font color=#ff6161>Schwäche</font>: Yureis sind empfindlich gegenüber Räucherstäbchen, weshalb ihn das erfolgreiche Ausräuchern des Geisterraumes eine Weile dazu zwingen wird, an Ort und Stelle zu bleiben.</p>
+        <p>Yureis sind empfindlich gegenüber Räucherstäbchen, weshalb ihn das erfolgreiche Ausräuchern des Geisterraumes eine Weile dazu zwingen wird, an Ort und Stelle zu bleiben.</p>
             ]]>
     </string>
 
