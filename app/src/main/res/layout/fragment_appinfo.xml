@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
@@ -121,13 +122,13 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_aboutapp_info"
+                style="@style/TypewriterRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/EastRegular"
                 android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/aboutinfo_developerinfo_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".3"
+                app:layout_constraintHeight_percent=".4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -149,10 +150,9 @@
                 android:id="@+id/constraintLayout37"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout36"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout_discord"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutinfo_developerinfo_title">
 
@@ -186,10 +186,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout36"
+                android:id="@+id/constraintLayout_discord"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/aboutinfo_specialthanks_title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -197,16 +196,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout37"
                 app:layout_constraintWidth_percent=".75">
-
-                <View
-                    android:id="@+id/appinfo_discordclickbox"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#00000000"
-                    app:layout_constraintBottom_toBottomOf="@+id/popup_close_button2"
-                    app:layout_constraintEnd_toEndOf="@+id/appinfo_joinDiscord"
-                    app:layout_constraintStart_toStartOf="@+id/popup_close_button2"
-                    app:layout_constraintTop_toTopOf="@+id/popup_close_button2" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/popup_close_button2"
@@ -225,9 +214,9 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appinfo_joinDiscord"
+                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    style="@style/NorseRegular"
                     android:gravity="center"
                     android:text="@string/aboutinfo_joindiscord"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -240,10 +229,9 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_specialthanks_title"
+                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                style="@style/NorseRegular"
                 android:gravity="center"
                 android:text="@string/aboutinfo_specialthanks_title"
                 android:textColor="?attr/titleFontColor"
@@ -251,7 +239,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout36" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_discord" />
 
             <ScrollView
                 android:id="@+id/aboutapp_specialthanks_scrollview"

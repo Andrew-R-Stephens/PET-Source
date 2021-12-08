@@ -109,12 +109,12 @@
             <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_goryo" translatable="false">
+    <string name="evidence_ghost_info_goryo" >
         <![CDATA[
             <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_hantu" translatable="false">
+    <string name="evidence_ghost_info_hantu" >
         <![CDATA[
             <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
         ]]>
@@ -129,17 +129,17 @@
             <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_mimic" translatable="false">
+    <string name="evidence_ghost_info_mimic" >
         <![CDATA[
             <p>Unknown</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_myling" translatable="false">
+    <string name="evidence_ghost_info_myling" >
         <![CDATA[
             <p>The Myling will emit strange noises which can be picked up by the Parabolic Microphone. Its footsteps can also only be heard within the electronic interference range (which is around 10 meters) during a Hunt.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_obake" translatable="false">
+    <string name="evidence_ghost_info_obake" >
         <![CDATA[
             <p>An Obake is a shape shifter which promotes some unusual evidence at times. By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake.
         ]]>
@@ -149,7 +149,7 @@
             <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_onryo" translatable="false">
+    <string name="evidence_ghost_info_onryo" >
         <![CDATA[
             <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc).</p>
         ]]>
@@ -164,7 +164,7 @@
             <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_raiju" translatable="false">
+    <string name="evidence_ghost_info_raiju" >
         <![CDATA[
             <p>A Raiju is a ghost which <font color=#ff6161>siphons electrical power</font> from the devices around it. Too much electrical stimulation nearby it will cause it to become agitated and hunt more frequently.</p>
         ]]>
@@ -184,7 +184,7 @@
             <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_thetwins" translatable="false">
+    <string name="evidence_ghost_info_thetwins" >
         <![CDATA[
             <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
         ]]>
@@ -194,7 +194,7 @@
             <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_yokai" translatable="false">
+    <string name="evidence_ghost_info_yokai" >
         <![CDATA[
             <p>The Yokai is highly <font color=#ff6161>sensitive to voices</font>, making the Yokai extremely dangerous. However, speaking nearby it may also trigger activity, making finding the Ghost room easier.</p>
         ]]>
@@ -215,12 +215,12 @@
             <p>They can be difficult to gather clues on as they will attack players very frequently.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_goryo" translatable="false">
+    <string name="evidence_ghost_strengths_goryo" >
         <![CDATA[
             <p>A Goryo often only shows itself on camera when there are no people nearby.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_hantu" translatable="false">
+    <string name="evidence_ghost_strengths_hantu" >
         <![CDATA[
             <p>Lower temperatures allow the Hantu to move at faster speeds.</p>
         ]]>
@@ -235,17 +235,17 @@
             <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_mimic" translatable="false">
+    <string name="evidence_ghost_strengths_mimic" >
         <![CDATA[
             <p>Unknown</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_myling" translatable="false">
+    <string name="evidence_ghost_strengths_myling" >
         <![CDATA[
             <p>A Myling is not as vocal as other Ghosts while Hunting.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_obake" translatable="false">
+    <string name="evidence_ghost_strengths_obake" >
         <![CDATA[
             <p>An Obake may not leave a trace when manipulating the environment.</p>
         ]]>
@@ -255,7 +255,7 @@
             <p>Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_onryo" translatable="false">
+    <string name="evidence_ghost_strengths_onryo" >
         <![CDATA[
             <p>Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
         ]]>
@@ -270,7 +270,7 @@
             <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_raiju" translatable="false">
+    <string name="evidence_ghost_strengths_raiju" >
         <![CDATA[
             <p>Raijus become much faster while nearby electrical devices.</p>
         ]]>
@@ -290,7 +290,7 @@
             <p>Spirits have no strengths in particular, as they are geared towards new players.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_thetwins" translatable="false">
+    <string name="evidence_ghost_strengths_thetwins" >
         <![CDATA[
             <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
         ]]>
@@ -300,7 +300,7 @@
             <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_yokai" translatable="false">
+    <string name="evidence_ghost_strengths_yokai" >
         <![CDATA[
             <p>Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
         ]]>
@@ -321,12 +321,12 @@
             <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_goryo" translatable="false">
+    <string name="evidence_ghost_weaknesses_goryo" >
         <![CDATA[
             <p>Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_hantu" translatable="false">
+    <string name="evidence_ghost_weaknesses_hantu" >
         <![CDATA[
             <p>A Hantu\'s movement will be slower than normal in warmer areas.</p>
         ]]>
@@ -341,17 +341,17 @@
             <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_mimic" translatable="false">
+    <string name="evidence_ghost_weaknesses_mimic" >
         <![CDATA[
             <p>Unknown</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_myling" translatable="false">
+    <string name="evidence_ghost_weaknesses_myling" >
         <![CDATA[
             <p>Mylings will more frequently emit paranormal sounds.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_obake" translatable="false">
+    <string name="evidence_ghost_weaknesses_obake" >
         <![CDATA[
             <p>The unique evidence left by an Obake may be used to determine the Ghost type.</p>
         ]]>
@@ -361,7 +361,7 @@
             <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_onryo" translatable="false">
+    <string name="evidence_ghost_weaknesses_onryo" >
         <![CDATA[
             <p>A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
         ]]>
@@ -376,7 +376,7 @@
             <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_raiju" translatable="false">
+    <string name="evidence_ghost_weaknesses_raiju" >
         <![CDATA[
             <p>It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
         ]]>
@@ -396,7 +396,7 @@
             <p>Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_thetwins" translatable="false">
+    <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
             <p>Due to their combined activity, locating The Twins should be much easier.</p>
         ]]>
@@ -406,7 +406,7 @@
             <p>Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_yokai" translatable="false">
+    <string name="evidence_ghost_weaknesses_yokai" >
         <![CDATA[
             <p>While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
         ]]>
@@ -557,5 +557,11 @@
     <string name="evidence_popup_ghost_strength">Strengths</string>
     <string name="evidence_popup_ghost_weakness">Weaknesses</string>
     <string name="evidence_popup_ghost_info">Informace</string>
+    <string name="evidence_evidence_description_dots">
+        <![CDATA[
+            <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
+            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
+        ]]>
+    </string>
 
 </resources>

@@ -386,5 +386,146 @@
     <string name="evidence_popup_ghost_strength">Stärken</string>
     <string name="evidence_popup_ghost_weakness">Schwächen</string>
     <string name="evidence_popup_ghost_info">Information</string>
+    <string name="evidence_ghost_info_goryo">
+		<![CDATA[
+            <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_hantu" >
+		<![CDATA[
+			<p>Der Hantu <font color=#ff6161>bevorzugt kältere Temperaturen</font>, wodurch er sich schnell bewegen kann. Dies bedeutet, dass der Leistungsschalter aktiviert werden muss, um die Gesamttemperatur außerhalb des Spukbereichs zu erhöhen, wodurch die Bewegungsgeschwindigkeit des Hantu beeinträchtigt wird.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_mimic" >
+		<![CDATA[
+			<p>Unbekannt</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_myling" >
+		<![CDATA[
+			<p>Der Myling gibt seltsame Geräusche von sich, die vom parabolischen Mikrofon aufgenommen werden können. Seine Schritte sind auch während einer Jagd nur innerhalb des elektronischen Störbereichs (der etwa 10 Meter beträgt) zu hören.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_obake" >
+		<![CDATA[
+			<p>Ein Obake ist ein Gestaltwandler, der manchmal für ungewöhnliche Beweise wirbt. Zufällig hinterlässt ein Obake manchmal <font color=#ff6161>6-Finger-Handabdrücke</font> anstelle der normalen 5. 5-Finger-Handabdrücke sollten nicht verwendet werden, um den Obake auszuschließen.
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_onryo" >
+		<![CDATA[
+			<p>Der Onryo mag jede Form von Flamme</font> (einschließlich Kerzen, Feuerzeug usw.) nicht und ist <font color=#ff6161>stark bedroht.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_raiju" >
+		<![CDATA[
+			<p>Ein Raiju ist ein Geist, der <font color=#ff6161>elektrischen Strom</font> von den Geräten in seiner Umgebung absaugt. Zu viel elektrische Stimulation in der Nähe führt dazu, dass es unruhig wird und häufiger jagt.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_thetwins" >
+		<![CDATA[
+			<p>Die Zwillinge sind ein Paar von zwei Geistern, die ihre Umgebung separat manipulieren können. Einer der Zwillinge ist nicht in der Lage, Bewegungssensoren zu manipulieren und wird keine deterministischen Beweise hinterlassen. Jeder Zwilling kann eine Jagd starten und daran teilnehmen, aber <font color=#ff6161>nicht</font> beides gleichzeitig.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_info_yokai" >
+		<![CDATA[
+			<p>Der Yokai ist sehr <font color=#ff6161>sensibel für Stimmen</font>, was den Yokai extrem gefährlich macht. In der Nähe zu sprechen kann jedoch auch Aktivitäten auslösen, wodurch das Auffinden des Geisterraums erleichtert wird.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_goryo" >
+		<![CDATA[
+			<p>Ein Goryo zeigt sich oft nur dann vor der Kamera, wenn keine Personen in der Nähe sind.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_hantu" >
+		<![CDATA[
+			<p>Niedrigere Temperaturen ermöglichen es dem Hantu, sich schneller zu bewegen.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_mimic" >
+		<![CDATA[
+			<p>Unbekannt</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_myling" >
+		<![CDATA[
+			<p>Ein Myling ist während der Jagd nicht so laut wie andere Geister.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_obake" >
+		<![CDATA[
+			<p>Ein Obake hinterlässt möglicherweise keine Spuren, wenn er die Umgebung manipuliert.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_onryo" >
+		<![CDATA[
+			<p>Sollte eine Flamme erloschen sein, kann der Onryo auf jeden Fall eine Jagd einleiten.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_raiju" >
+		<![CDATA[
+			<p>Raijus werden viel schneller, wenn elektrische Geräte in der Nähe sind.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_thetwins" >
+		<![CDATA[
+			<p>Beide Zwillinge können verärgert sein und somit kann jeder Zwilling eine Jagd einleiten.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_strengths_yokai" >
+		<![CDATA[
+			<p>Ein Yokai in der Nähe zu sprechen wird ihn wütend machen. Mehrere Stimmen beschleunigen diesen Prozess, der den Schutz hoher Sanity-Level leicht übertreffen kann.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_goryo" >
+		<![CDATA[
+			<p>Goryos werden normalerweise innerhalb oder sehr nahe an dem Ort bleiben, an dem sie heimsuchen.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_hantu" >
+		<![CDATA[
+			<p>In wärmeren Gegenden ist die Bewegung eines Hantu langsamer als normal.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_mimic" >
+		<![CDATA[
+			<p>Unbekannt</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_myling" >
+		<![CDATA[
+			<p>Mylings geben häufiger paranormale Geräusche von sich.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_obake" >
+		<![CDATA[
+			<p>Die einzigartigen Beweise, die ein Obake hinterlassen hat, können verwendet werden, um den Ghost-Typ zu bestimmen.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_onryo" >
+		<![CDATA[
+			<p>Eine Flamme wird die Chance eines Onryos auf einen Angriff zu unterdrücken, aber diese Aktion hat Konsequenzen.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_yokai" >
+		<![CDATA[
+			<p>Während der Jagd hört ein Yokai nur Stimmen in unmittelbarer Nähe.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_thetwins" >
+		<![CDATA[
+			<p>Aufgrund ihrer kombinierten Aktivität sollte es viel einfacher sein, die Zwillinge zu finden.</p>
+        ]]>
+	</string>
+    <string name="evidence_ghost_weaknesses_raiju" >
+		<![CDATA[
+			<p>Es ist einfacher, einen Raiju aufzuspüren, weil er während der Jagd ständig elektrische Geräte manipuliert.</p>
+        ]]>
+	</string>
+    <string name="evidence_evidence_description_dots" >
+		<![CDATA[
+			<p>Die D.O.T.S. Projektor ist ein Gerät, das an Wänden oder auf dem Boden aufgestellt werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um sich herum.</p>
+			<p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
+        ]]>
+	</string>
 
 </resources>

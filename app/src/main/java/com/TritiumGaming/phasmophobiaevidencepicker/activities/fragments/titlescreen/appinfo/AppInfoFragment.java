@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -107,35 +108,12 @@ public class AppInfoFragment extends Fragment {
         LinearLayout linearLayout_developerInfo_subinfo =
                 view.findViewById(R.id.appinfo_developerinfo_subinfo);
 
-        View appinfo_discordclickbutton = view.findViewById(R.id.appinfo_discordclickbox);
+        ConstraintLayout appinfo_discordclickbutton = view.findViewById(R.id.constraintLayout_discord);
 
         AppCompatTextView specialThanks_title =
                 view.findViewById(R.id.aboutinfo_specialthanks_title);
         LinearLayout linearLayout_specialThanks =
                 view.findViewById(R.id.scrollview_list_specialthanks);
-
-
-        // TEXT SIZE
-        /*
-        title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        version.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        aboutapp_info.setAutoSizeTextTypeUniformWithConfiguration(
-                16, 100, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        developerInfo_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        specialThanks_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        discordLabel.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        */
 
         // LISTENERS
         closeButton.setOnClickListener(v -> {
