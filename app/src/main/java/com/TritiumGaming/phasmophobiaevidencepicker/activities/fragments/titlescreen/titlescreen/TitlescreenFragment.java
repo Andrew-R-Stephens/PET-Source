@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +101,6 @@ public class TitlescreenFragment extends Fragment {
 
         // INITIALIZE VIEWS
         animationView = view.findViewById(R.id.titlescreen_backgroundanimation);
-        AppCompatTextView label_titledescription = view.findViewById(R.id.label_titledescription);
         AppCompatTextView label_languageName = view.findViewById(R.id.label_languageName);
         AppCompatTextView button_startSolo = view.findViewById(R.id.button_start_solo);
         AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
@@ -119,22 +117,6 @@ public class TitlescreenFragment extends Fragment {
         if (getContext() != null) {
             icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
         }
-
-        // TEXT SIZE
-        /*
-        label_titledescription.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_languageName.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        button_startSolo.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        button_startMult.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        */
 
         // LANGUAGE
         String appendedLanguage = Locale.getDefault().getDisplayLanguage();
@@ -241,8 +223,6 @@ public class TitlescreenFragment extends Fragment {
      * doReviewRequest method
      */
     public void requestReview() {
-        //Log.d("Review", titleScreenViewModel.getReviewRequestData().canRequestReview() +
-        // " " + titleScreenViewModel.getReviewRequestData().getTimesOpened());
 
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
@@ -324,20 +304,8 @@ public class TitlescreenFragment extends Fragment {
         );
         popup.setOutsideTouchable(false);
 
-        AppCompatTextView title = customView.findViewById(R.id.label_ratingstitle);
         AppCompatTextView acceptButton = customView.findViewById(R.id.label_accept);
         AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
-
-        // TEXT SIZE
-        title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        acceptButton.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        declineButton.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
 
         // LISTENERS
         acceptButton.setOnClickListener(v -> {
@@ -347,7 +315,6 @@ public class TitlescreenFragment extends Fragment {
             //THIS IS FOR THE IN-APP REVIEW
             if (getContext() != null) {
                 ReviewManager manager =
-                        //new FakeReviewManager(getContext());
                         ReviewManagerFactory.create(getContext());
                 Task<ReviewInfo> request = manager.requestReviewFlow();
                 request.addOnCompleteListener(requestTask -> {
@@ -647,7 +614,6 @@ public class TitlescreenFragment extends Fragment {
      */
     @Override
     public void onPause() {
-        //Log.d("Fragment", "Pausing");
 
         // DESTROY POPUP
         if (popup != null) {
@@ -677,7 +643,6 @@ public class TitlescreenFragment extends Fragment {
      */
     @Override
     public void onResume() {
-        //Log.d("Fragment", "Resuming");
 
         // START THREADS
         startAnimInitThreads();
@@ -692,7 +657,6 @@ public class TitlescreenFragment extends Fragment {
      */
     @Override
     public void onDestroy() {
-        //Log.d("Fragment", "Destroying");
 
         // DESTROY AD-REQUEST
         if (titleScreenViewModel != null) {
@@ -706,7 +670,6 @@ public class TitlescreenFragment extends Fragment {
      */
     @Override
     public void onLowMemory() {
-        //Log.d("Fragment", "Low Memory!");
 
         // RECYCLE ANIMATION VIEW BITMAPS
         if (animationView != null) {

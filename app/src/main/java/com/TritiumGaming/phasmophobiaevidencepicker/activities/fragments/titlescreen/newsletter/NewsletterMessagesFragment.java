@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

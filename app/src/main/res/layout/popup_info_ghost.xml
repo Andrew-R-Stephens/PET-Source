@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/popup_bg"
-    android:backgroundTint="#E6000000"
+    android:backgroundTint="#CD000000"
     android:gravity="center_horizontal|center_vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +58,9 @@
                 android:id="@+id/constraintLayout50"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout82"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".075"
@@ -70,10 +73,11 @@
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
+                    android:layout_marginStart="16dp"
                     android:background="@drawable/popup_rating_fg"
                     android:backgroundTint="#F2000000"
+                    android:gravity="center"
+                    android:padding="2sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,8 +101,10 @@
                     android:id="@+id/constraintLayout85"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/popup_rating_fg"
                     android:backgroundTint="#F2000000"
+                    android:padding="5sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout87"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -118,27 +124,34 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_info"
-                        style="@style/TypewriterRegular"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="start|top"
-                        app:autoSizeMaxTextSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_infoTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_infoTitle">
+
+                        <include
+                            android:id="@+id/scrollview1"
+                            layout="@layout/item_scrollview"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout87"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/popup_rating_fg"
                     android:backgroundTint="#F2000000"
+                    android:padding="5sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout86"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,26 +165,29 @@
                         android:layout_marginStart="16dp"
                         android:gravity="start"
                         android:text="@string/evidence_popup_ghost_strength"
-                        android:textAlignment="viewStart"
                         android:textColor="?attr/titleFontColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".15"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_strengths"
-                        style="@style/TypewriterRegular"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="start|top"
-                        app:autoSizeMaxTextSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle">
+
+                        <include
+                            android:id="@+id/scrollview2"
+                            layout="@layout/item_scrollview"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -181,6 +197,7 @@
                     android:layout_height="0dp"
                     android:background="@drawable/popup_rating_fg"
                     android:backgroundTint="#F2000000"
+                    android:padding="5sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -201,19 +218,24 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_weaknesses"
-                        style="@style/TypewriterRegular"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="start|top"
-                        app:autoSizeMaxTextSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle">
+
+                        <include
+                            android:id="@+id/scrollview3"
+                            layout="@layout/item_scrollview"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

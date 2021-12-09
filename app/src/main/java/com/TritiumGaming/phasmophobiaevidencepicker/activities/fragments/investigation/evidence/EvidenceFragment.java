@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Typeface;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.TypedValue;
@@ -22,10 +21,10 @@ import android.widget.RelativeLayout;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -271,16 +270,12 @@ public class EvidenceFragment extends Fragment {
                 LayoutInflater inflaterPopup =
                         (LayoutInflater) getView().getContext().getSystemService(
                                 Context.LAYOUT_INFLATER_SERVICE);
-                @SuppressLint("InflateParams")
-                View customView = inflaterPopup.inflate(R.layout.popup_info_evidence, null);
+                View customView = inflaterPopup.inflate(
+                        R.layout.popup_info_evidence,
+                        (ViewGroup) view,
+                        false);
 
-                popup = new PopupWindow(
-                        customView,
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT
-                );
-
-                ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+                AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 AppCompatTextView label = customView.findViewById(R.id.label_name);
                 AppCompatTextView info = customView.findViewById(R.id.label_info);
 
@@ -291,6 +286,11 @@ public class EvidenceFragment extends Fragment {
                         evidenceInfo,
                         "ff6161", fontEmphasisColor + "")));
 
+                popup = new PopupWindow(
+                        customView,
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT
+                );
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
@@ -423,12 +423,19 @@ public class EvidenceFragment extends Fragment {
                 );
 
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-                AppCompatTextView label = customView.findViewById(R.id.label_name);
-                AppCompatTextView info = customView.findViewById(R.id.label_info);
-                AppCompatTextView strength = customView.findViewById(R.id.label_strengths);
-                AppCompatTextView weakness = customView.findViewById(R.id.label_weaknesses);
+                AppCompatTextView label_name = customView.findViewById(R.id.label_name);
+                AppCompatTextView label_info = customView.findViewById(R.id.label_infoTitle);
+                AppCompatTextView label_strength = customView.findViewById(R.id.label_strengthsTitle);
+                AppCompatTextView label_weakness = customView.findViewById(R.id.label_weaknessesTitle);
+                AppCompatTextView info = customView.findViewById(R.id.scrollview1).findViewById(R.id.label_info);
+                AppCompatTextView strength = customView.findViewById(R.id.scrollview2).findViewById(R.id.label_info);
+                AppCompatTextView weakness = customView.findViewById(R.id.scrollview3).findViewById(R.id.label_info);
 
-                label.setText(ghostName);
+                label_info.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+                label_strength.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+                label_weakness.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+                label_name.setText(ghostName);
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         ghostInfo,
                         "ff6161", fontEmphasisColor + "")));

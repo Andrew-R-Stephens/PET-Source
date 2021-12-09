@@ -501,11 +501,11 @@
     <!-- Evidence Names -->
     <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
-    <string name="evidence_evidence_type_fingerprints">FINGERPRINTS</string>
-    <string name="evidence_evidence_type_temperatures">FREEZING TEMP</string>
-    <string name="evidence_evidence_type_orbs">GHOST ORBS</string>
-    <string name="evidence_evidence_type_book">GHOST WRITING</string>
-    <string name="evidence_evidence_type_box">SPIRIT BOX</string>
+    <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
+    <string name="evidence_evidence_type_temperatures">Freeing Temps</string>
+    <string name="evidence_evidence_type_orbs">Ghost Orbs</string>
+    <string name="evidence_evidence_type_book">Ghost Writing</string>
+    <string name="evidence_evidence_type_box">Spirit Box</string>
 
     <!-- Evidence Description -->
     <string name="evidence_evidence_description_dots">
@@ -547,7 +547,9 @@
     <string name="evidence_evidence_description_box">
         <![CDATA[
             <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
-            <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard. Should the ghost answer, the Spirit Box is confirmed Evidence. Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
+            <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
+            <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
+            <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
         ]]>
     </string>
 
