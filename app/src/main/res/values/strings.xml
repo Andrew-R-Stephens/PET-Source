@@ -502,7 +502,7 @@
     <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
-    <string name="evidence_evidence_type_temperatures">Freeing Temps</string>
+    <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
     <string name="evidence_evidence_type_orbs">Ghost Orbs</string>
     <string name="evidence_evidence_type_book">Ghost Writing</string>
     <string name="evidence_evidence_type_box">Spirit Box</string>
@@ -540,7 +540,7 @@
     </string>
     <string name="evidence_evidence_description_orbs">
         <![CDATA[
-            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through Thermals on the Video Camera<font> or Head-Mounted Camera truck feed.</p>
+            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
             <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
         ]]>
     </string>

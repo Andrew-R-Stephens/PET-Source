@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -71,7 +72,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
+            app:layout_constraintHeight_percent=".35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout01"
             app:layout_constraintVertical_bias="1.0">
@@ -91,7 +92,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout13"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHeight_percent=".3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent=".9">
@@ -117,7 +118,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".5"
+                    app:layout_constraintHeight_percent=".6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"
                     app:layout_constraintWidth_percent=".95">
@@ -132,21 +133,23 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_1"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:backgroundTint="#FFFFFF"
+                        android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        android:contentDescription="@string/app_name"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/evidence1_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +174,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout23"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHeight_percent=".3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
@@ -197,7 +200,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".5"
+                    app:layout_constraintHeight_percent=".6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout22"
                     app:layout_constraintWidth_percent=".95">
@@ -212,6 +215,7 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_2"
@@ -222,11 +226,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:backgroundTint="#FFFFFF"
+                        android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        android:contentDescription="@string/app_name"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/evidence2_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
@@ -252,7 +256,7 @@
                     android:layout_marginBottom="1dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout33"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHeight_percent=".3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -277,7 +281,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".5"
+                    app:layout_constraintHeight_percent=".6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout32"
                     app:layout_constraintWidth_percent=".95">
@@ -292,6 +296,7 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_3"
@@ -302,11 +307,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:backgroundTint="#FFFFFF"
+                        android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        android:contentDescription="@string/app_name"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/evidence3_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
@@ -324,7 +329,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout49"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHeight_percent=".12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
 
@@ -337,11 +342,10 @@
                 android:text="@string/objectives_title_ghost_name"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout14"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintHeight_percent=".3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.53"
-                app:layout_constraintVertical_chainStyle="spread" />
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout14"
@@ -349,7 +353,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".5"
+                app:layout_constraintHeight_percent=".6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_ghostName"
                 app:layout_constraintWidth_percent=".75">

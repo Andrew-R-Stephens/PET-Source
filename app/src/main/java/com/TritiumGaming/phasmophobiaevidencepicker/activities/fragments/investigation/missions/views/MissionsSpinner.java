@@ -186,7 +186,6 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void setStrikeout() {
         strikeout[0] = super.getContext().getDrawable(R.drawable.icon_strikethrough_1);
-        //strikeout[0].setTint(Color.RED);
         strikeout[0].setTint(checkButton.getColorStates()[1]);
     }
 

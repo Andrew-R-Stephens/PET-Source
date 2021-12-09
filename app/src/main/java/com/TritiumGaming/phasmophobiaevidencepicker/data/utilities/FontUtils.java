@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -48,15 +49,10 @@ public class FontUtils {
         if (msg == null) {
             return "";
         }
-        String startTag = "<font color=";
-        String endTag = ">";
-        String targetTag = startTag + oldColor + endTag;
-        int tagIndex = msg.indexOf(startTag);
-        //Log.d("replaceHTMLFontColor", "Found Color @ " + tagIndex);
-        while (tagIndex >= 0) {
-            msg = msg.replaceFirst(targetTag, startTag + newColor + endTag);
-            tagIndex = msg.indexOf(targetTag);
-        }
+
+        String startTag = "<font color=", endTag = ">", targetTag = startTag + oldColor + endTag;
+        msg = msg.replaceAll(targetTag, startTag + newColor + endTag);
+
         return msg;
     }
 
@@ -73,7 +69,9 @@ public class FontUtils {
         if (msg == null) {
             return "";
         }
+
         int indexStart = msg.indexOf("<img src=");
+
         while (indexStart >= 0) {
             String newStr = msg.substring(indexStart);
             int indexEnd = newStr.indexOf("/>");
@@ -82,6 +80,7 @@ public class FontUtils {
 
             indexStart = msg.indexOf("<img src=");
         }
+
         return msg;
     }
 
@@ -97,10 +96,13 @@ public class FontUtils {
         if (msg == null) {
             return "";
         }
+
         int endIndex = msg.indexOf('+');
+
         if (endIndex < 0) {
             return msg;
         }
+
         return msg.substring(0, endIndex).trim();
     }
 

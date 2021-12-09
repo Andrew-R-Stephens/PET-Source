@@ -1,11 +1,14 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.TypedValue;
@@ -13,10 +16,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -140,7 +146,7 @@ public class EvidenceFragment extends Fragment {
         if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
             TypedValue typedValue = new TypedValue();
-            theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
+            theme.resolveAttribute(R.attr.bodyEmphasisFontColor, typedValue, true);
             fontEmphasisColor = typedValue.data;
         }
 
@@ -278,13 +284,17 @@ public class EvidenceFragment extends Fragment {
                 AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 AppCompatTextView label = customView.findViewById(R.id.label_name);
                 AppCompatTextView info = customView.findViewById(R.id.label_info);
+                ScrollView scroller = customView.findViewById(R.id.scrollView);
+                View indicator = customView.findViewById(R.id.scrollview_indicator);
+
+                fadeOutIndicatorAnimation(scroller, indicator);
 
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
 
                 label.setText(evidenceName);
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         evidenceInfo,
-                        "ff6161", fontEmphasisColor + "")));
+                        "#ff6161", fontEmphasisColor + "")));
 
                 popup = new PopupWindow(
                         customView,
@@ -296,54 +306,101 @@ public class EvidenceFragment extends Fragment {
 
             });
 
+            TypedValue typedValue = new TypedValue();
+            if(getContext() == null) {
+                return;
+            }
+            Resources.Theme theme = getContext().getTheme();
+
+            theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
+            int positiveSelColor = typedValue.data;
+            theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
+            int neutralSelColor = typedValue.data;
+            theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
+            int negativeSelColor = typedValue.data;
+
             if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
-                icon1.setImageResource(R.drawable.icon_positive_selected);
+                icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_negative_unselected);
-            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {
-                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon3.setImageResource(R.drawable.icon_positive_selected);
+                icon1.setColorFilter(negativeSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(neutralSelColor);
+            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {;
+                icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_selected);
-                icon3.setImageResource(R.drawable.icon_negative_unselected);
+                icon3.setImageResource(R.drawable.icon_positive_unselected);
+                icon1.setColorFilter(neutralSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(neutralSelColor);
             } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 2) {
-                icon1.setImageResource(R.drawable.icon_positive_unselected);
+                icon1.setImageResource(R.drawable.icon_negative_selected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_negative_selected);
+                icon3.setImageResource(R.drawable.icon_positive_unselected);
+                icon1.setColorFilter(neutralSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(positiveSelColor);
             }
 
             int index = i;
+
             icon1.setOnClickListener(v -> {
-                icon1.setImageResource(R.drawable.icon_positive_selected);
+
+                if(getContext() == null) {
+                    return;
+                }
+
+                icon1.setImageResource(R.drawable.icon_negative_selected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_negative_unselected);
+                icon3.setImageResource(R.drawable.icon_positive_unselected);
+
+                icon1.setColorFilter(negativeSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(neutralSelColor);
 
                 evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
+                        .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
 
                 evidenceViewModel.setRadioButtonChecked(index, 0);
                 evidenceViewModel.updateGhostOrder();
 
                 createGhostViews(view, ghostContainer);
             });
+
             icon2.setOnClickListener(v -> {
-                icon1.setImageResource(R.drawable.icon_positive_unselected);
+
+                if(getContext() == null) {
+                    return;
+                }
+
+                icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_selected);
-                icon3.setImageResource(R.drawable.icon_negative_unselected);
+                icon3.setImageResource(R.drawable.icon_positive_unselected);
+
+                icon1.setColorFilter(neutralSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(neutralSelColor);
 
                 evidenceViewModel.getInvestigationData().getEvidences().get(index)
                         .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
-
                 evidenceViewModel.setRadioButtonChecked(index, 1);
                 evidenceViewModel.updateGhostOrder();
 
                 createGhostViews(view, ghostContainer);
             });
+
             icon3.setOnClickListener(v -> {
-                icon1.setImageResource(R.drawable.icon_positive_unselected);
+
+                icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_negative_selected);
+                icon3.setImageResource(R.drawable.icon_positive_selected);
+
+                icon1.setColorFilter(neutralSelColor);
+                icon2.setColorFilter(neutralSelColor);
+                icon3.setColorFilter(positiveSelColor);
 
                 evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
+                        .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
 
                 evidenceViewModel.setRadioButtonChecked(index, 2);
                 evidenceViewModel.updateGhostOrder();
@@ -399,7 +456,6 @@ public class EvidenceFragment extends Fragment {
             mainLayout.setLayoutParams(params);
 
             name.setText(ghostName);
-
             name.setOnClickListener(v -> {
 
                 if(getView() == null || getView().getContext() == null) {
@@ -423,32 +479,46 @@ public class EvidenceFragment extends Fragment {
                 );
 
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+                ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
+                ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
+                ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
+                ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
+                ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
+                ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
+                View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
+                View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
+                View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
+
                 AppCompatTextView label_name = customView.findViewById(R.id.label_name);
                 AppCompatTextView label_info = customView.findViewById(R.id.label_infoTitle);
                 AppCompatTextView label_strength = customView.findViewById(R.id.label_strengthsTitle);
                 AppCompatTextView label_weakness = customView.findViewById(R.id.label_weaknessesTitle);
-                AppCompatTextView info = customView.findViewById(R.id.scrollview1).findViewById(R.id.label_info);
-                AppCompatTextView strength = customView.findViewById(R.id.scrollview2).findViewById(R.id.label_info);
-                AppCompatTextView weakness = customView.findViewById(R.id.scrollview3).findViewById(R.id.label_info);
+                AppCompatTextView info = scroller1.findViewById(R.id.label_info);
+                AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
+                AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
 
-                label_info.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-                label_strength.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-                label_weakness.setPaintFlags(info.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+                label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
                 label_name.setText(ghostName);
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         ghostInfo,
-                        "ff6161", fontEmphasisColor + "")));
+                        "#ff6161", fontEmphasisColor + "")));
                 strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         ghostStrength,
-                        "ff6161", fontEmphasisColor + "")));
+                        "#ff6161", fontEmphasisColor + "")));
                 weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         ghostWeakness,
-                        "ff6161", fontEmphasisColor + "")));
+                        "#ff6161", fontEmphasisColor + "")));
 
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
 
-                popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+                fadeOutIndicatorAnimation(scroller1, indicator1);
+                fadeOutIndicatorAnimation(scroller2, indicator2);
+                fadeOutIndicatorAnimation(scroller3, indicator3);
+
+                //popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
             });
@@ -530,6 +600,56 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
+    public void fadeOutIndicatorAnimation(ScrollView scroller, View indicator) {
+        scroller.post(() -> {
+            if (!scroller.canScrollVertically(1)) {
+                indicator.animate()
+                        .alpha(0f)
+                        .setDuration(getResources().getInteger(
+                                android.R.integer.config_longAnimTime))
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                indicator.setVisibility(View.GONE);
+                            }
+                        });
+            }
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            scroller.setOnScrollChangeListener((v13, scrollX, scrollY, oldScrollX,
+                                                 oldScrollY) -> {
+                if (!scroller.canScrollVertically(1)) {
+                    indicator.animate()
+                            .alpha(0f)
+                            .setDuration(getResources().getInteger(
+                                    android.R.integer.config_longAnimTime))
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    indicator.setVisibility(View.GONE);
+                                }
+                            });
+                }
+            });
+        } else {
+            scroller.setOnDragListener((v12, event) -> {
+                if (!scroller.canScrollVertically(1)) {
+                    indicator.animate()
+                            .alpha(0f)
+                            .setDuration(getResources().getInteger(
+                                    android.R.integer.config_longAnimTime))
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    indicator.setVisibility(View.GONE);
+                                }
+                            });
+                }
+                return true;
+            });
+        }
+    }
+
     private void initNavListeners(View navLeft, View navMedLeft, View navRight,
                                   View navMedRight, View navCenter) {
         if(navLeft != null) {
@@ -542,6 +662,7 @@ public class EvidenceFragment extends Fragment {
                     }
             );
         }
+
         if(navMedLeft != null) {
             navMedLeft.setOnClickListener(v -> {
                         if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {

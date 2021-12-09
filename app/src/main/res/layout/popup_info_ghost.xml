@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/popup_bg"
-    android:backgroundTint="#CD000000"
-    android:gravity="center_horizontal|center_vertical">
+    android:backgroundTint="#D9000000"
+    android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -21,14 +21,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_1"
+            android:id="@+id/constraintlayout_12"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_close_button"
+                android:id="@+id/popup_placeholder"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
@@ -37,6 +39,62 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_negative_unselected"
                 android:tint="?attr/subtitleFontColor"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout50"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintlayout_1"
+            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
+            app:layout_constraintStart_toEndOf="@+id/constraintlayout_12"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_name"
+                style="@style/NorseRegular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/popup_rating_fg"
+                android:backgroundTint="#F2000000"
+                android:gravity="center"
+                android:padding="2sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/popup_close_button"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_negative_unselected"
+                android:tint="?attr/subtitleFontColor"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,53 +107,22 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".8"
+            app:layout_constraintHeight_percent=".9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintlayout_1"
-            app:layout_constraintVertical_bias="0.07999998">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout50"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout82"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".075"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread_inside">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/label_name"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:background="@drawable/popup_rating_fg"
-                    android:backgroundTint="#F2000000"
-                    android:gravity="center"
-                    android:padding="2sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout50"
+            app:layout_constraintVertical_bias="0.1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout82"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout50">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout85"
@@ -105,6 +132,7 @@
                     android:background="@drawable/popup_rating_fg"
                     android:backgroundTint="#F2000000"
                     android:padding="5sp"
+                    app:layout_constraintHeight_percent=".4"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout87"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +144,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:gravity="start"
                         android:text="@string/evidence_popup_ghost_info"
                         android:textColor="?attr/titleFontColor"
@@ -163,15 +192,18 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:gravity="start"
                         android:text="@string/evidence_popup_ghost_strength"
                         android:textColor="?attr/titleFontColor"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout36"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".15"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout36"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -185,7 +217,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -210,6 +242,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:gravity="start"
                         android:text="@string/evidence_popup_ghost_weakness"
                         android:textColor="?attr/titleFontColor"
@@ -241,6 +274,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

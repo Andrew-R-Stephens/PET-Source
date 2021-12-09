@@ -35,6 +35,13 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <style name="NorseBold" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/norse</item>
+        <item name="fontFamily">@font/norse</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
     <style name="EastRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
