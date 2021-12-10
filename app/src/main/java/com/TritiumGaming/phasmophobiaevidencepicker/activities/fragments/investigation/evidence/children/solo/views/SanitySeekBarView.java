@@ -39,13 +39,13 @@ public class SanitySeekBarView extends AppCompatSeekBar {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    if (sanityData != null) {
-                        sanityData.setProgressManually(progress);
-                        sanityData.tick();
 
-                        sanityPercentTextView.setText(sanityData.toPercentString());
-                        sanityPercentTextView.invalidate();
-                    }
+                    sanityData.setProgressManually(progress);
+                    sanityData.tick();
+
+                    sanityPercentTextView.setText(sanityData.toPercentString());
+                    sanityPercentTextView.invalidate();
+
                 }
             }
 

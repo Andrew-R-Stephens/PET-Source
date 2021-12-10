@@ -40,6 +40,7 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -52,6 +53,8 @@ import java.util.Locale;
  * @author TritiumGamingStudios
  */
 public class TitlescreenFragment extends Fragment {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
 
@@ -73,6 +76,8 @@ public class TitlescreenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        initFirebase();
+
         // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null) {
             globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
@@ -131,17 +136,17 @@ public class TitlescreenFragment extends Fragment {
         button_language.setOnClickListener(this::gotoLanguagesFragment);
         button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
         button_startSolo.setOnClickListener(v -> {
-                    Intent intent = new Intent(getActivity(), InvestigationActivity.class);
-                    intent.putExtra("lobby", 0);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getActivity(), InvestigationActivity.class);
+                intent.putExtra("lobby", 0);
+                startActivity(intent);
+            }
         );
 
         button_startMult.setOnClickListener(v -> {
-                    Intent intent = new Intent(getActivity(), InvestigationActivity.class);
-                    intent.putExtra("lobby", 1);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getActivity(), InvestigationActivity.class);
+                intent.putExtra("lobby", 1);
+                startActivity(intent);
+            }
         );
 
 
@@ -168,6 +173,31 @@ public class TitlescreenFragment extends Fragment {
         // REQUEST REVIEW PROMPT
         requestReview();
 
+    }
+
+    private void initFirebase() {
+        if(getActivity() != null){
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+        }
+    }
+
+    private void recordToFirebase(String itemId, String itemName, String contentType) {
+
+        Bundle bundle = new Bundle();
+
+        if(itemId != null) {
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, itemId);
+        }
+
+        if(itemId != null) {
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
+        }
+
+        if(itemId != null) {
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
+        }
+
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 
     public void registerMessageInboxes() {

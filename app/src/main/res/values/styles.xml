@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AutoTextSizeBody">
-        <item name="autoSizeMinTextSize">12sp</item>
+        <item name="autoSizeMinTextSize">1sp</item>
         <item name="autoSizeMaxTextSize">50sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>

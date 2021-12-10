@@ -333,7 +333,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout71"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/constraintLayout45"
                             app:layout_constraintStart_toStartOf="@+id/constraintLayout45"
@@ -342,7 +342,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/colorblindmode_leftbutton"
                                 android:layout_width="0dp"
-                                android:layout_height="48dp"
+                                android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
@@ -357,9 +357,9 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/colorblindmode_selectedname"
+                                style="@style/NorseRegular"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                style="@style/NorseRegular"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_normal"
                                 android:textColor="?attr/neutralSelColor"
@@ -374,7 +374,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/colorblindmode_rightbutton"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"

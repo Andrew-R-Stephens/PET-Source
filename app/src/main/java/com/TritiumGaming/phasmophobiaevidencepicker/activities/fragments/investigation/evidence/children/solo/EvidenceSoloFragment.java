@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -84,7 +83,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
-            phaseTimerCountdownView.recreateTimer(0L, 1000L);
+            phaseTimerCountdownView.createTimer(false, 0L, 1000L);
             if ((!(phaseTimerData.getTimeRemaining() > 0L)) && sanityData.getSanityActual() < 50) {
                 sanityData.setProgressManually(50);
             }

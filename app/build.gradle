@@ -1,9 +1,13 @@
 
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 apply plugin: 'com.android.application'
+
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
 
 def playcoreDir = file('G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk')
 
@@ -61,6 +65,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-analytics:20.0.1'
+
     // PRIMARY
     def work_version = "2.7.1"
     implementation "androidx.work:work-runtime:$work_version"
@@ -75,6 +81,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // GOOGLE FIREBASE
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:29.0.1')
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
     // GOOGLE ADS
     implementation 'com.google.android.gms:play-services-ads:20.5.0'

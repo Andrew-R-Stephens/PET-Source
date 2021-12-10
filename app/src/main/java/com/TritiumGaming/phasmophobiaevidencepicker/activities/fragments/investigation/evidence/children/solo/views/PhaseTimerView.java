@@ -39,14 +39,8 @@ public class PhaseTimerView {
 
         setTimerTextView(recipientView);
 
-        if(sanityData.getStartTime() != -1) {
-            phaseTimerData.setTimeRemaining(
-                    phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
-                            (sanityData.getStartTime() - System.currentTimeMillis())
-            );
-        }
-
         createTimer(
+                true,
                 phaseTimerData.getTimeRemaining(),
                 1000L);
 
@@ -55,11 +49,31 @@ public class PhaseTimerView {
         }
     }
 
+    /**
+     * setTimerControls method
+     *
+     * @param stateControl -
+     */
+    public void setTimerControls(PhaseTimerControlView stateControl) {
+        this.stateControl = stateControl;
+    }
+
+    /**
+     * setTimerTextView method
+     *
+     * @param timerTextView -
+     */
+    public void setTimerTextView(AppCompatTextView timerTextView) {
+        this.timerTextView = timerTextView;
+    }
+
+    /*
     public void recreateTimer(long millisInFuture, long countDownInterval) {
         phaseTimerData.setTimeRemaining(millisInFuture);
 
         createTimer(millisInFuture, countDownInterval);
     }
+    */
 
     /**
      * createTimer method
@@ -67,15 +81,29 @@ public class PhaseTimerView {
      * @param millisInFuture -
      * @param countDownInterval -
      */
-    public void createTimer(long millisInFuture, long countDownInterval) {
+    public void createTimer(boolean isFresh, long millisInFuture, long countDownInterval) {
 
         destroyTimer();
+
+        if(isFresh) {
+            if(sanityData.getStartTime() != -1 && !sanityData.isPaused()) {
+                Log.d("SettingTimeRemaining",
+                        phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
+                                " " + (sanityData.getStartTime() - System.currentTimeMillis()));
+                phaseTimerData.setTimeRemaining(
+                        phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
+                                (sanityData.getStartTime() - System.currentTimeMillis())
+                );
+            }
+        } else {
+            phaseTimerData.setTimeRemaining(millisInFuture);
+        }
 
         timer = new CountDownTimer(millisInFuture, countDownInterval) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if (!phaseTimerData.isPaused() && millisUntilFinished > 0L) {
+                if (!phaseTimerData.isPaused() && millisUntilFinished > -1L) {
                     phaseTimerData.setTimeRemaining(millisUntilFinished);
                     setText();
                 }
@@ -115,31 +143,13 @@ public class PhaseTimerView {
                 sanityData.setProgressManually();
             }
             phaseTimerData.setPaused(false);
-            recreateTimer(phaseTimerData.getTimeRemaining(), 1000L);
+            createTimer(false, phaseTimerData.getTimeRemaining(), 1000L);
             if (timer != null) {
                 Log.d("Timer", "Playing!");
                 timer.start();
             }
         }
 
-    }
-
-    /**
-     * setTimerControls method
-     *
-     * @param stateControl -
-     */
-    public void setTimerControls(PhaseTimerControlView stateControl) {
-        this.stateControl = stateControl;
-    }
-
-    /**
-     * setTimerTextView method
-     *
-     * @param timerTextView -
-     */
-    public void setTimerTextView(AppCompatTextView timerTextView) {
-        this.timerTextView = timerTextView;
     }
 
     /**

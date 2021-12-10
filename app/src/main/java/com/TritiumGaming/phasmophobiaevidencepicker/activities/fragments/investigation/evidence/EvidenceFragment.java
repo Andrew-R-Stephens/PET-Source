@@ -318,9 +318,9 @@ public class EvidenceFragment extends Fragment {
             int negativeSelColor = typedValue.data;
 
             if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
-                icon1.setImageResource(R.drawable.icon_negative_unselected);
+                icon1.setImageResource(R.drawable.icon_negative_selected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_selected);
+                icon3.setImageResource(R.drawable.icon_positive_unselected);
                 icon1.setColorFilter(negativeSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(neutralSelColor);
@@ -332,9 +332,9 @@ public class EvidenceFragment extends Fragment {
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(neutralSelColor);
             } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 2) {
-                icon1.setImageResource(R.drawable.icon_negative_selected);
+                icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_unselected);
+                icon3.setImageResource(R.drawable.icon_positive_selected);
                 icon1.setColorFilter(neutralSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(positiveSelColor);

@@ -315,8 +315,10 @@ public class SanityData {
      * @return the percent format of sanity level
      */
     public String toPercentString() {
+
         NumberFormat percentageFormat = NumberFormat.getPercentInstance();
         percentageFormat.setMinimumFractionDigits(0);
+
         return percentageFormat.format(getInsanityPercent());
     }
 
