@@ -157,27 +157,27 @@
     <string name="evidence_timer_time_3" translatable="false">0</string>
 
     <!-- Ghost Names -->
-    <string name="evidence_ghost_type_banshee">BANSHEE</string>
-    <string name="evidence_ghost_type_demon">DEMON</string>
-    <string name="evidence_ghost_type_goryo" translatable="false">GORYO</string>
-    <string name="evidence_ghost_type_hantu" translatable="false">HANTU</string>
-    <string name="evidence_ghost_type_jinn">JINN</string>
-    <string name="evidence_ghost_type_mare">MARE</string>
-    <string name="evidence_ghost_type_mimic" translatable="false">MIMIC</string>
-    <string name="evidence_ghost_type_myling" translatable="false">MYLING</string>
-    <string name="evidence_ghost_type_obake" translatable="false">OBAKE</string>
-    <string name="evidence_ghost_type_oni">ONI</string>
-    <string name="evidence_ghost_type_onryo" translatable="false">ONRYO</string>
-    <string name="evidence_ghost_type_phantom">PHANTOM</string>
-    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
-    <string name="evidence_ghost_type_raiju" translatable="false">RAIJU</string>
-    <string name="evidence_ghost_type_revenant">REVENANT</string>
-    <string name="evidence_ghost_type_shade">SHADE</string>
-    <string name="evidence_ghost_type_spirit">SPIRIT</string>
-    <string name="evidence_ghost_type_thetwins" translatable="false">THE TWINS</string>
-    <string name="evidence_ghost_type_wraith">WRAITH</string>
-    <string name="evidence_ghost_type_yokai" translatable="false">YOKAI</string>
-    <string name="evidence_ghost_type_yurei">YUREI</string>
+    <string name="evidence_ghost_type_banshee">Banshee</string>
+    <string name="evidence_ghost_type_demon">Demon</string>
+    <string name="evidence_ghost_type_goryo" translatable="false">Goryo</string>
+    <string name="evidence_ghost_type_hantu" translatable="false">Hantu</string>
+    <string name="evidence_ghost_type_jinn">Jinn</string>
+    <string name="evidence_ghost_type_mare">Mare</string>
+    <string name="evidence_ghost_type_myling" translatable="false">Myling</string>
+    <string name="evidence_ghost_type_obake" translatable="false">Obake</string>
+    <string name="evidence_ghost_type_oni">Oni</string>
+    <string name="evidence_ghost_type_onryo" translatable="false">Onryo</string>
+    <string name="evidence_ghost_type_phantom">Phantom</string>
+    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
+    <string name="evidence_ghost_type_raiju" translatable="false">Raiju</string>
+    <string name="evidence_ghost_type_revenant">Revenant</string>
+    <string name="evidence_ghost_type_shade">Shade</string>
+    <string name="evidence_ghost_type_spirit">Spirit</string>
+    <string name="evidence_ghost_type_thetwins" translatable="false">The Twins</string>
+    <string name="evidence_ghost_type_themimic" translatable="false">The Mimic</string>
+    <string name="evidence_ghost_type_wraith">Wraith</string>
+    <string name="evidence_ghost_type_yokai" translatable="false">Yokai</string>
+    <string name="evidence_ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
     <string name="evidence_ghost_info_banshee" >
@@ -208,11 +208,6 @@
     <string name="evidence_ghost_info_mare" >
         <![CDATA[
             <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mimic">
-        <![CDATA[
-            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_myling">
@@ -270,6 +265,11 @@
             <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_info_themimic">
+        <![CDATA[
+            <p>The Mimic is an elusive, mysterious copycat ghost that mirrors traits and behaviours from others, including other ghost types. Keep an eye out for behaviour switching and Ghost Orbs (as explained under the Strengths and Weaknesses).</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_wraith" >
         <![CDATA[
             <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
@@ -314,11 +314,6 @@
     <string name="evidence_ghost_strengths_mare" >
         <![CDATA[
             <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_mimic">
-        <![CDATA[
-            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_myling">
@@ -376,6 +371,11 @@
             <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_strengths_themimic">
+        <![CDATA[
+            <p>The Mimic may copycat any ghost type, which makes it extremely dangerous and unpredictable.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
             <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
@@ -420,11 +420,6 @@
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
             <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mimic" >
-        <![CDATA[
-            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_myling" >
@@ -480,6 +475,11 @@
     <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
             <p>Due to their combined activity, locating The Twins should be much easier.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_themimic" >
+        <![CDATA[
+            <p>A Ghost Orb will appear alongside the deterministic Evidence of The Mimic, which makes The Mimic the only ghost type to (technically) have a fourth piece of Evidence. The Ghost Orb behaves differently than normal, too. It follows The Mimic as it wanders, so keep an eye out for a roaming Ghost Orb while at high Team Sanity.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith" >

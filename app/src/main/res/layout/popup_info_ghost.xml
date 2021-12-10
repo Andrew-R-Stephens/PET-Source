@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +25,6 @@
             android:id="@+id/constraintlayout_12"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginBottom="3dp"
             app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -77,8 +77,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintlayout_1"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginBottom="3dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -86,7 +85,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/popup_close_button"
                 android:layout_width="wrap_content"
-                android:layout_height="49dp"
+                android:layout_height="48dp"
                 android:adjustViewBounds="true"
                 android:background="#00000000"
                 android:contentDescription="@string/app_name"
@@ -106,7 +105,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".9"
+            app:layout_constraintHeight_percent=".95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout50"
             app:layout_constraintVertical_bias="0.1">
@@ -132,7 +131,6 @@
                     android:padding="5sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout87"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 

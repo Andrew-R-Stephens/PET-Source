@@ -410,11 +410,6 @@
 			<p>Le Hantu <font color=#ff6161>favorise les températures plus froides</font>, ce qui renforcera sa capacité à se déplacer rapidement. Cela signifie que le disjoncteur doit être activé afin d\'augmenter la température globale à l\'extérieur de la zone hantée, diminuant ainsi la vitesse de déplacement du Hantu.</p>
         ]]>
 	</string>
-    <string name="evidence_ghost_info_mimic" >
-		<![CDATA[
-			<p>Inconnu</p>
-        ]]>
-	</string>
     <string name="evidence_ghost_info_myling" >
 		<![CDATA[
 			<p>Le Myling émettra des bruits étranges qui peuvent être captés par le microphone parabolique. Ses pas ne peuvent également être entendus que dans la plage d\'interférences électroniques (qui est d\'environ 10 mètres) pendant une chasse.</p>
@@ -453,11 +448,6 @@
     <string name="evidence_ghost_strengths_hantu" >
 		<![CDATA[
 			<p>Des températures plus basses permettent au Hantu de se déplacer à des vitesses plus rapides.</p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_mimic" >
-		<![CDATA[
-			<p>Inconnu</p>
         ]]>
 	</string>
     <string name="evidence_ghost_strengths_myling" >
@@ -500,11 +490,6 @@
 			<p>A Hantu\'s movement will be slower than normal in warmer areas.</p>
         ]]>
 	</string>
-    <string name="evidence_ghost_weaknesses_mimic" >
-		<![CDATA[
-			<p>Inconnu</p>
-        ]]>
-	</string>
     <string name="evidence_ghost_weaknesses_myling" >
 		<![CDATA[
 			<p>Les Mylings émettront plus fréquemment des sons paranormaux.</p>
@@ -541,5 +526,19 @@
 			<p>Pour identifier positivement cette preuve, <font color=#ff6161>une silhouette du fantôme sera vue en train de courir ou de ramper rapidement à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver ces preuves à distance, car le comportement d\'un Goryo peut provoquer des conflits de preuves dans le cas contraire. L\'emplacement réel du fantôme ne dictera pas quand les animations de silhouette se produisent.</p>
         ]]>
 	</string>
+    <string name="evidence_ghost_info_themimic">
+        <![CDATA[
+            <p>Le Mimic est un fantôme insaisissable et mystérieux imitateur qui reflète les traits et les comportements des autres, y compris d\'autres types de fantômes. Gardez un œil sur le changement de comportement et les orbes fantômes (comme expliqué sous Forces et faiblesses).</p>
+        ]]></string>
+    <string name="evidence_ghost_strengths_themimic">
+        <![CDATA[
+            <p>Le Mimic peut copier n\'importe quel type de fantôme, ce qui le rend extrêmement dangereux et imprévisible.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_themimic">
+        <![CDATA[
+            <p>Un orbe fantôme apparaîtra aux côtés de la preuve déterministe de l\'imitation, ce qui fait de l\'imitation le seul type de fantôme à avoir (techniquement) une quatrième preuve. L\'orbe fantôme se comporte également différemment de la normale. Il suit The Mimic alors qu\'il erre, alors gardez un œil sur un orbe fantôme errant tout en étant à un niveau élevé de santé mentale d\'équipe.</p>
+        ]]>
+    </string>
 
 </resources>

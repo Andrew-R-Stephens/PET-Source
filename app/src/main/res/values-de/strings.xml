@@ -396,11 +396,6 @@
 			<p>Der Hantu <font color=#ff6161>bevorzugt kältere Temperaturen</font>, wodurch er sich schnell bewegen kann. Dies bedeutet, dass der Leistungsschalter aktiviert werden muss, um die Gesamttemperatur außerhalb des Spukbereichs zu erhöhen, wodurch die Bewegungsgeschwindigkeit des Hantu beeinträchtigt wird.</p>
         ]]>
 	</string>
-    <string name="evidence_ghost_info_mimic" >
-		<![CDATA[
-			<p>Unbekannt</p>
-        ]]>
-	</string>
     <string name="evidence_ghost_info_myling" >
 		<![CDATA[
 			<p>Der Myling gibt seltsame Geräusche von sich, die vom parabolischen Mikrofon aufgenommen werden können. Seine Schritte sind auch während einer Jagd nur innerhalb des elektronischen Störbereichs (der etwa 10 Meter beträgt) zu hören.</p>
@@ -439,11 +434,6 @@
     <string name="evidence_ghost_strengths_hantu" >
 		<![CDATA[
 			<p>Niedrigere Temperaturen ermöglichen es dem Hantu, sich schneller zu bewegen.</p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_mimic" >
-		<![CDATA[
-			<p>Unbekannt</p>
         ]]>
 	</string>
     <string name="evidence_ghost_strengths_myling" >
@@ -486,11 +476,6 @@
 			<p>In wärmeren Gegenden ist die Bewegung eines Hantu langsamer als normal.</p>
         ]]>
 	</string>
-    <string name="evidence_ghost_weaknesses_mimic" >
-		<![CDATA[
-			<p>Unbekannt</p>
-        ]]>
-	</string>
     <string name="evidence_ghost_weaknesses_myling" >
 		<![CDATA[
 			<p>Mylings geben häufiger paranormale Geräusche von sich.</p>
@@ -527,5 +512,17 @@
 			<p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
         ]]>
 	</string>
+    <string name="evidence_ghost_info_themimic">
+        <![CDATA[
+            <p>Der Mimic ist ein schwer fassbarer, mysteriöser Nachahmer-Geist, der Eigenschaften und Verhaltensweisen anderer widerspiegelt, einschließlich anderer Geistertypen. Halten Sie Ausschau nach Verhaltensänderungen und Geisterkugeln (wie unter den Stärken und Schwächen erläutert).</p>
+        ]]></string>
+    <string name="evidence_ghost_strengths_themimic">
+        <![CDATA[
+            <p>Der Mimic kann jeden Geistertyp nachahmen, was ihn extrem gefährlich und unberechenbar macht.</p>
+        ]]></string>
+    <string name="evidence_ghost_weaknesses_themimic">
+        <![CDATA[
+            <p>Eine Geisterkugel wird neben den deterministischen Beweisen von The Mimic erscheinen, was The Mimic zum einzigen Geistertyp macht, der (technisch) über einen vierten Beweis verfügt. Auch der Ghost Orb verhält sich anders als normal. Es folgt The Mimic, während es wandert, also halten Sie Ausschau nach einer umherstreifenden Geisterkugel, während Sie bei hoher Teamgesundheit sind.</p>
+        ]]></string>
 
 </resources>

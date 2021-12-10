@@ -85,18 +85,18 @@
     <string name="evidence_ghosts_title">GHOSTS</string>
     <string name="evidence_evidence_title">EVIDENCE</string>
     <!-- Ghost Names -->
-    <string name="evidence_ghost_type_banshee">BANSHEE</string>
-    <string name="evidence_ghost_type_demon">DEMON</string>
-    <string name="evidence_ghost_type_jinn">JINN</string>
-    <string name="evidence_ghost_type_mare">MARE</string>
-    <string name="evidence_ghost_type_oni">ONI</string>
-    <string name="evidence_ghost_type_phantom">PHANTOM</string>
-    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
-    <string name="evidence_ghost_type_revenant">REVENANT</string>
-    <string name="evidence_ghost_type_shade">SHADE</string>
-    <string name="evidence_ghost_type_spirit">SPIRIT</string>
-    <string name="evidence_ghost_type_wraith">WRAITH</string>
-    <string name="evidence_ghost_type_yurei">YUREI</string>
+    <string name="evidence_ghost_type_banshee">Banshee</string>
+    <string name="evidence_ghost_type_demon">Demon</string>
+    <string name="evidence_ghost_type_jinn">Jinn</string>
+    <string name="evidence_ghost_type_mare">Mare</string>
+    <string name="evidence_ghost_type_oni">Oni</string>
+    <string name="evidence_ghost_type_phantom">Phantom</string>
+    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
+    <string name="evidence_ghost_type_revenant">Revenant</string>
+    <string name="evidence_ghost_type_shade">Shade</string>
+    <string name="evidence_ghost_type_spirit">Spirit</string>
+    <string name="evidence_ghost_type_wraith">Wraith</string>
+    <string name="evidence_ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
     <string name="evidence_ghost_info_banshee" >
@@ -127,11 +127,6 @@
     <string name="evidence_ghost_info_mare" >
         <![CDATA[
             <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mimic" >
-        <![CDATA[
-            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_myling" >
@@ -235,11 +230,6 @@
             <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_mimic" >
-        <![CDATA[
-            <p>Unknown</p>
-        ]]>
-    </string>
     <string name="evidence_ghost_strengths_myling" >
         <![CDATA[
             <p>A Myling is not as vocal as other Ghosts while Hunting.</p>
@@ -339,11 +329,6 @@
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
             <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mimic" >
-        <![CDATA[
-            <p>Unknown</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_myling" >
@@ -563,5 +548,14 @@
             <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_info_themimic"><![CDATA[
+            <p>Mimic je nepolapitelný, tajemný napodobovací duch, který zrcadlí vlastnosti a chování ostatních, včetně jiných typů duchů. Dávejte pozor na přepínání chování a Ghost Orbs (jak je vysvětleno v části Silné a slabé stránky).</p>
+        ]]></string>
+    <string name="evidence_ghost_strengths_themimic"><![CDATA[
+            <p>Mimic může kopírovat jakýkoli typ ducha, což jej činí extrémně nebezpečným a nepředvídatelným.</p>
+        ]]></string>
+    <string name="evidence_ghost_weaknesses_themimic"><![CDATA[
+            <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
+        ]]></string>
 
 </resources>

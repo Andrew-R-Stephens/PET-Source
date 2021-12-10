@@ -408,11 +408,6 @@
 			<p> El Hantu <font color = # ff6161> favorece las temperaturas más frías </font>, lo que potenciará su capacidad para moverse rápidamente. Esto significa que el disyuntor debe estar habilitado para aumentar la temperatura general fuera del área embrujada, lo que perjudica la velocidad de movimiento del Hantu. </p>
         ]]>
 	</string>
-    <string name="evidence_ghost_info_mimic" >
-		<![CDATA[
-			<p> Desconocido </p>
-        ]]>
-	</string>
     <string name="evidence_ghost_info_myling" >
 		<![CDATA[
 			<p> El Myling emitirá ruidos extraños que pueden ser captados por el micrófono parabólico. Sus pasos también solo se pueden escuchar dentro del rango de interferencia electrónica (que es de alrededor de 10 metros) durante una caza. </p>
@@ -451,11 +446,6 @@
     <string name="evidence_ghost_strengths_hantu" >
 		<![CDATA[
 			<p> Las temperaturas más bajas permiten que el Hantu se mueva a velocidades más rápidas. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_mimic" >
-		<![CDATA[
-			<p> Desconocido </p>
         ]]>
 	</string>
     <string name="evidence_ghost_strengths_myling" >
@@ -498,11 +488,6 @@
 			<p> El movimiento de un Hantu será más lento de lo normal en áreas más cálidas. </p>
         ]]>
 	</string>
-    <string name="evidence_ghost_weaknesses_mimic" >
-		<![CDATA[
-			<p> Desconocido </p>
-        ]]>
-	</string>
     <string name="evidence_ghost_weaknesses_myling" >
 		<![CDATA[
 			<p> Los mylings emitirán sonidos paranormales con mayor frecuencia. </p>
@@ -539,5 +524,17 @@
 			<p> Para identificar positivamente esta Evidencia, <font color = # ff6161> se verá una silueta del fantasma corriendo, o arrastrándose rápidamente, a través de los rayos de proyección. </font> La silueta se puede ver a simple vista oa través de una cámara de video, pero es más fácil verla <font color = # ff6161> de forma remota a través de las térmicas de la cámara de video </font>. Es mejor intentar encontrar esta evidencia de forma remota, ya que el comportamiento de un Goryo puede causar conflictos de evidencia de lo contrario. La ubicación real del Fantasma no determinará cuándo se producirán las animaciones de silueta. </p>
         ]]>
 	</string>
+    <string name="evidence_ghost_info_themimic">
+        <![CDATA[
+            <p>El Mimic es un fantasma imitador misterioso y esquivo que refleja los rasgos y comportamientos de los demás, incluidos otros tipos de fantasmas. Esté atento a los cambios de comportamiento y a los orbes fantasma (como se explica en Fortalezas y Debilidades).</p>
+        ]]></string>
+    <string name="evidence_ghost_strengths_themimic">
+        <![CDATA[
+            <p>El Mimic puede imitar cualquier tipo de fantasma, lo que lo hace extremadamente peligroso e impredecible.</p>
+        ]]></string>
+    <string name="evidence_ghost_weaknesses_themimic">
+        <![CDATA[
+            <p>Aparecerá un Ghost Orb junto con la Evidencia determinista de The Mimic, lo que hace que The Mimic sea el único tipo de fantasma que (técnicamente) tiene una cuarta pieza de Evidencia. El Ghost Orb también se comporta de manera diferente a lo normal. Sigue a The Mimic mientras deambula, así que esté atento a un Ghost Orb itinerante mientras está en un nivel alto de Cordura del equipo.</p>
+        ]]></string>
 
 </resources>
