@@ -39,6 +39,13 @@ public class PhaseTimerView {
 
         setTimerTextView(recipientView);
 
+        if(sanityData.getStartTime() != -1) {
+            phaseTimerData.setTimeRemaining(
+                    phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
+                            (sanityData.getStartTime() - System.currentTimeMillis())
+            );
+        }
+
         createTimer(
                 phaseTimerData.getTimeRemaining(),
                 1000L);
@@ -46,6 +53,12 @@ public class PhaseTimerView {
         if(!phaseTimerData.isPaused()) {
             timer.start();
         }
+    }
+
+    public void recreateTimer(long millisInFuture, long countDownInterval) {
+        phaseTimerData.setTimeRemaining(millisInFuture);
+
+        createTimer(millisInFuture, countDownInterval);
     }
 
     /**
@@ -57,8 +70,6 @@ public class PhaseTimerView {
     public void createTimer(long millisInFuture, long countDownInterval) {
 
         destroyTimer();
-
-        phaseTimerData.setTimeRemaining(millisInFuture);
 
         timer = new CountDownTimer(millisInFuture, countDownInterval) {
 
@@ -104,7 +115,7 @@ public class PhaseTimerView {
                 sanityData.setProgressManually();
             }
             phaseTimerData.setPaused(false);
-            createTimer(phaseTimerData.getTimeRemaining(), 1000L);
+            recreateTimer(phaseTimerData.getTimeRemaining(), 1000L);
             if (timer != null) {
                 Log.d("Timer", "Playing!");
                 timer.start();

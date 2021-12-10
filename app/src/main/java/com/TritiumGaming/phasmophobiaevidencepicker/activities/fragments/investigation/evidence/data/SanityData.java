@@ -54,6 +54,7 @@ public class SanityData {
         int diffIndex = evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex();
 
         if (difficultyRate != null && (diffIndex >= 0 && diffIndex < difficultyRate.length)) {
+
             return difficultyRate[diffIndex];
         }
 
@@ -72,11 +73,15 @@ public class SanityData {
      */
     public double getDropRate() {
         if (evidenceViewModel != null) {
+
             if (evidenceViewModel.getPhaseTimerData().getTimeRemaining() <= 0L) {
+
                 return dropRate_normal[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
             }
+
             return dropRate_setup[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
         }
+
         return 1;
     }
 
@@ -117,14 +122,18 @@ public class SanityData {
      * @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.
      */
     public long getSanityActual() {
+
         long insanityActualTemp = (int) (insanityActual);
+
         if (insanityActualTemp > 100L) {
             return 100L;
         }
         else if (insanityActualTemp < 0L) {
             return 0L;
         }
+
         return insanityActualTemp;
+
     }
 
     /**
@@ -144,7 +153,9 @@ public class SanityData {
      * @return The sanity level that's missing. MAX_SANITY - insanityActual.
      */
     public long getInsanityActual() {
+
         long insanityActualTemp = (int) (MAX_SANITY - insanityActual);
+
         if (insanityActualTemp > 100L) {
             return 100L;
         }
@@ -152,6 +163,7 @@ public class SanityData {
             return 0L;
         }
         return insanityActualTemp;
+
     }
 
     /**
@@ -194,7 +206,8 @@ public class SanityData {
      *                         sanity, difficulty and map size.
      */
     public void setProgressManually(long progressOverride) {
-        double newStartTime = (System.currentTimeMillis() +
+        double newStartTime =
+                (System.currentTimeMillis() +
                 (MAX_SANITY - progressOverride / getDifficultyRate() / getDropRate() / .001));
         setStartTime((long) newStartTime);
         setFlashTimeoutStart(-1);

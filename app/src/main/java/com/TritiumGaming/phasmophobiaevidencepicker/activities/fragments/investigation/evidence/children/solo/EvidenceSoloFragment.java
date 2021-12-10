@@ -82,16 +82,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
-        // TEXT SIZE
-        map_name.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
         // LISTENERS
         timer_skip.setOnClickListener(v -> {
-            phaseTimerCountdownView.createTimer(0L, 1000L);
-            if ((!(phaseTimerData.getTimeRemaining() > 0L)) &&
-                    sanityData.getSanityActual() < 50) {
+            phaseTimerCountdownView.recreateTimer(0L, 1000L);
+            if ((!(phaseTimerData.getTimeRemaining() > 0L)) && sanityData.getSanityActual() < 50) {
                 sanityData.setProgressManually(50);
             }
         });
