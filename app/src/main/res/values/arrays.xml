@@ -224,7 +224,6 @@
         <item>@array/evidence_ghost_evidence_hantu</item>
         <item>@array/evidence_ghost_evidence_jinn</item>
         <item>@array/evidence_ghost_evidence_mare</item>
-        <item>@array/evidence_ghost_evidence_mimic</item>
         <item>@array/evidence_ghost_evidence_myling</item>
         <item>@array/evidence_ghost_evidence_obake</item>
         <item>@array/evidence_ghost_evidence_oni</item>
@@ -236,6 +235,7 @@
         <item>@array/evidence_ghost_evidence_shade</item>
         <item>@array/evidence_ghost_evidence_spirit</item>
         <item>@array/evidence_ghost_evidence_thetwins</item>
+        <item>@array/evidence_ghost_evidence_themimic</item>
         <item>@array/evidence_ghost_evidence_wraith</item>
         <item>@array/evidence_ghost_evidence_yokai</item>
         <item>@array/evidence_ghost_evidence_yurei</item>
@@ -272,11 +272,6 @@
     <string-array name="evidence_ghost_evidence_mare">
         <item>@string/evidence_evidence_type_orbs</item>
         <item>@string/evidence_evidence_type_book</item>
-        <item>@string/evidence_evidence_type_box</item>
-    </string-array>
-    <string-array name="evidence_ghost_evidence_mimic">
-        <item>@string/evidence_evidence_type_fingerprints</item>
-        <item>@string/evidence_evidence_type_temperatures</item>
         <item>@string/evidence_evidence_type_box</item>
     </string-array>
     <string-array name="evidence_ghost_evidence_myling">
@@ -331,6 +326,11 @@
     </string-array>
     <string-array name="evidence_ghost_evidence_thetwins">
         <item>@string/evidence_evidence_type_emf</item>
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@string/evidence_evidence_type_box</item>
+    </string-array>
+    <string-array name="evidence_ghost_evidence_themimic">
+        <item>@string/evidence_evidence_type_fingerprints</item>
         <item>@string/evidence_evidence_type_temperatures</item>
         <item>@string/evidence_evidence_type_box</item>
     </string-array>
