@@ -32,7 +32,7 @@ public class BitmapUtils {
      *
      */
     public BitmapUtils() {
-        //setMaxTextureSize();
+        setMaxTextureSize();
     }
 
     /**
@@ -168,7 +168,7 @@ public class BitmapUtils {
         int highestDim = Math.max(height, width);
         double dimScale = (double) maxTextureSize / (double) highestDim * options.inDensity;
         if (dimScale < 1) {
-            //options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
+            options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
         }
         options.inJustDecodeBounds = false;
 
@@ -211,7 +211,6 @@ public class BitmapUtils {
     public static void destroyBitmap(Bitmap b) {
         if (bitmapExists(b)) {
             b.recycle();
-            b = null;
         }
     }
 
