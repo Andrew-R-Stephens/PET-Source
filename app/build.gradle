@@ -30,16 +30,15 @@ android {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 60
-        versionName "7.1.1"
+        versionCode 61
+        versionName "7.1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
             cmake {
                 // Define the PLAYCORE_LOCATION directive.
-                arguments "-DANDROID_STL=c++_static",
-                        "-DPLAYCORE_LOCATION=$playcoreDir"
+                arguments "-DANDROID_STL=c++_static", "-DPLAYCORE_LOCATION=$playcoreDir"
             }
         }
         ndk {
@@ -75,7 +74,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    //implementation 'com.google.android.gms:play-services-ads:20.5.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'

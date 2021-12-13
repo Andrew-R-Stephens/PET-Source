@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
@@ -14,7 +15,6 @@ import java.util.ArrayList;
  */
 public class InvestigationData {
 
-    private static final short MAX_EVIDENCE_COUNT = 3;
     private static ArrayList<Ghost> ghosts = null;
     private static ArrayList<Evidence> evidence = null;
 
@@ -107,6 +107,12 @@ public class InvestigationData {
         }
     }
 
+    public void print() {
+        for(Ghost g: ghosts) {
+            Log.d("InvestigationData", g.name + ": [ " + g.toString() + "]");
+        }
+    }
+
     /**
      *
      */
@@ -114,33 +120,14 @@ public class InvestigationData {
 
         private int id = -1;
         private String name = "NA";
-        private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>(MAX_EVIDENCE_COUNT);
+
+        private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();
 
         /**
          *
          */
         public Ghost(int id) {
             setId(id);
-        }
-
-        /**
-         *
-         */
-        public Ghost(int id, String ghostName, Evidence e1, Evidence e2, Evidence e3) {
-            setId(id);
-            setName(ghostName);
-            addEvidence(e1);
-            addEvidence(e2);
-            addEvidence(e3);
-        }
-
-        /**
-         *
-         */
-        public Ghost(int id, String ghostName, Evidence[] e) {
-            setId(id);
-            setName(ghostName);
-            addEvidence(e);
         }
 
         /**
@@ -175,18 +162,7 @@ public class InvestigationData {
          *
          */
         public void addEvidence(Evidence e) {
-            if (thisGhostEvidence.size() < MAX_EVIDENCE_COUNT) {
-                thisGhostEvidence.add(e);
-            }
-        }
-
-        /**
-         *
-         */
-        public void addEvidence(Evidence[] pe) {
-            for (Evidence e : pe) {
-                addEvidence(e);
-            }
+            thisGhostEvidence.add(e);
         }
 
         public void addEvidence(String evidence) {
@@ -214,7 +190,7 @@ public class InvestigationData {
          * Determines the possibility of the ghost based on user-determined Evidence.
          * Score starts at '0'
          * Score adds +1 if Ghost's Evidence list contains a positive Evidence
-         * Score cannot surpass a positive value of '3'
+         * Score can surpass a positive value of '3' if the ghost is a Mimic
          * Score sets to '-5' if an Evidence type is positive but not found in Ghost's Evidence list
          * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list
          *
@@ -223,8 +199,9 @@ public class InvestigationData {
         public int getEvidenceScore() {
 
             int rating = 0;
-            for (Evidence e : thisGhostEvidence) {
-                if (e.getRuling() == Evidence.Ruling.POSITIVE) {
+            for (int i = 0; i < thisGhostEvidence.size(); i++) {
+                Evidence e = thisGhostEvidence.get(i);
+                if (e.getRuling() == Evidence.Ruling.POSITIVE && i < 3) {
                     rating++;
                 }
                 else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
@@ -244,6 +221,15 @@ public class InvestigationData {
                 }
             }
             return rating;
+        }
+
+        public String toString() {
+            StringBuilder s = new StringBuilder();
+            for(Evidence e: thisGhostEvidence) {
+                s.append(e.name).append(", ");
+            }
+
+            return s.toString();
         }
     }
 

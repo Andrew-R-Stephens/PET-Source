@@ -35,6 +35,7 @@ public class EvidenceViewModel extends ViewModel {
 
         if (!hasInvestigationData()) {
             setInvestigationData(new InvestigationData(c));
+            investigationData.print();
         }
 
         if (!hasDifficultyCarouselData()) {

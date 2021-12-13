@@ -333,6 +333,7 @@
         <item>@string/evidence_evidence_type_fingerprints</item>
         <item>@string/evidence_evidence_type_temperatures</item>
         <item>@string/evidence_evidence_type_box</item>
+        <item>@string/evidence_evidence_type_orbs</item>
     </string-array>
     <string-array name="evidence_ghost_evidence_wraith">
         <item>@string/evidence_evidence_type_emf</item>

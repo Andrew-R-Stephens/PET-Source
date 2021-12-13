@@ -32,7 +32,7 @@ public class BitmapUtils {
      *
      */
     public BitmapUtils() {
-        setMaxTextureSize();
+        //setMaxTextureSize();
     }
 
     /**
@@ -123,11 +123,13 @@ public class BitmapUtils {
      * @return
      */
     public Bitmap compileBitmaps(Context context) {
+
         Bitmap bitmap = null;
         for (@DrawableRes int resource : resources) {
             bitmap = createBitmap(context, bitmap, resource);
         }
         return bitmap;
+
     }
 
     /**
@@ -154,8 +156,6 @@ public class BitmapUtils {
      * @return
      */
     private Bitmap createBitmap(Context c, Bitmap baseLayer, int id) {
-        final int screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
-                screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
@@ -168,7 +168,7 @@ public class BitmapUtils {
         int highestDim = Math.max(height, width);
         double dimScale = (double) maxTextureSize / (double) highestDim * options.inDensity;
         if (dimScale < 1) {
-            options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
+            //options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
         }
         options.inJustDecodeBounds = false;
 
