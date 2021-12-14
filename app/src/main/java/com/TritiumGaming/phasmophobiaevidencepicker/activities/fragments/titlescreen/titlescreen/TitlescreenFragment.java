@@ -63,20 +63,20 @@ public class TitlescreenFragment extends Fragment {
 
     private final BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private TitlescreenAnimationView animationView = null;
     private PopupWindow popup = null;
 
+    private TitlescreenAnimationView animationView = null;
+
     private boolean canRunAnim = true, canRunMessageCenter = true;
+
     private Thread animInitThread = null, animTickThread = null, animDrawThread = null,
-            initReadyThread = null;
-    private Thread messageCenterThread = null;
+            initReadyThread = null, messageCenterThread = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.d("DPI", getResources().getDisplayMetrics().densityDpi + "");
 
         initFirebase();
 
