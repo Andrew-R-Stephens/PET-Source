@@ -516,7 +516,6 @@ public class EvidenceFragment extends Fragment {
                 fadeOutIndicatorAnimation(scroller2, indicator2);
                 fadeOutIndicatorAnimation(scroller3, indicator3);
 
-                //popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
             });

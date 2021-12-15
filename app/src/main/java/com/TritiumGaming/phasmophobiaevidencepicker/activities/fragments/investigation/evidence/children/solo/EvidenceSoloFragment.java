@@ -161,8 +161,11 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      * enableUIThread method
      */
     public void enableUIThread() {
+
         if (evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
+
             if (getActivity() != null) {
+
                 String appLang = ((InvestigationActivity) getActivity()).getAppLanguage();
                 MediaPlayer huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_en);
                 switch (appLang) {
@@ -176,6 +179,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_de);
                         break;
                 }
+
                 evidenceViewModel.setSanityRunnable(new SanityRunnable(
                         evidenceViewModel,
                         globalPreferencesViewModel,
