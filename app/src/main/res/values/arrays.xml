@@ -20,7 +20,8 @@
 
     <!-- Book Writing Images -->
     <integer-array name= "anim_bookwriting_images">
-        <!--<item>@drawable/anim_writing_1</item>
+        <item>@drawable/anim_voodoodoll</item>
+        <item>@drawable/anim_writing_1</item>
         <item>@drawable/anim_writing_2</item>
         <item>@drawable/anim_writing_3</item>
         <item>@drawable/anim_writing_4</item>
@@ -28,8 +29,8 @@
         <item>@drawable/anim_writing_6</item>
         <item>@drawable/anim_writing_7</item>
         <item>@drawable/anim_writing_8</item>
-        <item>@drawable/anim_voodoodoll</item>-->
         <item>@drawable/anim_ouijaboard</item>
+
     </integer-array>
 
     <!--

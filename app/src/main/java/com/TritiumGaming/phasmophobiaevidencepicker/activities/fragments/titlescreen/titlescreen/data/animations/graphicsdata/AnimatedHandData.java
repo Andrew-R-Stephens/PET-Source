@@ -23,7 +23,8 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
         MAX_ROTATION = 25;
         MAX_TICK = 500;
 
-        setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
+        setScale(1);
+        //setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
         setWidth(bitmapW);
         setHeight(bitmapH);
         setX(Math.random() * SCREENW);
@@ -97,14 +98,14 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      * @return
      */
     public double getScaledWidth() {
-        return scale * width;
+        return /*scale * */ width;
     }
 
     /**
      * @return
      */
     public double getScaledHeight() {
-        return scale * height;
+        return /*scale * */ height;
     }
 
     /**

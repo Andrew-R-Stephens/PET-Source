@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AbstractAnimatedGraphic;
 
@@ -31,14 +32,13 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
         super(screenW, screenH);
 
         MAX_ALPHA = 200;
-        MAX_SIZE = 3;
-        MIN_SIZE = 2;
+        MAX_SIZE = 1;//3;
+        MIN_SIZE = 1;//2;
         MAX_ROTATION = 45;
         MAX_TICK = 500;
 
-        scale = (Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1;
-
-        setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
+        setScale(1);
+        //setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
         setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
         setWidth(bitmapW);
         setHeight(bitmapH);
@@ -90,6 +90,7 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      */
     public void setWidth(double w) {
         this.width = w;
+        Log.d("BitmapImages", "Width: " + width);
     }
 
     /**
@@ -97,6 +98,7 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      */
     public void setHeight(double h) {
         this.height = h;
+        Log.d("BitmapImages", "Height: " + height);
     }
 
     /**
@@ -104,20 +106,21 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      */
     public void setScale(double scale) {
         this.scale = scale;
+        Log.d("BitmapImages", "Scale: " + scale);
     }
 
     /**
      * @return
      */
     public double getScaledWidth() {
-        return this.scale * width;
+        return /*this.scale* */  width;
     }
 
     /**
      * @return
      */
     public double getScaledHeight() {
-        return this.scale * height;
+        return /*this.scale * */ height;
     }
 
     /**

@@ -521,6 +521,7 @@ public class TitlescreenFragment extends Fragment {
                                     TARGET_FPS = 60;
                                 }
                             }
+                            TARGET_FPS = 200;
                             long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
                             long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
 

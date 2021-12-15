@@ -152,9 +152,10 @@ public class TitlescreenAnimationView extends View {
                 return;
             }
 
+            short ORB_COUNT = 3, HAND_COUNT = 1, WRITING_COUNT = 1, FROST_COUNT = 1;
+
             //Add orbs
-            int numOrbs = 3; //3
-            for (int i = 0; i < numOrbs; i++) {
+            for (int i = 0; i < ORB_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_orb)) {
                     animationData.addToAllPool(new AnimatedOrbData(
                             screenW,
@@ -162,8 +163,8 @@ public class TitlescreenAnimationView extends View {
                 }
             }
             //Add hands
-            int numHands = 1; //1
-            for (int i = 0; i < numHands; i++) {
+
+            for (int i = 0; i < HAND_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_hand)) {
                     animationData.addToAllPool(new AnimatedHandData(
                             screenW,
@@ -175,8 +176,7 @@ public class TitlescreenAnimationView extends View {
                 }
             }
             //Add writing
-            int numWriting = 1; //1
-            for (int i = 0; i < numWriting; i++) {
+            for (int i = 0; i < WRITING_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_writing)) {
                     animationData.addToAllPool(new AnimatedWritingData(
                             screenW,
@@ -189,10 +189,11 @@ public class TitlescreenAnimationView extends View {
                 }
             }
             //Add Frost
-            int numFrost = 1; //1
-            for (int i = 0; i < numFrost; i++) {
+
+            for (int i = 0; i < FROST_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_frost)) {
-                    animationData.addToAllPool(new AnimatedFrostData(
+                    animationData.addToAllPool(
+                            new AnimatedFrostData(
                             screenW,
                             screenH));
                 }
