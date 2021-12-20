@@ -17,6 +17,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedFrostData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedGraphicData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedHandData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedMirrorData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedOrbData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedWritingData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
@@ -42,7 +43,8 @@ public class TitlescreenAnimationView extends View {
 
     private final Paint paint = new Paint();
     private Bitmap
-            bitmap_orb = null, bitmap_frost = null, bitmap_hand = null, bitmap_writing = null,
+            bitmap_orb = null, bitmap_hand = null, bitmap_writing = null,
+            bitmap_frost = null, bitmap_mirror = null,
             bitmap_handRot = null, bitmap_writingRot = null;
 
     /**
@@ -120,6 +122,8 @@ public class TitlescreenAnimationView extends View {
                 compileBitmaps(getContext());
         bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).
                 compileBitmaps(getContext());
+        bitmap_mirror = bitmapUtils.setResource(R.drawable.anim_cracked_sm).
+                compileBitmaps(getContext());
         bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).
                 compileBitmaps(getContext());
         bitmap_writing = bitmapUtils.setResource(
@@ -152,7 +156,8 @@ public class TitlescreenAnimationView extends View {
                 return;
             }
 
-            short ORB_COUNT = 3, HAND_COUNT = 1, WRITING_COUNT = 1, FROST_COUNT = 1;
+            short ORB_COUNT = 3, HAND_COUNT = 1,  WRITING_COUNT = 1,
+                    MIRROR_COUNT = 1, FROST_COUNT = 1;
 
             //Add orbs
             for (int i = 0; i < ORB_COUNT; i++) {
@@ -163,7 +168,6 @@ public class TitlescreenAnimationView extends View {
                 }
             }
             //Add hands
-
             for (int i = 0; i < HAND_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_hand)) {
                     animationData.addToAllPool(new AnimatedHandData(
@@ -175,6 +179,7 @@ public class TitlescreenAnimationView extends View {
                             rotateBitmap(bitmap_hand);
                 }
             }
+
             //Add writing
             for (int i = 0; i < WRITING_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_writing)) {
@@ -189,13 +194,21 @@ public class TitlescreenAnimationView extends View {
                 }
             }
             //Add Frost
-
             for (int i = 0; i < FROST_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_frost)) {
                     animationData.addToAllPool(
                             new AnimatedFrostData(
                             screenW,
                             screenH));
+                }
+            }
+            //Add Mirror
+            for (int i = 0; i < MIRROR_COUNT; i++) {
+                if (BitmapUtils.bitmapExists(bitmap_mirror)) {
+                    animationData.addToAllPool(
+                            new AnimatedMirrorData(
+                                    screenW,
+                                    screenH));
                 }
             }
             //Create Queue
@@ -266,6 +279,11 @@ public class TitlescreenAnimationView extends View {
                             animationData.setToAllPool(index, new AnimatedFrostData(
                                     getWidth(), getHeight()));
                         }
+                    } else if (lastAnimInList instanceof AnimatedMirrorData) {
+                        if (BitmapUtils.bitmapExists(bitmap_mirror)) {
+                            animationData.setToAllPool(index, new AnimatedMirrorData(
+                                    getWidth(), getHeight()));
+                        }
                     }
                 }
             }
@@ -330,7 +348,9 @@ public class TitlescreenAnimationView extends View {
         for (AbstractAnimatedGraphic a : titleScreenViewModel.getAnimationData().getCurrentPool()) {
             if (a != null) {
                 paint.setColorFilter(a.getFilter());
-                if (a instanceof AnimatedWritingData) {
+                if (a instanceof AnimatedMirrorData) {
+                    a.draw(canvas, paint, bitmap_mirror);
+                } else if (a instanceof AnimatedWritingData) {
                     a.draw(canvas, paint, bitmap_writingRot);
                 } else if (a instanceof AnimatedHandData) {
                     a.draw(canvas, paint, bitmap_handRot);
@@ -351,6 +371,7 @@ public class TitlescreenAnimationView extends View {
         BitmapUtils.destroyBitmap(bitmap_frost);
         BitmapUtils.destroyBitmap(bitmap_hand);
         BitmapUtils.destroyBitmap(bitmap_writing);
+        BitmapUtils.destroyBitmap(bitmap_mirror);
         BitmapUtils.destroyBitmap(bitmap_handRot);
         BitmapUtils.destroyBitmap(bitmap_writingRot);
 
@@ -358,6 +379,7 @@ public class TitlescreenAnimationView extends View {
         bitmap_frost = null;
         bitmap_hand = null;
         bitmap_writing = null;
+        bitmap_mirror = null;
         bitmap_handRot = null;
         bitmap_writingRot = null;
 

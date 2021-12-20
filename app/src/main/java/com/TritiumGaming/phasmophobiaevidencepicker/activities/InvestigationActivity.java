@@ -78,7 +78,11 @@ public class InvestigationActivity extends AppCompatActivity {
     }
 
     private void determineInvestigationFragment() {
-        int intentFragment = getIntent().getExtras().getInt("lobby");
+        int intentFragment = 0;
+        if(getIntent() != null && getIntent().getExtras()!= null) {
+            intentFragment = getIntent().getExtras().getInt("lobby");
+        }
+
         switch (intentFragment) {
             case 0: {
                 setContentView(R.layout.activity_investigation_solo);

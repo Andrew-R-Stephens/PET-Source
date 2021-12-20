@@ -52,6 +52,7 @@ public class AppSettingsFragment extends Fragment {
             titleScreenViewModel = new ViewModelProvider(
                     requireActivity()).get(TitlescreenViewModel.class);
         }
+
         return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
 
