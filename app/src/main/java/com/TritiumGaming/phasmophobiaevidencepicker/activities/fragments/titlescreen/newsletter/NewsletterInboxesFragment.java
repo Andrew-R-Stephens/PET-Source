@@ -19,6 +19,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * TitleScreenFragment class
@@ -50,15 +53,17 @@ public class NewsletterInboxesFragment extends Fragment {
             titleScreenViewModel =
                     new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
         }
+
+        if (newsletterViewModel == null) {
+            newsletterViewModel =
+                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
+        }
         return inflater.inflate(R.layout.fragment_msginbox, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        if (newsletterViewModel == null) {
-            newsletterViewModel =
-                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
-        }
+
 
         // INITIALIZE VIEWS
         AppCompatTextView label_title =
@@ -77,22 +82,6 @@ public class NewsletterInboxesFragment extends Fragment {
                 view.findViewById(R.id.constraintLayout_petnews_listener);
         ConstraintLayout button_phasnews =
                 view.findViewById(R.id.constraintLayout_phasnews_listener);
-
-        // TEXT SIZE
-        /*
-        label_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_extranews.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 30, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_petnews.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 30, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_phasnews.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 30, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        */
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
@@ -117,6 +106,16 @@ public class NewsletterInboxesFragment extends Fragment {
                 newsletterViewModel.getInboxType(1).getName(view.getContext()));
         label_phasnews.setText(
                 newsletterViewModel.getInboxType(2).getName(view.getContext()));
+
+        if (getActivity() != null) {
+            MobileAds.initialize(getActivity(), initializationStatus -> {
+            });
+            AdView mAdView = view.findViewById(R.id.adView);
+            if (!titleScreenViewModel.hasAdRequest()) {
+                titleScreenViewModel.setAdRequest(new AdRequest.Builder().build());
+            }
+            mAdView.loadAd(titleScreenViewModel.getAdRequest());
+        }
 
     }
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -107,6 +108,7 @@ public class MapViewerFragment extends Fragment {
                 TypedValue.COMPLEX_UNIT_SP);
 
         // SET VIEWS DISABLED
+        /*
         listener_goto_right.setEnabled(false);
         label_goto_right.setEnabled(false);
         icon_goto_right.setEnabled(false);
@@ -119,7 +121,7 @@ public class MapViewerFragment extends Fragment {
         listener_resetAll.setVisibility(View.INVISIBLE);
         label_resetAll.setVisibility(View.INVISIBLE);
         icon_resetAll.setVisibility(View.INVISIBLE);
-
+        */
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_maps_button);
         icon_goto_left.setImageResource(R.drawable.icon_map);
@@ -161,6 +163,16 @@ public class MapViewerFragment extends Fragment {
             saveStates();
             Navigation.findNavController(v).popBackStack();
         });
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
 
         if (imageDisplay != null) {
             imageDisplay.init(controllerData);

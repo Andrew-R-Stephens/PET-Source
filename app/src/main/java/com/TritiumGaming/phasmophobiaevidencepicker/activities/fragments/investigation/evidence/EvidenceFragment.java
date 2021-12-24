@@ -48,6 +48,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * EvidenceFragment class
@@ -61,6 +64,8 @@ public class EvidenceFragment extends Fragment {
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
 
     protected PopupWindow popup;
+
+    private AdRequest adRequest;
 
     protected SanityData sanityData;
     protected PhaseTimerData phaseTimerData;
@@ -159,10 +164,14 @@ public class EvidenceFragment extends Fragment {
         // NAVIGATION VIEWS
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        // RESET VIEWS
+        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
+        AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
+        // NAVIGATION RESET VIEWS
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
-        AppCompatImageView navigation_goto_medLeft = view.findViewById(R.id.icon_goto_medLeft);
-        AppCompatImageView navigation_goto_medRight = view.findViewById(R.id.icon_goto_medRight);
+        AppCompatImageView icon_resetAll = view.findViewById(R.id.icon_resetAll);
+        //NAVIGATION OTHER VIEWS
+        View listener_goto_medLeft = view.findViewById(R.id.icon_goto_medLeft);
+        View listener_goto_medRight = view.findViewById(R.id.icon_goto_medRight);
 
         // SANITY METER VIEWS
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
@@ -183,10 +192,15 @@ public class EvidenceFragment extends Fragment {
         // LISTENERS
         initNavListeners(
                 listener_goto_left,
-                navigation_goto_medLeft,
+                null,
+                listener_resetAll,
+                null,
                 listener_goto_right,
-                navigation_goto_medRight,
-                listener_resetAll);
+                icon_goto_left,
+                null,
+                icon_resetAll,
+                null,
+                icon_goto_right);
 
         sanitySeekBarView.init(
                 sanityData,
@@ -222,6 +236,78 @@ public class EvidenceFragment extends Fragment {
 
         createGhostViews(view, ghostContainer);
         createEvidenceViews(view, evidenceContainer, ghostContainer);
+
+    }
+
+    private void initNavListeners(View lstnr_navLeft,
+                                  View lstnr_navMedLeft,
+                                  View lstnr_navCenter,
+                                  View lstnr_navMedRight,
+                                  View lstnr_navRight,
+                                  AppCompatImageView icon_navLeft,
+                                  AppCompatImageView icon_navMedLeft,
+                                  AppCompatImageView icon_navCenter,
+                                  AppCompatImageView icon_navMedRight,
+                                  AppCompatImageView icon_navRight) {
+        if(lstnr_navLeft != null) {
+            ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
+            icon_navLeft.setBackgroundResource(R.drawable.icon_tasks);
+            lstnr_navLeft.setOnClickListener(v -> {
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidence_to_objectives);
+                    }
+            );
+        }
+
+        if(lstnr_navMedLeft != null) {
+            lstnr_navMedLeft.setVisibility(View.VISIBLE);
+            lstnr_navMedLeft.setOnClickListener(v -> {
+                        if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
+                    }
+            );
+        }
+
+        if(lstnr_navCenter != null) {
+            ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
+            icon_navCenter.setBackgroundResource(R.drawable.icon_reset);
+            lstnr_navCenter.setOnClickListener(v -> {
+                        softReset();
+                    }
+            );
+        }
+
+        if(lstnr_navMedRight != null) {
+            lstnr_navMedRight.setVisibility(View.VISIBLE);
+            //icon_navMedRight.setBackgroundResource(R.drawable.icon_tasks);
+            lstnr_navMedRight.setOnClickListener(v -> {
+                        if(sanityTrackingConstraintLayout.getVisibility() == View.VISIBLE) {
+                            sanityTrackingConstraintLayout.setVisibility(View.GONE);
+                        } else if(sanityTrackingConstraintLayout.getVisibility() == View.GONE) {
+                            sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
+                        }
+                    }
+            );
+        }
+
+        if(lstnr_navRight != null) {
+            ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
+            icon_navRight.setBackgroundResource(R.drawable.icon_map);
+            lstnr_navRight.setOnClickListener(v -> {
+                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
+                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
+                        }
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_evidence_to_mapmenu);
+                    }
+            );
+        }
 
     }
 
@@ -301,6 +387,14 @@ public class EvidenceFragment extends Fragment {
                 );
                 popup.setAnimationStyle(R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
+
+                if (getActivity() != null) {
+                    MobileAds.initialize(getActivity(), initializationStatus -> {
+                    });
+                    AdView mAdView = customView.findViewById(R.id.adView);
+                    adRequest = new AdRequest.Builder().build();
+                    mAdView.loadAd(adRequest);
+                }
 
             });
 
@@ -518,6 +612,14 @@ public class EvidenceFragment extends Fragment {
 
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
+                if (getActivity() != null) {
+                    MobileAds.initialize(getActivity(), initializationStatus -> {
+                    });
+                    AdView mAdView = customView.findViewById(R.id.adView);
+                    adRequest = new AdRequest.Builder().build();
+                    mAdView.loadAd(adRequest);
+                }
+
             });
 
             int score = evidenceViewModel.getInvestigationData().getGhost(j).getEvidenceScore();
@@ -645,61 +747,6 @@ public class EvidenceFragment extends Fragment {
                 return true;
             });
         }
-    }
-
-    private void initNavListeners(View navLeft, View navMedLeft, View navRight,
-                                  View navMedRight, View navCenter) {
-        if(navLeft != null) {
-            navLeft.setOnClickListener(v -> {
-                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
-                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                        }
-                        Navigation.findNavController(v)
-                                .navigate(R.id.action_evidence_to_objectives);
-                    }
-            );
-        }
-
-        if(navMedLeft != null) {
-            navMedLeft.setOnClickListener(v -> {
-                        if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
-                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                        }
-                        Navigation.findNavController(v)
-                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
-                    }
-            );
-        }
-
-        if(navCenter != null) {
-            navCenter.setOnClickListener(v -> {
-                        softReset();
-                    }
-            );
-        }
-
-        if(navMedRight != null) {
-            navMedRight.setOnClickListener(v -> {
-                        if(sanityTrackingConstraintLayout.getVisibility() == View.VISIBLE) {
-                            sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                        } else if(sanityTrackingConstraintLayout.getVisibility() == View.GONE) {
-                            sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-                        }
-                    }
-            );
-        }
-
-        if(navRight != null) {
-            navRight.setOnClickListener(v -> {
-                        if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
-                            evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
-                        }
-                        Navigation.findNavController(v)
-                                .navigate(R.id.action_evidence_to_mapmenu);
-                    }
-            );
-        }
-
     }
 
     /**

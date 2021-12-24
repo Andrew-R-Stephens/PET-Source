@@ -109,7 +109,7 @@ public class DifficultyCarouselView {
      * @param state -
      */
     public void setIndex(int state) {
-        difficultyCarouselData.setDifficulty(state);
+        difficultyCarouselData.setDifficultyIndex(state);
         difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
     }
 

@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data;
 
+import androidx.annotation.DrawableRes;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 public class MapData {
 
     private String mapName = "Unknown";
+    private @DrawableRes int thumbnailImage;
+
     private int defaultFloorIndex = 0;
     private int currentFloorIndex = 0;
     private final ArrayList<Integer> floorNames = new ArrayList<>();
@@ -110,4 +114,11 @@ public class MapData {
         return floorLayers;
     }
 
+    public void setThumbnail(@DrawableRes int thumbnailResId) {
+        thumbnailImage = thumbnailResId;
+    }
+
+    public @DrawableRes int getThumbnailImage() {
+        return thumbnailImage;
+    }
 }

@@ -14,7 +14,7 @@ public class AnimatedGraphicQueue {
     private final int maxSize;
     private int tick, timeout, maxTimeout;
 
-    private final ArrayList<Integer> queue = new ArrayList<>();
+    private ArrayList<Integer> queue = new ArrayList<>();
 
     /**
      * @param maxSize
@@ -107,9 +107,14 @@ public class AnimatedGraphicQueue {
      * @return
      */
     public int dequeue() {
+        if(queue == null) {
+            queue = new ArrayList<>();
+        }
+
         if (queue.isEmpty()) {
             refill();
         }
+
         return queue.remove(0);
     }
 

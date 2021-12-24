@@ -17,6 +17,10 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * TitleScreenFragment class
@@ -25,6 +29,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterVi
  */
 public class NewsletterMessageFragment extends Fragment {
 
+    private TitlescreenViewModel titleScreenViewModel = null;
     private NewsletterViewModel newsletterViewModel = null;
 
     @Override
@@ -39,10 +44,15 @@ public class NewsletterMessageFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
+        if (titleScreenViewModel == null) {
+            titleScreenViewModel =
+                    new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+        }
         if (newsletterViewModel == null) {
             newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
         }
+
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
     }
 
@@ -54,16 +64,6 @@ public class NewsletterMessageFragment extends Fragment {
         AppCompatTextView label_date = view.findViewById(R.id.textView_messageDate);
         AppCompatTextView label_content = view.findViewById(R.id.textView_messageContent);
         AppCompatImageView button_back = view.findViewById(R.id.button_prev);
-
-        // TEXT SIZE
-        /*
-        label_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_date.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        */
 
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
@@ -82,6 +82,16 @@ public class NewsletterMessageFragment extends Fragment {
         label_title.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getTitle()));
         label_date.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDate()));
         label_content.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDescription()));
+
+        if (getActivity() != null) {
+            MobileAds.initialize(getActivity(), initializationStatus -> {
+            });
+            AdView mAdView = view.findViewById(R.id.adView);
+            if (!titleScreenViewModel.hasAdRequest()) {
+                titleScreenViewModel.setAdRequest(new AdRequest.Builder().build());
+            }
+            mAdView.loadAd(titleScreenViewModel.getAdRequest());
+        }
 
     }
 

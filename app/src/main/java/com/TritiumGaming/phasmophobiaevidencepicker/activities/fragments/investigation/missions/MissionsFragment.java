@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -86,11 +87,8 @@ public class MissionsFragment extends Fragment {
         button_everyone = view.findViewById(R.id.button_everyone);
 
         // FOOTERS
-        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
         AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
-        AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
         AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
 
@@ -106,7 +104,21 @@ public class MissionsFragment extends Fragment {
         }
 
         // LISTENERS
-        listener_resetAll.setOnClickListener(v -> {
+        initNavListeners(
+                null,
+                null,
+                listener_resetAll,
+                null,
+                listener_goto_right,
+                null,
+                null,
+                null,
+                null,
+                icon_goto_right);
+
+        /*
+        listener_resetAll.setOnClickListener(v ->
+                {
 
                     if (objectivesViewModel != null) {
                         objectivesViewModel.reset();
@@ -128,18 +140,23 @@ public class MissionsFragment extends Fragment {
                     ft.attach(MissionsFragment.this).commitNow();
                 }
         );
+        */
+        /*
         listener_goto_right.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );
-
-        // SET VIEWS DISABLED
-        listener_goto_left.setEnabled(false);
-        label_goto_left.setEnabled(false);
-        icon_goto_left.setEnabled(false);
-        listener_goto_left.setVisibility(View.INVISIBLE);
-        label_goto_left.setVisibility(View.INVISIBLE);
-        icon_goto_left.setVisibility(View.INVISIBLE);
+        */
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
 
         // SET NAVIGATION ITEMS
+        ((View)label_goto_right).setVisibility(View.VISIBLE);
         label_goto_right.setText(R.string.general_evidence_button);
         icon_goto_right.setImageResource(R.drawable.icon_evidence);
 
@@ -220,6 +237,58 @@ public class MissionsFragment extends Fragment {
             label_alone.setTextColor(unselC);
             label_everyone.setTextColor(unselC);
             blocking_responds.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void initNavListeners(View lstnr_navLeft,
+                                  View lstnr_navMedLeft,
+                                  View lstnr_navCenter,
+                                  View lstnr_navMedRight,
+                                  View lstnr_navRight,
+                                  AppCompatImageView icon_navLeft,
+                                  AppCompatImageView icon_navMedLeft,
+                                  AppCompatImageView icon_navCenter,
+                                  AppCompatImageView icon_navMedRight,
+                                  AppCompatImageView icon_navRight ) {
+        if(lstnr_navLeft != null) { }
+
+        if(lstnr_navMedLeft != null) { }
+
+        if(lstnr_navCenter != null) {
+            ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
+            lstnr_navCenter.setOnClickListener(v -> {
+                if (objectivesViewModel != null) {
+                    objectivesViewModel.reset();
+                    objectivesViewModel = null;
+                }
+                //isAlone = false;
+                data = null;
+
+                objectiveSpinner = null;
+                if (name_input != null) {
+                    name_input.setText("");
+                }
+
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                if (Build.VERSION.SDK_INT >= 26) {
+                    ft.setReorderingAllowed(false);
+                }
+                ft.detach(MissionsFragment.this).commitNow();
+                ft.attach(MissionsFragment.this).commitNow();
+                    }
+            );
+        }
+
+        if(lstnr_navMedRight != null) { }
+
+        if(lstnr_navRight != null) {
+            ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
+            icon_navRight.setBackgroundResource(R.drawable.icon_evidence);
+            lstnr_navRight.setOnClickListener(v -> {
+                Navigation.findNavController(v).popBackStack();
+                    }
+            );
         }
 
     }

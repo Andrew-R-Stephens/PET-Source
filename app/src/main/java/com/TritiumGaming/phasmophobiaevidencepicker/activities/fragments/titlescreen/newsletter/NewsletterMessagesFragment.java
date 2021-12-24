@@ -20,6 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.views.MessagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * TitleScreenFragment class
@@ -28,6 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterVi
  */
 public class NewsletterMessagesFragment extends Fragment {
 
+    private TitlescreenViewModel titleScreenViewModel = null;
     private NewsletterViewModel newsletterViewModel = null;
 
     @Nullable
@@ -37,10 +42,15 @@ public class NewsletterMessagesFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
+        if (titleScreenViewModel == null) {
+            titleScreenViewModel =
+                    new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
+        }
         if (newsletterViewModel == null) {
             newsletterViewModel =
                     new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
         }
+
         return inflater.inflate(
                 R.layout.fragment_msginbox_listmessages,
                 container,
@@ -94,6 +104,18 @@ public class NewsletterMessagesFragment extends Fragment {
                                 "or Context does not exist!");
             }
         }
+
+        if (getActivity() != null) {
+            MobileAds.initialize(getActivity(), initializationStatus -> {
+            });
+            AdView mAdView = view.findViewById(R.id.adView);
+            if (!titleScreenViewModel.hasAdRequest()) {
+                titleScreenViewModel.setAdRequest(new AdRequest.Builder().build());
+            }
+            mAdView.loadAd(titleScreenViewModel.getAdRequest());
+        }
+
+
     }
 
 }

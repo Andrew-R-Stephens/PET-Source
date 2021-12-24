@@ -59,7 +59,7 @@ public class DifficultyCarouselData {
     /**
      * @param difficulty
      */
-    public void setDifficulty(int difficulty) {
+    public void setDifficultyIndex(int difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -85,7 +85,7 @@ public class DifficultyCarouselData {
             if (state < 0) {
                 state = difficultyNames.length - 1;
             }
-            setDifficulty(state);
+            setDifficultyIndex(state);
 
             if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(true);
@@ -104,7 +104,7 @@ public class DifficultyCarouselData {
             if (state >= difficultyNames.length) {
                 state = 0;
             }
-            setDifficulty(state);
+            setDifficultyIndex(state);
 
             if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(true);
@@ -122,6 +122,10 @@ public class DifficultyCarouselData {
 
     public void resetSanityData() {
         evidenceViewModel.getSanityData().reset();
+    }
+
+    public boolean isDifficulty(int difficultyIndex) {
+        return getDifficultyIndex() == difficultyIndex;
     }
 
 }

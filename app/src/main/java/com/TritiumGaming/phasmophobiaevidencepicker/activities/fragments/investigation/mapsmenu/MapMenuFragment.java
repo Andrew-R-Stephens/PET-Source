@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -64,7 +67,6 @@ public class MapMenuFragment extends Fragment {
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
         AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
-        LinearLayout mapList = view.findViewById(R.id.mapmenu_body_verticallayout);
 
         // BACKGROUND IMAGE
         BitmapUtils bitmapUtils = new BitmapUtils();
@@ -72,27 +74,47 @@ public class MapMenuFragment extends Fragment {
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
 
         // LISTENERS
-        listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
-        );
+        initNavListeners(
+                listener_goto_left,
+                null,
+                null,
+                null,
+                null,
+                icon_goto_left,
+                null,
+                null,
 
-        // SET VIEWS DISABLED
-        listener_goto_right.setEnabled(false);
-        label_goto_right.setEnabled(false);
-        icon_goto_right.setEnabled(false);
-        listener_resetAll.setEnabled(false);
-        label_resetAll.setEnabled(false);
-        icon_resetAll.setEnabled(false);
-        listener_goto_right.setVisibility(View.INVISIBLE);
-        label_goto_right.setVisibility(View.INVISIBLE);
-        icon_goto_right.setVisibility(View.INVISIBLE);
-        listener_resetAll.setVisibility(View.INVISIBLE);
-        label_resetAll.setVisibility(View.INVISIBLE);
-        icon_resetAll.setVisibility(View.INVISIBLE);
+                null,
+                null);
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
 
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_evidence_button);
         icon_goto_left.setImageResource(R.drawable.icon_evidence);
 
+        GridView gridView = view.findViewById(R.id.grid_maps);
+        CustomAdapter customAdapter = new CustomAdapter(
+                mapViewViewModel.getMapNames(),
+                mapViewViewModel.getMapThumbnails());
+        gridView.setAdapter(customAdapter);
+        gridView.setOnItemClickListener((parent, view1, position, id) -> {
+            System.gc();
+            if (mapViewViewModel != null) {
+                mapViewViewModel.setCurrentMapData(position);
+            }
+            Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
+        });
+
+        /*
         for (int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
             if(getContext() == null) {
                 return;
@@ -122,6 +144,93 @@ public class MapMenuFragment extends Fragment {
             });
 
             mapList.addView(mapView);
+        }*/
+    }
+
+    private void initNavListeners(View lstnr_navLeft,
+                                  View lstnr_navMedLeft,
+                                  View lstnr_navCenter,
+                                  View lstnr_navMedRight,
+                                  View lstnr_navRight,
+                                  AppCompatImageView icon_navLeft,
+                                  AppCompatImageView icon_navMedLeft,
+                                  AppCompatImageView icon_navCenter,
+                                  AppCompatImageView icon_navMedRight,
+                                  AppCompatImageView icon_navRight) {
+        if(lstnr_navLeft != null) {
+            ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
+            icon_navLeft.setBackgroundResource(R.drawable.icon_evidence);
+            lstnr_navLeft.setOnClickListener(v -> {
+                        Navigation.findNavController(v)
+                                .popBackStack();
+                    }
+            );
+        }
+
+        if(lstnr_navMedLeft != null) {
+
+        }
+
+        if(lstnr_navCenter != null) {
+
+        }
+
+        if(lstnr_navMedRight != null) {
+
+        }
+
+        if(lstnr_navRight != null) {
+
+        }
+
+    }
+
+    public class CustomAdapter extends BaseAdapter {
+
+        private String[] mapNames;
+        private @DrawableRes int[] images;
+        private LayoutInflater layoutInflater;
+
+        public CustomAdapter(String[] mapNames, @DrawableRes int[] images) {
+            if(getContext() == null) {
+                return;
+            }
+            this.mapNames = mapNames;
+            this.images = images;
+
+            layoutInflater =
+                    (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return images.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View newView, ViewGroup parent) {
+
+            if(newView == null) {
+                newView = layoutInflater.inflate(R.layout.item_mapmenu_map, parent, false);
+            }
+
+            AppCompatTextView textView = newView.findViewById(R.id.label_mapName);
+            AppCompatImageView imageView = newView.findViewById(R.id.image_map);
+
+            textView.setText(mapNames[i].split(" ")[0]);
+            imageView.setImageResource(images[i]);
+
+            return newView;
         }
     }
 

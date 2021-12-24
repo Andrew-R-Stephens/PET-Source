@@ -153,7 +153,7 @@ public class TitlescreenFragment extends Fragment {
 
 
         //TODO Create a button hyperlink to app review page
-        // CREATE AD
+
         if (getActivity() != null) {
             MobileAds.initialize(getActivity(), initializationStatus -> {
             });

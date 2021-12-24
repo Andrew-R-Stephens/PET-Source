@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 import java.util.ArrayList;
 
@@ -15,13 +16,17 @@ import java.util.ArrayList;
  */
 public class InvestigationData {
 
+    private final EvidenceViewModel evidenceViewModel;
+
     private static ArrayList<Ghost> ghosts = null;
     private static ArrayList<Evidence> evidence = null;
 
     /**
      *
      */
-    public InvestigationData(Context c) {
+    public InvestigationData(EvidenceViewModel evidenceViewModel, Context c) {
+        this.evidenceViewModel = evidenceViewModel;
+
         initEvidence(c);
         initGhosts(c);
     }
@@ -35,15 +40,29 @@ public class InvestigationData {
         for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
             ghost.setName(ghostNames[i]);
-            TypedArray typedArray =
+
+            // Set Normal Evidence
+            TypedArray typedArrayEvidence =
                     c.getResources().obtainTypedArray(R.array.ghost_evidence_arrays);
-            TypedArray nameTypedArray =
-                    c.getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
-            typedArray.recycle();
-            for (int j = 0; j < nameTypedArray.length(); j++) {
-                ghost.addEvidence(nameTypedArray.getString(j));
+            TypedArray evidenceNameTypedArray =
+                    c.getResources().obtainTypedArray(typedArrayEvidence.getResourceId(i, 0));
+            typedArrayEvidence.recycle();
+            for (int j = 0; j < evidenceNameTypedArray.length(); j++) {
+                ghost.addEvidence(evidenceNameTypedArray.getString(j));
             }
-            nameTypedArray.recycle();
+            evidenceNameTypedArray.recycle();
+
+            // Set Nightmare Evidence
+            TypedArray typedArrayNightmareEvidence =
+                    c.getResources().obtainTypedArray(R.array.ghost_nightmareevidence_arrays);
+            TypedArray nightmareEvidenceNameTypedArray =
+                    c.getResources().obtainTypedArray(typedArrayNightmareEvidence.getResourceId(i, 0));
+            typedArrayNightmareEvidence.recycle();
+            for (int j = 0; j < nightmareEvidenceNameTypedArray.length(); j++) {
+                ghost.addNightmareEvidence(nightmareEvidenceNameTypedArray.getString(j));
+            }
+            nightmareEvidenceNameTypedArray.recycle();
+
             ghosts.add(ghost);
         }
     }
@@ -109,19 +128,20 @@ public class InvestigationData {
 
     public void print() {
         for(Ghost g: ghosts) {
-            Log.d("InvestigationData", g.name + ": [ " + g.toString() + "]");
+            Log.d("InvestigationData", g.name + ": [ " + g + "]");
         }
     }
 
     /**
      *
      */
-    public static class Ghost {
+    public class Ghost {
 
         private int id = -1;
         private String name = "NA";
 
         private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();
+        private final ArrayList<Evidence> thisGhostNightmareEvidence = new ArrayList<>();
 
         /**
          *
@@ -174,6 +194,19 @@ public class InvestigationData {
             }
         }
 
+        public void addNightmareEvidence(Evidence e) {
+            thisGhostNightmareEvidence.add(e);
+        }
+
+        public void addNightmareEvidence(String evidence) {
+            for (Evidence e : InvestigationData.evidence) {
+                if (evidence.equals(e.getName())) {
+                    addNightmareEvidence(e);
+                    break;
+                }
+            }
+        }
+
         /**
          *
          */
@@ -181,6 +214,14 @@ public class InvestigationData {
             Evidence[] newEvidence = new Evidence[thisGhostEvidence.size()];
             for (int i = 0; i < newEvidence.length; i++) {
                 newEvidence[i] = thisGhostEvidence.get(i);
+            }
+            return newEvidence;
+        }
+
+        public Evidence[] getNightmareEvidenceArray() {
+            Evidence[] newEvidence = new Evidence[thisGhostNightmareEvidence.size()];
+            for (int i = 0; i < newEvidence.length; i++) {
+                newEvidence[i] = thisGhostNightmareEvidence.get(i);
             }
             return newEvidence;
         }
@@ -220,12 +261,37 @@ public class InvestigationData {
                     return -5;
                 }
             }
+
+            if(rating == 2 &&
+                    evidenceViewModel.getDifficultyCarouselData().isDifficulty(3)) {
+                for (int i = 0; i < thisGhostNightmareEvidence.size(); i++) {
+                    boolean isContained = false;
+                    for (Evidence value : evidence) {
+                        if (thisGhostNightmareEvidence.get(i).getName().equals(value.getName())) {
+                            if (!thisGhostNightmareEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
+                                Log.d("InvestigationData",
+                                        name + ", contains " + thisGhostNightmareEvidence.get(i).getName() + " is not " +
+                                                "POSITIVE and the ghost is given a -5 score.");
+                                return -5;
+                            }
+                        }
+                    }
+
+                }
+            }
+
             return rating;
         }
 
         public String toString() {
             StringBuilder s = new StringBuilder();
             for(Evidence e: thisGhostEvidence) {
+                s.append(e.name).append(", ");
+            }
+            if(thisGhostNightmareEvidence.size() > 0) {
+                s.append(" / ");
+            }
+            for (Evidence e : thisGhostNightmareEvidence) {
                 s.append(e.name).append(", ");
             }
 
@@ -279,6 +345,10 @@ public class InvestigationData {
          */
         public Ruling getRuling() {
             return ruling;
+        }
+
+        public boolean isRuling(Ruling r) {
+            return ruling == r;
         }
 
         /**

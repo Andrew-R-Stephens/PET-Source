@@ -75,20 +75,6 @@ public class TitlescreenAnimationView extends View {
     }
 
     /**
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     * @param defStyleRes
-     */
-    public TitlescreenAnimationView(
-            Context context,
-            @Nullable AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    /**
      * @param titleScreenViewModel
      * @param bitmapUtils
      */

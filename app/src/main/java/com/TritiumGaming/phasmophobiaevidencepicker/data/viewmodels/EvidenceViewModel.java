@@ -34,8 +34,8 @@ public class EvidenceViewModel extends ViewModel {
     public void init(Context c) {
 
         if (!hasInvestigationData()) {
-            setInvestigationData(new InvestigationData(c));
-            //investigationData.print();
+            setInvestigationData(new InvestigationData(this, c));
+            investigationData.print();
         }
 
         if (!hasDifficultyCarouselData()) {
@@ -119,13 +119,6 @@ public class EvidenceViewModel extends ViewModel {
      */
     public boolean hasSanityRunnable() {
         return sanityRunnable != null;
-    }
-
-    /**
-     * @param sanityData
-     */
-    public void setSanityData(SanityData sanityData) {
-        this.sanityData = sanityData;
     }
 
     /**

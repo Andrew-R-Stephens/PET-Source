@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import androidx.annotation.DrawableRes;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -83,8 +84,10 @@ public class MapMenuViewModel extends ViewModel {
             //Set map default layer
             mapData[i].setDefaultFloor(mapTypedArray.getInt(5, 0));
 
-            mapTypedArray.recycle();
+            //Set map thumbnail resource id
+            mapData[i].setThumbnail(mapTypedArray.getResourceId(7, 0));
 
+            mapTypedArray.recycle();
         }
         typedArray.recycle();
         setMapData(mapData);
@@ -115,6 +118,28 @@ public class MapMenuViewModel extends ViewModel {
      */
     public MapData[] getMapData() {
         return mapData;
+    }
+
+    public String[] getMapNames() {
+        if(hasMapData()) {
+            String[] mapNames = new String[mapData.length];
+            for(int i = 0; i < mapNames.length; i++) {
+                mapNames[i] = mapData[i].getMapName();
+            }
+            return mapNames;
+        }
+        return null;
+    }
+
+    public @DrawableRes int[] getMapThumbnails() {
+        if(hasMapData()) {
+            @DrawableRes int[] mapThumbnails = new int[mapData.length];
+            for(int i = 0; i < mapThumbnails.length; i++) {
+                mapThumbnails[i] = mapData[i].getThumbnailImage();
+            }
+            return mapThumbnails;
+        }
+        return null;
     }
 
     /**

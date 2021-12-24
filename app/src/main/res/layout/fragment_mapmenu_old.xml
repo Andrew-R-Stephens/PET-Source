@@ -43,16 +43,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/dividerE"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:background="@drawable/icon_strikethrough_1"
-            android:backgroundTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout65"
             android:layout_width="0dp"
@@ -60,7 +50,7 @@
             app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dividerE">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
@@ -85,31 +75,20 @@
                 android:background="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".95"
-                app:layout_constraintWidth_percent=".85"
+                app:layout_constraintHeight_percent=".75"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <GridView
-                    android:id="@+id/grid_maps"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fadeScrollbars="false"
-                    android:fadingEdge="vertical"
-                    android:fadingEdgeLength="50sp"
-                    android:gravity="center"
-                    android:horizontalSpacing="20sp"
-                    android:numColumns="2"
-                    android:requiresFadingEdge="vertical"
-                    android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:verticalSpacing="20sp"
-                    android:scrollbarStyle="outsideOverlay"
-                    android:paddingStart="0sp"
-                    android:paddingEnd="10sp"
+                <LinearLayout
+                    android:id="@+id/mapmenu_body_verticallayout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

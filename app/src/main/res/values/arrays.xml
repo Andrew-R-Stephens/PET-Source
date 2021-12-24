@@ -219,7 +219,7 @@
         <item>@drawable/icon_spiritbox</item>
     </integer-array>
 
-    <!-- Ghost Evidence Arrays -->
+    <!-- Ghost NORMAL Evidence Arrays -->
     <integer-array name="ghost_evidence_arrays">
         <item>@array/evidence_ghost_evidence_banshee</item>
         <item>@array/evidence_ghost_evidence_demon</item>
@@ -244,8 +244,33 @@
         <item>@array/evidence_ghost_evidence_yurei</item>
     </integer-array>
 
+    <!-- Ghost NORMAL Evidence Arrays -->
+    <integer-array name="ghost_nightmareevidence_arrays">
+        <item>@array/evidence_ghost_nightmareevidence_banshee</item>
+        <item>@array/evidence_ghost_nightmareevidence_demon</item>
+        <item>@array/evidence_ghost_nightmareevidence_goryo</item>
+        <item>@array/evidence_ghost_nightmareevidence_hantu</item>
+        <item>@array/evidence_ghost_nightmareevidence_jinn</item>
+        <item>@array/evidence_ghost_nightmareevidence_mare</item>
+        <item>@array/evidence_ghost_nightmareevidence_myling</item>
+        <item>@array/evidence_ghost_nightmareevidence_obake</item>
+        <item>@array/evidence_ghost_nightmareevidence_oni</item>
+        <item>@array/evidence_ghost_nightmareevidence_onryo</item>
+        <item>@array/evidence_ghost_nightmareevidence_phantom</item>
+        <item>@array/evidence_ghost_nightmareevidence_poltergeist</item>
+        <item>@array/evidence_ghost_nightmareevidence_raiju</item>
+        <item>@array/evidence_ghost_nightmareevidence_revenant</item>
+        <item>@array/evidence_ghost_nightmareevidence_shade</item>
+        <item>@array/evidence_ghost_nightmareevidence_spirit</item>
+        <item>@array/evidence_ghost_nightmareevidence_thetwins</item>
+        <item>@array/evidence_ghost_nightmareevidence_themimic</item>
+        <item>@array/evidence_ghost_nightmareevidence_wraith</item>
+        <item>@array/evidence_ghost_nightmareevidence_yokai</item>
+        <item>@array/evidence_ghost_nightmareevidence_yurei</item>
+    </integer-array>
+
     <!--
-        All Ghost Evidence
+        All NORMAL Ghost Evidence
     -->
     <string-array name="evidence_ghost_evidence_banshee">
         <item>@string/evidence_evidence_type_dots</item>
@@ -352,6 +377,55 @@
         <item>@string/evidence_evidence_type_dots</item>
         <item>@string/evidence_evidence_type_temperatures</item>
         <item>@string/evidence_evidence_type_orbs</item>
+    </string-array>
+
+    <!--
+        All NIGHTMARE Ghost Evidence
+    -->
+    <string-array name="evidence_ghost_nightmareevidence_banshee">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_demon">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_goryo">
+        <item>@string/evidence_evidence_type_dots</item>
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_hantu">
+        <item>@string/evidence_evidence_type_temperatures</item>
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_jinn">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_mare">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_myling">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_obake">
+        <item>@string/evidence_evidence_type_fingerprints</item>
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_oni">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_onryo">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_phantom">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_poltergeist">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_raiju">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_revenant">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_shade">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_spirit">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_thetwins">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_themimic">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_wraith">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_yokai">
+    </string-array>
+    <string-array name="evidence_ghost_nightmareevidence_yurei">
     </string-array>
 
 
@@ -506,6 +580,7 @@
         <item>@array/map_asylum_layerName_array</item>
         <item>1</item>
         <item>2</item>
+        <item>@drawable/thumbnail_asylum</item>
     </integer-array>
     <integer-array name= "map_campsite_array">
         <item>@string/map_name_campsite</item>
@@ -515,6 +590,7 @@
         <item>@array/map_campsite_layerName_array</item>
         <item>0</item>
         <item>1</item>
+        <item>@drawable/thumbnail_campsite</item>
     </integer-array>
     <integer-array name= "map_bleasdale_array">
         <item>@string/map_name_bleasdale</item>
@@ -524,6 +600,7 @@
         <item>@array/map_bleasdale_layerName_array</item>
         <item>0</item>
         <item>0</item>
+        <item>@drawable/thumbnail_bleasedale</item>
     </integer-array>
     <integer-array name= "map_grafton_array">
         <item>@string/map_name_grafton</item>
@@ -533,6 +610,7 @@
         <item>@array/map_grafton_layerName_array</item>
         <item>0</item>
         <item>0</item>
+        <item>@drawable/thumbnail_grafton</item>
     </integer-array>
     <integer-array name= "map_brownstone_array">
         <item>@string/map_name_brownstone</item>
@@ -542,6 +620,7 @@
         <item>@array/map_brownstone_layerName_array</item>
         <item>0</item>
         <item>1</item>
+        <item>@drawable/thumbnail_highschool</item>
     </integer-array>
     <integer-array name= "map_edgefield_array">
         <item>@string/map_name_edgefield</item>
@@ -551,6 +630,7 @@
         <item>@array/map_edgefield_layerName_array</item>
         <item>1</item>
         <item>0</item>
+        <item>@drawable/thumbnail_edgefield</item>
     </integer-array>
     <integer-array name= "map_tanglewood_array">
         <item>@string/map_name_tanglewood</item>
@@ -560,6 +640,7 @@
         <item>@array/map_tanglewood_layerName_array</item>
         <item>1</item>
         <item>0</item>
+        <item>@drawable/thumbnail_tanglewood</item>
     </integer-array>
     <integer-array name= "map_willow_array">
         <item>@string/map_name_willow</item>
@@ -569,6 +650,7 @@
         <item>@array/map_willow_layerName_array</item>
         <item>1</item>
         <item>0</item>
+        <item>@drawable/thumbnail_willow</item>
     </integer-array>
     <integer-array name= "map_ridgeview_array">
         <item>@string/map_name_ridgeview</item>
@@ -578,6 +660,7 @@
         <item>@array/map_ridgeview_layerName_array</item>
         <item>1</item>
         <item>0</item>
+        <item>@drawable/thumbnail_ridgeview</item>
     </integer-array>
     <integer-array name= "map_prison_array">
         <item>@string/map_name_prison</item>
@@ -587,6 +670,7 @@
         <item>@array/map_prison_layerName_array</item>
         <item>0</item>
         <item>1</item>
+        <item>@drawable/thumbnail_prison</item>
     </integer-array>
 
     <!-- Map-Specific arrays of all their outline resources -->
