@@ -73,58 +73,17 @@ public class MapViewerFragment extends Fragment {
 
         // INITIALIZE VIEWS
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
-        AppCompatTextView label_resetAll = view.findViewById(R.id.label_resetAll);
         AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
-        AppCompatImageView icon_resetAll = view.findViewById(R.id.icon_resetAll);
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        View listener_resetAll = view.findViewById(R.id.listener_resetAll);
 
-        AppCompatTextView instructions_pan = view.findViewById(R.id.textview_controller_help_pan);
-        AppCompatTextView instructions_zoom = view.findViewById(R.id.textview_controller_help_zoom);
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
         InteractiveMapControlView touchInput = view.findViewById(R.id.interactiveMapController);
         imageDisplay = view.findViewById(R.id.interactiveMapDisplay);
         layerName = view.findViewById(R.id.textview_floorname);
 
-        // TEXT SIZE
-        instructions_pan.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 20, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        instructions_zoom.setAutoSizeTextTypeUniformWithConfiguration(
-                5, 20, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        mapName.setAutoSizeTextTypeUniformWithConfiguration(
-                20, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        layerName.setAutoSizeTextTypeUniformWithConfiguration(
-                8, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_goto_left.setAutoSizeTextTypeUniformWithConfiguration(
-                10, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        // SET VIEWS DISABLED
-        /*
-        listener_goto_right.setEnabled(false);
-        label_goto_right.setEnabled(false);
-        icon_goto_right.setEnabled(false);
-        listener_resetAll.setEnabled(false);
-        label_resetAll.setEnabled(false);
-        icon_resetAll.setEnabled(false);
-        listener_goto_right.setVisibility(View.INVISIBLE);
-        label_goto_right.setVisibility(View.INVISIBLE);
-        icon_goto_right.setVisibility(View.INVISIBLE);
-        listener_resetAll.setVisibility(View.INVISIBLE);
-        label_resetAll.setVisibility(View.INVISIBLE);
-        icon_resetAll.setVisibility(View.INVISIBLE);
-        */
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_maps_button);
-        icon_goto_left.setImageResource(R.drawable.icon_map);
 
         button_nextLayer.setOnClickListener(v -> {
             if (mapViewViewModel != null && mapViewViewModel.hasMapData()) {
@@ -164,6 +123,21 @@ public class MapViewerFragment extends Fragment {
             Navigation.findNavController(v).popBackStack();
         });
 
+        // LISTENERS
+        initNavListeners(
+                listener_goto_left,
+                null,
+                null,
+                null,
+                null,
+                icon_goto_left,
+                null,
+                null,
+
+                null,
+                null);
+
+
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(this,
                     new OnBackPressedCallback(true) {
@@ -198,6 +172,36 @@ public class MapViewerFragment extends Fragment {
         startThreads();
 
         updateComponents();
+    }
+
+    private void initNavListeners(View lstnr_navLeft,
+                                  View lstnr_navMedLeft,
+                                  View lstnr_navCenter,
+                                  View lstnr_navMedRight,
+                                  View lstnr_navRight,
+                                  AppCompatImageView icon_navLeft,
+                                  AppCompatImageView icon_navMedLeft,
+                                  AppCompatImageView icon_navCenter,
+                                  AppCompatImageView icon_navMedRight,
+                                  AppCompatImageView icon_navRight) {
+        if(lstnr_navLeft != null) {
+            ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
+            icon_navLeft.setImageResource(R.drawable.icon_evidence);
+            lstnr_navLeft.setOnClickListener(v -> {
+                        Navigation.findNavController(v)
+                                .popBackStack();
+                    }
+            );
+        }
+
+        if(lstnr_navMedLeft != null) { }
+
+        if(lstnr_navCenter != null) { }
+
+        if(lstnr_navMedRight != null) { }
+
+        if(lstnr_navRight != null) { }
+
     }
 
     /**

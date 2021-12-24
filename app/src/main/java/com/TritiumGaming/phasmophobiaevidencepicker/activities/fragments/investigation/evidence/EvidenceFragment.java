@@ -169,9 +169,6 @@ public class EvidenceFragment extends Fragment {
         // NAVIGATION RESET VIEWS
         View listener_resetAll = view.findViewById(R.id.listener_resetAll);
         AppCompatImageView icon_resetAll = view.findViewById(R.id.icon_resetAll);
-        //NAVIGATION OTHER VIEWS
-        View listener_goto_medLeft = view.findViewById(R.id.icon_goto_medLeft);
-        View listener_goto_medRight = view.findViewById(R.id.icon_goto_medRight);
 
         // SANITY METER VIEWS
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
@@ -285,7 +282,6 @@ public class EvidenceFragment extends Fragment {
 
         if(lstnr_navMedRight != null) {
             lstnr_navMedRight.setVisibility(View.VISIBLE);
-            //icon_navMedRight.setBackgroundResource(R.drawable.icon_tasks);
             lstnr_navMedRight.setOnClickListener(v -> {
                         if(sanityTrackingConstraintLayout.getVisibility() == View.VISIBLE) {
                             sanityTrackingConstraintLayout.setVisibility(View.GONE);
@@ -371,7 +367,9 @@ public class EvidenceFragment extends Fragment {
                 ScrollView scroller = customView.findViewById(R.id.scrollView);
                 View indicator = customView.findViewById(R.id.scrollview_indicator);
 
-                fadeOutIndicatorAnimation(scroller, indicator);
+                fadeOutIndicatorAnimation(
+                        scroller,
+                        indicator);
 
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
 
@@ -418,7 +416,7 @@ public class EvidenceFragment extends Fragment {
                 icon1.setColorFilter(negativeSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(neutralSelColor);
-            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {;
+            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {
                 icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_selected);
                 icon3.setImageResource(R.drawable.icon_positive_unselected);
@@ -581,10 +579,30 @@ public class EvidenceFragment extends Fragment {
                 View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
                 View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
 
-                AppCompatTextView label_name = customView.findViewById(R.id.label_name);
-                AppCompatTextView label_info = customView.findViewById(R.id.label_infoTitle);
-                AppCompatTextView label_strength = customView.findViewById(R.id.label_strengthsTitle);
-                AppCompatTextView label_weakness = customView.findViewById(R.id.label_weaknessesTitle);
+                AppCompatTextView label_name =
+                        customView.findViewById(R.id.label_name);
+
+                AppCompatTextView label_info =
+                        customView.findViewById(R.id.label_infoTitle);
+                AppCompatTextView label_strength =
+                        customView.findViewById(R.id.label_strengthsTitle);
+                AppCompatTextView label_weakness =
+                        customView.findViewById(R.id.label_weaknessesTitle);
+
+                ConstraintLayout parentLayout_info =
+                        customView.findViewById(R.id.constraintLayout_info);
+                ConstraintLayout parentLayout_strength =
+                        customView.findViewById(R.id.constraintLayout_strengths);
+                ConstraintLayout parentLayout_weakness =
+                        customView.findViewById(R.id.constraintLayout_weaknesses);
+
+                LinearLayout childLayout_info =
+                        scroller1.findViewById(R.id.layout_textContainer);
+                LinearLayout childLayout_strength =
+                        scroller2.findViewById(R.id.layout_textContainer);
+                LinearLayout childLayout_weakness =
+                        scroller3.findViewById(R.id.layout_textContainer);
+
                 AppCompatTextView info = scroller1.findViewById(R.id.label_info);
                 AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
                 AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
@@ -606,9 +624,15 @@ public class EvidenceFragment extends Fragment {
 
                 closeButton.setOnClickListener(v1 -> popup.dismiss());
 
-                fadeOutIndicatorAnimation(scroller1, indicator1);
-                fadeOutIndicatorAnimation(scroller2, indicator2);
-                fadeOutIndicatorAnimation(scroller3, indicator3);
+                fadeOutIndicatorAnimation(
+                        scroller1,
+                        indicator1);
+                fadeOutIndicatorAnimation(
+                        scroller2,
+                        indicator2);
+                fadeOutIndicatorAnimation(
+                        scroller3,
+                        indicator3);
 
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
@@ -638,13 +662,11 @@ public class EvidenceFragment extends Fragment {
                             .getGhost(j)
                             .getEvidenceArray()[0]
                             .getIcon());
-
             icon2.setImageResource(
                     evidenceViewModel.getInvestigationData()
                             .getGhost(j)
                             .getEvidenceArray()[1]
                             .getIcon());
-
             icon3.setImageResource(
                     evidenceViewModel.getInvestigationData()
                             .getGhost(j)
@@ -653,7 +675,6 @@ public class EvidenceFragment extends Fragment {
 
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
-
             theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
             int neutralSelColor = typedValue.data;
             theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
@@ -663,7 +684,6 @@ public class EvidenceFragment extends Fragment {
 
             InvestigationData.Evidence.Ruling ruling = evidenceViewModel.getInvestigationData()
                     .getGhost(j).getEvidenceArray()[0].getRuling();
-
             if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
                 icon1.setColorFilter(positiveSelColor);
             } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {
@@ -674,7 +694,6 @@ public class EvidenceFragment extends Fragment {
 
             ruling = evidenceViewModel.getInvestigationData()
                     .getGhost(j).getEvidenceArray()[1].getRuling();
-
             if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
                 icon2.setColorFilter(positiveSelColor);
             } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {
@@ -685,7 +704,6 @@ public class EvidenceFragment extends Fragment {
 
             ruling = evidenceViewModel.getInvestigationData()
                     .getGhost(j).getEvidenceArray()[2].getRuling();
-
             if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
                 icon3.setColorFilter(positiveSelColor);
             } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {

@@ -123,10 +123,10 @@
                     android:id="@+id/constraintLayout_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/popup_investigation_info"
                     android:padding="5sp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout87"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout_strengths"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -166,14 +166,14 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout87"
+                    android:id="@+id/constraintLayout_strengths"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/popup_investigation_info"
                     android:padding="5sp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout86"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout_weaknesses"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout_info">
@@ -212,17 +212,17 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout86"
+                    android:id="@+id/constraintLayout_weaknesses"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="1dp"
                     android:background="@drawable/popup_investigation_info"
                     android:padding="5sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout87">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_strengths">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_weaknessesTitle"
@@ -238,7 +238,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_weaknesses"
+                        android:id="@+id/constraint_weaknesses"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"

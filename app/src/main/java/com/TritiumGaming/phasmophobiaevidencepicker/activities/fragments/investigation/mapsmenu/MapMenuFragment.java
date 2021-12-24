@@ -58,14 +58,8 @@ public class MapMenuFragment extends Fragment {
 
         // INITIALIZE VIEWS
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
-        AppCompatTextView label_resetAll = view.findViewById(R.id.label_resetAll);
         AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
-        AppCompatImageView icon_resetAll = view.findViewById(R.id.icon_resetAll);
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        View listener_resetAll = view.findViewById(R.id.listener_resetAll);
         AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
 
         // BACKGROUND IMAGE
@@ -83,7 +77,6 @@ public class MapMenuFragment extends Fragment {
                 icon_goto_left,
                 null,
                 null,
-
                 null,
                 null);
 
@@ -99,7 +92,6 @@ public class MapMenuFragment extends Fragment {
 
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_evidence_button);
-        icon_goto_left.setImageResource(R.drawable.icon_evidence);
 
         GridView gridView = view.findViewById(R.id.grid_maps);
         CustomAdapter customAdapter = new CustomAdapter(
@@ -159,7 +151,7 @@ public class MapMenuFragment extends Fragment {
                                   AppCompatImageView icon_navRight) {
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
-            icon_navLeft.setBackgroundResource(R.drawable.icon_evidence);
+            icon_navLeft.setBackgroundResource(R.drawable.icon_map);
             lstnr_navLeft.setOnClickListener(v -> {
                         Navigation.findNavController(v)
                                 .popBackStack();
@@ -167,21 +159,13 @@ public class MapMenuFragment extends Fragment {
             );
         }
 
-        if(lstnr_navMedLeft != null) {
+        if(lstnr_navMedLeft != null) { }
 
-        }
+        if(lstnr_navCenter != null) { }
 
-        if(lstnr_navCenter != null) {
+        if(lstnr_navMedRight != null) { }
 
-        }
-
-        if(lstnr_navMedRight != null) {
-
-        }
-
-        if(lstnr_navRight != null) {
-
-        }
+        if(lstnr_navRight != null) { }
 
     }
 
