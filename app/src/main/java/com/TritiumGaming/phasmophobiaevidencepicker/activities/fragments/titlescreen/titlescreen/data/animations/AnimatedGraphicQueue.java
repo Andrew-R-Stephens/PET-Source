@@ -81,6 +81,10 @@ public class AnimatedGraphicQueue {
      * @param num
      */
     public void enqueue(int num) {
+        if(queue == null) {
+            queue = new ArrayList<>();
+        }
+
         if (queue.size() < maxSize) {
             queue.add(num);
         }
@@ -91,6 +95,10 @@ public class AnimatedGraphicQueue {
      * @param num
      */
     public void enqueue(int index, int num) {
+        if(queue == null) {
+            queue = new ArrayList<>();
+        }
+
         if (queue.size() < maxSize) {
             queue.add(index, num);
         }

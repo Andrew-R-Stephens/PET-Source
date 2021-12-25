@@ -161,14 +161,6 @@ public class EvidenceFragment extends Fragment {
         sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
-        // NAVIGATION VIEWS
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
-        // NAVIGATION RESET VIEWS
-        View listener_resetAll = view.findViewById(R.id.listener_resetAll);
-        AppCompatImageView icon_resetAll = view.findViewById(R.id.icon_resetAll);
 
         // SANITY METER VIEWS
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
@@ -188,16 +180,16 @@ public class EvidenceFragment extends Fragment {
 
         // LISTENERS
         initNavListeners(
-                listener_goto_left,
+                view.findViewById(R.id.listener_goto_left),
                 null,
-                listener_resetAll,
+                view.findViewById(R.id.listener_resetAll),
                 null,
-                listener_goto_right,
-                icon_goto_left,
+                view.findViewById(R.id.listener_goto_right),
+                view.findViewById(R.id.icon_goto_left),
                 null,
-                icon_resetAll,
+                view.findViewById(R.id.icon_resetAll),
                 null,
-                icon_goto_right);
+                view.findViewById(R.id.icon_goto_right));
 
         sanitySeekBarView.init(
                 sanityData,

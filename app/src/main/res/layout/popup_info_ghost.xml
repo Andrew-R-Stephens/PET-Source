@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout36"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -24,7 +25,7 @@
             android:id="@+id/constraintlayout_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -77,7 +78,7 @@
             android:id="@+id/constraintlayout_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -98,169 +99,160 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/popup_contentbody_constraintlayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout36"
+        app:layout_constraintVertical_bias="0.25">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/popup_contentbody_constraintlayout"
+            android:id="@+id/constraintLayout_info"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/popup_investigation_info"
+            android:padding="5sp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_strengths"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout50"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_infoTitle"
+                style="@style/EastRegular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start"
+                android:text="@string/evidence_popup_ghost_info"
+                android:textColor="?attr/titleFontColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout82"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/label_infoTitle">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_info"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="1dp"
-                    android:background="@drawable/popup_investigation_info"
-                    android:padding="5sp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout_strengths"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_infoTitle"
-                        style="@style/EastRegular"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="start"
-                        android:text="@string/evidence_popup_ghost_info"
-                        android:textColor="?attr/titleFontColor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".15"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_infoTitle">
-
-                        <include
-                            android:id="@+id/scrollview1"
-                            layout="@layout/item_scrollview"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_strengths"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:background="@drawable/popup_investigation_info"
-                    android:padding="5sp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout_weaknesses"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_info">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_strengthsTitle"
-                        style="@style/EastRegular"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="start"
-                        android:text="@string/evidence_popup_ghost_strength"
-                        android:textColor="?attr/titleFontColor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".15"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle">
-
-                        <include
-                            android:id="@+id/scrollview2"
-                            layout="@layout/item_scrollview"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_weaknesses"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/popup_investigation_info"
-                    android:padding="5sp"
+                <include
+                    android:id="@+id/scrollview1"
+                    layout="@layout/item_scrollview"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_strengths">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_weaknessesTitle"
-                        style="@style/EastRegular"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="start"
-                        android:text="@string/evidence_popup_ghost_weakness"
-                        android:textColor="?attr/titleFontColor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".15"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraint_weaknesses"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle">
-
-                        <include
-                            android:id="@+id/scrollview3"
-                            layout="@layout/item_scrollview"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_strengths"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/popup_investigation_info"
+            android:padding="5sp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_weaknesses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_info">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_strengthsTitle"
+                style="@style/EastRegular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start"
+                android:text="@string/evidence_popup_ghost_strength"
+                android:textColor="?attr/titleFontColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle">
+
+                <include
+                    android:id="@+id/scrollview2"
+                    layout="@layout/item_scrollview"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_weaknesses"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/popup_investigation_info"
+            android:padding="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_strengths">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_weaknessesTitle"
+                style="@style/EastRegular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start"
+                android:text="@string/evidence_popup_ghost_weakness"
+                android:textColor="?attr/titleFontColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_weaknesses"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle">
+
+                <include
+                    android:id="@+id/scrollview3"
+                    layout="@layout/item_scrollview"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -274,8 +266,6 @@
         app:adUnitId="ca-app-pub-1890816745443024/7620657926"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout36"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

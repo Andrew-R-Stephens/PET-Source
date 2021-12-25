@@ -40,12 +40,14 @@ public class UtilitiesFragment extends Fragment {
 
         // NAVIGATION VIEWS
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
-        View goto_spiritboxtool = view.findViewById(R.id.utility_spiritbox);
+        //View goto_spiritboxtool = view.findViewById(R.id.utility_spiritbox);
 
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
+        /*
         goto_spiritboxtool.setOnClickListener(v ->
                 Navigation.findNavController(v).
                         navigate(R.id.action_utilitiesFragment_to_toolSpiritBoxFragment));
+        */
     }
 }
