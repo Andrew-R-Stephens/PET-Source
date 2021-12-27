@@ -24,6 +24,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 /**
  * TitleScreenAnimationView class
@@ -331,21 +332,25 @@ public class TitlescreenAnimationView extends View {
 
         paint.setStyle(Paint.Style.FILL);
 
-        for (AbstractAnimatedGraphic a : titleScreenViewModel.getAnimationData().getCurrentPool()) {
-            if (a != null) {
-                paint.setColorFilter(a.getFilter());
-                if (a instanceof AnimatedMirrorData) {
-                    a.draw(canvas, paint, bitmap_mirror);
-                } else if (a instanceof AnimatedWritingData) {
-                    a.draw(canvas, paint, bitmap_writingRot);
-                } else if (a instanceof AnimatedHandData) {
-                    a.draw(canvas, paint, bitmap_handRot);
-                } else if (a instanceof AnimatedOrbData) {
-                    a.draw(canvas, paint, bitmap_orb);
-                } else if (a instanceof AnimatedFrostData) {
-                    a.draw(canvas, paint, bitmap_frost);
+        try {
+            for (AbstractAnimatedGraphic a : titleScreenViewModel.getAnimationData().getCurrentPool()) {
+                if (a != null) {
+                    paint.setColorFilter(a.getFilter());
+                    if (a instanceof AnimatedMirrorData) {
+                        a.draw(canvas, paint, bitmap_mirror);
+                    } else if (a instanceof AnimatedWritingData) {
+                        a.draw(canvas, paint, bitmap_writingRot);
+                    } else if (a instanceof AnimatedHandData) {
+                        a.draw(canvas, paint, bitmap_handRot);
+                    } else if (a instanceof AnimatedOrbData) {
+                        a.draw(canvas, paint, bitmap_orb);
+                    } else if (a instanceof AnimatedFrostData) {
+                        a.draw(canvas, paint, bitmap_frost);
+                    }
                 }
             }
+        } catch (ConcurrentModificationException ex) {
+            ex.printStackTrace();
         }
     }
 

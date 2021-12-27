@@ -240,7 +240,7 @@ public class EvidenceFragment extends Fragment {
                                   AppCompatImageView icon_navRight) {
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
-            icon_navLeft.setBackgroundResource(R.drawable.icon_tasks);
+            icon_navLeft.setImageResource(R.drawable.icon_tasks);
             lstnr_navLeft.setOnClickListener(v -> {
                         if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
@@ -265,7 +265,7 @@ public class EvidenceFragment extends Fragment {
 
         if(lstnr_navCenter != null) {
             ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
-            icon_navCenter.setBackgroundResource(R.drawable.icon_reset);
+            icon_navCenter.setImageResource(R.drawable.icon_reset);
             lstnr_navCenter.setOnClickListener(v -> {
                         softReset();
                     }
@@ -286,7 +286,7 @@ public class EvidenceFragment extends Fragment {
 
         if(lstnr_navRight != null) {
             ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
-            icon_navRight.setBackgroundResource(R.drawable.icon_map);
+            icon_navRight.setImageResource(R.drawable.icon_map);
             lstnr_navRight.setOnClickListener(v -> {
                         if (evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);

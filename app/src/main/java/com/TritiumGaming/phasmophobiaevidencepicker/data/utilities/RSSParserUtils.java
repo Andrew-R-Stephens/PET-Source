@@ -21,6 +21,7 @@ public class RSSParserUtils {
     public RSSParserUtils(XmlPullParserFactory factory, String urlStr,
                           NewsletterViewModel.InboxType type,
                           NewsletterViewModel newsLetterViewModel) {
+
         this.newsLetterViewModel = newsLetterViewModel;
         this.inboxType = type;
 

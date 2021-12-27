@@ -36,7 +36,7 @@ public class NewsletterViewModel extends ViewModel {
         inbox.setInboxType(type);
         try {
             inboxMessageList.add(inbox);
-        } catch (ArrayIndexOutOfBoundsException ex) {
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }
     }

@@ -183,25 +183,6 @@ public class TitlescreenFragment extends Fragment {
         }
     }
 
-    private void recordToFirebase(String itemId, String itemName, String contentType) {
-
-        Bundle bundle = new Bundle();
-
-        if(itemId != null) {
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, itemId);
-        }
-
-        if(itemId != null) {
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
-        }
-
-        if(itemId != null) {
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
-        }
-
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-    }
-
     public void registerMessageInboxes() {
 
         try {
@@ -210,9 +191,7 @@ public class TitlescreenFragment extends Fragment {
             if (newsLetterViewModel != null) {
 
                 if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_phas =
-                            XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_phas,
+                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
                             getContext().getResources().
                                     getString(R.string.preference_phasmophobia_changelog_link),
                             NewsletterViewModel.InboxType.PHASMOPHOBIA, newsLetterViewModel);
@@ -221,9 +200,7 @@ public class TitlescreenFragment extends Fragment {
                 }
 
                 if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_gen =
-                            XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_gen,
+                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
                             getContext().getResources().
                                     getString(R.string.preference_general_news_link),
                             NewsletterViewModel.InboxType.GENERAL, newsLetterViewModel);
@@ -232,9 +209,7 @@ public class TitlescreenFragment extends Fragment {
                 }
 
                 if (getContext() != null) {
-                    XmlPullParserFactory xmlPullParserFactory_pet =
-                            XmlPullParserFactory.newInstance();
-                    new RSSParserUtils(xmlPullParserFactory_pet,
+                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
                             getContext().getResources().
                                     getString(R.string.preference_pet_changelog_link),
                             NewsletterViewModel.InboxType.PET, newsLetterViewModel);

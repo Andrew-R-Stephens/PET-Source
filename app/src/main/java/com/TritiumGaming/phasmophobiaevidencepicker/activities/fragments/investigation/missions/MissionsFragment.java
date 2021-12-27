@@ -284,7 +284,7 @@ public class MissionsFragment extends Fragment {
 
         if(lstnr_navRight != null) {
             ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
-            icon_navRight.setBackgroundResource(R.drawable.icon_evidence);
+            icon_navRight.setImageResource(R.drawable.icon_evidence);
             lstnr_navRight.setOnClickListener(v -> {
                 Navigation.findNavController(v).popBackStack();
                     }

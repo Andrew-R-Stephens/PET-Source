@@ -106,37 +106,6 @@ public class MapMenuFragment extends Fragment {
             Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
         });
 
-        /*
-        for (int i = 0; i < mapViewViewModel.getMapDataLength(); i++) {
-            if(getContext() == null) {
-                return;
-            }
-
-            LayoutInflater inflaterPopup =
-                    (LayoutInflater) getContext().getSystemService(
-                            Context.LAYOUT_INFLATER_SERVICE);
-            @SuppressLint("InflateParams")
-            View mapView = inflaterPopup.inflate(R.layout.item_mapmenu_map, null);
-
-            AppCompatTextView mapName = mapView.findViewById(R.id.label_mapName);
-
-            mapView.setLayoutParams(
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f));
-
-            mapName.setText(mapViewViewModel.getMapData()[i].getMapName());
-
-            int mapPos = i;
-            mapName.setOnClickListener(v -> {
-                System.gc();
-                if (mapViewViewModel != null) {
-                    mapViewViewModel.setCurrentMapData(mapPos);
-                }
-                Navigation.findNavController(v).navigate(R.id.action_mapmenu_to_mapview);
-            });
-
-            mapList.addView(mapView);
-        }*/
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -151,7 +120,7 @@ public class MapMenuFragment extends Fragment {
                                   AppCompatImageView icon_navRight) {
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
-            icon_navLeft.setBackgroundResource(R.drawable.icon_map);
+            icon_navLeft.setImageResource(R.drawable.icon_evidence);
             lstnr_navLeft.setOnClickListener(v -> {
                         Navigation.findNavController(v)
                                 .popBackStack();
