@@ -105,11 +105,11 @@ public class TitlescreenAnimationView extends View {
      *
      */
     public void buildImages() {
-        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb2).
+        bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
                 compileBitmaps(getContext());
-        bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost_sm).
+        bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost).
                 compileBitmaps(getContext());
-        bitmap_mirror = bitmapUtils.setResource(R.drawable.anim_cracked_sm).
+        bitmap_mirror = bitmapUtils.setResource(R.drawable.anim_cracked).
                 compileBitmaps(getContext());
         bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).
                 compileBitmaps(getContext());
