@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -40,14 +42,36 @@ public class UtilitiesFragment extends Fragment {
 
         // NAVIGATION VIEWS
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
-        //View goto_spiritboxtool = view.findViewById(R.id.utility_spiritbox);
+        ConstraintLayout goto_spiritBox = view.findViewById(R.id.constraint_ghostbox);
+        ConstraintLayout goto_codex = view.findViewById(R.id.constraintLayout_codex);
+        ConstraintLayout goto_petHelp = view.findViewById(R.id.constraintLayout_pethelp);
+        ConstraintLayout goto_highscores = view.findViewById(R.id.constraintLayout_highscores);
 
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
-        /*
-        goto_spiritboxtool.setOnClickListener(v ->
+
+        goto_spiritBox.setOnClickListener(v ->
                 Navigation.findNavController(v).
-                        navigate(R.id.action_utilitiesFragment_to_toolSpiritBoxFragment));
-        */
+                        navigate(R.id.action_utilitiesFragment_to_ghostBoxFragment));
+        goto_codex.setOnClickListener(v ->
+                Navigation.findNavController(v).
+                        navigate(R.id.action_utilitiesFragment_to_codexFragment));
+        goto_petHelp.setOnClickListener(v ->
+                Navigation.findNavController(v).
+                        navigate(R.id.action_utilitiesFragment_to_petHelpFragment));
+        goto_highscores.setOnClickListener(v ->
+                Navigation.findNavController(v).
+                        navigate(R.id.action_utilitiesFragment_to_highscoresFragment));
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
+
     }
 }

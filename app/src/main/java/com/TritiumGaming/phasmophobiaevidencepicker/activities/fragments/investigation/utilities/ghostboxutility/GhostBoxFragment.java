@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +43,7 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDataCaptureListener {
+public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptureListener {
 
     private PermissionsViewModel permissionsViewModel;
 
@@ -53,8 +54,8 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
     /**
      *
      */
-    public GhostBoxUtilityFragment() {
-        super(R.layout.fragment_utility_ghostbox);
+    public GhostBoxFragment() {
+        super(R.layout.fragment_utilities_ghostbox);
     }
 
     @Nullable
@@ -112,6 +113,16 @@ public class GhostBoxUtilityFragment extends Fragment implements Visualizer.OnDa
         waveFormView.updateVisualizer(null);
 
         startTextToSpeech();
+
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
     }
 
     /**

@@ -49,14 +49,6 @@
             app:destination="@id/mapMenuFragment" />
     </fragment>
     <fragment
-        android:id="@+id/toolSpiritBoxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.GhostBoxUtilityFragment"
-        android:label="ToolSpiritBoxFragment" >
-        <action
-            android:id="@+id/action_toolSpiritBoxFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/utilitiesFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.UtilitiesFragment"
         android:label="UtilitiesFragment" >
@@ -64,7 +56,48 @@
             android:id="@+id/action_utilitiesFragment_to_evidenceFragment"
             app:destination="@id/evidenceFragment" />
         <action
-            android:id="@+id/action_utilitiesFragment_to_toolSpiritBoxFragment"
-            app:destination="@id/toolSpiritBoxFragment" />
+            android:id="@+id/action_utilitiesFragment_to_petHelpFragment"
+            app:destination="@id/petHelpFragment" />
+        <action
+            android:id="@+id/action_utilitiesFragment_to_highscoresFragment"
+            app:destination="@id/highscoresFragment" />
+        <action
+            android:id="@+id/action_utilitiesFragment_to_codexFragment"
+            app:destination="@id/codexFragment" />
+        <action
+            android:id="@+id/action_utilitiesFragment_to_ghostBoxFragment"
+            app:destination="@id/ghostBoxFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/highscoresFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.HighscoresFragment"
+        android:label="HighscoresFragment" >
+        <action
+            android:id="@+id/action_highscoresFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/petHelpFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.PetHelpFragment"
+        android:label="PetHelpFragment" >
+        <action
+            android:id="@+id/action_petHelpFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/codexFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.CodexFragment"
+        android:label="CodexFragment" >
+        <action
+            android:id="@+id/action_codexFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ghostBoxFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.GhostBoxFragment"
+        android:label="GhostBoxFragment" >
+        <action
+            android:id="@+id/action_ghostBoxFragment_to_utilitiesFragment"
+            app:destination="@id/utilitiesFragment" />
     </fragment>
 </navigation>
