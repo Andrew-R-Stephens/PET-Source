@@ -66,14 +66,16 @@
             app:layout_constraintVertical_chainStyle="packed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout1"
+                android:id="@+id/constraintLayout_cursedPosessions"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout79"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_evidence"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeWidth="1dp">
@@ -106,15 +108,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout79"
+                android:id="@+id/constraintLayout_evidence"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout80"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout1"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_ghosts"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_cursedPosessions"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -125,7 +129,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_devil" />
+                    app:srcCompat="@drawable/icon_evidence" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"
@@ -145,15 +149,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout80"
+                android:id="@+id/constraintLayout_ghosts"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout79"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_evidence"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -164,7 +170,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_moon" />
+                    app:srcCompat="@drawable/tarot_devil" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView2"
@@ -194,14 +200,16 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout82">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
+                android:id="@+id/constraintLayout_toolsprimary"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_toolsalternative"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -213,7 +221,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_tools" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView4"
@@ -234,15 +242,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
+                android:id="@+id/constraintLayout_toolsalternative"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_mapsinfo"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_toolsprimary"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -253,7 +263,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_tools" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView5"
@@ -274,15 +284,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
+                android:id="@+id/constraintLayout_mapsinfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_toolsalternative"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -293,7 +305,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_map" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView6"
@@ -325,14 +337,16 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout85">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout7"
+                android:id="@+id/constraintLayout_aboutsanity"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_ghostevents"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -344,7 +358,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_sanityhead_top" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView7"
@@ -365,15 +379,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout8"
+                android:id="@+id/constraintLayout_ghostevents"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_aboutdifficulties"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_aboutsanity"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -384,7 +400,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_newspaper" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView8"
@@ -405,15 +421,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout9"
+                android:id="@+id/constraintLayout_aboutdifficulties"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
                 android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_ghostevents"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -433,7 +451,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Difficulties\n"
+                    android:text="About\nDifficulties"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,14 +9,12 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
-public class HighscoresFragment  extends Fragment {
+public class CodexSanityInfo extends Fragment {
 
     @Nullable
     @Override
@@ -24,7 +22,7 @@ public class HighscoresFragment  extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_utilities_highscores, container, false);
+        return inflater.inflate(R.layout.fragment_utilities_codex_sanityinfo, container, false);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -33,7 +31,7 @@ public class HighscoresFragment  extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(this,
                     new OnBackPressedCallback(true) {
                         @Override
@@ -44,5 +42,4 @@ public class HighscoresFragment  extends Fragment {
         }
 
     }
-
 }

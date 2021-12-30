@@ -30,6 +30,17 @@
         <item>@drawable/anim_writing_6</item>
         <item>@drawable/anim_writing_7</item>
         <item>@drawable/anim_writing_8</item>
+        <item>@drawable/tarot_cover</item>
+        <item>@drawable/tarot_death</item>
+        <item>@drawable/tarot_devil</item>
+        <item>@drawable/tarot_fortune</item>
+        <item>@drawable/tarot_hangedman_alt</item>
+        <item>@drawable/tarot_hermit</item>
+        <item>@drawable/tarot_joker</item>
+        <item>@drawable/tarot_moon</item>
+        <item>@drawable/tarot_priestess</item>
+        <item>@drawable/tarot_sun</item>
+        <item>@drawable/tarot_tower</item>
 
     </integer-array>
 

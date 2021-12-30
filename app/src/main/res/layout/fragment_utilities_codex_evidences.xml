@@ -69,6 +69,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout79"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +87,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_cover" />
+                    app:srcCompat="@drawable/icon_dots" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView1"
@@ -92,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Tarot Cards"
+                    android:text="D.O.T.S."
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -107,6 +111,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout80"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout1"
@@ -120,7 +128,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_devil" />
+                    app:srcCompat="@drawable/icon_emf5" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"
@@ -129,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Not Tarot Cards"
+                    android:text="EMF-5"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -143,6 +151,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout79"
@@ -156,7 +168,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_moon" />
+                    app:srcCompat="@drawable/icon_fingerprints" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView2"
@@ -165,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Another Not Tarot Cards"
+                    android:text="Fingerprints"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -189,6 +201,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +218,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_fortune" />
+                    app:srcCompat="@drawable/icon_freezing" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView4"
@@ -211,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Tarot Cards"
+                    android:text="Freezing Temps"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -226,6 +242,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
@@ -239,7 +259,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_orbs" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView5"
@@ -248,7 +268,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Not Tarot Cards"
+                    android:text="Ghost Orbs"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -262,6 +282,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
@@ -275,7 +299,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_hangedman_alt" />
+                    app:srcCompat="@drawable/icon_writing" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView6"
@@ -284,7 +308,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Another Not Tarot Cards"
+                    android:text="Ghost Writing"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -309,6 +333,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
                 app:layout_constraintStart_toStartOf="parent"
@@ -346,6 +371,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:backgroundTint="@color/red_med"
+                android:backgroundTintMode="multiply"
+                android:background="@drawable/circlefaded"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
@@ -359,7 +388,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/tarot_tower" />
+                    app:srcCompat="@drawable/icon_spiritbox" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView8"
@@ -368,7 +397,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:lines="2"
-                    android:text="Not Tarot Cards"
+                    android:text="Spirit Box"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -382,6 +411,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="5sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout8"

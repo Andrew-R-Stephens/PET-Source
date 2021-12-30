@@ -61,18 +61,19 @@
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".4"
+        app:layout_constraintHeight_percent=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout78"
         app:layout_constraintVertical_bias="0.25"
-        app:layout_constraintWidth_percent=".7">
+        app:layout_constraintWidth_percent=".8">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout82"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout85"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -80,55 +81,70 @@
                 android:id="@+id/constraintLayout_codex"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
-                android:padding="18sp"
+                android:padding="5dp"
+                android:background="@drawable/circlefaded"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout79"
+                app:layout_constraintEnd_toStartOf="@+id/constraint_ghostbox"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeWidth="1dp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toTopOf="@+id/textView3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/codex" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView3"
-                    style="@style/NorseRegular"
+                    android:id="@+id/imageView3bg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Codex"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tint="@color/red_medlow"
+                    android:tintMode="multiply"
+                    app:srcCompat="@drawable/circlefaded" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout79"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5sp"
-                android:padding="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraint_ghostbox"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout_codex"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".2">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintWidth_percent=".8"
+                        app:srcCompat="@drawable/codex" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textView3"
+                        style="@style/NorseRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center|top"
+                        android:lines="2"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="5"
+                        android:text="Codex"
+                        android:textColor="@color/red_med"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,88 +153,71 @@
                 android:id="@+id/constraint_ghostbox"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
-                android:padding="18sp"
+                android:background="@drawable/circlefaded"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout79"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_codex"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toTopOf="@+id/textView5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/icon_spiritbox_lg_bw" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView5"
-                    style="@style/NorseRegular"
+                    android:id="@+id/imageView5bg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Ghost Box\nUtility"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_medlow"
+                    android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout41"
+                    app:srcCompat="@drawable/circlefaded" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout41"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintWidth_percent=".8"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_spiritbox_lg_bw" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textView5"
+                        style="@style/NorseRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center|top"
+                        android:lines="2"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="5"
+                        android:text="Ghost Box"
+                        android:textColor="@color/red_med"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout85"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout82">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5sp"
-                android:padding="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -228,96 +227,145 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout85">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout82">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_highscores"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
-                android:padding="18sp"
+                android:background="@drawable/circlefaded"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_pethelp"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout42"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView1bg"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:tint="@color/red_medlow"
+                        android:tintMode="multiply"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circlefaded" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView1"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView1"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".6"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout42"
+                    app:layout_constraintWidth_percent=".8"
                     app:srcCompat="@drawable/icon_stats" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView1"
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Personal Highscores"
-                    android:textColor="@color/white"
+                    android:layout_height="0dp"
+                    android:elegantTextHeight="false"
+                    android:gravity="center"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="5"
+                    android:text="Highscores"
+                    android:textColor="@color/red_med"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView1"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout8"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5sp"
-                android:padding="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_pethelp"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout_highscores"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".2" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_pethelp"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/start_button_bg"
-                android:padding="18sp"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_highscores"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout86"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView2bg"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:tint="@color/red_medlow"
+                        android:tintMode="multiply"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/circlefaded" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView2"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView2"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout86"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".8"
                     app:srcCompat="@drawable/icon_inconclusive_selected" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView2"
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
+                    android:layout_height="0dp"
+                    android:gravity="center"
                     android:lines="2"
-                    android:text="P.E.T.\nApp Help"
-                    android:textColor="@color/white"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="5"
+                    android:text="P.E.T. Help"
+                    android:textColor="@color/red_med"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView2"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

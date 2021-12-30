@@ -181,7 +181,7 @@ public class EvidenceFragment extends Fragment {
         // LISTENERS
         initNavListeners(
                 view.findViewById(R.id.listener_goto_left),
-                view.findViewById(R.id.icon_goto_medLeft),
+                null, //view.findViewById(R.id.icon_goto_medLeft),
                 view.findViewById(R.id.listener_resetAll),
                 null,
                 view.findViewById(R.id.listener_goto_right),
