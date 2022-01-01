@@ -13,8 +13,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  */
 public class AnimatedFrostData extends AbstractAnimatedGraphic {
     /**
-     * @param screenW
-     * @param screenH
+     * @param screenW -
+     * @param screenH -
      */
     public AnimatedFrostData(int screenW, int screenH) {
         super(screenW, screenH);
@@ -31,7 +31,7 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
     }
 
     /**
-     * @param tickMax
+     * @param tickMax -
      */
     public void setTickMax(int tickMax) {
         this.MAX_TICK = tickMax;
@@ -58,14 +58,14 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
     }
 
     /**
-     * @return
+     * @return scaledWidth
      */
     public double getScaledWidth() {
         return scale * width;
     }
 
     /**
-     * @return
+     * @return scaledHeight
      */
     public double getScaledHeight() {
         return scale * height;
@@ -96,7 +96,7 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
     }
 
     /**
-     * @return
+     * @return a filter
      */
     public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(

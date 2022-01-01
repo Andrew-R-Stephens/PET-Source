@@ -116,9 +116,7 @@ public class AppInfoFragment extends Fragment {
                 view.findViewById(R.id.scrollview_list_specialthanks);
 
         // LISTENERS
-        closeButton.setOnClickListener(v -> {
-            Navigation.findNavController(v).popBackStack();
-        });
+        closeButton.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
         appinfo_discordclickbutton.setOnClickListener(v -> startActivity(
                 new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));

@@ -238,6 +238,7 @@ public class EvidenceFragment extends Fragment {
                                   AppCompatImageView icon_navCenter,
                                   AppCompatImageView icon_navMedRight,
                                   AppCompatImageView icon_navRight) {
+
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
             icon_navLeft.setImageResource(R.drawable.icon_tasks);
@@ -266,9 +267,7 @@ public class EvidenceFragment extends Fragment {
         if(lstnr_navCenter != null) {
             ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
             icon_navCenter.setImageResource(R.drawable.icon_reset);
-            lstnr_navCenter.setOnClickListener(v -> {
-                        softReset();
-                    }
+            lstnr_navCenter.setOnClickListener(v -> softReset()
             );
         }
 
@@ -580,20 +579,6 @@ public class EvidenceFragment extends Fragment {
                         customView.findViewById(R.id.label_strengthsTitle);
                 AppCompatTextView label_weakness =
                         customView.findViewById(R.id.label_weaknessesTitle);
-
-                ConstraintLayout parentLayout_info =
-                        customView.findViewById(R.id.constraintLayout_info);
-                ConstraintLayout parentLayout_strength =
-                        customView.findViewById(R.id.constraintLayout_strengths);
-                ConstraintLayout parentLayout_weakness =
-                        customView.findViewById(R.id.constraintLayout_weaknesses);
-
-                LinearLayout childLayout_info =
-                        scroller1.findViewById(R.id.layout_textContainer);
-                LinearLayout childLayout_strength =
-                        scroller2.findViewById(R.id.layout_textContainer);
-                LinearLayout childLayout_weakness =
-                        scroller3.findViewById(R.id.layout_textContainer);
 
                 AppCompatTextView info = scroller1.findViewById(R.id.label_info);
                 AppCompatTextView strength = scroller2.findViewById(R.id.label_info);

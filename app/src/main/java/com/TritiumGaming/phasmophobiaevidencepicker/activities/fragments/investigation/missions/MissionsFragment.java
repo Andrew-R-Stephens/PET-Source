@@ -156,7 +156,7 @@ public class MissionsFragment extends Fragment {
         }
 
         // SET NAVIGATION ITEMS
-        ((View)label_goto_right).setVisibility(View.VISIBLE);
+        label_goto_right.setVisibility(View.VISIBLE);
         label_goto_right.setText(R.string.general_evidence_button);
         icon_goto_right.setImageResource(R.drawable.icon_evidence);
 
@@ -285,9 +285,7 @@ public class MissionsFragment extends Fragment {
         if(lstnr_navRight != null) {
             ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
             icon_navRight.setImageResource(R.drawable.icon_evidence);
-            lstnr_navRight.setOnClickListener(v -> {
-                Navigation.findNavController(v).popBackStack();
-                    }
+            lstnr_navRight.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
             );
         }
 

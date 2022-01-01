@@ -431,6 +431,7 @@
     <string-array name="evidence_ghost_nightmareevidence_thetwins">
     </string-array>
     <string-array name="evidence_ghost_nightmareevidence_themimic">
+        <item>@string/evidence_evidence_type_orbs</item>
     </string-array>
     <string-array name="evidence_ghost_nightmareevidence_wraith">
     </string-array>

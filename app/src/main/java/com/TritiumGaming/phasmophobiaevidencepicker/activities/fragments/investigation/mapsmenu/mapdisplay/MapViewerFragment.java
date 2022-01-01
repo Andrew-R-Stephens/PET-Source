@@ -187,10 +187,8 @@ public class MapViewerFragment extends Fragment {
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
             icon_navLeft.setImageResource(R.drawable.icon_evidence);
-            lstnr_navLeft.setOnClickListener(v -> {
-                        Navigation.findNavController(v)
-                                .popBackStack();
-                    }
+            lstnr_navLeft.setOnClickListener(v -> Navigation.findNavController(v)
+                    .popBackStack()
             );
         }
 

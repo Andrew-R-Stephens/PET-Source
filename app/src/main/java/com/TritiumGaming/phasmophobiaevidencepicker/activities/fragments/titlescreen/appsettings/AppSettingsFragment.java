@@ -95,63 +95,11 @@ public class AppSettingsFragment extends Fragment {
 
         ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
         ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        AppCompatTextView label_confirmClose = view.findViewById(R.id.settings_confirm_label);
-        AppCompatTextView label_cancelClose = view.findViewById(R.id.settings_cancel_label);
         ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
-        // TEXT SIZE
-        /*
-        primarytitle.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        generalsettings_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        othersettings_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
 
-        switch_screenIsAlwaysOn_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        switch_network_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        text_colorblindmode_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        text_colorblindmode_selectedname.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        text_colorblindmode_sidenote.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        switch_huntwarningaudio_text.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        switch_huntwarning_title.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        switch_huntwarning_timetext.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        switch_huntwarning_othertext.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-
-        label_confirmClose.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        label_cancelClose.setAutoSizeTextTypeUniformWithConfiguration(
-                12, 50, 1,
-                TypedValue.COMPLEX_UNIT_SP);
-        */
         // COLORBLIND DATA
-
         TypedArray typedArray =
                 getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
         String[] colorspaceNames = new String[typedArray.length()];
@@ -288,9 +236,7 @@ public class AppSettingsFragment extends Fragment {
         }
 
         // CANCEL BUTTON
-        listener_cancelClose.setOnClickListener(v -> {
-            Navigation.findNavController(v).popBackStack();
-        });
+        listener_cancelClose.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
         // CONFIRM BUTTON
         listener_confirmClose.setOnClickListener(v -> {

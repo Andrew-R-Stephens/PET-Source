@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:maxLines="2"
-            android:text="MapName"
+            android:text="@string/map_name_asylum"
             android:padding="2sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

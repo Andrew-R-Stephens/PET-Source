@@ -2,297 +2,81 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
     android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout78"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/button_prev"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:tint="@color/red_high"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".1"
-            app:srcCompat="@drawable/icon_prev" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView_fragtitle"
-            style="@style/NorseRegular"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="Tools!"
-            android:textColor="?attr/subtitleFontColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button_prev"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout78"
-        app:layout_constraintWidth_percent=".85">
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout82"
+            android:id="@+id/constraintLayout87"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout85"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed">
+            app:layout_constraintVertical_bias="0.050000012">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="5sp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_prev"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout79"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_prev" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".7"
-                    app:srcCompat="@drawable/tarot_cover" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView1"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Tarot Cards"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout79"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/codexItemTitle"
+                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout80"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout1"
-                app:layout_constraintTop_toTopOf="parent">
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_next"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_next"
+                app:layout_constraintStart_toEndOf="@+id/imageView_prev"
+                app:layout_constraintTop_toTopOf="@+id/imageView_next" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toTopOf="@+id/textView3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".7"
-                    app:srcCompat="@drawable/anim_cracked" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView3"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Mirror"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout80"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="5sp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_next"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout79"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintWidth_percent=".7"
-                    app:layout_constraintBottom_toTopOf="@+id/textView2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_newspaper" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView2"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Music Box"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_next" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout85"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout82">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout87">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintWidth_percent=".7"
-                    app:layout_constraintBottom_toTopOf="@+id/textView4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/anim_ouijaboard" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView4"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Ouija Board"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="5sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintWidth_percent=".7"
-                    app:layout_constraintBottom_toTopOf="@+id/textView5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_discord" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView5"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Pentagram"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="5sp"
+            <include
+                android:id="@+id/cursedItemContent"
+                layout="@layout/item_utilities_codex_cursedposessions_ouija"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/textView6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".7"
-                    app:srcCompat="@drawable/anim_voodoodoll" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView6"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:lines="2"
-                    android:text="Voodoo Doll"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
