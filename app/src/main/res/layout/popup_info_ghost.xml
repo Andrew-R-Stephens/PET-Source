@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -106,19 +107,38 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/popup_investigation_info"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout36"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout88"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent=".5"
+            app:layout_constraintHeight_percent=".04"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/layout_evidenceicons"
+                layout="@layout/item_investigation_ghost_icons"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_info"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="1dp"
-            android:background="@drawable/popup_investigation_info"
             android:padding="5sp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_strengths"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,12 +154,13 @@
                 android:gravity="start"
                 android:text="@string/evidence_popup_ghost_info"
                 android:textColor="?attr/titleFontColor"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout89"
                 app:layout_constraintHeight_percent=".15"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout89"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout89"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -163,9 +184,6 @@
             android:id="@+id/constraintLayout_strengths"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@drawable/popup_investigation_info"
             android:padding="5sp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_weaknesses"
             app:layout_constraintEnd_toEndOf="parent"
@@ -209,12 +227,10 @@
             android:id="@+id/constraintLayout_weaknesses"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/popup_investigation_info"
             android:padding="5sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_strengths">
 
@@ -258,8 +274,8 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal|fill"
         android:background="#00FFFFFF"
         app:adSize="BANNER"
         app:adUnitId="ca-app-pub-1890816745443024/7620657926"

@@ -560,6 +560,11 @@ public class EvidenceFragment extends Fragment {
                 );
 
                 ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+                ConstraintLayout evidenceIconLayout =
+                        customView.findViewById(R.id.layout_evidenceicons);
+                AppCompatImageView evidence1 = evidenceIconLayout.findViewById(R.id.icon1);
+                AppCompatImageView evidence2 = evidenceIconLayout.findViewById(R.id.icon2);
+                AppCompatImageView evidence3 = evidenceIconLayout.findViewById(R.id.icon3);
                 ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
                 ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
                 ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
@@ -589,6 +594,23 @@ public class EvidenceFragment extends Fragment {
                 label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
                 label_name.setText(ghostName);
+
+                evidence1.setImageResource(
+                        evidenceViewModel.getInvestigationData()
+                                .getGhost(j)
+                                .getEvidenceArray()[0]
+                                .getIcon());
+                evidence2.setImageResource(
+                        evidenceViewModel.getInvestigationData()
+                                .getGhost(j)
+                                .getEvidenceArray()[1]
+                                .getIcon());
+                evidence3.setImageResource(
+                        evidenceViewModel.getInvestigationData()
+                                .getGhost(j)
+                                .getEvidenceArray()[2]
+                                .getIcon());
+
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         ghostInfo,
                         "#ff6161", fontEmphasisColor + "")));
@@ -759,7 +781,7 @@ public class EvidenceFragment extends Fragment {
         }
 
         if (difficultyCarouselView != null) {
-            difficultyCarouselView.reset();
+            //difficultyCarouselView.reset();
         }
 
         if(phaseTimerCountdownView != null) {

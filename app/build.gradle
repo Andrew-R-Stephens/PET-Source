@@ -33,7 +33,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 63
-        versionName "7.2.0"
+        versionName "7.2.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,8 +50,16 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // PLAYCORE
+            proguardFile "$playcoreDir/proguard/common.pgcfg"
+            proguardFile "$playcoreDir/proguard/per-feature-proguard-files"
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // PLAYCORE
             proguardFile "$playcoreDir/proguard/common.pgcfg"
