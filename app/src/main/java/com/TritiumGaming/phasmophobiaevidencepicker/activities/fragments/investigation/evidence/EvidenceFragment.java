@@ -307,6 +307,7 @@ public class EvidenceFragment extends Fragment {
         //Avoid pass null in the root it ignores spaces in the child layout
         for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
 
+            final int evidenceIndex = i;
             String evidenceName = evidenceNames[i];
             String evidenceInfo = getResources().getStringArray(R.array.evidence_info_array)[i];
 
@@ -357,6 +358,7 @@ public class EvidenceFragment extends Fragment {
                 AppCompatTextView info = customView.findViewById(R.id.label_info);
                 ScrollView scroller = customView.findViewById(R.id.scrollView);
                 View indicator = customView.findViewById(R.id.scrollview_indicator);
+                AppCompatImageView animation = customView.findViewById(R.id.animation_evidence);
 
                 fadeOutIndicatorAnimation(
                         scroller,
@@ -368,6 +370,8 @@ public class EvidenceFragment extends Fragment {
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         evidenceInfo,
                         "#ff6161", fontEmphasisColor + "")));
+
+                animation.setImageResource(InvestigationData.getEvidence(evidenceIndex).getIcon());
 
                 popup = new PopupWindow(
                         customView,
