@@ -104,7 +104,9 @@ public class SanityRunnable implements Runnable {
                 if (phaseTimerData != null && !phaseTimerData.isPaused()) {
 
                     sanityData.tick();
-                    sanityMeterTextView.setText(sanityData.toPercentString());
+                    if(sanityMeterTextView != null) {
+                        sanityMeterTextView.setText(sanityData.toPercentString());
+                    }
 
                     if (setupPhaseTextView != null) {
                         setupPhaseTextView.setState(phaseTimerData.isSetupPhase(), true);
@@ -131,14 +133,14 @@ public class SanityRunnable implements Runnable {
                                     }
                                     flashTick = 0;
 
-                                } else {
+                                } else if (huntWarningTextView != null) {
                                     huntWarningTextView.setState(true);
                                 }
                             }
-                        } else {
+                        } else if (huntWarningTextView != null) {
                             huntWarningTextView.setState(false);
                         }
-                    } else {
+                    } else if (huntWarningTextView != null) {
                         huntWarningTextView.setState(false);
                     }
                     if (!sanityData.isPaused()) {
