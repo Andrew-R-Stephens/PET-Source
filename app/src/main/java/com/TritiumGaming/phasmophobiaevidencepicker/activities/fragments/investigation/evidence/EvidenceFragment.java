@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -223,8 +224,8 @@ public class EvidenceFragment extends Fragment {
             sanityPercentTextView.setText(sanityData.toPercentString());
         }
 
-        createGhostViews(view, ghostContainer);
         createEvidenceViews(view, evidenceContainer, ghostContainer);
+        createGhostViews(view, ghostContainer);
 
     }
 
@@ -405,26 +406,41 @@ public class EvidenceFragment extends Fragment {
             int negativeSelColor = typedValue.data;
 
             if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
+
                 icon1.setImageResource(R.drawable.icon_negative_selected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
                 icon3.setImageResource(R.drawable.icon_positive_unselected);
                 icon1.setColorFilter(negativeSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(neutralSelColor);
+
+                evidenceViewModel.getInvestigationData().getEvidences().get(i)
+                        .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
+
             } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {
+
                 icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_selected);
                 icon3.setImageResource(R.drawable.icon_positive_unselected);
                 icon1.setColorFilter(neutralSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(neutralSelColor);
+
+                evidenceViewModel.getInvestigationData().getEvidences().get(i)
+                        .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
+
             } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 2) {
+
                 icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
                 icon3.setImageResource(R.drawable.icon_positive_selected);
                 icon1.setColorFilter(neutralSelColor);
                 icon2.setColorFilter(neutralSelColor);
                 icon3.setColorFilter(positiveSelColor);
+
+                evidenceViewModel.getInvestigationData().getEvidences().get(i)
+                        .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
+
             }
 
             int index = i;
@@ -468,6 +484,7 @@ public class EvidenceFragment extends Fragment {
 
                 evidenceViewModel.getInvestigationData().getEvidences().get(index)
                         .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
+
                 evidenceViewModel.setRadioButtonChecked(index, 1);
                 evidenceViewModel.updateGhostOrder();
 
@@ -650,6 +667,7 @@ public class EvidenceFragment extends Fragment {
             });
 
             int score = evidenceViewModel.getInvestigationData().getGhost(j).getEvidenceScore();
+            Log.d("EvidenceScore", score + "");
             if (score == -5) {
                 statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
                 statusIcon.setVisibility(View.VISIBLE);

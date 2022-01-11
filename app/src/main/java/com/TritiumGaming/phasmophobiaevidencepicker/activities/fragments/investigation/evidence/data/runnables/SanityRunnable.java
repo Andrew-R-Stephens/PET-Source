@@ -144,7 +144,9 @@ public class SanityRunnable implements Runnable {
                         huntWarningTextView.setState(false);
                     }
                     if (!sanityData.isPaused()) {
-                        sanityMeterSeekBar.updateProgress();
+                        if(sanityMeterSeekBar != null) {
+                            sanityMeterSeekBar.updateProgress();
+                        }
                     }
                 }
 

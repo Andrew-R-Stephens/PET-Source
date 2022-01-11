@@ -239,11 +239,11 @@ public class InvestigationData {
          */
         public int getEvidenceScore() {
 
-            int rating = 0;
+            int score = 0;
             for (int i = 0; i < thisGhostEvidence.size(); i++) {
                 Evidence e = thisGhostEvidence.get(i);
                 if (e.getRuling() == Evidence.Ruling.POSITIVE && i < 3) {
-                    rating++;
+                    score ++;
                 }
                 else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
                     return -5;
@@ -262,17 +262,17 @@ public class InvestigationData {
                 }
             }
 
-            if(rating == 2 &&
+            if(score == 2 &&
                     evidenceViewModel.getDifficultyCarouselData().isDifficulty(3)) {
                 for (int i = 0; i < thisGhostNightmareEvidence.size(); i++) {
-                    boolean isContained = false;
+
                     for (Evidence value : evidence) {
+
                         if (thisGhostNightmareEvidence.get(i).getName().equals(value.getName())) {
                             if (!thisGhostNightmareEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
-                                Log.d("InvestigationData",
-                                        name + ", contains " + thisGhostNightmareEvidence.get(i).getName() + " is not " +
-                                                "POSITIVE and the ghost is given a -5 score.");
+
                                 return -5;
+
                             }
                         }
                     }
@@ -280,7 +280,7 @@ public class InvestigationData {
                 }
             }
 
-            return rating;
+            return score;
         }
 
         public String toString() {

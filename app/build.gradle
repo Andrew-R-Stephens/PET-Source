@@ -32,8 +32,8 @@ android {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 63
-        versionName "7.2.0.1"
+        versionCode 64
+        versionName "7.2.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -51,7 +51,8 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // PLAYCORE
             proguardFile "$playcoreDir/proguard/common.pgcfg"

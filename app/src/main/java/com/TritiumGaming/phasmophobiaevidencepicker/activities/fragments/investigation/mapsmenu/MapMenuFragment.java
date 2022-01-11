@@ -103,6 +103,7 @@ public class MapMenuFragment extends Fragment {
             if (mapViewViewModel != null) {
                 mapViewViewModel.setCurrentMapData(position);
             }
+            //Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
             Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
         });
 

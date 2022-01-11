@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout64"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout60"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout74"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goto_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_tasks"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toTopOf="@+id/label_goto_left"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".55"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_goto_left"
+                    style="@style/NorseRegular"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/general_tasks_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_goto_left"
+                    app:layout_constraintHeight_percent=".3"
+                    app:layout_constraintStart_toStartOf="@+id/icon_goto_left" />
+
+                <View
+                    android:id="@+id/listener_goto_left"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_goto_left"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_goto_left"
+                    app:layout_constraintStart_toStartOf="@+id/icon_goto_left"
+                    app:layout_constraintTop_toTopOf="@+id/icon_goto_left" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout74"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout59"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout60">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goto_medLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_menu"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/label_goto_medLeft"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_goto_medLeft"
+                    style="@style/NorseRegular"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".3"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/listener_goto_medLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_goto_medLeft"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_goto_medLeft"
+                    app:layout_constraintStart_toStartOf="@+id/icon_goto_medLeft"
+                    app:layout_constraintTop_toTopOf="@+id/icon_goto_medLeft" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout59"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout77"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout74">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_resetAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_reset"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toTopOf="@+id/label_resetAll"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_resetAll"
+                    style="@style/NorseRegular"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/general_evidence_reset_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".3"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/listener_resetAll"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_resetAll"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_resetAll"
+                    app:layout_constraintStart_toStartOf="@+id/icon_resetAll"
+                    app:layout_constraintTop_toTopOf="@+id/icon_resetAll" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout77"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout61"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout59">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goto_medRight"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_globe"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout61"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout77">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goto_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_map"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toTopOf="@+id/label_goto_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".55"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_goto_right"
+                    style="@style/NorseRegular"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/general_maps_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_goto_right"
+                    app:layout_constraintHeight_percent=".3"
+                    app:layout_constraintStart_toStartOf="@+id/icon_goto_right" />
+
+                <View
+                    android:id="@+id/listener_goto_right"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_goto_right"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_goto_right"
+                    app:layout_constraintStart_toStartOf="@+id/icon_goto_right"
+                    app:layout_constraintTop_toTopOf="@+id/icon_goto_right" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
