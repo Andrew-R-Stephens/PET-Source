@@ -1,0 +1,38 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl map_farmhouse_bleasdale_layer_middle_background
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_background.png
+map_d G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_background.png
+
+newmtl map_farmhouse_bleasdale_layer_middle_doors
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_doors.png
+map_d G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_doors.png
+
+newmtl map_farmhouse_bleasdale_layer_middle_outline
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_outline.png
+map_d G:\\Programs\\AndroidStudioProjects\\app\\src\\main\\res\\drawable-nodpi\\map_farmhouse_bleasdale_layer_middle_outline.png

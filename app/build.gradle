@@ -33,7 +33,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 64
-        versionName "7.2.2"
+        versionName "7.2.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -51,8 +51,7 @@ android {
 
     buildTypes {
         debug {
-            shrinkResources true
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // PLAYCORE
             proguardFile "$playcoreDir/proguard/common.pgcfg"
@@ -120,4 +119,6 @@ dependencies {
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    implementation "commons-io:commons-io:2.6"
 }

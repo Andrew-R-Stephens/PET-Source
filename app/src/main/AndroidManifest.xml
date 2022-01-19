@@ -21,6 +21,46 @@
         android:largeHeap="true">
 
         <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1890816745443024~8234901440"/>
+
+        <!-- ModelActivity is the literal model rendering activity -->
+        <activity
+            android:name=".rendering.model3D.view.ModelActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
+            android:configChanges="locale|orientation">
+        </activity>
+
+        <!-- DemoActivity is the model selection activity-->
+        <activity
+            android:name=".rendering.model3D.view.DemoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
+            android:configChanges="locale|orientation"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+<!--
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:configChanges="locale|orientation"
+        android:theme="@style/Theme.PhasmophobiaEvidenceTool"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true">
+
+        <meta-data
         android:name="com.google.android.gms.ads.APPLICATION_ID"
         android:value="ca-app-pub-1890816745443024~8234901440"/>
 
@@ -46,5 +86,6 @@
         </activity>
 
     </application>
+-->
 
 </manifest>
