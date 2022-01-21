@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_mapmenu_to_mapview"
             app:destination="@id/mapViewFragment" />
+        <action
+            android:id="@+id/action_mapMenuFragment_to_modelFragment"
+            app:destination="@id/modelFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapViewFragment"
@@ -194,5 +197,13 @@
         <action
             android:id="@+id/action_codexToolsPrimary_to_codexFragment"
             app:destination="@id/codexFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modelFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.ModelFragment"
+        android:label="ModelFragment" >
+        <action
+            android:id="@+id/action_modelFragment_to_mapMenuFragment"
+            app:destination="@id/mapMenuFragment" />
     </fragment>
 </navigation>

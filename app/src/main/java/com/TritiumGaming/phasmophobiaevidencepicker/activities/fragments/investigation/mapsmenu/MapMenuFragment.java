@@ -103,12 +103,13 @@ public class MapMenuFragment extends Fragment {
             if (mapViewViewModel != null) {
                 mapViewViewModel.setCurrentMapData(position);
             }
-            Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
-            /*Bundle b = new Bundle();
+            //Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
+            Bundle b = new Bundle();
             b.putString("assetDir", "models");
             b.putString("assetFilename", "prison_firstfloor.obj");
             b.putString("immersiveMode", "true");
-            Navigation.findNavController(view1).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);*/
+
+            Navigation.findNavController(view1).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
         });
 
     }

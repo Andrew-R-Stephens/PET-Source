@@ -62,7 +62,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="#0AFFFFFF" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelSurfaceView
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.ModelSurfaceViewAlt
                     android:id="@+id/interactiveMap3DDisplay"
                     android:layout_width="0dp"
                     android:layout_height="0dp"

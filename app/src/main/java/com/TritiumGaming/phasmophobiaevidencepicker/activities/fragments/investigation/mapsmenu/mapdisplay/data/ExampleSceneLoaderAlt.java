@@ -140,7 +140,9 @@ public class ExampleSceneLoaderAlt extends SceneLoaderAlt {
 					// test loading object
 					try {
 						// this has no color array
-						Object3DData obj51 = Object3DBuilder.loadV5(parent.getActivity().getAssets(), "models", "teapot.obj");
+						Object3DData obj51 =
+								Object3DBuilder.loadV5(parent.getActivity().getAssets(), "models"
+										, "prison_firstfloor.obj");
 						obj51.setPosition(new float[] { -2f, 0f, 0f });
 						obj51.setColor(new float[] { 1.0f, 1.0f, 0f, 1.0f });
 						addObject(obj51);

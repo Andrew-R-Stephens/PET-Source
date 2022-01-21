@@ -180,17 +180,6 @@ public class ExampleSceneLoader extends SceneLoader {
 						errors.add(ex);
 					}
 
-					// test loading collada object
-					/*try {
-						// this has heterogeneous faces
-						Object3DData data = ColladaLoader.load(new URL("android://org.andresoviedo.dddmodel2/assets/models/cowboy.dae"));
-						loadTexture(data, new URL("android://org.andresoviedo.dddmodel2/assets/models/cowboy.png"));
-						data.centerAndScale(4,new float[]{0,0,2});
-						data.setColor(new float[]{1,1,1,1});
-						addObject(data);
-					} catch (Exception ex) {
-						errors.add(ex);
-					}*/
 				} catch (Exception ex) {
 					errors.add(ex);
 				}

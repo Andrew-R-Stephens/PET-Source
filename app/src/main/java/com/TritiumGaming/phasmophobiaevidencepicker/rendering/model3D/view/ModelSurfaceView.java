@@ -1,6 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view;
 
+import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.controller.TouchController;
@@ -17,6 +19,10 @@ public class ModelSurfaceView extends GLSurfaceView {
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
 
+	public ModelSurfaceView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
 	public ModelSurfaceView(ModelActivity parent) {
 		super(parent);
 
@@ -29,10 +35,6 @@ public class ModelSurfaceView extends GLSurfaceView {
 		// This is the actual renderer of the 3D space
 		mRenderer = new ModelRenderer(this);
 		setRenderer(mRenderer);
-
-		// Render the view only when there is a change in the drawing data
-		// TODO: enable this again
-		// setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
 		touchHandler = new TouchController(this, mRenderer);
 	}

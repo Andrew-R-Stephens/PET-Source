@@ -1,28 +1,26 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.ExampleSceneLoaderAlt;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.ModelSurfaceViewAlt;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.SceneLoaderAlt;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.Utils;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.content.ContentUtils;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * This activity represents the container for our 3D viewer.
@@ -46,7 +44,7 @@ public class ModelFragment extends Fragment {
     /**
      * Background GL clear color. Default is light gray
      */
-    private float[] backgroundColor = new float[]{0.2f, 0.2f, 0.2f, 1.0f};
+    private final float[] backgroundColor = new float[]{0.2f, 0.2f, 0.2f, 1.0f};
 
     private ModelSurfaceViewAlt gLView;
 
@@ -58,13 +56,26 @@ public class ModelFragment extends Fragment {
         super(R.layout.fragment_mapview3d);
     }
 
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         // Try to get input parameters
-        Bundle b = getActivity().getIntent().getExtras();
+        Bundle b = getArguments();
+        if(savedInstanceState == null) {
+            Log.d("Render", "SavedInstanceState is null");
+        }
+        if(b == null) {
+            Log.d("Render", "Bundle is null");
+        }
+
         if (b != null) {
             this.paramAssetDir = b.getString("assetDir");
             this.paramAssetFilename = b.getString("assetFilename");
@@ -88,8 +99,7 @@ public class ModelFragment extends Fragment {
         // Create a GLSurfaceView instance and set it
         // as the ContentView for this Activity.
         gLView = view.findViewById(R.id.interactiveMap3DDisplay); //new ModelSurfaceViewAlt
-        // (this);
-        //getActivity().setContentView(gLView);
+        gLView.init(this);
 
         // Create our 3D sceneario
         if (paramFilename == null && paramAssetFilename == null) {
@@ -107,8 +117,19 @@ public class ModelFragment extends Fragment {
         // example
         Utils.printTouchCapabilities(getActivity().getPackageManager());
 
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(this,
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
+
     }
 
+/*
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -137,6 +158,7 @@ public class ModelFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+*/
 
     public File getParamFile() {
         return getParamFilename() != null ? new File(getParamFilename()) : null;
@@ -166,6 +188,7 @@ public class ModelFragment extends Fragment {
         return gLView;
     }
 
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -174,7 +197,7 @@ public class ModelFragment extends Fragment {
                     // The URI of the selected file
                     final Uri uri = data.getData();
                     Log.i("Menu", "Loading '" + uri.toString() + "'");
-                    if (uri != null) {
+                    if (uri != null && getActivity() != null) {
                         final String path = ContentUtils.getPath(getActivity().getApplicationContext(), uri);
                         if (path != null) {
                             try {
@@ -194,4 +217,5 @@ public class ModelFragment extends Fragment {
                 }
         }
     }
+    */
 }

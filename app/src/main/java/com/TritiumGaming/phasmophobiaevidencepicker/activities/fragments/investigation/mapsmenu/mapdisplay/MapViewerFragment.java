@@ -50,7 +50,7 @@ public class MapViewerFragment extends Fragment {
      * MapViewerFragment constructor
      */
     public MapViewerFragment() {
-        super(R.layout.fragment_mapview3d);
+        super(R.layout.fragment_mapview);
     }
 
     @Nullable
