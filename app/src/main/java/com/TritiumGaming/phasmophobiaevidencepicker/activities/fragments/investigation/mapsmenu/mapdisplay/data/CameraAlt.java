@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.entities;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data;
 
 // http://stackoverflow.com/questions/14607640/rotating-a-vector-in-3d-space
 
 import android.opengl.Matrix;
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.SceneLoader;
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.entities.BoundingBox;
 
 /*
  Class Name:
@@ -21,7 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.S
  This class represents a camera in a 3D scene.
  */
 
-public class Camera {
+public class CameraAlt {
 
 	public float xPos, yPos, zPos; // Camera position.
 	public float oxPos, oyPos, ozPos; // original Camera position
@@ -32,7 +32,7 @@ public class Camera {
 	public float xUp, yUp, zUp; // Up direction.
 	public float oxUp, oyUp, ozUp; // original Up direction.
 
-	private SceneLoader scene;
+	private SceneLoaderAlt scene;
 	private final BoundingBox boundingBox = new BoundingBox("scene",-20,20,-20,20,-20,20);
 
 	float[] matrix = new float[16];
@@ -41,15 +41,15 @@ public class Camera {
 	private Object[] lastAction;
 	private boolean changed = false;
 
-	public Camera() {
+	public CameraAlt() {
 		// Initialize variables...
 		//this(0, 0, 6, 0, 0, -1, 0, 1, 0);
 		this(0, 0, 6, 0, 0, -1, 0, 1, 0);
 
 	}
 
-	public Camera(float xPos, float yPos, float zPos, float xView, float yView, float zView, float xUp, float yUp,
-			float zUp) {
+	public CameraAlt(float xPos, float yPos, float zPos, float xView, float yView, float zView, float xUp, float yUp,
+					 float zUp) {
 		// Here we set the camera to the values sent in to us. This is mostly
 		// used to set up a
 		// default position.
@@ -64,7 +64,7 @@ public class Camera {
 		this.ozUp = this.zUp = zUp;
 	}
 
-	public void setScene(SceneLoader scene) {
+	public void setScene(SceneLoaderAlt scene) {
 		this.scene = scene;
 	}
 

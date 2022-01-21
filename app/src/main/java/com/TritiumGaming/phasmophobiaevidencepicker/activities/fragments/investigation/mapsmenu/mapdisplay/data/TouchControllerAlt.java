@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.controller;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data;
 
 import android.graphics.PointF;
 import android.opengl.Matrix;
@@ -8,11 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.controller.TouchController;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.entities.Camera;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelRenderer;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelSurfaceView;
 
-public class TouchController {
+public class TouchControllerAlt {
 
 	private static final String TAG = TouchController.class.getName();
 
@@ -20,8 +19,8 @@ public class TouchController {
 	private static final int TOUCH_STATUS_ROTATING_CAMERA = 4;
 	private static final int TOUCH_STATUS_MOVING_WORLD = 5;
 
-	private final ModelSurfaceView view;
-	private final ModelRenderer mRenderer;
+	private final ModelSurfaceViewAlt view;
+	private final ModelRendererAlt mRenderer;
 
 	int pointerCount = 0;
 	float x1 = Float.MIN_VALUE;
@@ -61,7 +60,7 @@ public class TouchController {
 	float[] rotationVector = new float[4];
 	private float previousRotationSquare;
 
-	public TouchController(ModelSurfaceView view, ModelRenderer renderer) {
+	public TouchControllerAlt(ModelSurfaceViewAlt view, ModelRendererAlt renderer) {
 		super();
 		this.view = view;
 		this.mRenderer = renderer;
@@ -222,7 +221,7 @@ public class TouchController {
 				dy1 = (float)(dy1 / (max) * Math.PI * 2);
 				mRenderer.getCamera().translateCamera(dx1, dy1);
 
-				Camera c = mRenderer.getCamera();
+				CameraAlt c = mRenderer.getCamera();
 				double theta = Math.acos(
 						(c.xPos * c.oxPos) + (c.zPos * c.ozPos) /
 								(

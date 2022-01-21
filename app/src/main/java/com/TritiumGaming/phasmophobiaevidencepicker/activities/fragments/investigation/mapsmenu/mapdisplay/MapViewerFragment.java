@@ -34,8 +34,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
  *
  * @author TritiumGamingStudios
  */
-
-
 public class MapViewerFragment extends Fragment {
 
     private MapMenuViewModel mapViewViewModel = null;
@@ -47,17 +45,12 @@ public class MapViewerFragment extends Fragment {
     private MapLayerSelectorGroup selectorGroup = null;
     private AppCompatTextView layerName = null;
 
-
-
-
     /*
      *
      * MapViewerFragment constructor
      */
-
-
     public MapViewerFragment() {
-        super(R.layout.fragment_mapview);
+        super(R.layout.fragment_mapview3d);
     }
 
     @Nullable

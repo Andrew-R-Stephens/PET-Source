@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +10,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager.LayoutParams;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,16 +25,6 @@ import java.util.List;
 
 public class DemoActivity extends ListActivity {
 
-	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
-
-	public static final String[] descriptions = new String[] { "It is an aggregate accessory fruit",
-			"It is the largest herbaceous flowering plant", "Citrus Fruit", "Mixed Fruits" };
-
-	public static final Integer[] images = { R.drawable.anim_hand, R.drawable.anim_hand,
-			R.drawable.anim_hand,
-			R.drawable.anim_hand };
-
-	ListView listView;
 	List<RowItem> rowItems;
 
 	@Override
@@ -57,7 +42,7 @@ public class DemoActivity extends ListActivity {
 		}
 
 		// add 1 entry per model found
-		rowItems = new ArrayList<RowItem>();
+		rowItems = new ArrayList<>();
 		for (String model : models) {
 			if (model.toLowerCase().endsWith(".obj") || model.toLowerCase().endsWith(".stl") ||
 					model.toLowerCase().endsWith(".dae")) {
@@ -83,48 +68,6 @@ public class DemoActivity extends ListActivity {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		final RowItem selectedItem = (RowItem) getListView().getItemAtPosition(position);
 		loadDemo(selectedItem.name);
-
-		// TODO: enable this when we have something to do with the dialog
-		if (true)
-			return;
-
-		try {
-			// custom dialog
-			final Dialog dialog = new Dialog(DemoActivity.this);
-			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-			dialog.setContentView(R.layout.dialog_load_model);
-
-			TextView text = (TextView) dialog.findViewById(R.id.dialog_load_model_name);
-			text.setText(selectedItem.name);
-			TextView texture = (TextView) dialog.findViewById(R.id.dialog_load_model_texture);
-			texture.setText("Not yet implemented");
-			Button loadTextureButton = (Button) dialog.findViewById(R.id.browse_texture_button);
-			// if button is clicked, close the custom dialog
-			loadTextureButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					dialog.dismiss();
-				}
-			});
-
-			Button loadButton = (Button) dialog.findViewById(R.id.dialog_load_model_load);
-			// if button is clicked, close the custom dialog
-			loadButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					dialog.dismiss();
-					loadDemo(selectedItem.name);
-				}
-
-			});
-
-			dialog.show();
-
-		} catch (Exception ex) {
-			Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-		}
-
 	}
 }
 
@@ -162,25 +105,22 @@ class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 	private class ViewHolder {
 		ImageView imageView;
 		TextView txtTitle;
-		TextView txtDesc;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = null;
+		ViewHolder holder;
 		RowItem rowItem = getItem(position);
 
 		LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.activity_demo_item, null);
 			holder = new ViewHolder();
-			// holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
 			holder.txtTitle = (TextView) convertView.findViewById(R.id.demo_item_title);
 			holder.imageView = (ImageView) convertView.findViewById(R.id.demo_item_icon);
 			convertView.setTag(holder);
 		} else
 			holder = (ViewHolder) convertView.getTag();
 
-		// holder.txtDesc.setText(rowItem.getDesc());
 		holder.txtTitle.setText(rowItem.name);
 		try {
 			Bitmap bitmap = BitmapFactory.decodeStream(context.getAssets().open(rowItem.image));
