@@ -5,6 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.ModelFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.controller.TouchController;
 
 /**
@@ -15,7 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.controller
  */
 public class ModelSurfaceView extends GLSurfaceView {
 
-	private ModelActivity parent;
+	private ModelFragment parent;
 	private ModelRenderer mRenderer;
 	private TouchController touchHandler;
 
@@ -23,9 +24,7 @@ public class ModelSurfaceView extends GLSurfaceView {
 		super(context, attrs);
 	}
 
-	public ModelSurfaceView(ModelActivity parent) {
-		super(parent);
-
+	public void init(ModelFragment parent) {
 		// parent component
 		this.parent = parent;
 
@@ -36,7 +35,12 @@ public class ModelSurfaceView extends GLSurfaceView {
 		mRenderer = new ModelRenderer(this);
 		setRenderer(mRenderer);
 
+		// Render the view only when there is a change in the drawing data
+		// TODO: enable this again
+		//setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
 		touchHandler = new TouchController(this, mRenderer);
+
 	}
 
 	@Override
@@ -44,7 +48,7 @@ public class ModelSurfaceView extends GLSurfaceView {
 		return touchHandler.onTouchEvent(event);
 	}
 
-	public ModelActivity getModelActivity() {
+	public ModelFragment getModelActivity() {
 		return parent;
 	}
 

@@ -9,11 +9,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.c
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.SkinningData;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Vector2f;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Vector3f;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Vertex;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.xml.XmlNode;
-
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Vector4f;
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Vertex;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.VertexSkinData;
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.xml.XmlNode;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

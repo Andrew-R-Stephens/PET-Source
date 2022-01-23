@@ -45,11 +45,10 @@ public class Camera {
 		// Initialize variables...
 		//this(0, 0, 6, 0, 0, -1, 0, 1, 0);
 		this(0, 0, 6, 0, 0, -1, 0, 1, 0);
-
 	}
 
 	public Camera(float xPos, float yPos, float zPos, float xView, float yView, float zView, float xUp, float yUp,
-			float zUp) {
+				  float zUp) {
 		// Here we set the camera to the values sent in to us. This is mostly
 		// used to set up a
 		// default position.
@@ -108,17 +107,21 @@ public class Camera {
 		yLookDirection /= dp;
 		zLookDirection /= dp;
 
+		direction *= .1;
+
 		// Call UpdateCamera to move our camera in the direction we want.
 		UpdateCamera(xLookDirection, yLookDirection, zLookDirection, direction);
 	}
 
-	public synchronized void PanCamera(float dx, float dy){
+	public synchronized void PanCamera(float dx, float dy) {
 		if (dx == 0 && dy == 0) return;
 
 		xPos -= dx;
 		zPos -= dy;
 		xView -= dx;
 		zView -= dy;
+
+		Log.d("RotPan", "\n");
 
 		setChanged(true);
 
@@ -178,7 +181,9 @@ public class Camera {
 	public synchronized void translateCamera(float dX, float dY) {
 		Log.d("Camera","translate:"+dX+","+dY);
 		if (dX == 0 && dY == 0) return;
+
 		translateCameraImpl(dX, dY);
+
 		lastAction = new Object[]{"translate",dX, dY};
 	}
 

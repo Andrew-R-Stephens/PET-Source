@@ -44,7 +44,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout_controls"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".6"
+                app:layout_constraintHeight_percent=".8"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -62,7 +62,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="#0AFFFFFF" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.ModelSurfaceViewAlt
+                <com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelSurfaceView
                     android:id="@+id/interactiveMap3DDisplay"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -97,7 +97,7 @@
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".4"
+                        app:layout_constraintHeight_percent=".8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.2"
@@ -197,7 +197,7 @@
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".4"
+                        app:layout_constraintHeight_percent=".8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0">

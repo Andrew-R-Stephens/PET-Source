@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.wavefront;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.ModelFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DBuilder;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DData;
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.SceneLoader;
 
 import org.apache.commons.io.IOUtils;
 
@@ -23,9 +24,9 @@ import java.util.List;
  * @author andresoviedo
  *
  */
-public class ExampleSceneLoaderAlt extends SceneLoaderAlt {
+public class ExampleSceneLoader extends SceneLoader {
 
-	public ExampleSceneLoaderAlt(ModelFragment modelActivity) {
+	public ExampleSceneLoader(ModelFragment modelActivity) {
 		super(modelActivity);
 	}
 

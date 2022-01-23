@@ -15,6 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.c
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.stl.STLLoader;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.wavefront.WavefrontLoader2;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.math.Math3DUtils;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayOutputStream;

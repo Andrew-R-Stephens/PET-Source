@@ -4,7 +4,6 @@ import android.opengl.GLU;
 import android.opengl.Matrix;
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.ModelRendererAlt;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.entities.BoundingBox;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DData;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelRenderer;
@@ -31,25 +30,8 @@ public class CollisionDetection {
      * @return the nearest object intersected by the specified coordinates or null
      */
     public static Object3DData getBoxIntersection(List<Object3DData> objects,
-                                                  ModelRendererAlt mRenderer, float windowX,
+                                                  ModelRenderer mRenderer, float windowX,
                                                   float windowY) {
-        float[] nearHit = unproject(mRenderer, windowX, windowY, 0);
-        float[] farHit = unproject(mRenderer, windowX, windowY, 1);
-        float[] direction = Math3DUtils.substract(farHit, nearHit);
-        Math3DUtils.normalize(direction);
-        return getBoxIntersection(objects, nearHit, direction);
-    }
-
-    /**
-     * Get the nearest object intersected by the specified window coordinates
-     *
-     * @param objects   the list of objects to test
-     * @param mRenderer the model renderer to unproject window coordinates to world coordinates
-     * @param windowX   the window x coordinate
-     * @param windowY   the window y coordinate
-     * @return the nearest object intersected by the specified coordinates or null
-     */
-    public static Object3DData getBoxIntersection(List<Object3DData> objects, ModelRenderer mRenderer, float windowX, float windowY) {
         float[] nearHit = unproject(mRenderer, windowX, windowY, 0);
         float[] farHit = unproject(mRenderer, windowX, windowY, 1);
         float[] direction = Math3DUtils.substract(farHit, nearHit);
@@ -155,29 +137,6 @@ public class CollisionDetection {
      * @param rz
      * @return the corresponding near and far vertex for the specified window coordinates
      */
-    public static float[] unproject(ModelRendererAlt mRenderer, float rx, float ry, float rz) {
-        float[] xyzw = {0, 0, 0, 0};
-        ry = (float) mRenderer.getHeight() - ry;
-        int[] viewport = {0, 0, mRenderer.getWidth(), mRenderer.getHeight()};
-        GLU.gluUnProject(rx, ry, rz, mRenderer.getModelViewMatrix(), 0, mRenderer.getModelProjectionMatrix(), 0,
-                viewport, 0, xyzw, 0);
-        xyzw[0] /= xyzw[3];
-        xyzw[1] /= xyzw[3];
-        xyzw[2] /= xyzw[3];
-        xyzw[3] = 1;
-        return xyzw;
-    }
-
-
-    /**
-     * Get the corresponding near and far vertex for the specified window coordinates
-     *
-     * @param mRenderer
-     * @param rx
-     * @param ry
-     * @param rz
-     * @return the corresponding near and far vertex for the specified window coordinates
-     */
     public static float[] unproject(ModelRenderer mRenderer, float rx, float ry, float rz) {
         float[] xyzw = {0, 0, 0, 0};
         ry = (float) mRenderer.getHeight() - ry;
@@ -191,7 +150,10 @@ public class CollisionDetection {
         return xyzw;
     }
 
-    public static float[] getTriangleIntersection(List<Object3DData> objects, ModelRenderer mRenderer, float windowX, float windowY) {
+
+    public static float[] getTriangleIntersection(List<Object3DData> objects,
+                                                  ModelRenderer mRenderer, float windowX,
+                                                  float windowY) {
         float[] nearHit = unproject(mRenderer, windowX, windowY, 0);
         float[] farHit = unproject(mRenderer, windowX, windowY, 1);
         float[] direction = Math3DUtils.substract(farHit, nearHit);
@@ -231,36 +193,8 @@ public class CollisionDetection {
 
 
     public static float[] getTriangleIntersection2(List<Object3DData> objects,
-                                                   ModelRendererAlt mRenderer, float windowX,
+                                                   ModelRenderer mRenderer, float windowX,
                                                    float windowY) {
-        float[] nearHit = unproject(mRenderer, windowX, windowY, 0);
-        float[] farHit = unproject(mRenderer, windowX, windowY, 1);
-        float[] direction = Math3DUtils.substract(farHit, nearHit);
-        Math3DUtils.normalize(direction);
-        Object3DData intersected = getBoxIntersection(objects, nearHit, direction);
-        if (intersected != null) {
-            Log.d("CollisionDetection", "intersected 2:"+intersected.getId());
-            Octree octree = null;
-            synchronized (intersected) {
-                octree = intersected.getOctree();
-                if (octree == null) {
-                    octree = Octree.build(intersected);
-                    intersected.setOctree(octree);
-                }
-            }
-            float intersection = getTriangleIntersection2_Impl(octree, nearHit, direction);
-            if (intersection != -1) {
-                return Math3DUtils.add(nearHit, Math3DUtils.multiply(direction, intersection));
-            }
-            else {
-                return null;
-            }
-        }
-        return null;
-    }
-
-
-    public static float[] getTriangleIntersection2(List<Object3DData> objects, ModelRenderer mRenderer, float windowX, float windowY) {
         float[] nearHit = unproject(mRenderer, windowX, windowY, 0);
         float[] farHit = unproject(mRenderer, windowX, windowY, 1);
         float[] direction = Math3DUtils.substract(farHit, nearHit);

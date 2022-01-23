@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.entities.Camera;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelRenderer;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelSurfaceView;
 
@@ -125,15 +124,8 @@ public class TouchController {
 				//previousY1 = y1;
 			}
 			dx1 = x1 - previousX1;
-			/*
 			dy1 = y1 - previousY1;
 
-			if(Math.abs(dx1) > Math.abs(dy1)){
-				//dy1 = 0;
-			} else if (Math.abs(dy1) > Math.abs(dx1)) {
-				dx1 = 0;
-			}
-			*/
 		} else if (pointerCount == 2) {
 			x1 = motionEvent.getX(0);
 			y1 = motionEvent.getY(0);
@@ -220,23 +212,8 @@ public class TouchController {
 
 				dx1 = (float)(dx1 / (max) * Math.PI * 2);
 				dy1 = (float)(dy1 / (max) * Math.PI * 2);
+
 				mRenderer.getCamera().translateCamera(dx1, dy1);
-
-				Camera c = mRenderer.getCamera();
-				double theta = Math.acos(
-						(c.xPos * c.oxPos) + (c.zPos * c.ozPos) /
-								(
-										Math.sqrt(Math.pow(c.xPos, 2) + Math.pow(c.zPos, 2)) *
-												Math.sqrt(Math.pow(c.oxPos, 2) + Math.pow(c.ozPos, 2))
-								)
-				);
-
-				Log.d("RotRot", theta + " " + dx1*Math.cos(theta) + " " + dy1*Math.sin(theta));
-
-				mRenderer.getCamera().PanCamera(
-						dx1,
-						dy1);
-
 
 			} else if (pointerCount == 2) {
 				if (fingersAreClosing) {

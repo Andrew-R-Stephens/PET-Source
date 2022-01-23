@@ -4,13 +4,14 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.ModelFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.animation.Animator;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.collision.CollisionDetection;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DBuilder;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DBuilder.Callback;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model.Object3DData;
-import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.view.ModelActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.util.url.android.Handler;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -38,7 +39,7 @@ public class SceneLoader {
 	/**
 	 * Parent component
 	 */
-	protected final ModelActivity parent;
+	protected final ModelFragment parent;
 	/**
 	 * List of data objects containing info for building the opengl objects
 	 */
@@ -88,7 +89,7 @@ public class SceneLoader {
 	 */
 	private Animator animator = new Animator();
 
-	public SceneLoader(ModelActivity main) {
+	public SceneLoader(ModelFragment main) {
 		this.parent = main;
 	}
 
@@ -98,7 +99,7 @@ public class SceneLoader {
 		if (parent.getParamFile() != null || parent.getParamAssetDir() != null) {
 
 			// Initialize assets url handler
-			Handler.assets = parent.getAssets();
+			Handler.assets = parent.getActivity().getAssets();
 			// Handler.classLoader = parent.getClassLoader(); (optional)
 			// Handler.androidResources = parent.getResources(); (optional)
 
@@ -110,14 +111,14 @@ public class SceneLoader {
 				} else {
 					url =
 							new URL("android://app/src/main/assets/" + parent.getParamAssetDir() + File.separator + parent.getParamAssetFilename());
-
 				}
 			} catch (MalformedURLException e) {
 				Log.e("SceneLoader", e.getMessage(), e);
 				throw new RuntimeException(e);
 			}
 
-			Object3DBuilder.loadV6AsyncParallel(parent, url, parent.getParamFile(), parent.getParamAssetDir(),
+			Object3DBuilder.loadV6AsyncParallel(parent.getActivity(), url, parent.getParamFile(),
+					parent.getParamAssetDir(),
 					parent.getParamAssetFilename(), new Callback() {
 
 						long startTime = SystemClock.uptimeMillis();
@@ -141,16 +142,20 @@ public class SceneLoader {
 						@Override
 						public void onLoadError(Exception ex) {
 							Log.e("SceneLoader",ex.getMessage(),ex);
-							Toast.makeText(parent.getApplicationContext(),
+							Toast.makeText(parent.getActivity().getApplicationContext(),
 									"There was a problem building the model: " + ex.getMessage(), Toast.LENGTH_LONG)
 									.show();
 						}
 					});
 		}
+
+		requestRender();
 	}
 
 	private void makeToastText(final String text, final int toastDuration) {
-		parent.runOnUiThread(() -> Toast.makeText(parent.getApplicationContext(), text, toastDuration).show());
+		parent.getActivity().runOnUiThread(() -> Toast.makeText(parent.getActivity().getApplicationContext(),
+				text,
+				toastDuration).show());
 	}
 
 	public Object3DData getLightBulb() {
@@ -191,7 +196,7 @@ public class SceneLoader {
 		requestRender();
 	}
 
-	private void requestRender() {
+	public void requestRender() {
 		parent.getgLView().requestRender();
 	}
 
@@ -284,7 +289,8 @@ public class SceneLoader {
 					stream = new FileInputStream(textureFile);
 				}
 				else{
-					stream = parent.getAssets().open(parentAssetsDir + "/" + data.getTextureFile());
+					stream =
+							parent.getActivity().getAssets().open(parentAssetsDir + "/" + data.getTextureFile());
 				}
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				IOUtils.copy(stream,bos);
@@ -317,7 +323,9 @@ public class SceneLoader {
 	}
 
 	public void processTouch(float x, float y) {
-		Object3DData objectToSelect = CollisionDetection.getBoxIntersection(getObjects(), parent.getgLView().getModelRenderer(), x, y);
+		Object3DData objectToSelect =
+		CollisionDetection.getBoxIntersection(getObjects(),
+				parent.getgLView().getModelRenderer(), x, y);
 		if (objectToSelect != null) {
 			if (getSelectedObject() == objectToSelect) {
 				Log.i("SceneLoader", "Unselected object " + objectToSelect.getId());

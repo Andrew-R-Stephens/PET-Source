@@ -40,9 +40,9 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 
 	private Object3DBuilder drawer;
 	// The wireframe associated shape (it should be made of lines only)
-	private Map<Object3DData, Object3DData> wireframes = new HashMap<Object3DData, Object3DData>();
+	private Map<Object3DData, Object3DData> wireframes = new HashMap<>();
 	// The loaded textures
-	private Map<byte[], Integer> textures = new HashMap<byte[], Integer>();
+	private Map<byte[], Integer> textures = new HashMap<>();
 	// The corresponding opengl bounding boxes and drawer
 	private Map<Object3DData, Object3DData> boundingBoxes = new HashMap<Object3DData, Object3DData>();
 	// The corresponding opengl bounding boxes
@@ -65,7 +65,6 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	 */
 	public ModelRenderer(ModelSurfaceView modelSurfaceView) {
 		this.main = modelSurfaceView;
-
 		camera = new Camera();
 	}
 
@@ -95,7 +94,6 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 		GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
 		// Lets create our 3D world components
-		//camera = new Camera();
 
 		// This component will draw the actual models using OpenGL
 		drawer = new Object3DBuilder();
@@ -112,7 +110,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 		// INFO: Set the camera position (View matrix)
 		// The camera has 3 vectors (the position, the vector where we are looking at, and the up position (sky)
 		Matrix.setLookAtM(modelViewMatrix, 0, camera.xPos, camera.yPos, camera.zPos, camera.xView, camera.yView,
-				camera.zView, camera.xUp, camera.yUp, camera.zUp);
+				camera.zView, camera.oxUp, camera.oyUp, camera.ozUp);
 
 		// the projection matrix is the 3D virtual space (cube) that we want to project
 		float ratio = (float) width / height;
@@ -160,11 +158,14 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 			float[] lightModelViewMatrix = lightBulbDrawer.getMvMatrix(lightBulbDrawer.getMMatrix(scene.getLightBulb()),modelViewMatrix);
 
 			// Calculate position of the light in eye space to support lighting
-			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, camera.getLocationVector()/*scene
-			.getLightPosition()*/, 0);
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, camera.getLocationVector(),0);
+			/*
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, scene.getLightPosition(), 0);
+			*/
 
 			// Draw a point that represents the light bulb
-			lightBulbDrawer.draw(scene.getLightBulb(), modelProjectionMatrix, modelViewMatrix, -1, lightPosInEyeSpace);
+			//lightBulbDrawer.draw(scene.getLightBulb(), modelProjectionMatrix, modelViewMatrix,-1
+			//		,lightPosInEyeSpace);
 		}
 
 		List<Object3DData> objects = scene.getObjects();
@@ -175,7 +176,6 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 				boolean changed = objData.isChanged();
 
 				Object3D drawerObject = drawer.getDrawer(objData, scene.isDrawTextures(), scene.isDrawLighting());
-				// Log.d("ModelRenderer","Drawing object using '"+drawerObject.getClass()+"'");
 
 				Integer textureId = textures.get(objData.getTextureData());
 				if (textureId == null && objData.getTextureData() != null) {
@@ -188,7 +188,6 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 				if (scene.isDrawWireframe() && objData.getDrawMode() != GLES20.GL_POINTS
 						&& objData.getDrawMode() != GLES20.GL_LINES && objData.getDrawMode() != GLES20.GL_LINE_STRIP
 						&& objData.getDrawMode() != GLES20.GL_LINE_LOOP) {
-					// Log.d("ModelRenderer","Drawing wireframe model...");
 					try{
 						// Only draw wireframes for objects having faces (triangles)
 						Object3DData wireframe = wireframes.get(objData);
@@ -239,8 +238,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 						normalsDrawer.draw(normalData, modelProjectionMatrix, modelViewMatrix, -1, null);
 					}
 				}
-				// TODO: enable this only when user wants it
-				// obj3D.drawVectorNormals(result, modelViewMatrix);
+
 			} catch (Exception ex) {
 				Log.e("ModelRenderer","There was a problem rendering the object '"+objData.getId()+"':"+ex.getMessage(),ex);
 			}
