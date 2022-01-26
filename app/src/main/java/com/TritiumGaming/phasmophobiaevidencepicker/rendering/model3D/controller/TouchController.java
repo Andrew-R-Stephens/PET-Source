@@ -22,6 +22,8 @@ public class TouchController {
 	private final ModelSurfaceView view;
 	private final ModelRenderer mRenderer;
 
+	private final float yAxis = (float)(Math.PI*.4f);
+
 	int pointerCount = 0;
 	float x1 = Float.MIN_VALUE;
 	float y1 = Float.MIN_VALUE;
@@ -64,7 +66,7 @@ public class TouchController {
 		super();
 		this.view = view;
 		this.mRenderer = renderer;
-		mRenderer.getCamera().translateCamera(dx1, 45); //dy1);
+		mRenderer.getCamera().translateCamera(dx1, yAxis); //dy1);
 	}
 
 	public synchronized boolean onTouchEvent(MotionEvent motionEvent) {
@@ -72,7 +74,7 @@ public class TouchController {
 		// and other input controls. In this case, you are only
 		// interested in events where the touch position changed.
 
-		if(dy1 == 45) {
+		if(dy1 == yAxis) {
 			mRenderer.getCamera().translateCamera(dx1, dy1);
 		}
 		dy1 = 0;

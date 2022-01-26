@@ -36,7 +36,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	// frustrum - nearest pixel
 	private final float near = 1f;
 	// frustrum - fartest pixel
-	private final float far = 100f;
+	private final float far = 10f;
 
 	private Object3DBuilder drawer;
 	// The wireframe associated shape (it should be made of lines only)
@@ -105,7 +105,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 		this.height = height;
 
 		// Adjust the viewport based on geometry changes, such as screen rotation
-		GLES20.glViewport(0, 0, width, height);
+		GLES20.glViewport(-width/2, -height/2, width*2, height*2);
 
 		// INFO: Set the camera position (View matrix)
 		// The camera has 3 vectors (the position, the vector where we are looking at, and the up position (sky)
@@ -158,6 +158,10 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 			float[] lightModelViewMatrix = lightBulbDrawer.getMvMatrix(lightBulbDrawer.getMMatrix(scene.getLightBulb()),modelViewMatrix);
 
 			// Calculate position of the light in eye space to support lighting
+			/*float[] newLightVector = new float[] { camera.getLocationVector()[0],
+					3, camera.getLocationVector()[2],
+					camera.getLocationVector()[3] };
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, newLightVector,0);*/
 			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, camera.getLocationVector(),0);
 			/*
 			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, scene.getLightPosition(), 0);

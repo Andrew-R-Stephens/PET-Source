@@ -107,8 +107,6 @@ public class Camera {
 		yLookDirection /= dp;
 		zLookDirection /= dp;
 
-		direction *= .1;
-
 		// Call UpdateCamera to move our camera in the direction we want.
 		UpdateCamera(xLookDirection, yLookDirection, zLookDirection, direction);
 	}
@@ -149,8 +147,6 @@ public class Camera {
 		xUp = buffer[8] / buffer[11];
 		yUp = buffer[9] / buffer[11];
 		zUp = buffer[10] / buffer[11];
-
-		//pointViewToOrigin();
 
 		setChanged(true);
 	}

@@ -106,8 +106,9 @@ public class MapMenuFragment extends Fragment {
             //Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
             Bundle b = new Bundle();
             b.putString("assetDir", "models");
-            b.putString("assetFilename", "prison_firstfloor.obj");
-            b.putString("immersiveMode", "false");
+            //b.putString("assetFilename", "prison_firstfloor.obj");
+            b.putString("assetFilename", "asylum_topfloor.obj");
+            b.putString("immersiveMode", "true");
 
             Navigation.findNavController(view1).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
         });
