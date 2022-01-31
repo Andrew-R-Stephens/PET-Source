@@ -55,8 +55,6 @@ public class InteractiveMapDisplayView extends View {
      */
     public void init(InteractiveMapControlData controllerData) {
         this.controllerData = controllerData;
-
-        //updateLoadingText();
     }
 
     /**

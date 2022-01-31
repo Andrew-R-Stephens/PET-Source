@@ -67,10 +67,6 @@
                 android:id="@+id/constraintLayout_cursedPosessions"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_evidence"
@@ -79,9 +75,24 @@
                 app:strokeWidth="1dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView1a"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toTopOf="@+id/textView1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +120,6 @@
                 android:id="@+id/constraintLayout_evidence"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_ghosts"
@@ -120,9 +127,24 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3a"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView3"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

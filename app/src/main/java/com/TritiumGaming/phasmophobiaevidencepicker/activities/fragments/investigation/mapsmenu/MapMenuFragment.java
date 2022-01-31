@@ -98,21 +98,30 @@ public class MapMenuFragment extends Fragment {
                 mapViewViewModel.getMapNames(),
                 mapViewViewModel.getMapThumbnails());
         gridView.setAdapter(customAdapter);
-        gridView.setOnItemClickListener((parent, view1, position, id) -> {
+        gridView.setOnItemClickListener((parent, itemView, position, id) -> {
             System.gc();
             if (mapViewViewModel != null) {
                 mapViewViewModel.setCurrentMapData(position);
             }
-            //Navigation.findNavController(view1).navigate(R.id.action_mapmenu_to_mapview);
-            Bundle b = new Bundle();
-            b.putString("assetDir", "models");
-            //b.putString("assetFilename", "prison_firstfloor.obj");
-            b.putString("assetFilename", "asylum_topfloor.obj");
-            b.putString("immersiveMode", "true");
 
-            Navigation.findNavController(view1).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
+            navigateToBasicMapView(itemView);
+            //navigateToAdvancedMapView(itemView);
         });
 
+    }
+
+    private void navigateToBasicMapView(View view) {
+        Navigation.findNavController(view).navigate(R.id.action_mapmenu_to_mapview);
+    }
+
+    private void navigateToAdvancedMapView(View view) {
+        Bundle b = new Bundle();
+        b.putString("assetDir", "models");
+        //b.putString("assetFilename", "prison_firstfloor.obj");
+        b.putString("assetFilename", "asylum_topfloor.obj");
+        b.putString("immersiveMode", "true");
+
+        Navigation.findNavController(view).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -125,6 +134,7 @@ public class MapMenuFragment extends Fragment {
                                   AppCompatImageView icon_navCenter,
                                   AppCompatImageView icon_navMedRight,
                                   AppCompatImageView icon_navRight) {
+
         if(lstnr_navLeft != null) {
             ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
             icon_navLeft.setImageResource(R.drawable.icon_evidence);
