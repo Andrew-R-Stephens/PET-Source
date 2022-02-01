@@ -104,8 +104,8 @@ public class MapMenuFragment extends Fragment {
                 mapViewViewModel.setCurrentMapData(position);
             }
 
-            navigateToBasicMapView(itemView);
-            //navigateToAdvancedMapView(itemView);
+            //navigateToBasicMapView(itemView);
+            navigateToAdvancedMapView(itemView);
         });
 
     }

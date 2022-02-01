@@ -88,6 +88,10 @@ public class Camera {
 	public synchronized void MoveCameraZ(float direction){
 		if (direction == 0) return;
 		MoveCameraZImpl(direction);
+
+		Log.i("ZoomLevel", "New: " + yView + " " + yPos + " = " + (yPos/yView));
+		Log.i("ZoomLevel", "Old-new: " + (oyView-yView) + " " + (oyPos-yPos) + " = " + ((oyPos/yPos)/(oyView/yView)));
+
 		lastAction = new Object[]{"zoom",direction};
 	}
 	public void MoveCameraZImpl(float direction) {
@@ -113,6 +117,16 @@ public class Camera {
 
 	public synchronized void PanCamera(float dx, float dy) {
 		if (dx == 0 && dy == 0) return;
+
+		float tdx = dx * Math.abs(yPos/yView);
+		float tdy = dy * Math.abs(yPos/yView);
+
+		if(Math.abs(tdx) < Math.abs(dx)) {
+			dx = tdx;
+		}
+		if(Math.abs(tdy) < Math.abs(dy)) {
+			dy = tdy;
+		}
 
 		xPos -= dx;
 		zPos -= dy;
