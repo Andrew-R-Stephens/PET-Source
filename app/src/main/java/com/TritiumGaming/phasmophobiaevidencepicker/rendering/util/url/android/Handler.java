@@ -29,7 +29,7 @@ public class Handler extends URLStreamHandler {
 	public static AssetManager assets;
 
 	public Handler() {
-		this.classLoader = getClass().getClassLoader();
+		classLoader = getClass().getClassLoader();
 	}
 
 	@Override

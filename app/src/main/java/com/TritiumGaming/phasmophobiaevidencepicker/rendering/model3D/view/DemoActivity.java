@@ -59,8 +59,8 @@ class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.activity_demo_item, null);
 			holder = new ViewHolder();
-			holder.txtTitle = (TextView) convertView.findViewById(R.id.demo_item_title);
-			holder.imageView = (ImageView) convertView.findViewById(R.id.demo_item_icon);
+			holder.txtTitle = convertView.findViewById(R.id.demo_item_title);
+			holder.imageView = convertView.findViewById(R.id.demo_item_icon);
 			convertView.setTag(holder);
 		} else
 			holder = (ViewHolder) convertView.getTag();

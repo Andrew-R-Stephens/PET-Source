@@ -41,7 +41,7 @@ public class Joint {
 	private float[] animatedTransform = new float[16];
 	
 	private final float[] localBindTransform;
-	private float[] inverseBindTransform = new float[16];
+	private final float[] inverseBindTransform = new float[16];
 
 	/**
 	 * @param index

@@ -33,7 +33,7 @@ public abstract class Object3DImpl implements Object3D {
 
 	// animation data
 	// put 0 to draw progressively, -1 to draw at once
-	private long counter = -1;
+	private final long counter = -1;
 	private double shift = -1d;
 
 	public Object3DImpl(String id, String vertexShaderCode, String fragmentShaderCode, String... variables) {

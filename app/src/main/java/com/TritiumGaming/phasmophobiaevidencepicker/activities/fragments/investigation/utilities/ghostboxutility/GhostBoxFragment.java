@@ -10,8 +10,6 @@ import android.media.audiofx.Visualizer;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,8 +73,8 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
                     requireActivity()).get(PermissionsViewModel.class);
         }
 
-        //AppCompatTextView title = view.findViewById(R.id.toolspiritbox_title);
-        //AppCompatTextView button_gotoEvidence_label = view.findViewById(R.id.label_goto_left);
+        AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
+        AppCompatImageView prev = view.findViewById(R.id.button_prev);
         AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
         AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
         View listener_reset = view.findViewById(R.id.listener_resetAll);
@@ -89,6 +87,13 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
 
         waveFormView = view.findViewById(R.id.waveFormView);
 
+
+        title.setText("Ghost Box");
+
+
+        prev.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack());
+
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );
 
@@ -99,11 +104,11 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
 
         if (getContext() != null) {
             setScrollListEntries(
-                    getContext(), R.array.ghostspeaktool_general_array, scrollview_list1);
+                    getContext(), view, R.array.ghostspeaktool_general_array, scrollview_list1);
             setScrollListEntries(
-                    getContext(), R.array.ghostspeaktool_spiritbox_array, scrollview_list2);
+                    getContext(), view, R.array.ghostspeaktool_spiritbox_array, scrollview_list2);
             setScrollListEntries(
-                    getContext(), R.array.ghostspeaktool_oijaboard_array, scrollview_list3);
+                    getContext(), view, R.array.ghostspeaktool_oijaboard_array, scrollview_list3);
 
             if (!permissionsViewModel.isRecordAudioAllowed()) {
                 requestAudioPermissions(getContext(), getActivity());
@@ -115,7 +120,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
         startTextToSpeech();
 
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
@@ -131,43 +136,31 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
      * @param destination The target LinearLayout
      */
     public void setScrollListEntries(@NonNull Context context,
+                                     View view,
                                      @ArrayRes int arrayRes,
                                      LinearLayout destination) {
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
         GhostBoxUtilityData toolGhostSpeakData = new GhostBoxUtilityData();
+
         int[] spiritBoxEntries = toolGhostSpeakData.getEntries(context, arrayRes);
         for (int e : spiritBoxEntries) {
-            LinearLayout linearLayout = new LinearLayout(context);
-            LinearLayout.LayoutParams linearParams =
-                    new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            1f);
-            linearParams.setMargins(0, 8, 0, 8);
-            linearLayout.setGravity(Gravity.CENTER);
-            linearLayout.setLayoutParams(linearParams);
+            View evidenceParent = inflater.inflate(
+                    R.layout.item_ghostbox_entry,
+                    (ViewGroup) view,
+                    false);
 
-            AppCompatTextView entry = new AppCompatTextView(context);
-            LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    1f);
-            entry.setLayoutParams(textParams);
-            entry.setGravity(Gravity.CENTER);
+            AppCompatTextView text = evidenceParent.findViewById(R.id.textView_entry);
 
-            float dip = 24f;
-            float px = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    dip,
-                    getResources().getDisplayMetrics());
-            entry.setMinimumHeight((int) px);
-            entry.setText(getResources().getString(e));
-            entry.setMaxLines(1);
-            linearLayout.setOnClickListener(v -> new Thread(() -> {
+            text.setText(getResources().getString(e));
+
+            text.setOnClickListener(v -> new Thread(() -> {
                 startTextToSpeech();
                 if (textToSpeech != null && permissionsViewModel.isRecordAudioAllowed()) {
                     startVisualizer();
                     textToSpeech.speak(
-                            entry.getText(), TextToSpeech.QUEUE_FLUSH, null, null);
+                            text.getText(), TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
                     Log.d("TTS",
                             "TTS is null, or RECORD_AUDIO is " +
@@ -176,8 +169,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
 
             }).start());
 
-            linearLayout.addView(entry);
-            destination.addView(linearLayout);
+            destination.addView(evidenceParent);
         }
     }
 
@@ -309,8 +301,10 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
      * @param a The current activity
      */
     private void requestAudioPermissions(Context c, Activity a) {
+
         if (ContextCompat.checkSelfPermission(
                 c, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
             // When permission is not granted by user,
             // show them message why this permission is needed.
             int MY_PERMISSIONS_RECORD_AUDIO = 1;
@@ -322,20 +316,26 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
                         a,
                         new String[]{Manifest.permission.RECORD_AUDIO},
                         MY_PERMISSIONS_RECORD_AUDIO);
+
+                Log.d("RecordAudio", "Accepted1");
             } else {
                 // Show user dialog to grant permission to record audio
                 ActivityCompat.requestPermissions(
                         a,
                         new String[]{Manifest.permission.RECORD_AUDIO},
                         MY_PERMISSIONS_RECORD_AUDIO);
+
+                Log.d("RecordAudio", "Accepted2");
             }
         }
 
         // If permission is granted, then go ahead recording audio
         if (ContextCompat.checkSelfPermission(c,
                 Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+
             permissionsViewModel.setRecordAudioAllowed(true);
 
+            Log.d("RecordAudio", "Accepted3");
         }
     }
 

@@ -134,10 +134,7 @@ public final class BoundingBox {
         if (z < getzMin()) {
             return true;
         }
-        if (z > getzMax()) {
-            return true;
-        }
-        return false;
+        return z > getzMax();
     }
 
     @Override

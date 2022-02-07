@@ -137,8 +137,8 @@ public class TouchController {
 				dy1 = (float)(dy1 / mRenderer.getHeight() * Math.PI * 2);
 
 				mRenderer.getCamera().PanCamera(
-						(float)(dx1),
-						(float)(dy1)
+                        dx1,
+                        dy1
 				);
 
 			}
@@ -288,8 +288,8 @@ public class TouchController {
 class TouchScreen {
 
 	// these matrices will be used to move and zoom image
-	private android.graphics.Matrix matrix = new android.graphics.Matrix();
-	private android.graphics.Matrix savedMatrix = new android.graphics.Matrix();
+	private final android.graphics.Matrix matrix = new android.graphics.Matrix();
+	private final android.graphics.Matrix savedMatrix = new android.graphics.Matrix();
 	// we can be in one of these 3 states
 	private static final int NONE = 0;
 	private static final int DRAG = 1;
@@ -297,8 +297,8 @@ class TouchScreen {
 	private static final int PAN = 3;
 	private int mode = NONE;
 	// remember some things for zooming
-	private PointF start = new PointF();
-	private PointF mid = new PointF();
+	private final PointF start = new PointF();
+	private final PointF mid = new PointF();
 	private float oldDist = 1f;
 	private float d = 0f;
 	private float newRot = 0f;

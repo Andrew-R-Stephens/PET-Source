@@ -34,8 +34,8 @@ public class ExampleSceneLoader extends SceneLoader {
 		super.init();
 		new AsyncTask<Void, Void, Void>() {
 
-			ProgressDialog dialog = new ProgressDialog(parent.getActivity());
-			List<Exception> errors = new ArrayList<Exception>();
+			final ProgressDialog dialog = new ProgressDialog(parent.getActivity());
+			final List<Exception> errors = new ArrayList<Exception>();
 
 			@Override
 			protected void onPreExecute() {

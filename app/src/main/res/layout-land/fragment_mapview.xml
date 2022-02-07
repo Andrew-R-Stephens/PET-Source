@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/layout_navigation"
-        layout="@layout/layout_navigation"
+        layout="@layout/layout_navigationfooter"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

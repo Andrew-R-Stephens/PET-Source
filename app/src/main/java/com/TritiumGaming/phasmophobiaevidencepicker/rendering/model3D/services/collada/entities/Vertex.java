@@ -8,17 +8,17 @@ public class Vertex {
 	
 	private static final int NO_INDEX = -1;
 	
-	private Vector3f position;
+	private final Vector3f position;
 	private int textureIndex = NO_INDEX;
 	private int normalIndex = NO_INDEX;
 	private Vertex duplicateVertex = null;
-	private int index;
-	private float length;
-	private List<Vector3f> tangents = new ArrayList<Vector3f>();
-	private Vector3f averagedTangent = new Vector3f(0, 0, 0);
+	private final int index;
+	private final float length;
+	private final List<Vector3f> tangents = new ArrayList<Vector3f>();
+	private final Vector3f averagedTangent = new Vector3f(0, 0, 0);
 	
 	
-	private VertexSkinData weightsData;
+	private final VertexSkinData weightsData;
 	
 	public Vertex(int index,Vector3f position, VertexSkinData weightsData){
 		this.index = index;

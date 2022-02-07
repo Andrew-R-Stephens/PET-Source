@@ -149,6 +149,15 @@ public class InvestigationActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        recreate();
+    }
+
+
     /**
      * Resets ObjectiveViewModel and EvidenceViewModel data upon Activity exit
      */

@@ -26,13 +26,13 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	private final static String TAG = ModelRenderer.class.getName();
 
 	// 3D window (parent component)
-	private ModelSurfaceView main;
+	private final ModelSurfaceView main;
 	// width of the screen
 	private int width;
 	// height of the screen
 	private int height;
 	// Out point of view handler
-	private Camera camera;
+	private final Camera camera;
 	// frustrum - nearest pixel
 	private final float near = 1f;
 	// frustrum - fartest pixel
@@ -40,13 +40,13 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 
 	private Object3DBuilder drawer;
 	// The wireframe associated shape (it should be made of lines only)
-	private Map<Object3DData, Object3DData> wireframes = new HashMap<>();
+	private final Map<Object3DData, Object3DData> wireframes = new HashMap<>();
 	// The loaded textures
-	private Map<byte[], Integer> textures = new HashMap<>();
+	private final Map<byte[], Integer> textures = new HashMap<>();
 	// The corresponding opengl bounding boxes and drawer
-	private Map<Object3DData, Object3DData> boundingBoxes = new HashMap<Object3DData, Object3DData>();
+	private final Map<Object3DData, Object3DData> boundingBoxes = new HashMap<>();
 	// The corresponding opengl bounding boxes
-	private Map<Object3DData, Object3DData> normals = new HashMap<Object3DData, Object3DData>();
+	private final Map<Object3DData, Object3DData> normals = new HashMap<>();
 
 	// 3D matrices to project our 3D world
 	private final float[] modelProjectionMatrix = new float[16];
@@ -84,7 +84,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 
 		// Use culling to remove back faces.
 		// Don't remove back faces so we can see them
-		GLES20.glEnable(GLES20.GL_CULL_FACE);
+		GLES20.glEnable(GLES20.GL_CULL_FACE);;
 
 		// Enable depth testing for hidden-surface elimination.
 		GLES20.glEnable(GLES20.GL_DEPTH_TEST);
@@ -158,13 +158,17 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 			float[] lightModelViewMatrix = lightBulbDrawer.getMvMatrix(lightBulbDrawer.getMMatrix(scene.getLightBulb()),modelViewMatrix);
 
 			// Calculate position of the light in eye space to support lighting
-			/*float[] newLightVector = new float[] { camera.getLocationVector()[0],
+			/*
+			float[] newLightVector = new float[] { camera.getLocationVector()[0],
 					3, camera.getLocationVector()[2],
 					camera.getLocationVector()[3] };
-			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, newLightVector,0);*/
-			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, camera.getLocationVector(),0);
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, newLightVector,0);
+			*/
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0,
+					camera.getLocationVector(),0);
 			/*
-			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, scene.getLightPosition(), 0);
+			Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0,
+					scene.getLightPosition(), 0);
 			*/
 
 			// Draw a point that represents the light bulb

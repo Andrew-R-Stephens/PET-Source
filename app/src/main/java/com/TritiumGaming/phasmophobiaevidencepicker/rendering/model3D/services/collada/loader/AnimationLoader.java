@@ -21,8 +21,8 @@ public class AnimationLoader {
 		Matrix.rotateM(CORRECTION,0,CORRECTION,0,-90, 1, 0, 0);
 	}
 	
-	private XmlNode animationData;
-	private XmlNode jointHierarchy;
+	private final XmlNode animationData;
+	private final XmlNode jointHierarchy;
 	
 	public AnimationLoader(XmlNode animationData, XmlNode jointHierarchy){
 		this.animationData = animationData;

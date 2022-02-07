@@ -13,9 +13,9 @@ import java.util.List;
 
 public class SkeletonLoader2 {
 
-	private XmlNode visualScene;
+	private final XmlNode visualScene;
 
-	private List<String> boneOrder = new ArrayList<String>();
+	private final List<String> boneOrder = new ArrayList<String>();
 
 	private int jointCount = 0;
 

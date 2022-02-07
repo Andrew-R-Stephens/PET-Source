@@ -47,7 +47,7 @@ public final class Object3DBuilder {
 	/**
 	 * Default vertices colors
 	 */
-	private static float[] DEFAULT_COLOR = {1.0f, 1.0f, 0, 1.0f};
+	private static final float[] DEFAULT_COLOR = {1.0f, 1.0f, 0, 1.0f};
 
 	final static float[] axisVertexLinesData = new float[]{
 			//@formatter:off
@@ -495,7 +495,7 @@ public final class Object3DBuilder {
 
 		Log.i("Object3DBuilder", "Allocating vertex normals buffer... Total normals ("+faces.facesNormIdxs.size()+")");
 		// Normals buffer size = Number_of_faces X 3 (vertices_per_face) X 3 (coords_per_normal) X 4 (bytes_per_float)
-		final FloatBuffer vertexNormalsArrayBuffer = createNativeByteBuffer(faces.getSize() * 3 * 3 * 4).asFloatBuffer();;
+		final FloatBuffer vertexNormalsArrayBuffer = createNativeByteBuffer(faces.getSize() * 3 * 3 * 4).asFloatBuffer();
 		obj.setVertexNormalsArrayBuffer(vertexNormalsArrayBuffer);
 
 		// build file normals

@@ -1,45 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
     android:background="@color/black">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout78"
+    <include
+        android:id="@+id/layout_navigationHeader"
+        layout="@layout/layout_navigationheader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/button_prev"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:tint="@color/red_high"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".1"
-            app:srcCompat="@drawable/icon_prev" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView_fragtitle"
-            style="@style/NorseRegular"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="Tools!"
-            android:textColor="?attr/subtitleFontColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button_prev"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -49,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout78"
+        app:layout_constraintTop_toBottomOf="@+id/layout_navigationHeader"
         app:layout_constraintWidth_percent=".85">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,10 +42,10 @@
                 android:id="@+id/constraintLayout1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout79"
@@ -108,10 +84,10 @@
                 android:id="@+id/constraintLayout79"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout80"
@@ -148,10 +124,10 @@
                 android:id="@+id/constraintLayout80"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -198,10 +174,10 @@
                 android:id="@+id/constraintLayout4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
@@ -239,10 +215,10 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
@@ -279,10 +255,10 @@
                 android:id="@+id/constraintLayout6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -368,10 +344,10 @@
                 android:id="@+id/constraintLayout8"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="5sp"
+                android:background="@drawable/circlefaded"
                 android:backgroundTint="@color/red_med"
                 android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
+                android:padding="5sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"

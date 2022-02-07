@@ -10,7 +10,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -41,11 +41,14 @@ public class UtilitiesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // NAVIGATION VIEWS
+        AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
-        ConstraintLayout goto_spiritBox = view.findViewById(R.id.constraint_ghostbox);
-        ConstraintLayout goto_codex = view.findViewById(R.id.constraintLayout_codex);
-        ConstraintLayout goto_petHelp = view.findViewById(R.id.constraintLayout_pethelp);
-        ConstraintLayout goto_highscores = view.findViewById(R.id.constraintLayout_highscores);
+        AppCompatTextView goto_spiritBox = view.findViewById(R.id.ghostbox);
+        AppCompatTextView goto_codex = view.findViewById(R.id.codex);
+        AppCompatTextView goto_petHelp = view.findViewById(R.id.pethelp);
+        AppCompatTextView goto_highscores = view.findViewById(R.id.highscores);
+
+        title.setText("Utilities");
 
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
@@ -64,7 +67,7 @@ public class UtilitiesFragment extends Fragment {
                         navigate(R.id.action_utilitiesFragment_to_highscoresFragment));
 
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

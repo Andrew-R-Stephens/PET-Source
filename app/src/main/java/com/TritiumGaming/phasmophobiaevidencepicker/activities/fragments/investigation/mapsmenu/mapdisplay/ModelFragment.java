@@ -39,7 +39,7 @@ import java.io.File;
  */
 public class ModelFragment extends Fragment {
 
-    private MapMenuViewModel mapViewViewModel = null;
+    private final MapMenuViewModel mapViewViewModel = null;
 
     private MapLayerSelectorGroup selectorGroup = null;
     private AppCompatTextView layerName = null;
@@ -210,7 +210,7 @@ public class ModelFragment extends Fragment {
 
 
         if (getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

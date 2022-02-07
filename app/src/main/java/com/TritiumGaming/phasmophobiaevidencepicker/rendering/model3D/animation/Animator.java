@@ -59,7 +59,7 @@ public class Animator {
 
 		increaseAnimationTime((AnimatedModel)obj);
 		Map<String, float[]> currentPose = calculateCurrentAnimationPose(animatedModel);
-		float parentTransform[] = new float[16];
+		float[] parentTransform = new float[16];
 		Matrix.setIdentityM(parentTransform,0);
 		applyPoseToJoints(currentPose, (animatedModel).getRootJoint(), parentTransform);
 	}

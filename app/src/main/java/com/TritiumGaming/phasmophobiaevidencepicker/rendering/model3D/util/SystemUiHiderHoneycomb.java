@@ -94,7 +94,7 @@ public class SystemUiHiderHoneycomb extends SystemUiHiderBase {
 		return mVisible;
 	}
 
-	private View.OnSystemUiVisibilityChangeListener mSystemUiVisibilityChangeListener = new View.OnSystemUiVisibilityChangeListener() {
+	private final View.OnSystemUiVisibilityChangeListener mSystemUiVisibilityChangeListener = new View.OnSystemUiVisibilityChangeListener() {
 		@Override
 		public void onSystemUiVisibilityChange(int vis) {
 			// Test against mTestFlags to see if the system UI is visible.

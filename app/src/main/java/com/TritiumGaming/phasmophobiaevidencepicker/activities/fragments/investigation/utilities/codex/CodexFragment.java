@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -32,15 +33,23 @@ public class CodexFragment  extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        ConstraintLayout lstnr_difficulties = view.findViewById(R.id.constraintLayout_aboutdifficulties);
-        ConstraintLayout lstnr_evidence = view.findViewById(R.id.constraintLayout_evidence);
-        ConstraintLayout lstnr_ghosts = view.findViewById(R.id.constraintLayout_ghosts);
-        ConstraintLayout lstnr_ghostevents = view.findViewById(R.id.constraintLayout_ghostevents);
-        ConstraintLayout lstnr_mapinfo = view.findViewById(R.id.constraintLayout_mapsinfo);
-        ConstraintLayout lstnr_cursedPosessions = view.findViewById(R.id.constraintLayout_cursedPosessions);
-        ConstraintLayout lstnr_sanityInfo = view.findViewById(R.id.constraintLayout_aboutsanity);
-        ConstraintLayout lstnr_toolsPrimary = view.findViewById(R.id.constraintLayout_toolsprimary);
-        ConstraintLayout lstnr_toolsAlternatives = view.findViewById(R.id.constraintLayout_toolsalternative);
+        AppCompatImageView prev = view.findViewById(R.id.button_prev);
+        AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
+
+
+        AppCompatTextView lstnr_cursedPosessions = view.findViewById(R.id.item1);
+        AppCompatTextView lstnr_evidence = view.findViewById(R.id.item2);
+        AppCompatTextView lstnr_ghosts = view.findViewById(R.id.item3);
+        AppCompatTextView lstnr_toolsPrimary = view.findViewById(R.id.item4);
+        AppCompatTextView lstnr_toolsAlternatives = view.findViewById(R.id.item5);
+        AppCompatTextView lstnr_mapinfo = view.findViewById(R.id.item6);
+        AppCompatTextView lstnr_sanityInfo = view.findViewById(R.id.item7);
+        AppCompatTextView lstnr_ghostevents = view.findViewById(R.id.item8);
+        AppCompatTextView lstnr_difficulties = view.findViewById(R.id.item9);
+
+
+        title.setText("Codex");
+
 
         lstnr_difficulties.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(R.id.action_codexFragment_to_codexDifficultiesFragment));
@@ -69,8 +78,13 @@ public class CodexFragment  extends Fragment {
         lstnr_toolsAlternatives.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(R.id.action_codexFragment_to_codexToolsAlternatives));
 
+
+        prev.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack());
+
+
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

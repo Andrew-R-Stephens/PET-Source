@@ -59,17 +59,17 @@ public class WavefrontLoader {
 	static final boolean INDEXES_START_AT_1 = true;
 	private boolean hasTCs3D = false;
 
-	private ArrayList<Tuple3> texCoords;
+	private final ArrayList<Tuple3> texCoords;
 	// whether the model uses 3D or 2D tex coords
 	// whether tex coords should be flipped around the y-axis
 
 	private Faces faces; // model faces
-	private FaceMaterials faceMats; // materials used by faces
+	private final FaceMaterials faceMats; // materials used by faces
 	private Materials materials; // materials defined in MTL file
-	private ModelDimensions modelDims; // model dimensions
+	private final ModelDimensions modelDims; // model dimensions
 
-	private String modelNm; // without path or ".OBJ" extension
-	private float maxSize; // for scaling the model
+	private final String modelNm; // without path or ".OBJ" extension
+	private final float maxSize; // for scaling the model
 
 	// metadata
 	int numVerts = 0;
@@ -463,7 +463,7 @@ public class WavefrontLoader {
 		public float farPt, nearPt; // on z-axis
 
 		// for reporting
-		private DecimalFormat df = new DecimalFormat("0.##"); // 2 dp
+		private final DecimalFormat df = new DecimalFormat("0.##"); // 2 dp
 
 		public ModelDimensions() {
 			leftPt = 0.0f;
@@ -561,7 +561,7 @@ public class WavefrontLoader {
 		// stores the Material objects built from the MTL file data
 
 		// private File file;
-		private String mfnm;
+		private final String mfnm;
 
 		public Materials(String mtlFnm) {
 			// TODO: this map is now linked because we want to get only the first texture
@@ -681,7 +681,7 @@ public class WavefrontLoader {
 			Log.i("WavefrontLoader","No. of materials: " + materials.size());
 			Material m;
 			for (int i = 0; i < materials.size(); i++) {
-				m = (Material) materials.get(i);
+				m = materials.get(i);
 				m.showMaterial();
 				// System.out.println();
 			}
@@ -694,7 +694,7 @@ public class WavefrontLoader {
 	} // end of Materials class
 
 	public static class Material {
-		private String name;
+		private final String name;
 
 		// colour info
 		private Tuple3 ka, kd, ks; // ambient, diffuse, specular colours
@@ -702,7 +702,7 @@ public class WavefrontLoader {
 		private float d; // alpha
 
 		// texture info
-		private String texFnm;
+		private final String texFnm;
 		private String texture;
 
 		public Material(String nm) {
@@ -899,8 +899,8 @@ public class WavefrontLoader {
 				int numTokens = tokens.length; // number of v/vt/vn tokens
 				// create arrays to hold the v, vt, vn indicies
 
-				int vt[] = null;
-				int vn[] = null;
+				int[] vt = null;
+				int[] vn = null;
 
 
 				for (int i = 0, faceIndex = 0; i < numTokens; i++, faceIndex++) {
@@ -999,10 +999,10 @@ public class WavefrontLoader {
 
 	public static class FaceMaterials {
 		// the face index (integer) where a material is first used
-		private HashMap<Integer, String> faceMats;
+		private final HashMap<Integer, String> faceMats;
 
 		// for reporting
-		private HashMap<String, Integer> matCount;
+		private final HashMap<String, Integer> matCount;
 
 		// how many times a material (string) is used
 
@@ -1019,14 +1019,14 @@ public class WavefrontLoader {
 
 			// store how many times matName has been used by faces
 			if (matCount.containsKey(matName)) {
-				int i = (Integer) matCount.get(matName) + 1;
+				int i = matCount.get(matName) + 1;
 				matCount.put(matName, i);
 			} else
 				matCount.put(matName, 1);
 		} // end of addUse()
 
 		public String findMaterial(int faceIdx) {
-			return (String) faceMats.get(faceIdx);
+			return faceMats.get(faceIdx);
 		}
 
 		public void showUsedMaterials()
@@ -1045,7 +1045,7 @@ public class WavefrontLoader {
 			int count;
 			while (iter.hasNext()) {
 				matName = iter.next();
-				count = (Integer) matCount.get(matName);
+				count = matCount.get(matName);
 
 				System.out.print(matName + ": " + count);
 				System.out.println();

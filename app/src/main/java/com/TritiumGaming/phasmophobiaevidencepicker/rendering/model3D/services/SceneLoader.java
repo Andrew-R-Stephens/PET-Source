@@ -35,7 +35,7 @@ public class SceneLoader {
 	/**
 	 * Default model color: yellow
 	 */
-	private static float[] DEFAULT_COLOR = {1.0f, 1.0f, 0, 1.0f};
+	private static final float[] DEFAULT_COLOR = {1.0f, 1.0f, 0, 1.0f};
 	/**
 	 * Parent component
 	 */
@@ -59,7 +59,7 @@ public class SceneLoader {
 	/**
 	 * Whether to draw face normals. Normally used to debug models
 	 */
-	private boolean drawNormals = false;
+	private final boolean drawNormals = false;
 	/**
 	 * Whether to draw using textures
 	 */
@@ -87,7 +87,7 @@ public class SceneLoader {
 	/**
 	 * Animator
 	 */
-	private Animator animator = new Animator();
+	private final Animator animator = new Animator();
 
 	public SceneLoader(ModelFragment main) {
 		this.parent = main;
@@ -121,7 +121,7 @@ public class SceneLoader {
 					parent.getParamAssetDir(),
 					parent.getParamAssetFilename(), new Callback() {
 
-						long startTime = SystemClock.uptimeMillis();
+						final long startTime = SystemClock.uptimeMillis();
 
 						@Override
 						public void onBuildComplete(List<Object3DData> datas) {

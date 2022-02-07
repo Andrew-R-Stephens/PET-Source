@@ -122,7 +122,7 @@ public class AppInfoFragment extends Fragment {
                         Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
 
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

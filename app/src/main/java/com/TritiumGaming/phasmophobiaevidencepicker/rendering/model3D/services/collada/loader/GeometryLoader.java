@@ -38,8 +38,8 @@ public class GeometryLoader {
 	private final XmlNode materialsData;
 	private final XmlNode effectsData;
 	private final XmlNode imagesNode;
-	private Map<String, SkinningData> skinningDataMap;
-	private SkeletonData skeletonData;
+	private final Map<String, SkinningData> skinningDataMap;
+	private final SkeletonData skeletonData;
 	
 	private float[] verticesArray;
 	private float[] normalsArray;

@@ -285,7 +285,7 @@ class STLASCIIParser extends STLParser
      * @throws IllegalArgumentException The file was structurally incorrect
      */
     public boolean parse(URL url, Component parentComponent)
-        throws InterruptedIOException, IOException
+        throws IOException
     {
         InputStream stream = null;
         try
@@ -505,10 +505,10 @@ class STLASCIIParser extends STLParser
 
         for(int i = 0; i < numOfObjects; i ++)
         {
-            Integer num = (Integer)facetsPerObject.get(i);
+            Integer num = facetsPerObject.get(i);
             itsNumOfFacets[i] = num.intValue();
 
-            itsNames[i] = (String)names.get(i);
+            itsNames[i] = names.get(i);
         }
 
         return true;

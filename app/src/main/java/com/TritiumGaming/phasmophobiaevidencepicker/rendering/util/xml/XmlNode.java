@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class XmlNode {
 
-	private String name;
+	private final String name;
 	private Map<String, String> attributes;
 	private String data;
 	private Map<String, List<XmlNode>> childNodes;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,15 +33,410 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="Tools!"
+            android:text="CODEX"
             android:textColor="?attr/subtitleFontColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_invis"
             app:layout_constraintStart_toEndOf="@+id/button_prev"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_invis"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".1"
+            app:srcCompat="@drawable/icon_prev" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout78"
+        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintWidth_percent=".8">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideInset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_ouijaboard" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item1"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Cursed Posessions"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_evidencecodex" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item2"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Evidence"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_ghosts2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item3"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Ghosts"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_emf5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item4"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Primary Tools"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_tools" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item5"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Secondary Tools"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_maps" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item6"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Maps"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView6"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item7"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_sanityhead_top" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item7"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Player Sanity"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView7"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item8"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_ghostevents" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item8"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Ghost Events"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView8"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/listitem_circled">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/item9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_difficulties" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/item9"
+                        style="@style/TypewriterRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Difficulties"
+                        android:textColor="?attr/bodyFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -75,13 +471,12 @@
                 app:strokeWidth="1dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView1a"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:backgroundTint="@color/red_med"
                     android:scaleType="fitCenter"
                     android:tint="@color/red_med"
-                    app:layout_constraintBottom_toTopOf="@+id/textView1"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -127,13 +522,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView3a"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:backgroundTint="@color/red_med"
                     android:scaleType="fitCenter"
                     android:tint="@color/red_med"
-                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -172,10 +566,6 @@
                 android:id="@+id/constraintLayout_ghosts"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,9 +573,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -223,10 +627,6 @@
                 android:id="@+id/constraintLayout_toolsprimary"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_toolsalternative"
@@ -234,9 +634,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView4"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -265,10 +679,6 @@
                 android:id="@+id/constraintLayout_toolsalternative"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_mapsinfo"
@@ -276,9 +686,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView5"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -307,10 +731,6 @@
                 android:id="@+id/constraintLayout_mapsinfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -318,9 +738,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView6"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -360,10 +794,6 @@
                 android:id="@+id/constraintLayout_aboutsanity"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_ghostevents"
@@ -371,9 +801,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView7"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -402,10 +846,6 @@
                 android:id="@+id/constraintLayout_ghostevents"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout_aboutdifficulties"
@@ -413,9 +853,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView8"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -444,10 +898,6 @@
                 android:id="@+id/constraintLayout_aboutdifficulties"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@color/red_med"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/circlefaded"
-                android:padding="18sp"
                 android:layout_margin="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -455,9 +905,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/red_med"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/red_med"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circlefaded"
+                    app:tintMode="multiply" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView9"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -485,5 +949,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -31,8 +33,16 @@ public class CodexToolsPrimary extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        AppCompatImageView prev = view.findViewById(R.id.button_prev);
+        AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
+
+        title.setText("Primary Tools");
+
+        prev.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack());
+
         if (getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
