@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -745,15 +744,13 @@ public class EvidenceFragment extends Fragment {
 
             InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
             int score = ghost.getEvidenceScore();
-            boolean isForcefullyRejected = ghost.getIsForcefullyRejected();
-            Log.d("EvidenceScore", score + "");
-            if (score == -5) {
-                // Sets different strikethrough icons based on status
-                if(isForcefullyRejected) {
-                    statusIcon.setImageDrawable(icons_strikethrough[3]);
-                } else {
-                    statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
-                }
+            boolean rejectionStatus = evidenceViewModel.getRejectionPile()[j];
+
+            if (rejectionStatus) {
+                statusIcon.setImageDrawable(icons_strikethrough[3]);
+                statusIcon.setVisibility(View.VISIBLE);
+            } else if (score == -5) {
+                statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
                 statusIcon.setVisibility(View.VISIBLE);
             } else if (score == 3) {
                 statusIcon.setImageDrawable(icon_circle);
@@ -961,7 +958,9 @@ public class EvidenceFragment extends Fragment {
 
             InvestigationData.Ghost ghost =
                     evidenceViewModel.getInvestigationData().getGhost(index);
-            ghost.setIsForcefullyRejected(!ghost.getIsForcefullyRejected());
+
+            evidenceViewModel.swapStatusInRejectedPile(index);
+            //ghost.setIsForcefullyRejected(!ghost.getIsForcefullyRejected());
 
             evidenceViewModel.updateGhostOrder();
             createGhostViews(getView(), ghostContainer);

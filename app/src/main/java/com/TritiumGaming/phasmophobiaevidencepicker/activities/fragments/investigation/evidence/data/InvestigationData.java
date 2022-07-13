@@ -142,6 +142,7 @@ public class InvestigationData {
 
         private int id = -1;
         private String name = "NA";
+
         private boolean isForcefullyRejected = false;
 
         private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();

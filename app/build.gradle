@@ -29,8 +29,8 @@ android {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 65
-        versionName "7.3.0"
+        versionCode 66
+        versionName "7.4.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -82,8 +82,8 @@ dependencies {
     implementation "androidx.work:work-runtime:$work_version"
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment:2.4.2'
-    implementation 'androidx.navigation:navigation-ui:2.4.2'
+    implementation 'androidx.navigation:navigation-fragment:2.5.0'
+    implementation 'androidx.navigation:navigation-ui:2.5.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.6.1'
@@ -115,7 +115,7 @@ dependencies {
     implementation 'com.google.android.play:core-ktx:1.8.1'
 
     // FRAGMENTS
-    def fragment_version = '1.4.1'
+    def fragment_version = '1.5.0'
     // Java language implementation
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin

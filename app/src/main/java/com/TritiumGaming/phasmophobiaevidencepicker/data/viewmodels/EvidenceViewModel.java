@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -28,6 +29,7 @@ public class EvidenceViewModel extends ViewModel {
 
     private int[] radioButtonsChecked;
     private int[] ghostOrder;
+    private boolean[] rejectionPile;
 
     private PhaseTimerData phaseTimerData;
     private MapCarouselData mapCarouselData;
@@ -219,9 +221,37 @@ public class EvidenceViewModel extends ViewModel {
         return ghostOrder;
     }
 
+    public void createRejectionPile() {
+        rejectionPile = new boolean[InvestigationData.getGhostCount()];
+    }
+
+    public void swapStatusInRejectedPile(int index) {
+        boolean[] pile = getRejectionPile();
+        pile[index] = !pile[index];
+
+        Log.d("Rejected", Arrays.toString(pile));
+    }
+
+    public void updateRejectionPile() {
+        rejectionPile = new boolean[InvestigationData.getGhostCount()];
+
+        for(int i = 0; i < rejectionPile.length; i++) {
+            rejectionPile[i] = investigationData.getGhost(i).getIsForcefullyRejected();
+        }
+    }
+
+    public boolean[] getRejectionPile() {
+        if(rejectionPile == null) {
+            updateRejectionPile();
+        }
+
+        return rejectionPile;
+    }
+
     public void reset() {
         createRadioButtonsChecked();
         createGhostOrder();
+        createRejectionPile();
 
         if(hasPhaseTimerData()) {
             phaseTimerData.reset();
