@@ -748,6 +748,7 @@ public class EvidenceFragment extends Fragment {
             boolean isForcefullyRejected = ghost.getIsForcefullyRejected();
             Log.d("EvidenceScore", score + "");
             if (score == -5) {
+                // Sets different strikethrough icons based on status
                 if(isForcefullyRejected) {
                     statusIcon.setImageDrawable(icons_strikethrough[3]);
                 } else {
