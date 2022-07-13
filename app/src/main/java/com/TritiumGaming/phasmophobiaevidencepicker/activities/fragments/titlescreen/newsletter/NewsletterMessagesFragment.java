@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.views.MessagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
@@ -84,6 +85,13 @@ public class NewsletterMessagesFragment extends Fragment {
                     });
         }
 
+        NewsletterMessagesData inbox =
+                newsletterViewModel.getInbox(newsletterViewModel.getCurrentInboxType());
+        if(inbox != null) {
+            inbox.updateLastReadDate();
+            newsletterViewModel.saveToFile(getContext(), newsletterViewModel.getCurrentInboxType());
+        }
+
         // SET CONTENT
         if (newsletterViewModel != null && newsletterViewModel.getCurrentInbox() != null) {
             MessagesAdapterView adapter = new MessagesAdapterView(
@@ -114,8 +122,6 @@ public class NewsletterMessagesFragment extends Fragment {
             }
             mAdView.loadAd(titleScreenViewModel.getAdRequest());
         }
-
-
     }
 
 }

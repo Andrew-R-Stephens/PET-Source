@@ -23,6 +23,22 @@
     </string>
 
     <!-- Ghost description -->
+
+    <string name="evidence_ghost_info_deogen" >
+        <![CDATA[
+            <p>Der Deogen ist ein natürlicher Jäger. Herkömmliche Versteckmethoden funktionieren nicht, da es ein feines Gespür für das Aufspüren von Beute hat. Du kannst rennen … aber du kannst dich nicht verstecken.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_moroi">
+        <![CDATA[
+            <p>Die Moroi rauben den Lebenden den Verstand. Wenn die geistige Gesundheit seiner Opfer sinkt, wird der Moroi stärker. Halten Sie Ihre geistige Gesundheit so hoch wie möglich, um unerwünschte Aggressivität zu vermeiden.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_thaye">
+        <![CDATA[
+            <p>Die Thaye ist ein Geist, der im Jenseits schnell altert. Die irdische Repräsentation dieses Alterns wird sich in den frühen Stadien einer Mission als Stärke darstellen, aber in den späteren Stadien als Schwäche.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_banshee">
         <![CDATA[
                 <p>Banshees gelten als natürliche Jäger. Sie werden die Geisterjäger nacheinander verfolgen und jagen, <font color=#ff6161>wobei sie es immer nur auf eine Person absehen. Banshees fürchten das Kruzifix</font>, was dieses umso effektiver macht.</p>
@@ -30,63 +46,77 @@
     </string>
     <string name="evidence_ghost_info_demon">
         <![CDATA[
-                <p>Der Dämon ist einer schlimmsten Geister, denen man begegnen kann. Da er sehr aggressiv ist, <font color=#ff6161>greift er öfter an als jeder andere Geist</font>. Daher wird ein Kruzifix empfohlen, um Jagden zu verhindern. Die erfolgreiche Befragung des Ouija-Bretts verringert die geistige Gesundheit des Spielers nicht.</p>
+            <p>Der Dämon ist einer schlimmsten Geister, denen man begegnen kann. Da er sehr aggressiv ist, <font color=#ff6161>greift er öfter an als jeder andere Geist</font>. Daher wird ein Kruzifix empfohlen, um Jagden zu verhindern. Die erfolgreiche Befragung des Ouija-Bretts verringert die geistige Gesundheit des Spielers nicht.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_jinn">
         <![CDATA[
-
-                <p>Ein Dschinn ist ein territorialer Geist, der angreift, wenn er sich bedroht fühlt. Je weiter er vom Spieler entfernt ist, <font color=#ff6161>desto höher ist die Geschwindigkeit</font>, mit der er sich bewegt. <font color=#ff6161>Durch Abschalten der Stromversorgung über den Sicherungskasten wird der Dschinn am Nutzen seiner Fähigkeiten gehindert</font>.</p>
+            <p>Ein Dschinn ist ein territorialer Geist, der angreift, wenn er sich bedroht fühlt. Je weiter er vom Spieler entfernt ist, <font color=#ff6161>desto höher ist die Geschwindigkeit</font>, mit der er sich bewegt. <font color=#ff6161>Durch Abschalten der Stromversorgung über den Sicherungskasten wird der Dschinn am Nutzen seiner Fähigkeiten gehindert</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_mare">
         <![CDATA[
-                <p>Maren sind die Quelle aller Albträume und <font color=#ff6161>im Dunkeln sehr aggressiv</font>. Ist das Licht eingeschaltet und befindet sich der Mare nicht im Dunkeln, ist seine Aggressivität eingeschränkt. Maren könnten versuchen, sich durch das Ausschalten des Lichtes zu stärken.</p>
+            <p>Maren sind die Quelle aller Albträume und <font color=#ff6161>im Dunkeln sehr aggressiv</font>. Ist das Licht eingeschaltet und befindet sich der Mare nicht im Dunkeln, ist seine Aggressivität eingeschränkt. Maren könnten versuchen, sich durch das Ausschalten des Lichtes zu stärken.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_oni">
         <![CDATA[
-                <p>Ein Oni ist ein sehr aggressiver Geist, <font color=#ff6161>der umso aktiver wird, je mehr Spieler in seiner Nähe sind</font>. Das ist auch gleichzeitig seine größte Schwäche, da er sich wahrscheinlich schon zu Beginn der Runde zeigen wird. Er wird wahrscheinlich auch in der Nähe des Geisterraums herumlaufen.</p>
+            <p>Ein Oni ist ein sehr aggressiver Geist, <font color=#ff6161>der umso aktiver wird, je mehr Spieler in seiner Nähe sind</font>. Das ist auch gleichzeitig seine größte Schwäche, da er sich wahrscheinlich schon zu Beginn der Runde zeigen wird. Er wird wahrscheinlich auch in der Nähe des Geisterraums herumlaufen.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_phantom">
         <![CDATA[
-                <p>Phantome lösen große Ängste aus und <font color=#ff6161>verringern die geistige Gesundheit derer, die es anschauen, sehr stark. Wird es fotografiert, verschwindet es vorübergehend</font>. Obwohl gesagt wird, dass es von den Lebenden Besitz ergreift, gibt es keine Fähigkeit, mit der es dies tatsächlich tun kann. Auch wenn es heißt, dass es meistens durch ein Ouija-Brett beschworen wird, können Spieler das nicht selbst tun, ebenso muss auch kein Ouija-Brett vorhanden sein.</p>
+            <p>Phantome lösen große Ängste aus und <font color=#ff6161>verringern die geistige Gesundheit derer, die es anschauen, sehr stark. Wird es fotografiert, verschwindet es vorübergehend</font>. Obwohl gesagt wird, dass es von den Lebenden Besitz ergreift, gibt es keine Fähigkeit, mit der es dies tatsächlich tun kann. Auch wenn es heißt, dass es meistens durch ein Ouija-Brett beschworen wird, können Spieler das nicht selbst tun, ebenso muss auch kein Ouija-Brett vorhanden sein.</p>
        ]]>
     </string>
     <string name="evidence_ghost_info_poltergeist">
         <![CDATA[
-                <p>Einer der berühmtesten Geister und bekannt als sehr lauter Geist. <font color=#ff6161>Kann mehrere Objekte gleichzeitig manipulieren</font> und flößt seinen Opfern dadurch Angst ein.</p>
+            <p>Einer der berühmtesten Geister und bekannt als sehr lauter Geist. <font color=#ff6161>Kann mehrere Objekte gleichzeitig manipulieren</font> und flößt seinen Opfern dadurch Angst ein.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_revenant">
         <![CDATA[
-                <p>Der Revenant ist ein gewalttätiger Geist, <font color=#ff6161>der wahllos angreift</font> und sein aktuelles Ziel während einer Jagd wechseln kann. <font color=#ff6161>Versteckt man sich vor dem Revenant, bewegt er sich langsam, hat er jedoch ein Opfer im Visier, bewegt er sich schneller als jeder andere Geist</font>.</p>
+            <p>Der Revenant ist ein gewalttätiger Geist, <font color=#ff6161>der wahllos angreift</font> und sein aktuelles Ziel während einer Jagd wechseln kann. <font color=#ff6161>Versteckt man sich vor dem Revenant, bewegt er sich langsam, hat er jedoch ein Opfer im Visier, bewegt er sich schneller als jeder andere Geist</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_shade">
         <![CDATA[
-                <p>Der Shade gilt als „schüchterner Geist“. Das macht es schwieriger, Beweise zu finden, aber es <font color=#ff6161>ist unwahrscheinlich, dass er angreifen wird, solange sich die Spieler in Gruppen aufhalten</font>.</p>
+            <p>Der Shade gilt als „schüchterner Geist“. Das macht es schwieriger, Beweise zu finden, aber es <font color=#ff6161>ist unwahrscheinlich, dass er angreifen wird, solange sich die Spieler in Gruppen aufhalten</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_spirit">
         <![CDATA[
-                <p>Der Spirit ist der Geist, dem man am häufigsten begegnen wird, was ihn jedoch nicht weniger gefährlich und mächtig macht. Grund für sein Auftreten ist normalerweise ein ungeklärter Tod im heimgesuchten Bereich. Er hat keine besonderen Stärken. <font color=#ff6161>Räucherstäbchen werden ihn für ungefähr 3 Minuten am Jagen hindern</font>.</p>
+            <p>Der Spirit ist der Geist, dem man am häufigsten begegnen wird, was ihn jedoch nicht weniger gefährlich und mächtig macht. Grund für sein Auftreten ist normalerweise ein ungeklärter Tod im heimgesuchten Bereich. Er hat keine besonderen Stärken. <font color=#ff6161>Räucherstäbchen werden ihn für ungefähr 3 Minuten am Jagen hindern</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_wraith">
         <![CDATA[
-                <p>Das Gespenst ist einer der gefährlichsten Geister, die Sie finden werden. Er ist der einzige bekannte Geist, der <font color=#ff6161>die Fähigkeit besitzt zu fliegen, durch Türen sehen und durch Wände gehen kann. Salz ist für ein Gespenst giftig</font>.</p>
+            <p>Das Gespenst ist einer der gefährlichsten Geister, die Sie finden werden. Er ist der einzige bekannte Geist, der <font color=#ff6161>die Fähigkeit besitzt zu fliegen, durch Türen sehen und durch Wände gehen kann. Salz ist für ein Gespenst giftig</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_yurei">
         <![CDATA[
-                <p>Yureis haben einen <font color=#ff6161>hohen Einfluss auf die geistige Gesundheit des Spielers</font> (obwohl die meisten Geister die geistige Gesundheit sehr schnell erschöpfen). Das Ausräuchern des Raumes hindert den Yurei für längere Zeit daran, sich von seiner Position wegzubewegen.</p>
+            <p>Yureis haben einen <font color=#ff6161>hohen Einfluss auf die geistige Gesundheit des Spielers</font> (obwohl die meisten Geister die geistige Gesundheit sehr schnell erschöpfen). Das Ausräuchern des Raumes hindert den Yurei für längere Zeit daran, sich von seiner Position wegzubewegen.</p>
         ]]>
     </string>
 
     <!-- Ghost Strengths -->
 
+    <string name="evidence_ghost_strengths_deogen" >
+        <![CDATA[
+            <p>Das Deogen wird jedes Lebewesen spüren, egal wie gut es versteckt ist. Wenn Sie sich entscheiden, gegen ein Deogen stationär zu bleiben, werden Sie getötet. Verlassen Sie sich auch nicht darauf, die Sichtlinie zu unterbrechen.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_moroi">
+        <![CDATA[
+            <p>Die Moroi werden jedes bisschen verlorene geistige Gesundheit voll ausnutzen. Weniger Vernunft im Team führt zu mehr Aggressivität.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_thaye">
+        <![CDATA[
+            <p>Die Thaye sind zu Beginn einer Mission am aktivsten und gefährlichsten. Das macht es schon früh extrem bedrohlich.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
                 <p>Wird einen Spieler ins Visier nehmen, besonders wenn diese alleine sind.</p>
@@ -116,7 +146,6 @@
     <string name="evidence_ghost_strengths_phantom">
         <![CDATA[
                 <p>Phantome haben einen starken Einfluss auf die geistige Gesundheit des Spielers. Daher sollte es grundsätzlich nicht zu lange angeschaut werden. Der Spieler sollte auch darauf achten, nicht zu lange in der Anwesenheit des Geistes zu bleiben.</p>
-
             ]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist">
@@ -152,6 +181,21 @@
 
     <!-- Ghost Weaknesses -->
 
+    <string name="evidence_ghost_weaknesses_deogen" >
+        <![CDATA[
+            <p>Das Deogen wird seine Beute bis zur Erschöpfung verfolgen, aber es wird seiner Beute niemals entkommen. Bleiben Sie gegen dieses Gespenst in Bewegung und planen Sie Ihre Routen im Voraus.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_moroi">
+        <![CDATA[
+            <p>Die Moroi reagieren überempfindlich auf den Smudge Stick. Das Anzünden eines in der Nähe verringert ihre Aggressivität.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_thaye">
+        <![CDATA[
+            <p>Je länger der Geist in der Gegenwart der Lebenden ist, desto weniger aggressiv, schnell und stark ist er.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_weaknesses_banshee">
         <![CDATA[
         <p>Anfällig für das Kruzifix, was ihre Aggression verringert.</p>
@@ -524,5 +568,6 @@
         <![CDATA[
             <p>Eine Geisterkugel wird neben den deterministischen Beweisen von The Mimic erscheinen, was The Mimic zum einzigen Geistertyp macht, der (technisch) über einen vierten Beweis verfügt. Auch der Ghost Orb verhält sich anders als normal. Es folgt The Mimic, während es wandert, also halten Sie Ausschau nach einer umherstreifenden Geisterkugel, während Sie bei hoher Teamgesundheit sind.</p>
         ]]></string>
+    <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
 
 </resources>

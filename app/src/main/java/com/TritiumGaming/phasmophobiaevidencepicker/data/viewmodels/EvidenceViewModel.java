@@ -24,6 +24,8 @@ public class EvidenceViewModel extends ViewModel {
     private SanityRunnable sanityRunnable;
     private SanityData sanityData;
 
+    private boolean isCollapsed = false;
+
     private int[] radioButtonsChecked;
     private int[] ghostOrder;
 
@@ -133,6 +135,14 @@ public class EvidenceViewModel extends ViewModel {
      */
     public boolean hasSanityData() {
         return sanityData != null;
+    }
+
+    public void setCollapsed(boolean isCollapsed) {
+        this.isCollapsed = isCollapsed;
+    }
+
+    public boolean isCollapsed() {
+        return isCollapsed;
     }
 
     public void createRadioButtonsChecked() {

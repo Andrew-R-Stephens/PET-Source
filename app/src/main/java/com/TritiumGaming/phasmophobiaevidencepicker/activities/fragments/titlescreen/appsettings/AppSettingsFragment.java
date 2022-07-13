@@ -90,6 +90,8 @@ public class AppSettingsFragment extends Fragment {
         SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
         SwitchCompat switch_huntwarningaudio_switch =
                 view.findViewById(R.id.switch_huntwarningaudio_switch);
+        SwitchCompat switch_leftHandMode_switch =
+                view.findViewById(R.id.switch_leftHandMode_switch);
 
         SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
 
@@ -165,6 +167,18 @@ public class AppSettingsFragment extends Fragment {
                     if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setHuntWarningAudioAllowed(
                                 switch_huntwarningaudio_switch.isChecked());
+                    }
+                });
+            }
+
+            // Allow Hunt Warning Audio
+            if (switch_leftHandMode_switch != null) {
+                switch_leftHandMode_switch.setChecked(
+                        globalPreferencesViewModel.getIsLeftHandSupportEnabled());
+                switch_leftHandMode_switch.setOnClickListener(v -> {
+                    if (globalPreferencesViewModel != null) {
+                        globalPreferencesViewModel.setLeftHandSupportEnabled(
+                                switch_leftHandMode_switch.isChecked());
                     }
                 });
             }

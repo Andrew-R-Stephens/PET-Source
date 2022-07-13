@@ -30,6 +30,21 @@
 
     <!-- Ghost description -->
 
+    <string name="evidence_ghost_info_deogen" >
+        <![CDATA[
+            <p>Le Deogen est un chasseur naturel. Les méthodes de cachette conventionnelles ne fonctionneront pas car il a un sens aigu pour flairer les proies. Vous pouvez courir… mais vous ne pouvez pas vous cacher.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_moroi">
+        <![CDATA[
+            <p>Les Moroï évacuent la santé mentale des vivants. Au fur et à mesure que la santé mentale de ses victimes diminue, les Moroï deviennent plus forts. Gardez votre santé mentale aussi élevée que possible pour éviter toute agressivité indésirable.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_thaye">
+        <![CDATA[
+            <p>Le Thayé est un fantôme qui vieillit rapidement dans l\'au-delà. La représentation terrestre de ce vieillissement se présentera comme une force dans les premières étapes d\'une mission, mais comme une faiblesse dans les étapes ultérieures.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_banshee">
         <![CDATA[
             <p>Les banshees sont décrits comme des chasseurs naturels. Ils essaieront lentement de traquer et d\'éliminer les chasseurs de fantômes un par un. <font color=#ff6161>ciblant selectivement un enqueteur a la fois</font>. Banshees <font color=#ff6161>peur du crucifix</font>, accroitre son efficacite contre eux.</p>
@@ -94,6 +109,21 @@
 
     <!-- Ghost strengths -->
 
+    <string name="evidence_ghost_strengths_deogen" >
+        <![CDATA[
+            <p>Le Deogen sentira n\'importe quel être vivant, aussi bien caché soit-il. Choisir de rester immobile contre un Deogen vous fera tuer. Ne comptez pas non plus sur la rupture de la ligne de mire.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_moroi">
+        <![CDATA[
+            <p>Les Moroï profiteront pleinement de chaque morceau de santé mentale perdu. Moins de santé mentale d\'équipe produira des niveaux d\'agressivité plus élevés.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_thaye">
+        <![CDATA[
+            <p>Le Thayé sera le plus actif et le plus dangereux au début d\'une mission. Cela le rend extrêmement menaçant dès le début.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
             <p>Se concentrera sur un joueur, en particulier ceux qui tentent d\'affronter le Banshee seul.</p>
@@ -157,7 +187,21 @@
 
 
     <!-- Ghost weaknesses -->
-
+    <string name="evidence_ghost_weaknesses_deogen" >
+        <![CDATA[
+            <p>Le Deogen traquera sa proie jusqu\'à l\'épuisement, mais il ne dépassera jamais sa proie. Restez en mouvement contre ce fantôme et assurez-vous de planifier vos itinéraires à l\'avance.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_moroi">
+        <![CDATA[
+            <p>Les Moroï sont hypersensibles au Smudge Stick. En allumer un à proximité réduira leur agressivité.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_thaye">
+        <![CDATA[
+            <p>Plus le fantôme reste longtemps en présence des vivants, plus son agressivité, sa vitesse et sa force diminuent.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
             <p>Sensible a l\'utilisation d\'un crucifix pour reprimer leur agression.</p>
@@ -540,5 +584,6 @@
             <p>Un orbe fantôme apparaîtra aux côtés de la preuve déterministe de l\'imitation, ce qui fait de l\'imitation le seul type de fantôme à avoir (techniquement) une quatrième preuve. L\'orbe fantôme se comporte également différemment de la normale. Il suit The Mimic alors qu\'il erre, alors gardez un œil sur un orbe fantôme errant tout en étant à un niveau élevé de santé mentale d\'équipe.</p>
         ]]>
     </string>
+    <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
 
 </resources>

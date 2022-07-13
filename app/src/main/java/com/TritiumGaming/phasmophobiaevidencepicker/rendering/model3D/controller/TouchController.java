@@ -128,7 +128,7 @@ public class TouchController {
 					touchStatus = TOUCH_STATUS_ROTATING_CAMERA;
 					Log.i(TAG, "Rotating camera '" + Math.signum(rotationVector[2]) + "'...");
 
-					mRenderer.getCamera().Rotate((float) (Math.signum(rotationVector[2]) / Math.PI) / 4);
+					mRenderer.getCamera().Rotate((float) (Math.signum(rotationVector[2]) / Math.PI) / 4f);
 				}
 			} else if (pointerCount == 3) {
 

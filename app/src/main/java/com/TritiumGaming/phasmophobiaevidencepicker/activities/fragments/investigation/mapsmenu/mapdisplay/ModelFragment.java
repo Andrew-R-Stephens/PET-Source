@@ -294,9 +294,8 @@ public class ModelFragment extends Fragment {
 
     }
 
-    /*
+    /**
      *
-     * updateComponents
      */
     public void updateComponents() {
         if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
@@ -310,10 +309,7 @@ public class ModelFragment extends Fragment {
         }
     }
 
-    /*
-     *
-     * saveStates
-     * <p>
+    /**
      * Saves states of the MapViewer to the MapViewModel
      */
     public void saveStates() {

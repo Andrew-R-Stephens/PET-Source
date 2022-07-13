@@ -124,6 +124,9 @@ public class InvestigationData {
         for (int i = 0; i < evidence.size(); i++) {
             evidence.get(i).setRuling(Evidence.Ruling.NEUTRAL);
         }
+        for (Ghost g : getGhosts()) {
+            g.setIsForcefullyRejected(false);
+        }
     }
 
     public void print() {
@@ -139,6 +142,7 @@ public class InvestigationData {
 
         private int id = -1;
         private String name = "NA";
+        private boolean isForcefullyRejected = false;
 
         private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();
         private final ArrayList<Evidence> thisGhostNightmareEvidence = new ArrayList<>();
@@ -226,18 +230,32 @@ public class InvestigationData {
             return newEvidence;
         }
 
+        public void setIsForcefullyRejected(boolean isForced) {
+            isForcefullyRejected = isForced;
+        }
+
+        public boolean getIsForcefullyRejected() {
+            return isForcefullyRejected;
+        }
+
         /**
          * getEvidenceScore method
          * Determines the possibility of the ghost based on user-determined Evidence.
-         * Score starts at '0'
-         * Score adds +1 if Ghost's Evidence list contains a positive Evidence
-         * Score can surpass a positive value of '3' if the ghost is a Mimic
-         * Score sets to '-5' if an Evidence type is positive but not found in Ghost's Evidence list
-         * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list
+         * Score starts at '0'.
+         * Score adds +1 if Ghost's Evidence list contains a positive Evidence.
+         * Score can surpass a positive value of '3' if the ghost is a Mimic.
+         * Score sets to '-5' if the Ghost has been forcefully rejected by user.
+         * Score sets to '-5' if an Evidence type is positive but not found in Ghost's Evidence
+         * list.
+         * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list.
          *
          * @return numerical representation of the Ghost's Evidence score
          */
         public int getEvidenceScore() {
+
+            if(isForcefullyRejected) {
+                return -5;
+            }
 
             int score = 0;
             for (int i = 0; i < thisGhostEvidence.size(); i++) {

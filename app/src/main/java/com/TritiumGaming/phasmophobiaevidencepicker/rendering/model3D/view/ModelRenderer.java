@@ -36,7 +36,7 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	// frustrum - nearest pixel
 	private final float near = 1f;
 	// frustrum - fartest pixel
-	private final float far = 10f;
+	private final float far = 30f;
 
 	private Object3DBuilder drawer;
 	// The wireframe associated shape (it should be made of lines only)

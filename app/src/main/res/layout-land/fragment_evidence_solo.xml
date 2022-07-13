@@ -24,13 +24,13 @@
             android:layout_height="0dp"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
+            app:layout_constraintEnd_toStartOf="@+id/constraint_mainevidence"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".25">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout52"
+                android:id="@+id/constraint_sanitycarousel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/rect_border"
@@ -212,7 +212,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".25"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout52">
+                app:layout_constraintTop_toBottomOf="@+id/constraint_sanitycarousel">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout54"
@@ -484,7 +484,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout10"
+            android:id="@+id/constraint_mainevidence"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -503,7 +503,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textLabel_ghost"
+                    android:id="@+id/textLabel_headerLeft"
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -526,7 +526,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/scrollview_ghostList"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textLabel_ghost"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabel_headerLeft"
                     app:layout_constraintWidth_percent=".9" />
 
                 <ScrollView
@@ -549,7 +549,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/dividerA">
 
                     <LinearLayout
-                        android:id="@+id/layout_ghostList"
+                        android:id="@+id/layout_leftList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -568,7 +568,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textLabel_evidence"
+                    android:id="@+id/textLabel_headerRight"
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -594,7 +594,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/scrollview_evidenceList"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textLabel_evidence"
+                    app:layout_constraintTop_toBottomOf="@+id/textLabel_headerRight"
                     app:layout_constraintWidth_percent=".9" />
 
                 <ScrollView
@@ -617,7 +617,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider2">
 
                     <LinearLayout
-                        android:id="@+id/layout_evidenceList"
+                        android:id="@+id/layout_rightList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"

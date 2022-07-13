@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -57,15 +59,14 @@ public class TitlescreenFragment extends Fragment {
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-
     private TitlescreenViewModel titleScreenViewModel = null;
     private NewsletterViewModel newsLetterViewModel = null;
 
     private final BitmapUtils bitmapUtils = new BitmapUtils();
 
     private PopupWindow popup = null;
-
     private TitlescreenAnimationView animationView = null;
+    private View inboxNotify;
 
     private boolean canRunAnim = true, canRunMessageCenter = true;
 
@@ -117,6 +118,7 @@ public class TitlescreenFragment extends Fragment {
         ImageButton button_review = view.findViewById(R.id.button_review);
         ImageButton button_msgInbox = view.findViewById(R.id.button_inbox);
         View button_language = view.findViewById(R.id.listener_language);
+        inboxNotify = view.findViewById(R.id.img_inboxalert);
 
         // SET APP-ICON
         bitmapUtils.clearResources();
@@ -151,6 +153,7 @@ public class TitlescreenFragment extends Fragment {
             }
         );
 
+        inboxNotify.setAlpha(0f);
 
         //TODO Create a button hyperlink to app review page
 
@@ -172,6 +175,7 @@ public class TitlescreenFragment extends Fragment {
             button_review.setEnabled(false);
             button_review.setVisibility(View.INVISIBLE);
         }
+
         // REQUEST REVIEW PROMPT
         requestReview();
 
@@ -186,38 +190,23 @@ public class TitlescreenFragment extends Fragment {
     public void registerMessageInboxes() {
 
         try {
-            boolean isUpToDate = true;
-
             if (newsLetterViewModel != null) {
 
-                if (getContext() != null) {
-                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                            getContext().getResources().
-                                    getString(R.string.preference_phasmophobia_changelog_link),
-                            NewsletterViewModel.InboxType.PHASMOPHOBIA, newsLetterViewModel);
-                } else {
-                    isUpToDate = false;
-                }
+                new RSSParserUtils(XmlPullParserFactory.newInstance(),
+                        getContext().getResources().
+                                getString(R.string.preference_phasmophobia_changelog_link),
+                        NewsletterViewModel.InboxType.PHASMOPHOBIA, newsLetterViewModel);
 
-                if (getContext() != null) {
-                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                            getContext().getResources().
-                                    getString(R.string.preference_general_news_link),
-                            NewsletterViewModel.InboxType.GENERAL, newsLetterViewModel);
-                } else {
-                    isUpToDate = false;
-                }
+                new RSSParserUtils(XmlPullParserFactory.newInstance(),
+                        getContext().getResources().
+                                getString(R.string.preference_general_news_link),
+                        NewsletterViewModel.InboxType.GENERAL, newsLetterViewModel);
 
-                if (getContext() != null) {
-                    new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                            getContext().getResources().
-                                    getString(R.string.preference_pet_changelog_link),
-                            NewsletterViewModel.InboxType.PET, newsLetterViewModel);
-                } else {
-                    isUpToDate = false;
-                }
+                new RSSParserUtils(XmlPullParserFactory.newInstance(),
+                        getContext().getResources().
+                                getString(R.string.preference_pet_changelog_link),
+                        NewsletterViewModel.InboxType.PET, newsLetterViewModel);
 
-                newsLetterViewModel.setIsUpToDate(isUpToDate);
             }
 
         } catch (XmlPullParserException e) {
@@ -332,14 +321,11 @@ public class TitlescreenFragment extends Fragment {
                         if (getActivity() != null) {
                             Task<Void> flow = manager.launchReviewFlow(getActivity(), reviewInfo);
                             flow.addOnCompleteListener(flowTask -> {
-                                // The flow has finished. The API does not indicate whether the user
-                                // reviewed or not, or even whether the review dialog was shown.
-                                // Thus, no
-                                // matter the result, we continue our app flow.
+                                // DO NOTHING
                             });
                         }
                     } else {
-                        //Log.e("ReviewManager", "Task Failed");
+                        Log.e("ReviewManager", "Task Failed");
                         if (requestTask.getException() != null) {
                             (requestTask.getException()).printStackTrace();
                         }
@@ -387,25 +373,47 @@ public class TitlescreenFragment extends Fragment {
             int currentCycle = 0;
 
             while (canRunMessageCenter &&
-                    (!newsLetterViewModel.isUpToDate()) || (currentCycle < MAX_CYCLES)) {
+                    (!newsLetterViewModel.isUpToDate() && (currentCycle < MAX_CYCLES))) {
+
+                Log.d("MessageCenter", "Registering...");
 
                 registerMessageInboxes();
 
                 if (!newsLetterViewModel.isUpToDate()) {
-
                     Log.d("MessageCenter", "Load failed!");
-
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
+                } else {
+                    Log.d("MessageCenter", "Load success!");
                 }
 
                 currentCycle++;
+
             }
             Log.d("MessageCenter", "Load completed.");
+
+            while (canRunMessageCenter && !newsLetterViewModel.areAllInboxesReady()) {
+                Log.d("MessageCenter", "Inboxes not yet ready");
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // INITIALIZE VIEW MODEL
+            newsLetterViewModel.init(getContext());
+            newsLetterViewModel.compareDates();
+            if (newsLetterViewModel.requiresNotify()) {
+                Log.d("MessageCenter", "Starting animation");
+                Animation animation = AnimationUtils.loadAnimation(getContext(),
+                        R.anim.notifyblink);
+                inboxNotify.setAlpha(1f);
+                inboxNotify.startAnimation(animation);
+            }
 
         });
 
@@ -413,14 +421,29 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
+    private boolean checkInternetConnection() {
+        return (NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference()));
+    }
+
     private void startInitMessageCenterThread() {
 
-        if (NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference())) {
+        if (checkInternetConnection()) {
             startLoadMessageCenterThread();
         }
         else {
             Log.d("MessageCenter", "Could not obtain external data");
+
+            //newsLetterViewModel.init(getContext());
+            newsLetterViewModel.compareDates();
+            if (newsLetterViewModel.requiresNotify()) {
+                Log.d("MessageCenter", "Starting animation");
+                Animation animation = AnimationUtils.loadAnimation(getContext(),
+                        R.anim.notifyblink);
+                inboxNotify.setAlpha(1f);
+                inboxNotify.startAnimation(animation);
+            }
+
         }
     }
 
@@ -637,7 +660,9 @@ public class TitlescreenFragment extends Fragment {
         stopAnimInitThreads();
         canRunAnim = false;
         stopLoadMessageCenterThread();
-        canRunMessageCenter = false;
+        if(newsLetterViewModel.isUpToDate()) {
+            canRunMessageCenter = false;
+        }
 
         // RECYCLE ANIMATION VIEW
         if (animationView != null) {
@@ -685,4 +710,5 @@ public class TitlescreenFragment extends Fragment {
         }
         super.onLowMemory();
     }
+
 }

@@ -65,11 +65,10 @@ public class CodexPosessionsFragment extends Fragment {
 
         prevCursed.setOnClickListener(v -> {
             current--;
-            if(current <= 0)
+            if(current < 0)
                 current = frags.length-1;
 
             exchangePosessionFragment();
-
         });
 
         nextCursed.setOnClickListener(v -> {
@@ -106,6 +105,8 @@ public class CodexPosessionsFragment extends Fragment {
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.addToBackStack(null);
         ft.commit();
+
+
     }
 
 }

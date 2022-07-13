@@ -16,7 +16,6 @@
         <item>Load Model</item>
         <item>Models</item>
         <item>Demo</item>
-        <!-- <item>Settings</item> -->
         <item>Help</item>
         <item>About</item>
         <item>Exit</item>
@@ -61,14 +60,19 @@
     <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
     <!-- Page Details -->
     <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
+    <string name="preferences_newsletterFile_name" translatable="false">Newsletter_Preferences</string>
     <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
     <string name="preference_general_news_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
     <string name="preference_pet_changelog_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
     <string name="preference_phasmophobia_changelog_link" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
+    <string name="preference_newsletter_lastreaddate_general" translatable="false">newsletter_lastreaddate_general</string>
+    <string name="preference_newsletter_lastreaddate_pet" translatable="false">newsletter_lastreaddate_pet</string>
+    <string name="preference_newsletter_lastreaddate_phas" translatable="false">newsletter_lastreaddate_phas</string>
     <string name="preference_language" translatable="false">chosenLanguage</string>
     <string name="preference_network" translatable="false">networkPreference</string>
     <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
     <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
+    <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
     <string name="preference_colorSpace" translatable="false">colorSpace</string>
     <!-- Review Tracking -->
@@ -148,6 +152,7 @@
     <string name="settings_networktitle">Allow Message Center to use Mobile Data</string>
     <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
     <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
+    <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
     <string name="settings_colorblindnessmode_title">Colorblind Mode (Beta)</string>
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
@@ -204,10 +209,12 @@
     <!-- Ghost Names -->
     <string name="evidence_ghost_type_banshee">Banshee</string>
     <string name="evidence_ghost_type_demon">Demon</string>
+    <string name="evidence_ghost_type_deogen" translatable="false">Deogen</string>
     <string name="evidence_ghost_type_goryo" translatable="false">Goryo</string>
     <string name="evidence_ghost_type_hantu" translatable="false">Hantu</string>
     <string name="evidence_ghost_type_jinn">Jinn</string>
     <string name="evidence_ghost_type_mare">Mare</string>
+    <string name="evidence_ghost_type_moroi" translatable="false">Moroi</string>
     <string name="evidence_ghost_type_myling" translatable="false">Myling</string>
     <string name="evidence_ghost_type_obake" translatable="false">Obake</string>
     <string name="evidence_ghost_type_oni">Oni</string>
@@ -218,6 +225,7 @@
     <string name="evidence_ghost_type_revenant">Revenant</string>
     <string name="evidence_ghost_type_shade">Shade</string>
     <string name="evidence_ghost_type_spirit">Spirit</string>
+    <string name="evidence_ghost_type_thaye" translatable="false">Thaye</string>
     <string name="evidence_ghost_type_thetwins" translatable="false">The Twins</string>
     <string name="evidence_ghost_type_themimic" translatable="false">The Mimic</string>
     <string name="evidence_ghost_type_wraith">Wraith</string>
@@ -233,6 +241,11 @@
     <string name="evidence_ghost_info_demon" >
         <![CDATA[
             <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_deogen" >
+        <![CDATA[
+            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_goryo">
@@ -252,7 +265,12 @@
     </string>
     <string name="evidence_ghost_info_mare" >
         <![CDATA[
-            <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
+            <p>The Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_moroi">
+        <![CDATA[
+            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_myling">
@@ -267,12 +285,12 @@
     </string>
     <string name="evidence_ghost_info_oni" >
         <![CDATA[
-            <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
+            <p>The Oni is an aggressive ghost which <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_onryo">
         <![CDATA[
-            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc).</p>
+            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc). Any source of flame will act like Crucifix until it\'s extinguished.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_phantom" >
@@ -305,6 +323,11 @@
             <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_info_thaye">
+        <![CDATA[
+            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_thetwins">
         <![CDATA[
             <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
@@ -331,14 +354,22 @@
         ]]>
     </string>
 
+    <!--
+        Strengths
+    -->
     <string name="evidence_ghost_strengths_banshee" >
         <![CDATA[
-            <p>Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
+            <p>The Banshee will focus on one player, and will swap to a new target if their selected target is not in the play-area.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_demon" >
         <![CDATA[
-            <p>They can be difficult to gather clues on as they will attack players very frequently.</p>
+            <p>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt without any provocation.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_deogen">
+        <![CDATA[
+            <p>The Deogen will sense any living being, no matter how well hidden. Choosing to stay stationary against a Deogen will get you killed. Do not rely on breaking line-of-sight, as this will not stop a chase and will only allow the Deogen to move much quicker.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_goryo">
@@ -353,7 +384,7 @@
     </string>
     <string name="evidence_ghost_strengths_jinn" >
         <![CDATA[
-            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
+            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting. Once the Jinn catches up to a player, it will decelerate and switch to normal hunting speeds and behaviors.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mare" >
@@ -361,24 +392,30 @@
             <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_strengths_moroi">
+        <![CDATA[
+            <p>The Moroi will take full advantage of every bit of Sanity lost. Less team Sanity will produce higher levels of aggressiveness. At 0% average Sanity, the ghost will become lightning fast during a hunt.</p>
+            <p>The ghost has a hidden ability \-\- a curse \-\- which causes any player who has used the Spirit Box to drain in Sanity at a rate of .03%/sec so long as the effected player is within the play area. This effect stacks atop the normal rate at which players Sanity drains. Candles do not halt the effects, but the curse can be lifted upon the use of Sanity pills.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_myling">
         <![CDATA[
-            <p>A Myling is not as vocal as other Ghosts while Hunting.</p>
+            <p>A Myling is not as vocal as other Ghosts while Hunting. You will only detect their footsteps and their hunting audio while within the vicinity of electronic\-interference.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_obake">
         <![CDATA[
-            <p>An Obake may not leave a trace when manipulating the environment.</p>
+            <p>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_oni" >
         <![CDATA[
-            <p>Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
+            <p>Oni\'s possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_onryo">
         <![CDATA[
-            <p>Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
+            <p>The Onryo will target the source of flame and extinguish it. Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_phantom" >
@@ -393,7 +430,7 @@
     </string>
     <string name="evidence_ghost_strengths_raiju" >
         <![CDATA[
-            <p>Raijus become much faster while nearby electrical devices.</p>
+            <p>Raiju\'s become much faster while nearby electrical devices, but not the map power or room lights.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_revenant" >
@@ -403,22 +440,27 @@
     </string>
     <string name="evidence_ghost_strengths_shade" >
         <![CDATA[
-            <p>Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
+            <p>Shades can be difficult to find, and therefore it can be difficult to collect evidence for or find the location of.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_spirit" >
         <![CDATA[
-            <p>Spirits have no strengths in particular, as they are geared towards new players.</p>
+            <p>Spirits have no strengths in particular, as they are geared towards new players. Don\'t be fooled, though. It\'s lack of specialty makes it an even match.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_thaye">
+        <![CDATA[
+            <p>The Thaye will be most active and dangerous at the beginning of a mission. This makes it extremely threatening early on.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_thetwins">
         <![CDATA[
-            <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
+            <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt. This means that a hunt may start from two different locations.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_themimic">
         <![CDATA[
-            <p>The Mimic may copycat any ghost type, which makes it extremely dangerous and unpredictable.</p>
+            <p>The Mimic may copycat any ghost type, which makes it extremely dangerous and totally unpredictable.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_wraith" >
@@ -428,15 +470,16 @@
     </string>
     <string name="evidence_ghost_strengths_yokai">
         <![CDATA[
-            <p>Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
+            <p>Speaking nearby a Yokai will anger it. Speaking nearby a Yokai has the chance of provoking a hunt which supersedes the protections of high Sanity levels.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yurei" >
         <![CDATA[
-            <p>Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
+            <p>Yurie\'s will drop players\' sanity, while they are looking at it, much quicker than any other ghost \-\- but can also decrease sanity even when a player is turned away.</p>
         ]]>
     </string>
 
+    <!-- Weaknesses -->
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
             <p>Susceptible to the use of a crucifix to cull their aggression.</p>
@@ -445,6 +488,11 @@
     <string name="evidence_ghost_weaknesses_demon" >
         <![CDATA[
             <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_deogen">
+        <![CDATA[
+            <p>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_goryo">
@@ -465,6 +513,11 @@
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
             <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_moroi">
+        <![CDATA[
+            <p>The Moroi are hypersensitive to the Smudge Stick. Lighting one nearby will lower their aggressiveness.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_myling" >
@@ -515,6 +568,11 @@
     <string name="evidence_ghost_weaknesses_spirit" >
         <![CDATA[
             <p>Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_thaye">
+        <![CDATA[
+            <p>The longer the ghost is in the presence of the living, it will decrease in aggressiveness, speed, and strength.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thetwins" >

@@ -24,6 +24,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private boolean isAlwaysOn = false;
     private boolean isHuntAudioAllowed = true;
     private boolean networkPreference = true;
+    private boolean isLeftHandSupportEnabled = false;
 
     /**
      * init method
@@ -40,6 +41,9 @@ public class GlobalPreferencesViewModel extends ViewModel {
         setHuntWarningAudioAllowed(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
         setHuntWarningFlashTimeout(sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()));
         setColorSpace(sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()));
+        setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), getIsLeftHandSupportEnabled()));
+        setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
+        setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
 
         reviewRequestData = new ReviewTrackingData(
                 sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false),
@@ -48,6 +52,14 @@ public class GlobalPreferencesViewModel extends ViewModel {
         );
 
         saveToFile(context);
+    }
+
+    public void setLeftHandSupportEnabled(boolean isLeftHandSupportEnabled) {
+        this.isLeftHandSupportEnabled = isLeftHandSupportEnabled;
+    }
+
+    public boolean getIsLeftHandSupportEnabled() {
+        return isLeftHandSupportEnabled;
     }
 
     public static SharedPreferences getSharedPreferences(Context context) {
@@ -356,6 +368,20 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    public void saveIsLeftHandSupportEnabled(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
+        editor.putBoolean(c.getResources().getString(R.string.preference_isLeftHandSupportEnabled),
+                getIsLeftHandSupportEnabled());
+
+        if(localApply) {
+            editor.apply();
+        }
+    }
+
     /**
      * saveToFile method
      *
@@ -371,6 +397,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveHuntWarningAudioAllowed(context, editor, false);
         saveHuntWarningFlashTimeout(context, editor, false);
         saveColorSpace(context, editor, false);
+        saveIsLeftHandSupportEnabled(context, editor, false);
         saveCanRequestReview(context, editor, false);
         saveTimesOpened(context, editor, false);
         saveAppTimeAlive(context, editor, false);

@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -30,6 +32,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -73,8 +76,10 @@ public class EvidenceFragment extends Fragment {
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
-    protected ConstraintLayout mainConstraintLayout;
     protected ConstraintLayout sanityTrackingConstraintLayout;
+
+    protected AppCompatImageView collapseButton;
+    protected AppCompatImageView expandButton;
     protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercentTextView;
 
@@ -155,27 +160,45 @@ public class EvidenceFragment extends Fragment {
         }
 
         // GHOST / EVIDENCE CONTAINERS
-        LinearLayout ghostContainer = view.findViewById(R.id.layout_ghostList);
-        LinearLayout evidenceContainer = view.findViewById(R.id.layout_evidenceList);
+        AppCompatTextView header_ghostLabel, header_evidenceLabel;
+        LinearLayout ghostContainer, evidenceContainer;
+        if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
+            header_ghostLabel = view.findViewById(R.id.textLabel_headerLeft);
+            header_evidenceLabel = view.findViewById(R.id.textLabel_headerRight);
+            ghostContainer = view.findViewById(R.id.layout_leftList);
+            evidenceContainer = view.findViewById(R.id.layout_rightList);
+        } else {
+            header_ghostLabel = view.findViewById(R.id.textLabel_headerRight);
+            header_evidenceLabel = view.findViewById(R.id.textLabel_headerLeft);
+            ghostContainer = view.findViewById(R.id.layout_rightList);
+            evidenceContainer = view.findViewById(R.id.layout_leftList);
+        }
 
-        // SANITY METER VIEWS
-        sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
+        collapseButton = view.findViewById(R.id.button_collapsesanity);
+        expandButton = view.findViewById(R.id.button_raisesanity);
+
+        // SANITY CONSTRAINTS
+        ConstraintLayout constraint_sanityContainer =
+                view.findViewById(R.id.constraint_sanityContainer);
+
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
 
         // SANITY METER VIEWS
+        sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
         sanityWarningTextView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
-        mainConstraintLayout = view.findViewById(R.id.layout_main);
+        // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
         // DRAWABLES
         icons_strikethrough = new Drawable[]{
                 getResources().getDrawable(R.drawable.icon_strikethrough_1),
                 getResources().getDrawable(R.drawable.icon_strikethrough_2),
-                getResources().getDrawable(R.drawable.icon_strikethrough_3)
+                getResources().getDrawable(R.drawable.icon_strikethrough_3),
+                getResources().getDrawable(R.drawable.icon_strikethrough_forced)
         };
         icon_circle = getResources().getDrawable(R.drawable.icon_circle);
 
@@ -191,6 +214,28 @@ public class EvidenceFragment extends Fragment {
                 view.findViewById(R.id.icon_resetAll),
                 null,
                 view.findViewById(R.id.icon_goto_right));
+
+        if(expandButton!= null && collapseButton != null) {
+            collapseButton.setOnClickListener(v -> {
+                if(!evidenceViewModel.isCollapsed()) {
+                    sanityTrackingConstraintLayout.setVisibility(View.GONE);
+                    expandButton.setVisibility(View.VISIBLE);
+                } else {
+                    expandButton.setVisibility(View.GONE);
+                    sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
+                }
+                evidenceViewModel.setCollapsed(true);
+            });
+            expandButton.setOnClickListener(v -> {
+                if(evidenceViewModel.isCollapsed()) {
+                    expandButton.setVisibility(View.GONE);
+                    sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
+                }
+                evidenceViewModel.setCollapsed(false);
+            });
+
+            initCollapsible();
+        }
 
         sanitySeekBarView.init(
                 sanityData,
@@ -224,9 +269,22 @@ public class EvidenceFragment extends Fragment {
             sanityPercentTextView.setText(sanityData.toPercentString());
         }
 
+        header_ghostLabel.setText(R.string.evidence_ghosts_title);
+        header_evidenceLabel.setText(R.string.evidence_evidence_title);
+
         createEvidenceViews(view, evidenceContainer, ghostContainer);
         createGhostViews(view, ghostContainer);
 
+    }
+
+    private void initCollapsible() {
+        if(!evidenceViewModel.isCollapsed()) {
+            sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
+            expandButton.setVisibility(View.GONE);
+        } else {
+            sanityTrackingConstraintLayout.setVisibility(View.GONE);
+            expandButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -335,7 +393,6 @@ public class EvidenceFragment extends Fragment {
             mainLayout.setLayoutParams(params);
 
             name.setText(evidenceName);
-
             name.setOnClickListener(v -> {
 
                 if(getView() == null || getView().getContext() == null) {
@@ -389,7 +446,6 @@ public class EvidenceFragment extends Fragment {
                     adRequest = new AdRequest.Builder().build();
                     mAdView.loadAd(adRequest);
                 }
-
             });
 
             TypedValue typedValue = new TypedValue();
@@ -493,6 +549,10 @@ public class EvidenceFragment extends Fragment {
 
             icon3.setOnClickListener(v -> {
 
+                if(getContext() == null) {
+                    return;
+                }
+
                 icon1.setImageResource(R.drawable.icon_negative_unselected);
                 icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
                 icon3.setImageResource(R.drawable.icon_positive_selected);
@@ -511,11 +571,10 @@ public class EvidenceFragment extends Fragment {
             });
 
             evidenceContainer.addView(evidenceParent);
-
         }
-
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void createGhostViews(View view, LinearLayout ghostContainer) {
 
         ghostContainer.removeAllViews();
@@ -558,6 +617,23 @@ public class EvidenceFragment extends Fragment {
             mainLayout.setLayoutParams(params);
 
             name.setText(ghostName);
+
+            GestureDetectorCompat swipeListener = new GestureDetectorCompat(getContext(),
+                    new GhostSwipeListener(
+                            ghostContainer,
+                            name,
+                            j,
+                            ghostName,
+                            ghostInfo,
+                            ghostStrength,
+                            ghostWeakness));
+
+            name.setOnTouchListener((view1, motionEvent) -> {
+                swipeListener.onTouchEvent(motionEvent);
+                return true;
+            });
+
+            /*
             name.setOnClickListener(v -> {
 
                 if(getView() == null || getView().getContext() == null) {
@@ -665,11 +741,18 @@ public class EvidenceFragment extends Fragment {
                 }
 
             });
+            */
 
-            int score = evidenceViewModel.getInvestigationData().getGhost(j).getEvidenceScore();
+            InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
+            int score = ghost.getEvidenceScore();
+            boolean isForcefullyRejected = ghost.getIsForcefullyRejected();
             Log.d("EvidenceScore", score + "");
             if (score == -5) {
-                statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
+                if(isForcefullyRejected) {
+                    statusIcon.setImageDrawable(icons_strikethrough[3]);
+                } else {
+                    statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
+                }
                 statusIcon.setVisibility(View.VISIBLE);
             } else if (score == 3) {
                 statusIcon.setImageDrawable(icon_circle);
@@ -802,10 +885,6 @@ public class EvidenceFragment extends Fragment {
             sanitySeekBarView.updateProgress();
         }
 
-        if (difficultyCarouselView != null) {
-            //difficultyCarouselView.reset();
-        }
-
         if(phaseTimerCountdownView != null) {
             phaseTimerCountdownView.destroyTimer();
         }
@@ -846,6 +925,157 @@ public class EvidenceFragment extends Fragment {
         }
 
         super.onResume();
+    }
+
+    private class GhostSwipeListener extends GestureDetector.SimpleOnGestureListener {
+        private final LinearLayout ghostContainer;
+        private final View view;
+        private final int index;
+        private final String ghostName, ghostInfo, ghostStrength, ghostWeakness;
+
+        public GhostSwipeListener(
+                LinearLayout ghostContainer,
+                View view,
+                int index,
+                String ghostName,
+                String ghostInfo,
+                String ghostStrength,
+                String ghostWeakness) {
+
+            super();
+
+            this.ghostContainer = ghostContainer;
+            this.view = view;
+            this.index = index;
+            this.ghostName = ghostName;
+            this.ghostInfo = ghostInfo;
+            this.ghostStrength = ghostStrength;
+            this.ghostWeakness = ghostWeakness;
+
+        }
+
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+
+            InvestigationData.Ghost ghost =
+                    evidenceViewModel.getInvestigationData().getGhost(index);
+            ghost.setIsForcefullyRejected(!ghost.getIsForcefullyRejected());
+
+            evidenceViewModel.updateGhostOrder();
+            createGhostViews(getView(), ghostContainer);
+
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(@NonNull MotionEvent e) {
+            if(getView() == null || getView().getContext() == null) {
+                return false;
+            }
+
+            if (popup != null) {
+                popup.dismiss();
+            }
+
+            LayoutInflater inflaterPopup =
+                    (LayoutInflater) getView().getContext().getSystemService(
+                            Context.LAYOUT_INFLATER_SERVICE);
+            @SuppressLint("InflateParams")
+            View customView = inflaterPopup.inflate(R.layout.popup_info_ghost, null);
+
+            popup = new PopupWindow(
+                    customView,
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+            );
+
+            ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+            ConstraintLayout evidenceIconLayout =
+                    customView.findViewById(R.id.layout_evidenceicons);
+            AppCompatImageView evidence1 = evidenceIconLayout.findViewById(R.id.icon1);
+            AppCompatImageView evidence2 = evidenceIconLayout.findViewById(R.id.icon2);
+            AppCompatImageView evidence3 = evidenceIconLayout.findViewById(R.id.icon3);
+            ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
+            ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
+            ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
+            ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
+            ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
+            ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
+            View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
+            View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
+            View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
+
+            AppCompatTextView label_name =
+                    customView.findViewById(R.id.label_name);
+
+            AppCompatTextView label_info =
+                    customView.findViewById(R.id.label_infoTitle);
+            AppCompatTextView label_strength =
+                    customView.findViewById(R.id.label_strengthsTitle);
+            AppCompatTextView label_weakness =
+                    customView.findViewById(R.id.label_weaknessesTitle);
+
+            AppCompatTextView info = scroller1.findViewById(R.id.label_info);
+            AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
+            AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
+
+            label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+            label_name.setText(ghostName);
+
+            evidence1.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(index)
+                            .getEvidenceArray()[0]
+                            .getIcon());
+            evidence2.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(index)
+                            .getEvidenceArray()[1]
+                            .getIcon());
+            evidence3.setImageResource(
+                    evidenceViewModel.getInvestigationData()
+                            .getGhost(index)
+                            .getEvidenceArray()[2]
+                            .getIcon());
+
+            info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                    ghostInfo,
+                    "#ff6161", fontEmphasisColor + "")));
+            strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                    ghostStrength,
+                    "#ff6161", fontEmphasisColor + "")));
+            weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                    ghostWeakness,
+                    "#ff6161", fontEmphasisColor + "")));
+
+            closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+            fadeOutIndicatorAnimation(
+                    scroller1,
+                    indicator1);
+            fadeOutIndicatorAnimation(
+                    scroller2,
+                    indicator2);
+            fadeOutIndicatorAnimation(
+                    scroller3,
+                    indicator3);
+
+            popup.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0);
+
+            if (getActivity() != null) {
+                MobileAds.initialize(getActivity(), initializationStatus -> {
+                });
+                AdView mAdView = customView.findViewById(R.id.adView);
+                adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+            return super.onSingleTapConfirmed(e);
+        }
     }
 
 }

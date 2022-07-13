@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
+import android.util.Log;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
@@ -18,7 +20,8 @@ public class RSSParserUtils {
 
     private final NewsletterViewModel.InboxType inboxType;
 
-    public RSSParserUtils(XmlPullParserFactory factory, String urlStr,
+    public RSSParserUtils(XmlPullParserFactory factory,
+                          String urlStr,
                           NewsletterViewModel.InboxType type,
                           NewsletterViewModel newsLetterViewModel) {
 
@@ -69,24 +72,30 @@ public class RSSParserUtils {
                 String title = null, date = null, description = null;
 
                 while (eventType != XmlPullParser.END_DOCUMENT) {
-                    //Log.d("RSSParser", "Looping through Document");
                     if (eventType == XmlPullParser.START_TAG) {
-                        if (xpp.getName().equalsIgnoreCase("item")) {
-                            insideItem = true;
-                        } else if (xpp.getName().equalsIgnoreCase("title")) {
-                            if (insideItem) {
-                                title = xpp.nextText();
-                                //Log.d("RSSParser", "Title: " + title.substring(0, 5));
+                        String elementName = xpp.getName().toLowerCase();
+                        switch(elementName) {
+                            case "item": {
+                                insideItem = true;
+                                break;
                             }
-                        } else if (xpp.getName().equalsIgnoreCase("description")) {
-                            if (insideItem) {
-                                description = xpp.nextText();
-                                //Log.d("RSSParser", "Desc: " + description.substring(0, 5));
+                            case "title": {
+                                if(insideItem) {
+                                    title = xpp.nextText();
+                                }
+                                break;
                             }
-                        } else if (xpp.getName().equalsIgnoreCase("pubdate")) {
-                            if (insideItem) {
-                                date = xpp.nextText();
-                                //Log.d("RSSParser", "PubDate: " + date.substring(0, 5));
+                            case "description": {
+                                if(insideItem) {
+                                    description = xpp.nextText();
+                                }
+                                break;
+                            }
+                            case "pubdate": {
+                                if(insideItem) {
+                                    date = xpp.nextText();
+                                }
+                                break;
                             }
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
@@ -105,8 +114,9 @@ public class RSSParserUtils {
                 in.close();
 
                 newsLetterViewModel.addInbox(messageList, inboxType);
-                //Log.d("Saving InboxMessageList", "Count: " + messageList.getMessageCount());
-                //Log.d("RSSParser", "End of Document");
+
+                newsLetterViewModel.compareDates(inboxType);
+                newsLetterViewModel.getInbox(inboxType).setIsReady(true);
 
             } catch (XmlPullParserException | IOException e) {
                 e.printStackTrace();

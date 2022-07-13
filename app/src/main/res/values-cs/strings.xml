@@ -99,6 +99,21 @@
     <string name="evidence_ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
+    <string name="evidence_ghost_info_deogen" >
+        <![CDATA[
+            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_moroi">
+        <![CDATA[
+            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_thaye">
+        <![CDATA[
+            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_banshee" >
         <![CDATA[
             <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>. Banshees <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them.</p>
@@ -200,6 +215,21 @@
         ]]>
     </string>
 
+    <string name="evidence_ghost_strengths_deogen" >
+        <![CDATA[
+            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_moroi">
+        <![CDATA[
+            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_thaye">
+        <![CDATA[
+            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_banshee" >
         <![CDATA[
             <p>Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
@@ -301,6 +331,21 @@
         ]]>
     </string>
 
+    <string name="evidence_ghost_weaknesses_deogen" >
+        <![CDATA[
+            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_moroi">
+        <![CDATA[
+            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_thaye">
+        <![CDATA[
+            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
             <p>Susceptible to the use of a crucifix to cull their aggression.</p>
@@ -557,5 +602,6 @@
     <string name="evidence_ghost_weaknesses_themimic"><![CDATA[
             <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
         ]]></string>
+    <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
 
 </resources>

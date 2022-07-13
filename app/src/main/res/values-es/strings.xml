@@ -25,6 +25,21 @@
     -->
 
     <!-- Ghost description -->
+    <string name="evidence_ghost_info_deogen" >
+        <![CDATA[
+            <p>El Deogen es un cazador nato. Los métodos de ocultación convencionales no funcionarán, ya que tiene un agudo sentido para olfatear presas. Puedes correr… pero no puedes esconderte.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_moroi">
+        <![CDATA[
+            <p>Los Moroi eliminan la cordura de los vivos. A medida que la cordura de sus víctimas disminuye, el Moroi se vuelve más fuerte. Mantenga su cordura lo más alta posible para evitar la agresividad no deseada.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_thaye">
+        <![CDATA[
+            <p>El Thaye es un fantasma que envejece rápidamente en el más allá. La representación terrenal de este envejecimiento se presentará como fortaleza en las primeras etapas de una misión, pero como debilidad en las etapas posteriores.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_banshee">
         <![CDATA[
 			<p>Las banshees se describen como cazadoras naturales. Intentaran acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>apuntar selectivamente a un investigador a la vez</font>. Banshees <font color=#ff6161>teme al crucifijo</font>, Incrementando su efectividad contra ellas.</p>
@@ -88,6 +103,21 @@
     
     <!-- Ghost Strengths -->
 
+    <string name="evidence_ghost_strengths_deogen" >
+        <![CDATA[
+            <p>El Deógeno detectará a cualquier ser vivo, sin importar cuán bien escondido esté. Elegir permanecer estacionario contra un Deogen hará que te maten. Tampoco confíes en romper la línea de visión.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_moroi">
+        <![CDATA[
+            <p>Los Moroi aprovecharán al máximo cada pizca de cordura perdida. Menos Cordura de equipo producirá mayores niveles de agresividad.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_thaye">
+        <![CDATA[
+            <p>El Thaye será más activo y peligroso al comienzo de una misión. Esto lo hace extremadamente amenazante desde el principio.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_banshee">
         <![CDATA[
 			<p>Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
@@ -149,6 +179,21 @@
     
     <!-- Ghost Weaknesses -->
 
+    <string name="evidence_ghost_weaknesses_deogen" >
+        <![CDATA[
+            <p>El Deogen acechará a su presa hasta el agotamiento, pero nunca superará a su presa. Manténgase en movimiento contra este fantasma y asegúrese de planificar sus rutas con anticipación.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_moroi">
+        <![CDATA[
+            <p>Los Moroi son hipersensibles al Smudge Stick. Encender uno cercano reducirá su agresividad.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_thaye">
+        <![CDATA[
+            <p>Cuanto más tiempo esté el fantasma en presencia de los vivos, disminuirá su agresividad, velocidad y fuerza.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_weaknesses_banshee">
         <![CDATA[
 			<p>Susceptible al uso de un crucifijo para mitigar su agresion.</p>
@@ -536,5 +581,6 @@
         <![CDATA[
             <p>Aparecerá un Ghost Orb junto con la Evidencia determinista de The Mimic, lo que hace que The Mimic sea el único tipo de fantasma que (técnicamente) tiene una cuarta pieza de Evidencia. El Ghost Orb también se comporta de manera diferente a lo normal. Sigue a The Mimic mientras deambula, así que esté atento a un Ghost Orb itinerante mientras está en un nivel alto de Cordura del equipo.</p>
         ]]></string>
+    <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
 
 </resources>

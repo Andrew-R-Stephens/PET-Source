@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -455,19 +456,58 @@
                     app:layout_constraintVertical_bias="0.2">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout60"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout57"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/switch_leftHandMode_text"
+                            style="@style/NorseRegular"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:gravity="center"
+                            android:text="@string/settings_enableLeftHandSupport"
+                            app:layout_constraintBottom_toBottomOf="@+id/switch_leftHandMode_switch"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
+                            app:layout_constraintTop_toTopOf="@+id/switch_leftHandMode_switch" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_leftHandMode_switch"
+                            style="@style/NorseRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start|center_vertical"
+                            android:inputType="text"
+                            android:textColor="?attr/switchColor"
+                            android:textIsSelectable="false"
+                            android:theme="@style/SwitchTheme"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/switch_leftHandMode_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout57"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout60">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_text"
+                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            style="@style/NorseRegular"
                             android:gravity="center"
                             android:text="@string/settings_enablehuntaudioqueue"
                             app:layout_constraintBottom_toBottomOf="@+id/switch_huntwarningaudio_switch"
@@ -477,9 +517,9 @@
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/switch_huntwarningaudio_switch"
+                            style="@style/NorseRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/NorseRegular"
                             android:gravity="start|center_vertical"
                             android:inputType="text"
                             android:textColor="?attr/switchColor"
@@ -503,9 +543,9 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_title"
+                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            style="@style/NorseRegular"
                             android:gravity="center"
                             android:maxLines="1"
                             android:text="@string/settings_huntwarningflashtimeout"
@@ -536,10 +576,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_othertext"
+                            style="@style/EastRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"
-                            style="@style/EastRegular"
                             android:gravity="center"
                             android:text="@string/settings_huntwarningflashtimeout_never"
                             app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -549,11 +589,11 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_timetext"
+                            style="@style/EastRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"
                             android:ems="10"
-                            style="@style/EastRegular"
                             android:gravity="center"
                             android:maxLines="1"
                             android:text="@string/settings_huntwarningflashtimeout_never"
