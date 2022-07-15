@@ -7,14 +7,15 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterVi
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class NewsletterMessagesData {
 
     private boolean isReady = false;
 
-    private String lastReadDate = "LOL";
-    private String mostRecentDateFound = "LOSER";
+    private String lastReadDate = "NA";
+    private String mostRecentDateFound = "NA";
 
     boolean requiresNotify;
 
@@ -51,9 +52,12 @@ public class NewsletterMessagesData {
         SimpleDateFormat simpleFormatter =
                 new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
 
-        String output;
+        String output = "NA";
         try {
-            output = simpleFormatter.format(parser.parse(date));
+            Date formattedDate = parser.parse(date);
+            if(formattedDate != null) {
+                output = simpleFormatter.format(formattedDate);
+            }
         } catch (ParseException e) {
             output = date;
         }
@@ -90,16 +94,18 @@ public class NewsletterMessagesData {
         return requiresNotify = !mostRecentDateFound.equalsIgnoreCase(lastReadDate);
     }
 
+    /*
     public int getMessageCount() {
         return messages.size();
     }
 
-    public String getLastReadDate() {
-        return lastReadDate;
-    }
-
     public String getMostRecentDate() {
         return mostRecentDateFound;
+    }
+    */
+
+    public String getLastReadDate() {
+        return lastReadDate;
     }
 
     public void updateLastReadDate() {

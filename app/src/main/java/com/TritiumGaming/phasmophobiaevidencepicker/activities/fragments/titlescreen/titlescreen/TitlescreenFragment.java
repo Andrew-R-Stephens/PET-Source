@@ -31,7 +31,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
@@ -43,9 +42,6 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.util.Locale;
 
@@ -189,28 +185,8 @@ public class TitlescreenFragment extends Fragment {
 
     public void registerMessageInboxes() {
 
-        try {
-            if (newsLetterViewModel != null) {
-
-                new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                        getContext().getResources().
-                                getString(R.string.preference_phasmophobia_changelog_link),
-                        NewsletterViewModel.InboxType.PHASMOPHOBIA, newsLetterViewModel);
-
-                new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                        getContext().getResources().
-                                getString(R.string.preference_general_news_link),
-                        NewsletterViewModel.InboxType.GENERAL, newsLetterViewModel);
-
-                new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                        getContext().getResources().
-                                getString(R.string.preference_pet_changelog_link),
-                        NewsletterViewModel.InboxType.PET, newsLetterViewModel);
-
-            }
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
+        if(newsLetterViewModel != null && getContext() != null) {
+            newsLetterViewModel.registerInboxes(getContext());
         }
 
     }
@@ -375,44 +351,53 @@ public class TitlescreenFragment extends Fragment {
             while (canRunMessageCenter &&
                     (!newsLetterViewModel.isUpToDate() && (currentCycle < MAX_CYCLES))) {
 
-                Log.d("MessageCenter", "Registering...");
+                Log.d("MessageCenter", "Attempting to load inboxes...");
 
                 registerMessageInboxes();
 
                 if (!newsLetterViewModel.isUpToDate()) {
-                    Log.d("MessageCenter", "Load failed!");
+                    Log.d("MessageCenter",
+                            "[Attempt " + currentCycle + "/" + MAX_CYCLES + "] " +
+                                    "Inboxes are not up to date yet! Retrying...");
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    Log.d("MessageCenter", "Load success!");
                 }
 
                 currentCycle++;
 
             }
-            Log.d("MessageCenter", "Load completed.");
 
-            while (canRunMessageCenter && !newsLetterViewModel.areAllInboxesReady()) {
-                Log.d("MessageCenter", "Inboxes not yet ready");
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            Log.d("MessageCenter", "Inboxes " +
+                    (newsLetterViewModel.isUpToDate() ?
+                            "are now up to date" :
+                            "could not be updated in time") +
+                    ". Loading completed.");
 
             // INITIALIZE VIEW MODEL
-            newsLetterViewModel.init(getContext());
-            newsLetterViewModel.compareDates();
-            if (newsLetterViewModel.requiresNotify()) {
-                Log.d("MessageCenter", "Starting animation");
-                Animation animation = AnimationUtils.loadAnimation(getContext(),
-                        R.anim.notifyblink);
-                inboxNotify.setAlpha(1f);
-                inboxNotify.startAnimation(animation);
+            if(getContext() != null) {
+                if(!newsLetterViewModel.init(null)) {
+                    Bundle params = new Bundle();
+                    params.putString("error_title", "Initialization Error");
+                    params.putString("error_details", "init could not complete due to missing " +
+                            "context.");
+                    mFirebaseAnalytics.logEvent("message_center_error", params);
+                }
+
+                newsLetterViewModel.compareAllInboxDates();
+                if (newsLetterViewModel.requiresNotify()) {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            Log.d("MessageCenter", "Starting animation");
+                            Animation animation = AnimationUtils.loadAnimation(getContext(),
+                                    R.anim.notifyblink);
+                            inboxNotify.setAlpha(1f);
+                            inboxNotify.startAnimation(animation);
+                        });
+                    }
+                }
             }
 
         });
@@ -434,8 +419,7 @@ public class TitlescreenFragment extends Fragment {
         else {
             Log.d("MessageCenter", "Could not obtain external data");
 
-            //newsLetterViewModel.init(getContext());
-            newsLetterViewModel.compareDates();
+            newsLetterViewModel.compareAllInboxDates();
             if (newsLetterViewModel.requiresNotify()) {
                 Log.d("MessageCenter", "Starting animation");
                 Animation animation = AnimationUtils.loadAnimation(getContext(),
@@ -450,10 +434,8 @@ public class TitlescreenFragment extends Fragment {
     private void stopLoadMessageCenterThread() {
 
         if (messageCenterThread != null) {
-
             messageCenterThread.interrupt();
             messageCenterThread = null;
-
         }
 
     }
@@ -464,7 +446,6 @@ public class TitlescreenFragment extends Fragment {
     private void startAnimInitThreads() {
 
         if (animInitThread == null) {
-
             animInitThread = new Thread() {
 
                 public void run() {
@@ -475,10 +456,9 @@ public class TitlescreenFragment extends Fragment {
 
             };
             animInitThread.start();
-
         }
-        if (initReadyThread == null) {
 
+        if (initReadyThread == null) {
             initReadyThread = new Thread(() -> {
 
                 while (!canRunAnim) {
@@ -493,7 +473,6 @@ public class TitlescreenFragment extends Fragment {
             });
 
             initReadyThread.start();
-
         }
     }
 
@@ -505,34 +484,34 @@ public class TitlescreenFragment extends Fragment {
             canRunAnim = true;
             animTickThread = new Thread() {
                 public void run() {
-                    while (canRunAnim) {
-                        try {
-                            animationView.tick();
+                while (canRunAnim) {
+                    try {
+                        animationView.tick();
 
-                            long now = System.nanoTime();
-                            long updateTime = System.nanoTime() - now;
-                            double TARGET_FPS = 30;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                                    (getContext() != null && getContext().getDisplay() != null)) {
-                                TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                                if (TARGET_FPS > 60) {
-                                    TARGET_FPS = 60;
-                                }
+                        long now = System.nanoTime();
+                        long updateTime = System.nanoTime() - now;
+                        double TARGET_FPS = 30;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                                (getContext() != null && getContext().getDisplay() != null)) {
+                            TARGET_FPS = getContext().getDisplay().getRefreshRate();
+                            if (TARGET_FPS > 60) {
+                                TARGET_FPS = 60;
                             }
-                            //TARGET_FPS = 200;
-                            long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
-                            long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
-
-                            if (wait < 0) {
-                                wait = 1;
-                            }
-
-                            Thread.sleep(wait);
-
-                        } catch (InterruptedException e) {
-                            //Log.e("TitleScreenFragment", "InterruptedException error handled.");
                         }
+                        //TARGET_FPS = 200;
+                        long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
+                        long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
+
+                        if (wait < 0) {
+                            wait = 1;
+                        }
+
+                        Thread.sleep(wait);
+
+                    } catch (InterruptedException e) {
+                        //Log.e("TitleScreenFragment", "InterruptedException error handled.");
                     }
+                }
                 }
             };
             animTickThread.start();
@@ -546,34 +525,34 @@ public class TitlescreenFragment extends Fragment {
         if (animDrawThread == null) {
             animDrawThread = new Thread() {
                 public void run() {
-                    while (canRunAnim) {
-                        try {
-                            if (getActivity() != null) {
-                                getActivity().runOnUiThread(() -> animationView.invalidate());
-                            }
-                            long now = System.nanoTime();
-                            long updateTime = System.nanoTime() - now;
-                            double TARGET_FPS = 30;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                                    (getContext() != null && getContext().getDisplay() != null)) {
-                                TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                                if (TARGET_FPS > 60) {
-                                    TARGET_FPS = 60;
-                                }
-                            }
-                            long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
-                            long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
-
-                            if (wait < 0) {
-                                wait = 1;
-                            }
-
-                            Thread.sleep(wait);
-
-                        } catch (InterruptedException e) {
-                            //Log.e("TitleScreenFragment", "InterruptedException error handled.");
+                while (canRunAnim) {
+                    try {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> animationView.invalidate());
                         }
+                        long now = System.nanoTime();
+                        long updateTime = System.nanoTime() - now;
+                        double TARGET_FPS = 30;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                                (getContext() != null && getContext().getDisplay() != null)) {
+                            TARGET_FPS = getContext().getDisplay().getRefreshRate();
+                            if (TARGET_FPS > 60) {
+                                TARGET_FPS = 60;
+                            }
+                        }
+                        long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
+                        long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
+
+                        if (wait < 0) {
+                            wait = 1;
+                        }
+
+                        Thread.sleep(wait);
+
+                    } catch (InterruptedException e) {
+                        //Log.e("TitleScreenFragment", "InterruptedException error handled.");
                     }
+                }
                 }
             };
             animDrawThread.start();

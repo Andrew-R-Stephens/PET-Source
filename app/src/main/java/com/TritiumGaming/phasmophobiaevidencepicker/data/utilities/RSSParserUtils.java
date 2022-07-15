@@ -1,7 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
-import android.util.Log;
-
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
@@ -113,10 +111,14 @@ public class RSSParserUtils {
                 }
                 in.close();
 
+                messageList.compareDates();
+                messageList.setIsReady(true);
                 newsLetterViewModel.addInbox(messageList, inboxType);
-
-                newsLetterViewModel.compareDates(inboxType);
-                newsLetterViewModel.getInbox(inboxType).setIsReady(true);
+                /*newsLetterViewModel.compareAllInboxDates(inboxType);
+                if(newsLetterViewModel.getInbox(inboxType) != null){
+                    newsLetterViewModel.getInbox(inboxType).setIsReady(true);
+                }
+                */
 
             } catch (XmlPullParserException | IOException e) {
                 e.printStackTrace();

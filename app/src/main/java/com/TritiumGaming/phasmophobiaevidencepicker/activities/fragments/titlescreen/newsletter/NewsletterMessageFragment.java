@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.AdRequest;
@@ -79,9 +80,16 @@ public class NewsletterMessageFragment extends Fragment {
         }
 
         // SET CONTENT
-        label_title.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getTitle()));
-        label_date.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDate()));
-        label_content.setText(Html.fromHtml(newsletterViewModel.getCurrentMessage().getDescription()));
+        NewsletterMessageData message = newsletterViewModel.getCurrentMessage();
+        if(message != null) {
+            label_title.setText(Html.fromHtml(message.getTitle()));
+            label_date.setText(Html.fromHtml(message.getDate()));
+            label_content.setText(Html.fromHtml(message.getDescription()));
+        } else {
+            label_title.setText(Html.fromHtml("Data unavailable"));
+            label_date.setText(Html.fromHtml("Data unavailable"));
+            label_content.setText(Html.fromHtml("Data unavailable"));
+        }
 
         if (getActivity() != null) {
             MobileAds.initialize(getActivity(), initializationStatus -> {

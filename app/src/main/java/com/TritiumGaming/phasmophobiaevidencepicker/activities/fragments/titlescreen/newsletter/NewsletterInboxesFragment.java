@@ -106,12 +106,15 @@ public class NewsletterInboxesFragment extends Fragment {
         }
 
         label_title.setText(R.string.messagecenter_inboxestitle_label);
-        label_extranews.setText(
-                newsletterViewModel.getInboxType(0).getName(view.getContext()));
-        label_petnews.setText(
-                newsletterViewModel.getInboxType(1).getName(view.getContext()));
-        label_phasnews.setText(
-                newsletterViewModel.getInboxType(2).getName(view.getContext()));
+        if(getContext() != null) {
+            label_extranews.setText(
+                    newsletterViewModel.getInboxType(0).getName(view.getContext()));
+            label_petnews.setText(
+                    newsletterViewModel.getInboxType(1).getName(view.getContext()));
+            label_phasnews.setText(
+                    newsletterViewModel.getInboxType(2).getName(view.getContext()));
+        }
+
 
         notifyIcon_1.setAlpha(0f);
         notifyIcon_2.setAlpha(0f);
@@ -158,7 +161,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showExtraNewsPopup method
      */
     private void gotoGeneralNews(View v) {
-        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.GENERAL);
+        newsletterViewModel.setCurrentInboxType(NewsletterViewModel.InboxType.GENERAL);
         navigateToInboxFragment(v);
     }
 
@@ -166,7 +169,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showPetNewsPopup method
      */
     private void gotoPetNews(View v) {
-        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PET);
+        newsletterViewModel.setCurrentInboxType(NewsletterViewModel.InboxType.PET);
         navigateToInboxFragment(v);
     }
 
@@ -174,7 +177,7 @@ public class NewsletterInboxesFragment extends Fragment {
      * showPhasNewsPopup method
      */
     public void gotoPhasNews(View v) {
-        newsletterViewModel.chooseCurrentInbox(NewsletterViewModel.InboxType.PHASMOPHOBIA);
+        newsletterViewModel.setCurrentInboxType(NewsletterViewModel.InboxType.PHASMOPHOBIA);
         navigateToInboxFragment(v);
     }
 
