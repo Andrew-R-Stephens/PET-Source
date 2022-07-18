@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ColorThemesD
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
+import java.util.HashMap;
 
 public class AppSettingsFragment extends Fragment {
+
+    private FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
@@ -37,6 +43,8 @@ public class AppSettingsFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+
+        initFirebase();
 
         // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null) {
@@ -119,7 +127,6 @@ public class AppSettingsFragment extends Fragment {
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
         // LISTENERS
-
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
@@ -254,6 +261,16 @@ public class AppSettingsFragment extends Fragment {
 
         // CONFIRM BUTTON
         listener_confirmClose.setOnClickListener(v -> {
+
+            Bundle params = new Bundle();
+            params.putString("event_type", "confirm_settings");
+            HashMap<String, String> settings = globalPreferencesViewModel.getDataAsList();
+            for (String key : settings.keySet()) {
+                String value = settings.get(key);
+                params.putString(key, value);
+            }
+            analytics.logEvent("event_settings", params);
+
             saveStates();
             Navigation.findNavController(v).popBackStack();
         });
@@ -266,6 +283,13 @@ public class AppSettingsFragment extends Fragment {
                             //THIS SHOULD DISABLE BACK PRESSED
                         }
                     });
+        }
+    }
+
+    private void initFirebase() {
+        if(getContext() != null){
+            analytics = FirebaseAnalytics.getInstance(getContext());
+            Log.d("Firebase", "Obtained instance.");
         }
     }
 

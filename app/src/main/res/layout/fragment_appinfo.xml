@@ -197,9 +197,22 @@
                 app:layout_constraintWidth_percent=".75">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tintMode="multiply"
+                    app:tint="?attr/light_inactive"
+                    app:srcCompat="@drawable/listitem_circled" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/popup_close_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_margin="8dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
@@ -216,6 +229,7 @@
                     style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:text="@string/aboutinfo_joindiscord"
                     app:layout_constraintBottom_toBottomOf="parent"

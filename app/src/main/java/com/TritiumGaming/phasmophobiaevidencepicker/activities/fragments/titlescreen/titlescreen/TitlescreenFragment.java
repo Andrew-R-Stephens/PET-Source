@@ -14,12 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
@@ -52,7 +52,7 @@ import java.util.Locale;
  */
 public class TitlescreenFragment extends Fragment {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    private FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
@@ -66,8 +66,8 @@ public class TitlescreenFragment extends Fragment {
 
     private boolean canRunAnim = true, canRunMessageCenter = true;
 
-    private Thread animInitThread = null, animTickThread = null, animDrawThread = null,
-            initReadyThread = null, messageCenterThread = null;
+    private Thread thread_initAnima = null, thread_tickAnim = null, thread_renderAnim = null,
+            thread_initReady = null, thread_messageCenter = null;
 
     @Nullable
     @Override
@@ -76,26 +76,7 @@ public class TitlescreenFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         initFirebase();
-
-        // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
-                    get(GlobalPreferencesViewModel.class);
-        }
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null) {
-            globalPreferencesViewModel.init(getContext());
-        }
-
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).
-                    get(TitlescreenViewModel.class);
-        }
-
-        if (newsLetterViewModel == null) {
-            newsLetterViewModel = new ViewModelProvider(requireActivity()).
-                    get(NewsletterViewModel.class);
-        }
+        initViewModels();
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
     }
@@ -109,26 +90,12 @@ public class TitlescreenFragment extends Fragment {
         AppCompatTextView button_startSolo = view.findViewById(R.id.button_start_solo);
         AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
         AppCompatImageView icon_appIcon = view.findViewById(R.id.icon_appicon);
-        ImageButton button_info = view.findViewById(R.id.button_info);
-        ImageButton button_settings = view.findViewById(R.id.button_settings);
-        ImageButton button_review = view.findViewById(R.id.button_review);
-        ImageButton button_msgInbox = view.findViewById(R.id.button_inbox);
+        AppCompatImageButton button_info = view.findViewById(R.id.button_info);
+        AppCompatImageButton button_settings = view.findViewById(R.id.button_settings);
+        AppCompatImageButton button_review = view.findViewById(R.id.button_review);
+        AppCompatImageButton button_msgInbox = view.findViewById(R.id.button_inbox);
         View button_language = view.findViewById(R.id.listener_language);
         inboxNotify = view.findViewById(R.id.img_inboxalert);
-
-        // SET APP-ICON
-        bitmapUtils.clearResources();
-        bitmapUtils.setResource(R.drawable.app_icon_sm);
-        if (getContext() != null) {
-            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
-        }
-
-        // LANGUAGE
-        String appendedLanguage = Locale.getDefault().getDisplayLanguage();
-        if (globalPreferencesViewModel.getLanguageName().equalsIgnoreCase("fr")) {
-            appendedLanguage += " (" + getString(R.string.titlescreen_beta_label) + ")";
-        }
-        label_languageName.setText(appendedLanguage);
 
         // LISTENERS
         button_info.setOnClickListener(this::gotoAppInfoFragment);
@@ -151,8 +118,64 @@ public class TitlescreenFragment extends Fragment {
 
         inboxNotify.setAlpha(0f);
 
-        //TODO Create a button hyperlink to app review page
+        setBackgroundLogo(icon_appIcon);
+        setLanguageName(label_languageName);
 
+        renderAd(view);
+
+        initReviewRequest(button_review);
+        doReviewRequest();
+
+    }
+
+    private void initFirebase() {
+        if(getContext() != null){
+            analytics = FirebaseAnalytics.getInstance(getContext());
+        }
+    }
+
+    private void initViewModels() {
+        // OBTAIN VIEW MODEL REFERENCE
+        if (globalPreferencesViewModel == null) {
+            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
+                    get(GlobalPreferencesViewModel.class);
+        }
+        // INITIALIZE VIEW MODEL
+        if (getContext() != null) {
+            globalPreferencesViewModel.init(getContext());
+        }
+
+        if (titleScreenViewModel == null) {
+            titleScreenViewModel = new ViewModelProvider(requireActivity()).
+                    get(TitlescreenViewModel.class);
+        }
+
+        if (newsLetterViewModel == null) {
+            newsLetterViewModel = new ViewModelProvider(requireActivity()).
+                    get(NewsletterViewModel.class);
+        }
+    }
+
+    public void loadMessageCenter() {
+        if(newsLetterViewModel != null && getContext() != null) {
+            newsLetterViewModel.registerInboxes(getContext());
+        }
+    }
+
+    private void setBackgroundLogo(AppCompatImageView icon_appIcon) {
+        if (getContext() != null) {
+            bitmapUtils.clearResources();
+            bitmapUtils.setResource(R.drawable.app_icon_sm);
+            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
+        }
+    }
+
+    private void setLanguageName(AppCompatTextView label_languageName) {
+        String chosenLanguage = Locale.getDefault().getDisplayLanguage();
+        label_languageName.setText(chosenLanguage);
+    }
+
+    private void renderAd(View view) {
         if (getActivity() != null) {
             MobileAds.initialize(getActivity(), initializationStatus -> {
             });
@@ -162,7 +185,9 @@ public class TitlescreenFragment extends Fragment {
             }
             mAdView.loadAd(titleScreenViewModel.getAdRequest());
         }
+    }
 
+    public void initReviewRequest(AppCompatImageButton button_review) {
         // REQUEST REVIEW LISTENER
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {
@@ -171,30 +196,12 @@ public class TitlescreenFragment extends Fragment {
             button_review.setEnabled(false);
             button_review.setVisibility(View.INVISIBLE);
         }
-
-        // REQUEST REVIEW PROMPT
-        requestReview();
-
-    }
-
-    private void initFirebase() {
-        if(getActivity() != null){
-            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
-        }
-    }
-
-    public void registerMessageInboxes() {
-
-        if(newsLetterViewModel != null && getContext() != null) {
-            newsLetterViewModel.registerInboxes(getContext());
-        }
-
     }
 
     /**
      * doReviewRequest method
      */
-    public void requestReview() {
+    public void doReviewRequest() {
 
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
@@ -299,21 +306,31 @@ public class TitlescreenFragment extends Fragment {
                             flow.addOnCompleteListener(flowTask -> {
                                 // DO NOTHING
                             });
+
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(getResources().
+                                    getString(R.string.review_storelink_website)));
+                            intent.setPackage("com.android.vending");
+
+                            try {
+                                Log.e("ReviewManager",
+                                        "SUCCEEDED intent navigation to the App Store.");
+                                getContext().startActivity(intent);
+                            } catch (ActivityNotFoundException e) {
+                                Log.e("ReviewManager",
+                                        "FAILED intent navigation to the App Store.");
+                                e.printStackTrace();
+
+                                Bundle params = new Bundle();
+                                params.putString("event_type", "review_navigation");
+                                params.putString("event_details", "navigation_failed");
+                                analytics.logEvent("event_review_manager", params);
+                            }
                         }
                     } else {
                         Log.e("ReviewManager", "Task Failed");
                         if (requestTask.getException() != null) {
                             (requestTask.getException()).printStackTrace();
-                        }
-
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(getResources().
-                                getString(R.string.review_storelink)));
-                        intent.setPackage("com.android.vending");
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            e.printStackTrace();
                         }
                     }
                 });
@@ -321,6 +338,11 @@ public class TitlescreenFragment extends Fragment {
         });
 
         declineButton.setOnClickListener(v -> {
+            Bundle params = new Bundle();
+            params.putString("event_type", "user_action");
+            params.putString("event_details", "request_rejected");
+            analytics.logEvent("event_review_manager", params);
+
             popup.dismiss();
             popup = null;
         });
@@ -329,19 +351,38 @@ public class TitlescreenFragment extends Fragment {
         popup.setAnimationStyle(R.anim.nav_default_enter_anim);
 
         boolean success = parentView.post(() -> {
-
             //Log.d("Review", "Is displaying");
             popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
 
         });
 
-        Log.d("Review", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+        Log.d("ReviewRequest", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+
+        Bundle params = new Bundle();
+        params.putString("event_type", "review_requested");
+        params.putString("event_details",
+                "request_" + (success ? "successful" : "unsuccessful"));
+        analytics.logEvent("event_review_manager", params);
 
     }
 
+    private void doMessageCenterNotification() {
+        Log.d("MessageCenter", "Starting animation");
+        Animation animation = AnimationUtils.loadAnimation(getContext(),
+                R.anim.notifyblink);
+        inboxNotify.setAlpha(1f);
+        inboxNotify.startAnimation(animation);
+    }
+
+    private boolean checkInternetConnection() {
+        return (NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference()));
+    }
+
+
     private void startLoadMessageCenterThread() {
 
-        messageCenterThread = new Thread(() -> {
+        thread_messageCenter = new Thread(() -> {
 
             Log.d("MessageCenter", "Attempting to load inboxes...");
 
@@ -353,7 +394,7 @@ public class TitlescreenFragment extends Fragment {
 
                 Log.d("MessageCenter", "Attempting to load inboxes...");
 
-                registerMessageInboxes();
+                loadMessageCenter();
 
                 if (!newsLetterViewModel.isUpToDate()) {
                     Log.d("MessageCenter",
@@ -367,49 +408,38 @@ public class TitlescreenFragment extends Fragment {
                 }
 
                 currentCycle++;
-
             }
 
             Log.d("MessageCenter", "Inboxes " +
                     (newsLetterViewModel.isUpToDate() ?
-                            "are now up to date" :
-                            "could not be updated in time") +
-                    ". Loading completed.");
+                            "are now up to date." :
+                            "could not be updated in time.") +
+                    " Loading completed.");
 
             // INITIALIZE VIEW MODEL
             if(getContext() != null) {
-                if(!newsLetterViewModel.init(null)) {
+                if(!newsLetterViewModel.init(getContext())) {
+                    Log.e("MessageCenter",
+                            "Initialization failed.");
                     Bundle params = new Bundle();
-                    params.putString("error_title", "Initialization Error");
-                    params.putString("error_details", "init could not complete due to missing " +
-                            "context.");
-                    mFirebaseAnalytics.logEvent("message_center_error", params);
+                    params.putString("error_type", "failed_initialization");
+                    params.putString("error_details", "null_context");
+                    analytics.logEvent("error_message_center", params);
                 }
-
                 newsLetterViewModel.compareAllInboxDates();
                 if (newsLetterViewModel.requiresNotify()) {
                     if (getActivity() != null) {
-                        getActivity().runOnUiThread(() -> {
-                            Log.d("MessageCenter", "Starting animation");
-                            Animation animation = AnimationUtils.loadAnimation(getContext(),
-                                    R.anim.notifyblink);
-                            inboxNotify.setAlpha(1f);
-                            inboxNotify.startAnimation(animation);
-                        });
+                        getActivity().runOnUiThread(this::doMessageCenterNotification);
                     }
                 }
             }
 
         });
 
-        messageCenterThread.start();
+        thread_messageCenter.start();
 
     }
 
-    private boolean checkInternetConnection() {
-        return (NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference()));
-    }
 
     private void startInitMessageCenterThread() {
 
@@ -417,27 +447,20 @@ public class TitlescreenFragment extends Fragment {
             startLoadMessageCenterThread();
         }
         else {
-            Log.d("MessageCenter", "Could not obtain external data");
-
+            Log.d("MessageCenter", "Could not connect to the internet.");
             newsLetterViewModel.compareAllInboxDates();
             if (newsLetterViewModel.requiresNotify()) {
-                Log.d("MessageCenter", "Starting animation");
-                Animation animation = AnimationUtils.loadAnimation(getContext(),
-                        R.anim.notifyblink);
-                inboxNotify.setAlpha(1f);
-                inboxNotify.startAnimation(animation);
+                doMessageCenterNotification();
             }
-
         }
     }
 
-    private void stopLoadMessageCenterThread() {
-
-        if (messageCenterThread != null) {
-            messageCenterThread.interrupt();
-            messageCenterThread = null;
-        }
-
+    /**
+     * startAnimThreads method
+     */
+    public void startAnimThreads() {
+        startAnimTickThread();
+        startAnimDrawThread();
     }
 
     /**
@@ -445,8 +468,8 @@ public class TitlescreenFragment extends Fragment {
      */
     private void startAnimInitThreads() {
 
-        if (animInitThread == null) {
-            animInitThread = new Thread() {
+        if (thread_initAnima == null) {
+            thread_initAnima = new Thread() {
 
                 public void run() {
                     animationView.init(titleScreenViewModel, bitmapUtils);
@@ -455,11 +478,11 @@ public class TitlescreenFragment extends Fragment {
                 }
 
             };
-            animInitThread.start();
+            thread_initAnima.start();
         }
 
-        if (initReadyThread == null) {
-            initReadyThread = new Thread(() -> {
+        if (thread_initReady == null) {
+            thread_initReady = new Thread(() -> {
 
                 while (!canRunAnim) {
                     try {
@@ -472,7 +495,7 @@ public class TitlescreenFragment extends Fragment {
 
             });
 
-            initReadyThread.start();
+            thread_initReady.start();
         }
     }
 
@@ -480,9 +503,9 @@ public class TitlescreenFragment extends Fragment {
      * startAnimTickThread method
      */
     private void startAnimTickThread() {
-        if (animTickThread == null) {
+        if (thread_tickAnim == null) {
             canRunAnim = true;
-            animTickThread = new Thread() {
+            thread_tickAnim = new Thread() {
                 public void run() {
                 while (canRunAnim) {
                     try {
@@ -514,7 +537,7 @@ public class TitlescreenFragment extends Fragment {
                 }
                 }
             };
-            animTickThread.start();
+            thread_tickAnim.start();
         }
     }
 
@@ -522,8 +545,8 @@ public class TitlescreenFragment extends Fragment {
      * startAnimDrawThread method
      */
     private void startAnimDrawThread() {
-        if (animDrawThread == null) {
-            animDrawThread = new Thread() {
+        if (thread_renderAnim == null) {
+            thread_renderAnim = new Thread() {
                 public void run() {
                 while (canRunAnim) {
                     try {
@@ -532,7 +555,7 @@ public class TitlescreenFragment extends Fragment {
                         }
                         long now = System.nanoTime();
                         long updateTime = System.nanoTime() - now;
-                        double TARGET_FPS = 30;
+                        double TARGET_FPS = 24;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                                 (getContext() != null && getContext().getDisplay() != null)) {
                             TARGET_FPS = getContext().getDisplay().getRefreshRate();
@@ -555,7 +578,14 @@ public class TitlescreenFragment extends Fragment {
                 }
                 }
             };
-            animDrawThread.start();
+            thread_renderAnim.start();
+        }
+    }
+
+    private void stopLoadMessageCenterThread() {
+        if (thread_messageCenter != null) {
+            thread_messageCenter.interrupt();
+            thread_messageCenter = null;
         }
     }
 
@@ -563,13 +593,13 @@ public class TitlescreenFragment extends Fragment {
      * stopAnimInitThreads method
      */
     public void stopAnimInitThreads() {
-        if (animInitThread != null) {
-            animInitThread.interrupt();
-            animInitThread = null;
+        if (thread_initAnima != null) {
+            thread_initAnima.interrupt();
+            thread_initAnima = null;
         }
-        if (initReadyThread != null) {
-            initReadyThread.interrupt();
-            initReadyThread = null;
+        if (thread_initReady != null) {
+            thread_initReady.interrupt();
+            thread_initReady = null;
         }
     }
 
@@ -577,9 +607,9 @@ public class TitlescreenFragment extends Fragment {
      * stopAnimTickThread method
      */
     public void stopAnimTickThread() {
-        if (animTickThread != null) {
-            animTickThread.interrupt();
-            animTickThread = null;
+        if (thread_tickAnim != null) {
+            thread_tickAnim.interrupt();
+            thread_tickAnim = null;
         }
     }
 
@@ -587,18 +617,10 @@ public class TitlescreenFragment extends Fragment {
      * stopAnimDrawThread method
      */
     public void stopAnimDrawThread() {
-        if (animDrawThread != null) {
-            animDrawThread.interrupt();
-            animDrawThread = null;
+        if (thread_renderAnim != null) {
+            thread_renderAnim.interrupt();
+            thread_renderAnim = null;
         }
-    }
-
-    /**
-     * startAnimThreads method
-     */
-    public void startAnimThreads() {
-        startAnimTickThread();
-        startAnimDrawThread();
     }
 
     /**

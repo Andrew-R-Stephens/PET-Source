@@ -225,11 +225,14 @@ public class EvidenceViewModel extends ViewModel {
         rejectionPile = new boolean[InvestigationData.getGhostCount()];
     }
 
-    public void swapStatusInRejectedPile(int index) {
+    public boolean swapStatusInRejectedPile(int index) {
         boolean[] pile = getRejectionPile();
         pile[index] = !pile[index];
 
         Log.d("Rejected", Arrays.toString(pile));
+
+        return pile[index];
+
     }
 
     public void updateRejectionPile() {
@@ -246,6 +249,15 @@ public class EvidenceViewModel extends ViewModel {
         }
 
         return rejectionPile;
+    }
+
+    public boolean getRejectedStatus(int index) {
+        boolean[] pile = getRejectionPile();
+        if(index >= 0 && index < pile.length) {
+            return false;
+        }
+
+        return getRejectionPile()[index];
     }
 
     public void reset() {

@@ -96,7 +96,8 @@
     <string name="review_requesttitle">Please consider rating P.E.T.!</string>
     <string name="review_accept">Sure!</string>
     <string name="review_decline">No thanks</string>
-    <string name="review_storelink" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+    <string name="review_storelink_app" translatable="false">market://details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+    <string name="review_storelink_website" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
 
     <!--
         LANGUAGE FRAGMENT

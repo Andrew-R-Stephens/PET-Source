@@ -11,6 +11,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Locale;
 
@@ -20,6 +21,8 @@ import java.util.Locale;
  * @author TritiumGamingStudios
  */
 public class TitleScreenActivity extends AppCompatActivity {
+
+    FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel;
 
@@ -36,6 +39,8 @@ public class TitleScreenActivity extends AppCompatActivity {
     }
 
     private void initViewModels() {
+        analytics = FirebaseAnalytics.getInstance(this);
+
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
 
@@ -123,5 +128,7 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         return isChanged;
     }
+
+
 
 }

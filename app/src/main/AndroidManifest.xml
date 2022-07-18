@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:configChanges="locale|orientation"
-        android:theme="@style/Theme.PhasmophobiaEvidenceTool"
+        android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
         android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:largeHeap="true"

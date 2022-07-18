@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class GlobalPreferencesViewModel extends ViewModel {
@@ -403,6 +405,25 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveAppTimeAlive(context, editor, false);
 
         editor.apply();
+    }
+
+    @NonNull
+    public HashMap<String, String> getDataAsList() {
+        HashMap<String, String> settings = new HashMap<>();
+        settings.put("network_pref", getNetworkPreference()+"");
+        settings.put("language", getLanguageName());
+        settings.put("always_on", getIsAlwaysOn()+"");
+        settings.put("warning_enabled", getIsHuntAudioAllowed()+"");
+        settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
+        settings.put("color_theme", getColorSpace()+"");
+        settings.put("left_support", getIsLeftHandSupportEnabled()+"");
+        if(getReviewRequestData() != null) {
+            settings.put("review_request", getReviewRequestData().canRequestReview()+"");
+            settings.put("times_opened", getReviewRequestData().getTimesOpened()+"");
+            settings.put("active_time", getReviewRequestData().getTimeActive()+"");
+        }
+
+        return settings;
     }
 
     public void printFromFile(Context context) {

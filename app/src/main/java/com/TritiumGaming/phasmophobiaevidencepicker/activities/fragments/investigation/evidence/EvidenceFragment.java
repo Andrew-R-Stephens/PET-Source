@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -54,6 +55,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
  * EvidenceFragment class
@@ -61,6 +63,8 @@ import com.google.android.gms.ads.MobileAds;
  * @author TritiumGamingStudios
  */
 public class EvidenceFragment extends Fragment {
+
+    private FirebaseAnalytics analytics;
 
     protected EvidenceViewModel evidenceViewModel;
     protected MapMenuViewModel mapMenuViewModel;
@@ -119,6 +123,8 @@ public class EvidenceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        initFirebase();
 
         if (evidenceViewModel == null) {
             evidenceViewModel =
@@ -632,116 +638,6 @@ public class EvidenceFragment extends Fragment {
                 return true;
             });
 
-            /*
-            name.setOnClickListener(v -> {
-
-                if(getView() == null || getView().getContext() == null) {
-                    return;
-                }
-
-                if (popup != null) {
-                    popup.dismiss();
-                }
-
-                LayoutInflater inflaterPopup =
-                        (LayoutInflater) getView().getContext().getSystemService(
-                                Context.LAYOUT_INFLATER_SERVICE);
-                @SuppressLint("InflateParams")
-                View customView = inflaterPopup.inflate(R.layout.popup_info_ghost, null);
-
-                popup = new PopupWindow(
-                        customView,
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT
-                );
-
-                ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-                ConstraintLayout evidenceIconLayout =
-                        customView.findViewById(R.id.layout_evidenceicons);
-                AppCompatImageView evidence1 = evidenceIconLayout.findViewById(R.id.icon1);
-                AppCompatImageView evidence2 = evidenceIconLayout.findViewById(R.id.icon2);
-                AppCompatImageView evidence3 = evidenceIconLayout.findViewById(R.id.icon3);
-                ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
-                ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
-                ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
-                ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
-                ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
-                ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
-                View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
-                View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
-                View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
-
-                AppCompatTextView label_name =
-                        customView.findViewById(R.id.label_name);
-
-                AppCompatTextView label_info =
-                        customView.findViewById(R.id.label_infoTitle);
-                AppCompatTextView label_strength =
-                        customView.findViewById(R.id.label_strengthsTitle);
-                AppCompatTextView label_weakness =
-                        customView.findViewById(R.id.label_weaknessesTitle);
-
-                AppCompatTextView info = scroller1.findViewById(R.id.label_info);
-                AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
-                AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
-
-                label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-                label_name.setText(ghostName);
-
-                evidence1.setImageResource(
-                        evidenceViewModel.getInvestigationData()
-                                .getGhost(j)
-                                .getEvidenceArray()[0]
-                                .getIcon());
-                evidence2.setImageResource(
-                        evidenceViewModel.getInvestigationData()
-                                .getGhost(j)
-                                .getEvidenceArray()[1]
-                                .getIcon());
-                evidence3.setImageResource(
-                        evidenceViewModel.getInvestigationData()
-                                .getGhost(j)
-                                .getEvidenceArray()[2]
-                                .getIcon());
-
-                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        ghostInfo,
-                        "#ff6161", fontEmphasisColor + "")));
-                strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        ghostStrength,
-                        "#ff6161", fontEmphasisColor + "")));
-                weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        ghostWeakness,
-                        "#ff6161", fontEmphasisColor + "")));
-
-                closeButton.setOnClickListener(v1 -> popup.dismiss());
-
-                fadeOutIndicatorAnimation(
-                        scroller1,
-                        indicator1);
-                fadeOutIndicatorAnimation(
-                        scroller2,
-                        indicator2);
-                fadeOutIndicatorAnimation(
-                        scroller3,
-                        indicator3);
-
-                popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
-
-                if (getActivity() != null) {
-                    MobileAds.initialize(getActivity(), initializationStatus -> {
-                    });
-                    AdView mAdView = customView.findViewById(R.id.adView);
-                    adRequest = new AdRequest.Builder().build();
-                    mAdView.loadAd(adRequest);
-                }
-
-            });
-            */
-
             InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
             int score = ghost.getEvidenceScore();
             boolean rejectionStatus = evidenceViewModel.getRejectionPile()[j];
@@ -869,6 +765,14 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
+    private void initFirebase() {
+        if(getContext() != null){
+            analytics = FirebaseAnalytics.getInstance(getContext());
+            Log.d("Firebase", "Obtained instance.");
+        }
+    }
+
+
     /**
      * softReset
      *
@@ -956,14 +860,15 @@ public class EvidenceFragment extends Fragment {
         public boolean onFling(MotionEvent event1, MotionEvent event2,
                                float velocityX, float velocityY) {
 
-            InvestigationData.Ghost ghost =
-                    evidenceViewModel.getInvestigationData().getGhost(index);
-
-            evidenceViewModel.swapStatusInRejectedPile(index);
-            //ghost.setIsForcefullyRejected(!ghost.getIsForcefullyRejected());
+            boolean status = !evidenceViewModel.swapStatusInRejectedPile(index);
 
             evidenceViewModel.updateGhostOrder();
             createGhostViews(getView(), ghostContainer);
+
+            Bundle params = new Bundle();
+            params.putString("event_type", "ghost_swiped");
+            params.putString("event_details", status ? "ghost_impartial" : "ghost_rejected");
+            analytics.logEvent("event_investigation", params);
 
             return true;
         }

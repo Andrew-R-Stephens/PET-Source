@@ -35,7 +35,7 @@ public class NewsletterViewModel extends ViewModel {
      */
     public boolean init(Context context) {
 
-        if(context == null ) {
+        if(context == null) {
             return false;
         }
 
@@ -64,6 +64,7 @@ public class NewsletterViewModel extends ViewModel {
         }
 
         saveToFile(context);
+
         return true;
 
     }

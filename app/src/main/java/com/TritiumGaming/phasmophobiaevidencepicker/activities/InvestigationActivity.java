@@ -14,6 +14,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPrefer
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Locale;
 
@@ -23,6 +24,8 @@ import java.util.Locale;
  * @author TritiumGamingStudios
  */
 public class InvestigationActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel;
     private PermissionsViewModel permissionsViewModel;
@@ -38,11 +41,14 @@ public class InvestigationActivity extends AppCompatActivity {
         initViewModels();
         initPrefs();
 
-        determineInvestigationFragment();
+        //determineInvestigationFragment();
+        setContentView(R.layout.activity_investigation_solo);
 
     }
 
     private void initViewModels() {
+        analytics = FirebaseAnalytics.getInstance(this);
+
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
 

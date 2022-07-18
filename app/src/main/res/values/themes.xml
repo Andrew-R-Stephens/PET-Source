@@ -1,36 +1,27 @@
 <resources>
 
     <!-- Base application theme. -->
-
-    <style name="Theme.PhasmophobiaEvidenceTool" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/black</item>
-        <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
-    </style>
-
-    <style name="Theme.PhasmophobiaEvidenceTool.NoActionBar" parent="Theme.AppCompat">
+    <style name="Theme.PhasmophobiaEvidenceTool" parent="Theme.AppCompat">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
         <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">@color/white</item>
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/black</item>
         <item name="colorSecondaryVariant">@color/black</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
-        <item name="android:navigationBarColor">@color/black</item>
-        <item name="android:layoutDirection">ltr</item>
     </style>
 
-    <style name="Theme.PhasmophobiaEvidenceTool.Normal" parent="Theme.PhasmophobiaEvidenceTool.NoActionBar">
+    <style name="Theme.PhasmophobiaEvidenceTool.Normal" parent="Theme.PhasmophobiaEvidenceTool">
 
         <item name="titleFontColor">@color/red_light</item>
         <item name="subtitleFontColor">@color/red_medHigh</item>

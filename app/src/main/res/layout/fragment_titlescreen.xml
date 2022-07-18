@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000000"
-    android:drawingCacheQuality="high">
+    android:layout_height="match_parent">
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView
         android:id="@+id/titlescreen_backgroundanimation"

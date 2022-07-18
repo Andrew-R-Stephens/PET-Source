@@ -5,6 +5,9 @@
     <attr name="subtitleFontColor" format="reference|color" />
     <attr name="splashtitleFontColor" format="reference|color" />
 
+    <attr name="windowStrokeColor" format="reference|color" />
+    <attr name="windowBackgroundColor" format="reference|color" />
+
     <attr name="bodyFontColor" format="reference|color" />
     <attr name="bodyEmphasisFontColor" format="reference|color" />
 

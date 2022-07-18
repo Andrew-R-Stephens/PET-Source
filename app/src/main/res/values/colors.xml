@@ -3,6 +3,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="off_white">#FFF3F3F3</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="red_bright">#FF6666</color>
