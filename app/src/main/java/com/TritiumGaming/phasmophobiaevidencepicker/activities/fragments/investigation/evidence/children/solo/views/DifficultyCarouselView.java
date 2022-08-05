@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 
 /**
@@ -12,19 +13,21 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
  */
 public class DifficultyCarouselView {
 
-    private final DifficultyCarouselData difficultyCarouselData;
+    private DifficultyCarouselData difficultyCarouselData;
 
-    private final PhaseTimerView timerView;
-    private final PhaseTimerControlView timerControlView;
-    private final AppCompatTextView difficultyNameView;
-    private final SanitySeekBarView sanityProgressBar;
-    private final WarnTextView warnTextView;
+    private PhaseTimerView timerView;
+    private PhaseTimerControlView timerControlView;
+    private AppCompatTextView difficultyNameView;
+    private SanitySeekBarView sanityProgressBar;
+    private WarnTextView warnTextView;
+
+    private EvidenceFragment.CompositeListener compositeListenerPrev, compositeListenerNext;
 
 
     /**
      * DifficultySelectControl parameterized constructor
      */
-    public DifficultyCarouselView(
+    public void init(
             DifficultyCarouselData difficultyCarouselData,
             PhaseTimerView timerView,
             PhaseTimerControlView timerControlView,
@@ -62,8 +65,8 @@ public class DifficultyCarouselView {
                 timerControlView.pause();
                 createTimerView();
                 warnTextView.invalidate();
+                compositeListenerPrev.onClick(v);
             }
-
         });
     }
 
@@ -82,8 +85,8 @@ public class DifficultyCarouselView {
                 timerControlView.pause();
                 createTimerView();
                 warnTextView.invalidate();
+                compositeListenerNext.onClick(v);
             }
-
         });
     }
 
@@ -111,6 +114,15 @@ public class DifficultyCarouselView {
     public void setIndex(int state) {
         difficultyCarouselData.setDifficultyIndex(state);
         difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
+    }
+
+    public void registerListener(
+            EvidenceFragment.CompositeListener compositeListenerPrev,
+            EvidenceFragment.CompositeListener compositeListenerNext
+    ) {
+
+        this.compositeListenerPrev = compositeListenerPrev;
+        this.compositeListenerNext = compositeListenerNext;
     }
 
     /**

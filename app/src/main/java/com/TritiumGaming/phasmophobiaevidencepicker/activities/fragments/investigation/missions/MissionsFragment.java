@@ -71,9 +71,11 @@ public class MissionsFragment extends Fragment {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        data = new MissionsData(view.getContext());
+        if(getContext() != null) {
+            data = new MissionsData(getContext());
+        }
 
         AppCompatTextView label_alone = view.findViewById(R.id.label_alone);
         AppCompatTextView label_everyone = view.findViewById(R.id.label_everyone);
@@ -116,37 +118,8 @@ public class MissionsFragment extends Fragment {
                 null,
                 icon_goto_right);
 
-        /*
-        listener_resetAll.setOnClickListener(v ->
-                {
-
-                    if (objectivesViewModel != null) {
-                        objectivesViewModel.reset();
-                        objectivesViewModel = null;
-                    }
-                    //isAlone = false;
-                    data = null;
-
-                    objectiveSpinner = null;
-                    if (name_input != null) {
-                        name_input.setText("");
-                    }
-
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        ft.setReorderingAllowed(false);
-                    }
-                    ft.detach(MissionsFragment.this).commitNow();
-                    ft.attach(MissionsFragment.this).commitNow();
-                }
-        );
-        */
-        /*
-        listener_goto_right.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
-        );
-        */
         if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(this,
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {

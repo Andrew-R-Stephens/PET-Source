@@ -122,9 +122,17 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
 
+        View.OnClickListener difficultyListener = v -> {
+            recreateGhostView();
+        };
+        compositeListenerPrev = new CompositeListener();
+        compositeListenerNext = new CompositeListener();
+        compositeListenerPrev.registerListener(difficultyListener);
+        compositeListenerNext.registerListener(difficultyListener);
+        difficultyCarouselView = new DifficultyCarouselView();
+        difficultyCarouselView.registerListener(compositeListenerPrev, compositeListenerNext);
         // DIFFICULTY SELECTION
-
-        difficultyCarouselView = new DifficultyCarouselView(
+        difficultyCarouselView.init(
                 difficultyCarouselData,
                 phaseTimerCountdownView,
                 playPauseButton,
@@ -132,7 +140,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 difficulty_next,
                 difficulty_name,
                 sanityWarningTextView,
-                sanitySeekBarView);
+                sanitySeekBarView
+        );
 
         phaseTimerCountdownView.setTimerControls(playPauseButton);
 

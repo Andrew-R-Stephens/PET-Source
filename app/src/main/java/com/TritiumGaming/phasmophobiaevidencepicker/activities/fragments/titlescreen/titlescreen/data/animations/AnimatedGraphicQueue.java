@@ -86,7 +86,9 @@ public class AnimatedGraphicQueue {
         }
 
         if (queue.size() < maxSize) {
-            queue.add(num);
+            if(num >= 0) {
+                queue.add(num);
+            }
         }
     }
 

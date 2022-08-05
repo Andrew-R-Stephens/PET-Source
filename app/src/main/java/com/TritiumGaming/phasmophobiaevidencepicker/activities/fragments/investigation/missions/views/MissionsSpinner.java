@@ -209,7 +209,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     public void setCurrentObjective(MissionsData.Objective currentObjective) {
         this.currentObjective = data.getCopyOfObjective(currentObjective);
 
-        if (currentObjective != null) {
+        if (this.currentObjective != null) {
             setSelection(this.currentObjective.getPosition());
         }
     }

@@ -258,22 +258,57 @@ public class InvestigationData {
                 return -5;
             }
 
+            boolean isNightmare =
+                    evidenceViewModel.getDifficultyCarouselData().isDifficulty(3);
+
+            /*
+             * Give each ghost a score based on affirmation or negation
+             */
             int score = 0;
             for (int i = 0; i < thisGhostEvidence.size(); i++) {
                 Evidence e = thisGhostEvidence.get(i);
+                // Increase ghost's score for each positive evidence.
                 if (e.getRuling() == Evidence.Ruling.POSITIVE && i < 3) {
                     score ++;
                 }
+                /*
+                 * If not Nightmare:
+                 *      - negate ghost completely when a ghost's evidence is negated.
+                 * If Nightmare:
+                 *      - decrement the score by 1 if evidence is not Nightmare evidence
+                 *      - negate the ghost completely if evidence is Nightmare evidence
+                 */
                 else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
-                    return -5;
+                    if(isNightmare) {
+                        boolean foundNMe = false;
+                        for(Evidence nmE: thisGhostNightmareEvidence) {
+                            if(nmE.equals(e)) {
+                                foundNMe = true;
+                                score = -5;
+                                break;
+                            }
+                        }
+                        if(!foundNMe) {
+                            if(score > 0) {
+                                score = 0;
+                            }
+                            score --;
+                        }
+                    } else {
+                         return -5;
+                    }
                 }
             }
 
+            /*
+             * Negate all ghosts without positive matches
+             */
             for (int i = 0; i < evidence.size(); i++) {
                 boolean isContained = false;
                 for (Evidence value : thisGhostEvidence) {
                     if (evidence.get(i).getName().equals(value.getName())) {
                         isContained = true;
+                        break;
                     }
                 }
                 if (!isContained && evidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
@@ -281,21 +316,29 @@ public class InvestigationData {
                 }
             }
 
-            if(score == 2 &&
-                    evidenceViewModel.getDifficultyCarouselData().isDifficulty(3)) {
-                for (int i = 0; i < thisGhostNightmareEvidence.size(); i++) {
-
-                    for (Evidence value : evidence) {
-
-                        if (thisGhostNightmareEvidence.get(i).getName().equals(value.getName())) {
-                            if (!thisGhostNightmareEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
-
-                                return -5;
-
+            /*
+             * If nightmare difficulty, negate all ghosts when their score is over 2
+             */
+            if(isNightmare) {
+                // If the score is > 2 for any ghost, negate that ghost
+                if(score > 2) {
+                    return -5;
+                }
+                // If the score is <= -2 for any ghost, negate that ghost
+                if(score <= -2) {
+                    return -5;
+                }
+                // If the score of a ghost is 2, negate if it has unmatched affirmed Nightmare evidence
+                if(score == 2) {
+                    for (int i = 0; i < thisGhostNightmareEvidence.size(); i++) {
+                        for (Evidence value : evidence) {
+                            if (thisGhostNightmareEvidence.get(i).getName().equals(value.getName())) {
+                                if (!thisGhostNightmareEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
+                                    return -5;
+                                }
                             }
                         }
                     }
-
                 }
             }
 

@@ -57,6 +57,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.ArrayList;
+
 /**
  * EvidenceFragment class
  *
@@ -79,12 +81,16 @@ public class EvidenceFragment extends Fragment {
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
+    protected LinearLayout ghostContainer, evidenceContainer;
+
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
     protected AppCompatImageView collapseButton;
     protected AppCompatImageView expandButton;
     protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercentTextView;
+
+    protected CompositeListener compositeListenerPrev, compositeListenerNext;
 
     protected DifficultyCarouselView difficultyCarouselView;
     protected PhaseTimerView phaseTimerCountdownView;
@@ -166,7 +172,6 @@ public class EvidenceFragment extends Fragment {
 
         // GHOST / EVIDENCE CONTAINERS
         AppCompatTextView header_ghostLabel, header_evidenceLabel;
-        LinearLayout ghostContainer, evidenceContainer;
         if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
             header_ghostLabel = view.findViewById(R.id.textLabel_headerLeft);
             header_evidenceLabel = view.findViewById(R.id.textLabel_headerRight);
@@ -246,6 +251,17 @@ public class EvidenceFragment extends Fragment {
                 sanityData,
                 sanityPercentTextView);
 
+       /* View.OnClickListener difficultyListener = v -> {
+            createEvidenceViews(v, evidenceContainer, ghostContainer);
+            createGhostViews(v, ghostContainer);
+        };
+        compositeListenerPrev = new CompositeListener();
+        compositeListenerNext = new CompositeListener();
+        compositeListenerPrev.registerListener(difficultyListener);
+        compositeListenerNext.registerListener(difficultyListener);
+        difficultyCarouselView = new DifficultyCarouselView();
+        difficultyCarouselView.registerListener(compositeListenerPrev, compositeListenerNext);*/
+
         // COLORS
         @ColorInt int color_strikethrough = Color.WHITE, color_circle = Color.WHITE;
         TypedValue typedValue = new TypedValue();
@@ -290,6 +306,11 @@ public class EvidenceFragment extends Fragment {
             sanityTrackingConstraintLayout.setVisibility(View.GONE);
             expandButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    protected void recreateGhostView() {
+        evidenceViewModel.updateGhostOrder();
+        createGhostViews(getView(), ghostContainer);
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -983,4 +1004,19 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
+    public static class CompositeListener implements View.OnClickListener {
+
+        private ArrayList<View.OnClickListener> registeredListeners = new ArrayList<>();
+
+        public void registerListener (View.OnClickListener listener) {
+            registeredListeners.add(listener);
+        }
+
+        @Override
+        public void onClick(View view) {
+            for(View.OnClickListener listener:registeredListeners) {
+                listener.onClick(view);
+            }
+        }
+    }
 }

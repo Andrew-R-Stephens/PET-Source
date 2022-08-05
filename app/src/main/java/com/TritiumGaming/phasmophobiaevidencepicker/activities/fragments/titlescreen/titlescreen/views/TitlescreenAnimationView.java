@@ -49,24 +49,24 @@ public class TitlescreenAnimationView extends View {
             bitmap_handRot = null, bitmap_writingRot = null;
 
     /**
-     * @param context
+     * @param context The parent Context
      */
     public TitlescreenAnimationView(Context context) {
         super(context);
     }
 
     /**
-     * @param context
-     * @param attrs
+     * @param context The parent Context
+     * @param attrs The attributes given on init
      */
     public TitlescreenAnimationView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
     /**
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
+     * @param context The parent Context
+     * @param attrs The attributes given on init
+     * @param defStyleAttr The style attributes given on init
      */
     public TitlescreenAnimationView(
             Context context,
@@ -76,8 +76,8 @@ public class TitlescreenAnimationView extends View {
     }
 
     /**
-     * @param titleScreenViewModel
-     * @param bitmapUtils
+     * @param titleScreenViewModel The TitleScreenViewModel which contains necessary Animation data
+     * @param bitmapUtils The BitmapUtils data which is used across all animations
      */
     public void init(
             TitlescreenViewModel titleScreenViewModel,
@@ -313,6 +313,7 @@ public class TitlescreenAnimationView extends View {
                     } catch (IndexOutOfBoundsException e) {
                         e.printStackTrace();
                     }
+
                     System.gc();
                 }
             }
@@ -324,11 +325,12 @@ public class TitlescreenAnimationView extends View {
      */
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
         if (titleScreenViewModel == null) {
             return;
         }
+
+        super.onDraw(canvas);
 
         paint.setStyle(Paint.Style.FILL);
 
@@ -352,6 +354,7 @@ public class TitlescreenAnimationView extends View {
         } catch (ConcurrentModificationException ex) {
             ex.printStackTrace();
         }
+
     }
 
     /**
