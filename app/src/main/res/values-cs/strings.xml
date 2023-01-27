@@ -603,5 +603,6 @@
             <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
         ]]></string>
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
+    <string name="evidence_timer_difficulty_5">Šílenství</string>
 
 </resources>

@@ -128,7 +128,7 @@
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
-            <p>As any seasoned player will tell you, <font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
+            <p><font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
             <p><font color=#CC3C3C>P.E.T.</font> is an unofficial companion tool\-\- acting both as a guide for new players and as an assistant for the veterans.</p>
             <p><font color=#CC3C3C>Thank you so much for using P.E.T.!</font></p>
         ]]>
@@ -190,6 +190,7 @@
     <string name="evidence_timer_difficulty_2">Intermediate</string>
     <string name="evidence_timer_difficulty_3">Professional</string>
     <string name="evidence_timer_difficulty_4">Nightmare</string>
+    <string name="evidence_timer_difficulty_5">Insanity</string>
     <string name="evidence_timer_difficulty_label">Difficulty:</string>
     <string name="evidence_timer_maplabel">Map:</string>
     <string name="evidence_timer_actionlabel">ACTION</string>
@@ -204,7 +205,7 @@
 
     <!-- Timer Difficulty Times -->
     <string name="evidence_timer_time_1" translatable="false">300000</string>
-    <string name="evidence_timer_time_2" translatable="false">120000</string>
+    <string name="evidence_timer_time_2" translatable="false">150000</string>
     <string name="evidence_timer_time_3" translatable="false">0</string>
 
     <!-- Ghost Names -->
@@ -664,7 +665,9 @@
     <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
     <!-- Map Names -->
-    <string name="map_name_asylum" translatable="false">Asylum</string>
+    <string name="map_name_asylum" translatable="false">Asylum</string>map_meadows_array
+    <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
+    <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
     <string name="map_name_campsite" translatable="false">Campsite</string>
     <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
     <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>

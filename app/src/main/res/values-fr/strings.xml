@@ -585,5 +585,6 @@
         ]]>
     </string>
     <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
+    <string name="evidence_timer_difficulty_5">Folie</string>
 
 </resources>

@@ -338,7 +338,9 @@ public class EvidenceFragment extends Fragment {
         }
 
         if(lstnr_navMedLeft != null) {
-            lstnr_navMedLeft.setVisibility(View.VISIBLE);
+            ((View)lstnr_navMedLeft.getParent()).setVisibility(View.VISIBLE);
+            ((View)icon_navMedLeft.getParent()).setVisibility(View.VISIBLE);
+            icon_navMedLeft.setImageResource(R.drawable.icon_tools);
             lstnr_navMedLeft.setOnClickListener(v -> {
                         if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
@@ -661,6 +663,7 @@ public class EvidenceFragment extends Fragment {
 
             InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
             int score = ghost.getEvidenceScore();
+            Log.d("Scores", ghost + " -> score " + score);
             boolean rejectionStatus = evidenceViewModel.getRejectionPile()[j];
 
             if (rejectionStatus) {

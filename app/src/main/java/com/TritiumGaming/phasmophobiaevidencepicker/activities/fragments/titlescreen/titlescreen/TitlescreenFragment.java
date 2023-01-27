@@ -163,10 +163,11 @@ public class TitlescreenFragment extends Fragment {
     }
 
     private void setBackgroundLogo(AppCompatImageView icon_appIcon) {
-        if (getContext() != null) {
+        Context context = getContext();
+        if (context != null) {
             bitmapUtils.clearResources();
             bitmapUtils.setResource(R.drawable.app_icon_sm);
-            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
+            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(context));
         }
     }
 
@@ -368,10 +369,13 @@ public class TitlescreenFragment extends Fragment {
 
     private void doMessageCenterNotification() {
         Log.d("MessageCenter", "Starting animation");
-        Animation animation = AnimationUtils.loadAnimation(getContext(),
-                R.anim.notifyblink);
-        inboxNotify.setAlpha(1f);
-        inboxNotify.startAnimation(animation);
+        Context context = getContext();
+        if(context != null) {
+            Animation animation = AnimationUtils.loadAnimation(context,
+                    R.anim.notifyblink);
+            inboxNotify.setAlpha(1f);
+            inboxNotify.startAnimation(animation);
+        }
     }
 
     private boolean checkInternetConnection() {

@@ -569,5 +569,6 @@
             <p>Eine Geisterkugel wird neben den deterministischen Beweisen von The Mimic erscheinen, was The Mimic zum einzigen Geistertyp macht, der (technisch) über einen vierten Beweis verfügt. Auch der Ghost Orb verhält sich anders als normal. Es folgt The Mimic, während es wandert, also halten Sie Ausschau nach einer umherstreifenden Geisterkugel, während Sie bei hoher Teamgesundheit sind.</p>
         ]]></string>
     <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
+    <string name="evidence_timer_difficulty_5">Wahnsinn</string>
 
 </resources>

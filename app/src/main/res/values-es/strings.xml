@@ -582,5 +582,6 @@
             <p>Aparecerá un Ghost Orb junto con la Evidencia determinista de The Mimic, lo que hace que The Mimic sea el único tipo de fantasma que (técnicamente) tiene una cuarta pieza de Evidencia. El Ghost Orb también se comporta de manera diferente a lo normal. Sigue a The Mimic mientras deambula, así que esté atento a un Ghost Orb itinerante mientras está en un nivel alto de Cordura del equipo.</p>
         ]]></string>
     <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
+    <string name="evidence_timer_difficulty_5">Locura</string>
 
 </resources>
