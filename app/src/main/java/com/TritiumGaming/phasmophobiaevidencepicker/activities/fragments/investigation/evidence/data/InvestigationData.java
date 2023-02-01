@@ -263,15 +263,23 @@ public class InvestigationData {
             boolean isInsanity =
                     evidenceViewModel.getDifficultyCarouselData().isDifficulty(4);
 
+
+
             /*
              * Give each ghost a score based on affirmation or negation
              */
-            int score = 0;
+            int nScore = 0;
+            int rScore = this.thisGhostRequiredEvidence.size();
+
             for (int i = 0; i < thisGhostEvidence.size(); i++) {
                 Evidence e = thisGhostEvidence.get(i);
                 // Increase ghost's score for each positive evidence.
-                if (e.getRuling() == Evidence.Ruling.POSITIVE && i < 3) {
-                    score ++;
+                if (e.getRuling() == Evidence.Ruling.POSITIVE) {
+                    if(i < 3) {
+                        nScore++;
+                    } else {
+                        rScore ++;
+                    }
                 }
                 /*
                  * If not Nightmare:
@@ -281,20 +289,20 @@ public class InvestigationData {
                  *      - negate the ghost completely if evidence is Nightmare evidence
                  */
                 else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
-                    if(isNightmare) {
+                    if(isNightmare || isInsanity) {
                         boolean foundNMe = false;
                         for(Evidence nmE: thisGhostRequiredEvidence) {
                             if(nmE.equals(e)) {
                                 foundNMe = true;
-                                score = -5;
+                                nScore = -5;
                                 break;
                             }
                         }
                         if(!foundNMe) {
-                            if(score > 0) {
-                                score = 0;
+                            if(nScore > 0) {
+                                nScore = 0;
                             }
-                            score --;
+                            nScore--;
                         }
                     } else {
                         return -5;
@@ -324,17 +332,14 @@ public class InvestigationData {
             if(isNightmare || isInsanity) {
 
                 int maxScore = isNightmare ? 2 : 1;
+                int weightedScore = Math.max(maxScore, maxScore - thisGhostRequiredEvidence.size() + rScore);
 
                 // If the score is > 2 for any ghost, negate that ghost
-                if(score > maxScore) {
-                    return -5;
-                }
-                // If the score is <= -2 for any ghost, negate that ghost
-                if(score <= -2 + (thisGhostRequiredEvidence.size() - thisGhostEvidence.size())) {
+                if(nScore > weightedScore || nScore < -3+weightedScore) {
                     return -5;
                 }
                 // If the score of a ghost is 2, negate if it has unmatched affirmed Nightmare evidence
-                if(score == 2) {
+                if(nScore == weightedScore) {
                     for (int i = 0; i < thisGhostRequiredEvidence.size(); i++) {
                         for (Evidence value : evidence) {
                             if (thisGhostRequiredEvidence.get(i).getName().equals(value.getName())) {
@@ -347,7 +352,7 @@ public class InvestigationData {
                 }
             }
 
-            return score;
+            return nScore;
         }
 
         /*

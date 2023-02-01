@@ -591,10 +591,10 @@
      -->
     <!-- Generic array of map names -->
     <string-array name="map_names_array">
-        <item>@string/map_name_asylum</item>
         <item>@string/map_name_meadows</item>
         <item>@string/map_name_meadows_r</item>
-        <item>@string/map_name_campsite</item>
+        <item>@string/map_name_campmaple</item>
+        <item>@string/map_name_campwoodwind</item>
         <item>@string/map_name_bleasdale</item>
         <item>@string/map_name_grafton</item>
         <item>@string/map_name_brownstone</item>
@@ -607,10 +607,11 @@
 
     <!-- Array of references to map resource arrays-->
     <integer-array name= "maps_resources_array">
-        <item>@array/map_asylum_array</item>
+        <!--<item>@array/map_asylum_array</item>-->
         <item>@array/map_meadows_array</item>
         <item>@array/map_meadows_r_array</item>
-        <item>@array/map_campsite_array</item>
+        <item>@array/map_campwoodwind_array</item>
+        <item>@array/map_campmaple_array</item>
         <item>@array/map_bleasdale_array</item>
         <item>@array/map_grafton_array</item>
         <item>@array/map_brownstone_array</item>
@@ -658,18 +659,28 @@
         <item>@array/map_meadows_image_doors_array</item>
         <item>@array/map_meadows_layerName_array</item>
         <item>1</item>
-        <item>2</item>
+        <item>0</item>
         <item>@drawable/thumbnail_meadows</item>
     </integer-array>
-    <integer-array name= "map_campsite_array">
-        <item>@string/map_name_campsite</item>
-        <item>@array/map_campsite_image_outline_array</item>
-        <item>@array/map_campsite_image_background_array</item>
-        <item>@array/map_campsite_image_doors_array</item>
-        <item>@array/map_campsite_layerName_array</item>
+    <integer-array name= "map_campwoodwind_array">
+        <item>@string/map_name_campwoodwind</item>
+        <item>@array/map_campwoodwind_image_outline_array</item>
+        <item>@array/map_campwoodwind_image_background_array</item>
+        <item>@array/map_campwoodwind_image_doors_array</item>
+        <item>@array/map_campwoodwind_layerName_array</item>
+        <item>0</item>
+        <item>0</item>
+        <item>@drawable/thumbnail_campmaple</item>
+    </integer-array>
+    <integer-array name= "map_campmaple_array">
+        <item>@string/map_name_campmaple</item>
+        <item>@array/map_campmaple_image_outline_array</item>
+        <item>@array/map_campmaple_image_background_array</item>
+        <item>@array/map_campmaple_image_doors_array</item>
+        <item>@array/map_campmaple_layerName_array</item>
         <item>0</item>
         <item>1</item>
-        <item>@drawable/thumbnail_campsite</item>
+        <item>@drawable/thumbnail_campmaple</item>
     </integer-array>
     <integer-array name= "map_bleasdale_array">
         <item>@string/map_name_bleasdale</item>
@@ -765,7 +776,10 @@
         <item>@drawable/map_coming_soon</item>
         <item>@drawable/map_coming_soon</item>
     </integer-array>
-    <integer-array name= "map_campsite_image_outline_array">
+    <integer-array name= "map_campwoodwind_image_outline_array">
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
+    <integer-array name= "map_campmaple_image_outline_array">
         <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_outline_array">
@@ -817,7 +831,10 @@
         <item>@drawable/map_coming_soon</item>
         <item>@drawable/map_coming_soon</item>
     </integer-array>
-    <integer-array name= "map_campsite_image_background_array">
+    <integer-array name= "map_campwoodwind_image_background_array">
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
+    <integer-array name= "map_campmaple_image_background_array">
         <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_background_array">
@@ -869,7 +886,10 @@
         <item>@drawable/map_coming_soon</item>
         <item>@drawable/map_coming_soon</item>
     </integer-array>
-    <integer-array name= "map_campsite_image_doors_array">
+    <integer-array name= "map_campwoodwind_image_doors_array">
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
+    <integer-array name= "map_campmaple_image_doors_array">
         <item>@drawable/map_coming_soon</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_doors_array">
@@ -921,7 +941,10 @@
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
     </integer-array>
-    <integer-array name="map_campsite_layerName_array">
+    <integer-array name="map_campwoodwind_layerName_array">
+        <item>@string/map_floor_name_first</item>
+    </integer-array>
+    <integer-array name="map_campmaple_layerName_array">
         <item>@string/map_floor_name_first</item>
     </integer-array>
     <integer-array name= "map_bleasdale_layerName_array">

@@ -669,7 +669,7 @@ public class EvidenceFragment extends Fragment {
             if (rejectionStatus) {
                 statusIcon.setImageDrawable(icons_strikethrough[3]);
                 statusIcon.setVisibility(View.VISIBLE);
-            } else if (score == -5) {
+            } else if (score <= -5) {
                 statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
                 statusIcon.setVisibility(View.VISIBLE);
             } else if (score == 3) {

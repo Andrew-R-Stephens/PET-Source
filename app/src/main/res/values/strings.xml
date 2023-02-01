@@ -205,7 +205,7 @@
 
     <!-- Timer Difficulty Times -->
     <string name="evidence_timer_time_1" translatable="false">300000</string>
-    <string name="evidence_timer_time_2" translatable="false">150000</string>
+    <string name="evidence_timer_time_2" translatable="false">120000</string>
     <string name="evidence_timer_time_3" translatable="false">0</string>
 
     <!-- Ghost Names -->
@@ -665,10 +665,11 @@
     <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
     <!-- Map Names -->
-    <string name="map_name_asylum" translatable="false">Asylum</string>map_meadows_array
+    <string name="map_name_asylum" translatable="false">Asylum</string>
     <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
     <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
-    <string name="map_name_campsite" translatable="false">Campsite</string>
+    <string name="map_name_campmaple" translatable="false">Maple Lodge</string>
+    <string name="map_name_campwoodwind" translatable="false">Woodwind</string>
     <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
     <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>
     <string name="map_name_brownstone" translatable="false">Brownstone Highschool</string>
