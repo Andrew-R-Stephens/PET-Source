@@ -40,11 +40,6 @@ For support, email tritiumgamingstudiosdm@gmail.com or join our [Discord](https:
 What did you learn while building this project? What challenges did you face and how did you overcome them?
 
 
-## Feedback
-
-If you have any feedback, please reach out to us at fake@fake.com
-
-
 ## Features
 
 - Multiple Languages
