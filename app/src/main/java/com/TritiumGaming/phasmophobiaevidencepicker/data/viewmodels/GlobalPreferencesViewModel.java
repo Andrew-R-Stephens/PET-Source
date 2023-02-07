@@ -240,6 +240,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return colorSpace;
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveNetworkPreference(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -255,6 +261,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveChosenLanguage(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -270,6 +282,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveAlwaysOnState(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -285,6 +303,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveHuntWarningAudioAllowed(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -300,6 +324,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveHuntWarningFlashTimeout(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -315,6 +345,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveColorSpace(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -328,6 +364,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveAppTimeAlive(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -342,6 +384,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveTimesOpened(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -356,6 +404,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveCanRequestReview(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -370,6 +424,12 @@ public class GlobalPreferencesViewModel extends ViewModel {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     public void saveIsLeftHandSupportEnabled(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -387,7 +447,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
     /**
      * saveToFile method
      *
-     * @param context
+     * @param context The Activity context.
      */
     public void saveToFile(Context context) {
 
@@ -426,6 +486,10 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return settings;
     }
 
+    /**
+     *
+     * @param context
+     */
     public void printFromFile(Context context) {
         SharedPreferences sharedPref = getSharedPreferences(context);
 
@@ -442,6 +506,9 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Can Request Review: " +sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false) + "]");
     }
 
+    /**
+     *
+     */
     public void printFromVariables() {
         Log.d("GlobalPreferencesVars",
                 "NetworkPreference: " + getNetworkPreference() +

@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.model;
 import android.opengl.Matrix;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.animation.Animation;
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.animation.Animator;
 import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.collada.entities.Joint;
 
 import java.nio.FloatBuffer;

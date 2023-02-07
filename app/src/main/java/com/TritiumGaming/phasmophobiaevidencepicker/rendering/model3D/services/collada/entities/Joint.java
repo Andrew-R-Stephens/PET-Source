@@ -2,6 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.services.
 
 import android.opengl.Matrix;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.rendering.model3D.animation.Animator;
+
 import java.util.ArrayList;
 import java.util.List;
 

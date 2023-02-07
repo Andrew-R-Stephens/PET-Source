@@ -128,7 +128,6 @@ public class WavefrontLoader {
 
 	/**
 	 * Count verts, normals, faces etc and reserve buffers to save the data.
-	 * @param br data source
 	 */
 	public void analyzeModel(InputStream is) {
 		int lineNum = 0;

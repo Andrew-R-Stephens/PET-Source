@@ -111,7 +111,7 @@ public abstract class SystemUiHider {
 
 	/**
 	 * Sets up the system UI hider. Should be called from
-	 * {@link Activity#onCreate}.
+	 * {@link Activity}.
 	 */
 	public abstract void setup();
 
