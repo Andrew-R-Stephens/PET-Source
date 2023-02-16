@@ -615,6 +615,7 @@ public class EvidenceFragment extends Fragment {
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrder();
 
+        Log.d("Scores", "===== Reordering =====");
         //Avoid pass null in the root it ignores spaces in the child layout
         for (int j : newGhostOrder) {
 

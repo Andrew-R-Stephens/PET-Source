@@ -373,8 +373,10 @@ public class TitlescreenFragment extends Fragment {
         if(context != null) {
             Animation animation = AnimationUtils.loadAnimation(context,
                     R.anim.notifyblink);
-            inboxNotify.setAlpha(1f);
-            inboxNotify.startAnimation(animation);
+            if(inboxNotify != null) {
+                inboxNotify.setAlpha(1f);
+                inboxNotify.startAnimation(animation);
+            }
         }
     }
 

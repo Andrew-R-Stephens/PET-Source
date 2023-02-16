@@ -254,7 +254,7 @@ public class InvestigationData {
          */
         public int getEvidenceScore() {
 
-            if(isForcefullyRejected) {
+            if (isForcefullyRejected) {
                 return -5;
             }
 
@@ -263,192 +263,64 @@ public class InvestigationData {
             boolean isInsanity =
                     evidenceViewModel.getDifficultyCarouselData().isDifficulty(4);
 
+            int maxPosScore = isInsanity ? 1 : isNightmare ? 2 : 3;
 
+            int posScore = 0, negScore = 0;
 
-            /*
-             * Give each ghost a score based on affirmation or negation
-             */
-            int nScore = 0;
-            int rScore = this.thisGhostRequiredEvidence.size();
-
-            for (int i = 0; i < thisGhostEvidence.size(); i++) {
-                Evidence e = thisGhostEvidence.get(i);
-                // Increase ghost's score for each positive evidence.
-                if (e.getRuling() == Evidence.Ruling.POSITIVE) {
-                    if(i < 3) {
-                        nScore++;
-                    } else {
-                        rScore ++;
+            for (Evidence e : evidence) {
+                boolean isContained = false;
+                for (Evidence eThis : thisGhostEvidence) {
+                    if (e == eThis) {
+                        isContained = true;
+                        break;
                     }
                 }
-                /*
-                 * If not Nightmare:
-                 *      - negate ghost completely when a ghost's evidence is negated.
-                 * If Nightmare:
-                 *      - decrement the score by 1 if evidence is not Nightmare evidence
-                 *      - negate the ghost completely if evidence is Nightmare evidence
-                 */
-                else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
-                    if(isNightmare || isInsanity) {
-                        boolean foundNMe = false;
-                        for(Evidence nmE: thisGhostRequiredEvidence) {
-                            if(nmE.equals(e)) {
-                                foundNMe = true;
-                                nScore = -5;
-                                break;
-                            }
-                        }
-                        if(!foundNMe) {
-                            if(nScore > 0) {
-                                nScore = 0;
-                            }
-                            nScore--;
-                        }
-                    } else {
+                if (!isContained) {
+                    if (e.ruling == Evidence.Ruling.POSITIVE) {
                         return -5;
                     }
                 }
             }
 
-            /*
-             * Negate all ghosts without positive matches
-             */
-            for (int i = 0; i < evidence.size(); i++) {
-                boolean isContained = false;
-                for (Evidence value : thisGhostEvidence) {
-                    if (evidence.get(i).getName().equals(value.getName())) {
-                        isContained = true;
-                        break;
-                    }
-                }
-                if (!isContained && evidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
-                    return -5;
-                }
-            }
-
-            /*
-             * If nightmare difficulty, negate all ghosts when their score is over 2
-             */
-            if(isNightmare || isInsanity) {
-
-                int maxScore = isNightmare ? 2 : 1;
-                int weightedScore = Math.max(maxScore, maxScore - thisGhostRequiredEvidence.size() + rScore);
-
-                // If the score is > 2 for any ghost, negate that ghost
-                if(nScore > weightedScore || nScore < -3+weightedScore) {
-                    return -5;
-                }
-                // If the score of a ghost is 2, negate if it has unmatched affirmed Nightmare evidence
-                if(nScore == weightedScore) {
-                    for (int i = 0; i < thisGhostRequiredEvidence.size(); i++) {
-                        for (Evidence value : evidence) {
-                            if (thisGhostRequiredEvidence.get(i).getName().equals(value.getName())) {
-                                if (!thisGhostRequiredEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
-                                    return -5;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return nScore;
-        }
-
-        /*
-        public int getEvidenceScore() {
-
-            if(isForcefullyRejected) {
-                return -5;
-            }
-
-            boolean isNightmare =
-                    evidenceViewModel.getDifficultyCarouselData().isDifficulty(3);
-
-            *//*
-             * Give each ghost a score based on affirmation or negation
-             *//*
-            int score = 0;
-            for (int i = 0; i < thisGhostEvidence.size(); i++) {
+            for(int i = 0; i < thisGhostEvidence.size(); i++) {
                 Evidence e = thisGhostEvidence.get(i);
-                // Increase ghost's score for each positive evidence.
-                if (e.getRuling() == Evidence.Ruling.POSITIVE && i < 3) {
-                    score ++;
-                }
-                *//*
-                 * If not Nightmare:
-                 *      - negate ghost completely when a ghost's evidence is negated.
-                 * If Nightmare:
-                 *      - decrement the score by 1 if evidence is not Nightmare evidence
-                 *      - negate the ghost completely if evidence is Nightmare evidence
-                 *//*
-                else if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
-                    if(isNightmare) {
-                        boolean foundNMe = false;
-                        for(Evidence nmE: thisGhostNightmareEvidence) {
-                            if(nmE.equals(e)) {
-                                foundNMe = true;
-                                score = -5;
-                                break;
-                            }
+                switch (e.ruling) {
+                    case POSITIVE: {
+                        if(i < 3) {
+                            posScore++;
                         }
-                        if(!foundNMe) {
-                            if(score > 0) {
-                                score = 0;
-                            }
-                            score --;
-                        }
-                    } else {
-                        return -5;
+                        break;
                     }
-                }
-            }
+                    case NEGATIVE: {
+                        if(!(isNightmare || isInsanity))
+                            return -6;
 
-            *//*
-             * Negate all ghosts without positive matches
-             *//*
-            for (int i = 0; i < evidence.size(); i++) {
-                boolean isContained = false;
-                for (Evidence value : thisGhostEvidence) {
-                    if (evidence.get(i).getName().equals(value.getName())) {
-                        isContained = true;
+                        negScore ++;
+                        if(i >= 3) {
+                            return -7;
+                        }
                         break;
                     }
                 }
-                if (!isContained && evidence.get(i).getRuling() == Evidence.Ruling.POSITIVE) {
-                    return -5;
+            }
+
+            for(Evidence e : thisGhostRequiredEvidence) {
+                if (e.ruling == Evidence.Ruling.NEGATIVE) {
+                    if (isNightmare || isInsanity)
+                        return -8;
                 }
             }
 
-            *//*
-             * If nightmare difficulty, negate all ghosts when their score is over 2
-             *//*
-            if(isNightmare) {
-                // If the score is > 2 for any ghost, negate that ghost
-                if(score > 2) {
-                    return -5;
-                }
-                // If the score is <= -2 for any ghost, negate that ghost
-                if(score <= -2) {
-                    return -5;
-                }
-                // If the score of a ghost is 2, negate if it has unmatched affirmed Nightmare evidence
-                if(score == 2) {
-                    for (int i = 0; i < thisGhostNightmareEvidence.size(); i++) {
-                        for (Evidence value : evidence) {
-                            if (thisGhostNightmareEvidence.get(i).getName().equals(value.getName())) {
-                                if (!thisGhostNightmareEvidence.get(i).isRuling(Evidence.Ruling.POSITIVE)) {
-                                    return -5;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            if(posScore > maxPosScore)
+                return -8;
+            if(negScore > 3-maxPosScore)
+                return -9;
 
-            return score;
+            if(!(isNightmare || isInsanity))
+                return posScore-negScore;
+
+            return posScore;
         }
-        */
 
         public String toString() {
             StringBuilder s = new StringBuilder();
