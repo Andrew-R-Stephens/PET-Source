@@ -1,6 +1,5 @@
 
-![Logo](https://lh3.googleusercontent.com/PMa9Mqag_nOUFZbDqKXRrKFdp9edQS2CD0F4nzv5SDuFq_GzlzXS41YgV5MunlYiiZ0m)
-
+<img height="100" src="https://lh3.googleusercontent.com/PMa9Mqag_nOUFZbDqKXRrKFdp9edQS2CD0F4nzv5SDuFq_GzlzXS41YgV5MunlYiiZ0m"/>
 
 # Phasmophobia Evidence Tool
 
