@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
@@ -633,16 +634,16 @@ public class EvidenceFragment extends Fragment {
                     (ViewGroup) view,
                     false);
 
+            LinearLayoutCompat linearLayout_iconRow = inflatedLayout.findViewById(R.id.icon_container);
+
             AppCompatTextView name = inflatedLayout.findViewById(R.id.label_name);
             AppCompatImageView statusIcon = inflatedLayout.findViewById(R.id.icon_status);
-            AppCompatImageView icon1 = inflatedLayout.findViewById(R.id.icon1);
-            AppCompatImageView icon2 = inflatedLayout.findViewById(R.id.icon2);
-            AppCompatImageView icon3 = inflatedLayout.findViewById(R.id.icon3);
+
             ConstraintLayout mainLayout = inflatedLayout.findViewById(R.id.layout_main);
 
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            LinearLayoutCompat.LayoutParams params =
+                    new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
             mainLayout.setLayoutParams(params);
 
             name.setText(ghostName);
@@ -680,22 +681,6 @@ public class EvidenceFragment extends Fragment {
                 statusIcon.setVisibility(View.INVISIBLE);
             }
 
-            icon1.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(j)
-                            .getEvidenceArray()[0]
-                            .getIcon());
-            icon2.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(j)
-                            .getEvidenceArray()[1]
-                            .getIcon());
-            icon3.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(j)
-                            .getEvidenceArray()[2]
-                            .getIcon());
-
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
             theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
@@ -705,34 +690,28 @@ public class EvidenceFragment extends Fragment {
             theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
             int positiveSelColor = typedValue.data;
 
-            InvestigationData.Evidence.Ruling ruling = evidenceViewModel.getInvestigationData()
-                    .getGhost(j).getEvidenceArray()[0].getRuling();
-            if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
-                icon1.setColorFilter(positiveSelColor);
-            } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {
-                icon1.setColorFilter(negativeSelColor);
-            } else {
-                icon1.setColorFilter(neutralSelColor);
-            }
+            for (int i = 0; i < ghost.getEvidence().length; i++) {
+                ConstraintLayout evidenceIconContainer =
+                        (ConstraintLayout) inflater.inflate(R.layout.item_investigation_ghost_icon,
+                                null);
+                AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
+                evidenceIcon.setImageResource(ghost.getEvidence()[i].getIcon());
 
-            ruling = evidenceViewModel.getInvestigationData()
-                    .getGhost(j).getEvidenceArray()[1].getRuling();
-            if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
-                icon2.setColorFilter(positiveSelColor);
-            } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {
-                icon2.setColorFilter(negativeSelColor);
-            } else {
-                icon2.setColorFilter(neutralSelColor);
-            }
-
-            ruling = evidenceViewModel.getInvestigationData()
-                    .getGhost(j).getEvidenceArray()[2].getRuling();
-            if (ruling == InvestigationData.Evidence.Ruling.POSITIVE) {
-                icon3.setColorFilter(positiveSelColor);
-            } else if (ruling == InvestigationData.Evidence.Ruling.NEGATIVE) {
-                icon3.setColorFilter(negativeSelColor);
-            } else {
-                icon3.setColorFilter(neutralSelColor);
+                switch(ghost.getEvidence()[i].getRuling()) {
+                    case POSITIVE: {
+                        evidenceIcon.setColorFilter(positiveSelColor);
+                        break;
+                    }
+                    case NEGATIVE: {
+                        evidenceIcon.setColorFilter(negativeSelColor);
+                        break;
+                    }
+                    case NEUTRAL: {
+                        evidenceIcon.setColorFilter(neutralSelColor);
+                        break;
+                    }
+                }
+                linearLayout_iconRow.addView(evidenceIconContainer);
             }
 
             ghostContainer.addView(inflatedLayout);
@@ -921,11 +900,27 @@ public class EvidenceFragment extends Fragment {
             );
 
             ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-            ConstraintLayout evidenceIconLayout =
+
+            LinearLayoutCompat evidenceIconLayout =
                     customView.findViewById(R.id.layout_evidenceicons);
-            AppCompatImageView evidence1 = evidenceIconLayout.findViewById(R.id.icon1);
-            AppCompatImageView evidence2 = evidenceIconLayout.findViewById(R.id.icon2);
-            AppCompatImageView evidence3 = evidenceIconLayout.findViewById(R.id.icon3);
+
+            View linearLayout_icons_container = inflaterPopup.inflate(R.layout.item_investigation_ghost_icons, null);
+            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
+            for (int i = 0; i < evidenceViewModel.getInvestigationData()
+                    .getGhost(index)
+                    .getEvidenceArray().length; i++) {
+
+                ConstraintLayout evidenceIconContainer =
+                        (ConstraintLayout) inflaterPopup.inflate(R.layout.item_investigation_ghost_icon,
+                                null);
+                AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
+                evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData()
+                        .getGhost(index).getEvidence()[i].getIcon());
+
+                linearLayout_iconRow.addView(evidenceIconContainer);
+            }
+            evidenceIconLayout.addView(linearLayout_iconRow);
+
             ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
             ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
             ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
@@ -956,21 +951,6 @@ public class EvidenceFragment extends Fragment {
 
             label_name.setText(ghostName);
 
-            evidence1.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(index)
-                            .getEvidenceArray()[0]
-                            .getIcon());
-            evidence2.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(index)
-                            .getEvidenceArray()[1]
-                            .getIcon());
-            evidence3.setImageResource(
-                    evidenceViewModel.getInvestigationData()
-                            .getGhost(index)
-                            .getEvidenceArray()[2]
-                            .getIcon());
 
             info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     ghostInfo,

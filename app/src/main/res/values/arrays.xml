@@ -431,6 +431,7 @@
     <string-array name="evidence_ghost_requiredevidence_demon">
     </string-array>
     <string-array name="evidence_ghost_requiredevidence_deogen">
+        <item>@string/evidence_evidence_type_box</item>
     </string-array>
     <string-array name="evidence_ghost_requiredevidence_goryo">
         <item>@string/evidence_evidence_type_dots</item>

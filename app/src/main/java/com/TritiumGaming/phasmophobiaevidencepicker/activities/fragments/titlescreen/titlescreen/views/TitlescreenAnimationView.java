@@ -234,42 +234,73 @@ public class TitlescreenAnimationView extends View {
             if (aTemp != null) {
                 AbstractAnimatedGraphic lastAnimInList = animationData.getLastFromCurrentPool();
                 if (lastAnimInList != null) {
+                    int frameW = getWidth();
+                    int frameH = getHeight();
+
                     if (lastAnimInList instanceof AnimatedOrbData) {
                         if (BitmapUtils.bitmapExists(bitmap_orb)) {
                             animationData.setToAllPool(index, new AnimatedOrbData(
-                                    getWidth(),
-                                    getHeight()));
+                                    frameW,
+                                    frameH));
                         }
                     } else if (lastAnimInList instanceof AnimatedHandData) {
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
+
+                            int bitmapW = 0;
+                            int bitmapH = 0;
+                            try {
+                                bitmapW = bitmap_hand.getWidth();
+                                bitmapH = bitmap_hand.getHeight();
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+
                             animationData.setToAllPool(index, new AnimatedHandData(
-                                    getWidth(),
-                                    getHeight(),
-                                    bitmap_hand.getWidth(),
-                                    bitmap_hand.getHeight()));
+                                    frameW,
+                                    frameH,
+                                    bitmapW,
+                                    bitmapH
+                            ));
+
                             bitmap_handRot = ((AnimatedHandData) animationData.
                                     getLastFromCurrentPool()).rotateBitmap(bitmap_hand);
                         }
                     } else if (lastAnimInList instanceof AnimatedWritingData) {
                         if (BitmapUtils.bitmapExists(bitmap_writing)) {
+
+                            int bitmapW = 0;
+                            int bitmapH = 0;
+                            try {
+                                bitmapW = bitmap_writing.getWidth();
+                                bitmapH = bitmap_writing.getHeight();
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+
                             animationData.setToAllPool(index, new AnimatedWritingData(
-                                    getWidth(),
-                                    getHeight(),
-                                    bitmap_writing.getWidth(),
-                                    bitmap_writing.getHeight(),
-                                    animationData));
+                                    frameW,
+                                    frameH,
+                                    bitmapW,
+                                    bitmapH,
+                                    animationData
+                            ));
+
                             bitmap_writingRot = ((AnimatedWritingData) animationData.
                                     getLastFromCurrentPool()).rotateBitmap(bitmap_writing);
                         }
                     } else if (lastAnimInList instanceof AnimatedFrostData) {
                         if (BitmapUtils.bitmapExists(bitmap_frost)) {
                             animationData.setToAllPool(index, new AnimatedFrostData(
-                                    getWidth(), getHeight()));
+                                    frameW,
+                                    frameH
+                            ));
                         }
                     } else if (lastAnimInList instanceof AnimatedMirrorData) {
                         if (BitmapUtils.bitmapExists(bitmap_mirror)) {
                             animationData.setToAllPool(index, new AnimatedMirrorData(
-                                    getWidth(), getHeight()));
+                                    frameW,
+                                    frameH
+                            ));
                         }
                     }
                 }

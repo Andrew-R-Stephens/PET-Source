@@ -353,7 +353,9 @@ public class TitlescreenFragment extends Fragment {
 
         boolean success = parentView.post(() -> {
             //Log.d("Review", "Is displaying");
-            popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+            if(popup != null) {
+                popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+            }
 
         });
 

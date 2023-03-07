@@ -212,6 +212,11 @@ public class InvestigationData {
             }
         }
 
+        public Evidence[] getEvidence() {
+            Evidence[] t = new Evidence[thisGhostEvidence.size()];
+            return thisGhostEvidence.toArray(t);
+        }
+
         /**
          *
          */
@@ -306,7 +311,7 @@ public class InvestigationData {
 
             for(Evidence e : thisGhostRequiredEvidence) {
                 if (e.ruling == Evidence.Ruling.NEGATIVE) {
-                    if (isNightmare || isInsanity)
+                    //if (isNightmare || isInsanity)
                         return -8;
                 }
             }
@@ -316,8 +321,16 @@ public class InvestigationData {
             if(negScore > 3-maxPosScore)
                 return -9;
 
-            if(!(isNightmare || isInsanity))
-                return posScore-negScore;
+            if(!(isNightmare || isInsanity)) {
+                return posScore - negScore;
+            }
+
+            if(posScore == maxPosScore-(3-thisGhostEvidence.size()))
+                for(Evidence e : thisGhostRequiredEvidence) {
+                    if (e.ruling != Evidence.Ruling.POSITIVE) {
+                        return -10;
+                    }
+                }
 
             return posScore;
         }
