@@ -116,6 +116,10 @@ public class DifficultyCarouselData {
         return false;
     }
 
+    public EvidenceViewModel getEvidenceViewModel() {
+        return evidenceViewModel;
+    }
+
     public boolean isResponseTypeKnown() {
         return getDifficultyIndex() < 2;
     }
