@@ -48,43 +48,21 @@
         android:id="@+id/constraintLayout83"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginVertical="2sp"
+        android:layout_marginVertical="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout84"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/icon1"
+        <include
+            layout="@layout/item_investigation_ghost_icons"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/icon2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_inconclusive_unselected" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/icon2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="5sp"
-            app:layout_constraintBottom_toBottomOf="@+id/icon1"
-            app:layout_constraintEnd_toStartOf="@+id/icon3"
-            app:layout_constraintStart_toEndOf="@+id/icon1"
-            app:layout_constraintTop_toTopOf="@+id/icon1"
-            app:srcCompat="@drawable/icon_inconclusive_unselected" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/icon3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="5sp"
-            app:layout_constraintBottom_toBottomOf="@id/icon2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon2"
-            app:layout_constraintTop_toTopOf="@+id/icon2"
-            app:srcCompat="@drawable/icon_inconclusive_unselected" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
