@@ -9,6 +9,7 @@
         android:id="@+id/msginbox_mainconstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,11 +171,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif-monospace"
-                        app:fontFamily="serif-monospace"
                         android:text="@string/app_name"
                         android:textColor="?attr/neutralSelColor"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:fontFamily="serif-monospace" />
                 </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

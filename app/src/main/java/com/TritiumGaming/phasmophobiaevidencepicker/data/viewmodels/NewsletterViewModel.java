@@ -71,6 +71,7 @@ public class NewsletterViewModel extends ViewModel {
 
     public void registerInboxes(@NonNull Context context) {
         try {
+
             new RSSParserUtils(XmlPullParserFactory.newInstance(),
                     context.getResources().
                             getString(R.string.preference_phasmophobia_changelog_link),
@@ -85,6 +86,7 @@ public class NewsletterViewModel extends ViewModel {
                     context.getResources().
                             getString(R.string.preference_pet_changelog_link),
                     NewsletterViewModel.InboxType.PET, this);
+
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         }

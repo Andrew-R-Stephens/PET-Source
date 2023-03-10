@@ -22,10 +22,7 @@
     </string-array>
 
     <string name="image" translatable="false">image</string>
-    <!-- Help -->
-    <string name="help_text" translatable="false">* Load Model: Load models from your device storage (you can find a lot in Internet. Just download them to your device). Please load only wavefront object files (*.obj). If the model file (.obj) is referencing any materials file (*.mtl) be sure its in the same folder; same applies for texture files (*.jpg, *.bmp) being referenced in the material file.\n\n.* Models: Included with the app there is some models I downloaded from Internet (www.turbosquid.com), and serves as example of wavefront files that can be loaded with the app.\n\n* Demo: This is a demo of what can be done with the app. It basically loads several models to show usage of draw modes, colors, textures and loading of files. Serves basically to test the application when Im developing.\n\n* Help: This instructions page\n\n* About: Credits of this app.\n\n\nViewer: Once you load a model, you can pinch to zoom, rotate the camera with your finger and rotate the screen with 2 fingers\n\nIn the action bar you will also find 2 buttons: 1 for toggling the wireframe draw mode and 1 for toggling the bounding boxes.\n\nIf you need more help feel free to ask me at andresoviedo@gmail.com.</string>
-    <!-- About -->
-    <string name="about_text" translatable="false">This application allows you to load 3D object models (currently only wavefront .obj format is supported).\n\nThe purpose of this application is to learn and share how to draw in android using the OpenGL 2.0 language.\n\nThe code for this application is open source and can be found at https://github.com/andresoviedo/android-3DModel\n\nAs this is my first android app and Im still learning the OpenGL 2.0 language, it is highly probable that there are bugs; but I will try to continue improving the app.\n\nThe included models were taken for free from Internet (http://www.turbosquid.com).\n\nAny comments, suggestions or complainings are welcome. Feel free to contact me at andresoviedo@gmail.com.\n\nFor more info about me visit http://www.andresoviedo.org</string>
+
     <!-- Load settings -->
     <string name="model_name" translatable="false">Model name</string>
     <string name="texture" translatable="false">Texture</string>
@@ -237,7 +234,7 @@
     <!-- Ghost description -->
     <string name="evidence_ghost_info_banshee" >
         <![CDATA[
-            <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>. Banshees <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them.</p>
+            <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_demon" >
@@ -262,12 +259,12 @@
     </string>
     <string name="evidence_ghost_info_jinn" >
         <![CDATA[
-            <p>A Jinn is a territorial ghost that will attack when threatened. It has also been known to be <font color=#ff6161>able to travel at high speeds</font>, and will do so while hunting distant paranormal investigators. However, <font color=#ff6161>cutting off power via the fuse box will limit its speed</font>.</p>
+            <p>A Jinn gets its abilities from the power being on. It can move very quick huring hunts and it can drain sanity absurdly fast. Jinns were the apex predator back in earlier versions of Phasmophobia, and there\'s good reason for that.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_mare" >
         <![CDATA[
-            <p>The Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
+            <p>The Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_moroi">
@@ -297,7 +294,7 @@
     </string>
     <string name="evidence_ghost_info_phantom" >
         <![CDATA[
-            <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who view it</font>. <font color=#ff6161>Taking a picture of it will make it disappear temporarily</font>. Although rumored to possess the living, it has no ability to actually do so. It is said to be commonly summoned by a Ouija Board, although players cannot summon one themselves, nor does a Phantom\'s presence guarantee that a Ouija Board will spawn.</p>
+            <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who look at it</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_poltergeist" >
@@ -312,7 +309,7 @@
     </string>
     <string name="evidence_ghost_info_revenant" >
         <![CDATA[
-            <p>A Revenant is a violent ghost that <font color=#ff6161>can attack indiscriminately</font>, as it is capable of switching its current target mid-hunt. <font color=#ff6161>Hiding from it will cause it to move slowly</font>, but <font color=#ff6161>it will travel faster than any other Ghost in the game if a victim is in its sights</font>.</p>
+            <p>A Revenant is </p>
         ]]>
     </string>
     <string name="evidence_ghost_info_shade" >
@@ -322,7 +319,7 @@
     </string>
     <string name="evidence_ghost_info_spirit" >
         <![CDATA[
-            <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
+            <p>A Spirit has no special strengths, but it is still as dangerous as any other ghost.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_thaye">
@@ -342,7 +339,7 @@
     </string>
     <string name="evidence_ghost_info_wraith" >
         <![CDATA[
-            <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
+            <p>A Wraith is the only known Ghost which <font color=#ff6161>retains the ability of flight</font>. Much like any other ghost, a Wraith cannot travel through walls even though they are said to have that ability.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_yokai">
@@ -386,12 +383,12 @@
     </string>
     <string name="evidence_ghost_strengths_jinn" >
         <![CDATA[
-            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting. Once the Jinn catches up to a player, it will decelerate and switch to normal hunting speeds and behaviors.</p>
+            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting. Once the Jinn catches up to a player, it will deccelerate gradually and switch to normal hunting speeds. A Jinn may instantly remove 25\% sanity from a nearby player if the power is on.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_mare" >
         <![CDATA[
-            <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
+            <p>A Mare will attempt to turn the lights off to empower itself, and will hunt at 60\% should the power be off. It will also wander into other rooms or into dark areas of its preferred room, and may start a hunt from those locations. A Mare has an increased likelihood to destroy a room\'s light source through an event.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_moroi">
@@ -422,12 +419,12 @@
     </string>
     <string name="evidence_ghost_strengths_phantom" >
         <![CDATA[
-            <p>Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
+            <p>Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long. It also has a tendency to passively follow players, which helps it to wander outside of its  chosen room, making it more difficult to gather evidence.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_poltergeist" >
         <![CDATA[
-            <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
+            <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises. There is an immediate 2\% sanity drain on any nearby players per item thrown. This may occur both outside and during a hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_raiju" >
@@ -467,7 +464,7 @@
     </string>
     <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
-            <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
+            <p>The Wraith possesses the ability to blink themselves to the location of any nearby player within a small distance from their chosen room. This may take place far outside of their room, even between floors. This activity might go unnoticed as it may be a silent activity, but it will generate an EMF reading at the landing location. After this activity, the Wraith will walk back to their room and may interact with objects during this time. It is said that a Wraith may hunt right after teleporting, but this may be inaccurate.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yokai">
@@ -484,12 +481,12 @@
     <!-- Weaknesses -->
     <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
-            <p>Susceptible to the use of a crucifix to cull their aggression.</p>
+            <p>A Banshee will wander far from its room just to stalk its target. Banshees will never kill its non-target player, and during a hunt it will walk straight through any investigator who it isn\'t interested in. It also bases its hunt on the Sanity of its target instead of the average Sanity of the team. A Banshee has a special interaction with the Parabolic Microphone as it has a chance to emmit a faint, high pitched wail.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_demon" >
         <![CDATA[
-            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
+            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons. Demons <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them by amplifying the Crucifix effective range to 5 meters.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_deogen">
@@ -509,12 +506,12 @@
     </string>
     <string name="evidence_ghost_weaknesses_jinn" >
         <![CDATA[
-            <p>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
+            <p>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to remove the Jinn\'s ability. A Jinn will not be able to turn the power on itself.</p>
 		]]>
     </string>
     <string name="evidence_ghost_weaknesses_mare" >
         <![CDATA[
-            <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
+            <p>Keeping the lights on in a Mare\'s area will lower its sanity preference for hunting from 60\% to 40\% average sanity. Therefore, remain in lit areas to limit its aggression. A Mare cannot turn the breaker off, but it does have the ability to instantly turn off light switches when they\'re activated by a player, which is an event that can be recognized very easily.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_moroi">
@@ -544,12 +541,12 @@
     </string>
     <string name="evidence_ghost_weaknesses_phantom" >
         <![CDATA[
-            <p>Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
+            <p><font color=#ff6161>Taking a picture of a Phantom will make it disappear temporarily</font> and will never show in the photograph. A Phantom also gives itself away huring hunts, as it will physically manifest for short durations and dissapear for longer durations.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist" >
         <![CDATA[
-            <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
+            <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective. A Polgergeist may interact with items violently, being able to throw an item with far greater force than a normal ghost. It may interact with multiple items at the same time, which is known as a "Poltergeist explosion event", and it can be easily tested by accumulating a large number of items into a pile and observing its behavior for activity. During a hunt, items have a far greater chance of being manipulated, so check for numerous aggitated items within its hunting path.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_raiju" >
@@ -569,7 +566,7 @@
     </string>
     <string name="evidence_ghost_weaknesses_spirit" >
         <![CDATA[
-            <p>Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
+            <p>When a Spirit is smudged, it will not hunt for a full 180 seconds. By contrast, any other ghost will hunt at 90 seconds (except for the Demon which may hunt as early as 60 seconds).</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thaye">
@@ -589,7 +586,7 @@
     </string>
     <string name="evidence_ghost_weaknesses_wraith" >
         <![CDATA[
-            <p>Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
+            <p><font color=#ff6161>Salt is toxic to a Wraith</font>, so therefore it will never step through any. To confirm a Wraith, place a motion sensor over Salt piles. If the Motion Sensor detects movement without the Salt being disturbed, the ghost may be a Wraith!</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yokai" >

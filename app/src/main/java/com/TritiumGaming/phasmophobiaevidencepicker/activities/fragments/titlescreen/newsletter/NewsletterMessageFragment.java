@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -69,7 +70,7 @@ public class NewsletterMessageFragment extends Fragment {
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
@@ -81,7 +82,7 @@ public class NewsletterMessageFragment extends Fragment {
 
         // SET CONTENT
         NewsletterMessageData message = newsletterViewModel.getCurrentMessage();
-        if(message != null) {
+        if (message != null) {
             label_title.setText(Html.fromHtml(message.getTitle()));
             label_date.setText(Html.fromHtml(message.getDate()));
             label_content.setText(Html.fromHtml(message.getDescription()));

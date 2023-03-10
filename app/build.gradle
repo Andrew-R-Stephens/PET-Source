@@ -29,8 +29,8 @@ android {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 71
-        versionName "7.5.0"
+        versionCode 72
+        versionName "7.5.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

@@ -14,4 +14,8 @@ public class FormatterUtils {
                 new DecimalFormat("00").format(seconds));
 
     }
+
+    public static String wrapCData(String raw) {
+        return String.format("%s%s%s", "<![CDATA[", raw, "]]>");
+    }
 }

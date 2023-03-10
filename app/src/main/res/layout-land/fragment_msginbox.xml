@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000000"
-    android:drawingCacheQuality="high">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msginbox_mainconstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +136,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/inboxNotify_1"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -146,6 +144,8 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_newsupdateinbox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".5"
@@ -219,6 +219,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/inboxNotify_2"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -226,6 +227,8 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_petupdateinbox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".5"
@@ -299,7 +302,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/icon_inbox3"
+                        android:id="@+id/inboxNotify_3"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -307,6 +310,8 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_phasupdateinbox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".5"

@@ -109,14 +109,16 @@ public class TitlescreenFragment extends Fragment {
             }
         );
 
-        button_startMult.setOnClickListener(v -> {
+        /*button_startMult.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                 intent.putExtra("lobby", 1);
                 startActivity(intent);
             }
-        );
+        );*/
 
-        inboxNotify.setAlpha(0f);
+        if(inboxNotify != null) {
+            inboxNotify.setAlpha(0f);
+        }
 
         setBackgroundLogo(icon_appIcon);
         setLanguageName(label_languageName);

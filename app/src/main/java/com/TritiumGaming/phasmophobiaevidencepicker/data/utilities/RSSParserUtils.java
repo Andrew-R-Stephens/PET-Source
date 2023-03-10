@@ -114,11 +114,6 @@ public class RSSParserUtils {
                 messageList.compareDates();
                 messageList.setIsReady(true);
                 newsLetterViewModel.addInbox(messageList, inboxType);
-                /*newsLetterViewModel.compareAllInboxDates(inboxType);
-                if(newsLetterViewModel.getInbox(inboxType) != null){
-                    newsLetterViewModel.getInbox(inboxType).setIsReady(true);
-                }
-                */
 
             } catch (XmlPullParserException | IOException e) {
                 e.printStackTrace();

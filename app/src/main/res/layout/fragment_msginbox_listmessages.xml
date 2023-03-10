@@ -9,6 +9,7 @@
         android:id="@+id/msginbox_mainconstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,10 +33,10 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+                app:layout_constraintHeight_percent=".8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".2"
-                app:layout_constraintHeight_percent=".8">
+                app:layout_constraintWidth_percent=".2">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/button_prev"
@@ -101,10 +102,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:fadeScrollbars="false"
-                android:scrollbars="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:requiresFadingEdge="vertical"
                 android:fadingEdgeLength="25sp"
+                android:requiresFadingEdge="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
