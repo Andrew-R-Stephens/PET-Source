@@ -328,11 +328,11 @@ public class SanityData {
      * Defaults all persistent data.
      */
     public void reset() {
-        setInsanityActual(0);
         setStartTime(-1);
         setFlashTimeoutStart(-1);
         setCanWarn(true);
         tick();
+        setInsanityActual(evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex() == 4 ? 25f : 0);
     }
 
 }

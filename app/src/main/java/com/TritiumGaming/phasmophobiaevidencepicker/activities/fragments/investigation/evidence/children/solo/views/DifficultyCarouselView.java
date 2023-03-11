@@ -60,6 +60,9 @@ public class DifficultyCarouselView {
 
             if (difficultyCarouselData.decrementDifficulty()) {
                 difficultyCarouselData.resetSanityData();
+                if(difficultyCarouselData.getDifficultyIndex() == 4) {
+                    difficultyCarouselData.getEvidenceViewModel().getSanityData().setInsanityActual(25f);
+                }
                 sanityProgressBar.updateProgress();
                 difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
                 timerControlView.pause();
@@ -80,6 +83,9 @@ public class DifficultyCarouselView {
 
             if (difficultyCarouselData.incrementDifficulty()) {
                 difficultyCarouselData.resetSanityData();
+                if(difficultyCarouselData.getDifficultyIndex() == 4) {
+                    difficultyCarouselData.getEvidenceViewModel().getSanityData().setInsanityActual(25f);
+                }
                 sanityProgressBar.updateProgress();
                 difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
                 timerControlView.pause();
