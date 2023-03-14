@@ -225,7 +225,7 @@
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                         android:id="@+id/evidence_sanitymeter_phase_action"
-                        style="@style/TimeBoldNarrow"
+                        style="@style/TimeBoldNarrow_SqueezeText"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/rect_border"
@@ -245,7 +245,7 @@
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                         android:id="@+id/evidence_sanitymeter_phase_setup"
-                        style="@style/TimeBoldNarrow"
+                        style="@style/TimeBoldNarrow_SqueezeText"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginEnd="1dp"
@@ -311,7 +311,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/evidence_timer_text"
-                                style="@style/TimeBold"
+                                style="@style/TimeBold_SqueezeText"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:gravity="center"
@@ -403,10 +403,10 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/evidence_sanitymeter_title"
-                        style="@style/TimeRegular"
+                        style="@style/TimeRegular_SqueezeText"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="1dp"
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:maxLines="1"
@@ -426,6 +426,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:text="@string/evidence_timer_time_3"
+                        android:ems="4"
                         app:layout_constraintBottom_toBottomOf="@+id/evidence_sanitymeter_progressbar"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".25"
@@ -461,7 +462,7 @@
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                     android:id="@+id/evidence_sanitymeter_huntwarning"
-                    style="@style/TimeBoldNarrow"
+                    style="@style/TimeBoldNarrow_SqueezeText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="1dp"

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -50,7 +51,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -60,6 +60,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
+
+import pl.droidsonroids.gif.GifImageView;
 
 /**
  * EvidenceFragment class
@@ -289,7 +291,7 @@ public class EvidenceFragment extends Fragment {
 
         sanityMeterView.init(sanityData);
         if (sanityData != null) {
-            sanityPercentTextView.setText(sanityData.toPercentString());
+            sanityPercentTextView.setText(String.format("%1$-4s", sanityData.toPercentString()));
         }
 
         header_ghostLabel.setText(R.string.evidence_ghosts_title);
@@ -446,7 +448,20 @@ public class EvidenceFragment extends Fragment {
                 AppCompatTextView info = customView.findViewById(R.id.label_info);
                 ScrollView scroller = customView.findViewById(R.id.scrollView);
                 View indicator = customView.findViewById(R.id.scrollview_indicator);
-                AppCompatImageView animation = customView.findViewById(R.id.animation_evidence);
+                GifImageView animation = customView.findViewById(R.id.animation_evidence);
+                GifImageView animation_fullscreen = customView.findViewById(R.id.animation_evidence_fullscreen);
+
+                animation.setOnClickListener(view12 -> {
+                    if(animation_fullscreen.getVisibility() != View.VISIBLE) {
+                        animation_fullscreen.setVisibility(View.VISIBLE);
+                    }
+                });
+
+                animation_fullscreen.setOnClickListener(view1 -> {
+                    if(view1.getVisibility() == View.VISIBLE) {
+                        view1.setVisibility(View.GONE);
+                    }
+                });
 
                 fadeOutIndicatorAnimation(
                         scroller,
@@ -459,7 +474,15 @@ public class EvidenceFragment extends Fragment {
                         evidenceInfo,
                         "#ff6161", fontEmphasisColor + "")));
 
-                animation.setImageResource(InvestigationData.getEvidence(evidenceIndex).getIcon());
+                TypedArray typedArray;
+                try {
+                    typedArray = view.getContext().getResources().obtainTypedArray(R.array.evidence_animation_array);
+                    animation.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
+                    animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
+                    typedArray.recycle();
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                }
 
                 popup = new PopupWindow(
                         customView,

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/popup_bg"
-    android:backgroundTint="#D9000000"
+    android:backgroundTint="#ED000000"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -110,7 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".7"
+                app:layout_constraintHeight_percent=".6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -130,19 +130,16 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/popup_contentbody_constraintlayout"
                 app:layout_constraintVertical_bias="0.0">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/animation_evidence"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:tint="#8A8A8A"
-                    android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,6 +149,20 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/animation_evidence_fullscreen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_dots" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

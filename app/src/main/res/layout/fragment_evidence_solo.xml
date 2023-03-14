@@ -544,7 +544,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/evidence_sanitymeter_title"
-                                style="@style/TimeRegular"
+                                style="@style/TimeRegular_SqueezeText"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:background="#00FFFFFF"
@@ -566,6 +566,7 @@
                                 android:background="#00FFFFFF"
                                 android:gravity="center"
                                 android:maxLines="1"
+                                android:ems="4"
                                 android:text="@string/evidence_timer_time_3"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -615,7 +616,7 @@
 
                             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                                 android:id="@+id/evidence_sanitymeter_phase_action"
-                                style="@style/TimeBoldNarrow"
+                                style="@style/TimeBoldNarrow_SqueezeText"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:background="@drawable/rect_border"
@@ -635,7 +636,7 @@
 
                             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                                 android:id="@+id/evidence_sanitymeter_phase_setup"
-                                style="@style/TimeBoldNarrow"
+                                style="@style/TimeBoldNarrow_SqueezeText"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:background="@drawable/rect_border"
@@ -657,7 +658,7 @@
 
                         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                             android:id="@+id/evidence_sanitymeter_huntwarning"
-                            style="@style/TimeBoldNarrow"
+                            style="@style/TimeBoldNarrow_SqueezeText"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="@drawable/rect_border"

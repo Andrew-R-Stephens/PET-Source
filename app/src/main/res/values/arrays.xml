@@ -72,6 +72,7 @@
         <item>Bravo-1</item>
         <item>DoctorCrow</item>
         <item>Edahix</item>
+        <item>Miss Shuee</item>
     </string-array>
 
 
@@ -240,6 +241,17 @@
         <item>@drawable/icon_orbs</item>
         <item>@drawable/icon_writing</item>
         <item>@drawable/icon_spiritbox</item>
+    </integer-array>
+
+    <!-- Evidence Description -->
+    <integer-array name="evidence_animation_array">
+        <item>@drawable/example_dots</item>
+        <item>@drawable/example_emf5</item>
+        <item>@drawable/example_fingerprints_normal_cropped</item>
+        <item>@drawable/example_thermometer_freezing_cropped</item>
+        <item>@drawable/example_ghost_orbs</item>
+        <item>@drawable/example_ghost_writing_cropped</item>
+        <item>@drawable/example_spirit_box_cropped</item>
     </integer-array>
 
     <!-- Ghost NORMAL Evidence Arrays -->

@@ -24,10 +24,41 @@
         GHOSTS
     -->
 
+
     <!-- Ghost description -->
+    <string name="evidence_ghost_info_banshee" >
+        <![CDATA[
+            <p>Los Banshees se describen como cazadores naturales. Intentarán acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>dirigiéndose selectivamente a un investigador a la vez</font>.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_demon" >
+        <![CDATA[
+            <p>Un demonio es uno de los peores fantasmas que se pueden encontrar. Al ser muy agresivo, <font color=#ff6161>atacará con más frecuencia que cualquier otro Fantasma</font>, por lo que se recomienda un crucifijo para evitar cacerías. Sin embargo, hacerle preguntas exitosas al demonio desde el tablero Ouija no agotará la cordura del jugador.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_info_deogen" >
         <![CDATA[
-            <p>El Deogen es un cazador nato. Los métodos de ocultación convencionales no funcionarán, ya que tiene un agudo sentido para olfatear presas. Puedes correr… pero no puedes esconderte.</p>
+            <p>El Deogen es un cazador nato. Los métodos de ocultación convencionales no funcionarán, ya que tiene un agudo sentido para olfatear presas. Puedes correr… pero no puedes esconderte. Repita: NO INTENTE ESCONDERSE. Si escucha pasos extremadamente rápidos, como un redoble de tambores, salga de su escondite INMEDIATAMENTE.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_goryo">
+        <![CDATA[
+            <p>Rara vez se verá a un Goryo fuera de su habitación preferida. A Goryo también <font color=#ff6161>le disgusta mucho mostrarse cuando hay gente cerca</font>. Esto hace que ver D.O.T.S. imposible sin verlo a través de una cámara de video de forma remota.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_hantu">
+        <![CDATA[
+            <p>El Hantu <font color=#ff6161>prefiere temperaturas más frías</font>, lo que potenciará su capacidad para moverse rápidamente durante la caza. Esto significa que el disyuntor debe estar habilitado para aumentar la temperatura general fuera del área embrujada, lo que reduce la velocidad de movimiento del Hantu.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_jinn" >
+        <![CDATA[
+            <p>Un Jinn obtiene sus habilidades cuando está encendido. Puede moverse muy rápido durante las cacerías y puede drenar la cordura absurdamente rápido. Los genios eran el depredador ápice en versiones anteriores de Phasmophobia, y hay una buena razón para ello. Se mueve a 2,5 m/s si persigue a un jugador lejano y el generador está encendido, y a 1,7 m/s si el generador está apagado y no persigue a nadie.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_mare" >
+        <![CDATA[
+            <p>La Pesadilla es un fantasma que se vuelve <font color=#ff6161>más agresivo en la oscuridad</font>.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_moroi">
@@ -35,223 +66,351 @@
             <p>Los Moroi eliminan la cordura de los vivos. A medida que la cordura de sus víctimas disminuye, el Moroi se vuelve más fuerte. Mantenga su cordura lo más alta posible para evitar la agresividad no deseada.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_thaye">
+    <string name="evidence_ghost_info_myling">
         <![CDATA[
-            <p>El Thaye es un fantasma que envejece rápidamente en el más allá. La representación terrenal de este envejecimiento se presentará como fortaleza en las primeras etapas de una misión, pero como debilidad en las etapas posteriores.</p>
+            <p>El Myling emitirá ruidos extraños que pueden ser captados por el micrófono parabólico. Sus pasos solo pueden escucharse dentro del rango de interferencia electrónica (que es de unos 10 metros) durante una cacería.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_info_banshee">
+    <string name="evidence_ghost_info_obake">
         <![CDATA[
-			<p>Las banshees se describen como cazadoras naturales. Intentaran acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>apuntar selectivamente a un investigador a la vez</font>. Banshees <font color=#ff6161>teme al crucifijo</font>, Incrementando su efectividad contra ellas.</p>
-		]]>
+            <p>Un Obake es un cambiaformas que a veces promueve algunas pruebas inusuales. Un Obake tiene la posibilidad de no producir huellas dactilares en absoluto, lo que puede causar problemas con la recopilación de pruebas si se niegan las Huellas dactilares demasiado pronto.
+        ]]>
     </string>
-    <string name="evidence_ghost_info_demon">
+    <string name="evidence_ghost_info_oni" >
         <![CDATA[
-			<p>Un demonio es uno de los peores fantasmas que se pueden encontrar. Al ser muy agresivo, <font color=#ff6161>Atacara con mas frecuencia que cualquier otro fantasma</font>, por lo que se recomienda un crucifijo para evitar ser cazado. Sin embargo, hacer preguntas exitosas al demonio desde el tablero de ouija no agotara la cordura del jugador.</p>
-		]]>
+            <p>El Oni es un fantasma agresivo que <font color=#ff6161> escala su nivel de actividad con el número de investigadores cercanos</font>. También es probable que deambule cerca de la Habitación Fantasma.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_jinn">
+    <string name="evidence_ghost_info_onryo">
         <![CDATA[
-			<p>Un Jinn es un fantasma territorial que atacara cuando sea amenazado. También se ha sabido que <font color=#ff6161>es capaz de viajar a altas velocidades</font>, y lo hara mientras caza investigadores paranormales distantes. Sin embargo, <font color=#ff6161>cortar la energia a traves de la caja de fusibles limitara su velocidad</font>.</p>
-		]]>
+            <p>Al Onryo le desagrada y está muy <font color=#ff6161>amenazado por cualquier forma de llama</font> (incluyendo velas, encendedores, etc.). No cazará si intenta acercarse a menos de 4 metros de una fuente de llamas.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_mare">
+    <string name="evidence_ghost_info_phantom" >
         <![CDATA[
-			<p>La fuente de todas los terrores nocturnos, una pesadilla es un fantasma que se vuelve <font color=#ff6161>mas agresivo en la oscuridad</font>. Mantener las luces encendidas y permanecer fuera de las áreas oscuras limitara su agresion. Cuidado, ya que también intentara apagar las luces para aumentar su poder.</p>
-		]]>
+			<p>Un Fantasma es un fantasma que provoca miedo, <font color=#ff6161>que drena rápidamente la cordura de quienes lo miran</font>.</p>        ]]>
     </string>
-    <string name="evidence_ghost_info_oni">
+    <string name="evidence_ghost_info_poltergeist" >
         <![CDATA[
-			<p>Un Oni es un fantasma agresivo que <font color=#ff6161>escala su nivel de actividad con el numero de investigadores cercanos</font>. Esta es su mayor debilidad, ya que probablemente se revelara al principio de la ronda. También es probable que deambule cerca de la Habitacion del Fantasma.</p>
-		]]>
+            <p>Uno de los fantasmas más famosos, un poltergeist, también conocido como fantasma ruidoso, <font color=#ff6161>puede manipular varios objetos a su alrededor</font> para sembrar el miedo en sus víctimas.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_phantom">
+    <string name="evidence_ghost_info_raiju">
         <![CDATA[
-			<p>Un fantasma es un ente que induce al miedo, <font color=#ff6161>agotando rapidamente la cordura de quienes lo ven</font>. <font color=#ff6161>Tomarle una foto hara que desaparezca temporalmente.</font>. Aunque se rumora que posee a los vivos, no tiene la capacidad de hacerlo. Se dice que es comúnmente convocado por un tablero de ouija, aunque los jugadores no pueden convocar uno por si mismos, ni la presencia de un fantasma garantiza que se genere un tablero de ouija.</p>
-		]]>
+            <p>Un Raiju es un fantasma que <font color=#ff6161>sifona energía eléctrica</font> de los dispositivos que lo rodean. Demasiada estimulación eléctrica cerca hará que se agite y cace con más frecuencia.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_poltergeist">
+    <string name="evidence_ghost_info_revenant" >
         <![CDATA[
-			<p>Uno de los fantasmas mas famosos, el Poltergeist, también conocido como fantasma ruidoso, <font color=#ff6161>puede manipular varios objetos a su alrededor</font> para esparcir el miedo entre sus victimas.</p>
-		]]>
+            <p>Un Revenant es mejor conocido por su lento comportamiento de caza mientras busca investigadores. Es metódicamente lento durante la búsqueda, lo que proporciona distintos sonidos de caza que ayudan a determinar este tipo de fantasma.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_revenant">
+    <string name="evidence_ghost_info_shade" >
         <![CDATA[
-			<p>Un Resucitado es un fantasma violento que <font color=#ff6161>puede atacar indiscriminadamente</font>, ya que es capaz de cambiar su objetivo actual a mitad de la caza. <font color=#ff6161>Esconderse de el hara que se mueva lentamente</font>, pero <font color=#ff6161>viajara mas rápido que cualquier otro fantasma en el juego si una victima esta en la mira</font>.</p>
-		]]>
+            <p>Una Sombra se considera un <font color=#ff6161>\"fantasma tímido\”</font>. Si bien es más difícil encontrar pruebas mientras los investigadores permanecen en grupos, <font color=#ff6161>una Sombra es mucho menos probable que ataque si hay varias personas cerca</font>.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_shade">
+    <string name="evidence_ghost_info_spirit" >
         <![CDATA[
-			<p>Una sombra se considera un <font color=#ff6161>\"fantasma timido\”</font>. Si bien es mas difícil encontrar pruebas mientras los investigadores permanecen en grupos, <font color=#ff6161>es mucho menos probable que una Sombra ataque si hay varias personas cerca</font>.</p>
-		]]>
+            <p>Un espíritu no tiene poderes especiales, pero sigue siendo tan peligroso como cualquier otro fantasma.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_spirit">
+    <string name="evidence_ghost_info_thaye">
         <![CDATA[
-			<p>Un espíritu es el fantasma mas común con el que te encontraras, pero sigue siendo muy poderoso y peligroso. Por lo general, se descubre en uno de sus terrenos de caza después de una muerte inexplicable. No tiene fortalezas especiales. <font color=#ff6161>Los fajitos de hierbas evitan que los espiritus cacen durante unos tres minutos.</font>.</p>
-		]]>
+            <p>El Thaye es un fantasma que envejece rápidamente en presencia de los vivos. La representación terrenal de este envejecimiento se presentará como fortaleza en las primeras etapas de una misión, pero como debilidad en las etapas posteriores. Preguntarle a un Thaye cuántos años tiene en el tablero Ouija producirá una respuesta proporcional a su edad avanzada. Con cada etapa avanzada de envejecimiento, el Thaye disminuirá su velocidad efectiva a razón de 0,175 m/s.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_wraith">
+    <string name="evidence_ghost_info_thetwins">
         <![CDATA[
-			<p>Un Espectro es uno de los fantasmas mas peligrosos que encontraras. Es el único fantasma conocido que <font color=#ff6161>tiene la habilidad de volar</font>, y a veces ha sido <font color=#ff6161>conocido por ver a traves de puertas y atravesar paredes</font>. <font color=#ff6161>La sal es toxica para un Espectro</font>.</p>
-		]]>
+            <p>Los Twins son un par de Fantasmas que tienen la capacidad de manipular su entorno por separado. Uno de los Twins no puede manipular los sensores de movimiento y no dejará Evidencia determinista. Cualquiera de los Twins puede iniciar y participar en una Cacería, pero <font color=#ff6161>no</font> ambos al mismo tiempo.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_info_yurei">
+    <string name="evidence_ghost_info_themimic">
         <![CDATA[
-			<p>Una yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (Aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Barrer con fajitos de hierbas la habitacion en la que se encontro a un Yurei evitara que se aleje del lugar durante mucho tiempo.</p>
-	    ]]>
+            <p>El Mimic es un fantasma imitador elusivo y misterioso que refleja los rasgos y comportamientos de otros tipos de fantasmas. Esté atento a los cambios de comportamiento. Los orbes fantasma son una cuarta evidencia oculta que debe estar presente para este fantasma.</p>
+        ]]>
     </string>
-    
-    <!-- Ghost Strengths -->
+    <string name="evidence_ghost_info_wraith" >
+        <![CDATA[
+            <p>Un Espectro es el único Fantasma conocido que <font color=#ff6161>retiene la capacidad de volar</font>. Al igual que cualquier otro fantasma, un Wraith no puede viajar a través de las paredes a pesar de que se dice que tiene esa habilidad.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_yokai">
+        <![CDATA[
+            <p>El Yokai es muy <font color=#ff6161>sensible a las voces</font>, lo que hace que el Yokai sea extremadamente peligroso. Sin embargo, hablar cerca también puede desencadenar actividad, lo que facilita la búsqueda de la habitación Ghost.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_yurei" >
+        <![CDATA[
+            <p>Un Yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Manchar la habitación en la que se encontró a Yurei evitará que deambule por mucho tiempo.</p>
+        ]]>
+    </string>
 
-    <string name="evidence_ghost_strengths_deogen" >
+    <!--
+        Strengths
+    -->
+    <string name="evidence_ghost_strengths_banshee" >
         <![CDATA[
-            <p>El Deógeno detectará a cualquier ser vivo, sin importar cuán bien escondido esté. Elegir permanecer estacionario contra un Deogen hará que te maten. Tampoco confíes en romper la línea de visión.</p>
+            <p>El Banshee se centrará en un jugador y cambiará a un nuevo objetivo si su objetivo seleccionado no está en el área de juego.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_demon" >
+        <![CDATA[
+            <p>Puede ser difícil reunir pistas sobre ellos, ya que atacarán a los jugadores con mucha frecuencia. El demonio puede cazar temprano con cualquier cordura, pero su objetivo mínimo normalmente es alrededor del 70\% de cordura promedio. Su enfriamiento de caza, o el tiempo entre cazas, es de 20 segundos, que es 5 segundos más rápido que cualquier otro fantasma. Los palitos de difuminado también tienen un período de protección más corto, lo que otorga 60 segundos de seguridad en lugar de los 90 segundos normales para los fantasmas que no son espíritus.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_deogen">
+        <![CDATA[
+            <p>El Deógeno detectará a cualquier ser vivo, sin importar cuán bien escondido esté. Elegir permanecer estacionario contra un Deogen hará que te maten. No confíe en romper la línea de visión, ya que esto no detendrá una persecución y solo permitirá que el Deogen se mueva mucho más rápido.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_goryo">
+        <![CDATA[
+            <p>Un Goryo a menudo solo se muestra en cámara cuando no hay gente cerca. Esto puede causar problemas con la recopilación de la evidencia adecuada, ya que puede conducir a la negación de D.O.T.S. demasiado pronto.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_hantu">
+        <![CDATA[
+            <p>Las temperaturas más bajas permiten que los Hantu se muevan a mayor velocidad. La línea de visión no afecta la velocidad del Hantu.</p>
+			<ul>
+				<li>15°C+ = 1.40 m/s</li>
+				<li>12°C  = 1.75 m/s</li>
+				<li> 9°C  = 2.10 m/s</li>
+				<li> 6°C  = 2.30 m/s</li>
+				<li> 3°C  = 2.50 m/s</li>
+				<li> 0°C  = 2.70 m/s</li>
+			</ul>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_jinn" >
+        <![CDATA[
+            <p>La velocidad de un Jinn lo convierte en un fantasma extremadamente difícil de escapar una vez que comienza a cazar. Una vez que Jinn alcance a un jugador, desacelerará gradualmente y cambiará a velocidades de caza normales. Un Jinn puede eliminar instantáneamente un 25\% de cordura de un jugador cercano si está encendido.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_mare" >
+        <![CDATA[
+            <p>Una Pesadilla intentará apagar las luces para potenciarse y cazará al 60\% si no hay electricidad. También deambulará por otras habitaciones o por áreas oscuras de su habitación preferida, y puede comenzar una cacería desde esos lugares. Una Pesadilla tiene una mayor probabilidad de destruir la fuente de luz de una habitación a través de un evento.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_moroi">
         <![CDATA[
-            <p>Los Moroi aprovecharán al máximo cada pizca de cordura perdida. Menos Cordura de equipo producirá mayores niveles de agresividad.</p>
+            <p>Los Moroi aprovecharán al máximo cada pizca de cordura perdida. Menos Cordura de equipo producirá mayores niveles de agresividad. Con un 0% de cordura promedio, el fantasma se volverá rápido como un rayo durante una cacería. Basado en el equipo Sanity promedio, su velocidad oscila entre 1,5 m/s en su punto más lento y 2,25 m/s en su punto más rápido.</p>
+			<ul>
+				<li>Sanity  0% \-   5% : 2.25 m/s</li>
+				<li>Sanity  5% \-  10% : 2.164 m/s</li>
+				<li>Sanity 10% \-  15% : 2.081 m/s</li>
+				<li>Sanity 15% \-  20% : 1.998 m/s</li>
+				<li>Sanity 20% \-  25% : 1.915 m/s</li>
+				<li>Sanity 25% \-  30% : 1.832 m/s</li>
+				<li>Sanity 30% \-  35% : 1.749 m/s</li>
+				<li>Sanity 35% \-  40% : 1.66 m/s</li>
+				<li>Sanity 40% \-  45% : 1.583 m/s</li>
+				<li>Sanity 45% \- 100% : 1.5 m/s</li>
+			</ul>
+            <p>El fantasma tiene una habilidad oculta \-\- una maldición \-\- que hace que cualquier jugador pierda cordura a una tasa de 0,03 %/seg, siempre que el jugador afectado esté dentro del área de juego. Este efecto se produce si el jugador usa y obtiene una respuesta de Spirit Box. El efecto se acumula sobre la velocidad normal a la que se agota la Cordura de los jugadores. Las velas no detienen los efectos, pero la maldición se puede levantar con el uso de las píldoras de cordura.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_myling">
+        <![CDATA[
+            <p>Un Myling no es tan vocal como otros Fantasmas mientras caza. Solo detectará sus pasos y sus ruidos vocales mientras esté cerca de la interferencia electrónica.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_obake">
+        <![CDATA[
+            <p>Un Obake puede no dejar rastro cuando manipula el entorno. Esto significa que tiene la posibilidad de no dejar huellas dactilares. El Obake también puede reducir la vida útil de las huellas dactilares a la mitad.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_oni" >
+        <![CDATA[
+            <p>Los Onis poseen la habilidad de mover objetos físicos como un Poltergeist, mientras que también muestran la agresión de un Demonio. Esto hace que sea un desafío reunir pruebas sin enfadarlos. Esta es su mayor debilidad, ya que probablemente se revelará al principio de la ronda. Si un jugador es tocado por un Oni durante un evento de fantasmas, la cordura del jugador se agotará el doble.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_onryo">
+        <![CDATA[
+            <p>El Onryo apuntará a la fuente de llamas y la extinguirá. Si el Onryo extingue 3 llamas, el Onryo puede iniciar una cacería sin importar el nivel de cordura si no hay otra llama o crucifijo cerca. Cuando un jugador muere, las probabilidades de que las velas se apaguen a partir de ese momento aumentan.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_phantom" >
+        <![CDATA[
+            <p>Los Fantasmas tendrán un efecto extremo en la cordura de los jugadores. Evite estar en presencia de un Fantasma o mirarlo directamente durante demasiado tiempo. También tiene una tendencia a seguir pasivamente a los jugadores, lo que le ayuda a deambular fuera de la habitación elegida, lo que dificulta la recopilación de pruebas.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_poltergeist" >
+        <![CDATA[
+            <p>Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden arrojar numerosos objetos y producir ruidos fuertes. Hay un drenaje de cordura inmediato del 2\% en cualquier jugador cercano por objeto lanzado. Esto puede ocurrir tanto al aire libre como durante una cacería.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_raiju" >
+        <![CDATA[
+            <p>Raiju se vuelve mucho más rápido mientras está cerca de dispositivos eléctricos, pero no la energía del mapa o las luces de la habitación, y aumentará su nivel de cordura de caza preferido al 65 % mientras esté cerca de dichos dispositivos eléctricos. Si está cerca de un equipo electrónico, viajará a 2,5 m/s; De lo contrario, viajará a 1,7 m/s.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_revenant" >
+        <![CDATA[
+            <p>Un Revenant viajará a 1 m/s mientras busca jugadores y viajará instantáneamente a 3 m/s si se conoce la ubicación de un jugador (a través de la línea de visión, chat de proximidad o uso de dispositivos electrónicos) . Se ralentizará gradualmente a 1 m/s a menos que se vuelva a adquirir la ubicación de un jugador después de llegar a la última ubicación conocida del jugador.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_shade" >
+        <![CDATA[
+            <p>Las sombras pueden ser difíciles de encontrar y, por lo tanto, puede ser difícil recopilar pruebas o incluso encontrar su ubicación. Tiene una actividad más baja en general; sin embargo, los niveles más bajos de cordura de los jugadores generarán más eventos fantasma. No interactuará ni arrojará objetos mientras un jugador esté en su habitación preferida.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_strengths_spirit" >
+        <![CDATA[
+            <p>Los espíritus no tienen puntos fuertes en particular, ya que están orientados a los nuevos jugadores. Sin embargo, no se deje engañar. Su falta de especialidad hace que sea un partido parejo.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_thaye">
         <![CDATA[
-            <p>El Thaye será más activo y peligroso al comienzo de una misión. Esto lo hace extremadamente amenazante desde el principio.</p>
+            <p>El Thaye será más activo y peligroso al comienzo de una misión. Esto lo hace extremadamente amenazante desde el principio. El Thaye cazará al 75 % al comienzo de una investigación, y finalmente escalará a un mínimo del 15 % después de que termine de envejecer. Un Thaye joven será muy rápido a 2,7 m/s, mientras que un Thaye viejo se moverá más lento que un jugador a 1,0 m/s.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_banshee">
+    <string name="evidence_ghost_strengths_thetwins">
         <![CDATA[
-			<p>Se centrara en un jugador, especialmente en aquellos que intentan enfrentarse a la Banshee solos.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_strengths_demon">
-        <![CDATA[
-			<p>Puede ser difícil recopilar pistas, ya que atacaran a los jugadores con mucha frecuencia.</p>
+            <p>Cualquiera de los dos Twins puede enfadarse y, por lo tanto, cualquiera de los dos puede iniciar una cacería. Esto significa que una cacería puede comenzar desde dos lugares diferentes.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_jinn">
+    <string name="evidence_ghost_strengths_themimic">
         <![CDATA[
-			<p>La velocidad de un Jinn hace que sea un fantasma del que es extremadamente difícil escapar una vez que comienza a cazar.</p>
+            <p>El Mimic puede imitar rápidamente cualquier tipo de fantasma varias veces durante una investigación, lo que lo hace extremadamente peligroso y totalmente impredecible. El comportamiento que copia puede estar presente tanto durante como fuera de una cacería. El Mimic no puede cambiar para imitar a un fantasma diferente a mitad de la cacería.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_strengths_mare">
+    <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
-			<p>Las pesadillas prosperan en la oscuridad y es muy probable que comiencen a atacar tan pronto como se apaguen las luces.</p>
-		]]>
+            <p>El Wraith posee la habilidad de parpadear a la ubicación de cualquier jugador cercano dentro de una pequeña distancia de la habitación elegida. Esto puede ocurrir lejos de su habitación, incluso entre pisos. Esta actividad puede pasar desapercibida, ya que puede ser una actividad silenciosa, pero generará una lectura de EMF en el lugar de aterrizaje. Después de esta actividad, el Espectro caminará de regreso a su habitación y podrá interactuar con objetos durante este tiempo. Se dice que un Wraith puede cazar inmediatamente después de teletransportarse, pero esto puede ser inexacto.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_strengths_oni">
+    <string name="evidence_ghost_strengths_yokai">
         <![CDATA[
-        <p>Los Oni poseen la capacidad de mover objetos fisicos como un Poltergeist, mientras que también despliega la agresion de un Demonio. Esto hace que sea difícil reunir pruebas sin enojarlos.</p>
-		]]>
+            <p>Hablar cerca de un Yokai lo enojará, lo que aumentará su probabilidad de atacar al elevar el nivel de cordura mínimo preferido para cazar al 80\%.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_strengths_phantom">
-        <![CDATA[<p>Los fantasmas afectaran enormemente la cordura de los jugadores. Evite estar en presencia de un fantasma o mirarlo directamente durante demasiado tiempo.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_strengths_poltergeist">
+    <string name="evidence_ghost_strengths_yurei" >
         <![CDATA[
-        <p>Los poltergeists pueden tener una gran influencia en el espacio en el que se encuentran los jugadores, ya que pueden lanzar numerosos objetos y producir ruidos fuertes.</p>
-		]]>
+            <p>Yurie\'s will drop players\' sanity, while they are looking at it, much quicker than any other ghost \-\- but can also decrease sanity even when a player is turned away. A Yurei may also instantly rip away 15\% sanity from any nearby player; and when this happens, the doors of the room will always close by themselves (any ghost may do this, but the Yurei has an increased likelihood).</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_strengths_revenant">
-        <![CDATA[
-        <p>Los Resucitados se moveran extremadamente rápido cuando comiencen a atacar, dando a los jugadores pocas posibilidades de escapar.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_strengths_shade">
-        <![CDATA[
-			<p>Las sombras pueden ser dificiles de encontrar y, por lo tanto, es dificiles recopilar pruebas de ellas.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_strengths_spirit">
-        <![CDATA[
-			<p>Los espiritus no tienen puntos fuertes en particular, ya que están pensados para nuevos jugadores.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_strengths_wraith">
-        <![CDATA[
-			<p>Debido a que vuelan, los Espectros no pueden ser seguidos por sus pasos.</p>]]>
-    </string>
-    <string name="evidence_ghost_strengths_yurei">
-        <![CDATA[
-        <p>La Yurei drenara la cordura de los jugadores mientras la miran mas rápido que cualquier otro fantasma, pero también puede disminuir la cordura incluso cuando un jugador se voltea.</p>
-		]]>
-    </string>
-    
-    <!-- Ghost Weaknesses -->
 
-    <string name="evidence_ghost_weaknesses_deogen" >
+    <!-- Weaknesses -->
+    <string name="evidence_ghost_weaknesses_banshee" >
         <![CDATA[
-            <p>El Deogen acechará a su presa hasta el agotamiento, pero nunca superará a su presa. Manténgase en movimiento contra este fantasma y asegúrese de planificar sus rutas con anticipación.</p>
+            <p>Un Banshee se alejará de su habitación solo para acechar a su objetivo. Banshees nunca matará a su jugador no objetivo, y durante una cacería atravesará directamente a cualquier investigador que no le interese. También basa su cacería en la cordura de su objetivo en lugar de la cordura promedio del equipo. Un Banshee tiene una interacción especial con el micrófono parabólico, ya que tiene la posibilidad de emitir un gemido débil y agudo.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_demon" >
+        <![CDATA[
+            <p>A diferencia de otros fantasmas, hacerle una pregunta exitosa a un demonio a través del tablero Ouija no disminuirá la cordura de los jugadores. Esto hace que el tablero Ouija sea una herramienta muy útil contra los demonios. Los demonios <font color=#ff6161>temen al Crucifijo</font>, aumentando su efectividad contra ellos al ampliar el alcance efectivo del Crucifijo a 5 metros en lugar de los 3 metros normales para otros fantasmas.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_deogen">
+        <![CDATA[
+            <p>El Deogen acechará a su presa hasta el agotamiento, pero nunca superará a su presa. Manténgase en movimiento contra este fantasma y asegúrese de planificar sus rutas con anticipación. Mantente en la línea de visión de este fantasma y estarás bien, ya que solo podrá moverse a 0,4 m/s mientras esté muy cerca del jugador más cercano en la línea de visión. Mientras esté dentro de la línea de visión, nunca podrá atraparlo, incluso si está caminando. El Deogen solo cazará al 40\% de cordura.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_goryo">
+        <![CDATA[
+            <p>Los de Goryo normalmente permanecerán dentro o muy cerca de la ubicación que persiguen. Esto permite una recolección de evidencia más fácil.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_hantu" >
+        <![CDATA[
+            <p>El movimiento de un Hantu será más lento de lo normal en áreas más cálidas. Mientras caza, y si el interruptor está apagado, el Hantu producirá un aliento helado como lo hace un jugador, pero este efecto no se limita a la habitación fantasma o la temperatura de una habitación.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_jinn" >
+        <![CDATA[
+            <p>Los genios dependen de la fuente de energía del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para eliminar la habilidad de los genios. Un Jinn no podrá volverse el poder sobre sí mismo.</p>
+		]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_mare" >
+        <![CDATA[
+            <p>Mantener las luces encendidas en el área de una Pesadilla reducirá su preferencia de cordura por la caza del 60\% al 40\% de cordura promedio. Por lo tanto, permanezca en áreas iluminadas para limitar su agresión. Una Pesadilla no puede apagar el interruptor, pero tiene la capacidad de apagar instantáneamente los interruptores de luz cuando los activa un jugador, lo cual es un evento que se puede reconocer muy fácilmente.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_moroi">
         <![CDATA[
-            <p>Los Moroi son hipersensibles al Smudge Stick. Encender uno cercano reducirá su agresividad.</p>
+            <p>Los Moroi son hipersensibles al Smudge Stick. Encender uno cercano cegará al Moroi durante 12 segundos.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_myling" >
+        <![CDATA[
+            <p>Mylings emitirá con mayor frecuencia sonidos paranormales en el micrófono parabólico.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_obake" >
+        <![CDATA[
+            <p>Por casualidad, un Obake a veces puede dejar <font color=#ff6161>huellas de manos de 6 dedos</font> en lugar de los 5 normales. Las huellas de manos de 5 dedos no deben usarse para descartar el Obake. El Obake también puede cambiar su modelo de fantasma por un breve segundo en cualquier momento durante una cacería. Si el Obake toca una superficie, existe la posibilidad de que no aparezcan huellas dactilares; Esto se puede usar como prueba para el fantasma si las siguientes interacciones producen huellas dactilares.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_oni" >
+        <![CDATA[
+            <p>Los onis son fáciles de encontrar, ya que no pueden resistirse a causar alboroto cuando los jugadores están cerca. El Oni no puede hacer un evento de \"Ghost Mist\" o \"Ghost Ball\". Favorecerá manifestaciones completas sobre manifestaciones de sombra o manifestaciones invisibles durante eventos de fantasmas. Este comportamiento lleva a las cacerías, lo que hace que el Oni se manifieste por períodos más largos y desaparezca por intervalos muy cortos durante las cacerías.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_onryo" >
+        <![CDATA[
+            <p>Una fuente de llamas actuará para sofocar la posibilidad de ataque de un Onryo. Primero extinguirá todas las llamas (muy parecido a usar una carga de Crucifijo) antes de usar un Crucifijo.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_phantom" >
+        <![CDATA[
+            <p><font color=#ff6161>Tomar una foto de un Fantasma hará que desaparezca temporalmente</font> y nunca aparecerá en la fotografía. Un Fantasma también se delata durante las cacerías, ya que se manifestará físicamente por períodos cortos y desaparecerá por períodos más largos.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_poltergeist" >
+        <![CDATA[
+            <p>Los jugadores pueden eliminar objetos físicos de la habitación, lo que hace que un Poltergeist sea ineficaz. Un Polgergeist puede interactuar violentamente con objetos, siendo capaz de lanzar un objeto con mucha más fuerza que un fantasma normal. Puede interactuar con varios elementos al mismo tiempo, lo que se conoce como "evento de explosión de Poltergeist", y se puede probar fácilmente acumulando una gran cantidad de elementos en una pila y observando su comportamiento en busca de actividad. Durante una cacería, los objetos tienen muchas más posibilidades de ser manipulados, así que comprueba si hay numerosos objetos agitados en su camino de caza.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_raiju" >
+        <![CDATA[
+            <p>Es más fácil rastrear a un Raiju porque manipulan constantemente los dispositivos eléctricos mientras cazan.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_revenant" >
+        <![CDATA[
+            <p>Un Revenant será muy lento cuando se desconozca la ubicación del jugador, y se pueden escuchar pasos muy distintos y lentos. La mejor manera de determinar si tienes un retornado es a través de la cacería.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_shade" >
+        <![CDATA[
+            <p>Hay fuerza en los números contra una sombra, ya que no atacarán a un grupo de personas. Si desea evitar una cacería, al menos un jugador debe estar muy cerca del fantasma. También es más probable que una sombra muestre modelos en forma de sombra y, por el contrario, es menos probable que muestre su modelo completo.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_spirit" >
+        <![CDATA[
+            <p>Cuando se mancha un espíritu, no buscará durante 180 segundos completos. Por el contrario, cualquier otro fantasma cazará a los 90 segundos (excepto el Demonio, que puede cazar a los 60 segundos).</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thaye">
         <![CDATA[
-            <p>Cuanto más tiempo esté el fantasma en presencia de los vivos, disminuirá su agresividad, velocidad y fuerza.</p>
+            <p>Cuanto más tiempo esté el fantasma en presencia de los vivos, disminuirá su agresividad, velocidad y fuerza. Cada edad reduce la velocidad en 0,175 m/s. El Thaye tampoco tiene aceleración en la línea de visión.</p>
         ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_banshee">
+    <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
-			<p>Susceptible al uso de un crucifijo para mitigar su agresion.</p>
-		]]>
+            <p>Debido a su actividad combinada, localizar a The Twins debería ser mucho más fácil. Los Gemelos tienen una velocidad de caza variada que alterna aleatoriamente entre cazas. Un Twin caza al 90\% de la velocidad normal (1,5 m/s) mientras que el otro Twin caza al 110\% de la velocidad normal (1,9 m/s).</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_demon">
+    <string name="evidence_ghost_weaknesses_themimic" >
         <![CDATA[
-			<p>A diferencia de otros fantasmas, hacer una pregunta acertada a un demonio a traves del tablero Ouija no reducira la cordura de los jugadores. Esto hace que la tabla Ouija sea una herramienta muy útil contra los demonios.</p>
-		]]>
+            <p>Aparecerá un orbe fantasma junto con la evidencia determinista de The Mimic, lo que convierte a The Mimic en el único tipo de fantasma que (técnicamente) tiene una cuarta pieza de evidencia. El Ghost Orb también se comporta de manera diferente a lo normal. Sigue a The Mimic mientras deambula, así que esté atento a un Ghost Orb itinerante mientras tiene la cordura del equipo alta.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_jinn">
+    <string name="evidence_ghost_weaknesses_wraith" >
         <![CDATA[
-			<p>Los genios dependen de la fuente de energia del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para limitar las habilidades de los genios.</p>
-	    ]]>
+            <p><font color=#ff6161>La sal es tóxica para un Wraith</font>, por lo que nunca atravesará ninguna. Para confirmar un Wraith, coloca un sensor de movimiento sobre montones de sal. Si el sensor de movimiento detecta movimiento sin que la sal se altere, ¡el fantasma puede ser un espectro!</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_mare">
+    <string name="evidence_ghost_weaknesses_yokai" >
         <![CDATA[
-			<p>Mantener las luces encendidas en el área de una pesadilla reducira la probabilidad de que comience a cazar.</p>
-		]]>
+            <p>Mientras caza, un Yokai solo escuchará voces que se encuentren muy cerca de él. Solo puede escuchar el chat de proximidad o detectar equipos electrónicos dentro de los 2,5 metros de sí mismo. La posesión maldita de la caja de música tampoco hace que el Yokai se mueva hasta que el jugador esté mucho más cerca de lo que requeriría cualquier otro fantasma.</p>
+        ]]>
     </string>
-    <string name="evidence_ghost_weaknesses_oni">
+    <string name="evidence_ghost_weaknesses_yurei" >
         <![CDATA[
-			<p>Los onis son faciles de encontrar, ya que no pueden resistir causar un alboroto cuando los jugadores están cerca.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_phantom">
-        <![CDATA[
-			<p>Tomar una foto de un fantasma hara que desaparezca temporalmente, dando a los jugadores la oportunidad de escapar.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_poltergeist">
-        <![CDATA[
-			<p>Los jugadores pueden eliminar objetos fisicos de la habitacion, lo que hace que un Poltergeist sea ineficaz.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_revenant">
-        <![CDATA[
-			<p>Si los jugadores tienen la oportunidad de esconderse de un Resucidato, su velocidad disminuira drasticamente.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_shade">
-        <![CDATA[
-			<p>Hay fuerza en los numeros contra una Sombra, ya que no atacaran a un grupo de personas.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_spirit">
-        <![CDATA[<p>Los fajitos de hierbas evitaran que los espiritus ataquen durante un periodo de tiempo, lo que permitira a los jugadores recopilar pruebas libremente.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_wraith">
-        <![CDATA[
-        <p>Los espectros son debiles a la sal y dejaran de atacar al entrar en contacto con ellos. Sin embargo, esto puede ser mas fácil de decir que de hacer, ya que el Espectro normalmente volara sobre las pilas de sal.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yurei">
-        <![CDATA[
-        <p>Las Yureis son vulnerables a los fajitos de hierbas, y barrer la habitacion con éxito hara que la Yurei permanezca en su lugar por algún tiempo.</p>
-		]]>
+            <p>Los Yureis son vulnerables a los Smudge Sticks, y manchar la habitación con éxito hará que los Yurei permanezcan en su lugar durante algún tiempo.</p>
+        ]]>
     </string>
     
     
@@ -265,6 +424,12 @@
 				<p>Un fantasma produce emisiones de EMF de los niveles 1 a 5 cuando interactua de algúna manera con la habitacion o la tabla Ouija. Los parpadeos de luz, los pasos y otras interacciones pasivas mas pequenas normalmente daran una lectura mas baja. Las interacciones mas intensas, como una aparicion o el timbre de un telefono, casi siempre daran una lectura mas alta. Los fantasmas que llevan esta evidencia daran EMF Nivel 5 solo por casualidad, por lo que esta evidencia <font color=#ff6161>puede llevar algún tiempo adquirir</font>.</p>
 		]]>
     </string>
+    <string name="evidence_evidence_description_dots" >
+		<![CDATA[
+			<p> El D.O.T.S. El proyector es un dispositivo que se puede colocar en las paredes o en el suelo. Proyecta una matriz de puntos brillantes, proyectando los puntos sobre las superficies cercanas a su alrededor. </p>
+			<p> Para identificar positivamente esta Evidencia, <font color = # ff6161> se verá una silueta del fantasma corriendo, o arrastrándose rápidamente, a través de los rayos de proyección. </font> La silueta se puede ver a simple vista oa través de una cámara de video, pero es más fácil verla <font color = # ff6161> de forma remota a través de las térmicas de la cámara de video </font>. Es mejor intentar encontrar esta evidencia de forma remota, ya que el comportamiento de un Goryo puede causar conflictos de evidencia de lo contrario. La ubicación real del Fantasma no determinará cuándo se producirán las animaciones de silueta. </p>
+        ]]>
+	</string>
     <string name="evidence_evidence_description_temperatures">
         <![CDATA[
 				<p>Las temperaturas gelidas son <font color=#ff6161>por debajo de 0 Celsius</font>. La temperatura se puede determinar utilizando el <font color=#ff6161>Termometro</font>.</p>
@@ -295,6 +460,7 @@
 				<p>La evidencia puede ser difícil de ver en elementos mas pequenos y la evidencia puede desvanecerse después de un tiempo. Si tiene problemas para localizar huellas dactilares, el uso de una cámara fotografica en elementos como una mesa de comedor que contenga platos o frascos puede dar pruebas, ya que el diario podria escribir \"huellas dactilaress\" en las fotos. Confusamente, las huellas también aparecen bajo luz ultravioleta y cuentan como interacciones en el diario, pero <font color=#ff6161>Las huellas no cuentan como evidencia de huellas dactilares</font>.</p>
 		]]>
     </string>
+
 
     <string name="objectives_title_response_everyone">AGRUPADOS</string>
     <string name="objectives_title_optional_objectives">OBJETIVOS OPCIONALES</string>
@@ -443,144 +609,7 @@
     <string name="evidence_popup_ghost_strength">Fortalezas</string>
     <string name="evidence_popup_ghost_weakness">Debilidades</string>
     <string name="evidence_popup_ghost_info">Información</string>
-    <string name="evidence_ghost_info_goryo">
-        <![CDATA[
-            <p>Un Goryo <font color=#ff6161> le disgusta mucho mostrarse cuando hay gente cerca </font>. Esto hace que ver a D.O.T.S. imposible sin ver el proyector a través de una cámara de video de forma remota.</p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_hantu" >
-		<![CDATA[
-			<p> El Hantu <font color = # ff6161> favorece las temperaturas más frías </font>, lo que potenciará su capacidad para moverse rápidamente. Esto significa que el disyuntor debe estar habilitado para aumentar la temperatura general fuera del área embrujada, lo que perjudica la velocidad de movimiento del Hantu. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_myling" >
-		<![CDATA[
-			<p> El Myling emitirá ruidos extraños que pueden ser captados por el micrófono parabólico. Sus pasos también solo se pueden escuchar dentro del rango de interferencia electrónica (que es de alrededor de 10 metros) durante una caza. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_obake" >
-		<![CDATA[
-			<p> Un Obake es un cambiador de forma que a veces promueve algunas pruebas inusuales. Por casualidad, un Obake a veces puede dejar <font color = # ff6161> huellas de manos de 6 dedos </font> en lugar de las huellas de manos normales de 5. No se deben usar huellas de 5 dedos para descartar el Obake.
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_onryo" >
-		<![CDATA[
-			<p> A Onryo no le gusta y está muy <font color = # ff6161> amenazado por cualquier forma de llama </font> (incluidas velas, encendedores, etc.). </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_raiju" >
-		<![CDATA[
-			<p> Un Raiju es un fantasma que <font color = # ff6161> extrae energía eléctrica </font> de los dispositivos que lo rodean. Demasiada estimulación eléctrica cerca hará que se agite y cace con más frecuencia. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_thetwins" >
-		<![CDATA[
-			<p> Los gemelos son un par de dos fantasmas que tienen la capacidad de manipular por separado su entorno. Uno de los gemelos no puede manipular sensores de movimiento y no dejará pruebas deterministas. Cualquiera de los gemelos puede iniciar y participar en una caza, pero <font color = # ff6161> no </font> ambos al mismo tiempo. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_yokai" >
-		<![CDATA[
-			<p> El Yokai es muy <font color = # ff6161> sensible a las voces </font>, lo que hace que el Yokai sea extremadamente peligroso. Sin embargo, hablar cerca también puede desencadenar actividad, lo que facilita la búsqueda de la habitación de los fantasmas. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_goryo" >
-		<![CDATA[
-			<p> Un Goryo a menudo solo se muestra en la cámara cuando no hay personas cerca. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_hantu" >
-		<![CDATA[
-			<p> Las temperaturas más bajas permiten que el Hantu se mueva a velocidades más rápidas. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_myling" >
-		<![CDATA[
-			<p> Un Myling no es tan vocal como otros fantasmas mientras caza. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_obake" >
-		<![CDATA[
-			<p> Es posible que un Obake no deje rastro al manipular el entorno. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_onryo" >
-		<![CDATA[
-			<p> Si se apaga una llama, por cualquier medio, el Onryo puede iniciar una Cacería. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_raiju" >
-		<![CDATA[
-			<p> Los Raijus se vuelven mucho más rápidos cuando hay dispositivos eléctricos cercanos. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_thetwins" >
-		<![CDATA[
-			<p> Cualquiera de los gemelos puede estar enojado y, por lo tanto, cualquiera de los gemelos puede iniciar una caza. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_strengths_yokai" >
-		<![CDATA[
-			<p> Hablar cerca de un Yokai lo enfurecerá. Varias voces acelerarán este proceso, que puede superar fácilmente las protecciones de los niveles altos de Cordura. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_goryo" >
-		<![CDATA[
-			<p> Los Goryo\'s normalmente permanecerán dentro o muy cerca de la ubicación en la que se encuentran. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_hantu" >
-		<![CDATA[
-			<p> El movimiento de un Hantu será más lento de lo normal en áreas más cálidas. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_myling" >
-		<![CDATA[
-			<p> Los mylings emitirán sonidos paranormales con mayor frecuencia. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_obake" >
-		<![CDATA[
-			<p> La evidencia única dejada por un Obake puede usarse para determinar el tipo de Fantasma. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_onryo" >
-		<![CDATA[
-			<p> Una llama actuará para sofocar la posibilidad de ataque de un Onryo, pero esta acción tiene consecuencias. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_raiju" >
-		<![CDATA[
-			<p> Es más fácil rastrear a un Raiju porque manipula constantemente dispositivos eléctricos mientras caza. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_thetwins" >
-		<![CDATA[
-			<p> Debido a su actividad combinada, localizar a Los Mellizos debería ser mucho más fácil. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_weaknesses_yokai" >
-		<![CDATA[
-			<p> Mientras caza, un Yokai solo escuchará las voces que se encuentren cerca de él. </p>
-        ]]>
-	</string>
-    <string name="evidence_evidence_description_dots" >
-		<![CDATA[
-			<p> El D.O.T.S. El proyector es un dispositivo que se puede colocar en las paredes o en el suelo. Proyecta una matriz de puntos brillantes, proyectando los puntos sobre las superficies cercanas a su alrededor. </p>
-			<p> Para identificar positivamente esta Evidencia, <font color = # ff6161> se verá una silueta del fantasma corriendo, o arrastrándose rápidamente, a través de los rayos de proyección. </font> La silueta se puede ver a simple vista oa través de una cámara de video, pero es más fácil verla <font color = # ff6161> de forma remota a través de las térmicas de la cámara de video </font>. Es mejor intentar encontrar esta evidencia de forma remota, ya que el comportamiento de un Goryo puede causar conflictos de evidencia de lo contrario. La ubicación real del Fantasma no determinará cuándo se producirán las animaciones de silueta. </p>
-        ]]>
-	</string>
-    <string name="evidence_ghost_info_themimic">
-        <![CDATA[
-            <p>El Mimic es un fantasma imitador misterioso y esquivo que refleja los rasgos y comportamientos de los demás, incluidos otros tipos de fantasmas. Esté atento a los cambios de comportamiento y a los orbes fantasma (como se explica en Fortalezas y Debilidades).</p>
-        ]]></string>
-    <string name="evidence_ghost_strengths_themimic">
-        <![CDATA[
-            <p>El Mimic puede imitar cualquier tipo de fantasma, lo que lo hace extremadamente peligroso e impredecible.</p>
-        ]]></string>
-    <string name="evidence_ghost_weaknesses_themimic">
-        <![CDATA[
-            <p>Aparecerá un Ghost Orb junto con la Evidencia determinista de The Mimic, lo que hace que The Mimic sea el único tipo de fantasma que (técnicamente) tiene una cuarta pieza de Evidencia. El Ghost Orb también se comporta de manera diferente a lo normal. Sigue a The Mimic mientras deambula, así que esté atento a un Ghost Orb itinerante mientras está en un nivel alto de Cordura del equipo.</p>
-        ]]></string>
+
     <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
     <string name="evidence_timer_difficulty_5">Locura</string>
 

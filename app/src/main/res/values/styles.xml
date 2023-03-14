@@ -6,6 +6,12 @@
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
     </style>
+    <style name="AutoTextSizeBody_SqueezeText">
+        <item name="autoSizeMinTextSize">10sp</item>
+        <item name="autoSizeMaxTextSize">50sp</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
 
     <style name="TypewriterRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">serif-monospace</item>
@@ -62,13 +68,31 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="TimeRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
     <style name="TimeBold" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="TimeBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
     <style name="TimeBoldNarrow" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="TimeBoldNarrow_SqueezeText" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>

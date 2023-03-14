@@ -244,22 +244,22 @@
     </string>
     <string name="evidence_ghost_info_deogen" >
         <![CDATA[
-            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
+            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide. Repeat: DO NOT TRY TO HIDE. If you hear extremely rapid footsteps, like a drumroll, step out of hiding IMMEDIATELY.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_goryo">
         <![CDATA[
-            <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
+            <p>A Goryo will rarely be seen outside of it\'s preferred room. A Goryo also <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing it through a video camera remotely.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_hantu">
         <![CDATA[
-            <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
+            <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly during a hunt. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_jinn" >
         <![CDATA[
-            <p>A Jinn gets its abilities from the power being on. It can move very quick huring hunts and it can drain sanity absurdly fast. Jinns were the apex predator back in earlier versions of Phasmophobia, and there\'s good reason for that.</p>
+            <p>A Jinn gets its abilities from the power being on. It can move very quick huring hunts and it can drain sanity absurdly fast. Jinns were the apex predator back in earlier versions of Phasmophobia, and there\'s good reason for that. It moves at 2.5 m/s if chasing a far away player and the generator is on, and 1.7 m/s if the generator is off and not chasing someone.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_mare" >
@@ -279,17 +279,17 @@
     </string>
     <string name="evidence_ghost_info_obake">
         <![CDATA[
-            <p>An Obake is a shape shifter which promotes some unusual evidence at times. By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake.
+            <p>An Obake is a shape shifter which promotes some unusual evidence at times. An Obake has a chance to not produce fingerprints at all, which may cause problems with evidence collection if negating Fingerprints too early.
         ]]>
     </string>
     <string name="evidence_ghost_info_oni" >
         <![CDATA[
-            <p>The Oni is an aggressive ghost which <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
+            <p>The Oni is an aggressive ghost which<font color=#ff6161> scales its activity level with the number of nearby investigators</font>. It is also likely to wander around near the Ghost Room.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_onryo">
         <![CDATA[
-            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc). Any source of flame will act like Crucifix until it\'s extinguished.</p>
+            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc). It will not hunt if attempting to within 4 meters of a flame source.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_phantom" >
@@ -309,7 +309,7 @@
     </string>
     <string name="evidence_ghost_info_revenant" >
         <![CDATA[
-            <p>A Revenant is </p>
+            <p>A Revenant is best known for it\'s slow hunting behavior while searching for investigators. It\'s methodically slow while searching, which provides distinct hunting sounds that assist with determining this ghost type.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_shade" >
@@ -324,7 +324,7 @@
     </string>
     <string name="evidence_ghost_info_thaye">
         <![CDATA[
-            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
+            <p>The Thaye is an ghost which rapidly ages while in the presence of the living. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages. Asking a Thaye how old it is on the Ouija Board will produce a response that is proportional to its progressed age. With each progressed stage of aging, the Thaye will decrease it\'s effective speed by a rate of 0.175 m/s.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_thetwins">
@@ -334,7 +334,7 @@
     </string>
     <string name="evidence_ghost_info_themimic">
         <![CDATA[
-            <p>The Mimic is an elusive, mysterious copycat ghost that mirrors traits and behaviours from others, including other ghost types. Keep an eye out for behaviour switching and Ghost Orbs (as explained under the Strengths and Weaknesses).</p>
+            <p>The Mimic is an elusive, mysterious copycat ghost that mirrors traits and behaviours from other ghost types. Keep an eye out for behaviour switching. Ghost Orbs are a fourth, hidden evidence that must be present for this ghost.</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_wraith" >
@@ -363,7 +363,7 @@
     </string>
     <string name="evidence_ghost_strengths_demon" >
         <![CDATA[
-            <p>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt without any provocation.</p>
+            <p>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt at any sanity, but it\'s minimum target is normally around 70\% average sanity. It\'s hunt cooldown, or the time between hunts, is 20 seconds, which is 5 seconds faster than any other ghost. Smudge sticks also have a shorter protection period, granting 60 seconds of safety rather than the normal 90 seconds for non\-Spirit ghosts.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_deogen">
@@ -373,12 +373,20 @@
     </string>
     <string name="evidence_ghost_strengths_goryo">
         <![CDATA[
-            <p>A Goryo often only shows itself on camera when there are no people nearby.</p>
+            <p>A Goryo often only shows itself on camera when there are no people nearby. This may cause problems with gathering the appropriate evidence, as it may lead to negating D.O.T.S. too early.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_hantu">
         <![CDATA[
-            <p>Lower temperatures allow the Hantu to move at faster speeds.</p>
+            <p>Lower temperatures allow the Hantu to move at faster speeds. Line of sight does not effect the Hantu\'s speed.</p>
+			<ul>
+				<li>15°C+ = 1.40 m/s</li>
+				<li>12°C  = 1.75 m/s</li>
+				<li> 9°C  = 2.10 m/s</li>
+				<li> 6°C  = 2.30 m/s</li>
+				<li> 3°C  = 2.50 m/s</li>
+				<li> 0°C  = 2.70 m/s</li>
+			</ul>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_jinn" >
@@ -393,28 +401,40 @@
     </string>
     <string name="evidence_ghost_strengths_moroi">
         <![CDATA[
-            <p>The Moroi will take full advantage of every bit of Sanity lost. Less team Sanity will produce higher levels of aggressiveness. At 0% average Sanity, the ghost will become lightning fast during a hunt.</p>
-            <p>The ghost has a hidden ability \-\- a curse \-\- which causes any player who has used the Spirit Box to drain in Sanity at a rate of .03%/sec so long as the effected player is within the play area. This effect stacks atop the normal rate at which players Sanity drains. Candles do not halt the effects, but the curse can be lifted upon the use of Sanity pills.</p>
+            <p>The Moroi will take full advantage of every bit of Sanity lost. Less team Sanity will produce higher levels of aggressiveness. At 0% average Sanity, the ghost will become lightning fast during a hunt. Based on average team Sanity, its speed ranges between 1.5 m/s at it\'s slowest to 2.25 m/s at it\'s fastest.</p>
+			<ul>
+				<li>Sanity  0% \-   5% : 2.25 m/s</li>
+				<li>Sanity  5% \-  10% : 2.164 m/s</li>
+				<li>Sanity 10% \-  15% : 2.081 m/s</li>
+				<li>Sanity 15% \-  20% : 1.998 m/s</li>
+				<li>Sanity 20% \-  25% : 1.915 m/s</li>
+				<li>Sanity 25% \-  30% : 1.832 m/s</li>
+				<li>Sanity 30% \-  35% : 1.749 m/s</li>
+				<li>Sanity 35% \-  40% : 1.66 m/s</li>
+				<li>Sanity 40% \-  45% : 1.583 m/s</li>
+				<li>Sanity 45% \- 100% : 1.5 m/s</li>
+			</ul>
+            <p>The ghost has a hidden ability \-\- a curse \-\- which causes any player to drain in Sanity at a rate of .03\%/sec so long as the effected player is within the play area. This effect is caused if the player uses and gets a response from the Spirit Box. The effect stacks atop the normal rate at which players Sanity drains. Candles do not halt the effects, but the curse can be lifted upon the use of Sanity Pills.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_myling">
         <![CDATA[
-            <p>A Myling is not as vocal as other Ghosts while Hunting. You will only detect their footsteps and their hunting audio while within the vicinity of electronic\-interference.</p>
+            <p>A Myling is not as vocal as other Ghosts while Hunting. You will only detect their footsteps and their vocal noises while within the vicinity of electronic\-interference.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_obake">
         <![CDATA[
-            <p>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence.</p>
+            <p>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence. The Obake may also decrease fingerprint lifetime by half.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_oni" >
         <![CDATA[
-            <p>Oni\'s possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
+            <p>Oni\'s possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them. This is its greatest weakness, as it will likely reveal itself early in the round. If a player is touched by an Oni during a ghost event, the player will have their sanity drained by twice as much.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_onryo">
         <![CDATA[
-            <p>The Onryo will target the source of flame and extinguish it. Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
+            <p>The Onryo will target the source of flame and extinguish it. Should the Onryo extinguish 3 flames, the Onryo may initiate a Hunt no matter the Sanity level if there is no other nearby flame or Crucifix. When a player dies, the odds of candles being extinguished from then on increases.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_phantom" >
@@ -429,17 +449,17 @@
     </string>
     <string name="evidence_ghost_strengths_raiju" >
         <![CDATA[
-            <p>Raiju\'s become much faster while nearby electrical devices, but not the map power or room lights.</p>
+            <p>Raiju\'s become much faster while nearby electrical devices, but not the map power or room lights, and will increase it\'s preferred hunting sanity level to 65\% while nearby such electrical devices. If near an electronic equipment, it will travel at 2.5 m/s; Otherwise, it will travel at 1.7 m/s.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_revenant" >
         <![CDATA[
-            <p>Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
+            <p>A Revenant will travel at 1 m/s while hunting for players, and will instantly travel at 3 m/s if the location of an player is known (via line-of-sight, proximity chat, or electronic device usage). It will slow down gradually to 1 m/s unless a player\'s location is reacquired after it reaches the player\'s last known location.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_shade" >
         <![CDATA[
-            <p>Shades can be difficult to find, and therefore it can be difficult to collect evidence for or find the location of.</p>
+            <p>Shades can be difficult to find, and therefore it can be difficult to collect evidence for or even find the location of. It has a lower activity overall; however, lower player sanity levels will procure more ghost events. It will not interact or throw objects while a player is in it\'s preferred room.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_spirit" >
@@ -449,7 +469,7 @@
     </string>
     <string name="evidence_ghost_strengths_thaye">
         <![CDATA[
-            <p>The Thaye will be most active and dangerous at the beginning of a mission. This makes it extremely threatening early on.</p>
+            <p>The Thaye will be most active and dangerous at the beginning of a mission. This makes it extremely threatening early on. The Thaye will hunt at 75% at the start of an investigation, eventually scaling to a minimum 15% after it finishes aging. A young Thaye will be very fast at 2.7 m/s, while an old Thaye will move slower than a player at 1.0 m/s.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_thetwins">
@@ -459,7 +479,7 @@
     </string>
     <string name="evidence_ghost_strengths_themimic">
         <![CDATA[
-            <p>The Mimic may copycat any ghost type, which makes it extremely dangerous and totally unpredictable.</p>
+            <p>The Mimic may rapidly copycat any ghost type multiple times during an investigation, which makes it extremely dangerous and totally unpredictable. The behavior that it copies can be present both during or outside of a hunt. The Mimic cannot swap to copycat a different ghost mid\-hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_wraith" >
@@ -469,12 +489,12 @@
     </string>
     <string name="evidence_ghost_strengths_yokai">
         <![CDATA[
-            <p>Speaking nearby a Yokai will anger it. Speaking nearby a Yokai has the chance of provoking a hunt which supersedes the protections of high Sanity levels.</p>
+            <p>Speaking nearby a Yokai will anger it, increasing it\'s likelihood to attack by raising the minimum preferred sanity level for hunting to 80\%.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_yurei" >
         <![CDATA[
-            <p>Yurie\'s will drop players\' sanity, while they are looking at it, much quicker than any other ghost \-\- but can also decrease sanity even when a player is turned away.</p>
+            <p>Yurie\'s will drop players\' sanity, while they are looking at it, much quicker than any other ghost \-\- but can also decrease sanity even when a player is turned away. A Yurei may also instantly rip away 15\% sanity from any nearby player; and when this happens, the doors of the room will always close by themselves (any ghost may do this, but the Yurei has an increased likelihood).</p>
         ]]>
     </string>
 
@@ -486,22 +506,22 @@
     </string>
     <string name="evidence_ghost_weaknesses_demon" >
         <![CDATA[
-            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons. Demons <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them by amplifying the Crucifix effective range to 5 meters.</p>
+            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons. Demons <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them by amplifying the Crucifix effective range to 5 meters instead of the normal 3 meters for other ghosts.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_deogen">
         <![CDATA[
-            <p>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time.</p>
+            <p>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time. Stay in line\-of\-sight with this ghost and you\'ll be fine as it will only be able to move at 0.4 m/s while in close proximity to the nearest player in line\-of\-sight. As long as you\'re within line\-of\-sight it will never be able to catch you, even if you\'re walking. The Deogen will only hunt at 40\% sanity.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_goryo">
         <![CDATA[
-            <p>Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
+            <p>Goryo\'s will normally stay within or very close to the location they\'re haunting. This allows for easier evidence collection.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_hantu" >
         <![CDATA[
-            <p>A Hantu\'s movement will be slower than normal in warmer areas.</p>
+            <p>A Hantu\'s movement will be slower than normal in warmer areas. While hunting, and if the breaker is off, the Hantu will produce freezing breath much like a player does, but this effect is not limited to the ghost room or the temperature of a room.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_jinn" >
@@ -516,32 +536,32 @@
     </string>
     <string name="evidence_ghost_weaknesses_moroi">
         <![CDATA[
-            <p>The Moroi are hypersensitive to the Smudge Stick. Lighting one nearby will lower their aggressiveness.</p>
+            <p>The Moroi are hypersensitive to the Smudge Stick. Lighting one nearby will blind the Moroi for 12 seconds.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_myling" >
         <![CDATA[
-            <p>Mylings will more frequently emit paranormal sounds.</p>
+            <p>Mylings will more frequently emit paranormal sounds in the parabolic microphone.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_obake" >
         <![CDATA[
-            <p>The unique evidence left by an Obake may be used to determine the Ghost type.</p>
+            <p>By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake. The Obake may also change its ghost model for a brief second at any point both during a hunt. If the Obake touches a surface, there is a chance for fingerprints to not appear; This can be used as proof for the ghost if any following interactions produce fingerprints.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_oni" >
         <![CDATA[
-            <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
+            <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby. The Oni cannot do a \"Ghost Mist\" or \"Ghost Ball\" event. It will favor full manifestations over shadow manifestations or invisible manifestations during ghost events. This behavior carries into hunts, which causes the Oni to manifest itself for longer periods and disappearing for very short intervals during hunts.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_onryo" >
         <![CDATA[
-            <p>A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
+            <p>A flame source will act to quell an Onryo\'s chance to attack. It will first extinguish all flames (much like using a Crucifix charge) before using a Crucifix.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_phantom" >
         <![CDATA[
-            <p><font color=#ff6161>Taking a picture of a Phantom will make it disappear temporarily</font> and will never show in the photograph. A Phantom also gives itself away huring hunts, as it will physically manifest for short durations and dissapear for longer durations.</p>
+            <p><font color=#ff6161>Taking a picture of a Phantom will make it disappear temporarily</font> and will never show in the photograph. A Phantom also gives itself away huring hunts, as it will physically manifest for short durations and disappear for longer durations.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_poltergeist" >
@@ -556,12 +576,12 @@
     </string>
     <string name="evidence_ghost_weaknesses_revenant" >
         <![CDATA[
-            <p>If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
+            <p>A Revenant will be very slow when player location is unknown, and very distinct, slow footsteps can be heard. The best way to determine if you have a revenant is through the hunt.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_shade" >
         <![CDATA[
-            <p>There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
+            <p>There\'s strength in numbers against a Shade, as they will not attack a group of people. If you want to prevent a hunt, at least one player must be within close proximity to the ghost. A Shade will also be more likely to show shadow-form models and conversely it has less likelihood of showing it\'s full model.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_spirit" >
@@ -571,12 +591,12 @@
     </string>
     <string name="evidence_ghost_weaknesses_thaye">
         <![CDATA[
-            <p>The longer the ghost is in the presence of the living, it will decrease in aggressiveness, speed, and strength.</p>
+            <p>The longer the ghost is in the presence of the living, it will decrease in aggressiveness, speed, and strength. Each age lowers the speed by 0.175 m/s. The Thaye also has no line\-of\-sight acceleration.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
-            <p>Due to their combined activity, locating The Twins should be much easier.</p>
+            <p>Due to their combined activity, locating The Twins should be much easier. The Twins have a varied hunting speed which randomly alternates between hunts. One Twin hunts at 90\% normal speed (1.5 m/s) while the other Twin hunts at 110\% normal speed (1.9 m/s).</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_themimic" >
@@ -591,7 +611,7 @@
     </string>
     <string name="evidence_ghost_weaknesses_yokai" >
         <![CDATA[
-            <p>While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
+            <p>While Hunting, a Yokai will only hear voices within a close proximity to it. It can only hear proximity chat or detect electronic equipment within 2.5 meters of itself. The Music Box cursed possession also does not cause the Yokai to move until the player is within a much closer proximity than any other ghost would require.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_yurei" >
@@ -760,4 +780,5 @@
     <string name="spiritbox_entry_q8_2">How crazy am I?</string>
     <string name="spiritbox_entry_q8_3">How insane am I?</string>
     <string name="spiritbox_entry_q8_4">Am I insane?</string>
+
 </resources>

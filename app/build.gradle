@@ -93,7 +93,7 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:31.2.2')
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -120,6 +120,9 @@ dependencies {
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    // For use with animated gifs
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
     // DO NOT UPDATE THIS -- BREAKING CHANGES
     implementation 'commons-io:commons-io:2.6'
