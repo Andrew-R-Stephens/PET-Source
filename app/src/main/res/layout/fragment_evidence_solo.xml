@@ -254,8 +254,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/difficulty_prev"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -282,8 +281,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/difficulty_next"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -327,8 +325,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/mapchoice_prev"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -356,8 +353,7 @@
                             <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/mapchoice_next"
                                 android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:adjustViewBounds="true"
+                                android:layout_height="wrap_content"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -398,7 +394,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/setup_title"
                                 style="@style/NorseRegular"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
@@ -462,8 +458,8 @@
                                 <androidx.appcompat.widget.AppCompatImageButton
                                     android:id="@+id/timer_play_pause"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:adjustViewBounds="true"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="false"
                                     android:background="@null"
                                     android:contentDescription="@string/app_name"
                                     android:scaleType="fitCenter"
@@ -479,8 +475,7 @@
                                 <androidx.appcompat.widget.AppCompatImageButton
                                     android:id="@+id/timer_skip"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:adjustViewBounds="true"
+                                    android:layout_height="wrap_content"
                                     android:background="@null"
                                     android:contentDescription="@string/app_name"
                                     android:scaleType="fitCenter"

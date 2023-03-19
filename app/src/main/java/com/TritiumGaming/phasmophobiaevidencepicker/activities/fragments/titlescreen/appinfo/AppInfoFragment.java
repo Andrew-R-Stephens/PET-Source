@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -112,7 +114,7 @@ public class AppInfoFragment extends Fragment {
 
         AppCompatTextView specialThanks_title =
                 view.findViewById(R.id.aboutinfo_specialthanks_title);
-        LinearLayout linearLayout_specialThanks =
+        LinearLayoutCompat linearLayout_specialThanks =
                 view.findViewById(R.id.scrollview_list_specialthanks);
 
         // LISTENERS
@@ -242,9 +244,17 @@ public class AppInfoFragment extends Fragment {
             names[i].setGravity(Gravity.CENTER);
             names[i].setTextSize(
                     (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));
-
+            Log.d("Font", specialThanks_title.getTextSize() + " -> " +
+                    Math.max(Math.min(18,
+                            FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * (.9)),
+                        FontUtils.dpToSp(view, specialThanks_title.getTextSize())) + "");
             linearLayout_specialThanks.addView(names[i]);
         }
+        /*int smallestFontSize = 12;
+        for (int i = 0; i < names.length; i++) {
+            names[i].setTextSize(
+                    (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));
+        }*/
         typedArray.recycle();
 
     }

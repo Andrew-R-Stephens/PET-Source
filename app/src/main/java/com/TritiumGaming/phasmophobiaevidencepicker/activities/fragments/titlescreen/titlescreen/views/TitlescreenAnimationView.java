@@ -157,11 +157,13 @@ public class TitlescreenAnimationView extends View {
             //Add hands
             for (int i = 0; i < HAND_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                    int bW = bitmap_hand.getWidth();
+                    int bH = bitmap_hand.getHeight();
                     animationData.addToAllPool(new AnimatedHandData(
                             screenW,
                             screenH,
-                            bitmap_hand.getWidth(),
-                            bitmap_hand.getHeight()));
+                            bW,
+                            bH));
                     bitmap_handRot = ((AnimatedHandData) animationData.getLastFromAllPool()).
                             rotateBitmap(bitmap_hand);
                 }
@@ -170,11 +172,13 @@ public class TitlescreenAnimationView extends View {
             //Add writing
             for (int i = 0; i < WRITING_COUNT; i++) {
                 if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                    int bW = bitmap_writing.getWidth();
+                    int bH = bitmap_writing.getHeight();
                     animationData.addToAllPool(new AnimatedWritingData(
                             screenW,
                             screenH,
-                            bitmap_writing.getWidth(),
-                            bitmap_writing.getHeight(),
+                            bW,
+                            bH,
                             animationData));
                     bitmap_writingRot = ((AnimatedWritingData) animationData.
                             getLastFromAllPool()).rotateBitmap(bitmap_writing);

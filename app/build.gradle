@@ -126,4 +126,6 @@ dependencies {
 
     // DO NOT UPDATE THIS -- BREAKING CHANGES
     implementation 'commons-io:commons-io:2.6'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 }

@@ -7,7 +7,7 @@
         <item name="autoSizeTextType">uniform</item>
     </style>
     <style name="AutoTextSizeBody_SqueezeText">
-        <item name="autoSizeMinTextSize">10sp</item>
+        <item name="autoSizeMinTextSize">1sp</item>
         <item name="autoSizeMaxTextSize">50sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
@@ -56,6 +56,12 @@
     </style>
 
     <style name="EastRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/eastseadokdo</item>
+        <item name="fontFamily">@font/eastseadokdo</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="EastRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
         <item name="android:textStyle">normal</item>

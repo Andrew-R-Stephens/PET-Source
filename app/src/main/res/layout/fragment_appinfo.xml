@@ -270,7 +270,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/aboutinfo_specialthanks_title"
                 tools:ignore="SpeakableTextPresentCheck">
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/scrollview_list_specialthanks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

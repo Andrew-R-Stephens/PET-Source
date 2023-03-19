@@ -120,7 +120,7 @@ public abstract class AbstractAnimatedGraphic {
      * @param bitmap
      */
     public void draw(Canvas canvas, Paint paint, Bitmap bitmap) {
-        if (BitmapUtils.bitmapExists(bitmap)) {
+        if (BitmapUtils.bitmapExists(bitmap) && canvas != null) {
             canvas.drawBitmap(
                     bitmap, null, getRect(), paint);
         }

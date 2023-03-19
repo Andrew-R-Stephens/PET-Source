@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence;
 
+import static androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -25,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -105,6 +108,7 @@ public class EvidenceFragment extends Fragment {
     protected Drawable icon_circle;
     protected Drawable[] icons_strikethrough;
 
+    //protected int[] font_sanitySize;
     @ColorInt
     int fontEmphasisColor = 0;
 
@@ -207,6 +211,21 @@ public class EvidenceFragment extends Fragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
+        AppCompatTextView label_difficultyTitle = view.findViewById(R.id.difficulty_title);
+        AppCompatTextView label_setupTitle = view.findViewById(R.id.setup_title);
+        AppCompatTextView label_mapChoiceTitle = view.findViewById(R.id.mapchoice_title);
+
+        int[] font_sanitySize;
+        float sanity_smallestFont = FontUtils.dpToSp(view, label_difficultyTitle.getTextSize());
+        sanity_smallestFont = Math.min(sanity_smallestFont, FontUtils.dpToSp(view, label_setupTitle.getTextSize()));
+        sanity_smallestFont = Math.min(sanity_smallestFont, FontUtils.dpToSp(view, label_mapChoiceTitle.getTextSize()));
+        font_sanitySize = new int[]{(int)sanity_smallestFont};
+
+        label_difficultyTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        label_setupTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        label_mapChoiceTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
+
         // DRAWABLES
         icons_strikethrough = new Drawable[]{
                 getResources().getDrawable(R.drawable.icon_strikethrough_1),
@@ -229,13 +248,13 @@ public class EvidenceFragment extends Fragment {
                 null,
                 view.findViewById(R.id.icon_goto_right));
 
-        if(expandButton!= null && collapseButton != null) {
+        if(collapseButton != null) {
             collapseButton.setOnClickListener(v -> {
                 if(!evidenceViewModel.isCollapsed()) {
                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                    expandButton.setVisibility(View.VISIBLE);
+                    //expandButton.setVisibility(View.VISIBLE);
                 } else {
-                    expandButton.setVisibility(View.GONE);
+                   // expandButton.setVisibility(View.GONE);
                     sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
                 }
                 evidenceViewModel.setCollapsed(true);
@@ -753,7 +772,7 @@ public class EvidenceFragment extends Fragment {
                         .setListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animation) {
-                                indicator.setVisibility(View.GONE);
+                                indicator.setVisibility(View.INVISIBLE);
                             }
                         });
             }
@@ -769,7 +788,7 @@ public class EvidenceFragment extends Fragment {
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
-                                    indicator.setVisibility(View.GONE);
+                                    indicator.setVisibility(View.INVISIBLE);
                                 }
                             });
                 }
@@ -784,7 +803,7 @@ public class EvidenceFragment extends Fragment {
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
-                                    indicator.setVisibility(View.GONE);
+                                    indicator.setVisibility(View.INVISIBLE);
                                 }
                             });
                 }

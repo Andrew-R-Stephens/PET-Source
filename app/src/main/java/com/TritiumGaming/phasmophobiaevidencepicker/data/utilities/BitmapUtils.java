@@ -189,7 +189,7 @@ public class BitmapUtils {
         }
         if (baseLayer != null && !baseLayer.isRecycled()) {
             Canvas canvas = new Canvas(baseLayer);
-            if (topLayer != null) {
+            if (BitmapUtils.bitmapExists(topLayer)) {
                 canvas.drawBitmap(topLayer, new Matrix(), null);
                 topLayer.recycle();
             }
