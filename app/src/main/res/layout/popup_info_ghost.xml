@@ -71,7 +71,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,7 +117,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout42"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".04"
@@ -141,7 +140,7 @@
             android:id="@+id/constraintLayout42"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -155,21 +154,23 @@
                 android:gravity="start"
                 android:text="@string/evidence_popup_ghost_info"
                 android:textColor="?attr/titleFontColor"
+                app:layout_constraintBottom_toTopOf="@+id/scrollview1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <include
                 android:id="@+id/scrollview1"
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/label_strengthsTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_infoTitle"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/label_infoTitle" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_strengthsTitle"
@@ -179,6 +180,7 @@
                 android:gravity="start"
                 android:text="@string/evidence_popup_ghost_strength"
                 android:textColor="?attr/titleFontColor"
+                app:layout_constraintBottom_toTopOf="@+id/scrollview2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
@@ -188,12 +190,11 @@
                 android:id="@+id/scrollview2"
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/label_weaknessesTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/label_strengthsTitle" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_weaknessesTitle"
@@ -203,6 +204,7 @@
                 android:gravity="start"
                 android:text="@string/evidence_popup_ghost_weakness"
                 android:textColor="?attr/titleFontColor"
+                app:layout_constraintBottom_toTopOf="@+id/scrollview3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,12 +214,11 @@
                 android:id="@+id/scrollview3"
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/label_weaknessesTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

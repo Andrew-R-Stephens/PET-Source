@@ -1,7 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence;
 
-import static androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -27,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -37,6 +34,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -215,6 +213,7 @@ public class EvidenceFragment extends Fragment {
         AppCompatTextView label_setupTitle = view.findViewById(R.id.setup_title);
         AppCompatTextView label_mapChoiceTitle = view.findViewById(R.id.mapchoice_title);
 
+        /*
         int[] font_sanitySize;
         float sanity_smallestFont = FontUtils.dpToSp(view, label_difficultyTitle.getTextSize());
         sanity_smallestFont = Math.min(sanity_smallestFont, FontUtils.dpToSp(view, label_setupTitle.getTextSize()));
@@ -224,6 +223,7 @@ public class EvidenceFragment extends Fragment {
         label_difficultyTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
         label_setupTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
         label_mapChoiceTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        */
 
 
         // DRAWABLES
@@ -252,9 +252,9 @@ public class EvidenceFragment extends Fragment {
             collapseButton.setOnClickListener(v -> {
                 if(!evidenceViewModel.isCollapsed()) {
                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                    //expandButton.setVisibility(View.VISIBLE);
+                    expandButton.setVisibility(View.VISIBLE);
                 } else {
-                   // expandButton.setVisibility(View.GONE);
+                    expandButton.setVisibility(View.GONE);
                     sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
                 }
                 evidenceViewModel.setCollapsed(true);
@@ -1006,6 +1006,36 @@ public class EvidenceFragment extends Fragment {
                     "#ff6161", fontEmphasisColor + "")));
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(scrollCons1);
+
+            int childHeight = scroller1.findViewById(R.id.layout_textContainer).getHeight();
+            boolean isScrollable1 = scroller1.getHeight() < childHeight + scroller1.getPaddingTop() + scroller1.getPaddingBottom();
+            if(isScrollable1) {
+                constraintSet.constrainHeight(scrollCons1.getId(), ConstraintSet.WRAP_CONTENT);
+                constraintSet.applyTo(scrollCons1);
+                scrollCons1.buildLayer();
+                Log.d("ConstraintSet", "Set 1 " + scrollCons1.getId());
+            }
+
+            childHeight = scroller2.findViewById(R.id.layout_textContainer).getHeight();
+            boolean isScrollable2 = scroller2.getHeight() < childHeight + scroller2.getPaddingTop() + scroller2.getPaddingBottom();
+            if(isScrollable2) {
+                constraintSet.constrainHeight(scrollCons2.getId(), ConstraintSet.WRAP_CONTENT);
+                constraintSet.applyTo(scrollCons2);
+                scrollCons1.buildLayer();
+                Log.d("ConstraintSet", "Set 2" + scrollCons2.getId());
+            }
+
+            childHeight = scroller3.findViewById(R.id.layout_textContainer).getHeight();
+            boolean isScrollable3 = scroller3.getHeight() < childHeight + scroller3.getPaddingTop() + scroller3.getPaddingBottom();
+            if(isScrollable3) {
+                constraintSet.constrainHeight(scrollCons3.getId(), ConstraintSet.WRAP_CONTENT);
+                constraintSet.applyTo(scrollCons3);
+                scrollCons1.buildLayer();
+                Log.d("ConstraintSet", "Set 3" + scrollCons3.getId());
+            }
 
             fadeOutIndicatorAnimation(
                     scroller1,
