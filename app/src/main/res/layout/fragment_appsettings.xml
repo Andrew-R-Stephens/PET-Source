@@ -52,7 +52,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_cancel_label"
-                    style="@style/NorseRegular"
+                    style="@style/NorseRegular_SqueezeText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -112,7 +112,7 @@
                     android:id="@+id/settings_confirm_label"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    style="@style/NorseRegular"
+                    style="@style/NorseRegular_SqueezeText"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
@@ -256,7 +256,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
-                            style="@style/NorseRegular"
+                            style="@style/NorseRegular_SqueezeText"
                             android:gravity="center"
                             android:text="@string/settings_networktitle"
                             app:layout_constraintBottom_toBottomOf="@+id/switch_network_switch"
@@ -304,12 +304,11 @@
                                 android:id="@+id/colorblindmode_title"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                style="@style/NorseRegular"
+                                style="@style/NorseRegular_SqueezeText"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_title"
                                 app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".65"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_chainStyle="packed" />
@@ -318,13 +317,12 @@
                                 android:id="@+id/colorblindmode_note"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                style="@style/NorseRegular"
+                                style="@style/NorseRegular_SqueezeText"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_note"
                                 android:textColor="?attr/neutralSelColor"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".35"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title" />
 
@@ -333,7 +331,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout71"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/constraintLayout45"
                             app:layout_constraintStart_toStartOf="@+id/constraintLayout45"
@@ -343,7 +341,6 @@
                                 android:id="@+id/colorblindmode_leftbutton"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -357,7 +354,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/colorblindmode_selectedname"
-                                style="@style/NorseRegular"
+                                style="@style/NorseRegular_SqueezeText"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:gravity="center"
@@ -375,7 +372,6 @@
                                 android:id="@+id/colorblindmode_rightbutton"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -466,7 +462,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_leftHandMode_text"
-                            style="@style/NorseRegular"
+                            style="@style/NorseRegular_SqueezeText"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -504,7 +500,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_text"
-                            style="@style/NorseRegular"
+                            style="@style/NorseRegular_SqueezeText"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -542,7 +538,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_title"
-                            style="@style/NorseRegular"
+                            style="@style/NorseRegular_SqueezeText"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -588,7 +584,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_timetext"
-                            style="@style/EastRegular"
+                            style="@style/EastRegular_SqueezeText"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"

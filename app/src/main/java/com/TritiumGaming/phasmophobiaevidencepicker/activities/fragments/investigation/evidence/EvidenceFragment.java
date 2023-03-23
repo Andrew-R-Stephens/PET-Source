@@ -35,6 +35,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -130,7 +131,7 @@ public class EvidenceFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_evidence_solo, container, false);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    //@SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -194,8 +195,7 @@ public class EvidenceFragment extends Fragment {
         expandButton = view.findViewById(R.id.button_raisesanity);
 
         // SANITY CONSTRAINTS
-        ConstraintLayout constraint_sanityContainer =
-                view.findViewById(R.id.constraint_sanityContainer);
+        //ConstraintLayout constraint_sanityContainer = view.findViewById(R.id.constraint_sanityContainer);
 
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
@@ -209,9 +209,11 @@ public class EvidenceFragment extends Fragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
+        /*
         AppCompatTextView label_difficultyTitle = view.findViewById(R.id.difficulty_title);
         AppCompatTextView label_setupTitle = view.findViewById(R.id.setup_title);
         AppCompatTextView label_mapChoiceTitle = view.findViewById(R.id.mapchoice_title);
+        */
 
         /*
         int[] font_sanitySize;
@@ -228,12 +230,12 @@ public class EvidenceFragment extends Fragment {
 
         // DRAWABLES
         icons_strikethrough = new Drawable[]{
-                getResources().getDrawable(R.drawable.icon_strikethrough_1),
-                getResources().getDrawable(R.drawable.icon_strikethrough_2),
-                getResources().getDrawable(R.drawable.icon_strikethrough_3),
-                getResources().getDrawable(R.drawable.icon_strikethrough_forced)
+                ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_1, getContext().getTheme()),
+                ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_2, getContext().getTheme()),
+                ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_3, getContext().getTheme()),
+                ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_forced, getContext().getTheme()),
         };
-        icon_circle = getResources().getDrawable(R.drawable.icon_circle);
+        icon_circle = ResourcesCompat.getDrawable(getResources(), R.drawable.icon_circle, getContext().getTheme());
 
         // LISTENERS
         initNavListeners(
@@ -858,6 +860,11 @@ public class EvidenceFragment extends Fragment {
 
         if (sanityMeterView != null) {
             sanityMeterView.recycleBitmaps();
+        }
+
+        if(popup != null) {
+            popup.dismiss();
+            popup = null;
         }
 
         super.onDestroyView();

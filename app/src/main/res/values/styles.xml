@@ -40,7 +40,12 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
-
+    <style name="NorseRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/norse</item>
+        <item name="fontFamily">@font/norse</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
     <style name="NorseRegular_Manual">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
