@@ -82,6 +82,7 @@
                     android:id="@+id/img_inboxalert"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:src="@drawable/icon_mail_unavailable"
                     app:layout_constraintBottom_toBottomOf="@+id/button_inbox"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".5"
@@ -90,7 +91,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:layout_constraintWidth_percent=".5"
-                    app:srcCompat="@drawable/icon_mail_unavailable"
                     app:tint="?attr/negativeSelColor"
                     app:tintMode="multiply" />
             </androidx.constraintlayout.widget.ConstraintLayout>

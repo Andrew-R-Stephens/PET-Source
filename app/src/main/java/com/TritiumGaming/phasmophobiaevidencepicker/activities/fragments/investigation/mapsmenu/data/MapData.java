@@ -114,10 +114,18 @@ public class MapData {
         return floorLayers;
     }
 
+    /**
+     *
+     * @param thumbnailResId
+     */
     public void setThumbnail(@DrawableRes int thumbnailResId) {
         thumbnailImage = thumbnailResId;
     }
 
+    /**
+     *
+     * @return
+     */
     public @DrawableRes int getThumbnailImage() {
         return thumbnailImage;
     }

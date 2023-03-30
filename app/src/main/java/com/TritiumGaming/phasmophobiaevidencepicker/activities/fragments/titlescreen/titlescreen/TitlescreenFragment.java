@@ -126,6 +126,8 @@ public class TitlescreenFragment extends Fragment {
         renderAd(view);
 
         initReviewRequest(button_review);
+
+        doIntroductionRequest();
         doReviewRequest();
 
     }
@@ -230,6 +232,28 @@ public class TitlescreenFragment extends Fragment {
             Log.d("Review", "Review Request Denied");
         }
 
+    }
+
+    public void doIntroductionRequest() {
+        // REQUEST REVIEW LISTENER
+        if (globalPreferencesViewModel != null &&
+                globalPreferencesViewModel.getReviewRequestData().canShowIntroduction()) {
+            Log.d("Introduction", "Before" + globalPreferencesViewModel.getReviewRequestData().toString());
+            globalPreferencesViewModel.getReviewRequestData().setIntroductionActivated(true);
+            Log.d("Introduction", "After" + globalPreferencesViewModel.getReviewRequestData().toString());
+
+            Thread tempThread = new Thread(() -> {
+                try {
+                    Thread.sleep(100L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (getActivity() != null && getContext() != null) {
+                    getActivity().runOnUiThread(() -> showIntroductionPopup(getView()));
+                }
+            });
+            tempThread.start();
+        }
     }
 
     private void gotoMessageCenterFragment(View v) {
@@ -346,6 +370,56 @@ public class TitlescreenFragment extends Fragment {
             params.putString("event_details", "request_rejected");
             analytics.logEvent("event_review_manager", params);
 
+            popup.dismiss();
+            popup = null;
+        });
+
+        // FINALIZE
+        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+
+        boolean success = parentView.post(() -> {
+            //Log.d("Review", "Is displaying");
+            if(popup != null) {
+                popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+            }
+
+        });
+
+        Log.d("ReviewRequest", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
+
+        Bundle params = new Bundle();
+        params.putString("event_type", "review_requested");
+        params.putString("event_details",
+                "request_" + (success ? "successful" : "unsuccessful"));
+        analytics.logEvent("event_review_manager", params);
+
+    }
+
+    /**
+     * showReviewPopup method
+     */
+    public void showIntroductionPopup(View parentView) {
+
+        //DESTROY PREVIOUS POPUP
+        if (popup != null) {
+            popup.dismiss();
+        }
+        //INFLATE LAYOUT
+        LayoutInflater inflater = (LayoutInflater) requireView().getContext().
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View customView = inflater.inflate(R.layout.popup_titlescreen_intro, null);
+
+        // INITIALIZE POPUPWINDOW
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+        popup.setOutsideTouchable(false);
+
+        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+        closeButton.setOnClickListener(view -> {
             popup.dismiss();
             popup = null;
         });

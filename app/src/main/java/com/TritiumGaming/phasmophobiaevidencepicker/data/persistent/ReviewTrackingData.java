@@ -14,6 +14,7 @@ public class ReviewTrackingData {
     // Count of times app was opened / target count to trigger review request
     protected int timesOpened;
     protected final int TARGET_TIMES_OPENED = 5;
+    protected boolean introductionActivated = false;
 
     /**
      * ReviewTrackingData parameterized constructor
@@ -85,9 +86,18 @@ public class ReviewTrackingData {
         ||*/ (timesOpened >= TARGET_TIMES_OPENED);
     }
 
+    public void setIntroductionActivated(boolean introductionActivated){
+        this.introductionActivated = introductionActivated;
+    }
+
+    public boolean canShowIntroduction() {
+        return !introductionActivated && getTimesOpened() <= 1;
+    }
+
     public String toString() {
         return "Time Active: " + getTimeActive() + "; Times Opened: " + getTimesOpened() +
-                "; Can Request Review: " + canRequestReview();
+                "; Can Request Review: " + canRequestReview() +
+                "; Can Show Introduction: " + canShowIntroduction() + " " + introductionActivated + " " + (getTimesOpened() <= 1);
     }
 
 }

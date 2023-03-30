@@ -75,19 +75,23 @@ public class InteractiveMapDisplayView extends View {
 
         if (controllerData != null && controllerData.getBitmapFactoryOptions() != null) {
 
-            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++) {
+            ArrayList<ArrayList<Integer>> mapFloorLayers = mapData.getAllFloorLayers();
+            if(mapFloorLayers == null)
+                return;
+
+            for (int i = 0; i < mapFloorLayers.size(); i++) {
                 mapImages.add(null);
             }
 
-            for (int i = 0; i < mapData.getAllFloorLayers().size(); i++) {
+            for (int i = 0; i < mapFloorLayers.size(); i++) {
                 int index = i + mapData.getDefaultFloor();
-                if (mapData.getAllFloorLayers().size() <= index) {
+                if (mapFloorLayers.size() <= index) {
                     index = 0;
                 }
 
                 // IMAGE LOADING ----
                 //
-                ArrayList<Integer> floor = mapData.getAllFloorLayers().get(index);
+                ArrayList<Integer> floor = mapFloorLayers.get(index);
                 for (int j = 0; j < floor.size(); j++) {
                     bitmapUtils.setResources(floor);
                     while (bitmapUtils.hasNextBitmap()) {

@@ -2,15 +2,12 @@
 <img height="100" src="https://lh3.googleusercontent.com/PMa9Mqag_nOUFZbDqKXRrKFdp9edQS2CD0F4nzv5SDuFq_GzlzXS41YgV5MunlYiiZ0m"/>
 
 # Phasmophobia Evidence Tool
-
 Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. PET enhances the user experience by supplementing in-game mechanics with a more involved investigation system.
-## Authors
 
+## Authors
 - [@tritiumnitr0x](https://github.com/TRITIUMNITR0X)
 
-
 ## Features
-
 - Multiple Languages
 - Colorblind accessibility, along with other minor accessibility features.
 - Direct access to relevant news outlets, both official and unofficial.
@@ -25,23 +22,24 @@ Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. P
 - Updated requently to reflect changes made in Phasmophobia.
 - + More
 
-
 ## Acknowledgements
-
  - [Phasmophobia Evidence Tool on Google Play](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
  - [Phasmophobia (Official Game)](https://store.steampowered.com/app/739630/Phasmophobia/)
 
-
-## Tech Stack
-
-**Client:** Java, AndroidOS (Nougat 7.0+)
-
+## Technologies Used
+<div style="display:float">
+  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold"/>
+</div>
 
 ## Roadmap
-
 [Trello](https://trello.com/b/E124v6Pt/phasmophobia-evidence-tool-pet)
 
-
 ## License
-
 [License](https://github.com/TritiumGaming/Phasmophobia-Evidence-Picker-Privacy-Policy/blob/main/Privacy%20Policy)
