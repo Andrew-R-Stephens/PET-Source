@@ -417,6 +417,135 @@
         ]]>
     </string>
 
+    <!-- Hunting Data -->
+    <string name="evidence_ghost_huntingdata_banshee" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity of the Player it is targeting.</p>
+            <p>Completely ignores Average Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_demon" >
+        <![CDATA[
+            <p>Normally hunts at 70\% Sanity.</p>
+            <p>May Hunt at any Sanity level upon ability activation.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_deogen">
+        <![CDATA[
+            <p>Hunts at 40\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_goryo">
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_hantu" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_jinn" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_mare" >
+        <![CDATA[
+            <p>Hunts at 40\% Sanity if the Power is on.</p>
+            <p>Hunts at 60\% Sanity if the Power is off.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_moroi">
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_myling" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_obake" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_oni" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_onryo" >
+        <![CDATA[
+            <p>Normally hunts at 60\% Sanity.</p>
+            <p>May hunt at any Sanity if fire is extinguished.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_phantom" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_poltergeist" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_raiju" >
+        <![CDATA[
+            <p>Normally hunts at 50\% Sanity.</p>
+            <p>Hunts at 65\% Sanity if nearby powered\-on electronics.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_revenant" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_shade" >
+        <![CDATA[
+            <p>Hunts at 35\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_spirit" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_thaye">
+        <![CDATA[
+            <p>Hunts at 75\% Sanity at it\'s youngest age.</p>
+            <p>Hunts at 15\% Sanity at it\'s oldest age.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_thetwins" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_themimic" >
+        <![CDATA[
+            <p>Hunting preferences are based on the ghost being mimicked. Therefore, it may hunt anywhere between 15% and 100% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_wraith" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_yokai" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+            <p>Cannot hear investigators or sense electronic equipment.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_huntingdata_yurei" >
+        <![CDATA[
+            <p>Hunts at 50\% Sanity.</p>
+        ]]>
+    </string>
+
 
     <!--
         EVIDENCE
@@ -607,5 +736,6 @@
 
     <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
     <string name="evidence_timer_difficulty_5">Folie</string>
+    <string name="evidence_popup_ghost_huntdata">Données de Chasse</string>
 
 </resources>

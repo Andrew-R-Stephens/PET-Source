@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -492,6 +491,8 @@ public class EvidenceFragment extends Fragment {
                 });
 
                 fadeOutIndicatorAnimation(
+                        null,
+                        null,
                         scroller,
                         indicator);
 
@@ -771,9 +772,10 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
-    public void fadeOutIndicatorAnimation(ScrollView scroller, View indicator) {
+    public void fadeOutIndicatorAnimation(ConstraintLayout bodyCons, ConstraintLayout container, ScrollView scroller, View indicator) {
         scroller.post(() -> {
             if (!scroller.canScrollVertically(1)) {
+                indicator.setVisibility(View.VISIBLE);
                 indicator.animate()
                         .alpha(0f)
                         .setDuration(getResources().getInteger(
@@ -784,8 +786,23 @@ public class EvidenceFragment extends Fragment {
                                 indicator.setVisibility(View.INVISIBLE);
                             }
                         });
+            } else {
+                if(container != null) {
+                    Log.d("Scroller", "Should constrain");
+                    ConstraintLayout.LayoutParams lParams =
+                            (ConstraintLayout.LayoutParams) container.getLayoutParams();
+                    lParams.constrainedHeight = true;
+                    container.setLayoutParams(lParams);
+                    container.invalidate();
+                }
+            }
+
+            if(bodyCons != null) {
+                //initialize info content scroller
+                bodyCons.setVisibility(View.VISIBLE);
             }
         });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             scroller.setOnScrollChangeListener((v13, scrollX, scrollY, oldScrollX,
                                                  oldScrollY) -> {
@@ -987,47 +1004,83 @@ public class EvidenceFragment extends Fragment {
 
             label_name.setText(ghostName);
 
-            int orientation = getResources().getConfiguration().orientation;
-            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            ConstraintLayout bodyCons = customView.findViewById(R.id.layout_contentbody);
+            ConstraintLayout scrollCons = customView.findViewById(R.id.scrollView_swapping);
+            ScrollView scroller = scrollCons.findViewById(R.id.scrollView);
+            View indicator = scrollCons.findViewById(R.id.scrollview_indicator);
+            AppCompatTextView data = scroller.findViewById(R.id.label_info);
 
-                ConstraintLayout scrollCons4 = customView.findViewById(R.id.scrollView_swapping);
-                ScrollView scroller4 = scrollCons4.findViewById(R.id.scrollView);
-                View indicator4 = scrollCons4.findViewById(R.id.scrollview_indicator);
-                AppCompatTextView data = scroller4.findViewById(R.id.label_info);
+            AppCompatImageButton left = customView.findViewById(R.id.title_left);
+            AppCompatImageButton right = customView.findViewById(R.id.title_right);
+            AppCompatTextView title = customView.findViewById(R.id.label_infoTitle);
 
-                AppCompatImageButton left = customView.findViewById(R.id.title_left);
-                AppCompatImageButton right = customView.findViewById(R.id.title_right);
-                AppCompatTextView title = customView.findViewById(R.id.label_infoTitle);
+            //initialize info content scroller
+            bodyCons.setVisibility(View.INVISIBLE);
 
-                title.setPaintFlags(data.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            //title.setPaintFlags(data.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            title.setText(titles[detailIndex]);
+            data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                    cycleDetails[detailIndex],
+                    "#ff6161", fontEmphasisColor + "")));
+
+            left.setOnClickListener(view -> {
+                detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
+
                 title.setText(titles[detailIndex]);
                 data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
-                left.setOnClickListener(view -> {
-                    detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
-
-                    title.setText(titles[detailIndex]);
-                    data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                            cycleDetails[detailIndex],
-                            "#ff6161", fontEmphasisColor + "")));
+                //initialize info content scroller
+                bodyCons.setVisibility(View.INVISIBLE);
+                scroller.post(() -> {
+                    if (scroller.canScrollVertically(1)) {
+                        Log.d("Scroller", "Should constrain");
+                        ConstraintLayout.LayoutParams lParams =
+                                (ConstraintLayout.LayoutParams)scrollCons.getLayoutParams();
+                        lParams.constrainedHeight = true;
+                        scrollCons.setLayoutParams(lParams);
+                        scrollCons.invalidate();
+                    }
+                    //initialize info content scroller
+                    bodyCons.setVisibility(View.VISIBLE);
                 });
+            });
 
-                right.setOnClickListener(view -> {
-                    detailIndex = (detailIndex +1)% cycleDetails.length;
+            right.setOnClickListener(view -> {
+                detailIndex = (detailIndex +1)% cycleDetails.length;
 
-                    title.setText(titles[detailIndex]);
-                    data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                            cycleDetails[detailIndex],
-                            "#ff6161", fontEmphasisColor + "")));
+                title.setText(titles[detailIndex]);
+                data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        cycleDetails[detailIndex],
+                        "#ff6161", fontEmphasisColor + "")));
+
+                //initialize info content scroller
+                bodyCons.setVisibility(View.INVISIBLE);
+                scroller.post(() -> {
+                    if (scroller.canScrollVertically(1)) {
+                        Log.d("Scroller", "Should constrain");
+                        ConstraintLayout.LayoutParams lParams =
+                                (ConstraintLayout.LayoutParams)scrollCons.getLayoutParams();
+                        lParams.constrainedHeight = true;
+                        scrollCons.setLayoutParams(lParams);
+                        scrollCons.invalidate();
+                    }
+                    //initialize info content scroller
+                    bodyCons.setVisibility(View.VISIBLE);
                 });
+            });
 
-                fadeOutIndicatorAnimation(
-                        scroller4,
-                        indicator4);
+            fadeOutIndicatorAnimation(
+                    bodyCons,
+                    scrollCons,
+                    scroller,
+                    indicator);
 
-            } else {
+            int orientation = getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            } else {/*
 
                 ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
                 ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
@@ -1073,7 +1126,7 @@ public class EvidenceFragment extends Fragment {
                 fadeOutIndicatorAnimation(
                         scroller3,
                         indicator3);
-
+*/
             }
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());
