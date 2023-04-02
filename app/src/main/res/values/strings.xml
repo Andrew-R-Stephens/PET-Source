@@ -73,6 +73,7 @@
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
     <string name="preference_colorSpace" translatable="false">colorSpace</string>
     <!-- Review Tracking -->
+    <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
     <string name="reviewtracking_appTimeAlive" translatable="false">appTimeAlive</string>
     <string name="reviewtracking_appTimesOpened" translatable="false">appTimesOpened</string>

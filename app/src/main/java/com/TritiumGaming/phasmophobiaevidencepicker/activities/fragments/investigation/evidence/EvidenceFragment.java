@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -34,7 +35,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
@@ -106,6 +106,7 @@ public class EvidenceFragment extends Fragment {
 
     protected Drawable icon_circle;
     protected Drawable[] icons_strikethrough;
+    private String[] titles;
 
     //protected int[] font_sanitySize;
     @ColorInt
@@ -176,6 +177,12 @@ public class EvidenceFragment extends Fragment {
             theme.resolveAttribute(R.attr.bodyEmphasisFontColor, typedValue, true);
             fontEmphasisColor = typedValue.data;
         }
+
+        titles = new String[] {
+            getResources().getString(R.string.evidence_popup_ghost_info),
+                    getResources().getString(R.string.evidence_popup_ghost_strength),
+                    getResources().getString(R.string.evidence_popup_ghost_weakness)
+        };
 
         // GHOST / EVIDENCE CONTAINERS
         AppCompatTextView header_ghostLabel, header_evidenceLabel;
@@ -888,6 +895,8 @@ public class EvidenceFragment extends Fragment {
         private final View view;
         private final int index;
         private final String ghostName, ghostInfo, ghostStrength, ghostWeakness;
+        private String[] cycleDetails;
+        int detailIndex = 0;
 
         public GhostSwipeListener(
                 LinearLayout ghostContainer,
@@ -907,6 +916,8 @@ public class EvidenceFragment extends Fragment {
             this.ghostInfo = ghostInfo;
             this.ghostStrength = ghostStrength;
             this.ghostWeakness = ghostWeakness;
+
+            cycleDetails = new String[]{ghostInfo, ghostStrength, ghostWeakness};
 
         }
 
@@ -971,88 +982,101 @@ public class EvidenceFragment extends Fragment {
             }
             evidenceIconLayout.addView(linearLayout_iconRow);
 
-            ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
-            ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
-            ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
-            ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
-            ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
-            ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
-            View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
-            View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
-            View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
-
             AppCompatTextView label_name =
                     customView.findViewById(R.id.label_name);
 
-            AppCompatTextView label_info =
-                    customView.findViewById(R.id.label_infoTitle);
-            AppCompatTextView label_strength =
-                    customView.findViewById(R.id.label_strengthsTitle);
-            AppCompatTextView label_weakness =
-                    customView.findViewById(R.id.label_weaknessesTitle);
-
-            AppCompatTextView info = scroller1.findViewById(R.id.label_info);
-            AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
-            AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
-
-            label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
             label_name.setText(ghostName);
 
+            int orientation = getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-            info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                ConstraintLayout scrollCons4 = customView.findViewById(R.id.scrollView_swapping);
+                ScrollView scroller4 = scrollCons4.findViewById(R.id.scrollView);
+                View indicator4 = scrollCons4.findViewById(R.id.scrollview_indicator);
+                AppCompatTextView data = scroller4.findViewById(R.id.label_info);
+
+                AppCompatImageButton left = customView.findViewById(R.id.title_left);
+                AppCompatImageButton right = customView.findViewById(R.id.title_right);
+                AppCompatTextView title = customView.findViewById(R.id.label_infoTitle);
+
+                title.setPaintFlags(data.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                title.setText(titles[detailIndex]);
+                data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        cycleDetails[detailIndex],
+                        "#ff6161", fontEmphasisColor + "")));
+
+                left.setOnClickListener(view -> {
+                    detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
+
+                    title.setText(titles[detailIndex]);
+                    data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                            cycleDetails[detailIndex],
+                            "#ff6161", fontEmphasisColor + "")));
+                });
+
+                right.setOnClickListener(view -> {
+                    detailIndex = (detailIndex +1)% cycleDetails.length;
+
+                    title.setText(titles[detailIndex]);
+                    data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                            cycleDetails[detailIndex],
+                            "#ff6161", fontEmphasisColor + "")));
+                });
+
+                fadeOutIndicatorAnimation(
+                        scroller4,
+                        indicator4);
+
+            } else {
+
+                ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
+                ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
+                ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
+                ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
+                ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
+                ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
+                View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
+                View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
+                View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
+
+                AppCompatTextView info = scroller1.findViewById(R.id.label_info);
+                AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
+                AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
+
+                AppCompatTextView label_info =
+                        customView.findViewById(R.id.label_infoTitle);
+                AppCompatTextView label_strength =
+                        customView.findViewById(R.id.label_strengthsTitle);
+                AppCompatTextView label_weakness =
+                        customView.findViewById(R.id.label_weaknessesTitle);
+
+                label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     ghostInfo,
                     "#ff6161", fontEmphasisColor + "")));
-            strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    ghostStrength,
-                    "#ff6161", fontEmphasisColor + "")));
-            weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    ghostWeakness,
-                    "#ff6161", fontEmphasisColor + "")));
+                strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        ghostStrength,
+                        "#ff6161", fontEmphasisColor + "")));
+                weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        ghostWeakness,
+                        "#ff6161", fontEmphasisColor + "")));
+
+                fadeOutIndicatorAnimation(
+                        scroller1,
+                        indicator1);
+                fadeOutIndicatorAnimation(
+                        scroller2,
+                        indicator2);
+                fadeOutIndicatorAnimation(
+                        scroller3,
+                        indicator3);
+
+            }
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());
-
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(scrollCons1);
-
-            int childHeight = scroller1.findViewById(R.id.layout_textContainer).getHeight();
-            boolean isScrollable1 = scroller1.getHeight() < childHeight + scroller1.getPaddingTop() + scroller1.getPaddingBottom();
-            if(isScrollable1) {
-                constraintSet.constrainHeight(scrollCons1.getId(), ConstraintSet.WRAP_CONTENT);
-                constraintSet.applyTo(scrollCons1);
-                scrollCons1.buildLayer();
-                Log.d("ConstraintSet", "Set 1 " + scrollCons1.getId());
-            }
-
-            childHeight = scroller2.findViewById(R.id.layout_textContainer).getHeight();
-            boolean isScrollable2 = scroller2.getHeight() < childHeight + scroller2.getPaddingTop() + scroller2.getPaddingBottom();
-            if(isScrollable2) {
-                constraintSet.constrainHeight(scrollCons2.getId(), ConstraintSet.WRAP_CONTENT);
-                constraintSet.applyTo(scrollCons2);
-                scrollCons1.buildLayer();
-                Log.d("ConstraintSet", "Set 2" + scrollCons2.getId());
-            }
-
-            childHeight = scroller3.findViewById(R.id.layout_textContainer).getHeight();
-            boolean isScrollable3 = scroller3.getHeight() < childHeight + scroller3.getPaddingTop() + scroller3.getPaddingBottom();
-            if(isScrollable3) {
-                constraintSet.constrainHeight(scrollCons3.getId(), ConstraintSet.WRAP_CONTENT);
-                constraintSet.applyTo(scrollCons3);
-                scrollCons1.buildLayer();
-                Log.d("ConstraintSet", "Set 3" + scrollCons3.getId());
-            }
-
-            fadeOutIndicatorAnimation(
-                    scroller1,
-                    indicator1);
-            fadeOutIndicatorAnimation(
-                    scroller2,
-                    indicator2);
-            fadeOutIndicatorAnimation(
-                    scroller3,
-                    indicator3);
 
             popup.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0);
 

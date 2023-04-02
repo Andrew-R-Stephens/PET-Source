@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_titleScreenFragment_to_appLanguageFragment"
             app:destination="@id/appLanguageFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
     </fragment>
 
     <activity
@@ -84,6 +87,14 @@
         android:label="AppLanguageFragment" >
         <action
             android:id="@+id/action_appLanguageFragment_to_titleScreenFragment"
+            app:destination="@id/titleScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.introduction.OnboardingFragment"
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_titleScreenFragment"
             app:destination="@id/titleScreenFragment" />
     </fragment>
 </navigation>

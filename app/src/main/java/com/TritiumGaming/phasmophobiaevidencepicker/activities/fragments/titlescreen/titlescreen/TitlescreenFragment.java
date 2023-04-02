@@ -237,10 +237,7 @@ public class TitlescreenFragment extends Fragment {
     public void doIntroductionRequest() {
         // REQUEST REVIEW LISTENER
         if (globalPreferencesViewModel != null &&
-                globalPreferencesViewModel.getReviewRequestData().canShowIntroduction()) {
-            Log.d("Introduction", "Before" + globalPreferencesViewModel.getReviewRequestData().toString());
-            globalPreferencesViewModel.getReviewRequestData().setIntroductionActivated(true);
-            Log.d("Introduction", "After" + globalPreferencesViewModel.getReviewRequestData().toString());
+                globalPreferencesViewModel.canShowIntroduction()) {
 
             Thread tempThread = new Thread(() -> {
                 try {
@@ -408,7 +405,7 @@ public class TitlescreenFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) requireView().getContext().
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.popup_titlescreen_intro, null);
+        View customView = inflater.inflate(R.layout.fragment_titlescreen_intro, null);
 
         // INITIALIZE POPUPWINDOW
         popup = new PopupWindow(
@@ -420,6 +417,8 @@ public class TitlescreenFragment extends Fragment {
 
         AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
         closeButton.setOnClickListener(view -> {
+            globalPreferencesViewModel.setCanShowIntroduction(false);
+            globalPreferencesViewModel.saveToFile(getContext());
             popup.dismiss();
             popup = null;
         });
@@ -432,16 +431,15 @@ public class TitlescreenFragment extends Fragment {
             if(popup != null) {
                 popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
             }
-
         });
 
         Log.d("ReviewRequest", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
 
         Bundle params = new Bundle();
-        params.putString("event_type", "review_requested");
+        params.putString("event_type", "started");
         params.putString("event_details",
                 "request_" + (success ? "successful" : "unsuccessful"));
-        analytics.logEvent("event_review_manager", params);
+        analytics.logEvent("event_introduction_start", params);
 
     }
 

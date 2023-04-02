@@ -28,6 +28,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private boolean networkPreference = true;
     private boolean isLeftHandSupportEnabled = false;
 
+    private boolean canShowIntroduction = true;
+
     /**
      * init method
      *
@@ -46,6 +48,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), getIsLeftHandSupportEnabled()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
+        setCanShowIntroduction(sharedPref.getBoolean(context.getResources().getString(R.string.tutorialTracking_canShowIntroduction), getCanShowIntroduction()));
 
         reviewRequestData = new ReviewTrackingData(
                 sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false),
@@ -56,26 +59,26 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveToFile(context);
     }
 
+    private static SharedPreferences getSharedPreferences(Context context) {
+        return context.getSharedPreferences(
+                context.getResources().getString(R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE);
+    }
+
+    private static SharedPreferences.Editor getEditor(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getResources().getString(
+                        R.string.preferences_globalFile_name),
+                Context.MODE_PRIVATE);
+        return sharedPref.edit();
+    }
+
     public void setLeftHandSupportEnabled(boolean isLeftHandSupportEnabled) {
         this.isLeftHandSupportEnabled = isLeftHandSupportEnabled;
     }
 
     public boolean getIsLeftHandSupportEnabled() {
         return isLeftHandSupportEnabled;
-    }
-
-    public static SharedPreferences getSharedPreferences(Context context) {
-        return context.getSharedPreferences(
-                context.getResources().getString(R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE);
-    }
-
-    public static SharedPreferences.Editor getEditor(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_globalFile_name),
-                Context.MODE_PRIVATE);
-        return sharedPref.edit();
     }
 
     public void setNetworkPreference(boolean preference) {
@@ -240,13 +243,26 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return colorSpace;
     }
 
+    public void setCanShowIntroduction(boolean canShowIntroduction) {
+        this.canShowIntroduction = canShowIntroduction;
+    }
+
+    public boolean getCanShowIntroduction() {
+        return canShowIntroduction;
+    }
+
+    public boolean canShowIntroduction() {
+        return canShowIntroduction && reviewRequestData.getTimesOpened() <= 1;
+    }
+
+
     /**
      *
      * @param c
      * @param editor
      * @param localApply
      */
-    public void saveNetworkPreference(
+    private void saveNetworkPreference(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -267,7 +283,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveChosenLanguage(
+    private void saveChosenLanguage(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -288,7 +304,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveAlwaysOnState(
+    private void saveAlwaysOnState(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -309,7 +325,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveHuntWarningAudioAllowed(
+    private void saveHuntWarningAudioAllowed(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -330,7 +346,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveHuntWarningFlashTimeout(
+    private void saveHuntWarningFlashTimeout(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -351,7 +367,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveColorSpace(
+    private void saveColorSpace(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -370,7 +386,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveAppTimeAlive(
+    private void saveAppTimeAlive(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -390,7 +406,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveTimesOpened(
+    private void saveTimesOpened(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -410,7 +426,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveCanRequestReview(
+    private void saveCanRequestReview(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -430,7 +446,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
-    public void saveIsLeftHandSupportEnabled(
+    private void saveIsLeftHandSupportEnabled(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
@@ -438,6 +454,26 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
         editor.putBoolean(c.getResources().getString(R.string.preference_isLeftHandSupportEnabled),
                 getIsLeftHandSupportEnabled());
+
+        if(localApply) {
+            editor.apply();
+        }
+    }
+
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
+    public void saveCanShowIntroduction(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
+        editor.putBoolean(c.getResources().getString(R.string.tutorialTracking_canShowIntroduction),
+                getCanShowIntroduction());
 
         if(localApply) {
             editor.apply();
@@ -463,6 +499,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveCanRequestReview(context, editor, false);
         saveTimesOpened(context, editor, false);
         saveAppTimeAlive(context, editor, false);
+        saveCanShowIntroduction(context, editor, false);
 
         editor.apply();
     }
@@ -477,6 +514,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
         settings.put("color_theme", getColorSpace()+"");
         settings.put("left_support", getIsLeftHandSupportEnabled()+"");
+        settings.put("can_show_intro", getCanShowIntroduction()+"");
         if(getReviewRequestData() != null) {
             settings.put("review_request", getReviewRequestData().canRequestReview()+"");
             settings.put("times_opened", getReviewRequestData().getTimesOpened()+"");
@@ -503,7 +541,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; ReviewRequestData: [" +
                 "Time Alive: " + sharedPref.getLong(context.getResources().getString(R.string.reviewtracking_appTimeAlive), 0) +
                 "; Times Opened: " + sharedPref.getInt(context.getResources().getString(R.string.reviewtracking_appTimesOpened), 0) +
-                "; Can Request Review: " +sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false) + "]");
+                "; Can Request Review: " + sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false) + "]" +
+                "; Can Show Introduction: " + sharedPref.getBoolean(context.getResources().getString(R.string.tutorialTracking_canShowIntroduction), false));
     }
 
     /**
@@ -517,6 +556,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Is Hunt Audio Allowed: " + getIsHuntAudioAllowed() +
                 "; Hunt Warning Flash Timeout: " + getHuntWarningFlashTimeout() +
                 "; Color Space: " +getColorSpace() +
+                "; Can Show Introduction: " + getCanShowIntroduction() +
                 "; ReviewRequestData: [" + getReviewRequestData().toString() + "]");
     }
 }
