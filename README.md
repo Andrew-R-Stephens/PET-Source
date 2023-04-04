@@ -5,7 +5,7 @@
 Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. PET enhances the user experience by supplementing in-game mechanics with a more involved investigation system.
 
 ## Authors
-- [@tritiumnitr0x](https://github.com/TRITIUMNITR0X)
+- [@Andrew-R-Stephens](https://github.com/Andrew-R-Stephens)
 
 ## Features
 - Multiple Languages
