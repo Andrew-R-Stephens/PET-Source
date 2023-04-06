@@ -11,8 +11,20 @@ Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. P
 ## Authors
 - [@Andrew-R-Stephens](https://github.com/Andrew-R-Stephens)
 
-<div style="display:float">
-  <a href='https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="150" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+## Sample Images
+<div>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_title.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence1.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence2.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence_equipment.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_tasks.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_maps.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_map.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inboxes.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inbox.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_settings.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_languages.png'/>
 </div>
 
 ## Features
