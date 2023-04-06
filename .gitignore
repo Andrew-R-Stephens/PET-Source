@@ -24,3 +24,4 @@ Keystore.jks
 /app/release
 /app/local.properties
 /app/upload_certificate.pem
+/repo-images/
