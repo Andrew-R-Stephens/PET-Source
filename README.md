@@ -40,7 +40,7 @@ Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. P
 - Information about Evidence types.
 - Contains a fully customized UI that's reminiscent of Phasmophobia's style.
 - Updated requently to reflect changes made in Phasmophobia.
-- + More
+- (+ More)
 
 ## Acknowledgements
  - [Phasmophobia (Official Game)](https://store.steampowered.com/app/739630/Phasmophobia/)
