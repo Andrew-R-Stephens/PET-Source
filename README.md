@@ -4,8 +4,16 @@
 # Phasmophobia Evidence Tool
 Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. PET enhances the user experience by supplementing in-game mechanics with a more involved investigation system.
 
+<div style="display:float">
+  <a href='https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="150" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+</div>
+
 ## Authors
 - [@Andrew-R-Stephens](https://github.com/Andrew-R-Stephens)
+
+<div style="display:float">
+  <a href='https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="150" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+</div>
 
 ## Features
 - Multiple Languages
@@ -23,7 +31,6 @@ Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. P
 - + More
 
 ## Acknowledgements
- - [Phasmophobia Evidence Tool on Google Play](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
  - [Phasmophobia (Official Game)](https://store.steampowered.com/app/739630/Phasmophobia/)
 
 ## Technologies Used
