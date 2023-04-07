@@ -2,9 +2,15 @@
 <img height="100" src="https://lh3.googleusercontent.com/PMa9Mqag_nOUFZbDqKXRrKFdp9edQS2CD0F4nzv5SDuFq_GzlzXS41YgV5MunlYiiZ0m"/>
 
 # Phasmophobia Evidence Tool
-Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. PET enhances the user experience by supplementing in-game mechanics with a more involved investigation system.
 
-<div style="display:float">
+<b>Phasmophobia Evidence Tool (PET)</b> is a companion app for the game Phasmophobia. PET enhances the user experience by supplementing in-game mechanics with a more involved investigation system. 
+([<em>"Phasmophobia"</em>](https://store.steampowered.com/app/739630/Phasmophobia/) is a multiplayer co-op PC horror game developed by [<b><em>Kinetic Games</em></b>](https://kineticgames.co.uk/)).
+
+<em><b>P.E.T.</b></em> acts as an unofficial companion tool for <em>"Phasmophobia"</em>. It gives extra features to players, enabling them to play the game with more efficiency and enhanced immersion. In the past, P.E.T. had solved a number of issues that Phasmophobia had; And while those issues have arguably been reworked in the game, <em>P.E.T.</em> still expands these features far past what the game supplies its users.
+
+Please feel free to navigate the open-source repositories contained here!
+
+
   <a href='https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="150" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </div>
 
@@ -62,3 +68,12 @@ Phasmophobia Evidence Tool (PET) is a companion app for the game Phasmophobia. P
 
 ## License
 [License](https://github.com/TritiumGaming/Phasmophobia-Evidence-Picker-Privacy-Policy/blob/main/Privacy%20Policy)
+
+<hr/>
+
+## Contact Information
+[Contact Email](mailto:stephensandrewryan@@gmail.com?subject=Github%20Personal%20Inquiry) <br/>
+[Business Email (for Tritium Studios)](mailto:TritiumGamingStudios@gmail.com?subject=Github%20Business%20Inquiry)
+
+<img style="width:100vw;" src="https://media.giphy.com/media/METv4JhJVasfcYTAk5/giphy.gif"/>
+<div style="display:float">
