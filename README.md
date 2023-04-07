@@ -19,18 +19,18 @@ Please feel free to navigate the open-source repositories contained here!
 
 ## Sample Images
 <div>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_title.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence1.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence2.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence_equipment.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_tasks.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_maps.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_map.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inboxes.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inbox.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_settings.png'/>
-  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_languages.png'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_title_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence1_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence2_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_evidence_equipment_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_tasks_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_maps_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_map_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inboxes_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_inbox_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_msgcenter_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_settings_240.webp'/>
+  <img width="150" alt='' src='https://github.com/Andrew-R-Stephens/PET-Source/blob/master/repo-images/pet_languages_240.webp'/>
 </div>
 
 ## Features
