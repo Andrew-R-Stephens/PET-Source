@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="evidence_ghosts_title">FANTASMAS</string>
-    <string name="evidence_evidence_title">EVIDENCIA</string>
+    <string name="evidence_ghosts_title">Fantasmas</string>
+    <string name="evidence_evidence_title">Evidencia</string>
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
     <string name="evidence_timer_difficulty_label">Dificultad:</string>
@@ -591,15 +591,15 @@
     </string>
 
 
-    <string name="objectives_title_response_everyone">AGRUPADOS</string>
-    <string name="objectives_title_optional_objectives">OBJETIVOS OPCIONALES</string>
+    <string name="objectives_title_response_everyone">Agrupados</string>
+    <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
     <string name="objectives_title_ghost_name">Nombre del fantasma:</string>
     <string name="objectives_title_response">Responde a las personas que son:</string>
     <string name="objectives_title_optional_objective_1">- OBJETIVO 1</string>
     <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
     <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
-    <string name="objectives_title_response_alone">SOLA</string>
+    <string name="objectives_title_response_alone">Sola</string>
 
     <string name="map_floor_name_first">Primer Piso</string>
     <string name="map_floor_name_second">Segunda Planta</string>
@@ -615,26 +615,26 @@
 
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Temperatura Gelida</string>
-    <string name="evidence_evidence_type_box">CAJA DE ESPIRITUS</string>
-    <string name="evidence_evidence_type_book">ESCRITURA FANTASMAL</string>
-    <string name="evidence_evidence_type_orbs">ARTEFACTOS</string>
-    <string name="evidence_evidence_type_fingerprints">HUELLAS</string>
-    <string name="evidence_ghost_type_banshee">BANSHEE</string>
-    <string name="evidence_ghost_type_demon">DEMONIO</string>
-    <string name="evidence_ghost_type_jinn">GENIO</string>
-    <string name="evidence_ghost_type_mare">PESADILLA</string>
-    <string name="evidence_ghost_type_oni">ONI</string>
-    <string name="evidence_ghost_type_phantom">FANTASMA</string>
-    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
-    <string name="evidence_ghost_type_revenant">RESUCITADO</string>
-    <string name="evidence_ghost_type_shade">SOMBRA</string>
-    <string name="evidence_ghost_type_spirit">ESPIRITU</string>
-    <string name="evidence_ghost_type_wraith">ESPECTRO</string>
-    <string name="evidence_ghost_type_yurei">YUREI</string>
+    <string name="evidence_evidence_type_box">Caja De Espiritus</string>
+    <string name="evidence_evidence_type_book">Escritura Fantasmal</string>
+    <string name="evidence_evidence_type_orbs">Artefactos</string>
+    <string name="evidence_evidence_type_fingerprints">Huellas</string>
+    <string name="evidence_ghost_type_banshee">Banshee</string>
+    <string name="evidence_ghost_type_demon">Demonio</string>
+    <string name="evidence_ghost_type_jinn">Genio</string>
+    <string name="evidence_ghost_type_mare">Pesadilla</string>
+    <string name="evidence_ghost_type_oni">Oni</string>
+    <string name="evidence_ghost_type_phantom">Fantasma</string>
+    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
+    <string name="evidence_ghost_type_revenant">Resucitado</string>
+    <string name="evidence_ghost_type_shade">Sombra</string>
+    <string name="evidence_ghost_type_spirit">Espiritu</string>
+    <string name="evidence_ghost_type_wraith">Espectro</string>
+    <string name="evidence_ghost_type_yurei">Yurei</string>
 
-    <string name="general_evidence_button">EVIDENCIA</string>
-    <string name="general_tasks_button">TAREAS</string>
-    <string name="general_maps_button">MAPAS</string>
+    <string name="general_evidence_button">Evidencia</string>
+    <string name="general_tasks_button">Tareas</string>
+    <string name="general_maps_button">Mapas</string>
 
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Sobre el</string>

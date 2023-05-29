@@ -28,7 +28,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_objectivesTitle"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -53,7 +53,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_debriefTitle"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -98,7 +98,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_objectivetitle1"
-                        style="@style/NorseRegular"
+                        style="?attr/primaryFont_Regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="start|center_vertical"
@@ -181,7 +181,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_objectivetitle2"
-                        style="@style/NorseRegular"
+                        style="?attr/primaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="start|center_vertical"
@@ -261,7 +261,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_objectivetitle3"
-                        style="@style/NorseRegular"
+                        style="?attr/primaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="start|center_vertical"
@@ -334,7 +334,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_ghostName"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -359,7 +359,7 @@
 
                 <EditText
                     android:id="@+id/textInput_ghostName"
-                    style="@style/NorseRegular"
+                    style="?attr/primaryFont_Regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/icon_square"
@@ -393,7 +393,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_repondsTo"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -437,7 +437,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_alone"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -451,7 +451,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_everyone"
-                style="@style/NorseRegular"
+                style="?attr/primaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

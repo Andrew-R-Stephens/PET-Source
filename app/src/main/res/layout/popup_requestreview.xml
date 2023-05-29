@@ -22,7 +22,6 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_ratingstitle"
-            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -72,7 +71,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_accept"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -89,7 +87,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_decline"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

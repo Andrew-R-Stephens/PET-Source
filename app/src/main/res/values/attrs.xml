@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--
+        Colors
+    -->
     <attr name="titleFontColor" format="reference|color" />
     <attr name="subtitleFontColor" format="reference|color" />
     <attr name="splashtitleFontColor" format="reference|color" />
@@ -26,5 +29,52 @@
     <attr name="positiveSelColor" format="reference|color" />
     <attr name="negativeSelColor" format="reference|color" />
     <attr name="neutralSelColor" format="reference|color" />
+
+    <!--
+        Fonts
+    -->
+
+    <!-- AutoFit -->
+    <attr name="primaryFont_Regular" format="reference" />
+    <attr name="primaryFont_Bold" format="reference" />
+
+    <attr name="secondaryFont_Regular" format="reference" />
+    <attr name="secondaryFont_Bold" format="reference" />
+
+    <attr name="tertiaryFont_Regular" format="reference" />
+    <attr name="tertiaryFont_Bold" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow" format="reference" />
+
+    <attr name="quaternaryFont_Regular" format="reference" />
+    <attr name="quaternaryFont_Bold" format="reference" />
+
+    <!-- Squeeze -->
+    <attr name="primaryFont_Regular_Squeeze" format="reference" />
+    <attr name="primaryFont_Bold_Squeeze" format="reference" />
+
+    <attr name="secondaryFont_Regular_Squeeze" format="reference" />
+    <attr name="secondaryFont_Bold_Squeeze" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Squeeze" format="reference" />
+    <attr name="tertiaryFont_Bold_Squeeze" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Squeeze" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Squeeze" format="reference" />
+    <attr name="quaternaryFont_Bold_Squeeze" format="reference" />
+
+    <!-- Manual -->
+    <attr name="primaryFont_Regular_Manual" format="reference" />
+    <attr name="primaryFont_Bold_Manual" format="reference" />
+
+    <attr name="secondaryFont_Regular_Manual" format="reference" />
+    <attr name="secondaryFont_Bold_Manual" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Manual" format="reference" />
+    <attr name="tertiaryFont_Bold_Manual" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Manual" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Manual" format="reference" />
+    <attr name="quaternaryFont_Bold_Manual" format="reference" />
+
 
 </resources>

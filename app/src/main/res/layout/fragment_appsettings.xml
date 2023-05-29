@@ -52,7 +52,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_cancel_label"
-                    style="@style/NorseRegular_SqueezeText"
+                    style="?attr/primaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -112,7 +112,7 @@
                     android:id="@+id/settings_confirm_label"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    style="@style/NorseRegular_SqueezeText"
+                    style="?attr/primaryFont_Regular_Squeeze"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
@@ -170,7 +170,6 @@
                         android:id="@+id/settings_generalsettings_title"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        style="@style/NorseRegular"
                         android:gravity="center"
                         android:text="@string/settings_generalsettings"
                         android:textColor="?attr/titleFontColor"
@@ -217,7 +216,6 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
-                            style="@style/NorseRegular"
                             android:gravity="center"
                             android:text="@string/settings_screenalwayson"
                             app:layout_constraintBottom_toBottomOf="@+id/switch_alwayson_switch"
@@ -229,7 +227,6 @@
                             android:id="@+id/switch_alwayson_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/NorseRegular"
                             android:gravity="start|center_vertical"
                             android:inputType="text"
                             android:textColor="?attr/switchColor"
@@ -256,7 +253,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
-                            style="@style/NorseRegular_SqueezeText"
+                            style="?attr/primaryFont_Regular_Squeeze"
                             android:gravity="center"
                             android:text="@string/settings_networktitle"
                             app:layout_constraintBottom_toBottomOf="@+id/switch_network_switch"
@@ -268,7 +265,6 @@
                             android:id="@+id/switch_network_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/NorseRegular"
                             android:gravity="start|center_vertical"
                             android:inputType="text"
                             android:textColor="?attr/switchColor"
@@ -304,7 +300,7 @@
                                 android:id="@+id/colorblindmode_title"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                style="@style/NorseRegular_SqueezeText"
+                                style="?attr/primaryFont_Regular_Squeeze"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_title"
                                 app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
@@ -317,7 +313,7 @@
                                 android:id="@+id/colorblindmode_note"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                style="@style/NorseRegular_SqueezeText"
+                                style="?attr/primaryFont_Regular_Squeeze"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_note"
                                 android:textColor="?attr/neutralSelColor"
@@ -354,7 +350,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/colorblindmode_selectedname"
-                                style="@style/NorseRegular_SqueezeText"
+                                style="?attr/primaryFont_Regular_Squeeze"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:gravity="center"
@@ -417,7 +413,6 @@
                         android:id="@+id/settings_othersettings_title"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        style="@style/NorseRegular"
                         android:gravity="center"
                         android:text="@string/settings_extrasettings"
                         android:textColor="?attr/titleFontColor"
@@ -462,7 +457,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_leftHandMode_text"
-                            style="@style/NorseRegular_SqueezeText"
+                            style="?attr/primaryFont_Regular_Squeeze"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -500,7 +495,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_text"
-                            style="@style/NorseRegular_SqueezeText"
+                            style="?attr/primaryFont_Regular_Squeeze"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -538,7 +533,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/switch_huntwarningaudio_title"
-                            style="@style/NorseRegular_SqueezeText"
+                            style="?attr/primaryFont_Regular_Squeeze"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -571,7 +566,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_othertext"
-                            style="@style/EastRegular"
+                            style="?attr/secondaryFont_Regular_Squeeze"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"
@@ -584,7 +579,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/seekbar_huntwarningtimeout_timetext"
-                            style="@style/EastRegular_SqueezeText"
+                            style="?attr/secondaryFont_Regular_Squeeze"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="#00FFFFFF"

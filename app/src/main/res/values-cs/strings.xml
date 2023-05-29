@@ -82,8 +82,8 @@
     <string name="evidence_timer_setuplabel">SETUP</string>
     <string name="evidence_sanity_huntwarn">HUNT WARN</string>
     <string name="evidence_sanitymeter_title">MAX Sanity Level</string>
-    <string name="evidence_ghosts_title">GHOSTS</string>
-    <string name="evidence_evidence_title">EVIDENCE</string>
+    <string name="evidence_ghosts_title">Ghosts</string>
+    <string name="evidence_evidence_title">Evidence</string>
     <!-- Ghost Names -->
     <string name="evidence_ghost_type_banshee">Banshee</string>
     <string name="evidence_ghost_type_demon">Demon</string>
@@ -197,6 +197,11 @@
     <string name="evidence_ghost_info_thetwins" >
         <![CDATA[
             <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_info_themimic">
+        <![CDATA[
+            <p>Mimic je nepolapitelný, tajemný napodobovací duch, který zrcadlí vlastnosti a chování ostatních, včetně jiných typů duchů. Dávejte pozor na přepínání chování a Ghost Orbs (jak je vysvětleno v části Silné a slabé stránky).</p>
         ]]>
     </string>
     <string name="evidence_ghost_info_wraith" >
@@ -315,6 +320,11 @@
             <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
         ]]>
     </string>
+    <string name="evidence_ghost_strengths_themimic">
+        <![CDATA[
+            <p>Mimic může kopírovat jakýkoli typ ducha, což jej činí extrémně nebezpečným a nepředvídatelným.</p>
+        ]]>
+    </string>
     <string name="evidence_ghost_strengths_wraith" >
         <![CDATA[
             <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
@@ -429,6 +439,11 @@
     <string name="evidence_ghost_weaknesses_thetwins" >
         <![CDATA[
             <p>Due to their combined activity, locating The Twins should be much easier.</p>
+        ]]>
+    </string>
+    <string name="evidence_ghost_weaknesses_themimic">
+        <![CDATA[
+            <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
         ]]>
     </string>
     <string name="evidence_ghost_weaknesses_wraith" >
@@ -576,14 +591,21 @@
         ]]>
     </string>
 
+
     <!-- Evidence Names -->
     <string name="evidence_evidence_type_emf">EMF 5</string>
-    <string name="evidence_evidence_type_temperatures">FREEZING TEMP</string>
-    <string name="evidence_evidence_type_box">SPIRIT BOX</string>
-    <string name="evidence_evidence_type_book">GHOST WRITING</string>
-    <string name="evidence_evidence_type_orbs">GHOST ORBS</string>
-    <string name="evidence_evidence_type_fingerprints">FINGERPRINTS</string>
+    <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
+    <string name="evidence_evidence_type_box">Spirit Box</string>
+    <string name="evidence_evidence_type_book">Ghost Writing</string>
+    <string name="evidence_evidence_type_orbs">Ghost Orbs</string>
+    <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
     <!-- Evidence Description -->
+    <string name="evidence_evidence_description_dots">
+        <![CDATA[
+            <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
+            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
+        ]]>
+    </string>
     <string name="evidence_evidence_description_emf">
         <![CDATA[
                     <p>EMF-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
@@ -636,7 +658,7 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
-    <string name="objectives_title_optional_objectives">OPTIONAL OBJECTIVES</string>
+    <string name="objectives_title_optional_objectives">Optional Objectives</string>
     <string name="objectives_title_investigation_debrief">Investigation Debrief</string>
     <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
     <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
@@ -644,8 +666,8 @@
     <string name="objectives_title_optional_objective_1">- OBJECTIVE 1</string>
     <string name="objectives_title_optional_objective_2">- OBJECTIVE 2</string>
     <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
-    <string name="objectives_title_response_alone">ALONE</string>
-    <string name="objectives_title_response_everyone">GROUPED UP</string>
+    <string name="objectives_title_response_alone">Alone</string>
+    <string name="objectives_title_response_everyone">Grouped Up</string>
     <!-- Objective Description -->
     <string name="objective_info_ghostevent">Witness a Ghost Event</string>
     <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
@@ -716,21 +738,7 @@
     <string name="evidence_popup_ghost_strength">Strengths</string>
     <string name="evidence_popup_ghost_weakness">Weaknesses</string>
     <string name="evidence_popup_ghost_info">Informace</string>
-    <string name="evidence_evidence_description_dots">
-        <![CDATA[
-            <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
-            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_themimic"><![CDATA[
-            <p>Mimic je nepolapitelný, tajemný napodobovací duch, který zrcadlí vlastnosti a chování ostatních, včetně jiných typů duchů. Dávejte pozor na přepínání chování a Ghost Orbs (jak je vysvětleno v části Silné a slabé stránky).</p>
-        ]]></string>
-    <string name="evidence_ghost_strengths_themimic"><![CDATA[
-            <p>Mimic může kopírovat jakýkoli typ ducha, což jej činí extrémně nebezpečným a nepředvídatelným.</p>
-        ]]></string>
-    <string name="evidence_ghost_weaknesses_themimic"><![CDATA[
-            <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
-        ]]></string>
+
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
     <string name="evidence_timer_difficulty_5">Šílenství</string>
     <string name="evidence_popup_ghost_huntdata">Údaje o lovu</string>

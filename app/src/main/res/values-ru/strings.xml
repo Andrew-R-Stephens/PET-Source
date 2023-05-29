@@ -1,16 +1,4 @@
 <resources>
-    <!--
-        FOR 3D RENDERER
-    -->
-    <string name="app_version" translatable="false">Version 1.0</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <!-- Activities -->
-    <string name="title_activity_menu" translatable="false">Menu</string>
-    <string name="title_activity_demo" translatable="false">Demo</string>
-    <string name="title_activity_text" translatable="false">Text</string>
-    <string name="title_activity_model" translatable="false">Model</string>
-    <!-- Demo menu -->
-    <string name="item" translatable="false">item</string>
 
     <string-array name="menu_items">
         <item>Load Model</item>
@@ -21,69 +9,19 @@
         <item>Exit</item>
     </string-array>
 
-    <string name="image" translatable="false">image</string>
-
-    <!-- Load settings -->
-    <string name="model_name" translatable="false">Model name</string>
-    <string name="texture" translatable="false">Texture</string>
-    <string name="invert_texture_coordinates" translatable="false">Invert texture coordinates</string>
-    <string name="cancel" translatable="false">Cancel</string>
-    <string name="load" translatable="false">Load</string>
-    <string name="load_model" translatable="false">Load Model</string>
-
-    <!-- GL Settings -->
-    <string name="toggle_wireframe" translatable="false">Toggle wireframe</string>
-    <string name="toggle_textures" translatable="false">Toggle textures</string>
-    <string name="toggle_lights" translatable="false">Toggle lights</string>
-    <string name="toggle_boundingbox" translatable="false">Toggle bounding box</string>
-    <string name="load_texture" translatable="false">Load texture</string>
-
-    <!-- To review -->
-    <string name="app_logo_desc" translatable="false">Teapot animated logo</string>
     <!--
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
-    <string name="app_name" translatable="false">P.E.T.</string>
     <string name="general_evidence_button">Evidence</string>
     <string name="general_maps_button">Maps</string>
     <string name="general_tasks_button">Tasks</string>
     <string name="general_evidence_reset_button">Reset</string>
 
     <!--
-        PERSISTENT PREFERENCE DATA KEYS
-    -->
-    <!-- Local Files -->
-    <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
-    <!-- Page Details -->
-    <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
-    <string name="preferences_newsletterFile_name" translatable="false">Newsletter_Preferences</string>
-    <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
-    <string name="preference_general_news_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
-    <string name="preference_pet_changelog_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
-    <string name="preference_phasmophobia_changelog_link" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
-    <string name="preference_newsletter_lastreaddate_general" translatable="false">newsletter_lastreaddate_general</string>
-    <string name="preference_newsletter_lastreaddate_pet" translatable="false">newsletter_lastreaddate_pet</string>
-    <string name="preference_newsletter_lastreaddate_phas" translatable="false">newsletter_lastreaddate_phas</string>
-    <string name="preference_language" translatable="false">chosenLanguage</string>
-    <string name="preference_network" translatable="false">networkPreference</string>
-    <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
-    <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
-    <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
-    <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
-    <string name="preference_colorSpace" translatable="false">colorSpace</string>
-    <string name="preference_fontType" translatable="false">fontType</string>
-    <!-- Review Tracking -->
-    <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
-    <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
-    <string name="reviewtracking_appTimeAlive" translatable="false">appTimeAlive</string>
-    <string name="reviewtracking_appTimesOpened" translatable="false">appTimesOpened</string>
-
-    <!--
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
-    <string name="titlescreen_beta_label" translatable="false">Beta</string>
     <string name="titlescreen_description">The ultimate evidence tool</string>
     <string name="titlescreen_button">Start Hunting</string>
     <string name="titlescreen_languages_label">Select Language</string>
@@ -95,34 +33,14 @@
     <string name="review_requesttitle">Please consider rating P.E.T.!</string>
     <string name="review_accept">Sure!</string>
     <string name="review_decline">No thanks</string>
-    <string name="review_storelink_app" translatable="false">market://details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
-    <string name="review_storelink_website" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
 
     <!--
         LANGUAGE FRAGMENT
     -->
-    <!-- Languages -->
-    <string name="language_fullName_german" translatable="false">Deutsch</string>
-    <string name="language_fullName_english" translatable="false">English</string>
-    <string name="language_fullName_spanish" translatable="false">Español</string>
-    <string name="language_fullName_french" translatable="false">Français</string>
-    <string name="language_abbrName_german" translatable="false">de</string>
-    <string name="language_abbrName_english" translatable="false">en</string>
-    <string name="language_abbrName_spanish" translatable="false">es</string>
-    <string name="language_abbrName_french" translatable="false">fr</string>
 
     <!--
         ABOUT FRAGMENT
     -->
-    <!-- Page Details -->
-    <string name="aboutinfo_discordInvite" translatable="false">RawQP9H7y7</string>
-    <string name="aboutinfo_title_petstylized" translatable="false">
-        <![CDATA[
-                <font color=#FF0000>P</font>.<font color=#FF0000>E</font>.<font color=#FF0000>T</font>.
-            ]]>
-    </string>
-    <string name="aboutinfo_developerinfo_devname" translatable="false">Tritium Gaming Studios</string>
-    <string name="aboutinfo_developerinfo_address" translatable="false">TritiumGamingStudiosDM@gmail.com</string>
     <string name="aboutinfo_title_about">About</string>
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_aboutapp_info">
@@ -158,10 +76,6 @@
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
-    <string name="settings_colorblindnessmode_monochromacy" translatable="false">Achromatopsia</string>
-    <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranopia</string>
-    <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanopia</string>
-    <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanopia</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -177,10 +91,6 @@
     -->
     <!-- Page Details -->
 
-    <!-- Team Data -->
-    <string name="evidence_average_sanity_title" translatable="false">Average Sanity</string>
-    <string name="evidence_prep_time_title" translatable="false">Prep Time</string>
-    <string name="evidence_your_sanity_level_title" translatable="false">Your Sanity level</string>
 
     <!-- Solo/Team Data -->
     <string name="evidence_timer_label">Preparation Time:</string>
@@ -203,35 +113,18 @@
     <string name="evidence_popup_ghost_info">Information</string>
     <string name="evidence_popup_ghost_huntdata">Hunting Data</string>
 
-    <!-- Timer Difficulty Times -->
-    <string name="evidence_timer_time_1" translatable="false">300000</string>
-    <string name="evidence_timer_time_2" translatable="false">120000</string>
-    <string name="evidence_timer_time_3" translatable="false">0</string>
-
     <!-- Ghost Names -->
     <string name="evidence_ghost_type_banshee">Banshee</string>
     <string name="evidence_ghost_type_demon">Demon</string>
-    <string name="evidence_ghost_type_deogen" translatable="false">Deogen</string>
-    <string name="evidence_ghost_type_goryo" translatable="false">Goryo</string>
-    <string name="evidence_ghost_type_hantu" translatable="false">Hantu</string>
     <string name="evidence_ghost_type_jinn">Jinn</string>
     <string name="evidence_ghost_type_mare">Mare</string>
-    <string name="evidence_ghost_type_moroi" translatable="false">Moroi</string>
-    <string name="evidence_ghost_type_myling" translatable="false">Myling</string>
-    <string name="evidence_ghost_type_obake" translatable="false">Obake</string>
     <string name="evidence_ghost_type_oni">Oni</string>
-    <string name="evidence_ghost_type_onryo" translatable="false">Onryo</string>
     <string name="evidence_ghost_type_phantom">Phantom</string>
     <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
-    <string name="evidence_ghost_type_raiju" translatable="false">Raiju</string>
     <string name="evidence_ghost_type_revenant">Revenant</string>
     <string name="evidence_ghost_type_shade">Shade</string>
     <string name="evidence_ghost_type_spirit">Spirit</string>
-    <string name="evidence_ghost_type_thaye" translatable="false">Thaye</string>
-    <string name="evidence_ghost_type_thetwins" translatable="false">The Twins</string>
-    <string name="evidence_ghost_type_themimic" translatable="false">The Mimic</string>
     <string name="evidence_ghost_type_wraith">Wraith</string>
-    <string name="evidence_ghost_type_yokai" translatable="false">Yokai</string>
     <string name="evidence_ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
@@ -751,9 +644,8 @@
             <p>Hunts at 50\% Sanity.</p>
         ]]>
     </string>
-    
+
     <!-- Evidence Names -->
-    <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
@@ -813,20 +705,6 @@
     <!-- Page Details -->
     <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
-    <!-- Map Names -->
-    <string name="map_name_asylum" translatable="false">Asylum</string>
-    <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
-    <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
-    <string name="map_name_campmaple" translatable="false">Maple Lodge</string>
-    <string name="map_name_campwoodwind" translatable="false">Woodwind</string>
-    <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
-    <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>
-    <string name="map_name_brownstone" translatable="false">Brownstone Highschool</string>
-    <string name="map_name_edgefield" translatable="false">Edgefield Streethouse</string>
-    <string name="map_name_tanglewood" translatable="false">Tanglewood Streethouse</string>
-    <string name="map_name_willow" translatable="false">Willow Streethouse</string>
-    <string name="map_name_ridgeview" translatable="false">Ridgeview Roadhouse</string>
-    <string name="map_name_prison" translatable="false">Prison</string>
     <!-- Building Floor Names -->
     <string name="map_floor_name_first">First Floor</string>
     <string name="map_floor_name_second">Second Floor</string>
@@ -861,10 +739,6 @@
     <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
 
     <!--
-        TOOLS PAGE
-    -->
-
-    <!--
         SPIRITBOX TOOL PAGE
     -->
     <!-- All Entries -->
@@ -885,7 +759,6 @@
     <!-- Age Questions -->
     <string name="spiritbox_entry_q3_5">How old are you?</string>
     <!-- Location Questions -->
-    <string name="spiritbox_entry_q5_8" translatable="false">Where are you?</string>
     <string name="spiritbox_entry_q5_1">Are you here?</string>
     <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
     <string name="spiritbox_entry_q5_7">Where are you?</string>

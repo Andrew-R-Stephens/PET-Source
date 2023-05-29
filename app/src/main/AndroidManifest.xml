@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:configChanges="locale|orientation"
-        android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
+        android:theme="@style/Colorblind.Base"
         android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:largeHeap="true"
@@ -26,10 +26,13 @@
         <meta-data
         android:name="com.google.android.gms.ads.APPLICATION_ID"
         android:value="ca-app-pub-1890816745443024~8234901440"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".activities.TitleScreenActivity"
-            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
+            android:theme="@style/Colorblind.Base"
             android:configChanges="locale|orientation"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
@@ -42,7 +45,7 @@
 
         <activity
             android:name=".activities.InvestigationActivity"
-            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Normal"
+            android:theme="@style/Colorblind.Base"
             android:configChanges="locale|orientation">
         </activity>
 

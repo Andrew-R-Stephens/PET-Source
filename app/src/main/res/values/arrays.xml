@@ -205,6 +205,33 @@
         <item>@string/evidence_ghost_weaknesses_yurei</item>
     </string-array>
 
+    <!-- Ghost Weaknesses -->
+    <string-array name="ghost_huntdata_array">
+        <item>@string/evidence_ghost_huntingdata_banshee</item>
+        <item>@string/evidence_ghost_huntingdata_demon</item>
+        <item>@string/evidence_ghost_huntingdata_deogen</item>
+        <item>@string/evidence_ghost_huntingdata_goryo</item>
+        <item>@string/evidence_ghost_huntingdata_hantu</item>
+        <item>@string/evidence_ghost_huntingdata_jinn</item>
+        <item>@string/evidence_ghost_huntingdata_mare</item>
+        <item>@string/evidence_ghost_huntingdata_moroi</item>
+        <item>@string/evidence_ghost_huntingdata_myling</item>
+        <item>@string/evidence_ghost_huntingdata_obake</item>
+        <item>@string/evidence_ghost_huntingdata_oni</item>
+        <item>@string/evidence_ghost_huntingdata_onryo</item>
+        <item>@string/evidence_ghost_huntingdata_phantom</item>
+        <item>@string/evidence_ghost_huntingdata_poltergeist</item>
+        <item>@string/evidence_ghost_huntingdata_raiju</item>
+        <item>@string/evidence_ghost_huntingdata_revenant</item>
+        <item>@string/evidence_ghost_huntingdata_shade</item>
+        <item>@string/evidence_ghost_huntingdata_spirit</item>
+        <item>@string/evidence_ghost_huntingdata_thaye</item>
+        <item>@string/evidence_ghost_huntingdata_thetwins</item>
+        <item>@string/evidence_ghost_huntingdata_themimic</item>
+        <item>@string/evidence_ghost_huntingdata_wraith</item>
+        <item>@string/evidence_ghost_huntingdata_yokai</item>
+        <item>@string/evidence_ghost_huntingdata_yurei</item>
+    </string-array>
 
     <!--
         EVIDENCE ARRAYS

@@ -61,7 +61,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_name"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/popup_investigation_info"
@@ -174,7 +173,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_infoTitle"
-                    style="@style/EastRegular"
+                    style="?attr/secondaryFont_Regular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -242,7 +241,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_huntTitle"
-                    style="@style/EastRegular"
+                    style="?attr/secondaryFont_Regular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"

@@ -16,18 +16,24 @@ import java.util.Locale;
 
 public class GlobalPreferencesViewModel extends ViewModel {
 
+    // Review Tracker
     private ReviewTrackingData reviewRequestData;
 
+    // Language
     private String languageName = Locale.getDefault().getLanguage();
 
+    // Persistent Styles
     private int colorSpace = 0;
-    private int huntWarningFlashTimeout = -1;
+    private int fontType = 0;
 
+    // Generic settings
+    private int huntWarningFlashTimeout = -1;
     private boolean isAlwaysOn = false;
     private boolean isHuntAudioAllowed = true;
     private boolean networkPreference = true;
     private boolean isLeftHandSupportEnabled = false;
 
+    // Title screen increments
     private boolean canShowIntroduction = true;
 
     /**
@@ -45,6 +51,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         setHuntWarningAudioAllowed(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
         setHuntWarningFlashTimeout(sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()));
         setColorSpace(sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()));
+        setFontType(sharedPref.getInt(context.getResources().getString(R.string.preference_fontType), getFontType()));
         setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), getIsLeftHandSupportEnabled()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
@@ -243,6 +250,24 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return colorSpace;
     }
 
+    /**
+     * setFontType method
+     *
+     * @param fontType
+     */
+    public void setFontType(int fontType) {
+        this.fontType = fontType;
+    }
+
+    /**
+     * getFontType method
+     *
+     * @return fontType
+     */
+    public int getFontType() {
+        return fontType;
+    }
+
     public void setCanShowIntroduction(boolean canShowIntroduction) {
         this.canShowIntroduction = canShowIntroduction;
     }
@@ -386,6 +411,25 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
+    private void saveFontType(
+            Context c, SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null) {
+            editor = getEditor(c);
+        }
+
+        editor.putInt(c.getResources().getString(R.string.preference_fontType), getFontType());
+
+        if(localApply) {
+            editor.apply();
+        }
+    }
+
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     private void saveAppTimeAlive(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
@@ -495,6 +539,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         saveHuntWarningAudioAllowed(context, editor, false);
         saveHuntWarningFlashTimeout(context, editor, false);
         saveColorSpace(context, editor, false);
+        saveFontType(context, editor, false);
         saveIsLeftHandSupportEnabled(context, editor, false);
         saveCanRequestReview(context, editor, false);
         saveTimesOpened(context, editor, false);
@@ -513,6 +558,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         settings.put("warning_enabled", getIsHuntAudioAllowed()+"");
         settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
         settings.put("color_theme", getColorSpace()+"");
+        settings.put("font_type", getFontType()+"");
         settings.put("left_support", getIsLeftHandSupportEnabled()+"");
         settings.put("can_show_intro", getCanShowIntroduction()+"");
         if(getReviewRequestData() != null) {

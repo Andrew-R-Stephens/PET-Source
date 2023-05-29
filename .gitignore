@@ -15,7 +15,6 @@
 .cxx
 /.idea
 /KeyEncrypts/
-/local.properties
 Keystore.jks
 /app/.idea
 /app/build/

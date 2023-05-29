@@ -33,7 +33,6 @@
                 android:id="@+id/label_settingstitle"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/NorseRegular"
                 android:gravity="center"
                 app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
                 app:layout_constraintHeight_percent=".6"
@@ -45,7 +44,7 @@
                 android:id="@+id/label_version"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/EastRegular"
+                style="?attr/secondaryFont_Regular"
                 android:gravity="center"
                 android:maxLines="100"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -121,7 +120,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_aboutapp_info"
-                style="@style/TypewriterRegular"
+                style="?attr/quaternaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -135,7 +134,6 @@
                 android:id="@+id/aboutinfo_developerinfo_title"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/NorseRegular"
                 android:gravity="center"
                 android:text="@string/aboutinfo_developerinfo_title"
                 android:textColor="?attr/titleFontColor"
@@ -226,7 +224,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appinfo_joinDiscord"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -242,7 +239,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_specialthanks_title"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

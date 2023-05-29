@@ -666,6 +666,7 @@ public class EvidenceFragment extends Fragment {
         String[] infos = getResources().getStringArray(R.array.ghost_info_array);
         String[] strengths = getResources().getStringArray(R.array.ghost_strengths_array);
         String[] weaknesses = getResources().getStringArray(R.array.ghost_weaknesses_array);
+        String[] huntDatas = getResources().getStringArray(R.array.ghost_huntdata_array);
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrder();
 
@@ -681,6 +682,7 @@ public class EvidenceFragment extends Fragment {
             String ghostInfo = infos[j];
             String ghostStrength = strengths[j];
             String ghostWeakness = weaknesses[j];
+            String ghostHuntData = huntDatas[j];
 
             View inflatedLayout = inflater.inflate(
                     R.layout.item_investigation_ghost,
@@ -709,7 +711,8 @@ public class EvidenceFragment extends Fragment {
                             ghostName,
                             ghostInfo,
                             ghostStrength,
-                            ghostWeakness));
+                            ghostWeakness,
+                            ghostHuntData));
 
             name.setOnTouchListener((view1, motionEvent) -> {
                 swipeListener.onTouchEvent(motionEvent);
@@ -911,7 +914,7 @@ public class EvidenceFragment extends Fragment {
         private final LinearLayout ghostContainer;
         private final View view;
         private final int index;
-        private final String ghostName, ghostInfo, ghostStrength, ghostWeakness;
+        private final String ghostName, ghostInfo, ghostStrength, ghostWeakness, ghostHuntData;
         private String[] cycleDetails;
         int detailIndex = 0;
 
@@ -922,7 +925,8 @@ public class EvidenceFragment extends Fragment {
                 String ghostName,
                 String ghostInfo,
                 String ghostStrength,
-                String ghostWeakness) {
+                String ghostWeakness,
+                String ghostHuntData) {
 
             super();
 
@@ -933,6 +937,7 @@ public class EvidenceFragment extends Fragment {
             this.ghostInfo = ghostInfo;
             this.ghostStrength = ghostStrength;
             this.ghostWeakness = ghostWeakness;
+            this.ghostHuntData = ghostHuntData;
 
             cycleDetails = new String[]{ghostInfo, ghostStrength, ghostWeakness};
 
@@ -1005,10 +1010,15 @@ public class EvidenceFragment extends Fragment {
             label_name.setText(ghostName);
 
             ConstraintLayout bodyCons = customView.findViewById(R.id.layout_contentbody);
-            ConstraintLayout scrollCons = customView.findViewById(R.id.scrollView_swapping);
-            ScrollView scroller = scrollCons.findViewById(R.id.scrollView);
-            View indicator = scrollCons.findViewById(R.id.scrollview_indicator);
-            AppCompatTextView data = scroller.findViewById(R.id.label_info);
+
+            ConstraintLayout scrollCons_swapping = customView.findViewById(R.id.scrollView_swapping);
+            ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
+            View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
+            AppCompatTextView data_swapping = scroller_swapping.findViewById(R.id.label_info);
+
+            ConstraintLayout scrollCons_huntdata = customView.findViewById(R.id.scrollView_huntdata);
+            ScrollView scroller_huntdata = scrollCons_huntdata.findViewById(R.id.scrollView);
+            AppCompatTextView data_huntdata = scroller_huntdata.findViewById(R.id.label_info);
 
             AppCompatImageButton left = customView.findViewById(R.id.title_left);
             AppCompatImageButton right = customView.findViewById(R.id.title_right);
@@ -1019,28 +1029,31 @@ public class EvidenceFragment extends Fragment {
 
             //title.setPaintFlags(data.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             title.setText(titles[detailIndex]);
-            data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+            data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     cycleDetails[detailIndex],
+                    "#ff6161", fontEmphasisColor + "")));
+            data_huntdata.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                    ghostHuntData,
                     "#ff6161", fontEmphasisColor + "")));
 
             left.setOnClickListener(view -> {
                 detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
 
                 title.setText(titles[detailIndex]);
-                data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
                 //initialize info content scroller
                 bodyCons.setVisibility(View.INVISIBLE);
-                scroller.post(() -> {
-                    if (scroller.canScrollVertically(1)) {
+                scroller_swapping.post(() -> {
+                    if (scroller_swapping.canScrollVertically(1)) {
                         Log.d("Scroller", "Should constrain");
                         ConstraintLayout.LayoutParams lParams =
-                                (ConstraintLayout.LayoutParams)scrollCons.getLayoutParams();
+                                (ConstraintLayout.LayoutParams) scrollCons_swapping.getLayoutParams();
                         lParams.constrainedHeight = true;
-                        scrollCons.setLayoutParams(lParams);
-                        scrollCons.invalidate();
+                        scrollCons_swapping.setLayoutParams(lParams);
+                        scrollCons_swapping.invalidate();
                     }
                     //initialize info content scroller
                     bodyCons.setVisibility(View.VISIBLE);
@@ -1051,20 +1064,21 @@ public class EvidenceFragment extends Fragment {
                 detailIndex = (detailIndex +1)% cycleDetails.length;
 
                 title.setText(titles[detailIndex]);
-                data.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
+
                 //initialize info content scroller
                 bodyCons.setVisibility(View.INVISIBLE);
-                scroller.post(() -> {
-                    if (scroller.canScrollVertically(1)) {
+                scroller_swapping.post(() -> {
+                    if (scroller_swapping.canScrollVertically(1)) {
                         Log.d("Scroller", "Should constrain");
                         ConstraintLayout.LayoutParams lParams =
-                                (ConstraintLayout.LayoutParams)scrollCons.getLayoutParams();
+                                (ConstraintLayout.LayoutParams) scrollCons_swapping.getLayoutParams();
                         lParams.constrainedHeight = true;
-                        scrollCons.setLayoutParams(lParams);
-                        scrollCons.invalidate();
+                        scrollCons_swapping.setLayoutParams(lParams);
+                        scrollCons_swapping.invalidate();
                     }
                     //initialize info content scroller
                     bodyCons.setVisibility(View.VISIBLE);
@@ -1073,9 +1087,9 @@ public class EvidenceFragment extends Fragment {
 
             fadeOutIndicatorAnimation(
                     bodyCons,
-                    scrollCons,
-                    scroller,
-                    indicator);
+                    scrollCons_swapping,
+                    scroller_swapping,
+                    indicator_swapping);
 
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {

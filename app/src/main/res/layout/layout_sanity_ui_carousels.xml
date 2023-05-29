@@ -40,7 +40,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/difficulty_title"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="4dp"
@@ -72,7 +71,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/difficulty_name"
-                    style="@style/EastRegular"
+                    style="?attr/secondaryFont_Regular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -114,7 +113,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mapchoice_title"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="4dp"
@@ -146,7 +144,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mapchoice_name"
-                    style="@style/EastRegular"
+                    style="?attr/secondaryFont_Regular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -202,7 +200,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/setup_title"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#00FFFFFF"
@@ -237,7 +234,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/evidence_timer_text"
-                        style="@style/TimeBold"
+                        style="?attr/tertiaryFont_Bold"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"

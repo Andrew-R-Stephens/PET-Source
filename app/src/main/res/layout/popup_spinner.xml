@@ -10,8 +10,6 @@
     android:maxLines="2"
     android:overlapAnchor="false"
     android:textColor="?attr/bodyFontColor"
-    android:fontFamily="serif-monospace"
-    app:fontFamily="serif-monospace"
     android:textStyle="bold"
     app:autoSizeTextType="uniform"
     app:autoSizeMinTextSize="14sp"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="evidence_ghosts_title">GEISTER</string>
-    <string name="evidence_evidence_title">BEWEIS</string>
+    <string name="evidence_ghosts_title">Geister</string>
+    <string name="evidence_evidence_title">Beweis</string>
 
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
@@ -585,14 +585,14 @@
             ]]>
     </string>
 
-    <string name="objectives_title_optional_objectives">OPTIONALE ZIELE</string>
+    <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
     <string name="objectives_title_ghost_name">Name des Geistes:</string>
     <string name="objectives_title_response">Reagiert auf Personen, die:</string>
     <string name="objectives_title_optional_objective_1">- ZIEL 1</string>
     <string name="objectives_title_optional_objective_2">- ZIEL 2</string>
     <string name="objectives_title_optional_objective_3">- ZIEL 3</string>
-    <string name="objectives_title_response_alone">"alleine "</string>
+    <string name="objectives_title_response_alone">"Alleine "</string>
     <string name="objectives_title_response_everyone">Gruppen</string>
     <string name="map_floor_name_first">Erster Stock</string>
     <string name="map_floor_name_second">Zweiter Stock</string>
@@ -606,23 +606,23 @@
     <string name="evidence_evidence_type_temperatures">Gefriertemperatur</string>
     <string name="evidence_evidence_type_box">Geisterbox</string>
     <string name="evidence_evidence_type_book">Geisterbuch</string>
-    <string name="evidence_evidence_type_orbs">GEISTERKUGELN</string>
+    <string name="evidence_evidence_type_orbs">Geisterkugeln</string>
     <string name="evidence_evidence_type_fingerprints">Fingerabdrücke</string>
-    <string name="evidence_ghost_type_banshee">BANSHEE</string>
-    <string name="evidence_ghost_type_demon">DÄMON</string>
-    <string name="evidence_ghost_type_jinn">DSCHINN</string>
-    <string name="evidence_ghost_type_mare">MARE</string>
-    <string name="evidence_ghost_type_oni">ONI</string>
-    <string name="evidence_ghost_type_phantom">PHANTOM</string>
-    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
-    <string name="evidence_ghost_type_revenant">REVENANT</string>
-    <string name="evidence_ghost_type_shade">SHADE</string>
-    <string name="evidence_ghost_type_spirit">SPIRIT</string>
-    <string name="evidence_ghost_type_wraith">GESPENST</string>
+    <string name="evidence_ghost_type_banshee">Banshee</string>
+    <string name="evidence_ghost_type_demon">Dämon</string>
+    <string name="evidence_ghost_type_jinn">Dschinn</string>
+    <string name="evidence_ghost_type_mare">Mare</string>
+    <string name="evidence_ghost_type_oni">Oni</string>
+    <string name="evidence_ghost_type_phantom">Phantom</string>
+    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
+    <string name="evidence_ghost_type_revenant">Revenant</string>
+    <string name="evidence_ghost_type_shade">Shade</string>
+    <string name="evidence_ghost_type_spirit">Spirit</string>
+    <string name="evidence_ghost_type_wraith">Gespenst</string>
     <string name="evidence_ghost_type_yurei">Yurei</string>
-    <string name="general_evidence_button">BEWEIS</string>
-    <string name="general_tasks_button">AUFGABEN</string>
-    <string name="general_maps_button">KARTEN</string>
+    <string name="general_evidence_button">Beweis</string>
+    <string name="general_tasks_button">Aufgaben</string>
+    <string name="general_maps_button">Karten</string>
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Über</string>
     <string name="aboutinfo_specialthanks_title">Besonderer Dank</string>

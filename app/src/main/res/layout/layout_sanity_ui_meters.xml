@@ -49,7 +49,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/evidence_sanitymeter_title"
-                    style="@style/TimeRegular_SqueezeText"
+                    style="?attr/tertiaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -65,7 +65,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/evidence_sanitymeter_percentage"
-                    style="@style/TimeRegular"
+                    style="?attr/tertiaryFont_Regular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -121,7 +121,7 @@
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                     android:id="@+id/evidence_sanitymeter_phase_action"
-                    style="@style/TimeBoldNarrow_SqueezeText"
+                    style="?attr/tertiaryFont_BoldNarrow_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_border"
@@ -141,7 +141,7 @@
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                     android:id="@+id/evidence_sanitymeter_phase_setup"
-                    style="@style/TimeBoldNarrow_SqueezeText"
+                    style="?attr/tertiaryFont_BoldNarrow_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_border"
@@ -163,7 +163,7 @@
 
             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                 android:id="@+id/evidence_sanitymeter_huntwarning"
-                style="@style/TimeBoldNarrow_SqueezeText"
+                style="?attr/tertiaryFont_BoldNarrow_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rect_border"

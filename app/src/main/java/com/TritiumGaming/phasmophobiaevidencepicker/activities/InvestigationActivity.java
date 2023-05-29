@@ -130,30 +130,44 @@ public class InvestigationActivity extends AppCompatActivity {
     public void changeTheme() {
 
         int colorSpace = globalPreferencesViewModel.getColorSpace();
+        int fontType = globalPreferencesViewModel.getFontType();
+        fontType = 1;
 
         switch (colorSpace) {
             case 0: {
-                setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Normal);
+                setTheme(R.style.Colorblind_Base);
                 break;
             }
             case 1: {
-                setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Colorblind_Monochromacy);
+                setTheme(R.style.Monochromacy);
                 break;
             }
             case 2: {
-                setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Colorblind_Deuteranomaly);
+                setTheme(R.style.Deuteranomaly);
                 break;
             }
             case 3: {
-                setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Colorblind_Protanomaly);
+                setTheme(R.style.Protanomaly);
                 break;
             }
             case 4: {
-                setTheme(R.style.Theme_PhasmophobiaEvidenceTool_Colorblind_Tritanomaly);
+                setTheme(R.style.Tritanomaly);
+                break;
+            }
+        }
+
+        switch (fontType) {
+            case 0: {
+                getTheme().applyStyle(R.style.Fonts_Base, true);
+                break;
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.Simple, true);
                 break;
             }
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,

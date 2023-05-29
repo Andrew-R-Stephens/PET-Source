@@ -28,7 +28,6 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_fragtitle"
-            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -102,7 +101,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item1"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -141,7 +140,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item2"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -180,7 +179,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item3"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -219,7 +218,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item4"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -258,7 +257,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item5"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -297,7 +296,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item6"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -336,7 +335,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item7"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -375,7 +374,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item8"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"
@@ -414,7 +413,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/item9"
-                        style="@style/TypewriterRegular"
+                        style="?attr/quaternaryFont_Regular"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:gravity="center"

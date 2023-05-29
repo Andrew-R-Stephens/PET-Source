@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base -->
     <style name="AutoTextSizeBody">
         <item name="autoSizeMinTextSize">18sp</item>
         <item name="autoSizeMaxTextSize">50sp</item>
@@ -13,20 +14,26 @@
         <item name="autoSizeTextType">uniform</item>
     </style>
 
+    <style name="Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Typewriter Regular -->
     <style name="TypewriterRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
-
-    <style name="TypewriterBold" parent = "AutoTextSizeBody">
+    <style name="TypewriterRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
-
     <style name="TypewriterRegular_Manual">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
@@ -34,6 +41,27 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <!-- Typewriter Bold -->
+    <style name="TypewriterBold" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">serif-monospace</item>
+        <item name="fontFamily">serif-monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="TypewriterBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">serif-monospace</item>
+        <item name="fontFamily">serif-monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="TypewriterBold_Manual">
+        <item name="android:fontFamily">serif-monospace</item>
+        <item name="fontFamily">serif-monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Norse Regular -->
     <style name="NorseRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
@@ -53,13 +81,27 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <!-- Norse Bold -->
     <style name="NorseBold" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="NorseBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/norse</item>
+        <item name="fontFamily">@font/norse</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="NorseBold_Manual">
+        <item name="android:fontFamily">@font/norse</item>
+        <item name="fontFamily">@font/norse</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
 
+    <!-- East Regular -->
     <style name="EastRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
@@ -72,7 +114,14 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="EastRegular_Manual">
+        <item name="android:fontFamily">@font/eastseadokdo</item>
+        <item name="fontFamily">@font/eastseadokdo</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
 
+    <!-- Time Regular -->
     <style name="TimeRegular" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
@@ -85,6 +134,14 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="TimeRegular_Manual">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Time Bold -->
     <style name="TimeBold" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
@@ -97,19 +154,96 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+    <style name="TimeBold_Manual">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Norse Bold-Narrow -->
     <style name="TimeBoldNarrow" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
-    <style name="TimeBoldNarrow_SqueezeText" parent = "AutoTextSizeBody">
+    <style name="TimeBoldNarrow_Manual">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="TimeBoldNarrow_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <!-- Roboto-Mono -->
+    <style name="RobotoMono" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMono_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMono_Manual">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Roboto-Mono Medium -->
+    <style name="RobotoMonoMedium" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMonoMedium_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMonoMedium_Manual">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Roboto-Mono Medium -->
+    <style name="RobotoMonoBold" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMonoBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="RobotoMonoBold_Manual">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!--
+        Component Styles
+    -->
     <style name="SwitchTheme" parent="Theme.AppCompat">
         <item name="colorControlActivated">?attr/switchColor</item>
     </style>
@@ -129,4 +263,5 @@
     <declare-styleable name="EvidenceView">
         <attr name="color" format="color" />
     </declare-styleable>
+
 </resources>

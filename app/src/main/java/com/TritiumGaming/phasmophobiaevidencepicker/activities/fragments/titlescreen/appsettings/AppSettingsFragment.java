@@ -305,7 +305,7 @@ public class AppSettingsFragment extends Fragment {
         }
         if (getActivity() != null) {
             ((TitleScreenActivity) getActivity()).
-                    changeTheme(globalPreferencesViewModel.getColorSpace());
+                    changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
         }
         if(globalPreferencesViewModel.getIsAlwaysOn()) {
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="evidence_ghosts_title">Fantômes</string>
-    <string name="evidence_evidence_title">PREUVE</string>
+    <string name="evidence_evidence_title">Preuve</string>
 
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
@@ -613,25 +613,25 @@
     <string name="mapview_instruction_zoom">Agrandir: Pincez avec deux doigts</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Températures glaciales</string>
-    <string name="evidence_evidence_type_box">SPIRIT BOX</string>
-    <string name="evidence_evidence_type_book">ECRITURES FANTOMATIQUES</string>
-    <string name="evidence_evidence_type_orbs">ORBES Fantômes</string>
-    <string name="evidence_evidence_type_fingerprints">EMPREINTES</string>
-    <string name="evidence_ghost_type_banshee">BANSHEE</string>
-    <string name="evidence_ghost_type_demon">DEMONE</string>
-    <string name="evidence_ghost_type_jinn">JINN</string>
-    <string name="evidence_ghost_type_mare">CAUSHEMAR</string>
-    <string name="evidence_ghost_type_oni">ONI</string>
-    <string name="evidence_ghost_type_phantom">FANTOME</string>
-    <string name="evidence_ghost_type_poltergeist">POLTERGEIST</string>
-    <string name="evidence_ghost_type_revenant">REVENANT</string>
-    <string name="evidence_ghost_type_shade">OMBRE</string>
-    <string name="evidence_ghost_type_spirit">ESPIRIT</string>
-    <string name="evidence_ghost_type_wraith">SPECTRE</string>
-    <string name="evidence_ghost_type_yurei">YUREI</string>
-    <string name="general_evidence_button">PREUVE</string>
-    <string name="general_maps_button">PLANS</string>
-    <string name="general_tasks_button">TÂCHES</string>
+    <string name="evidence_evidence_type_box">Spirit Box</string>
+    <string name="evidence_evidence_type_book">Ecritures Fantomatiques</string>
+    <string name="evidence_evidence_type_orbs">Orbes Fantômes</string>
+    <string name="evidence_evidence_type_fingerprints">Empreintes</string>
+    <string name="evidence_ghost_type_banshee">Banshee</string>
+    <string name="evidence_ghost_type_demon">Demone</string>
+    <string name="evidence_ghost_type_jinn">Jinn</string>
+    <string name="evidence_ghost_type_mare">Caushemar</string>
+    <string name="evidence_ghost_type_oni">Oni</string>
+    <string name="evidence_ghost_type_phantom">Fantome</string>
+    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
+    <string name="evidence_ghost_type_revenant">Revenant</string>
+    <string name="evidence_ghost_type_shade">Ombre</string>
+    <string name="evidence_ghost_type_spirit">Espirit</string>
+    <string name="evidence_ghost_type_wraith">Spectre</string>
+    <string name="evidence_ghost_type_yurei">Yurei</string>
+    <string name="general_evidence_button">Preuve</string>
+    <string name="general_maps_button">Plans</string>
+    <string name="general_tasks_button">Tâches</string>
     <string name="aboutinfo_version">Versión</string>
     <string name="aboutinfo_title_about">À propos</string>
     <string name="aboutinfo_specialthanks_title">Remerciements spéciaux</string>

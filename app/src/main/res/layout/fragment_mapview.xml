@@ -19,7 +19,6 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_title"
-            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -149,7 +148,6 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/textview_floorname"
-                                style="@style/NorseRegular"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:gravity="center"
@@ -208,7 +206,6 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textview_controller_help_pan"
-                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"
@@ -221,7 +218,6 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textview_controller_help_zoom"
-                            style="@style/NorseRegular"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:gravity="center"

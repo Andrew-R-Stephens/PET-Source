@@ -58,7 +58,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView1"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
@@ -95,7 +94,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
@@ -131,7 +129,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView2"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
@@ -187,7 +184,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView5"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
