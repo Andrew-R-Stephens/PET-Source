@@ -593,6 +593,9 @@
 
 
     <!-- Evidence Names -->
+    <string name="evidence_evidence_tiers_1">Úroveň 1</string>
+    <string name="evidence_evidence_tiers_2">Úroveň 2</string>
+    <string name="evidence_evidence_tiers_3">Úroveň 3</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
     <string name="evidence_evidence_type_box">Spirit Box</string>

@@ -613,6 +613,9 @@
     <string name="mapview_instruction_zoom">Acercar: pellizca dos dedos</string>
     <string name="mapview_instruction_pan">Alejar: arrastra un dedo</string>
 
+    <string name="evidence_evidence_tiers_1">" Nivel 2"</string>
+    <string name="evidence_evidence_tiers_2">" Nivel 2"</string>
+    <string name="evidence_evidence_tiers_3">" Nivel 2"</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Temperatura Gelida</string>
     <string name="evidence_evidence_type_box">Caja De Espiritus</string>

@@ -646,6 +646,9 @@
     </string>
 
     <!-- Evidence Names -->
+    <string name="evidence_evidence_tiers_1">ряд</string>
+    <string name="evidence_evidence_tiers_2">ряд</string>
+    <string name="evidence_evidence_tiers_3">ряд</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>

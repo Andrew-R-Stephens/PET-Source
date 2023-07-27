@@ -238,6 +238,13 @@
     -->
 
     <!-- Evidence Names -->
+    <string-array name="evidence_tiers">
+        <item>@string/evidence_evidence_tiers_1</item>
+        <item>@string/evidence_evidence_tiers_2</item>
+        <item>@string/evidence_evidence_tiers_3</item>
+    </string-array>
+
+    <!-- Evidence Names -->
     <string-array name="evidence_tool_names">
         <item>@string/evidence_evidence_type_dots</item>
         <item>@string/evidence_evidence_type_emf</item>
@@ -259,7 +266,7 @@
         <item>@string/evidence_evidence_description_box</item>
     </string-array>
 
-    <!-- Evidence Description -->
+    <!-- Evidence Icons -->
     <integer-array name="evidence_icon_array">
         <item>@drawable/icon_dots</item>
         <item>@drawable/icon_emf5</item>
@@ -270,7 +277,7 @@
         <item>@drawable/icon_spiritbox</item>
     </integer-array>
 
-    <!-- Evidence Description -->
+    <!-- Evidence Example Image -->
     <integer-array name="evidence_animation_array">
         <item>@drawable/example_dots</item>
         <item>@drawable/example_emf5</item>

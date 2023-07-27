@@ -602,6 +602,9 @@
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
     <string name="mapview_instruction_pan">Umsehen: Bewegen mit einem Finger</string>
     <string name="mapview_instruction_zoom">Zoom: Bewegen mit zwei Fingern</string>
+    <string name="evidence_evidence_tiers_1">Rang 1</string>
+    <string name="evidence_evidence_tiers_2">Rang 2</string>
+    <string name="evidence_evidence_tiers_3">Rang 3</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Gefriertemperatur</string>
     <string name="evidence_evidence_type_box">Geisterbox</string>

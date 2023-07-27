@@ -751,7 +751,12 @@
             <p>Hunts at 50\% Sanity.</p>
         ]]>
     </string>
-    
+
+    <!-- Evidence Tiers -->
+    <string name="evidence_evidence_tiers_1">Tier 1</string>
+    <string name="evidence_evidence_tiers_2">Tier 2</string>
+    <string name="evidence_evidence_tiers_3">Tier 3</string>
+
     <!-- Evidence Names -->
     <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>

@@ -611,6 +611,9 @@
     <string name="titlescreen_languages_label">Choisir la langue</string>
     <string name="mapview_instruction_pan">Déplacer: Faites glisser un doigt</string>
     <string name="mapview_instruction_zoom">Agrandir: Pincez avec deux doigts</string>
+    <string name="evidence_evidence_tiers_1">Niveau 1</string>
+    <string name="evidence_evidence_tiers_2">Niveau 2</string>
+    <string name="evidence_evidence_tiers_3">Niveau 3</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Températures glaciales</string>
     <string name="evidence_evidence_type_box">Spirit Box</string>
