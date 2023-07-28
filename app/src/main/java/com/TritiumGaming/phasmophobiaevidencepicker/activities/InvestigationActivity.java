@@ -131,7 +131,17 @@ public class InvestigationActivity extends AppCompatActivity {
 
         int colorSpace = globalPreferencesViewModel.getColorSpace();
         int fontType = globalPreferencesViewModel.getFontType();
-        fontType = 1;
+
+        switch (fontType) {
+            case 0: {
+                getTheme().applyStyle(R.style.Fonts_Base, true);
+                break;
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.Simple, true);
+                break;
+            }
+        }
 
         switch (colorSpace) {
             case 0: {
@@ -156,16 +166,6 @@ public class InvestigationActivity extends AppCompatActivity {
             }
         }
 
-        switch (fontType) {
-            case 0: {
-                getTheme().applyStyle(R.style.Fonts_Base, true);
-                break;
-            }
-            case 1: {
-                getTheme().applyStyle(R.style.Simple, true);
-                break;
-            }
-        }
     }
 
 

@@ -61,7 +61,7 @@ public class AppSettingsFragment extends Fragment {
                     requireActivity()).get(TitlescreenViewModel.class);
         }
 
-        return inflater.inflate(R.layout.fragment_appsettings, container, false);
+        return inflater.inflate(R.layout.fragment_appsettings2, container, false);
     }
 
     @Override
@@ -84,6 +84,8 @@ public class AppSettingsFragment extends Fragment {
                 view.findViewById(R.id.colorblindmode_selectedname);
         AppCompatTextView text_colorblindmode_sidenote =
                 view.findViewById(R.id.colorblindmode_note);
+        AppCompatTextView text_fontStyle_selectedname =
+                view.findViewById(R.id.font_selectedname);
 
         AppCompatTextView switch_huntwarningaudio_text =
                 view.findViewById(R.id.switch_huntwarningaudio_text);
@@ -105,28 +107,31 @@ public class AppSettingsFragment extends Fragment {
 
         ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
         ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
+        ImageButton btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
+        ImageButton btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
         ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
 
         // COLORBLIND DATA
-        TypedArray typedArray =
+        TypedArray colorTypedArray =
                 getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
-        String[] colorspaceNames = new String[typedArray.length()];
+        String[] colorspaceNames = new String[colorTypedArray.length()];
         for (int i = 0; i < colorspaceNames.length; i++) {
-            colorspaceNames[i] = typedArray.getString(i);
+            colorspaceNames[i] = colorTypedArray.getString(i);
         }
-        typedArray.recycle();
+        colorTypedArray.recycle();
+        colorTypedArray = null;
 
         ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
-        int oldIndex = 0;
+        int oldColorIndex = 0;
         if (globalPreferencesViewModel != null) {
-            oldIndex = globalPreferencesViewModel.getColorSpace();
+            oldColorIndex = globalPreferencesViewModel.getColorSpace();
         }
-        colorSpaceData.setIndex(oldIndex);
+        colorSpaceData.setIndex(oldColorIndex);
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
-        // LISTENERS
+        // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
@@ -140,6 +145,41 @@ public class AppSettingsFragment extends Fragment {
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
             if (globalPreferencesViewModel != null) {
                 globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
+            }
+        });
+
+        // FONT-STYLE DATA
+        TypedArray fontTypedArray =
+                getResources().obtainTypedArray(R.array.settings_fontstyle_array);
+        String[] fontStyleNames = new String[fontTypedArray.length()];
+        for (int i = 0; i < fontStyleNames.length; i++) {
+            fontStyleNames[i] = fontTypedArray.getString(i);
+        }
+        fontTypedArray.recycle();
+        fontTypedArray = null;
+
+        FontStylesData fontStyleData = new FontStylesData(fontStyleNames);
+        int oldFontIndex = 0;
+        if (globalPreferencesViewModel != null) {
+            oldFontIndex = globalPreferencesViewModel.getFontType();
+        }
+        fontStyleData.setIndex(oldFontIndex);
+        text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+
+        // FONT-STYLE LISTENERS
+        btn_fontStyle_left.setOnClickListener(v -> {
+            fontStyleData.iterate(-1);
+            text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+            if (globalPreferencesViewModel != null && getContext() != null) {
+                globalPreferencesViewModel.setFontType(fontStyleData.getIndex());
+            }
+        });
+
+        btn_fontStyle_right.setOnClickListener(v -> {
+            fontStyleData.iterate(1);
+            text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+            if (globalPreferencesViewModel != null) {
+                globalPreferencesViewModel.setFontType(fontStyleData.getIndex());
             }
         });
 

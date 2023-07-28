@@ -81,7 +81,16 @@ public class TitleScreenActivity extends AppCompatActivity {
      */
     public void changeTheme(int colorSpace, int fontType) {
 
-        fontType = 1;
+        switch (fontType) {
+            case 0: {
+                getTheme().applyStyle(R.style.Fonts_Base, true);
+                break;
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.Simple, true);
+                break;
+            }
+        }
 
         switch (colorSpace) {
             case 0: {
@@ -102,17 +111,6 @@ public class TitleScreenActivity extends AppCompatActivity {
             }
             case 4: {
                 setTheme(R.style.Tritanomaly);
-                break;
-            }
-        }
-
-        switch (fontType) {
-            case 0: {
-                getTheme().applyStyle(R.style.Fonts_Base, false);
-                break;
-            }
-            case 1: {
-                getTheme().applyStyle(R.style.Simple, false);
                 break;
             }
         }

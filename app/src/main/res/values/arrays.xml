@@ -88,6 +88,12 @@
         <item>@string/settings_colorblindnessmode_tritanomaly</item>
     </string-array>
 
+    <!-- Font-Style Data -->
+    <string-array name="settings_fontstyle_array">
+        <item>@string/settings_fontstyle_classic</item>
+        <item>@string/settings_fontstyle_android</item>
+    </string-array>
+
 
     <!--
         GHOST ARRAYS
@@ -257,13 +263,13 @@
 
     <!-- Evidence Description -->
     <string-array name="evidence_info_array">
-        <item>@string/evidence_evidence_description_dots</item>
-        <item>@string/evidence_evidence_description_emf</item>
-        <item>@string/evidence_evidence_description_fingerprints</item>
-        <item>@string/evidence_evidence_description_temperatures</item>
-        <item>@string/evidence_evidence_description_orbs</item>
-        <item>@string/evidence_evidence_description_book</item>
-        <item>@string/evidence_evidence_description_box</item>
+        <item>@string/evidence_evidence_description_dots_1</item>
+        <item>@string/evidence_evidence_description_emf_1</item>
+        <item>@string/evidence_evidence_description_fingerprints_1</item>
+        <item>@string/evidence_evidence_description_temperatures_1</item>
+        <item>@string/evidence_evidence_description_orbs_1</item>
+        <item>@string/evidence_evidence_description_book_1</item>
+        <item>@string/evidence_evidence_description_box_1</item>
     </string-array>
 
     <!-- Evidence Icons -->

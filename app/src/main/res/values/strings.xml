@@ -154,7 +154,7 @@
     <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
     <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
-    <string name="settings_colorblindnessmode_title">Colorblind Mode (Beta)</string>
+    <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
@@ -162,6 +162,9 @@
     <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranopia</string>
     <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanopia</string>
     <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanopia</string>
+    <!-- Font-Style Types -->
+    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_android" translatable="false">Android</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -767,48 +770,118 @@
     <string name="evidence_evidence_type_box">Spirit Box</string>
 
     <!-- Evidence Description -->
-    <string name="evidence_evidence_description_dots">
+    <string name="evidence_evidence_description_dots_1">
         <![CDATA[
             <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
             <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_emf">
+    <string name="evidence_evidence_description_dots_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_1">
         <![CDATA[
             <p>EMF-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
             <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_fingerprints">
+    <string name="evidence_evidence_description_emf_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints_1">
         <![CDATA[
             <p>Left on objects and surfaces by ghosts, Fingerprints can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font> and will glow green while under UV light.</p>
             <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>. A 6-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_temperatures">
+    <string name="evidence_evidence_description_fingerprints_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures_1">
         <![CDATA[
             <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
             <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C. These freezing temperatures will allow everyone within the haunted area to <font color=#ff6161>see their breath</font>. The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_book">
+    <string name="evidence_evidence_description_temperatures_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_book_1">
         <![CDATA[
             <p>Determined using the Ghost Writing Book.</p>
             <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_orbs">
+    <string name="evidence_evidence_description_book_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_book_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_1">
         <![CDATA[
             <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
             <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_box">
+    <string name="evidence_evidence_description_orbs_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_1">
         <![CDATA[
             <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
             <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
             <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
             <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_3">
+        <![CDATA[
+            \?
         ]]>
     </string>
 

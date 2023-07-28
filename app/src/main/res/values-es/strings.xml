@@ -547,43 +547,43 @@
         EVIDENCE
     -->
 
-    <string name="evidence_evidence_description_emf">
+    <string name="evidence_evidence_description_emf_1">
         <![CDATA[
 				<p>EMF-5 es la lectura de nivel mas alto de un <font color=#ff6161>Lector de EMF</font>.</p>
 				<p>Un fantasma produce emisiones de EMF de los niveles 1 a 5 cuando interactua de algúna manera con la habitacion o la tabla Ouija. Los parpadeos de luz, los pasos y otras interacciones pasivas mas pequenas normalmente daran una lectura mas baja. Las interacciones mas intensas, como una aparicion o el timbre de un telefono, casi siempre daran una lectura mas alta. Los fantasmas que llevan esta evidencia daran EMF Nivel 5 solo por casualidad, por lo que esta evidencia <font color=#ff6161>puede llevar algún tiempo adquirir</font>.</p>
 		]]>
     </string>
-    <string name="evidence_evidence_description_dots" >
+    <string name="evidence_evidence_description_dots_1" >
 		<![CDATA[
 			<p> El D.O.T.S. El proyector es un dispositivo que se puede colocar en las paredes o en el suelo. Proyecta una matriz de puntos brillantes, proyectando los puntos sobre las superficies cercanas a su alrededor. </p>
 			<p> Para identificar positivamente esta Evidencia, <font color = # ff6161> se verá una silueta del fantasma corriendo, o arrastrándose rápidamente, a través de los rayos de proyección. </font> La silueta se puede ver a simple vista oa través de una cámara de video, pero es más fácil verla <font color = # ff6161> de forma remota a través de las térmicas de la cámara de video </font>. Es mejor intentar encontrar esta evidencia de forma remota, ya que el comportamiento de un Goryo puede causar conflictos de evidencia de lo contrario. La ubicación real del Fantasma no determinará cuándo se producirán las animaciones de silueta. </p>
         ]]>
 	</string>
-    <string name="evidence_evidence_description_temperatures">
+    <string name="evidence_evidence_description_temperatures_1">
         <![CDATA[
 				<p>Las temperaturas gelidas son <font color=#ff6161>por debajo de 0 Celsius</font>. La temperatura se puede determinar utilizando el <font color=#ff6161>Termometro</font>.</p>
 				<p>A medida que los fantasmas extraen calor del área circundante, las temperaturas disminuyen en la habitacion o en los pasillos donde <font color=#ff6161>el fantasma pasa la mayor parte de su tiempo</font>. Todos los fantasmas eventualmente causaran que la temperatura caiga por debajo de 13 grados Celsius, pero solo ciertos tipos de fantasmas bajaran las temperaturas por debajo de 0 C.Estas temperaturas de congelacion permitiran que todos dentro del área embrujada <font color=#ff6161>puedan ver su aliento</font>. El enfriamiento de una habitacion, aunque sea leve, puede tardar mas de los primeros minutos de una investigacion. Tomar nota de las temperaturas extranamente bajas en las primeras habitaciones y luego volver de nuevo después es una buena idea.</p>
 		]]>
     </string>
-    <string name="evidence_evidence_description_box">
+    <string name="evidence_evidence_description_box_1">
         <![CDATA[
 				<p>La caja de espiritus se utiliza para <font color=#ff6161>comunicarse con el fantasma</font>.</p>
 				<p>Un jugador debe <font color=#ff6161>hacer preguntas en el Chat de proximidad a una caja de espiritus activa, tanto mientras esta cerca del fantasma como cuando las luces están apagadas</font>. Antes de intentar esto, verifique los parametros de respuesta del fantasma, como \ "Responde a las personas que están solas \" o \ "Responde a todos \" que figuran en la pizarra del Camion. Si el fantasma responde, la caja de espiritus es una prueba confirmada. Preguntas puntuales como \ "¿Cuantos anos tienes? \" O \ "¿Donde estas? \" Son preguntas plausibles. Tenga en cuenta que el fantasma siempre esta escuchando, independientemente de si un jugador esta hablando en un Spirit Box o no, por lo que los jugadores deben tener cuidado al hablar en el chat de alrededores. Hacer que un fantasma se revele se puede hacer diciendo su nombre de pila varias veces (por lo tanto, enfureciendolo), y dandole ordenes como \ "Muestrate \" o \ "Danos una senal \" parecen ser ordenes plausibles.</p>
 		]]>
     </string>
-    <string name="evidence_evidence_description_book">
+    <string name="evidence_evidence_description_book_1">
         <![CDATA[
 				<p>Determinado usando el Libro de escritura fantasmal.</p>
 				<p>Los fantasmas pueden escribir en el libro <font color=#ff6161>Independientemente de si el libro esta colocado o sostenido en la mano</font>. Si el fantasma escribe en el libro, esta es una prueba para ese tipo de fantasma. Si se presentan simbolos demoniacos, esto puede ser evidencia de un demonio, pero esto no es en absoluto definitivo ya que los estilos de escritura fantasmal tienden a ser al azar.</p>
 		]]>
     </string>
-    <string name="evidence_evidence_description_orbs">
+    <string name="evidence_evidence_description_orbs_1">
         <![CDATA[
 				<p>Una esfera pequena y flotante que esta presente solo en la habitacion donde un fantasma esta presente. Puede ser <font color=#ff6161>visto solo a traves de visión nocturna a traves de la cámara del camion<font> desde camaras de video o camaras montadas en la cabeza.</p>
 				<p>Los orbes fantasmas se pueden detectar rapidamente, pero descartarlos demasiado rápido podria significar problemas en el futuro.</p>
 		]]>
     </string>
-    <string name="evidence_evidence_description_fingerprints">
+    <string name="evidence_evidence_description_fingerprints_1">
         <![CDATA[
 				<p>Dejados en objetos y superficies por fantasmas, las huellas dactilares solo pueden <font color=#ff6161>ser vistas al hacer brillar la luz ultravioleta o una barra luminosa sobre las superficies afectadas</font> y brillara en verde bajo la luz ultravioleta.</p>
 				<p>La evidencia puede ser difícil de ver en elementos mas pequenos y la evidencia puede desvanecerse después de un tiempo. Si tiene problemas para localizar huellas dactilares, el uso de una cámara fotografica en elementos como una mesa de comedor que contenga platos o frascos puede dar pruebas, ya que el diario podria escribir \"huellas dactilaress\" en las fotos. Confusamente, las huellas también aparecen bajo luz ultravioleta y cuentan como interacciones en el diario, pero <font color=#ff6161>Las huellas no cuentan como evidencia de huellas dactilares</font>.</p>
@@ -673,7 +673,7 @@
     <string name="settings_huntwarningflashtimeout_never">"Timeout: Nunca "</string>
     <string name="settings_extrasettings">Configuraciones extra</string>
     <string name="settings_generalsettings">Configuraciones</string>
-    <string name="settings_colorblindnessmode_title">" Modo daltónico (Beta)"</string>
+    <string name="settings_colorblindnessmode_title">" Modo daltónico"</string>
     <string name="settings_colorblindnessmode_note">(Entrará en vigor después de salir de Configuración)</string>
     <string name="settings_colorblindnessmode_normal">Ninguna</string>
 
@@ -727,6 +727,7 @@
     <string name="review_accept">¡Aceptar!</string>
     <string name="review_decline">Disminución</string>
     <string name="evidence_timer_difficulty_4">Pesadilla</string>
+    <string name="settings_fontstyle_classic">P.E.T. Clásica</string>
     <string name="messagecenter_inboxestitle_label">Centro de Mensajes</string>
     <string name="messagecenter_inbox_pet">Registro de Cambios de P.E.T.</string>
     <string name="messagecenter_inbox_phas">Registro de Cambios de Phasmophobia</string>
@@ -745,5 +746,75 @@
     <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
     <string name="evidence_timer_difficulty_5">Locura</string>
     <string name="evidence_popup_ghost_huntdata">Datos de Caza</string>
+    <string name="evidence_evidence_description_dots_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_book_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_book_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_temperatures_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_3">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_2">
+        <![CDATA[
+            \?
+        ]]>
+    </string>
 
 </resources>

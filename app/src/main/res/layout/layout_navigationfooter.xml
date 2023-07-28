@@ -62,7 +62,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_left"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -111,7 +110,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_medLeft"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -162,7 +160,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_resetAll"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -240,7 +237,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_right"
-                    style="@style/NorseRegular"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
