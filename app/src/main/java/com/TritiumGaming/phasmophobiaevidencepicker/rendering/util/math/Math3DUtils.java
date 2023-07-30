@@ -74,7 +74,7 @@ public class Math3DUtils {
      * @param target    where is the object to intersect
      * @param precision the radius to test for intersection
      * @return the distance of intersection
-     * @deprecated
+     * @deprecated 
      */
     public static float calculateDistanceOfIntersection(float[] rayPoint1, float[] rayPoint2, float[] target,
                                                         float precision) {

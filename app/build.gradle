@@ -78,6 +78,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
     implementation 'androidx.core:core:1.10.1'
 
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+
     // PRIMARY
     def work_version = "2.8.1"
     implementation "androidx.work:work-runtime:$work_version"
@@ -94,7 +103,7 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation platform('com.google.firebase:firebase-bom:32.2.0')
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -123,7 +132,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // For use with animated gifs
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.27'
 
     // DO NOT UPDATE THIS -- BREAKING CHANGES
     implementation 'commons-io:commons-io:2.6'
