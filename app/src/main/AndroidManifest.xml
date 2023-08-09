@@ -23,9 +23,13 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         tools:targetApi="TIRAMISU">
 
+        <!-- Delay app measurement until MobileAds.initialize() is called. -->
         <meta-data
-        android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="ca-app-pub-1890816745443024~8234901440"/>
+            android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
+            android:value="true"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1890816745443024~8234901440"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

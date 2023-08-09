@@ -113,6 +113,7 @@ dependencies {
 
     // GOOGLE ADS
     implementation 'com.google.android.gms:play-services-ads:22.2.0'
+    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
 
     //GOOGLE GSON
     implementation 'com.google.code.gson:gson:2.10.1'
