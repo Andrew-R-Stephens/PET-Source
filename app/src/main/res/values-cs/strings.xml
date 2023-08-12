@@ -19,7 +19,11 @@
     <!--
         MESSAGE CENTER PAGE
     -->
-    <string name="settings_fontstyle_classic">P.E.T. Klasický</string>
+    <string name="settings_colorblindnessmode_monochromacy">Achromatopsie</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopie</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
+    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
     <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
     <string name="messagecenter_inbox_general">Obecné zprávy</string>
     <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>
@@ -597,6 +601,7 @@
     <string name="evidence_evidence_tiers_1">Úroveň 1</string>
     <string name="evidence_evidence_tiers_2">Úroveň 2</string>
     <string name="evidence_evidence_tiers_3">Úroveň 3</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
     <string name="evidence_evidence_type_box">Spirit Box</string>
@@ -806,5 +811,8 @@
             \?
         ]]>
     </string>
+    <string name="settings_appearancesettings">Vzhled</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstylesettings">Styl Fontu</string>
 
 </resources>

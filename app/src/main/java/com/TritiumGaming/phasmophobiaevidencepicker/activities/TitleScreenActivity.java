@@ -48,7 +48,7 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_titlescreen);
 
-        requestAdsConsentInformation();
+        //requestAdsConsentInformation();
     }
 
     private void initViewModels() {
@@ -100,7 +100,11 @@ public class TitleScreenActivity extends AppCompatActivity {
                 break;
             }
             case 1: {
-                getTheme().applyStyle(R.style.Simple, true);
+                getTheme().applyStyle(R.style.Android, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.Journal, true);
                 break;
             }
         }

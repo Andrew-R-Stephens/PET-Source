@@ -614,6 +614,7 @@
     <string name="evidence_evidence_tiers_1">Niveau 1</string>
     <string name="evidence_evidence_tiers_2">Niveau 2</string>
     <string name="evidence_evidence_tiers_3">Niveau 3</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Températures glaciales</string>
     <string name="evidence_evidence_type_box">Spirit Box</string>
@@ -722,7 +723,11 @@
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
     <string name="evidence_timer_difficulty_4">Cauchemar</string>
-    <string name="settings_fontstyle_classic">P.E.T. Classique</string>
+    <string name="settings_colorblindnessmode_monochromacy">Achromatopsie</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deutéranopie</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
+    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
     <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
     <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
     <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>
@@ -811,5 +816,8 @@
             \?
         ]]>
     </string>
+    <string name="settings_appearancesettings">Apparence</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstylesettings">"Le Style de Police "</string>
 
 </resources>

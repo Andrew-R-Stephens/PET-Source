@@ -148,6 +148,8 @@
     <string name="settings_cancel">Cancel</string>
     <string name="settings_generalsettings">General</string>
     <string name="settings_extrasettings">Extra Settings</string>
+    <string name="settings_appearancesettings">Appearance</string>
+    <string name="settings_fontstylesettings">Font Style</string>
     <string name="settings_screenalwayson">Always keep the screen on</string>
     <string name="settings_networktitle">Allow Message Center to use Mobile Data</string>
     <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
@@ -158,13 +160,14 @@
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
-    <string name="settings_colorblindnessmode_monochromacy" translatable="false">Achromatopsia</string>
-    <string name="settings_colorblindnessmode_deuteranomaly" translatable="false">Deuteranopia</string>
-    <string name="settings_colorblindnessmode_protanomaly" translatable="false">Protanopia</string>
-    <string name="settings_colorblindnessmode_tritanomaly" translatable="false">Tritanopia</string>
+    <string name="settings_colorblindnessmode_monochromacy">Achromatopsia</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
     <!-- Font-Style Types -->
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_classic">Original</string>
     <string name="settings_fontstyle_android" translatable="false">Android</string>
+    <string name="settings_fontstyle_journal" translatable="false">Journal</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -761,7 +764,7 @@
     <string name="evidence_evidence_tiers_3">Tier 3</string>
 
     <!-- Evidence Names -->
-    <string name="evidence_evidence_type_dots" translatable="false">D.O.T.S.</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S.</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
@@ -990,5 +993,6 @@
     <string name="spiritbox_entry_q8_2">How crazy am I?</string>
     <string name="spiritbox_entry_q8_3">How insane am I?</string>
     <string name="spiritbox_entry_q8_4">Am I insane?</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
 
 </resources>

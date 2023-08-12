@@ -131,6 +131,9 @@ public class AppSettingsFragment extends Fragment {
         colorSpaceData.setIndex(oldColorIndex);
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
+        /*
+         * Setting Colorblind Themes
+         */
         // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
@@ -148,6 +151,9 @@ public class AppSettingsFragment extends Fragment {
             }
         });
 
+        /*
+         * Setting Fonts
+         */
         // FONT-STYLE DATA
         TypedArray fontTypedArray =
                 getResources().obtainTypedArray(R.array.settings_fontstyle_array);

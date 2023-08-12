@@ -92,6 +92,7 @@
     <string-array name="settings_fontstyle_array">
         <item>@string/settings_fontstyle_classic</item>
         <item>@string/settings_fontstyle_android</item>
+        <item>@string/settings_fontstyle_journal</item>
     </string-array>
 
 

@@ -127,7 +127,7 @@ public class TitlescreenFragment extends Fragment {
 
         initReviewRequest(button_review);
 
-        doIntroductionRequest();
+        //doIntroductionRequest();
         doReviewRequest();
 
     }

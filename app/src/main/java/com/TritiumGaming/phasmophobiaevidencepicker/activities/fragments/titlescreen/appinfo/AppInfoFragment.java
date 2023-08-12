@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appinfo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,9 +13,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +72,6 @@ public class AppInfoFragment extends Fragment {
 
         TypedArray typedArray =
                 getResources().obtainTypedArray(R.array.aboutinfo_specialthanks_list);
-        AppCompatTextView[] names = new AppCompatTextView[typedArray.length()];
 
         // INITIALIZE FONT EMPHASIS COLOR
         TypedValue typedValue = new TypedValue();
@@ -163,98 +161,26 @@ public class AppInfoFragment extends Fragment {
                 color + "")));
 
 
-        // DEVELOPER DATA
-        @ColorInt int color_title, color_body;
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
-        color_title = typedValue.data;
-        String colorHex = String.format("%06X", (0xFFFFFF & color_title));
-        theme.resolveAttribute(R.attr.bodyFontColor, typedValue, true);
-        color_body = typedValue.data;
-
-        String[] subTitles =
-                getResources().getStringArray(R.array.aboutinfo_developerinfo_subtitles);
-        String[] subInfo =
-                getResources().getStringArray(R.array.aboutinfo_developerinfo_subinfo);
-
-        for (int i = 0; i < subTitles.length; i++) {
-
-            AppCompatTextView developerInfo_subtitle = new AppCompatTextView(getContext());
-            Spannable subtitle =
-                    (Spannable) Html.fromHtml(FontUtils.setColor(subTitles[i], colorHex));
-            Spannable subinfo = (Spannable) Html.fromHtml(subInfo[i]);
-
-            developerInfo_subtitle.setText(TextUtils.concat(subtitle, ":"));
-            developerInfo_subtitle.setTypeface(bodyFont);
-            developerInfo_subtitle.setTextColor(color_body);
-            developerInfo_subtitle.setMaxLines(1);
-            developerInfo_subtitle.setEllipsize(null);
-            developerInfo_subtitle.setLayoutParams(
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-            developerInfo_subtitle.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-
-            if (getView() != null) {
-                developerInfo_subtitle.setAutoSizeTextTypeUniformWithConfiguration(
-                        1,
-                        (int) (FontUtils.dpToSp(getView(),
-                                developerInfo_title.getTextSize())),
-                        1,
-                        1);
-            }
-            AppCompatTextView developerInfo_subinfo = new AppCompatTextView(getContext());
-            developerInfo_subinfo.setText(subinfo);
-            developerInfo_subinfo.setTypeface(bodyFont);
-            developerInfo_subinfo.setTextColor(color_body);
-            developerInfo_subinfo.setMaxLines(1);
-            developerInfo_subinfo.setEllipsize(null);
-            developerInfo_subinfo.setLayoutParams(
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-            developerInfo_subinfo.setGravity(Gravity.CENTER);
-
-            if (getView() != null) {
-                developerInfo_subinfo.setAutoSizeTextTypeUniformWithConfiguration(
-                        1,
-                        (int) (FontUtils.dpToSp(
-                                getView(), developerInfo_subtitle.getTextSize()) * .95),
-                        1,
-                        1);
-            }
-
-            linearLayout_developerInfo_subtitles.addView(developerInfo_subtitle);
-            linearLayout_developerInfo_subinfo.addView(developerInfo_subinfo);
-        }
-
-
         // DISCORD LABEL
         discordLabel.setMaxLines(1);
         discordLabel.setEllipsize(null);
 
 
         // SPECIAL THANKS
-        for (int i = 0; i < names.length; i++) {
-            names[i] = new AppCompatTextView(getContext());
-            names[i].setText(typedArray.getString(i));
-            names[i].setTypeface(bodyFont);
-            names[i].setTextColor(color_body);
-            names[i].setLayoutParams(
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
-            names[i].setGravity(Gravity.CENTER);
-            names[i].setTextSize(
-                    (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));
-            Log.d("Font", specialThanks_title.getTextSize() + " -> " +
-                    Math.max(Math.min(18,
-                            FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * (.9)),
-                        FontUtils.dpToSp(view, specialThanks_title.getTextSize())) + "");
-            linearLayout_specialThanks.addView(names[i]);
+        //AppCompatTextView[] names = new AppCompatTextView[typedArray.length()];
+        int nameCount = typedArray.length();
+        for (int i = 0; i < nameCount; i++) {
+
+            LayoutInflater inflater =
+                    (LayoutInflater) getView().getContext().getSystemService(
+                            Context.LAYOUT_INFLATER_SERVICE);
+            ConstraintLayout specialThanksItem_layout = (ConstraintLayout) inflater.inflate(R.layout.item_special_thanks_label, null);
+            AppCompatTextView textView_username = specialThanksItem_layout.findViewById(R.id.specialThanks_username);
+            textView_username.setText(typedArray.getString(i));
+            linearLayout_specialThanks.addView(specialThanksItem_layout);
+
         }
-        /*int smallestFontSize = 12;
-        for (int i = 0; i < names.length; i++) {
-            names[i].setTextSize(
-                    (int) (FontUtils.dpToSp(view, specialThanks_title.getTextSize()) * .9));
-        }*/
+
         typedArray.recycle();
 
     }

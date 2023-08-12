@@ -178,7 +178,7 @@
 
     </style>
 
-    <style name="Simple" parent="Fonts.Base">
+    <style name="Android" parent="Fonts.Base">
 
         <!-- Primary -->
         <item name="primaryFont_Regular">@style/RobotoMono</item>
@@ -219,6 +219,51 @@
         <item name="quaternaryFont_Bold">@style/RobotoMonoBold</item>
         <item name="quaternaryFont_Bold_Squeeze">@style/RobotoMonoBold_SqueezeText</item>
         <item name="quaternaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
+
+    </style>
+
+
+    <style name="Journal" parent="Fonts.Base">
+
+        <!-- Primary -->
+        <item name="primaryFont_Regular">@style/LazyDog</item>
+        <item name="primaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
+        <item name="primaryFont_Regular_Manual">@style/LazyDog_Manual</item>
+
+        <item name="primaryFont_Bold">@style/LazyDogBold</item>
+        <item name="primaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
+
+        <!-- Secondary -->
+        <item name="secondaryFont_Regular">@style/LazyDog</item>
+        <item name="secondaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
+        <item name="secondaryFont_Regular_Manual">@style/LazyDog_Manual</item>
+
+        <item name="secondaryFont_Bold">@style/LazyDogBold</item>
+        <item name="secondaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
+
+        <!-- Tertiary -->
+        <item name="tertiaryFont_Regular">@style/LazyDog</item>
+        <item name="tertiaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
+        <item name="tertiaryFont_Regular_Manual">@style/LazyDog_Manual</item>
+
+        <item name="tertiaryFont_Bold">@style/LazyDogBold</item>
+        <item name="tertiaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
+        <item name="tertiaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
+
+        <item name="tertiaryFont_BoldNarrow">@style/LazyDogBold</item>
+        <item name="tertiaryFont_BoldNarrow_Squeeze">@style/LazyDogBold_SqueezeText</item>
+        <item name="tertiaryFont_BoldNarrow_Manual">@style/LazyDogBold_Manual</item>
+
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/LazyDog</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/LazyDog_Manual</item>
+
+        <item name="quaternaryFont_Bold">@style/LazyDogBold</item>
+        <item name="quaternaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
+        <item name="quaternaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
 
     </style>
 

@@ -616,6 +616,7 @@
     <string name="evidence_evidence_tiers_1">" Nivel 2"</string>
     <string name="evidence_evidence_tiers_2">" Nivel 2"</string>
     <string name="evidence_evidence_tiers_3">" Nivel 2"</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Temperatura Gelida</string>
     <string name="evidence_evidence_type_box">Caja De Espiritus</string>
@@ -727,7 +728,11 @@
     <string name="review_accept">¡Aceptar!</string>
     <string name="review_decline">Disminución</string>
     <string name="evidence_timer_difficulty_4">Pesadilla</string>
-    <string name="settings_fontstyle_classic">P.E.T. Clásica</string>
+    <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopía</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
+    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
     <string name="messagecenter_inboxestitle_label">Centro de Mensajes</string>
     <string name="messagecenter_inbox_pet">Registro de Cambios de P.E.T.</string>
     <string name="messagecenter_inbox_phas">Registro de Cambios de Phasmophobia</string>
@@ -816,5 +821,8 @@
             \?
         ]]>
     </string>
+    <string name="settings_appearancesettings">Apariencia</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstylesettings">"Estilo de Fuente "</string>
 
 </resources>

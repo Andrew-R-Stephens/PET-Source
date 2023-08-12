@@ -605,6 +605,7 @@
     <string name="evidence_evidence_tiers_1">Rang 1</string>
     <string name="evidence_evidence_tiers_2">Rang 2</string>
     <string name="evidence_evidence_tiers_3">Rang 3</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_temperatures">Gefriertemperatur</string>
     <string name="evidence_evidence_type_box">Geisterbox</string>
@@ -714,7 +715,11 @@
     <string name="review_accept">Akzeptieren!</string>
     <string name="review_decline">Ablehnen</string>
     <string name="evidence_timer_difficulty_4">Albtraum</string>
-    <string name="settings_fontstyle_classic">P.E.T. Klassisch</string>
+    <string name="settings_colorblindnessmode_monochromacy">Achromatopsie</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopía</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopía</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
+    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
     <string name="messagecenter_inboxestitle_label">Nachrichtenzentrum</string>
     <string name="messagecenter_inbox_pet">P.E.T.-Änderungsprotokoll</string>
     <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>
@@ -803,5 +808,8 @@
             \?
         ]]>
     </string>
+    <string name="settings_appearancesettings">Aussehen</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstylesettings">Schriftstil</string>
 
 </resources>

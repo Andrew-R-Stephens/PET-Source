@@ -106,6 +106,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/popup_investigation_info"
         android:paddingBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
@@ -149,10 +150,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout42"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
                 android:padding="5sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -208,19 +210,20 @@
                 android:id="@+id/scrollView_swapping"
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layout_constrainedHeight="false"
+                app:layout_constraintBottom_toTopOf="@+id/dividerA"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintHeight_max="wrap"
-                app:layout_constraintHeight_percent="0.4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout42" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout42"
+                app:layout_constraintVertical_bias="0.0" />
 
             <View
                 android:id="@+id/dividerA"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:background="@drawable/icon_strikethrough_1"
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout43"
@@ -232,12 +235,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout43"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:padding="5sp"
+                app:layout_constraintBottom_toTopOf="@+id/scrollView_huntdata"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dividerA">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_huntTitle"
@@ -260,12 +264,10 @@
                 android:id="@+id/scrollView_huntdata"
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout43"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

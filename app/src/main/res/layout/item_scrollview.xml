@@ -33,11 +33,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_info"
-                style="?attr/quaternaryFont_Regular"
+                style="?attr/quaternaryFont_Regular_Manual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

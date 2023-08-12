@@ -973,7 +973,6 @@ public class EvidenceFragment extends Fragment {
             LayoutInflater inflaterPopup =
                     (LayoutInflater) getView().getContext().getSystemService(
                             Context.LAYOUT_INFLATER_SERVICE);
-            @SuppressLint("InflateParams")
             View customView = inflaterPopup.inflate(R.layout.popup_info_ghost, null);
 
             popup = new PopupWindow(
@@ -1158,6 +1157,31 @@ public class EvidenceFragment extends Fragment {
             return super.onSingleTapConfirmed(e);
         }
     }
+
+
+    private class EvidenceContainerListener extends GestureDetector.SimpleOnGestureListener {
+
+        private final LinearLayout evidenceContainer;
+
+        public EvidenceContainerListener(
+                LinearLayout evidenceContainer ) {
+
+            super();
+
+            this.evidenceContainer = evidenceContainer;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+
+
+
+            return true;
+        }
+
+    }
+
 
     public static class CompositeListener implements View.OnClickListener {
 

@@ -81,7 +81,11 @@
         MESSAGE CENTER FRAGMENTS
     -->
     <!-- Page Details -->
-    <string name="settings_fontstyle_classic">P.E.T. Классический</string>
+    <string name="settings_colorblindnessmode_monochromacy">Ахроматопсия</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Дейтеранопия</string>
+    <string name="settings_colorblindnessmode_protanomaly">протанопия</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Тританопия</string>
+    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
     <string name="messagecenter_inboxestitle_label">Message Center</string>
     <string name="messagecenter_inbox_general">General News</string>
     <string name="messagecenter_inbox_pet">P.E.T. Changelog</string>
@@ -647,9 +651,10 @@
     </string>
 
     <!-- Evidence Names -->
-    <string name="evidence_evidence_tiers_1">ряд</string>
-    <string name="evidence_evidence_tiers_2">ряд</string>
-    <string name="evidence_evidence_tiers_3">ряд</string>
+    <string name="evidence_evidence_tiers_1">Ряд 1</string>
+    <string name="evidence_evidence_tiers_2">Ряд 2</string>
+    <string name="evidence_evidence_tiers_3">Ряд 3</string>
+    <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
     <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
@@ -859,5 +864,8 @@
             \?
         ]]>
     </string>
+    <string name="settings_appearancesettings">Появление</string>
+    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstylesettings">Стиль шрифта</string>
 
 </resources>

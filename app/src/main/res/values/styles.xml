@@ -221,25 +221,66 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
-    <!-- Roboto-Mono Medium -->
+    <!-- Roboto-Mono Bold -->
     <style name="RobotoMonoBold" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
-        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
     <style name="RobotoMonoBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
-        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
     <style name="RobotoMonoBold_Manual">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
-        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
+
+    <!-- Lazy Dog-Mono -->
+    <style name="LazyDog" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LazyDog_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LazyDog_Manual">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- Lazy Dog - Bold -->
+    <style name="LazyDogBold" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LazyDogBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LazyDogBold_Manual">
+        <item name="android:fontFamily">@font/lazydog</item>
+        <item name="fontFamily">@font/lazydog</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
 
     <!--
         Component Styles
