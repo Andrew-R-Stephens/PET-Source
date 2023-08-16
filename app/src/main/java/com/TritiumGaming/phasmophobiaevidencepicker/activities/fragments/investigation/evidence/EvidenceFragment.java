@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -423,11 +424,49 @@ public class EvidenceFragment extends Fragment {
         String[] evidenceNames = getResources().getStringArray(R.array.evidence_tool_names);
 
         //Avoid pass null in the root it ignores spaces in the child layout
+        TypedArray evidenceTypes =
+                getContext().getResources().obtainTypedArray(R.array.evidence_tiers_arrays);
         for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
 
             final int evidenceIndex = i;
             String evidenceName = evidenceNames[i];
-            String evidenceInfo = getResources().getStringArray(R.array.evidence_info_array)[i];
+            @IntegerRes int[] descriptions = new int[4];
+            @IntegerRes int[] animations = new int[4];
+
+            TypedArray evidenceType =
+                    getContext().getResources().obtainTypedArray(evidenceTypes.getResourceId(i, 0));
+            Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
+/*
+
+            TypedArray evidenceTier =
+                    getContext().getResources().obtainTypedArray(evidenceType.getResourceId(0, 0));
+            Log.d("EvTier", evidenceTier.toString() + "");
+*/
+
+
+            @SuppressLint("ResourceType")
+            TypedArray evidenceDescription =
+                    getContext().getResources().obtainTypedArray(evidenceType.getResourceId(1, 0));
+            for (int j = 0; j < evidenceDescription.length(); j++) {
+                descriptions[j] = evidenceDescription.getResourceId(j, 0);
+                Log.d("EvDescription", getString(descriptions[j]) + "");
+            }
+
+            @SuppressLint("ResourceType")
+            TypedArray evidenceAnimations =
+                    getContext().getResources().obtainTypedArray(evidenceType.getResourceId(2, 0));
+            for (int j = 0; j < evidenceAnimations.length(); j++) {
+                animations[j] = evidenceAnimations.getResourceId(j, 0);
+                Log.d("EvDAnimation", animations[j] + "");
+            }
+
+            evidenceDescription.recycle(); //cleanup
+            evidenceAnimations.recycle(); //cleanup
+
+            //evidenceTier.recycle();
+            evidenceType.recycle();
+
+            //String evidenceInfo = ""; //evidenceTypedArray2.
 
             View evidenceParent = inflater.inflate(
                     R.layout.item_investigation_evidence,
@@ -473,17 +512,77 @@ public class EvidenceFragment extends Fragment {
                 AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
                 AppCompatTextView label = customView.findViewById(R.id.label_name);
                 AppCompatTextView info = customView.findViewById(R.id.label_info);
+
+                AppCompatImageView select_overview = customView.findViewById(R.id.textView_overview_image);
+                AppCompatImageView select_tiers = customView.findViewById(R.id.textView_tiers_image);
+
+                AppCompatImageView select_tier_1 = customView.findViewById(R.id.textView_tiers_1_image);
+                AppCompatImageView select_tier_2 = customView.findViewById(R.id.textView_tiers_2_image);
+                AppCompatImageView select_tier_3 = customView.findViewById(R.id.textView_tiers_3_image);
+
                 ScrollView scroller = customView.findViewById(R.id.scrollView);
                 View indicator = customView.findViewById(R.id.scrollview_indicator);
                 GifImageView animation = customView.findViewById(R.id.animation_evidence);
                 GifImageView animation_fullscreen = customView.findViewById(R.id.animation_evidence_fullscreen);
+
+                ConstraintLayout layout_overview = customView.findViewById(R.id.constraintLayout_evidence_overview);
+                ConstraintLayout layout_tiers = customView.findViewById(R.id.constraintLayout_evidence_tiers);
+
+                // Init
+
+                //MAIN STATES
+                select_overview.setImageState(new int[]{R.attr.state_done}, true);
+                select_overview.setOnClickListener(selectView -> {
+                    select_overview.setImageState(new int[]{R.attr.state_done}, true);
+                    select_tiers.setImageState(new int[]{-R.attr.state_done}, true);
+
+                    layout_overview.setVisibility(View.VISIBLE);
+                    layout_tiers.setVisibility(View.GONE);
+                });
+                select_tiers.setOnClickListener(selectView -> {
+                    select_tiers.setImageState(new int[]{R.attr.state_done}, true);
+                    select_overview.setImageState(new int[]{-R.attr.state_done}, true);
+
+                    layout_tiers.setVisibility(View.VISIBLE);
+                    layout_overview.setVisibility(View.GONE);
+
+                    select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1]);
+                });
+
+
+                //TIER STATES
+                select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+                select_tier_1.setOnClickListener(selectView -> {
+                    select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+
+                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1]);
+                });
+                select_tier_2.setOnClickListener(selectView -> {
+                    select_tier_2.setImageState(new int[]{R.attr.state_done}, true);
+                    select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
+                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+
+                    generateEvidenceTierView(customView, 2, animation_fullscreen, getString(descriptions[2]), animations[2]);
+                });
+                select_tier_3.setOnClickListener(selectView -> {
+                    select_tier_3.setImageState(new int[]{R.attr.state_done}, true);
+                    select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
+                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+
+                    generateEvidenceTierView(customView, 3, animation_fullscreen, getString(descriptions[3]), animations[3]);
+                });
+
 
                 animation.setOnClickListener(view12 -> {
                     if(animation_fullscreen.getVisibility() != View.VISIBLE) {
                         animation_fullscreen.setVisibility(View.VISIBLE);
                     }
                 });
-
                 animation_fullscreen.setOnClickListener(view1 -> {
                     if(view1.getVisibility() == View.VISIBLE) {
                         view1.setVisibility(View.GONE);
@@ -500,13 +599,13 @@ public class EvidenceFragment extends Fragment {
 
                 label.setText(evidenceName);
                 info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        evidenceInfo,
+                        getString(descriptions[0]),
                         "#ff6161", fontEmphasisColor + "")));
 
                 TypedArray typedArray;
                 try {
                     typedArray = view.getContext().getResources().obtainTypedArray(R.array.evidence_animation_array);
-                    animation.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
+                    animation.setImageResource(animations[0]);
                     animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
                     typedArray.recycle();
                 } catch (Resources.NotFoundException e) {
@@ -654,6 +753,39 @@ public class EvidenceFragment extends Fragment {
 
             evidenceContainer.addView(evidenceParent);
         }
+
+        evidenceTypes.recycle();
+    }
+
+    public void generateEvidenceTierView(View parentView, int tierIndex, GifImageView animation_fullscreen, String description, int animation) {
+        ConstraintLayout scrollView = parentView.findViewById(R.id.scrollview_tiers);
+        AppCompatTextView title = scrollView.findViewById(R.id.label_tier);
+        AppCompatTextView details = scrollView.findViewById(R.id.info_tier);
+        GifImageView animationView = parentView.findViewById(R.id.animation_tier);
+
+        Log.d("EvBuild", description);
+
+
+        details.setText(description);
+        animationView.setImageResource(animation);
+
+
+        TypedArray typedArray =
+                getContext().getResources().obtainTypedArray(R.array.evidence_tiers);
+        title.setText(typedArray.getString(tierIndex-1));
+        typedArray.recycle();
+
+        animationView.setOnClickListener(v -> {
+            if(animation_fullscreen.getVisibility() != View.VISIBLE) {
+                animation_fullscreen.setVisibility(View.VISIBLE);
+            }
+        });
+        animation_fullscreen.setOnClickListener(v -> {
+            if(v.getVisibility() == View.VISIBLE) {
+                v.setVisibility(View.GONE);
+            }
+        });
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -1044,6 +1176,7 @@ public class EvidenceFragment extends Fragment {
                         "#ff6161", fontEmphasisColor + "")));
 
                 //initialize info content scroller
+                /*
                 bodyCons.setVisibility(View.INVISIBLE);
                 scroller_swapping.post(() -> {
                     if (scroller_swapping.canScrollVertically(1)) {
@@ -1057,6 +1190,7 @@ public class EvidenceFragment extends Fragment {
                     //initialize info content scroller
                     bodyCons.setVisibility(View.VISIBLE);
                 });
+                */
             });
 
             right.setOnClickListener(view -> {
@@ -1069,6 +1203,7 @@ public class EvidenceFragment extends Fragment {
 
 
                 //initialize info content scroller
+                /*
                 bodyCons.setVisibility(View.INVISIBLE);
                 scroller_swapping.post(() -> {
                     if (scroller_swapping.canScrollVertically(1)) {
@@ -1082,6 +1217,7 @@ public class EvidenceFragment extends Fragment {
                     //initialize info content scroller
                     bodyCons.setVisibility(View.VISIBLE);
                 });
+                */
             });
 
             fadeOutIndicatorAnimation(
@@ -1093,7 +1229,8 @@ public class EvidenceFragment extends Fragment {
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-            } else {/*
+            } else {
+                /*
 
                 ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
                 ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
@@ -1139,7 +1276,7 @@ public class EvidenceFragment extends Fragment {
                 fadeOutIndicatorAnimation(
                         scroller3,
                         indicator3);
-*/
+                */
             }
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());

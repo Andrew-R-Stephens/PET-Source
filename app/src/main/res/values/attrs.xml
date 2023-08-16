@@ -8,6 +8,9 @@
     <attr name="subtitleFontColor" format="reference|color" />
     <attr name="splashtitleFontColor" format="reference|color" />
 
+    <attr name="foregroundColor" format="reference|color" />
+    <attr name="middlegroundColor" format="reference|color" />
+    <attr name="backgroundColor" format="reference|color" />
     <attr name="windowStrokeColor" format="reference|color" />
     <attr name="windowBackgroundColor" format="reference|color" />
 
@@ -76,5 +79,11 @@
     <attr name="quaternaryFont_Regular_Manual" format="reference" />
     <attr name="quaternaryFont_Bold_Manual" format="reference" />
 
+    <!--
+        Radio Selector
+    -->
+    <attr name="state_in_progress" format="boolean" />
+    <attr name="state_done" format="boolean" />
+    <attr name="state_failed" format="boolean" />
 
 </resources>

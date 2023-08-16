@@ -4,8 +4,7 @@
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/popup_bg"
-    android:backgroundTint="#D9000000"
+    android:background="?attr/backgroundColor"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +51,6 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/popup_investigation_info"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayout_1"
             app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
             app:layout_constraintStart_toEndOf="@+id/constraintlayout_12"
@@ -60,7 +58,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_name"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -128,7 +125,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/popup_investigation_info"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +157,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_infoTitle"
-                style="@style/EastRegular"
+                style="?attr/secondaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -211,7 +208,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_huntTitle"
-                style="@style/EastRegular"
+                style="?attr/secondaryFont_Regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

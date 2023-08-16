@@ -90,10 +90,10 @@ public class TitlescreenFragment extends Fragment {
         AppCompatTextView button_startSolo = view.findViewById(R.id.button_start_solo);
         AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
         AppCompatImageView icon_appIcon = view.findViewById(R.id.icon_appicon);
-        AppCompatImageButton button_info = view.findViewById(R.id.button_info);
-        AppCompatImageButton button_settings = view.findViewById(R.id.button_settings);
-        AppCompatImageButton button_review = view.findViewById(R.id.button_review);
-        AppCompatImageButton button_msgInbox = view.findViewById(R.id.button_inbox);
+        AppCompatImageView button_info = view.findViewById(R.id.button_info);
+        AppCompatImageView button_settings = view.findViewById(R.id.button_settings);
+        AppCompatImageView button_review = view.findViewById(R.id.button_review);
+        AppCompatImageView button_msgInbox = view.findViewById(R.id.button_inbox);
         View button_language = view.findViewById(R.id.listener_language);
         inboxNotify = view.findViewById(R.id.img_inboxalert);
 
@@ -192,7 +192,7 @@ public class TitlescreenFragment extends Fragment {
         }
     }
 
-    public void initReviewRequest(AppCompatImageButton button_review) {
+    public void initReviewRequest(AppCompatImageView button_review) {
         // REQUEST REVIEW LISTENER
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {

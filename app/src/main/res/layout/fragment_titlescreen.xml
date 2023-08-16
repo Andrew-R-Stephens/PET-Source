@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
+    android:background="?attr/backgroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +20,6 @@
         android:id="@+id/titlescreen_mainconstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,12 +38,11 @@
             app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_percent=".8">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_info"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_info"
@@ -64,12 +63,11 @@
                 app:layout_constraintStart_toEndOf="@+id/button_info"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/button_inbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:background="#00000000"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_newspaper"
@@ -95,12 +93,11 @@
                     app:tintMode="multiply" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_review"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_review"
@@ -110,12 +107,11 @@
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_gear"
@@ -141,7 +137,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00FFFFFF"
                 android:contentDescription="@string/app_name"
                 android:cropToPadding="true"
                 android:scaleType="fitCenter"
@@ -156,7 +151,6 @@
             android:id="@+id/label_titledescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#00FFFFFF"
             android:ellipsize="end"
             android:gravity="center_horizontal|top"
             android:maxLines="1"
@@ -239,7 +233,6 @@
                 android:id="@+id/listener_language"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout28"
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout28"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout28"
@@ -250,7 +243,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_globe"
@@ -274,7 +266,6 @@
                     android:id="@+id/label_languageName"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="#00FFFFFF"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
@@ -294,7 +285,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
-        android:background="#00FFFFFF"
         app:adSize="BANNER"
         app:adUnitId="ca-app-pub-1890816745443024/7620657926"
         app:layout_constraintBottom_toBottomOf="parent"

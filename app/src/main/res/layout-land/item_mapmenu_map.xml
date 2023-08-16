@@ -29,7 +29,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_mapName"
-            style="@style/TypewriterRegular"
+            style="?attr/primaryFont_Regular_Squeeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"

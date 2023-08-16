@@ -419,137 +419,180 @@
 
     <!-- Hunting Data -->
     <string name="evidence_ghost_huntingdata_banshee" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity of the Player it is targeting.</p>
-            <p>Completely ignores Average Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale du joueur ciblé.</p>
+             <p>Ignore complètement la santé mentale moyenne.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_demon" >
-        <![CDATA[
-            <p>Normally hunts at 70\% Sanity.</p>
-            <p>May Hunt at any Sanity level upon ability activation.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse normalement à 70\% de santé mentale.</p>
+             <p>Peut chasser à n\'importe quel niveau de santé mentale lors de l\'activation de la capacité.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_deogen">
-        <![CDATA[
-            <p>Hunts at 40\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 40\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_goryo">
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_hantu" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_jinn" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_mare" >
-        <![CDATA[
-            <p>Hunts at 40\% Sanity if the Power is on.</p>
-            <p>Hunts at 60\% Sanity if the Power is off.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 40\% de santé mentale si le courant est allumé.</p>
+             <p>Chasse à 60\% de santé mentale si l\'alimentation est coupée.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_moroi">
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_myling" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_obake" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_oni" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_onryo" >
-        <![CDATA[
-            <p>Normally hunts at 60\% Sanity.</p>
-            <p>May hunt at any Sanity if fire is extinguished.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse normalement à 60\% de santé mentale.</p>
+             <p>Peut chasser à n\'importe quel Sanity si le feu est éteint.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_phantom" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_poltergeist" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_raiju" >
-        <![CDATA[
-            <p>Normally hunts at 50\% Sanity.</p>
-            <p>Hunts at 65\% Sanity if nearby powered\-on electronics.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse normalement à 50\% de santé mentale.</p>
+             <p>Chasse à 65\% de santé mentale si des appareils électroniques sous tension se trouvent à proximité.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_revenant" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_shade" >
-        <![CDATA[
-            <p>Hunts at 35\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 35\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_spirit" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_thaye">
-        <![CDATA[
-            <p>Hunts at 75\% Sanity at it\'s youngest age.</p>
-            <p>Hunts at 15\% Sanity at it\'s oldest age.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 75\% de santé mentale à son plus jeune âge.</p>
+             <p>Chasse à 15\% de santé mentale à son âge le plus avancé.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_themimic" >
-        <![CDATA[
-            <p>Hunting preferences are based on the ghost being mimicked. Therefore, it may hunt anywhere between 15% and 100% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Les préférences de chasse sont basées sur le fantôme imité. Par conséquent, il peut chasser entre 15\% et 100\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_wraith" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_yokai" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-            <p>Cannot hear investigators or sense electronic equipment.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+             <p>Impossible d\'entendre les enquêteurs ou de détecter les équipements électroniques.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_yurei" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Chasse à 50\% de santé mentale.</p>
+         ]]>
+     </string>
 
 
     <!--
         EVIDENCE
     -->
+
+    <string name="evidence_evidence_description_emf_0">
+        <![CDATA[
+            <p>EMF-5 est la lecture de niveau le plus eleve d\'un <font color=#ff6161>Lecteur EMF</font>.</p>
+            <p>Un fantome produit des emissions EMF des niveaux 1 a 5 lorsqu\'il interagit d\'une maniere ou d\'une autre avec la piece ou la planche Ouija. Les scintillements legers, les pas et d\'autres interactions passives plus petites donneront generalement une lecture plus faible. Des interactions plus intenses, telles qu\'une apparence ou une sonnerie de telephone, donneront presque toujours une lecture plus elevee. Les fantomes portant cette preuve ne donneront le niveau EMF 5 que par hasard, donc cette preuve <font color=#ff6161>peut prendre un certain temps a acquerir</font>.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_0" >
+		<![CDATA[
+			<p>Le D.O.T.S. Le projecteur est un appareil qui peut être placé sur les murs ou le sol. Il projette une matrice de points lumineux, projetant les points sur les surfaces voisines qui l\'entourent.</p>
+			<p>Pour identifier positivement cette preuve, <font color=#ff6161>une silhouette du fantôme sera vue en train de courir ou de ramper rapidement à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver ces preuves à distance, car le comportement d\'un Goryo peut provoquer des conflits de preuves dans le cas contraire. L\'emplacement réel du fantôme ne dictera pas quand les animations de silhouette se produisent.</p>
+        ]]>
+	</string>
+    <string name="evidence_evidence_description_temperatures_0">
+        <![CDATA[
+            <p>Les temperatures de congelation sont <font color=#ff6161>en dessous de 0 Celsius</font>. La temperature peut etre determinee en utilisant le <font color=#ff6161>Thermometer</font>.</p>
+            <p>A mesure que les fantomes extraient la chaleur de la zone environnante, les temperatures diminuent dans la piece ou les couloirs ou le <font color=#ff6161>le fantome passe le plus clair de son temps</font>. Tous les fantomes le feront finalement causent des temperatures inferieures a 13 degres Celsius, mais seuls certains types de fantomes feront baisser les temperatures en dessous de 0 C. Ces temperatures glaciales permettront a tout le monde dans la zone hantee de <font color=#ff6161>voir leur souffle</font>. Le refroidissement d\'une piece, meme legerement, peut prendre plus de temps que les premieres minutes d\'une enquete. Prendre note des temperatures etrangement basses dans les premieres pieces, puis les redoubler est une bonne idee.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_box_0">
+        <![CDATA[
+            <p>La Spirit Box est un objet utilise pour <font color=#ff6161>communiquer avec le fantome</font>.</p>
+            <p>Un joueur doit <font color=#ff6161>poser des questions dans le chat de proximite a une Spirit Box active, a la fois a proximite du fantome et lorsque les lumieres sont eteintes</font>. Avant de tenter cela, verifiez les parametres de reponse du fantome tels que \"Repond aux personnes qui sont seules \" ou \"Repond a tout le monde \" figurant sur le tableau blanc du camion. Si le fantome repond, la Spirit Box est une preuve confirmee. Les questions pointues telles que «Quel age avez-vous?» Ou «Ou etes-vous?» Sont des questions plausibles. Gardez a l\'esprit que le fantome est toujours a l\'ecoute, que le joueur parle ou non dans une Spirit Box. Dessiner un fantome peut etre fait en disant son prenom plusieurs fois (donc en le mettant en colere), et en lui donnant des commandes telles que «Montre-toi» ou «Donne-nous un signe» semblent etre des commandes plausibles.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_book_0">
+        <![CDATA[
+            <p>Determine a l\'aide du livre d\'ecriture Ghost.</p>
+            <p>Les fantomes peuvent ecrire dans le livre <font color=#ff6161>peu importe si le livre est pose ou tenu en main</font>. Si le fantome ecrit dans le livre, il s\'agit d\'un element de preuve pour ce type de fantome. Si des symboles demoniaques sont ecrits, cela peut etre une preuve d\'un demon, mais ce n\'est absolument pas definitif car les styles d\'ecriture fantome ont tendance a s\'ecarter au hasard.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_0">
+        <![CDATA[
+            <p>Un petit orbe flottant qui n\'est present que dans la piece qu\'un fantome hante. ua peut etre <font color=#ff6161>vu uniquement par vision nocturne a travers le flux de la camera du camion<font> des cameras video ou des cameras montees sur la tete.</p>
+            <p>Les orbes fantomes peuvent etre rapides a reperer, mais l\'exclure trop rapidement pourrait causer des problemes sur la route.</p>
+        ]]>
+    </string>
+    <string name="evidence_evidence_description_fingerprints_0">
+        <![CDATA[
+            <p>Laissees sur des objets et des surfaces par des fantomes, les empreintes digitales ne peuvent etre <font color=#ff6161>vu en faisant briller la lumiere UV ou un baton lumineux sur les surfaces affectees</font> et brillera en vert sous la lumiere UV.</p>
+            <p>Les preuves peuvent etre difficiles a voir sur des elements plus petits, et les preuves peuvent s\'estomper apres un certain temps. Si vous ne parvenez pas a localiser les empreintes digitales, l\'utilisation d\'un appareil photo sur des objets tels qu\'une table contenant de la vaisselle ou des bocaux peut fournir des preuves, car le journal pourrait ecrire des «empreintes digitales» sur les photos. De maniere deroutante, les empreintes apparaissent egalement sous la lumiere UV et comptent comme des interactions dans le journal, mais <font color=#ff6161>Les empreintes de pas ne comptent pas comme preuve des empreintes digitales</font>.</p>
+        ]]>
+    </string>
 
     <string name="evidence_evidence_description_emf_1">
         <![CDATA[
@@ -727,7 +770,7 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Deutéranopie</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
-    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
+    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
     <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
     <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
     <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>

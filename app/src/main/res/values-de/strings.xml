@@ -413,177 +413,221 @@
 
     <!-- Hunting Data -->
     <string name="evidence_ghost_huntingdata_banshee" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity of the Player it is targeting.</p>
-            <p>Completely ignores Average Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit des Zielspielers.</p>
+             <p>Die durchschnittliche geistige Gesundheit wird völlig ignoriert.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_demon" >
-        <![CDATA[
-            <p>Normally hunts at 70\% Sanity.</p>
-            <p>May Hunt at any Sanity level upon ability activation.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt normalerweise mit 70\% geistiger Gesundheit.</p>
+             <p>Kann bei Aktivierung der Fähigkeit mit jeder geistigen Gesundheit jagen.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_deogen">
-        <![CDATA[
-            <p>Hunts at 40\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 40\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_goryo">
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_hantu" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_jinn" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_mare" >
-        <![CDATA[
-            <p>Hunts at 40\% Sanity if the Power is on.</p>
-            <p>Hunts at 60\% Sanity if the Power is off.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 40\% geistiger Gesundheit, wenn die Kraft eingeschaltet ist.</p>
+             <p>Jagt mit 60\% geistiger Gesundheit, wenn der Strom ausgeschaltet ist.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_moroi">
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_myling" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_obake" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_oni" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_onryo" >
-        <![CDATA[
-            <p>Normally hunts at 60\% Sanity.</p>
-            <p>May hunt at any Sanity if fire is extinguished.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt normalerweise mit 60\% geistiger Gesundheit.</p>
+             <p>Darf bei jedem Verstand jagen, wenn das Feuer gelöscht ist.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_phantom" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_poltergeist" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_raiju" >
-        <![CDATA[
-            <p>Normally hunts at 50\% Sanity.</p>
-            <p>Hunts at 65\% Sanity if nearby powered\-on electronics.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt normalerweise mit 50\% geistiger Gesundheit.</p>
+             <p>Jagt mit 65\% geistiger Gesundheit, wenn sich in der Nähe eingeschalteter Elektronik befindet.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_revenant" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_shade" >
-        <![CDATA[
-            <p>Hunts at 35\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 35\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_spirit" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_thaye">
-        <![CDATA[
-            <p>Hunts at 75\% Sanity at it\'s youngest age.</p>
-            <p>Hunts at 15\% Sanity at it\'s oldest age.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt im jüngsten Alter mit 75\% geistiger Gesundheit.</p>
+             <p>Jagt mit 15\% geistiger Gesundheit im ältesten Alter.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_themimic" >
-        <![CDATA[
-            <p>Hunting preferences are based on the ghost being mimicked. Therefore, it may hunt anywhere between 15% and 100% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagdpräferenzen basieren auf der Nachahmung des Geistes. Daher kann es zwischen 15\% und 100\% geistige Gesundheit jagen.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_wraith" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_yokai" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-            <p>Cannot hear investigators or sense electronic equipment.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <p>Kann Ermittler nicht hören oder elektronische Geräte nicht spüren.</p>
+         ]]>
+     </string>
     <string name="evidence_ghost_huntingdata_yurei" >
-        <![CDATA[
-            <p>Hunts at 50\% Sanity.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+         ]]>
+     </string>
 
 
-    <string name="evidence_evidence_description_emf_1">
+    <string name="evidence_evidence_description_emf_0">
         <![CDATA[
                 <p>EMF 5 ist der höchste Messwert des <font color=#ff6161>EMF-Readers</font>.</p>
                 <p>Ein Geist erzeugt EMF-Emissionen der Stufen 1 bis 5, wenn er auf irgendeine Weise mit dem Raum oder dem Ouija-Brett interagiert. Leichtes Flackern, Schritte und andere kleinere passive Interaktionen führen normalerweise zu einem niedrigeren Messwert. Stärkere Interaktionen, wie z.B. das Erscheinen des Geistes oder ein klingelndes Telefon führen fast immer zu einem höheren Messwert.</p>
                 <p>Ist EMF 5 einer der Beweise des Geistes, wird er diesen Wert nur zufällig ausgeben, weshalb <font color=#ff6161>der Nachweis von EMF 5 einige Zeit dauern kann</font>.</p>
             ]]>
     </string>
-    <string name="evidence_evidence_description_dots_1" >
+    <string name="evidence_evidence_description_dots_0" >
 		<![CDATA[
 			<p>Die D.O.T.S. Projektor ist ein Gerät, das an Wänden oder auf dem Boden aufgestellt werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um sich herum.</p>
 			<p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
         ]]>
 	</string>
-    <string name="evidence_evidence_description_temperatures_1">
+    <string name="evidence_evidence_description_temperatures_0">
         <![CDATA[
                     <p>Gefriertemperaturen sind Temperaturen <font color=#ff6161>unter 0° Celsius</font>. Die Temperatur kann mit einem <font color=#ff6161>Thermometer</font> gemessen werden.</p>
                     <p>Wenn Geister Wärme aus der Umgebung entziehen, sinkt die Temperatur in dem Raum oder den Fluren, in denen der <font color=#ff6161>Geist die meiste Zeit verbringt</font>. Alle Geister verursachen früher oder später Temperaturen unter 13° Celsius, aber nur bestimmte Geistertypen senken die Temperatur unter 0° Celsius. Gibt es Gefriertemperaturen, wird der <font color=#ff6161>Atem des Spielers innerhalb des Spukgebiets sichtbar</font>. Die Abkühlung des Raumes, egal wie geringfügig, kann während der Untersuchung die ersten paar Minuten in Anspruch nehmen. Es ist eine gute Idee, zu Anfang alle Räume zu überprüfen und die Räume mit merkwürdig niedrigen Temperaturen später noch einmal zu überprüfen.</p>
             ]]>
     </string>
-    <string name="evidence_evidence_description_box_1">
+    <string name="evidence_evidence_description_box_0">
         <![CDATA[
                     <p>Die Geisterbox dient der <font color=#ff6161>Kommunikation mit dem Geist</font>.</p>
                     <p>Der Spieler muss dazu im <font color=#ff6161>Umgebungschat Fragen an eine aktivierte Geisterbox stellen. Dabei muss er sich in der Nähe des Geistes befinden und das Licht muss ausgeschaltet sein</font>. Bevor dies jedoch versucht werden sollte, überprüfen Sie auf dem Whiteboard des Trucks, ob der Geist auf Gruppen reagiert oder nur auf Personen, die alleine sind. Sobald der Geist antwortet, zählt die Geisterbox zu den Beweisen des Geistes. Dabei sollten gezielte Fragen wie „Wie alt bist du?“ oder „Wo bist du?“ gestellt werden. Der Umgebungschat sollte immer mit einer gewissen Vorsicht verwendet werden, da ihnen der Geist immer zuhört, egal, ob eine Geisterbox aktiviert ist oder nicht. Indem man dem Geist Befehle gibt wie „Zeig dich“ oder „Gib uns ein Zeichen“ oder seinen Namen mehrmals sagt (womit man ihn verärgert), kann man den Geist dazu bringen, zu erscheinen.</p>
             ]]>
     </string>
-    <string name="evidence_evidence_description_book_1">
+    <string name="evidence_evidence_description_book_0">
         <![CDATA[
                     <p>Geister können in das Geisterbuch schreiben, <font color=#ff6161>egal ob es auf dem Boden platziert ist oder in der Hand gehalten wird</font>.</p>
                     <p>Schreibt der Geist ins Buch, zählt dies als Beweis für seinen Geistertyp. Schreibt der Geist dämonische Symbole ins Buch, könnte das auf einen Dämon hinweisen, wobei das kein endgültiger Beweis ist, da der Inhalt des Geschrieben eher zufällig ist.</p>
             ]]>
     </string>
-    <string name="evidence_evidence_description_orbs_1">
+    <string name="evidence_evidence_description_orbs_0">
         <![CDATA[
                     <p>Geisterkugeln sind kleine, schwebende Kugeln, welche nur im Geisterraum vorhanden sind. <font color=#ff6161>Sie sind nur über die Videokameras und Kopfkameras über den Bildschirm im Truck bei eingeschalteter Nachsicht sichtbar</font>.</p>
                     <p>Auch wenn sie schnell erkannt werden können, sollten sie nicht zu schnell ausgeschlossen werden, da dies sonst später problematisch werden kann.</p>
             ]]>
     </string>
-    <string name="evidence_evidence_description_fingerprints_1">
+    <string name="evidence_evidence_description_fingerprints_0">
         <![CDATA[
                     <p>Fingerabdrücke werden von Geistern auf Objekten und Oberflächen hinterlassen und <font color=#ff6161>sind nur sichtbar, wenn UV-Licht, welches von UV-Lampen und Leuchtstäben ausgestrahlt wird, auf die betroffene Oberfläche gerichtet wird</font>. Unter UV-Licht leuchten sie grün.</p>
                     <p>Bei kleineren Gegenständen kann es schwer sein, die Fingerabdrücke zu erkennen, und sie verblassen nach einer Weile wieder. Wenn Sie Probleme beim Auffinden von Fingerabdrücken haben, kann die Verwendung einer Fotokamera auf Gegenstände wie einen Esstisch mit Geschirr oder Gläsern Beweise liefern, da das Journal möglicherweise Fingerabdrücke auf den Fotos erkennt. Verwirrenderweise erscheinen Fußabdrücke auch unter UV-Licht und zählen als Interaktionen im Journal, <font color=#ff6161>sind jedoch kein Beweis für Fingerabdrücke</font>.</p>
             ]]>
     </string>
+
+    <string name="evidence_evidence_description_emf_1">
+            <![CDATA[
+                    <p>EMF 5 ist der höchste Messwert des <font color=#ff6161>EMF-Readers</font>.</p>
+                    <p>Ein Geist erzeugt EMF-Emissionen der Stufen 1 bis 5, wenn er auf irgendeine Weise mit dem Raum oder dem Ouija-Brett interagiert. Leichtes Flackern, Schritte und andere kleinere passive Interaktionen führen normalerweise zu einem niedrigeren Messwert. Stärkere Interaktionen, wie z.B. das Erscheinen des Geistes oder ein klingelndes Telefon führen fast immer zu einem höheren Messwert.</p>
+                    <p>Ist EMF 5 einer der Beweise des Geistes, wird er diesen Wert nur zufällig ausgeben, weshalb <font color=#ff6161>der Nachweis von EMF 5 einige Zeit dauern kann</font>.</p>
+                ]]>
+        </string>
+        <string name="evidence_evidence_description_dots_1" >
+            <![CDATA[
+                <p>Die D.O.T.S. Projektor ist ein Gerät, das an Wänden oder auf dem Boden aufgestellt werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um sich herum.</p>
+                <p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
+            ]]>
+        </string>
+        <string name="evidence_evidence_description_temperatures_1">
+            <![CDATA[
+                        <p>Gefriertemperaturen sind Temperaturen <font color=#ff6161>unter 0° Celsius</font>. Die Temperatur kann mit einem <font color=#ff6161>Thermometer</font> gemessen werden.</p>
+                        <p>Wenn Geister Wärme aus der Umgebung entziehen, sinkt die Temperatur in dem Raum oder den Fluren, in denen der <font color=#ff6161>Geist die meiste Zeit verbringt</font>. Alle Geister verursachen früher oder später Temperaturen unter 13° Celsius, aber nur bestimmte Geistertypen senken die Temperatur unter 0° Celsius. Gibt es Gefriertemperaturen, wird der <font color=#ff6161>Atem des Spielers innerhalb des Spukgebiets sichtbar</font>. Die Abkühlung des Raumes, egal wie geringfügig, kann während der Untersuchung die ersten paar Minuten in Anspruch nehmen. Es ist eine gute Idee, zu Anfang alle Räume zu überprüfen und die Räume mit merkwürdig niedrigen Temperaturen später noch einmal zu überprüfen.</p>
+                ]]>
+        </string>
+        <string name="evidence_evidence_description_box_1">
+            <![CDATA[
+                        <p>Die Geisterbox dient der <font color=#ff6161>Kommunikation mit dem Geist</font>.</p>
+                        <p>Der Spieler muss dazu im <font color=#ff6161>Umgebungschat Fragen an eine aktivierte Geisterbox stellen. Dabei muss er sich in der Nähe des Geistes befinden und das Licht muss ausgeschaltet sein</font>. Bevor dies jedoch versucht werden sollte, überprüfen Sie auf dem Whiteboard des Trucks, ob der Geist auf Gruppen reagiert oder nur auf Personen, die alleine sind. Sobald der Geist antwortet, zählt die Geisterbox zu den Beweisen des Geistes. Dabei sollten gezielte Fragen wie „Wie alt bist du?“ oder „Wo bist du?“ gestellt werden. Der Umgebungschat sollte immer mit einer gewissen Vorsicht verwendet werden, da ihnen der Geist immer zuhört, egal, ob eine Geisterbox aktiviert ist oder nicht. Indem man dem Geist Befehle gibt wie „Zeig dich“ oder „Gib uns ein Zeichen“ oder seinen Namen mehrmals sagt (womit man ihn verärgert), kann man den Geist dazu bringen, zu erscheinen.</p>
+                ]]>
+        </string>
+        <string name="evidence_evidence_description_book_1">
+            <![CDATA[
+                        <p>Geister können in das Geisterbuch schreiben, <font color=#ff6161>egal ob es auf dem Boden platziert ist oder in der Hand gehalten wird</font>.</p>
+                        <p>Schreibt der Geist ins Buch, zählt dies als Beweis für seinen Geistertyp. Schreibt der Geist dämonische Symbole ins Buch, könnte das auf einen Dämon hinweisen, wobei das kein endgültiger Beweis ist, da der Inhalt des Geschrieben eher zufällig ist.</p>
+                ]]>
+        </string>
+        <string name="evidence_evidence_description_orbs_1">
+            <![CDATA[
+                        <p>Geisterkugeln sind kleine, schwebende Kugeln, welche nur im Geisterraum vorhanden sind. <font color=#ff6161>Sie sind nur über die Videokameras und Kopfkameras über den Bildschirm im Truck bei eingeschalteter Nachsicht sichtbar</font>.</p>
+                        <p>Auch wenn sie schnell erkannt werden können, sollten sie nicht zu schnell ausgeschlossen werden, da dies sonst später problematisch werden kann.</p>
+                ]]>
+        </string>
+        <string name="evidence_evidence_description_fingerprints_1">
+            <![CDATA[
+                        <p>Fingerabdrücke werden von Geistern auf Objekten und Oberflächen hinterlassen und <font color=#ff6161>sind nur sichtbar, wenn UV-Licht, welches von UV-Lampen und Leuchtstäben ausgestrahlt wird, auf die betroffene Oberfläche gerichtet wird</font>. Unter UV-Licht leuchten sie grün.</p>
+                        <p>Bei kleineren Gegenständen kann es schwer sein, die Fingerabdrücke zu erkennen, und sie verblassen nach einer Weile wieder. Wenn Sie Probleme beim Auffinden von Fingerabdrücken haben, kann die Verwendung einer Fotokamera auf Gegenstände wie einen Esstisch mit Geschirr oder Gläsern Beweise liefern, da das Journal möglicherweise Fingerabdrücke auf den Fotos erkennt. Verwirrenderweise erscheinen Fußabdrücke auch unter UV-Licht und zählen als Interaktionen im Journal, <font color=#ff6161>sind jedoch kein Beweis für Fingerabdrücke</font>.</p>
+                ]]>
+        </string>
 
     <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
@@ -719,7 +763,7 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopía</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopía</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
-    <string name="settings_fontstyle_classic">Phasmo Phobia</string>
+    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
     <string name="messagecenter_inboxestitle_label">Nachrichtenzentrum</string>
     <string name="messagecenter_inbox_pet">P.E.T.-Änderungsprotokoll</string>
     <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>

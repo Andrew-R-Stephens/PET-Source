@@ -6,8 +6,7 @@
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/popup_bg"
-    android:backgroundTint="#ED000000"
+    android:background="?attr/backgroundColor"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +62,6 @@
                 android:id="@+id/label_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/popup_investigation_info"
                 android:gravity="center"
                 android:padding="2sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -106,8 +104,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/popup_investigation_info"
+        android:layout_marginBottom="8dp"
         android:paddingBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"

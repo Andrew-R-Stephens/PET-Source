@@ -4,8 +4,7 @@
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/popup_bg"
-    android:backgroundTint="#D9000000"
+    android:background="?attr/backgroundColor"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +51,6 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/popup_investigation_info"
             app:layout_constraintBottom_toBottomOf="@+id/constraintlayout_1"
             app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
             app:layout_constraintStart_toEndOf="@+id/constraintlayout_12"
@@ -60,7 +58,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_name"
-                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="4dp"
@@ -101,7 +98,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/popup_investigation_info"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,18 +117,21 @@
                 <include
                     android:id="@+id/scrollview"
                     layout="@layout/item_scrollview"
-                    android:layout_height="0dp"
                     android:layout_width="0dp"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/animation_evidence"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/animation_evidence"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
                     android:adjustViewBounds="true"
                     android:cropToPadding="true"
                     android:padding="2dp"

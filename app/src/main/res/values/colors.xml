@@ -50,5 +50,6 @@
     <color name="cb_mono_white_highmed">#C0C0C0</color>
     <color name="cb_mono_white_med">#808080</color>
     <color name="cb_mono_white_lowmed">#404040</color>
+    <color name="cb_mono_white_low">#2C2C2C</color>
 
 </resources>

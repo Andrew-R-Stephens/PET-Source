@@ -11,6 +11,9 @@
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:layoutDirection">ltr</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/cb_mono_white_med</item>
+        <item name="backgroundColor" >@color/black</item>
         <item name="windowBackgroundColor">@color/black</item>
         <item name="windowStrokeColor">@color/white</item>
         <item name="colorPrimary">@color/black</item>
@@ -49,6 +52,34 @@
         <item name="negativeSelColor">@color/red_medHigh</item>
 
     </style>
+
+    <style name="NonColorblind.Base" parent="Colorblind.Base">
+        <item name="titleFontColor">@color/red_light</item>
+        <item name="subtitleFontColor">@color/red_medHigh</item>
+        <item name="splashtitleFontColor">@color/red_med</item>
+
+        <item name="bodyFontColor">@color/white</item>
+        <item name="bodyEmphasisFontColor">@color/red_light</item>
+
+        <item name="light_active">@color/red_high</item>
+        <item name="light_inactive">@color/red_dull</item>
+        <item name="light_off">@color/cb_mono_white_lowmed</item>
+
+        <item name="switchColor">@color/red_medHigh</item>
+        <item name="progressBarColorStart">@color/red_med</item>
+        <item name="progressBarColorEnd">@color/red_med</item>
+        <item name="strikethroughColor">@color/red_medHigh</item>
+        <item name="circleColor">@color/green_bright</item>
+
+        <item name="selectedColor">@color/cb_norm_item_selected</item>
+        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
+
+        <item name="positiveSelColor">@color/green_bright</item>
+        <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
+        <item name="negativeSelColor">@color/red_medHigh</item>
+
+    </style>
+
 
     <!-- -->
     <style name="Monochromacy" parent="Colorblind.Base">
@@ -134,6 +165,12 @@
 
     </style>
 
+    <style name="Funhouse" parent="NonColorblind.Base">
+        <item name="backgroundColor">#4B2840</item>
+        <item name="middlegroundColor">#EEABC4</item>
+        <item name="foregroundColor" >#861388</item>
+    </style>
+
     <style name="Fonts.Base" parent="Theme.PhasmophobiaEvidenceTool">
 
         <!-- Primary -->
@@ -212,13 +249,9 @@
         <item name="tertiaryFont_BoldNarrow_Manual">@style/RobotoMonoBold_Manual</item>
 
         <!-- Quaternary -->
-        <item name="quaternaryFont_Regular">@style/RobotoMono</item>
-        <item name="quaternaryFont_Regular_Squeeze">@style/RobotoMono_SqueezeText</item>
-        <item name="quaternaryFont_Regular_Manual">@style/RobotoMono_Manual</item>
-
-        <item name="quaternaryFont_Bold">@style/RobotoMonoBold</item>
-        <item name="quaternaryFont_Bold_Squeeze">@style/RobotoMonoBold_SqueezeText</item>
-        <item name="quaternaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
+        <item name="quaternaryFont_Regular">@style/TypewriterRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/TypewriterRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/TypewriterRegular_Manual</item>
 
     </style>
 
@@ -257,14 +290,92 @@
         <item name="tertiaryFont_BoldNarrow_Manual">@style/LazyDogBold_Manual</item>
 
         <!-- Quaternary -->
-        <item name="quaternaryFont_Regular">@style/LazyDog</item>
-        <item name="quaternaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
-        <item name="quaternaryFont_Regular_Manual">@style/LazyDog_Manual</item>
-
-        <item name="quaternaryFont_Bold">@style/LazyDogBold</item>
-        <item name="quaternaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
-        <item name="quaternaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
+        <item name="quaternaryFont_Regular">@style/TypewriterRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/TypewriterRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/TypewriterRegular_Manual</item>
 
     </style>
+
+    <style name="Brick" parent="Fonts.Base">
+
+        <!-- Primary -->
+        <item name="primaryFont_Regular">@style/BrickRegular</item>
+        <item name="primaryFont_Regular_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="primaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
+
+        <item name="primaryFont_Bold">@style/BrickRegular</item>
+        <item name="primaryFont_Bold_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
+
+        <!-- Secondary -->
+        <item name="secondaryFont_Regular">@style/BrickRegular</item>
+        <item name="secondaryFont_Regular_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="secondaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
+
+        <item name="secondaryFont_Bold">@style/BrickRegular</item>
+        <item name="secondaryFont_Bold_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
+
+        <!-- Tertiary -->
+        <item name="tertiaryFont_Regular">@style/BrickRegular</item>
+        <item name="tertiaryFont_Regular_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="tertiaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
+
+        <item name="tertiaryFont_Bold">@style/BrickRegular</item>
+        <item name="tertiaryFont_Bold_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="tertiaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
+
+        <item name="tertiaryFont_BoldNarrow">@style/BrickRegular</item>
+        <item name="tertiaryFont_BoldNarrow_Squeeze">@style/BrickRegular_SqueezeText</item>
+        <item name="tertiaryFont_BoldNarrow_Manual">@style/BrickRegular_Manual</item>
+
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/TypewriterRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/TypewriterRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/TypewriterRegular_Manual</item>
+
+    </style>
+
+
+    <style name="Clean" parent="Fonts.Base">
+
+        <!-- Primary -->
+        <item name="primaryFont_Regular">@style/CleanRegular</item>
+        <item name="primaryFont_Regular_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="primaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
+
+        <item name="primaryFont_Bold">@style/CleanRegular</item>
+        <item name="primaryFont_Bold_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
+
+        <!-- Secondary -->
+        <item name="secondaryFont_Regular">@style/CleanRegular</item>
+        <item name="secondaryFont_Regular_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="secondaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
+
+        <item name="secondaryFont_Bold">@style/CleanRegular</item>
+        <item name="secondaryFont_Bold_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
+
+        <!-- Tertiary -->
+        <item name="tertiaryFont_Regular">@style/CleanRegular</item>
+        <item name="tertiaryFont_Regular_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="tertiaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
+
+        <item name="tertiaryFont_Bold">@style/CleanRegular</item>
+        <item name="tertiaryFont_Bold_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="tertiaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
+
+        <item name="tertiaryFont_BoldNarrow">@style/CleanRegular</item>
+        <item name="tertiaryFont_BoldNarrow_Squeeze">@style/CleanRegular_SqueezeText</item>
+        <item name="tertiaryFont_BoldNarrow_Manual">@style/CleanRegular_Manual</item>
+
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/TypewriterRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/TypewriterRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/TypewriterRegular_Manual</item>
+
+    </style>
+
 
 </resources>

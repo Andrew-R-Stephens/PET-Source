@@ -282,6 +282,47 @@
     </style>
 
 
+    <!-- Brick Regular -->
+    <style name="BrickRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/geo</item>
+        <item name="fontFamily">@font/geo</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="BrickRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/geo</item>
+        <item name="fontFamily">@font/geo</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="BrickRegular_Manual">
+        <item name="android:fontFamily">@font/geo</item>
+        <item name="fontFamily">@font/geo</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+
+    <!-- Clean Regular -->
+    <style name="CleanRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/cuyabra</item>
+        <item name="fontFamily">@font/cuyabra</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="CleanRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/cuyabra</item>
+        <item name="fontFamily">@font/cuyabra</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="CleanRegular_Manual">
+        <item name="android:fontFamily">@font/cuyabra</item>
+        <item name="fontFamily">@font/cuyabra</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
     <!--
         Component Styles
     -->

@@ -107,6 +107,14 @@ public class TitleScreenActivity extends AppCompatActivity {
                 getTheme().applyStyle(R.style.Journal, true);
                 break;
             }
+            case 3: {
+                getTheme().applyStyle(R.style.Brick, true);
+                break;
+            }
+            case 4: {
+                getTheme().applyStyle(R.style.Clean, true);
+                break;
+            }
         }
 
         switch (colorSpace) {
@@ -128,6 +136,10 @@ public class TitleScreenActivity extends AppCompatActivity {
             }
             case 4: {
                 setTheme(R.style.Tritanomaly);
+                break;
+            }
+            case 5: {
+                setTheme(R.style.Funhouse);
                 break;
             }
         }

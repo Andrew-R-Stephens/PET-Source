@@ -25,7 +25,8 @@
             layout="@layout/item_evidence_tool"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_sanityTracking"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/button_raisesanity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +39,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/tabarrow_up"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/layout_evidence_tool"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_sanityTracking"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -115,7 +115,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 R.drawable.icon_pause);
 
         // MAP SELECTION
-
         MapCarouselView mapTrackControl = new MapCarouselView(
             mapCarouselData,
             map_prev, map_next, map_name);

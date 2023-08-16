@@ -93,6 +93,8 @@
         <item>@string/settings_fontstyle_classic</item>
         <item>@string/settings_fontstyle_android</item>
         <item>@string/settings_fontstyle_journal</item>
+        <item>@string/settings_fontstyle_brick</item>
+        <item>@string/settings_fontstyle_clean</item>
     </string-array>
 
 
@@ -244,11 +246,65 @@
         EVIDENCE ARRAYS
     -->
 
-    <!-- Evidence Names -->
+    <!-- Evidence Tier Naming -->
     <string-array name="evidence_tiers">
         <item>@string/evidence_evidence_tiers_1</item>
         <item>@string/evidence_evidence_tiers_2</item>
         <item>@string/evidence_evidence_tiers_3</item>
+    </string-array>
+
+    <!-- Evidence Tiers -->
+    <string-array name="evidence_tiers_arrays">
+        <item>@array/evidence_tiers_dots</item>
+        <item>@array/evidence_tiers_emf</item>
+        <item>@array/evidence_tiers_fingerprints</item>
+        <item>@array/evidence_tiers_temperatures</item>
+        <item>@array/evidence_tiers_orbs</item>
+        <item>@array/evidence_tiers_book</item>
+        <item>@array/evidence_tiers_box</item>
+    </string-array>
+
+    <!-- Evidence Full -->
+    <string-array name="evidence_tiers_dots">
+        <item>@string/evidence_evidence_type_dots</item>
+        <item>@array/evidence_tiers_dots_description</item>
+        <item>@array/evidence_tiers_dots_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_emf">
+        <item>@string/evidence_evidence_type_emf</item>
+        <item>@array/evidence_tiers_emf_description</item>
+        <item>@array/evidence_tiers_emf_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_fingerprints">
+        <item>@string/evidence_evidence_type_fingerprints</item>
+        <item>@array/evidence_tiers_fingerprints_description</item>
+        <item>@array/evidence_tiers_fingerprints_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_temperatures">
+        <item>@string/evidence_evidence_type_temperatures</item>
+        <item>@array/evidence_tiers_temperatures_description</item>
+        <item>@array/evidence_tiers_temperatures_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_orbs">
+        <item>@string/evidence_evidence_type_orbs</item>
+        <item>@array/evidence_tiers_orbs_description</item>
+        <item>@array/evidence_tiers_orbs_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_book">
+        <item>@string/evidence_evidence_type_book</item>
+        <item>@array/evidence_tiers_book_description</item>
+        <item>@array/evidence_tiers_book_animation</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_box">
+        <item>@string/evidence_evidence_type_box</item>
+        <item>@array/evidence_tiers_box_description</item>
+        <item>@array/evidence_tiers_box_animation</item>
     </string-array>
 
     <!-- Evidence Names -->
@@ -262,15 +318,115 @@
         <item>@string/evidence_evidence_type_box</item>
     </string-array>
 
-    <!-- Evidence Description -->
-    <string-array name="evidence_info_array">
+    <!-- Evidence Descriptions -->
+    <string-array name="evidence_tiers_dots_description">
+        <item>@string/evidence_evidence_description_dots_0</item>
         <item>@string/evidence_evidence_description_dots_1</item>
+        <item>@string/evidence_evidence_description_dots_2</item>
+        <item>@string/evidence_evidence_description_dots_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_emf_description">
+        <item>@string/evidence_evidence_description_emf_0</item>
         <item>@string/evidence_evidence_description_emf_1</item>
+        <item>@string/evidence_evidence_description_emf_2</item>
+        <item>@string/evidence_evidence_description_emf_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_fingerprints_description">
+        <item>@string/evidence_evidence_description_fingerprints_0</item>
         <item>@string/evidence_evidence_description_fingerprints_1</item>
+        <item>@string/evidence_evidence_description_fingerprints_2</item>
+        <item>@string/evidence_evidence_description_fingerprints_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_temperatures_description">
+        <item>@string/evidence_evidence_description_temperatures_0</item>
         <item>@string/evidence_evidence_description_temperatures_1</item>
+        <item>@string/evidence_evidence_description_temperatures_2</item>
+        <item>@string/evidence_evidence_description_temperatures_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_orbs_description">
+        <item>@string/evidence_evidence_description_orbs_0</item>
         <item>@string/evidence_evidence_description_orbs_1</item>
+        <item>@string/evidence_evidence_description_orbs_2</item>
+        <item>@string/evidence_evidence_description_orbs_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_book_description">
+        <item>@string/evidence_evidence_description_book_0</item>
         <item>@string/evidence_evidence_description_book_1</item>
+        <item>@string/evidence_evidence_description_book_2</item>
+        <item>@string/evidence_evidence_description_book_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_box_description">
+        <item>@string/evidence_evidence_description_box_0</item>
         <item>@string/evidence_evidence_description_box_1</item>
+        <item>@string/evidence_evidence_description_box_2</item>
+        <item>@string/evidence_evidence_description_box_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_dots_animation">
+        <item>@drawable/example_dots_0</item>
+        <item>@drawable/anim_dots_1</item>
+        <item>@drawable/anim_dots_2</item>
+        <item>@drawable/anim_dots_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_emf_animation">
+        <item>@drawable/example_emf5_0</item>
+        <item>@drawable/anim_emf_1</item>
+        <item>@drawable/anim_emf_2</item>
+        <item>@drawable/anim_emf_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_fingerprints_animation">
+        <item>@drawable/example_fingerprints_normal_cropped_0</item>
+        <item>@drawable/anim_uv_1</item>
+        <item>@drawable/anim_uv_2</item>
+        <item>@drawable/anim_uv_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_temperatures_animation">
+        <item>@drawable/example_thermometer_freezing_cropped_0</item>
+        <item>@drawable/anim_thermo_1</item>
+        <item>@drawable/anim_thermo_2</item>
+        <item>@drawable/anim_thermo_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_orbs_animation">
+        <item>@drawable/example_ghost_orbs_0</item>
+        <item>@drawable/anim_vcam_1</item>
+        <item>@drawable/anim_vcam_2</item>
+        <item>@drawable/anim_vcam_3</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_book_animation">
+        <item>@drawable/example_ghost_writing_cropped_0</item>
+        <item>@drawable/example_ghost_writing_cropped_0</item>
+        <item>@drawable/example_ghost_writing_cropped_0</item>
+        <item>@drawable/example_ghost_writing_cropped_0</item>
+    </string-array>
+
+    <string-array name="evidence_tiers_box_animation">
+        <item>@drawable/example_spirit_box_cropped_0</item>
+        <item>@drawable/example_spirit_box_cropped_0</item>
+        <item>@drawable/example_spirit_box_cropped_0</item>
+        <item>@drawable/example_spirit_box_cropped_0</item>
+    </string-array>
+
+
+    <!-- Evidence Description - OLD -->
+    <string-array name="evidence_info_array">
+        <item>@string/evidence_evidence_description_dots_0</item>
+        <item>@string/evidence_evidence_description_emf_0</item>
+        <item>@string/evidence_evidence_description_fingerprints_0</item>
+        <item>@string/evidence_evidence_description_temperatures_0</item>
+        <item>@string/evidence_evidence_description_orbs_0</item>
+        <item>@string/evidence_evidence_description_book_0</item>
+        <item>@string/evidence_evidence_description_box_0</item>
     </string-array>
 
     <!-- Evidence Icons -->
@@ -286,13 +442,13 @@
 
     <!-- Evidence Example Image -->
     <integer-array name="evidence_animation_array">
-        <item>@drawable/example_dots</item>
-        <item>@drawable/example_emf5</item>
-        <item>@drawable/example_fingerprints_normal_cropped</item>
-        <item>@drawable/example_thermometer_freezing_cropped</item>
-        <item>@drawable/example_ghost_orbs</item>
-        <item>@drawable/example_ghost_writing_cropped</item>
-        <item>@drawable/example_spirit_box_cropped</item>
+        <item>@drawable/example_dots_0</item>
+        <item>@drawable/example_emf5_0</item>
+        <item>@drawable/example_fingerprints_normal_cropped_0</item>
+        <item>@drawable/example_thermometer_freezing_cropped_0</item>
+        <item>@drawable/example_ghost_orbs_0</item>
+        <item>@drawable/example_ghost_writing_cropped_0</item>
+        <item>@drawable/example_spirit_box_cropped_0</item>
     </integer-array>
 
     <!-- Ghost NORMAL Evidence Arrays -->

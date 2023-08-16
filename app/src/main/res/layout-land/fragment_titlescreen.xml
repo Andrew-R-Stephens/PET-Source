@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView
         android:id="@+id/titlescreen_backgroundanimation"
@@ -40,12 +42,12 @@
             app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_percent=".8">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_info"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
+                android:background="@color/transparent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_info"
@@ -66,7 +68,7 @@
                 app:layout_constraintStart_toEndOf="@+id/button_info"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/button_inbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,6 +77,8 @@
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_newspaper"
+                    android:tintMode="multiply"
+                    android:tint="?attr/foregroundColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +101,7 @@
                     app:tintMode="multiply" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_review"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -106,13 +110,15 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_review"
+                android:tintMode="multiply"
+                android:tint="?attr/foregroundColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_settings"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -121,6 +127,8 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_gear"
+                android:tintMode="multiply"
+                android:tint="?attr/foregroundColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
