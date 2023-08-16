@@ -538,6 +538,8 @@ public class EvidenceFragment extends Fragment {
 
                     layout_overview.setVisibility(View.VISIBLE);
                     layout_tiers.setVisibility(View.GONE);
+
+                    animation_fullscreen.setImageResource(animations[0]);
                 });
                 select_tiers.setOnClickListener(selectView -> {
                     select_tiers.setImageState(new int[]{R.attr.state_done}, true);
@@ -768,6 +770,7 @@ public class EvidenceFragment extends Fragment {
 
         details.setText(description);
         animationView.setImageResource(animation);
+        animation_fullscreen.setImageResource(animation);
 
 
         TypedArray typedArray =
