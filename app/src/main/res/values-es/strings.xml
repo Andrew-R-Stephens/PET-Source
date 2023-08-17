@@ -429,6 +429,11 @@
     <string name="evidence_ghost_huntingdata_deogen">
          <![CDATA[
              <p>Caza al 40\% de cordura.</p>
+             <ul>
+                 <li>3,0 m/s mientras corres hacia la ubicación de un jugador oculto.</li>
+                 <li>0,4 m/s o más mientras se sigue de cerca a un investigador.</li>
+                 <li>3,0 m/s o menos para mantener la proximidad al investigador.
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_goryo">
@@ -439,11 +444,23 @@
     <string name="evidence_ghost_huntingdata_hantu" >
          <![CDATA[
              <p>Caza al 50\% de cordura.</p>
+             <ul>
+                 <li>15 °C+ = 1,40 m/s</li>
+                 <li>12 °C = 1,75 m/s</li>
+                 <li> 9 °C = 2,10 m/s</li>
+                 <li> 6 °C = 2,30 m/s</li>
+                 <li> 3 °C = 2,50 m/s</li>
+                 <li> 0 °C = 2,70 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_jinn" >
          <![CDATA[
              <p>Caza al 50\% de cordura.</p>
+             <ul>
+                 <li>Se mueve a 2,5 m/s mientras persigue a un investigador que está a más de 3 metros de distancia y la caja de fusibles está encendida.</li>
+                 <li>Se mueve 1,7 m/s si no persigue a nadie.</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_mare" >
@@ -455,6 +472,18 @@
     <string name="evidence_ghost_huntingdata_moroi">
          <![CDATA[
              <p>Caza al 50\% de cordura.</p>
+             <ul>
+                 <li>Cordura 0\% \- 5\%: 2,25 m/s</li>
+                 <li>Cordura 5\% \- 10\% : 2.164 m/s</li>
+                 <li>Cordura 10\% \- 15\%: 2.081 m/s</li>
+                 <li>Cordura 15\% \- 20\% : 1.998 m/s</li>
+                 <li>Cordura 20\% \- 25\% : 1.915 m/s</li>
+                 <li>Cordura 25\% \- 30\% : 1.832 m/s</li>
+                 <li>Cordura 30\% \- 35\%: 1.749 m/s</li>
+                 <li>Cordura 35\% \- 40\%: 1,66 m/s</li>
+                 <li>Cordura 40\% \- 45\% : 1.583 m/s</li>
+                 <li>Cordura 45\% \- 100\%: 1,5 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_myling" >
@@ -492,11 +521,16 @@
          <![CDATA[
              <p>Normalmente caza al 50\% de cordura.</p>
              <p>Caza con un 65\% de cordura si hay algún dispositivo electrónico encendido cerca.</p>
+             <ul>
+                 <li>Se mueve 2,5 m/s si hay equipos electrónicos cerca</li>
+                 <li>Se mueve 1,7 m/s si no está cerca de equipos electrónicos</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_revenant" >
          <![CDATA[
              <p>Caza al 50\% de cordura.</p>
+             <p>Velocidad de movimiento: 1 m/s si no persigue; 3,0 m/s si persigue.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_shade" >
@@ -511,18 +545,24 @@
      </string>
     <string name="evidence_ghost_huntingdata_thaye">
          <![CDATA[
-             <p>Caza al 75\% de cordura en su edad más joven.</p>
-             <p>Caza al 15\% de cordura en su edad máxima.</p>
+             <p>Envejece gradualmente en 10 etapas y pierde 0,175 m/s de velocidad de movimiento por etapa.</p>
+             <p>Caza al 75\% de cordura en su edad más joven. Movimiento máximo: 2,7 m/s</p>
+             <p>Caza al 15\% de cordura en su edad más avanzada. Movimiento máximo: 1,0 m/s</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
          <![CDATA[
              <p>Caza al 50\% de cordura.</p>
+             <p>50\% de probabilidad de ser gemelo durante la cacería</p>
+             <ul>
+                 <li>Twin A: 1,5 m/s mínimo</li>
+                 <li>Twin B: 1,9 m/s mínimo</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Las preferencias de caza se basan en la imitación del fantasma. Por lo tanto, puede cazar entre un 15\% y un 100\% de cordura.</p>
+             <p>Las preferencias de caza se basan en el fantasma imitado. Por lo tanto, The Mimic puede cazar entre un 15\% y un 100\% de cordura.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_wraith" >
@@ -541,7 +581,6 @@
              <p>Caza al 50\% de cordura.</p>
          ]]>
      </string>
-
 
     <!--
         EVIDENCE

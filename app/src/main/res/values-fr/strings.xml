@@ -417,10 +417,10 @@
         ]]>
     </string>
 
-    <!-- Hunting Data -->
+    <!-- Chasse aux données -->
     <string name="evidence_ghost_huntingdata_banshee" >
          <![CDATA[
-             <p>Chasse à 50\% de santé mentale du joueur ciblé.</p>
+             <p>Chasse à 50 \% de santé mentale du joueur ciblé.</p>
              <p>Ignore complètement la santé mentale moyenne.</p>
          ]]>
      </string>
@@ -433,6 +433,11 @@
     <string name="evidence_ghost_huntingdata_deogen">
          <![CDATA[
              <p>Chasse à 40\% de santé mentale.</p>
+             <ul>
+                 <li>3,0 m/s lors d\'un sprint vers l\'emplacement d\'un joueur caché.</li>
+                 <li>0,4 m/s ou plus en suivant de près un enquêteur.</li>
+                 <li>3,0 m/s ou moins pour rester à proximité de l\'enquêteur.
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_goryo">
@@ -443,11 +448,23 @@
     <string name="evidence_ghost_huntingdata_hantu" >
          <![CDATA[
              <p>Chasse à 50\% de santé mentale.</p>
+             <ul>
+                 <li>15°C+ = 1,40 m/s</li>
+                 <li>12°C = 1,75 m/s</li>
+                 <li> 9°C = 2,10 m/s</li>
+                 <li> 6°C = 2,30 m/s</li>
+                 <li> 3°C = 2,50 m/s</li>
+                 <li> 0°C = 2,70 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_jinn" >
          <![CDATA[
              <p>Chasse à 50\% de santé mentale.</p>
+             <ul>
+                 <li>Se déplace de 2,5 m/s tout en poursuivant un investigateur qui se trouve à plus de 3mètres et la boîte à fusibles est allumée.</li>
+                 <li>Se déplace de 1,7 m/s s\'il ne poursuit personne.</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_mare" >
@@ -459,6 +476,18 @@
     <string name="evidence_ghost_huntingdata_moroi">
          <![CDATA[
              <p>Chasse à 50\% de santé mentale.</p>
+             <ul>
+                 <li>Santé 0\% \- 5\%: 2,25 m/s</li>
+                 <li>Santé 5\% \- 10\%: 2,164 m/s</li>
+                 <li>Santé 10\% \- 15\%: 2,081 m/s</li>
+                 <li>Santé 15\% \- 20\%: 1,998 m/s</li>
+                 <li>Santé 20\% \- 25\%: 1,915 m/s</li>
+                 <li>Santé 25\% \- 30\%: 1,832 m/s</li>
+                 <li>Santé 30\% \- 35\%: 1,749 m/s</li>
+                 <li>Santé 35\% \- 40\%: 1,66 m/s</li>
+                 <li>Santé 40\% \- 45\%: 1,583 m/s</li>
+                 <li>Santé 45\% \- 100\%: 1,5 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_myling" >
@@ -496,11 +525,16 @@
          <![CDATA[
              <p>Chasse normalement à 50\% de santé mentale.</p>
              <p>Chasse à 65\% de santé mentale si des appareils électroniques sous tension se trouvent à proximité.</p>
+             <ul>
+                 <li>Se déplace de 2,5 m/s si un équipement électronique se trouve à proximité</li>
+                 <li>Se déplace de 1,7 m/s s\'il n\'est pas à proximité d\'un équipement électronique</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_revenant" >
          <![CDATA[
              <p>Chasse à 50\% de santé mentale.</p>
+             <p>Vitesse de déplacement: 1 m/s si vous ne poursuivez pas; 3,0 m/s en poursuite.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_shade" >
@@ -515,18 +549,24 @@
      </string>
     <string name="evidence_ghost_huntingdata_thaye">
          <![CDATA[
-             <p>Chasse à 75\% de santé mentale à son plus jeune âge.</p>
-             <p>Chasse à 15\% de santé mentale à son âge le plus avancé.</p>
+             <p>Vieillit progressivement en 10 étapes et perd 0,175 m/s de vitesse de déplacement par étape.</p>
+             <p>Chasse à 75\% de santé mentale à son plus jeune âge. Déplacement maximum: 2,7 m/s</p>
+             <p>Chasse à 15\% de santé mentale à son âge le plus avancé. Mouvement maximum: 1,0 m/s</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
          <![CDATA[
              <p>Chasse à 50\% de santé mentale.</p>
+             <p>50\% de chance d\'être l\'un ou l\'autre des jumeaux pendant la chasse</p>
+             <ul>
+                 <li>Twin A: 1,5 m/s minimum</li>
+                 <li>Twin B: 1,9 m/s minimum</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Les préférences de chasse sont basées sur le fantôme imité. Par conséquent, il peut chasser entre 15\% et 100\% de santé mentale.</p>
+             <p>Les préférences de chasse sont basées sur le fantôme imité. Par conséquent, The Mimic peut chasser entre 15\% et 100\% de santé mentale.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_wraith" >

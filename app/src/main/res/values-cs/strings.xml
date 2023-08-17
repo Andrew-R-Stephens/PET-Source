@@ -483,6 +483,11 @@
     <string name="evidence_ghost_huntingdata_deogen">
          <![CDATA[
              <p>Loví při 40\% příčetnosti.</p>
+             <ul>
+                 <li>3,0 m/s při sprintu na místo skrytého hráče.</li>
+                 <li>0,4 m/s nebo více při pozorném sledování vyšetřovatele.</li>
+                 <li>3,0 m/s nebo méně pro udržení těsné blízkosti vyšetřovatele.
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_goryo">
@@ -493,11 +498,23 @@
     <string name="evidence_ghost_huntingdata_hantu" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
+             <ul>
+                 <li>15 °C+ = 1,40 m/s</li>
+                 <li>12 °C = 1,75 m/s</li>
+                 <li> 9 °C = 2,10 m/s</li>
+                 <li> 6 °C = 2,30 m/s</li>
+                 <li> 3 °C = 2,50 m/s</li>
+                 <li> 0 °C = 2,70 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_jinn" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
+             <ul>
+                 <li>Pohybuje se rychlostí 2,5 m/s, zatímco pronásleduje vyšetřovatele, který je vzdálený 3+ metry, a pojistková skříňka je zapnutá.</li>
+                 <li>Pokud nikoho nepronásleduje, pohybuje se rychlostí 1,7 m/s.</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_mare" >
@@ -509,6 +526,18 @@
     <string name="evidence_ghost_huntingdata_moroi">
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
+             <ul>
+                 <li>Příčetnost 0\% \- 5\% : 2,25 m/s</li>
+                 <li>Příčetnost 5\% \- 10\% : 2,164 m/s</li>
+                 <li>Zdravý rozum 10\% \- 15\% : 2,081 m/s</li>
+                 <li>Zdravý rozum 15\% \- 20\% : 1,998 m/s</li>
+                 <li>Zdravý rozum 20\% \- 25\% : 1,915 m/s</li>
+                 <li>Zdravý rozum 25\% \- 30\% : 1,832 m/s</li>
+                 <li>Zdravý rozum 30\% \- 35\% : 1,749 m/s</li>
+                 <li>Zdravý rozum 35\% \- 40\% : 1,66 m/s</li>
+                 <li>Zdravý rozum 40\% \- 45\% : 1,583 m/s</li>
+                 <li>Zdravý rozum 45\% \- 100\% : 1,5 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_myling" >
@@ -546,11 +575,16 @@
          <![CDATA[
              <p>Normálně loví při 50\% příčetnosti.</p>
              <p>Loví s 65\% příčetností, pokud je poblíž zapnutá elektronika.</p>
+             <ul>
+                 <li>Pohybuje se rychlostí 2,5 m/s, pokud je v blízkosti elektronické zařízení</li>
+                 <li>Pohybuje se rychlostí 1,7 m/s, pokud není v blízkosti elektronického zařízení</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_revenant" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
+             <p>Rychlost pohybu: 1 m/s bez pronásledování; 3,0 m/s při pronásledování.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_shade" >
@@ -565,18 +599,24 @@
      </string>
     <string name="evidence_ghost_huntingdata_thaye">
          <![CDATA[
-             <p>V nejmladším věku loví se 75\% příčetností.</p>
-             <p>Loví s 15\% příčetností v nejstarším věku.</p>
+             <p>Postupně stárne v 10 fázích a ztrácí 0,175 m/s rychlosti pohybu na fázi.</p>
+             <p>V nejmladším věku loví se 75\% příčetností. Maximální pohyb: 2,7 m/s</p>
+             <p>Loví s 15\% příčetností v nejstarším věku. Maximální pohyb: 1,0 m/s</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
+             <p>50% šance, že se během lovu stanete jedním z dvojčat</p>
+             <ul>
+                 <li>Dvojče A: minimálně 1,5 m/s</li>
+                 <li>Dvojče B: minimálně 1,9 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Předvolby lovu jsou založeny na napodobovaném duchu. Proto může lovit kdekoli mezi 15\% a 100\% příčetnosti.</p>
+             <p>Předvolby lovu vycházejí z napodobeného ducha. Mimic tedy může lovit kdekoli mezi 15\% a 100\% příčetností.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_wraith" >

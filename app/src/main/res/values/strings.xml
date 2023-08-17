@@ -397,14 +397,6 @@
     <string name="evidence_ghost_strengths_hantu">
         <![CDATA[
             <p>Lower temperatures allow the Hantu to move at faster speeds. Line of sight does not effect the Hantu\'s speed.</p>
-			<ul>
-				<li>15°C+ = 1.40 m/s</li>
-				<li>12°C  = 1.75 m/s</li>
-				<li> 9°C  = 2.10 m/s</li>
-				<li> 6°C  = 2.30 m/s</li>
-				<li> 3°C  = 2.50 m/s</li>
-				<li> 0°C  = 2.70 m/s</li>
-			</ul>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_jinn" >
@@ -420,18 +412,6 @@
     <string name="evidence_ghost_strengths_moroi">
         <![CDATA[
             <p>The Moroi will take full advantage of every bit of Sanity lost. Less team Sanity will produce higher levels of aggressiveness. At 0% average Sanity, the ghost will become lightning fast during a hunt. Based on average team Sanity, its speed ranges between 1.5 m/s at it\'s slowest to 2.25 m/s at it\'s fastest.</p>
-			<ul>
-				<li>Sanity  0% \-   5% : 2.25 m/s</li>
-				<li>Sanity  5% \-  10% : 2.164 m/s</li>
-				<li>Sanity 10% \-  15% : 2.081 m/s</li>
-				<li>Sanity 15% \-  20% : 1.998 m/s</li>
-				<li>Sanity 20% \-  25% : 1.915 m/s</li>
-				<li>Sanity 25% \-  30% : 1.832 m/s</li>
-				<li>Sanity 30% \-  35% : 1.749 m/s</li>
-				<li>Sanity 35% \-  40% : 1.66 m/s</li>
-				<li>Sanity 40% \-  45% : 1.583 m/s</li>
-				<li>Sanity 45% \- 100% : 1.5 m/s</li>
-			</ul>
             <p>The ghost has a hidden ability \-\- a curse \-\- which causes any player to drain in Sanity at a rate of .03\%/sec so long as the effected player is within the play area. This effect is caused if the player uses and gets a response from the Spirit Box. The effect stacks atop the normal rate at which players Sanity drains. Candles do not halt the effects, but the curse can be lifted upon the use of Sanity Pills.</p>
         ]]>
     </string>
@@ -654,6 +634,11 @@
     <string name="evidence_ghost_huntingdata_deogen">
         <![CDATA[
             <p>Hunts at 40\% Sanity.</p>
+            <ul>
+                <li>3.0 m/s while sprinting to a hidden player\'s location.</li>
+                <li>0.4 m/s or more while following an investigator closely.</li>
+                <li>3.0 m/s or less to maintain close proximity to investigator.
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_goryo">
@@ -664,11 +649,23 @@
     <string name="evidence_ghost_huntingdata_hantu" >
         <![CDATA[
             <p>Hunts at 50\% Sanity.</p>
+            <ul>
+                <li>15°C+ = 1.40 m/s</li>
+                <li>12°C  = 1.75 m/s</li>
+                <li> 9°C  = 2.10 m/s</li>
+                <li> 6°C  = 2.30 m/s</li>
+                <li> 3°C  = 2.50 m/s</li>
+                <li> 0°C  = 2.70 m/s</li>
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_jinn" >
         <![CDATA[
             <p>Hunts at 50\% Sanity.</p>
+            <ul>
+                <li>Moves 2.5 m/s while both chasing an investigator who is 3+ meters away and the Fuse Box is on.</li>
+                <li>Moves 1.7 m/s if not chasing anyone.</li>
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_mare" >
@@ -680,6 +677,18 @@
     <string name="evidence_ghost_huntingdata_moroi">
         <![CDATA[
             <p>Hunts at 50\% Sanity.</p>
+            <ul>
+                <li>Sanity  0% \-   5% : 2.25 m/s</li>
+                <li>Sanity  5% \-  10% : 2.164 m/s</li>
+                <li>Sanity 10% \-  15% : 2.081 m/s</li>
+                <li>Sanity 15% \-  20% : 1.998 m/s</li>
+                <li>Sanity 20% \-  25% : 1.915 m/s</li>
+                <li>Sanity 25% \-  30% : 1.832 m/s</li>
+                <li>Sanity 30% \-  35% : 1.749 m/s</li>
+                <li>Sanity 35% \-  40% : 1.66 m/s</li>
+                <li>Sanity 40% \-  45% : 1.583 m/s</li>
+                <li>Sanity 45% \- 100% : 1.5 m/s</li>
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_myling" >
@@ -717,11 +726,16 @@
         <![CDATA[
             <p>Normally hunts at 50\% Sanity.</p>
             <p>Hunts at 65\% Sanity if nearby powered\-on electronics.</p>
+            <ul>
+                <li>Moves 2.5m/s if nearby electronic equipement</li>
+                <li>Moves 1.7 m/s if not nearby electronic equipment</li>
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_revenant" >
         <![CDATA[
             <p>Hunts at 50\% Sanity.</p>
+            <p>Movement speed: 1 m/s if not chasing; 3.0 m/s if chasing.</p>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_shade" >
@@ -736,14 +750,19 @@
     </string>
     <string name="evidence_ghost_huntingdata_thaye">
         <![CDATA[
-            <p>Incrementally ages while .</p>
-            <p>Hunts at 75\% Sanity at it\'s youngest age.</p>
-            <p>Hunts at 15\% Sanity at it\'s oldest age.</p>
+            <p>Incrementally ages in 10 stages and loses 0.175 m/s movement speed per stage.</p>
+            <p>Hunts at 75\% Sanity at it\'s youngest age. Max movement: 2.7 m/s</p>
+            <p>Hunts at 15\% Sanity at it\'s oldest age. Max movement: 1.0 m/s</p>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
         <![CDATA[
             <p>Hunts at 50\% Sanity.</p>
+            <p>50% chance to be either twin during the hunt</p>
+            <ul>
+                <li>Twin A: 1.5 m/s minimum</li>
+                <li>Twin B: 1.9 m/s minimum</li>
+            </ul>
         ]]>
     </string>
     <string name="evidence_ghost_huntingdata_themimic" >

@@ -412,6 +412,7 @@
     </string>
 
     <!-- Hunting Data -->
+    <!-- Hunting Data -->
     <string name="evidence_ghost_huntingdata_banshee" >
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit des Zielspielers.</p>
@@ -427,6 +428,11 @@
     <string name="evidence_ghost_huntingdata_deogen">
          <![CDATA[
              <p>Jagt mit 40\% geistiger Gesundheit.</p>
+             <ul>
+                 <li>3,0 m/s beim Sprinten zum Standort eines versteckten Spielers.</li>
+                 <li>0,4 m/s oder mehr, während Sie einem Ermittler genau folgen.</li>
+                 <li>3,0 m/s oder weniger, um die Nähe zum Untersucher aufrechtzuerhalten.
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_goryo">
@@ -437,11 +443,23 @@
     <string name="evidence_ghost_huntingdata_hantu" >
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <ul>
+                 <li>15°C+ = 1,40 m/s</li>
+                 <li>12°C = 1,75 m/s</li>
+                 <li> 9°C = 2,10 m/s</li>
+                 <li> 6°C = 2,30 m/s</li>
+                 <li> 3°C = 2,50 m/s</li>
+                 <li> 0°C = 2,70 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_jinn" >
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <ul>
+                 <li>Bewegt sich mit 2,5 m/s, während beide einen Ermittler verfolgen, der 3+ Meter entfernt ist und die Sicherungsbox eingeschaltet ist.</li>
+                 <li>Bewegt sich 1,7 m/s, wenn er niemanden verfolgt.</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_mare" >
@@ -453,6 +471,18 @@
     <string name="evidence_ghost_huntingdata_moroi">
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <ul>
+                 <li>Gesundheit 0\% bis 5\%: 2,25 m/s</li>
+                 <li>Geistige Gesundheit 5\% bis 10\%: 2,164 m/s</li>
+                 <li>Geistige Gesundheit 10\% bis 15\%: 2,081 m/s</li>
+                 <li>Geistige Gesundheit 15\% bis 20\%: 1,998 m/s</li>
+                 <li>Geistige Gesundheit 20\% \- 25\%: 1,915 m/s</li>
+                 <li>Geistige Gesundheit 25\% bis 30\%: 1,832 m/s</li>
+                 <li>Geistige Gesundheit 30\% \- 35\%: 1,749 m/s</li>
+                 <li>Geistige Gesundheit 35\% bis 40\%: 1,66 m/s</li>
+                 <li>Geistige Gesundheit 40\% \- 45\%: 1,583 m/s</li>
+                 <li>Gesundheit 45\% \- 100\%: 1,5 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_myling" >
@@ -490,11 +520,16 @@
          <![CDATA[
              <p>Jagt normalerweise mit 50\% geistiger Gesundheit.</p>
              <p>Jagt mit 65\% geistiger Gesundheit, wenn sich in der Nähe eingeschalteter Elektronik befindet.</p>
+             <ul>
+                 <li>Bewegt sich mit 2,5 m/s, wenn sich elektronische Geräte in der Nähe befinden</li>
+                 <li>Bewegt sich mit 1,7 m/s, wenn sich kein elektronisches Gerät in der Nähe befindet</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_revenant" >
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <p>Bewegungsgeschwindigkeit: 1 m/s, wenn nicht verfolgt; 3,0 m/s bei Verfolgungsjagd.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_shade" >
@@ -509,18 +544,24 @@
      </string>
     <string name="evidence_ghost_huntingdata_thaye">
          <![CDATA[
-             <p>Jagt im jüngsten Alter mit 75\% geistiger Gesundheit.</p>
-             <p>Jagt mit 15\% geistiger Gesundheit im ältesten Alter.</p>
+             <p>Altert schrittweise in 10 Stufen und verliert pro Stufe 0,175 m/s Bewegungsgeschwindigkeit.</p>
+             <p>Jagt im jüngsten Alter mit 75 % geistiger Gesundheit. Maximale Bewegung: 2,7 m/s</p>
+             <p>Jagt im ältesten Alter mit 15 % geistiger Gesundheit. Maximale Bewegung: 1,0 m/s</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_thetwins" >
          <![CDATA[
              <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <p>50\% Chance, während der Jagd einer der beiden Zwillinge zu sein</p>
+             <ul>
+                 <li>Twin A: mindestens 1,5 m/s</li>
+                 <li>Twin B: mindestens 1,9 m/s</li>
+             </ul>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Jagdpräferenzen basieren auf der Nachahmung des Geistes. Daher kann es zwischen 15\% und 100\% geistige Gesundheit jagen.</p>
+             <p>Jagdpräferenzen basieren auf dem nachgeahmten Geist. Daher kann der Mimic zwischen 15\% und 100 % geistige Gesundheit jagen.</p>
          ]]>
      </string>
     <string name="evidence_ghost_huntingdata_wraith" >
@@ -541,6 +582,7 @@
      </string>
 
 
+    <!-- EVIDENCE -->
     <string name="evidence_evidence_description_emf_0">
         <![CDATA[
                 <p>EMF 5 ist der höchste Messwert des <font color=#ff6161>EMF-Readers</font>.</p>
