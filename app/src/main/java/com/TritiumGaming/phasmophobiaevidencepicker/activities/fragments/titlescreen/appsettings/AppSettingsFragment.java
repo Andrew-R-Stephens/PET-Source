@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings;
 
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,12 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,6 +27,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ColorThemesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -33,6 +37,7 @@ import java.util.HashMap;
 public class AppSettingsFragment extends Fragment {
 
     private FirebaseAnalytics analytics;
+    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
@@ -112,6 +117,9 @@ public class AppSettingsFragment extends Fragment {
         ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 
+        if(getActivity() != null) {
+            googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
+        }
 
         // COLORBLIND DATA
         TypedArray colorTypedArray =
@@ -330,7 +338,37 @@ public class AppSettingsFragment extends Fragment {
                         }
                     });
         }
+
+        // Include a privacy setting if applicable
+        if (googleMobileAdsConsentManager.isPrivacyOptionsRequired()) {
+            ConstraintLayout adsLayout = view.findViewById(R.id.constraintLayout_ads);
+            adsLayout.setVisibility(View.VISIBLE);
+
+            AppCompatButton adsButton = view.findViewById(R.id.settings_ads_label);
+            adsButton.setOnClickListener(v -> showAdsConsentForm(v.getContext()));
+        }
     }
+
+
+    public void showAdsConsentForm(Context context) {
+
+        // Handle changes to user consent.
+        googleMobileAdsConsentManager.showPrivacyOptionsForm(
+                getActivity(),
+                formError -> {
+                    if (formError != null) {
+                        Toast.makeText(
+                                        context,
+                                        formError.getMessage(),
+                                        Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+        );
+        Log.d("AdsConsent", "should show consent form");
+
+    }
+
 
     private void initFirebase() {
         if(getContext() != null){

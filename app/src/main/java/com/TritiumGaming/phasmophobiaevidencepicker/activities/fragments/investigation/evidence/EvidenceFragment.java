@@ -761,14 +761,13 @@ public class EvidenceFragment extends Fragment {
 
     public void generateEvidenceTierView(View parentView, int tierIndex, GifImageView animation_fullscreen, String description, int animation) {
         ConstraintLayout scrollView = parentView.findViewById(R.id.scrollview_tiers);
-        AppCompatTextView title = scrollView.findViewById(R.id.label_tier);
-        AppCompatTextView details = scrollView.findViewById(R.id.info_tier);
+        AppCompatTextView title = parentView.findViewById(R.id.label_tier);
         GifImageView animationView = parentView.findViewById(R.id.animation_tier);
+        AppCompatTextView details = scrollView.findViewById(R.id.info_tier);
 
-        Log.d("EvBuild", description);
-
-
-        details.setText(description);
+        details.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                description,
+                "#ff6161", fontEmphasisColor + "")));
         animationView.setImageResource(animation);
         animation_fullscreen.setImageResource(animation);
 
@@ -1170,6 +1169,14 @@ public class EvidenceFragment extends Fragment {
                     ghostHuntData,
                     "#ff6161", fontEmphasisColor + "")));
 
+
+            int orientation = getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                scrollCons_huntdata.post(() ->
+                        scrollCons_huntdata.setMaxHeight((int)(((ConstraintLayout)scrollCons_huntdata.getParent()).getHeight() * .4f)));
+            }
+
+
             left.setOnClickListener(view -> {
                 detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
 
@@ -1229,7 +1236,6 @@ public class EvidenceFragment extends Fragment {
                     scroller_swapping,
                     indicator_swapping);
 
-            int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             } else {

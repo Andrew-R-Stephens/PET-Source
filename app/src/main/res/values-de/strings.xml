@@ -550,20 +550,23 @@
     </string>
     <string name="evidence_evidence_description_dots_0" >
 		<![CDATA[
-			<p>Die D.O.T.S. Projektor ist ein Gerät, das an Wänden oder auf dem Boden aufgestellt werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um sich herum.</p>
-			<p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
-        ]]>
+             <p>Die D.O.T.S. Der Projektor ist ein Gerät, das an Wänden oder auf dem Boden angebracht werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um ihn herum.</p>
+             <p>Um diesen Beweis eindeutig zu identifizieren, wird <font color=#ff6161>eine Silhouette des Geistes zu sehen sein, wie er schnell durch die Strahlen der Projektion rennt oder kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu erkennen. Versuchen Sie am besten, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryo andernfalls zu Beweiskonflikten führen kann. Der tatsächliche Standort des Geistes hat keinen Einfluss darauf, wann die Silhouettenanimationen stattfinden.</p>
+              <p>Die D.O.T.S. Die visuellen Elemente zeigen jetzt den eigentlichen Geist, was bedeutet, dass Sie Ihre Infrarotlichter in die Nähe der tatsächlichen Position des Geistes richten müssen. Dadurch entsteht ein viel fesselnderes Gameplay für die Spieler. Sie können D.O.T.S. verwenden. Um zu sehen, wo sich Ihr Geist befindet, oder wenn Sie Schwierigkeiten haben, Beweise zu finden, verwenden Sie Salz, Bewegungssensoren oder andere Geräte, um einen besseren Ort für Ihren Projektor zu finden. Geister mit D.O.T.S. Beweise können jetzt in ein kurzes „D.O.T.S.“-Verfahren eingegeben werden. Zustand“ beim Wandern; Währenddessen sind sie vorübergehend mit Infrarotlicht sichtbar. Während dieser Zeit wandern sie zum nächsten Spieler (oder zu einer zufälligen Stelle im Raum, wenn dieser leer ist), bevor sie verschwinden.</p>
+         ]]>
 	</string>
     <string name="evidence_evidence_description_temperatures_0">
         <![CDATA[
-                    <p>Gefriertemperaturen sind Temperaturen <font color=#ff6161>unter 0° Celsius</font>. Die Temperatur kann mit einem <font color=#ff6161>Thermometer</font> gemessen werden.</p>
-                    <p>Wenn Geister Wärme aus der Umgebung entziehen, sinkt die Temperatur in dem Raum oder den Fluren, in denen der <font color=#ff6161>Geist die meiste Zeit verbringt</font>. Alle Geister verursachen früher oder später Temperaturen unter 13° Celsius, aber nur bestimmte Geistertypen senken die Temperatur unter 0° Celsius. Gibt es Gefriertemperaturen, wird der <font color=#ff6161>Atem des Spielers innerhalb des Spukgebiets sichtbar</font>. Die Abkühlung des Raumes, egal wie geringfügig, kann während der Untersuchung die ersten paar Minuten in Anspruch nehmen. Es ist eine gute Idee, zu Anfang alle Räume zu überprüfen und die Räume mit merkwürdig niedrigen Temperaturen später noch einmal zu überprüfen.</p>
-            ]]>
+             <p>Die Temperaturen unter dem Gefrierpunkt liegen <font color=#ff6161>unter 0 Grad Celsius</font>. Die Temperatur kann mit dem <font color=#ff6161>Thermometer</font>.</p> bestimmt werden
+             <p>Da Geister der Umgebung Wärme entziehen, sinken die Temperaturen in dem Raum oder Flur, in dem sich der Geist <font color=#ff6161>die meiste Zeit</font> aufhält. Alle Geister verursachen irgendwann Temperaturen unter 13 Grad Celsius, aber nur bestimmte Geistertypen werden die Temperaturen unter 0 °C senken.</p>
+             <p>Kalter Atem wurde überarbeitet. Bei 5–7 °C oder weniger kann jeder im Spukgebiet <font color=#ff6161>seinen Atem sehen</font>. Wenn es schneit und der Sicherungskasten anspringt, finden Sie Cold Breath sofort überall, sogar im LKW. Alternativ, wenn der Sicherungskasten eingeschaltet ist, sodass es im Haus angenehm warm ist, erscheint „Kalter Atem“ nur in Räumen, in denen der Geist lange genug verweilt hat, um die Temperatur zu senken.</p>
+             <p>Das Abkühlen eines Raums, auch nur geringfügig, kann während einer Untersuchung länger dauern als die ersten paar Minuten. Es ist eine gute Idee, die ungewöhnlich niedrigen Temperaturen in den ersten Räumen zu beachten und sie dann wieder zu erreichen.</p>
+         ]]>
     </string>
     <string name="evidence_evidence_description_box_0">
         <![CDATA[
                     <p>Die Geisterbox dient der <font color=#ff6161>Kommunikation mit dem Geist</font>.</p>
-                    <p>Der Spieler muss dazu im <font color=#ff6161>Umgebungschat Fragen an eine aktivierte Geisterbox stellen. Dabei muss er sich in der Nähe des Geistes befinden und das Licht muss ausgeschaltet sein</font>. Bevor dies jedoch versucht werden sollte, überprüfen Sie auf dem Whiteboard des Trucks, ob der Geist auf Gruppen reagiert oder nur auf Personen, die alleine sind. Sobald der Geist antwortet, zählt die Geisterbox zu den Beweisen des Geistes. Dabei sollten gezielte Fragen wie „Wie alt bist du?“ oder „Wo bist du?“ gestellt werden. Der Umgebungschat sollte immer mit einer gewissen Vorsicht verwendet werden, da ihnen der Geist immer zuhört, egal, ob eine Geisterbox aktiviert ist oder nicht. Indem man dem Geist Befehle gibt wie „Zeig dich“ oder „Gib uns ein Zeichen“ oder seinen Namen mehrmals sagt (womit man ihn verärgert), kann man den Geist dazu bringen, zu erscheinen.</p>
+                    <p>Der Spieler muss dazu im <font color=#ff6161>Umgebungschat Fragen an eine aktivierte Geisterbox stellen. Dabei muss er sich in der Nähe des Geistes befinden und das Licht muss ausgeschaltet sein</font>. Bevor dies jedoch versucht werden sollte, überprüfen Sie auf dem Whiteboard des Trucks, ob der Geist auf Gruppen reagiert oder nur auf Personen, die alleine sind. Sobald der Geist antwortet, zählt die Geisterbox zu den Beweisen des Geistes. Dabei sollten gezielte Fragen wie \„Wie alt bist du?\“ oder \„Wo bist du?\“ gestellt werden. Der Umgebungschat sollte immer mit einer gewissen Vorsicht verwendet werden, da ihnen der Geist immer zuhört, egal, ob eine Geisterbox aktiviert ist oder nicht. Indem man dem Geist Befehle gibt wie \„Zeig dich\“ oder \„Gib uns ein Zeichen\“ oder seinen Namen mehrmals sagt (womit man ihn verärgert), kann man den Geist dazu bringen, zu erscheinen.</p>
             ]]>
     </string>
     <string name="evidence_evidence_description_book_0">
@@ -580,54 +583,121 @@
     </string>
     <string name="evidence_evidence_description_fingerprints_0">
         <![CDATA[
-                    <p>Fingerabdrücke werden von Geistern auf Objekten und Oberflächen hinterlassen und <font color=#ff6161>sind nur sichtbar, wenn UV-Licht, welches von UV-Lampen und Leuchtstäben ausgestrahlt wird, auf die betroffene Oberfläche gerichtet wird</font>. Unter UV-Licht leuchten sie grün.</p>
-                    <p>Bei kleineren Gegenständen kann es schwer sein, die Fingerabdrücke zu erkennen, und sie verblassen nach einer Weile wieder. Wenn Sie Probleme beim Auffinden von Fingerabdrücken haben, kann die Verwendung einer Fotokamera auf Gegenstände wie einen Esstisch mit Geschirr oder Gläsern Beweise liefern, da das Journal möglicherweise Fingerabdrücke auf den Fotos erkennt. Verwirrenderweise erscheinen Fußabdrücke auch unter UV-Licht und zählen als Interaktionen im Journal, <font color=#ff6161>sind jedoch kein Beweis für Fingerabdrücke</font>.</p>
+                    <p>Fingerabdrücke werden von Geistern auf Objekten und Oberflächen hinterlassen und <font color=#ff6161>sind nur sichtbar, wenn UV-Licht, welches von UV\-Lampen und Leuchtstäben ausgestrahlt wird, auf die betroffene Oberfläche gerichtet wird</font>. Unter UV\-Licht leuchten sie grün.</p>
+                    <p>Bei kleineren Gegenständen kann es schwer sein, die Fingerabdrücke zu erkennen, und sie verblassen nach einer Weile wieder. Wenn Sie Probleme beim Auffinden von Fingerabdrücken haben, kann die Verwendung einer Fotokamera auf Gegenstände wie einen Esstisch mit Geschirr oder Gläsern Beweise liefern, da das Journal möglicherweise Fingerabdrücke auf den Fotos erkennt. Verwirrenderweise erscheinen Fußabdrücke auch unter UV\-Licht und zählen als Interaktionen im Journal, <font color=#ff6161>sind jedoch kein Beweis für Fingerabdrücke</font>.</p>
             ]]>
     </string>
 
+    <string name="evidence_evidence_description_dots_1">
+        <![CDATA[
+             <p>Ein Laser Grid Pen, der einer Taschenlampe ähnelt. Sie können um den Ort herumgehen und schnell nach Beweisen suchen, der einzige Nachteil ist die geringe Reichweite und die geringe Lichtintensität.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_2">
+        <![CDATA[
+             <p>Dies ist das Original von D.O.T.S. Beamer. Es handelt sich um einen platzierbaren Projektor, der eine durchschnittlich große Lichtkugel aussendet, außer dass Sie den Geist jetzt dazu ermutigen können, hineinzugehen, indem Sie in der Nähe stehen.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_3">
+        <![CDATA[
+             <p>Dreht das Licht auf das Maximum. Dieser platzierbare Projektor scannt den Raum aus einer viel größeren Entfernung mit einem breiten, geschwungenen Lichtstrahl, wodurch das Auffinden von Geistern in diesen größeren Räumen viel einfacher wird.</p>
+         ]]>
+    </string>
+
+    <string name="evidence_evidence_description_orbs_1">
+         <![CDATA[
+             <p>Ein alter Camcorder, den Ghost Huntin\' Distribution auf dem Dachboden des alten Büros gefunden hat. Es ist klein und etwas abgenutzt, aber es erfüllt seinen Zweck einwandfrei.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_2">
+         <![CDATA[
+             <p>Die Parasonic\-Videokamera ist ein HD-Video, das Auffinden von Kugeln erheblich erleichtert. Leider kommt es immer noch zu starken Störungen durch einen aktiven Geist.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_3">
+         <![CDATA[
+             <p>Bonys ganz eigene Videokamera in Filmqualität mit großem Gehäuse unterstützt einen viel größeren Bildschirm. Es verfügt über einen viel klareren Video\-Feed und wird weniger durch Geistererscheinungen gestört.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_temperatures_1">
+         <![CDATA[
+             <p>Ein altes Hausthermometer, direkt von der Wohnzimmerwand Ihres Ermittlers gerissen. Dieses Thermometer hat eine langsame Abtastrate, was bedeutet, dass Sie länger warten müssen, um einen genauen Messwert zu erhalten. Vielleicht möchten Sie eines mitbringen und es später im Vertrag noch einmal überprüfen.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_2">
+         <![CDATA[
+             <p>Eine aktualisierte Version des klassischen Temperaturlesers, aber viel reaktionsschneller. Anstatt es einzuschalten und alle zwei Sekunden einen Messwert zu erhalten, halten Sie die Taste \„Verwenden\“ gedrückt, um nach Temperaturen zu suchen. Dadurch können Sie viel schneller herumlaufen und die Temperatur jedes Raums überprüfen, als dies bei Stufe I möglich ist.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_3">
+         <![CDATA[
+             <p>Ein direktes Upgrade auf Stufe II, das Temperaturscans mit der doppelten Geschwindigkeit seines Vorgängers durchführt. Darüber hinaus ist dieses modernere Thermometer mit jedem Messwert genauer, sodass Spieler schnell und effizient Räume scannen können, um den Geist zu finden oder \„Mindesttemperaturen\“ im Tagebuch abzuhaken.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_fingerprints_1">
+         <![CDATA[
+             <p>Der klassische UV\-Leuchtstab. Nach dem Einrasten zum Einschalten projiziert es ein Flächenlicht mit kurzer Reichweite, das etwa eine Minute lang anhält, bevor es gedimmt wird. Sie können es jederzeit noch einmal schütteln, um sein Licht wiederzubeleben.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_2">
+         <![CDATA[
+             <p>Die klassische UV\-Taschenlampe, die einen helleren Strahl mit größerer Reichweite aussendet und sich durch eine viel schnellere UV\-Ladezeit auszeichnet!</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_3">
+         <![CDATA[
+             <p>Die UV Light Pro ist eine klobige Taschenlampe mit einem viel helleren und breiteren Lichtkegel sowie einer noch schnelleren Ladezeit. Es eignet sich perfekt zum schnellen Auffinden von ultravioletten Beweisen in größerem Maßstab.</p>
+         ]]>
+     </string>
+
     <string name="evidence_evidence_description_emf_1">
-            <![CDATA[
-                    <p>EMF 5 ist der höchste Messwert des <font color=#ff6161>EMF-Readers</font>.</p>
-                    <p>Ein Geist erzeugt EMF-Emissionen der Stufen 1 bis 5, wenn er auf irgendeine Weise mit dem Raum oder dem Ouija-Brett interagiert. Leichtes Flackern, Schritte und andere kleinere passive Interaktionen führen normalerweise zu einem niedrigeren Messwert. Stärkere Interaktionen, wie z.B. das Erscheinen des Geistes oder ein klingelndes Telefon führen fast immer zu einem höheren Messwert.</p>
-                    <p>Ist EMF 5 einer der Beweise des Geistes, wird er diesen Wert nur zufällig ausgeben, weshalb <font color=#ff6161>der Nachweis von EMF 5 einige Zeit dauern kann</font>.</p>
-                ]]>
-        </string>
-        <string name="evidence_evidence_description_dots_1" >
-            <![CDATA[
-                <p>Die D.O.T.S. Projektor ist ein Gerät, das an Wänden oder auf dem Boden aufgestellt werden kann. Es projiziert eine Matrix aus hellen Punkten und wirft die Punkte auf nahegelegene Oberflächen um sich herum.</p>
-                <p>Um diese Beweise eindeutig zu identifizieren, <font color=#ff6161>ist eine Silhouette des Geistes zu sehen, die durch die Strahlen der Projektion läuft oder schnell kriecht</font>. Die Silhouette kann mit bloßem Auge oder durch eine Videokamera gesehen werden, ist aber <font color=#ff6161>aus der Ferne über die Thermik der Videokamera</font> leichter zu sehen. Es ist am besten zu versuchen, diese Beweise aus der Ferne zu finden, da das Verhalten eines Goryos andernfalls zu Beweiskonflikten führen kann. Die tatsächliche Position des Ghosts bestimmt nicht, wann die Silhouettenanimationen auftreten.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_temperatures_1">
-            <![CDATA[
-                        <p>Gefriertemperaturen sind Temperaturen <font color=#ff6161>unter 0° Celsius</font>. Die Temperatur kann mit einem <font color=#ff6161>Thermometer</font> gemessen werden.</p>
-                        <p>Wenn Geister Wärme aus der Umgebung entziehen, sinkt die Temperatur in dem Raum oder den Fluren, in denen der <font color=#ff6161>Geist die meiste Zeit verbringt</font>. Alle Geister verursachen früher oder später Temperaturen unter 13° Celsius, aber nur bestimmte Geistertypen senken die Temperatur unter 0° Celsius. Gibt es Gefriertemperaturen, wird der <font color=#ff6161>Atem des Spielers innerhalb des Spukgebiets sichtbar</font>. Die Abkühlung des Raumes, egal wie geringfügig, kann während der Untersuchung die ersten paar Minuten in Anspruch nehmen. Es ist eine gute Idee, zu Anfang alle Räume zu überprüfen und die Räume mit merkwürdig niedrigen Temperaturen später noch einmal zu überprüfen.</p>
-                ]]>
-        </string>
-        <string name="evidence_evidence_description_box_1">
-            <![CDATA[
-                        <p>Die Geisterbox dient der <font color=#ff6161>Kommunikation mit dem Geist</font>.</p>
-                        <p>Der Spieler muss dazu im <font color=#ff6161>Umgebungschat Fragen an eine aktivierte Geisterbox stellen. Dabei muss er sich in der Nähe des Geistes befinden und das Licht muss ausgeschaltet sein</font>. Bevor dies jedoch versucht werden sollte, überprüfen Sie auf dem Whiteboard des Trucks, ob der Geist auf Gruppen reagiert oder nur auf Personen, die alleine sind. Sobald der Geist antwortet, zählt die Geisterbox zu den Beweisen des Geistes. Dabei sollten gezielte Fragen wie „Wie alt bist du?“ oder „Wo bist du?“ gestellt werden. Der Umgebungschat sollte immer mit einer gewissen Vorsicht verwendet werden, da ihnen der Geist immer zuhört, egal, ob eine Geisterbox aktiviert ist oder nicht. Indem man dem Geist Befehle gibt wie „Zeig dich“ oder „Gib uns ein Zeichen“ oder seinen Namen mehrmals sagt (womit man ihn verärgert), kann man den Geist dazu bringen, zu erscheinen.</p>
-                ]]>
-        </string>
-        <string name="evidence_evidence_description_book_1">
-            <![CDATA[
-                        <p>Geister können in das Geisterbuch schreiben, <font color=#ff6161>egal ob es auf dem Boden platziert ist oder in der Hand gehalten wird</font>.</p>
-                        <p>Schreibt der Geist ins Buch, zählt dies als Beweis für seinen Geistertyp. Schreibt der Geist dämonische Symbole ins Buch, könnte das auf einen Dämon hinweisen, wobei das kein endgültiger Beweis ist, da der Inhalt des Geschrieben eher zufällig ist.</p>
-                ]]>
-        </string>
-        <string name="evidence_evidence_description_orbs_1">
-            <![CDATA[
-                        <p>Geisterkugeln sind kleine, schwebende Kugeln, welche nur im Geisterraum vorhanden sind. <font color=#ff6161>Sie sind nur über die Videokameras und Kopfkameras über den Bildschirm im Truck bei eingeschalteter Nachsicht sichtbar</font>.</p>
-                        <p>Auch wenn sie schnell erkannt werden können, sollten sie nicht zu schnell ausgeschlossen werden, da dies sonst später problematisch werden kann.</p>
-                ]]>
-        </string>
-        <string name="evidence_evidence_description_fingerprints_1">
-            <![CDATA[
-                        <p>Fingerabdrücke werden von Geistern auf Objekten und Oberflächen hinterlassen und <font color=#ff6161>sind nur sichtbar, wenn UV-Licht, welches von UV-Lampen und Leuchtstäben ausgestrahlt wird, auf die betroffene Oberfläche gerichtet wird</font>. Unter UV-Licht leuchten sie grün.</p>
-                        <p>Bei kleineren Gegenständen kann es schwer sein, die Fingerabdrücke zu erkennen, und sie verblassen nach einer Weile wieder. Wenn Sie Probleme beim Auffinden von Fingerabdrücken haben, kann die Verwendung einer Fotokamera auf Gegenstände wie einen Esstisch mit Geschirr oder Gläsern Beweise liefern, da das Journal möglicherweise Fingerabdrücke auf den Fotos erkennt. Verwirrenderweise erscheinen Fußabdrücke auch unter UV-Licht und zählen als Interaktionen im Journal, <font color=#ff6161>sind jedoch kein Beweis für Fingerabdrücke</font>.</p>
-                ]]>
-        </string>
+        <![CDATA[
+             <p>Ein altes\-analoges Messgerät mit kleinem Erfassungsbereich, geringer Genauigkeit und geringen Audioemissionen. Die Nadel geht in den Schnellgang, wenn EMF der Stufe 5 erkannt wird.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_2">
+        <![CDATA[
+             <p>Das bewährte K2-Messgerät. Wenn Sie sich innerhalb eines mittleren Bereichs von EMF-Punkten bewegen, zeigt es einen genauen Wert von zwei bis fünf an und gibt einen klaren, hörbaren Ton von sich.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_3">
+        <![CDATA[
+             <p>Ein Hightech-ParaReader. Dieses Gerät kann bis zu drei EMF-Punkte gleichzeitig verfolgen und verfügt über die größte Erkennungsreichweite. Es zeigt gleichzeitig die Richtung, den Bereich und den Wert jedes Messwerts an. Für jede EMF-Erkennung werden Töne abgespielt, sodass Sie aus der Entfernung hören können, wie viele und wie stark die Messwerte sind.</p>
+         ]]>
+    </string>
+
+    <string name="evidence_evidence_description_book_3">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_2">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_1">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_box_1">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_box_3">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_box_2">
+        <![CDATA[
+             Noch keine Informationen verfügbar.
+         ]]>
+    </string>
 
     <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
@@ -655,7 +725,7 @@
     <string name="evidence_evidence_type_box">Geisterbox</string>
     <string name="evidence_evidence_type_book">Geisterbuch</string>
     <string name="evidence_evidence_type_orbs">Geisterkugeln</string>
-    <string name="evidence_evidence_type_fingerprints">Fingerabdrücke</string>
+    <string name="evidence_evidence_type_fingerprints">Ultraviolett</string>
     <string name="evidence_ghost_type_banshee">Banshee</string>
     <string name="evidence_ghost_type_demon">Dämon</string>
     <string name="evidence_ghost_type_jinn">Dschinn</string>
@@ -734,6 +804,7 @@
     <!-- Age Questions -->
     <string name="spiritbox_entry_q3_5">Wie alt bist du?</string>
     <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_8">Wo bist du?</string>
     <string name="spiritbox_entry_q5_1">Sind Sie hier?</string>
     <string name="spiritbox_entry_q5_4">Bist du der einzige hier?</string>
     <string name="spiritbox_entry_q5_7">Wo sind Sie?</string>
@@ -782,78 +853,13 @@
     <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
     <string name="evidence_timer_difficulty_5">Wahnsinn</string>
     <string name="evidence_popup_ghost_huntdata">Jagddaten</string>
-    <string name="evidence_evidence_description_dots_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_dots_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
+
     <string name="settings_appearancesettings">Aussehen</string>
     <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">Schriftstil</string>
+    <string name="evidence_evidence_section_overview">Überblick</string>
+    <string name="evidence_evidence_section_tiers">Ebenen</string>
+    <string name="settings_adsconsentcontrolsettings">GDPR-Konfiguration</string>
+    <string name="settings_adsconsentcontrolsettings_button">Bearbeiten</string>
 
 </resources>

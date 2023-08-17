@@ -559,15 +559,18 @@
     </string>
     <string name="evidence_evidence_description_dots_0" >
 		<![CDATA[
-			<p>Le D.O.T.S. Le projecteur est un appareil qui peut être placé sur les murs ou le sol. Il projette une matrice de points lumineux, projetant les points sur les surfaces voisines qui l\'entourent.</p>
-			<p>Pour identifier positivement cette preuve, <font color=#ff6161>une silhouette du fantôme sera vue en train de courir ou de ramper rapidement à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver ces preuves à distance, car le comportement d\'un Goryo peut provoquer des conflits de preuves dans le cas contraire. L\'emplacement réel du fantôme ne dictera pas quand les animations de silhouette se produisent.</p>
-        ]]>
+             <p>Le D.O.T.S. Le projecteur est un appareil qui peut être placé sur les murs ou sur le sol. Il projette une matrice de points lumineux, projetant les points sur les surfaces proches autour de lui.</p>
+             <p>Pour identifier positivement cette Preuve, <font color=#ff6161>une silhouette du fantôme sera vue courir, ou ramper rapidement, à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais elle est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver cette preuve à distance, car le comportement d\'un Goryo peut sinon provoquer des conflits de preuve. L\'emplacement réel du fantôme ne dictera pas le moment où les animations de silhouette se produiront.</p>
+              <p>Le D.O.T.S. les visuels sont maintenant le fantôme réel, ce qui signifie que vous devrez faire briller vos lumières infrarouges près de la position réelle du fantôme. Cela crée un gameplay beaucoup plus attrayant pour les joueurs, vous pouvez utiliser D.O.T.S. pour voir où se trouve votre fantôme ou si vous avez du mal à obtenir des preuves, utilisez du sel, des détecteurs de mouvement ou d\'autres équipements pour trouver un meilleur emplacement pour votre projecteur. Fantômes avec D.O.T.S. la preuve peut maintenant entrer un court \"D.O.T.S. état \" lors de l\'errance; Pendant ce temps, ils sont temporairement visibles avec une lumière infrarouge, pendant ce temps ils erreront vers le joueur le plus proche (ou vers un endroit aléatoire de la salle si elle est vide) avant de disparaître.</p>
+         ]]>
 	</string>
     <string name="evidence_evidence_description_temperatures_0">
         <![CDATA[
-            <p>Les temperatures de congelation sont <font color=#ff6161>en dessous de 0 Celsius</font>. La temperature peut etre determinee en utilisant le <font color=#ff6161>Thermometer</font>.</p>
-            <p>A mesure que les fantomes extraient la chaleur de la zone environnante, les temperatures diminuent dans la piece ou les couloirs ou le <font color=#ff6161>le fantome passe le plus clair de son temps</font>. Tous les fantomes le feront finalement causent des temperatures inferieures a 13 degres Celsius, mais seuls certains types de fantomes feront baisser les temperatures en dessous de 0 C. Ces temperatures glaciales permettront a tout le monde dans la zone hantee de <font color=#ff6161>voir leur souffle</font>. Le refroidissement d\'une piece, meme legerement, peut prendre plus de temps que les premieres minutes d\'une enquete. Prendre note des temperatures etrangement basses dans les premieres pieces, puis les redoubler est une bonne idee.</p>
-        ]]>
+             <p>Les températures de congélation sont <font color=#ff6161>inférieures à 0 Celsius</font>. La température peut être déterminée à l\'aide du <font color=#ff6161>Thermomètre</font>.</p>
+             <p>Alors que les fantômes tirent la chaleur de la zone environnante, les températures diminuent dans la pièce ou les couloirs où le <font color=#ff6161>fantôme passe le plus clair de son temps</font>. Tous les fantômes finiront par provoquer des températures inférieures à 13 degrés Celsius, mais seuls certains types de fantômes feront chuter les températures en dessous de 0 C.</p>
+             <p>Cold Breath a été retravaillé. À 5\-7 \°C ou moins, toute personne se trouvant dans la zone hantée pourra <font color=#ff6161>voir son souffle</font>. S\'il neige et que la boîte à fusibles se déclenche, vous trouverez instantanément Cold Breath partout, même dans le camion. Alternativement, si la boîte à fusibles est allumée, pour que la maison soit agréable et bien au chaud, vous verrez Cold Breath apparaître uniquement dans les pièces où le fantôme a été assez long pour faire baisser sa température.</p>
+             <p>Le refroidissement d\'une pièce, même légèrement, peut prendre plus de temps que les premières minutes d\'une enquête. Prendre note des températures étrangement basses dans les premières pièces, puis y revenir est une bonne idée.</p>
+         ]]>
     </string>
     <string name="evidence_evidence_description_box_0">
         <![CDATA[
@@ -589,52 +592,122 @@
     </string>
     <string name="evidence_evidence_description_fingerprints_0">
         <![CDATA[
-            <p>Laissees sur des objets et des surfaces par des fantomes, les empreintes digitales ne peuvent etre <font color=#ff6161>vu en faisant briller la lumiere UV ou un baton lumineux sur les surfaces affectees</font> et brillera en vert sous la lumiere UV.</p>
-            <p>Les preuves peuvent etre difficiles a voir sur des elements plus petits, et les preuves peuvent s\'estomper apres un certain temps. Si vous ne parvenez pas a localiser les empreintes digitales, l\'utilisation d\'un appareil photo sur des objets tels qu\'une table contenant de la vaisselle ou des bocaux peut fournir des preuves, car le journal pourrait ecrire des «empreintes digitales» sur les photos. De maniere deroutante, les empreintes apparaissent egalement sous la lumiere UV et comptent comme des interactions dans le journal, mais <font color=#ff6161>Les empreintes de pas ne comptent pas comme preuve des empreintes digitales</font>.</p>
-        ]]>
+             <p>Les preuves ultraviolettes ne peuvent être <font color=#ff6161>visibles qu\'en faisant briller la lumière UV ou un bâton lumineux sur les surfaces affectées</font>. Les preuves ultraviolettes deviendront vertes lorsqu\'elles seront chargées par la lumière UV et s\'estomperont avec le temps.</p>
+             <p>Laissées sur des objets et des surfaces par des fantômes, les preuves ultraviolettes peuvent être difficiles à voir sur des objets plus petits ou dans de grandes pièces. Les empreintes de pas qui ont été suivies par des tas de sel comptent également comme des preuves ultraviolettes.</p>
+             <p>Lorsque vous projetez une lumière UV sur des empreintes digitales ou des empreintes de pas, vous la verrez toujours immédiatement, mais en plus, la lumière chargera l\'impression. Après avoir rangé votre lampe UV, l\'impression restera visible pendant une courte période (selon la durée pendant laquelle vous l\'avez chargée), vous permettant de prendre une photo!</p>
+             <p>Une empreinte de main à 6 doigts peut être trouvée qui identifiera immédiatement le type de fantôme comme un Obake.</p>
+         ]]>
     </string>
+
+    <string name="evidence_evidence_description_dots_1">
+        <![CDATA[
+             <p>Un stylo à grille laser qui ressemble à une lampe de poche. Vous pouvez marcher autour de l\'emplacement et rechercher rapidement des preuves, le seul inconvénient étant sa courte portée et sa faible intensité lumineuse.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_2">
+        <![CDATA[
+             <p>Ceci est le D.O.T.S original. projecteur. Il s\'agit d\'un projecteur placable émettant une sphère de lumière de taille moyenne, sauf que vous pouvez désormais encourager le fantôme à entrer dedans en vous tenant à proximité.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_3">
+        <![CDATA[
+             <p> Augmente la lumière au maximum. Ce projecteur placable balaye la pièce à une distance beaucoup plus longue avec un faisceau de lumière large et rapide, ce qui facilite la recherche de fantômes dans ces grandes pièces.</p>
+         ]]>
+    </string>
+
+    <string name="evidence_evidence_description_orbs_1">
+         <![CDATA[
+             <p>Un vieux caméscope que Ghost Huntin\' Distribution a trouvé dans le grenier de l\'ancien bureau. Il est petit et un peu usé, mais il fait très bien le travail.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_2">
+         <![CDATA[
+             <p>La caméra vidéo Parasonic est une vidéo HD qui facilite grandement la recherche d\'orbes. Malheureusement, il reçoit encore beaucoup d\'interférences d\'un fantôme actif.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_3">
+         <![CDATA[
+             <p>La caméra vidéo de qualité cinématographique de Bony avec un grand corps prend en charge un écran beaucoup plus grand. Il dispose d\'un flux vidéo beaucoup plus clair et reçoit moins d\'interférences des apparitions de fantômes.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_temperatures_1">
+         <![CDATA[
+             <p>Une vieille maison\-Thermomètre, arraché directement du mur du salon de votre Enquêteur. Ce thermomètre a un taux d\'échantillonnage lent, ce qui signifie que vous devrez attendre plus longtemps pour obtenir une lecture précise. Vous voudrez peut-être en apporter un et le vérifier plus tard dans le contrat.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_2">
+         <![CDATA[
+             <p>Une version mise à jour du lecteur de température classique, mais beaucoup plus réactive. Au lieu de l\'allumer et d\'obtenir une lecture toutes les deux secondes, maintenez le bouton \'Utiliser\' pour rechercher les températures. Cela permet de courir et de vérifier la température de chaque pièce beaucoup plus rapidement que le niveau I ne le permet.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_3">
+         <![CDATA[
+             <p>Une mise à niveau directe vers le niveau II, effectuant des analyses de température deux fois plus rapides que son prédécesseur. De plus, ce thermomètre plus moderne est plus précis à chaque lecture, permettant aux joueurs de scanner rapidement et efficacement les pièces pour trouver le fantôme ou pour faire cocher \"Températures glaciales\" dans le Journal.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_fingerprints_1">
+         <![CDATA[
+             <p>Le bâton lumineux UV classique. Après l\'avoir cliqué pour l\'allumer, il projette une lumière de zone à courte portée qui dure environ une minute avant de s\'assombrir. Vous pouvez toujours lui donner une autre secousse pour revigorer sa lumière.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_2">
+         <![CDATA[
+             <p>La lampe de poche UV classique qui émet un faisceau plus lumineux avec une portée plus longue, avec un temps de charge UV beaucoup plus rapide!</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_3">
+         <![CDATA[
+             <p>L\'UV Light Pro est une grosse lampe de poche qui a un cône de lumière beaucoup plus lumineux et plus large, ainsi qu\'un temps de charge encore plus rapide. Il est parfait pour localiser rapidement les preuves ultraviolettes à plus grande échelle.</p>
+         ]]>
+     </string>
 
     <string name="evidence_evidence_description_emf_1">
         <![CDATA[
-            <p>EMF-5 est la lecture de niveau le plus eleve d\'un <font color=#ff6161>Lecteur EMF</font>.</p>
-            <p>Un fantome produit des emissions EMF des niveaux 1 a 5 lorsqu\'il interagit d\'une maniere ou d\'une autre avec la piece ou la planche Ouija. Les scintillements legers, les pas et d\'autres interactions passives plus petites donneront generalement une lecture plus faible. Des interactions plus intenses, telles qu\'une apparence ou une sonnerie de telephone, donneront presque toujours une lecture plus elevee. Les fantomes portant cette preuve ne donneront le niveau EMF 5 que par hasard, donc cette preuve <font color=#ff6161>peut prendre un certain temps a acquerir</font>.</p>
-        ]]>
+             <p>Un ancien compteur analogique avec une petite plage de détection, une faible précision et de faibles émissions audio. L\'aiguille passera en surmultipliée lorsque le niveau 5 EMF est détecté.</p>
+         ]]>
     </string>
-    <string name="evidence_evidence_description_dots_1" >
-		<![CDATA[
-			<p>Le D.O.T.S. Le projecteur est un appareil qui peut être placé sur les murs ou le sol. Il projette une matrice de points lumineux, projetant les points sur les surfaces voisines qui l\'entourent.</p>
-			<p>Pour identifier positivement cette preuve, <font color=#ff6161>une silhouette du fantôme sera vue en train de courir ou de ramper rapidement à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver ces preuves à distance, car le comportement d\'un Goryo peut provoquer des conflits de preuves dans le cas contraire. L\'emplacement réel du fantôme ne dictera pas quand les animations de silhouette se produisent.</p>
-        ]]>
-	</string>
-    <string name="evidence_evidence_description_temperatures_1">
+    <string name="evidence_evidence_description_emf_2">
         <![CDATA[
-            <p>Les temperatures de congelation sont <font color=#ff6161>en dessous de 0 Celsius</font>. La temperature peut etre determinee en utilisant le <font color=#ff6161>Thermometer</font>.</p>
-            <p>A mesure que les fantomes extraient la chaleur de la zone environnante, les temperatures diminuent dans la piece ou les couloirs ou le <font color=#ff6161>le fantome passe le plus clair de son temps</font>. Tous les fantomes le feront finalement causent des temperatures inferieures a 13 degres Celsius, mais seuls certains types de fantomes feront baisser les temperatures en dessous de 0 C. Ces temperatures glaciales permettront a tout le monde dans la zone hantee de <font color=#ff6161>voir leur souffle</font>. Le refroidissement d\'une piece, meme legerement, peut prendre plus de temps que les premieres minutes d\'une enquete. Prendre note des temperatures etrangement basses dans les premieres pieces, puis les redoubler est une bonne idee.</p>
-        ]]>
+             <p>Le compteur K2 de confiance. Lorsque vous vous déplacez dans une plage moyenne de points EMF, il affichera une valeur précise de deux à cinq et émettra un son clair et audible.</p>
+         ]]>
     </string>
+    <string name="evidence_evidence_description_emf_3">
+        <![CDATA[
+             <p>Un ParaReader high\-tech. Cet appareil peut suivre jusqu\'à trois spots EMF à la fois et a une plage de détection la plus éloignée. Il affichera la direction, la plage et la valeur de chaque lecture en même temps. Il émet des sons pour chaque détection EMF afin que vous puissiez entendre, à distance, combien et quelle est la force des lectures.</p>
+         ]]>
+    </string>
+
     <string name="evidence_evidence_description_box_1">
         <![CDATA[
-            <p>La Spirit Box est un objet utilise pour <font color=#ff6161>communiquer avec le fantome</font>.</p>
-            <p>Un joueur doit <font color=#ff6161>poser des questions dans le chat de proximite a une Spirit Box active, a la fois a proximite du fantome et lorsque les lumieres sont eteintes</font>. Avant de tenter cela, verifiez les parametres de reponse du fantome tels que \"Repond aux personnes qui sont seules \" ou \"Repond a tout le monde \" figurant sur le tableau blanc du camion. Si le fantome repond, la Spirit Box est une preuve confirmee. Les questions pointues telles que «Quel age avez-vous?» Ou «Ou etes-vous?» Sont des questions plausibles. Gardez a l\'esprit que le fantome est toujours a l\'ecoute, que le joueur parle ou non dans une Spirit Box. Dessiner un fantome peut etre fait en disant son prenom plusieurs fois (donc en le mettant en colere), et en lui donnant des commandes telles que «Montre-toi» ou «Donne-nous un signe» semblent etre des commandes plausibles.</p>
-        ]]>
+             Aucune information disponible pour le moment.
+         ]]>
     </string>
     <string name="evidence_evidence_description_book_1">
         <![CDATA[
-            <p>Determine a l\'aide du livre d\'ecriture Ghost.</p>
-            <p>Les fantomes peuvent ecrire dans le livre <font color=#ff6161>peu importe si le livre est pose ou tenu en main</font>. Si le fantome ecrit dans le livre, il s\'agit d\'un element de preuve pour ce type de fantome. Si des symboles demoniaques sont ecrits, cela peut etre une preuve d\'un demon, mais ce n\'est absolument pas definitif car les styles d\'ecriture fantome ont tendance a s\'ecarter au hasard.</p>
-        ]]>
+             Aucune information disponible pour le moment.
+         ]]>
     </string>
-    <string name="evidence_evidence_description_orbs_1">
+    <string name="evidence_evidence_description_box_3">
         <![CDATA[
-            <p>Un petit orbe flottant qui n\'est present que dans la piece qu\'un fantome hante. ua peut etre <font color=#ff6161>vu uniquement par vision nocturne a travers le flux de la camera du camion<font> des cameras video ou des cameras montees sur la tete.</p>
-            <p>Les orbes fantomes peuvent etre rapides a reperer, mais l\'exclure trop rapidement pourrait causer des problemes sur la route.</p>
-        ]]>
+             Aucune information disponible pour le moment.
+         ]]>
     </string>
-    <string name="evidence_evidence_description_fingerprints_1">
+    <string name="evidence_evidence_description_box_2">
         <![CDATA[
-            <p>Laissees sur des objets et des surfaces par des fantomes, les empreintes digitales ne peuvent etre <font color=#ff6161>vu en faisant briller la lumiere UV ou un baton lumineux sur les surfaces affectees</font> et brillera en vert sous la lumiere UV.</p>
-            <p>Les preuves peuvent etre difficiles a voir sur des elements plus petits, et les preuves peuvent s\'estomper apres un certain temps. Si vous ne parvenez pas a localiser les empreintes digitales, l\'utilisation d\'un appareil photo sur des objets tels qu\'une table contenant de la vaisselle ou des bocaux peut fournir des preuves, car le journal pourrait ecrire des «empreintes digitales» sur les photos. De maniere deroutante, les empreintes apparaissent egalement sous la lumiere UV et comptent comme des interactions dans le journal, mais <font color=#ff6161>Les empreintes de pas ne comptent pas comme preuve des empreintes digitales</font>.</p>
-        ]]>
+             Aucune information disponible pour le moment.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_3">
+        <![CDATA[
+             Aucune information disponible pour le moment.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_2">
+        <![CDATA[
+             Aucune information disponible pour le moment.
+         ]]>
     </string>
 
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
@@ -663,7 +736,7 @@
     <string name="evidence_evidence_type_box">Spirit Box</string>
     <string name="evidence_evidence_type_book">Ecritures Fantomatiques</string>
     <string name="evidence_evidence_type_orbs">Orbes Fantômes</string>
-    <string name="evidence_evidence_type_fingerprints">Empreintes</string>
+    <string name="evidence_evidence_type_fingerprints">Ultra\-violet</string>
     <string name="evidence_ghost_type_banshee">Banshee</string>
     <string name="evidence_ghost_type_demon">Demone</string>
     <string name="evidence_ghost_type_jinn">Jinn</string>
@@ -741,6 +814,7 @@
     <!-- Age Questions -->
     <string name="spiritbox_entry_q3_5">Quel âge as-tu?</string>
     <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_8">Où es-tu?</string>
     <string name="spiritbox_entry_q5_1">Êtes-vous ici?</string>
     <string name="spiritbox_entry_q5_4">Êtes-vous le seul ici?</string>
     <string name="spiritbox_entry_q5_7">Où es-tu?</string>
@@ -789,78 +863,13 @@
     <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
     <string name="evidence_timer_difficulty_5">Folie</string>
     <string name="evidence_popup_ghost_huntdata">Données de Chasse</string>
-    <string name="evidence_evidence_description_dots_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_dots_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
+
     <string name="settings_appearancesettings">Apparence</string>
     <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">"Le Style de Police "</string>
+    <string name="evidence_evidence_section_overview">Aperçu</string>
+    <string name="evidence_evidence_section_tiers">Niveaux</string>
+    <string name="settings_adsconsentcontrolsettings">Configuration GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Modifier</string>
 
 </resources>

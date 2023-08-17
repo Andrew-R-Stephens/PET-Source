@@ -676,8 +676,36 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_ads"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout71">
 
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/settings_ads_label"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="wrap_content"
+                                android:layout_height="46dp"
+                                android:layout_marginTop="32dp"
+                                android:background="@drawable/radiobutton_1_disabled"
+                                android:gravity="center"
+                                android:drawableStart="@android:drawable/ic_menu_edit"
+                                android:drawablePadding="8dp"
+                                android:padding="8dp"
+                                android:text="@string/settings_adsconsentcontrolsettings"
+                                android:textColor="?attr/titleFontColor"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 

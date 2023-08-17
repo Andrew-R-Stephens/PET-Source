@@ -9,16 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.ump.ConsentDebugSettings;
-import com.google.android.ump.ConsentInformation;
-import com.google.android.ump.ConsentRequestParameters;
-import com.google.android.ump.UserMessagingPlatform;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -36,7 +35,8 @@ public class TitleScreenActivity extends AppCompatActivity {
     private TitlescreenViewModel titleScreenViewModel;
     private NewsletterViewModel newsLetterViewModel;
 
-    private ConsentInformation consentInformation;
+    GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
+
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
     private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
 
@@ -48,7 +48,7 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_titlescreen);
 
-        //requestAdsConsentInformation();
+        requestAdsConsentInformation();
     }
 
     private void initViewModels() {
@@ -169,62 +169,43 @@ public class TitleScreenActivity extends AppCompatActivity {
         return isChanged;
     }
 
-
     private void requestAdsConsentInformation() {
-        // Set tag for under age of consent. false means users are not under age
-        // of consent.
-        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
-                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .addTestDeviceHashedId("TEST-DEVICE-HASHED-ID")
-                .build();
 
-        ConsentRequestParameters params = new ConsentRequestParameters
-                .Builder()
-                .setConsentDebugSettings(debugSettings)
-                .build();
+        // Set your test devices. Check your logcat output for the hashed device ID to
+        // get test ads on a physical device. e.g.
+        // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
+        // to get test ads on this device."
+        MobileAds.setRequestConfiguration(
+                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("9E93747E0D90133B5298FD010482BD8F"))
+                        .build());
 
+        googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(this);
 
-        /*
-        ConsentRequestParameters params = new ConsentRequestParameters
-                .Builder()
-                .setTagForUnderAgeOfConsent(false)
-                .build();
-        */
+        googleMobileAdsConsentManager.gatherConsent(
+                consentError -> {
+                    if (consentError != null) {
+                        // Consent not obtained in current session.
+                        Log.w(
+                                "AdConsentManager",
+                                String.format(
+                                        "%s: %s",
+                                        consentError.getErrorCode(),
+                                        consentError.getMessage()));
+                    }
 
-        consentInformation = UserMessagingPlatform.getConsentInformation(this);
-        consentInformation.requestConsentInfoUpdate(
-                this,
-                params,
-                () -> {
-                    // Load and show the consent form.
-                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                            this,
-                            loadAndShowError -> {
-                                if (loadAndShowError != null) {
-                                    // Consent gathering failed.
-                                    Log.w("ConsentFormRequest", String.format("%s: %s",
-                                            loadAndShowError.getErrorCode(),
-                                            loadAndShowError.getMessage()));
-                                }
+                    if (googleMobileAdsConsentManager.canRequestAds()) {
+                        initializeMobileAdsSdk();
+                    }
 
-                                // Consent has been gathered.
-                                if (consentInformation.canRequestAds()) {
-                                    initializeMobileAdsSdk();
-                                }
-                            }
-                    );
-                },
-                requestConsentError -> {
-                    // Consent gathering failed.
-                    Log.w("ConsentInformation", String.format("%s: %s",
-                            requestConsentError.getErrorCode(),
-                            requestConsentError.getMessage()));
-                });
+                    if (googleMobileAdsConsentManager.isPrivacyOptionsRequired()) {
+                        // Regenerate the options menu to include a privacy setting.
+                        invalidateOptionsMenu();
+                    }
+                }
+        );
 
-        // Check if you can initialize the Google Mobile Ads SDK in parallel
-        // while checking for new consent information. Consent obtained in
-        // the previous session can be used to request ads.
-        if (consentInformation.canRequestAds()) {
+        // This sample attempts to load ads using consent obtained in the previous session.
+        if (googleMobileAdsConsentManager.canRequestAds()) {
             initializeMobileAdsSdk();
         }
     }
@@ -236,9 +217,6 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.initialize(this);
-
-        // TODO: Request an ad.
-        // InterstitialAd.load(...);
 
     }
 

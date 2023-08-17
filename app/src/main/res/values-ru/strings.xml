@@ -656,7 +656,7 @@
     <string name="evidence_evidence_tiers_3">Ряд 3</string>
     <string name="evidence_evidence_type_dots">D.O.T.S</string>
     <string name="evidence_evidence_type_emf">EMF 5</string>
-    <string name="evidence_evidence_type_fingerprints">Fingerprints</string>
+    <string name="evidence_evidence_type_fingerprints">ультрафиолет</string>
     <string name="evidence_evidence_type_temperatures">Freezing Temps</string>
     <string name="evidence_evidence_type_orbs">Ghost Orbs</string>
     <string name="evidence_evidence_type_book">Ghost Writing</string>
@@ -665,27 +665,32 @@
     <!-- Evidence Description -->
     <string name="evidence_evidence_description_dots_0">
         <![CDATA[
-            <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
-            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
-        ]]>
+             <p>Система D.O.T.S. Проектор — это устройство, которое можно разместить на стене или полу. Он проецирует матрицу ярких точек, отбрасывая точки на близлежащие поверхности вокруг себя.</p>
+             <p>Чтобы точно идентифицировать это Доказательство, <font color=#ff6161>силуэт призрака будет виден бегущим или быстро ползущим сквозь лучи проекции</font>. Силуэт можно увидеть невооруженным глазом или с помощью видеокамеры, но его легче увидеть <font color=#ff6161>дистанционно с помощью термиков видеокамеры</font>. Лучше попытаться найти эти улики удаленно, так как в противном случае поведение Горё может привести к конфликту улик. Фактическое местоположение Призрака не влияет на время анимации силуэта.</p>
+              <p>Система D.O.T.S. визуальные эффекты теперь являются реальным призраком, а это означает, что вам нужно будет светить инфракрасным светом рядом с фактическим положением призрака. Это создает гораздо более увлекательный игровой процесс для игроков, вы можете использовать D.O.T.S. чтобы увидеть, где находится ваш призрак, или если вы изо всех сил пытаетесь получить улики, используйте соль, датчики движения или другое оборудование, чтобы найти лучшее место для вашего проектора. Призраки с D.O.T.S. доказательство теперь может ввести короткое \"D.O.T.S. состояние\» при блуждании; Во время которого они временно видны в инфракрасном свете, в это время они будут блуждать к ближайшему игроку (или к случайному месту в комнате, если она пуста), прежде чем исчезнуть.</p>
+         ]]>
     </string>
     <string name="evidence_evidence_description_emf_0">
         <![CDATA[
-            <p>EMF-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
+            <p>EMF\-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
             <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
         ]]>
     </string>
     <string name="evidence_evidence_description_fingerprints_0">
         <![CDATA[
-            <p>Left on objects and surfaces by ghosts, Fingerprints can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font> and will glow green while under UV light.</p>
-            <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>. A 6-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
-        ]]>
+             <p>Ультрафиолетовые доказательства можно увидеть, <font color=#ff6161>только если посветить УФ-светом или светящейся палочкой на пораженные поверхности</font>. Фрагменты ультрафиолетовых улик будут светиться зеленым, пока они заряжаются ультрафиолетовым светом, и со временем потускнеют.</p>
+             <p>Оставленные призраками на предметах и поверхностях ультрафиолетовые следы может быть трудно увидеть на небольших предметах или в больших помещениях. Следы, обнаруженные соляными кучами, также считаются ультрафиолетовыми доказательствами.</p>
+             <p>Направляя УФ-свет на отпечатки пальцев или следы, вы по-прежнему сразу их видите, но, кроме того, свет заряжает отпечаток. После того, как вы уберете УФ-светильник, отпечаток останется видимым в течение короткого периода времени (в зависимости от того, как долго вы его заряжали), что позволит вам сделать снимок!</p>
+             <p>Может быть найден отпечаток руки с 6 пальцами, который сразу идентифицирует тип Призрака как Обакэ.</p>
+         ]]>
     </string>
     <string name="evidence_evidence_description_temperatures_0">
         <![CDATA[
-            <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
-            <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C. These freezing temperatures will allow everyone within the haunted area to <font color=#ff6161>see their breath</font>. The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
-        ]]>
+             <p>Температуры замерзания <font color=#ff6161>ниже 0 градусов Цельсия</font>. Температуру можно определить с помощью <font color=#ff6161>Термометра</font>.</p>
+             <p>Поскольку призраки вытягивают тепло из окружающего пространства, температура в комнате или коридорах, где <font color=#ff6161>призрак проводит большую часть времени</font>, снижается. Все призраки в конечном итоге вызывают температуру ниже 13 градусов Цельсия, но только у некоторых типов призраков температура может опускаться ниже 0 C.</p>
+             <p>Холодное дыхание было переработано. При температуре 5\-7 C или ниже любой человек, находящийся в зоне с привидениями, сможет <font color=#ff6161>видеть свое дыхание</font>. Если идет снег и срабатывает блок предохранителей, вы мгновенно найдете «Холодное дыхание» везде, даже в грузовике. В качестве альтернативы, если блок предохранителей включен, так что в доме приятно и жарко, вы обнаружите, что Холодное дыхание появляется только в комнатах, где призрак находился достаточно долго, чтобы понизить температуру.</p>
+             <p>Охлаждение комнаты, даже незначительное, может занять больше времени, чем первые несколько минут расследования. Неплохой идеей будет обратить внимание на странно низкие температуры в первых комнатах, а затем вернуться к ним.</p>
+         ]]>
     </string>
     <string name="evidence_evidence_description_book_0">
         <![CDATA[
@@ -695,7 +700,7 @@
     </string>
     <string name="evidence_evidence_description_orbs_0">
         <![CDATA[
-            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
+            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head\-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
             <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
         ]]>
     </string>
@@ -709,49 +714,115 @@
     </string>
 
     <string name="evidence_evidence_description_dots_1">
-            <![CDATA[
-                <p>The D.O.T.S. Projector is a device which may be placed on walls or the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
-                <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_emf_1">
-            <![CDATA[
-                <p>EMF-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
-                <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_fingerprints_1">
-            <![CDATA[
-                <p>Left on objects and surfaces by ghosts, Fingerprints can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font> and will glow green while under UV light.</p>
-                <p>The evidence might be tough to see on smaller items, and the evidence might fade after a while. If you\'re having trouble locating Fingerprints, using a Photo Camera on items such as a dinner table containing dinnerware or jars might procure evidence, as the journal might write \"Fingerprints\" the photos. Confusingly, Footprints also show up under UV light and count as interactions in the journal, but <font color=#ff6161>Footprints do not count as evidence towards Fingerprints</font>. A 6-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_temperatures_1">
-            <![CDATA[
-                <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
-                <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C. These freezing temperatures will allow everyone within the haunted area to <font color=#ff6161>see their breath</font>. The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_book_1">
-            <![CDATA[
-                <p>Determined using the Ghost Writing Book.</p>
-                <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_orbs_1">
-            <![CDATA[
-                <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
-                <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
-            ]]>
-        </string>
-        <string name="evidence_evidence_description_box_1">
-            <![CDATA[
-                <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
-                <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
-                <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
-                <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
-            ]]>
-        </string>
+        <![CDATA[
+             <p>Лазерная ручка, похожая на фонарик. Вы можете ходить по локации и быстро сканировать в поисках улик, единственным недостатком является малый радиус действия и низкая интенсивность освещения.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_2">
+        <![CDATA[
+             <p>Это оригинальный D.O.T.S. проектор. Это переносной проектор, испускающий сферу света среднего размера, но теперь вы можете призвать призрака войти в него, стоя рядом.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_dots_3">
+        <![CDATA[
+             <p>Выкручивает свет на максимум. Этот портативный проектор сканирует комнату на гораздо большем расстоянии широким широким лучом света, что значительно упрощает поиск призраков в больших помещениях.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_orbs_1">
+         <![CDATA[
+             <p>Старая видеокамера, найденная Ghost Huntin\' Distribution на чердаке старого офиса. Он маленький и немного потрепанный, но отлично справляется со своей задачей.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_2">
+         <![CDATA[
+             <p>Видеокамера Parasonic\— это HD-видео, которое значительно упрощает поиск сфер. К сожалению, на него по-прежнему сильно влияют активные призраки.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_orbs_3">
+         <![CDATA[
+             <p>Собственная видеокамера Bony кинокласса с большим корпусом поддерживает гораздо больший экран. Он обеспечивает гораздо более четкое видео и меньше помех от призраков.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_temperatures_1">
+         <![CDATA[
+             <p>Старый дом\-Термометр, сорванный прямо со стены гостиной вашего Следователя. Этот термометр имеет медленную частоту дискретизации, а это означает, что вам придется ждать дольше, чтобы получить точные показания. Вы можете принести его и проверить позже в контракте.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_2">
+         <![CDATA[
+             <p>Обновленная версия классического считывателя температуры, но гораздо более точная. Вместо того, чтобы включать его и получать показания каждые две секунды, удерживайте кнопку «Использовать», чтобы сканировать температуру. Это позволяет бегать и проверять температуру в каждой комнате намного быстрее, чем позволяет уровень I.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_temperatures_3">
+         <![CDATA[
+             <p>Прямое обновление до уровня II, выполняющее сканирование температуры в два раза быстрее, чем его предшественник. Кроме того, этот более современный термометр более точен при каждом измерении, позволяя игрокам быстро и эффективно сканировать комнаты, чтобы найти призрака или отметить «температуру замерзания» в журнале.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_fingerprints_1">
+         <![CDATA[
+             <p>Классический ультрафиолетовый светящийся стержень. После щелчка, чтобы включить его, он излучает ближний свет, который длится около одной минуты, а затем затемняется. Вы всегда можете встряхнуть его еще раз, чтобы оживить его свет.</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_2">
+         <![CDATA[
+             <p>Классический УФ-фонарик, который излучает более яркий луч с большей дальностью действия и может похвастаться гораздо более быстрым временем УФ-зарядки!</p>
+         ]]>
+     </string>
+    <string name="evidence_evidence_description_fingerprints_3">
+         <![CDATA[
+             <p>UV Light Pro\– это массивный фонарик с гораздо более ярким и широким световым конусом, а также с еще более быстрым временем зарядки. Он идеально подходит для быстрого обнаружения ультрафиолетовых улик в больших масштабах.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_evidence_description_emf_1">
+        <![CDATA[
+             <p>Старый\-аналоговый измеритель с небольшим диапазоном обнаружения, низкой точностью и низким звуковым излучением. Стрелка перейдет в ускоренный режим при обнаружении ЭМП уровня 5.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_2">
+        <![CDATA[
+             <p>Надежный измеритель K2. При перемещении в пределах среднего диапазона точек ЭМП он будет отображать точное значение от двух до пяти и издавать четкий слышимый звук.</p>
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_emf_3">
+        <![CDATA[
+             <p>Высокотехнологичный ParaReader. Это устройство может отслеживать до трех точек ЭМП одновременно и имеет самый дальний диапазон обнаружения. Он покажет направление, диапазон и значение каждого показания одновременно. Он воспроизводит звуки для каждого обнаружения ЭМП, чтобы вы могли слышать на расстоянии, сколько и насколько сильны показания.</p>
+         ]]>
+    </string>
+
+    <string name="evidence_evidence_description_box_1">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_box_2">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_box_3">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
+
+    <string name="evidence_evidence_description_book_1">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_2">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
+    <string name="evidence_evidence_description_book_3">
+        <![CDATA[
+             Информация пока отсутствует.
+         ]]>
+    </string>
 
     <!--
         MAPS PAGE
@@ -813,6 +884,7 @@
     <!-- Age Questions -->
     <string name="spiritbox_entry_q3_5">How old are you?</string>
     <!-- Location Questions -->
+    <string name="spiritbox_entry_q5_8">Где ты?</string>
     <string name="spiritbox_entry_q5_1">Are you here?</string>
     <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
     <string name="spiritbox_entry_q5_7">Where are you?</string>
@@ -839,78 +911,13 @@
     <string name="spiritbox_entry_q8_2">How crazy am I?</string>
     <string name="spiritbox_entry_q8_3">How insane am I?</string>
     <string name="spiritbox_entry_q8_4">Am I insane?</string>
-    <string name="evidence_evidence_description_dots_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_dots_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_box_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_orbs_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_book_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_temperatures_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_fingerprints_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_3">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_2">
-        <![CDATA[
-            \?
-        ]]>
-    </string>
+
     <string name="settings_appearancesettings">Появление</string>
     <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">Стиль шрифта</string>
+    <string name="evidence_evidence_section_overview">Обзор</string>
+    <string name="evidence_evidence_section_tiers">Уровни</string>
+    <string name="settings_adsconsentcontrolsettings">Конфигурация GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Редактировать</string>
 
 </resources>

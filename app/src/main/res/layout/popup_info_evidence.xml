@@ -146,7 +146,7 @@
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
                         android:padding="3dp"
-                        android:text="Overview"
+                        android:text="@string/evidence_evidence_section_overview"
                         android:textColor="?attr/bodyFontColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +187,7 @@
                         android:layout_marginEnd="2dp"
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
-                        android:text="Tiers"
+                        android:text="@string/evidence_evidence_section_tiers"
                         android:textColor="?attr/bodyFontColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -410,13 +410,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout52">
 
-                    <include
-                        android:id="@+id/scrollview_tiers"
-                        layout="@layout/item_scrollview_tiers"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/label_tier"
+                        style="?attr/primaryFont_Regular_Manual"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <include
+                        android:id="@+id/scrollview_tiers"
+                        layout="@layout/item_scrollview_tiers"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_tier" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

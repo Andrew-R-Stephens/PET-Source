@@ -10,12 +10,16 @@
         <item>@string/language_fullName_english</item>
         <item>@string/language_fullName_spanish</item>
         <item>@string/language_fullName_french</item>
+        <!--<item>@string/language_fullName_czech</item>
+        <item>@string/language_fullName_russian</item>-->
     </string-array>
     <string-array name="languages_abbreviation">
         <item>@string/language_abbrName_german</item>
         <item>@string/language_abbrName_english</item>
         <item>@string/language_abbrName_spanish</item>
         <item>@string/language_abbrName_french</item>
+        <!--<item>@string/language_abbrName_czech</item>
+        <item>@string/language_abbrName_russian</item>-->
     </string-array>
 
     <!-- Book Writing Images -->
@@ -398,9 +402,9 @@
 
     <string-array name="evidence_tiers_orbs_animation">
         <item>@drawable/example_ghost_orbs_0</item>
-        <item>@drawable/anim_vcam_1</item>
-        <item>@drawable/anim_vcam_2</item>
-        <item>@drawable/anim_vcam_3</item>
+        <item>@drawable/anim_orbs_1</item>
+        <item>@drawable/anim_orbs_2</item>
+        <item>@drawable/anim_orbs_3</item>
     </string-array>
 
     <string-array name="evidence_tiers_book_animation">
