@@ -21,7 +21,7 @@
         android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        tools:targetApi="TIRAMISU">
+        tools:targetApi="34">
 
         <!-- Delay app measurement until MobileAds.initialize() is called. -->
         <meta-data
