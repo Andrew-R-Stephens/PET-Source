@@ -28,7 +28,7 @@ public class CodexPosessionsFragment extends Fragment {
 
     private int current = 0;
 
-    private PosessionFragment[] frags = {
+    private final PosessionFragment[] frags = {
             new CodexPosessions_Mirror(),
             new CodexPosessions_MusicBox(),
             new CodexPosessions_Ouija(),

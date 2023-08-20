@@ -301,7 +301,7 @@ class STLASCIIParser extends STLParser
         }
 
         stream = new ProgressMonitorInputStream(
-            parentComponent, "analyzing " + url.toString(), stream);
+            parentComponent, "analyzing " + url, stream);
 
         BufferedReader reader =
             new BufferedReader(new InputStreamReader(stream));
@@ -332,7 +332,7 @@ class STLASCIIParser extends STLParser
 
         stream = new ProgressMonitorInputStream (
             parentComponent,
-            "parsing " + url.toString(),
+            "parsing " + url,
             stream);
 
         reader = new BufferedReader(new InputStreamReader(stream));

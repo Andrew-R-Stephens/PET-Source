@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,9 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +75,9 @@
                 android:id="@+id/label_settingstitle"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/NorseRegular"
                 android:gravity="center"
-                android:text="@string/settings_title"
                 android:maxLines="1"
+                android:text="@string/settings_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -110,9 +108,9 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_confirm_label"
+                    style="?attr/primaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    style="?attr/primaryFont_Regular_Squeeze"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
@@ -133,9 +131,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout81"
+            style="@style/NorseRegular"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            style="@style/NorseRegular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout27"
             app:layout_constraintHeight_percent=".8"
@@ -143,184 +141,479 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27"
             app:layout_constraintVertical_bias="0.3">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout43"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout44"
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:measureAllChildren="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".75">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout47"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".15"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/settings_generalsettings_title"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="@string/settings_generalsettings"
-                        android:textColor="?attr/titleFontColor"
-                        app:layout_constraintBottom_toTopOf="@+id/divider7"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/divider7"
-                        android:layout_width="0dp"
-                        android:layout_height="3dp"
-                        android:background="@drawable/icon_strikethrough_1"
-                        android:backgroundTint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/settings_generalsettings_title"
-                        app:layout_constraintStart_toStartOf="@+id/settings_generalsettings_title"
-                        app:layout_constraintTop_toBottomOf="@+id/settings_generalsettings_title" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintlayout_generalsettings"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".7"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout47">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constrainlayout_alwayson"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/constrainlayout_network"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".3"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/switch_alwayson_text"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="8dp"
-                            android:gravity="center"
-                            android:text="@string/settings_screenalwayson"
-                            app:layout_constraintBottom_toBottomOf="@+id/switch_alwayson_switch"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/switch_alwayson_switch"
-                            app:layout_constraintTop_toTopOf="@+id/switch_alwayson_switch" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_alwayson_switch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="start|center_vertical"
-                            android:inputType="text"
-                            android:textColor="?attr/switchColor"
-                            android:textIsSelectable="false"
-                            android:theme="@style/SwitchTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/switch_alwayson_text"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constrainlayout_network"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_colorspace"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".3"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/switch_network_text"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="8dp"
-                            style="?attr/primaryFont_Regular_Squeeze"
-                            android:gravity="center"
-                            android:text="@string/settings_networktitle"
-                            app:layout_constraintBottom_toBottomOf="@+id/switch_network_switch"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
-                            app:layout_constraintTop_toTopOf="@+id/switch_network_switch" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_network_switch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="start|center_vertical"
-                            android:inputType="text"
-                            android:textColor="?attr/switchColor"
-                            android:textIsSelectable="false"
-                            android:theme="@style/SwitchTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/switch_network_text"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintlayout_colorspace"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".4"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constrainlayout_network">
+                        android:id="@+id/constraintlayout_generalsettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout45"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
+                            android:id="@+id/constraintLayout47"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@+id/constrainlayout_alwayson"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed">
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/colorblindmode_title"
+                                android:id="@+id/settings_generalsettings_title"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="@string/settings_colorblindnessmode_title"
-                                app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
+                                android:text="@string/settings_generalsettings"
+                                android:textColor="?attr/titleFontColor"
+                                app:layout_constraintBottom_toTopOf="@+id/divider7"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/divider7"
+                                android:layout_width="0dp"
+                                android:layout_height="3dp"
+                                android:background="@drawable/icon_strikethrough_1"
+                                android:backgroundTint="#FFFFFF"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/settings_generalsettings_title"
+                                app:layout_constraintStart_toStartOf="@+id/settings_generalsettings_title"
+                                app:layout_constraintTop_toBottomOf="@+id/settings_generalsettings_title" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constrainlayout_alwayson"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constrainlayout_network"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout47">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/switch_alwayson_text"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/settings_screenalwayson"
+                                app:layout_constraintBottom_toBottomOf="@+id/switch_alwayson_switch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/switch_alwayson_switch"
+                                app:layout_constraintTop_toTopOf="@+id/switch_alwayson_switch" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_alwayson_switch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:inputType="text"
+                                android:textColor="?attr/switchColor"
+                                android:textIsSelectable="false"
+                                android:theme="@style/SwitchTheme"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/switch_alwayson_text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constrainlayout_network"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/switch_network_text"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/settings_networktitle"
+                                app:layout_constraintBottom_toBottomOf="@+id/switch_network_switch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
+                                app:layout_constraintTop_toTopOf="@+id/switch_network_switch" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_network_switch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:inputType="text"
+                                android:textColor="?attr/switchColor"
+                                android:textIsSelectable="false"
+                                android:theme="@style/SwitchTheme"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/switch_network_text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout49"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout60"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constrainlayout_network">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/settings_extrasettings_title"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="16dp"
+                                android:gravity="center"
+                                android:text="@string/settings_extrasettings"
+                                android:textColor="?attr/titleFontColor"
+                                app:layout_constraintBottom_toTopOf="@+id/divider31"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/divider31"
+                                android:layout_width="0dp"
+                                android:layout_height="3dp"
+                                android:background="@drawable/icon_strikethrough_1"
+                                android:backgroundTint="#FFFFFF"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/settings_extrasettings_title"
+                                app:layout_constraintStart_toStartOf="@+id/settings_extrasettings_title"
+                                app:layout_constraintTop_toBottomOf="@+id/settings_extrasettings_title" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout60"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout57"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout49">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/switch_leftHandMode_text"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/settings_enableLeftHandSupport"
+                                app:layout_constraintBottom_toBottomOf="@+id/switch_leftHandMode_switch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
+                                app:layout_constraintTop_toTopOf="@+id/switch_leftHandMode_switch" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_leftHandMode_switch"
+                                style="@style/NorseRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:inputType="text"
+                                android:textColor="?attr/switchColor"
+                                android:textIsSelectable="false"
+                                android:theme="@style/SwitchTheme"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/switch_leftHandMode_text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout57"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout60">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/switch_huntwarningaudio_text"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/settings_enablehuntaudioqueue"
+                                app:layout_constraintBottom_toBottomOf="@+id/switch_huntwarningaudio_switch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/switch_huntwarningaudio_switch"
+                                app:layout_constraintTop_toTopOf="@+id/switch_huntwarningaudio_switch" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_huntwarningaudio_switch"
+                                style="@style/NorseRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:gravity="start|center_vertical"
+                                android:inputType="text"
+                                android:textColor="?attr/switchColor"
+                                android:textIsSelectable="false"
+                                android:theme="@style/SwitchTheme"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/switch_huntwarningaudio_text"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout46"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="@+id/constraintLayout57"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/constraintLayout57"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout57">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/switch_huntwarningaudio_title"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/settings_huntwarningflashtimeout"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_chainStyle="packed" />
+                                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+                            <androidx.appcompat.widget.AppCompatSeekBar
+                                android:id="@+id/settings_huntwarning_seekbar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:max="100"
+                                android:maxHeight="3dp"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/progressbar_progress"
+                                android:splitTrack="false"
+                                android:thumb="@drawable/seekbar_thumb"
+                                app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintWidth_percent=".6" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/seekbar_huntwarningtimeout_othertext"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="4dp"
+                                android:background="#00FFFFFF"
+                                android:gravity="center"
+                                android:text="@string/settings_huntwarningflashtimeout_never"
+                                app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintEnd_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintStart_toStartOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintTop_toBottomOf="@+id/switch_huntwarningaudio_title" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/seekbar_huntwarningtimeout_timetext"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="4dp"
+                                android:background="#00FFFFFF"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/settings_huntwarningflashtimeout_never"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/switch_huntwarningaudio_title"
+                                app:layout_constraintWidth_percent=".4" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_43"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout46">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/colorblindmode_note"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
                                 style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="0dp"
+                                android:layout_height="16dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="3dp"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_note"
                                 android:textColor="?attr/neutralSelColor"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title" />
+                                app:layout_constraintTop_toBottomOf="@+id/settings_style_title" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/settings_style_title"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:text="@string/settings_appearancesettings"
+                                android:textColor="?attr/titleFontColor"
+                                app:layout_constraintBottom_toTopOf="@+id/colorblindmode_note"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/divider_style1"
+                                android:layout_width="0dp"
+                                android:layout_height="3dp"
+                                android:background="@drawable/icon_strikethrough_1"
+                                android:backgroundTint="#FFFFFF"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/colorblindmode_note" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_font1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_43"
+                            app:layout_constraintVertical_chainStyle="packed">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/font_title"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:gravity="center"
+                                android:text="@string/settings_fontstylesettings"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_font2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_font1">
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/font_leftbutton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:contentDescription="@string/app_name"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/icon_prev"
+                                android:tint="?attr/bodyFontColor"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/font_selectedname"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/font_selectedname"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="0dp"
+                                android:layout_height="18dp"
+                                android:gravity="center"
+                                android:text="@string/settings_colorblindnessmode_normal"
+                                android:textColor="?attr/neutralSelColor"
+                                app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
+                                app:layout_constraintEnd_toStartOf="@+id/font_rightbutton"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/font_leftbutton"
+                                app:layout_constraintTop_toTopOf="@+id/font_leftbutton"
+                                app:layout_constraintWidth_percent=".5" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/font_rightbutton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:contentDescription="@string/app_name"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/icon_next"
+                                android:tint="?attr/bodyFontColor"
+                                app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/font_selectedname"
+                                app:layout_constraintTop_toTopOf="@+id/font_leftbutton" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout45"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_font2"
+                            app:layout_constraintVertical_chainStyle="packed">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/colorblindmode_title"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:gravity="center"
+                                android:text="@string/settings_colorblindnessmode_title"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -328,7 +621,7 @@
                             android:id="@+id/constraintLayout71"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginTop="4dp"
                             app:layout_constraintEnd_toEndOf="@+id/constraintLayout45"
                             app:layout_constraintStart_toStartOf="@+id/constraintLayout45"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout45">
@@ -352,13 +645,13 @@
                                 android:id="@+id/colorblindmode_selectedname"
                                 style="?attr/primaryFont_Regular_Squeeze"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_height="18dp"
                                 android:gravity="center"
                                 android:text="@string/settings_colorblindnessmode_normal"
                                 android:textColor="?attr/neutralSelColor"
+                                android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintEnd_toStartOf="@+id/colorblindmode_rightbutton"
-                                app:layout_constraintHeight_percent=".6"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton"
@@ -381,225 +674,41 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout44"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout43"
-                app:layout_constraintWidth_percent=".75">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout48"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".15"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/settings_othersettings_title"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="@string/settings_extrasettings"
-                        android:textColor="?attr/titleFontColor"
-                        app:layout_constraintBottom_toTopOf="@+id/divider9"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/divider9"
-                        android:layout_width="0dp"
-                        android:layout_height="3dp"
-                        android:background="@drawable/icon_strikethrough_1"
-                        android:backgroundTint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/settings_othersettings_title"
-                        app:layout_constraintStart_toStartOf="@+id/settings_othersettings_title"
-                        app:layout_constraintTop_toBottomOf="@+id/settings_othersettings_title" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintlayout_extrasettings"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".4"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout48"
-                    app:layout_constraintVertical_bias="0.2">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout60"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout57"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/switch_leftHandMode_text"
-                            style="?attr/primaryFont_Regular_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:gravity="center"
-                            android:text="@string/settings_enableLeftHandSupport"
-                            app:layout_constraintBottom_toBottomOf="@+id/switch_leftHandMode_switch"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
-                            app:layout_constraintTop_toTopOf="@+id/switch_leftHandMode_switch" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_leftHandMode_switch"
-                            style="@style/NorseRegular"
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_ads"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="start|center_vertical"
-                            android:inputType="text"
-                            android:textColor="?attr/switchColor"
-                            android:textIsSelectable="false"
-                            android:theme="@style/SwitchTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/switch_leftHandMode_text"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout57"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout60">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/switch_huntwarningaudio_text"
-                            style="?attr/primaryFont_Regular_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:gravity="center"
-                            android:text="@string/settings_enablehuntaudioqueue"
-                            app:layout_constraintBottom_toBottomOf="@+id/switch_huntwarningaudio_switch"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/switch_huntwarningaudio_switch"
-                            app:layout_constraintTop_toTopOf="@+id/switch_huntwarningaudio_switch" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_huntwarningaudio_switch"
-                            style="@style/NorseRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="start|center_vertical"
-                            android:inputType="text"
-                            android:textColor="?attr/switchColor"
-                            android:textIsSelectable="false"
-                            android:theme="@style/SwitchTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/switch_huntwarningaudio_text"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout71">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout46"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout57"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="@+id/constraintLayout57"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout57">
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/settings_ads_label"
+                                style="?attr/primaryFont_Regular_Squeeze"
+                                android:layout_width="wrap_content"
+                                android:layout_height="46dp"
+                                android:layout_marginTop="32dp"
+                                android:background="@drawable/radiobutton_1_disabled"
+                                android:gravity="center"
+                                android:drawableStart="@android:drawable/ic_menu_edit"
+                                android:drawablePadding="8dp"
+                                android:padding="8dp"
+                                android:text="@string/settings_adsconsentcontrolsettings"
+                                android:textColor="?attr/titleFontColor"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/switch_huntwarningaudio_title"
-                            style="?attr/primaryFont_Regular_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:text="@string/settings_huntwarningflashtimeout"
-                            app:layout_constraintBottom_toTopOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_percent=".5"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="spread_inside" />
-
-                        <androidx.appcompat.widget.AppCompatSeekBar
-                            android:id="@+id/settings_huntwarning_seekbar"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:max="100"
-                            android:maxHeight="3dp"
-                            android:progress="100"
-                            android:progressDrawable="@drawable/progressbar_progress"
-                            android:splitTrack="false"
-                            android:thumb="@drawable/seekbar_thumb"
-                            app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintWidth_percent=".6" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/seekbar_huntwarningtimeout_othertext"
-                            style="?attr/secondaryFont_Regular_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:background="#00FFFFFF"
-                            android:gravity="center"
-                            android:text="@string/settings_huntwarningflashtimeout_never"
-                            app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintEnd_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintStart_toStartOf="@+id/seekbar_huntwarningtimeout_timetext"
-                            app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/seekbar_huntwarningtimeout_timetext"
-                            style="?attr/secondaryFont_Regular_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:background="#00FFFFFF"
-                            android:ems="10"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:text="@string/settings_huntwarningflashtimeout_never"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintHorizontal_chainStyle="packed"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/switch_huntwarningaudio_title"
-                            app:layout_constraintWidth_percent=".4" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+            </ScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

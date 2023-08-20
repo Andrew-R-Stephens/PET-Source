@@ -84,9 +84,9 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 
 		// Use culling to remove back faces.
 		// Don't remove back faces so we can see them
-		GLES20.glEnable(GLES20.GL_CULL_FACE);;
+		GLES20.glEnable(GLES20.GL_CULL_FACE);
 
-		// Enable depth testing for hidden-surface elimination.
+        // Enable depth testing for hidden-surface elimination.
 		GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
 		// Enable blending for combining colors when there is transparency

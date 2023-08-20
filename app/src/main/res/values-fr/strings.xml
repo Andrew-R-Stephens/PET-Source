@@ -266,7 +266,7 @@
     </string>
     <string name="evidence_ghost_strengths_thaye">
         <![CDATA[
-            <p>Le Thayé sera le plus actif et le plus dangereux au début d\'une mission. Cela le rend extrêmement menaçant dès le début. Le Thaye chassera à 75% au début d\'une enquête, pour finalement atteindre un minimum de 15% après avoir fini de vieillir. Un jeune Thayé sera très rapide à 2,7 m/s, tandis qu\'un vieux Thayé se déplacera plus lentement qu\'un joueur à 1,0 m/s.</p>
+            <p>Le Thayé sera le plus actif et le plus dangereux au début d\'une mission. Cela le rend extrêmement menaçant dès le début. Le Thaye chassera à 75\% au début d\'une enquête, pour finalement atteindre un minimum de 15\% après avoir fini de vieillir. Un jeune Thayé sera très rapide à 2,7 m/s, tandis qu\'un vieux Thayé se déplacera plus lentement qu\'un joueur à 1,0 m/s.</p>
         ]]>
     </string>
     <string name="evidence_ghost_strengths_thetwins">
@@ -591,20 +591,20 @@
         EVIDENCE
     -->
 
-    <string name="evidence_evidence_description_emf_0">
+    <string name="evidence_description_emf_0">
         <![CDATA[
             <p>EMF-5 est la lecture de niveau le plus eleve d\'un <font color=#ff6161>Lecteur EMF</font>.</p>
             <p>Un fantome produit des emissions EMF des niveaux 1 a 5 lorsqu\'il interagit d\'une maniere ou d\'une autre avec la piece ou la planche Ouija. Les scintillements legers, les pas et d\'autres interactions passives plus petites donneront generalement une lecture plus faible. Des interactions plus intenses, telles qu\'une apparence ou une sonnerie de telephone, donneront presque toujours une lecture plus elevee. Les fantomes portant cette preuve ne donneront le niveau EMF 5 que par hasard, donc cette preuve <font color=#ff6161>peut prendre un certain temps a acquerir</font>.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_dots_0" >
+    <string name="evidence_description_dots_0" >
 		<![CDATA[
              <p>Le D.O.T.S. Le projecteur est un appareil qui peut être placé sur les murs ou sur le sol. Il projette une matrice de points lumineux, projetant les points sur les surfaces proches autour de lui.</p>
              <p>Pour identifier positivement cette Preuve, <font color=#ff6161>une silhouette du fantôme sera vue courir, ou ramper rapidement, à travers les faisceaux de la projection</font>. La silhouette peut être vue à l\'œil nu ou à travers une caméra vidéo, mais elle est plus facile à voir <font color=#ff6161>à distance via les thermiques de la caméra vidéo</font>. Il est préférable d\'essayer de trouver cette preuve à distance, car le comportement d\'un Goryo peut sinon provoquer des conflits de preuve. L\'emplacement réel du fantôme ne dictera pas le moment où les animations de silhouette se produiront.</p>
               <p>Le D.O.T.S. les visuels sont maintenant le fantôme réel, ce qui signifie que vous devrez faire briller vos lumières infrarouges près de la position réelle du fantôme. Cela crée un gameplay beaucoup plus attrayant pour les joueurs, vous pouvez utiliser D.O.T.S. pour voir où se trouve votre fantôme ou si vous avez du mal à obtenir des preuves, utilisez du sel, des détecteurs de mouvement ou d\'autres équipements pour trouver un meilleur emplacement pour votre projecteur. Fantômes avec D.O.T.S. la preuve peut maintenant entrer un court \"D.O.T.S. état \" lors de l\'errance; Pendant ce temps, ils sont temporairement visibles avec une lumière infrarouge, pendant ce temps ils erreront vers le joueur le plus proche (ou vers un endroit aléatoire de la salle si elle est vide) avant de disparaître.</p>
          ]]>
 	</string>
-    <string name="evidence_evidence_description_temperatures_0">
+    <string name="evidence_description_thermometer_0">
         <![CDATA[
              <p>Les températures de congélation sont <font color=#ff6161>inférieures à 0 Celsius</font>. La température peut être déterminée à l\'aide du <font color=#ff6161>Thermomètre</font>.</p>
              <p>Alors que les fantômes tirent la chaleur de la zone environnante, les températures diminuent dans la pièce ou les couloirs où le <font color=#ff6161>fantôme passe le plus clair de son temps</font>. Tous les fantômes finiront par provoquer des températures inférieures à 13 degrés Celsius, mais seuls certains types de fantômes feront chuter les températures en dessous de 0 C.</p>
@@ -612,25 +612,25 @@
              <p>Le refroidissement d\'une pièce, même légèrement, peut prendre plus de temps que les premières minutes d\'une enquête. Prendre note des températures étrangement basses dans les premières pièces, puis y revenir est une bonne idée.</p>
          ]]>
     </string>
-    <string name="evidence_evidence_description_box_0">
+    <string name="evidence_description_box_0">
         <![CDATA[
             <p>La Spirit Box est un objet utilise pour <font color=#ff6161>communiquer avec le fantome</font>.</p>
             <p>Un joueur doit <font color=#ff6161>poser des questions dans le chat de proximite a une Spirit Box active, a la fois a proximite du fantome et lorsque les lumieres sont eteintes</font>. Avant de tenter cela, verifiez les parametres de reponse du fantome tels que \"Repond aux personnes qui sont seules \" ou \"Repond a tout le monde \" figurant sur le tableau blanc du camion. Si le fantome repond, la Spirit Box est une preuve confirmee. Les questions pointues telles que «Quel age avez-vous?» Ou «Ou etes-vous?» Sont des questions plausibles. Gardez a l\'esprit que le fantome est toujours a l\'ecoute, que le joueur parle ou non dans une Spirit Box. Dessiner un fantome peut etre fait en disant son prenom plusieurs fois (donc en le mettant en colere), et en lui donnant des commandes telles que «Montre-toi» ou «Donne-nous un signe» semblent etre des commandes plausibles.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_book_0">
+    <string name="evidence_description_book_0">
         <![CDATA[
             <p>Determine a l\'aide du livre d\'ecriture Ghost.</p>
             <p>Les fantomes peuvent ecrire dans le livre <font color=#ff6161>peu importe si le livre est pose ou tenu en main</font>. Si le fantome ecrit dans le livre, il s\'agit d\'un element de preuve pour ce type de fantome. Si des symboles demoniaques sont ecrits, cela peut etre une preuve d\'un demon, mais ce n\'est absolument pas definitif car les styles d\'ecriture fantome ont tendance a s\'ecarter au hasard.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_orbs_0">
+    <string name="evidence_description_vcam_0">
         <![CDATA[
             <p>Un petit orbe flottant qui n\'est present que dans la piece qu\'un fantome hante. ua peut etre <font color=#ff6161>vu uniquement par vision nocturne a travers le flux de la camera du camion<font> des cameras video ou des cameras montees sur la tete.</p>
             <p>Les orbes fantomes peuvent etre rapides a reperer, mais l\'exclure trop rapidement pourrait causer des problemes sur la route.</p>
         ]]>
     </string>
-    <string name="evidence_evidence_description_fingerprints_0">
+    <string name="evidence_description_ultraviolet_0">
         <![CDATA[
              <p>Les preuves ultraviolettes ne peuvent être <font color=#ff6161>visibles qu\'en faisant briller la lumière UV ou un bâton lumineux sur les surfaces affectées</font>. Les preuves ultraviolettes deviendront vertes lorsqu\'elles seront chargées par la lumière UV et s\'estomperont avec le temps.</p>
              <p>Laissées sur des objets et des surfaces par des fantômes, les preuves ultraviolettes peuvent être difficiles à voir sur des objets plus petits ou dans de grandes pièces. Les empreintes de pas qui ont été suivies par des tas de sel comptent également comme des preuves ultraviolettes.</p>
@@ -639,116 +639,129 @@
          ]]>
     </string>
 
-    <string name="evidence_evidence_description_dots_1">
-        <![CDATA[
+
+    <string name="evidence_description_dots_1">
+         <![CDATA[
              <p>Un stylo à grille laser qui ressemble à une lampe de poche. Vous pouvez marcher autour de l\'emplacement et rechercher rapidement des preuves, le seul inconvénient étant sa courte portée et sa faible intensité lumineuse.</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_dots_2">
-        <![CDATA[
+     </string>
+    <string name="evidence_description_dots_2">
+         <![CDATA[
              <p>Ceci est le D.O.T.S original. projecteur. Il s\'agit d\'un projecteur placable émettant une sphère de lumière de taille moyenne, sauf que vous pouvez désormais encourager le fantôme à entrer dedans en vous tenant à proximité.</p>
-         ]]>
-    </string>
-    <string name="evidence_evidence_description_dots_3">
-        <![CDATA[
-             <p> Augmente la lumière au maximum. Ce projecteur placable balaye la pièce à une distance beaucoup plus longue avec un faisceau de lumière large et rapide, ce qui facilite la recherche de fantômes dans ces grandes pièces.</p>
-         ]]>
-    </string>
-
-    <string name="evidence_evidence_description_orbs_1">
-         <![CDATA[
-             <p>Un vieux caméscope que Ghost Huntin\' Distribution a trouvé dans le grenier de l\'ancien bureau. Il est petit et un peu usé, mais il fait très bien le travail.</p>
+             <p>Idéal pour les pièces de petite à moyenne taille.</p>
          ]]>
      </string>
-    <string name="evidence_evidence_description_orbs_2">
+    <string name="evidence_description_dots_3">
          <![CDATA[
-             <p>La caméra vidéo Parasonic est une vidéo HD qui facilite grandement la recherche d\'orbes. Malheureusement, il reçoit encore beaucoup d\'interférences d\'un fantôme actif.</p>
-         ]]>
-     </string>
-    <string name="evidence_evidence_description_orbs_3">
-         <![CDATA[
-             <p>La caméra vidéo de qualité cinématographique de Bony avec un grand corps prend en charge un écran beaucoup plus grand. Il dispose d\'un flux vidéo beaucoup plus clair et reçoit moins d\'interférences des apparitions de fantômes.</p>
+             <p>Ce projecteur placable balaye la pièce à une distance beaucoup plus longue avec un faisceau de lumière large et rapide, ce qui facilite la recherche de fantômes dans ces grandes pièces. Pour une couverture optimale, placez ce projecteur sur un mur ou une surface plane, tenez-vous à proximité et surveillez les silhouettes fantômes.</p>
          ]]>
      </string>
 
-    <string name="evidence_evidence_description_temperatures_1">
+    <string name="evidence_description_emf_1">
+         <![CDATA[
+             <p>Un ancien multimètre analogique avec une petite plage de détection, une faible précision et de faibles émissions audio. L\'aiguille passera en surmultipliée, poussant au-delà du niveau 5 lorsque le niveau 5 EMF est détecté.</p>
+         ]]>
+     </string>
+    <string name="evidence_description_emf_2">
+         <![CDATA[
+             <p>Le compteur K2 de confiance a une portée plus large et cinq lumières LED pour détecter les lectures EMF, ainsi qu\'un module de haut-parleur supplémentaire. Une lumière s\'allume lorsque vous activez l\'appareil. Lorsque vous vous déplacez dans la plage de détection des points EMF du K2, il affiche une valeur précise de deux à cinq et émet un son clair et audible.</p>
+         ]]>
+     </string>
+    <string name="evidence_description_emf_3">
+         <![CDATA[
+             <p>Un ParaReader high\-tech. Cet appareil peut suivre jusqu\'à trois points EMF à la fois et a une plage de détection la plus éloignée.</p>
+             <p>Il affichera la direction, la plage et la valeur de chaque lecture en même temps. Il émet des sons pour chaque détection EMF afin que vous puissiez entendre, à distance, combien et quelle est la force des lectures.</p>
+             <p>Si un spot EMF s\'estompe, un spot EMF plus récent sera placé en bas de la liste.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_description_ultraviolet_1">
+         <![CDATA[
+             <p>Le bâton lumineux UV classique. Après l\'avoir cliqué pour l\'allumer, il projette une lumière de zone à courte portée qui dure environ une minute avant de s\'assombrir. Vous pouvez toujours lui donner une autre secousse pour revigorer sa lumière.</p>
+             <p>Cet appareil chargera un point UV dans les 10 secondes suivant l\'exposition.</p>
+         ]]>
+     </string>
+    <string name="evidence_description_ultraviolet_2">
+         <![CDATA[
+             <p>La lampe de poche UV classique qui émet un faisceau plus lumineux et étroit avec une portée plus longue, offrant un temps de charge UV beaucoup plus rapide!</p>
+             <p>Cet appareil chargera un spot UV dans les 5 secondes suivant l\'exposition.</p>
+         ]]>
+     </string>
+    <string name="evidence_description_ultraviolet_3">
+         <![CDATA[
+             <p>L\'UV Light Pro est une grosse lampe de poche qui a un cône de lumière beaucoup plus lumineux et plus large, ainsi qu\'un temps de charge encore plus rapide. Il est parfait pour localiser rapidement des preuves ultraviolettes à plus grande échelle.<p>
+             <p>Cet appareil chargera un point UV dans les 1,5 secondes suivant l\'exposition.</p>
+         ]]>
+     </string>
+
+    <string name="evidence_description_thermometer_1">
          <![CDATA[
              <p>Une vieille maison\-Thermomètre, arraché directement du mur du salon de votre Enquêteur. Ce thermomètre a un taux d\'échantillonnage lent, ce qui signifie que vous devrez attendre plus longtemps pour obtenir une lecture précise. Vous voudrez peut-être en apporter un et le vérifier plus tard dans le contrat.</p>
          ]]>
      </string>
-    <string name="evidence_evidence_description_temperatures_2">
+    <string name="evidence_description_thermometer_2">
          <![CDATA[
              <p>Une version mise à jour du lecteur de température classique, mais beaucoup plus réactive. Au lieu de l\'allumer et d\'obtenir une lecture toutes les deux secondes, maintenez le bouton \'Utiliser\' pour rechercher les températures. Cela permet de courir et de vérifier la température de chaque pièce beaucoup plus rapidement que le niveau I ne le permet.</p>
          ]]>
      </string>
-    <string name="evidence_evidence_description_temperatures_3">
+    <string name="evidence_description_thermometer_3">
          <![CDATA[
              <p>Une mise à niveau directe vers le niveau II, effectuant des analyses de température deux fois plus rapides que son prédécesseur. De plus, ce thermomètre plus moderne est plus précis à chaque lecture, permettant aux joueurs de scanner rapidement et efficacement les pièces pour trouver le fantôme ou pour faire cocher \"Températures glaciales\" dans le Journal.</p>
          ]]>
      </string>
 
-    <string name="evidence_evidence_description_fingerprints_1">
+    <string name="evidence_description_book_1">
          <![CDATA[
-             <p>Le bâton lumineux UV classique. Après l\'avoir cliqué pour l\'allumer, il projette une lumière de zone à courte portée qui dure environ une minute avant de s\'assombrir. Vous pouvez toujours lui donner une autre secousse pour revigorer sa lumière.</p>
+             <p>Ce bloc-notes en papier peut être placé à proximité d\'un fantôme pour encourager une écriture paranormale. Assurez-vous de le placer à proximité de toute activité que vous voyez. Certains fantômes peuvent ne pas remarquer le petit bloc-notes et le crayon, cela peut donc prendre un certain temps avant que quelque chose ne se passe.<p/>
          ]]>
      </string>
-    <string name="evidence_evidence_description_fingerprints_2">
+    <string name="evidence_description_book_2">
          <![CDATA[
-             <p>La lampe de poche UV classique qui émet un faisceau plus lumineux avec une portée plus longue, avec un temps de charge UV beaucoup plus rapide!</p>
+             <p>Avec de plus belles pages et un stylo, les fantômes semblent remarquer ce livre un peu plus souvent que la version précédente. raccourcir un peu les temps d\'attente pour que les preuves se produisent.</p>
          ]]>
      </string>
-    <string name="evidence_evidence_description_fingerprints_3">
+    <string name="evidence_description_book_3">
          <![CDATA[
-             <p>L\'UV Light Pro est une grosse lampe de poche qui a un cône de lumière beaucoup plus lumineux et plus large, ainsi qu\'un temps de charge encore plus rapide. Il est parfait pour localiser rapidement les preuves ultraviolettes à plus grande échelle.</p>
+             <p>Avec son profil large, un mélange de matériaux de haute qualité et un stylo orné, ce livre a le plus grand changement à écrire par des fantômes. Il a une portée plus large que les deux niveaux précédents, il est donc beaucoup plus facile de placer ce livre dans la portée d\'interaction d\'un fantôme.</p>
          ]]>
      </string>
 
-    <string name="evidence_evidence_description_emf_1">
-        <![CDATA[
-             <p>Un ancien compteur analogique avec une petite plage de détection, une faible précision et de faibles émissions audio. L\'aiguille passera en surmultipliée lorsque le niveau 5 EMF est détecté.</p>
+    <string name="evidence_description_vcam_1">
+         <![CDATA[
+             <p>Un vieux caméscope que Ghost Huntin\' Distribution a trouvé dans le grenier de l\'ancien bureau. Il est petit et un peu usé, mais il fait très bien le travail.</p>
+             <p>L\'analyse du flux vidéo est un défi en raison de la qualité épouvantable de son écran et de ses petites dimensions, alors prenez votre temps!</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_2">
-        <![CDATA[
-             <p>Le compteur K2 de confiance. Lorsque vous vous déplacez dans une plage moyenne de points EMF, il affichera une valeur précise de deux à cinq et émettra un son clair et audible.</p>
+     </string>
+    <string name="evidence_description_vcam_2">
+         <![CDATA[
+             <p>La caméra vidéo Parasonic est une vidéo HD qui facilite grandement la recherche d\'orbes. Il reçoit toujours beaucoup d\'interférences d\'un fantôme actif, mais beaucoup moins que le niveau 1.</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_emf_3">
-        <![CDATA[
-             <p>Un ParaReader high\-tech. Cet appareil peut suivre jusqu\'à trois spots EMF à la fois et a une plage de détection la plus éloignée. Il affichera la direction, la plage et la valeur de chaque lecture en même temps. Il émet des sons pour chaque détection EMF afin que vous puissiez entendre, à distance, combien et quelle est la force des lectures.</p>
+     </string>
+    <string name="evidence_description_vcam_3">
+         <![CDATA[
+             <p>La caméra vidéo de qualité cinématographique de Bony avec un grand corps prend en charge un écran beaucoup plus grand. Il dispose d\'un flux vidéo beaucoup plus clair et reçoit moins d\'interférences des apparitions de fantômes.</p>
          ]]>
-    </string>
+     </string>
 
-    <string name="evidence_evidence_description_box_1">
-        <![CDATA[
-             Aucune information disponible pour le moment.
+    <string name="evidence_description_box_1">
+         <![CDATA[
+             <p> Lorsque vous allumez cette Spirit Box, elle commencera à balayer différentes fréquences radio. Assurez-vous de vous tenir à proximité de toute activité paranormale, éteignez toutes les lumières dans cette pièce et posez quelques questions dans l\'espoir d\'une réponse.</p>
+             <p>Si la question a été entendue, une lumière rouge clignotera sur la Spirit Box. S\'il clignote en blanc, vous avez une réponse du fantôme.</p>
+             <p>Essayez de demander "Où es-tu?" ou "Êtes-vous amical?". Soyez prévenu, vous n\'aimerez peut-être pas la réponse que vous recevrez.</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_book_1">
-        <![CDATA[
-             Aucune information disponible pour le moment.
+     </string>
+    <string name="evidence_description_box_2">
+         <![CDATA[
+             <p>Cette Spirit Box plus moderne a un haut-parleur de meilleure qualité qui est beaucoup plus efficace pour balayer les fréquences, ce qui rend les réponses paranormales plus faciles à déchiffrer.</p>
+             <p>Si une question a été entendue, un \'X\' noir clignotera à l\'écran. Si vous obtenez une réponse, la petite icône fantôme clignotera à la place.</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_box_3">
-        <![CDATA[
-             Aucune information disponible pour le moment.
+     </string>
+    <string name="evidence_description_box_3">
+         <![CDATA[
+             <p>Lorsqu\'elle est allumée, cette Spirit Box scanne les deux fréquences, deux en même temps, augmentant les chances de capter une réponse paranormale lorsque vous posez des questions. Il dispose également d\'un filtre intégré pour réduire la quantité d\'électricité statique que vous entendez entre les interactions.</p>
+             <p>Si une question est entendue et qu\'aucune réponse n\'est donnée, les LED de RÉPONSE clignoteront en rouge. Si une réponse est donnée, les LED clignoteront en blanc au rythme du son.</p>
          ]]>
-    </string>
-    <string name="evidence_evidence_description_box_2">
-        <![CDATA[
-             Aucune information disponible pour le moment.
-         ]]>
-    </string>
-    <string name="evidence_evidence_description_book_3">
-        <![CDATA[
-             Aucune information disponible pour le moment.
-         ]]>
-    </string>
-    <string name="evidence_evidence_description_book_2">
-        <![CDATA[
-             Aucune information disponible pour le moment.
-         ]]>
-    </string>
+     </string>
 
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
     <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
@@ -767,28 +780,28 @@
     <string name="titlescreen_languages_label">Choisir la langue</string>
     <string name="mapview_instruction_pan">Déplacer: Faites glisser un doigt</string>
     <string name="mapview_instruction_zoom">Agrandir: Pincez avec deux doigts</string>
-    <string name="evidence_evidence_tiers_1">Niveau 1</string>
-    <string name="evidence_evidence_tiers_2">Niveau 2</string>
-    <string name="evidence_evidence_tiers_3">Niveau 3</string>
-    <string name="evidence_evidence_type_dots">D.O.T.S</string>
-    <string name="evidence_evidence_type_emf">EMF 5</string>
-    <string name="evidence_evidence_type_temperatures">Températures glaciales</string>
-    <string name="evidence_evidence_type_box">Spirit Box</string>
-    <string name="evidence_evidence_type_book">Ecritures Fantomatiques</string>
-    <string name="evidence_evidence_type_orbs">Orbes Fantômes</string>
-    <string name="evidence_evidence_type_fingerprints">Ultra\-violet</string>
-    <string name="evidence_ghost_type_banshee">Banshee</string>
-    <string name="evidence_ghost_type_demon">Demone</string>
-    <string name="evidence_ghost_type_jinn">Jinn</string>
-    <string name="evidence_ghost_type_mare">Caushemar</string>
-    <string name="evidence_ghost_type_oni">Oni</string>
-    <string name="evidence_ghost_type_phantom">Fantome</string>
-    <string name="evidence_ghost_type_poltergeist">Poltergeist</string>
-    <string name="evidence_ghost_type_revenant">Revenant</string>
-    <string name="evidence_ghost_type_shade">Ombre</string>
-    <string name="evidence_ghost_type_spirit">Espirit</string>
-    <string name="evidence_ghost_type_wraith">Spectre</string>
-    <string name="evidence_ghost_type_yurei">Yurei</string>
+    <string name="evidence_tiers_1">Niveau 1</string>
+    <string name="evidence_tiers_2">Niveau 2</string>
+    <string name="evidence_tiers_3">Niveau 3</string>
+    <string name="evidence_type_dots">D.O.T.S</string>
+    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_temperatures">Températures glaciales</string>
+    <string name="evidence_type_box">Spirit Box</string>
+    <string name="evidence_type_book">Ecritures Fantomatiques</string>
+    <string name="evidence_type_orbs">Orbes Fantômes</string>
+    <string name="evidence_type_ultraviolet">Ultra\-violet</string>
+    <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_demon">Demone</string>
+    <string name="ghost_type_jinn">Jinn</string>
+    <string name="ghost_type_mare">Caushemar</string>
+    <string name="ghost_type_oni">Oni</string>
+    <string name="ghost_type_phantom">Fantome</string>
+    <string name="ghost_type_poltergeist">Poltergeist</string>
+    <string name="ghost_type_revenant">Revenant</string>
+    <string name="ghost_type_shade">Ombre</string>
+    <string name="ghost_type_spirit">Espirit</string>
+    <string name="ghost_type_wraith">Spectre</string>
+    <string name="ghost_type_yurei">Yurei</string>
     <string name="general_evidence_button">Preuve</string>
     <string name="general_maps_button">Plans</string>
     <string name="general_tasks_button">Tâches</string>
@@ -911,5 +924,7 @@
     <string name="evidence_evidence_section_tiers">Niveaux</string>
     <string name="settings_adsconsentcontrolsettings">Configuration GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modifier</string>
+    <string name="evidence_requirement_level_title">Niveau de Déblocage:</string>
+    <string name="evidence_requirement_cost_title">Coût:</string>
 
 </resources>

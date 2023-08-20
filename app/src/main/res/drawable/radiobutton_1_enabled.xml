@@ -5,7 +5,7 @@
     android:shape="rectangle">
 
     <solid
-        android:color="@color/cb_mono_white_low"
+        android:color="?attr/light_inactive"
         />
 
     <corners

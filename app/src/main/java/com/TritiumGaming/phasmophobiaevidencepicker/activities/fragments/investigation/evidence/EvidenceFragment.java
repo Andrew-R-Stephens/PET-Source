@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -216,25 +217,6 @@ public class EvidenceFragment extends Fragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
-        /*
-        AppCompatTextView label_difficultyTitle = view.findViewById(R.id.difficulty_title);
-        AppCompatTextView label_setupTitle = view.findViewById(R.id.setup_title);
-        AppCompatTextView label_mapChoiceTitle = view.findViewById(R.id.mapchoice_title);
-        */
-
-        /*
-        int[] font_sanitySize;
-        float sanity_smallestFont = FontUtils.dpToSp(view, label_difficultyTitle.getTextSize());
-        sanity_smallestFont = Math.min(sanity_smallestFont, FontUtils.dpToSp(view, label_setupTitle.getTextSize()));
-        sanity_smallestFont = Math.min(sanity_smallestFont, FontUtils.dpToSp(view, label_mapChoiceTitle.getTextSize()));
-        font_sanitySize = new int[]{(int)sanity_smallestFont};
-
-        label_difficultyTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        label_setupTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        label_mapChoiceTitle.setAutoSizeTextTypeUniformWithPresetSizes(font_sanitySize, AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        */
-
-
         // DRAWABLES
         icons_strikethrough = new Drawable[]{
                 ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_1, getContext().getTheme()),
@@ -282,17 +264,6 @@ public class EvidenceFragment extends Fragment {
         sanitySeekBarView.init(
                 sanityData,
                 sanityPercentTextView);
-
-       /* View.OnClickListener difficultyListener = v -> {
-            createEvidenceViews(v, evidenceContainer, ghostContainer);
-            createGhostViews(v, ghostContainer);
-        };
-        compositeListenerPrev = new CompositeListener();
-        compositeListenerNext = new CompositeListener();
-        compositeListenerPrev.registerListener(difficultyListener);
-        compositeListenerNext.registerListener(difficultyListener);
-        difficultyCarouselView = new DifficultyCarouselView();
-        difficultyCarouselView.registerListener(compositeListenerPrev, compositeListenerNext);*/
 
         // COLORS
         @ColorInt int color_strikethrough = Color.WHITE, color_circle = Color.WHITE;
@@ -417,6 +388,7 @@ public class EvidenceFragment extends Fragment {
 
     }
 
+    @SuppressLint("ResourceType")
     private void createEvidenceViews(View view, LinearLayout evidenceContainer,
                                      LinearLayout ghostContainer) {
 
@@ -432,17 +404,14 @@ public class EvidenceFragment extends Fragment {
             String evidenceName = evidenceNames[i];
             @IntegerRes int[] descriptions = new int[4];
             @IntegerRes int[] animations = new int[4];
+            @IntegerRes int[] unlock_level = new int[3];
+            @IntegerRes int[] evidenceCost = new int[1];
 
             TypedArray evidenceType =
                     getContext().getResources().obtainTypedArray(evidenceTypes.getResourceId(i, 0));
             Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
-/*
 
-            TypedArray evidenceTier =
-                    getContext().getResources().obtainTypedArray(evidenceType.getResourceId(0, 0));
-            Log.d("EvTier", evidenceTier.toString() + "");
-*/
-
+            evidenceCost[0] = evidenceType.getResourceId(3, 0);
 
             @SuppressLint("ResourceType")
             TypedArray evidenceDescription =
@@ -451,6 +420,7 @@ public class EvidenceFragment extends Fragment {
                 descriptions[j] = evidenceDescription.getResourceId(j, 0);
                 Log.d("EvDescription", getString(descriptions[j]) + "");
             }
+            evidenceDescription.recycle(); //cleanup
 
             @SuppressLint("ResourceType")
             TypedArray evidenceAnimations =
@@ -459,14 +429,18 @@ public class EvidenceFragment extends Fragment {
                 animations[j] = evidenceAnimations.getResourceId(j, 0);
                 Log.d("EvDAnimation", animations[j] + "");
             }
-
-            evidenceDescription.recycle(); //cleanup
             evidenceAnimations.recycle(); //cleanup
 
-            //evidenceTier.recycle();
-            evidenceType.recycle();
+            @SuppressLint("ResourceType")
+            TypedArray evidenceLevels =
+                    getContext().getResources().obtainTypedArray(evidenceType.getResourceId(4, 0));
+            for (int j = 0; j < evidenceAnimations.length(); j++) {
+                unlock_level[j] = evidenceAnimations.getResourceId(j, 0);
+                Log.d("EvDALevels", unlock_level[j] + "");
+            }
+            evidenceLevels.recycle(); //cleanup
 
-            //String evidenceInfo = ""; //evidenceTypedArray2.
+            evidenceType.recycle();
 
             View evidenceParent = inflater.inflate(
                     R.layout.item_investigation_evidence,
@@ -527,9 +501,12 @@ public class EvidenceFragment extends Fragment {
 
                 ConstraintLayout layout_overview = customView.findViewById(R.id.constraintLayout_evidence_overview);
                 ConstraintLayout layout_tiers = customView.findViewById(R.id.constraintLayout_evidence_tiers);
+                AppCompatTextView label_cost = customView.findViewById(R.id.label_cost);
 
                 // Init
-
+                label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                        getString(R.string.evidence_requirement_cost_title) + " $" + getString(evidenceCost[0]),
+                        "#ff6161", fontEmphasisColor + "")));
                 //MAIN STATES
                 select_overview.setImageState(new int[]{R.attr.state_done}, true);
                 select_overview.setOnClickListener(selectView -> {
@@ -551,9 +528,8 @@ public class EvidenceFragment extends Fragment {
                     select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
                     select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
                     select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1]);
+                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1], getString(unlock_level[0]));
                 });
-
 
                 //TIER STATES
                 select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
@@ -562,21 +538,21 @@ public class EvidenceFragment extends Fragment {
                     select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
                     select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
 
-                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1]);
+                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1], getString(unlock_level[0]));
                 });
                 select_tier_2.setOnClickListener(selectView -> {
                     select_tier_2.setImageState(new int[]{R.attr.state_done}, true);
                     select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
                     select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
 
-                    generateEvidenceTierView(customView, 2, animation_fullscreen, getString(descriptions[2]), animations[2]);
+                    generateEvidenceTierView(customView, 2, animation_fullscreen, getString(descriptions[2]), animations[2], getString(unlock_level[1]));
                 });
                 select_tier_3.setOnClickListener(selectView -> {
                     select_tier_3.setImageState(new int[]{R.attr.state_done}, true);
                     select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
                     select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
 
-                    generateEvidenceTierView(customView, 3, animation_fullscreen, getString(descriptions[3]), animations[3]);
+                    generateEvidenceTierView(customView, 3, animation_fullscreen, getString(descriptions[3]), animations[3], getString(unlock_level[2]));
                 });
 
 
@@ -759,15 +735,22 @@ public class EvidenceFragment extends Fragment {
         evidenceTypes.recycle();
     }
 
-    public void generateEvidenceTierView(View parentView, int tierIndex, GifImageView animation_fullscreen, String description, int animation) {
+    public void generateEvidenceTierView(View parentView, int tierIndex, GifImageView animation_fullscreen, String description, @DrawableRes int animation, String level) {
+
         ConstraintLayout scrollView = parentView.findViewById(R.id.scrollview_tiers);
         AppCompatTextView title = parentView.findViewById(R.id.label_tier);
         GifImageView animationView = parentView.findViewById(R.id.animation_tier);
         AppCompatTextView details = scrollView.findViewById(R.id.info_tier);
+        AppCompatTextView levelView = parentView.findViewById(R.id.label_level);
+
 
         details.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 description,
                 "#ff6161", fontEmphasisColor + "")));
+        levelView.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                getString(R.string.evidence_requirement_level_title) + " " + level,
+                "#ff6161", fontEmphasisColor + "")));
+
         animationView.setImageResource(animation);
         animation_fullscreen.setImageResource(animation);
 
@@ -1049,7 +1032,7 @@ public class EvidenceFragment extends Fragment {
         private final View view;
         private final int index;
         private final String ghostName, ghostInfo, ghostStrength, ghostWeakness, ghostHuntData;
-        private String[] cycleDetails;
+        private final String[] cycleDetails;
         int detailIndex = 0;
 
         public GhostSwipeListener(
@@ -1185,22 +1168,6 @@ public class EvidenceFragment extends Fragment {
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
-                //initialize info content scroller
-                /*
-                bodyCons.setVisibility(View.INVISIBLE);
-                scroller_swapping.post(() -> {
-                    if (scroller_swapping.canScrollVertically(1)) {
-                        Log.d("Scroller", "Should constrain");
-                        ConstraintLayout.LayoutParams lParams =
-                                (ConstraintLayout.LayoutParams) scrollCons_swapping.getLayoutParams();
-                        lParams.constrainedHeight = true;
-                        scrollCons_swapping.setLayoutParams(lParams);
-                        scrollCons_swapping.invalidate();
-                    }
-                    //initialize info content scroller
-                    bodyCons.setVisibility(View.VISIBLE);
-                });
-                */
             });
 
             right.setOnClickListener(view -> {
@@ -1211,23 +1178,6 @@ public class EvidenceFragment extends Fragment {
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
-
-                //initialize info content scroller
-                /*
-                bodyCons.setVisibility(View.INVISIBLE);
-                scroller_swapping.post(() -> {
-                    if (scroller_swapping.canScrollVertically(1)) {
-                        Log.d("Scroller", "Should constrain");
-                        ConstraintLayout.LayoutParams lParams =
-                                (ConstraintLayout.LayoutParams) scrollCons_swapping.getLayoutParams();
-                        lParams.constrainedHeight = true;
-                        scrollCons_swapping.setLayoutParams(lParams);
-                        scrollCons_swapping.invalidate();
-                    }
-                    //initialize info content scroller
-                    bodyCons.setVisibility(View.VISIBLE);
-                });
-                */
             });
 
             fadeOutIndicatorAnimation(
@@ -1236,57 +1186,6 @@ public class EvidenceFragment extends Fragment {
                     scroller_swapping,
                     indicator_swapping);
 
-            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-            } else {
-                /*
-
-                ConstraintLayout scrollCons1 = customView.findViewById(R.id.scrollview1);
-                ConstraintLayout scrollCons2 = customView.findViewById(R.id.scrollview2);
-                ConstraintLayout scrollCons3 = customView.findViewById(R.id.scrollview3);
-                ScrollView scroller1 = scrollCons1.findViewById(R.id.scrollView);
-                ScrollView scroller2 = scrollCons2.findViewById(R.id.scrollView);
-                ScrollView scroller3 = scrollCons3.findViewById(R.id.scrollView);
-                View indicator1 = scrollCons1.findViewById(R.id.scrollview_indicator);
-                View indicator2 = scrollCons2.findViewById(R.id.scrollview_indicator);
-                View indicator3 = scrollCons3.findViewById(R.id.scrollview_indicator);
-
-                AppCompatTextView info = scroller1.findViewById(R.id.label_info);
-                AppCompatTextView strength = scroller2.findViewById(R.id.label_info);
-                AppCompatTextView weakness = scroller3.findViewById(R.id.label_info);
-
-                AppCompatTextView label_info =
-                        customView.findViewById(R.id.label_infoTitle);
-                AppCompatTextView label_strength =
-                        customView.findViewById(R.id.label_strengthsTitle);
-                AppCompatTextView label_weakness =
-                        customView.findViewById(R.id.label_weaknessesTitle);
-
-                label_info.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                label_strength.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                label_weakness.setPaintFlags(info.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    ghostInfo,
-                    "#ff6161", fontEmphasisColor + "")));
-                strength.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        ghostStrength,
-                        "#ff6161", fontEmphasisColor + "")));
-                weakness.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        ghostWeakness,
-                        "#ff6161", fontEmphasisColor + "")));
-
-                fadeOutIndicatorAnimation(
-                        scroller1,
-                        indicator1);
-                fadeOutIndicatorAnimation(
-                        scroller2,
-                        indicator2);
-                fadeOutIndicatorAnimation(
-                        scroller3,
-                        indicator3);
-                */
-            }
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());
 
@@ -1304,34 +1203,9 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
-
-    private class EvidenceContainerListener extends GestureDetector.SimpleOnGestureListener {
-
-        private final LinearLayout evidenceContainer;
-
-        public EvidenceContainerListener(
-                LinearLayout evidenceContainer ) {
-
-            super();
-
-            this.evidenceContainer = evidenceContainer;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-
-
-
-            return true;
-        }
-
-    }
-
-
     public static class CompositeListener implements View.OnClickListener {
 
-        private ArrayList<View.OnClickListener> registeredListeners = new ArrayList<>();
+        private final ArrayList<View.OnClickListener> registeredListeners = new ArrayList<>();
 
         public void registerListener (View.OnClickListener listener) {
             registeredListeners.add(listener);

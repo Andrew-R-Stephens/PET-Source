@@ -720,11 +720,11 @@ public class WavefrontLoader {
 		public void showMaterial() {
 			System.out.println(name);
 			if (ka != null)
-				System.out.println("  Ka: " + ka.toString());
+				System.out.println("  Ka: " + ka);
 			if (kd != null)
-				System.out.println("  Kd: " + kd.toString());
+				System.out.println("  Kd: " + kd);
 			if (ks != null)
-				System.out.println("  Ks: " + ks.toString());
+				System.out.println("  Ks: " + ks);
 			if (ns != 0.0f)
 				System.out.println("  Ns: " + ns);
 			if (d != 1.0f)

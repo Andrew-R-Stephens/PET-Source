@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/evidence_ghost_type_banshee"
+            android:text="@string/ghost_type_banshee"
             android:maxLines="1"
             android:textSize="24sp"
             android:layout_marginHorizontal="1sp"

@@ -29,8 +29,8 @@ android {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 76
-        versionName "8.0.2"
+        versionCode 78
+        versionName "8.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -103,7 +103,7 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:32.2.0')
+    implementation platform('com.google.firebase:firebase-bom:32.2.2')
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies

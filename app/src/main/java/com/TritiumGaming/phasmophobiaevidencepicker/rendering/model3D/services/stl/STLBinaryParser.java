@@ -122,7 +122,7 @@ class STLBinaryParser extends STLParser
         }
         stream = new ProgressMonitorInputStream(
             parentComponent,
-            "parsing " + url.toString(),
+            "parsing " + url,
             stream);
 
         itsStream = new BufferedInputStream(stream);

@@ -23,7 +23,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textSize="24sp"
-            android:text="@string/evidence_evidence_type_dots"
+            android:text="@string/evidence_type_dots"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

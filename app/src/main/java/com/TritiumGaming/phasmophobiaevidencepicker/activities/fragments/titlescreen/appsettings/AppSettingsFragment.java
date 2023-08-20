@@ -66,36 +66,17 @@ public class AppSettingsFragment extends Fragment {
                     requireActivity()).get(TitlescreenViewModel.class);
         }
 
-        return inflater.inflate(R.layout.fragment_appsettings2, container, false);
+        return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // INITIALIZE VIEWS
-        AppCompatTextView primarytitle = view.findViewById(R.id.label_settingstitle);
-        AppCompatTextView generalsettings_title =
-                view.findViewById(R.id.settings_generalsettings_title);
-        AppCompatTextView othersettings_title =
-                view.findViewById(R.id.settings_othersettings_title);
-
-        AppCompatTextView switch_screenIsAlwaysOn_title =
-                view.findViewById(R.id.switch_alwayson_text);
-
-        AppCompatTextView switch_network_title = view.findViewById(R.id.switch_network_text);
-
-        AppCompatTextView text_colorblindmode_title = view.findViewById(R.id.colorblindmode_title);
         AppCompatTextView text_colorblindmode_selectedname =
                 view.findViewById(R.id.colorblindmode_selectedname);
-        AppCompatTextView text_colorblindmode_sidenote =
-                view.findViewById(R.id.colorblindmode_note);
         AppCompatTextView text_fontStyle_selectedname =
                 view.findViewById(R.id.font_selectedname);
 
-        AppCompatTextView switch_huntwarningaudio_text =
-                view.findViewById(R.id.switch_huntwarningaudio_text);
-        AppCompatTextView switch_huntwarning_title =
-                view.findViewById(R.id.switch_huntwarningaudio_title);
         AppCompatTextView switch_huntwarning_timetext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_timetext);
         AppCompatTextView switch_huntwarning_othertext =

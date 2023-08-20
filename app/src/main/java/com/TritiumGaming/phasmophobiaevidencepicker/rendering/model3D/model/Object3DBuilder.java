@@ -651,12 +651,9 @@ public final class Object3DBuilder {
 						}
 
 						// check if texture is ok (Because we only support 1 texture currently)
-						boolean textureOk = false;
-						if (currentTexture != null && currentTexture.equals(texture)) {
-							textureOk = true;
-						}
+						boolean textureOk = currentTexture != null && currentTexture.equals(texture);
 
-						// populate texture coords if ok (in case we have more than 1 texture and 1 is missing. see face.obj example)
+                        // populate texture coords if ok (in case we have more than 1 texture and 1 is missing. see face.obj example)
 						int[] text = faces.facesTexIdxs.get(i);
 						for (int j = 0; j < text.length; j++) {
 							if (textureData == null || textureOk) {

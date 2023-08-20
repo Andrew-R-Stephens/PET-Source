@@ -82,8 +82,7 @@
     <!--
         Radio Selector
     -->
-    <attr name="state_in_progress" format="boolean" />
     <attr name="state_done" format="boolean" />
-    <attr name="state_failed" format="boolean" />
+    <attr name="state_tier" format="integer"/>
 
 </resources>
