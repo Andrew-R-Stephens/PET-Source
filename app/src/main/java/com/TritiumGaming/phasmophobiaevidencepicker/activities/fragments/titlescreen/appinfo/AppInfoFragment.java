@@ -6,9 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
@@ -17,7 +15,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
@@ -27,7 +24,6 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -43,7 +39,6 @@ public class AppInfoFragment extends Fragment {
 
     private TitlescreenViewModel titleScreenViewModel = null;
 
-    private Typeface bodyFont = null;
 
     @Nullable
     @Override
@@ -83,35 +78,17 @@ public class AppInfoFragment extends Fragment {
         }
         color = typedValue.data;
 
-        // SET FONT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            bodyFont = getResources().getFont(R.font.eastseadokdo_regular);
-        }
-        else {
-            if (getContext() != null) {
-                bodyFont = ResourcesCompat.getFont(getContext(), R.font.eastseadokdo_regular);
-            }
-        }
-
         // INITIALIZE VIEWS
         AppCompatImageButton closeButton = view.findViewById(R.id.popup_close_button);
 
         AppCompatTextView title = view.findViewById(R.id.label_settingstitle);
         AppCompatTextView version = view.findViewById(R.id.label_version);
         AppCompatTextView aboutapp_info = view.findViewById(R.id.aboutinfo_aboutapp_info);
-        AppCompatTextView developerInfo_title =
-                view.findViewById(R.id.aboutinfo_developerinfo_title);
-        AppCompatTextView discordLabel = view.findViewById(R.id.appinfo_joinDiscord);
 
-        LinearLayout linearLayout_developerInfo_subtitles =
-                view.findViewById(R.id.appinfo_developerinfo_subtitles);
-        LinearLayout linearLayout_developerInfo_subinfo =
-                view.findViewById(R.id.appinfo_developerinfo_subinfo);
+        AppCompatTextView discordLabel = view.findViewById(R.id.appinfo_joinDiscord);
 
         ConstraintLayout appinfo_discordclickbutton = view.findViewById(R.id.constraintLayout_discord);
 
-        AppCompatTextView specialThanks_title =
-                view.findViewById(R.id.aboutinfo_specialthanks_title);
         LinearLayoutCompat linearLayout_specialThanks =
                 view.findViewById(R.id.scrollview_list_specialthanks);
 

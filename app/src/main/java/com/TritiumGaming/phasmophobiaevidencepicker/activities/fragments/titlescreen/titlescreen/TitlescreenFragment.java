@@ -372,7 +372,7 @@ public class TitlescreenFragment extends Fragment {
         });
 
         // FINALIZE
-        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
 
         boolean success = parentView.post(() -> {
             //Log.d("Review", "Is displaying");
@@ -424,7 +424,7 @@ public class TitlescreenFragment extends Fragment {
         });
 
         // FINALIZE
-        popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
 
         boolean success = parentView.post(() -> {
             //Log.d("Review", "Is displaying");

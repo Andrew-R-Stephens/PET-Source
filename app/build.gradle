@@ -2,6 +2,8 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
+    //id 'kotlin-android'
 }
 
 apply plugin: 'com.android.application'
@@ -14,9 +16,27 @@ apply plugin: 'com.google.firebase.firebase-perf'
 def playcoreDir = file('G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk')
 
 android {
-    compileSdkVersion 34
-    buildToolsVersion "30.0.3"
+
+    compileSdk 34
     ndkVersion "22.1.7171670"
+
+    buildToolsVersion = '30.0.3'
+
+
+    /*
+        Compose Options
+        ----------------
+    */
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    /* ---------------- */
 
 
     bundle {
@@ -27,12 +47,11 @@ android {
 
     defaultConfig {
         applicationId 'com.TritiumGaming.phasmophobiaevidencepicker'
+
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 78
         versionName "8.0.4"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
             cmake {
@@ -44,6 +63,9 @@ android {
             // Skip deprecated ABIs. Only required when using NDK 16 or earlier.
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -63,20 +85,36 @@ android {
             proguardFile "$playcoreDir/proguard/per-feature-proguard-files"
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
+
     lint {
         disable 'RestrictedApi'
     }
     namespace 'com.TritiumGaming.phasmophobiaevidencepicker'
 
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += 'src/main/java'
+    }
 }
 
 dependencies {
+
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
-    implementation 'androidx.core:core:1.10.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    /*
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
@@ -86,14 +124,15 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
+    */
 
     // PRIMARY
     def work_version = "2.8.1"
     implementation "androidx.work:work-runtime:$work_version"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment:2.7.0'
-    implementation 'androidx.navigation:navigation-ui:2.7.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.9.0'
@@ -112,7 +151,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:20.4.0'
 
     // GOOGLE ADS
-    implementation 'com.google.android.gms:play-services-ads:22.2.0'
+    implementation 'com.google.android.gms:play-services-ads:22.3.0'
     implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
 
     //GOOGLE GSON
@@ -128,7 +167,7 @@ dependencies {
     // FRAGMENTS
     def fragment_version = '1.6.1'
     // Java language implementation
-    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
@@ -138,4 +177,27 @@ dependencies {
     // DO NOT UPDATE THIS -- BREAKING CHANGES
     implementation 'commons-io:commons-io:2.6'
 
+    /*
+        ---- START----
+        ANDROID COMPOSE
+    */
+    def composeBom = platform('androidx.compose:compose-bom:2023.08.00')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+
+    var compose_version = ''
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    /*
+        ----- END -----
+    */
 }

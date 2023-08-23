@@ -1,0 +1,29 @@
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item>
+    <layer-list>
+      <item>
+        <shape>
+          <solid android:color="@color/cb_mono_white_lowmed" />
+
+          <size android:width="20dp" android:height="20dp" />
+        </shape>
+      </item>
+
+      <item
+          android:drawable="@drawable/equipment_tier_badge"
+          android:bottom="8dp"
+          android:left="8dp"
+          android:right="8dp"
+          android:top="8dp" >
+        <shape>
+          <size android:width="20dp" android:height="20dp" />
+        </shape>
+      </item>
+    </layer-list>
+  </item>
+
+
+</selector>

@@ -651,20 +651,20 @@
 
 
     <!-- Evidence Description -->
-    <string name="evidence_description_dots_0">
+    <string name="evidence_info_overview_dots">
         <![CDATA[
              <p>D.O.T.S. Projektor je zařízení, které lze umístit na stěnu nebo podlahu. Promítá matici jasných bodů a vrhá body na okolní povrchy.</p>
              <p>Pro pozitivní identifikaci tohoto Důkazu <font color=#ff6161>uvidíte siluetu ducha, jak běží nebo se rychle plazí skrz paprsky projekce</font>. Silueta může být viděna pouhým okem nebo prostřednictvím videokamery, ale je snáze vidět <font color=#ff6161>na dálku prostřednictvím termální kamery</font>. Nejlepší je pokusit se najít tento důkaz na dálku, protože chování Gorya může jinak způsobit konflikty Evidence. Skutečné umístění Ducha nebude určovat, kdy se objeví animace siluety.</p>
               <p>D.O.T.S. vizuální prvky jsou nyní skutečným duchem, což znamená, že budete muset svítit infračervenými světly poblíž skutečné polohy ducha. Pro hráče tak vzniká mnohem poutavější hratelnost, můžete využít D.O.T.S. abyste viděli, kde je váš duch, nebo pokud se snažíte získat důkazy, použijte sůl, pohybové senzory nebo jiné vybavení k nalezení lepšího místa pro váš projektor. Duchové s D.O.T.S. důkazy nyní mohou zadat krátký \“D.O.T.S. stát\” při putování; Během této doby jsou dočasně viditelné infračerveným světlem, během této doby budou putovat směrem k nejbližšímu hráči (nebo k náhodnému místu v místnosti, pokud je prázdná), než zmizí.</p>
          ]]>
     </string>
-    <string name="evidence_description_emf_0">
+    <string name="evidence_info_overview_emf">
         <![CDATA[
                      <p>EMF\-5 je nejvyšší úroveň čtení z <font color=#ff6161>čtečky EMF</font>.</p>
                      <p>Duch produkuje emise EMF z úrovní 1 až 5, když nějakým způsobem interaguje s místností nebo tabulí Ouija. Světelné blikání, kroky a další menší pasivní interakce obvykle poskytnou nižší hodnotu. Silnější interakce, jako je vzhled nebo zvonění telefonu, téměř vždy poskytnou vyšší hodnotu. Duchové nesoucí tento důkaz poskytnou EMF úroveň 5 pouze náhodou, takže získání tohoto důkazu <font color=#ff6161>může nějakou dobu trvat</font>.</p>
              ]]>
     </string>
-    <string name="evidence_description_thermometer_0">
+    <string name="evidence_info_overview_thermometer">
 		<![CDATA[
 				 <p>Teploty mrazu jsou <font color=#ff6161>pod 0 Celsia</font>. Teplotu lze určit pomocí <font color=#ff6161>teploměru</font>.</p>
 				 <p>Jak duchové stahují teplo z okolí, teplota se snižuje v místnosti nebo na chodbách, kde <font color=#ff6161>duch tráví většinu času</font>. Všichni duchové nakonec způsobí teploty pod 13 stupňů Celsia, ale pouze některé typy duchů sníží teploty pod 0 °C.</p>
@@ -672,19 +672,19 @@
 				 <p>Chlazení místnosti, byť jen nepatrné, může trvat déle než několik prvních minut během vyšetřování. Zaznamenat podivně nízké teploty v prvních místnostech a poté je zdvojnásobit je dobrý nápad.</p>
 			 ]]>
 	</string>
-    <string name="evidence_description_book_0">
+    <string name="evidence_info_overview_book">
         <![CDATA[
                      <p>Určeno pomocí knihy Ghost Writing Book.</p>
                      <p>Duchové mohou do knihy zapisovat <font color=#ff6161>bez ohledu na to, zda je kniha položena nebo držena v ruce</font>. Pokud duch píše v knize, je to důkaz pro tento typ ducha. Pokud jsou napsány démonické symboly, může to být důkaz pro démona, ale není to absolutně definitivní, protože styly psaní duchů mají tendenci se náhodně odchylovat.</p>
              ]]>
     </string>
-    <string name="evidence_description_vcam_0">
+    <string name="evidence_info_overview_vcam">
         <![CDATA[
                      <p>Malá, plovoucí koule, která je přítomna pouze v místnosti, kde straší duch. Lze jej <font color=#ff6161>vidět pouze prostřednictvím nočního vidění prostřednictvím vstupu kamery kamionu<font> z videokamer nebo náhlavních kamer.</p>
                      <p>Duchové koule lze rychle rozpoznat, ale pokud je vyloučíte příliš rychle, může to znamenat potíže.</p>
              ]]>
     </string>
-    <string name="evidence_description_ultraviolet_0">
+    <string name="evidence_info_overview_ultraviolet">
         <![CDATA[
              <p>Ultrafialové důkazy lze <font color=#ff6161>vidět pouze tím, že na postižené povrchy posvítíte UV světlem nebo Glowstick</font>. Kousky ultrafialového důkazu budou svítit zeleně, když jsou nabité UV světlem, a časem vyblednou.</p>
              <p>Ultrafialové důkazy, které na předmětech a površích zanechávají duchové, mohou být těžko vidět na menších předmětech nebo ve velkých místnostech. Stopy, které byly sledovány hromadami soli, se také počítají jako ultrafialové důkazy.</p>
@@ -692,7 +692,7 @@
              <p>Může být nalezen otisk ruky se 6 prsty, který okamžitě identifikuje typ Ghost jako Obake.</p>
          ]]>
     </string>
-    <string name="evidence_description_box_0">
+    <string name="evidence_info_overview_sbox">
         <![CDATA[
             <p>Skříňka ducha je položka používaná ke <font color=#ff6161>komunikaci s duchem</font>.</p>
             <p>Hráč musí <font color=#ff6161>pokládat otázky v Vicinity Chat aktivnímu Spirit Boxu, a to jak v blízkosti ducha, tak při zhasnutých světlech</font>. Než se o to pokusíte, zkontrolujte parametry odezvy ducha, například \"Odpovídá lidem, kteří jsou sami\" nebo \"Odpovídá všem\" uvedené na tabuli kamionu.</p>
@@ -702,34 +702,34 @@
     </string>
 
 
-    <string name="evidence_description_dots_1">
+    <string name="evidence_info_tier_dots_1">
          <![CDATA[
              <p>Laserové mřížkové pero, které je podobné svítilně. Můžete se procházet po místě a rychle vyhledávat důkazy, jedinou nevýhodou je jeho krátký dosah a nízká intenzita světla.</p>
          ]]>
      </string>
-    <string name="evidence_description_dots_2">
+    <string name="evidence_info_tier_dots_2">
          <![CDATA[
              <p>Toto je původní D.O.T.S. projektor. Je to umístitelný projektor vyzařující průměrně velkou světelnou kouli, ale nyní můžete povzbudit ducha, aby do ní vešel, když se postavíte poblíž.</p>
              <p>Nejlepší pro malé\-až\-středně velké místnosti.</p>
          ]]>
      </string>
-    <string name="evidence_description_dots_3">
+    <string name="evidence_info_tier_dots_3">
          <![CDATA[
              <p>Tento umístitelný projektor snímá místnost na mnohem delší vzdálenost pomocí širokého, širokého paprsku světla, takže hledání duchů v těchto větších místnostech je mnohem snazší. Pro nejlepší pokrytí umístěte tento projektor na zeď nebo rovnou plochu, postavte se poblíž a sledujte siluety duchů.</p>
          ]]>
      </string>
 
-    <string name="evidence_description_emf_1">
+    <string name="evidence_info_tier_emf_1">
          <![CDATA[
              <p>Starý analogový měřicí přístroj s malým rozsahem detekce, nízkou přesností a nízkým vyzařováním zvuku. Ručka přejde do rychloběhu a překročí úroveň 5, když je detekováno EMF úrovně 5.</p>
          ]]>
      </string>
-    <string name="evidence_description_emf_2">
+    <string name="evidence_info_tier_emf_2">
          <![CDATA[
              <p>Důvěryhodný přístroj K2 Meter má větší dosah a pět LED světel pro detekci EMF měření a také přídavný reproduktorový modul. Při aktivaci zařízení se rozsvítí jedna kontrolka. Když se K2 pohybuje v detekčním rozsahu EMF bodů, zobrazí přesnou hodnotu od dvou do pěti a vydá jasný a slyšitelný zvuk.</p>
          ]]>
      </string>
-    <string name="evidence_description_emf_3">
+    <string name="evidence_info_tier_emf_3">
          <![CDATA[
              <p>High-tech ParaReader. Toto zařízení může sledovat až tři EMF body najednou a má největší dosah detekce.</p>
              <p>Současně zobrazí směr, rozsah a hodnotu každého měření. Přehrává zvuky pro každou detekci EMF, takže můžete z dálky slyšet, kolik a jak silné jsou naměřené hodnoty.</p>
@@ -737,88 +737,88 @@
          ]]>
      </string>
 
-    <string name="evidence_description_ultraviolet_1">
+    <string name="evidence_info_tier_ultraviolet_1">
          <![CDATA[
              <p>Klasická UV glowstick. Po přicvaknutí, aby se rozsvítila, promítá světlo s krátkým dosahem, které trvá přibližně jednu minutu, než se ztlumí. Vždy s ním můžete znovu zatřást, abyste oživili jeho světlo.</p>
              <p>Toto zařízení nabije UV bod do 10 sekund po expozici.</p>
          ]]>
      </string>
-    <string name="evidence_description_ultraviolet_2">
+    <string name="evidence_info_tier_ultraviolet_2">
          <![CDATA[
              <p>Klasická UV svítilna, která vysílá jasnější, úzký paprsek s delším dosahem a může se pochlubit mnohem rychlejší dobou nabíjení UV zářením!</p>
              <p>Toto zařízení nabije UV bod do 5 sekund po expozici.</p>
          ]]>
      </string>
-    <string name="evidence_description_ultraviolet_3">
+    <string name="evidence_info_tier_ultraviolet_3">
          <![CDATA[
              <p>UV Light Pro je robustní svítilna, která má mnohem jasnější a širší kužel světla a také ještě rychlejší dobu nabíjení. Je ideální pro rychlé vyhledání ultrafialových důkazů ve větším měřítku.<p>
              <p>Toto zařízení nabije UV bod do 1,5 sekundy od expozice.</p>
          ]]>
      </string>
 
-    <string name="evidence_description_thermometer_1">
+    <string name="evidence_info_tier_thermometer_1">
          <![CDATA[
              <p>Starý dům\-Teploměr, utržený přímo ze stěny obývacího pokoje vašeho vyšetřovatele. Tento teploměr má nízkou vzorkovací frekvenci, což znamená, že budete muset čekat déle, abyste získali přesné údaje. Možná budete chtít jeden přinést a zkontrolovat ho později ve smlouvě.</p>
          ]]>
      </string>
-    <string name="evidence_description_thermometer_2">
+    <string name="evidence_info_tier_thermometer_2">
          <![CDATA[
              <p>Aktualizovaná verze klasické čtečky teploty, ale mnohem citlivější. Místo zapínání a získávání údajů každé dvě sekundy podržte tlačítko \'Použít\' pro vyhledání teplot. Díky tomu je běhání a kontrola teploty v každé místnosti mnohem rychlejší, než umožňuje úroveň I.</p>
          ]]>
      </string>
-    <string name="evidence_description_thermometer_3">
+    <string name="evidence_info_tier_thermometer_3">
          <![CDATA[
              <p>Přímý upgrade na Tier II, dokončení teplotních skenů dvojnásobnou rychlostí oproti jeho předchůdci. Tento modernější teploměr je navíc při každém měření přesnější a umožňuje hráčům rychle a efektivně skenovat místnosti, aby našli ducha, nebo aby si v deníku zaškrtli \"Teploty mrazu\".</p>
          ]]>
      </string>
 
-    <string name="evidence_description_book_1">
+    <string name="evidence_info_tier_book_1">
          <![CDATA[
              <p>Tento papírový poznámkový blok lze umístit poblíž ducha, abyste podpořili nějaké paranormální psaní. Ujistěte se, že jej umístíte poblíž jakékoli činnosti, kterou uvidíte. Někteří duchové si malého poznámkového bloku a tužky nemusí všimnout, takže může chvíli trvat, než se něco stane.<p/>
          ]]>
      </string>
-    <string name="evidence_description_book_2">
+    <string name="evidence_info_tier_book_2">
          <![CDATA[
              <p>S hezčími stránkami a perem se zdá, že duchové si této knihy všímají o něco častěji než předchozí verze. trochu zkrátí čekací doby, než se objeví důkazy.</p>
          ]]>
      </string>
-    <string name="evidence_description_book_3">
+    <string name="evidence_info_tier_book_3">
          <![CDATA[
              <p>Svým velkým profilem, směsí vysoce kvalitních materiálů a zdobeným perem má tato kniha největší změnu, do které mohou duchové psát. Má větší rozsah než předchozí dvě úrovně, takže umístění této knihy do rozsahu interakce ducha je mnohem jednodušší.</p>
          ]]>
      </string>
 
-    <string name="evidence_description_vcam_1">
+    <string name="evidence_info_tier_vcam_1">
          <![CDATA[
              <p>Stará videokamera, kterou Ghost Huntin\' Distribution našla na půdě staré kanceláře. Je malý a trochu otlučený, ale svou práci dělá dobře.</p>
              <p>Analýza zdroje videa je problém kvůli jeho příšerné kvalitě a malým rozměrům, takže si s tím dejte čas!</p>
          ]]>
      </string>
-    <string name="evidence_description_vcam_2">
+    <string name="evidence_info_tier_vcam_2">
          <![CDATA[
              <p>Videokamera Parasonic je HD video, díky kterému je hledání koulí mnohem snazší. Stále je hodně rušen aktivním duchem, ale mnohem méně než úroveň 1.</p>
          ]]>
      </string>
-    <string name="evidence_description_vcam_3">
+    <string name="evidence_info_tier_vcam_3">
          <![CDATA[
              <p>Bonyho vlastní filmová videokamera s velkým tělem podporuje mnohem větší obrazovku. Vyznačuje se mnohem jasnějším přenosem videa a méně ruší zjevení duchů.</p>
          ]]>
      </string>
 
-    <string name="evidence_description_box_1">
+    <string name="evidence_info_tier_sbox_1">
          <![CDATA[
              <p>Když tento Spirit Box zapnete, začne prohledávat různé rádiové frekvence. Ujistěte se, že stojíte poblíž jakékoli paranormální aktivity, zhasněte všechna světla v místnosti a položte nějaké otázky v naději na odpověď.</p>
              <p>Pokud byla otázka vyslyšena, na Spirit Box bude blikat červené světlo. Pokud bliká bíle, máte odpověď od ducha.</p>
              <p>Zkuste se zeptat „Kde jsi?“ nebo "Jsi přátelský?". Pozor, odpověď, kterou obdržíte, se vám nemusí líbit.</p>
          ]]>
      </string>
-    <string name="evidence_description_box_2">
+    <string name="evidence_info_tier_sbox_2">
          <![CDATA[
              <p>Tento modernější Spirit Box má kvalitnější reproduktor, který je mnohem efektivnější při prohledávání frekvencí, což usnadňuje dešifrování paranormálních reakcí.</p>
              <p>Pokud jste slyšeli otázku, na obrazovce zabliká černé \'X\'. Pokud obdržíte odpověď, bude místo toho blikat malá ikona ducha.</p>
          ]]>
      </string>
-    <string name="evidence_description_box_3">
+    <string name="evidence_info_tier_sbox_3">
          <![CDATA[
              <p>Když je tento Spirit Box zapnutý, skenuje obě frekvence, dvě současně, čímž zvyšuje šanci, že při kladení otázek zachytí paranormální reakce. Má také vestavěný filtr, který snižuje množství statické elektřiny, kterou slyšíte mezi interakcemi.</p>
              <p>Pokud uslyšíte otázku a neodpovíte, LED diody RESPONSE budou blikat červeně. Pokud je poskytnuta odpověď, LED diody budou blikat bíle současně se zvukem.</p>

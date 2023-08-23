@@ -22,7 +22,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * MainActivity class
+ * TestActivity class
  *
  * @author TritiumGamingStudios
  */

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
@@ -24,11 +25,11 @@ public class EvidenceViewModel extends ViewModel {
     private InvestigationData investigationData;
     private SanityRunnable sanityRunnable;
     private SanityData sanityData;
+    private GhostOrderData ghostOrderData;
 
     private boolean isCollapsed = false;
 
     private int[] radioButtonsChecked;
-    private int[] ghostOrder;
     private boolean[] rejectionPile;
 
     private PhaseTimerData phaseTimerData;
@@ -52,6 +53,10 @@ public class EvidenceViewModel extends ViewModel {
 
         if (!hasSanityData()) {
             sanityData = new SanityData(this);
+        }
+
+        if (!hasGhostOrderData()) {
+            ghostOrderData = new GhostOrderData(this);
         }
 
         if (!hasPhaseTimerData()) {
@@ -139,6 +144,20 @@ public class EvidenceViewModel extends ViewModel {
         return sanityData != null;
     }
 
+    /**
+     * @return
+     */
+    public GhostOrderData getGhostOrderData() {
+        return ghostOrderData;
+    }
+
+    /**
+     * @return
+     */
+    public boolean hasGhostOrderData() {
+        return ghostOrderData != null;
+    }
+
     public void setCollapsed(boolean isCollapsed) {
         this.isCollapsed = isCollapsed;
     }
@@ -172,53 +191,6 @@ public class EvidenceViewModel extends ViewModel {
 
     public void setRadioButtonChecked(int evidenceIndex, int buttonIndex) {
         radioButtonsChecked[evidenceIndex] = buttonIndex;
-    }
-
-    public void createGhostOrder() {
-        ghostOrder = new int[InvestigationData.getGhostCount()];
-
-        for(int i = 0; i < ghostOrder.length; i++) {
-            ghostOrder[i] = i;
-        }
-    }
-
-    public void updateGhostOrder() {
-
-        int[] newGhostOrder = new int[InvestigationData.getGhostCount()];
-
-        for(int i = 0; i < newGhostOrder.length; i++) {
-            newGhostOrder[i] = i;
-        }
-
-        for (int i = 0; i < newGhostOrder.length - 1; ) {
-
-            int ratingA = investigationData.getGhost(
-                    newGhostOrder[i]).getEvidenceScore();
-            int ratingB = investigationData.getGhost(
-                    newGhostOrder[i + 1]).getEvidenceScore();
-
-            if (ratingA < ratingB) {
-                int t = newGhostOrder[i + 1];
-                newGhostOrder[i + 1] = newGhostOrder[i];
-                newGhostOrder[i] = t;
-
-                if (i > 0) {
-                    i--;
-                }
-            } else {
-                i++;
-            }
-        }
-
-        ghostOrder = newGhostOrder;
-    }
-
-    public int[] getGhostOrder() {
-        if(ghostOrder == null) {
-            updateGhostOrder();
-        }
-
-        return ghostOrder;
     }
 
     public void createRejectionPile() {
@@ -262,7 +234,11 @@ public class EvidenceViewModel extends ViewModel {
 
     public void reset() {
         createRadioButtonsChecked();
-        createGhostOrder();
+
+        if(hasGhostOrderData()) {
+            ghostOrderData.createOrder();
+        }
+
         createRejectionPile();
 
         if(hasPhaseTimerData()) {

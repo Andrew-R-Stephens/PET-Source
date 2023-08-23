@@ -36,7 +36,7 @@ public class InvestigationData {
      */
     public void initGhosts(Context c) {
         ghosts = new ArrayList<>();
-        String[] ghostNames = c.getResources().getStringArray(R.array.evidence_ghost_names);
+        String[] ghostNames = c.getResources().getStringArray(R.array.ghost_names);
         for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
             ghost.setName(ghostNames[i]);

@@ -116,6 +116,7 @@
 
             <LinearLayout
                 android:id="@+id/layout_leftList"
+                android:animateLayoutChanges="true"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Equipment Tiers -->
+    <string name="evidence_tiers_1">Tier 1</string>
+    <string name="evidence_tiers_2">Tier 2</string>
+    <string name="evidence_tiers_3">Tier 3</string>
+
+    <!-- Equipment Tiers -->
+    <string name="evidence_tiers_num_1" translatable="false">1</string>
+    <string name="evidence_tiers_num_2" translatable="false">2</string>
+    <string name="evidence_tiers_num_3" translatable="false">3</string>
+
+    <!-- Evidence Names -->
+    <string name="evidence_type_dots">D.O.T.S.</string>
+    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_ultraviolet">Ultraviolet</string>
+    <string name="evidence_type_temperatures">Freezing Temps</string>
+    <string name="evidence_type_orbs">Ghost Orbs</string>
+    <string name="evidence_type_book">Ghost Writing</string>
+    <string name="evidence_type_box">Spirit Box</string>
+
+    <!-- Evidence Description -->
+    <string name="evidence_info_overview_dots">
+        <![CDATA[
+            <p>The D.O.T.S. Projector is a device which may be held, placed on walls, or on the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
+            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
+             <p>The D.O.T.S. visuals are now the actual ghost, meaning you will need to shine your Infrared lights near the ghost\'s actual position. This creates much more engaging gameplay for players, you can use D.O.T.S. to see where your ghost is, or if you\'re struggling to get the evidence, use Salt, Motion Sensors or other equipment to find a better spot for your Projector. Ghosts with D.O.T.S. evidence can now enter a short \“D.O.T.S. state\” when wandering; During which, they are temporarily visible with infrared light, during this time they will wander towards the nearest player (or to a random spot in the room if it\'s empty) before disappearing.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_dots_1">
+        <![CDATA[
+            <p>A Laser Grid Pen that is similar to a flashlight. You can walk around the location and scan quickly for evidence, the only downside being its short range and low light intensity.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_dots_2">
+        <![CDATA[
+            <p>This is the original D.O.T.S. projector. It is a placeable projector emitting an average\-sized sphere of light, except now you can encourage the ghost to walk into it by standing nearby.</p>
+            <p>Best for small\-to\-medium sized rooms.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_dots_3">
+        <![CDATA[
+            <p>This placeable projector scans the room at a much longer range with a wide, sweeping beam of light, making finding ghosts in those bigger rooms much easier. For the best coverage, place this projector on a wall or flat surface, stand nearby, and watch for ghost silhouettes.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_emf">
+        <![CDATA[
+            <p>EMF\-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
+            <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_emf_1">
+        <![CDATA[
+            <p>An old, analog Meter with a small detection range, low accuracy, and low audio emissions. The needle will go into overdrive, pushing past level 5 when level 5 EMF is detected.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_emf_2">
+        <![CDATA[
+            <p>The trusted K2 Meter has a larger range and five LED lights to detect EMF readings, as well as an additional speaker module. One light will turn on when you activate the device. When moving within the K2\'s detection range of EMF spots, it will display an accurate value from two to five and make a clear, audible sound.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_emf_3">
+        <![CDATA[
+            <p>A high\-tech ParaReader. This device can track up to three EMF spots at once and has a furthest detection range.</p>
+            <p>It\'ll show the direction, range, and value of each reading at the same time. It plays sounds for each EMF detection so you can hear, from a distance, how many and how strong the readings are.</p>
+            <p>If an EMF spot fades away, a more recent EMF spot will be placed at the bottom of the list.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_ultraviolet">
+        <![CDATA[
+            <p>Ultraviolet evidence can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font>. Pieces of Ultraviolet evidence will glow green while charged by the UV light, and will fade over time.</p>
+            <p>Left on objects and surfaces by ghosts, the Ultraviolet evidence might be tough to see on smaller items or while in large rooms. Footprints which have been tracked by salt piles also count as Ultraviolet evidence.</p>
+            <p>When shining a UV light onto Fingerprints or Footprints, you will still see it straight away, but additionally, the light will charge up the print. After putting your UV light away, the print will stay visible for a short period (depending on how long you charged it for), allowing you to take a photo!</p>
+            <p>A 6\-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_ultraviolet_1">
+        <![CDATA[
+            <p>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</p>
+            <p>This device will charge up a UV spot within 10 seconds of exposure.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_ultraviolet_2">
+        <![CDATA[
+            <p>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</p>
+            <p>This device will charge up a UV spot within 5 seconds of exposure.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_ultraviolet_3">
+        <![CDATA[
+            <p>The UV Light Pro is a chunky flashlight that has a much brighter and wider cone of light, as well as an even quicker charge time. It is perfect for locating Ultraviolet Evidence quickly on a larger scale.<p>
+            <p>This device will charge up a UV spot within 1.5 seconds of exposure.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_thermometer">
+        <![CDATA[
+            <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
+            <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C.</p>
+            <p>Cold Breath has been reworked. At 5 C or less, anyone within the haunted area will be able to <font color=#ff6161>see their breath</font>. If it\'s snowing and the fuse box starts off, you\'ll find Cold Breath instantly everywhere, even in the Truck. Alternatively, if the fuse box is on, so that the house is nice and toasty, you\'ll find Cold Breath appearing only in rooms where the ghost has been long enough to drop their temperature.</p>
+            <p>The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_thermometer_1">
+        <![CDATA[
+            <p>An old house\-Thermometer, ripped straight off of your Investigator\'s living room wall. This Thermometer has a slow sample rate, meaning you\'ll have to wait longer to get an accurate reading. You may want to bring one in and check back on it later in the contract.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_thermometer_2">
+        <![CDATA[
+            <p>An updated version of the classic temperature reader, but much more responsive. Instead of turning it on and getting a reading every two seconds, hold the \'Use\' button to scan for temperatures. This makes running around and checking each room\'s temperatures much faster than Tier I allows for.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_thermometer_3">
+        <![CDATA[
+            <p>A straight upgrade to Tier II, completing temperature scans at double the speed of its predecessor. Additionally, this more modern Thermometer is more accurate with each reading, allowing players to quickly and efficiently scan rooms to find the ghost or to get \"Freezing Temperatures\" ticked off in the Journal.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_book">
+        <![CDATA[
+            <p>Determined using the Ghost Writing Book.</p>
+            <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_book_1">
+        <![CDATA[
+            <p>This paper notepad can be placed nearby a ghost to encourage some paranormal writing. Make sure to place it nearby any actvity you see. Some ghosts may not notice the small notepad and pencil, so it may take some time before anything happens.<p/>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_book_2">
+        <![CDATA[
+            <p>With nicer pages and a pen, ghosts seem to notice this book a bit more often than the previous version. making wait times a bit shorter for evidence to occur.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_book_3">
+        <![CDATA[
+            <p>With its large profile, a mixture of high-quality materials and an ornate pen, this book has the highest change to be written in by ghosts. It has a larger range than the previous two tiers so placing this book within a ghost\'s interaction range is much easier.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_vcam">
+        <![CDATA[
+            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head\-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
+            <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_vcam_1">
+        <![CDATA[
+            <p>An old camcorder that Ghost Huntin\' Distribution found in the attic of the old office. It\'s small and a bit beaten up, but it does the job just fine.</p>
+            <p>Analyzing the video feed is a challenge due to its screen\'s awful quality and small dimensions, so take your time with it!</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_vcam_2">
+        <![CDATA[
+            <p>The Parasonic video camera is an HD video that makes finding orbs so much easier. It still gets a lot of interference from an active ghost, but much less so than Tier 1.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_vcam_3">
+        <![CDATA[
+            <p>Bony\'s very own movie\-grade video camera with a large body supports a much larger screen. It features a much clearer video feed and gets less interference from ghost apparitions.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_overview_sbox">
+        <![CDATA[
+            <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
+            <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
+            <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
+            <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_sbox_1">
+        <![CDATA[
+            <p>When turning this Spirit Box on, it will begin to scan through different radio frequencies. Make sure to stand near to any paranormal activity, turn off any lights in that room, and ask some questions in the hope of a response.</p>
+            <p>If the question has been heard, a red light will flash on the Spirit Box. If it flashes white, you\'ve got a response from the ghost.</p>
+            <p>Try asking "Where are you?" or "Are you friendly?". Be warned, you may not like the answer you receive.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_sbox_2">
+        <![CDATA[
+            <p>This more modern Spirit Box has a higher-quality speaker which is much more efficient at scanning through frequencies, making paranormal responses easier to decipher.</p>
+            <p>If a question has been heard, a black \'X\' will flash on the screen. If you get a response, the small ghost icon will flash instead.</p>
+        ]]>
+    </string>
+    <string name="evidence_info_tier_sbox_3">
+        <![CDATA[
+            <p>When turned on, this Spirit Box scans both frequencies, two at the same time, increasing the chance of picking up a paranormal response when asking questions. It also has a built-in filter to reduce the amount of static you hear between interactions.</p>
+            <p>If a question is heard an no response is given, the RESPONSE LEDs will flash red. If a reply is given, the LEDs will flash white in time with the sound.</p>
+        ]]>
+    </string>
+
+    <!-- Equipment Unlock Level Requirements -->
+    <string name="evidence_requirement_level_dots_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_dots_2" translatable="false">29</string>
+    <string name="evidence_requirement_level_dots_3" translatable="false">60</string>
+
+    <string name="evidence_requirement_level_emf_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_emf_2" translatable="false">20</string>
+    <string name="evidence_requirement_level_emf_3" translatable="false">52</string>
+
+    <string name="evidence_requirement_level_ultraviolet_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_ultraviolet_2" translatable="false">21</string>
+    <string name="evidence_requirement_level_ultraviolet_3" translatable="false">56</string>
+
+    <string name="evidence_requirement_level_thermometer_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_thermometer_2" translatable="false">36</string>
+    <string name="evidence_requirement_level_thermometer_3" translatable="false">64</string>
+
+    <string name="evidence_requirement_level_book_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_book_2" translatable="false">23</string>
+    <string name="evidence_requirement_level_book_3" translatable="false">63</string>
+
+    <string name="evidence_requirement_level_vcam_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_vcam_2" translatable="false">33</string>
+    <string name="evidence_requirement_level_vcam_3" translatable="false">61</string>
+
+    <string name="evidence_requirement_level_box_1" translatable="false">0</string>
+    <string name="evidence_requirement_level_box_2" translatable="false">27</string>
+    <string name="evidence_requirement_level_box_3" translatable="false">54</string>
+
+    <!-- Equipment Cost -->
+    <string name="evidence_requirement_cost_dots" translatable="false">65</string>
+    <string name="evidence_requirement_cost_emf" translatable="false">45</string>
+    <string name="evidence_requirement_cost_ultraviolet" translatable="false">20</string>
+    <string name="evidence_requirement_cost_thermometer" translatable="false">30</string>
+    <string name="evidence_requirement_cost_book" translatable="false">40</string>
+    <string name="evidence_requirement_cost_vcam" translatable="false">50</string>
+    <string name="evidence_requirement_cost_box" translatable="false">50</string>
+
+</resources>

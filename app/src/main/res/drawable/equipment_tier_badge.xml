@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:drawable="@drawable/icon_tier1"
+        app:equipment_tier="TIER_1" />
+
+    <item
+        android:drawable="@drawable/icon_tier2"
+        app:equipment_tier="TIER_2" />
+
+    <item
+        android:drawable="@drawable/icon_tier3"
+        app:equipment_tier="TIER_3" />
+</selector>

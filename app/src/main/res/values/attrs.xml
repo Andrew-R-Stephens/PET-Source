@@ -83,6 +83,35 @@
         Radio Selector
     -->
     <attr name="state_done" format="boolean" />
-    <attr name="state_tier" format="integer"/>
+
+    <attr name="equipment_tier" format="enum">
+        <enum name="TIER_1" value="1"/>
+        <enum name="TIER_2" value="2"/>
+        <enum name="TIER_3" value="3"/>
+    </attr>
+
+    <attr name="equipment_type" format="enum">
+        <enum name="DOTS_1" value="1"/>
+        <enum name="DOTS_2" value="2"/>
+        <enum name="DOTS_3" value="3"/>
+        <enum name="EMF_1" value="1"/>
+        <enum name="EMF_2" value="2"/>
+        <enum name="EMF_3" value="3"/>
+        <enum name="UV_1" value="1"/>
+        <enum name="UV_2" value="2"/>
+        <enum name="UV_3" value="3"/>
+        <enum name="THERMO_1" value="1"/>
+        <enum name="THERMO_2" value="2"/>
+        <enum name="THERMO_3" value="3"/>
+        <enum name="VCAM_1" value="1"/>
+        <enum name="VCAM_2" value="2"/>
+        <enum name="VCAM_3" value="3"/>
+        <enum name="GWRITING_1" value="1"/>
+        <enum name="GWRITING_2" value="2"/>
+        <enum name="GWRITING_3" value="3"/>
+        <enum name="SBOX_1" value="1"/>
+        <enum name="SBOX_2" value="2"/>
+        <enum name="SBOX_3" value="3"/>
+    </attr>
 
 </resources>

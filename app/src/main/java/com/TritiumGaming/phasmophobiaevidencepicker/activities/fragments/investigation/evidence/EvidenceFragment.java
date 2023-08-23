@@ -50,6 +50,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
@@ -63,6 +64,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -312,7 +314,7 @@ public class EvidenceFragment extends Fragment {
     }
 
     protected void recreateGhostView() {
-        evidenceViewModel.updateGhostOrder();
+        evidenceViewModel.getGhostOrderData().updateOrder();
         createGhostViews(getView(), ghostContainer);
     }
 
@@ -595,7 +597,7 @@ public class EvidenceFragment extends Fragment {
                         RelativeLayout.LayoutParams.MATCH_PARENT,
                         RelativeLayout.LayoutParams.MATCH_PARENT
                 );
-                popup.setAnimationStyle(R.anim.nav_default_enter_anim);
+                popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
                 popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
 
                 if (getActivity() != null) {
@@ -678,9 +680,10 @@ public class EvidenceFragment extends Fragment {
                         .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
 
                 evidenceViewModel.setRadioButtonChecked(index, 0);
-                evidenceViewModel.updateGhostOrder();
 
-                createGhostViews(view, ghostContainer);
+                evidenceViewModel.getGhostOrderData().updateOrder();
+
+                reorderGhostViews(ghostContainer);
             });
 
             icon2.setOnClickListener(v -> {
@@ -701,9 +704,10 @@ public class EvidenceFragment extends Fragment {
                         .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
 
                 evidenceViewModel.setRadioButtonChecked(index, 1);
-                evidenceViewModel.updateGhostOrder();
 
-                createGhostViews(view, ghostContainer);
+                evidenceViewModel.getGhostOrderData().updateOrder();
+
+                reorderGhostViews(ghostContainer);
             });
 
             icon3.setOnClickListener(v -> {
@@ -724,15 +728,39 @@ public class EvidenceFragment extends Fragment {
                         .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
 
                 evidenceViewModel.setRadioButtonChecked(index, 2);
-                evidenceViewModel.updateGhostOrder();
 
-                createGhostViews(view, ghostContainer);
+                evidenceViewModel.getGhostOrderData().updateOrder();
+
+                reorderGhostViews(ghostContainer);
             });
 
             evidenceContainer.addView(evidenceParent);
         }
 
         evidenceTypes.recycle();
+    }
+
+    private void reorderGhostViews(LinearLayout ghostContainer) {
+
+        GhostOrderData ghostOrderData = evidenceViewModel.getGhostOrderData();
+        int[] newOrder = ghostOrderData.getCurrOrder();
+        int[] prevOrder = ghostOrderData.getPrevOrder();
+
+        //TODO Order the inverse
+        int[] inverseOrder = new int[newOrder.length];
+        for(int i = 0; i < inverseOrder.length; i++) {
+            inverseOrder[newOrder[i]] = i;
+        }
+        Log.d("inverseArr", "new: " + Arrays.toString(newOrder) + " inverse: " + Arrays.toString(inverseOrder));
+
+
+        Log.d("Scores", "");
+        Log.d("Scores", "===== Reordering =====");
+        //Avoid pass null in the root it ignores spaces in the child layout
+        for (int j = 0; j < newOrder.length; j++) {
+            InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(newOrder[j]);
+            Log.d("Scores", j + " " + ghost.getEvidenceScore() + " -> " + ghost.getName() + " @ " + newOrder[j] + " / old @ " + evidenceViewModel.getGhostOrderData().getPrevOrder()[j]);
+        }
     }
 
     public void generateEvidenceTierView(View parentView, int tierIndex, GifImageView animation_fullscreen, String description, @DrawableRes int animation, String level) {
@@ -785,11 +813,13 @@ public class EvidenceFragment extends Fragment {
         String[] weaknesses = getResources().getStringArray(R.array.ghost_weaknesses_array);
         String[] huntDatas = getResources().getStringArray(R.array.ghost_huntdata_array);
 
-        int[] newGhostOrder = evidenceViewModel.getGhostOrder();
+        int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
 
         Log.d("Scores", "===== Reordering =====");
         //Avoid pass null in the root it ignores spaces in the child layout
-        for (int j : newGhostOrder) {
+        for (int i = 0; i < newGhostOrder.length; i++) {
+
+            int j = newGhostOrder[i];
 
             if(getContext() == null) {
                 return;
@@ -801,17 +831,17 @@ public class EvidenceFragment extends Fragment {
             String ghostWeakness = weaknesses[j];
             String ghostHuntData = huntDatas[j];
 
-            View inflatedLayout = inflater.inflate(
+            View ghostView = inflater.inflate(
                     R.layout.item_investigation_ghost,
                     (ViewGroup) view,
                     false);
 
-            LinearLayoutCompat linearLayout_iconRow = inflatedLayout.findViewById(R.id.icon_container);
+            LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
 
-            AppCompatTextView name = inflatedLayout.findViewById(R.id.label_name);
-            AppCompatImageView statusIcon = inflatedLayout.findViewById(R.id.icon_status);
+            AppCompatTextView name = ghostView.findViewById(R.id.label_name);
+            AppCompatImageView statusIcon = ghostView.findViewById(R.id.icon_status);
 
-            ConstraintLayout mainLayout = inflatedLayout.findViewById(R.id.layout_main);
+            ConstraintLayout mainLayout = ghostView.findViewById(R.id.layout_main);
 
             LinearLayoutCompat.LayoutParams params =
                     new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -863,14 +893,14 @@ public class EvidenceFragment extends Fragment {
             theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
             int positiveSelColor = typedValue.data;
 
-            for (int i = 0; i < ghost.getEvidence().length; i++) {
+            for (int k = 0; k < ghost.getEvidence().length; k++) {
                 ConstraintLayout evidenceIconContainer =
                         (ConstraintLayout) inflater.inflate(R.layout.item_investigation_ghost_icon,
                                 null);
                 AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
-                evidenceIcon.setImageResource(ghost.getEvidence()[i].getIcon());
+                evidenceIcon.setImageResource(ghost.getEvidence()[k].getIcon());
 
-                switch(ghost.getEvidence()[i].getRuling()) {
+                switch(ghost.getEvidence()[k].getRuling()) {
                     case POSITIVE: {
                         evidenceIcon.setColorFilter(positiveSelColor);
                         break;
@@ -887,7 +917,8 @@ public class EvidenceFragment extends Fragment {
                 linearLayout_iconRow.addView(evidenceIconContainer);
             }
 
-            ghostContainer.addView(inflatedLayout);
+            ghostView.setId(j);
+            ghostContainer.addView(ghostView);
 
         }
     }
@@ -1066,8 +1097,8 @@ public class EvidenceFragment extends Fragment {
 
             boolean status = !evidenceViewModel.swapStatusInRejectedPile(index);
 
-            evidenceViewModel.updateGhostOrder();
-            createGhostViews(getView(), ghostContainer);
+            evidenceViewModel.getGhostOrderData().updateOrder();
+            reorderGhostViews(ghostContainer);
 
             Bundle params = new Bundle();
             params.putString("event_type", "ghost_swiped");
