@@ -90,6 +90,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
                     reset();
+
+                    @SuppressLint("DetachAndAttachSameFragment")
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     if (Build.VERSION.SDK_INT >= 26) {
                         ft.setReorderingAllowed(false);
@@ -122,7 +124,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
 
         View.OnClickListener difficultyListener = v -> {
-            recreateGhostView();
+            //recreateGhostView();
+
+            evidenceViewModel.getGhostOrderData().updateOrder();
+            reorderGhostViews(ghostContainer);
         };
         compositeListenerPrev = new CompositeListener();
         compositeListenerNext = new CompositeListener();
