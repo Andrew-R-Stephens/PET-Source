@@ -181,9 +181,9 @@ public class EvidenceFragment extends Fragment {
         }
 
         titles = new String[] {
-            getResources().getString(R.string.evidence_popup_ghost_info),
-                    getResources().getString(R.string.evidence_popup_ghost_strength),
-                    getResources().getString(R.string.evidence_popup_ghost_weakness)
+            getResources().getString(R.string.popup_ghost_info),
+                    getResources().getString(R.string.popup_ghost_strength),
+                    getResources().getString(R.string.popup_ghost_weakness)
         };
 
         // GHOST / EVIDENCE CONTAINERS

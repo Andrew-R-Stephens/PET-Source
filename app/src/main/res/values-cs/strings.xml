@@ -3,18 +3,18 @@
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
-    <string name="general_evidence_button">Evidence</string>
-    <string name="general_maps_button">Maps</string>
-    <string name="general_tasks_button">Tasks</string>
-    <string name="general_evidence_reset_button">Reset</string>
+    <string name="general_evidence_button">Důkaz</string>
+    <string name="general_maps_button">Mapy</string>
+    <string name="general_tasks_button">Úkoly</string>
+    <string name="general_evidence_reset_button">Resetovat</string>
 
     <!--
         TITLESCREEN PAGE
     -->
     <!-- Page Details -->
-    <string name="titlescreen_description">The ultimate evidence tool</string>
-    <string name="titlescreen_button">Start Hunting</string>
-    <string name="titlescreen_languages_label">Select Language</string>
+    <string name="titlescreen_description">Nejlepší důkazní nástroj</string>
+    <string name="titlescreen_button">Zahájit lov</string>
+    <string name="titlescreen_languages_label">Vyberte jazyk</string>
 
     <!--
         MESSAGE CENTER PAGE
@@ -23,7 +23,7 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopie</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_classic">P.E.T. Klasický</string>
     <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
     <string name="messagecenter_inbox_general">Obecné zprávy</string>
     <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>
@@ -33,454 +33,467 @@
          REVIEW POPUP
     -->
     <!-- Page Details -->
-    <string name="review_requesttitle">Please consider rating P.E.T.!</string>
-    <string name="review_accept">Sure!</string>
-    <string name="review_decline">No thanks</string>
+    <string name="review_requesttitle">Zvažte hodnocení P.E.T.!</string>
+    <string name="review_accept">Jistě!</string>
+    <string name="review_decline">Ne, děkuji</string>
 
     <!--
         ABOUT POPUP
     -->
     <!-- Page Details -->
-    <string name="aboutinfo_title_about">About</string>
-    <string name="aboutinfo_version">Version</string>
+    <string name="aboutinfo_title_about">O službě</string>
+    <string name="aboutinfo_version">Verze</string>
     <string name="aboutinfo_aboutapp_info">
-        <![CDATA[
-            <p>As any seasoned player will tell you, <font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
-            <p><font color=#CC3C3C>P.E.T.</font> is an unofficial companion tool\-\- acting both as a guide for new players and as an assistant for the veterans.</p>
-            <p><font color=#CC3C3C>Thank you so much for using P.E.T.!</font></p>
-        ]]>
-    </string>
-    <string name="aboutinfo_developerinfo_title">Developer Info</string>
-    <string name="aboutinfo_developerinfo_developer">Developer</string>
-    <string name="aboutinfo_developerinfo_contact">Contact</string>
-    <string name="aboutinfo_joindiscord">Join the Discord</string>
-    <string name="aboutinfo_specialthanks_title">Special Thanks</string>
+         <![CDATA[
+             <p>Jak vám potvrdí každý zkušený hráč, <font color=#CC3C3C>Phasmophobia</font> je jedinečná hororová hra vyvinutá společností <font color=#CC3C3C>Kinetic Games</font>.</p>
+             <p><font color=#CC3C3C>P.E.T.</font> je neoficiální doprovodný nástroj\-\- fungující jako průvodce pro nové hráče i jako asistent pro veterány.</p>
+             <p><font color=#CC3C3C>Děkujeme, že používáte P.E.T.!</font></p>
+         ]]>
+     </string>
+    <string name="aboutinfo_developerinfo_title">Informace o vývojáři</string>
+    <string name="aboutinfo_developerinfo_developer">Vývojář</string>
+    <string name="aboutinfo_developerinfo_contact">Kontakt</string>
+    <string name="aboutinfo_joindiscord">Připojte se k Discordu</string>
+    <string name="aboutinfo_specialthanks_title">Zvláštní poděkování</string>
 
     <!--
         SETTINGS POPUP
     -->
     <!-- Page Details -->
-    <string name="settings_title">Settings</string>
-    <string name="settings_generalsettings">General</string>
-    <string name="settings_extrasettings">Extra Settings</string>
-    <string name="settings_screenalwayson">Always keep the screen on</string>
-    <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
-    <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
-    <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
-    <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
-    <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
+    <string name="settings_title">Nastavení</string>
+    <string name="settings_generalsettings">Obecné</string>
+    <string name="settings_extrasettings">Další nastavení</string>
+    <string name="settings_screenalwayson">Vždy mějte obrazovku zapnutou</string>
+    <string name="settings_huntwarningflashtimeout">Vypršel časový limit blesku upozornění na lov</string>
+    <string name="settings_huntwarningflashtimeout_never">Nikdy vypršel časový limit</string>
+    <string name="settings_enablehuntaudioqueue">Povolit zvukové varování lovu</string>
+    <string name="settings_colorblindnessmode_title">Režim barvoslepé</string>
+    <string name="settings_colorblindnessmode_note">(vstoupí v platnost po opuštění Nastavení)</string>
     <!-- Colorblindness Types -->
-    <string name="settings_colorblindnessmode_normal">None</string>
+    <string name="settings_colorblindnessmode_normal">Žádné</string>
 
     <!--
         EVIDENCE PAGE
     -->
     <!-- Page Details -->
-    <string name="evidence_timer_label">Preparation Time:</string>
-    <string name="evidence_timer_difficulty_default">None</string>
-    <string name="evidence_timer_difficulty_1">Amateur</string>
-    <string name="evidence_timer_difficulty_2">Intermediate</string>
-    <string name="evidence_timer_difficulty_3">Professional</string>
-    <string name="evidence_timer_maplabel">Map:</string>
-    <string name="evidence_timer_difficulty_label">Difficulty:</string>
-    <string name="evidence_timer_actionlabel">ACTION</string>
-    <string name="evidence_timer_setuplabel">SETUP</string>
-    <string name="evidence_sanity_huntwarn">HUNT WARN</string>
-    <string name="evidence_sanitymeter_title">MAX Sanity Level</string>
-    <string name="evidence_ghosts_title">Ghosts</string>
-    <string name="evidence_evidence_title">Evidence</string>
+    <string name="evidence_timer_label">Čas přípravy:</string>
+    <string name="evidence_timer_difficulty_default">Žádné</string>
+    <string name="evidence_timer_difficulty_1">Amatér</string>
+    <string name="evidence_timer_difficulty_2">Středně pokročilý</string>
+    <string name="evidence_timer_difficulty_3">Profesionál</string>
+    <string name="evidence_timer_maplabel">Mapa:</string>
+    <string name="evidence_timer_difficulty_label">Obtížnost:</string>
+    <string name="evidence_timer_actionlabel">AKCE</string>
+    <string name="evidence_timer_setuplabel">NASTAVENÍ</string>
+    <string name="evidence_sanity_huntwarn">POZOR NA LOV</string>
+    <string name="evidence_sanitymeter_title">MAX. úroveň příčetnosti</string>
+    <string name="evidence_ghosts_title">Duchové</string>
+    <string name="evidence_evidence_title">Důkaz</string>
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
-    <string name="ghost_type_demon">Demon</string>
+    <string name="ghost_type_demon">Démon</string>
+    <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_goryo">Goryo</string>
+    <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Jinn</string>
     <string name="ghost_type_mare">Mare</string>
+    <string name="ghost_type_moroi">Moroi</string>
+    <string name="ghost_type_myling">Myling</string>
+    <string name="ghost_type_obake">Obake</string>
     <string name="ghost_type_oni">Oni</string>
-    <string name="ghost_type_phantom">Phantom</string>
+    <string name="ghost_type_onryo">Onryo</string>
+    <string name="ghost_type_phantom">Fantom</string>
     <string name="ghost_type_poltergeist">Poltergeist</string>
+    <string name="ghost_type_raiju">Raiju</string>
     <string name="ghost_type_revenant">Revenant</string>
     <string name="ghost_type_shade">Shade</string>
     <string name="ghost_type_spirit">Spirit</string>
+    <string name="ghost_type_thaye">Thaye</string>
+    <string name="ghost_type_thetwins">Dvojčata</string>
+    <string name="ghost_type_themimic">Mimik</string>
     <string name="ghost_type_wraith">Wraith</string>
+    <string name="ghost_type_yokai">Yokai</string>
     <string name="ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
-    <string name="evidence_ghost_info_deogen" >
-        <![CDATA[
-            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_moroi">
-        <![CDATA[
-            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_thaye">
-        <![CDATA[
-            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_banshee" >
-        <![CDATA[
-            <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>. Banshees <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_demon" >
-        <![CDATA[
-            <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_goryo" >
-        <![CDATA[
-            <p>A Goryo <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing the projector through a video camera remotely.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_hantu" >
-        <![CDATA[
-            <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_jinn" >
-        <![CDATA[
-            <p>A Jinn is a territorial ghost that will attack when threatened. It has also been known to be <font color=#ff6161>able to travel at high speeds</font>, and will do so while hunting distant paranormal investigators. However, <font color=#ff6161>cutting off power via the fuse box will limit its speed</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mare" >
-        <![CDATA[
-            <p>The source of all nightmares, a Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>. Keeping the lights on and remaining out of dark areas will limit its aggression. Beware, as it will also attempt to turn the lights off to empower itself.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_myling" >
-        <![CDATA[
-            <p>The Myling will emit strange noises which can be picked up by the Parabolic Microphone. Its footsteps can also only be heard within the electronic interference range (which is around 10 meters) during a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_obake" >
-        <![CDATA[
-            <p>An Obake is a shape shifter which promotes some unusual evidence at times. By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake.
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_oni" >
-        <![CDATA[
-            <p>An Oni is an aggressive ghost who <font color=#ff6161>scales its activity level with the number of nearby investigators</font>. This is its greatest weakness, as it will likely reveal itself early in the round. It is also likely to wander around near the Ghost Room.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_onryo" >
-        <![CDATA[
-            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc).</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_phantom" >
-        <![CDATA[
-            <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who view it</font>. <font color=#ff6161>Taking a picture of it will make it disappear temporarily</font>. Although rumored to possess the living, it has no ability to actually do so. It is said to be commonly summoned by a Ouija Board, although players cannot summon one themselves, nor does a Phantom\'s presence guarantee that a Ouija Board will spawn.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_poltergeist" >
-        <![CDATA[
-            <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_raiju" >
-        <![CDATA[
-            <p>A Raiju is a ghost which <font color=#ff6161>siphons electrical power</font> from the devices around it. Too much electrical stimulation nearby it will cause it to become agitated and hunt more frequently.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_revenant" >
-        <![CDATA[
-            <p>A Revenant is a violent ghost that <font color=#ff6161>can attack indiscriminately</font>, as it is capable of switching its current target mid-hunt. <font color=#ff6161>Hiding from it will cause it to move slowly</font>, but <font color=#ff6161>it will travel faster than any other Ghost in the game if a victim is in its sights</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_shade" >
-        <![CDATA[
-            <p>A Shade is considered to be a <font color=#ff6161>\"shy ghost\”</font>. While it is harder to find evidence while investigators remain in groups, <font color=#ff6161>a Shade is far less likely to attack if there are multiple people nearby</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_spirit" >
-        <![CDATA[
-            <p>A Spirit is the most common Ghost you will come across, but it is still very powerful and dangerous. It is usually discovered at one of its hunting grounds after an unexplained death. It has no special strengths. <font color=#ff6161>Smudge sticks prevent Spirits from hunting for about three minutes</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_thetwins" >
-        <![CDATA[
-            <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_themimic">
-        <![CDATA[
-            <p>Mimic je nepolapitelný, tajemný napodobovací duch, který zrcadlí vlastnosti a chování ostatních, včetně jiných typů duchů. Dávejte pozor na přepínání chování a Ghost Orbs (jak je vysvětleno v části Silné a slabé stránky).</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_wraith" >
-        <![CDATA[
-            <p>A Wraith is one of the most dangerous ghosts you will find. It is the only known Ghost that <font color=#ff6161>has the ability of flight</font>, and has sometimes been <font color=#ff6161>known to see through doors and go through walls</font>. <font color=#ff6161>Salt is toxic to a Wraith</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yokai" >
-        <![CDATA[
-            <p>The Yokai is highly <font color=#ff6161>sensitive to voices</font>, making the Yokai extremely dangerous. However, speaking nearby it may also trigger activity, making finding the Ghost room easier.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yurei" >
-        <![CDATA[
-            <p>A Yurei is a ghost whose ability <font color=#ff6161>increases the passive drain of a player\'s sanity</font> (Although most ghosts drain your sanity rather quickly). Smudging the room a Yurei was found in will prevent it from wandering from the location for a long time.</p>
-        ]]>
-    </string>
+    <string name="ghost_info_banshee" >
+         <![CDATA[
+             <p>Banshees jsou popisovány jako přirozené lovce. Pokusí se pomalu pronásledovat a sebrat lovce duchů jednoho po druhém <font color=#ff6161>selektivním zaměřením na jednoho vyšetřovatele</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_demon" >
+         <![CDATA[
+             <p>Démon je jedním z nejhorších duchů, se kterými se lze setkat. Vzhledem k tomu, že je vysoce agresivní, <font color=#ff6161>bude útočit častěji než jakýkoli jiný duch</font>, proto se doporučuje použít krucifix, aby se zabránilo lovu. Nicméně kladení úspěšných otázek démonovi z Ouija Board nevyčerpá hráčovu duševní pohodu.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_deogen" >
+         <![CDATA[
+             <p>Deogen je přirozený lovec. Konvenční metody úkrytu nebudou fungovat, protože má velký smysl pro vyčmuchání kořisti. Můžete utéct\… ale nemůžete se schovat. Opakujte: NEPOKOUŠEJTE SE SKRÝVAT. Pokud uslyšíte extrémně rychlé kroky, jako je bubnování, OKAMŽITĚ vystupte z úkrytu.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_goryo">
+         <![CDATA[
+             <p>Goryo bude jen zřídka vidět mimo jeho preferovanou místnost. Goryo také <font color=#ff6161>velmi nerad ukazuje, když jsou lidé poblíž</font>. Díky tomu je vidět D.O.T.S. nemožné bez vzdáleného sledování prostřednictvím videokamery.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_hantu">
+         <![CDATA[
+             <p>Hantu <font color=#ff6161>upřednostňuje nižší teploty</font>, což umožní jeho rychlému pohybu během lovu. To znamená, že jistič musí být aktivován, aby se zvýšila celková teplota mimo strašidelnou oblast, čímž se sníží rychlost pohybu Hantu.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_jinn" >
+         <![CDATA[
+             <p>Jinn získává své schopnosti ze zapnutého napájení. Dokáže se pohybovat velmi rychle při lovu a dokáže absurdně rychle vysát zdravý rozum. Jinns byli vrcholovým predátorem v dřívějších verzích Phasmophobia a je pro to dobrý důvod. Pohybuje se rychlostí 2,5 m/s, pokud pronásleduje vzdáleného hráče a generátor je zapnutý, a 1,7 m/s, pokud je generátor vypnutý a nikoho nepronásleduje.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_mare" >
+         <![CDATA[
+             <p>Kobyla je duch, který je ve tmě <font color=#ff6161>agresivnější</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_moroi">
+         <![CDATA[
+             <p>Morojové odvádějí zdravý rozum živých. Jak se rozum obětí snižuje, Morojové sílí. Udržujte svůj zdravý rozum co nejvyšší, abyste se vyhnuli nechtěné agresivitě.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_myling">
+         <![CDATA[
+             <p>Myling bude vydávat podivné zvuky, které může parabolický mikrofon zachytit. Jeho kroky jsou také během lovu slyšet pouze v rozsahu elektronického rušení (což je přibližně 10 metrů).</p>
+         ]]>
+     </string>
+    <string name="ghost_info_obake">
+         <![CDATA[
+             <p>An Obake je tvarový měnič, který občas propaguje neobvyklé důkazy. Obake má šanci nevytvořit otisky prstů vůbec, což může způsobit problémy se shromažďováním důkazů, pokud otisky prstů neguje příliš brzy.
+         ]]>
+     </string>
+    <string name="ghost_info_oni" >
+         <![CDATA[
+             <p>Oni je agresivní duch, který<font color=#ff6161> mění úroveň své aktivity podle počtu blízkých vyšetřovatelů</font>. Je také pravděpodobné, že se bude potulovat poblíž Místnosti duchů.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_onryo">
+         <![CDATA[
+             <p>Onryo nemá rád a je vysoce <font color=#ff6161>ohrožován jakoukoli formou plamene</font> (včetně svíček, zapalovače atd.). Nebude lovit, pokud se pokusíte do vzdálenosti 4 metrů od zdroje plamene.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_phantom" >
+         <![CDATA[
+             <p>Fantom je duch vyvolávající strach, <font color=#ff6161>rychle vysává zdravý rozum těch, kteří se na něj dívají</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_poltergeist" >
+         <![CDATA[
+             <p>Jeden z nejznámějších duchů, Poltergeist, známý také jako hlučný duch, <font color=#ff6161>může manipulovat s více předměty kolem sebe</font>, aby šířil strach na své oběti.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_raiju">
+         <![CDATA[
+             <p>Raiju je duch, který <font color=#ff6161>vysává elektrickou energii</font> ze zařízení kolem sebe. Příliš mnoho elektrické stimulace v blízkosti způsobí, že se rozruší a bude lovit častěji.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_revenant" >
+         <![CDATA[
+             <p>Revenant je nejlépe známý pro své pomalé lovecké chování při hledání vyšetřovatelů. Při hledání je metodicky pomalý, což poskytuje zřetelné lovecké zvuky, které pomáhají určit tento typ ducha.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_shade" >
+         <![CDATA[
+             <p>Stín je považován za <font color=#ff6161>\"stydlivý duch\"</font>. Zatímco je těžší najít důkazy, zatímco vyšetřovatelé zůstávají ve skupinách, <font color=#ff6161>odstín je mnohem méně pravděpodobné, že zaútočí, pokud je poblíž více lidí</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_spirit" >
+         <![CDATA[
+             <p>Duch nemá žádné zvláštní přednosti, ale přesto je stejně nebezpečný jako jakýkoli jiný duch.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_thaye">
+         <![CDATA[
+             <p>Thaje je duch, který v přítomnosti živých rychle stárne. Pozemská reprezentace tohoto stárnutí se bude prezentovat jako síla v raných fázích mise, ale jako slabost v pozdějších fázích. Zeptat se Thaye, jak starý je v Ouija Board, vyvolá odpověď, která je úměrná jeho pokročilému věku. S každou pokročilou fází stárnutí sníží Thaye svou efektivní rychlost o 0,175 m/s.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_thetwins">
+         <![CDATA[
+             <p>Dvojčata jsou dvojice dvou duchů, kteří mají schopnost samostatně manipulovat se svým okolím. Jedno z Dvojčat není schopno manipulovat s pohybovými senzory a nezanechá deterministický důkaz. Lov může zahájit a účastnit se každé Dvojče, ale <font color=#ff6161>ne</font> obojí současně.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_themimic">
+         <![CDATA[
+             <p>Mimic je nepolapitelný, tajemný napodobovací duch, který zrcadlí vlastnosti a chování jiných typů duchů. Dávejte pozor na změnu chování. Ghost Orbs jsou čtvrtým, skrytým důkazem, který musí být pro tohoto ducha přítomen.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_wraith" >
+         <![CDATA[
+             <p>Wraith je jediný známý duch, který si <font color=#ff6161>zachovává schopnost letu</font>. Stejně jako každý jiný duch nemůže Wraith cestovat skrz zdi, i když se o nich říká, že tuto schopnost mají.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_yokai">
+         <![CDATA[
+             <p>Yokai je vysoce <font color=#ff6161>citlivý na hlasy</font>, díky čemuž je Yokai extrémně nebezpečný. Nicméně mluvení poblíž může také vyvolat aktivitu, což usnadní nalezení místnosti duchů.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_yurei" >
+         <![CDATA[
+             <p>Yurei je duch, jehož schopnost <font color=#ff6161>zvyšuje pasivní odliv hráčova duševního zdraví</font> (ačkoli většina duchů vyčerpává váš rozum poměrně rychle). Rozmazání místnosti, ve které byl Yurei nalezen, zabrání tomu, aby se z místa na dlouhou dobu toulal.</p>
+         ]]>
+     </string>
 
-    <string name="evidence_ghost_strengths_deogen" >
-        <![CDATA[
-            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_moroi">
-        <![CDATA[
-            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_thaye">
-        <![CDATA[
-            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_banshee" >
-        <![CDATA[
-            <p>Will focus on one player, especially those who attempt to confront the Banshee alone.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_demon" >
-        <![CDATA[
-            <p>They can be difficult to gather clues on as they will attack players very frequently.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_goryo" >
-        <![CDATA[
-            <p>A Goryo often only shows itself on camera when there are no people nearby.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_hantu" >
-        <![CDATA[
-            <p>Lower temperatures allow the Hantu to move at faster speeds.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_jinn" >
-        <![CDATA[
-            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_mare" >
-        <![CDATA[
-            <p>Mares thrive in the darkness, and will very likely begin to attack as soon as the lights go out.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_myling" >
-        <![CDATA[
-            <p>A Myling is not as vocal as other Ghosts while Hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_obake" >
-        <![CDATA[
-            <p>An Obake may not leave a trace when manipulating the environment.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_oni" >
-        <![CDATA[
-            <p>Onis possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_onryo" >
-        <![CDATA[
-            <p>Should a flame be extinguished, by any means, the Onryo may initiate a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_phantom" >
-        <![CDATA[
-            <p>Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_poltergeist" >
-        <![CDATA[
-            <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_raiju" >
-        <![CDATA[
-            <p>Raijus become much faster while nearby electrical devices.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_revenant" >
-        <![CDATA[
-            <p>Revenants will move extremely quickly when they begin attacking, giving players little chance of escaping.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_shade" >
-        <![CDATA[
-            <p>Shades can be difficult to find, and therefore difficult to collect evidence on.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_spirit" >
-        <![CDATA[
-            <p>Spirits have no strengths in particular, as they are geared towards new players.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_thetwins" >
-        <![CDATA[
-            <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_themimic">
-        <![CDATA[
-            <p>Mimic může kopírovat jakýkoli typ ducha, což jej činí extrémně nebezpečným a nepředvídatelným.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_wraith" >
-        <![CDATA[
-            <p>Since they fly, Wraiths cannot be tracked by their footsteps.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yokai" >
-        <![CDATA[
-            <p>Speaking nearby a Yokai will anger it. Multiple voices will speed up this process, which may easily surpass the protections of high Sanity levels.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yurei" >
-        <![CDATA[
-            <p>Yureis will drop players\' sanity while they are looking at it quicker than any other ghost, but can also decrease sanity even when a player is turned away.</p>
-        ]]>
-    </string>
+    <string name="ghost_strengths_banshee" >
+         <![CDATA[
+             <p>Banshee se zaměří na jednoho hráče a vymění se za nový cíl, pokud vybraný cíl není v herní oblasti.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_demon" >
+         <![CDATA[
+             <p>Může být obtížné získat o nich vodítka, protože na hráče útočí velmi často. Démon může brzy\-lovit na jakoukoli příčetnost, ale jeho minimální cíl je normálně kolem 70\% průměrné příčetnosti. Je to hon cooldown, neboli doba mezi lovy, je 20 sekund, což je o 5 sekund rychleji než jakýkoli jiný duch. Smudge sticks mají také kratší dobu ochrany a poskytují 60 sekund bezpečí namísto normálních 90 sekund pro duchy, kteří nejsou duchy.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_deogen">
+         <![CDATA[
+             <p>Deogen vycítí jakoukoli živou bytost, bez ohledu na to, jak dobře je skrytá. Pokud se rozhodnete zůstat stát proti Deogenu, zabijete vás. Nespoléhejte na to, že přerušíte přímku viditelnosti, protože to nezastaví pronásledování a pouze to umožní Deogenu pohybovat se mnohem rychleji.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_goryo">
+         <![CDATA[
+             <p>Goryo se často ukazuje na kameře, jen když nejsou poblíž žádní lidé. To může způsobit problémy se shromažďováním příslušných důkazů, protože to může vést k negaci D.O.T.S. příliš brzy.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_hantu">
+         <![CDATA[
+             <p>Nižší teploty umožňují Hantu pohybovat se vyšší rychlostí. Přímá viditelnost nemá vliv na rychlost Hantu.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_jinn" >
+         <![CDATA[
+             <p>Jinnova rychlost z něj činí extrémně obtížného ducha uniknout, jakmile začne lovit. Jakmile Jinn dohoní hráče, postupně zpomalí a přepne na normální rychlost lovu. Jinn může okamžitě odstranit 25 % zdravého rozumu z blízkého hráče, pokud je zapnuté.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_mare" >
+         <![CDATA[
+             <p>Klisna se pokusí vypnout světla, aby se zmocnila, a bude lovit na 60 % v případě, že bude vypnuto. Bude také putovat do jiných místností nebo do tmavých oblastí své oblíbené místnosti a může z těchto míst zahájit lov. Klisna má zvýšenou pravděpodobnost, že zničí světelný zdroj v místnosti prostřednictvím události.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_moroi">
+         <![CDATA[
+             <p>Morojové plně využijí každého ztraceného kousku příčetnosti. Méně týmové příčetnosti způsobí vyšší úroveň agresivity. Při 0\% průměrné příčetnosti bude duch během lovu bleskově rychlý. Na základě průměrného týmu Sanity se jeho rychlost pohybuje mezi 1,5 m/s při nejpomalejší a 2,25 m/s při nejrychlejším.</p>
+             <p>Duch má skrytou schopnost \-\- prokletí \-\-, která způsobí, že se kterýkoli hráč vyčerpá v příčetnosti rychlostí 0,03\%/s, pokud je ovlivněný hráč v oblasti hry. Tento efekt je způsoben, pokud hráč použije a dostane odpověď od Spirit Box. Efekt se hromadí na vrcholu normální rychlosti, kterou hráči odčerpávají příčetnost. Svíčky účinky nezastaví, ale kletbu lze zrušit použitím prášků Sanity Pills.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_myling">
+         <![CDATA[
+             <p>Myling není při lovu tak hlasitý jako ostatní Ghosts. Jejich kroky a hlasové zvuky zaznamenáte pouze v blízkosti elektronického rušení.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_obake">
+         <![CDATA[
+             <p>Obake nesmí zanechat stopy při manipulaci s prostředím. To znamená, že má šanci nezanechat stopy otisků prstů. Obake může také snížit životnost otisků prstů na polovinu.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_oni" >
+         <![CDATA[
+             <p>Oni mají schopnost pohybovat fyzickými předměty jako Poltergeist a zároveň vyznávat agresi démona. To je činí náročné shromažďovat důkazy kolem sebe, aniž by je rozzlobily. To je jeho největší slabina, protože se pravděpodobně ukáže na začátku kola. Pokud se hráče během události duchů dotkne Oni, hráč bude mít dvakrát tolik vybitý zdravý rozum.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_onryo">
+         <![CDATA[
+             <p>Onryo zaměří zdroj plamene a uhasí jej. Pokud Onryo uhasí 3 plameny, Onryo může zahájit lov bez ohledu na úroveň příčetnosti, pokud v blízkosti není žádný jiný plamen nebo krucifix. Když hráč zemře, zvyšuje se pravděpodobnost, že svíčky od té doby zhasnou.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_phantom" >
+         <![CDATA[
+             <p>Fantomové si vyberou extrémní daň na duševním zdraví hráčů. Nebuďte příliš dlouho v přítomnosti Phantoma nebo se na něj nedívejte přímo. Má také tendenci pasivně následovat hráče, což mu pomáhá bloudit mimo vybranou místnost, což ztěžuje shromažďování důkazů.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_poltergeist" >
+         <![CDATA[
+             <p>Poltergeisté mohou mít velký vliv na prostor, ve kterém se hráči nacházejí, protože jsou schopni házet četnými předměty a také produkovat hlasité zvuky. Okamžitě dojde k 2\% vyčerpání zdravého rozumu všem hráčům v okolí za každý hozený předmět. K tomu může dojít jak venku, tak během lovu.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_raiju" >
+         <![CDATA[
+             <p>Raiju se stane mnohem rychlejším, když jsou v blízkosti elektrická zařízení, ale ne napájení mapy nebo osvětlení místnosti, a zvýší jeho preferovanou úroveň myslivecké příčetnosti na 65 % v blízkosti takových elektrických zařízení. Pokud je v blízkosti elektronické zařízení, bude se pohybovat rychlostí 2,5 m/s; Jinak se bude pohybovat rychlostí 1,7 m/s.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_revenant" >
+         <![CDATA[
+             <p>A Revenant se při hledání hráčů bude pohybovat rychlostí 1 m/s a okamžitě se bude pohybovat rychlostí 3 m/s, pokud je známa poloha hráče (prostřednictvím přímé viditelnosti, bezkontaktního chatu nebo používání elektronického zařízení) . Postupně se zpomalí na 1 m/s, pokud není poloha hráče znovu získána poté, co dosáhne poslední známé polohy hráče.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_shade" >
+         <![CDATA[
+             <p>Odstíny může být obtížné najít, a proto může být obtížné shromáždit důkazy nebo dokonce najít umístění. Má celkově nižší aktivitu; avšak nižší úrovně hráčské příčetnosti způsobí více přízraků. Nebude interagovat ani házet předměty, když je hráč v jeho preferované místnosti.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_spirit" >
+         <![CDATA[
+             <p>Duchové nemají žádné silné stránky, protože jsou zaměřeni na nové hráče. Nenechte se však zmást. Jeho nedostatek speciality z něj dělá vyrovnaný zápas.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_thaye">
+         <![CDATA[
+             <p>Thaje bude nejaktivnější a nejnebezpečnější na začátku mise. Díky tomu je velmi ohrožující již na začátku. Thaye bude na začátku vyšetřování lovit na 75 % a po dokončení stárnutí se nakonec zvětší na minimálně 15 %. Mladý Thaye bude velmi rychlý rychlostí 2,7 m/s, zatímco starý Thaye se bude pohybovat pomaleji než hráč rychlostí 1,0 m/s.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_thetwins">
+         <![CDATA[
+             <p>Každé Dvojče může být rozzlobené, a proto může kterékoli Dvojče zahájit lov. To znamená, že lov může začít ze dvou různých míst.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_themimic">
+         <![CDATA[
+             <p>Mimic může během vyšetřování rychle kopírovat jakýkoli typ ducha několikrát, což ho činí extrémně nebezpečným a naprosto nepředvídatelným. Chování, které kopíruje, může být přítomno během lovu i mimo něj. Mimic nelze vyměnit za kopírování jiného ducha uprostřed\-lovu.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_wraith" >
+         <![CDATA[
+             <p>Wraithové mají schopnost mrknout na místo libovolného hráče v blízkosti v malé vzdálenosti od zvolené místnosti. K tomu může dojít daleko mimo jejich pokoj, dokonce i mezi patry. Tato aktivita může zůstat bez povšimnutí, protože se může jednat o tichou aktivitu, ale v místě přistání bude generovat odečet EMF. Po této aktivitě se Wraithové vrátí do svého pokoje a během této doby mohou interagovat s předměty. Říká se, že Wraith může lovit hned po teleportaci, ale to může být nepřesné.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_yokai">
+         <![CDATA[
+             <p>Když mluvíte poblíž Yokai, rozzlobíte ho tím, že zvýšíte jeho pravděpodobnost útoku zvýšením minimální preferované úrovně příčetnosti pro lov na 80%</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_yurei" >
+         <![CDATA[
+             <p>Yurie\'s zbaví hráče rozumu, když se na něj dívají, mnohem rychleji než jakýkoli jiný duch \-\-, ale může také snížit příčetnost, i když je hráč odvrácen. Yurei může také okamžitě utrhnout 15 % zdravého rozumu kterémukoli hráči v okolí; a když se to stane, dveře místnosti se vždy samy zavřou (může to udělat každý duch, ale Yurei má větší pravděpodobnost).</p>
+         ]]>
+     </string>
 
-    <string name="evidence_ghost_weaknesses_deogen" >
-        <![CDATA[
-            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_moroi">
-        <![CDATA[
-            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_thaye">
-        <![CDATA[
-            <p>The Thaye is an ghost which rapidly ages in the afterlife. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_banshee" >
-        <![CDATA[
-            <p>Susceptible to the use of a crucifix to cull their aggression.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_demon" >
-        <![CDATA[
-            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_goryo" >
-        <![CDATA[
-            <p>Goryo\'s will normally stay within or very close to the location they\'re haunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_hantu" >
-        <![CDATA[
-            <p>A Hantu\'s movement will be slower than normal in warmer areas.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_jinn" >
-        <![CDATA[
-            <p>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to limit the Jinn\'s abilities.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mare" >
-        <![CDATA[
-            <p>Keeping the lights on in a Mare\'s area will lower the likelihood that it starts to hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_myling" >
-        <![CDATA[
-            <p>Mylings will more frequently emit paranormal sounds.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_obake" >
-        <![CDATA[
-            <p>The unique evidence left by an Obake may be used to determine the Ghost type.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_oni" >
-        <![CDATA[
-            <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_onryo" >
-        <![CDATA[
-            <p>A flame will act to quell an Onryo\'s chance to attack, but this action comes with consequences.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_phantom" >
-        <![CDATA[
-            <p>Taking a photo of a Phantom will cause it to temporarily disappear, giving players an opportunity to escape.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_poltergeist" >
-        <![CDATA[
-            <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_raiju" >
-        <![CDATA[
-            <p>It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_revenant" >
-        <![CDATA[
-            <p>If players do get the opportunity to hide from a Revenant, it\'s speed will drastically decrease.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_shade" >
-        <![CDATA[
-            <p>There\'s strength in numbers against a Shade, as they will not attack a group of people.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_spirit" >
-        <![CDATA[
-            <p>Smudge Sticks will prevent Spirits from attacking for a period of time, allowing players to freely collect evidence.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_thetwins" >
-        <![CDATA[
-            <p>Due to their combined activity, locating The Twins should be much easier.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_themimic">
-        <![CDATA[
-            <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_wraith" >
-        <![CDATA[
-            <p>Wraiths are weak to salt, and will stop attacking upon coming into contact with it. This can be easier said than done, however, as the Wraith will typically fly right over salt piles.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yokai" >
-        <![CDATA[
-            <p>While Hunting, a Yokai will only hear voices within a close proximity to it.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yurei" >
-        <![CDATA[
-            <p>Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
-        ]]>
-    </string>
+    <string name="ghost_weaknesses_banshee" >
+         <![CDATA[
+             <p>Banshee se bude toulat daleko od svého pokoje, jen aby sledoval svůj cíl. Banshees nikdy nezabije svého necílového hráče a během lovu projde přímo skrz každého vyšetřovatele, o kterého nemá zájem. Svůj lov také zakládá na příčetnosti svého cíle místo na průměrné příčetnosti týmu. Banshee má speciální interakci s parabolickým mikrofonem, protože má šanci vydat slabé, vysoké kvílení.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_demon" >
+         <![CDATA[
+             <p>Na rozdíl od jiných duchů, když položíte démonovi úspěšnou otázku prostřednictvím nástěnky Ouija, nesníží hráčům zdravý rozum. Díky tomu je Ouija Board velmi užitečným nástrojem proti démonům. Démoni se <font color=#ff6161>bojí Krucifixu</font> a zvyšují jeho účinnost proti nim zesílením účinného dosahu Krucifixu na 5 metrů místo běžných 3 metrů pro ostatní duchy.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_deogen">
+         <![CDATA[
+             <p>Deogen bude pronásledovat svou kořist do vyčerpání, ale nikdy ji nepřekoná. Zůstaňte v pohybu proti tomuto duchu a ujistěte se, že si své trasy naplánujete předem. Zůstaňte v přímé viditelnosti s tímto duchem a budete v pořádku, protože se bude moci pohybovat pouze rychlostí 0,4 m/s, zatímco bude v těsné blízkosti nejbližšího hráče v přímé viditelnosti. Dokud budete v přímé viditelnosti, nikdy vás nezachytí, i když jdete. Deogen bude lovit pouze se 40% příčetností.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_goryo">
+         <![CDATA[
+             <p>Goryové obvykle zůstanou uvnitř nebo velmi blízko místa, kde straší. To umožňuje snazší shromažďování důkazů.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_hantu" >
+         <![CDATA[
+             <p>Pohyb Hantu bude v teplejších oblastech pomalejší než normálně. Během lovu a pokud je jistič vypnutý, Hantu bude vydávat mrazivý dech podobně jako hráč, ale tento efekt není omezen na místnost duchů nebo teplotu místnosti.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_jinn" >
+         <![CDATA[
+             <p>Jinnové se při dosahování vysokých rychlostí spoléhají na zdroj energie mapy, takže hráči by měli hledat jistič budovy, aby odstranili Jinnovu schopnost. Jinn nebude schopen sám zapnout napájení.</p>
+]]>
+     </string>
+    <string name="ghost_weaknesses_mare" >
+         <![CDATA[
+             <p>Ponecháním rozsvícených světel v oblasti klisny snížíte její příčetnost při lovu z 60 % na 40 % průměrné příčetnosti. Zůstaňte proto v osvětlených prostorách, abyste omezili jeho agresivitu. Mare nemůže vypnout jistič, ale má schopnost okamžitě vypnout spínače světel, když je hráč aktivuje, což je událost, kterou lze velmi snadno rozpoznat.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_moroi">
+         <![CDATA[
+             <p>Morojové jsou přecitlivělí na Smudge Stick. Zapálení jednoho poblíž oslepí Moroje na 12 sekund.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_myling" >
+         <![CDATA[
+             <p>Mylingové budou častěji vydávat paranormální zvuky v parabolickém mikrofonu.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_obake" >
+         <![CDATA[
+             <p>Náhodou může Obake někdy zanechat <font color=#ff6161>6prstové otisky</font> namísto normálních 5. 5prstové otisky by neměly být používány k vyloučení Obaka. Obake může také změnit svůj model ducha na krátkou sekundu kdykoli během lovu. Pokud se Obake dotkne povrchu, existuje možnost, že se otisky prstů neobjeví; To lze použít jako důkaz pro ducha, pokud některá z následujících interakcí vytvoří otisky prstů.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_oni" >
+         <![CDATA[
+             <p>Oni se dají snadno najít, protože neodolají a nezpůsobí rozruch, když jsou hráči poblíž. Oni nemohou dělat událost \"Ghost Mist\" nebo \"Ghost Ball\". Bude upřednostňovat plné projevy před stínovými projevy nebo neviditelnými projevy během událostí duchů. Toto chování se přenáší do lovů, což způsobuje, že se Oni projevují na delší dobu a mizí na velmi krátké intervaly během lovů.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_onryo" >
+         <![CDATA[
+             <p>Zdroj plamene potlačí šanci Onrya zaútočit. Nejprve uhasí všechny plameny (podobně jako použití nálože Krucifix), než použijete Krucifix.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_phantom" >
+         <![CDATA[
+             <p><font color=#ff6161>Vyfotografováním Phantoma dočasně zmizí</font> a nikdy se na fotografii nezobrazí. Phantom se také vydává na rychlé lovy, protože se fyzicky projeví na krátkou dobu a zmizí na delší dobu.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_poltergeist" >
+         <![CDATA[
+             <p>Hráči mohou odstranit fyzické předměty v místnosti, čímž se Poltergeist stane neúčinným. Polgergeist může interagovat s předměty násilně a je schopen hodit předmět mnohem větší silou než normální duch. Může interagovat s více předměty současně, což je známé jako „událost výbuchu Poltergeist“, a lze jej snadno otestovat nashromážděním velkého počtu předmětů na hromádku a sledováním jeho chování při aktivitě. Během lovu mají předměty mnohem větší šanci, že se s nimi bude manipulovat, proto zkontrolujte, zda se na jejich lovecké cestě nenachází mnoho rozrušených předmětů.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_raiju" >
+         <![CDATA[
+             <p>Je snazší sledovat Raiju, protože při lovu neustále manipulují s elektrickými zařízeními.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_revenant" >
+         <![CDATA[
+             <p>A Revenant bude velmi pomalý, když poloha hráče není známa a jsou slyšet velmi zřetelné pomalé kroky. Nejlepším způsobem, jak zjistit, zda máte revenanta, je lov.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_shade" >
+         <![CDATA[
+             <p>Proti stínu je síla v číslech, protože nezaútočí na skupinu lidí. Pokud chcete zabránit lovu, alespoň jeden hráč musí být v těsné blízkosti ducha. Stín bude také pravděpodobněji zobrazovat modely ve stínové formě a naopak má menší pravděpodobnost, že zobrazí celý model.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_spirit" >
+         <![CDATA[
+             <p>Když je duch rozmazaný, nebude lovit celých 180 sekund. Naproti tomu jakýkoli jiný duch bude lovit za 90 sekund (kromě démona, který může lovit již za 60 sekund).</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_thaye">
+         <![CDATA[
+             <p>Čím déle je duch v přítomnosti živých, sníží se jeho agresivita, rychlost a síla. Každý věk snižuje rychlost o 0,175 m/s. Thaye také nemá zrychlení přímé viditelnosti.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_thetwins" >
+         <![CDATA[
+             <p>Vzhledem k jejich kombinované aktivitě by mělo být hledání Dvojčat mnohem jednodušší. Dvojčata mají různou rychlost lovu, která se náhodně střídá mezi lovy. Jedno Twin loví 90% normální rychlostí (1,5 m/s), zatímco druhé Twin loví 110% normální rychlostí (1,9 m/s).</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_themimic" >
+         <![CDATA[
+             <p>Ghost Orb se objeví vedle deterministického Evidence of The Mimic, což z The Mimic dělá jediný typ ducha, který má (technicky) čtvrtý kus Evidence. Ghost Orb se také chová jinak než normálně. Sleduje Mimika, jak se toulá, takže ve vysoké Team Sanity dávejte pozor na potulující se kouli duchů.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_wraith" >
+         <![CDATA[
+             <p><font color=#ff6161>Sůl je pro Wraitha toxická</font>, takže nikdy žádnou neprojde. Chcete-li potvrdit Wraitha, umístěte pohybový senzor na hromady soli. Pokud pohybový senzor detekuje pohyb, aniž by sůl byla narušena, duch může být Wraith!</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_yokai" >
+         <![CDATA[
+             <p>Při lovu slyší Yokai pouze hlasy v jeho těsné blízkosti. Slyší pouze chat nebo detekuje elektronické zařízení do vzdálenosti 2,5 metru od sebe. Prokleté držení Music Boxu také nezpůsobí pohyb Yokai, dokud není hráč v mnohem bližší blízkosti, než by vyžadoval jakýkoli jiný duch.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_yurei" >
+         <![CDATA[
+             <p>Yurei jsou zranitelní vůči Smudge Sticks a úspěšné rozmazání místnosti způsobí, že Yurei zůstane nějakou dobu na místě.</p>
+         ]]>
+     </string>
 
     <!-- Hunting Data -->
-    <string name="evidence_ghost_huntingdata_banshee" >
+    <string name="ghost_huntingdata_banshee" >
          <![CDATA[
              <p>Loví s 50\% příčetností hráče, na kterého cílí.</p>
              <p>Úplně ignoruje Průměrnou příčetnost.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_demon" >
+    <string name="ghost_huntingdata_demon" >
          <![CDATA[
              <p>Normálně loví při 70\% příčetnosti.</p>
              <p>Po aktivaci schopnosti může lovit na jakékoli úrovni příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_deogen">
+    <string name="ghost_huntingdata_deogen">
          <![CDATA[
              <p>Loví při 40\% příčetnosti.</p>
              <ul>
@@ -490,12 +503,12 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_goryo">
+    <string name="ghost_huntingdata_goryo">
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_hantu" >
+    <string name="ghost_huntingdata_hantu" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <ul>
@@ -508,7 +521,7 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_jinn" >
+    <string name="ghost_huntingdata_jinn" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <ul>
@@ -517,13 +530,13 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_mare" >
+    <string name="ghost_huntingdata_mare" >
          <![CDATA[
              <p>Loví při 40\% příčetnosti, pokud je zapnuté napájení.</p>
              <p>Pokud je vypnuté napájení, loví při 60\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_moroi">
+    <string name="ghost_huntingdata_moroi">
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <ul>
@@ -540,38 +553,38 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_myling" >
+    <string name="ghost_huntingdata_myling" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_obake" >
+    <string name="ghost_huntingdata_obake" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_oni" >
+    <string name="ghost_huntingdata_oni" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_onryo" >
+    <string name="ghost_huntingdata_onryo" >
          <![CDATA[
              <p>Normálně loví při 60\% příčetnosti.</p>
              <p>Může lovit v jakémkoli příčetnosti, pokud je oheň uhašen.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_phantom" >
+    <string name="ghost_huntingdata_phantom" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_poltergeist" >
+    <string name="ghost_huntingdata_poltergeist" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_raiju" >
+    <string name="ghost_huntingdata_raiju" >
          <![CDATA[
              <p>Normálně loví při 50\% příčetnosti.</p>
              <p>Loví s 65\% příčetností, pokud je poblíž zapnutá elektronika.</p>
@@ -581,30 +594,30 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_revenant" >
+    <string name="ghost_huntingdata_revenant" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <p>Rychlost pohybu: 1 m/s bez pronásledování; 3,0 m/s při pronásledování.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_shade" >
+    <string name="ghost_huntingdata_shade" >
          <![CDATA[
              <p>Loví při 35\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_spirit" >
+    <string name="ghost_huntingdata_spirit" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_thaye">
+    <string name="ghost_huntingdata_thaye">
          <![CDATA[
              <p>Postupně stárne v 10 fázích a ztrácí 0,175 m/s rychlosti pohybu na fázi.</p>
              <p>V nejmladším věku loví se 75\% příčetností. Maximální pohyb: 2,7 m/s</p>
              <p>Loví s 15\% příčetností v nejstarším věku. Maximální pohyb: 1,0 m/s</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_thetwins" >
+    <string name="ghost_huntingdata_thetwins" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <p>50% šance, že se během lovu stanete jedním z dvojčat</p>
@@ -614,23 +627,23 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_themimic" >
+    <string name="ghost_huntingdata_themimic" >
          <![CDATA[
              <p>Předvolby lovu vycházejí z napodobeného ducha. Mimic tedy může lovit kdekoli mezi 15\% a 100\% příčetností.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_wraith" >
+    <string name="ghost_huntingdata_wraith" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_yokai" >
+    <string name="ghost_huntingdata_yokai" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
              <p>Neslyším vyšetřovatele ani necítím elektronické zařízení.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_yurei" >
+    <string name="ghost_huntingdata_yurei" >
          <![CDATA[
              <p>Loví při 50\% příčetnosti.</p>
          ]]>
@@ -638,15 +651,15 @@
 
 
     <!-- Evidence Names -->
-    <string name="evidence_tiers_1">Úroveň 1</string>
-    <string name="evidence_tiers_2">Úroveň 2</string>
-    <string name="evidence_tiers_3">Úroveň 3</string>
+    <string name="equipment_tiers_1">Úroveň 1</string>
+    <string name="equipment_tiers_2">Úroveň 2</string>
+    <string name="equipment_tiers_3">Úroveň 3</string>
     <string name="evidence_type_dots">D.O.T.S</string>
     <string name="evidence_type_emf">EMF 5</string>
-    <string name="evidence_type_temperatures">Freezing Temps</string>
+    <string name="evidence_type_temperatures">Teploty Mrazu</string>
     <string name="evidence_type_box">Spirit Box</string>
-    <string name="evidence_type_book">Ghost Writing</string>
-    <string name="evidence_type_orbs">Ghost Orbs</string>
+    <string name="evidence_type_book">Psaní Duchů</string>
+    <string name="evidence_type_orbs">Orby Ducha</string>
     <string name="evidence_type_ultraviolet">Ultrafialový</string>
 
 
@@ -702,34 +715,34 @@
     </string>
 
 
-    <string name="evidence_info_tier_dots_1">
+    <string name="equipment_info_tier_dots_1">
          <![CDATA[
              <p>Laserové mřížkové pero, které je podobné svítilně. Můžete se procházet po místě a rychle vyhledávat důkazy, jedinou nevýhodou je jeho krátký dosah a nízká intenzita světla.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_dots_2">
+    <string name="equipment_info_tier_dots_2">
          <![CDATA[
              <p>Toto je původní D.O.T.S. projektor. Je to umístitelný projektor vyzařující průměrně velkou světelnou kouli, ale nyní můžete povzbudit ducha, aby do ní vešel, když se postavíte poblíž.</p>
              <p>Nejlepší pro malé\-až\-středně velké místnosti.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_dots_3">
+    <string name="equipment_info_tier_dots_3">
          <![CDATA[
              <p>Tento umístitelný projektor snímá místnost na mnohem delší vzdálenost pomocí širokého, širokého paprsku světla, takže hledání duchů v těchto větších místnostech je mnohem snazší. Pro nejlepší pokrytí umístěte tento projektor na zeď nebo rovnou plochu, postavte se poblíž a sledujte siluety duchů.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_emf_1">
+    <string name="equipment_info_tier_emf_1">
          <![CDATA[
              <p>Starý analogový měřicí přístroj s malým rozsahem detekce, nízkou přesností a nízkým vyzařováním zvuku. Ručka přejde do rychloběhu a překročí úroveň 5, když je detekováno EMF úrovně 5.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_emf_2">
+    <string name="equipment_info_tier_emf_2">
          <![CDATA[
              <p>Důvěryhodný přístroj K2 Meter má větší dosah a pět LED světel pro detekci EMF měření a také přídavný reproduktorový modul. Při aktivaci zařízení se rozsvítí jedna kontrolka. Když se K2 pohybuje v detekčním rozsahu EMF bodů, zobrazí přesnou hodnotu od dvou do pěti a vydá jasný a slyšitelný zvuk.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_emf_3">
+    <string name="equipment_info_tier_emf_3">
          <![CDATA[
              <p>High-tech ParaReader. Toto zařízení může sledovat až tři EMF body najednou a má největší dosah detekce.</p>
              <p>Současně zobrazí směr, rozsah a hodnotu každého měření. Přehrává zvuky pro každou detekci EMF, takže můžete z dálky slyšet, kolik a jak silné jsou naměřené hodnoty.</p>
@@ -737,88 +750,88 @@
          ]]>
      </string>
 
-    <string name="evidence_info_tier_ultraviolet_1">
+    <string name="equipment_info_tier_ultraviolet_1">
          <![CDATA[
              <p>Klasická UV glowstick. Po přicvaknutí, aby se rozsvítila, promítá světlo s krátkým dosahem, které trvá přibližně jednu minutu, než se ztlumí. Vždy s ním můžete znovu zatřást, abyste oživili jeho světlo.</p>
              <p>Toto zařízení nabije UV bod do 10 sekund po expozici.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_ultraviolet_2">
+    <string name="equipment_info_tier_ultraviolet_2">
          <![CDATA[
              <p>Klasická UV svítilna, která vysílá jasnější, úzký paprsek s delším dosahem a může se pochlubit mnohem rychlejší dobou nabíjení UV zářením!</p>
              <p>Toto zařízení nabije UV bod do 5 sekund po expozici.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_ultraviolet_3">
+    <string name="equipment_info_tier_ultraviolet_3">
          <![CDATA[
              <p>UV Light Pro je robustní svítilna, která má mnohem jasnější a širší kužel světla a také ještě rychlejší dobu nabíjení. Je ideální pro rychlé vyhledání ultrafialových důkazů ve větším měřítku.<p>
              <p>Toto zařízení nabije UV bod do 1,5 sekundy od expozice.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_thermometer_1">
+    <string name="equipment_info_tier_thermometer_1">
          <![CDATA[
              <p>Starý dům\-Teploměr, utržený přímo ze stěny obývacího pokoje vašeho vyšetřovatele. Tento teploměr má nízkou vzorkovací frekvenci, což znamená, že budete muset čekat déle, abyste získali přesné údaje. Možná budete chtít jeden přinést a zkontrolovat ho později ve smlouvě.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_thermometer_2">
+    <string name="equipment_info_tier_thermometer_2">
          <![CDATA[
              <p>Aktualizovaná verze klasické čtečky teploty, ale mnohem citlivější. Místo zapínání a získávání údajů každé dvě sekundy podržte tlačítko \'Použít\' pro vyhledání teplot. Díky tomu je běhání a kontrola teploty v každé místnosti mnohem rychlejší, než umožňuje úroveň I.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_thermometer_3">
+    <string name="equipment_info_tier_thermometer_3">
          <![CDATA[
              <p>Přímý upgrade na Tier II, dokončení teplotních skenů dvojnásobnou rychlostí oproti jeho předchůdci. Tento modernější teploměr je navíc při každém měření přesnější a umožňuje hráčům rychle a efektivně skenovat místnosti, aby našli ducha, nebo aby si v deníku zaškrtli \"Teploty mrazu\".</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_book_1">
+    <string name="equipment_info_tier_book_1">
          <![CDATA[
              <p>Tento papírový poznámkový blok lze umístit poblíž ducha, abyste podpořili nějaké paranormální psaní. Ujistěte se, že jej umístíte poblíž jakékoli činnosti, kterou uvidíte. Někteří duchové si malého poznámkového bloku a tužky nemusí všimnout, takže může chvíli trvat, než se něco stane.<p/>
          ]]>
      </string>
-    <string name="evidence_info_tier_book_2">
+    <string name="equipment_info_tier_book_2">
          <![CDATA[
              <p>S hezčími stránkami a perem se zdá, že duchové si této knihy všímají o něco častěji než předchozí verze. trochu zkrátí čekací doby, než se objeví důkazy.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_book_3">
+    <string name="equipment_info_tier_book_3">
          <![CDATA[
              <p>Svým velkým profilem, směsí vysoce kvalitních materiálů a zdobeným perem má tato kniha největší změnu, do které mohou duchové psát. Má větší rozsah než předchozí dvě úrovně, takže umístění této knihy do rozsahu interakce ducha je mnohem jednodušší.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_vcam_1">
+    <string name="equipment_info_tier_vcam_1">
          <![CDATA[
              <p>Stará videokamera, kterou Ghost Huntin\' Distribution našla na půdě staré kanceláře. Je malý a trochu otlučený, ale svou práci dělá dobře.</p>
              <p>Analýza zdroje videa je problém kvůli jeho příšerné kvalitě a malým rozměrům, takže si s tím dejte čas!</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_vcam_2">
+    <string name="equipment_info_tier_vcam_2">
          <![CDATA[
              <p>Videokamera Parasonic je HD video, díky kterému je hledání koulí mnohem snazší. Stále je hodně rušen aktivním duchem, ale mnohem méně než úroveň 1.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_vcam_3">
+    <string name="equipment_info_tier_vcam_3">
          <![CDATA[
              <p>Bonyho vlastní filmová videokamera s velkým tělem podporuje mnohem větší obrazovku. Vyznačuje se mnohem jasnějším přenosem videa a méně ruší zjevení duchů.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_sbox_1">
+    <string name="equipment_info_tier_sbox_1">
          <![CDATA[
              <p>Když tento Spirit Box zapnete, začne prohledávat různé rádiové frekvence. Ujistěte se, že stojíte poblíž jakékoli paranormální aktivity, zhasněte všechna světla v místnosti a položte nějaké otázky v naději na odpověď.</p>
              <p>Pokud byla otázka vyslyšena, na Spirit Box bude blikat červené světlo. Pokud bliká bíle, máte odpověď od ducha.</p>
              <p>Zkuste se zeptat „Kde jsi?“ nebo "Jsi přátelský?". Pozor, odpověď, kterou obdržíte, se vám nemusí líbit.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_sbox_2">
+    <string name="equipment_info_tier_sbox_2">
          <![CDATA[
              <p>Tento modernější Spirit Box má kvalitnější reproduktor, který je mnohem efektivnější při prohledávání frekvencí, což usnadňuje dešifrování paranormálních reakcí.</p>
              <p>Pokud jste slyšeli otázku, na obrazovce zabliká černé \'X\'. Pokud obdržíte odpověď, bude místo toho blikat malá ikona ducha.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_sbox_3">
+    <string name="equipment_info_tier_sbox_3">
          <![CDATA[
              <p>Když je tento Spirit Box zapnutý, skenuje obě frekvence, dvě současně, čímž zvyšuje šanci, že při kladení otázek zachytí paranormální reakce. Má také vestavěný filtr, který snižuje množství statické elektřiny, kterou slyšíte mezi interakcemi.</p>
              <p>Pokud uslyšíte otázku a neodpovíte, LED diody RESPONSE budou blikat červeně. Pokud je poskytnuta odpověď, LED diody budou blikat bíle současně se zvukem.</p>
@@ -829,40 +842,40 @@
         MAPS PAGE
     -->
     <!-- Page Details -->
-    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
-    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
-    <!-- Building Floor Names -->
-    <string name="map_floor_name_first">First Floor</string>
-    <string name="map_floor_name_second">Second Floor</string>
-    <string name="map_floor_name_attic">Attic</string>
-    <string name="map_floor_name_basement">Basement</string>
+    <string name="mapview_instruction_zoom">Přiblížení: Stažení dvou prstů</string>
+    <string name="mapview_instruction_pan">Posouvání: Táhněte jedním prstem</string>
+    <!-- Názvy podlaží budov -->
+    <string name="map_floor_name_first">První patro</string>
+    <string name="map_floor_name_second">Druhé patro</string>
+    <string name="map_floor_name_attic">Podkroví</string>
+    <string name="map_floor_name_basement">Suterén</string>
 
     <!--
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
-    <string name="objectives_title_optional_objectives">Optional Objectives</string>
-    <string name="objectives_title_investigation_debrief">Investigation Debrief</string>
-    <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
-    <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
-    <string name="objectives_title_response">Responds to People who are:</string>
-    <string name="objectives_title_optional_objective_1">- OBJECTIVE 1</string>
-    <string name="objectives_title_optional_objective_2">- OBJECTIVE 2</string>
-    <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
-    <string name="objectives_title_response_alone">Alone</string>
-    <string name="objectives_title_response_everyone">Grouped Up</string>
-    <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Witness a Ghost Event</string>
-    <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
-    <string name="objective_info_emfreader">Get any EMF Reader activity</string>
-    <string name="objective_info_motionsensor">Get Motion Sensor activity</string>
-    <string name="objective_info_smudgestick">Smudge Stick the Ghost\'s location</string>
-    <string name="objective_info_crucifix">Prevent a hunt with the Crucifix</string>
-    <string name="objective_info_salt">Have the Ghost walk through Salt</string>
-    <string name="objective_info_escapehunt">Escape the ghost while it\'s hunting</string>
-    <string name="objective_info_repelwithsmudge">Repel the hunting ghost with a Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Have the ghost blow out a candle</string>
-    <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
+    <string name="objectives_title_optional_objectives">Volitelné cíle</string>
+    <string name="objectives_title_investigation_debrief">Shrnutí vyšetřování</string>
+    <string name="objectives_title_ghost_name">Jméno ducha:</string>
+    <string name="objectives_ghostname_note">Sem zadejte jméno ducha</string>
+    <string name="objectives_title_response">Odpovídá lidem, kteří jsou:</string>
+    <string name="objectives_title_optional_objective_1">- CÍL 1</string>
+    <string name="objectives_title_optional_objective_2">- CÍL 2</string>
+    <string name="objectives_title_optional_objective_3">- CÍL 3</string>
+    <string name="objectives_title_response_alone">Sám</string>
+    <string name="objectives_title_response_everyone">Seskupeno</string>
+    <!-- Popis cíle -->
+    <string name="objective_info_ghostevent">Staňte se svědkem události ducha</string>
+    <string name="objective_info_ghostphotograph">Vyfoťte ducha</string>
+    <string name="objective_info_emfreader">Získejte jakoukoli aktivitu čtečky EMF</string>
+    <string name="objective_info_motionsensor">Získat aktivitu pohybového senzoru</string>
+    <string name="objective_info_smudgestick">Umístění ducha Smudge Stick</string>
+    <string name="objective_info_crucifix">Zabraňte lovu pomocí krucifixu</string>
+    <string name="objective_info_salt">Nechte ducha projít solí</string>
+    <string name="objective_info_escapehunt">Unikněte duchovi, když je na lovu</string>
+    <string name="objective_info_repelwithsmudge">Odžeňte loveckého ducha pomocí Smudge stick </string>
+    <string name="objective_info_extinguishcandle">Nechte ducha sfouknout svíčku</string>
+    <string name="objective_info_lowsanity">Získejte průměrný týmový rozum 25 % nebo méně</string>
 
     <!--
         TOOLS PAGE
@@ -874,43 +887,43 @@
     <!-- All Entries -->
     <!-- Personal Statements -->
     <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">I\'m scared!</string>
-    <string name="spiritbox_entry_q0_6">Hide!</string>
-    <string name="spiritbox_entry_q0_8">Panic!</string>
-    <string name="spiritbox_entry_q0_9">Run!</string>
+    <string name="spiritbox_entry_q0_5">Bojím se!</string>
+    <string name="spiritbox_entry_q0_6">Skryjte se!</string>
+    <string name="spiritbox_entry_q0_8">Panika!</string>
+    <string name="spiritbox_entry_q0_9">Utíkej!</string>
     <!-- Mental State Questions -->
-    <string name="spiritbox_entry_q1_1">Are you angry?</string>
-    <string name="spiritbox_entry_q1_2">Are you happy?</string>
-    <string name="spiritbox_entry_q1_3">Are you friendly?</string>
-    <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
-    <string name="spiritbox_entry_q1_7">Do you want us here?</string>
+    <string name="spiritbox_entry_q1_1">Zlobíte se?</string>
+    <string name="spiritbox_entry_q1_2">Jsi šťastný?</string>
+    <string name="spiritbox_entry_q1_3">Jste přátelští?</string>
+    <string name="spiritbox_entry_q1_6">Chcete nám ublížit?</string>
+    <string name="spiritbox_entry_q1_7">Chcete nás tady?</string>
     <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">What is your name?</string>
+    <string name="spiritbox_entry_q2_1">Jak se jmenujete?</string>
     <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">How old are you?</string>
+    <string name="spiritbox_entry_q3_5">Kolik je vám let?</string>
     <!-- Location Questions -->
     <string name="spiritbox_entry_q5_8">Kde jsi?</string>
-    <string name="spiritbox_entry_q5_1">Are you here?</string>
-    <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
-    <string name="spiritbox_entry_q5_7">Where are you?</string>
+    <string name="spiritbox_entry_q5_1">Jste tady?</string>
+    <string name="spiritbox_entry_q5_4">Jste tu jediný?</string>
+    <string name="spiritbox_entry_q5_7">Kde jste?</string>
     <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Attack us!</string>
-    <string name="spiritbox_entry_q6_5">Can you speak to us?</string>
-    <string name="spiritbox_entry_q6_7">Do something.</string>
-    <string name="spiritbox_entry_q6_8">Give us a sign!</string>
-    <string name="spiritbox_entry_q0_7">Hunt us!</string>
-    <string name="spiritbox_entry_q6_16">Let us know you are here.</string>
-    <string name="spiritbox_entry_q6_17">Make a noise.</string>
-    <string name="spiritbox_entry_q6_18">Open the door.</string>
-    <string name="spiritbox_entry_q6_9">Show yourself!</string>
-    <string name="spiritbox_entry_q6_12">Throw something.</string>
-    <string name="spiritbox_entry_q6_13">Turn off the light.</string>
-    <string name="spiritbox_entry_q6_14">Turn on the light.</string>
+    <string name="spiritbox_entry_q0_2">Napadněte nás!</string>
+    <string name="spiritbox_entry_q6_5">Můžete s námi mluvit?</string>
+    <string name="spiritbox_entry_q6_7">Udělejte něco.</string>
+    <string name="spiritbox_entry_q6_8">Dejte nám znamení!</string>
+    <string name="spiritbox_entry_q0_7">Lovte nás!</string>
+    <string name="spiritbox_entry_q6_16">Dejte nám vědět, že jste zde.</string>
+    <string name="spiritbox_entry_q6_17">Udělejte hluk.</string>
+    <string name="spiritbox_entry_q6_18">Otevřete dveře.</string>
+    <string name="spiritbox_entry_q6_9">Ukažte se!</string>
+    <string name="spiritbox_entry_q6_12">Něco hoďte.</string>
+    <string name="spiritbox_entry_q6_13">Vypněte světlo.</string>
+    <string name="spiritbox_entry_q6_14">Zapněte světlo.</string>
     <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Hello?</string>
-    <string name="spiritbox_entry_q7_3">Is there anything we can do to help?</string>
-    <string name="spiritbox_entry_q7_9">What do you want?</string>
-    <string name="spiritbox_entry_q7_11">Why are you here?</string>
+    <string name="spiritbox_entry_q7_2">Dobrý den?</string>
+    <string name="spiritbox_entry_q7_3">Můžeme s něčím pomoci?</string>
+    <string name="spiritbox_entry_q7_9">Co chcete?</string>
+    <string name="spiritbox_entry_q7_11">Proč jste tady?</string>
     <string name="evidence_timer_difficulty_4">Noční můra</string>
     <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
     <string name="spiritbox_entry_q8_1">Jaký je můj zdravý rozum?</string>
@@ -919,17 +932,17 @@
     <string name="spiritbox_entry_q8_4">Jsem blázen?</string>
     <string name="settings_confirm">Potvrdit</string>
     <string name="settings_cancel">Zrušení</string>
-    <string name="evidence_popup_ghost_strength">Strengths</string>
-    <string name="evidence_popup_ghost_weakness">Weaknesses</string>
-    <string name="evidence_popup_ghost_info">Informace</string>
+    <string name="popup_ghost_strength">Silné stránky</string>
+    <string name="popup_ghost_weakness">Slabé stránky</string>
+    <string name="popup_ghost_info">Informace</string>
 
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
     <string name="evidence_timer_difficulty_5">Šílenství</string>
-    <string name="evidence_popup_ghost_huntdata">Údaje o lovu</string>
+    <string name="popup_ghost_huntdata">Údaje o lovu</string>
 
     <string name="settings_appearancesettings">Vzhled</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
-    <string name="settings_fontstylesettings">Styl Fontu</string>
+    <string name="settings_fontstyle_phasmo">Deník</string>
+    <string name="settings_fontstylesettings">Styl písma</string>
     <string name="evidence_evidence_section_overview">Přehled</string>
     <string name="evidence_evidence_section_tiers">Úrovně</string>
     <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>

@@ -1,38 +1,29 @@
 <resources>
 
-    <string-array name="menu_items">
-        <item>Load Model</item>
-        <item>Models</item>
-        <item>Demo</item>
-        <item>Help</item>
-        <item>About</item>
-        <item>Exit</item>
-    </string-array>
-
     <!--
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
-    <string name="general_evidence_button">Evidence</string>
-    <string name="general_maps_button">Maps</string>
-    <string name="general_tasks_button">Tasks</string>
-    <string name="general_evidence_reset_button">Reset</string>
+    <string name="general_evidence_button">Доказательства</string>
+    <string name="general_maps_button">Карты</string>
+    <string name="general_tasks_button">Задачи</string>
+    <string name="general_evidence_reset_button">Сброс</string>
 
     <!--
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
-    <string name="titlescreen_description">The ultimate evidence tool</string>
-    <string name="titlescreen_button">Start Hunting</string>
-    <string name="titlescreen_languages_label">Select Language</string>
+    <string name="titlescreen_description">Лучший инструмент для сбора доказательств</string>
+    <string name="titlescreen_button">Начать охоту</string>
+    <string name="titlescreen_languages_label">Выбрать язык</string>
 
     <!--
          REVIEW POPUP
     -->
     <!-- Page Details -->
-    <string name="review_requesttitle">Please consider rating P.E.T.!</string>
-    <string name="review_accept">Sure!</string>
-    <string name="review_decline">No thanks</string>
+    <string name="review_requesttitle">Пожалуйста, примите во внимание оценку P.E.T.!</string>
+    <string name="review_accept">Конечно!</string>
+    <string name="review_decline">Нет, спасибо</string>
 
     <!--
         LANGUAGE FRAGMENT
@@ -41,41 +32,41 @@
     <!--
         ABOUT FRAGMENT
     -->
-    <string name="aboutinfo_title_about">About</string>
-    <string name="aboutinfo_version">Version</string>
+    <string name="aboutinfo_title_about">О программе</string>
+    <string name="aboutinfo_version">Версия</string>
     <string name="aboutinfo_aboutapp_info">
-        <![CDATA[
-            <p><font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
-            <p><font color=#CC3C3C>P.E.T.</font> is an unofficial companion tool\-\- acting both as a guide for new players and as an assistant for the veterans.</p>
-            <p><font color=#CC3C3C>Thank you so much for using P.E.T.!</font></p>
-        ]]>
-    </string>
-    <string name="aboutinfo_developerinfo_title">Developer Info</string>
-    <string name="aboutinfo_developerinfo_developer">Developer</string>
-    <string name="aboutinfo_developerinfo_contact">Contact</string>
-    <string name="aboutinfo_joindiscord">Join the Discord</string>
-    <string name="aboutinfo_specialthanks_title">Special Thanks</string>
+         <![CDATA[
+             <p><font color=#CC3C3C>Phasmophobia</font> — уникальная игра ужасов, разработанная компанией <font color=#CC3C3C>Kinetic Games</font>.</p>
+             <p><font color=#CC3C3C>P.E.T.</font>— это неофициальный сопутствующий инструмент\-\-, служащий одновременно руководством для новых игроков и помощником для ветеранов.</p>
+             <p><font color=#CC3C3C>Большое спасибо за использование P.E.T.!</font></p>
+         ]]>
+     </string>
+    <string name="aboutinfo_developerinfo_title">Информация для разработчика</string>
+    <string name="aboutinfo_developerinfo_developer">Разработчик</string>
+    <string name="aboutinfo_developerinfo_contact">Контакт</string>
+    <string name="aboutinfo_joindiscord">Присоединяйтесь к Discord</string>
+    <string name="aboutinfo_specialthanks_title">Особая благодарность</string>
 
     <!--
         SETTINGS FRAGMENT
     -->
     <!-- Page Details -->
 
-    <string name="settings_title">Settings</string>
-    <string name="settings_confirm">Confirm</string>
-    <string name="settings_cancel">Cancel</string>
-    <string name="settings_generalsettings">General</string>
-    <string name="settings_extrasettings">Extra Settings</string>
-    <string name="settings_screenalwayson">Always keep the screen on</string>
-    <string name="settings_networktitle">Allow Message Center to use Mobile Data</string>
-    <string name="settings_huntwarningflashtimeout">Hunt warning flash timeout</string>
-    <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
-    <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
-    <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
-    <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
-    <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_confirm">Подтвердить</string>
+    <string name="settings_cancel">Отмена</string>
+    <string name="settings_generalsettings">Общие</string>
+    <string name="settings_extrasettings">Дополнительные настройки</string>
+    <string name="settings_screenalwayson">Всегда держать экран включенным</string>
+    <string name="settings_networktitle">Разрешить Центру сообщений использовать мобильные данные</string>
+    <string name="settings_huntwarningflashtimeout">Тайм-аут мигающего предупреждения об охоте</string>
+    <string name="settings_huntwarningflashtimeout_never">Никогда тайм-аут</string>
+    <string name="settings_enableLeftHandSupport">Включить режим для левшей</string>
+    <string name="settings_enablehuntaudioqueue">Включить звуковое предупреждение об обнаружении</string>
+    <string name="settings_colorblindnessmode_title">Режим дальтонизма</string>
+    <string name="settings_colorblindnessmode_note">(Вступит в силу после выхода из настроек)</string>
     <!-- Colorblindness Types -->
-    <string name="settings_colorblindnessmode_normal">None</string>
+    <string name="settings_colorblindnessmode_normal">Нет</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -85,11 +76,11 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Дейтеранопия</string>
     <string name="settings_colorblindnessmode_protanomaly">протанопия</string>
     <string name="settings_colorblindnessmode_tritanomaly">Тританопия</string>
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
-    <string name="messagecenter_inboxestitle_label">Message Center</string>
-    <string name="messagecenter_inbox_general">General News</string>
-    <string name="messagecenter_inbox_pet">P.E.T. Changelog</string>
-    <string name="messagecenter_inbox_phas">Phasmophobia Changelog</string>
+    <string name="settings_fontstyle_classic">P.E.T. Классический</string>
+    <string name="messagecenter_inboxestitle_label">Центр сообщений</string>
+    <string name="messagecenter_inbox_general">Общие новости</string>
+    <string name="messagecenter_inbox_pet">P.E.T. Журнал изменений</string>
+    <string name="messagecenter_inbox_phas">Журнал изменений фазмофобии</string>
 
     <!--
         EVIDENCE FRAGMENT
@@ -98,460 +89,452 @@
 
 
     <!-- Solo/Team Data -->
-    <string name="evidence_timer_label">Preparation Time:</string>
-    <string name="evidence_timer_difficulty_default">None</string>
-    <string name="evidence_timer_difficulty_1">Amateur</string>
-    <string name="evidence_timer_difficulty_2">Intermediate</string>
-    <string name="evidence_timer_difficulty_3">Professional</string>
-    <string name="evidence_timer_difficulty_4">Nightmare</string>
-    <string name="evidence_timer_difficulty_5">Insanity</string>
-    <string name="evidence_timer_difficulty_label">Difficulty:</string>
-    <string name="evidence_timer_maplabel">Map:</string>
-    <string name="evidence_timer_actionlabel">ACTION</string>
-    <string name="evidence_timer_setuplabel">SETUP</string>
-    <string name="evidence_sanity_huntwarn">HUNT WARN</string>
-    <string name="evidence_sanitymeter_title">MAX Sanity Level</string>
-    <string name="evidence_ghosts_title">Ghosts</string>
-    <string name="evidence_evidence_title">Evidence</string>
-    <string name="evidence_popup_ghost_strength">Strengths</string>
-    <string name="evidence_popup_ghost_weakness">Weaknesses</string>
-    <string name="evidence_popup_ghost_info">Information</string>
-    <string name="evidence_popup_ghost_huntdata">Hunting Data</string>
+    <string name="evidence_timer_label">Время подготовки:</string>
+    <string name="evidence_timer_difficulty_default">Нет</string>
+    <string name="evidence_timer_difficulty_1">Любитель</string>
+    <string name="evidence_timer_difficulty_2">Средний</string>
+    <string name="evidence_timer_difficulty_3">Профессионал</string>
+    <string name="evidence_timer_difficulty_4">Кошмар</string>
+    <string name="evidence_timer_difficulty_5">Безумие</string>
+    <string name="evidence_timer_difficulty_label">Сложность:</string>
+    <string name="evidence_timer_maplabel">Карта:</string>
+    <string name="evidence_timer_actionlabel">ДЕЙСТВИЕ</string>
+    <string name="evidence_timer_setuplabel">НАСТРОЙКА</string>
+    <string name="evidence_sanity_huntwarn">ПРЕДУПРЕЖДЕНИЕ ОХОТЫ</string>
+    <string name="evidence_sanitymeter_title">МАКСИМАЛЬНЫЙ уровень вменяемости</string>
+    <string name="evidence_ghosts_title">Призраки</string>
+    <string name="evidence_evidence_title">Доказательства</string>
+    <string name="popup_ghost_strength">Сильные стороны</string>
+    <string name="popup_ghost_weakness">Слабые стороны</string>
+    <string name="popup_ghost_info">Информация</string>
+    <string name="popup_ghost_huntdata">Данные охоты</string>
 
     <!-- Ghost Names -->
-    <string name="ghost_type_banshee">Banshee</string>
-    <string name="ghost_type_demon">Demon</string>
-    <string name="ghost_type_jinn">Jinn</string>
-    <string name="ghost_type_mare">Mare</string>
-    <string name="ghost_type_oni">Oni</string>
-    <string name="ghost_type_phantom">Phantom</string>
-    <string name="ghost_type_poltergeist">Poltergeist</string>
-    <string name="ghost_type_revenant">Revenant</string>
-    <string name="ghost_type_shade">Shade</string>
-    <string name="ghost_type_spirit">Spirit</string>
-    <string name="ghost_type_wraith">Wraith</string>
-    <string name="ghost_type_yurei">Yurei</string>
+    <string name="ghost_type_banshee">Банши</string>
+    <string name="ghost_type_demon">Демон</string>
+    <string name="ghost_type_deogen">Деоген</string>
+    <string name="ghost_type_goryo">Горё</string>
+    <string name="ghost_type_hantu">Ханту</string>
+    <string name="ghost_type_jinn">Джин</string>
+    <string name="ghost_type_mare">Мара</string>
+    <string name="ghost_type_moroi">Морой</string>
+    <string name="ghost_type_myling">Мюлинг</string>
+    <string name="ghost_type_obake">Обаке</string>
+    <string name="ghost_type_oni">Они</string>
+    <string name="ghost_type_onryo">" Онрё"</string>
+    <string name="ghost_type_phantom">Фантом</string>
+    <string name="ghost_type_poltergeist">Полтергейст</string>
+    <string name="ghost_type_raiju">Райдзю</string>
+    <string name="ghost_type_revenant">Ревенант</string>
+    <string name="ghost_type_shade">Тень</string>
+    <string name="ghost_type_spirit">Дух</string>
+    <string name="ghost_type_thaye">Тайэ</string>
+    <string name="ghost_type_thetwins">Близнецы</string>
+    <string name="ghost_type_themimic">Мимик</string>
+    <string name="ghost_type_wraith">Мираж</string>
+    <string name="ghost_type_yokai">Ёкай</string>
+    <string name="ghost_type_yurei">Юрей</string>
 
     <!-- Ghost description -->
-    <string name="evidence_ghost_info_banshee" >
-        <![CDATA[
-            <p>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_demon" >
-        <![CDATA[
-            <p>A Demon is one of the worst ghosts to encounter. Being highly aggressive, it <font color=#ff6161>will attack more often than any other Ghost</font>, so a crucifix is recommended to prevent Hunts. However, asking the demon successful questions from the Ouija Board will not drain the player\'s sanity.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_deogen" >
-        <![CDATA[
-            <p>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide. Repeat: DO NOT TRY TO HIDE. If you hear extremely rapid footsteps, like a drumroll, step out of hiding IMMEDIATELY.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_goryo">
-        <![CDATA[
-            <p>A Goryo will rarely be seen outside of it\'s preferred room. A Goryo also <font color=#ff6161>heavily dislikes showing itself when people are nearby</font>. This makes seeing D.O.T.S. impossible without viewing it through a video camera remotely.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_hantu">
-        <![CDATA[
-            <p>The Hantu <font color=#ff6161>favors colder temperatures</font> which will empower its ability to move quickly during a hunt. This means that the Circuit Breaker must be enabled in order to increase the overall temperature outside of the haunted area, thereby impairing the Hantu\'s movement speed.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_jinn" >
-        <![CDATA[
-            <p>A Jinn gets its abilities from the power being on. It can move very quick huring hunts and it can drain sanity absurdly fast. Jinns were the apex predator back in earlier versions of Phasmophobia, and there\'s good reason for that. It moves at 2.5 m/s if chasing a far away player and the generator is on, and 1.7 m/s if the generator is off and not chasing someone.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_mare" >
-        <![CDATA[
-            <p>The Mare is a ghost that grows <font color=#ff6161>more aggressive in the dark</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_moroi">
-        <![CDATA[
-            <p>The Moroi wick away the sanity of the living. As its victims sanity lowers, the Moroi grows stronger. Keep your Sanity as high as possible to avoid unwanted aggressiveness.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_myling">
-        <![CDATA[
-            <p>The Myling will emit strange noises which can be picked up by the Parabolic Microphone. Its footsteps can also only be heard within the electronic interference range (which is around 10 meters) during a Hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_obake">
-        <![CDATA[
-            <p>An Obake is a shape shifter which promotes some unusual evidence at times. An Obake has a chance to not produce fingerprints at all, which may cause problems with evidence collection if negating Fingerprints too early.
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_oni" >
-        <![CDATA[
-            <p>The Oni is an aggressive ghost which<font color=#ff6161> scales its activity level with the number of nearby investigators</font>. It is also likely to wander around near the Ghost Room.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_onryo">
-        <![CDATA[
-            <p>The Onryo both dislikes and is highly <font color=#ff6161>threatened by any form of flame</font> (including candles, lighter, etc). It will not hunt if attempting to within 4 meters of a flame source.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_phantom" >
-        <![CDATA[
-            <p>A Phantom is a fear-inducing ghost, <font color=#ff6161>quickly draining the sanity of those who look at it</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_poltergeist" >
-        <![CDATA[
-            <p>One of the most famous ghosts, a Poltergeist, also known as a noisy ghost, <font color=#ff6161>can manipulate multiple objects around it</font> to spread fear into its victims.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_raiju">
-        <![CDATA[
-            <p>A Raiju is a ghost which <font color=#ff6161>siphons electrical power</font> from the devices around it. Too much electrical stimulation nearby it will cause it to become agitated and hunt more frequently.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_revenant" >
-        <![CDATA[
-            <p>A Revenant is best known for it\'s slow hunting behavior while searching for investigators. It\'s methodically slow while searching, which provides distinct hunting sounds that assist with determining this ghost type.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_shade" >
-        <![CDATA[
-            <p>A Shade is considered to be a <font color=#ff6161>\"shy ghost\”</font>. While it is harder to find evidence while investigators remain in groups, <font color=#ff6161>a Shade is far less likely to attack if there are multiple people nearby</font>.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_spirit" >
-        <![CDATA[
-            <p>A Spirit has no special strengths, but it is still as dangerous as any other ghost.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_thaye">
-        <![CDATA[
-            <p>The Thaye is an ghost which rapidly ages while in the presence of the living. The earthly representation of this aging will present itself as strength in the early stages of a mission, but as a weakness in the later stages. Asking a Thaye how old it is on the Ouija Board will produce a response that is proportional to its progressed age. With each progressed stage of aging, the Thaye will decrease it\'s effective speed by a rate of 0.175 m/s.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_thetwins">
-        <![CDATA[
-            <p>The Twins are a pair of two Ghosts which have the ability to separately manipulate their surroundings. One of the Twins is unable to manipulate motion sensors and will not leave deterministic Evidence. Either Twin may initiate and participate in a Hunt, but <font color=#ff6161>not</font> both at the same time.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_themimic">
-        <![CDATA[
-            <p>The Mimic is an elusive, mysterious copycat ghost that mirrors traits and behaviours from other ghost types. Keep an eye out for behaviour switching. Ghost Orbs are a fourth, hidden evidence that must be present for this ghost.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_wraith" >
-        <![CDATA[
-            <p>A Wraith is the only known Ghost which <font color=#ff6161>retains the ability of flight</font>. Much like any other ghost, a Wraith cannot travel through walls even though they are said to have that ability.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yokai">
-        <![CDATA[
-            <p>The Yokai is highly <font color=#ff6161>sensitive to voices</font>, making the Yokai extremely dangerous. However, speaking nearby it may also trigger activity, making finding the Ghost room easier.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_info_yurei" >
-        <![CDATA[
-            <p>A Yurei is a ghost whose ability <font color=#ff6161>increases the passive drain of a player\'s sanity</font> (Although most ghosts drain your sanity rather quickly). Smudging the room a Yurei was found in will prevent it from wandering from the location for a long time.</p>
-        ]]>
-    </string>
+    <string name="ghost_info_banshee" >
+         <![CDATA[
+             <p>Банши считаются прирожденными охотниками. Они будут пытаться медленно выслеживать и убивать охотников за привидениями одного за другим, <font color=#ff6161>выборочно нацеливаясь на одного сыщика за раз</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_demon" >
+         <![CDATA[
+             <p>Демон — один из самых страшных призраков, с которыми можно столкнуться. Будучи очень агрессивным, он <font color=#ff6161>будет атаковать чаще, чем любой другой призрак</font>, поэтому для предотвращения охоты рекомендуется использовать распятие. Однако успешные вопросы демону с доски для спиритических сеансов не истощат рассудок игрока.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_deogen" >
+         <![CDATA[
+             <p>Деоген — прирожденный охотник. Обычные методы сокрытия не сработают, поскольку у него острое чутье на вынюхивание добычи. Ты можешь бежать… но ты не сможешь спрятаться. Повторяю: НЕ ПЫТАЙТЕСЬ СКРЫТЬСЯ. Если вы услышите очень быстрые шаги, похожие на барабанную дробь, НЕМЕДЛЕННО выходите из укрытия.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_goryo">
+         <![CDATA[
+             <p>Горё редко можно увидеть за пределами предпочитаемой им комнаты. Горё также <font color=#ff6161>очень не любит показываться, когда рядом находятся люди</font>. Это делает просмотр D.O.T.S. невозможно без просмотра его через видеокамеру удаленно.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_hantu">
+         <![CDATA[
+             <p>Ханту <font color=#ff6161>предпочитает более низкие температуры</font>, что увеличивает его способность быстро передвигаться во время охоты. Это означает, что автоматический выключатель должен быть включен, чтобы повысить общую температуру за пределами области призраков, тем самым снижая скорость движения Ханту.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_jinn" >
+         <![CDATA[
+             <p>Джинн получает свои способности от включенного питания. Он может двигаться очень быстро во время охоты и может абсурдно быстро истощать рассудок. Джинны были высшими хищниками еще в ранних версиях Фазмофобии, и для этого есть веская причина. Он движется со скоростью 2,5 м/с, если преследует далекого игрока и включен генератор, и 1,7 м/с, если генератор выключен и никого не преследует.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_mare" >
+         <![CDATA[
+             <p>Кобыла — это призрак, который становится <font color=#ff6161>более агрессивным в темноте</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_moroi">
+         <![CDATA[
+             <p>Морои лишают живых здравомыслия. По мере того как рассудок жертв снижается, морои становятся сильнее. Поддерживайте как можно более высокий уровень здравомыслия, чтобы избежать нежелательной агрессивности.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_myling">
+         <![CDATA[
+             <p>Myling издает странные звуки, которые можно уловить параболическим микрофоном. Его шаги также можно услышать только в пределах диапазона электронных помех (около 10 метров) во время охоты.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_obake">
+         <![CDATA[
+             <p>Обаке — это оборотень, который время от времени выдвигает некоторые необычные доказательства. У Обаке есть шанс вообще не оставить отпечатков пальцев, что может вызвать проблемы со сбором доказательств, если отрицать отпечатки пальцев слишком рано.
+         ]]>
+     </string>
+    <string name="ghost_info_oni" >
+         <![CDATA[
+             <p>Они — агрессивное привидение, уровень активности которого<font color=#ff6161> зависит от количества сыщиков поблизости</font>. Он также может бродить возле Комнаты с привидениями.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_onryo">
+         <![CDATA[
+             <p>Онрё не любит и очень <font color=#ff6161>находится под угрозой любой формы пламени</font> (включая свечи, зажигалки и т. д.). Он не будет охотиться, если попытается приблизиться к источнику огня на расстояние менее 4 метров.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_phantom" >
+         <![CDATA[
+             <p>Фантом — это наводящее страх привидение, <font color=#ff6161>быстро лишающее рассудка тех, кто на него смотрит</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_poltergeist" >
+         <![CDATA[
+             <p>Один из самых известных призраков, полтергейст, также известный как шумный призрак, <font color=#ff6161>может манипулировать несколькими объектами вокруг себя</font>, чтобы вселять страх в своих жертв.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_raiju">
+         <![CDATA[
+             <p>Раджу — это призрак, который <font color=#ff6161>выкачивает электроэнергию</font> из устройств вокруг него. Слишком сильная электрическая стимуляция поблизости заставит его волноваться и чаще охотиться.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_revenant" >
+         <![CDATA[
+             <p>Ревенант наиболее известен своим медленным охотничьим поведением при поиске следователей. Он методично медленно ищет, что издает отчетливые звуки охоты, которые помогают определить этот тип призрака.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_shade" >
+         <![CDATA[
+             <p>Тень считается <font color=#ff6161>"застенчивым призраком\"</font>. Хотя найти улики труднее, пока следователи остаются в группах, <font color=#ff6161>Тень вероятность нападения гораздо ниже, если рядом находится несколько человек</font>.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_spirit" >
+         <![CDATA[
+             <p>У духа нет особых сил, но он так же опасен, как и любой другой призрак.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_thaye">
+         <![CDATA[
+             <p>Тэй — призрак, который быстро стареет в присутствии живых. Земное представление об этом старении будет проявляться как сила на ранних этапах миссии и как слабость на более поздних стадиях. Если спросить тэя, сколько ему лет на доске для спиритических сеансов, вы получите ответ, пропорциональный его преклонному возрасту. С каждой стадией старения Тэй будет уменьшать свою эффективную скорость на 0,175 м/с.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_thetwins">
+         <![CDATA[
+             <p>Близнецы — это пара двух призраков, способных по отдельности манипулировать своим окружением. Один из Близнецов не способен манипулировать датчиками движения и не оставит детерминированных Улик. Любой Близнец может инициировать и участвовать в Охоте, но <font color=#ff6161>не</font> и то, и другое одновременно.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_themimic">
+         <![CDATA[
+             <p>Мимик — неуловимый и загадочный призрак-подражатель, который отражает черты и поведение других типов призраков. Следите за изменением поведения. Призрачные сферы — четвертое скрытое доказательство существования этого призрака.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_wraith" >
+         <![CDATA[
+             <p>Призрак — единственный известный призрак, <font color=#ff6161>сохраняющий способность летать</font>. Как и любой другой призрак, Призрак не может проходить сквозь стены, хотя говорят, что у него есть такая способность.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_yokai">
+         <![CDATA[
+             <p>Ёкаи очень <font color=#ff6161>чувствительны к голосам</font>, что делает ёкай чрезвычайно опасными. Однако разговор рядом может также вызвать активность, что облегчит поиск комнаты с призраками.</p>
+         ]]>
+     </string>
+    <string name="ghost_info_yurei" >
+         <![CDATA[
+             <p>Юрей — это призрак, чья способность <font color=#ff6161>увеличивает пассивное истощение рассудка игрока</font> (хотя большинство призраков истощают рассудок довольно быстро). Загрязнение комнаты, в которой был найден Юрей, предотвратит его блуждание в течение длительного времени.</p>
+         ]]>
+     </string>
 
     <!--
         Strengths
     -->
-    <string name="evidence_ghost_strengths_banshee" >
-        <![CDATA[
-            <p>The Banshee will focus on one player, and will swap to a new target if their selected target is not in the play-area.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_demon" >
-        <![CDATA[
-            <p>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt at any sanity, but it\'s minimum target is normally around 70\% average sanity. It\'s hunt cooldown, or the time between hunts, is 20 seconds, which is 5 seconds faster than any other ghost. Smudge sticks also have a shorter protection period, granting 60 seconds of safety rather than the normal 90 seconds for non\-Spirit ghosts.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_deogen">
-        <![CDATA[
-            <p>The Deogen will sense any living being, no matter how well hidden. Choosing to stay stationary against a Deogen will get you killed. Do not rely on breaking line-of-sight, as this will not stop a chase and will only allow the Deogen to move much quicker.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_goryo">
-        <![CDATA[
-            <p>A Goryo often only shows itself on camera when there are no people nearby. This may cause problems with gathering the appropriate evidence, as it may lead to negating D.O.T.S. too early.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_hantu">
-        <![CDATA[
-            <p>Lower temperatures allow the Hantu to move at faster speeds. Line of sight does not effect the Hantu\'s speed.</p>
-			<ul>
-				<li>15°C+ = 1.40 m/s</li>
-				<li>12°C  = 1.75 m/s</li>
-				<li> 9°C  = 2.10 m/s</li>
-				<li> 6°C  = 2.30 m/s</li>
-				<li> 3°C  = 2.50 m/s</li>
-				<li> 0°C  = 2.70 m/s</li>
-			</ul>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_jinn" >
-        <![CDATA[
-            <p>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting. Once the Jinn catches up to a player, it will deccelerate gradually and switch to normal hunting speeds. A Jinn may instantly remove 25\% sanity from a nearby player if the power is on.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_mare" >
-        <![CDATA[
-            <p>A Mare will attempt to turn the lights off to empower itself, and will hunt at 60\% should the power be off. It will also wander into other rooms or into dark areas of its preferred room, and may start a hunt from those locations. A Mare has an increased likelihood to destroy a room\'s light source through an event.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_moroi">
-        <![CDATA[
-            <p>The Moroi will take full advantage of every bit of Sanity lost. Less team Sanity will produce higher levels of aggressiveness. At 0% average Sanity, the ghost will become lightning fast during a hunt. Based on average team Sanity, its speed ranges between 1.5 m/s at it\'s slowest to 2.25 m/s at it\'s fastest.</p>
-			<ul>
-				<li>Sanity  0% \-   5% : 2.25 m/s</li>
-				<li>Sanity  5% \-  10% : 2.164 m/s</li>
-				<li>Sanity 10% \-  15% : 2.081 m/s</li>
-				<li>Sanity 15% \-  20% : 1.998 m/s</li>
-				<li>Sanity 20% \-  25% : 1.915 m/s</li>
-				<li>Sanity 25% \-  30% : 1.832 m/s</li>
-				<li>Sanity 30% \-  35% : 1.749 m/s</li>
-				<li>Sanity 35% \-  40% : 1.66 m/s</li>
-				<li>Sanity 40% \-  45% : 1.583 m/s</li>
-				<li>Sanity 45% \- 100% : 1.5 m/s</li>
-			</ul>
-            <p>The ghost has a hidden ability \-\- a curse \-\- which causes any player to drain in Sanity at a rate of .03\%/sec so long as the effected player is within the play area. This effect is caused if the player uses and gets a response from the Spirit Box. The effect stacks atop the normal rate at which players Sanity drains. Candles do not halt the effects, but the curse can be lifted upon the use of Sanity Pills.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_myling">
-        <![CDATA[
-            <p>A Myling is not as vocal as other Ghosts while Hunting. You will only detect their footsteps and their vocal noises while within the vicinity of electronic\-interference.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_obake">
-        <![CDATA[
-            <p>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence. The Obake may also decrease fingerprint lifetime by half.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_oni" >
-        <![CDATA[
-            <p>Oni\'s possess the ability to move physical objects around like a Poltergeist, while also sporting the aggression of a Demon. This makes them challenging to gather evidence around without angering them. This is its greatest weakness, as it will likely reveal itself early in the round. If a player is touched by an Oni during a ghost event, the player will have their sanity drained by twice as much.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_onryo">
-        <![CDATA[
-            <p>The Onryo will target the source of flame and extinguish it. Should the Onryo extinguish 3 flames, the Onryo may initiate a Hunt no matter the Sanity level if there is no other nearby flame or Crucifix. When a player dies, the odds of candles being extinguished from then on increases.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_phantom" >
-        <![CDATA[
-            <p>Phantoms will take an extreme toll on players\' sanity. Avoid being in the presence of, or looking directly at a Phantom for too long. It also has a tendency to passively follow players, which helps it to wander outside of its  chosen room, making it more difficult to gather evidence.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_poltergeist" >
-        <![CDATA[
-            <p>Poltergeists can have a heavy influence on the space players are in, being capable of throwing numerous objects as well as producing loud noises. There is an immediate 2\% sanity drain on any nearby players per item thrown. This may occur both outside and during a hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_raiju" >
-        <![CDATA[
-            <p>Raiju\'s become much faster while nearby electrical devices, but not the map power or room lights, and will increase it\'s preferred hunting sanity level to 65\% while nearby such electrical devices. If near an electronic equipment, it will travel at 2.5 m/s; Otherwise, it will travel at 1.7 m/s.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_revenant" >
-        <![CDATA[
-            <p>A Revenant will travel at 1 m/s while hunting for players, and will instantly travel at 3 m/s if the location of an player is known (via line-of-sight, proximity chat, or electronic device usage). It will slow down gradually to 1 m/s unless a player\'s location is reacquired after it reaches the player\'s last known location.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_shade" >
-        <![CDATA[
-            <p>Shades can be difficult to find, and therefore it can be difficult to collect evidence for or even find the location of. It has a lower activity overall; however, lower player sanity levels will procure more ghost events. It will not interact or throw objects while a player is in it\'s preferred room.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_spirit" >
-        <![CDATA[
-            <p>Spirits have no strengths in particular, as they are geared towards new players. Don\'t be fooled, though. It\'s lack of specialty makes it an even match.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_thaye">
-        <![CDATA[
-            <p>The Thaye will be most active and dangerous at the beginning of a mission. This makes it extremely threatening early on. The Thaye will hunt at 75\% at the start of an investigation, eventually scaling to a minimum 15\% after it finishes aging. A young Thaye will be very fast at 2.7 m/s, while an old Thaye will move slower than a player at 1.0 m/s.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_thetwins">
-        <![CDATA[
-            <p>Either Twin may be angered, and thus, either Twin may initiate a Hunt. This means that a hunt may start from two different locations.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_themimic">
-        <![CDATA[
-            <p>The Mimic may rapidly copycat any ghost type multiple times during an investigation, which makes it extremely dangerous and totally unpredictable. The behavior that it copies can be present both during or outside of a hunt. The Mimic cannot swap to copycat a different ghost mid\-hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_wraith" >
-        <![CDATA[
-            <p>The Wraith possesses the ability to blink themselves to the location of any nearby player within a small distance from their chosen room. This may take place far outside of their room, even between floors. This activity might go unnoticed as it may be a silent activity, but it will generate an EMF reading at the landing location. After this activity, the Wraith will walk back to their room and may interact with objects during this time. It is said that a Wraith may hunt right after teleporting, but this may be inaccurate.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yokai">
-        <![CDATA[
-            <p>Speaking nearby a Yokai will anger it, increasing it\'s likelihood to attack by raising the minimum preferred sanity level for hunting to 80\%.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_strengths_yurei" >
-        <![CDATA[
-            <p>Yurie\'s will drop players\' sanity, while they are looking at it, much quicker than any other ghost \-\- but can also decrease sanity even when a player is turned away. A Yurei may also instantly rip away 15\% sanity from any nearby player; and when this happens, the doors of the room will always close by themselves (any ghost may do this, but the Yurei has an increased likelihood).</p>
-        ]]>
-    </string>
+    <string name="ghost_strengths_banshee" >
+         <![CDATA[
+             <p>Банши сосредоточится на одном игроке и переключится на новую цель, если выбранная цель находится вне игровой зоны.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_demon" >
+         <![CDATA[
+             <p>Их бывает сложно найти, поскольку они очень часто нападают на игроков. Демон может начать раннюю охоту при любом здравомыслии, но его минимальная цель обычно составляет около 70% среднего здравомыслия. Время восстановления охоты, или время между охотой, составляет 20 секунд, что на 5 секунд быстрее, чем у любого другого призрака. Палочки-пазлы также имеют более короткий период защиты: они обеспечивают 60 секунд безопасности вместо обычных 90 секунд для призраков, не являющихся духами.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_deogen">
+         <![CDATA[
+             <p>Деоген чувствует любое живое существо, независимо от того, насколько хорошо оно спрятано. Если вы решите оставаться неподвижным против Деогена, вас убьют. Не рассчитывайте на нарушение прямой видимости, так как это не остановит погоню, а только позволит Деогену двигаться намного быстрее.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_goryo">
+         <![CDATA[
+             <p>Горё часто показывает себя на камеру только тогда, когда поблизости нет людей. Это может вызвать проблемы со сбором соответствующих доказательств, так как может привести к отрицанию D.O.T.S. слишком рано.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_hantu">
+         <![CDATA[
+             <p>Более низкие температуры позволяют Ханту двигаться с большей скоростью. Прямая видимость не влияет на скорость Ханту.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_jinn" >
+         <![CDATA[
+             <p>Скорость джинна делает его чрезвычайно трудным призраком, от которого очень трудно убежать, когда он начинает охоту. Как только джинн догонит игрока, он постепенно замедлится и переключится на обычную скорость охоты. Джинн может мгновенно лишить находящегося рядом игрока 25% здравомыслия, если питание включено.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_mare" >
+         <![CDATA[
+             <p>Кобыла попытается выключить свет, чтобы расширить свои возможности, и будет охотиться при 60 %, если питание будет отключено. Он также будет забредать в другие комнаты или в темные места предпочитаемой им комнаты и может начать охоту из этих мест. У Кобылы повышенная вероятность уничтожить источник света в комнате в результате какого-либо события.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_moroi">
+         <![CDATA[
+             <p>Морои в полной мере воспользуются каждой утраченной частичкой здравомыслия. Меньшее командное здравомыслие приведет к более высокому уровню агрессивности. При среднем здравомыслии 0\% призрак станет молниеносным во время охоты. Если судить по среднему здравомыслию команды, его скорость колеблется от 1,5 м/с в самом медленном случае до 2,25 м/с в самом быстром.</p>
+             <p>У призрака есть скрытая способность \-\- проклятие \-\-, которая заставляет любого игрока терять рассудок со скоростью 0,03\%/сек, пока пораженный игрок находится в игровой зоне. Этот эффект возникает, если игрок использует и получает ответ от Ящика Духа. Эффект суммируется с обычной скоростью, с которой у игроков истощается рассудок. Свечи не останавливают эффект, но проклятие можно снять с помощью таблеток здравомыслия.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_myling">
+         <![CDATA[
+             <p>Во время охоты Майлинг не так красноречив, как другие призраки. Вы сможете услышать их шаги и голосовые шумы только в зоне действия электронных помех.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_obake">
+         <![CDATA[
+             <p>Обаке не может оставлять следов при манипулировании окружающей средой. Это значит, что у него есть шанс не оставить отпечатков пальцев. Obake также может вдвое сократить срок службы отпечатков пальцев.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_oni" >
+         <![CDATA[
+             <p>Они обладают способностью перемещать физические объекты, как полтергейст, и в то же время проявляют агрессию демона. Из-за этого им сложно собирать доказательства, не вызывая при этом их гнева. Это его самая большая слабость, поскольку она, скорее всего, проявится в начале раунда. Если во время события с призраком к игроку прикоснется Они, его рассудок будет истощен вдвое сильнее.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_onryo">
+         <![CDATA[
+             <p>Онрио нацелится на источник пламени и потушит его. Если Онрё потушит 3 пламени, Онрё может начать Охоту независимо от уровня Разума, если поблизости нет другого пламени или Распятия. Когда игрок умирает, вероятность того, что свечи погаснут, увеличивается.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_phantom" >
+         <![CDATA[
+             <p>Фантомы наносят серьезный ущерб здравомыслию игроков. Не находитесь в присутствии Фантома и не смотрите прямо на него слишком долго. Он также имеет тенденцию пассивно следовать за игроками, что помогает ему выходить за пределы выбранной комнаты, что затрудняет сбор улик.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_poltergeist" >
+         <![CDATA[
+             <p>Полтергейсты могут оказывать сильное влияние на пространство, в котором находятся игроки, поскольку они способны бросать множество предметов, а также издавать громкие звуки. Каждый брошенный предмет немедленно снижает здравомыслие всех ближайших игроков на 2%. Это может произойти как на улице, так и во время охоты.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_raiju" >
+         <![CDATA[
+             <p>Райджу становится намного быстрее, когда находится рядом с электрическими устройствами, но не с питанием карты или освещением в комнате, и повышает его предпочтительный уровень охотничьего здравомыслия до 65%, когда он находится рядом с такими электрическими устройствами. Если рядом находится электронное оборудование, оно будет двигаться со скоростью 2,5 м/с; В противном случае он будет двигаться со скоростью 1,7 м/с.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_revenant" >
+         <![CDATA[
+             <p>Ревенант будет путешествовать со скоростью 1 м/с во время охоты на игроков и мгновенно будет двигаться со скоростью 3 м/с, если местоположение игрока известно (через прямую видимость, бесконтактный чат или использование электронного устройства). . Скорость будет постепенно замедляться до 1 м/с, если только местоположение игрока не будет определено повторно после достижения последнего известного местоположения игрока.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_shade" >
+         <![CDATA[
+             <p>Тени может быть трудно найти, и поэтому может быть сложно собрать доказательства или даже определить их местонахождение. В целом он имеет более низкую активность; однако более низкий уровень здравомыслия игроков приведет к большему количеству событий-призраков. Он не будет взаимодействовать и бросать предметы, пока игрок находится в предпочитаемой им комнате.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_spirit" >
+         <![CDATA[
+             <p>У Духов нет особых сильных сторон, поскольку они ориентированы на новых игроков. Однако не дайте себя обмануть. Отсутствие специализации делает его равным соперником.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_thaye">
+         <![CDATA[
+             <p>Тэй будут наиболее активны и опасны в начале миссии. Это делает его чрезвычайно опасным на раннем этапе. Тэй будет охотиться на уровне 75% в начале расследования, а после завершения старения увеличится до минимума 15%. Молодой Тэй будет очень быстрым со скоростью 2,7 м/с, а старый Тэй будет двигаться медленнее игрока со скоростью 1,0 м/с.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_thetwins">
+         <![CDATA[
+             <p>Любой Близнец может быть разгневан и, таким образом, любой Близнец может начать Охоту. Это означает, что охота может начаться из двух разных мест.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_themimic">
+         <![CDATA[
+             <p>Во время расследования Мимик может быстро копировать любой тип призрака несколько раз, что делает его чрезвычайно опасным и совершенно непредсказуемым. Копируемое им поведение может проявляться как во время охоты, так и вне ее. Мимик не может переключиться на имитацию другого призрака во время охоты.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_wraith" >
+         <![CDATA[
+             <p>Призрак обладает способностью телепортироваться к местоположению любого ближайшего игрока на небольшом расстоянии от выбранной им комнаты. Это может происходить далеко за пределами их комнаты, даже между этажами. Это действие может остаться незамеченным, поскольку оно может быть бесшумным, но оно будет генерировать показания ЭМП в месте приземления. После этого действия Призрак вернется в свою комнату и в это время сможет взаимодействовать с объектами. Говорят, что Призрак может охотиться сразу после телепортации, но это может быть неточно.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_yokai">
+         <![CDATA[
+             <p>Разговор рядом с ёкаем разозлит его, увеличив вероятность нападения за счет повышения минимального предпочтительного уровня здравомыслия для охоты до 80\%.</p>
+         ]]>
+     </string>
+    <string name="ghost_strengths_yurei" >
+         <![CDATA[
+             <p>Юри лишает игроков рассудка, пока они смотрят на него, гораздо быстрее, чем любой другой призрак \-\-, но также может снижать рассудок, даже если игрока отворачивают. Юрэй также может мгновенно лишить 15% здравомыслия у любого находящегося рядом игрока; и когда это произойдет, двери комнаты всегда закроются сами (это может сделать любой призрак, но у Юрэя вероятность повышена).</p>
+         ]]>
+     </string>
 
     <!-- Weaknesses -->
-    <string name="evidence_ghost_weaknesses_banshee" >
-        <![CDATA[
-            <p>A Banshee will wander far from its room just to stalk its target. Banshees will never kill its non-target player, and during a hunt it will walk straight through any investigator who it isn\'t interested in. It also bases its hunt on the Sanity of its target instead of the average Sanity of the team. A Banshee has a special interaction with the Parabolic Microphone as it has a chance to emmit a faint, high pitched wail.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_demon" >
-        <![CDATA[
-            <p>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons. Demons <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them by amplifying the Crucifix effective range to 5 meters instead of the normal 3 meters for other ghosts.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_deogen">
-        <![CDATA[
-            <p>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time. Stay in line\-of\-sight with this ghost and you\'ll be fine as it will only be able to move at 0.4 m/s while in close proximity to the nearest player in line\-of\-sight. As long as you\'re within line\-of\-sight it will never be able to catch you, even if you\'re walking. The Deogen will only hunt at 40\% sanity.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_goryo">
-        <![CDATA[
-            <p>Goryo\'s will normally stay within or very close to the location they\'re haunting. This allows for easier evidence collection.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_hantu" >
-        <![CDATA[
-            <p>A Hantu\'s movement will be slower than normal in warmer areas. While hunting, and if the breaker is off, the Hantu will produce freezing breath much like a player does, but this effect is not limited to the ghost room or the temperature of a room.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_jinn" >
-        <![CDATA[
-            <p>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to remove the Jinn\'s ability. A Jinn will not be able to turn the power on itself.</p>
-		]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_mare" >
-        <![CDATA[
-            <p>Keeping the lights on in a Mare\'s area will lower its sanity preference for hunting from 60\% to 40\% average sanity. Therefore, remain in lit areas to limit its aggression. A Mare cannot turn the breaker off, but it does have the ability to instantly turn off light switches when they\'re activated by a player, which is an event that can be recognized very easily.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_moroi">
-        <![CDATA[
-            <p>The Moroi are hypersensitive to the Smudge Stick. Lighting one nearby will blind the Moroi for 12 seconds.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_myling" >
-        <![CDATA[
-            <p>Mylings will more frequently emit paranormal sounds in the parabolic microphone.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_obake" >
-        <![CDATA[
-            <p>By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake. The Obake may also change its ghost model for a brief second at any point both during a hunt. If the Obake touches a surface, there is a chance for fingerprints to not appear; This can be used as proof for the ghost if any following interactions produce fingerprints.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_oni" >
-        <![CDATA[
-            <p>Onis are easy to find, as they can\'t resist causing a ruckus when players are nearby. The Oni cannot do a \"Ghost Mist\" or \"Ghost Ball\" event. It will favor full manifestations over shadow manifestations or invisible manifestations during ghost events. This behavior carries into hunts, which causes the Oni to manifest itself for longer periods and disappearing for very short intervals during hunts.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_onryo" >
-        <![CDATA[
-            <p>A flame source will act to quell an Onryo\'s chance to attack. It will first extinguish all flames (much like using a Crucifix charge) before using a Crucifix.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_phantom" >
-        <![CDATA[
-            <p><font color=#ff6161>Taking a picture of a Phantom will make it disappear temporarily</font> and will never show in the photograph. A Phantom also gives itself away huring hunts, as it will physically manifest for short durations and disappear for longer durations.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_poltergeist" >
-        <![CDATA[
-            <p>Players can remove physical objects in the room, rendering a Poltergeist ineffective. A Polgergeist may interact with items violently, being able to throw an item with far greater force than a normal ghost. It may interact with multiple items at the same time, which is known as a "Poltergeist explosion event", and it can be easily tested by accumulating a large number of items into a pile and observing its behavior for activity. During a hunt, items have a far greater chance of being manipulated, so check for numerous aggitated items within its hunting path.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_raiju" >
-        <![CDATA[
-            <p>It\'s easier to track a Raiju because they constantly manipulate electrical devices while hunting.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_revenant" >
-        <![CDATA[
-            <p>A Revenant will be very slow when player location is unknown, and very distinct, slow footsteps can be heard. The best way to determine if you have a revenant is through the hunt.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_shade" >
-        <![CDATA[
-            <p>There\'s strength in numbers against a Shade, as they will not attack a group of people. If you want to prevent a hunt, at least one player must be within close proximity to the ghost. A Shade will also be more likely to show shadow-form models and conversely it has less likelihood of showing it\'s full model.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_spirit" >
-        <![CDATA[
-            <p>When a Spirit is smudged, it will not hunt for a full 180 seconds. By contrast, any other ghost will hunt at 90 seconds (except for the Demon which may hunt as early as 60 seconds).</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_thaye">
-        <![CDATA[
-            <p>The longer the ghost is in the presence of the living, it will decrease in aggressiveness, speed, and strength. Each age lowers the speed by 0.175 m/s. The Thaye also has no line\-of\-sight acceleration.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_thetwins" >
-        <![CDATA[
-            <p>Due to their combined activity, locating The Twins should be much easier. The Twins have a varied hunting speed which randomly alternates between hunts. One Twin hunts at 90\% normal speed (1.5 m/s) while the other Twin hunts at 110\% normal speed (1.9 m/s).</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_themimic" >
-        <![CDATA[
-            <p>A Ghost Orb will appear alongside the deterministic Evidence of The Mimic, which makes The Mimic the only ghost type to (technically) have a fourth piece of Evidence. The Ghost Orb behaves differently than normal, too. It follows The Mimic as it wanders, so keep an eye out for a roaming Ghost Orb while at high Team Sanity.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_wraith" >
-        <![CDATA[
-            <p><font color=#ff6161>Salt is toxic to a Wraith</font>, so therefore it will never step through any. To confirm a Wraith, place a motion sensor over Salt piles. If the Motion Sensor detects movement without the Salt being disturbed, the ghost may be a Wraith!</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yokai" >
-        <![CDATA[
-            <p>While Hunting, a Yokai will only hear voices within a close proximity to it. It can only hear proximity chat or detect electronic equipment within 2.5 meters of itself. The Music Box cursed possession also does not cause the Yokai to move until the player is within a much closer proximity than any other ghost would require.</p>
-        ]]>
-    </string>
-    <string name="evidence_ghost_weaknesses_yurei" >
-        <![CDATA[
-            <p>Yureis are vulnerable to Smudge Sticks, and smudging the room successfully will cause the Yurei to remain in place for some time.</p>
-        ]]>
-    </string>
+    <string name="ghost_weaknesses_banshee" >
+         <![CDATA[
+             <p>Банши будет уходить далеко от своей комнаты только для того, чтобы преследовать свою цель. Банши никогда не убьет своего нецелевого игрока, и во время охоты она пройдет сквозь любого сыщика, который ей не интересен. Она также основывает свою охоту на Разуме своей цели, а не на среднем Разуме команды. Банши особым образом взаимодействует с параболическим микрофоном, поскольку у нее есть шанс издать слабый пронзительный вопль.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_demon" >
+         <![CDATA[
+             <p>В отличие от других призраков, успешный вопрос Демону через доску для спиритических сеансов не понизит рассудок игроков. Это делает доску для спиритических сеансов очень полезным инструментом против демонов. Демоны <font color=#ff6161>боятся Распятия</font>, увеличивая его эффективность против них за счет увеличения эффективной дальности действия Распятия до 5 метров вместо обычных 3 метров для других призраков.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_deogen">
+         <![CDATA[
+             <p>Деоген будет преследовать свою жертву до изнеможения, но никогда не опередит ее. Продолжайте двигаться против этого призрака и заранее спланируйте свои маршруты. Оставайтесь на линии прямой видимости с этим призраком, и с вами все будет в порядке, поскольку он сможет двигаться со скоростью только 0,4 м/с, находясь в непосредственной близости от ближайшего игрока на линии прямой видимости. Пока вы находитесь в пределах прямой видимости, он никогда не сможет вас поймать, даже если вы идете. Деоген будет охотиться только при уровне здравомыслия 40%.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_goryo">
+         <![CDATA[
+             <p>Горё обычно остаются в пределах места, где они обитают, или очень близко к нему. Это упрощает сбор доказательств.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_hantu" >
+         <![CDATA[
+             <p>В более теплых регионах движение ханту будет медленнее, чем обычно. Во время охоты, если выключатель выключен, Ханту будет издавать ледяное дыхание, как и игрок, но этот эффект не ограничивается комнатой призраков или температурой комнаты.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_jinn" >
+         <![CDATA[
+             <p>Для достижения высоких скоростей джинны полагаются на источник энергии на карте, поэтому игрокам следует искать автоматический выключатель здания, чтобы лишить джиннов способности. Джинн не сможет включить силу на себя.</p>
+]]>
+     </string>
+    <string name="ghost_weaknesses_mare" >
+         <![CDATA[
+             <p>Включение света в зоне обитания кобылы снизит ее здравомыслие при охоте с 60% до 40% среднего здравомыслия. Поэтому оставайтесь в освещенных местах, чтобы ограничить его агрессию. Кобыла не может выключить выключатель, но у нее есть возможность мгновенно выключать выключатели света, когда их активирует игрок, и это событие можно очень легко распознать.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_moroi">
+         <![CDATA[
+             <p>Морои сверхчувствительны к Палке-пятну. Если вы зажжёте ближайший светильник, морои ослепнут на 12 секунд.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_myling" >
+         <![CDATA[
+             <p>Майлинги чаще издают паранормальные звуки через параболический микрофон.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_obake" >
+         <![CDATA[
+             <p>Случайно, Обаке иногда может оставлять <font color=#ff6161>6-пальцевые отпечатки</font> вместо обычных 5. 5-палые отпечатки ладоней не следует использовать, чтобы исключить Обаке. Обаке также может на короткую секунду изменить свою призрачную модель в любой момент во время охоты. Если Obake касается поверхности, есть вероятность, что отпечатки пальцев не появятся; Это можно использовать в качестве доказательства существования призрака, если при любых последующих взаимодействиях останутся отпечатки пальцев.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_oni" >
+         <![CDATA[
+             <p>Они легко найти, поскольку они не могут удержаться от того, чтобы не вызвать шум, когда рядом находятся игроки. Они не могут проводить мероприятия «Призрачный туман» или «Призрачный бал». Во время призрачных событий он будет отдавать предпочтение полным проявлениям, а не теневым проявлениям или невидимым проявлениям. Такое поведение распространяется и на охоту, из-за чего Они проявляют себя на более длительные периоды времени и исчезают на очень короткие промежутки времени во время охоты.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_onryo" >
+         <![CDATA[
+             <p>Источник пламени будет подавлять вероятность атаки Онрё. Прежде чем использовать Распятие, он сначала погасит все пламя (так же, как при использовании заряда Распятия).</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_phantom" >
+         <![CDATA[
+             <p><font color=#ff6161>Если сфотографировать Призрака, он временно исчезнет</font> и никогда не будет отображаться на фотографии. Фантом также выдает себя за охоту, поскольку он физически проявляется на короткое время и исчезает на более длительное время.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_poltergeist" >
+         <![CDATA[
+             <p>Игроки могут удалять физические объекты из комнаты, делая Полтергейста неэффективным. Полгергейст может яростно взаимодействовать с предметами, будучи в состоянии бросить предмет с гораздо большей силой, чем обычный призрак. Он может взаимодействовать с несколькими предметами одновременно, что известно как «взрыв полтергейста», и его можно легко проверить, собрав большое количество предметов в кучу и наблюдая за их поведением на предмет активности. Во время охоты вероятность манипуляций с предметами гораздо выше, поэтому проверяйте, нет ли на пути охоты многочисленных возбужденных предметов.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_raiju" >
+         <![CDATA[
+             <p>Раджу легче выследить, потому что во время охоты они постоянно манипулируют электрическими устройствами.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_revenant" >
+         <![CDATA[
+             <p>Ревенант будет очень медленным, когда местоположение игрока неизвестно, и можно услышать очень отчетливые медленные шаги. Лучший способ определить, есть ли у вас ревенант, — это охота.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_shade" >
+         <![CDATA[
+             <p>В численности против Шейдов есть сила, поскольку они не будут атаковать группу людей. Если вы хотите предотвратить охоту, хотя бы один игрок должен находиться в непосредственной близости от призрака. Тень также с большей вероятностью покажет модели теневой формы и, наоборот, с меньшей вероятностью покажет свою полную модель.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_spirit" >
+         <![CDATA[
+             <p>Если дух запачкан, он не будет охотиться в течение полных 180 секунд. Напротив, любой другой призрак будет охотиться через 90 секунд (кроме Демона, который может охотиться уже через 60 секунд).</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_thaye">
+         <![CDATA[
+             <p>Чем дольше призрак находится в присутствии живых, его агрессивность, скорость и сила уменьшаются. Каждый возраст снижает скорость на 0,175 м/с. У Тэя также нет ускорения на линии прямой видимости.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_thetwins" >
+         <![CDATA[
+             <p>Благодаря их совместной деятельности найти Близнецов должно быть намного проще. У Близнецов разная скорость охоты, которая случайным образом меняется в зависимости от охоты. Один Близнец охотится со скоростью 90 % от нормальной (1,5 м/с), а другой — со скоростью 110 % от нормальной (1,9 м/с).</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_themimic" >
+         <![CDATA[
+             <p>Призрачный шар появится рядом с детерминированным Уликой Мимика, что делает Мимика единственным типом призраков, у которого (технически) есть четвертая часть Улик. Призрачная сфера тоже ведет себя иначе, чем обычно. Он следует за Мимиком, пока тот блуждает, поэтому следите за бродячей Призрачной сферой, пока у вас высокий уровень Командного Разума.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_wraith" >
+         <![CDATA[
+             <p><font color=#ff6161>Соль токсична для призрака</font>, поэтому она никогда не пройдет сквозь нее. Чтобы подтвердить присутствие Призрака, поместите датчик движения над грудами соли. Если датчик движения обнаружит движение, не потревожив Соль, призрак может быть Призраком!</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_yokai" >
+         <![CDATA[
+             <p>Во время охоты ёкай слышит голоса только в непосредственной близости от него. Он может слышать только бесконтактный чат или обнаруживать электронное оборудование в пределах 2,5 метров от себя. Проклятое владение Музыкальной шкатулкой также не заставляет ёкая двигаться, пока игрок не окажется на гораздо более близком расстоянии, чем требовалось бы для любого другого призрака.</p>
+         ]]>
+     </string>
+    <string name="ghost_weaknesses_yurei" >
+         <![CDATA[
+             <p>Юрей уязвимы для размазывания палочек, и если успешно запачкать комнату, Юрей останется на месте в течение некоторого времени.</p>
+         ]]>
+     </string>
 
     <!-- Hunting Data -->
-    <string name="evidence_ghost_huntingdata_banshee" >
+    <string name="ghost_huntingdata_banshee" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия игрока, на которого он нацелен.</p>
-             <p>Полностью игнорирует среднее здравомыслие.</p>
+             <p>Охота при 50% здравомыслия игрока, на которого нацелена.</p>
+             <p>Полностью игнорирует средний уровень здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_demon" >
+    <string name="ghost_huntingdata_demon" >
          <![CDATA[
-             <p>Обычно охотится при 70\% здравомыслия.</p>
-             <p>Можно охотиться на любом уровне здравомыслия после активации способности.</p>
+             <p>Обычно охотится при 70% здравомыслия.</p>
+             <p>Может охотиться на любом уровне здравомыслия после активации способности.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_deogen">
+    <string name="ghost_huntingdata_deogen">
          <![CDATA[
-             <p>Охотится при 40\% здравомыслия.</p>
+             <p>Охота при 40% здравомыслия.</p>
              <ул>
-                 <li>3,0 м/с во время бега к скрытому игроку.</li>
-                 <li>0,4 м/с или более, если вы внимательно следите за следователем.</li>
-                 <li>3,0 м/с или меньше, чтобы находиться в непосредственной близости от следователя.
+                 <li>3,0 м/с при беге к местонахождению скрытого игрока.</li>
+                 <li>0,4 м/с или более при внимательном следовании за следователем.</li>
+                 <li>3,0 м/с или меньше для поддержания непосредственной близости к исследователю.
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_goryo">
+    <string name="ghost_huntingdata_goryo">
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_hantu" >
+    <string name="ghost_huntingdata_hantu" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
              <ул>
                  <li>15°C+ = 1,40 м/с</li>
                  <li>12°C = 1,75 м/с</li>
@@ -562,145 +545,145 @@
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_jinn" >
+    <string name="ghost_huntingdata_jinn" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
              <ул>
-                 <li>Двигается со скоростью 2,5 м/с, преследуя следователя, который находится на расстоянии более 3 метров от него и при включенном блоке предохранителей.</li>
+                 <li>Движется со скоростью 2,5 м/с, пока оба преследуют следователя, находящегося на расстоянии более 3 метров, и блок предохранителей включен.</li>
                  <li>Двигается со скоростью 1,7 м/с, если ни за кем не гонится.</li>
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_mare" >
+    <string name="ghost_huntingdata_mare" >
          <![CDATA[
-             <p>Охотится с рассудком 40\%, если питание включено.</p>
-             <p>Охотится с 60\% здравомыслия, если питание отключено.</p>
+             <p>Охота с 40% здравомыслия, если питание включено.</p>
+             <p>Охота с 60% здравомыслия, если питание отключено.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_moroi">
+    <string name="ghost_huntingdata_moroi">
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
              <ул>
-                 <li>Здравомыслие 0\% \- 5\%: 2,25 м/с</li>
-                 <li>Здравомыслие 5\% \- 10\% : 2,164 м/с</li>
-                 <li>Здравомыслие 10\% \- 15\% : 2,081 м/с</li>
-                 <li>Здравомыслие 15\% \- 20\% : 1,998 м/с</li>
-                 <li>Здравомыслие 20\% \- 25\% : 1,915 м/с</li>
-                 <li>Здравомыслие 25\% \- 30\%: 1,832 м/с</li>
-                 <li>Здравомыслие 30\% \- 35\% : 1,749 м/с</li>
-                 <li>Здравомыслие 35\% \- 40\%: 1,66 м/с</li>
-                 <li>Здравомыслие 40\% \- 45\%: 1,583 м/с</li>
-                 <li>Здравомыслие 45\% \- 100\% : 1,5 м/с</li>
+                 <li>Разум 0% \- 5%: 2,25 м/с</li>
+                 <li>Разум 5% \- 10%: 2,164 м/с</li>
+                 <li>Разум 10% \- 15%: 2,081 м/с</li>
+                 <li>Разум 15% \- 20%: 1,998 м/с</li>
+                 <li>Разум 20% \- 25%: 1,915 м/с</li>
+                 <li>Разум 25% \- 30%: 1,832 м/с</li>
+                 <li>Разум 30% \- 35%: 1,749 м/с</li>
+                 <li>Разум 35% \- 40%: 1,66 м/с</li>
+                 <li>Разум 40% \- 45%: 1,583 м/с</li>
+                 <li>Разум 45% \- 100%: 1,5 м/с</li>
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_myling" >
+    <string name="ghost_huntingdata_myling" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_obake" >
+    <string name="ghost_huntingdata_obake" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_oni" >
+    <string name="ghost_huntingdata_oni" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_onryo" >
+    <string name="ghost_huntingdata_onryo" >
          <![CDATA[
-             <p>Обычно охотится при 60\% здравомыслия.</p>
-             <p>Может охотиться при любом Разуме, если огонь потушен.</p>
+             <p>Обычно охотится при 60% здравомыслия.</p>
+             <p>Может охотиться на любое здравомыслие, если огонь потушен.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_phantom" >
+    <string name="ghost_huntingdata_phantom" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_poltergeist" >
+    <string name="ghost_huntingdata_poltergeist" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_raiju" >
+    <string name="ghost_huntingdata_raiju" >
          <![CDATA[
-             <p>Обычно охотится при 50\% здравомыслии.</p>
-             <p>Охотится с рассудком 65\%, если рядом находится включенная\включенная электроника.</p>
+             <p>Обычно охотится при 50% здравомыслия.</p>
+             <p>Охотится с 65% здравомыслия, если рядом находится включенная электроника.</p>
              <ул>
-                 <li>Двигается со скоростью 2,5 м/с, если поблизости находится электронное оборудование.</li>
-                 <li>Двигается со скоростью 1,7 м/с, если поблизости нет электронного оборудования.</li>
+                 <li>Перемещается со скоростью 2,5 м/с, если рядом находится электронное оборудование.</li>
+                 <li>Перемещается со скоростью 1,7 м/с, если рядом нет электронного оборудования.</li>
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_revenant" >
+    <string name="ghost_huntingdata_revenant" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
-             <p>Скорость передвижения: 1 м/с, если не гоняться; 3,0 м/с при погоне.</p>
+             <p>Охота при 50% здравомыслия.</p>
+             <p>Скорость движения: 1 м/с, если не преследовать; 3,0 м/с при погоне.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_shade" >
+    <string name="ghost_huntingdata_shade" >
          <![CDATA[
-             <p>Охотится при 35\% здравомыслия.</p>
+             <p>Охота при 35% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_spirit" >
+    <string name="ghost_huntingdata_spirit" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_thaye">
+    <string name="ghost_huntingdata_thaye">
          <![CDATA[
-             <p>Постепенно стареет на 10 этапах и теряет скорость движения на 0,175 м/с на каждый этап.</p>
-             <p>Охотится с 75\% здравомыслия в самом молодом возрасте. Максимальное движение: 2,7 м/с</p>
-             <p>Охотится при 15\% здравомыслия в самом старшем возрасте. Максимальное движение: 1,0 м/с</p>
+             <p>Постепенно стареет за 10 этапов и теряет скорость передвижения на 0,175 м/с за этап.</p>
+             <p>В самом юном возрасте охотится при 75% здравомыслия. Максимальное движение: 2,7 м/с</p>
+             <p>Охотится при 15% здравомыслия в самом старшем возрасте. Максимальное движение: 1,0 м/с</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_thetwins" >
+    <string name="ghost_huntingdata_thetwins" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
-             <p>Шанс 50\% оказаться одним из близнецов во время охоты</p>
+             <p>Охота при 50% здравомыслия.</p>
+             <p>50\% шанс оказаться одним из близнецов во время охоты</p>
              <ул>
-                 <li>Twin A: минимум 1,5 м/с</li>
-                 <li>Twin B: минимум 1,9 м/с</li>
+                 <li>Двойной А: минимум 1,5 м/с.</li>
+                 <li>Двойной B: минимум 1,9 м/с.</li>
              </ul>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_themimic" >
+    <string name="ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Настройки охоты основаны на подражании призраку. Таким образом, Мимик может охотиться где-то между 15\% и 100\% здравомыслия.</p>
+             <p>Охотничьи предпочтения основаны на имитации призрака. Следовательно, Мимик может охотиться где-то между 15% и 100% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_wraith" >
+    <string name="ghost_huntingdata_wraith" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_yokai" >
+    <string name="ghost_huntingdata_yokai" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
-             <p>Не слышу следователей и не ощущаю электронное оборудование.</p>
+             <p>Охота при 50% здравомыслия.</p>
+             <p>Не слышит следователей и не чувствует электронного оборудования.</p>
          ]]>
      </string>
-    <string name="evidence_ghost_huntingdata_yurei" >
+    <string name="ghost_huntingdata_yurei" >
          <![CDATA[
-             <p>Охотится при 50\% здравомыслия.</p>
+             <p>Охота при 50% здравомыслия.</p>
          ]]>
      </string>
 
     <!-- Evidence Names -->
-    <string name="evidence_tiers_1">Ряд 1</string>
-    <string name="evidence_tiers_2">Ряд 2</string>
-    <string name="evidence_tiers_3">Ряд 3</string>
+    <string name="equipment_tiers_1">Ряд 1</string>
+    <string name="equipment_tiers_2">Ряд 2</string>
+    <string name="equipment_tiers_3">Ряд 3</string>
     <string name="evidence_type_dots">D.O.T.S</string>
-    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_emf">ЗМП 5</string>
     <string name="evidence_type_ultraviolet">ультрафиолет</string>
-    <string name="evidence_type_temperatures">Freezing Temps</string>
-    <string name="evidence_type_orbs">Ghost Orbs</string>
-    <string name="evidence_type_book">Ghost Writing</string>
-    <string name="evidence_type_box">Spirit Box</string>
+    <string name="evidence_type_temperatures">Температура замерзания</string>
+    <string name="evidence_type_orbs">Призрачные сферы</string>
+    <string name="evidence_type_book">Призрачное письмо</string>
+    <string name="evidence_type_box">Ящик духа</string>
 
     <!-- Evidence Description -->
     <string name="evidence_info_overview_dots">
@@ -711,11 +694,11 @@
          ]]>
     </string>
     <string name="evidence_info_overview_emf">
-        <![CDATA[
-            <p>EMF\-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
-            <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>EMF\-5 — это самый высокий уровень показаний устройства <font color=#ff6161>EMF Reader</font>.</p>
+             <p>Призрак производит ЭМП уровней от 1 до 5, когда он каким-либо образом взаимодействует с комнатой или доской для спиритических сеансов. Мерцание света, шаги и другие мелкие пассивные взаимодействия обычно дают более низкие показания. Более тяжелые взаимодействия, такие как внешний вид или звонок телефона, почти всегда дают более высокие значения. Призраки, несущие эти доказательства, только случайно дадут ЭМП 5-го уровня, поэтому получение этих доказательств <font color=#ff6161>может занять некоторое время</font>.</p>
+         ]]>
+     </string>
     <string name="evidence_info_overview_ultraviolet">
         <![CDATA[
              <p>Ультрафиолетовые доказательства можно увидеть, <font color=#ff6161>только если посветить УФ-светом или светящейся палочкой на пораженные поверхности</font>. Фрагменты ультрафиолетовых улик будут светиться зеленым, пока они заряжаются ультрафиолетовым светом, и со временем потускнеют.</p>
@@ -733,54 +716,55 @@
          ]]>
     </string>
     <string name="evidence_info_overview_book">
-        <![CDATA[
-            <p>Determined using the Ghost Writing Book.</p>
-            <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Определено с помощью «Книги призраков».</p>
+             <p>Призраки могут писать в книге <font color=#ff6161>независимо от того, лежит ли книга на столе или находится ли она в руках</font>. Если призрак пишет в книге, это часть Доказательства для этого типа призрака. Если написаны Демонические символы, это может свидетельствовать о Демоне, но это не является окончательным, поскольку стили письма призраков имеют тенденцию отклоняться случайным образом.</p>
+         ]]>
+     </string>
     <string name="evidence_info_overview_vcam">
-        <![CDATA[
-            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head\-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
-            <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
-        ]]>
-    </string>
-    <string name="evidence_info_overview_sbox">
-        <![CDATA[
-            <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
-            <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
-            <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
-            <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
-        ]]>
-    </string>
+         <![CDATA[
+             <p>Маленький летающий шар, который присутствует только в комнате, где обитает призрак. Его можно <font color=#ff6161>увидеть только в режиме ночного видения с помощью видеокамеры или тепловизионной камеры, установленной на голове, <font> с использованием прямой трансляции с камеры грузовика.</p >
+             <p>Призрачные сферы можно быстро обнаружить, но слишком быстрое их исключение может привести к проблемам в будущем.</p>
+         ]]>
+     </string>
 
-    <string name="evidence_info_tier_dots_1">
+    <string name="evidence_info_overview_sbox">
+         <![CDATA[
+             <p>Ящик духа — это предмет, используемый для <font color=#ff6161>общения с призраком</font>.</p>
+             <p>Игрок должен <font color=#ff6161>задавать вопросы в чате Vicinity активному ящику духа, как находясь рядом с призраком, так и когда свет выключен</font>. Прежде чем попытаться это сделать, проверьте параметры ответа призрака, такие как «Отвечает одиноким людям» или «Отвечает всем», указанным на доске грузовика.</p>
+             <p>Если призрак ответит, Ящик Духа станет доказательством.</p>
+             <p>Конкретные вопросы, такие как «Сколько вам лет?» или «Где вы?», являются правдоподобными. Имейте в виду, что призрак всегда подслушивает, независимо от того, разговаривает ли игрок в ящике духов или нет, поэтому игрокам следует быть осторожными, разговаривая в чате Vicinity. Выманить призрака можно, произнеся его имя несколько раз (таким образом разозлив его) и подав ему такие команды, как «Покажи себя» или «Дай нам знак», которые кажутся правдоподобными командами.</p >
+         ]]>
+     </string>
+
+    <string name="equipment_info_tier_dots_1">
          <![CDATA[
              <p>Лазерная ручка, похожая на фонарик. Вы можете ходить по локации и быстро сканировать в поисках улик, единственным недостатком является малая дальность действия и низкая интенсивность освещения.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_dots_2">
+    <string name="equipment_info_tier_dots_2">
          <![CDATA[
              <p>Это оригинальный D.O.T.S. проектор. Это переносной проектор, испускающий сферу света среднего размера, но теперь вы можете призвать призрака войти в него, стоя рядом.</p>
              <p>Наиболее подходит для небольших\-средних помещений.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_dots_3">
+    <string name="equipment_info_tier_dots_3">
          <![CDATA[
              <p>Этот переносной проектор сканирует комнату на гораздо большем расстоянии широким широким лучом света, что значительно упрощает поиск призраков в больших помещениях. Для лучшего охвата поместите этот проектор на стену или ровную поверхность, встаньте рядом и следите за силуэтами призраков.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_emf_1">
+    <string name="equipment_info_tier_emf_1">
          <![CDATA[
              <p>Старый аналоговый измеритель с небольшим диапазоном обнаружения, низкой точностью и низким уровнем звукового излучения. Стрелка перейдет в ускорение, пройдя уровень 5 при обнаружении ЭМП уровня 5.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_emf_2">
+    <string name="equipment_info_tier_emf_2">
          <![CDATA[
              <p>Надежный измеритель K2 имеет больший диапазон и пять светодиодных индикаторов для определения показаний ЭМП, а также дополнительный модуль динамика. Один индикатор загорится, когда вы активируете устройство. При движении в пределах диапазона обнаружения К2 точек ЭМП, он будет отображать точное значение от двух до пяти и издавать четкий, слышимый звук.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_emf_3">
+    <string name="equipment_info_tier_emf_3">
          <![CDATA[
              <p>Высокотехнологичный ParaReader. Это устройство может отслеживать до трех точек ЭМП одновременно и имеет самый дальний диапазон обнаружения.</p>
              <p>Он одновременно покажет направление, диапазон и значение каждого показания. Он воспроизводит звуки для каждого обнаружения ЭМП, чтобы вы могли слышать на расстоянии, сколько и насколько сильны показания.</p>
@@ -788,88 +772,88 @@
          ]]>
      </string>
 
-    <string name="evidence_info_tier_ultraviolet_1">
+    <string name="equipment_info_tier_ultraviolet_1">
          <![CDATA[
              <p>Классический ультрафиолетовый светящийся стержень. После щелчка, чтобы включить его, он излучает ближний свет, который длится около одной минуты, а затем затемняется. Вы всегда можете встряхнуть его еще раз, чтобы оживить его свет.</p>
              <p>Это устройство заряжает пятно ультрафиолетом в течение 10 секунд после воздействия.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_ultraviolet_2">
+    <string name="equipment_info_tier_ultraviolet_2">
          <![CDATA[
              <p>Классический УФ-фонарик, который излучает более яркий узкий луч с большим радиусом действия и гораздо быстрее заряжается УФ-излучением!</p>
              <p>Это устройство заряжает пятно ультрафиолетом в течение 5 секунд после воздействия.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_ultraviolet_3">
+    <string name="equipment_info_tier_ultraviolet_3">
          <![CDATA[
-             <p>UV Light Pro – это массивный фонарик с гораздо более ярким и широким световым конусом, а также с еще более быстрым временем зарядки. Он идеально подходит для быстрого обнаружения ультрафиолетовых улик в больших масштабах.<p>
+             <p>UV Light Pro– это массивный фонарик с гораздо более ярким и широким световым конусом, а также с еще более быстрым временем зарядки. Он идеально подходит для быстрого обнаружения ультрафиолетовых улик в больших масштабах.<p>
              <p>Это устройство заряжает пятно ультрафиолетом в течение 1,5 секунд после воздействия.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_thermometer_1">
+    <string name="equipment_info_tier_thermometer_1">
          <![CDATA[
              <p>Старый дом\-Термометр, сорванный прямо со стены гостиной вашего Следователя. Этот термометр имеет медленную частоту дискретизации, а это означает, что вам придется ждать дольше, чтобы получить точные показания. Вы можете принести его и проверить позже в контракте.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_thermometer_2">
+    <string name="equipment_info_tier_thermometer_2">
          <![CDATA[
              <p>Обновленная версия классического считывателя температуры, но гораздо более точная. Вместо того, чтобы включать его и получать показания каждые две секунды, удерживайте кнопку «Использовать», чтобы сканировать температуру. Это позволяет бегать и проверять температуру в каждой комнате намного быстрее, чем позволяет уровень I.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_thermometer_3">
+    <string name="equipment_info_tier_thermometer_3">
          <![CDATA[
              <p>Прямое обновление до уровня II, выполняющее сканирование температуры в два раза быстрее, чем его предшественник. Кроме того, этот более современный термометр более точен при каждом измерении, позволяя игрокам быстро и эффективно сканировать комнаты, чтобы найти призрака или отметить «температуру замерзания» в журнале.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_book_1">
+    <string name="equipment_info_tier_book_1">
          <![CDATA[
              <p>Этот бумажный блокнот можно положить рядом с призраком, чтобы он мог писать о паранормальных явлениях. Обязательно поместите его рядом с любым видом деятельности, который вы видите. Некоторые призраки могут не заметить маленький блокнот и карандаш, поэтому может пройти некоторое время, прежде чем что-то произойдет.<p/>
          ]]>
      </string>
-    <string name="evidence_info_tier_book_2">
+    <string name="equipment_info_tier_book_2">
          <![CDATA[
              <p>С более красивыми страницами и ручкой призраки, кажется, замечают эту книгу немного чаще, чем предыдущую версию. что немного сокращает время ожидания появления улик.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_book_3">
+    <string name="equipment_info_tier_book_3">
          <![CDATA[
              <p>Благодаря большому профилю, сочетанию высококачественных материалов и богато украшенной ручки, эта книга имеет самые большие изменения, которые могут быть написаны призраками. У него более широкий диапазон, чем у двух предыдущих уровней, поэтому разместить эту книгу в пределах досягаемости призрака намного проще.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_vcam_1">
+    <string name="equipment_info_tier_vcam_1">
          <![CDATA[
              <p>Старая видеокамера, найденная Ghost Huntin\' Distribution на чердаке старого офиса. Он маленький и немного потрепанный, но отлично справляется со своей задачей.</p>
              <p>Анализ видеопотока представляет собой сложную задачу из-за ужасного качества экрана и небольших размеров, так что не торопитесь!</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_vcam_2">
+    <string name="equipment_info_tier_vcam_2">
          <![CDATA[
              <p>Видеокамера Parasonic— это HD-видео, которое значительно упрощает поиск сфер. Он по-прежнему получает много помех от активного призрака, но гораздо меньше, чем уровень 1.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_vcam_3">
+    <string name="equipment_info_tier_vcam_3">
          <![CDATA[
              <p>Собственная видеокамера Bony кинокласса с большим корпусом поддерживает гораздо больший экран. Он обеспечивает гораздо более четкое видео и меньше помех от призраков.</p>
          ]]>
      </string>
 
-    <string name="evidence_info_tier_sbox_1">
+    <string name="equipment_info_tier_sbox_1">
          <![CDATA[
              <p>При включении этой Spirit Box она начнет сканировать разные радиочастоты. Старайтесь находиться рядом с местами паранормальных явлений, выключайте свет в этой комнате и задавайте вопросы в надежде получить ответ.</p>
              <p>Если вопрос был услышан, на Spirit Box замигает красный индикатор. Если он мигает белым, вы получили ответ от призрака.</p>
              <p>Попробуйте спросить "Где ты?" или «Вы дружелюбны?». Имейте в виду, вам может не понравиться ответ, который вы получите.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_sbox_2">
+    <string name="equipment_info_tier_sbox_2">
          <![CDATA[
              <p>Этот более современный Spirit Box имеет более качественный динамик, который намного эффективнее сканирует частоты, что облегчает расшифровку паранормальных явлений.</p>
              <p>Если вопрос был услышан, на экране будет мигать черный крестик. Если вы получите ответ, вместо этого будет мигать маленький значок призрака.</p>
          ]]>
      </string>
-    <string name="evidence_info_tier_sbox_3">
+    <string name="equipment_info_tier_sbox_3">
          <![CDATA[
              <p>При включении этот Spirit Box сканирует обе частоты, две одновременно, что повышает вероятность получения паранормального ответа при задании вопросов. Он также имеет встроенный фильтр для уменьшения количества помех, которые вы слышите между взаимодействиями.</p>
              <p>Если слышен вопрос, но на него нет ответа, индикаторы RESPONSE будут мигать красным цветом. При ответе светодиоды мигают белым цветом одновременно со звуком.</p>
@@ -880,92 +864,92 @@
         MAPS PAGE
     -->
     <!-- Page Details -->
-    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
-    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
+    <string name="mapview_instruction_zoom">Масштабирование: сведите два пальца</string>
+    <string name="mapview_instruction_pan">Панорамирование: перетащите один палец</string>
     <!-- Building Floor Names -->
-    <string name="map_floor_name_first">First Floor</string>
-    <string name="map_floor_name_second">Second Floor</string>
-    <string name="map_floor_name_attic">Attic</string>
-    <string name="map_floor_name_basement">Basement</string>
+    <string name="map_floor_name_first">Первый этаж</string>
+    <string name="map_floor_name_second">Второй этаж</string>
+    <string name="map_floor_name_attic">Чердак</string>
+    <string name="map_floor_name_basement">Подвал</string>
 
     <!--
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
-    <string name="objectives_title_optional_objectives">Optional Objectives</string>
-    <string name="objectives_title_investigation_debrief">Investigation Debrief</string>
-    <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
-    <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
-    <string name="objectives_title_response">Responds to People who are:</string>
-    <string name="objectives_title_optional_objective_1">- OBJECTIVE 1</string>
-    <string name="objectives_title_optional_objective_2">- OBJECTIVE 2</string>
-    <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
-    <string name="objectives_title_response_alone">Alone</string>
-    <string name="objectives_title_response_everyone">Grouped Up</string>
+    <string name="objectives_title_optional_objectives">Дополнительные цели</string>
+    <string name="objectives_title_investigation_debrief">Отчет о расследовании</string>
+    <string name="objectives_title_ghost_name">Имя призрака:</string>
+    <string name="objectives_ghostname_note">Введите здесь имя призрака</string>
+    <string name="objectives_title_response">Отвечает людям, которые:</string>
+    <string name="objectives_title_optional_objective_1">- ЦЕЛЬ 1</string>
+    <string name="objectives_title_optional_objective_2">- ЦЕЛЬ 2</string>
+    <string name="objectives_title_optional_objective_3">- ЦЕЛЬ 3</string>
+    <string name="objectives_title_response_alone">Один</string>
+    <string name="objectives_title_response_everyone">Сгруппированы</string>
     <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Witness a Ghost Event</string>
-    <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
-    <string name="objective_info_emfreader">Get any EMF Reader activity</string>
-    <string name="objective_info_motionsensor">Get Motion Sensor activity</string>
-    <string name="objective_info_smudgestick">Smudge Stick the Ghost\'s location</string>
-    <string name="objective_info_crucifix">Prevent a hunt with the Crucifix</string>
-    <string name="objective_info_salt">Have the Ghost walk through Salt</string>
-    <string name="objective_info_escapehunt">Escape the ghost while it\'s hunting</string>
-    <string name="objective_info_repelwithsmudge">Repel the hunting ghost with a Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Have the ghost blow out a candle</string>
-    <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
+    <string name="objective_info_ghostevent">Станьте свидетелем призрачного события</string>
+    <string name="objective_info_ghostphotograph">Сфотографировать призрака</string>
+    <string name="objective_info_emfreader">Получить любую активность чтения EMF</string>
+    <string name="objective_info_motionsensor">Получить активность датчика движения</string>
+    <string name="objective_info_smudgestick">Размазать местоположение Призрака</string>
+    <string name="objective_info_crucifix">Предотвратите охоту с помощью Распятия</string>
+    <string name="objective_info_salt">Пусть призрак пройдет по Солю</string>
+    <string name="objective_info_escapehunt">Убежать от призрака, пока он охотится</string>
+    <string name="objective_info_repelwithsmudge">Отгоните охотящегося призрака с помощью палочки Smudge </string>
+    <string name="objective_info_extinguishcandle">Пусть призрак задует свечу</string>
+    <string name="objective_info_lowsanity">Получите среднее командное здравомыслие 25\% или ниже</string>
 
     <!--
         SPIRITBOX TOOL PAGE
     -->
     <!-- All Entries -->
     <!-- Personal Statements -->
-    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">I\'m scared!</string>
-    <string name="spiritbox_entry_q0_6">Hide!</string>
-    <string name="spiritbox_entry_q0_8">Panic!</string>
-    <string name="spiritbox_entry_q0_9">Run!</string>
+    <string name="spiritbox_entry_q0_3">Кровавая Мэри.</string>
+    <string name="spiritbox_entry_q0_5">Мне страшно!</string>
+    <string name="spiritbox_entry_q0_6">Скрыть!</string>
+    <string name="spiritbox_entry_q0_8">Паника!</string>
+    <string name="spiritbox_entry_q0_9">Беги!</string>
     <!-- Preferential Questions -->
-    <string name="spiritbox_entry_q1_1">Are you angry?</string>
-    <string name="spiritbox_entry_q1_2">Are you happy?</string>
-    <string name="spiritbox_entry_q1_3">Are you friendly?</string>
-    <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
-    <string name="spiritbox_entry_q1_7">Do you want us here?</string>
+    <string name="spiritbox_entry_q1_1">Вы злитесь?</string>
+    <string name="spiritbox_entry_q1_2">Вы счастливы?</string>
+    <string name="spiritbox_entry_q1_3">Вы дружелюбны?</string>
+    <string name="spiritbox_entry_q1_6">Вы хотите причинить нам вред?</string>
+    <string name="spiritbox_entry_q1_7">Вы хотите, чтобы мы были здесь?</string>
     <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">What is your name?</string>
+    <string name="spiritbox_entry_q2_1">Как вас зовут?</string>
     <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">How old are you?</string>
+    <string name="spiritbox_entry_q3_5">Сколько вам лет?</string>
     <!-- Location Questions -->
     <string name="spiritbox_entry_q5_8">Где ты?</string>
-    <string name="spiritbox_entry_q5_1">Are you here?</string>
-    <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
-    <string name="spiritbox_entry_q5_7">Where are you?</string>
+    <string name="spiritbox_entry_q5_1">Вы здесь?</string>
+    <string name="spiritbox_entry_q5_4">Вы здесь один?</string>
+    <string name="spiritbox_entry_q5_7">Где ты?</string>
     <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Attack us!</string>
-    <string name="spiritbox_entry_q6_5">Can you speak to us?</string>
-    <string name="spiritbox_entry_q6_7">Do something.</string>
-    <string name="spiritbox_entry_q6_8">Give us a sign!</string>
-    <string name="spiritbox_entry_q0_7">Hunt us!</string>
-    <string name="spiritbox_entry_q6_16">Why are you here?</string>
-    <string name="spiritbox_entry_q6_17">Make a noise.</string>
-    <string name="spiritbox_entry_q6_18">Open the door.</string>
-    <string name="spiritbox_entry_q6_9">Show yourself!</string>
-    <string name="spiritbox_entry_q6_12">Throw something.</string>
-    <string name="spiritbox_entry_q6_13">Turn off the light.</string>
-    <string name="spiritbox_entry_q6_14">Turn on the light.</string>
+    <string name="spiritbox_entry_q0_2">Атакуйте нас!</string>
+    <string name="spiritbox_entry_q6_5">Вы можете с нами поговорить?</string>
+    <string name="spiritbox_entry_q6_7">Сделайте что-нибудь.</string>
+    <string name="spiritbox_entry_q6_8">Дайте нам знак!</string>
+    <string name="spiritbox_entry_q0_7">Охоться на нас!</string>
+    <string name="spiritbox_entry_q6_16">Почему вы здесь?</string>
+    <string name="spiritbox_entry_q6_17">Пошуметь.</string>
+    <string name="spiritbox_entry_q6_18">Откройте дверь.</string>
+    <string name="spiritbox_entry_q6_9">Покажи себя!</string>
+    <string name="spiritbox_entry_q6_12">Бросьте что-нибудь.</string>
+    <string name="spiritbox_entry_q6_13">Выключите свет.</string>
+    <string name="spiritbox_entry_q6_14">Включите свет.</string>
     <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Hello?</string>
-    <string name="spiritbox_entry_q7_3">What can we do to help?</string>
-    <string name="spiritbox_entry_q7_9">What do you want?</string>
-    <string name="spiritbox_entry_q7_11">Why are you here?</string>
+    <string name="spiritbox_entry_q7_2">Привет?</string>
+    <string name="spiritbox_entry_q7_3">Чем мы можем помочь?</string>
+    <string name="spiritbox_entry_q7_9">Чего вы хотите?</string>
+    <string name="spiritbox_entry_q7_11">Почему вы здесь?</string>
     <!-- Sanity Questions -->
-    <string name="spiritbox_entry_q8_1">What is my sanity?</string>
-    <string name="spiritbox_entry_q8_2">How crazy am I?</string>
-    <string name="spiritbox_entry_q8_3">How insane am I?</string>
-    <string name="spiritbox_entry_q8_4">Am I insane?</string>
+    <string name="spiritbox_entry_q8_1">Каково мое здравомыслие?</string>
+    <string name="spiritbox_entry_q8_2">Насколько я сумасшедший?</string>
+    <string name="spiritbox_entry_q8_3">Насколько я сумасшедший?</string>
+    <string name="spiritbox_entry_q8_4">Я сошел с ума?</string>
 
     <string name="settings_appearancesettings">Появление</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
+    <string name="settings_fontstyle_phasmo">Журнал</string>
     <string name="settings_fontstylesettings">Стиль шрифта</string>
     <string name="evidence_evidence_section_overview">Обзор</string>
     <string name="evidence_evidence_section_tiers">Уровни</string>

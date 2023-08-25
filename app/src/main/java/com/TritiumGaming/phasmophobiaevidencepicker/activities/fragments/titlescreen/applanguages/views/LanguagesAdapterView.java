@@ -76,6 +76,8 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
                     1);
         }
         textView.setText(languages.get(position));
+        textView.setSelected(true);
+
 
         //color on item unselecting item
         holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);

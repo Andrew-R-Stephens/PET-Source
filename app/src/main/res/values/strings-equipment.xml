@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Equipment Tiers -->
+    <string name="equipment_tiers_1">Tier 1</string>
+    <string name="equipment_tiers_2">Tier 2</string>
+    <string name="equipment_tiers_3">Tier 3</string>
+
+    <!-- Equipment Tiers -->
+    <string name="equipment_tiers_num_1" translatable="false">1</string>
+    <string name="equipment_tiers_num_2" translatable="false">2</string>
+    <string name="equipment_tiers_num_3" translatable="false">3</string>
+
+    <string name="equipment_info_tier_dots_1">
+        <![CDATA[
+            <p>A Laser Grid Pen that is similar to a flashlight. You can walk around the location and scan quickly for evidence, the only downside being its short range and low light intensity.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_dots_2">
+        <![CDATA[
+            <p>This is the original D.O.T.S. projector. It is a placeable projector emitting an average\-sized sphere of light, except now you can encourage the ghost to walk into it by standing nearby.</p>
+            <p>Best for small\-to\-medium sized rooms.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_dots_3">
+        <![CDATA[
+            <p>This placeable projector scans the room at a much longer range with a wide, sweeping beam of light, making finding ghosts in those bigger rooms much easier. For the best coverage, place this projector on a wall or flat surface, stand nearby, and watch for ghost silhouettes.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_emf_1">
+        <![CDATA[
+            <p>An old, analog Meter with a small detection range, low accuracy, and low audio emissions. The needle will go into overdrive, pushing past level 5 when level 5 EMF is detected.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_emf_2">
+        <![CDATA[
+            <p>The trusted K2 Meter has a larger range and five LED lights to detect EMF readings, as well as an additional speaker module. One light will turn on when you activate the device. When moving within the K2\'s detection range of EMF spots, it will display an accurate value from two to five and make a clear, audible sound.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_emf_3">
+        <![CDATA[
+            <p>A high\-tech ParaReader. This device can track up to three EMF spots at once and has a furthest detection range.</p>
+            <p>It\'ll show the direction, range, and value of each reading at the same time. It plays sounds for each EMF detection so you can hear, from a distance, how many and how strong the readings are.</p>
+            <p>If an EMF spot fades away, a more recent EMF spot will be placed at the bottom of the list.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_ultraviolet_1">
+        <![CDATA[
+            <p>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</p>
+            <p>This device will charge up a UV spot within 10 seconds of exposure.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_ultraviolet_2">
+        <![CDATA[
+            <p>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</p>
+            <p>This device will charge up a UV spot within 5 seconds of exposure.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_ultraviolet_3">
+        <![CDATA[
+            <p>The UV Light Pro is a chunky flashlight that has a much brighter and wider cone of light, as well as an even quicker charge time. It is perfect for locating Ultraviolet Evidence quickly on a larger scale.<p>
+            <p>This device will charge up a UV spot within 1.5 seconds of exposure.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_thermometer_1">
+        <![CDATA[
+            <p>An old house\-Thermometer, ripped straight off of your Investigator\'s living room wall. This Thermometer has a slow sample rate, meaning you\'ll have to wait longer to get an accurate reading. You may want to bring one in and check back on it later in the contract.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_thermometer_2">
+        <![CDATA[
+            <p>An updated version of the classic temperature reader, but much more responsive. Instead of turning it on and getting a reading every two seconds, hold the \'Use\' button to scan for temperatures. This makes running around and checking each room\'s temperatures much faster than Tier I allows for.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_thermometer_3">
+        <![CDATA[
+            <p>A straight upgrade to Tier II, completing temperature scans at double the speed of its predecessor. Additionally, this more modern Thermometer is more accurate with each reading, allowing players to quickly and efficiently scan rooms to find the ghost or to get \"Freezing Temperatures\" ticked off in the Journal.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_book_1">
+        <![CDATA[
+            <p>This paper notepad can be placed nearby a ghost to encourage some paranormal writing. Make sure to place it nearby any actvity you see. Some ghosts may not notice the small notepad and pencil, so it may take some time before anything happens.<p/>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_book_2">
+        <![CDATA[
+            <p>With nicer pages and a pen, ghosts seem to notice this book a bit more often than the previous version. making wait times a bit shorter for evidence to occur.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_book_3">
+        <![CDATA[
+            <p>With its large profile, a mixture of high-quality materials and an ornate pen, this book has the highest change to be written in by ghosts. It has a larger range than the previous two tiers so placing this book within a ghost\'s interaction range is much easier.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_vcam_1">
+        <![CDATA[
+            <p>An old camcorder that Ghost Huntin\' Distribution found in the attic of the old office. It\'s small and a bit beaten up, but it does the job just fine.</p>
+            <p>Analyzing the video feed is a challenge due to its screen\'s awful quality and small dimensions, so take your time with it!</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_vcam_2">
+        <![CDATA[
+            <p>The Parasonic video camera is an HD video that makes finding orbs so much easier. It still gets a lot of interference from an active ghost, but much less so than Tier 1.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_vcam_3">
+        <![CDATA[
+            <p>Bony\'s very own movie\-grade video camera with a large body supports a much larger screen. It features a much clearer video feed and gets less interference from ghost apparitions.</p>
+        ]]>
+    </string>
+
+    <string name="equipment_info_tier_sbox_1">
+        <![CDATA[
+            <p>When turning this Spirit Box on, it will begin to scan through different radio frequencies. Make sure to stand near to any paranormal activity, turn off any lights in that room, and ask some questions in the hope of a response.</p>
+            <p>If the question has been heard, a red light will flash on the Spirit Box. If it flashes white, you\'ve got a response from the ghost.</p>
+            <p>Try asking "Where are you?" or "Are you friendly?". Be warned, you may not like the answer you receive.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_sbox_2">
+        <![CDATA[
+            <p>This more modern Spirit Box has a higher-quality speaker which is much more efficient at scanning through frequencies, making paranormal responses easier to decipher.</p>
+            <p>If a question has been heard, a black \'X\' will flash on the screen. If you get a response, the small ghost icon will flash instead.</p>
+        ]]>
+    </string>
+    <string name="equipment_info_tier_sbox_3">
+        <![CDATA[
+            <p>When turned on, this Spirit Box scans both frequencies, two at the same time, increasing the chance of picking up a paranormal response when asking questions. It also has a built-in filter to reduce the amount of static you hear between interactions.</p>
+            <p>If a question is heard an no response is given, the RESPONSE LEDs will flash red. If a reply is given, the LEDs will flash white in time with the sound.</p>
+        ]]>
+    </string>
+
+
+</resources>

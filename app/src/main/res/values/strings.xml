@@ -12,7 +12,7 @@
     <!-- Demo menu -->
     <string name="item" translatable="false">item</string>
 
-    <string-array name="menu_items">
+    <string-array name="menu_items" translatable="false">
         <item>Load Model</item>
         <item>Models</item>
         <item>Demo</item>
@@ -51,35 +51,6 @@
     <string name="general_evidence_reset_button">Reset</string>
 
     <!--
-        PERSISTENT PREFERENCE DATA KEYS
-    -->
-    <!-- Local Files -->
-    <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
-    <!-- Page Details -->
-    <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
-    <string name="preferences_newsletterFile_name" translatable="false">Newsletter_Preferences</string>
-    <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
-    <string name="preference_general_news_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
-    <string name="preference_pet_changelog_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
-    <string name="preference_phasmophobia_changelog_link" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
-    <string name="preference_newsletter_lastreaddate_general" translatable="false">newsletter_lastreaddate_general</string>
-    <string name="preference_newsletter_lastreaddate_pet" translatable="false">newsletter_lastreaddate_pet</string>
-    <string name="preference_newsletter_lastreaddate_phas" translatable="false">newsletter_lastreaddate_phas</string>
-    <string name="preference_language" translatable="false">chosenLanguage</string>
-    <string name="preference_network" translatable="false">networkPreference</string>
-    <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
-    <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
-    <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
-    <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
-    <string name="preference_colorSpace" translatable="false">colorSpace</string>
-    <string name="preference_fontType" translatable="false">fontType</string>
-    <!-- Review Tracking -->
-    <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
-    <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
-    <string name="reviewtracking_appTimeAlive" translatable="false">appTimeAlive</string>
-    <string name="reviewtracking_appTimesOpened" translatable="false">appTimesOpened</string>
-
-    <!--
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
@@ -102,19 +73,27 @@
         LANGUAGE FRAGMENT
     -->
     <!-- Languages -->
-    <string name="language_fullName_german" translatable="false">Deutsch</string>
-    <string name="language_fullName_english" translatable="false">English</string>
-    <string name="language_fullName_spanish" translatable="false">Español</string>
-    <string name="language_fullName_french" translatable="false">Français</string>
-    <string name="language_fullName_russian" translatable="false">Russian</string>
+    <string name="language_fullName_chinese_s" translatable="false">Chinese (Simplified)</string>
     <string name="language_fullName_czech" translatable="false">Czech</string>
+    <string name="language_fullName_english" translatable="false">English</string>
+    <string name="language_fullName_french" translatable="false">Français</string>
+    <string name="language_fullName_german" translatable="false">Deutsch</string>
+    <string name="language_fullName_italian" translatable="false">Italian</string>
+    <string name="language_fullName_japanese" translatable="false">Japanese</string>
+    <string name="language_fullName_portuguese" translatable="false">Portuguese</string>
+    <string name="language_fullName_russian" translatable="false">Russian</string>
+    <string name="language_fullName_spanish" translatable="false">Español</string>
 
-    <string name="language_abbrName_german" translatable="false">de</string>
-    <string name="language_abbrName_english" translatable="false">en</string>
-    <string name="language_abbrName_spanish" translatable="false">es</string>
-    <string name="language_abbrName_french" translatable="false">fr</string>
-    <string name="language_abbrName_russian" translatable="false">ru</string>
+    <string name="language_abbrName_chinese_simplified" translatable="false">zh</string>
     <string name="language_abbrName_czech" translatable="false">cs</string>
+    <string name="language_abbrName_english" translatable="false">en</string>
+    <string name="language_abbrName_french" translatable="false">fr</string>
+    <string name="language_abbrName_german" translatable="false">de</string>
+    <string name="language_abbrName_italian" translatable="false">it</string>
+    <string name="language_abbrName_japanese" translatable="false">ja</string>
+    <string name="language_abbrName_portuguese" translatable="false">pt</string>
+    <string name="language_abbrName_russian" translatable="false">ru</string>
+    <string name="language_abbrName_spanish" translatable="false">es</string>
 
     <!--
         ABOUT FRAGMENT

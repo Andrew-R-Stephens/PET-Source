@@ -4,23 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout67"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout73"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".1">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_languageChoiceIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,44 +29,50 @@
             app:srcCompat="@drawable/icon_next" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/constraintLayout73"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_marginEnd="3dp"
+        android:background="@drawable/radiobutton_1"
+        android:backgroundTint="@color/cb_mono_white_med"
+        android:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout67"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout68"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout70"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout67"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout67"
-        app:layout_constraintWidth_percent=".8">
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout67">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_languageName"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            style="?attr/quaternaryFont_Bold_Manual"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
             android:gravity="center"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
             android:textColor="?attr/titleFontColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".95" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="30sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout68"
+        android:id="@+id/constraintLayout70"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:alpha=".3"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout73"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout73"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout73"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".1">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

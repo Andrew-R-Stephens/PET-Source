@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class AppSettingsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -168,6 +170,7 @@ public class AppSettingsFragment extends Fragment {
             if (globalPreferencesViewModel != null && getContext() != null) {
                 globalPreferencesViewModel.setFontType(fontStyleData.getIndex());
             }
+
         });
 
         btn_fontStyle_right.setOnClickListener(v -> {

@@ -85,6 +85,49 @@ public class TitleScreenActivity extends AppCompatActivity {
         changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
     }
 
+    public int getFontStyle(int fontType) {
+        switch (fontType) {
+            case 1: {
+                return R.style.Android;
+            }
+            case 2: {
+                return R.style.Journal;
+            }
+            case 3: {
+                return R.style.Brick;
+            }
+            case 4: {
+                return R.style.Clean;
+            }
+            default: {
+                return R.style.Fonts_Base;
+            }
+        }
+    }
+
+    public int getColorSpace(int colorSpace) {
+        switch (colorSpace) {
+            case 1: {
+                return R.style.Monochromacy;
+            }
+            case 2: {
+                return R.style.Deuteranomaly;
+            }
+            case 3: {
+                return R.style.Protanomaly;
+            }
+            case 4: {
+                return R.style.Tritanomaly;
+            }
+            case 5: {
+                return R.style.Funhouse;
+            }
+            default: {
+                return R.style.Colorblind_Base;
+            }
+        }
+    }
+
     /**
      * changeTheme
      * <p>
@@ -94,55 +137,12 @@ public class TitleScreenActivity extends AppCompatActivity {
      */
     public void changeTheme(int colorSpace, int fontType) {
 
-        switch (fontType) {
-            case 0: {
-                getTheme().applyStyle(R.style.Fonts_Base, true);
-                break;
-            }
-            case 1: {
-                getTheme().applyStyle(R.style.Android, true);
-                break;
-            }
-            case 2: {
-                getTheme().applyStyle(R.style.Journal, true);
-                break;
-            }
-            case 3: {
-                getTheme().applyStyle(R.style.Brick, true);
-                break;
-            }
-            case 4: {
-                getTheme().applyStyle(R.style.Clean, true);
-                break;
-            }
-        }
+        int styleId = getFontStyle(fontType);
+        getTheme().applyStyle(styleId, true);
 
-        switch (colorSpace) {
-            case 0: {
-                setTheme(R.style.Colorblind_Base);
-                break;
-            }
-            case 1: {
-                setTheme(R.style.Monochromacy);
-                break;
-            }
-            case 2: {
-                setTheme(R.style.Deuteranomaly);
-                break;
-            }
-            case 3: {
-                setTheme(R.style.Protanomaly);
-                break;
-            }
-            case 4: {
-                setTheme(R.style.Tritanomaly);
-                break;
-            }
-            case 5: {
-                setTheme(R.style.Funhouse);
-                break;
-            }
-        }
+        int colorSpaceId = getColorSpace(colorSpace);
+        setTheme(colorSpaceId);
+
     }
 
     /**
