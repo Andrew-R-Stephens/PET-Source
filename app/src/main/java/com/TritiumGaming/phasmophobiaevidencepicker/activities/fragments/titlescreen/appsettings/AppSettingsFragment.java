@@ -112,7 +112,6 @@ public class AppSettingsFragment extends Fragment {
             colorspaceNames[i] = colorTypedArray.getString(i);
         }
         colorTypedArray.recycle();
-        colorTypedArray = null;
 
         ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
         int oldColorIndex = 0;

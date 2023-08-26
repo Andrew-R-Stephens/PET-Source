@@ -456,7 +456,7 @@
      </string>
     <string name="ghost_weaknesses_thetwins" >
          <![CDATA[
-             <p>Vzhledem k jejich kombinované aktivitě by mělo být hledání Dvojčat mnohem jednodušší. Dvojčata mají různou rychlost lovu, která se náhodně střídá mezi lovy. Jedno Twin loví 90% normální rychlostí (1,5 m/s), zatímco druhé Twin loví 110% normální rychlostí (1,9 m/s).</p>
+             <p>Vzhledem k jejich kombinované aktivitě by mělo být hledání Dvojčat mnohem jednodušší. Dvojčata mají různou rychlost lovu, která se náhodně střídá mezi lovy. Jedno Twin loví 90\% normální rychlostí (1,5 m/s), zatímco druhé Twin loví 110\% normální rychlostí (1,9 m/s).</p>
          ]]>
      </string>
     <string name="ghost_weaknesses_themimic" >
@@ -875,7 +875,7 @@
     <string name="objective_info_escapehunt">Unikněte duchovi, když je na lovu</string>
     <string name="objective_info_repelwithsmudge">Odžeňte loveckého ducha pomocí Smudge stick </string>
     <string name="objective_info_extinguishcandle">Nechte ducha sfouknout svíčku</string>
-    <string name="objective_info_lowsanity">Získejte průměrný týmový rozum 25 % nebo méně</string>
+    <string name="objective_info_lowsanity">Získejte průměrný týmový rozum 25 \% nebo méně</string>
 
     <!--
         TOOLS PAGE

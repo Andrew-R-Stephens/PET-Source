@@ -50,8 +50,8 @@ android {
 
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 78
-        versionName "8.0.4"
+        versionCode 80
+        versionName "8.0.6"
 
         externalNativeBuild {
             cmake {

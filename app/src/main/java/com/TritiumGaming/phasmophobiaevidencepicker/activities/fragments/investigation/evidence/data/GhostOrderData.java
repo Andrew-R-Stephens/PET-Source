@@ -5,14 +5,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 public class GhostOrderData {
 
     private final EvidenceViewModel evidenceViewModel;
-    private final InvestigationData investigationData;
 
     private int[] prevOrder;
     private int[] currOrder;
 
     public GhostOrderData(EvidenceViewModel evidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel;
-        investigationData = this.evidenceViewModel.getInvestigationData();
     }
 
     /**
@@ -75,9 +73,9 @@ public class GhostOrderData {
         // Order placeholder array based on scores
         for (int i = 0; i < newOrder.length - 1; ) {
 
-            int ratingA = investigationData.getGhost(
+            int ratingA = evidenceViewModel.getInvestigationData().getGhost(
                     newOrder[i]).getEvidenceScore();
-            int ratingB = investigationData.getGhost(
+            int ratingB = evidenceViewModel.getInvestigationData().getGhost(
                     newOrder[i + 1]).getEvidenceScore();
 
             if (ratingA < ratingB) {
@@ -111,6 +109,21 @@ public class GhostOrderData {
         }
 
         return currOrder;
+    }
+
+    public boolean hasChanges() {
+        if(prevOrder == null) {
+            createPrevOrder();
+        }
+        if(currOrder == null) {
+            createCurrOrder();
+        }
+
+        for(int i = 0; i < currOrder.length; i++) {
+            if(currOrder[i] != prevOrder[i])
+                return true;
+        }
+        return false;
     }
 
 }

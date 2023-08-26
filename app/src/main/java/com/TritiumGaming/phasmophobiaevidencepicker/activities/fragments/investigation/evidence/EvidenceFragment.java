@@ -312,13 +312,6 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
-    /*
-    protected void recreateGhostView() {
-        evidenceViewModel.getGhostOrderData().updateOrder();
-        createGhostViews(getView(), ghostContainer);
-    }
-    */
-
     private void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
@@ -688,8 +681,7 @@ public class EvidenceFragment extends Fragment {
                 evidenceViewModel.setRadioButtonChecked(index, 0);
 
                 evidenceViewModel.getGhostOrderData().updateOrder();
-
-                reorderGhostViews(ghostContainer);
+                requestInvalidateGhostContainer(ghostContainer);
             });
 
             icon2.setOnClickListener(v -> {
@@ -718,7 +710,7 @@ public class EvidenceFragment extends Fragment {
 
                 evidenceViewModel.getGhostOrderData().updateOrder();
 
-                reorderGhostViews(ghostContainer);
+                requestInvalidateGhostContainer(ghostContainer);
             });
 
             icon3.setOnClickListener(v -> {
@@ -747,13 +739,19 @@ public class EvidenceFragment extends Fragment {
 
                 evidenceViewModel.getGhostOrderData().updateOrder();
 
-                reorderGhostViews(ghostContainer);
+                requestInvalidateGhostContainer(ghostContainer);
             });
 
             evidenceContainer.addView(evidenceParent);
         }
 
         evidenceTypes.recycle();
+    }
+
+    protected void requestInvalidateGhostContainer(LinearLayout ghostContainer) {
+        if(evidenceViewModel.getGhostOrderData().hasChanges()) {
+            reorderGhostViews(ghostContainer);
+        }
     }
 
     protected void reorderGhostViews(LinearLayout ghostContainer) {
@@ -936,6 +934,7 @@ public class EvidenceFragment extends Fragment {
             });
 
             ghostView.setId(j);
+            Log.d("ID", j + "");
             ghostContainer.addView(ghostView);
 
         }

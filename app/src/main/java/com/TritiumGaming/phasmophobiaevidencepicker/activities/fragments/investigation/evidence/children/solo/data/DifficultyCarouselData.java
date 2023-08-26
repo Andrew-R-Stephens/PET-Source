@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
@@ -129,6 +130,8 @@ public class DifficultyCarouselData {
     }
 
     public boolean isDifficulty(int difficultyIndex) {
+        Log.d("Diff", getDifficultyIndex() + " vs " + difficultyIndex);
+
         return getDifficultyIndex() == difficultyIndex;
     }
 

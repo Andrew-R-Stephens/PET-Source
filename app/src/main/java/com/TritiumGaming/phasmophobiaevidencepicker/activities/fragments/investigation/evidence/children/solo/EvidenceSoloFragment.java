@@ -90,14 +90,19 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         });
         navigation_fragListener_reset.setOnClickListener(v -> {
                     reset();
-
-                    @SuppressLint("DetachAndAttachSameFragment")
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     if (Build.VERSION.SDK_INT >= 26) {
                         ft.setReorderingAllowed(false);
                     }
                     ft.detach(EvidenceSoloFragment.this).commitNow();
                     ft.attach(EvidenceSoloFragment.this).commitNow();
+                    /*if(getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            if (getView() != null) {
+                                getView().invalidate();
+                            }
+                        });
+                    }*/
                 }
         );
         btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).
@@ -125,9 +130,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         View.OnClickListener difficultyListener = v -> {
             //recreateGhostView();
-
             evidenceViewModel.getGhostOrderData().updateOrder();
-            reorderGhostViews(ghostContainer);
+            requestInvalidateGhostContainer(ghostContainer);
         };
         compositeListenerPrev = new CompositeListener();
         compositeListenerNext = new CompositeListener();

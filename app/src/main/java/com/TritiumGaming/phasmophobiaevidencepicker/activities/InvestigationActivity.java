@@ -62,7 +62,7 @@ public class InvestigationActivity extends AppCompatActivity {
 
         evidenceViewModel = factory.create(
                 EvidenceViewModel.class);
-        evidenceViewModel.init(getApplicationContext());
+        //evidenceViewModel.init(getApplicationContext());
 
         objectivesViewModel = factory.create(
                 ObjectivesViewModel.class);

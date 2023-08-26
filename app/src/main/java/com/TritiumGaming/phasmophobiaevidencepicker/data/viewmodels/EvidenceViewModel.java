@@ -27,27 +27,30 @@ public class EvidenceViewModel extends ViewModel {
     private SanityData sanityData;
     private GhostOrderData ghostOrderData;
 
+    private PhaseTimerData phaseTimerData;
+    private MapCarouselData mapCarouselData;
+    private DifficultyCarouselData difficultyCarouselData;
+
     private boolean isCollapsed = false;
 
     private int[] radioButtonsChecked;
     private boolean[] rejectionPile;
 
-    private PhaseTimerData phaseTimerData;
-    private MapCarouselData mapCarouselData;
-    private DifficultyCarouselData difficultyCarouselData;
-
     public void init(Context c) {
 
         if (!hasInvestigationData()) {
+            Log.d("ViewModel", "creating new invest data");
             setInvestigationData(new InvestigationData(this, c));
             investigationData.print();
         }
 
         if (!hasDifficultyCarouselData()) {
+            Log.d("ViewModel", "creating new diff data");
             difficultyCarouselData = new DifficultyCarouselData(this, c);
         }
 
         if (!hasMapCarouselData()) {
+            Log.d("ViewModel", "creating new mapcar data");
             mapCarouselData = new MapCarouselData(this);
         }
 
