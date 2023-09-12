@@ -9,6 +9,7 @@
 
     <!-- Page Details -->
 
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Lo strumento di prova definitivo</string>
     <string name="titlescreen_button">Inizia la caccia</string>
     <string name="titlescreen_languages_label">Seleziona la lingua</string>
@@ -64,6 +65,10 @@
 
     <!-- Page Details -->
 
+    <string name="settings_fontstyle_android">Androide</string>
+    <string name="settings_fontstyle_journal">Rivista</string>
+    <string name="settings_fontstyle_brick">Mattone</string>
+    <string name="settings_fontstyle_clean">Pulita</string>
     <string name="messagecenter_inboxestitle_label">Centro messaggi</string>
     <string name="messagecenter_inbox_general">Notizie generali</string>
     <string name="messagecenter_inbox_pet">ANIMALE DOMESTICO. Registro delle modifiche</string>
@@ -94,8 +99,10 @@
 
     <!-- Building Floor Names -->
 
-    <string name="map_floor_name_first">Primo piano</string>
-    <string name="map_floor_name_second">Secondo piano</string>
+    <string name="map_floor_name_ground">Primo Piano</string>
+    <string name="map_floor_name_first">Primo Piano</string>
+    <string name="map_floor_name_second">Secondo Piano</string>
+    <string name="map_floor_name_third">Terzo Piano</string>
     <string name="map_floor_name_attic">Attico</string>
     <string name="map_floor_name_basement">Seminterrato</string>
 
@@ -187,9 +194,8 @@
     <string name="spiritbox_entry_q8_2">Quanto sono pazzo?</string>
     <string name="spiritbox_entry_q8_3">Quanto sono pazzo?</string>
     <string name="spiritbox_entry_q8_4">Sono pazzo?</string>
-    <string name="settings_fontstyle_phasmo">rivista</string>
-    <string name="evidence_evidence_section_overview">Panoramica</string>
-    <string name="evidence_evidence_section_tiers">Livelli</string>
+    <string name="evidence_section_overview">Panoramica</string>
+    <string name="equipment_section_tiers">Livelli</string>
     <string name="evidence_requirement_level_title">Livello di sblocco:</string>
     <string name="evidence_requirement_cost_title">Costo:</string>
 
@@ -392,5 +398,6 @@
     <string name="ghost_huntingdata_wraith"><![CDATA[<p>Caccia al 50 \% Sanity.</p>]]></string>
     <string name="ghost_huntingdata_yokai"><![CDATA[<p>Caccia a 50 \% Sanità.</p><p>Non riesco a sentire gli investigatori né a percepire apparecchiature elettroniche.</p>]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>Caccia al 50 \% Sanity.</p>]]></string>
+    <string name="equipment_section_equipment">Attrezzatura</string>
 
 </resources>

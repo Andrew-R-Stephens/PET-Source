@@ -6,13 +6,20 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 
 import java.util.ArrayList;
 
@@ -25,13 +32,17 @@ public class InteractiveMapDisplayView extends View {
 
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private InteractiveMapControlData controllerData = null;
+    private InteractiveMapControlData controllerData;
 
-    private MapData mapData = null;
+    private MapData mapData;
     private final ArrayList<Bitmap> mapImages = new ArrayList<>();
+    private FloorModel floorModel;
 
     private Rect frameRect;
     private final Paint paint;
+
+    private RoomModel selectedRoomModel;
+    private MapPointRunnable clickRunnable;
 
     /**
      * InteractiveMapDisplayView parameterized constructor
@@ -111,6 +122,10 @@ public class InteractiveMapDisplayView extends View {
         bitmapUtils = null;
     }
 
+    public void setFloorModel(FloorModel floorModel) {
+        this.floorModel = floorModel;
+    }
+
     /**
      * onDraw method
      *
@@ -134,6 +149,14 @@ public class InteractiveMapDisplayView extends View {
                     canvas.drawBitmap(b, controllerData.getMatrix(), paint);
                 }
             }
+
+            if(selectedRoomModel != null) {
+                Polygon polygon = new Polygon();
+                for(PointF p: selectedRoomModel.getRoomArea().getPoints()) {
+                    polygon.addPoint((int)(p.x * controllerData.getZoomLevel()), (int)(p.y * controllerData.getZoomLevel()));
+                }
+            }
+
         }
 
         if (frameRect == null) {
@@ -148,7 +171,27 @@ public class InteractiveMapDisplayView extends View {
                 canvas.drawRect(frameRect, paint);
             }
         }
+    }
 
+    public class MapPointRunnable implements Runnable {
+
+        @Override
+        public void run() {
+
+            ArrayList<RoomModel> rooms = floorModel.getFloorRooms();
+            for(RoomModel room: rooms) {
+
+                Polygon shape = new Polygon();
+                for(PointF p: room.getRoomArea().getPoints()) {
+                    shape.addPoint((int)(p.x * getWidth()) , (int)(p.y * getHeight()));
+                }
+                if(shape.contains(new Point2D.Float((int)controllerData.getPressedPointX(), (int)controllerData.getPressedPointY()))) {
+                    System.out.println("setting temp room");
+                    selectedRoomModel = room;
+                    selectedRoomModel.print();
+                }
+            }
+        }
     }
 
     /**

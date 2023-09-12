@@ -1,34 +1,28 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
-import com.google.firebase.analytics.FirebaseAnalytics;
-
-import java.util.Locale;
 
 /**
  * InvestigationActivity class
  *
  * @author TritiumGamingStudios
  */
-public class InvestigationActivity extends AppCompatActivity {
+public class InvestigationActivity extends PETActivity {
 
+    /*
     private FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel;
     private PermissionsViewModel permissionsViewModel;
+    */
     private EvidenceViewModel evidenceViewModel;
     private ObjectivesViewModel objectivesViewModel;
     private MapMenuViewModel mapMenuViewModel;
@@ -39,15 +33,17 @@ public class InvestigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         initViewModels();
-        initPrefs();
 
         //determineInvestigationFragment();
         setContentView(R.layout.activity_investigation_solo);
 
     }
 
-    private void initViewModels() {
-        analytics = FirebaseAnalytics.getInstance(this);
+    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
+
+        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
+
+        /*analytics = FirebaseAnalytics.getInstance(this);
 
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
@@ -58,31 +54,27 @@ public class InvestigationActivity extends AppCompatActivity {
         permissionsViewModel = factory.create(
                 PermissionsViewModel.class);
         permissionsViewModel = new ViewModelProvider(this).get(
-                PermissionsViewModel.class);
+                PermissionsViewModel.class);*/
 
         evidenceViewModel = factory.create(
                 EvidenceViewModel.class);
-        //evidenceViewModel.init(getApplicationContext());
 
         objectivesViewModel = factory.create(
                 ObjectivesViewModel.class);
 
         mapMenuViewModel = factory.create(
                 MapMenuViewModel.class);
+
+        return factory;
     }
 
-    private void initPrefs() {
+    protected void initPrefs() {
+        super.initPrefs();
 
         setLanguage(getAppLanguage());
-
-        changeTheme();
-
-        if (globalPreferencesViewModel.getIsAlwaysOn()) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
-
     }
 
+    /*
     private void determineInvestigationFragment() {
         int intentFragment = 0;
         if(getIntent() != null && getIntent().getExtras()!= null) {
@@ -100,12 +92,9 @@ public class InvestigationActivity extends AppCompatActivity {
             }
         }
     }
+    */
 
-    /**
-     * setLanguage method
-     *
-     * @param lang The desired new language
-     */
+    /*
     public void setLanguage(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -113,76 +102,68 @@ public class InvestigationActivity extends AppCompatActivity {
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
+    */
 
-    /**
-     * getAppLanguage method
-     *
-     * @return the abbreviation of the chosen language that's saved to file
-     */
+    /*
     public String getAppLanguage() {
         return globalPreferencesViewModel.getLanguageName();
     }
+    */
 
-    /**
-     * changeTheme method
-     *
-     */
-    public void changeTheme() {
-
-        int colorSpace = globalPreferencesViewModel.getColorSpace();
-        int fontType = globalPreferencesViewModel.getFontType();
-
+    /*
+    public int getFontStyle(int fontType) {
         switch (fontType) {
-            case 0: {
-                getTheme().applyStyle(R.style.Fonts_Base, true);
-                break;
-            }
             case 1: {
-                getTheme().applyStyle(R.style.Android, true);
-                break;
+                return R.style.Android;
             }
             case 2: {
-                getTheme().applyStyle(R.style.Journal, true);
-                break;
+                return R.style.Journal;
             }
             case 3: {
-                getTheme().applyStyle(R.style.Brick, true);
-                break;
+                return R.style.Brick;
             }
             case 4: {
-                getTheme().applyStyle(R.style.Clean, true);
-                break;
+                return R.style.Clean;
+            }
+            default: {
+                return R.style.Fonts_Base;
             }
         }
+    }
 
+    public int getColorSpace(int colorSpace) {
         switch (colorSpace) {
-            case 0: {
-                setTheme(R.style.Colorblind_Base);
-                break;
-            }
             case 1: {
-                setTheme(R.style.Monochromacy);
-                break;
+                return R.style.Monochromacy;
             }
             case 2: {
-                setTheme(R.style.Deuteranomaly);
-                break;
+                return R.style.Deuteranomaly;
             }
             case 3: {
-                setTheme(R.style.Protanomaly);
-                break;
+                return R.style.Protanomaly;
             }
             case 4: {
-                setTheme(R.style.Tritanomaly);
-                break;
+                return R.style.Tritanomaly;
             }
             case 5: {
-                setTheme(R.style.Funhouse);
-                break;
+                return R.style.Funhouse;
+            }
+            default: {
+                return R.style.Colorblind_Base;
             }
         }
+    }
+
+    public void changeTheme(int colorSpace, int fontType) {
+
+        int styleId = getFontStyle(fontType);
+        getTheme().applyStyle(styleId, true);
+
+        int colorSpaceId = getColorSpace(colorSpace);
+        setTheme(colorSpaceId);
 
     }
+    */
 
 
     @Override

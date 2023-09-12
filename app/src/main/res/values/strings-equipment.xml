@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="equipment_section_tiers">Tiers</string>
+    <string name="equipment_section_equipment">Equipment</string>
+    <string name="evidence_requirement_level_title">Unlock Level:</string>
+    <string name="evidence_requirement_cost_title">Cost:</string>
+
     <!-- Equipment Tiers -->
     <string name="equipment_tiers_1">Tier 1</string>
     <string name="equipment_tiers_2">Tier 2</string>

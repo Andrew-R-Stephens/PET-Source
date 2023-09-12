@@ -10,6 +10,7 @@
 
     <!-- Page Details -->
 
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">A melhor ferramenta de evidência</string>
     <string name="titlescreen_button">Comece a caçar</string>
     <string name="titlescreen_languages_label">Selecione o idioma</string>
@@ -65,6 +66,10 @@
 
     <!-- Page Details -->
 
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Diária</string>
+    <string name="settings_fontstyle_brick">Tijolo</string>
+    <string name="settings_fontstyle_clean">Limpo</string>
     <string name="messagecenter_inboxestitle_label">Centro de mensagens</string>
     <string name="messagecenter_inbox_general">Noticias gerais</string>
     <string name="messagecenter_inbox_pet">BICHO DE ESTIMAÇÃO. Registro de alterações</string>
@@ -95,8 +100,10 @@
 
     <!-- Building Floor Names -->
 
+    <string name="map_floor_name_ground">o Rés-do-chão</string>
     <string name="map_floor_name_first">Primeiro andar</string>
     <string name="map_floor_name_second">Segundo andar</string>
+    <string name="map_floor_name_third">Terceiro andar</string>
     <string name="map_floor_name_attic">Sótão</string>
     <string name="map_floor_name_basement">Porão</string>
 
@@ -188,9 +195,8 @@
     <string name="spiritbox_entry_q8_2">Quão louco eu sou?</string>
     <string name="spiritbox_entry_q8_3">Quão louco eu sou?</string>
     <string name="spiritbox_entry_q8_4">Eu sou insano?</string>
-    <string name="settings_fontstyle_phasmo">Diário</string>
-    <string name="evidence_evidence_section_overview">Visão geral</string>
-    <string name="evidence_evidence_section_tiers">Níveis</string>
+    <string name="evidence_section_overview">Visão geral</string>
+    <string name="equipment_section_tiers">Níveis</string>
     <string name="evidence_requirement_level_title">Nível de desbloqueio:</string>
     <string name="evidence_requirement_cost_title">Custo:</string>
 
@@ -394,5 +400,6 @@
     <string name="ghost_huntingdata_wraith"><![CDATA[<p>Caça aos 50 anos\% S.</p>]]></string>
     <string name="ghost_huntingdata_yokai"><![CDATA[<p>Caça com 50\%\% Sidade.</p><p>Não consegue ouvir os investigadores nem detectar equipamentos eletrônicos.</p>]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>Caça aos 50 anos\% S.</p>]]></string>
+    <string name="equipment_section_equipment">Equipamento</string>
 
 </resources>

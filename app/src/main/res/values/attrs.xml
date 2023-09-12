@@ -84,12 +84,6 @@
     -->
     <attr name="state_done" format="boolean" />
 
-    <attr name="equipment_tier" format="enum">
-        <enum name="TIER_1" value="1"/>
-        <enum name="TIER_2" value="2"/>
-        <enum name="TIER_3" value="3"/>
-    </attr>
-
     <attr name="equipment_type" format="enum">
         <enum name="DOTS_1" value="1"/>
         <enum name="DOTS_2" value="2"/>
@@ -113,5 +107,7 @@
         <enum name="SBOX_2" value="2"/>
         <enum name="SBOX_3" value="3"/>
     </attr>
+
+    <attr name="tempFontStyle" format="reference"/>
 
 </resources>

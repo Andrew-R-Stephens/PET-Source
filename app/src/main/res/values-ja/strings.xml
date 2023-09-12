@@ -9,6 +9,7 @@
 
     <!-- Page Details -->
 
+    <string name="titlescreen_beta_label">ベータ</string>
     <string name="titlescreen_description">究極の証拠ツール</string>
     <string name="titlescreen_button">狩猟を開始する</string>
     <string name="titlescreen_languages_label">言語を選択する</string>
@@ -61,10 +62,14 @@
 
     <!-- Font-Style Types -->
 
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_classic">P.E.T. クラシック</string>
 
     <!-- Page Details -->
 
+    <string name="settings_fontstyle_android">アンドロイド</string>
+    <string name="settings_fontstyle_journal">ジャーナル</string>
+    <string name="settings_fontstyle_brick">レンガ</string>
+    <string name="settings_fontstyle_clean">清らか</string>
     <string name="messagecenter_inboxestitle_label">メッセージセンター</string>
     <string name="messagecenter_inbox_general">一般ニュース</string>
     <string name="messagecenter_inbox_pet">ペット。変更履歴</string>
@@ -96,8 +101,10 @@
 
     <!-- Building Floor Names -->
 
-    <string name="map_floor_name_first">1 階</string>
-    <string name="map_floor_name_second">2 階</string>
+    <string name="map_floor_name_ground">一階</string>
+    <string name="map_floor_name_first">一階</string>
+    <string name="map_floor_name_second">二階</string>
+    <string name="map_floor_name_third">三階</string>
     <string name="map_floor_name_attic">屋根裏</string>
     <string name="map_floor_name_basement">地下</string>
 
@@ -189,9 +196,8 @@
     <string name="spiritbox_entry_q8_2">私はどれほど狂っているのでしょうか？</string>
     <string name="spiritbox_entry_q8_3">私はどれほど狂っているのでしょうか？</string>
     <string name="spiritbox_entry_q8_4">私は正気ですか？</string>
-    <string name="settings_fontstyle_phasmo">ジャーナル</string>
-    <string name="evidence_evidence_section_overview">概要</string>
-    <string name="evidence_evidence_section_tiers">階層</string>
+    <string name="evidence_section_overview">概要</string>
+    <string name="equipment_section_tiers">階層</string>
     <string name="evidence_requirement_level_title">ロック解除レベル:</string>
     <string name="evidence_requirement_cost_title">料金：</string>
 
@@ -392,5 +398,6 @@
     <string name="ghost_huntingdata_wraith"><![CDATA[<p>50 \% Sアニティで狩り。</p>]]></string>
     <string name="ghost_huntingdata_yokai"><![CDATA[<p>50 周年で狩りをする。</p><p>捜査員の声が聞こえず、電子機器も感知できない。</p>\% S]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>50 \% Sアニティで狩り。</p>]]></string>
+    <string name="equipment_section_equipment">装置</string>
 
 </resources>

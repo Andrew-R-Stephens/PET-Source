@@ -13,6 +13,7 @@
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
+    <string name="titlescreen_beta_label">Бета</string>
     <string name="titlescreen_description">Лучший инструмент для сбора доказательств</string>
     <string name="titlescreen_button">Начать охоту</string>
     <string name="titlescreen_languages_label">Выбрать язык</string>
@@ -77,6 +78,10 @@
     <string name="settings_colorblindnessmode_protanomaly">протанопия</string>
     <string name="settings_colorblindnessmode_tritanomaly">Тританопия</string>
     <string name="settings_fontstyle_classic">P.E.T. Классический</string>
+    <string name="settings_fontstyle_android">Андроид</string>
+    <string name="settings_fontstyle_journal">Журнал</string>
+    <string name="settings_fontstyle_brick">Кирпич</string>
+    <string name="settings_fontstyle_clean">Чистый</string>
     <string name="messagecenter_inboxestitle_label">Центр сообщений</string>
     <string name="messagecenter_inbox_general">Общие новости</string>
     <string name="messagecenter_inbox_pet">P.E.T. Журнал изменений</string>
@@ -867,8 +872,10 @@
     <string name="mapview_instruction_zoom">Масштабирование: сведите два пальца</string>
     <string name="mapview_instruction_pan">Панорамирование: перетащите один палец</string>
     <!-- Building Floor Names -->
+    <string name="map_floor_name_ground">цокольный этаж</string>
     <string name="map_floor_name_first">Первый этаж</string>
     <string name="map_floor_name_second">Второй этаж</string>
+    <string name="map_floor_name_third">Третий этаж</string>
     <string name="map_floor_name_attic">Чердак</string>
     <string name="map_floor_name_basement">Подвал</string>
 
@@ -949,13 +956,13 @@
     <string name="spiritbox_entry_q8_4">Я сошел с ума?</string>
 
     <string name="settings_appearancesettings">Появление</string>
-    <string name="settings_fontstyle_phasmo">Журнал</string>
     <string name="settings_fontstylesettings">Стиль шрифта</string>
-    <string name="evidence_evidence_section_overview">Обзор</string>
-    <string name="evidence_evidence_section_tiers">Уровни</string>
+    <string name="evidence_section_overview">Обзор</string>
+    <string name="equipment_section_tiers">Уровни</string>
     <string name="settings_adsconsentcontrolsettings">Конфигурация GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Редактировать</string>
     <string name="evidence_requirement_level_title">Уровень разблокировки:</string>
     <string name="evidence_requirement_cost_title">Расходы:</string>
+    <string name="equipment_section_equipment">Оборудование</string>
 
 </resources>

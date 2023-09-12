@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapModel;
 
 /**
  * MapMenuViewModel class
@@ -21,6 +22,8 @@ public class MapMenuViewModel extends ViewModel {
 
     private MapData[] mapData;
     private int currentMap = 0;
+
+    private MapModel currentMapModel;
 
     public void init(Context context) {
 
@@ -51,28 +54,6 @@ public class MapMenuViewModel extends ViewModel {
             //Set map name
             mapData[i].setMapName(mapTypedArray.getString(0));
 
-            //Set map layer background images
-            TypedArray mapImages =
-                    context.getResources().obtainTypedArray(mapTypedArray.getResourceId(2, 0));
-            for (int j = 0; j < mapImages.length(); j++) {
-                mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
-            }
-            mapImages.recycle(); //cleanup
-
-            //Set map layer outline images
-            mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(1, 0));
-            for (int j = 0; j < mapImages.length(); j++) {
-                mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
-            }
-            mapImages.recycle(); //cleanup
-
-            //Set map layer door images
-            mapImages = context.getResources().obtainTypedArray(mapTypedArray.getResourceId(3, 0));
-            for (int j = 0; j < mapImages.length(); j++) {
-                mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
-            }
-            mapImages.recycle(); //cleanup
-
             //Set map layer names
             TypedArray mapLayerNamesIDs =
                     context.getResources().obtainTypedArray(mapTypedArray.getResourceId(4, 0));
@@ -86,6 +67,14 @@ public class MapMenuViewModel extends ViewModel {
 
             //Set map thumbnail resource id
             mapData[i].setThumbnail(mapTypedArray.getResourceId(7, 0));
+
+            //Set map layer primary images
+            TypedArray mapImages =
+                    context.getResources().obtainTypedArray(mapTypedArray.getResourceId(8, 0));
+            for (int j = 0; j < mapImages.length(); j++) {
+                mapData[i].addFloorLayer(j, mapImages.getResourceId(j, 0));
+            }
+            mapImages.recycle(); //cleanup
 
             mapTypedArray.recycle();
         }
@@ -202,6 +191,14 @@ public class MapMenuViewModel extends ViewModel {
      */
     public Thread getImageDisplayThread() {
         return imageDisplayThread;
+    }
+
+    public void setCurrentMapModel(MapModel currentMapModel) {
+        this.currentMapModel = currentMapModel;
+    }
+
+    public MapModel getCurrentMapModel() {
+        return this.currentMapModel;
     }
 
 }

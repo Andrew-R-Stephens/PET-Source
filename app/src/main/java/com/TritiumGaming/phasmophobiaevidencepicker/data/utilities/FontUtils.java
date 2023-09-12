@@ -5,6 +5,8 @@ import android.text.Spanned;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.PoiType;
+
 /**
  * FontStyler class
  *
@@ -103,6 +105,25 @@ public class FontUtils {
         }
 
         return msg.substring(0, endIndex).trim();
+    }
+
+    public static String toTitle(String s) {
+
+        StringBuilder titleCase = new StringBuilder(s.length());
+        boolean nextTitleCase = true;
+
+        for (char c : s.toLowerCase().toCharArray()) {
+            if (!Character.isLetterOrDigit(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
+            titleCase.append(c);
+        }
+
+        return titleCase.toString().replace("_", " ");
+
     }
 
 }

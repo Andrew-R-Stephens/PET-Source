@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="evidence_section_overview">Overview</string>
+
     <!-- Evidence Names -->
     <string name="evidence_type_dots">D.O.T.S.</string>
     <string name="evidence_type_emf">EMF 5</string>

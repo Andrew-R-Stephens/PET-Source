@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_evidenceFragment_to_utilitiesFragment"
             app:destination="@id/utilitiesFragment" />
+        <action
+            android:id="@+id/action_evidenceFragment_to_itemStoreFragment"
+            app:destination="@id/itemStoreFragment" />
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
@@ -205,5 +208,13 @@
         <action
             android:id="@+id/action_modelFragment_to_mapMenuFragment"
             app:destination="@id/mapMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemStoreFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.ItemStoreFragment"
+        android:label="ItemStoreFragment" >
+        <action
+            android:id="@+id/action_itemStoreFragment_to_evidenceFragment"
+            app:destination="@id/evidenceFragment" />
     </fragment>
 </navigation>

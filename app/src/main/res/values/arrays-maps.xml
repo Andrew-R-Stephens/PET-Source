@@ -2,6 +2,32 @@
 <resources>
 
     <!--
+        POI Icons
+        {
+            FUSE_BOX,
+            CAR_KEY, CABIN_KEY, BONE,
+            MUSIC_BOX, HAUNTED_MIRROR, OUIJA_BOARD, SUMMONING_CIRCLE,
+            TAROT_CARDS, VOODO_DOLL, MONKEY_PAW_BASE, MONKEY_PAW_WISH,
+            HIDING_LOCATION;
+        }
+    -->
+    <integer-array name="poi_resources_array">
+        <item>@drawable/icon_fusebox</item>
+        <item>@drawable/icon_keycar</item>
+        <item>@drawable/icon_keycabin</item>
+        <item>@drawable/icon_difficulties</item>
+        <item>@drawable/icon_ci_musicbox</item>
+        <item>@drawable/icon_ci_mirror</item>
+        <item>@drawable/icon_ci_ouija</item>
+        <item>@drawable/icon_ci_circle</item>
+        <item>@drawable/icon_ci_tarot</item>
+        <item>@drawable/icon_ci_voodoo</item>
+        <item>@drawable/icon_ci_paw</item>
+        <item>@drawable/icon_ci_pawwish</item>
+        <item>@drawable/icon_difficulties</item>
+    </integer-array>
+
+    <!--
         MAPS PAGE
     -->
 
@@ -50,136 +76,150 @@
     <!-- TODO Include background images and foreground objective locations-->
     <integer-array name= "map_asylum_array">
         <item>@string/map_name_asylum</item>
-        <item>@array/map_asylum_image_outline_array</item>
-        <item>@array/map_asylum_image_background_array</item>
-        <item>@array/map_asylum_image_doors_array</item>
+        <item>@array/map_asylum_image_array</item>
+        <item>@array/map_asylum_image_array</item>
+        <item>@array/map_asylum_image_array</item>
         <item>@array/map_asylum_layerName_array</item>
         <item>1</item>
         <item>2</item>
         <item>@drawable/thumbnail_asylum</item>
+        <item>@array/map_asylum_image_array</item>
     </integer-array>
     <integer-array name= "map_meadows_array">
         <item>@string/map_name_meadows</item>
-        <item>@array/map_meadows_image_outline_array</item>
-        <item>@array/map_meadows_image_background_array</item>
-        <item>@array/map_meadows_image_doors_array</item>
+        <item>@array/map_meadows_image_array</item>
+        <item>@array/map_meadows_image_array</item>
+        <item>@array/map_meadows_image_array</item>
         <item>@array/map_meadows_layerName_array</item>
         <item>1</item>
         <item>2</item>
         <item>@drawable/thumbnail_meadows</item>
+        <item>@array/map_meadows_image_array</item>
     </integer-array>
     <integer-array name= "map_meadows_r_array">
         <item>@string/map_name_meadows_r</item>
-        <item>@array/map_meadows_image_outline_array</item>
-        <item>@array/map_meadows_image_background_array</item>
-        <item>@array/map_meadows_image_doors_array</item>
+        <item>@array/map_meadows_r_image_array</item>
+        <item>@array/map_meadows_r_image_array</item>
+        <item>@array/map_meadows_r_image_array</item>
         <item>@array/map_meadows_layerName_array</item>
         <item>1</item>
         <item>0</item>
         <item>@drawable/thumbnail_meadows</item>
+        <item>@array/map_meadows_r_image_array</item>
     </integer-array>
     <integer-array name= "map_campwoodwind_array">
         <item>@string/map_name_campwoodwind</item>
-        <item>@array/map_campwoodwind_image_outline_array</item>
-        <item>@array/map_campwoodwind_image_background_array</item>
-        <item>@array/map_campwoodwind_image_doors_array</item>
+        <item>@array/map_campwoodwind_image_array</item>
+        <item>@array/map_campwoodwind_image_array</item>
+        <item>@array/map_campwoodwind_image_array</item>
         <item>@array/map_campwoodwind_layerName_array</item>
         <item>0</item>
         <item>0</item>
         <item>@drawable/thumbnail_campmaple</item>
+        <item>@array/map_campwoodwind_image_array</item>
     </integer-array>
     <integer-array name= "map_campmaple_array">
         <item>@string/map_name_campmaple</item>
-        <item>@array/map_campmaple_image_outline_array</item>
-        <item>@array/map_campmaple_image_background_array</item>
-        <item>@array/map_campmaple_image_doors_array</item>
+        <item>@array/map_campmaple_image_array</item>
+        <item>@array/map_campmaple_image_array</item>
+        <item>@array/map_campmaple_image_array</item>
         <item>@array/map_campmaple_layerName_array</item>
         <item>0</item>
         <item>1</item>
         <item>@drawable/thumbnail_campmaple</item>
+        <item>@array/map_campmaple_image_array</item>
     </integer-array>
     <integer-array name= "map_bleasdale_array">
         <item>@string/map_name_bleasdale</item>
-        <item>@array/map_bleasdale_image_outline_array</item>
-        <item>@array/map_bleasdale_image_background_array</item>
-        <item>@array/map_bleasdale_image_doors_array</item>
+        <item>@array/map_bleasdale_image_array</item>
+        <item>@array/map_bleasdale_image_array</item>
+        <item>@array/map_bleasdale_image_array</item>
         <item>@array/map_bleasdale_layerName_array</item>
         <item>0</item>
         <item>0</item>
         <item>@drawable/thumbnail_bleasedale</item>
+        <item>@array/map_bleasdale_image_array</item>
     </integer-array>
     <integer-array name= "map_grafton_array">
         <item>@string/map_name_grafton</item>
-        <item>@array/map_grafton_image_outline_array</item>
-        <item>@array/map_grafton_image_background_array</item>
-        <item>@array/map_grafton_image_doors_array</item>
+        <item>@array/map_grafton_image_array</item>
+        <item>@array/map_grafton_image_array</item>
+        <item>@array/map_grafton_image_array</item>
         <item>@array/map_grafton_layerName_array</item>
         <item>0</item>
         <item>0</item>
         <item>@drawable/thumbnail_grafton</item>
+        <item>@array/map_grafton_image_array</item>
     </integer-array>
     <integer-array name= "map_brownstone_array">
         <item>@string/map_name_brownstone</item>
-        <item>@array/map_brownstone_image_outline_array</item>
-        <item>@array/map_brownstone_image_background_array</item>
-        <item>@array/map_brownstone_image_doors_array</item>
+        <item>@array/map_brownstone_image_array</item>
+        <item>@array/map_brownstone_image_array</item>
+        <item>@array/map_brownstone_image_array</item>
         <item>@array/map_brownstone_layerName_array</item>
         <item>0</item>
         <item>1</item>
         <item>@drawable/thumbnail_highschool</item>
+        <item>@array/map_brownstone_image_array</item>
     </integer-array>
     <integer-array name= "map_edgefield_array">
         <item>@string/map_name_edgefield</item>
-        <item>@array/map_edgefield_image_outline_array</item>
-        <item>@array/map_edgefield_image_background_array</item>
-        <item>@array/map_edgefield_image_doors_array</item>
+        <item>@array/map_edgefield_image_array</item>
+        <item>@array/map_edgefield_image_array</item>
+        <item>@array/map_edgefield_image_array</item>
         <item>@array/map_edgefield_layerName_array</item>
         <item>1</item>
         <item>0</item>
         <item>@drawable/thumbnail_edgefield</item>
+        <item>@array/map_edgefield_image_array</item>
     </integer-array>
     <integer-array name= "map_tanglewood_array">
         <item>@string/map_name_tanglewood</item>
-        <item>@array/map_tanglewood_image_outline_array</item>
-        <item>@array/map_tanglewood_image_background_array</item>
-        <item>@array/map_tanglewood_image_doors_array</item>
+        <item>@array/map_tanglewood_image_array</item>
+        <item>@array/map_tanglewood_image_array</item>
+        <item>@array/map_tanglewood_image_array</item>
         <item>@array/map_tanglewood_layerName_array</item>
         <item>1</item>
         <item>0</item>
         <item>@drawable/thumbnail_tanglewood</item>
+        <item>@array/map_tanglewood_image_array</item>
     </integer-array>
     <integer-array name= "map_willow_array">
         <item>@string/map_name_willow</item>
-        <item>@array/map_willow_image_outline_array</item>
-        <item>@array/map_willow_image_background_array</item>
-        <item>@array/map_willow_image_doors_array</item>
+        <item>@array/map_willow_image_array</item>
+        <item>@array/map_willow_image_array</item>
+        <item>@array/map_willow_image_array</item>
         <item>@array/map_willow_layerName_array</item>
         <item>1</item>
         <item>0</item>
         <item>@drawable/thumbnail_willow</item>
+        <item>@array/map_willow_image_array</item>
     </integer-array>
     <integer-array name= "map_ridgeview_array">
         <item>@string/map_name_ridgeview</item>
-        <item>@array/map_ridgeview_image_outline_array</item>
-        <item>@array/map_ridgeview_image_background_array</item>
-        <item>@array/map_ridgeview_image_doors_array</item>
+        <item>@array/map_ridgeview_image_array</item>
+        <item>@array/map_ridgeview_image_array</item>
+        <item>@array/map_ridgeview_image_array</item>
         <item>@array/map_ridgeview_layerName_array</item>
         <item>1</item>
         <item>0</item>
         <item>@drawable/thumbnail_ridgeview</item>
+        <item>@array/map_ridgeview_image_array</item>
     </integer-array>
     <integer-array name= "map_prison_array">
         <item>@string/map_name_prison</item>
-        <item>@array/map_prison_image_outline_array</item>
-        <item>@array/map_prison_image_background_array</item>
-        <item>@array/map_prison_image_doors_array</item>
+        <item>@array/map_prison_image_array</item>
+        <item>@array/map_prison_image_array</item>
+        <item>@array/map_prison_image_array</item>
         <item>@array/map_prison_layerName_array</item>
         <item>0</item>
         <item>1</item>
         <item>@drawable/thumbnail_prison</item>
+        <item>@array/map_prison_image_array</item>
     </integer-array>
 
     <!-- Map-Specific arrays of all their outline resources -->
+    <!--
     <integer-array name= "map_asylum_image_outline_array">
         <item>@drawable/map_asylum_layer_bottom_outline</item>
         <item>@drawable/map_asylum_layer_top_outline</item>
@@ -233,8 +273,10 @@
         <item>@drawable/map_prison_layer_outline_bottom</item>
         <item>@drawable/map_prison_layer_outline_top</item>
     </integer-array>
+    -->
 
     <!-- Map-Specific arrays of all their image background resources -->
+    <!--
     <integer-array name= "map_asylum_image_background_array">
         <item>@drawable/map_asylum_layer_bottom_background</item>
         <item>@drawable/map_asylum_layer_top_background</item>
@@ -288,8 +330,10 @@
         <item>@drawable/map_prison_layer_outline_bottom</item>
         <item>@drawable/map_prison_layer_outline_top</item>
     </integer-array>
+    -->
 
     <!-- Map-Specific arrays of all their image door resources -->
+    <!--
     <integer-array name= "map_asylum_image_doors_array">
         <item>@drawable/map_asylum_layer_bottom_doors</item>
         <item>@drawable/map_asylum_layer_top_doors</item>
@@ -343,6 +387,7 @@
         <item>@drawable/map_prison_layer_outline_bottom</item>
         <item>@drawable/map_prison_layer_outline_top</item>
     </integer-array>
+    -->
 
     <!-- Map-Specific arrays of all their Layer names -->
     <integer-array name="map_asylum_layerName_array">
@@ -358,10 +403,12 @@
         <item>@string/map_floor_name_first</item>
     </integer-array>
     <integer-array name="map_campwoodwind_layerName_array">
-        <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_ground</item>
     </integer-array>
     <integer-array name="map_campmaple_layerName_array">
         <item>@string/map_floor_name_first</item>
+        <item>@string/map_floor_name_second</item>
+        <item>@string/map_floor_name_third</item>
     </integer-array>
     <integer-array name= "map_bleasdale_layerName_array">
         <item>@string/map_floor_name_first</item>
@@ -397,6 +444,63 @@
     <integer-array name= "map_prison_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
+    </integer-array>
+
+
+    <!-- Map-Specific arrays of all their image background resources -->
+    <integer-array name= "map_asylum_image_array">
+        <item>@drawable/map_coming_soon</item>
+    </integer-array>
+    <integer-array name= "map_meadows_image_array">
+        <item>@drawable/map_sunnymeadows_basement</item>
+        <item>@drawable/map_sunnymeadows_firstfloor</item>
+    </integer-array>
+    <integer-array name= "map_meadows_r_image_array">
+        <item>@drawable/map_sunnymeadowsrestricted_basement</item>
+        <item>@drawable/map_sunnymeadowsrestricted_firstfloor</item>
+    </integer-array>
+    <integer-array name= "map_campwoodwind_image_array">
+        <item>@drawable/map_woodwind_firstfloor</item>
+    </integer-array>
+    <integer-array name= "map_campmaple_image_array">
+        <item>@drawable/map_maple_basement</item>
+        <item>@drawable/map_maple_firstfloor</item>
+        <item>@drawable/map_maple_secondfloor</item>
+    </integer-array>
+    <integer-array name= "map_bleasdale_image_array">
+        <item>@drawable/map_bleasedale_firstfloor</item>
+        <item>@drawable/map_bleasedale_secondfloor</item>
+        <item>@drawable/map_bleasedale_thirdfloor</item>
+    </integer-array>
+    <integer-array name= "map_grafton_image_array">
+        <item>@drawable/map_grafton_firstfloor</item>
+        <item>@drawable/map_grafton_secondfloor</item>
+    </integer-array>
+    <integer-array name= "map_brownstone_image_array">
+        <item>@drawable/map_brownstone_firstfloor</item>
+        <item>@drawable/map_brownstone_secondfloor</item>
+    </integer-array>
+    <integer-array name= "map_edgefield_image_array">
+        <item>@drawable/map_edgefield_basement</item>
+        <item>@drawable/map_edgefield_firstfloor</item>
+        <item>@drawable/map_edgefield_secondfloor</item>
+    </integer-array>
+    <integer-array name= "map_tanglewood_image_array">
+        <item>@drawable/map_tanglewood_basement</item>
+        <item>@drawable/map_tanglewood_firstfloor</item>
+    </integer-array>
+    <integer-array name= "map_willow_image_array">
+        <item>@drawable/map_willow_basement</item>
+        <item>@drawable/map_willow_firstfloor</item>
+    </integer-array>
+    <integer-array name= "map_ridgeview_image_array">
+        <item>@drawable/map_ridgeview_basement</item>
+        <item>@drawable/map_ridgeview_firstfloor</item>
+        <item>@drawable/map_ridgeview_secondfloor</item>
+    </integer-array>
+    <integer-array name= "map_prison_image_array">
+        <item>@drawable/map_prison_firstfloor</item>
+        <item>@drawable/map_prison_secondfloor</item>
     </integer-array>
 
 </resources>

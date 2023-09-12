@@ -54,7 +54,7 @@
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
-    <string name="titlescreen_beta_label" translatable="false">Beta</string>
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">The ultimate evidence tool</string>
     <string name="titlescreen_button">Start Hunting</string>
     <string name="titlescreen_languages_label">Select Language</string>
@@ -152,10 +152,12 @@
     <string name="settings_colormode_funhouse" translatable="false">Funhouse</string>
     <!-- Font-Style Types -->
     <string name="settings_fontstyle_classic">P.E.T. Classic</string>
-    <string name="settings_fontstyle_android" translatable="false">Android</string>
-    <string name="settings_fontstyle_journal" translatable="false">Journal</string>
-    <string name="settings_fontstyle_brick" translatable="false">Brick</string>
-    <string name="settings_fontstyle_clean" translatable="false">Clean</string>
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Journal</string>
+    <string name="settings_fontstyle_brick">Brick</string>
+    <string name="settings_fontstyle_clean">Clean</string>
+    <string name="settings_fontstyle_longcang" translatable="false">Long Cang</string>
+    <string name="settings_fontstyle_newtegmon" translatable="false">New Tegomin</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -198,13 +200,13 @@
     <string name="evidence_timer_time_2" translatable="false">120000</string>
     <string name="evidence_timer_time_3" translatable="false">0</string>
 
-
     <!--
         MAPS PAGE
     -->
     <!-- Page Details -->
     <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
+
     <!-- Map Names -->
     <string name="map_name_asylum" translatable="false">Asylum</string>
     <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
@@ -219,9 +221,12 @@
     <string name="map_name_willow" translatable="false">Willow Streethouse</string>
     <string name="map_name_ridgeview" translatable="false">Ridgeview Roadhouse</string>
     <string name="map_name_prison" translatable="false">Prison</string>
+
     <!-- Building Floor Names -->
+    <string name="map_floor_name_ground">Ground Floor</string>
     <string name="map_floor_name_first">First Floor</string>
     <string name="map_floor_name_second">Second Floor</string>
+    <string name="map_floor_name_third">Third Floor</string>
     <string name="map_floor_name_attic">Attic</string>
     <string name="map_floor_name_basement">Basement</string>
 
@@ -304,10 +309,5 @@
     <string name="spiritbox_entry_q8_2">How crazy am I?</string>
     <string name="spiritbox_entry_q8_3">How insane am I?</string>
     <string name="spiritbox_entry_q8_4">Am I insane?</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
-    <string name="evidence_evidence_section_overview">Overview</string>
-    <string name="evidence_evidence_section_tiers">Tiers</string>
-    <string name="evidence_requirement_level_title">Unlock Level:</string>
-    <string name="evidence_requirement_cost_title">Cost:</string>
 
 </resources>

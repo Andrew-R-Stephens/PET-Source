@@ -5,9 +5,13 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
 
@@ -26,6 +30,8 @@ public class InteractiveMapControlView extends View {
     private Point panOrigin = null;
 
     private View recipient = null;
+
+    private GestureDetectorCompat mDetector;
 
     /**
      * InteractiveMapControlView parameterized constructor
@@ -48,6 +54,26 @@ public class InteractiveMapControlView extends View {
         this.recipient = recipient;
 
         mActivePointers = new SparseArray<>();
+
+        mDetector = new GestureDetectorCompat(getContext(), new GestureTap());
+    }
+
+    class GestureTap extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            Log.d("Tap", "Double " + e.getAction());
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            Log.d("Tap", "Single " + e.getAction());
+            controllerData.setPressedPoint(e.getX(), e.getY());
+            float pX = controllerData.getPressedPointX();
+            float pY = controllerData.getPressedPointY();
+            Log.d("Touch", pX + " " + pY);
+            return true;
+        }
     }
 
     /**
@@ -59,6 +85,10 @@ public class InteractiveMapControlView extends View {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        if (this.mDetector.onTouchEvent(event)) {
+            return true;
+        }
 
         int pointerIndex = event.getActionIndex();
         int pointerId = event.getPointerId(pointerIndex);

@@ -4,6 +4,7 @@
     <string name="evidence_ghosts_title">Geister</string>
     <string name="evidence_evidence_title">Beweis</string>
 
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
 
@@ -762,8 +763,10 @@
     <string name="objectives_title_optional_objective_3">- ZIEL 3</string>
     <string name="objectives_title_response_alone">"Alleine "</string>
     <string name="objectives_title_response_everyone">Gruppen</string>
+    <string name="map_floor_name_ground">Erdgeschoss</string>
     <string name="map_floor_name_first">Erster Stock</string>
     <string name="map_floor_name_second">Zweiter Stock</string>
+    <string name="map_floor_name_third">Dritte Stock</string>
     <string name="map_floor_name_attic">Dachboden</string>
     <string name="map_floor_name_basement">Keller</string>
     <string name="general_evidence_reset_button">Zurücksetzen</string>
@@ -901,6 +904,10 @@
     <string name="settings_colorblindnessmode_protanomaly">Protanopía</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
     <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Tagebuch</string>
+    <string name="settings_fontstyle_brick">Ziegel</string>
+    <string name="settings_fontstyle_clean">Sauber</string>
     <string name="messagecenter_inboxestitle_label">Nachrichtenzentrum</string>
     <string name="messagecenter_inbox_pet">P.E.T.-Änderungsprotokoll</string>
     <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>
@@ -921,13 +928,13 @@
     <string name="popup_ghost_huntdata">Jagddaten</string>
 
     <string name="settings_appearancesettings">Aussehen</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">Schriftstil</string>
-    <string name="evidence_evidence_section_overview">Überblick</string>
-    <string name="evidence_evidence_section_tiers">Ebenen</string>
+    <string name="evidence_section_overview">Überblick</string>
+    <string name="equipment_section_tiers">Ebenen</string>
     <string name="settings_adsconsentcontrolsettings">GDPR-Konfiguration</string>
     <string name="settings_adsconsentcontrolsettings_button">Bearbeiten</string>
     <string name="evidence_requirement_level_title">Freischaltstufe:</string>
     <string name="evidence_requirement_cost_title">Kosten:</string>
+    <string name="equipment_section_equipment">Ausrüstung</string>
 
 </resources>

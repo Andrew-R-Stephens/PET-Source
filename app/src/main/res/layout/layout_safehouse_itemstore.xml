@@ -57,10 +57,19 @@
         app:layout_constraintTop_toBottomOf="@+id/gridLayout">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/testlayoutlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
+            <include layout="@layout/item_shop_tool_tiergroup" />
             <include layout="@layout/item_shop_tool_tiergroup" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

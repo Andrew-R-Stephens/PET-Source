@@ -323,6 +323,46 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <!-- LongCang Regular -->
+    <style name="LongCangRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/longcang</item>
+        <item name="fontFamily">@font/longcang</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LongCangRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/longcang</item>
+        <item name="fontFamily">@font/longcang</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="LongCangRegular_Manual">
+        <item name="android:fontFamily">@font/longcang</item>
+        <item name="fontFamily">@font/longcang</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- NewTegomin Regular -->
+    <style name="NewTegominRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/newtegomin</item>
+        <item name="fontFamily">@font/newtegomin</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="NewTegominRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/newtegomin</item>
+        <item name="fontFamily">@font/newtegomin</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="NewTegominRegular_Manual">
+        <item name="android:fontFamily">@font/newtegomin</item>
+        <item name="fontFamily">@font/newtegomin</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
     <!--
         Component Styles
     -->
@@ -344,6 +384,14 @@
 
     <declare-styleable name="EvidenceView">
         <attr name="color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EquipmentTiers">
+        <attr name="equipment_tier" format="enum">
+            <enum name="TIER_1" value="1"/>
+            <enum name="TIER_2" value="2"/>
+            <enum name="TIER_3" value="3"/>
+        </attr>
     </declare-styleable>
 
 </resources>

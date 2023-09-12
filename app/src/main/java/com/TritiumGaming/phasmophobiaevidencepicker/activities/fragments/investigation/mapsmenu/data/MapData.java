@@ -91,7 +91,7 @@ public class MapData {
      * @param layer
      */
     public void addFloorLayer(int floorIndex, int layer) {
-        if (floorLayers.size() <= 0 || floorIndex >= floorLayers.size()) {
+        if (floorLayers.size() == 0 || floorIndex >= floorLayers.size()) {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(layer);
             floorLayers.add(temp);

@@ -107,6 +107,8 @@
         <item>@string/settings_fontstyle_journal</item>
         <item>@string/settings_fontstyle_brick</item>
         <item>@string/settings_fontstyle_clean</item>
+        <item>@string/settings_fontstyle_longcang</item>
+        <item>@string/settings_fontstyle_newtegmon</item>
     </string-array>
 
     <!-- Timer Data -->

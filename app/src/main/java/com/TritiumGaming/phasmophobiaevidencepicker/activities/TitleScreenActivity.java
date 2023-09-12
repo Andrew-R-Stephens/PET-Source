@@ -1,24 +1,14 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -26,31 +16,35 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author TritiumGamingStudios
  */
-public class TitleScreenActivity extends AppCompatActivity {
+public class TitleScreenActivity extends PETActivity {
 
+    /*
     FirebaseAnalytics analytics;
 
     private GlobalPreferencesViewModel globalPreferencesViewModel;
 
     private TitlescreenViewModel titleScreenViewModel;
     private NewsletterViewModel newsLetterViewModel;
+    */
 
-    GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
-
-    // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
+    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
     private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
+
         initViewModels();
         initPrefs();
+        */
 
         setContentView(R.layout.activity_titlescreen);
 
         requestAdsConsentInformation();
     }
 
+    /*
     private void initViewModels() {
         analytics = FirebaseAnalytics.getInstance(this);
 
@@ -64,27 +58,20 @@ public class TitleScreenActivity extends AppCompatActivity {
 
         newsLetterViewModel = factory.create(NewsletterViewModel.class);
     }
+    */
 
-    /**
-     * Immediately initialize Activity with Preferences
-     */
     public void initPrefs() {
+        super.initPrefs();
+
         globalPreferencesViewModel.incrementAppOpenCount(getApplicationContext());
 
         //set language
         if (setLanguage(globalPreferencesViewModel.getLanguage(getApplicationContext()))) {
             recreate();
         }
-
-        //set isAlwaysOn
-        if(globalPreferencesViewModel.getIsAlwaysOn()) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
-
-        //set colorSpace
-        changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
     }
 
+    /*
     public int getFontStyle(int fontType) {
         switch (fontType) {
             case 1: {
@@ -128,13 +115,6 @@ public class TitleScreenActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * changeTheme
-     * <p>
-     * Sets the Skin Theme based on User Preferences.
-     *
-     * @param colorSpace to be set
-     */
     public void changeTheme(int colorSpace, int fontType) {
 
         int styleId = getFontStyle(fontType);
@@ -144,14 +124,9 @@ public class TitleScreenActivity extends AppCompatActivity {
         setTheme(colorSpaceId);
 
     }
+    */
 
-    /**
-     * setLanguage
-     * <p>
-     * Sets the Language of the application based on User Preferences.
-     *
-     * @param language
-     */
+    /*
     public boolean setLanguage(String language) {
         boolean isChanged = false;
 
@@ -166,8 +141,12 @@ public class TitleScreenActivity extends AppCompatActivity {
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 
+        super.setLanguage(language);
+
         return isChanged;
     }
+    */
+
 
     private void requestAdsConsentInformation() {
 

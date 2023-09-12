@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,12 +22,13 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ColorThemesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemeData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
@@ -76,8 +78,7 @@ public class AppSettingsFragment extends Fragment {
 
         AppCompatTextView text_colorblindmode_selectedname =
                 view.findViewById(R.id.colorblindmode_selectedname);
-        AppCompatTextView text_fontStyle_selectedname =
-                view.findViewById(R.id.font_selectedname);
+        final AppCompatTextView text_fontStyle_selectedname = view.findViewById(R.id.font_selectedname);
 
         AppCompatTextView switch_huntwarning_timetext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_timetext);
@@ -113,7 +114,7 @@ public class AppSettingsFragment extends Fragment {
         }
         colorTypedArray.recycle();
 
-        ColorThemesData colorSpaceData = new ColorThemesData(colorspaceNames);
+        AppThemeData colorSpaceData = new AppThemeData(colorspaceNames);
         int oldColorIndex = 0;
         if (globalPreferencesViewModel != null) {
             oldColorIndex = globalPreferencesViewModel.getColorSpace();
@@ -152,7 +153,6 @@ public class AppSettingsFragment extends Fragment {
             fontStyleNames[i] = fontTypedArray.getString(i);
         }
         fontTypedArray.recycle();
-        fontTypedArray = null;
 
         FontStylesData fontStyleData = new FontStylesData(fontStyleNames);
         int oldFontIndex = 0;
@@ -164,20 +164,11 @@ public class AppSettingsFragment extends Fragment {
 
         // FONT-STYLE LISTENERS
         btn_fontStyle_left.setOnClickListener(v -> {
-            fontStyleData.iterate(-1);
-            text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
-            if (globalPreferencesViewModel != null && getContext() != null) {
-                globalPreferencesViewModel.setFontType(fontStyleData.getIndex());
-            }
-
+            setFontStyle(-1, text_fontStyle_selectedname, fontStyleData);
         });
 
         btn_fontStyle_right.setOnClickListener(v -> {
-            fontStyleData.iterate(1);
-            text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
-            if (globalPreferencesViewModel != null) {
-                globalPreferencesViewModel.setFontType(fontStyleData.getIndex());
-            }
+            setFontStyle(1, text_fontStyle_selectedname, fontStyleData);
         });
 
         // SWITCHES
@@ -332,6 +323,20 @@ public class AppSettingsFragment extends Fragment {
         }
     }
 
+    private void setFontStyle(int iterateDirection, AppCompatTextView text_fontStyle_selectedname, FontStylesData fontStyleData) {
+        fontStyleData.iterate(iterateDirection);
+        int fontIndex = fontStyleData.getIndex();
+
+        text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+
+        if (globalPreferencesViewModel != null && getContext() != null) {
+            globalPreferencesViewModel.setFontType(fontIndex);
+        }
+
+        ((PETActivity)getActivity()).changeTheme(-1, fontIndex);
+        refreshFragment();
+    }
+
 
     public void showAdsConsentForm(Context context) {
 
@@ -350,6 +355,18 @@ public class AppSettingsFragment extends Fragment {
         );
         Log.d("AdsConsent", "should show consent form");
 
+    }
+
+    /**
+     * refreshFragment
+     */
+    public void refreshFragment() {
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        if (Build.VERSION.SDK_INT >= 26) {
+            ft.setReorderingAllowed(false);
+        }
+        ft.detach(AppSettingsFragment.this).commitNow();
+        ft.attach(AppSettingsFragment.this).commitNow();
     }
 
 
@@ -371,7 +388,7 @@ public class AppSettingsFragment extends Fragment {
             globalPreferencesViewModel.saveToFile(getContext());
         }
         if (getActivity() != null) {
-            ((TitleScreenActivity) getActivity()).
+            ((PETActivity) getActivity()).
                     changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
         }
         if(globalPreferencesViewModel.getIsAlwaysOn()) {

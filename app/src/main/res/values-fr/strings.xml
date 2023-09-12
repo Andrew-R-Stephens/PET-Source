@@ -4,6 +4,7 @@
     <string name="evidence_ghosts_title">Fantômes</string>
     <string name="evidence_evidence_title">Preuve</string>
 
+    <string name="titlescreen_beta_label">Bêta</string>
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
 
@@ -772,8 +773,10 @@
     <string name="objectives_title_optional_objective_3">- Objectif 3</string>
     <string name="objectives_title_response_alone">Seule</string>
     <string name="objectives_title_response_everyone">Groupe</string>
+    <string name="map_floor_name_ground">"Rez-de-chaussée "</string>
     <string name="map_floor_name_first">Premier étage</string>
     <string name="map_floor_name_second">Deuxième étage</string>
+    <string name="map_floor_name_third">Troisième étage</string>
     <string name="map_floor_name_attic">Grenier</string>
     <string name="map_floor_name_basement">Sous-sol</string>
     <string name="general_evidence_reset_button">Réinitialiser</string>
@@ -910,6 +913,10 @@
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
     <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Journal</string>
+    <string name="settings_fontstyle_brick">Brique</string>
+    <string name="settings_fontstyle_clean">Faire le Ménage</string>
     <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
     <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
     <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>
@@ -930,13 +937,13 @@
     <string name="popup_ghost_huntdata">Données de Chasse</string>
 
     <string name="settings_appearancesettings">Apparence</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">"Le Style de Police "</string>
-    <string name="evidence_evidence_section_overview">Aperçu</string>
-    <string name="evidence_evidence_section_tiers">Niveaux</string>
+    <string name="evidence_section_overview">Aperçu</string>
+    <string name="equipment_section_tiers">Niveaux</string>
     <string name="settings_adsconsentcontrolsettings">Configuration GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modifier</string>
     <string name="evidence_requirement_level_title">Niveau de Déblocage:</string>
     <string name="evidence_requirement_cost_title">Coût:</string>
+    <string name="equipment_section_equipment">Équipement</string>
 
 </resources>

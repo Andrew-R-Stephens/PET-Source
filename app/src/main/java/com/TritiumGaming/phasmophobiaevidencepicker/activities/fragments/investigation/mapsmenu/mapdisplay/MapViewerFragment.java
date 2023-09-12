@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapDisplayView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 /*
@@ -35,14 +34,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
  */
 public class MapViewerFragment extends Fragment {
 
-    private MapMenuViewModel mapViewViewModel = null;
+    private MapMenuViewModel mapViewViewModel;
 
-    private final InteractiveMapControlData controllerData =
-            new InteractiveMapControlData();
+    private InteractiveMapView imageDisplay;
 
-    private InteractiveMapDisplayView imageDisplay = null;
-    private MapLayerSelectorGroup selectorGroup = null;
-    private AppCompatTextView layerName = null;
+    private MapLayerSelectorGroup selectorGroup;
+    private AppCompatTextView layerName;
 
     /*
      *
@@ -79,9 +76,15 @@ public class MapViewerFragment extends Fragment {
 
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
-        InteractiveMapControlView touchInput = view.findViewById(R.id.interactiveMapController);
-        imageDisplay = view.findViewById(R.id.interactiveMapDisplay);
+        imageDisplay = view.findViewById(R.id.interactiveMapView);
+
         layerName = view.findViewById(R.id.textview_floorname);
+
+
+        mapViewViewModel.getCurrentMapModel().setCurrentLayer(
+                mapViewViewModel.getCurrentMapModel().getFloor(
+                        mapViewViewModel.getCurrentMapData().getCurrentFloor())
+                        .getFloorLayer());
 
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_maps_button);
@@ -97,6 +100,12 @@ public class MapViewerFragment extends Fragment {
                 MapData d;
                 if ((d = mapViewViewModel.getCurrentMapData()) != null) {
                     d.setCurrentFloor(layerIndex);
+
+                    imageDisplay.resetRoomSelection();
+                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(
+                        mapViewViewModel.getCurrentMapModel().getFloor(layerIndex).getFloorLayer());
+
+                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName());
                 }
 
                 updateComponents();
@@ -113,6 +122,11 @@ public class MapViewerFragment extends Fragment {
                 MapData d;
                 if ((d = mapViewViewModel.getCurrentMapData()) != null) {
                     d.setCurrentFloor(layerIndex);
+
+                    imageDisplay.resetRoomSelection();
+                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(
+                            mapViewViewModel.getCurrentMapModel().getFloor(layerIndex).getFloorLayer());
+                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName());
                 }
 
                 updateComponents();
@@ -149,6 +163,7 @@ public class MapViewerFragment extends Fragment {
                     });
         }
 
+        /*
         if (imageDisplay != null) {
             imageDisplay.init(controllerData);
         }
@@ -156,6 +171,8 @@ public class MapViewerFragment extends Fragment {
         if (touchInput != null) {
             touchInput.init(controllerData, imageDisplay);
         }
+        */
+        imageDisplay.init(mapViewViewModel);
 
         if (mapViewViewModel != null && imageDisplay != null) {
             imageDisplay.setMapData(mapViewViewModel.getCurrentMapData());
@@ -171,7 +188,6 @@ public class MapViewerFragment extends Fragment {
         }
 
         startThreads();
-
         updateComponents();
     }
 
@@ -207,17 +223,11 @@ public class MapViewerFragment extends Fragment {
 
     }
 
-
-
-
-
     /*
      * startThreads
      * <p>
      * Starts a Thread which loads images into the InteractiveMapDisplayView
      */
-
-
     public void startThreads() {
         stopThreads();
 
@@ -225,21 +235,17 @@ public class MapViewerFragment extends Fragment {
             mapViewViewModel.setImageDisplayThread(new Thread(() -> {
                 if (imageDisplay != null) {
                     imageDisplay.setMapImages(getActivity());
+                    imageDisplay.setPoiImages(getActivity());
                 }
             }));
             mapViewViewModel.getImageDisplayThread().start();
         }
     }
 
-
-
-
     /*
      *
      * stopThreads
      */
-
-
     public void stopThreads() {
         if (mapViewViewModel.getImageDisplayThread() != null) {
             mapViewViewModel.getImageDisplayThread().interrupt();
@@ -247,15 +253,10 @@ public class MapViewerFragment extends Fragment {
         }
     }
 
-
-
-
     /*
      *
      * updateComponents
      */
-
-
     public void updateComponents() {
         if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
             if (selectorGroup != null) {
@@ -271,17 +272,12 @@ public class MapViewerFragment extends Fragment {
         }
     }
 
-
-
-
     /*
      *
      * saveStates
      * <p>
      * Saves states of the MapViewer to the MapViewModel
      */
-
-
     public void saveStates() {
         if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
             mapViewViewModel.getCurrentMapData().setDefaultFloor(
@@ -289,17 +285,12 @@ public class MapViewerFragment extends Fragment {
         }
     }
 
-
-
-
     /*
      *
      * onPause
      * <p>
      * Destroys all threads and releases resource memory
      */
-
-
     @Override
     public void onPause() {
         stopThreads();
@@ -310,8 +301,19 @@ public class MapViewerFragment extends Fragment {
         super.onPause();
     }
 
+    /*
+    @Override
+    public void onResume() {
 
+        Log.d("State", "Resuming");
 
+        imageDisplay.init(mapViewViewModel);
+        startThreads();
+        updateComponents();
+
+        super.onResume();
+    }
+    */
 
     /*
      *
@@ -319,8 +321,6 @@ public class MapViewerFragment extends Fragment {
      * <p>
      * Destroys all threads and releases resource memory
      */
-
-
     @Override
     public void onDestroy() {
         stopThreads();
@@ -331,15 +331,10 @@ public class MapViewerFragment extends Fragment {
         super.onDestroy();
     }
 
-
-
-
     /*
      *
      * Forces garbage collection on low memory
      */
-
-
     @Override
     public void onLowMemory() {
         System.gc();
@@ -347,23 +342,15 @@ public class MapViewerFragment extends Fragment {
         super.onLowMemory();
     }
 
-
-
-
     /*
      *
      * LayerSelectorGroup class
      * <p>
      * The group of selectors which act to cycle between image layers
      */
-
-
     private class MapLayerSelectorGroup {
 
         private final MapLayerSelector[] selectors;
-
-
-
 
         /*
          *
@@ -371,8 +358,6 @@ public class MapViewerFragment extends Fragment {
          *
          * @param count - the total number of Selectors, based on map layers
          */
-
-
         public MapLayerSelectorGroup(int count) {
             selectors = new MapLayerSelector[count];
             for (int i = 0; i < selectors.length; i++) {
@@ -383,9 +368,6 @@ public class MapViewerFragment extends Fragment {
             }
         }
 
-
-
-
         /*
          *
          * setSelected
@@ -394,8 +376,6 @@ public class MapViewerFragment extends Fragment {
          *
          * @param index - the index of Selector
          */
-
-
         public void setSelected(int index) {
             deSelectAll();
 
@@ -404,17 +384,12 @@ public class MapViewerFragment extends Fragment {
             }
         }
 
-
-
-
         /*
          *
          * deSelectAll
          * <p>
          * Deselects all Selectors
          */
-
-
         public void deSelectAll() {
             for (MapLayerSelector selector : selectors) {
                 if (selector != null) {
@@ -423,23 +398,15 @@ public class MapViewerFragment extends Fragment {
             }
         }
 
-
-
-
         /*
          *
          * getSelectors
          *
          * @return Selector array
          */
-
-
         public MapLayerSelector[] getSelectors() {
             return selectors;
         }
-
-
-
 
         /*
          *
@@ -447,8 +414,6 @@ public class MapViewerFragment extends Fragment {
          *
          * @return number of Selectors
          */
-
-
         public int getSize() {
             if (selectors == null) {
                 return 0;
@@ -457,17 +422,12 @@ public class MapViewerFragment extends Fragment {
             return selectors.length;
         }
 
-
-
-
         /*
          *
          * Selector class
          * <p>
          * A Selector which represents the current layer of the selected map
          */
-
-
         private class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
 
             private final int[] selectorImages = new int[]{
@@ -475,14 +435,10 @@ public class MapViewerFragment extends Fragment {
                     R.drawable.icon_selector_selected};
             private boolean isSelected = false;
 
-
-
             /*
              *
              * Selector constructor
              */
-
-
             public MapLayerSelector(Context context) {
                 super(context);
 
@@ -495,9 +451,6 @@ public class MapViewerFragment extends Fragment {
                 setColorFilter(Color.WHITE);
             }
 
-
-
-
             /*
              *
              * setSelected
@@ -505,16 +458,11 @@ public class MapViewerFragment extends Fragment {
              * @param isSelected - the state of the Selector
              *                   Sets the Selector as selected
              */
-
-
             public void setSelected(boolean isSelected) {
                 this.isSelected = isSelected;
 
                 updateImage();
             }
-
-
-
 
             /*
              *
@@ -522,8 +470,6 @@ public class MapViewerFragment extends Fragment {
              * <p>
              * Updates the Selector icon to reflect its current selection state
              */
-
-
             private void updateImage() {
                 if (selectorImages != null && selectorImages.length == 2) {
                     if (!isSelected) {
@@ -534,17 +480,12 @@ public class MapViewerFragment extends Fragment {
                 }
             }
 
-
-
-
             /*
              *
              * isSelected
              *
              * @return whether or not the Selector is selected
              */
-
-
             public boolean isSelected() {
                 return isSelected;
             }

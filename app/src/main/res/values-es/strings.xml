@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="evidence_ghosts_title">Fantasmas</string>
     <string name="evidence_evidence_title">Evidencia</string>
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
     <string name="evidence_timer_difficulty_label">Dificultad:</string>
@@ -768,8 +770,10 @@
     <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
     <string name="objectives_title_response_alone">Sola</string>
 
+    <string name="map_floor_name_ground">Planta Baja</string>
     <string name="map_floor_name_first">Primer Piso</string>
     <string name="map_floor_name_second">Segunda Planta</string>
+    <string name="map_floor_name_third">Tercer piso</string>
     <string name="map_floor_name_attic">Atico</string>
     <string name="map_floor_name_basement">Sótano</string>
 
@@ -913,6 +917,10 @@
     <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
     <string name="settings_fontstyle_classic">P.E.T. Classic</string>
+    <string name="settings_fontstyle_android">Androide</string>
+    <string name="settings_fontstyle_journal">Diario</string>
+    <string name="settings_fontstyle_brick">Ladrillo</string>
+    <string name="settings_fontstyle_clean">Limpia</string>
     <string name="messagecenter_inboxestitle_label">Centro de Mensajes</string>
     <string name="messagecenter_inbox_pet">Registro de Cambios de P.E.T.</string>
     <string name="messagecenter_inbox_phas">Registro de Cambios de Phasmophobia</string>
@@ -933,13 +941,13 @@
     <string name="popup_ghost_huntdata">Datos de Caza</string>
 
     <string name="settings_appearancesettings">Apariencia</string>
-    <string name="settings_fontstyle_phasmo">Journal</string>
     <string name="settings_fontstylesettings">"Estilo de Fuente "</string>
-    <string name="evidence_evidence_section_overview">Descripción General</string>
-    <string name="evidence_evidence_section_tiers">Niveles</string>
+    <string name="evidence_section_overview">Descripción General</string>
+    <string name="equipment_section_tiers">Niveles</string>
     <string name="settings_adsconsentcontrolsettings">Configuración GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Editar</string>
     <string name="evidence_requirement_level_title">Nivel de Desbloqueo:</string>
     <string name="evidence_requirement_cost_title">Costo:</string>
+    <string name="equipment_section_equipment">Equipo</string>
 
 </resources>

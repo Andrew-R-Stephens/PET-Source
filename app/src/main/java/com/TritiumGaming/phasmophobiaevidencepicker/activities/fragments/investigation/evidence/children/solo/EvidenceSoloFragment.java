@@ -106,7 +106,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 }
         );
         btn_goto_tools.setOnClickListener(v -> Navigation.findNavController(v).
-                navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
+                //navigate(R.id.action_evidenceFragment_to_utilitiesFragment));
+                navigate(R.id.action_evidenceFragment_to_itemStoreFragment));
 
         // TIMER CONTROL
         phaseTimerCountdownView = new PhaseTimerView(

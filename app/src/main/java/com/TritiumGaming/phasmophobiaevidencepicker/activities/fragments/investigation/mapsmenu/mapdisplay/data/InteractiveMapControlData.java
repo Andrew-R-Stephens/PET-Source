@@ -20,6 +20,8 @@ public class InteractiveMapControlData {
 
     private int w, h;
 
+    private float pressedX, pressedY;
+
     /**
      * @param addZoom
      */
@@ -61,6 +63,11 @@ public class InteractiveMapControlData {
     public void setDisplaySize(int w, int h) {
         this.w = w;
         this.h = h;
+    }
+
+    public void setPressedPoint(float x, float y) {
+        this.pressedX = x;
+        this.pressedY = y;
     }
 
     /**
@@ -151,5 +158,17 @@ public class InteractiveMapControlData {
             }
         }
         options.inSampleSize = inSampleSize;
+    }
+
+    public float getPressedPointX() {
+        return pressedX;
+    }
+
+    public float getPressedPointY() {
+        return pressedY;
+    }
+
+    public float getZoomLevel() {
+        return zoomLevel;
     }
 }

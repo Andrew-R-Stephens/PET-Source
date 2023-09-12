@@ -132,7 +132,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/radiobutton_1" />
+                        app:srcCompat="@drawable/radiobutton_1"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_overview_text"
@@ -144,8 +144,7 @@
                         android:layout_marginEnd="2dp"
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@string/evidence_evidence_section_overview"
+                        android:text="@string/evidence_section_overview"
                         android:textColor="?attr/bodyFontColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +185,7 @@
                         android:layout_marginEnd="2dp"
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
-                        android:text="@string/evidence_evidence_section_tiers"
+                        android:text="@string/equipment_section_equipment"
                         android:textColor="?attr/bodyFontColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

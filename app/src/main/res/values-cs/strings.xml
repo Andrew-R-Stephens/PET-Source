@@ -1,4 +1,6 @@
 <resources>
+
+
     <!--
         UNIVERSAL DETAILS
     -->
@@ -12,6 +14,7 @@
         TITLESCREEN PAGE
     -->
     <!-- Page Details -->
+    <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Nejlepší důkazní nástroj</string>
     <string name="titlescreen_button">Zahájit lov</string>
     <string name="titlescreen_languages_label">Vyberte jazyk</string>
@@ -24,6 +27,10 @@
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
     <string name="settings_fontstyle_classic">P.E.T. Klasický</string>
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Časopis</string>
+    <string name="settings_fontstyle_brick">Cihlový</string>
+    <string name="settings_fontstyle_clean">Čistý</string>
     <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
     <string name="messagecenter_inbox_general">Obecné zprávy</string>
     <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>
@@ -845,8 +852,10 @@
     <string name="mapview_instruction_zoom">Přiblížení: Stažení dvou prstů</string>
     <string name="mapview_instruction_pan">Posouvání: Táhněte jedním prstem</string>
     <!-- Názvy podlaží budov -->
-    <string name="map_floor_name_first">První patro</string>
-    <string name="map_floor_name_second">Druhé patro</string>
+    <string name="map_floor_name_ground">První Patro</string>
+    <string name="map_floor_name_first">První Patro</string>
+    <string name="map_floor_name_second">Druhé Patro</string>
+    <string name="map_floor_name_third">Třetí Patro</string>
     <string name="map_floor_name_attic">Podkroví</string>
     <string name="map_floor_name_basement">Suterén</string>
 
@@ -941,13 +950,13 @@
     <string name="popup_ghost_huntdata">Údaje o lovu</string>
 
     <string name="settings_appearancesettings">Vzhled</string>
-    <string name="settings_fontstyle_phasmo">Deník</string>
     <string name="settings_fontstylesettings">Styl písma</string>
-    <string name="evidence_evidence_section_overview">Přehled</string>
-    <string name="evidence_evidence_section_tiers">Úrovně</string>
+    <string name="evidence_section_overview">Přehled</string>
+    <string name="equipment_section_tiers">Úrovně</string>
     <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Upravit</string>
     <string name="evidence_requirement_level_title">Úroveň Odemknutí:</string>
     <string name="evidence_requirement_cost_title">Náklady:</string>
+    <string name="equipment_section_equipment">Zařízení</string>
 
 </resources>

@@ -2,7 +2,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapListModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.MapFileIO;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.MapFileReader;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+
+import java.io.IOException;
 
 /**
  * MapMenuFragment class
@@ -31,6 +39,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewM
 public class MapMenuFragment extends Fragment {
 
     private MapMenuViewModel mapViewViewModel;
+    private MapListModel mapListModel;
 
     public MapMenuFragment() {
         super(R.layout.fragment_mapmenu);
@@ -55,6 +64,20 @@ public class MapMenuFragment extends Fragment {
     @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+
+        Log.d("Maps", "starting");
+        try {
+            MapFileIO mapFileIO = new MapFileIO();
+            MapFileReader reader = mapFileIO.reader;
+            if (getActivity() != null) {
+                AssetManager assets = getActivity().getAssets();
+                mapFileIO.readFile(assets.open("maps.json"), reader);
+                mapListModel = new MapListModel(reader.mapsWrapper);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // INITIALIZE VIEWS
         AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
@@ -104,9 +127,17 @@ public class MapMenuFragment extends Fragment {
                 mapViewViewModel.setCurrentMapData(position);
             }
 
+            MapModel mapModel = mapListModel.getMapById(position);
+            if(mapModel != null) {
+                //mapModel.print();
+                mapViewViewModel.setCurrentMapModel(mapModel);
+            }
+
+
             navigateToBasicMapView(itemView);
             //navigateToAdvancedMapView(itemView);
         });
+
 
     }
 

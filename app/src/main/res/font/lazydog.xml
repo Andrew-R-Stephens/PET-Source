@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Supports English, Czech, Simplified Chinese -->
+<!-- Does not support Russiane, French, Italian, German, Spanish, Portuguese, Japanese -->
 <font-family
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font

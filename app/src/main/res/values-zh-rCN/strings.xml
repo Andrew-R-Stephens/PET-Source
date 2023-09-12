@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <!-- Page Details -->
 
     <string name="general_evidence_button">证据</string>
@@ -9,7 +10,8 @@
     <string name="general_evidence_reset_button">重置</string>
 
     <!-- Page Details -->
-    
+
+    <string name="titlescreen_beta_label">贝塔</string>
     <string name="titlescreen_description">最终的证据工具</string>
     <string name="titlescreen_button">开始狩猎</string>
     <string name="titlescreen_languages_label">选择语言</string>
@@ -65,6 +67,10 @@
 
     <!-- Page Details -->
 
+    <string name="settings_fontstyle_android">安卓</string>
+    <string name="settings_fontstyle_journal">杂志</string>
+    <string name="settings_fontstyle_brick">砖</string>
+    <string name="settings_fontstyle_clean">干净</string>
     <string name="messagecenter_inboxestitle_label">留言中心</string>
     <string name="messagecenter_inbox_general">一般新闻</string>
     <string name="messagecenter_inbox_pet">宠物。变更日志</string>
@@ -93,11 +99,12 @@
     <string name="mapview_instruction_zoom">缩放：捏两根手指</string>
     <string name="mapview_instruction_pan">平移：拖动一根手指</string>
 
-
     <!-- Building Floor Names -->
 
+    <string name="map_floor_name_ground">一楼</string>
     <string name="map_floor_name_first">第一层</string>
     <string name="map_floor_name_second">二楼</string>
+    <string name="map_floor_name_third">三楼</string>
     <string name="map_floor_name_attic">阁楼</string>
     <string name="map_floor_name_basement">地下室</string>
 
@@ -189,9 +196,8 @@
     <string name="spiritbox_entry_q8_2">我有多疯狂？</string>
     <string name="spiritbox_entry_q8_3">我到底有多疯狂？</string>
     <string name="spiritbox_entry_q8_4">我疯了吗？</string>
-    <string name="settings_fontstyle_phasmo">杂志</string>
-    <string name="evidence_evidence_section_overview">概述</string>
-    <string name="evidence_evidence_section_tiers">层级</string>
+    <string name="evidence_section_overview">概述</string>
+    <string name="equipment_section_tiers">层级</string>
     <string name="evidence_requirement_level_title">解锁等级：</string>
     <string name="evidence_requirement_cost_title">成本：</string>
 
@@ -389,5 +395,6 @@
     <string name="ghost_huntingdata_wraith"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
     <string name="ghost_huntingdata_yokai"><![CDATA[<p>狩猎强度为 50\% S。</p><p>无法听到调查人员的声音或感知电子设备。</p>]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
+    <string name="equipment_section_equipment">设备</string>
 
 </resources>

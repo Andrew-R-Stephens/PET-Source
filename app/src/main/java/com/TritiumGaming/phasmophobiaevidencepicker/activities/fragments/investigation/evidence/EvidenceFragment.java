@@ -235,7 +235,7 @@ public class EvidenceFragment extends Fragment {
                 null,
                 view.findViewById(R.id.listener_goto_right),
                 view.findViewById(R.id.icon_goto_left),
-                null,
+                view.findViewById(R.id.icon_goto_medLeft),
                 view.findViewById(R.id.icon_resetAll),
                 null,
                 view.findViewById(R.id.icon_goto_right));
@@ -339,13 +339,15 @@ public class EvidenceFragment extends Fragment {
         if(lstnr_navMedLeft != null) {
             ((View)lstnr_navMedLeft.getParent()).setVisibility(View.VISIBLE);
             ((View)icon_navMedLeft.getParent()).setVisibility(View.VISIBLE);
+            icon_navMedLeft.setVisibility(View.VISIBLE);
             icon_navMedLeft.setImageResource(R.drawable.icon_tools);
             lstnr_navMedLeft.setOnClickListener(v -> {
                         if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
                         }
-                        Navigation.findNavController(v)
-                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
+                        /*Navigation.findNavController(v)
+                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);*/
+                        Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_itemStoreFragment);
                     }
             );
         }
@@ -1132,7 +1134,6 @@ public class EvidenceFragment extends Fragment {
             boolean status = !evidenceViewModel.swapStatusInRejectedPile(index);
 
             evidenceViewModel.getGhostOrderData().updateOrder();
-            //reorderGhostViews(ghostContainer);
 
             redrawGhostRejectionStatus(ghostContainer.findViewById(index), evidenceViewModel.getInvestigationData().getGhost(index), index);
 
@@ -1146,39 +1147,62 @@ public class EvidenceFragment extends Fragment {
 
         @Override
         public boolean onSingleTapUp(@NonNull MotionEvent e) {
+            createGhostDetailPopup();
+
+            return super.onSingleTapConfirmed(e);
+        }
+
+        private void createGhostDetailPopup() {
+
             if(getView() == null || getView().getContext() == null) {
-                return false;
+                return;
             }
 
             if (popup != null) {
                 popup.dismiss();
             }
 
-            LayoutInflater inflaterPopup =
+            LayoutInflater popupInflater =
                     (LayoutInflater) getView().getContext().getSystemService(
                             Context.LAYOUT_INFLATER_SERVICE);
-            View customView = inflaterPopup.inflate(R.layout.popup_info_ghost, null);
+            View popupView = popupInflater.inflate(R.layout.popup_info_ghost, null);
+            View linearLayout_icons_container = popupInflater.inflate(R.layout.item_investigation_ghost_icons, null);
+
+            ConstraintLayout scrollCons_swapping = popupView.findViewById(R.id.scrollView_swapping);
+            ConstraintLayout scrollCons_huntdata = popupView.findViewById(R.id.scrollView_huntdata);
+            AppCompatTextView label_name =
+                    popupView.findViewById(R.id.label_name);
+            ImageButton closeButton = popupView.findViewById(R.id.popup_close_button);
+            ConstraintLayout bodyCons = popupView.findViewById(R.id.layout_contentbody);
+            AppCompatImageButton left = popupView.findViewById(R.id.title_left);
+            AppCompatImageButton right = popupView.findViewById(R.id.title_right);
+            AppCompatTextView title = popupView.findViewById(R.id.label_infoTitle);
+
+            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
+
+            ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
+            View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
+            AppCompatTextView data_swapping = scroller_swapping.findViewById(R.id.label_info);
+            ScrollView scroller_huntdata = scrollCons_huntdata.findViewById(R.id.scrollView);
+            AppCompatTextView data_huntdata = scroller_huntdata.findViewById(R.id.label_info);
 
             popup = new PopupWindow(
-                    customView,
+                    popupView,
                     RelativeLayout.LayoutParams.MATCH_PARENT,
                     RelativeLayout.LayoutParams.MATCH_PARENT
             );
 
-            ImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-
             LinearLayoutCompat evidenceIconLayout =
-                    customView.findViewById(R.id.layout_evidenceicons);
+                    popupView.findViewById(R.id.layout_evidenceicons);
 
-            View linearLayout_icons_container = inflaterPopup.inflate(R.layout.item_investigation_ghost_icons, null);
-            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
             for (int i = 0; i < evidenceViewModel.getInvestigationData()
                     .getGhost(index)
                     .getEvidenceArray().length; i++) {
 
                 ConstraintLayout evidenceIconContainer =
-                        (ConstraintLayout) inflaterPopup.inflate(R.layout.item_investigation_ghost_icon,
+                        (ConstraintLayout) popupInflater.inflate(R.layout.item_investigation_ghost_icon,
                                 null);
+
                 AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
                 evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData()
                         .getGhost(index).getEvidence()[i].getIcon());
@@ -1187,30 +1211,10 @@ public class EvidenceFragment extends Fragment {
             }
             evidenceIconLayout.addView(linearLayout_iconRow);
 
-            AppCompatTextView label_name =
-                    customView.findViewById(R.id.label_name);
-
             label_name.setText(ghostName);
-
-            ConstraintLayout bodyCons = customView.findViewById(R.id.layout_contentbody);
-
-            ConstraintLayout scrollCons_swapping = customView.findViewById(R.id.scrollView_swapping);
-            ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
-            View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
-            AppCompatTextView data_swapping = scroller_swapping.findViewById(R.id.label_info);
-
-            ConstraintLayout scrollCons_huntdata = customView.findViewById(R.id.scrollView_huntdata);
-            ScrollView scroller_huntdata = scrollCons_huntdata.findViewById(R.id.scrollView);
-            AppCompatTextView data_huntdata = scroller_huntdata.findViewById(R.id.label_info);
-
-            AppCompatImageButton left = customView.findViewById(R.id.title_left);
-            AppCompatImageButton right = customView.findViewById(R.id.title_right);
-            AppCompatTextView title = customView.findViewById(R.id.label_infoTitle);
 
             //initialize info content scroller
             bodyCons.setVisibility(View.INVISIBLE);
-
-            //title.setPaintFlags(data.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             title.setText(titles[detailIndex]);
             data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     cycleDetails[detailIndex],
@@ -1219,13 +1223,11 @@ public class EvidenceFragment extends Fragment {
                     ghostHuntData,
                     "#ff6161", fontEmphasisColor + "")));
 
-
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 scrollCons_huntdata.post(() ->
                         scrollCons_huntdata.setMaxHeight((int)(((ConstraintLayout)scrollCons_huntdata.getParent()).getHeight() * .4f)));
             }
-
 
             left.setOnClickListener(view -> {
                 detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
@@ -1261,12 +1263,10 @@ public class EvidenceFragment extends Fragment {
             if (getActivity() != null) {
                 MobileAds.initialize(getActivity(), initializationStatus -> {
                 });
-                AdView mAdView = customView.findViewById(R.id.adView);
+                AdView mAdView = popupView.findViewById(R.id.adView);
                 adRequest = new AdRequest.Builder().build();
                 mAdView.loadAd(adRequest);
             }
-
-            return super.onSingleTapConfirmed(e);
         }
     }
 
