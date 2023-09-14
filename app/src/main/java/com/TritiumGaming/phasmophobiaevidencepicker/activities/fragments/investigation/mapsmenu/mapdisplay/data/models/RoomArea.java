@@ -13,10 +13,6 @@ public class RoomArea {
 
     public RoomArea() { }
 
-    public RoomArea(RoomArea tempRoomArea) {
-        setPoints(tempRoomArea.getPoints());
-    }
-
     public void setPoints(ArrayList<PointF> tempPoints) {
         for(PointF tempPoint: tempPoints) {
             addPoint(new PointF(tempPoint.x, tempPoint.y));
@@ -30,12 +26,24 @@ public class RoomArea {
         }
     }
 
-    public void reset() {
-        points = new ArrayList<>();
+    public PointF getCenter() {
+        float x = 0f;
+        float y = 0f;
+        int pointCount = points.size();
+        for (int i = 0;i < pointCount - 1;i++){
+            final PointF point = points.get(i);
+            x += point.x;
+            y += point.y;
+        }
+
+        x = x/pointCount;
+        y = y/pointCount;
+
+        return new PointF(x, y);
     }
 
-    public void addPoint(float x, float y) {
-        points.add(new PointF(x, y));
+    public void reset() {
+        points = new ArrayList<>();
     }
 
     public void addPoint(PointF point) {
@@ -54,6 +62,7 @@ public class RoomArea {
         return points.get(points.size()-1);
     }
 
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for(PointF p: points) {

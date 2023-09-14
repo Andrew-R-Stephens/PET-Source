@@ -88,6 +88,7 @@
                 android:id="@+id/constraintLayout74"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout59"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout60"
@@ -111,10 +112,10 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_goto_medLeft"
+                    style="?attr/primaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
-                    style="?attr/primaryFont_Regular_Squeeze"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".3"

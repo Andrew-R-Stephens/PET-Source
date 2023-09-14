@@ -17,6 +17,8 @@ public class AnimatedGraphicData {
             currentPool = new ArrayList<>();
 
     private int selectedWriting = -1;
+    private int selectedHand = -1;
+
     private float rotWriting, rotHand;
 
     /**
@@ -152,6 +154,20 @@ public class AnimatedGraphicData {
      */
     public int getSelectedWriting() {
         return selectedWriting;
+    }
+
+    /**
+     * @param selectedHand
+     */
+    public void setSelectedHand(int selectedHand) {
+        this.selectedHand = selectedHand;
+    }
+
+    /**
+     * @return
+     */
+    public int getSelectedHand() {
+        return selectedHand;
     }
 
     /**

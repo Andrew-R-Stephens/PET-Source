@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class MapListModel {
 
-    private RoomModel tempRoomModel = new RoomModel();
-
     private int currentMapID = 0;
     public ArrayList<MapModel> mapModels;
 
@@ -40,10 +38,6 @@ public class MapListModel {
         return mapModels.get(currentMapID);
     }
 
-    public void createNewMap() {
-        mapModels.add(new MapModel());
-    }
-
     public void setCurrentMap(int selectedIndex) {
         if(selectedIndex >= mapModels.size()) {
             selectedIndex = Math.max(mapModels.size()-1, 0);
@@ -52,17 +46,15 @@ public class MapListModel {
         currentMapID = selectedIndex;
     }
 
-    public RoomModel getTempRoomModel() {
-        return tempRoomModel;
-    }
-
-    public void setTempRoomModel(RoomModel roomModel) {
-        this.tempRoomModel = roomModel;
-    }
-
     public synchronized void print() {
         for (MapModel m : mapModels) {
             m.print();
+        }
+    }
+
+    public void orderRooms() {
+        for(MapModel m: mapModels) {
+            m.orderRooms();
         }
     }
 }

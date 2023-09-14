@@ -17,52 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textview_title"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="@string/general_maps_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".075"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_title">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/constraintLayout_mapviewbody"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/evidence_item_layer_grid"
-                android:backgroundTintMode="multiply"
-                android:backgroundTint="#80FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout_controls"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
-                    android:id="@+id/interactiveMapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#0AFFFFFF" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_controls"
@@ -71,107 +32,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mapviewbody">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_controller_floorcontrols"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".75">
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/controller_prevLayerButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:background="#00000000"
-                            android:contentDescription="@string/app_name"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/icon_prev"
-                            android:tint="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_floorInfo"
-                            app:layout_constraintEnd_toStartOf="@+id/constraintLayout_floorInfo"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/constraintLayout_floorInfo" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/controller_nextLayerButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:background="#00000000"
-                            android:contentDescription="@string/app_name"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/icon_next"
-                            android:tint="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_floorInfo"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/constraintLayout_floorInfo"
-                            app:layout_constraintTop_toTopOf="@+id/constraintLayout_floorInfo" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout_floorInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/controller_nextLayerButton"
-                            app:layout_constraintStart_toEndOf="@+id/controller_prevLayerButton"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_percent=".75">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/textview_floorname"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:gravity="center"
-                                android:text="@string/map_floor_name_ground"
-                                app:layout_constraintBottom_toTopOf="@+id/constraintLayout_floorindicators"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".4"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_chainStyle="spread" />
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/constraintLayout_floorindicators"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHeight_percent=".4"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/textview_floorname">
-
-                                <LinearLayout
-                                    android:id="@+id/linearlayout_floorindicators"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="0dp"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent">
 
                 <!--
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,41 +85,220 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout81"
-                style="@style/NorseRegular"
+                android:id="@+id/constraintLayout_mapviewbody"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:visibility="gone"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/evidence_item_layer_grid"
+                android:backgroundTint="#80FFFFFF"
+                android:backgroundTintMode="multiply"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_controls">
 
-                <ScrollView
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+                    android:id="@+id/interactiveMapView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fadeScrollbars="false"
-                    android:fillViewport="true"
-                    android:measureAllChildren="true"
-                    android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:scrollbarStyle="outsideInset"
+                    android:background="#00FFFFFF"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#0AFFFFFF" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout44"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="#BF000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="32dp"
+                    app:layout_constraintHeight_percent=".1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_title"
+                        style="?attr/quaternaryFont_Bold_Squeeze"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="start|center"
+                        android:text="@string/map_name_asylum"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/linearlayout_floorindicators"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" />
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:id="@+id/linearlayout_floorindicators"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/textview_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textview_title"
+                        app:layout_constraintTop_toTopOf="@+id/textview_title" />
 
-                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </ScrollView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_controller_floorcontrols"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="#BF000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout44">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageview_flooricon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_stairs"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout89"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout89"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageview_flooricon"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/controller_prevLayerButton"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:adjustViewBounds="true"
+                            android:background="#00000000"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/icon_prev"
+                            android:tint="#FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textview_floorname"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textview_floorname"
+                            style="?attr/quaternaryFont_Bold_Squeeze"
+                            android:layout_width="0dp"
+                            android:layout_height="26dp"
+                            android:gravity="center"
+                            android:text="@string/map_floor_name_first"
+                            app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
+                            app:layout_constraintEnd_toStartOf="@+id/controller_nextLayerButton"
+                            app:layout_constraintStart_toEndOf="@+id/controller_prevLayerButton"
+                            app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/controller_nextLayerButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:adjustViewBounds="true"
+                            android:background="#00000000"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/icon_next"
+                            android:tint="#FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textview_floorname"
+                            app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout51"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="#80000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_controller_floorcontrols">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageview_roomicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_room"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/spinner_poiname"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.POISpinner
+                        android:id="@+id/spinner_poiname"
+                        style="?attr/quaternaryFont_Bold_Squeeze"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="start|center"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageview_roomicon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageview_roomicon"
+                        app:layout_constraintTop_toTopOf="@+id/imageview_roomicon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_other"
+                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="start|center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="32dp"
+                    app:layout_constraintHeight_min="24dp"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

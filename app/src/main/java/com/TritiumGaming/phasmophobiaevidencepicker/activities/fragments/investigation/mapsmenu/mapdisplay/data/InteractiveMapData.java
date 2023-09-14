@@ -6,8 +6,6 @@ import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 
-import java.util.Arrays;
-
 /**
  * InteractiveViewControllerData class
  *
@@ -186,17 +184,22 @@ public class InteractiveMapData {
      * @param viewW
      * @param viewH
      */
-    public void postTranslateMatrix(float imgW, float imgH, float viewW, float viewH) {
+    public void postTranslateOriginMatrix(float imgW, float imgH, float viewW, float viewH) {
 
-        float widthRatio = 75f / imgW;
-        //matrix.setScale(widthRatio, (imgW / imgH) * widthRatio);
         float[] values = new float[9];
         matrix.getValues(values);
-        float scale = values[Matrix.MSCALE_X] * (viewW * .05f) / imgW;
-        scale = Math.max(scale, 75 / viewW);
+
+        float scale = 1;
+        if(viewW < viewH) {
+            scale = values[Matrix.MSCALE_X] * (viewH * .1f) / viewW;
+            scale = Math.max(scale, 75 / viewH);
+        }
+        if(viewH < viewW) {
+            scale = values[Matrix.MSCALE_Y] * (viewH * .1f) / viewW;
+            scale = Math.max(scale, 75 / viewH);
+        }
         matrix.setScale(scale, scale);
         matrix.postTranslate(panX - (imgW * scale * .5f), panY - (imgH * scale * .5f));
-
     }
 
     /**
@@ -248,6 +251,14 @@ public class InteractiveMapData {
     public void setImageSize(int w, int h) {
         this.imgW = w;
         this.imgH = h;
+    }
+
+    public float getImgW() {
+        return imgW;
+    }
+
+    public float getImgH() {
+        return imgH;
     }
 
 }

@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class MapViewerFragment extends Fragment {
 
     private MapLayerSelectorGroup selectorGroup;
     private AppCompatTextView layerName;
+    private POISpinner poiSpinner;
 
     /*
      *
@@ -77,6 +79,7 @@ public class MapViewerFragment extends Fragment {
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
         imageDisplay = view.findViewById(R.id.interactiveMapView);
+        poiSpinner = view.findViewById(R.id.spinner_poiname);
 
         layerName = view.findViewById(R.id.textview_floorname);
 
@@ -163,16 +166,7 @@ public class MapViewerFragment extends Fragment {
                     });
         }
 
-        /*
-        if (imageDisplay != null) {
-            imageDisplay.init(controllerData);
-        }
-
-        if (touchInput != null) {
-            touchInput.init(controllerData, imageDisplay);
-        }
-        */
-        imageDisplay.init(mapViewViewModel);
+        imageDisplay.init(mapViewViewModel, poiSpinner);
 
         if (mapViewViewModel != null && imageDisplay != null) {
             imageDisplay.setMapData(mapViewViewModel.getCurrentMapData());
@@ -183,12 +177,16 @@ public class MapViewerFragment extends Fragment {
                 for (int i = 0; i < selectorGroup.getSize(); i++) {
                     selectorLayout.addView(selectorGroup.getSelectors()[i]);
                 }
-                mapName.setText(tempData.getMapName());
+                String mapNameStr = mapViewViewModel.getCurrentMapModel().mapName;
+                mapName.setText(mapNameStr == null ? tempData.getMapName() : mapNameStr);
+                mapName.setSelected(true);
             }
         }
 
         startThreads();
-        updateComponents();
+        updateComponents();// Spinner click listener
+
+
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -269,6 +267,7 @@ public class MapViewerFragment extends Fragment {
             if (imageDisplay != null) {
                 imageDisplay.invalidate();
             }
+            poiSpinner.populateAdapter(mapViewViewModel);
         }
     }
 
@@ -284,6 +283,18 @@ public class MapViewerFragment extends Fragment {
                     mapViewViewModel.getCurrentMapData().getCurrentFloor());
         }
     }
+/*
+
+    @Override
+    public void onResume() {
+        imageDisplay.init(mapViewViewModel);
+
+        stopThreads();
+        startThreads();
+
+        super.onResume();
+    }
+*/
 
     /*
      *
@@ -294,9 +305,9 @@ public class MapViewerFragment extends Fragment {
     @Override
     public void onPause() {
         stopThreads();
-        if (imageDisplay != null) {
+        /*if (imageDisplay != null) {
             imageDisplay.recycleBitmaps();
-        }
+        }*/
 
         super.onPause();
     }
@@ -324,9 +335,9 @@ public class MapViewerFragment extends Fragment {
     @Override
     public void onDestroy() {
         stopThreads();
-        if (imageDisplay != null) {
+        /*if (imageDisplay != null) {
             imageDisplay.recycleBitmaps();
-        }
+        }*/
 
         super.onDestroy();
     }
@@ -447,7 +458,15 @@ public class MapViewerFragment extends Fragment {
                         LinearLayout.LayoutParams.MATCH_PARENT, 1f));
                 setScaleType(ImageView.ScaleType.FIT_CENTER);
                 setAdjustViewBounds(true);
-                setPadding(10, 2, 2, 2);
+
+                int orientation = getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    setPadding(5, 2, 5, 2);
+                } else {
+                    setPadding(2, 8, 2, 8);
+                }
+
+
                 setColorFilter(Color.WHITE);
             }
 
@@ -491,5 +510,7 @@ public class MapViewerFragment extends Fragment {
             }
         }
     }
+
+
 }
 

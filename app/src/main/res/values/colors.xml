@@ -41,6 +41,21 @@
 
     <color name="map_tint_blue">#FF8AD8FF</color>
 
+    <!-- MapBorder -->
+    <color name="blue_medHigh_selbord">#940000C8</color>
+    <color name="cb_mono_white_high_selbord">#94FFFFFF</color>
+    <color name="red_medHigh_selbord">#94C80000</color>
+    <!-- MapFill -->
+    <color name="yellow_light_selfill">#1ACCCC3C</color>
+    <color name="cb_mono_white_med_selfill">#1A808080</color>
+    <color name="yellow_bright_selfill">#1AFFFF00</color>
+    <!-- POI -->
+    <color name="red_high_poi">#BFFF0000</color>
+    <color name="blue_light_poi">#BF3C3CCC</color>
+    <color name="red_medHigh_poi">#BFC80000</color>
+    <color name="cb_mono_white_high_poi">#BFFFFFFF</color>
+
+
     <!-- Normal -->
     <color name="cb_norm_item_selected">@color/red_high</color>
     <color name="cb_norm_item_unselected">#FF444444</color>

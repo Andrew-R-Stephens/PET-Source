@@ -26,7 +26,7 @@ import java.util.Arrays;
  * interpretation.
  * If it is useful to manipulate the interiors of closed
  * geometric shapes beyond simple hit testing then the
- * {@link Area} class provides additional capabilities
+ *  class provides additional capabilities
  * specifically targeted at closed figures.
  * While both classes nominally implement the {@code Shape}
  * interface, they differ in purpose and together they provide

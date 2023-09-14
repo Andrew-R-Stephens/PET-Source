@@ -1,11 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models;
 
+import android.os.Build;
 import android.util.Log;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 
 public class FloorModel {
 
@@ -40,12 +41,16 @@ public class FloorModel {
         this.floorLayer = layer;
     }
 
-    public String getFloorImage() {
-        return floorImage;
-    }
-
     public ArrayList<RoomModel> getFloorRooms() {
         return floorRooms;
+    }
+
+    public ArrayList<String> getFloorRoomNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for(RoomModel r: getFloorRooms()) {
+            names.add(r.getName());
+        }
+        return names;
     }
 
     public String getFloorName() {
@@ -81,40 +86,8 @@ public class FloorModel {
         return floorLayer;
     }
 
-    public int getNextAvailableId() {
-        ArrayList<Integer> ids = new ArrayList<>();
-        for (RoomModel room : floorRooms) {
-            ids.add(room.getId());
-        }
-        Collections.sort(ids);
-        int index = ids.size()-1;
-        return index > -1 ? ids.get(index) + 1 : 0;
-    }
-
     public ArrayList<PoiModel> getFloorPOIs() {
         return floorPOIs;
-    }
-
-    public boolean hasId(int id) {
-        boolean idIsTaken = false;
-        for(RoomModel r: floorRooms) {
-            if(r.getId() == id)
-                return idIsTaken;
-        }
-        return false;
-    }
-
-    public boolean hasMultipleOfId(int id) {
-        int count = 0;
-        for(RoomModel r: floorRooms) {
-            if(r.getId() == id) {
-                count++;
-            }
-            if(count >= 2) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public String toString() {
@@ -129,6 +102,12 @@ public class FloorModel {
 
         for(PoiModel p: floorPOIs) {
             p.print();
+        }
+    }
+
+    public void orderRooms() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            floorRooms.sort(Comparator.comparing(RoomModel::getName));
         }
     }
 }

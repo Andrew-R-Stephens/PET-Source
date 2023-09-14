@@ -3,11 +3,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -19,22 +19,25 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.POISpinner;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.InteractiveMapData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.PoiType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -53,6 +56,8 @@ public class InteractiveMapView extends View {
     private InteractiveMapData interactiveMapData;
     private final InteractiveMapData interactivePoiData = new InteractiveMapData();
 
+    private POISpinner roomSpinner;
+
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
     private MapData mapData;
@@ -61,13 +66,14 @@ public class InteractiveMapView extends View {
 
     private Rect frameRect;
     private final Paint paint;
-    private final PorterDuffColorFilter poiColorFilter =
-            new PorterDuffColorFilter(
-                    Color.argb(255, 150, 0, 0), PorterDuff.Mode.MULTIPLY);
+    private final PorterDuffColorFilter poiColorFilter;//, selectedBorderColorFilter, selectedFillColorFilter;
+    @ColorInt int
+            poiColor = Color.WHITE,
+            selectedBorderColor = Color.WHITE, //Color.argb(150, 255, 0, 0),
+            selectedFillColor = Color.WHITE; //Color.argb(25, 255, 255, 0);
 
     private RoomModel selectedRoomModel;
     private MapPointRunnable clickRunnable;
-
 
     private SparseArray<PointF> mActivePointers;
 
@@ -75,6 +81,8 @@ public class InteractiveMapView extends View {
     private Point panOrigin;
 
     private GestureDetectorCompat mDetector;
+
+    private float pulseAlpha = 1f;
 
     /**
      * InteractiveMapControlView parameterized constructor
@@ -90,15 +98,59 @@ public class InteractiveMapView extends View {
         paint.setStrokeWidth(5);
         paint.setStyle(Paint.Style.STROKE);
 
+        // COLORS
+        TypedValue typedValue = new TypedValue();
+        if (getContext() != null && getContext().getTheme() != null) {
+            Resources.Theme theme = getContext().getTheme();
+
+            theme.resolveAttribute(R.attr.poiFillColor, typedValue, true);
+            poiColor = typedValue.data;
+
+            theme.resolveAttribute(R.attr.roomBorderColor, typedValue, true);
+            selectedBorderColor = typedValue.data;
+
+            theme.resolveAttribute(R.attr.roomFillColor, typedValue, true);
+            selectedFillColor = typedValue.data;
+        }
+        /*int r = Color.red(poiColor);
+        int g = Color.green(poiColor);
+        int b = Color.blue(poiColor);
+        poiColor = Color.argb((int)(255*.75f), r, g, b);*/
+
+        //poiColor = ColorUtils.setColor(poiColor, (int)(255 * .75f), -1, -1, -1);
+        poiColorFilter = new PorterDuffColorFilter(
+                poiColor, PorterDuff.Mode.MULTIPLY);
+/*
+        selectedBorderColorFilter = new PorterDuffColorFilter(
+                selectedBorderColor, PorterDuff.Mode.MULTIPLY);
+
+        selectedFillColorFilter = new PorterDuffColorFilter(
+                selectedFillColor, PorterDuff.Mode.MULTIPLY);*/
     }
 
-    public void init(MapMenuViewModel mapManuViewModel) {
-        this.mapMenuViewModel = mapManuViewModel;
+    public void init(MapMenuViewModel mapMenuViewModel, POISpinner roomSpinner) {
+        this.mapMenuViewModel = mapMenuViewModel;
 
         interactiveMapData = new InteractiveMapData();
         mActivePointers = new SparseArray<>();
         mDetector = new GestureDetectorCompat(getContext(), new GestureTap());
 
+        this.roomSpinner = roomSpinner;
+
+        AdapterView.OnItemSelectedListener poiSpinnerListener = new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedRoomModel =
+                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor().
+                                getFloorRooms().get(position);
+
+                invalidate();
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        };
+        roomSpinner.setOnItemSelectedListener(poiSpinnerListener);
+        roomSpinner.populateAdapter(mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
     }
 
     public void resetRoomSelection() {
@@ -317,10 +369,6 @@ public class InteractiveMapView extends View {
     public void setPoiImages(Activity a) {
         if(getContext() == null) { return; }
 
-        if(bitmapUtils == null) {
-            bitmapUtils = new BitmapUtils();
-        }
-
         TypedArray typedArray =
                 a.getResources().obtainTypedArray(R.array.poi_resources_array);
 
@@ -330,11 +378,13 @@ public class InteractiveMapView extends View {
         }
 
         for(int i = 0; i < resources.size(); i++) {
-            Bitmap b = bitmapUtils.setResource(resources.get(i)).compileBitmaps(getContext());
+            Bitmap b = new BitmapUtils().setResource(resources.get(i)).compileBitmaps(getContext());
             poiImages.put(PoiType.values()[i], b);
         }
 
         typedArray.recycle();
+
+        a.runOnUiThread(this::invalidate);
 
         bitmapUtils = null;
     }
@@ -369,8 +419,7 @@ public class InteractiveMapView extends View {
             float panX = interactiveMapData.getMatrixValues()[Matrix.MTRANS_X];
             float panY = interactiveMapData.getMatrixValues()[Matrix.MTRANS_Y];
 
-            paint.setStrokeWidth(2);
-            paint.setColor(Color.argb(25, 255, 0, 0));
+            paint.setStrokeWidth(3);
             if(selectedRoomModel != null) {
                 ArrayList<PointF> points = selectedRoomModel.getRoomArea().getPoints();
                 PointF firstPoint = points.get(0);
@@ -384,22 +433,31 @@ public class InteractiveMapView extends View {
                             (panX) + points.get(i).x * scaleX,
                             (panY) + points.get(i).y * scaleY);
                 }
+                wallpath.lineTo(
+                        (panX) + (firstPoint.x * scaleX),
+                        (panY) + (firstPoint.y * scaleY)
+                );
 
+                paint.setColor(selectedFillColor);
                 paint.setStyle(Paint.Style.FILL);
                 canvas.drawPath(wallpath, paint);
+
+                paint.setColor(selectedBorderColor);
                 paint.setStyle(Paint.Style.STROKE);
                 canvas.drawPath(wallpath, paint);
             }
 
+            /*
             float radiusScaled = (scaleY / getHeight()) * 24;
             radiusScaled = Math.min((Math.max(12, radiusScaled)), 36);
-
+            */
             float fontSize = (scaleX / getWidth()) * 24;
             paint.setTextSize(Math.min(36, Math.max(12, fontSize)));
 
+            paint.setAntiAlias(true);
+            paint.setColor(poiColor);
+            paint.setColorFilter(poiColorFilter);
             for(PoiModel poi: mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorPOIs()) {
-                paint.setColor(Color.argb(255, 255, 0, 0));
-                paint.setColorFilter(poiColorFilter);
 
                 float x = (panX) + poi.getPoint().x * scaleX;
                 float y = (panY) + poi.getPoint().y * scaleY;
@@ -411,7 +469,7 @@ public class InteractiveMapView extends View {
                             x,
                             y
                     );
-                    interactivePoiData.postTranslateMatrix(
+                    interactivePoiData.postTranslateOriginMatrix(
                             b.getWidth(),
                             b.getHeight(),
                             getWidth(),
@@ -422,7 +480,9 @@ public class InteractiveMapView extends View {
                     Log.d("PoiImage", poi.getType().name() + " does not exist?");
                 }
 
+                /*
                 paint.setColorFilter(null);
+                //set color to yellow
                 paint.setColor(Color.argb(25, 255, 255, 0));
                 paint.setStyle(Paint.Style.FILL);
                 canvas.drawCircle(x, y, radiusScaled, paint);
@@ -430,6 +490,7 @@ public class InteractiveMapView extends View {
                 paint.setStrokeWidth(2);
                 paint.setStyle(Paint.Style.STROKE);
                 canvas.drawCircle(x, y, radiusScaled, paint);
+                */
                 /*
                 if(scaleX / getWidth() > 1.5) {
 
@@ -449,6 +510,7 @@ public class InteractiveMapView extends View {
                 }
                 */
             }
+            paint.setAntiAlias(false);
         }
 
         if (frameRect == null) {
@@ -500,12 +562,22 @@ public class InteractiveMapView extends View {
 
                 if(shape.contains(new Point2D.Float(touchX, touchY))) {
                     Log.d("Tap", "setting temp room");
-                    selectedRoomModel = room;
-                    selectedRoomModel.print();
+
+                    if(room != selectedRoomModel) {
+                        selectedRoomModel = room;
+                        selectedRoomModel.print();
+                    } else {
+                        resetRoomSelection();
+                    }
+
+                    roomSpinner.setSelection(rooms.indexOf(room));
+
                     invalidate();
                     return;
                 }
             }
+            resetRoomSelection();
+            invalidate();
         }
     }
 

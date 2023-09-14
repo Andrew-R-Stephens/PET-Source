@@ -70,7 +70,7 @@ class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 			Bitmap bitmap = BitmapFactory.decodeStream(context.getAssets().open(rowItem.image));
 			holder.imageView.setImageBitmap(bitmap);
 		} catch (Exception e) {
-			holder.imageView.setImageResource(R.drawable.anim_hand);
+			holder.imageView.setImageResource(R.drawable.anim_hand2);
 		}
 
 		return convertView;

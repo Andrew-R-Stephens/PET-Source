@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import android.os.Build;
+
 /**
  * {@code RectangularShape} is the base class for a number of
  * {@link Shape} objects whose geometry is defined by a rectangular frame.
@@ -352,7 +354,10 @@ public abstract class RectangularShape implements Shape, Cloneable {
             return super.clone();
         } catch (CloneNotSupportedException e) {
             // this shouldn't happen, since we are Cloneable
-            throw new InternalError(e);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                throw new InternalError(e);
+            }
         }
+        return null;
     }
 }

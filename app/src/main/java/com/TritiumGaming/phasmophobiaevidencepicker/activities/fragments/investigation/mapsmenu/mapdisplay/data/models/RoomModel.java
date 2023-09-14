@@ -11,28 +11,6 @@ public class RoomModel {
 
     private RoomArea roomArea = new RoomArea();
 
-    public RoomModel() {
-        setId(-1);
-        setName("");
-    }
-
-    /**
-     * Deep copy data from another RoomData
-     * @param tempRoomData
-     */
-    public RoomModel(RoomModel tempRoomData) {
-        if(tempRoomData == null) { return; }
-
-        setId(tempRoomData.getId());
-        setName(tempRoomData.getName());
-        setRoomArea(tempRoomData.getRoomArea());
-    }
-
-    public void setRoomArea(RoomArea tempRoomArea) {
-        this.roomArea = new RoomArea(tempRoomArea);
-        System.out.println("Setting room area " + roomArea);
-    }
-
     public RoomArea getRoomArea() {
         return roomArea;
     }
@@ -60,20 +38,9 @@ public class RoomModel {
         return name;
     }
 
-    public boolean hasName() {
-        return !this.name.equals("");
-    }
-
-    public boolean hasId() {
-        return this.id >= -1;
-    }
-
+    @Override
     public String toString() {
         return "\n\t\t[Room ID: " + id + "] [Room Name: " + name + "] [Room points: " + roomArea + "]";
-    }
-
-    public boolean isReady() {
-        return roomArea != null && roomArea.getPoints().size() >= 3;
     }
 
     public synchronized void print() {

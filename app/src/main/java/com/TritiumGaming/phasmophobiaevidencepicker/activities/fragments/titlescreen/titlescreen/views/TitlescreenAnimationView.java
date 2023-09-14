@@ -37,6 +37,7 @@ public class TitlescreenAnimationView extends View {
     private BitmapUtils bitmapUtils = null;
 
     private ArrayList<Integer> bookwritingResId = new ArrayList<>();
+    private ArrayList<Integer> handuvResId = new ArrayList<>();
 
     private final int
             screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
@@ -94,10 +95,25 @@ public class TitlescreenAnimationView extends View {
         }
         bookwritingArray.recycle();
 
+        //Set writing resources
+        TypedArray handUVArray =
+                getResources().obtainTypedArray(R.array.anim_hand_images);
+        handuvResId = new ArrayList<>();
+        for (int i = 0; i < handUVArray.length(); i++) {
+            handuvResId.add(handUVArray.getResourceId(i, 0));
+        }
+        handUVArray.recycle();
+
         if (titleScreenViewModel != null &&
                 titleScreenViewModel.getAnimationData().getSelectedWriting() == -1) {
             titleScreenViewModel.getAnimationData().
                     setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
+        }
+
+        if (titleScreenViewModel != null &&
+                titleScreenViewModel.getAnimationData().getSelectedHand() == -1) {
+            titleScreenViewModel.getAnimationData().
+                    setSelectedHand((int) (Math.random() * handuvResId.size()));
         }
     }
 
@@ -111,7 +127,10 @@ public class TitlescreenAnimationView extends View {
                 compileBitmaps(getContext());
         bitmap_mirror = bitmapUtils.setResource(R.drawable.anim_cracked).
                 compileBitmaps(getContext());
-        bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).
+        /*bitmap_hand = bitmapUtils.setResource(R.drawable.anim_hand).
+                compileBitmaps(getContext());*/
+        bitmap_hand = bitmapUtils.setResource(
+                handuvResId.get(titleScreenViewModel.getAnimationData().getSelectedHand())).
                 compileBitmaps(getContext());
         bitmap_writing = bitmapUtils.setResource(
                 bookwritingResId.get(titleScreenViewModel.getAnimationData().getSelectedWriting())).
@@ -325,10 +344,23 @@ public class TitlescreenAnimationView extends View {
                 if (!currentAnim.isAlive()) {
                     if (currentAnim instanceof AnimatedHandData) {
                         AnimatedHandData data = ((AnimatedHandData) currentAnim);
+                        animationData.setSelectedHand(
+                                (int) (Math.random() * handuvResId.size()));
+                        BitmapUtils.destroyBitmap(bitmap_hand);
+                        BitmapUtils.destroyBitmap(bitmap_handRot);
+                        bitmapUtils.setResource(
+                                handuvResId.get(animationData.getSelectedHand()));
+                        bitmap_hand = bitmapUtils.compileBitmaps(getContext());
+                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                            bitmap_handRot = data.rotateBitmap(bitmap_hand);
+                        }
+                        /*
+                        AnimatedHandData data = ((AnimatedHandData) currentAnim);
                         BitmapUtils.destroyBitmap(bitmap_handRot);
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
                             bitmap_handRot = data.rotateBitmap(bitmap_hand);
                         }
+                        */
                     } else if (currentAnim instanceof AnimatedWritingData) {
                         AnimatedWritingData data = ((AnimatedWritingData) currentAnim);
                         animationData.setSelectedWriting(
@@ -356,7 +388,7 @@ public class TitlescreenAnimationView extends View {
     }
 
     /**
-     * @param canvas
+     * @param canvas The cavas
      */
     @Override
     protected void onDraw(Canvas canvas) {

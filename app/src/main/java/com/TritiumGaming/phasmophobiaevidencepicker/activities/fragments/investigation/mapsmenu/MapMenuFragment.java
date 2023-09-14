@@ -74,6 +74,7 @@ public class MapMenuFragment extends Fragment {
                 AssetManager assets = getActivity().getAssets();
                 mapFileIO.readFile(assets.open("maps.json"), reader);
                 mapListModel = new MapListModel(reader.mapsWrapper);
+                mapListModel.orderRooms();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

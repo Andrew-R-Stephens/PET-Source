@@ -33,6 +33,9 @@
     <attr name="negativeSelColor" format="reference|color" />
     <attr name="neutralSelColor" format="reference|color" />
 
+    <attr name="poiFillColor" format="reference|color" />
+    <attr name="roomBorderColor" format="reference|color" />
+    <attr name="roomFillColor" format="reference|color" />
     <!--
         Fonts
     -->

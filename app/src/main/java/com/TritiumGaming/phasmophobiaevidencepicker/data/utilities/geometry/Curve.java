@@ -78,20 +78,7 @@ public abstract class Curve {
         }
     }
 
-    /**
-     * Calculates the number of times the given path
-     * crosses the ray extending to the right from (px,py).
-     * If the point lies on a part of the path,
-     * then no crossings are counted for that intersection.
-     * +1 is added for each crossing where the Y coordinate is increasing
-     * -1 is added for each crossing where the Y coordinate is decreasing
-     * The return value is the sum of all crossings for every segment in
-     * the path.
-     * The path must start with a SEG_MOVETO, otherwise an exception is
-     * thrown.
-     * The caller must check p[xy] for NaN values.
-     * The caller may also reject infinite p[xy] values as well.
-     */
+
     public static int pointCrossingsForPath(PathIterator pi,
                                             double px, double py)
     {
@@ -171,13 +158,7 @@ public abstract class Curve {
         return crossings;
     }
 
-    /**
-     * Calculates the number of times the line from (x0,y0) to (x1,y1)
-     * crosses the ray extending to the right from (px,py).
-     * If the point lies on the line, then no crossings are recorded.
-     * +1 is returned for a crossing where the Y coordinate is increasing
-     * -1 is returned for a crossing where the Y coordinate is decreasing
-     */
+
     public static int pointCrossingsForLine(double px, double py,
                                             double x0, double y0,
                                             double x1, double y1)
@@ -192,16 +173,7 @@ public abstract class Curve {
         return (y0 < y1) ? 1 : -1;
     }
 
-    /**
-     * Calculates the number of times the quad from (x0,y0) to (x1,y1)
-     * crosses the ray extending to the right from (px,py).
-     * If the point lies on a part of the curve,
-     * then no crossings are counted for that intersection.
-     * the level parameter should be 0 at the top-level call and will count
-     * up for each recursion level to prevent infinite recursion
-     * +1 is added for each crossing where the Y coordinate is increasing
-     * -1 is added for each crossing where the Y coordinate is decreasing
-     */
+
     public static int pointCrossingsForQuad(double px, double py,
                                             double x0, double y0,
                                             double xc, double yc,
@@ -243,16 +215,7 @@ public abstract class Curve {
                                       level+1));
     }
 
-    /**
-     * Calculates the number of times the cubic from (x0,y0) to (x1,y1)
-     * crosses the ray extending to the right from (px,py).
-     * If the point lies on a part of the curve,
-     * then no crossings are counted for that intersection.
-     * the level parameter should be 0 at the top-level call and will count
-     * up for each recursion level to prevent infinite recursion
-     * +1 is added for each crossing where the Y coordinate is increasing
-     * -1 is added for each crossing where the Y coordinate is decreasing
-     */
+
     public static int pointCrossingsForCubic(double px, double py,
                                              double x0, double y0,
                                              double xc0, double yc0,
@@ -301,50 +264,10 @@ public abstract class Curve {
                                        xc1, yc1, x1, y1, level+1));
     }
 
-    /**
-     * The rectangle intersection test counts the number of times
-     * that the path crosses through the shadow that the rectangle
-     * projects to the right towards (x => +INFINITY).
-     *
-     * During processing of the path it actually counts every time
-     * the path crosses either or both of the top and bottom edges
-     * of that shadow.  If the path enters from the top, the count
-     * is incremented.  If it then exits back through the top, the
-     * same way it came in, the count is decremented and there is
-     * no impact on the winding count.  If, instead, the path exits
-     * out the bottom, then the count is incremented again and a
-     * full pass through the shadow is indicated by the winding count
-     * having been incremented by 2.
-     *
-     * Thus, the winding count that it accumulates is actually double
-     * the real winding count.  Since the path is continuous, the
-     * final answer should be a multiple of 2, otherwise there is a
-     * logic error somewhere.
-     *
-     * If the path ever has a direct hit on the rectangle, then a
-     * special value is returned.  This special value terminates
-     * all ongoing accumulation on up through the call chain and
-     * ends up getting returned to the calling function which can
-     * then produce an answer directly.  For intersection tests,
-     * the answer is always "true" if the path intersects the
-     * rectangle.  For containment tests, the answer is always
-     * "false" if the path intersects the rectangle.  Thus, no
-     * further processing is ever needed if an intersection occurs.
-     */
+
     public static final int RECT_INTERSECTS = 0x80000000;
 
-    /**
-     * Accumulate the number of times the path crosses the shadow
-     * extending to the right of the rectangle.  See the comment
-     * for the RECT_INTERSECTS constant for more complete details.
-     * The return value is the sum of all crossings for both the
-     * top and bottom of the shadow for every segment in the path,
-     * or the special value RECT_INTERSECTS if the path ever enters
-     * the interior of the rectangle.
-     * The path must start with a SEG_MOVETO, otherwise an exception is
-     * thrown.
-     * The caller must check r[xy]{min,max} for NaN values.
-     */
+
     public static int rectCrossingsForPath(PathIterator pi,
                                            double rxmin, double rymin,
                                            double rxmax, double rymax)
@@ -444,11 +367,7 @@ public abstract class Curve {
         return crossings;
     }
 
-    /**
-     * Accumulate the number of times the line crosses the shadow
-     * extending to the right of the rectangle.  See the comment
-     * for the RECT_INTERSECTS constant for more complete details.
-     */
+
     public static int rectCrossingsForLine(int crossings,
                                            double rxmin, double rymin,
                                            double rxmax, double rymax,
@@ -518,11 +437,7 @@ public abstract class Curve {
         return RECT_INTERSECTS;
     }
 
-    /**
-     * Accumulate the number of times the quad crosses the shadow
-     * extending to the right of the rectangle.  See the comment
-     * for the RECT_INTERSECTS constant for more complete details.
-     */
+
     public static int rectCrossingsForQuad(int crossings,
                                            double rxmin, double rymin,
                                            double rxmax, double rymax,
@@ -594,11 +509,7 @@ public abstract class Curve {
         return crossings;
     }
 
-    /**
-     * Accumulate the number of times the cubic crosses the shadow
-     * extending to the right of the rectangle.  See the comment
-     * for the RECT_INTERSECTS constant for more complete details.
-     */
+
     public static int rectCrossingsForCubic(int crossings,
                                             double rxmin, double rymin,
                                             double rxmax, double rymax,

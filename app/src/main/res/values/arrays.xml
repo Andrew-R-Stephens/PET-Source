@@ -56,6 +56,33 @@
 
     </integer-array>
 
+    <!-- Tarot Card Images -->
+    <integer-array name= "anim_tarotcard_images">
+        <item>@drawable/tarot_cover</item>
+        <item>@drawable/tarot_death</item>
+        <item>@drawable/tarot_devil</item>
+        <item>@drawable/tarot_fortune</item>
+        <item>@drawable/tarot_hangedman_alt</item>
+        <item>@drawable/tarot_hermit</item>
+        <item>@drawable/tarot_joker</item>
+        <item>@drawable/tarot_moon</item>
+        <item>@drawable/tarot_priestess</item>
+        <item>@drawable/tarot_sun</item>
+        <item>@drawable/tarot_tower</item>
+
+    </integer-array>
+
+    <!-- Book Writing Images -->
+    <integer-array name= "anim_hand_images">
+        <item>@drawable/anim_hand2</item>
+        <item>@drawable/anim_hand3</item>
+        <item>@drawable/anim_hand4</item>
+        <item>@drawable/anim_hand5</item>
+        <item>@drawable/anim_hand6</item>
+        <item>@drawable/anim_hand_obake</item>
+
+    </integer-array>
+
     <!--
         MESSAGE CENTER PAGE
     -->

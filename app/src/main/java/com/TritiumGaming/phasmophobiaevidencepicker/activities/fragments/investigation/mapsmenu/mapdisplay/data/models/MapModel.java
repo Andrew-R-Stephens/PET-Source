@@ -14,7 +14,7 @@ public class MapModel {
 
     public FloorLayer currentLayer = FloorLayer.values()[0];
 
-    public ArrayList<FloorModel> mapFloors = new ArrayList<>();//new ArrayList<>(3);
+    public ArrayList<FloorModel> mapFloors = new ArrayList<>();
 
     public MapModel() {
         mapId = 0;
@@ -62,101 +62,12 @@ public class MapModel {
         return false;
     }
 
-    public boolean hasFloorById(int id) {
-        for(FloorModel f: mapFloors) {
-            if(f.floorId == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int getCurrentLayerOrdinal() {
-        return currentLayer == null ? -1 : currentLayer.ordinal();
-    }
-
     public String toString() {
         return "\n[Map ID: " + mapId + "] [Map Name: " + mapName+ "] [Dimensions: "  + mapDimensions + "] [Layer: "  + currentLayer+ "] \nFloor Data:"  + mapFloors + "\n";
     }
 
     public FloorModel getFloor(int index) {
         return mapFloors.get(index);
-    }
-
-    public FloorModel getFloor(FloorLayer layer) {
-        for(FloorModel floor : mapFloors) {
-            if(floor.getFloorLayer() == layer) {
-                return floor;
-            }
-        }
-        return null;
-    }
-
-    public void addFloor(FloorLayer layer) {
-        FloorModel floorModel = new FloorModel(layer);
-        floorModel.floorId = layer.ordinal();
-        mapFloors.add(floorModel);
-    }
-
-    public boolean removeFloor(FloorModel floorModel) {
-        if(floorModel != null) {
-            if(mapFloors.remove(floorModel)) {
-                setCurrentLayer(getFloor(0).getFloorLayer());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void incrementLayer() {
-
-        int ordinal = getCurrentLayerOrdinal();
-        int newOrdinal = ordinal +1;
-        newOrdinal = newOrdinal > getHighestFloorLayer().ordinal() ? getLowestFloorLayer().ordinal() : newOrdinal;
-
-        FloorModel floorModel1 = getFloor(FloorLayer.values()[newOrdinal]);
-        FloorModel floorModel2 = getCurrentFloor();
-        swapFloorLayers(floorModel1, floorModel2);
-    }
-
-    public void decrementLayer() {
-
-        int ordinal = getCurrentLayerOrdinal();
-        int newOrdinal = ordinal -1;
-        newOrdinal = newOrdinal < getLowestFloorLayer().ordinal() ? getHighestFloorLayer().ordinal() : newOrdinal;
-
-        FloorModel floorModel1 = getCurrentFloor();
-        FloorModel floorModel2 = getFloor(FloorLayer.values()[newOrdinal]);
-        swapFloorLayers(floorModel1, floorModel2);
-    }
-
-    private void swapFloorLayers(FloorModel floorModel1, FloorModel floorModel2) {
-        FloorLayer floorModel1Layer = floorModel1.getFloorLayer();
-
-        floorModel1.setFloorLayer(floorModel2.getFloorLayer());
-        floorModel2.setFloorLayer(floorModel1Layer);
-    }
-
-    public FloorLayer getLowestFloorLayer() {
-        int lowestLayer = FloorLayer.THIRD_FLOOR.ordinal();
-        for(FloorModel floor : mapFloors) {
-            int newOrdinal = floor.getFloorLayer().ordinal();
-            if(newOrdinal < lowestLayer) {
-                lowestLayer = newOrdinal;
-            }
-        }
-        return FloorLayer.values()[lowestLayer];
-    }
-
-    public FloorLayer getHighestFloorLayer() {
-        int highestLayer = FloorLayer.BASEMENT.ordinal();
-        for(FloorModel floor : mapFloors) {
-            int newOrdinal = floor.getFloorLayer().ordinal();
-            if(newOrdinal > highestLayer) {
-                highestLayer = newOrdinal;
-            }
-        }
-        return FloorLayer.values()[highestLayer];
     }
 
     public synchronized void print() {
@@ -168,4 +79,9 @@ public class MapModel {
         }
     }
 
+    public void orderRooms() {
+        for(FloorModel f: mapFloors) {
+            f.orderRooms();
+        }
+    }
 }

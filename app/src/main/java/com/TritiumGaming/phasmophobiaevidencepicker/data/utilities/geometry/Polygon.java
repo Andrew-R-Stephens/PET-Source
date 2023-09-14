@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.io.Serial;
 import java.util.Arrays;
 
 

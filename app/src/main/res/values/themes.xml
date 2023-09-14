@@ -51,6 +51,10 @@
         <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
         <item name="negativeSelColor">@color/red_medHigh</item>
 
+        <item name="poiFillColor">@color/red_medHigh_poi</item>
+        <item name="roomBorderColor">@color/red_medHigh_selbord</item>
+        <item name="roomFillColor">@color/yellow_bright_selfill</item>
+
     </style>
 
     <style name="NonColorblind.Base" parent="Colorblind.Base">
@@ -77,6 +81,11 @@
         <item name="positiveSelColor">@color/green_bright</item>
         <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
         <item name="negativeSelColor">@color/red_medHigh</item>
+
+        <item name="poiFillColor">@color/red_medHigh_poi</item>
+        <item name="roomBorderColor">@color/red_medHigh_selbord</item>
+        <item name="roomFillColor">@color/yellow_bright_selfill</item>
+
 
     </style>
 
@@ -105,6 +114,10 @@
         <item name="neutralSelColor">@color/cb_mono_white_med</item>
         <item name="negativeSelColor">@color/cb_mono_white_lowmed</item>
 
+        <item name="poiFillColor">@color/cb_mono_white_high_poi</item>
+        <item name="roomBorderColor">@color/cb_mono_white_high_selbord</item>
+        <item name="roomFillColor">@color/cb_mono_white_med_selfill</item>
+
     </style>
 
     <style name="Deuteranomaly" parent="Colorblind.Base">
@@ -130,6 +143,9 @@
         <item name="neutralSelColor">@color/cb_mono_white_med</item>
         <item name="negativeSelColor">@color/blue_low</item>
 
+        <item name="poiFillColor">@color/blue_light_poi</item>
+        <item name="roomBorderColor">@color/blue_medHigh_selbord</item>
+        <item name="roomFillColor">@color/yellow_bright_selfill</item>
     </style>
 
     <style name="Protanomaly" parent="Colorblind.Base">
@@ -155,6 +171,9 @@
         <item name="neutralSelColor">@color/cb_mono_white_med</item>
         <item name="negativeSelColor">@color/blue_low</item>
 
+        <item name="poiFillColor">@color/blue_light_poi</item>
+        <item name="roomBorderColor">@color/blue_medHigh_selbord</item>
+        <item name="roomFillColor">@color/yellow_bright_selfill</item>
     </style>
 
     <style name="Tritanomaly" parent="Colorblind.Base">
@@ -162,6 +181,8 @@
         <item name="switchColor">@color/red_high</item>
         <item name="circleColor">@color/green_bright</item>
         <item name="neutralSelColor">@color/white</item>
+
+        <item name="poiFillColor">@color/red_high_poi</item>
 
     </style>
 

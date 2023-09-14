@@ -184,7 +184,7 @@ public interface Shape {
      * This means that for some {@code Shapes} this method might
      * return {@code true} even though the rectangular area does not
      * intersect the {@code Shape}.
-     * The {@link java.awt.geom.Area Area} class performs
+     * The class performs
      * more accurate computations of geometric intersection than most
      * {@code Shape} objects and therefore can be used if a more precise
      * answer is required.
@@ -199,7 +199,7 @@ public interface Shape {
      *          the interior of the rectangular area intersect, or are
      *          both highly likely to intersect and intersection calculations
      *          would be too expensive to perform; {@code false} otherwise.
-     * @see java.awt.geom.Area
+     *
      * @since 1.2
      */
     public boolean intersects(double x, double y, double w, double h);
@@ -220,7 +220,7 @@ public interface Shape {
      * This means that for some {@code Shapes} this method might
      * return {@code true} even though the {@code Rectangle2D} does not
      * intersect the {@code Shape}.
-     * The {@link java.awt.geom.Area Area} class performs
+     * The class performs
      * more accurate computations of geometric intersection than most
      * {@code Shape} objects and therefore can be used if a more precise
      * answer is required.
@@ -256,7 +256,7 @@ public interface Shape {
      * This means that for some {@code Shapes} this method might
      * return {@code false} even though the {@code Shape} contains
      * the rectangular area.
-     * The {@link java.awt.geom.Area Area} class performs
+     * The class performs
      * more accurate geometric computations than most
      * {@code Shape} objects and therefore can be used if a more precise
      * answer is required.
@@ -274,7 +274,7 @@ public interface Shape {
      *          {@code intersects} method returns {@code true}
      *          and the containment calculations would be too expensive to
      *          perform.
-     * @see java.awt.geom.Area
+     *
      * @see #intersects
      * @since 1.2
      */
@@ -296,7 +296,7 @@ public interface Shape {
      * This means that for some {@code Shapes} this method might
      * return {@code false} even though the {@code Shape} contains
      * the {@code Rectangle2D}.
-     * The {@link java.awt.geom.Area Area} class performs
+     * The class performs
      * more accurate geometric computations than most
      * {@code Shape} objects and therefore can be used if a more precise
      * answer is required.
