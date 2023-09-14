@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker;
 
 import android.annotation.SuppressLint;
-import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
-
-import java.io.IOException;
 
 public class ItemStoreFragment extends Fragment {
 
@@ -34,10 +32,27 @@ public class ItemStoreFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        TypedArray tierAttr = getContext().getTheme().obtainStyledAttributes(
-                R.attr.equipment_tier,
-                R.styleable.EquipmentTiers
-        );
+        LinearLayoutCompat parent = view.findViewById(R.id.testlayout).findViewById(R.id.testlayoutlist);
+
+        if(getContext() != null) {
+            Resources.Theme theme = getContext().getTheme();
+            TypedArray tierAttr = theme.obtainStyledAttributes(
+                    R.attr.equipment_tier,
+                    R.styleable.EquipmentTiers
+            );
+            if(tierAttr != null) {
+                for (int i = 0; i < parent.getChildCount(); i++) {
+                    GridLayout child = parent.getChildAt(0).findViewById(R.id.testgridlist);
+                    for (int j = 0; j < child.getChildCount(); j++) {
+                        AppCompatImageView item = (AppCompatImageView) child.getChildAt(j);
+                        Log.d("TierImageID", getResources().getResourceEntryName(item.getId()) + "");
+                        item.setImageState(new int[]{tierAttr.getInt(R.styleable.EquipmentTiers_equipment_tier, j)}, true);
+                    }
+                    tierAttr.recycle();
+                }
+
+            }
+        }
 
         /*
         // Gets you the 'value' number - 0 or 666 in your example
@@ -45,19 +60,6 @@ public class ItemStoreFragment extends Fragment {
             int value = tierAttr.getInt(R.styleable.EquipmentTiers, 0));
         }
         */
-
-        LinearLayoutCompat parent = view.findViewById(R.id.testlayout).findViewById(R.id.testlayoutlist);
-
-        for(int i = 0; i < parent.getChildCount(); i++) {
-            GridLayout child = parent.getChildAt(0).findViewById(R.id.testgridlist);
-            for(int j = 0; j < child.getChildCount(); j++) {
-                AppCompatImageView item = (AppCompatImageView) child.getChildAt(j);
-                Log.d("TierImageID", getResources().getResourceEntryName(item.getId()) + "");
-                item.setImageState(new int[]{tierAttr.getInt(R.styleable.EquipmentTiers_equipment_tier, j)}, true);
-            }
-        }
-
-        tierAttr.recycle();
 
     }
 }

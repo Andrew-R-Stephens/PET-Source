@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;

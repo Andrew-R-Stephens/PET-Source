@@ -25,8 +25,6 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.util.Vector;
-
 final class Order0 extends Curve {
     private double x;
     private double y;

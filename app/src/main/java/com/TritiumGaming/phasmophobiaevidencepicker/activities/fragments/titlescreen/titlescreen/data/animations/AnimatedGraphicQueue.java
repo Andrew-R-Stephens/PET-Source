@@ -140,9 +140,9 @@ public class AnimatedGraphicQueue {
      */
     @NonNull
     public String toString() {
-        String s = "Queue List (" + getSize() + ") [";
+        StringBuilder s = new StringBuilder("Queue List (" + getSize() + ") [");
         for (int i = 0; i < queue.size(); i++) {
-            s += queue.get(i) + " ";
+            s.append(queue.get(i)).append(" ");
         }
         return s + "]";
     }

@@ -84,7 +84,7 @@ public class AnimatedGraphicData {
      * @return
      */
     public AbstractAnimatedGraphic getLastFromCurrentPool() throws IndexOutOfBoundsException {
-        if (currentPool.size() <= 0) {
+        if (currentPool.size() == 0) {
             return null;
         }
         int index = currentPool.size() - 1;

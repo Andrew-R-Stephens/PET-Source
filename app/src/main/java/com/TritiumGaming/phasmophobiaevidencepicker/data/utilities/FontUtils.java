@@ -5,8 +5,6 @@ import android.text.Spanned;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.PoiType;
-
 /**
  * FontStyler class
  *

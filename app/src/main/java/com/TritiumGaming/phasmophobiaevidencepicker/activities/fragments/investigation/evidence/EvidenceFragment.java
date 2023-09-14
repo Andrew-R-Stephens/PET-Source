@@ -791,11 +791,13 @@ public class EvidenceFragment extends Fragment {
         animationView.setImageResource(animation);
         animation_fullscreen.setImageResource(animation);
 
+        if(getContext() != null) {
+            TypedArray typedArray =
+                    getContext().getResources().obtainTypedArray(R.array.evidence_tiers);
+            title.setText(typedArray.getString(tierIndex-1));
+            typedArray.recycle();
+        }
 
-        TypedArray typedArray =
-                getContext().getResources().obtainTypedArray(R.array.evidence_tiers);
-        title.setText(typedArray.getString(tierIndex-1));
-        typedArray.recycle();
 
         animationView.setOnClickListener(v -> {
             if(animation_fullscreen.getVisibility() != View.VISIBLE) {

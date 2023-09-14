@@ -333,7 +333,10 @@ public class AppSettingsFragment extends Fragment {
             globalPreferencesViewModel.setFontType(fontIndex);
         }
 
-        ((PETActivity)getActivity()).changeTheme(-1, fontIndex);
+        PETActivity activity = ((PETActivity)getActivity());
+        if(activity != null) {
+            activity.changeTheme(-1, fontIndex);
+        }
         refreshFragment();
     }
 

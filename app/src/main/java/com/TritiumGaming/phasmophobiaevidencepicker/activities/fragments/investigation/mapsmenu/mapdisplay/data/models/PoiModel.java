@@ -3,8 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.graphics.PointF;
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
-
 public class PoiModel {
 
     private int id = -1;

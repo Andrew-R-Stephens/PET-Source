@@ -29,7 +29,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**

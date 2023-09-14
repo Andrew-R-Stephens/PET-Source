@@ -3,7 +3,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import java.io.IOException;
-import java.io.Serial;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import java.util.Arrays;

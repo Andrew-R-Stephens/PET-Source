@@ -148,14 +148,15 @@ public class AppInfoFragment extends Fragment {
         int nameCount = typedArray.length();
         for (int i = 0; i < nameCount; i++) {
 
-            LayoutInflater inflater =
-                    (LayoutInflater) getView().getContext().getSystemService(
-                            Context.LAYOUT_INFLATER_SERVICE);
-            ConstraintLayout specialThanksItem_layout = (ConstraintLayout) inflater.inflate(R.layout.item_special_thanks_label, null);
-            AppCompatTextView textView_username = specialThanksItem_layout.findViewById(R.id.specialThanks_username);
-            textView_username.setText(typedArray.getString(i));
-            linearLayout_specialThanks.addView(specialThanksItem_layout);
-
+            if(getView() != null && getView().getContext() != null) {
+                LayoutInflater inflater =
+                        (LayoutInflater) getView().getContext().getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
+                ConstraintLayout specialThanksItem_layout = (ConstraintLayout) inflater.inflate(R.layout.item_special_thanks_label, null);
+                AppCompatTextView textView_username = specialThanksItem_layout.findViewById(R.id.specialThanks_username);
+                textView_username.setText(typedArray.getString(i));
+                linearLayout_specialThanks.addView(specialThanksItem_layout);
+            }
         }
 
         typedArray.recycle();

@@ -34,7 +34,7 @@ public class MPHost extends AbstractMPMember {
      * @return
      */
     public String getLobbyCode() {
-        String lobbyCode = "";
+        StringBuilder lobbyCode = new StringBuilder();
 
         String ip = "24.47.180.250";
         String[] ipArray = ip.split("\\.");
@@ -52,7 +52,7 @@ public class MPHost extends AbstractMPMember {
                 System.out.print(", Hex: " + hexa[i]);
                 for (int j = 0; j < hexa[i].length(); j++) {
                     int loc = hexa[i].charAt(j);
-                    lobbyCode += alphabet.charAt(alphabet.indexOf(loc) + 9);
+                    lobbyCode.append(alphabet.charAt(alphabet.indexOf(loc) + 9));
                 }
                 /*
                 hexa[i] = tempHexa;
@@ -61,7 +61,7 @@ public class MPHost extends AbstractMPMember {
             }
         }
 
-        return lobbyCode;
+        return lobbyCode.toString();
     }
 
 }

@@ -80,7 +80,10 @@ public class NewsletterMessagesData {
 
             String output = "";
             try {
-                output = simpleFormatter.format(parser.parse(date));
+                Date parsedDate = parser.parse(date);
+                if(parsedDate != null) {
+                    output = simpleFormatter.format(parsedDate);
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -123,12 +126,12 @@ public class NewsletterMessagesData {
     }
 
     public String toString() {
-        String t = "";
+        StringBuilder t = new StringBuilder();
 
         for (NewsletterMessageData m : messages) {
-            t += "\n[" + m.getTitle() + " " + m.getDate() + " " + m.getDescription() + "]";
+            t.append("\n[").append(m.getTitle()).append(" ").append(m.getDate()).append(" ").append(m.getDescription()).append("]");
         }
-        return t;
+        return t.toString();
     }
 
 }

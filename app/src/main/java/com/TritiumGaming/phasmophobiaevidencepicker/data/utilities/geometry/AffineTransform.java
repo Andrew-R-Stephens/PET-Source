@@ -30,7 +30,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
-import java.io.Serial;
 
 /**
  * The {@code AffineTransform} class represents a 2D affine transform

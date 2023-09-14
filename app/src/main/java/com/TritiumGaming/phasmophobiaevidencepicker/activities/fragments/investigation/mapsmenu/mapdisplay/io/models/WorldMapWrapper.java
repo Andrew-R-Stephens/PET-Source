@@ -109,7 +109,10 @@ public class WorldMapWrapper {
 
     public void print() {
         for (Map<String, WorldMap> m : maps) {
-            m.get("map_data").print();
+            WorldMap map = m.get("map_data");
+            if(map != null) {
+                map.print();
+            }
         }
     }
 }
