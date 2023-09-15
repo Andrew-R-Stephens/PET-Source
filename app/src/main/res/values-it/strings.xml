@@ -108,6 +108,13 @@
 
     <!-- Page Details -->
 
+    <string name="map_info_help_title">Aiuto per la mappa interattiva</string>
+    <string name="map_info_help_pan">Panoramica di una mappa con un dito.</string>
+    <string name="map_info_help_zoom">Ingrandisci e rimpicciolisci una mappa pizzicando o allargando due dita.</string>
+    <string name="map_info_help_click">Tocca con un dito su qualsiasi mappa per ottenere il nome e il confine di qualsiasi stanza.</string>
+    <string name="map_info_help_rooms">Seleziona una stanza nel menu a discesa Stanze per mostrare la posizione e i confini di quella stanza.</string>
+    <string name="map_info_help_floors">Scorri tra i piani per visualizzarli e interagire con essi.</string>
+    <string name="map_info_help_pois">Le posizioni delle scatole dei fusibili e degli oggetti maledetti sono indicate dalle relative icone.</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
     <string name="objectives_title_investigation_debrief">Rapporto investigativo</string>
     <string name="objectives_title_ghost_name">Nome del fantasma:</string>

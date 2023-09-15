@@ -6,12 +6,18 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -19,6 +25,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -26,7 +34,11 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 /*
  * MapViewerFragment class
@@ -42,6 +54,9 @@ public class MapViewerFragment extends Fragment {
     private MapLayerSelectorGroup selectorGroup;
     private AppCompatTextView layerName;
     private POISpinner poiSpinner;
+    private ConstraintLayout button_help;
+
+    protected PopupWindow popup;
 
     /*
      *
@@ -82,6 +97,8 @@ public class MapViewerFragment extends Fragment {
         poiSpinner = view.findViewById(R.id.spinner_poiname);
 
         layerName = view.findViewById(R.id.textview_floorname);
+
+        button_help = view.findViewById(R.id.listener_help);
 
 
         mapViewViewModel.getCurrentMapModel().setCurrentLayer(
@@ -136,10 +153,16 @@ public class MapViewerFragment extends Fragment {
             }
         });
 
+        button_help.setOnClickListener(helpButtonView -> {
+            showHelpPopup();
+        });
+
+        /*
         listener_goto_left.setOnClickListener(v -> {
             saveStates();
             Navigation.findNavController(v).popBackStack();
         });
+        */
 
         // LISTENERS
         initNavListeners(
@@ -161,6 +184,9 @@ public class MapViewerFragment extends Fragment {
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
+                            if(popup != null && popup.isShowing()) {
+                                popup.dismiss();
+                            }
                             Navigation.findNavController(view).popBackStack();
                         }
                     });
@@ -187,6 +213,34 @@ public class MapViewerFragment extends Fragment {
         updateComponents();// Spinner click listener
 
 
+    }
+
+
+    private void showHelpPopup() {
+
+        if(getView() == null || getView().getContext() == null) {
+            return;
+        }
+
+        if (popup != null) {
+            popup.dismiss();
+        }
+
+        LayoutInflater popupInflater =
+                (LayoutInflater) getView().getContext().getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = popupInflater.inflate(R.layout.popup_info_maphelp, null);
+        ImageButton closeButton = popupView.findViewById(R.id.popup_close_button);
+
+        popup = new PopupWindow(
+                popupView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+
+        closeButton.setOnClickListener(closeButtonView -> popup.dismiss());
+
+        popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
     }
 
     private void initNavListeners(View lstnr_navLeft,
@@ -283,8 +337,8 @@ public class MapViewerFragment extends Fragment {
                     mapViewViewModel.getCurrentMapData().getCurrentFloor());
         }
     }
-/*
 
+    /*
     @Override
     public void onResume() {
         imageDisplay.init(mapViewViewModel);
@@ -294,7 +348,7 @@ public class MapViewerFragment extends Fragment {
 
         super.onResume();
     }
-*/
+    */
 
     /*
      *

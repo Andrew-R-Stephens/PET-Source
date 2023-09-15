@@ -44,7 +44,7 @@ public class POISpinner extends AppCompatSpinner {
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
                 getContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.poi_spinner_item,
                 mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
 
         // Drop down layout style - list view with radio button
@@ -59,7 +59,7 @@ public class POISpinner extends AppCompatSpinner {
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
                 getContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.poi_spinner_item,
                 list);
 
         // Drop down layout style - list view with radio button

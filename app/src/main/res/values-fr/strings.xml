@@ -764,6 +764,13 @@
          ]]>
      </string>
 
+    <string name="map_info_help_title">Aide sur la carte interactive</string>
+    <string name="map_info_help_pan">Déplacez une carte avec un seul doigt.</string>
+    <string name="map_info_help_zoom">Effectuez un zoom avant et arrière sur une carte en pinçant ou en écartant deux doigts.</string>
+    <string name="map_info_help_click">Appuyez avec un doigt sur n\'importe quelle carte pour obtenir le nom et les limites de n\'importe quelle pièce.</string>
+    <string name="map_info_help_rooms">Sélectionnez une pièce dans le menu déroulant Pièces pour afficher l\'emplacement et les limites de cette pièce.</string>
+    <string name="map_info_help_floors">Parcourez les étages pour les visualiser et interagir avec eux.</string>
+    <string name="map_info_help_pois">Les positions des boîtes à fusibles et des objets maudits sont indiquées par des icônes pertinentes.</string>
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
     <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
     <string name="objectives_title_ghost_name">Nom du fantôme :</string>

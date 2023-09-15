@@ -110,6 +110,13 @@
 
     <!-- Page Details -->
 
+    <string name="map_info_help_title">交互式地图帮助</string>
+    <string name="map_info_help_pan">用一根手指平移地图。</string>
+    <string name="map_info_help_zoom">通过捏合或张开两根手指来放大和缩小地图。</string>
+    <string name="map_info_help_click">用一根手指点击任何地图即可获取任何房间的名称和边界。</string>
+    <string name="map_info_help_rooms">在“房间”下拉菜单中选择一个房间以显示该房间的位置和边界。</string>
+    <string name="map_info_help_floors">在楼层之间迭代以查看并与其交互。</string>
+    <string name="map_info_help_pois">保险丝盒和诅咒物品的位置由相关图标指示。</string>
     <string name="objectives_title_optional_objectives">可选目标</string>
     <string name="objectives_title_investigation_debrief">调查汇报</string>
     <string name="objectives_title_ghost_name">鬼魂的名字：</string>

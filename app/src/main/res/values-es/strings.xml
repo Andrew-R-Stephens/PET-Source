@@ -761,6 +761,13 @@
 
 
     <string name="objectives_title_response_everyone">Agrupados</string>
+    <string name="map_info_help_title">Ayuda de mapa interactivo</string>
+    <string name="map_info_help_pan">Desplaza un mapa con un dedo.</string>
+    <string name="map_info_help_zoom">Acerque y aleje un mapa pellizcando o extendiendo dos dedos.</string>
+    <string name="map_info_help_click">Toque con un dedo cualquier mapa para obtener el nombre y el límite de cualquier habitación.</string>
+    <string name="map_info_help_rooms">Seleccione una habitación en el menú desplegable Habitaciones para mostrar la ubicación y los límites de esa habitación.</string>
+    <string name="map_info_help_floors">Itere entre pisos para verlo e interactuar con él.</string>
+    <string name="map_info_help_pois">Las posiciones de las cajas de fusibles y los elementos malditos se indican mediante iconos relevantes.</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
     <string name="objectives_title_ghost_name">Nombre del fantasma:</string>

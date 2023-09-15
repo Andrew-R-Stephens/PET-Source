@@ -883,6 +883,13 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
+    <string name="map_info_help_title">Интерактивная помощь по карте</string>
+    <string name="map_info_help_pan">Перемещайте карту одним пальцем.</string>
+    <string name="map_info_help_zoom">Увеличивайте и уменьшайте масштаб карты, сжимая или раздвигая два пальца.</string>
+    <string name="map_info_help_click">Коснитесь одним пальцем любой карты, чтобы получить название и границу любой комнаты.</string>
+    <string name="map_info_help_rooms">Выберите комнату в раскрывающемся меню «Комнаты», чтобы отобразить местоположение и границы этой комнаты.</string>
+    <string name="map_info_help_floors">Перемещайтесь между этажами, чтобы просматривать их и взаимодействовать с ними.</string>
+    <string name="map_info_help_pois">Положения блоков предохранителей и проклятых предметов обозначены соответствующими значками.</string>
     <string name="objectives_title_optional_objectives">Дополнительные цели</string>
     <string name="objectives_title_investigation_debrief">Отчет о расследовании</string>
     <string name="objectives_title_ghost_name">Имя призрака:</string>

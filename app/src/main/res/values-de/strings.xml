@@ -754,6 +754,13 @@
          ]]>
      </string>
 
+    <string name="map_info_help_title">Interaktive Kartenhilfe</string>
+    <string name="map_info_help_pan">Schwenken Sie eine Karte mit einem Finger.</string>
+    <string name="map_info_help_zoom">Vergrößern und verkleinern Sie eine Karte, indem Sie zwei Finger zusammenziehen oder spreizen.</string>
+    <string name="map_info_help_click">Tippen Sie mit einem Finger auf eine beliebige Karte, um den Namen und die Grenze eines beliebigen Raums zu erhalten.</string>
+    <string name="map_info_help_rooms">Wählen Sie im Dropdown-Menü „Räume“ einen Raum aus, um die Position und Grenze dieses Raums anzuzeigen.</string>
+    <string name="map_info_help_floors">Wechseln Sie zwischen den Etagen, um sie anzuzeigen und damit zu interagieren.</string>
+    <string name="map_info_help_pois">Die Positionen von Sicherungskästen und verfluchten Gegenständen werden durch entsprechende Symbole angezeigt.</string>
     <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
     <string name="objectives_title_ghost_name">Name des Geistes:</string>

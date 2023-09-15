@@ -110,6 +110,13 @@
 
     <!-- Page Details -->
 
+    <string name="map_info_help_title">インタラクティブな地図ヘルプ</string>
+    <string name="map_info_help_pan">1 本の指で地図を移動します。</string>
+    <string name="map_info_help_zoom">2 本の指をつまんだり広げたりして、マップを拡大または縮小します。</string>
+    <string name="map_info_help_click">マップ上で 1 本の指でタップして、部屋の名前と境界を取得します。</string>
+    <string name="map_info_help_rooms">[部屋] ドロップダウン メニューで部屋を選択すると、その部屋の位置と境界が表示されます。</string>
+    <string name="map_info_help_floors">フロア間を反復して表示し、操作します。</string>
+    <string name="map_info_help_pois">ヒューズボックスと呪いのアイテムの位置は、関連するアイコンで示されます。</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
     <string name="objectives_title_investigation_debrief">捜査報告書</string>
     <string name="objectives_title_ghost_name">幽霊の名前:</string>

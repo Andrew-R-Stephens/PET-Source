@@ -230,6 +230,15 @@
     <string name="map_floor_name_attic">Attic</string>
     <string name="map_floor_name_basement">Basement</string>
 
+    <!-- Map Interaction Help -->
+    <string name="map_info_help_title">Interactive Map Help</string>
+    <string name="map_info_help_pan">Pan a Map with one finger.</string>
+    <string name="map_info_help_zoom">Zoom in and out of a Map by pinching or spreading two fingers.</string>
+    <string name="map_info_help_click">Tap with one finger on any Map to obtain any Room\'s name and boundary.</string>
+    <string name="map_info_help_rooms">Select a Room in the Rooms drop-down menu to show the location and boundary of that Room.</string>
+    <string name="map_info_help_floors">Iterate between Floors to view and interact with it.</string>
+    <string name="map_info_help_pois">The positions of Fuse Boxes and Cursed Items are indicated by relevant icons.</string>
+
     <!--
         OBJECTIVES PAGE
     -->

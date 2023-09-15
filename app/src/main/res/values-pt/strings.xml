@@ -109,6 +109,13 @@
 
     <!-- Page Details -->
 
+    <string name="map_info_help_title">Ajuda do mapa interativo</string>
+    <string name="map_info_help_pan">Desloque um mapa com um dedo.</string>
+    <string name="map_info_help_zoom">Aumente e diminua o zoom de um mapa apertando ou afastando dois dedos.</string>
+    <string name="map_info_help_click">Toque com um dedo em qualquer mapa para obter o nome e o limite de qualquer sala.</string>
+    <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
+    <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
+    <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
     <string name="objectives_title_investigation_debrief">Resumo da investigação</string>
     <string name="objectives_title_ghost_name">Nome do Fantasma:</string>

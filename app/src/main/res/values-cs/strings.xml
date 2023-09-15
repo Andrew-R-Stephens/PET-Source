@@ -863,6 +863,13 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
+    <string name="map_info_help_title">Interaktivní nápověda k mapě</string>
+    <string name="map_info_help_pan">Posouvejte mapu jedním prstem.</string>
+    <string name="map_info_help_zoom">Přibližujte a oddalujte mapu sevřením nebo roztažením dvou prstů.</string>
+    <string name="map_info_help_click">Klepnutím jedním prstem na jakoukoli mapu získáte název a ohraničení místnosti.</string>
+    <string name="map_info_help_rooms">Vyberte Místnost v rozevírací nabídce Místnosti a zobrazte umístění a hranice této místnosti.</string>
+    <string name="map_info_help_floors">Iterujte mezi podlažími, abyste je mohli zobrazit a pracovat s nimi.</string>
+    <string name="map_info_help_pois">Pozice pojistkových skříní a prokletých položek jsou označeny příslušnými ikonami.</string>
     <string name="objectives_title_optional_objectives">Volitelné cíle</string>
     <string name="objectives_title_investigation_debrief">Shrnutí vyšetřování</string>
     <string name="objectives_title_ghost_name">Jméno ducha:</string>
