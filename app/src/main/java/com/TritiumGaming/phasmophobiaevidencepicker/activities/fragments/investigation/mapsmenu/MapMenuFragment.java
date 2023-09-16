@@ -145,6 +145,7 @@ public class MapMenuFragment extends Fragment {
     private void navigateToBasicMapView(View view) {
         Navigation.findNavController(view).navigate(R.id.action_mapmenu_to_mapview);
     }
+/*
 
     private void navigateToAdvancedMapView(View view) {
         Bundle b = new Bundle();
@@ -155,6 +156,7 @@ public class MapMenuFragment extends Fragment {
 
         Navigation.findNavController(view).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
     }
+*/
 
     private void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,

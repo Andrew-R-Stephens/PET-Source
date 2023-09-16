@@ -112,20 +112,9 @@ public class InteractiveMapView extends View {
             theme.resolveAttribute(R.attr.roomFillColor, typedValue, true);
             selectedFillColor = typedValue.data;
         }
-        /*int r = Color.red(poiColor);
-        int g = Color.green(poiColor);
-        int b = Color.blue(poiColor);
-        poiColor = Color.argb((int)(255*.75f), r, g, b);*/
 
-        //poiColor = ColorUtils.setColor(poiColor, (int)(255 * .75f), -1, -1, -1);
         poiColorFilter = new PorterDuffColorFilter(
                 poiColor, PorterDuff.Mode.MULTIPLY);
-/*
-        selectedBorderColorFilter = new PorterDuffColorFilter(
-                selectedBorderColor, PorterDuff.Mode.MULTIPLY);
-
-        selectedFillColorFilter = new PorterDuffColorFilter(
-                selectedFillColor, PorterDuff.Mode.MULTIPLY);*/
     }
 
     public void init(MapMenuViewModel mapMenuViewModel, POISpinner roomSpinner) {
@@ -150,7 +139,11 @@ public class InteractiveMapView extends View {
             }
         };
         roomSpinner.setOnItemSelectedListener(poiSpinnerListener);
-        roomSpinner.populateAdapter(mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+        if(mapMenuViewModel != null &&
+                mapMenuViewModel.getCurrentMapModel() != null &&
+                mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+            roomSpinner.populateAdapter(mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+        }
     }
 
     public void resetRoomSelection() {
@@ -457,59 +450,60 @@ public class InteractiveMapView extends View {
             paint.setAntiAlias(true);
             paint.setColor(poiColor);
             paint.setColorFilter(poiColorFilter);
-            for(PoiModel poi: mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorPOIs()) {
 
-                float x = (panX) + poi.getPoint().x * scaleX;
-                float y = (panY) + poi.getPoint().y * scaleY;
+            if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null && mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+                for (PoiModel poi : mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorPOIs()) {
+                    float x = (panX) + poi.getPoint().x * scaleX;
+                    float y = (panY) + poi.getPoint().y * scaleY;
 
-                Bitmap b = poiImages.get(poi.getType());
-                if (BitmapUtils.bitmapExists(b)) {
-                    interactivePoiData.deepCopy(interactiveMapData);
-                    interactivePoiData.setPan(
-                            x,
-                            y
-                    );
-                    interactivePoiData.postTranslateOriginMatrix(
-                            b.getWidth(),
-                            b.getHeight(),
-                            getWidth(),
-                            getHeight()
-                    );
-                    canvas.drawBitmap(b, interactivePoiData.getMatrix(), paint);
-                } else {
-                    Log.d("PoiImage", poi.getType().name() + " does not exist?");
-                }
+                    Bitmap b = poiImages.get(poi.getType());
+                    if (BitmapUtils.bitmapExists(b)) {
+                        interactivePoiData.deepCopy(interactiveMapData);
+                        interactivePoiData.setPan(
+                                x,
+                                y
+                        );
+                        interactivePoiData.postTranslateOriginMatrix(
+                                b.getWidth(),
+                                b.getHeight(),
+                                getWidth(),
+                                getHeight()
+                        );
+                        canvas.drawBitmap(b, interactivePoiData.getMatrix(), paint);
+                    }
 
-                /*
-                paint.setColorFilter(null);
-                //set color to yellow
-                paint.setColor(Color.argb(25, 255, 255, 0));
-                paint.setStyle(Paint.Style.FILL);
-                canvas.drawCircle(x, y, radiusScaled, paint);
-
-                paint.setStrokeWidth(2);
-                paint.setStyle(Paint.Style.STROKE);
-                canvas.drawCircle(x, y, radiusScaled, paint);
-                */
-                /*
-                if(scaleX / getWidth() > 1.5) {
-
-                    String title = FontUtils.toTitle(poi.getType().name());
-                    float width = paint.measureText(title);
-
-                    paint.setStyle(Paint.Style.FILL_AND_STROKE);
-                    paint.setStrokeWidth(2);
-                    paint.setColor(Color.argb(255, 255, 255, 255));
-                    canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
-
-                    paint.setStrokeWidth(0);
+                    /*
+                    paint.setColorFilter(null);
+                    //set color to yellow
+                    paint.setColor(Color.argb(25, 255, 255, 0));
                     paint.setStyle(Paint.Style.FILL);
-                    paint.setColor(Color.argb(255, 0, 0, 0));
-                    canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
+                    canvas.drawCircle(x, y, radiusScaled, paint);
 
+                    paint.setStrokeWidth(2);
+                    paint.setStyle(Paint.Style.STROKE);
+                    canvas.drawCircle(x, y, radiusScaled, paint);
+                    */
+                    /*
+                    if(scaleX / getWidth() > 1.5) {
+
+                        String title = FontUtils.toTitle(poi.getType().name());
+                        float width = paint.measureText(title);
+
+                        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+                        paint.setStrokeWidth(2);
+                        paint.setColor(Color.argb(255, 255, 255, 255));
+                        canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
+
+                        paint.setStrokeWidth(0);
+                        paint.setStyle(Paint.Style.FILL);
+                        paint.setColor(Color.argb(255, 0, 0, 0));
+                        canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
+
+                    }
+                    */
                 }
-                */
             }
+
             paint.setAntiAlias(false);
         }
 
@@ -537,6 +531,11 @@ public class InteractiveMapView extends View {
         public void run() {
 
             if(interactiveMapData.getSelectedPoint() == null) { return; }
+            if(mapMenuViewModel == null ||
+                    mapMenuViewModel.getCurrentMapModel() == null ||
+                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor() == null) {
+                return;
+            }
 
             float[] matrix = interactiveMapData.getMatrixValues();
             float scaleX = matrix[Matrix.MSCALE_X];
@@ -550,34 +549,39 @@ public class InteractiveMapView extends View {
 
             Log.d("Tap", "Input Conversion: " + touchX + " " + touchY);
 
-            ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms();
-            for(RoomModel room: rooms) {
+            if(mapMenuViewModel != null &&
+                    mapMenuViewModel.getCurrentMapModel() != null &&
+                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
 
-                Polygon shape = new Polygon();
-                for(PointF p: room.getRoomArea().getPoints()) {
-                    int x = (int)((p.x * scaleX) + (panX));
-                    int y = (int)((p.y * scaleY) + (panY));
-                    shape.addPoint(x, y);
-                }
+                ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms();
+                for (RoomModel room : rooms) {
 
-                if(shape.contains(new Point2D.Float(touchX, touchY))) {
-                    Log.d("Tap", "setting temp room");
-
-                    if(room != selectedRoomModel) {
-                        selectedRoomModel = room;
-                        selectedRoomModel.print();
-                    } else {
-                        resetRoomSelection();
+                    Polygon shape = new Polygon();
+                    for (PointF p : room.getRoomArea().getPoints()) {
+                        int x = (int) ((p.x * scaleX) + (panX));
+                        int y = (int) ((p.y * scaleY) + (panY));
+                        shape.addPoint(x, y);
                     }
 
-                    roomSpinner.setSelection(rooms.indexOf(room));
+                    if (shape.contains(new Point2D.Float(touchX, touchY))) {
+                        Log.d("Tap", "setting temp room");
 
-                    invalidate();
-                    return;
+                        if (room != selectedRoomModel) {
+                            selectedRoomModel = room;
+                            selectedRoomModel.print();
+                        } else {
+                            resetRoomSelection();
+                        }
+
+                        roomSpinner.setSelection(rooms.indexOf(room));
+
+                        invalidate();
+                        return;
+                    }
                 }
+                resetRoomSelection();
+                invalidate();
             }
-            resetRoomSelection();
-            invalidate();
         }
     }
 

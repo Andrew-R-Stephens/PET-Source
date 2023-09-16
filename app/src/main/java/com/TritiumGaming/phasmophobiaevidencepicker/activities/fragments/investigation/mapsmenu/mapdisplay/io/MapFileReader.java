@@ -3,12 +3,15 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MapFileReader {
@@ -27,7 +30,9 @@ public class MapFileReader {
             return false;
         }
         JsonReader fileReader = gson.newJsonReader(new BufferedReader(new InputStreamReader(inputStream)));
-        mapsWrapper = gson.fromJson(fileReader, WorldMapWrapper.class);
+        Type type = new TypeToken<WorldMapWrapper>(){}.getType();
+        mapsWrapper = gson.fromJson(fileReader, type);
+
         try {
             fileReader.close();
             inputStream.close();

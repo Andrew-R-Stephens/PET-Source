@@ -41,17 +41,20 @@ public class POISpinner extends AppCompatSpinner {
     }
 
     public void populateAdapter(MapMenuViewModel mapMenuViewModel) {
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
-                getContext(),
-                R.layout.poi_spinner_item,
-                mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null &&
+                mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+            // Creating adapter for spinner
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
+                    getContext(),
+                    R.layout.poi_spinner_item,
+                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
 
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(R.layout.poi_spinner);
+            // Drop down layout style - list view with radio button
+            dataAdapter.setDropDownViewResource(R.layout.poi_spinner);
 
-        // attaching data adapter to spinner
-        setAdapter(dataAdapter);
+            // attaching data adapter to spinner
+            setAdapter(dataAdapter);
+        }
     }
 
     public void populateAdapter(ArrayList<String> list) {

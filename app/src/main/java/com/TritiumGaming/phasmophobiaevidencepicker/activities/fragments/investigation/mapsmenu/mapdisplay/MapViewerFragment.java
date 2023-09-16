@@ -33,6 +33,8 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.FloorLayer;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -95,16 +97,20 @@ public class MapViewerFragment extends Fragment {
 
         imageDisplay = view.findViewById(R.id.interactiveMapView);
         poiSpinner = view.findViewById(R.id.spinner_poiname);
-
         layerName = view.findViewById(R.id.textview_floorname);
-
         button_help = view.findViewById(R.id.listener_help);
 
+        if(mapViewViewModel != null && mapViewViewModel.getCurrentMapModel() != null) {
+            int floor = mapViewViewModel.getCurrentMapData().getCurrentFloor();
+            FloorModel currentFloor = mapViewViewModel.getCurrentMapModel().getFloor(floor);
+            if(currentFloor != null) {
+                FloorLayer newLayer = currentFloor.getFloorLayer();
+                if (newLayer != null) {
+                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
+                }
+            }
+        }
 
-        mapViewViewModel.getCurrentMapModel().setCurrentLayer(
-                mapViewViewModel.getCurrentMapModel().getFloor(
-                        mapViewViewModel.getCurrentMapData().getCurrentFloor())
-                        .getFloorLayer());
 
         // SET NAVIGATION ITEMS
         label_goto_left.setText(R.string.general_maps_button);
@@ -117,16 +123,7 @@ public class MapViewerFragment extends Fragment {
                     layerIndex = 0;
                 }
 
-                MapData d;
-                if ((d = mapViewViewModel.getCurrentMapData()) != null) {
-                    d.setCurrentFloor(layerIndex);
-
-                    imageDisplay.resetRoomSelection();
-                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(
-                        mapViewViewModel.getCurrentMapModel().getFloor(layerIndex).getFloorLayer());
-
-                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName());
-                }
+                setMapLayer(layerIndex);
 
                 updateComponents();
             }
@@ -139,15 +136,7 @@ public class MapViewerFragment extends Fragment {
                     layerIndex = mapViewViewModel.getCurrentMapData().getFloorCount() - 1;
                 }
 
-                MapData d;
-                if ((d = mapViewViewModel.getCurrentMapData()) != null) {
-                    d.setCurrentFloor(layerIndex);
-
-                    imageDisplay.resetRoomSelection();
-                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(
-                            mapViewViewModel.getCurrentMapModel().getFloor(layerIndex).getFloorLayer());
-                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName());
-                }
+                setMapLayer(layerIndex);
 
                 updateComponents();
             }
@@ -192,9 +181,12 @@ public class MapViewerFragment extends Fragment {
                     });
         }
 
-        imageDisplay.init(mapViewViewModel, poiSpinner);
-
         if (mapViewViewModel != null && imageDisplay != null) {
+
+            if(poiSpinner != null) {
+                imageDisplay.init(mapViewViewModel, poiSpinner);
+            }
+
             imageDisplay.setMapData(mapViewViewModel.getCurrentMapData());
 
             MapData tempData = mapViewViewModel.getCurrentMapData();
@@ -203,9 +195,11 @@ public class MapViewerFragment extends Fragment {
                 for (int i = 0; i < selectorGroup.getSize(); i++) {
                     selectorLayout.addView(selectorGroup.getSelectors()[i]);
                 }
-                String mapNameStr = mapViewViewModel.getCurrentMapModel().mapName;
-                mapName.setText(mapNameStr == null ? tempData.getMapName() : mapNameStr);
-                mapName.setSelected(true);
+                if(mapViewViewModel.getCurrentMapModel() != null) {
+                    String mapNameStr = mapViewViewModel.getCurrentMapModel().mapName;
+                    mapName.setText(mapNameStr == null ? tempData.getMapName() : mapNameStr);
+                    mapName.setSelected(true);
+                }
             }
         }
 
@@ -213,6 +207,27 @@ public class MapViewerFragment extends Fragment {
         updateComponents();// Spinner click listener
 
 
+    }
+
+    public void setMapLayer(int index) {
+        MapData d;
+        if ((d = mapViewViewModel.getCurrentMapData()) != null) {
+            d.setCurrentFloor(index);
+
+            if(imageDisplay != null) {
+                imageDisplay.resetRoomSelection();
+            }
+            if(mapViewViewModel.getCurrentMapModel() != null &&
+                    mapViewViewModel.getCurrentMapModel().getFloor(index) != null) {
+                FloorLayer layer =
+                        mapViewViewModel.getCurrentMapModel().getFloor(index).getFloorLayer();
+                mapViewViewModel.getCurrentMapModel().setCurrentLayer(layer);
+                if(mapViewViewModel.getCurrentMapModel() != null &&
+                        mapViewViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
+                }
+            }
+        }
     }
 
 
@@ -321,7 +336,9 @@ public class MapViewerFragment extends Fragment {
             if (imageDisplay != null) {
                 imageDisplay.invalidate();
             }
-            poiSpinner.populateAdapter(mapViewViewModel);
+            if(poiSpinner != null) {
+                poiSpinner.populateAdapter(mapViewViewModel);
+            }
         }
     }
 
@@ -428,7 +445,7 @@ public class MapViewerFragment extends Fragment {
             for (int i = 0; i < selectors.length; i++) {
                 selectors[i] = new MapLayerSelector(getContext());
             }
-            if (mapViewViewModel != null) {
+            if (mapViewViewModel != null && mapViewViewModel.getCurrentMapData() != null) {
                 setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
             }
         }

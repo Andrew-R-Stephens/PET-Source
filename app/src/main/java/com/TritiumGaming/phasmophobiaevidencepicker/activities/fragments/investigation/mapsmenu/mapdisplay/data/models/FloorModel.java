@@ -110,4 +110,8 @@ public class FloorModel {
             floorRooms.sort(Comparator.comparing(RoomModel::getName));
         }
     }
+
+    public void addRoomModels(ArrayList<RoomModel> roomModels) {
+        this.floorRooms.addAll(roomModels);
+    }
 }

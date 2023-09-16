@@ -2,23 +2,38 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Map;
 
+@Keep
 public class WorldMapWrapper {
 
+    @SerializedName("maps")
     public ArrayList<Map<String, WorldMap>> maps = new ArrayList<>();
 
+    @Keep
     public static class WorldMap {
 
+        @SerializedName("map_id")
         public int map_id;
+        @SerializedName("map_name")
         public String map_name = "";
+        @SerializedName("map_floors")
         public ArrayList<Floor> map_floors = new ArrayList<>();
+        @SerializedName("map_dimensions")
         public WorldDimensions map_dimensions = new WorldDimensions();
 
+        @Keep
         public static class WorldDimensions {
 
-            public int w, h;
+            @SerializedName("w")
+            public int w;
+            @SerializedName("h")
+            public int h;
 
             public void print() {
                 Log.d("Map", "Map Dimensions:\t\tW: " + w + ", H: " + h);
@@ -26,20 +41,31 @@ public class WorldMapWrapper {
 
         }
 
+        @Keep
         public static class Floor {
 
+            @SerializedName("floor_id")
             public int floor_id;
+            @SerializedName("floor_number")
             public int floor_number;
+            @SerializedName("floor_name")
             public String floor_name = "";
+            @SerializedName("image_file")
             public String image_file = "";
+            @SerializedName("floor_pois")
             public ArrayList<POI> floor_pois = new ArrayList<>();
+            @SerializedName("floor_rooms")
             public ArrayList<Room> floor_rooms = new ArrayList<>();
 
+            @Keep
             public static class Room {
 
+                @SerializedName("room_iD")
                 public int room_iD;
+                @SerializedName("room_name")
                 public String room_name = "";
 
+                @SerializedName("room_points")
                 public RoomPoints room_points = new RoomPoints();
 
                 public void print() {
@@ -47,8 +73,10 @@ public class WorldMapWrapper {
                     room_points.print();
                 }
 
+                @Keep
                 public static class RoomPoints {
 
+                    @SerializedName("points")
                     public ArrayList<RoomPoint> points = new ArrayList<>();
 
                     public void print() {
@@ -57,9 +85,12 @@ public class WorldMapWrapper {
                         }
                     }
 
+                    @Keep
                     public static class RoomPoint {
 
+                        @SerializedName("x")
                         public float x = 0;
+                        @SerializedName("y")
                         public float y = 0;
 
                         public void print() {
@@ -71,13 +102,19 @@ public class WorldMapWrapper {
 
             }
 
+            @Keep
             public static class POI {
 
+                @SerializedName("poi_iD")
                 public int poi_iD;
+                @SerializedName("poi_name")
                 public String poi_name = "";
+                @SerializedName("poi_type")
                 public int poi_type = -1;
 
+                @SerializedName("x")
                 public float x = 0;
+                @SerializedName("y")
                 public float y = 0;
 
                 public void print() {

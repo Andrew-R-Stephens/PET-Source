@@ -22,6 +22,13 @@ public class RoomModel {
         roomArea.setPoints(points);
     }
 
+    public RoomModel(WorldMapWrapper.WorldMap.Floor.Room room) {
+        setId(room.room_iD);
+        setName(room.room_name);
+
+        roomArea.setPoints(room.room_points);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -34,6 +34,9 @@ public class MapModel {
         currentLayer = mapFloors.size() != 0 ? mapFloors.get(0).getFloorLayer() : null;
     }
 
+    public MapModel(String name, int id, MapDimension dims, ArrayList<WorldMapWrapper.WorldMap.Floor> floors) {
+    }
+
     public FloorModel getCurrentFloor() {
 
         for(FloorModel floor : mapFloors) {
