@@ -591,7 +591,11 @@ public class TitlescreenFragment extends Fragment {
                 public void run() {
                 while (canRunAnim) {
                     try {
-                        animationView.tick();
+                        try {
+                            animationView.tick();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                         long now = System.nanoTime();
                         long updateTime = System.nanoTime() - now;

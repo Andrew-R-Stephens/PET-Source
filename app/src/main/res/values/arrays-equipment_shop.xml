@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        All Equipment
+    -->
+    <integer-array name="shop_equipment_array">
+        <item>@array/shop_equipment_dots</item>
+        <item>@array/shop_equipment_emf</item>
+        <item>@array/shop_equipment_flashlight</item>
+        <item>@array/shop_equipment_photocamera</item>
+        <item>@array/shop_equipment_igniter</item>
+        <item>@array/shop_equipment_firelight</item>
+        <item>@array/shop_equipment_uvlight</item>
+        <item>@array/shop_equipment_crucifix</item>
+        <item>@array/shop_equipment_videocamera</item>
+        <item>@array/shop_equipment_spiritbox</item>
+        <item>@array/shop_equipment_thermometer</item>
+        <item>@array/shop_equipment_salt</item>
+        <item>@array/shop_equipment_incense </item>
+        <item>@array/shop_equipment_tripod</item>
+        <item>@array/shop_equipment_motionsensor</item>
+        <item>@array/shop_equipment_soundsensor</item>
+        <item>@array/shop_equipment_sanitymedication</item>
+        <item>@array/shop_equipment_ghostwritingbook</item>
+        <item>@array/shop_equipment_parabolicmicrophone</item>
+        <item>@array/shop_equipment_headgear</item>
+    </integer-array>
+
+    <!--
+        Equipment Arrays
+     -->
+    <integer-array name="shop_equipment_dots" >
+        <item>@string/equipment_info_name_dots</item>
+        <item>@drawable/icon_sh_dotsprojector</item>
+        <item>@array/shop_equipment_dots_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_emf" >
+        <item>@string/equipment_info_name_emf</item>
+        <item>@drawable/icon_sh_emf</item>
+        <item>@array/shop_equipment_emf_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_flashlight" >
+        <item>@string/equipment_info_name_flashlight</item>
+        <item>@drawable/icon_sh_flashlight</item>
+        <item>@array/shop_equipment_flashlight_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_photocamera" >
+        <item>@string/equipment_info_name_photocamera</item>
+        <item>@drawable/icon_sh_photocamera</item>
+        <item>@array/shop_equipment_photocamera_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_igniter" >
+        <item>@string/equipment_info_name_igniter</item>
+        <item>@drawable/icon_sh_igniter</item>
+        <item>@array/shop_equipment_igniter_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_firelight" >
+        <item>@string/equipment_info_name_firelight</item>
+        <item>@drawable/icon_sh_firelight</item>
+        <item>@array/shop_equipment_firelight_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_uvlight" >
+        <item>@string/equipment_info_name_uvlight</item>
+        <item>@drawable/icon_sh_uvlight</item>
+        <item>@array/shop_equipment_uvlight_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_crucifix" >
+        <item>@string/equipment_info_name_crucifix</item>
+        <item>@drawable/icon_sh_crucifix</item>
+        <item>@array/shop_equipment_crucifix_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_videocamera" >
+        <item>@string/equipment_info_name_videocamera</item>
+        <item>@drawable/icon_sh_videocamera</item>
+        <item>@array/shop_equipment_videocamera_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_spiritbox" >
+        <item>@string/equipment_info_name_spiritbox</item>
+        <item>@drawable/icon_sh_spiritbox</item>
+        <item>@array/shop_equipment_spiritbox_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_thermometer" >
+        <item>@string/equipment_info_name_thermometer</item>
+        <item>@drawable/icon_sh_thermometer</item>
+        <item>@array/shop_equipment_thermometer_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_salt" >
+        <item>@string/equipment_info_name_salt</item>
+        <item>@drawable/icon_sh_salt</item>
+        <item>@array/shop_equipment_salt_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_incense" >
+        <item>@string/equipment_info_name_incense </item>
+        <item>@drawable/icon_sh_smudge</item>
+        <item>@array/shop_equipment_incense_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_tripod" >
+        <item>@string/equipment_info_name_tripod</item>
+        <item>@drawable/icon_sh_tripod</item>
+        <item>@array/shop_equipment_tripod_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_motionsensor" >
+        <item>@string/equipment_info_name_motionsensor</item>
+        <item>@drawable/icon_sh_motionsensor</item>
+        <item>@array/shop_equipment_motionsensor_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_soundsensor" >
+        <item>@string/equipment_info_name_soundsensor</item>
+        <item>@drawable/icon_sh_spiritboxaudio</item>
+        <item>@array/shop_equipment_soundsensor_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_sanitymedication" >
+        <item>@string/equipment_info_name_sanitymedication</item>
+        <item>@drawable/icon_sh_sanitymedication</item>
+        <item>@array/shop_equipment_sanitymedication_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_ghostwritingbook" >
+        <item>@string/equipment_info_name_ghostwritingbook</item>
+        <item>@drawable/icon_sh_ghostwritingbook</item>
+        <item>@array/shop_equipment_ghostwritingbook_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_parabolicmicrophone" >
+        <item>@string/equipment_info_name_parabolicmicrophone</item>
+        <item>@drawable/icon_sh_parabolicmicrophone</item>
+        <item>@array/shop_equipment_parabolicmicrophone_images</item>
+    </integer-array>
+    <integer-array name="shop_equipment_headgear" >
+        <item>@string/equipment_info_name_headgear</item>
+        <item>@drawable/icon_sh_headgear</item>
+        <item>@array/shop_equipment_headgear_images</item>
+    </integer-array>
+
+    <!--
+        Tier Images
+    -->
+    <integer-array name="shop_equipment_dots_images" >
+        <item>@drawable/icon_shop_dots_1</item>
+        <item>@drawable/icon_shop_dots_2</item>
+        <item>@drawable/icon_shop_dots_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_emf_images" >
+        <item>@drawable/icon_shop_emf_1</item>
+        <item>@drawable/icon_shop_emf_2</item>
+        <item>@drawable/icon_shop_emf_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_flashlight_images" >
+        <item>@drawable/icon_shop_flashlight_1</item>
+        <item>@drawable/icon_shop_flashlight_2</item>
+        <item>@drawable/icon_shop_flashlight_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_photocamera_images" >
+        <item>@drawable/icon_shop_photocam_1</item>
+        <item>@drawable/icon_shop_photocam_2</item>
+        <item>@drawable/icon_shop_photocam_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_igniter_images" >
+        <item>@drawable/icon_shop_igniter_1</item>
+        <item>@drawable/icon_shop_igniter_2</item>
+        <item>@drawable/icon_shop_igniter_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_firelight_images" >
+        <item>@drawable/icon_shop_firelight_1</item>
+        <item>@drawable/icon_shop_firelight_2</item>
+        <item>@drawable/icon_shop_firelight_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_uvlight_images" >
+        <item>@drawable/icon_shop_uv_1</item>
+        <item>@drawable/icon_shop_uv_2</item>
+        <item>@drawable/icon_shop_uv_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_crucifix_images" >
+        <item>@drawable/icon_shop_crucifix_1</item>
+        <item>@drawable/icon_shop_crucifix_2</item>
+        <item>@drawable/icon_shop_crucifix_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_videocamera_images" >
+        <item>@drawable/icon_shop_vidcam_1</item>
+        <item>@drawable/icon_shop_vidcam_2</item>
+        <item>@drawable/icon_shop_vidcam_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_spiritbox_images" >
+        <item>@drawable/icon_shop_spiritbox_1</item>
+        <item>@drawable/icon_shop_spiritbox_2</item>
+        <item>@drawable/icon_shop_spiritbox_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_thermometer_images" >
+        <item>@drawable/icon_shop_thermo_1</item>
+        <item>@drawable/icon_shop_thermo_2</item>
+        <item>@drawable/icon_shop_thermo_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_salt_images" >
+        <item>@drawable/icon_shop_salt_1</item>
+        <item>@drawable/icon_shop_salt_2</item>
+        <item>@drawable/icon_shop_salt_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_incense_images" >
+        <item>@drawable/icon_shop_repellant_1</item>
+        <item>@drawable/icon_shop_repellant_2</item>
+        <item>@drawable/icon_shop_repellant_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_tripod_images" >
+        <item>@drawable/icon_shop_tripod_1</item>
+        <item>@drawable/icon_shop_tripod_2</item>
+        <item>@drawable/icon_shop_tripod_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_motionsensor_images" >
+        <item>@drawable/icon_shop_motion_1</item>
+        <item>@drawable/icon_shop_motion_2</item>
+        <item>@drawable/icon_shop_motion_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_soundsensor_images" >
+        <item>@drawable/icon_shop_sound_1</item>
+        <item>@drawable/icon_shop_sound_2</item>
+        <item>@drawable/icon_shop_sound_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_sanitymedication_images" >
+        <item>@drawable/icon_shop_sanity_1</item>
+        <item>@drawable/icon_shop_sanity_2</item>
+        <item>@drawable/icon_shop_sanity_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_ghostwritingbook_images" >
+        <item>@drawable/icon_shop_writing_1</item>
+        <item>@drawable/icon_shop_writing_2</item>
+        <item>@drawable/icon_shop_writing_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_parabolicmicrophone_images" >
+        <item>@drawable/icon_shop_para_1</item>
+        <item>@drawable/icon_shop_para_2</item>
+        <item>@drawable/icon_shop_para_3</item>
+    </integer-array>
+    <integer-array name="shop_equipment_headgear_images" >
+        <item>@drawable/icon_shop_headgear_1</item>
+        <item>@drawable/icon_shop_headgear_2</item>
+        <item>@drawable/icon_shop_headgear_3</item>
+    </integer-array>
+</resources>

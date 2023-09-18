@@ -4,24 +4,33 @@
     <layer-list>
       <item>
         <shape>
-          <solid android:color="@color/cb_mono_white_lowmed" />
-
-          <size android:width="20dp" android:height="20dp" />
+          <solid
+              android:color="@color/cb_mono_white_lowmed" />
         </shape>
       </item>
 
       <item
-          android:drawable="@drawable/equipment_tier_badge"
+          android:id="@+id/icon_tier"
           android:bottom="8dp"
           android:left="8dp"
           android:right="8dp"
-          android:top="8dp" >
+          android:top="8dp"
+          android:drawable="@drawable/equipment_tier_badge">
+
+      </item>
+
+      <item
+          android:left="-2dp"
+          android:top="-2dp"
+          >
         <shape>
-          <size android:width="20dp" android:height="20dp" />
+          <stroke
+              android:width="2dp"
+              android:color="@color/cb_mono_white_med" />
         </shape>
       </item>
     </layer-list>
-  </item>
 
+  </item>
 
 </selector>

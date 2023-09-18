@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Equipment Names -->
+    <string name="equipment_info_name_dots" translatable="false">D.O.T.S. Projector</string>
+    <string name="equipment_info_name_emf" translatable="false">EMF Reader</string>
+    <string name="equipment_info_name_flashlight" translatable="false">Flashlight</string>
+    <string name="equipment_info_name_photocamera" translatable="false">Photo Camera</string>
+    <string name="equipment_info_name_igniter" translatable="false">Igniter</string>
+    <string name="equipment_info_name_firelight" translatable="false">Firelight</string>
+    <string name="equipment_info_name_uvlight" translatable="false">UV Light</string>
+    <string name="equipment_info_name_crucifix" translatable="false">Crucifix</string>
+    <string name="equipment_info_name_videocamera" translatable="false">Video Camera</string>
+    <string name="equipment_info_name_spiritbox" translatable="false">Spirit Box</string>
+    <string name="equipment_info_name_thermometer" translatable="false">Thermometer</string>
+    <string name="equipment_info_name_salt" translatable="false">Salt</string>
+    <string name="equipment_info_name_incense" translatable="false">Incense</string>
+    <string name="equipment_info_name_tripod" translatable="false">Tripod</string>
+    <string name="equipment_info_name_motionsensor" translatable="false">Motion Sensor</string>
+    <string name="equipment_info_name_soundsensor" translatable="false">Sound Sensor</string>
+    <string name="equipment_info_name_sanitymedication" translatable="false">Sanity Medication</string>
+    <string name="equipment_info_name_ghostwritingbook" translatable="false">Ghost Writing Book</string>
+    <string name="equipment_info_name_parabolicmicrophone" translatable="false">Parabolic Microphone</string>
+    <string name="equipment_info_name_headgear" translatable="false">Head Gear</string>
+
+
+    <!-- Titles -->
+    <string name="store_title" translatable="false">Equipment Shop</string>
     <string name="equipment_section_tiers">Tiers</string>
     <string name="equipment_section_equipment">Equipment</string>
     <string name="evidence_requirement_level_title">Unlock Level:</string>

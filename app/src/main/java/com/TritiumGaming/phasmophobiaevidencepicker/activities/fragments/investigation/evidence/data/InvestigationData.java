@@ -72,7 +72,7 @@ public class InvestigationData {
      */
     public void initEvidence(Context c) {
         evidence = new ArrayList<>();
-        String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_tool_names);
+        String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_type_names);
         for (int i = 0; i < evidenceNames.length; i++) {
             Evidence evidence = new Evidence();
             evidence.setName(evidenceNames[i]);

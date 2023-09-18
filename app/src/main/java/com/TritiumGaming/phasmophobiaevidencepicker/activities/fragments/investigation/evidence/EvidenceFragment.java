@@ -230,7 +230,7 @@ public class EvidenceFragment extends Fragment {
         // LISTENERS
         initNavListeners(
                 view.findViewById(R.id.listener_goto_left),
-                null, //view.findViewById(R.id.icon_goto_medLeft),
+                view.findViewById(R.id.icon_goto_medLeft),
                 view.findViewById(R.id.listener_resetAll),
                 null,
                 view.findViewById(R.id.listener_goto_right),
@@ -383,7 +383,6 @@ public class EvidenceFragment extends Fragment {
                     }
             );
         }
-
     }
 
     @SuppressLint("ResourceType")
@@ -391,11 +390,11 @@ public class EvidenceFragment extends Fragment {
                                      LinearLayout ghostContainer) {
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        String[] evidenceNames = getResources().getStringArray(R.array.evidence_tool_names);
+        String[] evidenceNames = getResources().getStringArray(R.array.evidence_type_names);
 
         //Avoid pass null in the root it ignores spaces in the child layout
         TypedArray evidenceTypes =
-                getContext().getResources().obtainTypedArray(R.array.evidence_tiers_arrays);
+                getContext().getResources().obtainTypedArray(R.array.equipment_tiers_arrays);
         for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
 
             final int evidenceIndex = i;
@@ -580,7 +579,7 @@ public class EvidenceFragment extends Fragment {
 
                 TypedArray typedArray;
                 try {
-                    typedArray = view.getContext().getResources().obtainTypedArray(R.array.evidence_animation_array);
+                    typedArray = view.getContext().getResources().obtainTypedArray(R.array.equipment_animation_array);
                     animation.setImageResource(animations[0]);
                     animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
                     typedArray.recycle();
@@ -793,7 +792,7 @@ public class EvidenceFragment extends Fragment {
 
         if(getContext() != null) {
             TypedArray typedArray =
-                    getContext().getResources().obtainTypedArray(R.array.evidence_tiers);
+                    getContext().getResources().obtainTypedArray(R.array.equipment_tiers);
             title.setText(typedArray.getString(tierIndex-1));
             typedArray.recycle();
         }

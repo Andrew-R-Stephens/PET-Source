@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
 /**
  * HandprintData class
@@ -120,6 +121,9 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      * @return
      */
     public Bitmap rotateBitmap(Bitmap original) {
+        if(!BitmapUtils.bitmapExists(original))
+            return null;
+
         int width = original.getWidth();
         int height = original.getHeight();
         Matrix matrix = new Matrix();

@@ -87,7 +87,11 @@ public class AnimatedGraphicQueue {
 
         if (queue.size() < maxSize) {
             if(num >= 0) {
-                queue.add(num);
+                try {
+                    queue.add(num);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -6,82 +6,82 @@
     -->
 
     <!-- Evidence Full -->
-    <string-array name="evidence_tiers_dots">
+    <string-array name="equipment_tiers_dots">
         <item>@string/evidence_type_dots</item>
-        <item>@array/evidence_tiers_dots_description</item>
+        <item>@array/equipment_tiers_dots_description</item>
         <item>@array/evidence_tiers_dots_animation</item>
         <item>@string/equipment_requirement_cost_dots</item>
-        <item>@array/evidence_tiers_dots_requirement_level</item>
+        <item>@array/equipment_tiers_dots_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_emf">
+    <string-array name="equipment_tiers_emf">
         <item>@string/evidence_type_emf</item>
-        <item>@array/evidence_tiers_emf_description</item>
+        <item>@array/equipment_tiers_emf_description</item>
         <item>@array/evidence_tiers_emf_animation</item>
         <item>@string/equipment_requirement_cost_emf</item>
-        <item>@array/evidence_tiers_emf_requirement_level</item>
+        <item>@array/equipment_tiers_emf_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_ultraviolet">
+    <string-array name="equipment_tiers_ultraviolet">
         <item>@string/evidence_type_ultraviolet</item>
-        <item>@array/evidence_tiers_ultraviolet_description</item>
+        <item>@array/equipment_tiers_ultraviolet_description</item>
         <item>@array/evidence_tiers_ultraviolet_animation</item>
         <item>@string/equipment_requirement_cost_ultraviolet</item>
-        <item>@array/evidence_tiers_ultraviolet_requirement_level</item>
+        <item>@array/equipment_tiers_ultraviolet_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_thermometer">
+    <string-array name="equipment_tiers_thermometer">
         <item>@string/evidence_type_temperatures</item>
-        <item>@array/evidence_tiers_thermometer_description</item>
+        <item>@array/equipment_tiers_thermometer_description</item>
         <item>@array/evidence_tiers_thermometer_animation</item>
         <item>@string/equipment_requirement_cost_thermometer</item>
-        <item>@array/evidence_tiers_thermometer_requirement_level</item>
+        <item>@array/equipment_tiers_thermometer_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_vcam">
+    <string-array name="equipment_tiers_vcam">
         <item>@string/evidence_type_orbs</item>
-        <item>@array/evidence_tiers_vcam_description</item>
+        <item>@array/equipment_tiers_vcam_description</item>
         <item>@array/evidence_tiers_vcam_animation</item>
         <item>@string/equipment_requirement_cost_vcam</item>
-        <item>@array/evidence_tiers_vcam_requirement_level</item>
+        <item>@array/equipment_tiers_vcam_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_book">
+    <string-array name="equipment_tiers_book">
         <item>@string/evidence_type_book</item>
-        <item>@array/evidence_tiers_book_description</item>
+        <item>@array/equipment_tiers_book_description</item>
         <item>@array/evidence_tiers_book_animation</item>
         <item>@string/equipment_requirement_cost_book</item>
-        <item>@array/evidence_tiers_book_requirement_level</item>
+        <item>@array/equipment_tiers_book_requirement_level</item>
     </string-array>
 
-    <string-array name="evidence_tiers_box">
+    <string-array name="equipment_tiers_box">
         <item>@string/evidence_type_box</item>
-        <item>@array/evidence_tiers_box_description</item>
+        <item>@array/equipment_tiers_box_description</item>
         <item>@array/evidence_tiers_box_animation</item>
         <item>@string/equipment_requirement_cost_box</item>
-        <item>@array/evidence_tiers_box_requirement_level</item>
+        <item>@array/equipment_tiers_box_requirement_level</item>
     </string-array>
 
     <!-- Evidence Tier Nomenclature -->
-    <string-array name="evidence_tiers">
+    <string-array name="equipment_tiers">
         <item>@string/equipment_tiers_1</item>
         <item>@string/equipment_tiers_2</item>
         <item>@string/equipment_tiers_3</item>
     </string-array>
 
     <!-- Evidence Typed Tiers -->
-    <string-array name="evidence_tiers_arrays">
-        <item>@array/evidence_tiers_dots</item>
-        <item>@array/evidence_tiers_emf</item>
-        <item>@array/evidence_tiers_ultraviolet</item>
-        <item>@array/evidence_tiers_thermometer</item>
-        <item>@array/evidence_tiers_vcam</item>
-        <item>@array/evidence_tiers_book</item>
-        <item>@array/evidence_tiers_box</item>
+    <string-array name="equipment_tiers_arrays">
+        <item>@array/equipment_tiers_dots</item>
+        <item>@array/equipment_tiers_emf</item>
+        <item>@array/equipment_tiers_ultraviolet</item>
+        <item>@array/equipment_tiers_thermometer</item>
+        <item>@array/equipment_tiers_vcam</item>
+        <item>@array/equipment_tiers_book</item>
+        <item>@array/equipment_tiers_box</item>
     </string-array>
 
     <!-- Evidence Names -->
-    <string-array name="evidence_tool_names">
+    <string-array name="evidence_type_names">
         <item>@string/evidence_type_dots</item>
         <item>@string/evidence_type_emf</item>
         <item>@string/evidence_type_ultraviolet</item>
@@ -92,49 +92,49 @@
     </string-array>
 
     <!-- Evidence Descriptions -->
-    <string-array name="evidence_tiers_dots_description">
+    <string-array name="equipment_tiers_dots_description">
         <item>@string/evidence_info_overview_dots</item>
         <item>@string/equipment_info_tier_dots_1</item>
         <item>@string/equipment_info_tier_dots_2</item>
         <item>@string/equipment_info_tier_dots_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_emf_description">
+    <string-array name="equipment_tiers_emf_description">
         <item>@string/evidence_info_overview_emf</item>
         <item>@string/equipment_info_tier_emf_1</item>
         <item>@string/equipment_info_tier_emf_2</item>
         <item>@string/equipment_info_tier_emf_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_ultraviolet_description">
+    <string-array name="equipment_tiers_ultraviolet_description">
         <item>@string/evidence_info_overview_ultraviolet</item>
         <item>@string/equipment_info_tier_ultraviolet_1</item>
         <item>@string/equipment_info_tier_ultraviolet_2</item>
         <item>@string/equipment_info_tier_ultraviolet_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_thermometer_description">
+    <string-array name="equipment_tiers_thermometer_description">
         <item>@string/evidence_info_overview_thermometer</item>
         <item>@string/equipment_info_tier_thermometer_1</item>
         <item>@string/equipment_info_tier_thermometer_2</item>
         <item>@string/equipment_info_tier_thermometer_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_vcam_description">
+    <string-array name="equipment_tiers_vcam_description">
         <item>@string/evidence_info_overview_vcam</item>
         <item>@string/equipment_info_tier_vcam_1</item>
         <item>@string/equipment_info_tier_vcam_2</item>
         <item>@string/equipment_info_tier_vcam_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_book_description">
+    <string-array name="equipment_tiers_book_description">
         <item>@string/evidence_info_overview_book</item>
         <item>@string/equipment_info_tier_book_1</item>
         <item>@string/equipment_info_tier_book_2</item>
         <item>@string/equipment_info_tier_book_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_box_description">
+    <string-array name="equipment_tiers_box_description">
         <item>@string/evidence_info_overview_sbox</item>
         <item>@string/equipment_info_tier_sbox_1</item>
         <item>@string/equipment_info_tier_sbox_2</item>
@@ -142,43 +142,43 @@
     </string-array>
 
     <!-- Evidence Tier Level Requirements -->
-    <string-array name="evidence_tiers_dots_requirement_level">
+    <string-array name="equipment_tiers_dots_requirement_level">
         <item>@string/equipment_requirement_level_dots_1</item>
         <item>@string/equipment_requirement_level_dots_2</item>
         <item>@string/equipment_requirement_level_dots_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_emf_requirement_level">
+    <string-array name="equipment_tiers_emf_requirement_level">
         <item>@string/equipment_requirement_level_emf_1</item>
         <item>@string/equipment_requirement_level_emf_2</item>
         <item>@string/equipment_requirement_level_emf_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_ultraviolet_requirement_level">
+    <string-array name="equipment_tiers_ultraviolet_requirement_level">
         <item>@string/equipment_requirement_level_ultraviolet_1</item>
         <item>@string/equipment_requirement_level_ultraviolet_2</item>
         <item>@string/equipment_requirement_level_ultraviolet_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_thermometer_requirement_level">
+    <string-array name="equipment_tiers_thermometer_requirement_level">
         <item>@string/equipment_requirement_level_thermometer_1</item>
         <item>@string/equipment_requirement_level_thermometer_2</item>
         <item>@string/equipment_requirement_level_thermometer_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_vcam_requirement_level">
+    <string-array name="equipment_tiers_vcam_requirement_level">
         <item>@string/equipment_requirement_level_vcam_1</item>
         <item>@string/equipment_requirement_level_vcam_2</item>
         <item>@string/equipment_requirement_level_vcam_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_book_requirement_level">
+    <string-array name="equipment_tiers_book_requirement_level">
         <item>@string/equipment_requirement_level_book_1</item>
         <item>@string/equipment_requirement_level_book_2</item>
         <item>@string/equipment_requirement_level_book_3</item>
     </string-array>
 
-    <string-array name="evidence_tiers_box_requirement_level">
+    <string-array name="equipment_tiers_box_requirement_level">
         <item>@string/equipment_requirement_level_box_1</item>
         <item>@string/equipment_requirement_level_box_2</item>
         <item>@string/equipment_requirement_level_box_3</item>
@@ -246,7 +246,7 @@
     </integer-array>
 
     <!-- Evidence Example Image -->
-    <integer-array name="evidence_animation_array">
+    <integer-array name="equipment_animation_array">
         <item>@drawable/example_dots_0</item>
         <item>@drawable/example_emf5_0</item>
         <item>@drawable/example_fingerprints_normal_cropped_0</item>
