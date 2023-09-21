@@ -136,7 +136,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,23 +156,25 @@
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/title_left"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_prev"
                     android:tint="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/label_infoTitle"
+                    app:layout_constraintWidth_max="48dp"
+                    app:layout_constraintWidth_min="24dp" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_infoTitle"
                     style="?attr/secondaryFont_Regular"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
@@ -180,6 +182,7 @@
                     android:textColor="?attr/titleFontColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/title_right"
+                    app:layout_constraintHeight_min="32dp"
                     app:layout_constraintStart_toEndOf="@+id/title_left"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -188,16 +191,18 @@
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/title_right"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next"
                     android:tint="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_infoTitle"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/label_infoTitle"
+                    app:layout_constraintWidth_max="48dp"
+                    app:layout_constraintWidth_min="24dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -233,21 +238,22 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:padding="5sp"
-                app:layout_constraintBottom_toTopOf="@+id/scrollView_huntdata"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_huntTitle"
-                    style="?attr/secondaryFont_Regular"
+                    style="?attr/secondaryFont_Regular_Manual"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/popup_ghost_huntdata"
                     android:textColor="?attr/titleFontColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -255,14 +261,21 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <include
-                android:id="@+id/scrollView_huntdata"
-                layout="@layout/item_scrollview"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <include
+                    android:id="@+id/scrollView_huntdata"
+                    layout="@layout/item_scrollview_huntdata" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

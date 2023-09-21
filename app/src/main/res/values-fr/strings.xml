@@ -641,34 +641,34 @@
     </string>
 
 
-    <string name="equipment_info_tier_dots_1">
+    <string name="shop_equipment_dots_data_info_1">
          <![CDATA[
              <p>Un stylo à grille laser qui ressemble à une lampe de poche. Vous pouvez marcher autour de l\'emplacement et rechercher rapidement des preuves, le seul inconvénient étant sa courte portée et sa faible intensité lumineuse.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_dots_2">
+    <string name="shop_equipment_dots_data_info_2">
          <![CDATA[
              <p>Ceci est le D.O.T.S original. projecteur. Il s\'agit d\'un projecteur placable émettant une sphère de lumière de taille moyenne, sauf que vous pouvez désormais encourager le fantôme à entrer dedans en vous tenant à proximité.</p>
              <p>Idéal pour les pièces de petite à moyenne taille.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_dots_3">
+    <string name="shop_equipment_dots_data_info_3">
          <![CDATA[
              <p>Ce projecteur placable balaye la pièce à une distance beaucoup plus longue avec un faisceau de lumière large et rapide, ce qui facilite la recherche de fantômes dans ces grandes pièces. Pour une couverture optimale, placez ce projecteur sur un mur ou une surface plane, tenez-vous à proximité et surveillez les silhouettes fantômes.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_emf_1">
+    <string name="shop_equipment_emf_data_info_1">
          <![CDATA[
              <p>Un ancien multimètre analogique avec une petite plage de détection, une faible précision et de faibles émissions audio. L\'aiguille passera en surmultipliée, poussant au-delà du niveau 5 lorsque le niveau 5 EMF est détecté.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_emf_2">
+    <string name="shop_equipment_emf_data_info_2">
          <![CDATA[
              <p>Le compteur K2 de confiance a une portée plus large et cinq lumières LED pour détecter les lectures EMF, ainsi qu\'un module de haut-parleur supplémentaire. Une lumière s\'allume lorsque vous activez l\'appareil. Lorsque vous vous déplacez dans la plage de détection des points EMF du K2, il affiche une valeur précise de deux à cinq et émet un son clair et audible.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_emf_3">
+    <string name="shop_equipment_emf_data_info_3">
          <![CDATA[
              <p>Un ParaReader high\-tech. Cet appareil peut suivre jusqu\'à trois points EMF à la fois et a une plage de détection la plus éloignée.</p>
              <p>Il affichera la direction, la plage et la valeur de chaque lecture en même temps. Il émet des sons pour chaque détection EMF afin que vous puissiez entendre, à distance, combien et quelle est la force des lectures.</p>
@@ -676,88 +676,88 @@
          ]]>
      </string>
 
-    <string name="equipment_info_tier_ultraviolet_1">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <p>Le bâton lumineux UV classique. Après l\'avoir cliqué pour l\'allumer, il projette une lumière de zone à courte portée qui dure environ une minute avant de s\'assombrir. Vous pouvez toujours lui donner une autre secousse pour revigorer sa lumière.</p>
              <p>Cet appareil chargera un point UV dans les 10 secondes suivant l\'exposition.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_ultraviolet_2">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <p>La lampe de poche UV classique qui émet un faisceau plus lumineux et étroit avec une portée plus longue, offrant un temps de charge UV beaucoup plus rapide!</p>
              <p>Cet appareil chargera un spot UV dans les 5 secondes suivant l\'exposition.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_ultraviolet_3">
+    <string name="shop_equipment_uvlight_data_info_3">
          <![CDATA[
              <p>L\'UV Light Pro est une grosse lampe de poche qui a un cône de lumière beaucoup plus lumineux et plus large, ainsi qu\'un temps de charge encore plus rapide. Il est parfait pour localiser rapidement des preuves ultraviolettes à plus grande échelle.<p>
              <p>Cet appareil chargera un point UV dans les 1,5 secondes suivant l\'exposition.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_thermometer_1">
+    <string name="shop_equipment_thermometer_data_info_1">
          <![CDATA[
              <p>Une vieille maison\-Thermomètre, arraché directement du mur du salon de votre Enquêteur. Ce thermomètre a un taux d\'échantillonnage lent, ce qui signifie que vous devrez attendre plus longtemps pour obtenir une lecture précise. Vous voudrez peut-être en apporter un et le vérifier plus tard dans le contrat.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_thermometer_2">
+    <string name="shop_equipment_thermometer_data_info_2">
          <![CDATA[
              <p>Une version mise à jour du lecteur de température classique, mais beaucoup plus réactive. Au lieu de l\'allumer et d\'obtenir une lecture toutes les deux secondes, maintenez le bouton \'Utiliser\' pour rechercher les températures. Cela permet de courir et de vérifier la température de chaque pièce beaucoup plus rapidement que le niveau I ne le permet.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_thermometer_3">
+    <string name="shop_equipment_thermometer_data_info_3">
          <![CDATA[
              <p>Une mise à niveau directe vers le niveau II, effectuant des analyses de température deux fois plus rapides que son prédécesseur. De plus, ce thermomètre plus moderne est plus précis à chaque lecture, permettant aux joueurs de scanner rapidement et efficacement les pièces pour trouver le fantôme ou pour faire cocher \"Températures glaciales\" dans le Journal.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_book_1">
+    <string name="shop_equipment_ghostwritingbook_data_info_1">
          <![CDATA[
              <p>Ce bloc-notes en papier peut être placé à proximité d\'un fantôme pour encourager une écriture paranormale. Assurez-vous de le placer à proximité de toute activité que vous voyez. Certains fantômes peuvent ne pas remarquer le petit bloc-notes et le crayon, cela peut donc prendre un certain temps avant que quelque chose ne se passe.<p/>
          ]]>
      </string>
-    <string name="equipment_info_tier_book_2">
+    <string name="shop_equipment_ghostwritingbook_data_info_2">
          <![CDATA[
              <p>Avec de plus belles pages et un stylo, les fantômes semblent remarquer ce livre un peu plus souvent que la version précédente. raccourcir un peu les temps d\'attente pour que les preuves se produisent.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_book_3">
+    <string name="shop_equipment_ghostwritingbook_data_info_3">
          <![CDATA[
              <p>Avec son profil large, un mélange de matériaux de haute qualité et un stylo orné, ce livre a le plus grand changement à écrire par des fantômes. Il a une portée plus large que les deux niveaux précédents, il est donc beaucoup plus facile de placer ce livre dans la portée d\'interaction d\'un fantôme.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_vcam_1">
+    <string name="shop_equipment_videocamera_data_info_1">
          <![CDATA[
              <p>Un vieux caméscope que Ghost Huntin\' Distribution a trouvé dans le grenier de l\'ancien bureau. Il est petit et un peu usé, mais il fait très bien le travail.</p>
              <p>L\'analyse du flux vidéo est un défi en raison de la qualité épouvantable de son écran et de ses petites dimensions, alors prenez votre temps!</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_vcam_2">
+    <string name="shop_equipment_videocamera_data_info_2">
          <![CDATA[
              <p>La caméra vidéo Parasonic est une vidéo HD qui facilite grandement la recherche d\'orbes. Il reçoit toujours beaucoup d\'interférences d\'un fantôme actif, mais beaucoup moins que le niveau 1.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_vcam_3">
+    <string name="shop_equipment_videocamera_data_info_3">
          <![CDATA[
              <p>La caméra vidéo de qualité cinématographique de Bony avec un grand corps prend en charge un écran beaucoup plus grand. Il dispose d\'un flux vidéo beaucoup plus clair et reçoit moins d\'interférences des apparitions de fantômes.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_sbox_1">
+    <string name="shop_equipment_spiritbox_data_info_1">
          <![CDATA[
              <p> Lorsque vous allumez cette Spirit Box, elle commencera à balayer différentes fréquences radio. Assurez-vous de vous tenir à proximité de toute activité paranormale, éteignez toutes les lumières dans cette pièce et posez quelques questions dans l\'espoir d\'une réponse.</p>
              <p>Si la question a été entendue, une lumière rouge clignotera sur la Spirit Box. S\'il clignote en blanc, vous avez une réponse du fantôme.</p>
              <p>Essayez de demander "Où es-tu?" ou "Êtes-vous amical?". Soyez prévenu, vous n\'aimerez peut-être pas la réponse que vous recevrez.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_sbox_2">
+    <string name="shop_equipment_spiritbox_data_info_2">
          <![CDATA[
              <p>Cette Spirit Box plus moderne a un haut-parleur de meilleure qualité qui est beaucoup plus efficace pour balayer les fréquences, ce qui rend les réponses paranormales plus faciles à déchiffrer.</p>
              <p>Si une question a été entendue, un \'X\' noir clignotera à l\'écran. Si vous obtenez une réponse, la petite icône fantôme clignotera à la place.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_sbox_3">
+    <string name="shop_equipment_spiritbox_data_info_3">
          <![CDATA[
              <p>Lorsqu\'elle est allumée, cette Spirit Box scanne les deux fréquences, deux en même temps, augmentant les chances de capter une réponse paranormale lorsque vous posez des questions. Il dispose également d\'un filtre intégré pour réduire la quantité d\'électricité statique que vous entendez entre les interactions.</p>
              <p>Si une question est entendue et qu\'aucune réponse n\'est donnée, les LED de RÉPONSE clignoteront en rouge. Si une réponse est donnée, les LED clignoteront en blanc au rythme du son.</p>

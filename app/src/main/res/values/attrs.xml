@@ -86,6 +86,8 @@
         Radio Selector
     -->
     <attr name="state_done" format="boolean" />
+    <attr name="state_enabled" format="boolean" />
+    <attr name="state_selected" format="boolean" />
 
     <attr name="equipment_type" format="enum">
         <enum name="DOTS_1" value="1"/>

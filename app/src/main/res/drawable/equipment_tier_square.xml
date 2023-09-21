@@ -1,12 +1,25 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
   <item>
     <layer-list>
       <item>
-        <shape>
-          <solid
-              android:color="@color/cb_mono_white_lowmed" />
-        </shape>
+        <selector>
+          <item
+            app:state_selected="false">
+            <shape>
+              <solid
+                  android:color="#99AEB3" />
+            </shape>
+          </item>
+          <item
+              app:state_selected="true" >
+            <shape>
+              <solid
+                  android:color="#FFB43D" />
+            </shape>
+          </item>
+        </selector>
       </item>
 
       <item
@@ -19,16 +32,6 @@
 
       </item>
 
-      <item
-          android:left="-2dp"
-          android:top="-2dp"
-          >
-        <shape>
-          <stroke
-              android:width="2dp"
-              android:color="@color/cb_mono_white_med" />
-        </shape>
-      </item>
     </layer-list>
 
   </item>

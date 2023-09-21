@@ -967,25 +967,28 @@ public class EvidenceFragment extends Fragment {
     public void fadeOutIndicatorAnimation(ConstraintLayout bodyCons, ConstraintLayout container, ScrollView scroller, View indicator) {
         scroller.post(() -> {
             if (!scroller.canScrollVertically(1)) {
-                indicator.setVisibility(View.VISIBLE);
-                indicator.animate()
-                        .alpha(0f)
-                        .setDuration(getResources().getInteger(
-                                android.R.integer.config_longAnimTime))
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                indicator.setVisibility(View.INVISIBLE);
-                            }
-                        });
+                indicator.setVisibility(View.INVISIBLE);
+                indicatorFadeAnimation(indicator, 0);
             } else {
                 if(container != null) {
-                    Log.d("Scroller", "Should constrain");
-                    ConstraintLayout.LayoutParams lParams =
-                            (ConstraintLayout.LayoutParams) container.getLayoutParams();
-                    lParams.constrainedHeight = true;
-                    container.setLayoutParams(lParams);
-                    container.invalidate();
+                    if(container.getLayoutParams() instanceof ConstraintLayout.LayoutParams) {
+
+                        Log.d("Scroller", "Should constrain");
+                        ConstraintLayout.LayoutParams lParams =
+                                (ConstraintLayout.LayoutParams) container.getLayoutParams();
+                        lParams.constrainedHeight = true;
+                        container.setLayoutParams(lParams);
+                        container.invalidate();
+
+                        if (!scroller.canScrollVertically(1)) {
+                            indicator.setVisibility(View.INVISIBLE);
+
+                            indicatorFadeAnimation(indicator, 0);
+                        } else {
+                            indicator.setVisibility(View.VISIBLE);
+                            indicator.setAlpha(1f);
+                        }
+                    }
                 }
             }
 
@@ -999,35 +1002,32 @@ public class EvidenceFragment extends Fragment {
             scroller.setOnScrollChangeListener((v13, scrollX, scrollY, oldScrollX,
                                                  oldScrollY) -> {
                 if (!scroller.canScrollVertically(1)) {
-                    indicator.animate()
-                            .alpha(0f)
-                            .setDuration(getResources().getInteger(
-                                    android.R.integer.config_longAnimTime))
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    indicator.setVisibility(View.INVISIBLE);
-                                }
-                            });
+                    indicatorFadeAnimation(indicator, getResources().getInteger(
+                            android.R.integer.config_longAnimTime));
                 }
             });
         } else {
             scroller.setOnDragListener((v12, event) -> {
                 if (!scroller.canScrollVertically(1)) {
-                    indicator.animate()
-                            .alpha(0f)
-                            .setDuration(getResources().getInteger(
-                                    android.R.integer.config_longAnimTime))
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    indicator.setVisibility(View.INVISIBLE);
-                                }
-                            });
+                    indicatorFadeAnimation(indicator, getResources().getInteger(
+                            android.R.integer.config_longAnimTime));
                 }
                 return true;
             });
         }
+    }
+
+    private void indicatorFadeAnimation(View indicator, int time) {
+
+        indicator.animate()
+                .alpha(0f)
+                .setDuration(time)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        indicator.setVisibility(View.INVISIBLE);
+                    }
+                });
     }
 
     private void initFirebase() {
@@ -1184,7 +1184,9 @@ public class EvidenceFragment extends Fragment {
             ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
             View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
             AppCompatTextView data_swapping = scroller_swapping.findViewById(R.id.label_info);
+
             ScrollView scroller_huntdata = scrollCons_huntdata.findViewById(R.id.scrollView);
+            View indicator_huntdata = scrollCons_huntdata.findViewById(R.id.scrollview_indicator);
             AppCompatTextView data_huntdata = scroller_huntdata.findViewById(R.id.label_info);
 
             popup = new PopupWindow(
@@ -1227,7 +1229,15 @@ public class EvidenceFragment extends Fragment {
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 scrollCons_huntdata.post(() ->
-                        scrollCons_huntdata.setMaxHeight((int)(((ConstraintLayout)scrollCons_huntdata.getParent()).getHeight() * .4f)));
+                {
+                    scrollCons_huntdata.setMaxHeight((int) (bodyCons.getHeight() * .4f));
+
+                    fadeOutIndicatorAnimation(
+                            scrollCons_huntdata,
+                            scrollCons_huntdata,
+                            scroller_huntdata,
+                            indicator_huntdata);
+                });
             }
 
             left.setOnClickListener(view -> {
@@ -1237,6 +1247,12 @@ public class EvidenceFragment extends Fragment {
                 data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
+
+                fadeOutIndicatorAnimation(
+                        bodyCons,
+                        scrollCons_swapping,
+                        scroller_swapping,
+                        indicator_swapping);
 
             });
 
@@ -1248,6 +1264,12 @@ public class EvidenceFragment extends Fragment {
                         cycleDetails[detailIndex],
                         "#ff6161", fontEmphasisColor + "")));
 
+                fadeOutIndicatorAnimation(
+                        bodyCons,
+                        scrollCons_swapping,
+                        scroller_swapping,
+                        indicator_swapping);
+
             });
 
             fadeOutIndicatorAnimation(
@@ -1255,7 +1277,6 @@ public class EvidenceFragment extends Fragment {
                     scrollCons_swapping,
                     scroller_swapping,
                     indicator_swapping);
-
 
             closeButton.setOnClickListener(v1 -> popup.dismiss());
 

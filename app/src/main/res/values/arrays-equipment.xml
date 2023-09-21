@@ -94,51 +94,51 @@
     <!-- Evidence Descriptions -->
     <string-array name="equipment_tiers_dots_description">
         <item>@string/evidence_info_overview_dots</item>
-        <item>@string/equipment_info_tier_dots_1</item>
-        <item>@string/equipment_info_tier_dots_2</item>
-        <item>@string/equipment_info_tier_dots_3</item>
+        <item>@string/shop_equipment_dots_data_info_1</item>
+        <item>@string/shop_equipment_dots_data_info_2</item>
+        <item>@string/shop_equipment_dots_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_emf_description">
         <item>@string/evidence_info_overview_emf</item>
-        <item>@string/equipment_info_tier_emf_1</item>
-        <item>@string/equipment_info_tier_emf_2</item>
-        <item>@string/equipment_info_tier_emf_3</item>
+        <item>@string/shop_equipment_emf_data_info_1</item>
+        <item>@string/shop_equipment_emf_data_info_2</item>
+        <item>@string/shop_equipment_emf_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_ultraviolet_description">
         <item>@string/evidence_info_overview_ultraviolet</item>
-        <item>@string/equipment_info_tier_ultraviolet_1</item>
-        <item>@string/equipment_info_tier_ultraviolet_2</item>
-        <item>@string/equipment_info_tier_ultraviolet_3</item>
+        <item>@string/shop_equipment_uvlight_data_info_1</item>
+        <item>@string/shop_equipment_uvlight_data_info_2</item>
+        <item>@string/shop_equipment_uvlight_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_thermometer_description">
         <item>@string/evidence_info_overview_thermometer</item>
-        <item>@string/equipment_info_tier_thermometer_1</item>
-        <item>@string/equipment_info_tier_thermometer_2</item>
-        <item>@string/equipment_info_tier_thermometer_3</item>
+        <item>@string/shop_equipment_thermometer_data_info_1</item>
+        <item>@string/shop_equipment_thermometer_data_info_2</item>
+        <item>@string/shop_equipment_thermometer_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_vcam_description">
         <item>@string/evidence_info_overview_vcam</item>
-        <item>@string/equipment_info_tier_vcam_1</item>
-        <item>@string/equipment_info_tier_vcam_2</item>
-        <item>@string/equipment_info_tier_vcam_3</item>
+        <item>@string/shop_equipment_videocamera_data_info_1</item>
+        <item>@string/shop_equipment_videocamera_data_info_2</item>
+        <item>@string/shop_equipment_videocamera_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_book_description">
         <item>@string/evidence_info_overview_book</item>
-        <item>@string/equipment_info_tier_book_1</item>
-        <item>@string/equipment_info_tier_book_2</item>
-        <item>@string/equipment_info_tier_book_3</item>
+        <item>@string/shop_equipment_ghostwritingbook_data_info_1</item>
+        <item>@string/shop_equipment_ghostwritingbook_data_info_2</item>
+        <item>@string/shop_equipment_ghostwritingbook_data_info_3</item>
     </string-array>
 
     <string-array name="equipment_tiers_box_description">
         <item>@string/evidence_info_overview_sbox</item>
-        <item>@string/equipment_info_tier_sbox_1</item>
-        <item>@string/equipment_info_tier_sbox_2</item>
-        <item>@string/equipment_info_tier_sbox_3</item>
+        <item>@string/shop_equipment_spiritbox_data_info_1</item>
+        <item>@string/shop_equipment_spiritbox_data_info_2</item>
+        <item>@string/shop_equipment_spiritbox_data_info_3</item>
     </string-array>
 
     <!-- Evidence Tier Level Requirements -->

@@ -13,6 +13,8 @@ import androidx.core.content.res.ResourcesCompat;
 
 public class ItemStoreEquipmentItem extends AppCompatImageView {
 
+    private boolean isSelected = false;
+
     public ItemStoreEquipmentItem(@NonNull Context context) {
         super(context);
     }
@@ -32,6 +34,18 @@ public class ItemStoreEquipmentItem extends AppCompatImageView {
     public void setEquipment(@DrawableRes int res) {
         LayerDrawable layerDrawable = (LayerDrawable) getDrawable();
         layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), res, getContext().getTheme()));
-
     }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+
+        setImageState(new int[]{
+                isSelected ? R.attr.state_selected : -R.attr.state_selected},
+                true);
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
 }

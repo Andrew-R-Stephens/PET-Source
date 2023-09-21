@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class ItemStoreEquipmentGroup extends LinearLayoutCompat {
     }
 
     private void initView() {
-        inflate(getContext(), R.layout.item_shop_tool_group, this);
+        inflate(getContext(), R.layout.item_safehouse_itemstore_itemgroup, this);
     }
 
     public void build(@StringRes int name, @IntegerRes ArrayList<Integer> equipmentIcons) {
@@ -39,6 +40,7 @@ public class ItemStoreEquipmentGroup extends LinearLayoutCompat {
         ViewGroup grid = findViewById(R.id.testgridlist);
         for(int i = 0; i < grid.getChildCount(); i++) {
             ItemStoreEquipmentItem item = (ItemStoreEquipmentItem) grid.getChildAt(i);
+            item.setSelected(false);
             item.setTier(i+1);
             item.setEquipment(equipmentIcons.get(i));
         }
@@ -47,5 +49,17 @@ public class ItemStoreEquipmentGroup extends LinearLayoutCompat {
         String title = getResources().getString(name);
         textView_name.setText(title);
         textView_name.setSelected(true);
+    }
+
+    public ItemStoreEquipmentItem[] getItems() {
+        LinearLayoutCompat layout = (LinearLayoutCompat) getChildAt(0);
+        ItemStoreEquipmentItem[] items = new ItemStoreEquipmentItem[3];
+
+        ConstraintLayout container = layout.findViewById(R.id.testgridlist);
+        for(int i = 0; i < container.getChildCount(); i++){
+            items[i] = (ItemStoreEquipmentItem) (container.getChildAt(i));
+        }
+
+        return items;
     }
 }

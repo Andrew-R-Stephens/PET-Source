@@ -636,34 +636,34 @@
     </string>
 
 
-    <string name="equipment_info_tier_dots_1">
+    <string name="shop_equipment_dots_data_info_1">
          <![CDATA[
              <p>Un Laser Grid Pen que es similar a una linterna. Puede caminar por la ubicación y escanear rápidamente en busca de pruebas, el único inconveniente es su corto alcance y la baja intensidad de la luz.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_dots_2">
+    <string name="shop_equipment_dots_data_info_2">
          <![CDATA[
              <p>Este es el D.O.T.S. original. proyector. Es un proyector colocable que emite una esfera de luz de tamaño promedio, excepto que ahora puedes animar al fantasma a caminar hacia él estando cerca.</p>
              <p>Ideal para habitaciones de tamaño pequeño a mediano.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_dots_3">
+    <string name="shop_equipment_dots_data_info_3">
          <![CDATA[
              <p>Este proyector colocable escanea la habitación a una distancia mucho mayor con un amplio haz de luz de barrido, lo que hace que encontrar fantasmas en esas habitaciones más grandes sea mucho más fácil. Para obtener la mejor cobertura, coloque este proyector en una pared o superficie plana, párese cerca y observe las siluetas de fantasmas.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_emf_1">
+    <string name="shop_equipment_emf_data_info_1">
          <![CDATA[
              <p>Un medidor analógico antiguo con un rango de detección pequeño, baja precisión y bajas emisiones de audio. La aguja entrará en sobremarcha, superando el nivel 5 cuando se detecte EMF de nivel 5.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_emf_2">
+    <string name="shop_equipment_emf_data_info_2">
          <![CDATA[
              <p>El medidor K2 de confianza tiene un rango mayor y cinco luces LED para detectar lecturas de EMF, así como un módulo de altavoz adicional. Una luz se encenderá cuando active el dispositivo. Cuando se mueva dentro del rango de detección de puntos EMF de K2, mostrará un valor preciso de dos a cinco y emitirá un sonido claro y audible.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_emf_3">
+    <string name="shop_equipment_emf_data_info_3">
          <![CDATA[
              <p>Un ParaReader de alta tecnología. Este dispositivo puede rastrear hasta tres puntos EMF a la vez y tiene un rango de detección más lejano.</p>
              <p>Mostrará la dirección, el rango y el valor de cada lectura al mismo tiempo. Reproduce sonidos para cada detección de EMF para que pueda escuchar, desde la distancia, cuántas y qué tan fuertes son las lecturas.</p>
@@ -671,88 +671,88 @@
          ]]>
      </string>
 
-    <string name="equipment_info_tier_ultraviolet_1">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <p>La clásica barra luminosa UV. Después de ajustarlo para encenderlo, proyecta una luz de área de corto alcance que dura alrededor de un minuto antes de atenuarse. Siempre puedes darle otra sacudida para revitalizar su luz.</p>
              <p>Este dispositivo cargará un punto UV dentro de los 10 segundos posteriores a la exposición.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_ultraviolet_2">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <p>La clásica linterna UV que emite un haz más brillante y angosto con un alcance más largo, ¡con un tiempo de carga UV mucho más rápido!</p>
              <p>Este dispositivo cargará un punto UV dentro de los 5 segundos posteriores a la exposición.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_ultraviolet_3">
+    <string name="shop_equipment_uvlight_data_info_3">
          <![CDATA[
              <p>La UV Light Pro es una linterna gruesa que tiene un cono de luz mucho más brillante y ancho, así como un tiempo de carga aún más rápido. Es perfecto para localizar evidencia ultravioleta rápidamente a mayor escala.<p>
              <p>Este dispositivo cargará un punto UV dentro de los 1,5 segundos posteriores a la exposición.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_thermometer_1">
+    <string name="shop_equipment_thermometer_data_info_1">
          <![CDATA[
              <p>Un viejo termómetro de casa, arrancado directamente de la pared de la sala de estar de tu Investigador. Este termómetro tiene una frecuencia de muestreo lenta, lo que significa que tendrá que esperar más para obtener una lectura precisa. Es posible que desee traer uno y verificarlo más adelante en el contrato.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_thermometer_2">
+    <string name="shop_equipment_thermometer_data_info_2">
          <![CDATA[
              <p>Una versión actualizada del clásico lector de temperatura, pero mucho más sensible. En lugar de encenderlo y obtener una lectura cada dos segundos, mantenga presionado el botón \'Usar\' para buscar temperaturas. Esto hace que correr y verificar las temperaturas de cada habitación sea mucho más rápido de lo que permite el Nivel I.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_thermometer_3">
+    <string name="shop_equipment_thermometer_data_info_3">
          <![CDATA[
              <p>Una actualización directa al nivel II, completando escaneos de temperatura al doble de la velocidad de su predecesor. Además, este termómetro más moderno es más preciso con cada lectura, lo que permite a los jugadores escanear habitaciones de manera rápida y eficiente para encontrar el fantasma o marcar \"Temperaturas de congelación\" en el Diario.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_book_1">
+    <string name="shop_equipment_ghostwritingbook_data_info_1">
          <![CDATA[
              <p>Este bloc de notas de papel se puede colocar cerca de un fantasma para fomentar la escritura paranormal. Asegúrate de colocarlo cerca de cualquier actividad que veas. Es posible que algunos fantasmas no noten el pequeño bloc de notas y el lápiz, por lo que puede pasar algún tiempo antes de que suceda algo.<p/>
          ]]>
      </string>
-    <string name="equipment_info_tier_book_2">
+    <string name="shop_equipment_ghostwritingbook_data_info_2">
          <![CDATA[
              <p>Con mejores páginas y un bolígrafo, los fantasmas parecen notar este libro un poco más a menudo que la versión anterior. haciendo que los tiempos de espera sean un poco más cortos para que ocurra la evidencia.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_book_3">
+    <string name="shop_equipment_ghostwritingbook_data_info_3">
          <![CDATA[
              <p>Con su gran perfil, una mezcla de materiales de alta calidad y una pluma adornada, este libro tiene el cambio más alto para ser escrito por fantasmas. Tiene un rango mayor que los dos niveles anteriores, por lo que colocar este libro dentro del rango de interacción de un fantasma es mucho más fácil.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_vcam_1">
+    <string name="shop_equipment_videocamera_data_info_1">
          <![CDATA[
              <p>Una vieja videocámara que Ghost Hunting\' Distribution encontró en el ático de la antigua oficina. Es pequeño y está un poco desgastado, pero cumple bien su función.</p>
              <p>Analizar el feed de video es un desafío debido a la pésima calidad de su pantalla y sus pequeñas dimensiones, ¡así que tómese su tiempo!</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_vcam_2">
+    <string name="shop_equipment_videocamera_data_info_2">
          <![CDATA[
              <p>La cámara de video Parasonic es un video HD que hace que encontrar orbes sea mucho más fácil. Todavía recibe mucha interferencia de un fantasma activo, pero mucho menos que el Nivel 1.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_vcam_3">
+    <string name="shop_equipment_videocamera_data_info_3">
          <![CDATA[
              <p>La propia cámara de vídeo de calidad cinematográfica de Bony con un cuerpo grande admite una pantalla mucho más grande. Cuenta con una transmisión de video mucho más clara y recibe menos interferencias de las apariciones de fantasmas.</p>
          ]]>
      </string>
 
-    <string name="equipment_info_tier_sbox_1">
+    <string name="shop_equipment_spiritbox_data_info_1">
          <![CDATA[
              <p>Al encender este Spirit Box, comenzará a escanear a través de diferentes frecuencias de radio. Asegúrate de estar cerca de cualquier actividad paranormal, apaga las luces de esa habitación y haz algunas preguntas con la esperanza de una respuesta.</p>
              <p>Si la pregunta ha sido escuchada, una luz roja parpadeará en la Spirit Box. Si parpadea en blanco, tienes una respuesta del fantasma.</p>
              <p>Prueba a preguntar "¿Dónde estás?" o "¿Eres amigable?". Tenga cuidado, es posible que no le guste la respuesta que reciba.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_sbox_2">
+    <string name="shop_equipment_spiritbox_data_info_2">
          <![CDATA[
              <p>Esta Spirit Box más moderna tiene un altavoz de mayor calidad que es mucho más eficiente en el escaneo de frecuencias, lo que hace que las respuestas paranormales sean más fáciles de descifrar.</p>
              <p>Si se ha escuchado una pregunta, una \'X\' negra parpadeará en la pantalla. Si obtiene una respuesta, el pequeño icono fantasma parpadeará en su lugar.</p>
          ]]>
      </string>
-    <string name="equipment_info_tier_sbox_3">
+    <string name="shop_equipment_spiritbox_data_info_3">
          <![CDATA[
              <p>Cuando está encendido, este Spirit Box escanea ambas frecuencias, dos al mismo tiempo, lo que aumenta la posibilidad de detectar una respuesta paranormal al hacer preguntas. También tiene un filtro incorporado para reducir la cantidad de estática que escuchas entre interacciones.</p>
              <p>Si se escucha una pregunta y no se responde, los LED de RESPUESTA parpadearán en rojo. Si se da una respuesta, los LED parpadearán en blanco al mismo tiempo que el sonido.</p>

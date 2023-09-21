@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <layer-list
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <item>
             <shape>
@@ -23,24 +23,37 @@
 
         <item
             android:id="@+id/ic_tier"
-            android:right="178dp"
-            android:bottom="178dp">
+            android:left="2dp">
 
             <scale
-                android:scaleWidth="25%"
-                android:scaleHeight="25%"
+                android:scaleWidth="75%"
+                android:scaleHeight="75%"
                 android:scaleGravity="start|top"
                 android:drawable="@drawable/equipment_tier_square" />
 
         </item>
 
-        <item>
-            <shape>
-                <stroke
-                    android:width="2dp"
-                    android:color="@color/cb_mono_white_med" />
-            </shape>
-        </item>
+        <item
+            android:id="@+id/ic_border">
+            <selector>
+                <item
+                    app:state_selected ="false">
+                    <shape>
+                        <stroke
+                            android:width="2dp"
+                            android:color="#99AEB3"/>
+                    </shape>
+                </item>
+                <item
+                    app:state_selected ="true">
+                    <shape>
+                        <stroke
+                            android:width="2dp"
+                            android:color="#FFB43D"/>
+                    </shape>
+                </item>
+            </selector>
 
+        </item>
 
     </layer-list>

@@ -217,34 +217,34 @@
 
     <!-- Equipment Tiers -->
 
-    <string name="equipment_info_tier_dots_1"><![CDATA[<p>类似于手电筒的激光网格笔。您可以在该地点周围走动并快速扫描以寻找证据，唯一的缺点是范围短且光照强度低。</p>]]></string>
-    <string name="equipment_info_tier_dots_2"><![CDATA[<p>这是最初的 D.O.T.S.投影仪。它是一款可放置的投影仪，可发射平均大小的光球，不过现在您可以站在附近鼓励鬼魂走进它。</p><p>最适合中小型房间。</p>]]></string>
-    <string name="equipment_info_tier_dots_3"><![CDATA[<p>这款可放置的投影仪可使用宽广的扫射光束在更远的范围内扫描房间，从而更轻松地在较大的房间中寻找鬼魂。为了获得最佳覆盖范围，请将投影仪放置在墙壁或平坦的表面上，站在附近，观察是否有鬼影。</p>]]></string>
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<p>类似于手电筒的激光网格笔。您可以在该地点周围走动并快速扫描以寻找证据，唯一的缺点是范围短且光照强度低。</p>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<p>这是最初的 D.O.T.S.投影仪。它是一款可放置的投影仪，可发射平均大小的光球，不过现在您可以站在附近鼓励鬼魂走进它。</p><p>最适合中小型房间。</p>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<p>这款可放置的投影仪可使用宽广的扫射光束在更远的范围内扫描房间，从而更轻松地在较大的房间中寻找鬼魂。为了获得最佳覆盖范围，请将投影仪放置在墙壁或平坦的表面上，站在附近，观察是否有鬼影。</p>]]></string>
 
-    <string name="equipment_info_tier_emf_1"><![CDATA[<p>老式模拟仪表，检测范围小、精度低且音频发射低。当检测到 5 级 EMF 时，指针将进入超速状态，超过 5 级。</p>]]></string>
-    <string name="equipment_info_tier_emf_2"><![CDATA[<p>值得信赖的 K2 Meter 具有更大的范围和五个用于检测 EMF 读数的 LED 灯，以及一个额外的扬声器模块。当您激活设备时，一盏灯会亮起。当在 K2 的 EMF 点检测范围内移动时，它会显示 2 到 5 的准确值，并发出清晰可听的声音。</p>]]></string>
-    <string name="equipment_info_tier_emf_3"><![CDATA[<p>高科技 ParaReader。该设备一次最多可以跟踪三个 EMF 点，并且具有最远的检测范围。</p><p>它将同时显示每个读数的方向、范围和值。每次检测到 EMF 时，它都会播放声音，这样您就可以从远处听到读数的数量和强度。</p><p>如果 EMF 点消失，则较新的 EMF 点将放置在底部列表中的。</p>]]></string>
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<p>老式模拟仪表，检测范围小、精度低且音频发射低。当检测到 5 级 EMF 时，指针将进入超速状态，超过 5 级。</p>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<p>值得信赖的 K2 Meter 具有更大的范围和五个用于检测 EMF 读数的 LED 灯，以及一个额外的扬声器模块。当您激活设备时，一盏灯会亮起。当在 K2 的 EMF 点检测范围内移动时，它会显示 2 到 5 的准确值，并发出清晰可听的声音。</p>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<p>高科技 ParaReader。该设备一次最多可以跟踪三个 EMF 点，并且具有最远的检测范围。</p><p>它将同时显示每个读数的方向、范围和值。每次检测到 EMF 时，它都会播放声音，这样您就可以从远处听到读数的数量和强度。</p><p>如果 EMF 点消失，则较新的 EMF 点将放置在底部列表中的。</p>]]></string>
 
-    <string name="equipment_info_tier_ultraviolet_1"><![CDATA[<p>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</p><p>此设备会在曝光后 10 秒内为紫外线点充电。</p>]]></string>
-    <string name="equipment_info_tier_ultraviolet_2"><![CDATA[<p>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</p><p>此设备将在曝光后 5 秒内为紫外线点充电。</p>]]></string>
-    <string name="equipment_info_tier_ultraviolet_3"><![CDATA[<p>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。<p><p>该设备将在曝光后 1.5 秒内为紫外线点充电。</p>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<p>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</p><p>此设备会在曝光后 10 秒内为紫外线点充电。</p>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<p>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</p><p>此设备将在曝光后 5 秒内为紫外线点充电。</p>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<p>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。<p><p>该设备将在曝光后 1.5 秒内为紫外线点充电。</p>]]></string>
 
-    <string name="equipment_info_tier_thermometer_1"><![CDATA[<p>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</p>]]></string>
-    <string name="equipment_info_tier_thermometer_2"><![CDATA[<p>经典温度读取器的更新版本，但响应速度更快。不要打开它并每两秒读取一次读数，而是按住“使用”按钮。按钮扫描温度。这使得跑来跑去检查每个房间的温度比 I 级允许的速度要快得多。</p>]]></string>
-    <string name="equipment_info_tier_thermometer_3"><![CDATA[<p>直接升级到 Tier II，完成温度扫描的速度是其前身的两倍。此外，这种更现代的温度计每次读数都更加准确，使玩家能够快速有效地扫描房间以找到幽灵或获得“冰点温度”。在日记中勾选了。</p>]]></string>
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<p>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</p>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<p>经典温度读取器的更新版本，但响应速度更快。不要打开它并每两秒读取一次读数，而是按住“使用”按钮。按钮扫描温度。这使得跑来跑去检查每个房间的温度比 I 级允许的速度要快得多。</p>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<p>直接升级到 Tier II，完成温度扫描的速度是其前身的两倍。此外，这种更现代的温度计每次读数都更加准确，使玩家能够快速有效地扫描房间以找到幽灵或获得“冰点温度”。在日记中勾选了。</p>]]></string>
 
-    <string name="equipment_info_tier_book_1"><![CDATA[<p>这款纸质记事本可以放在鬼魂附近，以鼓励人们书写超自然现象。确保将其放置在您看到的任何活动附近。有些鬼魂可能不会注意到小记事本和铅笔，因此可能需要一些时间才会发生任何事情。</p>]]></string>
-    <string name="equipment_info_tier_book_2"><![CDATA[<p>有了更好的页面和笔，鬼魂似乎比以前的版本更容易注意到这本书。缩短证据出现的等待时间。</p>]]></string>
-    <string name="equipment_info_tier_book_3"><![CDATA[<p>由于其宽大的外形、优质的材料和华丽的笔的结合，这本书是鬼写的最高的变化。它的范围比前两层更大，因此将这本书放在幽灵的互动范围内要容易得多。</p>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<p>这款纸质记事本可以放在鬼魂附近，以鼓励人们书写超自然现象。确保将其放置在您看到的任何活动附近。有些鬼魂可能不会注意到小记事本和铅笔，因此可能需要一些时间才会发生任何事情。</p>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<p>有了更好的页面和笔，鬼魂似乎比以前的版本更容易注意到这本书。缩短证据出现的等待时间。</p>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<p>由于其宽大的外形、优质的材料和华丽的笔的结合，这本书是鬼写的最高的变化。它的范围比前两层更大，因此将这本书放在幽灵的互动范围内要容易得多。</p>]]></string>
 
-    <string name="equipment_info_tier_vcam_1"><![CDATA[<p>捉鬼的旧摄像机在旧办公室的阁楼中发现的分发。它很小，而且有点破旧，但它的工作效果还不错。</p><p>由于屏幕质量差且尺寸小，分析视频源是一项挑战，因此您花时间处理它！</p>]]></string>
-    <string name="equipment_info_tier_vcam_2"><![CDATA[<p>Parasonic 摄像机提供高清视频，让寻找球体变得更加容易。它仍然会受到来自活动幽灵的大量干扰，但比第 1 层要少得多。</p>]]></string>
-    <string name="equipment_info_tier_vcam_3"><![CDATA[<p>Bony 自己的电影级摄像机具有大机身，支持更大的屏幕。它具有更清晰的视频源，并且受到鬼魂干扰的干扰更少。</p>]]></string>
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<p>捉鬼的旧摄像机在旧办公室的阁楼中发现的分发。它很小，而且有点破旧，但它的工作效果还不错。</p><p>由于屏幕质量差且尺寸小，分析视频源是一项挑战，因此您花时间处理它！</p>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<p>Parasonic 摄像机提供高清视频，让寻找球体变得更加容易。它仍然会受到来自活动幽灵的大量干扰，但比第 1 层要少得多。</p>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<p>Bony 自己的电影级摄像机具有大机身，支持更大的屏幕。它具有更清晰的视频源，并且受到鬼魂干扰的干扰更少。</p>]]></string>
 
 
-    <string name="equipment_info_tier_sbox_1"><![CDATA[<p>当打开此 Spirit Box 时，它将开始扫描不同的无线电频率。请务必站在任何超自然现象附近，关闭房间内的所有灯，并提出一些问题以期得到答复。</p><p>如果听到问题，屏幕上会闪烁红灯。灵盒。如果它呈白色闪烁，则表明您已收到幽灵的响应。</p><p>尝试询问“你在哪里？”或者你友善吗？请注意，您可能不喜欢收到的答案。</p>]]></string>
-    <string name="equipment_info_tier_sbox_2"><![CDATA[<p>这款更现代的 Spirit Box 拥有更高品质的扬声器，扫描频率的效率更高，使超自然反应更容易破译。</p><p>如果听到问题，则会出现一个黑色的 &amp;#39 ;X\'将在屏幕上闪烁。如果您收到回复，小幽灵图标将会闪烁。</p>]]></string>
-    <string name="equipment_info_tier_sbox_3"><![CDATA[<p>打开后，此 Spirit Box 会同时扫描两个频率，从而增加在提问时获得超自然反应的机会。它还具有内置过滤器，可减少您在互动之间听到的静电声。</p><p>如果听到问题但未给出任何答复，RESPONSE LED 指示灯将呈红色闪烁。如果收到回复，LED 灯会随着声音及时闪烁白光。</p>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<p>当打开此 Spirit Box 时，它将开始扫描不同的无线电频率。请务必站在任何超自然现象附近，关闭房间内的所有灯，并提出一些问题以期得到答复。</p><p>如果听到问题，屏幕上会闪烁红灯。灵盒。如果它呈白色闪烁，则表明您已收到幽灵的响应。</p><p>尝试询问“你在哪里？”或者你友善吗？请注意，您可能不喜欢收到的答案。</p>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<p>这款更现代的 Spirit Box 拥有更高品质的扬声器，扫描频率的效率更高，使超自然反应更容易破译。</p><p>如果听到问题，则会出现一个黑色的 &amp;#39 ;X\'将在屏幕上闪烁。如果您收到回复，小幽灵图标将会闪烁。</p>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<p>打开后，此 Spirit Box 会同时扫描两个频率，从而增加在提问时获得超自然反应的机会。它还具有内置过滤器，可减少您在互动之间听到的静电声。</p><p>如果听到问题但未给出任何答复，RESPONSE LED 指示灯将呈红色闪烁。如果收到回复，LED 灯会随着声音及时闪烁白光。</p>]]></string>
 
     <!-- Evidence Names -->
 

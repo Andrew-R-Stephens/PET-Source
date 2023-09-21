@@ -29,22 +29,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout38"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_min="48dp"
-            app:layout_constraintHeight_percent=".08"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_pagetitle"
-                style="?attr/primaryFont_Regular_Squeeze"
+                style="?attr/quaternaryFont_Bold_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:textAllCaps="true"
+                android:background="#99AEB3"
                 android:gravity="center"
                 android:text="@string/store_title"
+                android:textColor="#2D3635"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight="40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,6 +73,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/item_safehouse_itemstore"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_default="wrap"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,24 +83,22 @@
             <include
                 android:id="@+id/item_safehouse_itemstore"
                 layout="@layout/layout_safehouse_itemstore"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout99"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_safehouse_itemstore_paginator" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout99"
+            <include
+                android:id="@+id/item_safehouse_itemstore_itemData"
+                layout="@layout/layout_safehouse_itemstore_itemdata"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#404C4C4C"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_safehouse_itemstore"
-                app:layout_constraintTop_toTopOf="@+id/item_safehouse_itemstore">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="@+id/item_safehouse_itemstore" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
