@@ -6,12 +6,11 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/constraintLayout77"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,9 +131,9 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
-                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_1"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="DuplicateSpeakableTextCheck" />
@@ -214,9 +213,9 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
-                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_2"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -295,9 +294,9 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_positive_unselected"
                         android:tint="#FFFFFF"
-                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_3"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -385,7 +384,7 @@
             android:id="@+id/constraintLayout49"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".2"
             app:layout_constraintStart_toStartOf="parent"
@@ -478,16 +477,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            android:id="@+id/layout_navigation"
-            layout="@layout/layout_navigationfooter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

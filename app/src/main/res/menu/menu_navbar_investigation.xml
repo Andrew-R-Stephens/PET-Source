@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/open_menu"
+            android:title="Menu"
+            android:icon="@drawable/ic_menu"/>
+        <item
+            android:id="@+id/action_global_objectivesFragment"
+            android:title="@string/general_tasks_button"
+            android:icon="@drawable/icon_tasks"/>
+        <item
+            android:id="@+id/action_global_evidenceFragment"
+            android:title="@string/evidence_evidence_title"
+            android:icon="@drawable/icon_nav_evidence" />
+        <item
+            android:id="@+id/action_global_mapMenuFragment"
+            android:title="@string/general_maps_button"
+            android:icon="@android:drawable/ic_dialog_map"/>
+        <item
+            android:id="@+id/action_global_codexFragment"
+            android:title="@string/general_codex_button"
+            android:icon="@drawable/icon_nav_codex2" />
+    </group>
+
+</menu>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/action_home"
+            android:title="Home"
+            android:icon="@android:drawable/ic_dialog_dialer"/>
+    </group>
+
+    <group android:checkableBehavior="none"
+        android:menuCategory="alternative"
+        android:title="Primary">
+        <item
+            android:id="@+id/action_global_objectivesFragment"
+            android:title="@string/general_tasks_button"
+            android:icon="@drawable/icon_tasks"/>
+        <item
+            android:id="@+id/action_global_evidenceFragment"
+            android:title="@string/evidence_evidence_title"
+            android:icon="@drawable/icon_nav_evidence" />
+        <item
+            android:id="@+id/action_global_mapMenuFragment"
+            android:title="@string/general_maps_button"
+            android:icon="@android:drawable/ic_dialog_map"/>
+    </group>
+
+    <group android:checkableBehavior="none"
+        android:menuCategory="alternative">
+        <item
+            android:id="@+id/action_global_codexFragment"
+            android:title="@string/general_codex_button"
+            android:icon="@drawable/icon_nav_codex2" />
+    </group>
+
+</menu>

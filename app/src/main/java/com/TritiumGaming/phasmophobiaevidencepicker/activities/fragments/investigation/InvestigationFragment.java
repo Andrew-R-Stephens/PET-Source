@@ -10,6 +10,9 @@ import android.widget.PopupWindow;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -17,12 +20,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 
@@ -43,6 +48,7 @@ public abstract class InvestigationFragment extends Fragment {
     protected PopupWindow popup;
 
     protected AdRequest adRequest;
+
 
     public InvestigationFragment() {}
 
@@ -98,9 +104,12 @@ public abstract class InvestigationFragment extends Fragment {
             }
         }
 
-        setOnBackPressed(view);
+        setOnBackPressed();
 
-        setNavigationBehavior(view);
+        if(getActivity() != null) {
+            ((InvestigationActivity) getActivity()).initComponents();
+        }
+
     }
 
     /**
@@ -116,20 +125,30 @@ public abstract class InvestigationFragment extends Fragment {
         }
     }
 
-    public void setNavigationBehavior(View view) {
-        NavController navController = Navigation.findNavController(view);
-        NavigationBarView navView = view.findViewById(R.id.navigation_view);
+    public void backPressedHandler() {
 
-        if(navView != null) {
-            NavigationUI.setupWithNavController(navView, navController);
-            navView.setOnItemSelectedListener(item -> {
-                NavigationUI.onNavDestinationSelected(item, navController);
-                return true;
-            });
+        if(((InvestigationActivity)super.getActivity()) != null &&
+                ((InvestigationActivity)super.getActivity()).closeDrawer()) {
+            return;
+        }
+
+        if(popup != null && popup.isShowing()) {
+            popup.dismiss();
+            return;
+        }
+
+        if(getActivity() != null && getView() != null) {
+            Log.d("Backstack", "Popping");
+            NavController navController = Navigation.findNavController(getView());
+            if(!navController.popBackStack()) {
+                Log.d("Backstack", "Could not Pop");
+                getActivity().finish();
+            }
+
         }
     }
 
-    public void setOnBackPressed(View view) {
+    public void setOnBackPressed() {
 
         if(getActivity() == null) { return; }
 
@@ -138,20 +157,7 @@ public abstract class InvestigationFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
 
-                if(popup != null && popup.isShowing()) {
-                    popup.dismiss();
-                    return;
-                }
-
-                if(getActivity() != null && getView() != null) {
-                    Log.d("Backstack", "Popping");
-                    NavController navController = Navigation.findNavController(getView());
-                    if(!navController.popBackStack()) {
-                        Log.d("Backstack", "Could not Pop");
-                        getActivity().finish();
-                    }
-
-                }
+                backPressedHandler();
             }
         });
     }

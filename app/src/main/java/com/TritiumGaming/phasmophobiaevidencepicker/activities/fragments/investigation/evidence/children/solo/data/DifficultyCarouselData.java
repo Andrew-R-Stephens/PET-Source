@@ -130,7 +130,7 @@ public class DifficultyCarouselData {
     }
 
     public boolean isDifficulty(int difficultyIndex) {
-        Log.d("Diff", getDifficultyIndex() + " vs " + difficultyIndex);
+        //Log.d("Diff", getDifficultyIndex() + " vs " + difficultyIndex);
 
         return getDifficultyIndex() == difficultyIndex;
     }

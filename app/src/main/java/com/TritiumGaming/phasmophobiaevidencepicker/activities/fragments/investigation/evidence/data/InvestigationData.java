@@ -131,7 +131,7 @@ public class InvestigationData {
 
     public void print() {
         for(Ghost g: ghosts) {
-            Log.d("InvestigationData", g.name + ": [ " + g + "]");
+            //Log.d("InvestigationData", g.name + ": [ " + g + "]");
         }
     }
 

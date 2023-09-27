@@ -358,7 +358,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
             TypedArray evidenceType =
                     getContext().getResources().obtainTypedArray(evidenceTypes.getResourceId(i, 0));
-            Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
+            //Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
 
             evidenceCost[0] = evidenceType.getResourceId(3, 0);
 
@@ -367,7 +367,7 @@ public class EvidenceFragment extends InvestigationFragment {
                     getContext().getResources().obtainTypedArray(evidenceType.getResourceId(1, 0));
             for (int j = 0; j < evidenceDescription.length(); j++) {
                 descriptions[j] = evidenceDescription.getResourceId(j, 0);
-                Log.d("EvDescription", getString(descriptions[j]) + "");
+                //Log.d("EvDescription", getString(descriptions[j]) + "");
             }
             evidenceDescription.recycle(); //cleanup
 
@@ -376,7 +376,7 @@ public class EvidenceFragment extends InvestigationFragment {
                     getContext().getResources().obtainTypedArray(evidenceType.getResourceId(2, 0));
             for (int j = 0; j < evidenceAnimations.length(); j++) {
                 animations[j] = evidenceAnimations.getResourceId(j, 0);
-                Log.d("EvDAnimation", animations[j] + "");
+                //Log.d("EvDAnimation", animations[j] + "");
             }
             evidenceAnimations.recycle(); //cleanup
 
@@ -385,7 +385,7 @@ public class EvidenceFragment extends InvestigationFragment {
                     getContext().getResources().obtainTypedArray(evidenceType.getResourceId(4, 0));
             for (int j = 0; j < evidenceAnimations.length(); j++) {
                 unlock_level[j] = evidenceAnimations.getResourceId(j, 0);
-                Log.d("EvDALevels", unlock_level[j] + "");
+                //Log.d("EvDALevels", unlock_level[j] + "");
             }
             evidenceLevels.recycle(); //cleanup
 
@@ -889,7 +889,7 @@ public class EvidenceFragment extends InvestigationFragment {
             });
 
             ghostView.setId(j);
-            Log.d("ID", j + "");
+            //Log.d("ID", j + "");
             ghostContainer.addView(ghostView);
 
         }

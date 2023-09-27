@@ -97,4 +97,7 @@
             android:id="@+id/action_onboardingFragment_to_titleScreenFragment"
             app:destination="@id/titleScreenFragment" />
     </fragment>
+    <action
+        android:id="@+id/action_global_titleScreenFragment"
+        app:destination="@id/titleScreenFragment" />
 </navigation>

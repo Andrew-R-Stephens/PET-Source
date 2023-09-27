@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +10,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
@@ -309,10 +305,4 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         super.onResume();
     }
 
-    @Override
-    public void setNavigationBehavior(View view) {
-
-
-        super.setNavigationBehavior(view);
-    }
 }

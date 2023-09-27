@@ -1,15 +1,28 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * InvestigationActivity class
@@ -24,12 +37,37 @@ public class InvestigationActivity extends PETActivity {
     protected ObjectivesViewModel objectivesViewModel;
     protected MapMenuViewModel mapMenuViewModel;
 
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_investigation_solo);
+
+    }
+
+    public void initComponents() {
+
+        // NavController navController = Navigation.findNavController(fragmentContainerView);
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        Log.d("NavHostFragment", navHostFragment == null ? "null" : "not null");
+        if(navHostFragment == null) { return; }
+
+        NavController navController = navHostFragment.getNavController();
+
+        NavigationBarView navBarView = findViewById(R.id.item_navigation_bar);
+        Log.d("Bar", navBarView == null ? "null" : "not null");
+        setNavigationBarBehavior(navBarView, navController);
+
+        NavigationView navDrawerView = findViewById(R.id.layout_navigation_drawer_view);
+        Log.d("Drawer", navDrawerView == null ? "null" : "not null");
+        setNavigationDrawer(navDrawerView, navController);
 
     }
 
@@ -72,6 +110,104 @@ public class InvestigationActivity extends PETActivity {
         }
     }
 
+
+    private void setNavigationDrawer(NavigationView navView, NavController navController) {
+        drawerLayout = findViewById(R.id.layout_navigation_drawer);
+
+        if(drawerLayout == null) { return; }
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.evidence_ghosts_title, R.string.evidence_ghosts_title);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        //getActivity().getSupportFragmentManager().setDisplayHomeAsUpEnabled(true);
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        setNavigationDrawerBehavior(navView, navController);
+    }
+
+    private void setNavigationDrawerBehavior(NavigationView navView, NavController navController) {
+
+        if(drawerLayout != null) {
+
+            if(navView != null) {
+                NavigationUI.setupWithNavController(navView, navController);
+
+                navView.setNavigationItemSelectedListener(item -> {
+
+                    boolean success = NavigationUI.onNavDestinationSelected(item, navController);
+                    if(success) {
+                        drawerLayout.closeDrawer(GravityCompat.START);
+
+                        return true;
+                    }
+
+                    if(drawerLayout != null) {
+                        if (item.getItemId() == (R.id.action_home)) {
+                            finish();
+                        }
+
+                    }
+
+                    return true;
+                });
+            }
+        }
+    }
+
+    public void setNavigationBarBehavior(NavigationBarView navView, NavController navController) {
+
+        if(navView != null) {
+            NavigationUI.setupWithNavController(navView, navController);
+            navView.setOnItemSelectedListener(item -> {
+
+                Log.d("Bar", "item: " + item.getTitle());
+
+                if(NavigationUI.onNavDestinationSelected(item, navController)) {
+                    if(drawerLayout != null) {
+
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+
+                    return true;
+                }
+
+                if (item.getItemId() == (R.id.open_menu)) {
+                    if(drawerLayout != null) {
+                        if (drawerLayout.isOpen()) {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        } else {
+                            drawerLayout.openDrawer(GravityCompat.START);
+                        }
+                    }
+                }
+                return true;
+
+            });
+        }
+    }
+
+
+    public boolean closeDrawer() {
+        if(drawerLayout != null) {
+            if (drawerLayout.isOpen()) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+    }
+
     /**
      * Resets ObjectiveViewModel and EvidenceViewModel data upon Activity exit
      */
@@ -90,4 +226,5 @@ public class InvestigationActivity extends PETActivity {
 
         super.finish();
     }
+
 }

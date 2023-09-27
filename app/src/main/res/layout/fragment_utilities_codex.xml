@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mapmenu_main_constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout61"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +53,7 @@
             android:id="@+id/constraintLayout65"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerE">
@@ -83,51 +82,48 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".95"
-                app:layout_constraintWidth_percent=".85"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".85">
 
                 <GridLayout
                     android:id="@+id/grid_codex"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:columnCount="2"
                     android:fadeScrollbars="false"
                     android:fadingEdge="vertical"
                     android:fadingEdgeLength="50sp"
                     android:gravity="center"
                     android:horizontalSpacing="20sp"
-                    android:columnCount="2"
-                    android:rowCount="5"
                     android:requiresFadingEdge="vertical"
+                    android:rowCount="5"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:verticalSpacing="20dp"
                     android:scrollbarStyle="outsideOverlay"
-                    android:paddingStart="0sp"
                     android:useDefaultMargins="true"
+                    android:verticalSpacing="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" >
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <include
                         android:id="@+id/grid_codexmenu_option"
                         layout="@layout/item_codexmenu_option"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
                         android:layout_rowSpan="1"
                         android:layout_columnSpan="2"
-                        />
+                        android:layout_columnWeight="1" />
 
                     <include
                         android:id="@+id/grid_codexmenu_pethelp"
                         layout="@layout/item_codexmenu_option"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
                         android:layout_rowSpan="1"
                         android:layout_columnSpan="2"
-                        />
+                        android:layout_columnWeight="1" />
 
                     <!--
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,15 +174,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <include
-            android:id="@+id/layout_navigation"
-            layout="@layout/layout_navigationfooter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
