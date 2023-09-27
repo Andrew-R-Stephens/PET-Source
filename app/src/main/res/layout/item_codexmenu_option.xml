@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_utilities_codex"
+    android:theme="@style/PET.MaterialCardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintHeight_min="48dp"
+    app:layout_constraintWidth_min="48dp"
+    android:layout_gravity="center"
+    app:rippleColor="#3BFFFFFF"
+    app:cardBackgroundColor="#CC000000"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:strokeColor="#FFFFFF"
+    app:strokeWidth="2dp"
+    android:padding="4dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="false"
+        android:src="@drawable/thumbnail_shop"
+        android:scaleType="centerCrop"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.data.OutlineTextView
+            android:id="@+id/label_itemName"
+            style="?attr/primaryFont_Regular_Squeeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="2sp"
+            android:text="@string/equipment_section_equipment"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHeight_percent=".5"
+            app:outlineColor="#000"
+            app:outlineWidth="3dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

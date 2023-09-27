@@ -203,6 +203,7 @@
     <string name="spiritbox_entry_q8_3">Quão louco eu sou?</string>
     <string name="spiritbox_entry_q8_4">Eu sou insano?</string>
     <string name="evidence_section_overview">Visão geral</string>
+    <string name="store_title">Loja de Equipamentos</string>
     <string name="equipment_section_tiers">Níveis</string>
     <string name="evidence_requirement_level_title">Nível de desbloqueio:</string>
     <string name="evidence_requirement_cost_title">Custo:</string>
@@ -212,38 +213,6 @@
     <string name="equipment_tiers_1">Camada 1</string>
     <string name="equipment_tiers_2">Camada 2</string>
     <string name="equipment_tiers_3">Nível 3</string>
-
-    <!-- Equipment Tiers -->
-
-    <string name="shop_equipment_dots_data_info_1"><![CDATA[<p>Uma Laser Grid Pen semelhante a uma lanterna. Você pode caminhar pelo local e procurar evidências rapidamente. A única desvantagem é o curto alcance e a baixa intensidade de luz.</p>]]></string>
-    <string name="shop_equipment_dots_data_info_2"><![CDATA[<p>Este é o D.O.T.S. original. projetor. É um projetor posicionável que emite uma esfera de luz de tamanho médio, só que agora você pode incentivar o fantasma a entrar nele ficando por perto.</p><p>Ideal para salas de pequeno a médio porte.</p>]]></string>
-    <string name="shop_equipment_dots_data_info_3"><![CDATA[<p>Esse projetor posicionável examina a sala a uma distância muito maior com um feixe de luz amplo e abrangente, tornando muito mais fácil encontrar fantasmas em salas maiores. Para obter a melhor cobertura, coloque o projetor em uma parede ou superfície plana, fique próximo e observe silhuetas de fantasmas.</p>]]></string>
-
-    <string name="shop_equipment_emf_data_info_1"><![CDATA[<p>Um medidor analógico antigo com pequeno alcance de detecção, baixa precisão e baixas emissões de áudio. A agulha irá acelerar, ultrapassando o nível 5 quando o EMF de nível 5 for detectado.</p>]]></string>
-    <string name="shop_equipment_emf_data_info_2"><![CDATA[<p>O medidor K2 confiável tem um alcance maior e cinco luzes LED para detectar leituras de campos eletromagnéticos, além de um módulo de alto-falante adicional. Uma luz acenderá quando você ativar o dispositivo. Ao se mover dentro do alcance de detecção de pontos EMF do K2, ele exibirá um valor preciso de dois a cinco e emitirá um som nítido e audível.</p>]]></string>
-    <string name="shop_equipment_emf_data_info_3"><![CDATA[<p>Um ParaReader de alta tecnologia. Este dispositivo pode rastrear até três pontos EMF de uma só vez e tem o maior alcance de detecção.</p><p>Ele mostrará a direção, o alcance e o valor de cada leitura ao mesmo tempo. Ele reproduz sons para cada detecção de EMF para que você possa ouvir, à distância, quantas e quão fortes são as leituras.</p><p>Se um ponto de EMF desaparecer, um ponto de EMF mais recente será colocado na parte inferior da lista.</p>]]></string>
-
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<p>O bastão luminoso UV clássico. Depois de encaixá-lo para ligá-lo, ele projeta uma luz de área de curto alcance que dura cerca de um minuto antes de diminuir. Você pode agitá-lo novamente para revigorar a luz.</p><p>Este dispositivo carregará um ponto UV 10 segundos após a exposição.</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<p>A lanterna UV clássica que emite um feixe estreito e mais brilhante com um alcance maior, apresentando um tempo de carga UV muito mais rápido!</p><p>Este dispositivo carregará um ponto UV dentro de 5 segundos após a exposição.</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<p>A UV Light Pro é uma lanterna robusta que tem um cone de luz muito mais brilhante e amplo, além de um tempo de carregamento ainda mais rápido. Ele é perfeito para localizar evidências ultravioleta rapidamente em uma escala maior.<p><p>Este dispositivo carrega um ponto UV 1,5 segundos após a exposição.</p>]]></string>
-
-    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<p>Um termômetro doméstico antigo, arrancado da parede da sala do seu investigador. Este termômetro tem uma taxa de amostragem lenta, o que significa que você terá que esperar mais para obter uma leitura precisa. Você pode trazer um e verificar mais tarde no contrato.</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<p>Uma versão atualizada do leitor de temperatura clássico, mas muito mais ágil. Em vez de ligá-lo e obter uma leitura a cada dois segundos, mantenha pressionado o botão \'Usar\' botão para verificar as temperaturas. Isso faz com que correr e verificar a temperatura de cada ambiente seja muito mais rápido do que o nível I permite.</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<p>Um upgrade direto para o Nível II, concluindo verificações de temperatura com o dobro da velocidade do seu antecessor. Além disso, este termômetro mais moderno é mais preciso em cada leitura, permitindo aos jogadores examinar salas de forma rápida e eficiente para encontrar o fantasma ou obter \"Temperaturas de congelamento\" marcado no Diário.</p>]]></string>
-
-    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<p>Este bloco de notas de papel pode ser colocado perto de um fantasma para incentivar a escrita paranormal. Certifique-se de colocá-lo próximo a qualquer atividade que você ver. Alguns fantasmas podem não notar o pequeno bloco de notas e o lápis, então pode levar algum tempo até que algo aconteça.<p/>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<p>Com páginas mais bonitas e uma caneta, os fantasmas parecem notar este livro com um pouco mais de frequência do que na versão anterior. diminuindo um pouco o tempo de espera para que as evidências ocorram.</p>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<p>Com seu perfil grande, uma mistura de materiais de alta qualidade e uma caneta ornamentada, este livro tem as maiores alterações já escritas por fantasmas. Ele tem um alcance maior do que os dois níveis anteriores, então colocar este livro dentro do alcance de interação de um fantasma é muito mais fácil.</p>]]></string>
-
-    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<p>Uma filmadora antiga que o Ghost Huntin\' Distribuição encontrada no sótão do antigo escritório. É pequeno e um pouco desgastado, mas faz o trabalho perfeitamente.</p><p>Analisar o feed de vídeo é um desafio devido à péssima qualidade e às pequenas dimensões da tela, então aproveite seu tempo com isso!</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<p>A câmera de vídeo Parasonic é um vídeo HD que torna muito mais fácil encontrar orbes. Ele ainda recebe muita interferência de um fantasma ativo, mas muito menos do que o Nível 1.</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<p>A câmera de vídeo de qualidade cinematográfica da Bony, com corpo grande, suporta uma tela muito maior. Ele apresenta um feed de vídeo muito mais nítido e recebe menos interferência de aparições de fantasmas.</p>]]></string>
-
-
-    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<p>Ao ligar esta Spirit Box, ela começará a varrer diferentes frequências de rádio. Fique perto de qualquer atividade paranormal, apague todas as luzes da sala e faça algumas perguntas na esperança de obter uma resposta.</p><p>Se a pergunta for ouvida, uma luz vermelha piscará no Caixa Espiritual. Se piscar em branco, você recebeu uma resposta do fantasma.</p><p>Tente perguntar Onde você está? ou Você é amigável? Esteja avisado: você pode não gostar da resposta que receberá.</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<p>Esta Spirit Box mais moderna tem um alto-falante de qualidade superior que é muito mais eficiente na varredura de frequências, facilitando a decifração de respostas paranormais.</p><p>Se uma pergunta for ouvida, um &amp;#39 preto será exibido. ;X\' piscará na tela. Se você receber uma resposta, o pequeno ícone fantasma piscará.</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<p>Quando ativada, esta Spirit Box verifica ambas as frequências, duas ao mesmo tempo, aumentando a chance de captar uma resposta paranormal ao fazer perguntas. Ele também tem um filtro integrado para reduzir a quantidade de estática que você ouve entre as interações.</p><p>Se uma pergunta for ouvida e nenhuma resposta for dada, os LEDs de RESPOSTA piscarão em vermelho. Se uma resposta for dada, os LEDs piscarão em branco junto com o som.</p>]]></string>
-
 
     <!-- Evidence Names -->
 
@@ -255,15 +224,6 @@
     <string name="evidence_type_book">Escrita Fantasma</string>
     <string name="evidence_type_box">Spirit Box</string>
 
-    <!-- Evidence Description -->
-
-    <string name="evidence_info_overview_dots"><![CDATA[<p>O D.O.T.S. Projetor é um dispositivo que pode ser segurado, colocado nas paredes ou no chão. Ele projeta uma matriz de pontos brilhantes, projetando os pontos em superfícies próximas ao seu redor.</p><p>Para identificar positivamente essa evidência, <font color=#ff6161>uma silhueta do fantasma será vista correndo ou rastejando rapidamente pela projeção\'s vigas</font>. A silhueta pode ser vista a olho nu ou por uma câmera de vídeo, mas é mais fácil de ser vista <font color=#ff6161>remotamente pelas térmicas da câmera de vídeo</font>. É melhor tentar encontrar essa evidência remotamente, pois de outra forma o comportamento de um Goryo pode causar conflitos de evidência. A localização real do Fantasma não determinará quando as animações da silhueta ocorrerão.</p><p>O D.O.T.S. os visuais agora são o fantasma real, o que significa que você precisará direcionar suas luzes infravermelhas perto da posição real do fantasma. Isso cria uma jogabilidade muito mais envolvente para os jogadores. Você pode usar D.O.T.S. para ver onde está o seu fantasma, ou se você estiver lutando para obter evidências, use sal, sensores de movimento ou outro equipamento para encontrar um local melhor para o seu projetor. Fantasmas com D.O.T.S. evidência agora pode inserir um pequeno “D.O.T.S. estado” ao vagar; Durante esse período, eles ficam temporariamente visíveis com luz infravermelha. Durante esse período, eles vagarão em direção ao jogador mais próximo (ou a um local aleatório na sala, se ela estiver vazia) antes de desaparecer.</p>]]></string>
-    <string name="evidence_info_overview_emf"><![CDATA[<p>EMF-5 é a leitura de nível mais alto de um <font color=#ff6161>leitor de EMF</font>.</p><p>Um fantasma produz emissões de EMF dos níveis 1 a 5 quando interage de alguma forma com a sala ou o tabuleiro Ouija. Cintilação de luz, passos e outras interações passivas menores normalmente proporcionam uma leitura mais baixa. Interações mais pesadas, como uma aparição ou um telefone tocando, quase sempre darão uma leitura mais alta. Os fantasmas que carregam essa evidência fornecerão EMF nível 5 apenas por acaso, portanto, essa evidência <font color=#ff6161>pode levar algum tempo para ser adquirida</font>.</p>]]></string>
-    <string name="evidence_info_overview_ultraviolet"><![CDATA[<p>As evidências ultravioleta só podem ser <font color=#ff6161>vistas ao direcionar a luz UV ou um bastão luminoso nas superfícies afetadas</font>. Pedaços de evidências ultravioleta brilharão em verde enquanto carregados pela luz UV e desaparecerão com o tempo.</p><p>Deixadas em objetos e superfícies por fantasmas, as evidências ultravioleta podem ser difíceis de ver em itens menores ou grandes. quartos. Pegadas rastreadas por pilhas de sal também contam como evidência ultravioleta.</p><p>Ao iluminar impressões digitais ou pegadas com luz ultravioleta, você ainda as verá imediatamente, mas, além disso, a luz carregará a impressão. Depois de guardar a luz ultravioleta, a impressão ficará visível por um curto período (dependendo de quanto tempo você a carregou), permitindo que você tire uma foto.</p><p>Uma impressão de mão de seis dedos pode ser encontrada, o que pode ser encontrado. identificará o tipo de Ghost imediatamente como Obake.</p>]]></string>
-    <string name="evidence_info_overview_thermometer"><![CDATA[<p>As temperaturas congelantes estão <font color=#ff6161>abaixo de 0 Celsius</font>. A temperatura pode ser determinada usando o <font color=#ff6161>Termômetro</font>.</p><p>À medida que os fantasmas extraem calor da área ao redor, as temperaturas diminuem na sala ou nos corredores onde o <font color=#ff6161>fantasma passa a maior parte de seu tempo. horário</font>. Todos os fantasmas eventualmente causarão temperaturas abaixo de 13 graus Celsius, mas apenas alguns tipos de fantasmas reduzirão as temperaturas abaixo de 0 C.</p><p>Cold Breath foi reformulado. A 5°C ou menos, qualquer pessoa na área assombrada poderá <font color=#ff6161>ver a própria respiração</font>. Se estiver nevando e a caixa de fusíveis começar a funcionar, você encontrará Cold Breath instantaneamente em todos os lugares, até mesmo no caminhão. Como alternativa, se a caixa de fusíveis estiver ligada, para que a casa fique agradável e quentinha, você verá o hálito frio aparecendo apenas em cômodos onde o fantasma ficou tempo suficiente para baixar a temperatura.</p><p>O o resfriamento de uma sala, mesmo que seja apenas um pouco, pode levar mais tempo do que os primeiros minutos durante uma investigação. Observar as temperaturas estranhamente baixas nas primeiras salas e depois voltar a elas é uma boa ideia.</p>]]></string>
-    <string name="evidence_info_overview_book"><![CDATA[<p>Determinado usando o livro de escrita fantasma.</p><p>Os fantasmas podem escrever no livro <font color=#ff6161>independentemente de o livro estar guardado ou segurado na mão</font>. Se o fantasma escreve no livro, esta é uma evidência desse tipo de fantasma. Se símbolos demoníacos forem escritos, isso pode ser uma evidência de um Demônio, mas não é absolutamente definitivo, já que os estilos de escrita fantasma tendem a divergir aleatoriamente.</p>]]></string>
-    <string name="evidence_info_overview_vcam"><![CDATA[<p>Um pequeno orbe flutuante que está presente apenas na sala que um fantasma está assombrando. Ele pode ser <font color=#ff6161>visto apenas por visão noturna por meio da câmera de vídeo ou da imagem térmica da câmera montada na cabeça <font> usando a transmissão ao vivo da câmera do caminhão.</p><p>Os orbes fantasmas podem ser detectados rapidamente, mas excluí-los muito rapidamente pode significar problemas no futuro.</p>]]></string>
-    <string name="evidence_info_overview_sbox"><![CDATA[<p>A Spirit Box é um item usado para <font color=#ff6161>se comunicar com o fantasma</font>.</p><p>O jogador precisa <font color=#ff6161>fazer perguntas no Vicinity Chat para uma Spirit Box ativa, ambos enquanto estiver próximo do fantasma. fantasma e enquanto as luzes estão apagadas</font>. Antes de tentar fazer isso, verifique os parâmetros de resposta do fantasma, como \"Responde a pessoas que estão sozinhas\" ou \"Responde a todos\" listado no quadro branco do caminhão.</p><p>Se o fantasma responder, a Spirit Box é uma evidência confirmada.</p><p>Perguntas pontuais como \"Quantos anos você tem?\" ou “Onde você está?” são perguntas plausíveis. Tenha em mente que o fantasma está sempre ouvindo, independentemente de o jogador estar falando em uma Spirit Box ou não, então os jogadores devem ter cuidado ao falar no chat do Vicinity. Desenhar um fantasma pode ser feito dizendo seu nome inúmeras vezes (irritando-o) e dando-lhe comandos como \"Mostre-se\" ou \"Dê-nos um sinal\" parecem ser comandos plausíveis.</p>]]></string>
 
 
     <!-- Ghost information Popup Labels -->
@@ -409,4 +369,284 @@
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>Caça aos 50 anos\% S.</p>]]></string>
     <string name="equipment_section_equipment">Equipamento</string>
 
+
+    <!-- Evidence Description -->
+
+    <string name="evidence_info_overview_dots"><![CDATA[<a>O D.O.T.S. Projetor é um dispositivo que pode ser segurado, colocado nas paredes ou no chão. Ele projeta uma matriz de pontos brilhantes, projetando os pontos em superfícies próximas ao seu redor.</a><a>Para identificar positivamente essa evidência, <font color=#ff6161>uma silhueta do fantasma será vista correndo ou rastejando rapidamente pela projeção\'s vigas</font>. A silhueta pode ser vista a olho nu ou por uma câmera de vídeo, mas é mais fácil de ser vista <font color=#ff6161>remotamente pelas térmicas da câmera de vídeo</font>. É melhor tentar encontrar essa evidência remotamente, pois de outra forma o comportamento de um Goryo pode causar conflitos de evidência. A localização real do Fantasma não determinará quando as animações da silhueta ocorrerão.</a><a>O D.O.T.S. os visuais agora são o fantasma real, o que significa que você precisará direcionar suas luzes infravermelhas perto da posição real do fantasma. Isso cria uma jogabilidade muito mais envolvente para os jogadores. Você pode usar D.O.T.S. para ver onde está o seu fantasma, ou se você estiver lutando para obter evidências, use sal, sensores de movimento ou outro equipamento para encontrar um local melhor para o seu projetor. Fantasmas com D.O.T.S. evidência agora pode inserir um pequeno “D.O.T.S. estado” ao vagar; Durante esse período, eles ficam temporariamente visíveis com luz infravermelha. Durante esse período, eles vagarão em direção ao jogador mais próximo (ou a um local aleatório na sala, se ela estiver vazia) antes de desaparecer.</a>]]></string>
+    <string name="evidence_info_overview_emf"><![CDATA[<a>EMF-5 é a leitura de nível mais alto de um <font color=#ff6161>leitor de EMF</font>.</a><a>Um fantasma produz emissões de EMF dos níveis 1 a 5 quando interage de alguma forma com a sala ou o tabuleiro Ouija. Cintilação de luz, passos e outras interações passivas menores normalmente proporcionam uma leitura mais baixa. Interações mais pesadas, como uma aparição ou um telefone tocando, quase sempre darão uma leitura mais alta. Os fantasmas que carregam essa evidência fornecerão EMF nível 5 apenas por acaso, portanto, essa evidência <font color=#ff6161>pode levar algum tempo para ser adquirida</font>.</a>]]></string>
+    <string name="evidence_info_overview_ultraviolet"><![CDATA[<a>As evidências ultravioleta só podem ser <font color=#ff6161>vistas ao direcionar a luz UV ou um bastão luminoso nas superfícies afetadas</font>. Pedaços de evidências ultravioleta brilharão em verde enquanto carregados pela luz UV e desaparecerão com o tempo.</a><a>Deixadas em objetos e superfícies por fantasmas, as evidências ultravioleta podem ser difíceis de ver em itens menores ou grandes. quartos. Pegadas rastreadas por pilhas de sal também contam como evidência ultravioleta.</a><a>Ao iluminar impressões digitais ou pegadas com luz ultravioleta, você ainda as verá imediatamente, mas, além disso, a luz carregará a impressão. Depois de guardar a luz ultravioleta, a impressão ficará visível por um curto período (dependendo de quanto tempo você a carregou), permitindo que você tire uma foto.</a><a>Uma impressão de mão de seis dedos pode ser encontrada, o que pode ser encontrado. identificará o tipo de Ghost imediatamente como Obake.</a>]]></string>
+    <string name="evidence_info_overview_thermometer"><![CDATA[<a>As temperaturas congelantes estão <font color=#ff6161>abaixo de 0 Celsius</font>. A temperatura pode ser determinada usando o <font color=#ff6161>Termômetro</font>.</a><a>À medida que os fantasmas extraem calor da área ao redor, as temperaturas diminuem na sala ou nos corredores onde o <font color=#ff6161>fantasma passa a maior parte de seu tempo. horário</font>. Todos os fantasmas eventualmente causarão temperaturas abaixo de 13 graus Celsius, mas apenas alguns tipos de fantasmas reduzirão as temperaturas abaixo de 0 C.</a><a>Cold Breath foi reformulado. A 5°C ou menos, qualquer pessoa na área assombrada poderá <font color=#ff6161>ver a própria respiração</font>. Se estiver nevando e a caixa de fusíveis começar a funcionar, você encontrará Cold Breath instantaneamente em todos os lugares, até mesmo no caminhão. Como alternativa, se a caixa de fusíveis estiver ligada, para que a casa fique agradável e quentinha, você verá o hálito frio aparecendo apenas em cômodos onde o fantasma ficou tempo suficiente para baixar a temperatura.</a><a>O o resfriamento de uma sala, mesmo que seja apenas um pouco, pode levar mais tempo do que os primeiros minutos durante uma investigação. Observar as temperaturas estranhamente baixas nas primeiras salas e depois voltar a elas é uma boa ideia.</a>]]></string>
+    <string name="evidence_info_overview_book"><![CDATA[<a>Determinado usando o livro de escrita fantasma.</a><a>Os fantasmas podem escrever no livro <font color=#ff6161>independentemente de o livro estar guardado ou segurado na mão</font>. Se o fantasma escreve no livro, esta é uma evidência desse tipo de fantasma. Se símbolos demoníacos forem escritos, isso pode ser uma evidência de um Demônio, mas não é absolutamente definitivo, já que os estilos de escrita fantasma tendem a divergir aleatoriamente.</a>]]></string>
+    <string name="evidence_info_overview_vcam"><![CDATA[<a>Um pequeno orbe flutuante que está presente apenas na sala que um fantasma está assombrando. Ele pode ser <font color=#ff6161>visto apenas por visão noturna por meio da câmera de vídeo ou da imagem térmica da câmera montada na cabeça <font> usando a transmissão ao vivo da câmera do caminhão.</a><a>Os orbes fantasmas podem ser detectados rapidamente, mas excluí-los muito rapidamente pode significar problemas no futuro.</a>]]></string>
+    <string name="evidence_info_overview_sbox"><![CDATA[<a>A Spirit Box é um item usado para <font color=#ff6161>se comunicar com o fantasma</font>.</a><a>O jogador precisa <font color=#ff6161>fazer perguntas no Vicinity Chat para uma Spirit Box ativa, ambos enquanto estiver próximo do fantasma. fantasma e enquanto as luzes estão apagadas</font>. Antes de tentar fazer isso, verifique os parâmetros de resposta do fantasma, como \"Responde a pessoas que estão sozinhas\" ou \"Responde a todos\" listado no quadro branco do caminhão.</a><a>Se o fantasma responder, a Spirit Box é uma evidência confirmada.</a><a>Perguntas pontuais como \"Quantos anos você tem?\" ou “Onde você está?” são perguntas plausíveis. Tenha em mente que o fantasma está sempre ouvindo, independentemente de o jogador estar falando em uma Spirit Box ou não, então os jogadores devem ter cuidado ao falar no chat do Vicinity. Desenhar um fantasma pode ser feito dizendo seu nome inúmeras vezes (irritando-o) e dando-lhe comandos como \"Mostre-se\" ou \"Dê-nos um sinal\" parecem ser comandos plausíveis.</a>]]></string>
+
+    <!-- Equipment Tiers -->
+
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<a>Uma Laser Grid Pen semelhante a uma lanterna. Você pode caminhar pelo local e procurar evidências rapidamente. A única desvantagem é o curto alcance e a baixa intensidade de luz.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<a>Este é o D.O.T.S. original. projetor. É um projetor posicionável que emite uma esfera de luz de tamanho médio, só que agora você pode incentivar o fantasma a entrar nele ficando por perto.</a><a>Ideal para salas de pequeno a médio porte.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<a>Esse projetor posicionável examina a sala a uma distância muito maior com um feixe de luz amplo e abrangente, tornando muito mais fácil encontrar fantasmas em salas maiores. Para obter a melhor cobertura, coloque o projetor em uma parede ou superfície plana, fique próximo e observe silhuetas de fantasmas.</a>]]></string>
+
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<a>Um medidor analógico antigo com pequeno alcance de detecção, baixa precisão e baixas emissões de áudio. A agulha irá acelerar, ultrapassando o nível 5 quando o EMF de nível 5 for detectado.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>O medidor K2 confiável tem um alcance maior e cinco luzes LED para detectar leituras de campos eletromagnéticos, além de um módulo de alto-falante adicional. Uma luz acenderá quando você ativar o dispositivo. Ao se mover dentro do alcance de detecção de pontos EMF do K2, ele exibirá um valor preciso de dois a cinco e emitirá um som nítido e audível.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>Um ParaReader de alta tecnologia. Este dispositivo pode rastrear até três pontos EMF de uma só vez e tem o maior alcance de detecção.</a><a>Ele mostrará a direção, o alcance e o valor de cada leitura ao mesmo tempo. Ele reproduz sons para cada detecção de EMF para que você possa ouvir, à distância, quantas e quão fortes são as leituras.</a><a>Se um ponto de EMF desaparecer, um ponto de EMF mais recente será colocado na parte inferior da lista.</a>]]></string>
+
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>O bastão luminoso UV clássico. Depois de encaixá-lo para ligá-lo, ele projeta uma luz de área de curto alcance que dura cerca de um minuto antes de diminuir. Você pode agitá-lo novamente para revigorar a luz.</a><a>Este dispositivo carregará um ponto UV 10 segundos após a exposição.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>A lanterna UV clássica que emite um feixe estreito e mais brilhante com um alcance maior, apresentando um tempo de carga UV muito mais rápido!</a><a>Este dispositivo carregará um ponto UV dentro de 5 segundos após a exposição.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>A UV Light Pro é uma lanterna robusta que tem um cone de luz muito mais brilhante e amplo, além de um tempo de carregamento ainda mais rápido. Ele é perfeito para localizar evidências ultravioleta rapidamente em uma escala maior.<a><a>Este dispositivo carrega um ponto UV 1,5 segundos após a exposição.</a>]]></string>
+
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>Um termômetro doméstico antigo, arrancado da parede da sala do seu investigador. Este termômetro tem uma taxa de amostragem lenta, o que significa que você terá que esperar mais para obter uma leitura precisa. Você pode trazer um e verificar mais tarde no contrato.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>Uma versão atualizada do leitor de temperatura clássico, mas muito mais ágil. Em vez de ligá-lo e obter uma leitura a cada dois segundos, mantenha pressionado o botão \'Usar\' botão para verificar as temperaturas. Isso faz com que correr e verificar a temperatura de cada ambiente seja muito mais rápido do que o nível I permite.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<a>Um upgrade direto para o Nível II, concluindo verificações de temperatura com o dobro da velocidade do seu antecessor. Além disso, este termômetro mais moderno é mais preciso em cada leitura, permitindo aos jogadores examinar salas de forma rápida e eficiente para encontrar o fantasma ou obter \"Temperaturas de congelamento\" marcado no Diário.</a>]]></string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<a>Este bloco de notas de papel pode ser colocado perto de um fantasma para incentivar a escrita paranormal. Certifique-se de colocá-lo próximo a qualquer atividade que você ver. Alguns fantasmas podem não notar o pequeno bloco de notas e o lápis, então pode levar algum tempo até que algo aconteça.<p/>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<a>Com páginas mais bonitas e uma caneta, os fantasmas parecem notar este livro com um pouco mais de frequência do que na versão anterior. diminuindo um pouco o tempo de espera para que as evidências ocorram.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<a>Com seu perfil grande, uma mistura de materiais de alta qualidade e uma caneta ornamentada, este livro tem as maiores alterações já escritas por fantasmas. Ele tem um alcance maior do que os dois níveis anteriores, então colocar este livro dentro do alcance de interação de um fantasma é muito mais fácil.</a>]]></string>
+
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<a>Uma filmadora antiga que o Ghost Huntin\' Distribuição encontrada no sótão do antigo escritório. É pequeno e um pouco desgastado, mas faz o trabalho perfeitamente.</a><a>Analisar o feed de vídeo é um desafio devido à péssima qualidade e às pequenas dimensões da tela, então aproveite seu tempo com isso!</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<a>A câmera de vídeo Parasonic é um vídeo HD que torna muito mais fácil encontrar orbes. Ele ainda recebe muita interferência de um fantasma ativo, mas muito menos do que o Nível 1.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<a>A câmera de vídeo de qualidade cinematográfica da Bony, com corpo grande, suporta uma tela muito maior. Ele apresenta um feed de vídeo muito mais nítido e recebe menos interferência de aparições de fantasmas.</a>]]></string>
+
+
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<a>Ao ligar esta Spirit Box, ela começará a varrer diferentes frequências de rádio. Fique perto de qualquer atividade paranormal, apague todas as luzes da sala e faça algumas perguntas na esperança de obter uma resposta.</a><a>Se a pergunta for ouvida, uma luz vermelha piscará no Caixa Espiritual. Se piscar em branco, você recebeu uma resposta do fantasma.</a><a>Tente perguntar Onde você está? ou Você é amigável? Esteja avisado: você pode não gostar da resposta que receberá.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<a>Esta Spirit Box mais moderna tem um alto-falante de qualidade superior que é muito mais eficiente na varredura de frequências, facilitando a decifração de respostas paranormais.</a><a>Se uma pergunta for ouvida, um &amp;#39 preto será exibido. ;X\' piscará na tela. Se você receber uma resposta, o pequeno ícone fantasma piscará.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<a>Quando ativada, esta Spirit Box verifica ambas as frequências, duas ao mesmo tempo, aumentando a chance de captar uma resposta paranormal ao fazer perguntas. Ele também tem um filtro integrado para reduzir a quantidade de estática que você ouve entre as interações.</a><a>Se uma pergunta for ouvida e nenhuma resposta for dada, os LEDs de RESPOSTA piscarão em vermelho. Se uma resposta for dada, os LEDs piscarão em branco junto com o som.</a>]]></string>
+
+    <!-- Equipment -->
+
+    <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>Uma lanterna metálica retrô que fornece uma pequena quantidade de luz. apenas o suficiente para se locomover.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>Esta lanterna emite um feixe de luz muito mais brilhante.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>Projetando um cone de luz muito mais amplo, esta lanterna é perfeita para salas grandes e espaços abertos.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>Você pode usar esta câmera para tirar fotos de qualquer evidência que encontrar. Isso só interferirá no fantasma durante o processo de tirar fotos, por isso tome cuidado ao decidir tirar uma foto.</a><a>Para mais informações sobre como tirar fotos, consulte a seção \'Fotos\' seção do seu diário.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>Com esta câmera fotográfica digital, você pode tirar fotos de evidências e entidades paranormais com muito mais rapidez do que no nível anterior.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>Essa câmera de última geração oferece o menor tempo de atraso entre as fotos, permitindo uma rápida coleta de evidências.</a><a>Além disso, ela foi modificada para ser menos suscetível a entidades paranormais que causam interferência. com a tela durante as manifestações.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>Esses fósforos são perfeitos para acender fogueiras e incensos, mas lembre-se: com apenas dez utilizações você acabará rapidamente!</a><a>Eles também podem ser usados ​​como uma pequena fonte de luz, mas certifique-se de que para não queimar os dedos.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>Um isqueiro a gás. Ele fornece um pouco mais de luz do que os fósforos e dura muito mais tempo.</a><a>Você pode ver o líquido dentro dele escorrendo à medida que você o usa. Certifique-se de ter sobra suficiente quando estiver em apuros!</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>Este isqueiro pode durar um contrato inteiro, desde que você não o desperdice!</a><a>Com uma chama maior, a luz que ele fornece é mais brilhante e tem um alcance maior, perfeito para aquelas fugas escuras durante um ataque.</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>Esta pequena vela fornecerá luz e alguma prevenção contra a perda de sanidade, mas apenas por um tempo, a cera queima rapidamente!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>Com três velas em vez de uma, a luz fornecida é muito mais brilhante, tem maior alcance e dura mais.</a><a>Além disso, esta luz de fogo não precisa ser segurada para obter seus efeitos, então você pode colocá-lo e ficar por perto para ainda receber os benefícios de sanidade!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>Essa lanterna durará todo o contrato, então não se preocupe se ela apagar quando você mais precisar dela. Assim como seu antecessor, você pode ficar por perto para aproveitar os efeitos.</a><a>Por último, é à prova d\'água, por isso funciona até mesmo na chuva!</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>Este crucifixo pode ser segurado ou colocado para impedir que o fantasma inicie um único ataque.</a><a>Mantenha-o próximo a qualquer atividade que encontrar.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>Um crucifixo de metal que pode ser usado para bloquear dois ataques, com um alcance maior.</a><a>Lembre-se de mantê-lo perto de qualquer atividade que encontrar.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>Este crucifixo tem um alcance ainda maior que a versão anterior. Além disso, um crucifixo não utilizado pode impedir uma caçada amaldiçoada, consumindo ambos os usos.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>Ao segurar este recipiente, você pode colocar pilhas de sal no chão na esperança de rastrear o fantasma. Recomendamos colocá-los em portas e perto de curvas em corredores ou salas para aumentar a chance de obter uma reação.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>Esse recipiente maior contém mais sal do que seu antecessor, permitindo que você coloque longas linhas de sal para bloquear facilmente passagens mais largas.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>Esse sal é tão poderoso que pode afetar a mobilidade de um fantasma de duas maneiras.</a><a>Enquanto um fantasma estiver agindo passivamente, essas linhas agirão como uma barreira, forçando o fantasma a se virar ao entrar em um. Ótimo para prender fantasmas errantes em uma sala para que você possa encontrar evidências.</a><a>Se for durante um ataque, o fantasma ficará lento, dando a você mais tempo para escapar.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>Você pode acender o incenso com qualquer acendedor para impedir que um fantasma inicie uma caçada por um longo período. Além disso, você pode usá-lo durante uma caçada quando estiver perto de um fantasma para desorientá-lo por alguns segundos.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>Muito mais sálvia foi usada para criar este pacote de incenso, permitindo um tempo de queima mais longo e mantendo você mais seguro durante os ataques.</a><a>Além disso, ele retardará o movimento do fantasma durante parte do ataque. a duração do efeito.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>Com um alcance muito maior e um tempo de queima mais longo, você pode afastar fantasmas com muito mais segurança quando for atacado. Quando o fantasma é inicialmente repelido, ele fica atordoado, interrompendo seu movimento por um curto período.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>Conecte uma câmera de vídeo a este tripé colocando-a em cima. Você pode então carregar o tripé e colocá-lo em locais que podem não ter uma boa superfície para visualizar atividades paranormais.</a><a>Fantasmas podem interferir nas câmeras posicionadas e tentar derrubá-las. Certifique-se de reiniciá-las. se forem empurrados para o chão.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>Este tripé foi atualizado com um motor rotacional. Ao visualizar a câmera de vídeo do caminhão, você pode usar os controles na tela para girar o motor do tripé, proporcionando um novo ângulo.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>Assim como as versões anteriores, este tripé é semelhante, exceto que é muito mais resistente. Aqueles fantasmas irritantes devem derrubá-lo com muito menos frequência.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Coloque este sensor de movimento nas paredes ou no chão e ele piscará sempre que algo se mover na frente dele, mesmo coisas que você não consegue ver.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Com dois modos diferentes, um alcance maior e um indicador sonoro, este sensor é perfeito para rastreamento paranormal.</a><a>Você pode alternar o formato do laser interagindo com o sensor depois que ele for colocado.{ /3}</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Coloque esta câmera com sensor de movimento no chão, perto de qualquer atividade fantasma que você encontrar. Quando ativado, ele gira e pisca uma luz brilhante sempre que um fantasma entra ou sai do alcance de detecção.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Coloque esses sensores de som em locais onde você deseja monitorar qualquer interação de áudio.</a><a>Depois de colocados, retorne ao caminhão, você pode ouvir a reprodução remota enquanto verifica a tela do sensor de som para ver se qualquer um dos sensores recebe alguma leitura.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Este sensor de som foi aprimorado para apresentar três configurações de tamanho diferentes, que podem ser alternadas com um botão de tamanho na tela do sensor de som no caminhão.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>O tripé tem juntas rotacionais, permitindo que você interaja com ele para alterar o formato do sensor de som.</a><a>Cada formato é representado pelas direções para as quais os microfones estão voltados:</a><a>Para frente: Cone / Para fora: Lados / Para dentro: Esfera</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Beba esta garrafa de óleo de cobra vintage para restaurar um pouco da sua sanidade. A restauração levará alguns segundos, e o valor restaurado dependerá da dificuldade que você está jogando.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>Tomar essas pílulas restaurará sua sanidade mais rapidamente. Você pode pegar vários potes para aumentar a quantidade de Sanidade restaurada ao longo da duração.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>Este Adrenaline Shot restaurará sua sanidade muito mais rápido do que as duas versões anteriores. Além disso, você não perderá resistência durante toda a duração dos efeitos.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>Ao usar o microfone parabólico e os fones de ouvido conectados, você poderá ouvir sons mais distantes do que o normal, dependendo da direção em que direcionar o microfone.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>Melhoramos este microfone parabólico com algumas melhorias: um sensor melhor e uma tela pequena.</a><a>Ativá-lo permitirá que você ouça sons distantes, além de obter uma visão visual leitura do volume do som.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>Este microfone parabólico foi aprimorado com um indicador visual de som.</a><a>Cada vez que um som for detectado dentro do alcance do microfone, um indicador visual será mostrado na tela, incluindo distância e distância. volume, permitindo rastrear facilmente de onde vem o som.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>Prender esta pequena câmera na sua cabeça permite que seus colegas de equipe assistam a um vídeo ao vivo da sua visão na segurança do caminhão, o que é ótimo para realizar várias tarefas ao mesmo tempo e capturar coisas que você pode perder!</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>Uma pequena lanterna montada na cabeça que não ocupa espaço no inventário. A única desvantagem é que a luz não é muito brilhante ou ampla.</a><a>Você pode ligá-la e desligá-la mantendo pressionada a tecla especial.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>Um par de óculos de visão noturna, que permite ver no escuro sem a necessidade de lanterna.</a><a>Mas esteja avisado: sua visão pode ficar distorcida se estiver ao alcance de um fantasma ativo, tornando o óculos inúteis.</a>]]></string>
+
+    <!--
+          Flavor Text
+      -->
+    <string name="shop_equipment_dots_data_flavortext_1"><![CDATA[<a>Uma pequena caneta laser que projeta pequenos feixes de luz no ambiente.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_2"><![CDATA[<a>Este sensor de movimento infravermelho foi fortemente adaptado para projetar luz. Ele é pequeno e compacto e pode aderir à maioria das superfícies.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_3"><![CDATA[<a>Um projetor motorizado com três lentes para ampla cobertura de luz.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_1"><![CDATA[<a>Um medidor de EMF com vários modos para verificar diferentes interferências no ar. Infelizmente, é antigo e apenas um deles funciona. Felizmente, é o que precisamos para leituras paranormais!</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_2"><![CDATA[<a>O confiável K2 tem sido usado por investigadores paranormais em todo o mundo com resultados consistentes.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_3"><![CDATA[<a>Um dispositivo personalizado da Ghost Huntin\' Distribuição. Capaz de fazer muito mais do que apenas exibir valores de campos eletromagnéticos em uma tela grande.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_1"><![CDATA[<a>Transmitido de geração em geração, estamos surpresos que seja um trabalho árduo.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_2"><![CDATA[<a>É compacto e leve, com um botão traseiro para uma pegada mais tática.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_3"><![CDATA[<a>Uma lanterna muito maior, com até alça para transporte!</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_1"><![CDATA[<a>Uma câmera Polteroid antiga, um pouco empoeirada e arranhada. Você terá que esperar a foto ser impressa antes de tirar outra.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_2"><![CDATA[<a>A Bony GhostShot é uma câmera digital compacta e fácil de usar, perfeita para tirar fotos de fantasmas em pânico no escuro.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_3"><![CDATA[<a>Uma das melhores câmeras SLR da Bony, completa com lentes mais amplas, maior qualidade de imagem e poder de processamento rápido.</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_1"><![CDATA[<a>Caça aos fantasmas\' A própria caixa de fósforos da distribuição, completa com um fantasma assustador como mascote. Adorável!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_2"><![CDATA[<a>Um isqueiro DiK; Pequeno, compacto e prático!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_3"><![CDATA[<a>Desde o lançamento, os isqueiros Zippy têm sido essenciais para os militares e agora,\' Investigadores Fantasmas.</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Um castiçal velho e enferrujado sustentando uma vela pequena. Espero que dure o suficiente se não houver outra luz. Não se esqueça de algo para iluminá-lo!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Candelabros com três velas altas anexadas. O metal ornamentado e a cera de vela de alta qualidade proporcionam um protetor de sanidade muito mais confiável!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Pode parecer antiga, mas esta lanterna movida a gasolina é a luz de fogo mais confiável que encontramos e pode durar horas a fio.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Um pequeno bastão luminoso cheio de um líquido transparente e oleoso, misturado com corante fluorescente. Quebrar o bastão causa uma reação que ilumina a área ao redor com uma cor brilhante.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Uma pequena lanterna UV tática com um prático prendedor para cinto.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>A lanterna UV Light Pro possui quase 80 lâmpadas individuais, iluminando áreas enormes com luz.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Apenas dois pedaços de madeira amarrados. A forma por si só parece ser suficiente para afastar algumas entidades paranormais.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Atualizada de madeira para ferro fundido, esta cruz oferece uma defesa muito mais confiável.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_3"><![CDATA[<a>Este crucifixo ornamentado foi adornado com detalhes dourados e prateados. Foi comprovado que esses designs complexos aumentam a defesa contra seres de outro mundo.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_1"><![CDATA[<a>Encontramos várias dessas filmadoras antigas em uma caixa no antigo escritório. Esperamos que elas façam o trabalho bem o suficiente.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_2"><![CDATA[<a>A Parasonic lançou esta câmera de vídeo na esperança de substituir todas as filmadoras Bony. Parece que a maior parte funcionou.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony está de volta com uma câmera de última geração, modificada exclusivamente para caçadores de fantasmas. Também seria uma ótima câmera de cinema.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Um antigo rádio FM/AM. É pequeno e compacto, mas o alto-falante não é da melhor qualidade.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>A Spirit Box P-SB7T foi criada exclusivamente para conversas com o desconhecido. A tela retroiluminada ajuda nas investigações no escuro.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>O SB11-Z é uma Spirit Box muito maior, capaz de varrer dois canais de frequência ao mesmo tempo.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Um termômetro de parede antigo, normalmente usado para medir a temperatura ambiente durante todo o ano, pendurado na parede. Ele também funciona perfeitamente quando você o carrega!</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Normalmente usado por profissionais médicos para leituras rápidas de temperatura, este termômetro infravermelho é ótimo para leituras rápidas e rápidas. Parece fornecer leituras um pouco imprecisas, embora talvez seja apenas antigo.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Mais moderno, mais técnico e mais preciso. Você simplesmente não consegue vencer.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_1"><![CDATA[<a>Caça aos fantasmas\' A marca própria de sal da distribuição provavelmente não tem o melhor sabor, mas é ótima para fantasmas.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_2"><![CDATA[<a>Descobrimos que o sal rosa do Himalaia finamente moído é ótimo para revelar aquelas pegadas incômodas.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_3"><![CDATA[<a>Uma garrafa de vidro com sal preto abençoado, combinada com outros minerais para efeitos de limpeza extras. Parece mais bonito também, brilhante!</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_1"><![CDATA[<a>Um pequeno ramo de sálvia negra. Parece que quase todas as folhas caíram. Espero que ainda funcione.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_2"><![CDATA[<a>Grande pacote de sálvia branca, bem amarrado com barbante para uma queima compacta e eficiente quando acesa. Tem um aroma doce e amargo.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_3"><![CDATA[<a>Um queimador de incenso sagrado preenchido com uma mistura personalizada projetada especificamente para afastar entidades paranormais. Balançar quando aceso emitirá uma grande quantidade de fumaça dissuasora.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_1"><![CDATA[<a>Barato e alegre, basta ser independente. É melhor tomar cuidado para que não caia.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_2"><![CDATA[<a>É muito mais moderno, limpo e resistente. Tem até um motor eletrônico conectado!</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_3"><![CDATA[<a>Pernas de metal reforçadas com pernas extensíveis, perfeitas para transportar câmeras de perfil maiores.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Anteriormente uma câmera de vida selvagem, o sensor foi modificado para rastrear entidades paranormais que se movem na frente dele.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>Pelo que aprendemos ao modificar a versão anterior, conseguimos melhorar uma câmera mais avançada para nossas necessidades de rastreamento paranormal.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Uma câmera de segurança que foi desmontada e reconstruída do zero, garantindo visão do reino paranormal.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Um pequeno microfone conectado a um minitripé, barato e eficiente.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Dois microfones de alta qualidade são conectados em um tripé personalizado. Eles gastaram algum tempo e dinheiro extra para criar este.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Microfones shotgun caros são conectados a um pequeno receptor, permitindo transmissões de áudio de alta qualidade para o caminhão.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1"><![CDATA[<a>Não temos certeza de quão segura é essa fórmula Insane Away, mas ela parece ajudar durante aquelas sessões de pânico de caça aos fantasmas.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_2"><![CDATA[<a>Produto muito mais regulamentado e produzido em massa. Caça Fantasma\' A distribuição deve ter contratado alguns especialistas para isso.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_3"><![CDATA[<a>Uma nova fórmula criada por especialistas de todo o mundo, contida em uma pequena injeção.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1"><![CDATA[<a>Pode não ser a coisa mais glamorosa do mundo, mas dá conta do recado.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2"><![CDATA[<a>As páginas em pergaminho são protegidas por um estojo de couro. Mantenha seus segredos ainda mais seguros amarrando a corda do lado de fora.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3"><![CDATA[<a>Um grimório que parece ter muita história. Os detalhes metálicos tornam este livro pesado muito mais elegante.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_1"><![CDATA[<a>O microfone parabólico 8X21 pode amplificar sons muito mais longe do que o ouvido nu consegue ouvir.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2"><![CDATA[<a>Atualizado e aprimorado, este microfone parabólico é perfeito para ouvir conversas paranormais!</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3"><![CDATA[<a>Um microfone de alta qualidade acompanhado de uma tela com interface personalizada.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_1"><![CDATA[<a>Uma câmera GhostPro montada em um conjunto de tiras de cabeça, não é a mais moderna, mas é útil.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_2"><![CDATA[<a>As alças são mais fortes e a câmera foi substituída por uma pequena lanterna LED</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_3"><![CDATA[<a>Usados pelos militares, esses óculos permitem ver coisas que o olho nu não consegue.</a>]]></string>
+
+    <string name="equipment_info_name_dots">Proyector D.O.T.S.</string>
+    <string name="equipment_info_name_emf">Leitor EMF</string>
+    <string name="equipment_info_name_flashlight">Lanterna</string>
+    <string name="equipment_info_name_photocamera">Câmera Fotográfica</string>
+    <string name="equipment_info_name_igniter">Fósforos</string>
+    <string name="equipment_info_name_firelight">Chama</string>
+    <string name="equipment_info_name_uvlight">Lanterna Ultravioleta</string>
+    <string name="equipment_info_name_motionsensor">Sensor de movimento</string>
+    <string name="equipment_info_name_soundsensor">Sensor de Som</string>
+    <string name="equipment_info_name_sanitymedication">Medicamentos para sanidade</string>
+    <string name="equipment_info_name_parabolicmicrophone">Microfone Parabólico</string>
+    <string name="equipment_info_name_headgear">Equipamento de Cabeça</string>
+    <string name="equipment_info_name_videocamera">Câmera de Vídeo</string>
+    <string name="equipment_info_name_spiritbox">Caixa de Espírito</string>
+    <string name="equipment_info_name_thermometer">Termômetro</string>
+    <string name="equipment_info_name_salt">Sal</string>
+    <string name="equipment_info_name_incense">Incenso</string>
+    <string name="equipment_info_name_tripod">Tripé</string>
+    <string name="equipment_info_name_ghostwritingbook">Livro de Escrita Fantasma</string>
+    <string name="equipment_info_name_crucifix">Crucifixo</string>
+
+
+    <string name="shop_equipment_attribute_spotight_narrow" >Destaque: Estreito</string>
+    <string name="shop_equipment_attribute_spotight_wide" >Destaque: Amplo</string>
+    <string name="shop_equipment_attribute_spotight_area" >Área Light</string>
+
+    <string name="shop_equipment_attribute_intensity_low" >Intensidade: Baixa</string>
+    <string name="shop_equipment_attribute_intensity_med" >Intensidade: Média</string>
+    <string name="shop_equipment_attribute_intensity_high" >Intensidade: Alta</string>
+
+    <string name="shop_equipment_attribute_interactionrate_low" >Taxa de interação: baixa</string>
+    <string name="shop_equipment_attribute_interactionrate_med" >Taxa de interação: Média</string>
+    <string name="shop_equipment_attribute_interactionrate_high" >Taxa de interação: Alta</string>
+
+    <string name="shop_equipment_attribute_audioquality_low" >Qualidade de áudio: baixa</string>
+    <string name="shop_equipment_attribute_audioquality_med" >Qualidade de áudio: média</string>
+    <string name="shop_equipment_attribute_audioquality_high" >Qualidade de áudio: alta</string>
+
+    <string name="shop_equipment_attribute_responserate_low" >Taxa de resposta: baixa</string>
+    <string name="shop_equipment_attribute_responserate_med" >Taxa de resposta: Média</string>
+    <string name="shop_equipment_attribute_responserate_high" >Taxa de resposta: alta</string>
+
+    <string name="shop_equipment_attribute_samplespeed_low" >Velocidade da amostra: Baixa</string>
+    <string name="shop_equipment_attribute_samplespeed_med" >Velocidade da amostra: Média</string>
+    <string name="shop_equipment_attribute_samplespeed_high" >Velocidade da amostra: Alta</string>
+
+    <string name="shop_equipment_attribute_imagequality_low" >Qualidade da imagem: Baixa</string>
+    <string name="shop_equipment_attribute_imagequality_med" >Qualidade da imagem: Média</string>
+    <string name="shop_equipment_attribute_imagequality_high" >Qualidade da imagem: Alta</string>
+
+    <string name="shop_equipment_attribute_interference_low" >Interferência Paranormal: Baixa</string>
+    <string name="shop_equipment_attribute_interference_med" >Interferência Paranormal: Média</string>
+    <string name="shop_equipment_attribute_interference_high" >Interferência Paranormal: Alta</string>
+
+    <string name="shop_equipment_attribute_knockdownchance_low" >Chance de nocaute: baixa</string>
+    <string name="shop_equipment_attribute_knockdownchance_med" >Chance de nocaute: Média</string>
+    <string name="shop_equipment_attribute_knockdownchance_high" >Chance de queda: alta</string>
+
+    <string name="shop_equipment_attribute_accuracy_low" >Precisão: Baixa</string>
+    <string name="shop_equipment_attribute_accuracy_med" >Precisão: Média</string>
+    <string name="shop_equipment_attribute_accuracy_high" >Precisão: Alta</string>
+
+    <string name="shop_equipment_attribute_indicator_audio" >Indicador de áudio</string>
+    <string name="shop_equipment_attribute_indicator_light" >Indicador luminoso</string>
+    <string name="shop_equipment_attribute_indicator_distance" >Indicador de distância</string>
+    <string name="shop_equipment_attribute_indicator_directional" >Indicador direcional</string>
+
+    <string name="shop_equipment_attribute_range_1_7" >Faixa (M): 1,7</string>
+    <string name="shop_equipment_attribute_range_2" >Faixa (M): 2</string>
+    <string name="shop_equipment_attribute_range_2_5" >Faixa (M): 2,5</string>
+    <string name="shop_equipment_attribute_range_3" >Faixa (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5" >Faixa (M): 3,5</string>
+    <string name="shop_equipment_attribute_range_4" >Faixa (M): 4</string>
+    <string name="shop_equipment_attribute_range_5" >Faixa (M): 5</string>
+    <string name="shop_equipment_attribute_range_7" >Faixa (M): 7</string>
+    <string name="shop_equipment_attribute_range_20" >Faixa (M): 20</string>
+    <string name="shop_equipment_attribute_range_30" >Faixa (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10" >Faixa (M): 5, 10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >Faixa (M): 5, 10, 15</string>
+
+    <string name="shop_equipment_attribute_uvchargetime_1_5" >Tempo de carga UV: 1,5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5" >Tempo de carga UV: 5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10" >Tempo de carga UV: 10</string>
+
+    <string name="shop_equipment_attribute_phototime_low" >Tempo entre fotos: baixo</string>
+    <string name="shop_equipment_attribute_phototime_med" >Tempo entre fotos: Médio</string>
+    <string name="shop_equipment_attribute_phototime_high" >Tempo entre fotos: alto</string>
+
+    <string name="shop_equipment_attribute_sanitydrainreduction_33" >Redução de drenagem de sanidade (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50" >Redução de drenagem de sanidade (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66" >Redução de drenagem de sanidade (%): 66</string>
+
+    <string name="shop_equipment_attribute_sanityrestoration_10" >Sono de Restauração de Sanidade (S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >Sono de Restauração de Sanidade (S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >Sono de Restauração de Sanidade (S): 30</string>
+
+    <string name="shop_equipment_attribute_sensorshape_line" >Forma do sensor: Linha</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone" >Forma do sensor: Cone</string>
+    <string name="shop_equipment_attribute_sensorshape_circle" >Forma do sensor: Círculo</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >Forma do sensor: círculo, cone, lados</string>
+
+    <string name="shop_equipment_attribute_duration_3_s" >Duração (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >Duração (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >Duração (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >Duração (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >Duração (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >Duração (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >Duração (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >Duração (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >Duração (M): 10</string>
+
+    <string name="shop_equipment_attribute_uses_1" >Usos: 1</string>
+    <string name="shop_equipment_attribute_uses_2" >Usos: 2</string>
+    <string name="shop_equipment_attribute_uses_3" >Usos: 3</string>
+    <string name="shop_equipment_attribute_uses_10" >Usos: 10</string>
+
+    <string name="shop_equipment_attribute_placeable" >Colocável</string>
+    <string name="shop_equipment_attribute_handheld" >Portátil</string>
+
+    <string name="shop_equipment_attribute_property_ghosteffect_slows" >Retarda o Ghost durante caças</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts" >Interrompe o Ghost durante as caçadas</string>
+
+    <string name="shop_equipment_attribute_property_displayscreen" >Tela de exibição</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt" >Evita uma caçada amaldiçoada</string>
+    <string name="shop_equipment_attribute_property_electronic" >Eletrônico</string>
+    <string name="shop_equipment_attribute_property_consumable" >Consumível</string>
+    <string name="shop_equipment_attribute_property_waterproof" >À prova d\'água</string>
+    <string name="shop_equipment_attribute_property_headslot" >Slot da cabeça</string>
+    <string name="shop_equipment_attribute_property_nightvision" >Visão Noturna</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >Sprint Boost (S): 10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol" >Controle de rotação</string>
+    <string name="shop_equipment_attribute_property_scanning" >Digitalização</string>
 </resources>

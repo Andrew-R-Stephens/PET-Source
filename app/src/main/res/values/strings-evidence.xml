@@ -69,42 +69,4 @@
         ]]>
     </string>
 
-    <!-- Equipment Unlock Level Requirements -->
-    <string name="equipment_requirement_level_dots_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_dots_2" translatable="false">29</string>
-    <string name="equipment_requirement_level_dots_3" translatable="false">60</string>
-
-    <string name="equipment_requirement_level_emf_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_emf_2" translatable="false">20</string>
-    <string name="equipment_requirement_level_emf_3" translatable="false">52</string>
-
-    <string name="equipment_requirement_level_ultraviolet_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_ultraviolet_2" translatable="false">21</string>
-    <string name="equipment_requirement_level_ultraviolet_3" translatable="false">56</string>
-
-    <string name="equipment_requirement_level_thermometer_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_thermometer_2" translatable="false">36</string>
-    <string name="equipment_requirement_level_thermometer_3" translatable="false">64</string>
-
-    <string name="equipment_requirement_level_book_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_book_2" translatable="false">23</string>
-    <string name="equipment_requirement_level_book_3" translatable="false">63</string>
-
-    <string name="equipment_requirement_level_vcam_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_vcam_2" translatable="false">33</string>
-    <string name="equipment_requirement_level_vcam_3" translatable="false">61</string>
-
-    <string name="equipment_requirement_level_box_1" translatable="false">0</string>
-    <string name="equipment_requirement_level_box_2" translatable="false">27</string>
-    <string name="equipment_requirement_level_box_3" translatable="false">54</string>
-
-    <!-- Equipment Cost -->
-    <string name="equipment_requirement_cost_dots" translatable="false">65</string>
-    <string name="equipment_requirement_cost_emf" translatable="false">45</string>
-    <string name="equipment_requirement_cost_ultraviolet" translatable="false">20</string>
-    <string name="equipment_requirement_cost_thermometer" translatable="false">30</string>
-    <string name="equipment_requirement_cost_book" translatable="false">40</string>
-    <string name="equipment_requirement_cost_vcam" translatable="false">50</string>
-    <string name="equipment_requirement_cost_box" translatable="false">50</string>
-
 </resources>

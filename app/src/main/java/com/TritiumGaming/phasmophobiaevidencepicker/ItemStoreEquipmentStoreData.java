@@ -26,4 +26,7 @@ public class ItemStoreEquipmentStoreData {
         return item;
     }
 
+    public ItemStoreEquipmentGroupData getGroupAt(int groupIndex) {
+        return groupData.get(groupIndex);
+    }
 }

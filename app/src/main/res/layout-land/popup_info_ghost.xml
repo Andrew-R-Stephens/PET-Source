@@ -146,28 +146,34 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/title_left"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:background="@color/transparent"
+                android:background="#00000000"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
                 android:src="@drawable/icon_prev"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/scrollView_swapping"
+                android:tint="#FFFFFF"
+                app:layout_constraintWidth_max="48dp"
+                app:layout_constraintWidth_min="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_infoTitle"
                 style="?attr/secondaryFont_Regular"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:text="@string/popup_ghost_info"
                 android:textColor="?attr/titleFontColor"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView_swapping"
                 app:layout_constraintEnd_toStartOf="@+id/title_right"
-                app:layout_constraintHeight_percent=".15"
+                app:layout_constraintHeight_min="32dp"
                 app:layout_constraintStart_toEndOf="@+id/title_left"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
@@ -175,15 +181,19 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/title_right"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:background="@color/transparent"
+                android:background="#00000000"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
                 android:src="@drawable/icon_next"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/scrollView_swapping"
+                android:tint="#FFFFFF"
+                app:layout_constraintWidth_max="48dp"
+                app:layout_constraintWidth_min="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/label_infoTitle"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
 
             <include
                 android:id="@+id/scrollView_swapping"
@@ -210,15 +220,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_huntTitle"
-                style="?attr/secondaryFont_Regular"
+                style="?attr/secondaryFont_Regular_Manual"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/popup_ghost_huntdata"
                 android:textColor="?attr/titleFontColor"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView_huntdata"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".15"
+                app:layout_constraintHeight_min="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />

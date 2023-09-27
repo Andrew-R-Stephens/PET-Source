@@ -204,6 +204,7 @@
     <string name="spiritbox_entry_q8_3">我到底有多疯狂？</string>
     <string name="spiritbox_entry_q8_4">我疯了吗？</string>
     <string name="evidence_section_overview">概述</string>
+    <string name="store_title">装备店</string>
     <string name="equipment_section_tiers">层级</string>
     <string name="evidence_requirement_level_title">解锁等级：</string>
     <string name="evidence_requirement_cost_title">成本：</string>
@@ -215,37 +216,6 @@
     <string name="equipment_tiers_2">2 级</string>
     <string name="equipment_tiers_3">3 级</string>
 
-    <!-- Equipment Tiers -->
-
-    <string name="shop_equipment_dots_data_info_1"><![CDATA[<p>类似于手电筒的激光网格笔。您可以在该地点周围走动并快速扫描以寻找证据，唯一的缺点是范围短且光照强度低。</p>]]></string>
-    <string name="shop_equipment_dots_data_info_2"><![CDATA[<p>这是最初的 D.O.T.S.投影仪。它是一款可放置的投影仪，可发射平均大小的光球，不过现在您可以站在附近鼓励鬼魂走进它。</p><p>最适合中小型房间。</p>]]></string>
-    <string name="shop_equipment_dots_data_info_3"><![CDATA[<p>这款可放置的投影仪可使用宽广的扫射光束在更远的范围内扫描房间，从而更轻松地在较大的房间中寻找鬼魂。为了获得最佳覆盖范围，请将投影仪放置在墙壁或平坦的表面上，站在附近，观察是否有鬼影。</p>]]></string>
-
-    <string name="shop_equipment_emf_data_info_1"><![CDATA[<p>老式模拟仪表，检测范围小、精度低且音频发射低。当检测到 5 级 EMF 时，指针将进入超速状态，超过 5 级。</p>]]></string>
-    <string name="shop_equipment_emf_data_info_2"><![CDATA[<p>值得信赖的 K2 Meter 具有更大的范围和五个用于检测 EMF 读数的 LED 灯，以及一个额外的扬声器模块。当您激活设备时，一盏灯会亮起。当在 K2 的 EMF 点检测范围内移动时，它会显示 2 到 5 的准确值，并发出清晰可听的声音。</p>]]></string>
-    <string name="shop_equipment_emf_data_info_3"><![CDATA[<p>高科技 ParaReader。该设备一次最多可以跟踪三个 EMF 点，并且具有最远的检测范围。</p><p>它将同时显示每个读数的方向、范围和值。每次检测到 EMF 时，它都会播放声音，这样您就可以从远处听到读数的数量和强度。</p><p>如果 EMF 点消失，则较新的 EMF 点将放置在底部列表中的。</p>]]></string>
-
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<p>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</p><p>此设备会在曝光后 10 秒内为紫外线点充电。</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<p>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</p><p>此设备将在曝光后 5 秒内为紫外线点充电。</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<p>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。<p><p>该设备将在曝光后 1.5 秒内为紫外线点充电。</p>]]></string>
-
-    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<p>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<p>经典温度读取器的更新版本，但响应速度更快。不要打开它并每两秒读取一次读数，而是按住“使用”按钮。按钮扫描温度。这使得跑来跑去检查每个房间的温度比 I 级允许的速度要快得多。</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<p>直接升级到 Tier II，完成温度扫描的速度是其前身的两倍。此外，这种更现代的温度计每次读数都更加准确，使玩家能够快速有效地扫描房间以找到幽灵或获得“冰点温度”。在日记中勾选了。</p>]]></string>
-
-    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<p>这款纸质记事本可以放在鬼魂附近，以鼓励人们书写超自然现象。确保将其放置在您看到的任何活动附近。有些鬼魂可能不会注意到小记事本和铅笔，因此可能需要一些时间才会发生任何事情。</p>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<p>有了更好的页面和笔，鬼魂似乎比以前的版本更容易注意到这本书。缩短证据出现的等待时间。</p>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<p>由于其宽大的外形、优质的材料和华丽的笔的结合，这本书是鬼写的最高的变化。它的范围比前两层更大，因此将这本书放在幽灵的互动范围内要容易得多。</p>]]></string>
-
-    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<p>捉鬼的旧摄像机在旧办公室的阁楼中发现的分发。它很小，而且有点破旧，但它的工作效果还不错。</p><p>由于屏幕质量差且尺寸小，分析视频源是一项挑战，因此您花时间处理它！</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<p>Parasonic 摄像机提供高清视频，让寻找球体变得更加容易。它仍然会受到来自活动幽灵的大量干扰，但比第 1 层要少得多。</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<p>Bony 自己的电影级摄像机具有大机身，支持更大的屏幕。它具有更清晰的视频源，并且受到鬼魂干扰的干扰更少。</p>]]></string>
-
-
-    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<p>当打开此 Spirit Box 时，它将开始扫描不同的无线电频率。请务必站在任何超自然现象附近，关闭房间内的所有灯，并提出一些问题以期得到答复。</p><p>如果听到问题，屏幕上会闪烁红灯。灵盒。如果它呈白色闪烁，则表明您已收到幽灵的响应。</p><p>尝试询问“你在哪里？”或者你友善吗？请注意，您可能不喜欢收到的答案。</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<p>这款更现代的 Spirit Box 拥有更高品质的扬声器，扫描频率的效率更高，使超自然反应更容易破译。</p><p>如果听到问题，则会出现一个黑色的 &amp;#39 ;X\'将在屏幕上闪烁。如果您收到回复，小幽灵图标将会闪烁。</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<p>打开后，此 Spirit Box 会同时扫描两个频率，从而增加在提问时获得超自然反应的机会。它还具有内置过滤器，可减少您在互动之间听到的静电声。</p><p>如果听到问题但未给出任何答复，RESPONSE LED 指示灯将呈红色闪烁。如果收到回复，LED 灯会随着声音及时闪烁白光。</p>]]></string>
-
     <!-- Evidence Names -->
 
     <string name="evidence_type_dots">点阵投影仪</string>
@@ -255,16 +225,6 @@
     <string name="evidence_type_orbs">灵球</string>
     <string name="evidence_type_book">鬼魂笔迹</string>
     <string name="evidence_type_box">灵盒</string>
-
-    <!-- Evidence Description -->
-
-    <string name="evidence_info_overview_dots"><![CDATA[<p>D.O.T.S.投影仪是一种可以手持、放置在墙上或地板上的设备。它投射出一个亮点矩阵，将这些点投射到周围附近的表面上。</p><p>为了明确地识别这一证据，<font color=#ff6161>我们会看到幽灵的剪影在投影中奔跑或快速爬行。 #39；光束</font>。肉眼或通过摄像机可以看到轮廓，但<font color=#ff6161>通过摄像机的散热装置远程观看</font>更容易看到。最好尝试远程找到这些证据，因为高丽的行为可能会导致证据冲突。幽灵的实际位置不会决定剪影动画何时发生。</p><p>D.O.T.S.现在视觉效果是实际的幽灵，这意味着您需要在幽灵的实际位置附近照射红外线。这为玩家创造了更具吸引力的游戏玩法，您可以使用 D.O.T.S.看看你的鬼魂在哪里，或者如果你正在努力寻找证据，请使用盐、运动传感器或其他设备来为你的投影仪找到更好的位置。幽灵与 D.O.T.S.证据现在可以输入简短的“D.O.T.S.”徘徊时的“状态”；在此期间，它们会暂时通过红外光可见，在此期间，它们会向最近的玩家移动（如果房间是空的，则向房间中的随机位置移动），然后消失。</p>]]></string>
-    <string name="evidence_info_overview_emf"><![CDATA[<p>EMF-5 是 <font color=#ff6161>EMF 读取器</font>的最高级别读数。</p><p>当幽灵以某种方式与房间或房间互动时，会产生 1 至 5 级 EMF 发射。显灵板。灯光闪烁、脚步声和其他较小的被动交互通常会给出较低的读数。较频繁的互动，例如出现或电话铃声，几乎总是会给出更高的读数。携带此证据的幽灵只会偶然达到 EMF 5 级，因此此证据<font color=#ff6161>可能需要一些时间才能获取</font>。</p>]]></string>
-    <string name="evidence_info_overview_ultraviolet"><![CDATA[<p>只能<font color=#ff6161>通过将紫外线或荧光棒照射到受影响的表面来看到紫外线证据</font>。紫外线证据在受到紫外线照射时会发出绿光，并会随着时间的推移而褪色。</p><p>由于幽灵留在物体和表面上，紫外线证据在较小的物品或较大的物品上可能很难看到房间。盐堆追踪到的脚印也算作紫外线证据。</p><p>当用紫外线照射指纹或脚印时，您仍然会立即看到它，而且光线还会为指纹充电。将紫外线灯收起后，指纹会在短时间内保持可见（取决于您充电的时间），以便您拍照！</p><p>可能会发现 6 个手指的手印，会立即将 Ghost 类型识别为 Obake。</p>]]></string>
-    <string name="evidence_info_overview_thermometer"><![CDATA[<p>结冰温度<font color=#ff6161>低于 0 摄氏度</font>。可以使用<font color=#ff6161>温度计</font>来确定温度。</p><p>当鬼魂从周围区域吸收热量时，鬼魂待的时间最长的房间或走廊的温度会下降。<font color=#ff6161>时间</font>。所有幽灵最终都会导致温度低于 13 摄氏度，但只有某些幽灵类型会将温度降至 0 摄氏度以下。</p><p>寒冷呼吸已重新设计。在 5 摄氏度或更低的温度下，闹鬼区域内的任何人都可以<font color=#ff6161>看到自己的呼吸</font>。如果下雪并且保险丝盒启动，您会立即发现到处都有冷气，即使在卡车里也是如此。或者，如果保险丝盒已打开，那么房子就会变得温暖舒适，您会发现冷息只会出现在鬼魂已经呆了足够长的时间来降低温度的房间里。</p><p>房间的冷却，即使只是一点点，也可能比调查过程中的最初几分钟花费更长的时间。注意到早期房间的温度异常低，然后再返回到这些温度是个好主意。</p>]]></string>
-    <string name="evidence_info_overview_book"><![CDATA[<p>使用幽灵书写书确定。</p><p>幽灵可能会在书中书写<font color=#ff6161>无论该书是放下还是拿在手中</font>。如果鬼魂在书中写道，这就是该鬼魂类型的证据。如果写有恶魔符号，这可能是恶魔存在的证据，但这绝对不是确定的，因为幽灵的书写风格往往会随机变化。</p>]]></string>
-    <string name="evidence_info_overview_vcam"><![CDATA[<p>一个漂浮的小球体，仅出现在有鬼魂出没的房间中。<font color=#ff6161>只能通过使用摄像机或头戴式摄像机的热成像夜视仪<font> 使用卡车的实时摄像头画面才能看到它。</p><p>幽灵球可以很快被发现，但过早排除可能会带来麻烦。</p>]]></string>
-    <string name="evidence_info_overview_sbox"><![CDATA[<p>Spirit Box 是用于<font color=#ff6161>与幽灵交流</font>的物品。</p><p>玩家必须<font color=#ff6161>在 Vicinity Chat 中向活动的 Spirit Box 询问问题，且两者均位于该 Spirit Box 附近鬼魂和灯熄灭时</font>。在尝试此操作之前，请检查幽灵的响应参数，例如“响应独处的人”或“响应单独的人”。或“回复所有人”列在卡车的白板上。</p><p>如果鬼魂回答，灵魂盒就是确认的证据。</p><p>诸如“你多大了？”等尖锐问题或“你在哪里？”都是看似合理的问题。请记住，无论玩家是否对着灵盒说话，鬼魂总是在倾听，所以玩家在附近聊天中说话时应该小心。可以通过多次说出鬼魂的名字（从而激怒它），并给它发出诸如“展示你自己”之类的命令来引出鬼魂。或“给我们一个信号”似乎是合理的命令。</p>]]></string>
 
     <!-- Ghost information Popup Labels -->
 
@@ -403,5 +363,285 @@
     <string name="ghost_huntingdata_yokai"><![CDATA[<p>狩猎强度为 50\% S。</p><p>无法听到调查人员的声音或感知电子设备。</p>]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
     <string name="equipment_section_equipment">设备</string>
+
+
+    <!-- Evidence Description -->
+
+    <string name="evidence_info_overview_dots"><![CDATA[<a>D.O.T.S.投影仪是一种可以手持、放置在墙上或地板上的设备。它投射出一个亮点矩阵，将这些点投射到周围附近的表面上。</a><a>为了明确地识别这一证据，<font color=#ff6161>我们会看到幽灵的剪影在投影中奔跑或快速爬行。 #39；光束</font>。肉眼或通过摄像机可以看到轮廓，但<font color=#ff6161>通过摄像机的散热装置远程观看</font>更容易看到。最好尝试远程找到这些证据，因为高丽的行为可能会导致证据冲突。幽灵的实际位置不会决定剪影动画何时发生。</a><a>D.O.T.S.现在视觉效果是实际的幽灵，这意味着您需要在幽灵的实际位置附近照射红外线。这为玩家创造了更具吸引力的游戏玩法，您可以使用 D.O.T.S.看看你的鬼魂在哪里，或者如果你正在努力寻找证据，请使用盐、运动传感器或其他设备来为你的投影仪找到更好的位置。幽灵与 D.O.T.S.证据现在可以输入简短的“D.O.T.S.”徘徊时的“状态”；在此期间，它们会暂时通过红外光可见，在此期间，它们会向最近的玩家移动（如果房间是空的，则向房间中的随机位置移动），然后消失。</a>]]></string>
+    <string name="evidence_info_overview_emf"><![CDATA[<a>EMF-5 是 <font color=#ff6161>EMF 读取器</font>的最高级别读数。</a><a>当幽灵以某种方式与房间或房间互动时，会产生 1 至 5 级 EMF 发射。显灵板。灯光闪烁、脚步声和其他较小的被动交互通常会给出较低的读数。较频繁的互动，例如出现或电话铃声，几乎总是会给出更高的读数。携带此证据的幽灵只会偶然达到 EMF 5 级，因此此证据<font color=#ff6161>可能需要一些时间才能获取</font>。</a>]]></string>
+    <string name="evidence_info_overview_ultraviolet"><![CDATA[<a>只能<font color=#ff6161>通过将紫外线或荧光棒照射到受影响的表面来看到紫外线证据</font>。紫外线证据在受到紫外线照射时会发出绿光，并会随着时间的推移而褪色。</a><a>由于幽灵留在物体和表面上，紫外线证据在较小的物品或较大的物品上可能很难看到房间。盐堆追踪到的脚印也算作紫外线证据。</a><a>当用紫外线照射指纹或脚印时，您仍然会立即看到它，而且光线还会为指纹充电。将紫外线灯收起后，指纹会在短时间内保持可见（取决于您充电的时间），以便您拍照！</a><a>可能会发现 6 个手指的手印，会立即将 Ghost 类型识别为 Obake。</a>]]></string>
+    <string name="evidence_info_overview_thermometer"><![CDATA[<a>结冰温度<font color=#ff6161>低于 0 摄氏度</font>。可以使用<font color=#ff6161>温度计</font>来确定温度。</a><a>当鬼魂从周围区域吸收热量时，鬼魂待的时间最长的房间或走廊的温度会下降。<font color=#ff6161>时间</font>。所有幽灵最终都会导致温度低于 13 摄氏度，但只有某些幽灵类型会将温度降至 0 摄氏度以下。</a><a>寒冷呼吸已重新设计。在 5 摄氏度或更低的温度下，闹鬼区域内的任何人都可以<font color=#ff6161>看到自己的呼吸</font>。如果下雪并且保险丝盒启动，您会立即发现到处都有冷气，即使在卡车里也是如此。或者，如果保险丝盒已打开，那么房子就会变得温暖舒适，您会发现冷息只会出现在鬼魂已经呆了足够长的时间来降低温度的房间里。</a><a>房间的冷却，即使只是一点点，也可能比调查过程中的最初几分钟花费更长的时间。注意到早期房间的温度异常低，然后再返回到这些温度是个好主意。</a>]]></string>
+    <string name="evidence_info_overview_book"><![CDATA[<a>使用幽灵书写书确定。</a><a>幽灵可能会在书中书写<font color=#ff6161>无论该书是放下还是拿在手中</font>。如果鬼魂在书中写道，这就是该鬼魂类型的证据。如果写有恶魔符号，这可能是恶魔存在的证据，但这绝对不是确定的，因为幽灵的书写风格往往会随机变化。</a>]]></string>
+    <string name="evidence_info_overview_vcam"><![CDATA[<a>一个漂浮的小球体，仅出现在有鬼魂出没的房间中。<font color=#ff6161>只能通过使用摄像机或头戴式摄像机的热成像夜视仪<font> 使用卡车的实时摄像头画面才能看到它。</a><a>幽灵球可以很快被发现，但过早排除可能会带来麻烦。</a>]]></string>
+    <string name="evidence_info_overview_sbox"><![CDATA[<a>Spirit Box 是用于<font color=#ff6161>与幽灵交流</font>的物品。</a><a>玩家必须<font color=#ff6161>在 Vicinity Chat 中向活动的 Spirit Box 询问问题，且两者均位于该 Spirit Box 附近鬼魂和灯熄灭时</font>。在尝试此操作之前，请检查幽灵的响应参数，例如“响应独处的人”或“响应单独的人”。或“回复所有人”列在卡车的白板上。</a><a>如果鬼魂回答，灵魂盒就是确认的证据。</a><a>诸如“你多大了？”等尖锐问题或“你在哪里？”都是看似合理的问题。请记住，无论玩家是否对着灵盒说话，鬼魂总是在倾听，所以玩家在附近聊天中说话时应该小心。可以通过多次说出鬼魂的名字（从而激怒它），并给它发出诸如“展示你自己”之类的命令来引出鬼魂。或“给我们一个信号”似乎是合理的命令。</a>]]></string>
+
+    <!-- Equipment Tiers -->
+
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<a>类似于手电筒的激光网格笔。您可以在该地点周围走动并快速扫描以寻找证据，唯一的缺点是范围短且光照强度低。</a>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<a>这是最初的 D.O.T.S.投影仪。它是一款可放置的投影仪，可发射平均大小的光球，不过现在您可以站在附近鼓励鬼魂走进它。</a><a>最适合中小型房间。</a>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<a>这款可放置的投影仪可使用宽广的扫射光束在更远的范围内扫描房间，从而更轻松地在较大的房间中寻找鬼魂。为了获得最佳覆盖范围，请将投影仪放置在墙壁或平坦的表面上，站在附近，观察是否有鬼影。</a>]]></string>
+
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<a>老式模拟仪表，检测范围小、精度低且音频发射低。当检测到 5 级 EMF 时，指针将进入超速状态，超过 5 级。</a>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>值得信赖的 K2 Meter 具有更大的范围和五个用于检测 EMF 读数的 LED 灯，以及一个额外的扬声器模块。当您激活设备时，一盏灯会亮起。当在 K2 的 EMF 点检测范围内移动时，它会显示 2 到 5 的准确值，并发出清晰可听的声音。</a>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>高科技 ParaReader。该设备一次最多可以跟踪三个 EMF 点，并且具有最远的检测范围。</a><a>它将同时显示每个读数的方向、范围和值。每次检测到 EMF 时，它都会播放声音，这样您就可以从远处听到读数的数量和强度。</a><a>如果 EMF 点消失，则较新的 EMF 点将放置在底部列表中的。</a>]]></string>
+
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</a><a>此设备会在曝光后 10 秒内为紫外线点充电。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</a><a>此设备将在曝光后 5 秒内为紫外线点充电。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。<a><a>该设备将在曝光后 1.5 秒内为紫外线点充电。</a>]]></string>
+
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>经典温度读取器的更新版本，但响应速度更快。不要打开它并每两秒读取一次读数，而是按住“使用”按钮。按钮扫描温度。这使得跑来跑去检查每个房间的温度比 I 级允许的速度要快得多。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<a>直接升级到 Tier II，完成温度扫描的速度是其前身的两倍。此外，这种更现代的温度计每次读数都更加准确，使玩家能够快速有效地扫描房间以找到幽灵或获得“冰点温度”。在日记中勾选了。</a>]]></string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<a>这款纸质记事本可以放在鬼魂附近，以鼓励人们书写超自然现象。确保将其放置在您看到的任何活动附近。有些鬼魂可能不会注意到小记事本和铅笔，因此可能需要一些时间才会发生任何事情。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<a>有了更好的页面和笔，鬼魂似乎比以前的版本更容易注意到这本书。缩短证据出现的等待时间。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<a>由于其宽大的外形、优质的材料和华丽的笔的结合，这本书是鬼写的最高的变化。它的范围比前两层更大，因此将这本书放在幽灵的互动范围内要容易得多。</a>]]></string>
+
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<a>捉鬼的旧摄像机在旧办公室的阁楼中发现的分发。它很小，而且有点破旧，但它的工作效果还不错。</a><a>由于屏幕质量差且尺寸小，分析视频源是一项挑战，因此您花时间处理它！</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<a>Parasonic 摄像机提供高清视频，让寻找球体变得更加容易。它仍然会受到来自活动幽灵的大量干扰，但比第 1 层要少得多。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<a>Bony 自己的电影级摄像机具有大机身，支持更大的屏幕。它具有更清晰的视频源，并且受到鬼魂干扰的干扰更少。</a>]]></string>
+
+
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<a>当打开此 Spirit Box 时，它将开始扫描不同的无线电频率。请务必站在任何超自然现象附近，关闭房间内的所有灯，并提出一些问题以期得到答复。</a><a>如果听到问题，屏幕上会闪烁红灯。灵盒。如果它呈白色闪烁，则表明您已收到幽灵的响应。</a><a>尝试询问“你在哪里？”或者你友善吗？请注意，您可能不喜欢收到的答案。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<a>这款更现代的 Spirit Box 拥有更高品质的扬声器，扫描频率的效率更高，使超自然反应更容易破译。</a><a>如果听到问题，则会出现一个黑色的 &amp;#39 ;X\'将在屏幕上闪烁。如果您收到回复，小幽灵图标将会闪烁。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<a>打开后，此 Spirit Box 会同时扫描两个频率，从而增加在提问时获得超自然反应的机会。它还具有内置过滤器，可减少您在互动之间听到的静电声。</a><a>如果听到问题但未给出任何答复，RESPONSE LED 指示灯将呈红色闪烁。如果收到回复，LED 灯会随着声音及时闪烁白光。</a>]]></string>
+
+
+    <!-- Equipment -->
+    <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>复古金属手电筒，可提供少量光线。刚好够出行。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>这款手电筒发出更亮的光束。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>这款手电筒可投射更宽的锥形光，非常适合大房间和开放空间。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>您可以使用此相机拍摄您可能发现的任何证据。它只会在拍照过程中干扰重影，因此当您决定拍照时请务必小心。</a><a>如需详细了解如何拍照，请查看“照片”部分您日记中的部分。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>使用这款数码相机，您可以比之前的 Tier 更快地拍摄证据和超自然实体的照片。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>这款顶级相机可提供最短的照片之间的延迟时间，从而可以快速收集证据。</a><a>此外，它经过修改，不易受到超自然实体造成的干扰表演期间与屏幕保持一致。</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>这些火柴非常适合点燃火光和焚香，但请记住，只有十次用途，很快就会用完！</a><a>它们也可以用作小型光源，只需确保不要烫伤手指。</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>气体打火机。它比火柴提供的光线稍强，并且持续时间更长。</a><a>使用时您可以看到里面的液体在流失，请确保在紧要关头还有足够的液体！</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>这个打火机可以供你使用整个合同，只要你不浪费它！</a><a>火焰越大，发出的光就越亮，射程也越大，完美攻击期间的黑暗逃亡。</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>这支小蜡烛可以提供光线并防止理智丧失，但只能持续一段时间，蜡会很快燃烧掉！</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>使用三支蜡烛（而不是一支），提供的光线更亮、射程更远、持续时间更长。</a><a>此外，这种火光不需要按住即可获得其效果，因此您可以将其放置并站在附近，仍然可以获得理智益处！</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>这款灯笼将在整个合同期内有效，因此无需担心它在您最需要的时候会熄灭。就像它的前身一样，您可以站在附近以获得其效果。</a><a>最后，它是防水的，因此即使在雨中也能使用！</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>可以握住或放置这个十字架来阻止鬼魂发起单次攻击。</a><a>请确保将其放置在您可能发现的任何活动附近。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>金属十字架，可用于格挡两次攻击，范围更大。</a><a>请记住将其放置在您遇到的任何活动附近。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>这个十字架的范围比之前的版本更大。此外，未使用的十字架可以防止诅咒狩猎，同时消耗两种用途。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>拿着这个容器时，您可以在地板上放置一堆盐，以期追踪鬼魂。我们建议将它们放置在门口以及走廊或房间的拐角处，这样最有可能引起反应。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>与之前的容器相比，这款更大的容器可容纳更多的盐，让您可以放置​​长排盐以轻松堵塞更宽的通道。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>这种盐的威力非常强大，可以通过两种方式影响鬼魂的移动能力。</a><a>当鬼魂被动行动时，这些线条会像屏障一样，迫使鬼魂转身当走进一处时。非常适合将那些漫游的鬼魂困在房间里，这样您就可以找到证据。</a><a>如果是在攻击期间，幽灵的速度会减慢，给你额外的时间逃跑。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>您可以使用任何点火器点燃香，以长时间阻止幽灵发起狩猎，此外，您还可以在狩猎过程中靠近幽灵时使用它，使其迷惑几秒钟。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>制作此香束时使用了更多的鼠尾草，可以延长燃烧时间，让您在受到攻击时保持更长时间的安全。</a><a>此外，它还会在部分时间内减慢鬼魂的移动速度其效果持续时间。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>凭借更大的射程和更长的燃烧时间，您可以在受到攻击时更安全地抵御幽灵。当幽灵最初被击退时，它会被击晕，短时间内停止移动。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>将摄像机放在三脚架顶部，将其固定到该三脚架上。然后，您可以携带三脚架并将其放置在没有良好表面以观看超自然活动的位置。</a><a>鬼魂可能会干扰您放置的相机并试图将它们打翻，请务必将它们重置回去如果他们被推到地板上，就会站起来。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>此三脚架已升级为旋转电机。从卡车上查看摄像机的视图时，您可以使用屏幕上的控件来旋转三脚架电机，从而获得新的角度。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>与之前的版本一样，这款三脚架与以前的版本类似，只是更加坚固，那些讨厌的幽灵应该不会那么频繁地将其撞倒。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>将此运动传感器放置在墙壁或地板上，每当有物体在其前面移动时，即使是您看不到的物体，它也会闪烁。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>该传感器具有两种不同的模式、更远的范围和声音指示器，非常适合超自然现象跟踪。</a><a>放置传感器后，您可以通过与传感器交互来切换激光形状。{ /3}</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>将此动作感应摄像头放置在您可能发现的任何幽灵活动附近的地板上。激活后，只要有鬼魂进入或退出其检测范围，它就会转动并闪烁强光。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>将这些声音传感器放置在您想要跟踪任何音频交互的位置。</a><a>放置后，返回卡车，您可以收听远程播放，同时检查声音传感器屏幕，看看是否有声音任何传感器都会收到任何读数。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>该声音传感器经过改进，具有三种不同的尺寸设置，可通过卡车声音传感器屏幕上的尺寸按钮进行切换。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>三脚架上有旋转接头，让您可以与其互动以改变声音传感器的形状。</a><a>每种形状都由麦克风面向的方向表示</a>：<a>向前：圆锥体 / 向外：侧面 / 向内：球体</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>喝下这瓶老式蛇油可以恢复部分理智。完成恢复需要几秒钟的时间，恢复的数量取决于您所玩游戏的难度。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>服用这些药丸可以更快地恢复您的理智。您可以使用多个罐子来增加其持续时间内恢复的理智值。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>与前两个版本相比，这种肾上腺素注射能更快地恢复你的理智，此外，在其效果的整个持续时间内，你不会失去任何冲刺耐力。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>使用抛物面麦克风和连接的耳机时，您将能够听到比平常更远的声音，具体取决于您将麦克风对准的方向。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>我们对这款抛物面麦克风进行了多项升级改进：更好的传感器和小屏幕。</a><a>打开它，您可以听到远处的声音，并获得视觉效果读取声音有多大。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>这款抛物面麦克风经过改进，配备了视觉声音指示器。</a><a>每次在麦克风的范围内检测到声音时，屏幕上都会显示视觉指示器，包括距离和距离音量，让您可以轻松追踪声音的来源。</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>将这款小型摄像头绑在您的头上，您的队友就可以在卡车上安全地观看您视野中的实时视频，非常适合同时处理多项任务并捕捉您可能错过的东西！</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>不占用库存位置的小型头戴式手电筒。唯一的缺点是光线不太亮或太宽。</a><a>您可以通过按住特殊键绑定来打开和关闭它。</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>一副夜视镜，让您无需手电筒即可在黑暗中看到东西。</a><a>但请注意，如果处于活动鬼影的范围内，您的视力可能会扭曲，从而导致护目镜没用。</a>]]></string>
+
+    <!--
+          Flavor Text
+      -->
+    <string name="shop_equipment_dots_data_flavortext_1"><![CDATA[<a>一种小型激光笔，可将小光束投射到环境中。</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_2"><![CDATA[<a>这种红外运动传感器经过大量改造，可投射光线。它小巧紧凑，可以粘附在大多数表面上。</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_3"><![CDATA[<a>配备三个镜头的电动投影仪，可实现广泛的光线覆盖。</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_1"><![CDATA[<a>具有多种模式的 EMF 计，用于检查空气中的不同干扰。遗憾的是，它已经很旧了，只有其中一个可以使用，幸运的是，它正是我们阅读超自然现象所需的那个！</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_2"><![CDATA[<a>值得信赖的 K2 已被世界各地的超自然现象调查人员使用，并取得了一致的结果。</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_3"><![CDATA[<a>Ghost Huntin 的定制设备分配。不仅仅能够在大屏幕上显示 EMF 值。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_1"><![CDATA[<a>代代相传，我们对它的工作强度感到惊讶。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_2"><![CDATA[<a>它结构紧凑、重量轻，并配有后退按钮，可实现更具战术性的握持。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_3"><![CDATA[<a>更大的手电筒，甚至还有提手！</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_1"><![CDATA[<a>一台旧的 Poltroi​​d 相机，有点灰尘并且有划痕。您必须等待照片打印出来，然后才能拍摄另一张照片。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_2"><![CDATA[<a>Bony GhostShot 是一款结构紧凑、易于使用的数码相机，非常适合在黑暗中拍摄惊慌失措的幽灵照片。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_3"><![CDATA[<a>Bony 最好的单反相机之一，具有更宽的镜头、更高的图像质量和快速的处理能力。</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_1"><![CDATA[<a>幽灵狩猎\' Distribution 自己的火柴盒，以一个幽灵般的小鬼作为吉祥物。可爱！</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_2"><![CDATA[<a>一个 DiK 打火机；小巧、紧凑且方便！</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_3"><![CDATA[<a>自发布以来，Zippy 打火机一直是军队的必备品，而现在，”幽灵调查员。</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>一个生锈的旧烛台，上面支撑着一支小蜡烛，希望在没有其他光源的情况下，它能够持续足够长的时间。不要忘记用什么东西来照亮它！</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>带有三根高蜡烛的烛台。华丽的金属和更高品质的蜡烛蜡是更可靠的理智保护者！</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>它可能看起来很旧，但这款汽油灯是我们发现的最可靠的火灯，它可以连续持续几个小时。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>一种小荧光棒，里面充满透明的油状液体，并与荧光染料混合。折断棍子会引起反应，用明亮的颜色照亮周围区域。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>带有方便皮带夹的战术小型紫外线手电筒。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>UV Light Pro 手电筒配有近 80 个独立灯泡，可照亮大面积区域。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>只是将两块木头绑在一起。仅凭形状似乎就足以抵御一些超自然实体。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>这种十字架从木质升级为铸铁，提供了更可靠的防御。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_3"><![CDATA[<a>这尊华丽的十字架装饰着金银衬里。事实证明，这些复杂的设计可以增强对异界生物的防御能力。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_1"><![CDATA[<a>我们在旧办公室的一个盒子里发现了一堆这样的旧摄像机，希望它们能够很好地完成这项工作。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_2"><![CDATA[<a>Parasonic 发布了这款摄像机，希望能够取代所有 Bony 摄像机，它似乎基本上奏效了。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>博尼带着专为幽灵猎人改装的最先进的相机回来了。它还可以成为一台很棒的电影摄影机。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>一台旧的 FM/AM 收音机。它小巧紧凑，但扬声器的质量不是最好的。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>P-SB7T Spirit Box 专为与未知事物对话而设计。背光屏幕有助于在黑暗中进行调查。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>SB11-Z 是一个更大的 Spirit Box，能够同时扫描两个频道。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>老式墙壁温度计，通常挂在墙上，用于全年测量室温。随身携带时效果也非常好！</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>这款红外测温仪通常由医疗专业人员用来快速读取温度，但非常适合在紧要关头快速读取温度。它提供的读数似乎确实有点不准确，尽管它可能只是旧的。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>更现代、更技术化、更准确。您就是无法击败它。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_1"><![CDATA[<a>幽灵狩猎\' Distribution 自己品牌的盐可能味道不是最好的，但对鬼魂来说却很棒。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_2"><![CDATA[<a>我们发现精细研磨的粉红色喜马拉雅盐非常适合显露那些讨厌的脚印。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_3"><![CDATA[<a>玻璃瓶装的祝福黑盐，与其他矿物质混合，具有额外的清洁效果。它看起来也更漂亮，闪闪发光！</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_1"><![CDATA[<a>一小捆黑色鼠尾草，看起来几乎所有的叶子都掉了，希望它还能发挥作用。</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_2"><![CDATA[<a>大捆白色鼠尾草，用绳子整齐地捆扎起来，点燃时可紧凑高效地燃烧。它具有甜苦的香气。</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_3"><![CDATA[<a>一个神圣的香炉，里面充满了专门为抵御超自然现象而设计的定制混合物。点燃时挥舞它会发出大量具有威慑作用的烟雾。</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_1"><![CDATA[<a>便宜又令人愉快，它只是独立存在。最好注意不要摔倒。</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_2"><![CDATA[<a>它更加现代、干净且坚固。它甚至还配有一个电机！</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_3"><![CDATA[<a>加固金属腿具有可伸展的腿，非常适合携带较大型相机。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>该传感器以前是野生动物相机，经过修改可以跟踪在其前面移动的超自然实体。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>根据修改之前版本的经验，我们成功改进了更先进的摄像头，以满足我们的超自然跟踪需求。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>一个安全摄像头被拆解并从头开始重建，使其能够看到超自然领域。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>连接到迷你三脚架的小型麦克风，便宜且高效。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>两个更高质量的麦克风一起安装在定制的三脚架上。他们花费了一些额外的时间和金钱来创建这个。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>昂贵的枪式麦克风连接到小型接收器，将高质量的音频流传回卡车。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1"><![CDATA[<a>我们不确定这个 Insane Away 公式有多安全，但它似乎在那些惊慌失措的幽灵狩猎过程中有所帮助。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_2"><![CDATA[<a>产品监管更加严格且批量生产。幽灵狩猎\'发行版肯定为此聘请了一些专家。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_3"><![CDATA[<a>由世界各地的专家研发的新配方，巧妙地包含在小注射液中。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1"><![CDATA[<a>这可能不是世界上最迷人的事情，但它可以完成任务。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2"><![CDATA[<a>羊皮纸页由皮套保护。将绳子绑在外面，以确保您的秘密更加安全。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3"><![CDATA[<a>一本似乎有着悠久历史的魔法书。金属装饰让这本厚重的书显得更加优雅。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_1"><![CDATA[<a>8X21 抛物面麦克风可以将声音放大到肉耳无法听到的程度。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2"><![CDATA[<a>经过升级和改进，这款抛物面麦克风非常适合监听超自然对话！</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3"><![CDATA[<a>高品质麦克风以及带有定制界面的屏幕。</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_1"><![CDATA[<a>安装在一组头带上的 GhostPro 摄像头，虽然不是最时尚，但很实用。</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_2"><![CDATA[<a>带子更坚固，摄像头已更换为小型 LED 手电筒</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_3"><![CDATA[<a>这些护目镜由军队使用，可以让您看到肉眼看不到的东西。</a>]]></string>
+
+    <string name="shop_equipment_attribute_spotight_narrow" >聚光灯：窄</string>
+    <string name="shop_equipment_attribute_spotight_wide" >聚光灯：宽</string>
+    <string name="shop_equipment_attribute_spotight_area" >区域灯</string>
+
+    <string name="shop_equipment_attribute_intensity_low" >强度：低</string>
+    <string name="shop_equipment_attribute_intensity_med" >强度：中</string>
+    <string name="shop_equipment_attribute_intensity_high" >强度：高</string>
+
+    <string name="shop_equipment_attribute_interactionrate_low" >互动率：低</string>
+    <string name="shop_equipment_attribute_interactionrate_med" >互动率：中</string>
+    <string name="shop_equipment_attribute_interactionrate_high" >互动率：高</string>
+
+    <string name="shop_equipment_attribute_audioquality_low" >音频质量：低</string>
+    <string name="shop_equipment_attribute_audioquality_med" >音频质量：中</string>
+    <string name="shop_equipment_attribute_audioquality_high" >音频质量：高</string>
+
+    <string name="shop_equipment_attribute_responserate_low" >响应率：低</string>
+    <string name="shop_equipment_attribute_responserate_med" >响应率：中</string>
+    <string name="shop_equipment_attribute_responserate_high" >响应率：高</string>
+
+    <string name="shop_equipment_attribute_samplespeed_low" >采样速度：低</string>
+    <string name="shop_equipment_attribute_samplespeed_med" >采样速度：中</string>
+    <string name="shop_equipment_attribute_samplespeed_high" >采样速度：高</string>
+
+    <string name="shop_equipment_attribute_imagequality_low" >图像质量：低</string>
+    <string name="shop_equipment_attribute_imagequality_med" >图像质量：中</string>
+    <string name="shop_equipment_attribute_imagequality_high" >图像质量：高</string>
+
+    <string name="shop_equipment_attribute_interference_low" >超自然干扰：低</string>
+    <string name="shop_equipment_attribute_interference_med" >超自然干扰：中</string>
+    <string name="shop_equipment_attribute_interference_high" >超自然干扰：高</string>
+
+    <string name="shop_equipment_attribute_knockdownchance_low" >击倒几率：低</string>
+    <string name="shop_equipment_attribute_knockdownchance_med" >击倒几率：中</string>
+    <string name="shop_equipment_attribute_knockdownchance_high" >击倒几率：高</string>
+
+    <string name="shop_equipment_attribute_accuracy_low" >准确度：低</string>
+    <string name="shop_equipment_attribute_accuracy_med" >准确度：中</string>
+    <string name="shop_equipment_attribute_accuracy_high" >准确度：高</string>
+
+    <string name="shop_equipment_attribute_indicator_audio" >音频指示器</string>
+    <string name="shop_equipment_attribute_indicator_light" >灯光指示器</string>
+    <string name="shop_equipment_attribute_indicator_distance" >距离指示器</string>
+    <string name="shop_equipment_attribute_indicator_directional" >方向指示器</string>
+
+    <string name="shop_equipment_attribute_range_1_7" >范围（米）：1.7</string>
+    <string name="shop_equipment_attribute_range_2" >范围（M）：2</string>
+    <string name="shop_equipment_attribute_range_2_5" >范围（M）：2.5</string>
+    <string name="shop_equipment_attribute_range_3" >范围（M）：3</string>
+    <string name="shop_equipment_attribute_range_3_5" >范围（M）：3.5</string>
+    <string name="shop_equipment_attribute_range_4" >范围（M）：4</string>
+    <string name="shop_equipment_attribute_range_5" >范围 (M)：5</string>
+    <string name="shop_equipment_attribute_range_7" >范围 (M)：7</string>
+    <string name="shop_equipment_attribute_range_20" >范围（M）：20</string>
+    <string name="shop_equipment_attribute_range_30" >范围（M）：30</string>
+    <string name="shop_equipment_attribute_range_5_10" >范围（M）：5、10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >范围（M）：5、10、15</string>
+
+    <string name="shop_equipment_attribute_uvchargetime_1_5" >紫外线充电时间：1.5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5" >紫外线充电时间：5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10" >紫外线充电时间：10</string>
+
+    <string name="shop_equipment_attribute_phototime_low" >照片间隔时间：低</string>
+    <string name="shop_equipment_attribute_phototime_med" >照片间隔时间：中</string>
+    <string name="shop_equipment_attribute_phototime_high" >照片间隔时间：高</string>
+
+    <string name="shop_equipment_attribute_sanitydrainreduction_33" >理智消耗减少 (%)：33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50" >理智消耗减少 (%)：50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66" >理智消耗减少 (%)：66</string>
+
+    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠（S）：10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠（S）：20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠（S）：30</string>
+
+    <string name="shop_equipment_attribute_sensorshape_line" >传感器形状：线</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone" >传感器形状：圆锥</string>
+    <string name="shop_equipment_attribute_sensorshape_circle" >传感器形状：圆形</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >传感器形状：圆形、圆锥形、侧面</string>
+
+    <string name="shop_equipment_attribute_duration_3_s" >持续时间（S）：7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >持续时间（S）：5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >持续时间（S）：6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >持续时间（S）：7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >持续时间（S）：10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >持续时间（S）：60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >持续时间（M）：3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >持续时间（M）：5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >持续时间（M）：10</string>
+
+    <string name="shop_equipment_attribute_uses_1" >使用：1</string>
+    <string name="shop_equipment_attribute_uses_2" >使用：2</string>
+    <string name="shop_equipment_attribute_uses_3" >使用次数：3</string>
+    <string name="shop_equipment_attribute_uses_10" >使用次数：10</string>
+
+    <string name="shop_equipment_attribute_placeable" >可放置</string>
+    <string name="shop_equipment_attribute_handheld" >手持设备</string>
+
+    <string name="shop_equipment_attribute_property_ghosteffect_slows" >在狩猎期间减慢幽灵</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts" >在狩猎期间停止幽灵</string>
+
+    <string name="shop_equipment_attribute_property_displayscreen" >显示屏</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt" >阻止一次诅咒狩猎</string>
+    <string name="shop_equipment_attribute_property_electronic" >电子</string>
+    <string name="shop_equipment_attribute_property_consumable" >消耗品</string>
+    <string name="shop_equipment_attribute_property_waterproof" >防水</string>
+    <string name="shop_equipment_attribute_property_headslot" >头部插槽</string>
+    <string name="shop_equipment_attribute_property_nightvision" >夜视仪</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >冲刺加速 (S)：10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol" >旋转控制</string>
+    <string name="shop_equipment_attribute_property_scanning" >扫描</string>
+
+    <string name="equipment_info_name_dots">D.O.T.S.投影仪</string>
+    <string name="equipment_info_name_emf">EMF 阅读器</string>
+    <string name="equipment_info_name_flashlight">手电筒</string>
+    <string name="equipment_info_name_photocamera">相机</string>
+    <string name="equipment_info_name_igniter">点火器</string>
+    <string name="equipment_info_name_firelight">火光</string>
+    <string name="equipment_info_name_uvlight">紫外线灯</string>
+    <string name="equipment_info_name_crucifix">十字架</string>
+    <string name="equipment_info_name_videocamera">摄像机</string>
+    <string name="equipment_info_name_spiritbox">灵盒</string>
+    <string name="equipment_info_name_thermometer">温度计</string>
+    <string name="equipment_info_name_salt">盐</string>
+    <string name="equipment_info_name_incense">香</string>
+    <string name="equipment_info_name_tripod">三脚架</string>
+    <string name="equipment_info_name_motionsensor">运动传感器</string>
+    <string name="equipment_info_name_soundsensor">声音传感器</string>
+    <string name="equipment_info_name_sanitymedication">理智药物</string>
+    <string name="equipment_info_name_ghostwritingbook">幽灵写作书</string>
+    <string name="equipment_info_name_parabolicmicrophone">抛物面麦克风</string>
+    <string name="equipment_info_name_headgear">头部装备</string>
 
 </resources>

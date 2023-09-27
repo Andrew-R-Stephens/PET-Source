@@ -6,8 +6,10 @@ import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +27,22 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
+
 import java.util.ArrayList;
 
-public class ItemStoreFragment extends Fragment {
+public class ItemStoreFragment extends InvestigationFragment {
 
     private ItemStoreEquipmentStoreData storeData = new ItemStoreEquipmentStoreData();
 
     private ItemStoreScrollView scrollView;
     private ViewTreeObserver.OnScrollChangedListener viewTreeObserverlistener;
+
+    private ItemStoreEquipmentItem shopItemSelected = null;
 
     @Nullable
     @Override
@@ -48,15 +54,18 @@ public class ItemStoreFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_safehouse_itemstore, container, false);
     }
 
-    @SuppressLint({"ResourceType", "ClickableViewAccessibility"})
+    @SuppressLint({"ClickableViewAccessibility"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
+
+        if(getContext() == null || getContext().getResources() == null) { return; }
 
         // INITIALIZE VIEWS
-        AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
+        //AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
+        //AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
+        //View listener_goto_left = view.findViewById(R.id.listener_goto_left);
 
         ViewGroup itemStore = view.findViewById(R.id.item_safehouse_itemstore);
         LinearLayoutCompat parent = itemStore.findViewById(R.id.linearLayout_itemStore_list);
@@ -66,55 +75,22 @@ public class ItemStoreFragment extends Fragment {
         View dataView = view.findViewById(R.id.item_safehouse_itemstore_itemData);
         ImageView close_button = view.findViewById(R.id.close_button);
 
-        TypedArray typed_shop_list = getResources().obtainTypedArray(R.array.shop_equipment_array);
-        scrollViewPaginator.setRowCount(typed_shop_list.length());
+        //label_goto_left.setText(R.string.evidence_evidence_title);
 
-        for (int i = 0; i < typed_shop_list.length(); i++) {
-            @StringRes int equipmentName;
-            @DrawableRes Integer equipmentIcon = 0;
-            @DrawableRes ArrayList<Integer> tierImages = new ArrayList<>();
+        close_button.setOnClickListener(v -> {
+            closeItemDataView(dataView);
 
-            TypedArray typed_shop =
-                    getContext().getResources().obtainTypedArray(typed_shop_list.getResourceId(i, 0));
-
-            equipmentName = typed_shop.getResourceId(0, 0);
-            equipmentIcon = typed_shop.getResourceId(1, 0);
-
-            TypedArray typed_equipment_image =
-                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(2, 0));
-            for (int j = 0; j < typed_equipment_image.length(); j++) {
-                tierImages.add(typed_equipment_image.getResourceId(j, 0));
+            if(shopItemSelected != null) {
+                shopItemSelected.setSelected(false);
             }
-            typed_equipment_image.recycle();
-            typed_shop.recycle();
 
-            LayoutInflater inflater = getLayoutInflater();
-            AppCompatImageView equipmentView = (AppCompatImageView)inflater.inflate(R.layout.item_safehouse_scrollview_paginator_icon, null);
-            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-            param.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-            param.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-            param.width = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
-            param.height = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
-            equipmentView.setLayoutParams(param);
-
-            //ImageView imageView_icon = scrollViewPaginator.getChildAt(i).findViewById(R.id.image_equipmentIcon);
-            equipmentView.setImageResource(equipmentIcon);
-            //setIconFilter(equipmentView, Color.argb(255,255,255,255), .5f);
-            setIconFilter(equipmentView, "#2D3635", 1f);
-            scrollViewPaginator.addView(equipmentView);
-            
-            buildItemStoreGroup(parent, equipmentName, tierImages);
-        }
-        typed_shop_list.recycle();
-
-        label_goto_left.setText(R.string.evidence_evidence_title);
-        close_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeItemDataView(dataView);
-            }
         });
 
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> buildStore(parent, scrollViewPaginator));
+        }
+
+/*
 
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
@@ -125,37 +101,27 @@ public class ItemStoreFragment extends Fragment {
                         }
                     });
         }
-
-        // LISTENERS
-        initNavListeners(
-                view.findViewById(R.id.listener_goto_left),
-                null, //view.findViewById(R.id.icon_goto_medLeft),
-                view.findViewById(R.id.listener_resetAll),
-                null,
-                view.findViewById(R.id.listener_goto_right),
-                view.findViewById(R.id.icon_goto_left),
-                view.findViewById(R.id.icon_goto_medLeft),
-                view.findViewById(R.id.icon_resetAll),
-                null,
-                view.findViewById(R.id.icon_goto_right));
+*/
 
         LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
 
         for(int i = 0; i < list.getChildCount(); i++) {
             ItemStoreEquipmentGroup group = (ItemStoreEquipmentGroup) list.getChildAt(i);
-            for(ItemStoreEquipmentItem item : group.getItems()) {
+            for(int j = 0; j < group.getItems().length; j++) {
+                ItemStoreEquipmentItem item = group.getItems()[j];
+                int groupIndex = i;
+                int itemIndex = j;
                 item.setOnClickListener((itemView) -> {
+                    boolean newState = !item.isSelected();
 
-                    boolean newState = !itemView.isSelected();
-                    for(int k = 0; k < list.getChildCount(); k++) {
-                        ItemStoreEquipmentGroup g = (ItemStoreEquipmentGroup) list.getChildAt(k);
-
-                        for (ItemStoreEquipmentItem gItem: g.getItems()) {
-                            gItem.setSelected(false);
-                        }
+                    if(shopItemSelected != null) {
+                        shopItemSelected.setSelected(false);
                     }
 
-                    itemView.setSelected(newState);
+                    shopItemSelected = item;
+                    shopItemSelected.setSelected(newState);
+
+                    buildItemDataView(dataView, groupIndex, itemIndex);
 
                     if (newState) {
                         openItemDataView(dataView);
@@ -188,13 +154,182 @@ public class ItemStoreFragment extends Fragment {
             viewTreeObserverlistener = () -> doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
             scrollView.getViewTreeObserver().addOnScrollChangedListener(viewTreeObserverlistener);
         }
+    }
 
+    @Override
+    public void softReset() {
+
+    }
+
+    @SuppressLint("ResourceType")
+    private void buildStore(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+        if(getContext() == null) { return; }
+
+        TypedArray typed_shop_list = getResources().obtainTypedArray(R.array.shop_equipment_array);
+        scrollViewPaginator.setRowCount(typed_shop_list.length());
+
+        for (int i = 0; i < typed_shop_list.length(); i++) {
+            @StringRes int equipmentName;
+            @IntegerRes int buyCostData;
+            @DrawableRes int equipmentIcon;
+            @DrawableRes ArrayList<Integer> tierImages = new ArrayList<>();
+
+            ItemStoreEquipmentGroupData groupData = new ItemStoreEquipmentGroupData();
+
+            TypedArray typed_shop =
+                    getContext().getResources().obtainTypedArray(typed_shop_list.getResourceId(i, 0));
+
+            equipmentName = typed_shop.getResourceId(0, 0);
+            equipmentIcon = typed_shop.getResourceId(1, 0);
+            buyCostData = typed_shop.getResourceId(6, 0);
+
+            groupData.setNameData(equipmentName);
+            groupData.setBuyCostData(buyCostData);
+
+            TypedArray typed_equipment_image =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(2, 0));
+            for (int j = 0; j < typed_equipment_image.length(); j++) {
+                groupData.addItem(new ItemStoreEquipmentItemData());
+                @DrawableRes int value = typed_equipment_image.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setImageData(value);
+
+                tierImages.add(value);
+            }
+            typed_equipment_image.recycle();
+
+            TypedArray typed_equipment_flavortext =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(3, 0));
+            for (int j = 0; j < typed_equipment_flavortext.length(); j++) {
+                @StringRes int value = typed_equipment_flavortext.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setFlavorData(value);
+            }
+            typed_equipment_flavortext.recycle();
+
+            TypedArray typed_equipment_infotext =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(4, 0));
+            for (int j = 0; j < typed_equipment_infotext.length(); j++) {
+                @StringRes int value = typed_equipment_infotext.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setInfoData(value);
+            }
+            typed_equipment_infotext.recycle();
+
+            TypedArray typed_equipment_attributes =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(5, 0));
+            for (int j = 0; j < typed_equipment_attributes.length(); j++) {
+
+                TypedArray typed_equipment_attributes_positive =
+                        getContext().getResources().obtainTypedArray(typed_equipment_attributes.getResourceId(j, 0));
+                TypedArray typed_equipment_attributes_positive_list =
+                        getContext().getResources().obtainTypedArray(typed_equipment_attributes_positive.getResourceId(0, 0));
+                for (int l = 0; l < typed_equipment_attributes_positive.length(); l++) {
+                    @StringRes int value = typed_equipment_attributes_positive_list.getResourceId(l, 0);
+                    groupData.getItemDataAt(j).addPositiveAttribute(value);
+                }
+                typed_equipment_attributes_positive_list.recycle();
+                typed_equipment_attributes_positive.recycle();
+
+                TypedArray typed_equipment_attributes_negative =
+                        getContext().getResources().obtainTypedArray(typed_equipment_attributes.getResourceId(j, 0));
+                TypedArray typed_equipment_attributes_negative_list =
+                        getContext().getResources().obtainTypedArray(typed_equipment_attributes_negative.getResourceId(1, 0));
+                for (int l = 0; l < typed_equipment_attributes_negative_list.length(); l++) {
+                    @StringRes int value = typed_equipment_attributes_negative_list.getResourceId(l, 0);
+                    groupData.getItemDataAt(j).addNegativeAttribute(value);
+                }
+                typed_equipment_attributes_negative_list.recycle();
+                typed_equipment_attributes_negative.recycle();
+            }
+            typed_equipment_attributes.recycle();
+
+            TypedArray typed_equipment_upgradelevel =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(7, 0));
+            for (int j = 0; j < typed_equipment_upgradelevel.length(); j++) {
+                @IntegerRes int value = typed_equipment_upgradelevel.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setUpgradeLevel(value);
+            }
+            typed_equipment_upgradelevel.recycle();
+
+            TypedArray typed_equipment_upgradecost =
+                    getContext().getResources().obtainTypedArray(typed_shop.getResourceId(8, 0));
+            for (int j = 0; j < typed_equipment_upgradecost.length(); j++) {
+                @IntegerRes int value = typed_equipment_upgradecost.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setUpgradeCostData(value);
+            }
+            typed_equipment_upgradecost.recycle();
+
+            typed_shop.recycle();
+
+            addPaginatorIcon(scrollViewPaginator, equipmentIcon);
+            buildItemStoreGroup(parent, equipmentName, tierImages);
+
+            storeData.addGroup(groupData);
+        }
+        typed_shop_list.recycle();
+
+
+        int paginatorChildCount = scrollViewPaginator.getChildCount();
         scrollView.post(() -> doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount));
+    }
+
+    private void buildItemDataView(View dataView, int groupIndex, int itemIndex) {
+        ItemStoreEquipmentGroupData groupData = storeData.getGroupAt(groupIndex);
+        ItemStoreEquipmentItemData itemData = groupData.getItemDataAt(itemIndex);
+
+        AppCompatTextView itemNameView = dataView.findViewById(R.id.safehouse_shop_tool_label);
+        AppCompatTextView flavortextView = dataView.findViewById(R.id.textview_itemshop_flavor);
+        AppCompatTextView infotextView = dataView.findViewById(R.id.textview_itemshop_info);
+        AppCompatTextView attrtextView = dataView.findViewById(R.id.textview_itemshop_attributes);
+        AppCompatTextView buycostView = dataView.findViewById(R.id.textview_itemcost);
+        AppCompatTextView upgradeCostView = dataView.findViewById(R.id.textview_upgradecost);
+        AppCompatTextView upgradeLevelView = dataView.findViewById(R.id.textview_unlocklevel);
+        ItemStoreEquipmentItem itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);//.findViewById(R.id.tier_item);
+
+        StringBuilder buyCost = new StringBuilder("$");
+        buyCost.append(getResources().getInteger(groupData.getBuyCostData()));
+
+        int upcst = getResources().getInteger(itemData.getUpgradeCostData());
+        StringBuilder upgradeCost = new StringBuilder();
+        if(upcst > 0) {
+            upgradeCost.append("$").append(upcst);
+        } else {
+            upgradeCost.append("-");
+        }
+
+        int uplvl = getResources().getInteger(itemData.getUpgradeLevelData());
+        StringBuilder upgradeLevel = new StringBuilder();
+        upgradeLevel.append((uplvl > 0) ? uplvl : "-");
+
+        itemNameView.setText(getString(groupData.getNameData()));
+        flavortextView.setText(Html.fromHtml(getString(itemData.getFlavorData())));
+        infotextView.setText(Html.fromHtml(getString(itemData.getInfoData())));
+        buycostView.setText(buyCost);
+        upgradeCostView.setText(upgradeCost);
+        upgradeLevelView.setText(upgradeLevel);
+        if(getContext() != null) {
+            attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(getContext())));
+        }
+        LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
+        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), getContext().getTheme()));
+        layerDrawable.setLevel(itemIndex+1);
+        itemImageView.invalidate();
+    }
+
+    private void addPaginatorIcon(GridLayout scrollViewPaginator, Integer equipmentIcon) {
+        LayoutInflater inflater = getLayoutInflater();
+        AppCompatImageView equipmentView = (AppCompatImageView)inflater.inflate(R.layout.item_safehouse_scrollview_paginator_icon, null);
+        GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+        param.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        param.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        param.width = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+        param.height = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+        equipmentView.setLayoutParams(param);
+        equipmentView.setImageResource(equipmentIcon);
+        setIconFilter(equipmentView, "#2D3635", 1f);
+        scrollViewPaginator.addView(equipmentView);
     }
 
     private static void closeItemDataView(View dataView) {
         dataView.setVisibility(View.VISIBLE);
-
 
         if(dataView.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             dataView.animate()
@@ -325,46 +460,6 @@ public class ItemStoreFragment extends Fragment {
 
         itemStoreEquipmentGroup.build(equipmentName, tierImages);
         parent.addView(itemStoreEquipmentGroup);
-
-    }
-
-    private void initNavListeners(View lstnr_navLeft,
-                                  View lstnr_navMedLeft,
-                                  View lstnr_navCenter,
-                                  View lstnr_navMedRight,
-                                  View lstnr_navRight,
-                                  AppCompatImageView icon_navLeft,
-                                  AppCompatImageView icon_navMedLeft,
-                                  AppCompatImageView icon_navCenter,
-                                  AppCompatImageView icon_navMedRight,
-                                  AppCompatImageView icon_navRight) {
-
-        if(lstnr_navLeft != null) {
-            ((View)lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
-            icon_navLeft.setImageResource(R.drawable.icon_evidence);
-            lstnr_navLeft.setOnClickListener(v -> {
-                        Navigation.findNavController(v)
-                                .popBackStack();
-                    }
-            );
-        }
-        /*
-        if(lstnr_navMedLeft != null) {
-
-        }
-
-        if(lstnr_navCenter != null) {
-
-        }
-
-        if(lstnr_navMedRight != null) {
-
-        }
-
-        if(lstnr_navRight != null) {
-
-        }
-        */
 
     }
 

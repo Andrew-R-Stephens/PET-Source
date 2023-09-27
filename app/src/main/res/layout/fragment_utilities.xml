@@ -2,204 +2,180 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mapmenu_main_constraintlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
-
-    <include
-        android:id="@+id/layout_navigationHeader"
-        layout="@layout/layout_navigationheader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout94"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_navigationHeader"
-        app:layout_constraintWidth_percent=".8">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_title"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fillViewport="true"
-            android:scrollbarStyle="outsideInset"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".075"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/codex_title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/general_codex_button"
+                android:textColor="?attr/titleFontColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+        <View
+            android:id="@+id/dividerE"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:background="@drawable/icon_strikethrough_1"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout65"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerE">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:cropToPadding="true"
+                android:drawingCacheQuality="auto"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_map_sm"
+                app:tint="#37AAAAAA"
+                app:tintMode="multiply" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".95"
+                app:layout_constraintWidth_percent=".85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <GridLayout
+                    android:id="@+id/grid_codex"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/listitem_circled">
+                    android:layout_height="match_parent"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="vertical"
+                    android:fadingEdgeLength="50sp"
+                    android:gravity="center"
+                    android:horizontalSpacing="20sp"
+                    android:columnCount="2"
+                    android:rowCount="5"
+                    android:requiresFadingEdge="vertical"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:verticalSpacing="20sp"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:paddingStart="0sp"
+                    android:paddingEnd="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="8dp"
-                        android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/codex"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/icon_codex" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/codex"
-                        style="?attr/quaternaryFont_Regular"
+                    <include
+                        layout="@layout/item_codexmenu_option"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="Codex"
-                        android:textColor="?attr/bodyFontColor"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView1"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_rowSpan="1"
+                        android:layout_columnSpan="2"
+                        />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/listitem_circled">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
+                    <!--
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/ghostbox"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/icon_ghostbox" />
+                        android:background="@drawable/listitem_circled"
+                        android:visibility="gone">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/ghostbox"
-                        style="?attr/quaternaryFont_Regular"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="Ghost Box"
-                        android:textColor="?attr/bodyFontColor"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            android:cropToPadding="true"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toStartOf="@+id/item2"
+                            app:layout_constraintHeight_max="48dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icon_evidencecodex" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/item2"
+                            style="?attr/quaternaryFont_Regular"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="8dp"
+                            android:text="Evidence"
+                            android:textColor="?attr/bodyFontColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView2"
+                            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/listitem_circled">
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    -->
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="8dp"
-                        android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/highscores"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/icon_stats" />
+                </GridLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/highscores"
-                        style="?attr/quaternaryFont_Regular"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="Personal Highscores"
-                        android:textColor="?attr/bodyFontColor"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView3"
-                        app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/listitem_circled">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="8dp"
-                        android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/pethelp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/icon_inconclusive_unselected" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/pethelp"
-                        style="?attr/quaternaryFont_Regular"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="P.E.T. Assistance"
-                        android:textColor="?attr/bodyFontColor"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
+        <include
+            android:id="@+id/layout_navigation"
+            layout="@layout/layout_navigationfooter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

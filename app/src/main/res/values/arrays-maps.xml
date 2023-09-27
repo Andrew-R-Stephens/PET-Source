@@ -65,15 +65,15 @@
     </integer-array>
 
     <!-- Map-Specific arrays of all their resources -->
-    <!-- String - Map name -->
-    <!-- Bitmap - Outlines -->
-    <!-- Bitmap - Backgrounds -->
-    <!-- Bitmap - Doors -->
+    <!-- String - Map name (Deprecated) -->
+    <!-- Bitmap - Outlines (Deprecated) -->
+    <!-- Bitmap - Backgrounds (Deprecated) -->
+    <!-- Bitmap - Doors (Deprecated) -->
     <!-- String[] - Layer names -->
     <!-- int - Starting layer -->
     <!-- int - Map size (1-3) -->
     <!-- Drawable - Map Thumbnail -->
-    <!-- TODO Include background images and foreground objective locations-->
+    <!-- Map images -->
     <integer-array name= "map_asylum_array">
         <item>@string/map_name_asylum</item>
         <item>@array/map_asylum_image_array</item>
@@ -158,7 +158,7 @@
         <item>@array/map_brownstone_image_array</item>
         <item>@array/map_brownstone_layerName_array</item>
         <item>0</item>
-        <item>1</item>
+        <item>2</item>
         <item>@drawable/thumbnail_highschool</item>
         <item>@array/map_brownstone_image_array</item>
     </integer-array>

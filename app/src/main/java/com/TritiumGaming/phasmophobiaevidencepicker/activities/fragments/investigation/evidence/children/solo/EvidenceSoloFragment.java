@@ -70,14 +70,14 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // INITIALIZE VIEWS
         AppCompatTextView difficulty_name = view.findViewById(R.id.difficulty_name);
         AppCompatTextView map_name = view.findViewById(R.id.mapchoice_name);
-        AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_medLeft);
+        //AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_medLeft);
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
         AppCompatImageButton difficulty_prev = view.findViewById(R.id.difficulty_prev);
         AppCompatImageButton difficulty_next = view.findViewById(R.id.difficulty_next);
         AppCompatImageButton map_prev = view.findViewById(R.id.mapchoice_prev);
         AppCompatImageButton map_next = view.findViewById(R.id.mapchoice_next);
-        View navigation_fragListener_reset = view.findViewById(R.id.listener_resetAll);
+        //View navigation_fragListener_reset = view.findViewById(R.id.listener_resetAll);
         sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
@@ -88,6 +88,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 sanityData.setProgressManually(50);
             }
         });
+        /*
         navigation_fragListener_reset.setOnClickListener(v -> {
                     reset();
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
@@ -96,16 +97,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                     }
                     ft.detach(EvidenceSoloFragment.this).commitNow();
                     ft.attach(EvidenceSoloFragment.this).commitNow();
-                    /*if(getActivity() != null) {
-                        getActivity().runOnUiThread(() -> {
-                            if (getView() != null) {
-                                getView().invalidate();
-                            }
-                        });
-                    }*/
                 }
         );
-
+*/
         // TIMER CONTROL
         phaseTimerCountdownView = new PhaseTimerView(
                 sanityData,
@@ -315,4 +309,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         super.onResume();
     }
 
+    @Override
+    public void setNavigationBehavior(View view) {
+
+
+        super.setNavigationBehavior(view);
+    }
 }

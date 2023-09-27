@@ -75,12 +75,13 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
 
         AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
+        /*
         AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
         AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
         View listener_reset = view.findViewById(R.id.listener_resetAll);
         View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-
+        */
         LinearLayout scrollview_list1 = view.findViewById(R.id.linearlayout_scrollview_list1);
         LinearLayout scrollview_list2 = view.findViewById(R.id.linearlayout_scrollview_list2);
         LinearLayout scrollview_list3 = view.findViewById(R.id.linearlayout_scrollview_list3);
@@ -94,6 +95,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
 
+        /*
         listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
         );
 
@@ -101,6 +103,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
         image_reset.setEnabled(false);
         listener_reset.setEnabled(false);
         listener_goto_right.setEnabled(false);
+        */
 
         if (getContext() != null) {
             setScrollListEntries(

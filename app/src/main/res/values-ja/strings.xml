@@ -204,6 +204,7 @@
     <string name="spiritbox_entry_q8_3">私はどれほど狂っているのでしょうか？</string>
     <string name="spiritbox_entry_q8_4">私は正気ですか？</string>
     <string name="evidence_section_overview">概要</string>
+    <string name="store_title">装備品店</string>
     <string name="equipment_section_tiers">階層</string>
     <string name="evidence_requirement_level_title">ロック解除レベル:</string>
     <string name="evidence_requirement_cost_title">料金：</string>
@@ -221,13 +222,13 @@
 
     <!-- Evidence Description -->
 
-    <string name="evidence_info_overview_dots"><![CDATA[<p>D.O.T.S.プロジェクターは、持ったり、壁や床に置いたりできるデバイスです。明るい点のマトリックスを投影し、周囲の近くの表面全体に点を投影します。</p><p>この証拠を確実に特定するには、<font color=#ff6161>幽霊のシルエットが投影内を走っているか、素早く這っているのが見えます&amp;ビーム</font>。シルエットは肉眼でもビデオカメラでも見ることができますが、<font color=#ff6161>ビデオカメラのサーマルを介してリモートで見る</font>方が簡単です。ゴリョの行動により証拠の矛盾が生じる可能性があるため、この証拠をリモートで見つけることを試みるのが最善です。ゴーストの実際の位置は、シルエット アニメーションがいつ発生するかを決定しません。</p><p>D.O.T.S.ビジュアルは実際のゴーストになります。つまり、ゴーストの実際の位置の近くで赤外線ライトを照らす必要があります。これにより、プレーヤーにとってより魅力的なゲームプレイが作成されます。D.O.T.S. を使用できます。幽霊がどこにいるかを確認する場合、または証拠を入手するのに苦労している場合は、塩分センサー、モーション センサー、またはその他の機器を使用して、プロジェクターを設置するのに適した場所を見つけます。D.O.T.S.を備えたゴースト証拠に短い「D.O.T.S.」を入力できるようになりました。徘徊時の状態。その間、彼らは赤外線で一時的に見えるようになり、その間、最も近いプレーヤーに向かって（または、部屋に誰もいない場合は部屋内のランダムな場所に）さまよってから消えます。</p>]]></string>
-    <string name="evidence_info_overview_emf"><![CDATA[<p>EMF-5 は、<font color=#ff6161>EMF リーダー</font>からの最高レベルの読み取り値です。</p><p>ゴーストは、部屋や部屋と何らかの形で相互作用すると、レベル 1 ～ 5 の EMF 放射を生成します。ウィジャボード。光のちらつき、足音、その他の小さな受動的インタラクションは、通常、測定値を低くします。登場や電話の呼び出し音など、より激しいインタラクションでは、ほとんどの場合、より高い測定値が得られます。この証拠を運ぶゴーストが EMF レベル 5 を与えるのは偶然のみであるため、この証拠を<font color=#ff6161>取得するには時間がかかる可能性があります</font>。</p>]]></string>
-    <string name="evidence_info_overview_ultraviolet"><![CDATA[<p>紫外線の証拠は、<font color=#ff6161>影響を受けた表面に UV ライトまたはグロースティックを照射することによってのみ確認できます</font>。紫外線の証拠は、紫外線によって帯電している間は緑色に輝き、時間の経過とともに消えます。</p><p>ゴーストによって物体や表面に残された紫外線の証拠は、小さなアイテムや大きなものでは確認するのが難しい場合があります。部屋。塩の山によって追跡された足跡も紫外線の証拠としてカウントされます。</p><p>指紋や足跡に UV ライトを当てると、すぐにわかりますが、さらに、光が指紋を充電します。UV ライトをしまった後、プリントは短期間（充電時間に応じて）表示されたままになり、写真を撮ることができます。</p><p>6 本の指の手形が見つかる場合があります。ゴーストタイプをオバケとして即座に識別します。</p>]]></string>
-    <string name="evidence_info_overview_thermometer"><![CDATA[<p>氷点下は<font color=#ff6161>摂氏 0 度未満</font>です。温度は<font color=#ff6161>温度計</font>を使用して測定できます。</p><p>ゴーストが周囲のエリアから熱を引き出すと、<font color=#ff6161>ゴーストが最も多くの時間を過ごす部屋や廊下の温度が低下します。時間</font>。すべてのゴーストは最終的に摂氏 13 度未満の気温を引き起こしますが、気温が 0 度未満になるのは特定の種類のゴーストだけです。</p><p>コールドブレスが再加工されました。気温 5 度以下では、幽霊が出てくるエリアにいる人は誰でも<font color=#ff6161>自分の息を見ることができます</font>。雪が降っていてヒューズボックスが作動すると、トラックの中でもどこでも即座にコールドブレスを見つけることができます。あるいは、ヒューズ ボックスがオンになっていると、家が暖かくなり、ゴーストが温度を下げるのに十分な時間が経過した部屋にのみ冷たい息が表示されます。</p><p>たとえわずかな量でも部屋を冷却するには、調査中の最初の数分よりも時間がかかる場合があります。初期の部屋の温度が異様に低いことに注意し、その後、その温度に戻すことをおすすめします。</p>]]></string>
-    <string name="evidence_info_overview_book"><![CDATA[<p>ゴースト ライティング ブックを使用して決定します。</p><p>ゴーストは、<font color=#ff6161>本が置かれているか手に持っているかに関係なく</font>、本に書き込みを行うことができます。幽霊が本に書いた場合、これはその幽霊の種類の証拠になります。悪魔のようなシンボルが書かれている場合、それは悪魔の証拠である可能性がありますが、ゴーストの書き方はランダムに逸脱する傾向があるため、これは絶対的なものではありません。</p>]]></string>
-    <string name="evidence_info_overview_vcam"><![CDATA[<p>幽霊が出没する部屋にのみ存在する、浮遊する小さな球体。この様子は、<font color=#ff6161>トラックのライブカメラ フィードを使用したビデオカメラまたはヘッドマウント カメラの熱画像<font> を使用した暗視でのみ確認できます。</p><p>ゴースト オーブはすぐに発見できますが、すぐに排除しすぎると、将来的に問題が発生する可能性があります。</p>]]></string>
-    <string name="evidence_info_overview_sbox"><![CDATA[<p>スピリット ボックスは、<font color=#ff6161>ゴーストとコミュニケーションをとる</font>ために使用されるアイテムです。</p><p>プレーヤーは、<font color=#ff6161>アクティブなスピリット ボックスの近くにいるときに、近くのチャットで質問する必要があります。幽霊と消灯中。</font>これを試みる前に、「一人でいる人に反応する」「一人でいる人に反応する」などのゴーストの反応パラメータを確認してください。または「全員に返信」トラックのホワイトボードに記載されています。</p><p>幽霊が答えると、霊箱が証拠として確認されます。</p><p>「何歳ですか？」などの鋭い質問は、または「どこにいるの？」もっともらしい質問です。プレイヤーがスピリットボックスに向かって話しているかどうかに関係なく、ゴーストは常に聞いていることに注意してください。そのため、プレイヤーは近隣チャットで話すときに注意する必要があります。幽霊を引き出すには、名前を何度も言い（したがって幽霊を怒らせ）、「姿を現せ」などのコマンドを与えることで実行できます。または「サインをください」もっともらしいコマンドだと思われます。</p>]]></string>
+    <string name="evidence_info_overview_dots"><![CDATA[<a>D.O.T.S.プロジェクターは、持ったり、壁や床に置いたりできるデバイスです。明るい点のマトリックスを投影し、周囲の近くの表面全体に点を投影します。</a><a>この証拠を確実に特定するには、<font color=#ff6161>幽霊のシルエットが投影内を走っているか、素早く這っているのが見えます&amp;ビーム</font>。シルエットは肉眼でもビデオカメラでも見ることができますが、<font color=#ff6161>ビデオカメラのサーマルを介してリモートで見る</font>方が簡単です。ゴリョの行動により証拠の矛盾が生じる可能性があるため、この証拠をリモートで見つけることを試みるのが最善です。ゴーストの実際の位置は、シルエット アニメーションがいつ発生するかを決定しません。</a><a>D.O.T.S.ビジュアルは実際のゴーストになります。つまり、ゴーストの実際の位置の近くで赤外線ライトを照らす必要があります。これにより、プレーヤーにとってより魅力的なゲームプレイが作成されます。D.O.T.S. を使用できます。幽霊がどこにいるかを確認する場合、または証拠を入手するのに苦労している場合は、塩分センサー、モーション センサー、またはその他の機器を使用して、プロジェクターを設置するのに適した場所を見つけます。D.O.T.S.を備えたゴースト証拠に短い「D.O.T.S.」を入力できるようになりました。徘徊時の状態。その間、彼らは赤外線で一時的に見えるようになり、その間、最も近いプレーヤーに向かって（または、部屋に誰もいない場合は部屋内のランダムな場所に）さまよってから消えます。</a>]]></string>
+    <string name="evidence_info_overview_emf"><![CDATA[<a>EMF-5 は、<font color=#ff6161>EMF リーダー</font>からの最高レベルの読み取り値です。</a><a>ゴーストは、部屋や部屋と何らかの形で相互作用すると、レベル 1 ～ 5 の EMF 放射を生成します。ウィジャボード。光のちらつき、足音、その他の小さな受動的インタラクションは、通常、測定値を低くします。登場や電話の呼び出し音など、より激しいインタラクションでは、ほとんどの場合、より高い測定値が得られます。この証拠を運ぶゴーストが EMF レベル 5 を与えるのは偶然のみであるため、この証拠を<font color=#ff6161>取得するには時間がかかる可能性があります</font>。</a>]]></string>
+    <string name="evidence_info_overview_ultraviolet"><![CDATA[<a>紫外線の証拠は、<font color=#ff6161>影響を受けた表面に UV ライトまたはグロースティックを照射することによってのみ確認できます</font>。紫外線の証拠は、紫外線によって帯電している間は緑色に輝き、時間の経過とともに消えます。</a><a>ゴーストによって物体や表面に残された紫外線の証拠は、小さなアイテムや大きなものでは確認するのが難しい場合があります。部屋。塩の山によって追跡された足跡も紫外線の証拠としてカウントされます。</a><a>指紋や足跡に UV ライトを当てると、すぐにわかりますが、さらに、光が指紋を充電します。UV ライトをしまった後、プリントは短期間（充電時間に応じて）表示されたままになり、写真を撮ることができます。</a><a>6 本の指の手形が見つかる場合があります。ゴーストタイプをオバケとして即座に識別します。</a>]]></string>
+    <string name="evidence_info_overview_thermometer"><![CDATA[<a>氷点下は<font color=#ff6161>摂氏 0 度未満</font>です。温度は<font color=#ff6161>温度計</font>を使用して測定できます。</a><a>ゴーストが周囲のエリアから熱を引き出すと、<font color=#ff6161>ゴーストが最も多くの時間を過ごす部屋や廊下の温度が低下します。時間</font>。すべてのゴーストは最終的に摂氏 13 度未満の気温を引き起こしますが、気温が 0 度未満になるのは特定の種類のゴーストだけです。</a><a>コールドブレスが再加工されました。気温 5 度以下では、幽霊が出てくるエリアにいる人は誰でも<font color=#ff6161>自分の息を見ることができます</font>。雪が降っていてヒューズボックスが作動すると、トラックの中でもどこでも即座にコールドブレスを見つけることができます。あるいは、ヒューズ ボックスがオンになっていると、家が暖かくなり、ゴーストが温度を下げるのに十分な時間が経過した部屋にのみ冷たい息が表示されます。</a><a>たとえわずかな量でも部屋を冷却するには、調査中の最初の数分よりも時間がかかる場合があります。初期の部屋の温度が異様に低いことに注意し、その後、その温度に戻すことをおすすめします。</a>]]></string>
+    <string name="evidence_info_overview_book"><![CDATA[<a>ゴースト ライティング ブックを使用して決定します。</a><a>ゴーストは、<font color=#ff6161>本が置かれているか手に持っているかに関係なく</font>、本に書き込みを行うことができます。幽霊が本に書いた場合、これはその幽霊の種類の証拠になります。悪魔のようなシンボルが書かれている場合、それは悪魔の証拠である可能性がありますが、ゴーストの書き方はランダムに逸脱する傾向があるため、これは絶対的なものではありません。</a>]]></string>
+    <string name="evidence_info_overview_vcam"><![CDATA[<a>幽霊が出没する部屋にのみ存在する、浮遊する小さな球体。この様子は、<font color=#ff6161>トラックのライブカメラ フィードを使用したビデオカメラまたはヘッドマウント カメラの熱画像<font> を使用した暗視でのみ確認できます。</a><a>ゴースト オーブはすぐに発見できますが、すぐに排除しすぎると、将来的に問題が発生する可能性があります。</a>]]></string>
+    <string name="evidence_info_overview_sbox"><![CDATA[<a>スピリット ボックスは、<font color=#ff6161>ゴーストとコミュニケーションをとる</font>ために使用されるアイテムです。</a><a>プレーヤーは、<font color=#ff6161>アクティブなスピリット ボックスの近くにいるときに、近くのチャットで質問する必要があります。幽霊と消灯中。</font>これを試みる前に、「一人でいる人に反応する」「一人でいる人に反応する」などのゴーストの反応パラメータを確認してください。または「全員に返信」トラックのホワイトボードに記載されています。</a><a>幽霊が答えると、霊箱が証拠として確認されます。</a><a>「何歳ですか？」などの鋭い質問は、または「どこにいるの？」もっともらしい質問です。プレイヤーがスピリットボックスに向かって話しているかどうかに関係なく、ゴーストは常に聞いていることに注意してください。そのため、プレイヤーは近隣チャットで話すときに注意する必要があります。幽霊を引き出すには、名前を何度も言い（したがって幽霊を怒らせ）、「姿を現せ」などのコマンドを与えることで実行できます。または「サインをください」もっともらしいコマンドだと思われます。</a>]]></string>
 
 
     <!-- Equipment Tiers -->
@@ -238,34 +239,34 @@
 
     <!-- Equipment Tiers -->
 
-    <string name="shop_equipment_dots_data_info_1"><![CDATA[<p>懐中電灯に似たレーザー グリッド ペン。現場を歩き回って証拠をすばやくスキャンできますが、唯一の欠点は、射程が短く、光の強度が低いことです。</p>]]></string>
-    <string name="shop_equipment_dots_data_info_2"><![CDATA[<p>これがオリジナルの D.O.T.S. です。プロジェクター。これは平均的なサイズの光の球を放射する設置可能なプロジェクターですが、近くに立って幽霊が中に入るように促すことができるようになりました。</p><p>小規模から中規模の部屋に最適です。</p>]]></string>
-    <string name="shop_equipment_dots_data_info_3"><![CDATA[<p>この設置可能なプロジェクターは、広く広範囲に広がる光線で部屋をはるかに長い範囲でスキャンするため、大きな部屋での幽霊の発見がはるかに簡単になります。最適な範囲を確保するには、このプロジェクターを壁または平らな面に置き、近くに立ってゴーストのシルエットを観察してください。</p>]]></string>
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<a>懐中電灯に似たレーザー グリッド ペン。現場を歩き回って証拠をすばやくスキャンできますが、唯一の欠点は、射程が短く、光の強度が低いことです。</a>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<a>これがオリジナルの D.O.T.S. です。プロジェクター。これは平均的なサイズの光の球を放射する設置可能なプロジェクターですが、近くに立って幽霊が中に入るように促すことができるようになりました。</a><a>小規模から中規模の部屋に最適です。</a>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<a>この設置可能なプロジェクターは、広く広範囲に広がる光線で部屋をはるかに長い範囲でスキャンするため、大きな部屋での幽霊の発見がはるかに簡単になります。最適な範囲を確保するには、このプロジェクターを壁または平らな面に置き、近くに立ってゴーストのシルエットを観察してください。</a>]]></string>
 
-    <string name="shop_equipment_emf_data_info_1"><![CDATA[<p>検出範囲が狭く、精度が低く、音声放射も少ない古いアナログ メーター。レベル 5 の EMF が検出されると、針はオーバードライブ状態になり、レベル 5 を超えます。</p>]]></string>
-    <string name="shop_equipment_emf_data_info_2"><![CDATA[<p>信頼できる K2 メーターには、より広い範囲と、EMF 測定値を検出するための 5 つの LED ライト、および追加のスピーカー モジュールが備わっています。デバイスを起動すると、ライトが 1 つ点灯します。K2 の EMF スポットの検出範囲内を移動すると、2 ～ 5 の正確な値が表示され、クリアで聞こえる音が鳴ります。</p>]]></string>
-    <string name="shop_equipment_emf_data_info_3"><![CDATA[<p>ハイテク パラリーダー。このデバイスは、一度に最大 3 つの EMF スポットを追跡でき、最も遠い検出範囲を備えています。</p><p>各読み取り値の方向、範囲、値が同時に表示されます。EMF 検出ごとに音が鳴るので、遠くからでも測定値の数と強さを聞くことができます。</p><p>EMF スポットが消えていくと、より新しい EMF スポットが一番下に配置されます。リストの一部です。</p>]]></string>
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<a>検出範囲が狭く、精度が低く、音声放射も少ない古いアナログ メーター。レベル 5 の EMF が検出されると、針はオーバードライブ状態になり、レベル 5 を超えます。</a>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>信頼できる K2 メーターには、より広い範囲と、EMF 測定値を検出するための 5 つの LED ライト、および追加のスピーカー モジュールが備わっています。デバイスを起動すると、ライトが 1 つ点灯します。K2 の EMF スポットの検出範囲内を移動すると、2 ～ 5 の正確な値が表示され、クリアで聞こえる音が鳴ります。</a>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>ハイテク パラリーダー。このデバイスは、一度に最大 3 つの EMF スポットを追跡でき、最も遠い検出範囲を備えています。</a><a>各読み取り値の方向、範囲、値が同時に表示されます。EMF 検出ごとに音が鳴るので、遠くからでも測定値の数と強さを聞くことができます。</a><a>EMF スポットが消えていくと、より新しい EMF スポットが一番下に配置されます。リストの一部です。</a>]]></string>
 
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<p>古典的な UV サイリウム。スナップして電源をオンにすると、短距離エリア ライトが投影され、それが約 1 分間続いてから暗くなります。いつでももう一度振って光を再び活性化できます。</p><p>このデバイスは、照射後 10 秒以内に UV スポットを充電します。</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<p>古典的な UV フラッシュライトは、より明るく、より長い範囲の狭いビームを放射し、はるかに速い UV 充電時間を誇ります。</p><p>このデバイスは、露光後 5 秒以内に UV スポットをチャージします。</p>]]></string>
-    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<p>UV ライト プロは、より明るく広い範囲の光の円錐形を備え、充電時間がさらに短い分厚い懐中電灯です。これは、紫外線の証拠を大規模に迅速に特定するのに最適です。<p><p>このデバイスは、紫外線にさらされてから 1.5 秒以内に UV スポットをチャージします。</p>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>古典的な UV サイリウム。スナップして電源をオンにすると、短距離エリア ライトが投影され、それが約 1 分間続いてから暗くなります。いつでももう一度振って光を再び活性化できます。</a><a>このデバイスは、照射後 10 秒以内に UV スポットを充電します。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>古典的な UV フラッシュライトは、より明るく、より長い範囲の狭いビームを放射し、はるかに速い UV 充電時間を誇ります。</a><a>このデバイスは、露光後 5 秒以内に UV スポットをチャージします。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV ライト プロは、より明るく広い範囲の光の円錐形を備え、充電時間がさらに短い分厚い懐中電灯です。これは、紫外線の証拠を大規模に迅速に特定するのに最適です。<a><a>このデバイスは、紫外線にさらされてから 1.5 秒以内に UV スポットをチャージします。</a>]]></string>
 
-    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<p>古い家の温度計。捜査官のリビング ルームの壁から直接剥ぎ取られました。この温度計はサンプルレートが遅いため、正確な測定値を取得するまでに長時間待つ必要があります。持参して、契約の後半でもう一度確認するとよいでしょう。</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<p>従来の温度リーダーの更新バージョンですが、応答性が大幅に向上しました。電源を入れて 2 秒ごとに測定値を取得する代わりに、[使用] ボタンを長押しします。ボタンを押して温度をスキャンします。これにより、Tier I で許可されているよりもはるかに速く、走り回って各部屋の温度を確認できるようになります。</p>]]></string>
-    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<p>Tier II に直接アップグレードし、前世代の 2 倍の速度で温度スキャンを完了します。さらに、このより現代的な温度計は各測定値がより正確であるため、プレイヤーは部屋をすばやく効率的にスキャンして幽霊を見つけたり、「氷点下温度」を取得したりすることができます。日記にチェックが入っています。</p>]]></string>
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>古い家の温度計。捜査官のリビング ルームの壁から直接剥ぎ取られました。この温度計はサンプルレートが遅いため、正確な測定値を取得するまでに長時間待つ必要があります。持参して、契約の後半でもう一度確認するとよいでしょう。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>従来の温度リーダーの更新バージョンですが、応答性が大幅に向上しました。電源を入れて 2 秒ごとに測定値を取得する代わりに、[使用] ボタンを長押しします。ボタンを押して温度をスキャンします。これにより、Tier I で許可されているよりもはるかに速く、走り回って各部屋の温度を確認できるようになります。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<a>Tier II に直接アップグレードし、前世代の 2 倍の速度で温度スキャンを完了します。さらに、このより現代的な温度計は各測定値がより正確であるため、プレイヤーは部屋をすばやく効率的にスキャンして幽霊を見つけたり、「氷点下温度」を取得したりすることができます。日記にチェックが入っています。</a>]]></string>
 
-    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<p>この紙のメモ帳を幽霊の近くに置くと、超常現象の書き込みを促すことができます。アクティビティを目にしたときは、必ず近くに置いてください。小さなメモ帳と鉛筆に気づかない幽霊もいるかもしれないので、何かが起こるまでに時間がかかるかもしれません。<p/>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<p>ページが見やすくなり、ペンも増えたので、幽霊がこの本に気​​づくことが以前のバージョンよりも少し多くなったようです。証拠が得られるまでの待ち時間が少し短くなります。</p>]]></string>
-    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<p>この本は、その大きなプロフィール、高品質の素材、華やかなペンの組み合わせにより、幽霊によって書き込まれる最も大きな変化をもたらします。前の 2 つの層よりも範囲が広いため、この本をゴーストのインタラクション範囲内に配置するのがはるかに簡単です。</p>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<a>この紙のメモ帳を幽霊の近くに置くと、超常現象の書き込みを促すことができます。アクティビティを目にしたときは、必ず近くに置いてください。小さなメモ帳と鉛筆に気づかない幽霊もいるかもしれないので、何かが起こるまでに時間がかかるかもしれません。<p/>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<a>ページが見やすくなり、ペンも増えたので、幽霊がこの本に気​​づくことが以前のバージョンよりも少し多くなったようです。証拠が得られるまでの待ち時間が少し短くなります。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<a>この本は、その大きなプロフィール、高品質の素材、華やかなペンの組み合わせにより、幽霊によって書き込まれる最も大きな変化をもたらします。前の 2 つの層よりも範囲が広いため、この本をゴーストのインタラクション範囲内に配置するのがはるかに簡単です。</a>]]></string>
 
-    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<p>ゴースト ハンティンが使用した古いビデオカメラ旧事務所の屋根裏で発見された配布物。小さくて少し使い古されていますが、問題なく機能します。</p><p>画面の品質が低く、サイズが小さいため、動画フィードの分析は困難です。どうぞお時間ください。</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<p>Parasonic ビデオカメラは、オーブの検索を非常に簡単にする HD ビデオです。依然としてアクティブなゴーストから多くの干渉を受けていますが、Tier 1 よりもはるかに少ないです。</p>]]></string>
-    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<p>Bony が独自に開発した映画グレードのビデオ カメラは、大きな本体を備えており、はるかに大きな画面をサポートしています。より鮮明な動画フィードが特徴で、幽霊による干渉が少なくなります。</p>]]></string>
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<a>ゴースト ハンティンが使用した古いビデオカメラ旧事務所の屋根裏で発見された配布物。小さくて少し使い古されていますが、問題なく機能します。</a><a>画面の品質が低く、サイズが小さいため、動画フィードの分析は困難です。どうぞお時間ください。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<a>Parasonic ビデオカメラは、オーブの検索を非常に簡単にする HD ビデオです。依然としてアクティブなゴーストから多くの干渉を受けていますが、Tier 1 よりもはるかに少ないです。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<a>Bony が独自に開発した映画グレードのビデオ カメラは、大きな本体を備えており、はるかに大きな画面をサポートしています。より鮮明な動画フィードが特徴で、幽霊による干渉が少なくなります。</a>]]></string>
 
 
-    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<p>このスピリット ボックスをオンにすると、さまざまな無線周波数のスキャンが開始されます。超常現象の近くに立って、その部屋の照明をすべて消し、返答を期待していくつかの質問をしてください。</p><p>質問が聞こえた場合は、画面の赤いライトが点滅します。スピリットボックス。白く点滅した場合は、幽霊からの応答があります。</p><p>「どこにいるの？」と聞いてみてください。またはフレンドリーですか?受け取った回答が気に入らない可能性があることに注意してください。</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<p>このより現代的なスピリット ボックスには高品質のスピーカーが搭載されており、周波数をより効率的にスキャンできるため、超常現象の応答を解読しやすくなります。</p><p>質問が聞こえた場合は、黒い &amp;#39 が表示されます。 ;X\'画面上で が点滅します。応答を受け取ると、代わりに小さなゴーストアイコンが点滅します。</p>]]></string>
-    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<p>このスピリット ボックスをオンにすると、両方の周波数を 2 つ同時にスキャンし、質問したときに超常現象の反応を拾う可能性が高まります。また、インタラクション間で聞こえる雑音の量を減らすためのフィルタも組み込まれています。</p><p>質問が聞こえて応答がなかった場合、RESPONSE LED が赤く点滅します。応答があると、音に合わせて LED が白く点滅します。</p>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<a>このスピリット ボックスをオンにすると、さまざまな無線周波数のスキャンが開始されます。超常現象の近くに立って、その部屋の照明をすべて消し、返答を期待していくつかの質問をしてください。</a><a>質問が聞こえた場合は、画面の赤いライトが点滅します。スピリットボックス。白く点滅した場合は、幽霊からの応答があります。</a><a>「どこにいるの？」と聞いてみてください。またはフレンドリーですか?受け取った回答が気に入らない可能性があることに注意してください。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<a>このより現代的なスピリット ボックスには高品質のスピーカーが搭載されており、周波数をより効率的にスキャンできるため、超常現象の応答を解読しやすくなります。</a><a>質問が聞こえた場合は、黒い &amp;#39 が表示されます。 ;X\'画面上で が点滅します。応答を受け取ると、代わりに小さなゴーストアイコンが点滅します。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<a>このスピリット ボックスをオンにすると、両方の周波数を 2 つ同時にスキャンし、質問したときに超常現象の反応を拾う可能性が高まります。また、インタラクション間で聞こえる雑音の量を減らすためのフィルタも組み込まれています。</a><a>質問が聞こえて応答がなかった場合、RESPONSE LED が赤く点滅します。応答があると、音に合わせて LED が白く点滅します。</a>]]></string>
 
 
     <!-- Ghost information Popup Labels -->
@@ -407,4 +408,242 @@
     <string name="ghost_huntingdata_yurei"><![CDATA[<p>50 \% Sアニティで狩り。</p>]]></string>
     <string name="equipment_section_equipment">装置</string>
 
+
+    <!-- Equipment -->
+
+    <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>レトロな金属製の懐中電灯。少量の光を提供します。移動するには十分です。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>この懐中電灯は、より明るい光線を発します。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>この懐中電灯は、より広い円錐状の光を投影するため、広い部屋やオープンスペースに最適です。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>このカメラを使用して、見つけた証拠の写真を撮ることができます。ゴーストの邪魔になるのは写真撮影時だけなので、写真を撮るときは注意してください。</a><a>写真の撮影方法の詳細については、「写真」をご覧ください。ジャーナルのセクションをご覧ください。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>このデジタル写真カメラを使用すると、前の階層よりもはるかに速く証拠や超常現象の写真を撮ることができます。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>この最高級のカメラは、写真間の遅延時間が最小限であるため、迅速な証拠収集が可能です。</a><a>さらに、干渉を引き起こす超常現象の影響を受けにくいように変更されています。症状発現中に画面を表示します。</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>これらのマッチは、ファイアライトやお香に火をつけるのに最適ですが、10 回しか使用しないとすぐになくなってしまうので注意してください。</a><a>小さな光源としても使用できます。指を火傷しないように注意してください。</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>ガスライター。マッチよりも少しだけ光が多く、長持ちします。</a><a>使用すると中の液体が減っていくのがわかります。いざというときは、十分な量が残っていることを確認してください。</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>このライターは、無駄にしない限り、契約期間中ずっと使い続けることができます。</a><a>炎が大きいほど、光の範囲も明るくなり、完璧です。攻撃中の暗い休暇に。</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>この小さなキャンドルは明かりを灯し、正気度の低下を防ぐ効果がありますが、ほんのしばらくの間だけであり、ワックスはすぐに燃え尽きてしまいます。</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>キャンドルが 1 つではなく 3 つあるため、提供される光ははるかに明るく、範囲が長く、持続時間も長くなります。</a><a>さらに、このファイアライトは効果を得るために保持する必要がないため、それを置いて近くに立っても、正気度の恩恵を受けることができます。</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>このランタンは契約期間中持続するため、最も必要なときに切れてしまう心配はありません。前作と同様に、近くに立って効果を得ることができます。</a><a>最後に、防水なので雨の中でも使えます。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>この十字架は、幽霊が一度も攻撃を仕掛けてくるのを防ぐために、手に持ったり置いたりすることができます。</a><a>見つけたアクティビティの近くに必ず置いてください。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>より広い範囲で 2 回の攻撃をブロックできる金属製の十字架。</a><a>あらゆる活動に遭遇した場合は必ず近くに置いてください。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>この十字架は、以前のバージョンよりもさらに広い範囲をカバーします。さらに、未使用の十字架は呪いの狩りを防ぐことができ、両方の用途を消費します。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>この容器を持ったまま、幽霊を追跡できるように床に塩の山を置きます。反応が得られる可能性を最も高めるために、出入り口や廊下や部屋の曲がり角の近くに置くことをおすすめします。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>この大型の容器には、以前の容器よりも多くの塩が入っているため、長い線の塩を配置して広い通路を簡単に塞ぐことができます。</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>この塩は非常に強力で、ゴーストの機動性に 2 つの方法で影響を与える可能性があります。</a><a>ゴーストが受動的に行動している間、これらの線はバリアのように機能し、ゴーストを強制的に方向転換させます。 1 つに入るとき。徘徊する幽霊を部屋に閉じ込めて証拠を見つけるのに最適です。</a><a>攻撃中の場合は、ゴーストの動きが遅くなり、脱出するまでの時間が長くなります。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>任意のイグナイターでお香に火をつけて、ゴーストが狩りを始めるのを長時間阻止できます。さらに、狩り中にゴーストの近くでそれを使用すると、数秒間方向感覚を失わせることができます。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>このお香の束の作成には、はるかに多くのセージが使用されているため、燃焼時間が長くなり、攻撃中により長く安全を保つことができます。</a><a>さらに、幽霊の動きを部分的に遅くします。効果の持続時間。</a>]]></string>
+    <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>範囲がはるかに広く、燃焼時間が長いため、ゴーストが攻撃されたときにより安全に撃退できます。ゴーストは最初に撃退されると気絶して、短時間動きを停止します。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>ビデオカメラをこの三脚の上に置いて取り付けます。その後、三脚を持ち運んで、超常現象を観察するのに適した表面がないと思われる場所に置きます。</a><a>設置したカメラに幽霊が邪魔をして、カメラをひっくり返そうとする可能性があります。必ずリセットしてください。床に押しつけられると起き上がります。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>この三脚は回転モーターを搭載してアップグレードされました。トラックからビデオカメラのビューを見ながら、画面上のコントロールを使用して三脚モーターを回転させ、新しい角度を得ることができます。</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>以前のバージョンと同様、この三脚もより頑丈になっている点以外は似ていますが、厄介な幽霊にひっくり返される頻度は大幅に減ります。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>このモーション センサーを壁や床に設置すると、目に見えないものであっても、その前で何かが動くとセンサーが点滅します。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>2 つの異なるモード、長距離、サウンド インジケーターを備えたこのセンサーは、超常現象の追跡に最適です。</a><a>設置後にセンサーを操作することで、レーザーの形状を切り替えることができます。{ /3}</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>このモーション センシング カメラを、幽霊の動きを見つけた近くの床に置きます。有効にすると、ゴーストが検出範囲に出入りするたびに回転して明るいライトが点滅します。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>これらのサウンド センサーを、音声インタラクションを追跡したい場所に配置します。</a><a>配置したら、トラックに戻り、サウンド センサー画面をチェックしながらリモート再生を聞くことができます。いずれかのセンサーが測定値を受信します。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>このサウンド センサーは 3 つの異なるサイズ設定を備え、トラックのサウンド センサー画面にあるサイズ ボタンで切り替えられるように改良されました。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>三脚には回転ジョイントが付いており、これを操作してサウンド センサーの形状を変更できます。</a><a>各形状は、マイクが向いている方向によって表されます。</a><a>前方: 円錐 / 外側: 側面 / 内側: 球体</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>このビンテージ スネーク オイルのボトルを飲むと、正気の一部が回復します。復元が完了するまでに数秒かかります。復元される量はプレイしている難易度によって異なります。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>これらの薬を服用すると、正気度がより早く回復します。いくつかのポットを摂取すると、持続時間中に回復する正気度の量を増やすことができます。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>このアドレナリン ショットは、前の 2 つのバージョンよりもはるかに早く正気度を回復します。さらに、効果の持続時間全体にわたってスプリント スタミナを失うことはありません。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>パラボラ マイクと付属のヘッドフォンを使用すると、マイクの向きに応じて、通常より遠くの音を聞くことができます。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>このパラボラ マイクは、より優れたセンサーと小さな画面といういくつかのアップグレードによって改良されました。</a><a>これをオンにすると、遠くの音を聞くことができるようになり、視覚的にも確認できるようになります。その音の大きさを読み取ります。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>このパラボラ マイクは、視覚的なサウンド インジケーターを備えて改良されました。</a><a>マイクの範囲内で音が検出されるたびに、距離や距離などの視覚的なインジケーターが画面に表示されます。音量を調整できるため、音がどこから聞こえているかを簡単に追跡できます。</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>この小型カメラを頭に装着すると、チームメイトはトラックの安全な場所からあなたの視界をライブビデオフィードで見ることができ、マルチタスクをしたり見逃しそうなものを捉えるのに最適です。</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>在庫スロットを占有しない小型のヘッドマウント型懐中電灯。唯一の欠点は、ライトが明るすぎず、幅が広すぎないことです。</a><a>特殊キーバインドを長押しすると、ライトのオンとオフを切り替えることができます。</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>暗視ゴーグル。懐中電灯を使わずに暗闇でも見ることができます。</a><a>ただし、アクティブなゴーストの範囲内にいると視界が歪み、視界が歪む可能性があることに注意してください。ゴーグルは役に立ちません。</a>]]></string>
+
+    <!--
+          Flavor Text
+      -->
+    <string name="shop_equipment_dots_data_flavortext_1"><![CDATA[<a>小さな光線を環境に投影する小型のレーザー ペン。</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_2"><![CDATA[<a>この赤外線モーション センサーは、光を投影するために大幅に調整されました。小さくてコンパクトなので、ほとんどの表面に貼り付けることができます。</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_3"><![CDATA[<a>広範囲に光を照射する 3 つのレンズを備えた電動プロジェクター。</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_1"><![CDATA[<a>空中のさまざまな干渉をチェックするためのいくつかのモードを備えた EMF メーター。残念なことに、これは古く、そのうちの 1 つだけが機能します。幸いなことに、それは超常現象の読み取りに必要なものです。</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_2"><![CDATA[<a>信頼できる K2 は世界中の超常現象研究者によって使用され、一貫した結果が得られています。</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_3"><![CDATA[<a>Ghost Huntin のカスタムメイド デバイス分布。大画面に EMF 値を表示するだけでなく、さまざまな機能が備わっています。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_1"><![CDATA[<a>何世代にもわたって受け継がれてきたものですが、その動作が堅固であることに私たちは驚きます。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_2"><![CDATA[<a>コンパクトで軽量で、より戦術的なグリップを実現する戻るボタンを備えています。</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_3"><![CDATA[<a>はるかに大きな懐中電灯で、持ち運び用のハンドルも付いています。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_1"><![CDATA[<a>古いポルテロイド カメラ、少し埃っぽくて傷もついていました。次の写真を撮影する前に、写真が印刷されるまで待つ必要があります。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_2"><![CDATA[<a>Bony GhostShot は、暗闇で慌てて心霊写真を撮るのに最適な、コンパクトで使いやすいデジタル カメラです。</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_3"><![CDATA[<a>Bony の最高の一眼レフ カメラの 1 つで、より広いレンズ、より高画質、迅速な処理能力を備えています。</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_1"><![CDATA[<a>ゴースト ハンティン\'ディストリビューション独自のマッチ箱には、マスコットとして不気味な小さな幽霊が付いています。かわいいですね！</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_2"><![CDATA[<a>DiK ライター。小さくてコンパクトで便利です。</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_3"><![CDATA[<a>ジッピー ライターは発売以来、軍の必需品であり、現在では幽霊捜査官。</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>小さなキャンドルを支える古くて錆びたキャンドル ホルダー。他に明かりがなければ、十分長持ちすることを願っています。火をつけるものを忘れないでください。</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>背の高いろうそくが 3 本取り付けられた燭台。華やかな金属と高品質のキャンドルワックスにより、より信頼性の高い正気度セーバーが実現します。</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>古く見えるかもしれませんが、このガソリン燃料のランタンは、私たちが見つけた中で最も信頼性の高い焚き火台で、何時間も使い続けることができます。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>蛍光染料を混ぜた透明な油状の液体で満たされた小さなサイリウム。スティックをスナップすると反応が起こり、周囲が明るい色で照らされます。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>便利なベルト クリップが付いた戦術的な小型 UV フラッシュライト。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>UV Light Pro 懐中電灯には、約 80 個の個別の電球が搭載されており、広い範囲を光で照らします。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>2 つの木片をつなぎ合わせただけです。この形状だけでも、いくつかの超常現象を防ぐのに十分であるようです。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>木材から鋳鉄にアップグレードされたこのクロスは、より信頼性の高い防御を提供します。</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_3"><![CDATA[<a>この華麗な十字架は金と銀の裏地で飾られています。これらの複雑なデザインは、異世界の存在に対する防御力を高めることが証明されています。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_1"><![CDATA[<a>古いオフィスの箱の中に古いビデオカメラがたくさん入っているのを見つけました。うまく機能すればいいのですが。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_2"><![CDATA[<a>Parasonic は、すべての Bony ビデオカメラを置き換えることを期待してこのビデオカメラをリリースしましたが、ほぼ機能しているようです。</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>ボニーは、ゴースト ハンター専用に改造された最先端のカメラを携えて帰ってきました。これは素晴らしいムービーカメラにもなるでしょう。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>古い FM/AM ラジオ。小さくてコンパクトですが、スピーカーの品質は最高ではありません。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>P-SB7T スピリット ボックスは、未知との会話専用に作られています。バックライト付き画面は、暗闇での調査に役立ちます。</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>SB11-Z ははるかに大きなスピリット ボックスで、2 つの周波数チャネルを同時にスキャンできます。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>ビンテージの壁用温度計。通常は壁に掛けて一年中室温を測定するために使用されます。持ち運んでも問題なく使えます。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>この赤外線温度計は通常、医療専門家が体温を素早く測定するために使用していますが、いざというときに素早く測定するのに最適です。ただ古いだけかもしれませんが、測定値は若干不正確なようです。</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>より現代的で、より技術的で、より正確です。これには勝てません。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_1"><![CDATA[<a>ゴースト ハンティン\'販売会社独自のブランドのソルトは、おそらく最高の味ではありませんが、幽霊には最適です。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_2"><![CDATA[<a>細かく粉砕したピンク色のヒマラヤ塩は、厄介な足跡を明らかにするのに最適であることがわかりました。</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_3"><![CDATA[<a>祝福された黒塩のガラス瓶。浄化効果を高めるために他のミネラルと組み合わされています。見た目もキラキラしてさらに可愛くなりました！</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_1"><![CDATA[<a>ブラック セージの小さな束。葉はほとんどすべて落ちてしまったようですが、まだ使えるといいですね。</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_2"><![CDATA[<a>ホワイト セージの大きな束。火をつけるとコンパクトで効率よく燃えるよう、紐できちんと結ばれています。甘くて苦い香りがします。</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_3"><![CDATA[<a>超常現象を防ぐために特別に設計されたカスタム混合物が満たされた神聖な香炉。点火時にこれを振ると、抑止用の煙が大量に放出されます。</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_1"><![CDATA[<a>安くて陽気、まさに自立するほどです。倒れないように気をつけてください。</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_2"><![CDATA[<a>はるかにモダンで、清潔で、頑丈です。電子モーターも取り付けられています。</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_3"><![CDATA[<a>強化された金属製の脚は伸縮可能な脚で、大型のプロフィール カメラを持ち運ぶのに最適です。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>以前は野生動物カメラであったこのセンサーは、前を移動する超常現象を追跡するように改良されました。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>以前のバージョンを修正して学んだことから、超常現象追跡のニーズに合わせてより高度なカメラを改良することができました。</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>解体して一から再構築し、超常現象の領域への視野を与えたセキュリティ カメラ。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>ミニ三脚に取り付けられた小型マイク。安価で効率的です。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>2 つの高品質マイクがカスタム製の三脚マウントに取り付けられています。彼らはこれを作成するために余分な時間とお金を費やしました。</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>小型の受信機に高価なショットガン マイクが取り付けられており、高品質の音声ストリームがトラックに戻されます。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1"><![CDATA[<a>この Insane Away の公式がどれほど安全であるかはわかりませんが、パニックに陥った幽霊狩りのセッション中には役立つようです。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_2"><![CDATA[<a>はるかに規制の厳しい大量生産製品。ゴーストハンティン配給会社はこの件に関して何人かの専門家を雇ったに違いありません。</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_3"><![CDATA[<a>世界中の専門家によって作成された新しいフォーミュラが、少量の注射剤にきちんと含まれています。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1"><![CDATA[<a>これは世界で最も魅力的なものではないかもしれませんが、仕事は完了します。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2"><![CDATA[<a>羊皮紙のページは革製のケースで保護されています。外側にロープを結んで、秘密をさらに安全に保ちます。</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3"><![CDATA[<a>たくさんの歴史があると思われる魔導書。金属のアクセントがこの重い本をよりエレガントにしています。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_1"><![CDATA[<a>8X21 の放物線状マイクは、裸耳で聞こえるよりもはるかに遠くまで音を増幅できます。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2"><![CDATA[<a>アップグレードされ、改良されたこの放物線マイクは、超常現象の会話を聞くのに最適です。</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3"><![CDATA[<a>カスタムメイドのインターフェースを備えた画面を備えた高品質のマイク。</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_1"><![CDATA[<a>ヘッド ストラップのセットに取り付けられた GhostPro カメラ。あまりファッショナブルではありませんが、便利です。</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_2"><![CDATA[<a>ストラップはより強力になり、カメラは小型の LED フラッシュライトに置き換えられました。</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_3"><![CDATA[<a>軍で使用されているこのゴーグルを使用すると、肉眼では見えないものを見ることができます。</a>]]></string>
+
+    <string name="shop_equipment_attribute_spotight_narrow" >スポットライト: 狭い</string>
+    <string name="shop_equipment_attribute_spotight_wide" >スポットライト: ワイド</string>
+    <string name="shop_equipment_attribute_spotight_area" >エリア ライト</string>
+
+    <string name="shop_equipment_attribute_intensity_low" >強度: 低</string>
+    <string name="shop_equipment_attribute_intensity_med" >強度: 中</string>
+    <string name="shop_equipment_attribute_intensity_high" >強度: 高</string>
+
+    <string name="shop_equipment_attribute_interactionrate_low" >インタラクション率: 低</string>
+    <string name="shop_equipment_attribute_interactionrate_med" >インタラクション率: 中</string>
+    <string name="shop_equipment_attribute_interactionrate_high" >インタラクション率: 高</string>
+
+    <string name="shop_equipment_attribute_audioquality_low" >音質: 低</string>
+    <string name="shop_equipment_attribute_audioquality_med" >音質: 中</string>
+    <string name="shop_equipment_attribute_audioquality_high" >音質: 高</string>
+
+    <string name="shop_equipment_attribute_responserate_low" >応答率: 低</string>
+    <string name="shop_equipment_attribute_responserate_med" >応答率: 中</string>
+    <string name="shop_equipment_attribute_responserate_high" >応答率: 高</string>
+
+    <string name="shop_equipment_attribute_samplespeed_low" >サンプル速度: 低</string>
+    <string name="shop_equipment_attribute_samplespeed_med" >サンプル速度: 中</string>
+    <string name="shop_equipment_attribute_samplespeed_high" >サンプル速度: 高</string>
+
+    <string name="shop_equipment_attribute_imagequality_low" >画像品質: 低</string>
+    <string name="shop_equipment_attribute_imagequality_med" >画質: 中</string>
+    <string name="shop_equipment_attribute_imagequality_high" >画像品質: 高</string>
+
+    <string name="shop_equipment_attribute_interference_low" >超常的な干渉: 低</string>
+    <string name="shop_equipment_attribute_interference_med" >超常的な干渉: 中</string>
+    <string name="shop_equipment_attribute_interference_high" >超常干渉: 高</string>
+
+    <string name="shop_equipment_attribute_knockdownchance_low" >ノックダウンの可能性: 低</string>
+    <string name="shop_equipment_attribute_knockdownchance_med" >ノックダウンの可能性: 中</string>
+    <string name="shop_equipment_attribute_knockdownchance_high" >ノックダウンの可能性: 高</string>
+
+    <string name="shop_equipment_attribute_accuracy_low" >精度: 低</string>
+    <string name="shop_equipment_attribute_accuracy_med" >精度: 中</string>
+    <string name="shop_equipment_attribute_accuracy_high" >精度: 高</string>
+
+    <string name="shop_equipment_attribute_indicator_audio" >オーディオ インジケータ</string>
+    <string name="shop_equipment_attribute_indicator_light" >ライト インジケータ</string>
+    <string name="shop_equipment_attribute_indicator_distance" >距離インジケーター</string>
+    <string name="shop_equipment_attribute_indicator_directional" >方向インジケーター</string>
+
+    <string name="shop_equipment_attribute_range_1_7" >範囲 (M): 1.7</string>
+    <string name="shop_equipment_attribute_range_2" >範囲 (M): 2</string>
+    <string name="shop_equipment_attribute_range_2_5" >範囲 (M): 2.5</string>
+    <string name="shop_equipment_attribute_range_3" >範囲 (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5" >範囲 (M): 3.5</string>
+    <string name="shop_equipment_attribute_range_4" >範囲 (M): 4</string>
+    <string name="shop_equipment_attribute_range_5" >範囲 (M): 5</string>
+    <string name="shop_equipment_attribute_range_7" >範囲 (M): 7</string>
+    <string name="shop_equipment_attribute_range_20" >範囲 (M): 20</string>
+    <string name="shop_equipment_attribute_range_30" >範囲 (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10" >範囲 (M): 5、10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >範囲 (M): 5、10、15</string>
+
+    <string name="shop_equipment_attribute_uvchargetime_1_5" >UV チャージ時間: 1.5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5" >UV チャージ時間: 5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10" >UV チャージ時間: 10</string>
+
+    <string name="shop_equipment_attribute_phototime_low" >写真間の時間: 短い</string>
+    <string name="shop_equipment_attribute_phototime_med" >写真間の時間: 中</string>
+    <string name="shop_equipment_attribute_phototime_high" >写真間の時間: 高</string>
+
+    <string name="shop_equipment_attribute_sanitydrainreduction_33" >正気度消耗減少 (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50" >正気度消耗減少 (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66" >正気度消耗減少 (%): 66</string>
+
+    <string name="shop_equipment_attribute_sanityrestoration_10" >正気度回復睡眠(S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >正気度回復睡眠(S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >正気度回復睡眠(S): 30</string>
+
+    <string name="shop_equipment_attribute_sensorshape_line" >センサー形状: ライン</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone" >センサー形状: コーン</string>
+    <string name="shop_equipment_attribute_sensorshape_circle" >センサーの形状: 円</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >センサーの形状: 円形、円錐形、側面</string>
+
+    <string name="shop_equipment_attribute_duration_3_s" >持続時間 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >持続時間 (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >持続時間 (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >持続時間 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >持続時間 (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >持続時間 (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >期間 (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >期間 (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >期間 (M): 10</string>
+
+    <string name="shop_equipment_attribute_uses_1" >使用数: 1</string>
+    <string name="shop_equipment_attribute_uses_2" >使用数: 2</string>
+    <string name="shop_equipment_attribute_uses_3" >使用数: 3</string>
+    <string name="shop_equipment_attribute_uses_10" >使用数: 10</string>
+
+    <string name="shop_equipment_attribute_placeable" >配置可能</string>
+    <string name="shop_equipment_attribute_handheld" >ハンドヘルド</string>
+
+    <string name="shop_equipment_attribute_property_ghosteffect_slows" >狩り中のゴーストの速度を低下させる</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts" >狩り中にゴーストを停止する</string>
+
+    <string name="shop_equipment_attribute_property_displayscreen" >表示画面</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt" >呪われた狩りを 1 回防ぐ</string>
+    <string name="shop_equipment_attribute_property_electronic" >電子</string>
+    <string name="shop_equipment_attribute_property_consumable" >消耗品</string>
+    <string name="shop_equipment_attribute_property_waterproof" >防水</string>
+    <string name="shop_equipment_attribute_property_headslot" >ヘッド スロット</string>
+    <string name="shop_equipment_attribute_property_nightvision" >ナイトビジョン</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >スプリント ブースト (S): 10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol" >回転制御</string>
+    <string name="shop_equipment_attribute_property_scanning" >スキャン</string>
+
+    <string name="equipment_info_name_dots">D.O.T.S.プロジェクター</string>
+    <string name="equipment_info_name_emf">EMF リーダー</string>
+    <string name="equipment_info_name_flashlight">懐中電灯</string>
+    <string name="equipment_info_name_photocamera">写真カメラ</string>
+    <string name="equipment_info_name_igniter">イグナイター</string>
+    <string name="equipment_info_name_firelight">ファイアライト</string>
+    <string name="equipment_info_name_uvlight">UV ライト</string>
+    <string name="equipment_info_name_crucifix">十字架</string>
+    <string name="equipment_info_name_videocamera">ビデオカメラ</string>
+    <string name="equipment_info_name_spiritbox">スピリットボックス</string>
+    <string name="equipment_info_name_thermometer">温度計</string>
+    <string name="equipment_info_name_salt">塩</string>
+    <string name="equipment_info_name_incense">お香</string>
+    <string name="equipment_info_name_tripod">三脚</string>
+    <string name="equipment_info_name_motionsensor">モーションセンサー</string>
+    <string name="equipment_info_name_soundsensor">サウンドセンサー</string>
+    <string name="equipment_info_name_sanitymedication">正気の薬</string>
+    <string name="equipment_info_name_ghostwritingbook">ゴーストライティングブック</string>
+    <string name="equipment_info_name_parabolicmicrophone">パラボリック マイク</string>
+    <string name="equipment_info_name_headgear">ヘッドギア</string>
 </resources>

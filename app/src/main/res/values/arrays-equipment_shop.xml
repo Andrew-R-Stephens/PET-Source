@@ -37,6 +37,9 @@
         <item>@array/shop_equipment_dots_data_flavortext</item>
         <item>@array/shop_equipment_dots_data_info</item>
         <item>@array/shop_equipment_dots_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_dots</item>
+        <item>@array/shop_equipment_dots_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_dots</item>
     </integer-array>
     <integer-array name="shop_equipment_emf" >
         <item>@string/equipment_info_name_emf</item>
@@ -45,6 +48,9 @@
         <item>@array/shop_equipment_emf_data_flavortext</item>
         <item>@array/shop_equipment_emf_data_info</item>
         <item>@array/shop_equipment_emf_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_emf</item>
+        <item>@array/shop_equipment_emf_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_emf</item>
     </integer-array>
     <integer-array name="shop_equipment_flashlight" >
         <item>@string/equipment_info_name_flashlight</item>
@@ -53,6 +59,9 @@
         <item>@array/shop_equipment_flashlight_data_flavortext</item>
         <item>@array/shop_equipment_flashlight_data_info</item>
         <item>@array/shop_equipment_flashlight_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_flashlight</item>
+        <item>@array/shop_equipment_flashlight_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_flashlight</item>
     </integer-array>
     <integer-array name="shop_equipment_photocamera" >
         <item>@string/equipment_info_name_photocamera</item>
@@ -61,6 +70,9 @@
         <item>@array/shop_equipment_photocamera_data_flavortext</item>
         <item>@array/shop_equipment_photocamera_data_info</item>
         <item>@array/shop_equipment_photocamera_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_photocamera</item>
+        <item>@array/shop_equipment_photocamera_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_photocamera</item>
     </integer-array>
     <integer-array name="shop_equipment_igniter" >
         <item>@string/equipment_info_name_igniter</item>
@@ -69,6 +81,9 @@
         <item>@array/shop_equipment_igniter_data_flavortext</item>
         <item>@array/shop_equipment_igniter_data_info</item>
         <item>@array/shop_equipment_igniter_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_igniter</item>
+        <item>@array/shop_equipment_igniter_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_igniter</item>
     </integer-array>
     <integer-array name="shop_equipment_firelight" >
         <item>@string/equipment_info_name_firelight</item>
@@ -77,6 +92,9 @@
         <item>@array/shop_equipment_firelight_data_flavortext</item>
         <item>@array/shop_equipment_firelight_data_info</item>
         <item>@array/shop_equipment_firelight_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_firelight</item>
+        <item>@array/shop_equipment_firelight_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_firelight</item>
     </integer-array>
     <integer-array name="shop_equipment_uvlight" >
         <item>@string/equipment_info_name_uvlight</item>
@@ -85,6 +103,9 @@
         <item>@array/shop_equipment_uvlight_data_flavortext</item>
         <item>@array/shop_equipment_uvlight_data_info</item>
         <item>@array/shop_equipment_uvlight_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_ultraviolet</item>
+        <item>@array/shop_equipment_ultraviolet_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_ultraviolet</item>
     </integer-array>
     <integer-array name="shop_equipment_crucifix" >
         <item>@string/equipment_info_name_crucifix</item>
@@ -93,6 +114,9 @@
         <item>@array/shop_equipment_crucifix_data_flavortext</item>
         <item>@array/shop_equipment_crucifix_data_info</item>
         <item>@array/shop_equipment_crucifix_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_crucifix</item>
+        <item>@array/shop_equipment_crucifix_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_crucifix</item>
     </integer-array>
     <integer-array name="shop_equipment_videocamera" >
         <item>@string/equipment_info_name_videocamera</item>
@@ -101,6 +125,9 @@
         <item>@array/shop_equipment_videocamera_data_flavortext</item>
         <item>@array/shop_equipment_videocamera_data_info</item>
         <item>@array/shop_equipment_videocamera_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_vcam</item>
+        <item>@array/shop_equipment_vcam_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_vcam</item>
     </integer-array>
     <integer-array name="shop_equipment_spiritbox" >
         <item>@string/equipment_info_name_spiritbox</item>
@@ -109,6 +136,9 @@
         <item>@array/shop_equipment_spiritbox_data_flavortext</item>
         <item>@array/shop_equipment_spiritbox_data_info</item>
         <item>@array/shop_equipment_spiritbox_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_box</item>
+        <item>@array/shop_equipment_box_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_box</item>
     </integer-array>
     <integer-array name="shop_equipment_thermometer" >
         <item>@string/equipment_info_name_thermometer</item>
@@ -117,6 +147,9 @@
         <item>@array/shop_equipment_thermometer_data_flavortext</item>
         <item>@array/shop_equipment_thermometer_data_info</item>
         <item>@array/shop_equipment_thermometer_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_thermometer</item>
+        <item>@array/shop_equipment_thermometer_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_thermometer</item>
     </integer-array>
     <integer-array name="shop_equipment_salt" >
         <item>@string/equipment_info_name_salt</item>
@@ -125,6 +158,9 @@
         <item>@array/shop_equipment_salt_data_flavortext</item>
         <item>@array/shop_equipment_salt_data_info</item>
         <item>@array/shop_equipment_salt_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_salt</item>
+        <item>@array/shop_equipment_salt_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_salt</item>
     </integer-array>
     <integer-array name="shop_equipment_incense" >
         <item>@string/equipment_info_name_incense </item>
@@ -133,6 +169,9 @@
         <item>@array/shop_equipment_incense_data_flavortext</item>
         <item>@array/shop_equipment_incense_data_info</item>
         <item>@array/shop_equipment_incense_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_incense</item>
+        <item>@array/shop_equipment_incense_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_incense</item>
     </integer-array>
     <integer-array name="shop_equipment_tripod" >
         <item>@string/equipment_info_name_tripod</item>
@@ -141,6 +180,9 @@
         <item>@array/shop_equipment_tripod_data_flavortext</item>
         <item>@array/shop_equipment_tripod_data_info</item>
         <item>@array/shop_equipment_tripod_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_motionsensor</item>
+        <item>@array/shop_equipment_motionsensor_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_motionsensor</item>
     </integer-array>
     <integer-array name="shop_equipment_motionsensor" >
         <item>@string/equipment_info_name_motionsensor</item>
@@ -149,6 +191,9 @@
         <item>@array/shop_equipment_motionsensor_data_flavortext</item>
         <item>@array/shop_equipment_motionsensor_data_info</item>
         <item>@array/shop_equipment_motionsensor_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_motionsensor</item>
+        <item>@array/shop_equipment_motionsensor_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_motionsensor</item>
     </integer-array>
     <integer-array name="shop_equipment_soundsensor" >
         <item>@string/equipment_info_name_soundsensor</item>
@@ -157,6 +202,9 @@
         <item>@array/shop_equipment_soundsensor_data_flavortext</item>
         <item>@array/shop_equipment_soundsensor_data_info</item>
         <item>@array/shop_equipment_soundsensor_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_soundsensor</item>
+        <item>@array/shop_equipment_soundsensor_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_soundsensor</item>
     </integer-array>
     <integer-array name="shop_equipment_sanitymedication" >
         <item>@string/equipment_info_name_sanitymedication</item>
@@ -165,6 +213,9 @@
         <item>@array/shop_equipment_sanitymedication_data_flavortext</item>
         <item>@array/shop_equipment_sanitymedication_data_info</item>
         <item>@array/shop_equipment_sanitymedication_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_sanitymedication</item>
+        <item>@array/shop_equipment_sanitymedication_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_sanitymedication</item>
     </integer-array>
     <integer-array name="shop_equipment_ghostwritingbook" >
         <item>@string/equipment_info_name_ghostwritingbook</item>
@@ -173,6 +224,9 @@
         <item>@array/shop_equipment_ghostwritingbook_data_flavortext</item>
         <item>@array/shop_equipment_ghostwritingbook_data_info</item>
         <item>@array/shop_equipment_ghostwritingbook_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_book</item>
+        <item>@array/shop_equipment_book_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_book</item>
     </integer-array>
     <integer-array name="shop_equipment_parabolicmicrophone" >
         <item>@string/equipment_info_name_parabolicmicrophone</item>
@@ -181,6 +235,9 @@
         <item>@array/shop_equipment_parabolicmicrophone_data_flavortext</item>
         <item>@array/shop_equipment_parabolicmicrophone_data_info</item>
         <item>@array/shop_equipment_parabolicmicrophone_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_parabolicmicrophone</item>
+        <item>@array/shop_equipment_parabolicmicrophone_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_parabolicmicrophone</item>
     </integer-array>
     <integer-array name="shop_equipment_headgear" >
         <item>@string/equipment_info_name_headgear</item>
@@ -189,6 +246,9 @@
         <item>@array/shop_equipment_headgear_data_flavortext</item>
         <item>@array/shop_equipment_headgear_data_info</item>
         <item>@array/shop_equipment_headgear_data_attributes</item>
+        <item>@integer/equipment_requirement_buycost_headgear</item>
+        <item>@array/shop_equipment_headgear_data_requirement_level</item>
+        <item>@array/equipment_requirement_upgradecost_headgear</item>
     </integer-array>
 
     <!--
@@ -608,7 +668,7 @@
     </integer-array>
     
     <!-- 
-        Attributes 1
+        Attributes Positive and Negative
     -->
     <integer-array name="shop_equipment_dots_data_attributes_1">
         <item>@array/shop_equipment_dots_data_attributes_positive_1</item>
@@ -1372,5 +1432,250 @@
         <item>@string/shop_equipment_attribute_interference_med</item>
         <item>@string/shop_equipment_attribute_property_electronic</item>
     </string-array>
+
+
+    <!-- Evidence Tier Level Requirements -->
+    <integer-array name="shop_equipment_dots_data_requirement_level">
+        <item>@integer/equipment_requirement_level_dots_1</item>
+        <item>@integer/equipment_requirement_level_dots_2</item>
+        <item>@integer/equipment_requirement_level_dots_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_emf_data_requirement_level">
+        <item>@integer/equipment_requirement_level_emf_1</item>
+        <item>@integer/equipment_requirement_level_emf_2</item>
+        <item>@integer/equipment_requirement_level_emf_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_ultraviolet_data_requirement_level">
+        <item>@integer/equipment_requirement_level_ultraviolet_1</item>
+        <item>@integer/equipment_requirement_level_ultraviolet_2</item>
+        <item>@integer/equipment_requirement_level_ultraviolet_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_thermometer_data_requirement_level">
+        <item>@integer/equipment_requirement_level_thermometer_1</item>
+        <item>@integer/equipment_requirement_level_thermometer_2</item>
+        <item>@integer/equipment_requirement_level_thermometer_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_vcam_data_requirement_level">
+        <item>@integer/equipment_requirement_level_vcam_1</item>
+        <item>@integer/equipment_requirement_level_vcam_2</item>
+        <item>@integer/equipment_requirement_level_vcam_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_book_data_requirement_level">
+        <item>@integer/equipment_requirement_level_book_1</item>
+        <item>@integer/equipment_requirement_level_book_2</item>
+        <item>@integer/equipment_requirement_level_book_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_box_data_requirement_level">
+        <item>@integer/equipment_requirement_level_box_1</item>
+        <item>@integer/equipment_requirement_level_box_2</item>
+        <item>@integer/equipment_requirement_level_box_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_flashlight_data_requirement_level">
+        <item>@integer/equipment_requirement_level_flashlight_1</item>
+        <item>@integer/equipment_requirement_level_flashlight_2</item>
+        <item>@integer/equipment_requirement_level_flashlight_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_photocamera_data_requirement_level">
+        <item>@integer/equipment_requirement_level_photocamera_1</item>
+        <item>@integer/equipment_requirement_level_photocamera_2</item>
+        <item>@integer/equipment_requirement_level_photocamera_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_igniter_data_requirement_level">
+        <item>@integer/equipment_requirement_level_igniter_1</item>
+        <item>@integer/equipment_requirement_level_igniter_2</item>
+        <item>@integer/equipment_requirement_level_igniter_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_firelight_data_requirement_level">
+        <item>@integer/equipment_requirement_level_firelight_1</item>
+        <item>@integer/equipment_requirement_level_firelight_2</item>
+        <item>@integer/equipment_requirement_level_firelight_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_crucifix_data_requirement_level">
+        <item>@integer/equipment_requirement_level_crucifix_1</item>
+        <item>@integer/equipment_requirement_level_crucifix_2</item>
+        <item>@integer/equipment_requirement_level_crucifix_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_salt_data_requirement_level">
+        <item>@integer/equipment_requirement_level_salt_1</item>
+        <item>@integer/equipment_requirement_level_salt_2</item>
+        <item>@integer/equipment_requirement_level_salt_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_incense_data_requirement_level">
+        <item>@integer/equipment_requirement_level_incense_1</item>
+        <item>@integer/equipment_requirement_level_incense_2</item>
+        <item>@integer/equipment_requirement_level_incense_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_tripod_data_requirement_level">
+        <item>@integer/equipment_requirement_level_tripod_1</item>
+        <item>@integer/equipment_requirement_level_tripod_2</item>
+        <item>@integer/equipment_requirement_level_tripod_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_motionsensor_data_requirement_level">
+        <item>@integer/equipment_requirement_level_motionsensor_1</item>
+        <item>@integer/equipment_requirement_level_motionsensor_2</item>
+        <item>@integer/equipment_requirement_level_motionsensor_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_soundsensor_data_requirement_level">
+        <item>@integer/equipment_requirement_level_soundsensor_1</item>
+        <item>@integer/equipment_requirement_level_soundsensor_2</item>
+        <item>@integer/equipment_requirement_level_soundsensor_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_sanitymedication_data_requirement_level">
+        <item>@integer/equipment_requirement_level_sanitymedication_1</item>
+        <item>@integer/equipment_requirement_level_sanitymedication_2</item>
+        <item>@integer/equipment_requirement_level_sanitymedication_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_parabolicmicrophone_data_requirement_level">
+        <item>@integer/equipment_requirement_level_parabolicmicrophone_1</item>
+        <item>@integer/equipment_requirement_level_parabolicmicrophone_2</item>
+        <item>@integer/equipment_requirement_level_parabolicmicrophone_3</item>
+    </integer-array>
+
+    <integer-array name="shop_equipment_headgear_data_requirement_level">
+        <item>@integer/equipment_requirement_level_headgear_1</item>
+        <item>@integer/equipment_requirement_level_headgear_2</item>
+        <item>@integer/equipment_requirement_level_headgear_3</item>
+    </integer-array>
+
+
+    <!-- Equipment Upgrade Cost -->
+    <integer-array name="equipment_requirement_upgradecost_dots">
+        <item>@integer/equipment_requirement_upgradecost_dots_1</item>
+        <item>@integer/equipment_requirement_upgradecost_dots_2</item>
+        <item>@integer/equipment_requirement_upgradecost_dots_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_emf">
+        <item>@integer/equipment_requirement_upgradecost_emf_1</item>
+        <item>@integer/equipment_requirement_upgradecost_emf_2</item>
+        <item>@integer/equipment_requirement_upgradecost_emf_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_ultraviolet">
+        <item>@integer/equipment_requirement_upgradecost_ultraviolet_1</item>
+        <item>@integer/equipment_requirement_upgradecost_ultraviolet_2</item>
+        <item>@integer/equipment_requirement_upgradecost_ultraviolet_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_thermometer">
+        <item>@integer/equipment_requirement_upgradecost_thermometer_1</item>
+        <item>@integer/equipment_requirement_upgradecost_thermometer_2</item>
+        <item>@integer/equipment_requirement_upgradecost_thermometer_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_vcam">
+        <item>@integer/equipment_requirement_upgradecost_vcam_1</item>
+        <item>@integer/equipment_requirement_upgradecost_vcam_2</item>
+        <item>@integer/equipment_requirement_upgradecost_vcam_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_book">
+        <item>@integer/equipment_requirement_upgradecost_book_1</item>
+        <item>@integer/equipment_requirement_upgradecost_book_2</item>
+        <item>@integer/equipment_requirement_upgradecost_book_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_box">
+        <item>@integer/equipment_requirement_upgradecost_box_1</item>
+        <item>@integer/equipment_requirement_upgradecost_box_2</item>
+        <item>@integer/equipment_requirement_upgradecost_box_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_flashlight">
+        <item>@integer/equipment_requirement_upgradecost_flashlight_1</item>
+        <item>@integer/equipment_requirement_upgradecost_flashlight_2</item>
+        <item>@integer/equipment_requirement_upgradecost_flashlight_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_photocamera">
+        <item>@integer/equipment_requirement_upgradecost_photocamera_1</item>
+        <item>@integer/equipment_requirement_upgradecost_photocamera_2</item>
+        <item>@integer/equipment_requirement_upgradecost_photocamera_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_igniter">
+        <item>@integer/equipment_requirement_upgradecost_igniter_1</item>
+        <item>@integer/equipment_requirement_upgradecost_igniter_2</item>
+        <item>@integer/equipment_requirement_upgradecost_igniter_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_firelight">
+        <item>@integer/equipment_requirement_upgradecost_firelight_1</item>
+        <item>@integer/equipment_requirement_upgradecost_firelight_2</item>
+        <item>@integer/equipment_requirement_upgradecost_firelight_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_crucifix">
+        <item>@integer/equipment_requirement_upgradecost_crucifix_1</item>
+        <item>@integer/equipment_requirement_upgradecost_crucifix_2</item>
+        <item>@integer/equipment_requirement_upgradecost_crucifix_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_salt">
+        <item>@integer/equipment_requirement_upgradecost_salt_1</item>
+        <item>@integer/equipment_requirement_upgradecost_salt_2</item>
+        <item>@integer/equipment_requirement_upgradecost_salt_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_incense">
+        <item>@integer/equipment_requirement_upgradecost_incense_1</item>
+        <item>@integer/equipment_requirement_upgradecost_incense_2</item>
+        <item>@integer/equipment_requirement_upgradecost_incense_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_tripod">
+        <item>@integer/equipment_requirement_upgradecost_tripod_1</item>
+        <item>@integer/equipment_requirement_upgradecost_tripod_2</item>
+        <item>@integer/equipment_requirement_upgradecost_tripod_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_motionsensor">
+        <item>@integer/equipment_requirement_upgradecost_motionsensor_1</item>
+        <item>@integer/equipment_requirement_upgradecost_motionsensor_2</item>
+        <item>@integer/equipment_requirement_upgradecost_motionsensor_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_soundsensor">
+        <item>@integer/equipment_requirement_upgradecost_soundsensor_1</item>
+        <item>@integer/equipment_requirement_upgradecost_soundsensor_2</item>
+        <item>@integer/equipment_requirement_upgradecost_soundsensor_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_sanitymedication">
+        <item>@integer/equipment_requirement_upgradecost_sanitymedication_1</item>
+        <item>@integer/equipment_requirement_upgradecost_sanitymedication_2</item>
+        <item>@integer/equipment_requirement_upgradecost_sanitymedication_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_parabolicmicrophone">
+        <item>@integer/equipment_requirement_upgradecost_parabolicmicrophone_1</item>
+        <item>@integer/equipment_requirement_upgradecost_parabolicmicrophone_2</item>
+        <item>@integer/equipment_requirement_upgradecost_parabolicmicrophone_3</item>
+    </integer-array>
+
+    <integer-array name="equipment_requirement_upgradecost_headgear">
+        <item>@integer/equipment_requirement_upgradecost_headgear_1</item>
+        <item>@integer/equipment_requirement_upgradecost_headgear_2</item>
+        <item>@integer/equipment_requirement_upgradecost_headgear_3</item>
+    </integer-array>
+
 
 </resources>

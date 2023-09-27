@@ -18,47 +18,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class TitleScreenActivity extends PETActivity {
 
-    /*
-    FirebaseAnalytics analytics;
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel;
-
-    private TitlescreenViewModel titleScreenViewModel;
-    private NewsletterViewModel newsLetterViewModel;
-    */
-
     private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
     private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-
-        initViewModels();
-        initPrefs();
-        */
-
         setContentView(R.layout.activity_titlescreen);
 
         requestAdsConsentInformation();
     }
-
-    /*
-    private void initViewModels() {
-        analytics = FirebaseAnalytics.getInstance(this);
-
-        ViewModelProvider.AndroidViewModelFactory factory =
-                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
-
-        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
-        globalPreferencesViewModel.init(TitleScreenActivity.this);
-
-        titleScreenViewModel = factory.create(TitlescreenViewModel.class);
-
-        newsLetterViewModel = factory.create(NewsletterViewModel.class);
-    }
-    */
 
     public void initPrefs() {
         super.initPrefs();
@@ -70,83 +39,6 @@ public class TitleScreenActivity extends PETActivity {
             recreate();
         }
     }
-
-    /*
-    public int getFontStyle(int fontType) {
-        switch (fontType) {
-            case 1: {
-                return R.style.Android;
-            }
-            case 2: {
-                return R.style.Journal;
-            }
-            case 3: {
-                return R.style.Brick;
-            }
-            case 4: {
-                return R.style.Clean;
-            }
-            default: {
-                return R.style.Fonts_Base;
-            }
-        }
-    }
-
-    public int getColorSpace(int colorSpace) {
-        switch (colorSpace) {
-            case 1: {
-                return R.style.Monochromacy;
-            }
-            case 2: {
-                return R.style.Deuteranomaly;
-            }
-            case 3: {
-                return R.style.Protanomaly;
-            }
-            case 4: {
-                return R.style.Tritanomaly;
-            }
-            case 5: {
-                return R.style.Funhouse;
-            }
-            default: {
-                return R.style.Colorblind_Base;
-            }
-        }
-    }
-
-    public void changeTheme(int colorSpace, int fontType) {
-
-        int styleId = getFontStyle(fontType);
-        getTheme().applyStyle(styleId, true);
-
-        int colorSpaceId = getColorSpace(colorSpace);
-        setTheme(colorSpaceId);
-
-    }
-    */
-
-    /*
-    public boolean setLanguage(String language) {
-        boolean isChanged = false;
-
-        Locale defaultLocale = Locale.getDefault();
-        Locale locale = new Locale(language);
-        if (!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage()))) {
-            isChanged = true;
-        }
-
-        Locale.setDefault(locale);
-        Configuration config = getResources().getConfiguration();
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-        super.setLanguage(language);
-
-        return isChanged;
-    }
-    */
-
 
     private void requestAdsConsentInformation() {
 

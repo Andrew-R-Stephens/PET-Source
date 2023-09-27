@@ -38,11 +38,10 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GestureDetectorCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
@@ -55,13 +54,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -72,17 +67,7 @@ import pl.droidsonroids.gif.GifImageView;
  *
  * @author TritiumGamingStudios
  */
-public class EvidenceFragment extends Fragment {
-
-    private FirebaseAnalytics analytics;
-
-    protected EvidenceViewModel evidenceViewModel;
-    protected MapMenuViewModel mapMenuViewModel;
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
-
-    protected PopupWindow popup;
-
-    private AdRequest adRequest;
+public class EvidenceFragment extends InvestigationFragment {
 
     protected SanityData sanityData;
     protected PhaseTimerData phaseTimerData;
@@ -111,8 +96,7 @@ public class EvidenceFragment extends Fragment {
     private String[] titles;
 
     //protected int[] font_sanitySize;
-    @ColorInt
-    int fontEmphasisColor = 0;
+    @ColorInt int fontEmphasisColor = 0;
 
     /**
      * EvidenceFragment constructor
@@ -134,33 +118,10 @@ public class EvidenceFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_evidence_solo, container, false);
     }
 
-    //@SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
-        initFirebase();
-
-        if (evidenceViewModel == null) {
-            evidenceViewModel =
-                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
-            evidenceViewModel.init(getContext());
-        }
-
-        if (mapMenuViewModel == null) {
-            mapMenuViewModel =
-                    new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-            mapMenuViewModel.init(getContext());
-        }
-
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel =
-                    new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-            if (getContext() != null) {
-                globalPreferencesViewModel.init(getContext());
-            }
-        }
 
         if(evidenceViewModel != null) {
             sanityData = evidenceViewModel.getSanityData();
@@ -227,19 +188,6 @@ public class EvidenceFragment extends Fragment {
         };
         icon_circle = ResourcesCompat.getDrawable(getResources(), R.drawable.icon_circle, getContext().getTheme());
 
-        // LISTENERS
-        initNavListeners(
-                view.findViewById(R.id.listener_goto_left),
-                view.findViewById(R.id.icon_goto_medLeft),
-                view.findViewById(R.id.listener_resetAll),
-                null,
-                view.findViewById(R.id.listener_goto_right),
-                view.findViewById(R.id.icon_goto_left),
-                view.findViewById(R.id.icon_goto_medLeft),
-                view.findViewById(R.id.icon_resetAll),
-                null,
-                view.findViewById(R.id.icon_goto_right));
-
         if(collapseButton != null) {
             collapseButton.setOnClickListener(v -> {
                 if(!evidenceViewModel.isCollapsed()) {
@@ -297,8 +245,12 @@ public class EvidenceFragment extends Fragment {
         header_ghostLabel.setText(R.string.evidence_ghosts_title);
         header_evidenceLabel.setText(R.string.evidence_evidence_title);
 
-        createEvidenceViews(view, evidenceContainer, ghostContainer);
-        createGhostViews(view, ghostContainer);
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                createEvidenceViews(view, evidenceContainer, ghostContainer);
+                createGhostViews(view, ghostContainer);
+            });
+        }
 
     }
 
@@ -312,7 +264,9 @@ public class EvidenceFragment extends Fragment {
         }
     }
 
-    private void initNavListeners(View lstnr_navLeft,
+    /*
+    @Override
+    public void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
                                   View lstnr_navMedRight,
@@ -340,14 +294,12 @@ public class EvidenceFragment extends Fragment {
             ((View)lstnr_navMedLeft.getParent()).setVisibility(View.VISIBLE);
             ((View)icon_navMedLeft.getParent()).setVisibility(View.VISIBLE);
             icon_navMedLeft.setVisibility(View.VISIBLE);
-            icon_navMedLeft.setImageResource(R.drawable.icon_tools);
+            //icon_navMedLeft.setImageResource(R.drawable.icon_tools);
             lstnr_navMedLeft.setOnClickListener(v -> {
                         if(evidenceViewModel != null && evidenceViewModel.hasSanityData()) {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
                         }
-                        /*Navigation.findNavController(v)
-                                .navigate(R.id.action_evidenceFragment_to_utilitiesFragment);*/
-                        Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_itemStoreFragment);
+                        Navigation.findNavController(v).navigate(R.id.action_evidenceFragment_to_utilitiesFragment);
                     }
             );
         }
@@ -355,8 +307,7 @@ public class EvidenceFragment extends Fragment {
         if(lstnr_navCenter != null) {
             ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
             icon_navCenter.setImageResource(R.drawable.icon_reset);
-            lstnr_navCenter.setOnClickListener(v -> softReset()
-            );
+            lstnr_navCenter.setOnClickListener(v -> softReset());
         }
 
         if(lstnr_navMedRight != null) {
@@ -379,11 +330,12 @@ public class EvidenceFragment extends Fragment {
                             evidenceViewModel.getSanityData().setFlashTimeoutStart(-1);
                         }
                         Navigation.findNavController(v)
-                                .navigate(R.id.action_evidence_to_mapmenu);
+                                .navigate(R.id.action_evidenceFragment_to_mapMenuFragment);
                     }
             );
         }
     }
+    */
 
     @SuppressLint("ResourceType")
     private void createEvidenceViews(View view, LinearLayout evidenceContainer,
@@ -1030,18 +982,7 @@ public class EvidenceFragment extends Fragment {
                 });
     }
 
-    private void initFirebase() {
-        if(getContext() != null){
-            analytics = FirebaseAnalytics.getInstance(getContext());
-            Log.d("Firebase", "Obtained instance.");
-        }
-    }
-
-
-    /**
-     * softReset
-     * TODO
-     */
+    @Override
     public void softReset() {
         if (evidenceViewModel != null) {
             evidenceViewModel.reset();

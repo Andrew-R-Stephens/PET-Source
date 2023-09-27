@@ -5,6 +5,18 @@
     app:startDestination="@id/evidenceFragment">
 
     <fragment
+        android:id="@+id/itemStoreFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.ItemStoreFragment"
+        android:label="ItemStoreFragment"/>
+    <fragment
+        android:id="@+id/codexFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.CodexFragment"
+        android:label="CodexFragment">
+        <action
+            android:id="@+id/action_codexFragment_to_itemStoreFragment"
+            app:destination="@id/itemStoreFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/evidenceFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.EvidenceSoloFragment"
         android:label="EvidenceFragment">
@@ -12,198 +24,38 @@
             android:id="@+id/action_evidence_to_objectives"
             app:destination="@id/objectivesFragment" />
         <action
-            android:id="@+id/action_evidence_to_mapmenu"
+            android:id="@+id/action_evidenceFragment_to_mapMenuFragment"
             app:destination="@id/mapMenuFragment" />
         <action
-            android:id="@+id/action_evidenceFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-        <action
-            android:id="@+id/action_evidenceFragment_to_itemStoreFragment"
-            app:destination="@id/itemStoreFragment" />
+            android:id="@+id/action_evidenceFragment_to_codexFragment"
+            app:destination="@id/codexFragment" />
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.MissionsFragment"
-        android:label="ObjectivesFragment" >
-        <action
-            android:id="@+id/action_objectives_to_evidence"
-            app:destination="@id/evidenceFragment" />
-    </fragment>
+        android:label="ObjectivesFragment" />
     <fragment
         android:id="@+id/mapMenuFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.MapMenuFragment"
         android:label="MapMenuFragment" >
         <action
-            android:id="@+id/action_mapmenu_to_evidence"
-            app:destination="@id/evidenceFragment" />
-        <action
-            android:id="@+id/action_mapmenu_to_mapview"
-            app:destination="@id/mapViewFragment" />
+            android:id="@+id/action_mapMenuFragment_to_mapViewerFragment"
+            app:destination="@id/mapViewerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mapViewFragment"
+        android:id="@+id/mapViewerFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.MapViewerFragment"
-        android:label="MapViewFragment" >
-        <action
-            android:id="@+id/action_mapViewFragment_to_evidenceFragment"
-            app:destination="@id/evidenceFragment" />
-        <action
-            android:id="@+id/action_mapview_to_mapmenu"
-            app:destination="@id/mapMenuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/utilitiesFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.UtilitiesFragment"
-        android:label="UtilitiesFragment" >
-        <action
-            android:id="@+id/action_utilitiesFragment_to_evidenceFragment"
-            app:destination="@id/evidenceFragment" />
-        <action
-            android:id="@+id/action_utilitiesFragment_to_petHelpFragment"
-            app:destination="@id/petHelpFragment" />
-        <action
-            android:id="@+id/action_utilitiesFragment_to_highscoresFragment"
-            app:destination="@id/highscoresFragment" />
-        <action
-            android:id="@+id/action_utilitiesFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-        <action
-            android:id="@+id/action_utilitiesFragment_to_ghostBoxFragment"
-            app:destination="@id/ghostBoxFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/highscoresFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.highscores.HighscoresFragment"
-        android:label="HighscoresFragment" >
-        <action
-            android:id="@+id/action_highscoresFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/petHelpFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.pethelp.PetHelpFragment"
-        android:label="PetHelpFragment" >
-        <action
-            android:id="@+id/action_petHelpFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.CodexFragment"
-        android:label="CodexFragment" >
-        <action
-            android:id="@+id/action_codexFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexDifficultiesFragment"
-            app:destination="@id/codexDifficultiesFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexEvidenceFragment"
-            app:destination="@id/codexEvidenceFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexGhostsFragment"
-            app:destination="@id/codexGhostsFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexMapInfoFragment"
-            app:destination="@id/codexMapInfoFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexPosessionsFragment"
-            app:destination="@id/codexPosessionsFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexSanityInfo"
-            app:destination="@id/codexSanityInfo" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexGhostEventsFragment"
-            app:destination="@id/codexGhostEventsFragment" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexToolsAlternatives"
-            app:destination="@id/codexToolsAlternatives" />
-        <action
-            android:id="@+id/action_codexFragment_to_codexToolsPrimary"
-            app:destination="@id/codexToolsPrimary" />
-    </fragment>
-    <fragment
-        android:id="@+id/ghostBoxFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.ghostboxutility.GhostBoxFragment"
-        android:label="GhostBoxFragment" >
-        <action
-            android:id="@+id/action_ghostBoxFragment_to_utilitiesFragment"
-            app:destination="@id/utilitiesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexDifficultiesFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexDifficultiesFragment"
-        android:label="CodexDifficultiesFragment" >
-        <action
-            android:id="@+id/action_codexDifficultiesFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexEvidenceFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexEvidenceFragment"
-        android:label="CodexEvidenceFragment" >
-        <action
-            android:id="@+id/action_codexEvidenceFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexGhostsFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexGhostsFragment"
-        android:label="CodexGhostsFragment" >
-        <action
-            android:id="@+id/action_codexGhostsFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexMapInfoFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexMapInfoFragment"
-        android:label="CodexMapInfoFragment" >
-        <action
-            android:id="@+id/action_codexMapInfoFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexPosessionsFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexPosessionsFragment"
-        android:label="CodexPosessionsFragment" >
-        <action
-            android:id="@+id/action_codexPosessionsFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexSanityInfo"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexSanityInfo"
-        android:label="CodexSanityInfo" >
-        <action
-            android:id="@+id/action_codexSanityInfo_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexGhostEventsFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexGhostEventsFragment"
-        android:label="CodexGhostEventsFragment" >
-        <action
-            android:id="@+id/action_codexGhostEventsFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/codexToolsAlternatives"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexToolsAlternatives"
-        android:label="CodexToolsAlternatives" />
-    <fragment
-        android:id="@+id/codexToolsPrimary"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.CodexToolsPrimary"
-        android:label="CodexToolsPrimary" >
-        <action
-            android:id="@+id/action_codexToolsPrimary_to_codexFragment"
-            app:destination="@id/codexFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/itemStoreFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.ItemStoreFragment"
-        android:label="ItemStoreFragment" >
-        <action
-            android:id="@+id/action_itemStoreFragment_to_evidenceFragment"
-            app:destination="@id/evidenceFragment" />
-    </fragment>
+        android:label="MapViewerFragment" />
+    <action
+        android:id="@+id/action_global_objectivesFragment"
+        app:destination="@id/objectivesFragment" />
+    <action
+        android:id="@+id/action_global_evidenceFragment"
+        app:destination="@id/evidenceFragment" />
+    <action
+        android:id="@+id/action_global_mapMenuFragment"
+        app:destination="@id/mapMenuFragment" />
+    <action
+        android:id="@+id/action_global_codexFragment"
+        app:destination="@id/codexFragment" />
 </navigation>

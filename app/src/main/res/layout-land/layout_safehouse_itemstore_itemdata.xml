@@ -4,163 +4,318 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/equipment_itemdata_border_outer"
-    android:padding="0dp">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout99"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/equipment_itemdata_border_outer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/safehouse_shop_tool_label"
-            style="?attr/quaternaryFont_Bold_Manual"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="start|center_vertical"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="@string/equipment_info_name_dots"
-            android:textAllCaps="true"
-            android:textColor="#99AEB3"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/close_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/close_button"
-            android:layout_width="48dp"
-            android:layout_height="0dp"
-            android:padding="2dp"
-            android:background="#99AEB3"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:tintMode="multiply"
-            android:tint="#151B1B"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout100"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/equipment_itemdata_border_inner"
-        android:padding="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
-
-        <include
-            android:id="@+id/itemStoreEquipmentItemData"
-            layout="@layout/item_shop_tool_itemdata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent=".2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_max="96dp"
-            app:layout_constraintWidth_percent=".25" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/itemStoreEquipmentItemData"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemStoreEquipmentItemData"
-            app:layout_constraintTop_toTopOf="@+id/itemStoreEquipmentItemData">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Unlocks at: 29"
-                android:textSize="18sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Unlocks at: 29"
-                android:textSize="18sp" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:paddingBottom="8dp"
+    android:paddingHorizontal="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="2dp"
-        android:background="@drawable/equipment_itemdata_border_inner"
+        android:background="@drawable/equipment_itemdata_border_outer2"
+        android:paddingStart="4dp"
+        android:paddingEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout100">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout99"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/textView5232"
+            android:background="@drawable/equipment_itemdata_border_outer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView5432"
-                android:layout_width="match_parent"
+                android:id="@+id/safehouse_shop_tool_label"
+                style="?attr/quaternaryFont_Bold_Squeeze"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Unlocks at: 29"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="start|center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/equipment_info_name_dots"
+                android:textAllCaps="true"
+                android:textColor="#99AEB3"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/close_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView5442"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Unlocks at: 29"
-                android:textSize="18sp" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close_button"
+                android:layout_width="48dp"
+                android:layout_height="0dp"
+                android:background="#99AEB3"
+                android:padding="2dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#151B1B"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView5232"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout100"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Unlocks at: 29"
-            android:textSize="18sp"
+            android:background="@drawable/equipment_itemdata_border_inner"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
+
+            <include
+                android:id="@+id/itemStoreEquipmentItemData"
+                layout="@layout/item_shop_tool_itemdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="96dp"
+                app:layout_constraintWidth_percent=".25" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout103"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout101"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itemStoreEquipmentItemData"
+                app:layout_constraintTop_toTopOf="@+id/itemStoreEquipmentItemData">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/icon_shop_cost"
+                    android:tint="#99AEB3"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_itemcost"
+                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="start|center_vertical"
+                    android:text="$98"
+                    android:textColor="#99AEB3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout101"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout102"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout103"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout103">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/icon_shop_unlock"
+                    android:tint="#99AEB3"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_unlocklevel"
+                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="start|center_vertical"
+                    android:text="29"
+                    android:textColor="#99AEB3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout102"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/itemStoreEquipmentItemData"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout101"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout101">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/icon_shop_upgrade_cost"
+                    android:tint="#99AEB3"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_upgradecost"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="start|center_vertical"
+                    android:text="$290"
+                    android:textColor="#99AEB3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/equipment_itemdata_border_inner"
+            android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout100">
 
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fadeScrollbars="false"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="8dp"
+                android:orientation="vertical"
+                android:requiresFadingEdge="vertical"
+                android:scrollbarStyle="insideInset"
+                android:paddingHorizontal="4dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                app:layout_constraintBottom_toTopOf="@+id/divider5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_itemshop_flavor"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:text="Unlocks at: 29"
+                        android:textColor="#99AEB3"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider"
+                        android:backgroundTint="#99AEB3"
+                        android:foregroundTintMode="add" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_itemshop_info"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:text="Unlocks at: 29"
+                        android:textColor="#99AEB3"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="2dp"
+                android:layout_marginBottom="670dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#99AEB3"
+                android:foregroundTintMode="add"
+                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes"
+                tools:layout_editor_absoluteX="10dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_itemshop_attributes"
+                style="?attr/quaternaryFont_Bold_Manual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Unlocks at: 29"
+                android:textColor="#99AEB3"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

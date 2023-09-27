@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.data.MissionsData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.views.MissionsCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.missions.views.MissionsSpinner;
@@ -36,16 +37,22 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesVi
  *
  * @author TritiumGamingStudios
  */
-public class MissionsFragment extends Fragment {
+public class MissionsFragment extends InvestigationFragment {
 
-    private EvidenceViewModel evidenceViewModel;
-    private ObjectivesViewModel objectivesViewModel;
+    //private EvidenceViewModel evidenceViewModel;
+    //private ObjectivesViewModel objectivesViewModel;
 
     private MissionsData data;
 
     private MissionsSpinner[] objectiveSpinner;
     private EditText name_input;
     private AppCompatImageButton button_alone, button_everyone;
+
+    /*
+    public MissionsFragment(int layout) {
+        super(layout);
+    }
+    */
 
     @Nullable
     @Override
@@ -54,17 +61,6 @@ public class MissionsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if (evidenceViewModel == null) {
-            evidenceViewModel =
-                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
-            evidenceViewModel.init(getContext());
-        }
-
-        if (objectivesViewModel == null) {
-            objectivesViewModel =
-                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
-        }
-
         return inflater.inflate(R.layout.fragment_objectives, container, false);
 
     }
@@ -72,6 +68,8 @@ public class MissionsFragment extends Fragment {
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
 
         if(getContext() != null) {
             data = new MissionsData(getContext());
@@ -88,12 +86,6 @@ public class MissionsFragment extends Fragment {
         button_alone = view.findViewById(R.id.button_alone);
         button_everyone = view.findViewById(R.id.button_everyone);
 
-        // FOOTERS
-        AppCompatImageView icon_goto_right = view.findViewById(R.id.icon_goto_right);
-        AppCompatTextView label_goto_right = view.findViewById(R.id.label_goto_right);
-        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        View listener_resetAll = view.findViewById(R.id.listener_resetAll);
-
         // COLORS
         @ColorInt int color_unselectedItem = Color.LTGRAY, color_selectedItem = Color.RED;
         TypedValue typedValue = new TypedValue();
@@ -105,19 +97,6 @@ public class MissionsFragment extends Fragment {
             color_selectedItem = typedValue.data;
         }
 
-        // LISTENERS
-        initNavListeners(
-                null,
-                null,
-                listener_resetAll,
-                null,
-                listener_goto_right,
-                null,
-                null,
-                null,
-                null,
-                icon_goto_right);
-
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
@@ -127,11 +106,6 @@ public class MissionsFragment extends Fragment {
                         }
                     });
         }
-
-        // SET NAVIGATION ITEMS
-        label_goto_right.setVisibility(View.VISIBLE);
-        label_goto_right.setText(R.string.general_evidence_button);
-        icon_goto_right.setImageResource(R.drawable.icon_evidence);
 
         // OBJECTIVE BUTTONS
         MissionsCompletedButton[] button_check_evidence = new MissionsCompletedButton[]{
@@ -214,7 +188,7 @@ public class MissionsFragment extends Fragment {
 
     }
 
-    private void initNavListeners(View lstnr_navLeft,
+    protected void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
                                   View lstnr_navMedRight,
@@ -261,6 +235,11 @@ public class MissionsFragment extends Fragment {
             lstnr_navRight.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
             );
         }
+
+    }
+
+    @Override
+    public void softReset() {
 
     }
 

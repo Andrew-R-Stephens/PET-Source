@@ -1,53 +1,15 @@
 <resources>
-    <!--
-        FOR 3D RENDERER
-    -->
-    <string name="app_version" translatable="false">Version 1.0</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <!-- Activities -->
-    <string name="title_activity_menu" translatable="false">Menu</string>
-    <string name="title_activity_demo" translatable="false">Demo</string>
-    <string name="title_activity_text" translatable="false">Text</string>
-    <string name="title_activity_model" translatable="false">Model</string>
-    <!-- Demo menu -->
-    <string name="item" translatable="false">item</string>
 
-    <string-array name="menu_items" translatable="false">
-        <item>Load Model</item>
-        <item>Models</item>
-        <item>Demo</item>
-        <item>Help</item>
-        <item>About</item>
-        <item>Exit</item>
-    </string-array>
-
-    <string name="image" translatable="false">image</string>
-
-    <!-- Load settings -->
-    <string name="model_name" translatable="false">Model name</string>
-    <string name="texture" translatable="false">Texture</string>
-    <string name="invert_texture_coordinates" translatable="false">Invert texture coordinates</string>
-    <string name="cancel" translatable="false">Cancel</string>
-    <string name="load" translatable="false">Load</string>
-    <string name="load_model" translatable="false">Load Model</string>
-
-    <!-- GL Settings -->
-    <string name="toggle_wireframe" translatable="false">Toggle wireframe</string>
-    <string name="toggle_textures" translatable="false">Toggle textures</string>
-    <string name="toggle_lights" translatable="false">Toggle lights</string>
-    <string name="toggle_boundingbox" translatable="false">Toggle bounding box</string>
-    <string name="load_texture" translatable="false">Load texture</string>
-
-    <!-- To review -->
-    <string name="app_logo_desc" translatable="false">Teapot animated logo</string>
     <!--
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
     <string name="app_name" translatable="false">P.E.T.</string>
+
     <string name="general_evidence_button">Evidence</string>
     <string name="general_maps_button">Maps</string>
     <string name="general_tasks_button">Tasks</string>
+    <string name="general_codex_button" translatable="false">Codex</string>
     <string name="general_evidence_reset_button">Reset</string>
 
     <!--

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,39 +16,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.FloorLayer;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 /*
  * MapViewerFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MapViewerFragment extends Fragment {
-
-    private MapMenuViewModel mapViewViewModel;
+public class MapViewerFragment extends InvestigationFragment {
 
     private InteractiveMapView imageDisplay;
 
@@ -61,12 +50,10 @@ public class MapViewerFragment extends Fragment {
     protected PopupWindow popup;
 
     /*
-     *
-     * MapViewerFragment constructor
-     */
     public MapViewerFragment() {
         super(R.layout.fragment_mapview);
     }
+    */
 
     @Nullable
     @Override
@@ -74,24 +61,27 @@ public class MapViewerFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        if (mapViewViewModel == null) {
+        /*if (mapViewViewModel == null) {
             mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-        }
-        return super.onCreateView(inflater, container, savedInstanceState);
+        }*/
+        return inflater.inflate(R.layout.fragment_mapview, container, false);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
         LinearLayout selectorLayout = view.findViewById(R.id.linearlayout_floorindicators);
 
         AppCompatImageButton button_nextLayer = view.findViewById(R.id.controller_nextLayerButton);
         AppCompatImageButton button_prevLayer = view.findViewById(R.id.controller_prevLayerButton);
 
         // INITIALIZE VIEWS
-        AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
+        //AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
+        //AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
+        //View listener_goto_left = view.findViewById(R.id.listener_goto_left);
 
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
@@ -100,26 +90,26 @@ public class MapViewerFragment extends Fragment {
         layerName = view.findViewById(R.id.textview_floorname);
         button_help = view.findViewById(R.id.listener_help);
 
-        if(mapViewViewModel != null && mapViewViewModel.getCurrentMapModel() != null) {
-            int floor = mapViewViewModel.getCurrentMapData().getCurrentFloor();
-            FloorModel currentFloor = mapViewViewModel.getCurrentMapModel().getFloor(floor);
+        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
+            int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
+            FloorModel currentFloor = mapMenuViewModel.getCurrentMapModel().getFloor(floor);
             if(currentFloor != null) {
                 FloorLayer newLayer = currentFloor.getFloorLayer();
                 if (newLayer != null) {
-                    mapViewViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
+                    mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
                 }
             }
         }
 
 
         // SET NAVIGATION ITEMS
-        label_goto_left.setText(R.string.general_maps_button);
+        // label_goto_left.setText(R.string.general_maps_button);
 
         button_nextLayer.setOnClickListener(v -> {
-            if (mapViewViewModel != null && mapViewViewModel.hasMapData()) {
+            if (mapMenuViewModel != null && mapMenuViewModel.hasMapData()) {
 
-                int layerIndex = mapViewViewModel.getCurrentMapData().getCurrentFloor();
-                if (++layerIndex >= mapViewViewModel.getCurrentMapData().getFloorCount()) {
+                int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
+                if (++layerIndex >= mapMenuViewModel.getCurrentMapData().getFloorCount()) {
                     layerIndex = 0;
                 }
 
@@ -130,10 +120,10 @@ public class MapViewerFragment extends Fragment {
         });
 
         button_prevLayer.setOnClickListener(v -> {
-            if (mapViewViewModel != null && mapViewViewModel.hasMapData()) {
-                int layerIndex = mapViewViewModel.getCurrentMapData().getCurrentFloor();
+            if (mapMenuViewModel != null && mapMenuViewModel.hasMapData()) {
+                int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
                 if (--layerIndex < 0) {
-                    layerIndex = mapViewViewModel.getCurrentMapData().getFloorCount() - 1;
+                    layerIndex = mapMenuViewModel.getCurrentMapData().getFloorCount() - 1;
                 }
 
                 setMapLayer(layerIndex);
@@ -154,6 +144,7 @@ public class MapViewerFragment extends Fragment {
         */
 
         // LISTENERS
+        /*
         initNavListeners(
                 listener_goto_left,
                 null,
@@ -166,8 +157,8 @@ public class MapViewerFragment extends Fragment {
 
                 null,
                 null);
-
-
+        */
+        /*
         if (getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
@@ -180,23 +171,24 @@ public class MapViewerFragment extends Fragment {
                         }
                     });
         }
+        */
 
-        if (mapViewViewModel != null && imageDisplay != null) {
+        if (mapMenuViewModel != null && imageDisplay != null) {
 
             if(poiSpinner != null) {
-                imageDisplay.init(mapViewViewModel, poiSpinner);
+                imageDisplay.init(mapMenuViewModel, poiSpinner);
             }
 
-            imageDisplay.setMapData(mapViewViewModel.getCurrentMapData());
+            imageDisplay.setMapData(mapMenuViewModel.getCurrentMapData());
 
-            MapData tempData = mapViewViewModel.getCurrentMapData();
+            MapData tempData = mapMenuViewModel.getCurrentMapData();
             if (tempData != null) {
                 selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
                 for (int i = 0; i < selectorGroup.getSize(); i++) {
                     selectorLayout.addView(selectorGroup.getSelectors()[i]);
                 }
-                if(mapViewViewModel.getCurrentMapModel() != null) {
-                    String mapNameStr = mapViewViewModel.getCurrentMapModel().mapName;
+                if(mapMenuViewModel.getCurrentMapModel() != null) {
+                    String mapNameStr = mapMenuViewModel.getCurrentMapModel().mapName;
                     mapName.setText(mapNameStr == null ? tempData.getMapName() : mapNameStr);
                     mapName.setSelected(true);
                 }
@@ -211,20 +203,20 @@ public class MapViewerFragment extends Fragment {
 
     public void setMapLayer(int index) {
         MapData d;
-        if ((d = mapViewViewModel.getCurrentMapData()) != null) {
+        if ((d = mapMenuViewModel.getCurrentMapData()) != null) {
             d.setCurrentFloor(index);
 
             if(imageDisplay != null) {
                 imageDisplay.resetRoomSelection();
             }
-            if(mapViewViewModel.getCurrentMapModel() != null &&
-                    mapViewViewModel.getCurrentMapModel().getFloor(index) != null) {
+            if(mapMenuViewModel.getCurrentMapModel() != null &&
+                    mapMenuViewModel.getCurrentMapModel().getFloor(index) != null) {
                 FloorLayer layer =
-                        mapViewViewModel.getCurrentMapModel().getFloor(index).getFloorLayer();
-                mapViewViewModel.getCurrentMapModel().setCurrentLayer(layer);
-                if(mapViewViewModel.getCurrentMapModel() != null &&
-                        mapViewViewModel.getCurrentMapModel().getCurrentFloor() != null) {
-                    Log.d("Maps", mapViewViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
+                        mapMenuViewModel.getCurrentMapModel().getFloor(index).getFloorLayer();
+                mapMenuViewModel.getCurrentMapModel().setCurrentLayer(layer);
+                if(mapMenuViewModel.getCurrentMapModel() != null &&
+                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+                    Log.d("Maps", mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
                 }
             }
         }
@@ -258,7 +250,7 @@ public class MapViewerFragment extends Fragment {
         popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
     }
 
-    private void initNavListeners(View lstnr_navLeft,
+    protected void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
                                   View lstnr_navMedRight,
@@ -290,6 +282,11 @@ public class MapViewerFragment extends Fragment {
 
     }
 
+    @Override
+    public void softReset() {
+
+    }
+
     /*
      * startThreads
      * <p>
@@ -298,14 +295,14 @@ public class MapViewerFragment extends Fragment {
     public void startThreads() {
         stopThreads();
 
-        if (mapViewViewModel.getImageDisplayThread() == null) {
-            mapViewViewModel.setImageDisplayThread(new Thread(() -> {
+        if (mapMenuViewModel.getImageDisplayThread() == null) {
+            mapMenuViewModel.setImageDisplayThread(new Thread(() -> {
                 if (imageDisplay != null) {
                     imageDisplay.setMapImages(getActivity());
                     imageDisplay.setPoiImages(getActivity());
                 }
             }));
-            mapViewViewModel.getImageDisplayThread().start();
+            mapMenuViewModel.getImageDisplayThread().start();
         }
     }
 
@@ -314,9 +311,9 @@ public class MapViewerFragment extends Fragment {
      * stopThreads
      */
     public void stopThreads() {
-        if (mapViewViewModel.getImageDisplayThread() != null) {
-            mapViewViewModel.getImageDisplayThread().interrupt();
-            mapViewViewModel.setImageDisplayThread(null);
+        if (mapMenuViewModel.getImageDisplayThread() != null) {
+            mapMenuViewModel.getImageDisplayThread().interrupt();
+            mapMenuViewModel.setImageDisplayThread(null);
         }
     }
 
@@ -325,19 +322,19 @@ public class MapViewerFragment extends Fragment {
      * updateComponents
      */
     public void updateComponents() {
-        if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
+        if (mapMenuViewModel != null && mapMenuViewModel.hasCurrentMapData()) {
             if (selectorGroup != null) {
-                selectorGroup.setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
+                selectorGroup.setSelected(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
             }
             if (layerName != null) {
                 layerName.setText(getResources().getString(
-                        mapViewViewModel.getCurrentMapData().getFloorName()));
+                        mapMenuViewModel.getCurrentMapData().getFloorName()));
             }
             if (imageDisplay != null) {
                 imageDisplay.invalidate();
             }
             if(poiSpinner != null) {
-                poiSpinner.populateAdapter(mapViewViewModel);
+                poiSpinner.populateAdapter(mapMenuViewModel);
             }
         }
     }
@@ -349,9 +346,9 @@ public class MapViewerFragment extends Fragment {
      * Saves states of the MapViewer to the MapViewModel
      */
     public void saveStates() {
-        if (mapViewViewModel != null && mapViewViewModel.hasCurrentMapData()) {
-            mapViewViewModel.getCurrentMapData().setDefaultFloor(
-                    mapViewViewModel.getCurrentMapData().getCurrentFloor());
+        if (mapMenuViewModel != null && mapMenuViewModel.hasCurrentMapData()) {
+            mapMenuViewModel.getCurrentMapData().setDefaultFloor(
+                    mapMenuViewModel.getCurrentMapData().getCurrentFloor());
         }
     }
 
@@ -445,8 +442,8 @@ public class MapViewerFragment extends Fragment {
             for (int i = 0; i < selectors.length; i++) {
                 selectors[i] = new MapLayerSelector(getContext());
             }
-            if (mapViewViewModel != null && mapViewViewModel.getCurrentMapData() != null) {
-                setSelected(mapViewViewModel.getCurrentMapData().getCurrentFloor());
+            if (mapMenuViewModel != null && mapMenuViewModel.getCurrentMapData() != null) {
+                setSelected(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
             }
         }
 

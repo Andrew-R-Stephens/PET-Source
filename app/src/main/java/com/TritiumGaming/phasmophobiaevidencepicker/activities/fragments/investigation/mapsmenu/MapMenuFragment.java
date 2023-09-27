@@ -11,23 +11,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapListModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.MapFileIO;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.MapFileReader;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 import java.io.IOException;
 
@@ -36,14 +33,15 @@ import java.io.IOException;
  *
  * @author TritiumGamingStudios
  */
-public class MapMenuFragment extends Fragment {
+public class MapMenuFragment extends InvestigationFragment {
 
-    private MapMenuViewModel mapViewViewModel;
     private MapListModel mapListModel;
 
+    /*
     public MapMenuFragment() {
         super(R.layout.fragment_mapmenu);
     }
+    */
 
     @Nullable
     @Override
@@ -52,19 +50,14 @@ public class MapMenuFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        if (mapViewViewModel == null) {
-            mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-            mapViewViewModel.init(getContext());
-        }
-
-        return super.onCreateView(inflater, container, savedInstanceState);
-
+        return inflater.inflate(R.layout.fragment_mapmenu, container, false);
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
 
         Log.d("Maps", "starting");
         try {
@@ -81,9 +74,6 @@ public class MapMenuFragment extends Fragment {
         }
 
         // INITIALIZE VIEWS
-        AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
         AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
 
         // BACKGROUND IMAGE
@@ -91,74 +81,32 @@ public class MapMenuFragment extends Fragment {
         bitmapUtils.setResource(R.drawable.icon_map_sm);
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
 
-        // LISTENERS
-        initNavListeners(
-                listener_goto_left,
-                null,
-                null,
-                null,
-                null,
-                icon_goto_left,
-                null,
-                null,
-                null,
-                null);
-
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        }
-
-        // SET NAVIGATION ITEMS
-        label_goto_left.setText(R.string.general_evidence_button);
-
         GridView gridView = view.findViewById(R.id.grid_maps);
         CustomAdapter customAdapter = new CustomAdapter(
-                mapViewViewModel.getMapNames(),
-                mapViewViewModel.getMapThumbnails());
+                mapMenuViewModel.getMapNames(),
+                mapMenuViewModel.getMapThumbnails());
         gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener((parent, itemView, position, id) -> {
             System.gc();
-            if (mapViewViewModel != null) {
-                mapViewViewModel.setCurrentMapData(position);
+            if (mapMenuViewModel != null) {
+                mapMenuViewModel.setCurrentMapData(position);
             }
 
             MapModel mapModel = mapListModel.getMapById(position);
             if(mapModel != null) {
-                //mapModel.print();
-                mapViewViewModel.setCurrentMapModel(mapModel);
+                mapMenuViewModel.setCurrentMapModel(mapModel);
             }
 
-
             navigateToBasicMapView(itemView);
-            //navigateToAdvancedMapView(itemView);
         });
-
 
     }
 
     private void navigateToBasicMapView(View view) {
-        Navigation.findNavController(view).navigate(R.id.action_mapmenu_to_mapview);
+        Navigation.findNavController(view).navigate(R.id.action_mapMenuFragment_to_mapViewerFragment);
     }
-/*
 
-    private void navigateToAdvancedMapView(View view) {
-        Bundle b = new Bundle();
-        b.putString("assetDir", "models");
-        //b.putString("assetFilename", "prison_firstfloor.obj");
-        b.putString("assetFilename", "asylum_topfloor.obj");
-        b.putString("immersiveMode", "true");
-
-        Navigation.findNavController(view).navigate(R.id.action_mapMenuFragment_to_modelFragment, b);
-    }
-*/
-
-    private void initNavListeners(View lstnr_navLeft,
+    public void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
                                   View lstnr_navMedRight,
@@ -184,6 +132,11 @@ public class MapMenuFragment extends Fragment {
         if(lstnr_navMedRight != null) { }
 
         if(lstnr_navRight != null) { }
+
+    }
+
+    @Override
+    public void softReset() {
 
     }
 

@@ -192,4 +192,55 @@
         <item name="foregroundColor" >#861388</item>
     </style>
 
+    <style name="PET.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="enforceMaterialTheme">false</item>
+        <item name="android:checkable">false</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="itemIconTint">?attr/neutralSelColor</item>
+        <item name="itemTextAppearanceInactive">?attr/neutralSelColor</item>
+        <item name="itemTextAppearanceActive">@color/white</item>
+        <item name="itemTextColor">@null</item>
+        <item name="itemRippleColor">?attr/unselectedColor</item>
+        <item name="rippleColor">?attr/unselectedColor</item>
+        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+    </style>
+
+    <style name="PET.SideNavigationView" parent="Theme.MaterialComponents">
+        <item name="enforceMaterialTheme">false</item>
+        <item name="android:checkable">false</item>
+        <item name="compatShadowEnabled">true</item>
+        <item name="elevation">@dimen/navbar_elevation</item>
+        <item name="itemIconSize">@dimen/navbar_icon_size</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+        <item name="itemPaddingTop">@dimen/navbar_margin</item>
+        <item name="itemPaddingBottom">@dimen/navbar_label_padding</item>
+        <item name="itemActiveIndicatorStyle">@null</item>
+        <item name="android:minWidth">@dimen/navbar_min</item>
+        <item name="enforceTextAppearance">true</item>
+        <item name="itemBackground">@null</item>
+        <item name="itemHorizontalTranslationEnabled">false</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="itemIconTint">?attr/neutralSelColor</item>
+        <item name="itemTextAppearanceInactive">?attr/neutralSelColor</item>
+        <item name="itemTextAppearanceActive">@color/white</item>
+        <item name="itemTextColor">@null</item>
+        <item name="tabRippleColor">?attr/unselectedColor</item>
+        <item name="tabUnboundedRipple">?attr/unselectedColor</item>
+        <item name="rippleColor">?attr/unselectedColor</item>
+        <item name="itemRippleColor">?attr/unselectedColor</item>
+        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+    </style>
+
+    <style name="PET.MaterialCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="enforceMaterialTheme">false</item>
+        <item name="android:checkable">false</item>
+        <item name="backgroundColor">@color/transparent</item>
+        <item name="tabRippleColor">?attr/unselectedColor</item>
+        <item name="tabUnboundedRipple">?attr/unselectedColor</item>
+        <item name="rippleColor">?attr/unselectedColor</item>
+        <item name="itemRippleColor">?attr/unselectedColor</item>
+        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+        <item name="cardForegroundColor">?attr/unselectedColor</item>
+    </style>
+
 </resources>
