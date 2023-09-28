@@ -9,29 +9,38 @@
             android:icon="@android:drawable/ic_dialog_dialer"/>
     </group>
 
-    <group android:checkableBehavior="none"
-        android:menuCategory="alternative"
-        android:title="Primary">
-        <item
-            android:id="@+id/action_global_objectivesFragment"
-            android:title="@string/general_tasks_button"
-            android:icon="@drawable/icon_tasks"/>
-        <item
-            android:id="@+id/action_global_evidenceFragment"
-            android:title="@string/evidence_evidence_title"
-            android:icon="@drawable/icon_nav_evidence" />
-        <item
-            android:id="@+id/action_global_mapMenuFragment"
-            android:title="@string/general_maps_button"
-            android:icon="@android:drawable/ic_dialog_map"/>
+    <group
+        android:checkableBehavior="none"
+        android:menuCategory="alternative">
+        <item android:title="Primary">
+            <menu>
+                <item
+                    android:id="@+id/action_global_objectivesFragment"
+                    android:title="@string/general_tasks_button"
+                    android:icon="@drawable/icon_tasks"/>
+                <item
+                    android:id="@+id/action_global_evidenceFragment"
+                    android:title="@string/evidence_evidence_title"
+                    android:icon="@drawable/icon_nav_evidence" />
+                <item
+                    android:id="@+id/action_global_mapMenuFragment"
+                    android:title="@string/general_maps_button"
+                    android:icon="@android:drawable/ic_dialog_map"/>
+            </menu>
+        </item>
     </group>
 
-    <group android:checkableBehavior="none"
+    <group
+        android:checkableBehavior="none"
         android:menuCategory="alternative">
-        <item
-            android:id="@+id/action_global_codexFragment"
-            android:title="@string/general_codex_button"
-            android:icon="@drawable/icon_nav_codex2" />
+        <item android:title="Tools">
+            <menu>
+                <item
+                android:id="@+id/action_global_codexFragment"
+                android:title="@string/general_codex_button"
+                android:icon="@drawable/icon_nav_codex2" />
+            </menu>
+        </item>
     </group>
 
 </menu>

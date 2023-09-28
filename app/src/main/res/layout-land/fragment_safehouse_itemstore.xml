@@ -8,21 +8,12 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <include
-        android:id="@+id/include5"
-        layout="@layout/layout_navigationfooter"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/include5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,12 +29,12 @@
                 style="?attr/quaternaryFont_Bold_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textAllCaps="true"
                 android:background="#99AEB3"
                 android:gravity="center"
-                android:text="@string/store_title"
-                android:textColor="#2D3635"
                 android:padding="4dp"
+                android:text="@string/store_title"
+                android:textAllCaps="true"
+                android:textColor="#2D3635"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight="40dp"

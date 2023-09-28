@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
@@ -359,13 +361,10 @@ public class InvestigationData {
     public static class Evidence {
 
         private String name = null;
-        private int icon;
+        private @DrawableRes int icon;
 
         private Ruling ruling = Ruling.NEUTRAL;
 
-        /**
-         *
-         */
         public enum Ruling {
             NEGATIVE, NEUTRAL, POSITIVE
         }
@@ -378,11 +377,11 @@ public class InvestigationData {
             return name;
         }
 
-        public void setIcon(int icon) {
+        public void setIcon(@DrawableRes int icon) {
             this.icon = icon;
         }
 
-        public int getIcon() {
+        public @DrawableRes int getIcon() {
             return icon;
         }
 

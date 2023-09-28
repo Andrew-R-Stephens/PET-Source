@@ -120,6 +120,7 @@ public class InvestigationActivity extends PETActivity {
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 

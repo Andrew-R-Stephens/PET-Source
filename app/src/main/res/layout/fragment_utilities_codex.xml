@@ -116,15 +116,6 @@
                         android:layout_columnSpan="2"
                         android:layout_columnWeight="1" />
 
-                    <include
-                        android:id="@+id/grid_codexmenu_pethelp"
-                        layout="@layout/item_codexmenu_option"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowSpan="1"
-                        android:layout_columnSpan="2"
-                        android:layout_columnWeight="1" />
-
                     <!--
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

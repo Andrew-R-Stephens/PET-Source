@@ -11,6 +11,11 @@
             android:title="@string/general_tasks_button"
             android:icon="@drawable/icon_tasks"/>
         <item
+            android:id="@+id/reset_button"
+            android:title="@string/general_evidence_reset_button"
+            android:icon="@drawable/icon_reset"
+            android:visible="false"/>
+        <item
             android:id="@+id/action_global_evidenceFragment"
             android:title="@string/evidence_evidence_title"
             android:icon="@drawable/icon_nav_evidence" />
@@ -18,10 +23,6 @@
             android:id="@+id/action_global_mapMenuFragment"
             android:title="@string/general_maps_button"
             android:icon="@android:drawable/ic_dialog_map"/>
-        <item
-            android:id="@+id/action_global_codexFragment"
-            android:title="@string/general_codex_button"
-            android:icon="@drawable/icon_nav_codex2" />
     </group>
 
 </menu>

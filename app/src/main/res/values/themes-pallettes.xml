@@ -243,4 +243,26 @@
         <item name="cardForegroundColor">?attr/unselectedColor</item>
     </style>
 
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">18sp</item><!-- text size in menu-->
+        <item name="textAppearanceListItemSmall">?attr/quaternaryFont_Regular_Manual</item>
+        <item name="textAppearanceListItemSecondary">?attr/quaternaryFont_Regular_Manual</item>
+        <item name="textAppearanceListItem">?attr/quaternaryFont_Regular_Manual</item>
+        <item name="android:textAppearance">?attr/quaternaryFont_Regular_Manual</item>
+
+
+        <!-- item size in menu-->
+        <item name="android:listPreferredItemHeightSmall">40dp</item>
+        <item name="listPreferredItemHeightSmall">40dp</item>
+
+        <!-- item padding left in menu-->
+        <item name="android:listPreferredItemPaddingLeft">8dp</item>
+        <item name="listPreferredItemPaddingLeft">8dp</item>
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">8dp</item>
+        <item name="listPreferredItemPaddingRight">8dp</item>
+    </style>
+
 </resources>
