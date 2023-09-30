@@ -894,8 +894,7 @@ public abstract class Rectangle2D extends RectangularShape {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof Rectangle2D) {
-            Rectangle2D r2d = (Rectangle2D) obj;
+        if (obj instanceof Rectangle2D r2d) {
             return ((getX() == r2d.getX()) &&
                     (getY() == r2d.getY()) &&
                     (getWidth() == r2d.getWidth()) &&

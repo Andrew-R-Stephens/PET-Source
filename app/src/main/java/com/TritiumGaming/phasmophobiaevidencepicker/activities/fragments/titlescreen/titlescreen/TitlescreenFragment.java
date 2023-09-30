@@ -177,6 +177,10 @@ public class TitlescreenFragment extends Fragment {
 
     private void setLanguageName(AppCompatTextView label_languageName) {
         String chosenLanguage = Locale.getDefault().getDisplayLanguage();
+        if(chosenLanguage.length() > 0) {
+            chosenLanguage = chosenLanguage.substring(0, 1).toUpperCase() +
+                            chosenLanguage.substring(1);
+        }
         label_languageName.setText(chosenLanguage);
     }
 

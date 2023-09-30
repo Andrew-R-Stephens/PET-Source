@@ -84,6 +84,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 sanityData.setProgressManually(50);
             }
         });
+
         /*
         navigation_fragListener_reset.setOnClickListener(v -> {
                     reset();
@@ -97,6 +98,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         );
 */
         // TIMER CONTROL
+
         phaseTimerCountdownView = new PhaseTimerView(
                 sanityData,
                 phaseTimerData,
@@ -172,19 +174,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             if (getActivity() != null) {
 
                 String appLang = ((InvestigationActivity) getActivity()).getAppLanguage();
-                MediaPlayer huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_en);
-                switch (appLang) {
-                    case "es":
-                        huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_es);
-                        break;
-                    case "fr":
-                        huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_fr);
-                        break;
-                    case "de":
-                        huntwarn = MediaPlayer.create(getContext(), R.raw.huntwarning_de);
-                        break;
-                }
-
                 evidenceViewModel.setSanityRunnable(new SanityRunnable(
                         evidenceViewModel,
                         globalPreferencesViewModel,
@@ -194,7 +183,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         sanityPhaseView_setup,
                         sanityPhaseView_action,
                         sanityWarningTextView,
-                        huntwarn));
+                        getHuntWarningAudio(appLang)));
+
             }
 
             if (sanityThread == null) {
@@ -270,6 +260,15 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             sanityThread = null;
         }
 
+    }
+
+    public MediaPlayer getHuntWarningAudio(String appLang) {
+        return switch (appLang) {
+            case "es" -> MediaPlayer.create(getContext(), R.raw.huntwarning_es);
+            case "fr" -> MediaPlayer.create(getContext(), R.raw.huntwarning_fr);
+            case "de" -> MediaPlayer.create(getContext(), R.raw.huntwarning_de);
+            default -> MediaPlayer.create(getContext(), R.raw.huntwarning_en);
+        };
     }
 
     /**

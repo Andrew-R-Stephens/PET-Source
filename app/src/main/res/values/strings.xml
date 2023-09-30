@@ -6,10 +6,19 @@
     <!-- Page Details -->
     <string name="app_name" translatable="false">P.E.T.</string>
 
+    <!-- Navigation Labels -->
     <string name="general_evidence_button">Evidence</string>
     <string name="general_maps_button">Maps</string>
     <string name="general_tasks_button">Tasks</string>
-    <string name="general_codex_button" translatable="false">Codex</string>
+    <string name="general_codex_button">Codex</string>
+    <string name="general_navigation_menu">Menu</string>
+    <string name="general_navigation_home">Home</string>
+    <string name="general_navigation_primary">Primary</string>
+    <string name="general_navigation_secondary">Secondary</string>
+    <string name="general_navigation_alternative">Alternative</string>
+    <string name="general_navigation_tools">Tools</string>
+
+
     <string name="general_evidence_reset_button">Reset</string>
 
     <!--

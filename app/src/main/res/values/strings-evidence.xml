@@ -15,57 +15,57 @@
     <!-- Evidence Description -->
     <string name="evidence_info_overview_dots">
         <![CDATA[
-            <p>The D.O.T.S. Projector is a device which may be held, placed on walls, or on the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</p>
-            <p>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</p>
-             <p>The D.O.T.S. visuals are now the actual ghost, meaning you will need to shine your Infrared lights near the ghost\'s actual position. This creates much more engaging gameplay for players, you can use D.O.T.S. to see where your ghost is, or if you\'re struggling to get the evidence, use Salt, Motion Sensors or other equipment to find a better spot for your Projector. Ghosts with D.O.T.S. evidence can now enter a short \“D.O.T.S. state\” when wandering; During which, they are temporarily visible with infrared light, during this time they will wander towards the nearest player (or to a random spot in the room if it\'s empty) before disappearing.</p>
+            <a>The D.O.T.S. Projector is a device which may be held, placed on walls, or on the floor. It projects a matrix of bright dots, casting the dots across nearby surfaces around it.</a><br>
+            <a>To positively identify this Evidence, <font color=#ff6161>a silhouette of the ghost will be seen running, or crawling quickly, through the projection\'s beams</font>. The silhouette may be seen by the naked eye or through a Video Camera, but is easier seen <font color=#ff6161>remotely via the Video Camera\'s Thermals</font>. It\'s best to attempt to find this evidence remotely, as a Goryo\'s behavior may cause Evidence conflicts otherwise. The actual location of the Ghost will not dictate when the silhouette animations occur.</a><br>
+            <a>The D.O.T.S. visuals are now the actual ghost, meaning you will need to shine your Infrared lights near the ghost\'s actual position. This creates much more engaging gameplay for players, you can use D.O.T.S. to see where your ghost is, or if you\'re struggling to get the evidence, use Salt, Motion Sensors or other equipment to find a better spot for your Projector. Ghosts with D.O.T.S. evidence can now enter a short \“D.O.T.S. state\” when wandering; During which, they are temporarily visible with infrared light, during this time they will wander towards the nearest player (or to a random spot in the room if it\'s empty) before disappearing.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_emf">
         <![CDATA[
-            <p>EMF\-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</p>
-            <p>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</p>
+            <a>EMF\-5 is the highest Level reading from an <font color=#ff6161>EMF Reader</font>.</a><br>
+            <a>A ghost produces EMF emissions from Levels 1 through 5 when it interacts in some way with the room or the Ouija Board. Light flickers, footsteps and other smaller passive interactions will typically give a lower reading. Heavier interactions, such as an appearance or a phone ringing, will almost always give a higher reading. Ghosts carrying this evidence will give EMF Level 5 only by chance, so this evidence <font color=#ff6161>may take some time to acquire</font>.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_ultraviolet">
         <![CDATA[
-            <p>Ultraviolet evidence can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font>. Pieces of Ultraviolet evidence will glow green while charged by the UV light, and will fade over time.</p>
-            <p>Left on objects and surfaces by ghosts, the Ultraviolet evidence might be tough to see on smaller items or while in large rooms. Footprints which have been tracked by salt piles also count as Ultraviolet evidence.</p>
-            <p>When shining a UV light onto Fingerprints or Footprints, you will still see it straight away, but additionally, the light will charge up the print. After putting your UV light away, the print will stay visible for a short period (depending on how long you charged it for), allowing you to take a photo!</p>
-            <p>A 6\-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</p>
+            <a>Ultraviolet evidence can only be <font color=#ff6161>seen by shining the UV Light or a Glowstick onto affected surfaces</font>. Pieces of Ultraviolet evidence will glow green while charged by the UV light, and will fade over time.</a><br>
+            <a>Left on objects and surfaces by ghosts, the Ultraviolet evidence might be tough to see on smaller items or while in large rooms. Footprints which have been tracked by salt piles also count as Ultraviolet evidence.</a><br>
+            <a>When shining a UV light onto Fingerprints or Footprints, you will still see it straight away, but additionally, the light will charge up the print. After putting your UV light away, the print will stay visible for a short period (depending on how long you charged it for), allowing you to take a photo!</a><br>
+            <a>A 6\-fingered Handprint may be found which will identify the Ghost type immediately as an Obake.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_thermometer">
         <![CDATA[
-            <p>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</p>
-            <p>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C.</p>
-            <p>Cold Breath has been reworked. At 5 C or less, anyone within the haunted area will be able to <font color=#ff6161>see their breath</font>. If it\'s snowing and the fuse box starts off, you\'ll find Cold Breath instantly everywhere, even in the Truck. Alternatively, if the fuse box is on, so that the house is nice and toasty, you\'ll find Cold Breath appearing only in rooms where the ghost has been long enough to drop their temperature.</p>
-            <p>The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</p>
+            <a>Freezing temperatures are <font color=#ff6161>below 0 Celsius</font>. Temperature can be determined by using the <font color=#ff6161>Thermometer</font>.</a><br>
+            <a>As ghosts pull heat from the surrounding area, temperatures decrease in the room or hallways where the <font color=#ff6161>ghost spends the most of its time</font>. All ghosts will eventually cause temperatures below 13 degrees Celsius, but only certain ghost types will drop temperatures below 0 C.</a><br>
+            <a>Cold Breath has been reworked. At 5 C or less, anyone within the haunted area will be able to <font color=#ff6161>see their breath</font>. If it\'s snowing and the fuse box starts off, you\'ll find Cold Breath instantly everywhere, even in the Truck. Alternatively, if the fuse box is on, so that the house is nice and toasty, you\'ll find Cold Breath appearing only in rooms where the ghost has been long enough to drop their temperature.</a><br>
+            <a>The cooling of a room, even by just a slight amount, may take longer than the first few minutes during an investigation. Taking note of oddly low temperatures in early rooms and then doubling back to them is a good idea.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_book">
         <![CDATA[
-            <p>Determined using the Ghost Writing Book.</p>
-            <p>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</p>
+            <a>Determined using the Ghost Writing Book.</a><br>
+            <a>Ghosts may write in the book <font color=#ff6161>regardless if the book is set down or held in hand</font>. If the ghost writes in the book, this is a piece of Evidence for that ghost type. If Demonic symbols are written, this may be evidence for a Demon, but this is absolutely not definitive as ghost writing styles tend to deviate at random.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_vcam">
         <![CDATA[
-            <p>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head\-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</p>
-            <p>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</p>
+            <a>A small, floating orb that\'s present only in the room a ghost is haunting. It can be <font color=#ff6161>seen only via night vision through the use of the Video Camera or the Head\-Mounted Camera\'s thermal imaging <font> using the truck\'s live camera feed.</a><br>
+            <a>Ghost orbs can be quick to spot, but ruling it out too quickly might spell trouble down the road.</a>
         ]]>
     </string>
 
     <string name="evidence_info_overview_sbox">
         <![CDATA[
-            <p>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</p>
-            <p>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</p>
-            <p>Should the ghost answer, the Spirit Box is confirmed Evidence.</p>
-            <p>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</p>
+            <a>The Spirit Box is item used to <font color=#ff6161>communicate with the ghost</font>.</a><br>
+            <a>A player must <font color=#ff6161>ask questions in Vicinity Chat to an active Spirit Box, both while nearby the ghost and while the lights are off</font>. Before attempting this, check the ghost\'s response parameters such as either \"Responds to people who are alone\" or \"Responds to everyone\" listed on the Truck\'s whiteboard.</a><br>
+            <a>Should the ghost answer, the Spirit Box is confirmed Evidence.</a><br>
+            <a>Pointed questions such as \"How old are you?\" or \"Where are you?\" are plausible questions. Do keep in mind that the ghost is always listening regardless if a player is talking into a Spirit Box or not, so players should be careful while speaking in Vicinity chat. Drawing out a ghost can be done by saying their given name numerous times (thus, angering it), and giving it commands like \"Show yourself\" or \"Give us a sign\" seem to be plausible commands.</a>
         ]]>
     </string>
 

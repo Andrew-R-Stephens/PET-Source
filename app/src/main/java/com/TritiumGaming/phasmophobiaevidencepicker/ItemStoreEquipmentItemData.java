@@ -2,12 +2,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
-import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 

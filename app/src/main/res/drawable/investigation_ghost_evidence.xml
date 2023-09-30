@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item>
+        <shape>
+            <solid android:color="@color/transparent"/>
+            <size android:height="48dp" android:width="48dp"/>
+        </shape>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:top="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+        <level-list>
+            <item android:minLevel="0" android:maxLevel="1">
+                <bitmap
+                    android:src="@drawable/icon_dots">
+                </bitmap>
+            </item>
+            <item android:minLevel="2" android:maxLevel="2">
+                <bitmap
+                    android:src="@drawable/icon_emf5">
+                </bitmap>
+            </item>
+            <item android:minLevel="3" android:maxLevel="3">
+                <bitmap
+                    android:src="@drawable/icon_fingerprints">
+                </bitmap>
+            </item>
+            <item android:minLevel="4" android:maxLevel="4">
+                <bitmap
+                    android:src="@drawable/icon_freezing">
+                </bitmap>
+            </item>
+            <item android:minLevel="5" android:maxLevel="5">
+                <bitmap
+                    android:src="@drawable/icon_orbs">
+                </bitmap>
+            </item>
+            <item android:minLevel="6" android:maxLevel="6">
+                <bitmap
+                    android:src="@drawable/icon_writing">
+                </bitmap>
+            </item>
+            <item android:minLevel="7" android:maxLevel="7">
+                <bitmap
+                    android:src="@drawable/icon_spiritbox">
+                </bitmap>
+            </item>
+            <item android:minLevel="8" android:maxLevel="8">
+                <bitmap
+                    android:src="@drawable/icon_inconclusive_unselected">
+                </bitmap>
+            </item>
+        </level-list>
+    </item>
+
+</layer-list>

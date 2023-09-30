@@ -171,7 +171,7 @@
     </string>
     <string name="shop_equipment_dots_data_info_2">
         <![CDATA[
-            <a>This is the original D.O.T.S. projector. It is a placeable projector emitting an average\-sized sphere of light, except now you can encourage the ghost to walk into it by standing nearby.</a><br>
+            <a>This is the original D.O.T.S. projector. It is a placeable projector emitting an average\-sized sphere of light, except now you can encourage the ghost to walk into it by standing nearby.</a><br><br>
             <a>Best for small\-to\-medium sized rooms.</a>
         ]]>
     </string>
@@ -193,28 +193,27 @@
     </string>
     <string name="shop_equipment_emf_data_info_3">
         <![CDATA[
-            <a>A high\-tech ParaReader. This device can track up to three EMF spots at once and has a furthest detection range.</a><br>
-            <a>It\'ll show the direction, range, and value of each reading at the same time. It plays sounds for each EMF detection so you can hear, from a distance, how many and how strong the readings are.</a><br>
+            <a>A high\-tech ParaReader. This device can track up to three EMF spots at once and has a furthest detection range.</a><br><br>
+            <a>It\'ll show the direction, range, and value of each reading at the same time. It plays sounds for each EMF detection so you can hear, from a distance, how many and how strong the readings are.</a><br><br>
             <a>If an EMF spot fades away, a more recent EMF spot will be placed at the bottom of the list.</a>
         ]]>
     </string>
 
     <string name="shop_equipment_uvlight_data_info_1">
         <![CDATA[
-            <a>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</a><br>
+            <a>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</a><br><br>
             <a>This device will charge up a UV spot within 10 seconds of exposure.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_info_2">
         <![CDATA[
-            <a>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</a><br>
+            <a>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</a><br><br>
             <a>This device will charge up a UV spot within 5 seconds of exposure.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_info_3">
         <![CDATA[
-            <a>The UV Light Pro is a chunky flashlight that has a much brighter and wider cone of light, as well as an even quicker charge time. It is perfect for locating Ultraviolet Evidence quickly on a larger scale.<a>
-            <a>This device will charge up a UV spot within 1.5 seconds of exposure.</a>
+            <a>The UV Light Pro is a chunky flashlight that has a much brighter and wider cone of light, as well as an even quicker charge time. It is perfect for locating Ultraviolet Evidence quickly on a larger scale.</a><br><br><a>This device will charge up a UV spot within 1.5 seconds of exposure.</a>
         ]]>
     </string>
 
@@ -252,7 +251,7 @@
 
     <string name="shop_equipment_videocamera_data_info_1">
         <![CDATA[
-            <a>An old camcorder that Ghost Huntin\' Distribution found in the attic of the old office. It\'s small and a bit beaten up, but it does the job just fine.</a><br>
+            <a>An old camcorder that Ghost Huntin\' Distribution found in the attic of the old office. It\'s small and a bit beaten up, but it does the job just fine.</a><br><br>
             <a>Analyzing the video feed is a challenge due to its screen\'s awful quality and small dimensions, so take your time with it!</a>
         ]]>
     </string>
@@ -269,20 +268,20 @@
 
     <string name="shop_equipment_spiritbox_data_info_1">
         <![CDATA[
-            <a>When turning this Spirit Box on, it will begin to scan through different radio frequencies. Make sure to stand near to any paranormal activity, turn off any lights in that room, and ask some questions in the hope of a response.</a><br>
-            <a>If the question has been heard, a red light will flash on the Spirit Box. If it flashes white, you\'ve got a response from the ghost.</a><br>
+            <a>When turning this Spirit Box on, it will begin to scan through different radio frequencies. Make sure to stand near to any paranormal activity, turn off any lights in that room, and ask some questions in the hope of a response.</a><br><br>
+            <a>If the question has been heard, a red light will flash on the Spirit Box. If it flashes white, you\'ve got a response from the ghost.</a><br><br>
             <a>Try asking "Where are you?" or "Are you friendly?". Be warned, you may not like the answer you receive.</a>
         ]]>
     </string>
     <string name="shop_equipment_spiritbox_data_info_2">
         <![CDATA[
-            <a>This more modern Spirit Box has a higher-quality speaker which is much more efficient at scanning through frequencies, making paranormal responses easier to decipher.</a><br>
+            <a>This more modern Spirit Box has a higher-quality speaker which is much more efficient at scanning through frequencies, making paranormal responses easier to decipher.</a><br><br>
             <a>If a question has been heard, a black \'X\' will flash on the screen. If you get a response, the small ghost icon will flash instead.</a>
         ]]>
     </string>
     <string name="shop_equipment_spiritbox_data_info_3">
         <![CDATA[
-            <a>When turned on, this Spirit Box scans both frequencies, two at the same time, increasing the chance of picking up a paranormal response when asking questions. It also has a built-in filter to reduce the amount of static you hear between interactions.</a><br>
+            <a>When turned on, this Spirit Box scans both frequencies, two at the same time, increasing the chance of picking up a paranormal response when asking questions. It also has a built-in filter to reduce the amount of static you hear between interactions.</a><br><br>
             <a>If a question is heard an no response is given, the RESPONSE LEDs will flash red. If a reply is given, the LEDs will flash white in time with the sound.</a>
         ]]>
     </string>
@@ -305,7 +304,7 @@
 
     <string name="shop_equipment_photocamera_data_info_1" >
         <![CDATA[
-            <a>You can use this camera to take photos of any evidence you may find. It will only interfere with the ghost during the photo-taking process, so be careful when you decide to snap a picture.</a><br>
+            <a>You can use this camera to take photos of any evidence you may find. It will only interfere with the ghost during the photo-taking process, so be careful when you decide to snap a picture.</a><br><br>
             <a>For more information on how to take photos check the \'Photos\' section in your Journal.</a>
         ]]>
     </string>
@@ -316,26 +315,26 @@
     </string>
     <string name="shop_equipment_photocamera_data_info_3" >
         <![CDATA[
-            <a>This top-of-the-range camera provides the lowest delay time between photos, allowing quick evidence gathering.</a><br>
+            <a>This top-of-the-range camera provides the lowest delay time between photos, allowing quick evidence gathering.</a><br><br>
             <a>Additionally, it\'s been modified to be less susceptible to paranormal entities causing interference with the screen during manifestations.</a>
         ]]>
     </string>
 
     <string name="shop_equipment_igniter_data_info_1" >
         <![CDATA[
-            <a>These matches are perfect for lighting Firelights and Incense, but remember, with only ten uses you\'ll run out fast!</a><br>
+            <a>These matches are perfect for lighting Firelights and Incense, but remember, with only ten uses you\'ll run out fast!</a><br><br>
             <a>They can also be used as a small light source, just make sure not to burn your fingers.</a>
         ]]>
     </string>
     <string name="shop_equipment_igniter_data_info_2" >
         <![CDATA[
-            <a>A gas lighter. It provides a little more light than matches and lasts a lot longer.</a><br>
+            <a>A gas lighter. It provides a little more light than matches and lasts a lot longer.</a><br><br>
             <a>You can see the liquid inside it drain as you use it, make sure you have enough left when you\'re in a pinch!</a>
         ]]>
     </string>
     <string name="shop_equipment_igniter_data_info_3" >
         <![CDATA[
-            <a>This Lighter could last you for an entire contract, as long as you\'re not wasting it!</a><br>
+            <a>This Lighter could last you for an entire contract, as long as you\'re not wasting it!</a><br><br>
             <a>With a larger flame, the light it provides is brighter and has a larger range, perfect for those dark getaways during an attack.</a>
         ]]>
     </string>
@@ -347,26 +346,26 @@
     </string>
     <string name="shop_equipment_firelight_data_info_2" >
         <![CDATA[
-            <a>With three candles instead of one, the light provided is much brighter, longer range, and lasts longer.</a><br>
+            <a>With three candles instead of one, the light provided is much brighter, longer range, and lasts longer.</a><br><br>
             <a>Additionally, this Firelight doesn\'t need to be held to gain its effects, so you can place it and stand nearby to still receive the sanity benefits!</a>
         ]]>
     </string>
     <string name="shop_equipment_firelight_data_info_3" >
         <![CDATA[
-            <a>This lantern will last for the entirety of a contract, so there\'s no worry about it going out when you need it most. Just like its predecessor, you can stand nearby to gain its effects.</a><br>
+            <a>This lantern will last for the entirety of a contract, so there\'s no worry about it going out when you need it most. Just like its predecessor, you can stand nearby to gain its effects.</a><br><br>
             <a>Lastly, it\'s waterproof so it even works in the rain!</a>
         ]]>
     </string>
 
     <string name="shop_equipment_crucifix_data_info_1" >
         <![CDATA[
-            <a>This crucifix can be held or placed to stop the ghost from initiating a single attack.</a><br>
+            <a>This crucifix can be held or placed to stop the ghost from initiating a single attack.</a><br><br>
             <a>Make sure to keep it placed near any activity you may find.</a>
         ]]>
     </string>
     <string name="shop_equipment_crucifix_data_info_2" >
         <![CDATA[
-            <a>A metal crucifix that can be used to block two attacks, with a larger range.</a><br>
+            <a>A metal crucifix that can be used to block two attacks, with a larger range.</a><br><br>
             <a>Remember to keep it near any activity you come across.</a>
         ]]>
     </string>
@@ -388,8 +387,8 @@
     </string>
     <string name="shop_equipment_salt_data_info_3" >
         <![CDATA[
-            <a>This salt is so powerful it can affect a ghost\'s mobility in two ways.</a><br>
-            <a>Whilst a ghost is acting passively, these lines will act like a barrier, forcing the ghost to turn around when walking into one. Great for trapping those roaming ghosts in a room so you can find your evidence.</a><br>
+            <a>This salt is so powerful it can affect a ghost\'s mobility in two ways.</a><br><br>
+            <a>Whilst a ghost is acting passively, these lines will act like a barrier, forcing the ghost to turn around when walking into one. Great for trapping those roaming ghosts in a room so you can find your evidence.</a><br><br>
             <a>If it\'s during an attack, the ghost will be slowed, giving you extra time to make your escape.</a>
         ]]>
     </string>
@@ -401,7 +400,7 @@
     </string>
     <string name="shop_equipment_incense_data_info_2" >
         <![CDATA[
-            <a>Much more sage has been used to create this incense bundle, allowing for a longer burn time, keeping you safer for longer during attacks.</a><br>
+            <a>Much more sage has been used to create this incense bundle, allowing for a longer burn time, keeping you safer for longer during attacks.</a><br><br>
             <a>Additionally, it will slow the movement of the ghost for part of its effect duration.</a>
         ]]>
     </string>
@@ -413,7 +412,7 @@
 
     <string name="shop_equipment_tripod_data_info_1" >
         <![CDATA[
-            <a>Attach a Video Camera to this Tripod by placing it on top. You can then carry the Tripod and place it in locations that may not have a good surface for viewing paranormal activity.</a><br>
+            <a>Attach a Video Camera to this Tripod by placing it on top. You can then carry the Tripod and place it in locations that may not have a good surface for viewing paranormal activity.</a><br><br>
             <a>Ghosts may interfere with your placed cameras and attempt to knock them over, make sure to reset them back up if they are pushed to the floor.</a>
         ]]>
     </string>
@@ -435,7 +434,7 @@
     </string>
     <string name="shop_equipment_motionsensor_data_info_2" >
         <![CDATA[
-            <a>With two different modes, a longer range, and a sound indicator, this sensor is perfect for paranormal tracking.</a><br>
+            <a>With two different modes, a longer range, and a sound indicator, this sensor is perfect for paranormal tracking.</a><br><br>
             <a>You can toggle the laser shape by Interacting with the sensor after it has been placed.</a>
         ]]>
     </string>
@@ -447,7 +446,7 @@
 
     <string name="shop_equipment_soundsensor_data_info_1" >
         <![CDATA[
-            <a>Place these sound sensors down in locations where you want to track any audio interactions.</a><br>
+            <a>Place these sound sensors down in locations where you want to track any audio interactions.</a><br><br>
             <a>Once placed, return to the Truck, you can listen to the remote playback whilst checking the Sound Sensor screen to see if any of the Sensors receive any readings.</a>
         ]]>
     </string>
@@ -458,8 +457,8 @@
     </string>
     <string name="shop_equipment_soundsensor_data_info_3" >
         <![CDATA[
-            <a>The tripod has rotational joints on it, allowing you to Interact with it to change the shape of the Sound Sensor.</a><br>
-            <a>Each shape is represented by the directions that the microphones are facing:</a><br>
+            <a>The tripod has rotational joints on it, allowing you to Interact with it to change the shape of the Sound Sensor.</a><br><br>
+            <a>Each shape is represented by the directions that the microphones are facing:</a><br><br>
             <a>Forward: Cone / Outward: Sides / Inward: Sphere</a>
         ]]>
     </string>
@@ -487,13 +486,13 @@
     </string>
     <string name="shop_equipment_parabolicmicrophone_data_info_2" >
         <![CDATA[
-            <a>We\'ve improved this Parabolic Microphone with a couple of upgrades: a better sensor and a small screen.</a><br>
+            <a>We\'ve improved this Parabolic Microphone with a couple of upgrades: a better sensor and a small screen.</a><br><br>
             <a>Turning it on will allow you to hear distant sounds, as well as get a visual reading of how loud that sound is.</a>
         ]]>
     </string>
     <string name="shop_equipment_parabolicmicrophone_data_info_3" >
         <![CDATA[
-            <a>This Parabolic Microphone has been improved with a visual sound indicator.</a><br>
+            <a>This Parabolic Microphone has been improved with a visual sound indicator.</a><br><br>
             <a>Each time a sound is detected within the microphone\'s range, a visual indicator will be shown on the screen, including distance and volume, allowing you to easily track where the sound is coming from.</a>
         ]]>
     </string>
@@ -505,13 +504,13 @@
     </string>
     <string name="shop_equipment_headgear_data_info_2" >
     <![CDATA[
-            <a>A small head-mounted flashlight that doesn\'t take up an inventory slot. The only downside is that the light isn\'t overly bright or wide.</a><br>
+            <a>A small head-mounted flashlight that doesn\'t take up an inventory slot. The only downside is that the light isn\'t overly bright or wide.</a><br><br>
             <a>You can toggle it on and off by holding your Special key bind.</a>
         ]]>
     </string>
     <string name="shop_equipment_headgear_data_info_3" >
     <![CDATA[
-            <a>A pair of Night Vision goggles, allowing you to see in the dark without the need for a flashlight.</a><br>
+            <a>A pair of Night Vision goggles, allowing you to see in the dark without the need for a flashlight.</a><br><br>
             <a>Be warned though, your vision may get distorted if within range of an active ghost, rendering the goggles useless.</a>
         ]]>
     </string>
@@ -1004,6 +1003,5 @@
     <integer name="equipment_requirement_upgradecost_headgear_1" >0</integer>
     <integer name="equipment_requirement_upgradecost_headgear_2" >10000</integer>
     <integer name="equipment_requirement_upgradecost_headgear_3" >10000</integer>
-
 
 </resources>

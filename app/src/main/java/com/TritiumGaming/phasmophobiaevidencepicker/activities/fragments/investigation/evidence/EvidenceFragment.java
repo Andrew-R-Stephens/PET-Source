@@ -20,6 +20,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,6 +33,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -38,7 +41,6 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GestureDetectorCompat;
-import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
@@ -49,7 +51,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidenceViewData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostViewData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
@@ -245,12 +249,10 @@ public class EvidenceFragment extends InvestigationFragment {
         header_ghostLabel.setText(R.string.evidence_ghosts_title);
         header_evidenceLabel.setText(R.string.evidence_evidence_title);
 
-        if(getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
-                createEvidenceViews(view, evidenceContainer, ghostContainer);
-                createGhostViews(view, ghostContainer);
-            });
-        }
+
+        createEvidenceViews(view, evidenceContainer, ghostContainer);
+        createGhostViews(view, ghostContainer);
+
 
     }
 
@@ -340,27 +342,46 @@ public class EvidenceFragment extends InvestigationFragment {
     @SuppressLint("ResourceType")
     private void createEvidenceViews(View view, LinearLayout evidenceContainer,
                                      LinearLayout ghostContainer) {
+        if(getActivity() == null) { return; };
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        String[] evidenceNames = getResources().getStringArray(R.array.evidence_type_names);
+        final EvidenceViewData[][] evidenceViewDatas = { null };
 
-        //Avoid pass null in the root it ignores spaces in the child layout
+        new Thread(() -> {
+            evidenceViewDatas[0] = buildEvidenceViewData();
+            if (evidenceViewDatas[0] == null) return;
+
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    buildEvidenceViews(view, evidenceContainer, ghostContainer, evidenceViewDatas[0]);
+                });
+            }
+        }).start();
+
+    }
+
+    @SuppressLint("ResourceType")
+    private EvidenceViewData[] buildEvidenceViewData() {
+
+        if(getContext() == null) {return null; }
+
         TypedArray evidenceTypes =
                 getContext().getResources().obtainTypedArray(R.array.equipment_tiers_arrays);
-        for(int i = 0; i < InvestigationData.getEvidenceCount(); i++) {
 
-            final int evidenceIndex = i;
-            String evidenceName = evidenceNames[i];
+        EvidenceViewData[] evidenceViewDatas = new EvidenceViewData[evidenceTypes.length()];
+        for(int i = 0; i < evidenceViewDatas.length; i++) {
+
+            @IntegerRes int evidenceName;
             @IntegerRes int[] descriptions = new int[4];
             @IntegerRes int[] animations = new int[4];
             @IntegerRes int[] unlock_level = new int[3];
-            @IntegerRes int[] evidenceCost = new int[1];
+            @IntegerRes int evidenceCost = 0;
 
             TypedArray evidenceType =
                     getContext().getResources().obtainTypedArray(evidenceTypes.getResourceId(i, 0));
             //Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
 
-            evidenceCost[0] = evidenceType.getResourceId(3, 0);
+            evidenceName = evidenceType.getResourceId(0, 0);
+            evidenceCost = evidenceType.getResourceId(3, 0);
 
             @SuppressLint("ResourceType")
             TypedArray evidenceDescription =
@@ -383,13 +404,32 @@ public class EvidenceFragment extends InvestigationFragment {
             @SuppressLint("ResourceType")
             TypedArray evidenceLevels =
                     getContext().getResources().obtainTypedArray(evidenceType.getResourceId(4, 0));
-            for (int j = 0; j < evidenceAnimations.length(); j++) {
-                unlock_level[j] = evidenceAnimations.getResourceId(j, 0);
+            for (int j = 0; j < evidenceLevels.length(); j++) {
+                unlock_level[j] = evidenceLevels.getResourceId(j, 0);
                 //Log.d("EvDALevels", unlock_level[j] + "");
             }
             evidenceLevels.recycle(); //cleanup
-
             evidenceType.recycle();
+
+            EvidenceViewData evidenceViewData = new EvidenceViewData(
+                    i,
+                    evidenceName, evidenceCost, unlock_level,
+                    descriptions, animations);
+            evidenceViewDatas[i] = evidenceViewData;
+        }
+        evidenceTypes.recycle();
+
+        return evidenceViewDatas;
+    }
+
+    private void buildEvidenceViews(View view, LinearLayout evidenceContainer, LinearLayout ghostContainer, EvidenceViewData[] evidenceViewDatas) {
+        if(getContext() == null) { return; }
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        for(int i = 0; i < evidenceViewDatas.length; i++) {
+            final int currGroup = i;
+
+            EvidenceViewData evidenceViewData = evidenceViewDatas[i];
 
             View evidenceParent = inflater.inflate(
                     R.layout.item_investigation_evidence,
@@ -398,307 +438,211 @@ public class EvidenceFragment extends InvestigationFragment {
             ConstraintLayout mainLayout = evidenceParent.findViewById(R.id.layout_main);
             AppCompatTextView name = evidenceParent.findViewById(R.id.label_name);
 
-            View radioGroup = evidenceParent.findViewById(R.id.radioGroup);
-
-            View radioButton1 = radioGroup.findViewById(R.id.radio1);
-            View radioButton2 = radioGroup.findViewById(R.id.radio2);
-            View radioButton3 = radioGroup.findViewById(R.id.radio3);
-
-            AppCompatImageView icon1 = radioButton1.findViewById(R.id.radioIcon);
-            AppCompatImageView icon2 = radioButton2.findViewById(R.id.radioIcon);
-            AppCompatImageView icon3 = radioButton3.findViewById(R.id.radioIcon);
+            ConstraintLayout radioGroup = evidenceParent.findViewById(R.id.radioGroup);
 
             LinearLayout.LayoutParams params =
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             mainLayout.setLayoutParams(params);
 
-            name.setText(evidenceName);
+            //name.setText(evidenceName);
+            name.setText(evidenceViewData.getName(getContext()));
             name.setOnClickListener(v -> {
+                showEvidencePopup(view, evidenceViewData);
+            });
 
-                if(getView() == null || getView().getContext() == null) {
-                    return;
-                }
+            evidenceViewModel.getInvestigationData().getEvidences().get(currGroup)
+                    .setRuling(InvestigationData.Evidence.Ruling.values()[
+                            evidenceViewModel.getRadioButtonsChecked()[currGroup]]);
 
-                if (popup != null) {
-                    popup.dismiss();
-                }
+            for(int j = 0; j < radioGroup.getChildCount(); j++) {
+                final int currRadio = j;
 
-                LayoutInflater inflaterPopup =
-                        (LayoutInflater) getView().getContext().getSystemService(
-                                Context.LAYOUT_INFLATER_SERVICE);
-                View customView = inflaterPopup.inflate(
-                        R.layout.popup_info_evidence,
-                        (ViewGroup) view,
-                        false);
+                AppCompatImageView icon = radioGroup.getChildAt(j).findViewById(R.id.radioIcon);
+                icon.setImageResource(R.drawable.investigation_evidence_selector);
+                icon.setImageLevel(currRadio + 1);
+                int selectedRatio = evidenceViewModel.getRadioButtonsChecked()[currGroup];
+                icon.setImageState(
+                        new int[] {
+                                (selectedRatio == currRadio) ?
+                                        R.attr.state_selected : -R.attr.state_selected
+                        },
+                        true);
 
-                AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-                AppCompatTextView label = customView.findViewById(R.id.label_name);
-                AppCompatTextView info = customView.findViewById(R.id.label_info);
-
-                AppCompatImageView select_overview = customView.findViewById(R.id.textView_overview_image);
-                AppCompatImageView select_tiers = customView.findViewById(R.id.textView_tiers_image);
-
-                AppCompatImageView select_tier_1 = customView.findViewById(R.id.textView_tiers_1_image);
-                AppCompatImageView select_tier_2 = customView.findViewById(R.id.textView_tiers_2_image);
-                AppCompatImageView select_tier_3 = customView.findViewById(R.id.textView_tiers_3_image);
-
-                ScrollView scroller = customView.findViewById(R.id.scrollView);
-                View indicator = customView.findViewById(R.id.scrollview_indicator);
-                GifImageView animation = customView.findViewById(R.id.animation_evidence);
-                GifImageView animation_fullscreen = customView.findViewById(R.id.animation_evidence_fullscreen);
-
-                ConstraintLayout layout_overview = customView.findViewById(R.id.constraintLayout_evidence_overview);
-                ConstraintLayout layout_tiers = customView.findViewById(R.id.constraintLayout_evidence_tiers);
-                AppCompatTextView label_cost = customView.findViewById(R.id.label_cost);
-
-                // Init
-                label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        getString(R.string.evidence_requirement_cost_title) + " $" + getString(evidenceCost[0]),
-                        "#ff6161", fontEmphasisColor + "")));
-                //MAIN STATES
-                select_overview.setImageState(new int[]{R.attr.state_done}, true);
-                select_overview.setOnClickListener(selectView -> {
-                    select_overview.setImageState(new int[]{R.attr.state_done}, true);
-                    select_tiers.setImageState(new int[]{-R.attr.state_done}, true);
-
-                    layout_overview.setVisibility(View.VISIBLE);
-                    layout_tiers.setVisibility(View.GONE);
-
-                    animation_fullscreen.setImageResource(animations[0]);
-                });
-                select_tiers.setOnClickListener(selectView -> {
-                    select_tiers.setImageState(new int[]{R.attr.state_done}, true);
-                    select_overview.setImageState(new int[]{-R.attr.state_done}, true);
-
-                    layout_tiers.setVisibility(View.VISIBLE);
-                    layout_overview.setVisibility(View.GONE);
-
-                    select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1], getString(unlock_level[0]));
-                });
-
-                //TIER STATES
-                select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-                select_tier_1.setOnClickListener(selectView -> {
-                    select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-
-                    generateEvidenceTierView(customView, 1, animation_fullscreen, getString(descriptions[1]), animations[1], getString(unlock_level[0]));
-                });
-                select_tier_2.setOnClickListener(selectView -> {
-                    select_tier_2.setImageState(new int[]{R.attr.state_done}, true);
-                    select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
-                    select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-
-                    generateEvidenceTierView(customView, 2, animation_fullscreen, getString(descriptions[2]), animations[2], getString(unlock_level[1]));
-                });
-                select_tier_3.setOnClickListener(selectView -> {
-                    select_tier_3.setImageState(new int[]{R.attr.state_done}, true);
-                    select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
-                    select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-
-                    generateEvidenceTierView(customView, 3, animation_fullscreen, getString(descriptions[3]), animations[3], getString(unlock_level[2]));
-                });
-
-
-                animation.setOnClickListener(view12 -> {
-                    if(animation_fullscreen.getVisibility() != View.VISIBLE) {
-                        animation_fullscreen.setVisibility(View.VISIBLE);
+                icon.setOnClickListener(v -> {
+                    for(int k = 0; k < radioGroup.getChildCount(); k++) {
+                        AppCompatImageView allIcon = radioGroup.getChildAt(k).findViewById(R.id.radioIcon);
+                        allIcon.setImageState(new int[] { -R.attr.state_selected }, true);
                     }
+                    icon.setImageState(new int[] { (R.attr.state_selected) }, true);
+
+                    evidenceViewModel.setRadioButtonChecked(currGroup, currRadio);
+                    evidenceViewModel.getInvestigationData().getEvidences().get(currGroup)
+                            .setRuling(InvestigationData.Evidence.Ruling.values()[
+                                    evidenceViewModel.getRadioButtonsChecked()[currGroup]]);
+
+                    evidenceViewModel.getGhostOrderData().updateOrder();
+                    requestInvalidateGhostContainer(ghostContainer);
                 });
-                animation_fullscreen.setOnClickListener(view1 -> {
-                    if(view1.getVisibility() == View.VISIBLE) {
-                        view1.setVisibility(View.GONE);
-                    }
-                });
-
-                fadeOutIndicatorAnimation(
-                        null,
-                        null,
-                        scroller,
-                        indicator);
-
-                closeButton.setOnClickListener(v1 -> popup.dismiss());
-
-                label.setText(evidenceName);
-                info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        getString(descriptions[0]),
-                        "#ff6161", fontEmphasisColor + "")));
-
-                TypedArray typedArray;
-                try {
-                    typedArray = view.getContext().getResources().obtainTypedArray(R.array.equipment_animation_array);
-                    animation.setImageResource(animations[0]);
-                    animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceIndex, 0));
-                    typedArray.recycle();
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                popup = new PopupWindow(
-                        customView,
-                        RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT
-                );
-                popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
-                popup.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, 0);
-
-                if (getActivity() != null) {
-                    MobileAds.initialize(getActivity(), initializationStatus -> {
-                    });
-                    AdView mAdView = customView.findViewById(R.id.adView);
-                    adRequest = new AdRequest.Builder().build();
-                    mAdView.loadAd(adRequest);
-                }
-            });
-
-            TypedValue typedValue = new TypedValue();
-            if(getContext() == null) {
-                return;
             }
-            Resources.Theme theme = getContext().getTheme();
-
-            theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
-            int positiveSelColor = typedValue.data;
-            theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
-            int neutralSelColor = typedValue.data;
-            theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
-            int negativeSelColor = typedValue.data;
-
-            if(evidenceViewModel.getRadioButtonsChecked()[i] == 0) {
-
-                icon1.setImageResource(R.drawable.icon_negative_selected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_unselected);
-                icon1.setColorFilter(negativeSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(neutralSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(i)
-                        .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
-
-            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 1) {
-
-                icon1.setImageResource(R.drawable.icon_negative_unselected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_selected);
-                icon3.setImageResource(R.drawable.icon_positive_unselected);
-                icon1.setColorFilter(neutralSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(neutralSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(i)
-                        .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
-
-            } else if(evidenceViewModel.getRadioButtonsChecked()[i] == 2) {
-
-                icon1.setImageResource(R.drawable.icon_negative_unselected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_selected);
-                icon1.setColorFilter(neutralSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(positiveSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(i)
-                        .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
-
-            }
-
-            int index = i;
-
-            icon1.setOnClickListener(v -> {
-
-                if(getContext() == null) {
-                    return;
-                }
-
-                if(evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .getRuling() == InvestigationData.Evidence.Ruling.NEGATIVE) {
-                    return;
-                }
-
-                icon1.setImageResource(R.drawable.icon_negative_selected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_unselected);
-
-                icon1.setColorFilter(negativeSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(neutralSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .setRuling(InvestigationData.Evidence.Ruling.NEGATIVE);
-
-                evidenceViewModel.setRadioButtonChecked(index, 0);
-
-                evidenceViewModel.getGhostOrderData().updateOrder();
-                requestInvalidateGhostContainer(ghostContainer);
-            });
-
-            icon2.setOnClickListener(v -> {
-
-                if(getContext() == null) {
-                    return;
-                }
-
-                if(evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .getRuling() == InvestigationData.Evidence.Ruling.NEUTRAL) {
-                    return;
-                }
-
-                icon1.setImageResource(R.drawable.icon_negative_unselected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_selected);
-                icon3.setImageResource(R.drawable.icon_positive_unselected);
-
-                icon1.setColorFilter(neutralSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(neutralSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .setRuling(InvestigationData.Evidence.Ruling.NEUTRAL);
-
-                evidenceViewModel.setRadioButtonChecked(index, 1);
-
-                evidenceViewModel.getGhostOrderData().updateOrder();
-
-                requestInvalidateGhostContainer(ghostContainer);
-            });
-
-            icon3.setOnClickListener(v -> {
-
-                if(getContext() == null) {
-                    return;
-                }
-
-                if(evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .getRuling() == InvestigationData.Evidence.Ruling.POSITIVE) {
-                    return;
-                }
-
-                icon1.setImageResource(R.drawable.icon_negative_unselected);
-                icon2.setImageResource(R.drawable.icon_inconclusive_unselected);
-                icon3.setImageResource(R.drawable.icon_positive_selected);
-
-                icon1.setColorFilter(neutralSelColor);
-                icon2.setColorFilter(neutralSelColor);
-                icon3.setColorFilter(positiveSelColor);
-
-                evidenceViewModel.getInvestigationData().getEvidences().get(index)
-                        .setRuling(InvestigationData.Evidence.Ruling.POSITIVE);
-
-                evidenceViewModel.setRadioButtonChecked(index, 2);
-
-                evidenceViewModel.getGhostOrderData().updateOrder();
-
-                requestInvalidateGhostContainer(ghostContainer);
-            });
 
             evidenceContainer.addView(evidenceParent);
         }
+    }
 
-        evidenceTypes.recycle();
+    private void showEvidencePopup(View view, EvidenceViewData evidenceViewData) {
+        if(getContext() == null || getView() == null || getView().getContext() == null) {
+            return;
+        }
+
+        if (popup != null) {
+            popup.dismiss();
+        }
+
+        LayoutInflater inflaterPopup =
+                (LayoutInflater) getView().getContext().getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE);
+
+        View customView = inflaterPopup.inflate(
+                R.layout.popup_info_evidence,
+                (ViewGroup) view,
+                false);
+
+        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
+        AppCompatTextView label = customView.findViewById(R.id.label_name);
+        AppCompatTextView info = customView.findViewById(R.id.label_info);
+
+        AppCompatImageView select_overview = customView.findViewById(R.id.textView_overview_image);
+        AppCompatImageView select_tiers = customView.findViewById(R.id.textView_tiers_image);
+
+        AppCompatImageView select_tier_1 = customView.findViewById(R.id.textView_tiers_1_image);
+        AppCompatImageView select_tier_2 = customView.findViewById(R.id.textView_tiers_2_image);
+        AppCompatImageView select_tier_3 = customView.findViewById(R.id.textView_tiers_3_image);
+
+        ScrollView scroller = customView.findViewById(R.id.scrollView);
+        View indicator = customView.findViewById(R.id.scrollview_indicator);
+        GifImageView animation = customView.findViewById(R.id.animation_evidence);
+        GifImageView animation_fullscreen = customView.findViewById(R.id.animation_evidence_fullscreen);
+
+        ConstraintLayout layout_overview = customView.findViewById(R.id.constraintLayout_evidence_overview);
+        ConstraintLayout layout_tiers = customView.findViewById(R.id.constraintLayout_evidence_tiers);
+        AppCompatTextView label_cost = customView.findViewById(R.id.label_cost);
+
+        // Init
+        label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                getString(R.string.evidence_requirement_cost_title) + " $" + evidenceViewData.getCost(getContext()),
+                "#ff6161", fontEmphasisColor + "")));
+        //MAIN STATES
+        select_overview.setImageState(new int[]{R.attr.state_done}, true);
+        select_overview.setOnClickListener(selectView -> {
+            select_overview.setImageState(new int[]{R.attr.state_done}, true);
+            select_tiers.setImageState(new int[]{-R.attr.state_done}, true);
+
+            layout_overview.setVisibility(View.VISIBLE);
+            layout_tiers.setVisibility(View.GONE);
+
+            animation_fullscreen.setImageResource(evidenceViewData.getAnimation(getContext(), 0));
+        });
+        select_tiers.setOnClickListener(selectView -> {
+            select_tiers.setImageState(new int[]{R.attr.state_done}, true);
+            select_overview.setImageState(new int[]{-R.attr.state_done}, true);
+
+            layout_tiers.setVisibility(View.VISIBLE);
+            layout_overview.setVisibility(View.GONE);
+
+            select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+            generateEvidenceTierView(customView, 1, animation_fullscreen,
+                    evidenceViewData.getDescription(getContext(), 1),
+                    evidenceViewData.getAnimation(getContext(), 1),
+                    evidenceViewData.getUnlockLevel(getContext(), 0));
+        });
+
+        //TIER STATES
+        select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+        select_tier_1.setOnClickListener(selectView -> {
+            select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
+            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+
+            generateEvidenceTierView(customView, 1, animation_fullscreen,
+                    evidenceViewData.getDescription(getContext(), 1),
+                    evidenceViewData.getAnimation(getContext(), 1),
+                    evidenceViewData.getUnlockLevel(getContext(), 0));
+        });
+        select_tier_2.setOnClickListener(selectView -> {
+            select_tier_2.setImageState(new int[]{R.attr.state_done}, true);
+            select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
+            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
+
+            generateEvidenceTierView(customView, 2, animation_fullscreen,
+                    evidenceViewData.getDescription(getContext(), 2),
+                    evidenceViewData.getAnimation(getContext(), 2),
+                    evidenceViewData.getUnlockLevel(getContext(), 1));
+        });
+        select_tier_3.setOnClickListener(selectView -> {
+            select_tier_3.setImageState(new int[]{R.attr.state_done}, true);
+            select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
+            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
+
+            generateEvidenceTierView(customView, 3, animation_fullscreen,
+                    evidenceViewData.getDescription(getContext(), 3),
+                    evidenceViewData.getAnimation(getContext(), 3),
+                    evidenceViewData.getUnlockLevel(getContext(), 2));
+        });
+
+
+        animation.setOnClickListener(view12 -> {
+            if(animation_fullscreen.getVisibility() != View.VISIBLE) {
+                animation_fullscreen.setVisibility(View.VISIBLE);
+            }
+        });
+        animation_fullscreen.setOnClickListener(view1 -> {
+            if(view1.getVisibility() == View.VISIBLE) {
+                view1.setVisibility(View.GONE);
+            }
+        });
+
+        fadeOutIndicatorAnimation(
+                null,
+                null,
+                scroller,
+                indicator);
+
+        closeButton.setOnClickListener(v1 -> popup.dismiss());
+
+        label.setText(evidenceViewData.getName(getContext()));
+        info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+                evidenceViewData.getDescription(getContext(), 0),
+                "#ff6161", fontEmphasisColor + "")));
+
+        TypedArray typedArray;
+        try {
+            typedArray = view.getContext().getResources().
+                    obtainTypedArray(R.array.equipment_animation_array);
+            animation.setImageResource(evidenceViewData.getAnimation(getContext(), 0));
+            animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceViewData.index(), 0));
+            typedArray.recycle();
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+
+        popup = new PopupWindow(
+                customView,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT
+        );
+        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
+        popup.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0);
+
+        if (getActivity() != null) {
+            MobileAds.initialize(getActivity(), initializationStatus -> {
+            });
+            AdView mAdView = customView.findViewById(R.id.adView);
+            adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
     }
 
     protected void requestInvalidateGhostContainer(LinearLayout ghostContainer) {
@@ -766,14 +710,23 @@ public class EvidenceFragment extends InvestigationFragment {
     @SuppressLint("ClickableViewAccessibility")
     public void createGhostViews(View view, LinearLayout ghostContainer) {
 
+        new Thread(() -> {
+            GhostViewData ghostViewData = buildGhostViewData();
+            if (ghostViewData == null) return;
+
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> buildGhostViews((ViewGroup) view, ghostContainer, ghostViewData));
+            }
+        }).start();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void buildGhostViews(ViewGroup view, LinearLayout ghostContainer, GhostViewData ghostViewData) {
+
+        if (getContext() == null) { return; }
+
         ghostContainer.removeAllViews();
-
         LayoutInflater inflater = LayoutInflater.from(getContext());
-
-        String[] infos = getResources().getStringArray(R.array.ghost_info_array);
-        String[] strengths = getResources().getStringArray(R.array.ghost_strengths_array);
-        String[] weaknesses = getResources().getStringArray(R.array.ghost_weaknesses_array);
-        String[] huntDatas = getResources().getStringArray(R.array.ghost_huntdata_array);
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
 
@@ -781,13 +734,9 @@ public class EvidenceFragment extends InvestigationFragment {
         //Avoid pass null in the root it ignores spaces in the child layout
         for (int j : newGhostOrder) {
 
-            if (getContext() == null) {
-                return;
-            }
-
             View ghostView = inflater.inflate(
                     R.layout.item_investigation_ghost,
-                    (ViewGroup) view,
+                    view,
                     false);
 
             LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
@@ -799,16 +748,12 @@ public class EvidenceFragment extends InvestigationFragment {
                             ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
             mainLayout.setLayoutParams(params);
 
-            String ghostName = evidenceViewModel.getInvestigationData().getGhost(j).getName();
-            String ghostInfo = infos[j];
-            String ghostStrength = strengths[j];
-            String ghostWeakness = weaknesses[j];
-            String ghostHuntData = huntDatas[j];
+            InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
 
+            String ghostName = ghost.getName();
             nameView.setText(ghostName);
 
-            InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
-            redrawGhostRejectionStatus(ghostView, ghost, j);
+            redrawGhostRejectionStatus(ghostView, ghost, j, false);
 
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getContext().getTheme();
@@ -819,30 +764,23 @@ public class EvidenceFragment extends InvestigationFragment {
             theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
             int positiveSelColor = typedValue.data;
 
-            for (int k = 0; k < ghost.getEvidence().length; k++) {
-                ConstraintLayout evidenceIconContainer =
-                        (ConstraintLayout) inflater.inflate(R.layout.item_investigation_ghost_icon,
-                                null);
-                AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
+            linearLayout_iconRow.setWeightSum(ghost.getEvidence().length);
+            int k = 0;
+            for (; k < ghost.getEvidence().length; k++) {
+                /*AppCompatImageView evidenceIcon =
+                        (AppCompatImageView) inflater.inflate(R.layout.item_investigation_ghost_icon,
+                                null);*/
+                AppCompatImageView evidenceIcon =
+                        (AppCompatImageView) linearLayout_iconRow.getChildAt(k);
                 evidenceIcon.setImageResource(ghost.getEvidence()[k].getIcon());
 
                 switch (ghost.getEvidence()[k].getRuling()) {
-                    case POSITIVE: {
-                        evidenceIcon.setColorFilter(positiveSelColor);
-                        break;
-                    }
-                    case NEGATIVE: {
-                        evidenceIcon.setColorFilter(negativeSelColor);
-                        break;
-                    }
-                    case NEUTRAL: {
-                        evidenceIcon.setColorFilter(neutralSelColor);
-                        break;
-                    }
+                    case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
+                    case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
+                    case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
                 }
-                linearLayout_iconRow.addView(evidenceIconContainer);
+                //linearLayout_iconRow.addView(evidenceIcon);
             }
-
 
             GestureDetectorCompat swipeListener = new GestureDetectorCompat(getContext(),
                     new GhostSwipeListener(
@@ -850,52 +788,82 @@ public class EvidenceFragment extends InvestigationFragment {
                             nameView,
                             j,
                             ghostName,
-                            ghostInfo,
-                            ghostStrength,
-                            ghostWeakness,
-                            ghostHuntData));
+                            ghostViewData));
 
-            nameView.setOnTouchListener((view1, motionEvent) -> {
+            nameView.setOnTouchListener((v, motionEvent) -> {
                 swipeListener.onTouchEvent(motionEvent);
                 return true;
             });
 
+
             ghostView.addOnLayoutChangeListener((thisGhostView, i, i1, i2, i3, i4, i5, i6, i7) -> {
 
                 InvestigationData.Ghost thisGhostData = evidenceViewModel.getInvestigationData().getGhost(thisGhostView.getId());
-
-                redrawGhostRejectionStatus(thisGhostView, thisGhostData, j);
+                redrawGhostRejectionStatus(thisGhostView, thisGhostData, j, false);
 
                 LinearLayoutCompat iconContainer = thisGhostView.findViewById(R.id.icon_container);
-                for (int k = 0; k < thisGhostData.getEvidence().length; k++) {
+                for (int l = 0; l < thisGhostData.getEvidence().length; l++) {
 
-                    AppCompatImageView evidenceIcon = iconContainer.getChildAt(k).findViewById(R.id.evidence_icon);
+                    AppCompatImageView evidenceIcon = iconContainer.getChildAt(l).findViewById(R.id.evidence_icon);
 
-                    switch (thisGhostData.getEvidence()[k].getRuling()) {
-                        case POSITIVE: {
-                            evidenceIcon.setColorFilter(positiveSelColor);
-                            break;
-                        }
-                        case NEGATIVE: {
-                            evidenceIcon.setColorFilter(negativeSelColor);
-                            break;
-                        }
-                        case NEUTRAL: {
-                            evidenceIcon.setColorFilter(neutralSelColor);
-                            break;
-                        }
+                    switch (thisGhostData.getEvidence()[l].getRuling()) {
+                        case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
+                        case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
+                        case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
                     }
                 }
             });
 
             ghostView.setId(j);
-            //Log.d("ID", j + "");
             ghostContainer.addView(ghostView);
 
         }
     }
 
-    private void redrawGhostRejectionStatus(View ghostView, InvestigationData.Ghost ghost, int index) {
+    private GhostViewData buildGhostViewData() {
+
+        if(getContext() == null) {
+            return null;
+        }
+
+        TypedArray infoTypedArray = getResources().obtainTypedArray(R.array.ghost_info_array);
+        TypedArray strengthTypedArray = getResources().obtainTypedArray(R.array.ghost_strengths_array);
+        TypedArray weaknesseTypedArray = getResources().obtainTypedArray(R.array.ghost_weaknesses_array);
+        TypedArray huntDataTypedArray =  getResources().obtainTypedArray(R.array.ghost_huntdata_array);
+
+        @StringRes int[] infos = new int[infoTypedArray.length()];
+        for (int j = 0; j < infos.length; j++) {
+            infos[j] = infoTypedArray.getResourceId(j, 0);
+        }
+        infoTypedArray.recycle(); //cleanup
+
+        @StringRes int[] strengths = new int[strengthTypedArray.length()];
+        for (int j = 0; j < strengths.length; j++) {
+            strengths[j] = strengthTypedArray.getResourceId(j, 0);
+        }
+        strengthTypedArray.recycle(); //cleanup
+
+        @StringRes int[] weaknesses = new int[weaknesseTypedArray.length()];
+        for (int j = 0; j < weaknesses.length; j++) {
+            weaknesses[j] = weaknesseTypedArray.getResourceId(j, 0);
+        }
+        weaknesseTypedArray.recycle(); //cleanup
+
+        @StringRes int[] huntDatas = new int[huntDataTypedArray.length()];
+        for (int j = 0; j < huntDatas.length; j++) {
+            huntDatas[j] = huntDataTypedArray.getResourceId(j, 0);
+        }
+        huntDataTypedArray.recycle(); //cleanup
+
+        return new GhostViewData(
+                infos,
+                strengths,
+                weaknesses,
+                huntDatas);
+
+    }
+
+    private void redrawGhostRejectionStatus(View ghostView, InvestigationData.Ghost ghost, int index, boolean animate) {
         int score = ghost.getEvidenceScore();
         AppCompatImageView statusIcon = ghostView.findViewById(R.id.icon_status);
 
@@ -903,18 +871,20 @@ public class EvidenceFragment extends InvestigationFragment {
         if (rejectionStatus) {
             statusIcon.setImageDrawable(icons_strikethrough[3]);
             statusIcon.setVisibility(View.VISIBLE);
+
         } else if (score <= -5) {
             statusIcon.setImageDrawable(icons_strikethrough[(int) (Math.random() * 3)]);
             statusIcon.setVisibility(View.VISIBLE);
+
         } else if (score == 3) {
             statusIcon.setImageDrawable(icon_circle);
             statusIcon.setVisibility(View.VISIBLE);
+
         } else {
             statusIcon.setVisibility(View.INVISIBLE);
         }
 
     }
-
 
     public void fadeOutIndicatorAnimation(ConstraintLayout bodyCons, ConstraintLayout container, ScrollView scroller, View indicator) {
         scroller.post(() -> {
@@ -923,11 +893,9 @@ public class EvidenceFragment extends InvestigationFragment {
                 indicatorFadeAnimation(indicator, 0);
             } else {
                 if(container != null) {
-                    if(container.getLayoutParams() instanceof ConstraintLayout.LayoutParams) {
+                    if(container.getLayoutParams() instanceof ConstraintLayout.LayoutParams lParams) {
 
                         Log.d("Scroller", "Should constrain");
-                        ConstraintLayout.LayoutParams lParams =
-                                (ConstraintLayout.LayoutParams) container.getLayoutParams();
                         lParams.constrainedHeight = true;
                         container.setLayoutParams(lParams);
                         container.invalidate();
@@ -1043,19 +1011,18 @@ public class EvidenceFragment extends InvestigationFragment {
         private final LinearLayout ghostContainer;
         private final View view;
         private final int index;
-        private final String ghostName, ghostHuntData;
-        private final String[] cycleDetails;
-        int detailIndex = 0;
+        private final String ghostName;//, ghostHuntData;
+        private final @StringRes int ghostHuntData;
+        // private final String[] cycleDetails;
+        private final @StringRes int[] cycleDetails;
+        private int detailIndex = 0;
 
         public GhostSwipeListener(
                 LinearLayout ghostContainer,
                 View view,
                 int index,
                 String ghostName,
-                String ghostInfo,
-                String ghostStrength,
-                String ghostWeakness,
-                String ghostHuntData) {
+                GhostViewData ghostViewData) {
 
             super();
 
@@ -1063,10 +1030,12 @@ public class EvidenceFragment extends InvestigationFragment {
             this.view = view;
             this.index = index;
             this.ghostName = ghostName;
-            this.ghostHuntData = ghostHuntData;
 
-            cycleDetails = new String[]{ghostInfo, ghostStrength, ghostWeakness};
-
+            cycleDetails = new int[] {
+                    ghostViewData.getInfo(index),
+                    ghostViewData.getStrength(index),
+                    ghostViewData.getWeakness(index)};
+            this.ghostHuntData = ghostViewData.getHuntData(index);
         }
 
         @Override
@@ -1077,7 +1046,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
             evidenceViewModel.getGhostOrderData().updateOrder();
 
-            redrawGhostRejectionStatus(ghostContainer.findViewById(index), evidenceViewModel.getInvestigationData().getGhost(index), index);
+            redrawGhostRejectionStatus(ghostContainer.findViewById(index), evidenceViewModel.getInvestigationData().getGhost(index), index, true);
 
             Bundle params = new Bundle();
             params.putString("event_type", "ghost_swiped");
@@ -1109,6 +1078,7 @@ public class EvidenceFragment extends InvestigationFragment {
                             Context.LAYOUT_INFLATER_SERVICE);
             View popupView = popupInflater.inflate(R.layout.popup_info_ghost, null);
             View linearLayout_icons_container = popupInflater.inflate(R.layout.item_investigation_ghost_icons, null);
+            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
 
             ConstraintLayout scrollCons_swapping = popupView.findViewById(R.id.scrollView_swapping);
             ConstraintLayout scrollCons_huntdata = popupView.findViewById(R.id.scrollView_huntdata);
@@ -1120,7 +1090,6 @@ public class EvidenceFragment extends InvestigationFragment {
             AppCompatImageButton right = popupView.findViewById(R.id.title_right);
             AppCompatTextView title = popupView.findViewById(R.id.label_infoTitle);
 
-            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
 
             ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
             View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
@@ -1136,24 +1105,24 @@ public class EvidenceFragment extends InvestigationFragment {
                     RelativeLayout.LayoutParams.MATCH_PARENT
             );
 
+            /*
             LinearLayoutCompat evidenceIconLayout =
                     popupView.findViewById(R.id.layout_evidenceicons);
+            */
 
             for (int i = 0; i < evidenceViewModel.getInvestigationData()
                     .getGhost(index)
                     .getEvidenceArray().length; i++) {
 
-                ConstraintLayout evidenceIconContainer =
-                        (ConstraintLayout) popupInflater.inflate(R.layout.item_investigation_ghost_icon,
-                                null);
+                AppCompatImageView evidenceIcon =
+                        (AppCompatImageView) linearLayout_iconRow.getChildAt(i);
 
-                AppCompatImageView evidenceIcon = evidenceIconContainer.findViewById(R.id.evidence_icon);
                 evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData()
                         .getGhost(index).getEvidence()[i].getIcon());
 
-                linearLayout_iconRow.addView(evidenceIconContainer);
+                //linearLayout_iconRow.addView(evidenceIcon);
             }
-            evidenceIconLayout.addView(linearLayout_iconRow);
+            // evidenceIconLayout.addView(linearLayout_iconRow);
 
             label_name.setText(ghostName);
 
@@ -1161,10 +1130,10 @@ public class EvidenceFragment extends InvestigationFragment {
             bodyCons.setVisibility(View.INVISIBLE);
             title.setText(titles[detailIndex]);
             data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    cycleDetails[detailIndex],
+                    getString(cycleDetails[detailIndex]),
                     "#ff6161", fontEmphasisColor + "")));
             data_huntdata.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    ghostHuntData,
+                    getString(ghostHuntData),
                     "#ff6161", fontEmphasisColor + "")));
 
             int orientation = getResources().getConfiguration().orientation;
@@ -1186,7 +1155,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
                 title.setText(titles[detailIndex]);
                 data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        cycleDetails[detailIndex],
+                        getString(cycleDetails[detailIndex]),
                         "#ff6161", fontEmphasisColor + "")));
 
                 fadeOutIndicatorAnimation(
@@ -1202,7 +1171,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
                 title.setText(titles[detailIndex]);
                 data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                        cycleDetails[detailIndex],
+                        getString(cycleDetails[detailIndex]),
                         "#ff6161", fontEmphasisColor + "")));
 
                 fadeOutIndicatorAnimation(

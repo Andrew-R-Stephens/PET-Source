@@ -18,7 +18,6 @@ import android.view.ViewTreeObserver;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
@@ -28,8 +27,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 
@@ -37,7 +34,7 @@ import java.util.ArrayList;
 
 public class ItemStoreFragment extends InvestigationFragment {
 
-    private ItemStoreEquipmentStoreData storeData = new ItemStoreEquipmentStoreData();
+    private final ItemStoreEquipmentStoreData storeData = new ItemStoreEquipmentStoreData();
 
     private ItemStoreScrollView scrollView;
     private ViewTreeObserver.OnScrollChangedListener viewTreeObserverlistener;
@@ -444,6 +441,7 @@ public class ItemStoreFragment extends InvestigationFragment {
         icon.setAlpha(alpha);
     }
 
+    /** @noinspection SameParameterValue*/
     private static void setIconFilter(ImageView icon, String colorString, float alpha) {
         setIconFilter(icon, Color.parseColor(colorString), alpha);
     }

@@ -41,6 +41,7 @@ import java.util.Arrays;
  *
  * @author Jim Graham
  * @since 1.6
+ * @noinspection SameParameterValue
  */
 public abstract class Path2D implements Shape, Cloneable {
     /**

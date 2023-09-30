@@ -72,28 +72,24 @@ public class RSSParserUtils {
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (eventType == XmlPullParser.START_TAG) {
                         String elementName = xpp.getName().toLowerCase();
-                        switch(elementName) {
-                            case "item": {
+                        switch (elementName) {
+                            case "item" -> {
                                 insideItem = true;
-                                break;
                             }
-                            case "title": {
-                                if(insideItem) {
+                            case "title" -> {
+                                if (insideItem) {
                                     title = xpp.nextText();
                                 }
-                                break;
                             }
-                            case "description": {
-                                if(insideItem) {
+                            case "description" -> {
+                                if (insideItem) {
                                     description = xpp.nextText();
                                 }
-                                break;
                             }
-                            case "pubdate": {
-                                if(insideItem) {
+                            case "pubdate" -> {
+                                if (insideItem) {
                                     date = xpp.nextText();
                                 }
-                                break;
                             }
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {

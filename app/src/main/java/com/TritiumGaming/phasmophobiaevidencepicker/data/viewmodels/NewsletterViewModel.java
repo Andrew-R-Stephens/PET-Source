@@ -220,6 +220,7 @@ public class NewsletterViewModel extends ViewModel {
         return requiresNotify;
     }
 
+    /** @noinspection SameParameterValue*/
     private void saveLastReadDate(
             @NonNull Context c, SharedPreferences.Editor editor, boolean localApply,
             InboxType inboxType) {
@@ -282,7 +283,7 @@ public class NewsletterViewModel extends ViewModel {
     public enum InboxType {
         GENERAL(0), PET(1), PHASMOPHOBIA(2);
 
-        int id;
+        final int id;
 
         InboxType(int id) {
             this.id = id;

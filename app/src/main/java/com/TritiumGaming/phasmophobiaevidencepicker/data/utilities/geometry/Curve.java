@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import java.util.Vector;
 
+/** @noinspection CanBeFinal*/
 public abstract class Curve {
     public static final int INCREASING = 1;
     public static final int DECREASING = -1;

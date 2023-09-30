@@ -1,9 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models;
 
-import android.content.pm.ApplicationInfo;
-
-import androidx.multidex.BuildConfig;
-
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

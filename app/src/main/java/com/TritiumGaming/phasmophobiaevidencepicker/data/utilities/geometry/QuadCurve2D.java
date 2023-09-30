@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
 
+/** @noinspection SameParameterValue, SameParameterValue, SameParameterValue */
 public abstract class QuadCurve2D implements Shape, Cloneable {
 
     public static class Float extends QuadCurve2D implements Serializable {

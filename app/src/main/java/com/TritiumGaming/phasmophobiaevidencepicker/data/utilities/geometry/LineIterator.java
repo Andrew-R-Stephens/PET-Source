@@ -4,6 +4,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import java.util.*;
 
+/** @noinspection ALL */
 class LineIterator implements PathIterator {
     Line2D line;
     AffineTransform affine;

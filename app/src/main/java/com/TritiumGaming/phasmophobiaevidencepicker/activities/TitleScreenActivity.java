@@ -9,6 +9,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -47,7 +48,7 @@ public class TitleScreenActivity extends PETActivity {
         // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
         // to get test ads on this device."
         MobileAds.setRequestConfiguration(
-                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("9E93747E0D90133B5298FD010482BD8F"))
+                new RequestConfiguration.Builder().setTestDeviceIds(List.of("9E93747E0D90133B5298FD010482BD8F"))
                         .build());
 
         googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(this);

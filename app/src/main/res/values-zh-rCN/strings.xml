@@ -7,6 +7,7 @@
     <string name="general_evidence_button">证据</string>
     <string name="general_maps_button">地图</string>
     <string name="general_tasks_button">任务</string>
+    <string name="general_codex_button">法典</string>
     <string name="general_evidence_reset_button">重置</string>
 
     <!-- Page Details -->
@@ -26,7 +27,7 @@
 
     <string name="aboutinfo_title_about">关于</string>
     <string name="aboutinfo_version">版本</string>
-    <string name="aboutinfo_aboutapp_info"><![CDATA[<p><font color=#CC3C3C>Phasmophobia</font> 是一款由 <font color=#CC3C3C>Kinetic Games</font> 开发的独特恐怖游戏。</p><p><font color=#CC3C3C>P.E.T.</font> 是一款非官方配套工具 -既是新玩家的指南，又是老玩家的助手。</p><p><font color=#CC3C3C>非常感谢您使用 P.E.T.！</font></p>]]></string>
+    <string name="aboutinfo_aboutapp_info"><![CDATA[<a><font color=#CC3C3C>Phasmophobia</font> 是一款由 <font color=#CC3C3C>Kinetic Games</font> 开发的独特恐怖游戏。</a><br><br><a><font color=#CC3C3C>P.E.T.</font> 是一款非官方配套工具 -既是新玩家的指南，又是老玩家的助手。</a><br><br><a><font color=#CC3C3C>非常感谢您使用 P.E.T.！</font></a>]]></string>
     <string name="aboutinfo_developerinfo_title">开发者信息</string>
     <string name="aboutinfo_developerinfo_developer">开发商</string>
     <string name="aboutinfo_developerinfo_contact">接触</string>
@@ -262,106 +263,106 @@
 
     <!-- Ghost description -->
 
-    <string name="ghost_info_banshee"><![CDATA[<p>女妖被描述为天生的猎手。他们会尝试通过<font color=#ff6161>一次有选择地针对一名调查员</font>来缓慢地跟踪并逐一抓捕幽灵猎人。</p>]]></string>
-    <string name="ghost_info_demon"><![CDATA[<p>恶魔是最难遇到的鬼魂之一。由于具有高度攻击性，它<font color=#ff6161>比其他幽灵更频繁地发起攻击</font>，因此建议使用十字架来防止狩猎。不过，向显灵板向恶魔提出成功的问题并不会耗尽玩家的理智。</p>]]></string>
-    <string name="ghost_info_deogen"><![CDATA[<p>德奥根犬是天生的猎手。传统的隐藏方法不起作用，因为它对嗅出猎物有敏锐的感觉。你可以逃跑……但你无法隐藏。重复一遍：不要试图隐藏。如果您听到极快的脚步声（如鼓声），请立即离开藏身之处。</p>]]></string>
-    <string name="ghost_info_goryo"><![CDATA[<p>很少有人会在它喜欢的房间之外看到高丽。高丽人还<font color=#ff6161>非常不喜欢在有人在附近时暴露自己</font>。这使得看到 D.O.T.S.如果不通过摄像机远程查看，这是不可能的。</p>]]></string>
-    <string name="ghost_info_hantu"><![CDATA[<p>汉图<font color=#ff6161>喜欢较冷的温度</font>，这将使其能够在狩猎过程中快速移动。这意味着必须启用断路器才能提高闹鬼区域外的整体温度，从而降低 Hantu 的移动速度。</p>]]></string>
-    <string name="ghost_info_jinn"><![CDATA[<p>精灵通过通电获得能力。它可以在狩猎时移动得非常快，并且可以以惊人的速度耗尽理智。在早期版本的恐惧症中，精灵是顶级掠食者，这是有充分理由的。如果追赶远处的玩家且发电机已打开，则它的移动速度为 2.5 m/s；如果发电机关闭且未追赶某人，则其移动速度为 1.7 m/s。</p>]]></string>
-    <string name="ghost_info_mare"><![CDATA[<p>母马是一种<font color=#ff6161>在黑暗中变得更具攻击性</font>的幽灵。</p>]]></string>
-    <string name="ghost_info_moroi"><![CDATA[<p>莫里人会夺走生者的理智。当受害者的理智降低时，诸井人就会变得更强大。尽可能保持理智，以避免不必要的攻击行为。</p>]]></string>
-    <string name="ghost_info_myling"><![CDATA[<p>Myling 会发出奇怪的声音，抛物面麦克风可以拾取这些声音。在狩猎期间，它的脚步声也只能在电子干扰范围（约 10 米）内听到。</p>]]></string>
-    <string name="ghost_info_obake"><![CDATA[<p>Obake 是一种变形器，有时会提出一些不寻常的证据。奥贝克有机会根本不产生指纹，如果过早否定指纹，可能会导致证据收集出现问题。]]></string>
-    <string name="ghost_info_oni"><![CDATA[<p>鬼是一种具有攻击性的幽灵，它<font color=#ff6161> 会根据附近调查员的数量来调整其活动水平</font>。它也可能在鬼屋附近徘徊。</p>]]></string>
-    <string name="ghost_info_onryo"><![CDATA[<p>Onryo 不喜欢<font color=#ff6161>任何形式的火焰</font>（包括蜡烛、打火机等），并且受到高度威胁。如果它试图进入距离火焰源 4 米的范围，它就不会捕猎。</p>]]></string>
-    <string name="ghost_info_phantom"><![CDATA[<p>幻影是一种令人恐惧的鬼魂，<font color=#ff6161>会迅速耗尽看到它的人的理智</font>。</p>]]></string>
-    <string name="ghost_info_poltergeist"><![CDATA[<p>最著名的鬼魂之一是吵闹鬼，也称为吵闹鬼，它<font color=#ff6161>可以操纵周围的多个物体</font>，向受害者传播恐惧。</p>]]></string>
-    <string name="ghost_info_raiju"><![CDATA[<p>Raiju 是一种幽灵，会从周围的设备中<font color=#ff6161>吸取电力</font>。附近过多的电刺激会导致它变得焦躁并更频繁地捕猎。</p>]]></string>
-    <string name="ghost_info_revenant"><![CDATA[<p>亡魂以其在寻找调查员时缓慢的狩猎行为而闻名。搜索时它的速度非常慢，这提供了独特的狩猎声音，有助于确定这种鬼魂类型。</p>]]></string>
-    <string name="ghost_info_shade"><![CDATA[<p>Shade 被认为是<font color=#ff6161>“害羞的幽灵”</font>。虽然调查人员成群结队时很难找到证据，但<font color=#ff6161>如果附近有多人，阴影就不太可能发动攻击</font>。</p>]]></string>
-    <string name="ghost_info_spirit"><![CDATA[<p>灵魂没有特殊的力量，但它仍然和其他幽灵一样危险。</p>]]></string>
-    <string name="ghost_info_thaye"><![CDATA[<p>泰伊人是一种幽灵，在活人面前会迅速衰老。这种衰老在地球上的表现将在任务的早期阶段表现为力量，但在后期阶段表现为弱点。在显灵板上询问泰耶人的年龄，会得到与其实际年龄成正比的回答。随着老化的每个进展阶段，Thaye 的有效速度都会降低 0.175 m/s。</p>]]></string>
-    <string name="ghost_info_thetwins"><![CDATA[<p>双胞胎是一对两个幽灵，能够分别操纵周围的环境。双胞胎之一无法操纵运动传感器，也不会留下确定性证据。双胞胎中的任何一方都可以发起并参与狩猎，但<font color=#ff6161>不能</font>同时发起和参与。</p>]]></string>
-    <string name="ghost_info_themimic"><![CDATA[<p>模仿者是一种难以捉摸、神秘的模仿鬼魂，反映了其他鬼魂类型的特征和行为。留意行为转变。幽灵球是该幽灵必须存在的第四个隐藏证据。</p>]]></string>
-    <string name="ghost_info_wraith"><![CDATA[<p>幽灵是已知的唯一一种<font color=#ff6161>保留飞行能力</font>的幽灵。与其他幽灵一样，幽灵无法穿墙，尽管据说它们具有这种能力。</p>]]></string>
-    <string name="ghost_info_yokai"><![CDATA[<p>妖怪<font color=#ff6161>对声音高度敏感</font>，这使得妖怪极其危险。不过，在附近说话也可能会触发活动，从而更容易找到幽灵房间。</p>]]></string>
-    <string name="ghost_info_yurei"><![CDATA[<p>尤雷是一种幽灵，其能力<font color=#ff6161>会增加玩家理智的被动消耗</font>（尽管大多数幽灵会很快消耗您的理智）。弄脏 Yurei 被发现的房间可以防止它长时间离开该位置。</p>]]></string>
-    <string name="ghost_strengths_banshee"><![CDATA[<p>Banshee 将专注于一名玩家，如果所选目标不在游戏区域内，则会切换到新目标。</p>]]></string>
-    <string name="ghost_strengths_demon"><![CDATA[<p>它们可能很难收集线索，因为它们会频繁攻击玩家。恶魔可以在任何理智值下进行早期狩猎，但其最低目标通常是 70 \% a平均理智值左右。它的狩猎冷却时间，或者说狩猎之间的时间，是 20 秒，比任何其他幽灵快 5 秒。涂抹棒的保护期也较短，可为非灵魂提供 60 秒的安全时间，而不是正常的 90 秒。</p>]]></string>
-    <string name="ghost_strengths_deogen"><![CDATA[<p>Deogen 会感知任何生物，无论隐藏得有多好。选择保持静止对抗 Deogen 会让你丧命。不要依靠突破视线，因为这不会停止追逐，只会让 Deogen 移动得更快。</p>]]></string>
-    <string name="ghost_strengths_goryo"><![CDATA[<p>高丽通常只在附近没有人的情况下才会出现在镜头前。这可能会导致收集适当证据时出现问题，因为它可能会导致否定 D.O.T.S。太早了。</p>]]></string>
-    <string name="ghost_strengths_hantu"><![CDATA[<p>较低的温度使 Hantu 能够以更快的速度移动。视线不会影响 Hantu 的速度。</p>]]></string>
-    <string name="ghost_strengths_jinn"><![CDATA[<p>精灵的速度使其成为一旦开始狩猎就极难逃脱的幽灵。一旦精灵追上玩家，它就会逐渐减速并切换到正常的狩猎速度。如果电源开启，精灵可以立即从附近的玩家身上移除 25\% s 点生命力。</p>]]></string>
-    <string name="ghost_strengths_mare"><![CDATA[<p>母马会尝试关闭灯来增强自身能量，并在 60 度时捕猎\% s（如果电源关闭）。它也会徘徊到其他房间或它喜欢的房间的黑暗区域，并可能从这些位置开始狩猎。母马通过事件破坏房间光源的可能性更大。</p>]]></string>
-    <string name="ghost_strengths_moroi"><![CDATA[<p>诸井人将充分利用失去的每一点理智。团队理智越低，攻击性就会越高。当平均理智值为 0\% a 时，幽灵在狩猎时会变得闪电般快。根据团队理智的平均水平，它的速度范围在最慢 1.5 m/s 到最快 2.25 m/s 之间。</p><p>幽灵拥有一项隐藏能力 -诅咒——只要受影响的玩家在游戏区域内，就会导致任何玩家以 0.03%/秒的速度消耗理智。如果玩家使用灵盒并得到灵盒的响应，就会产生此效果。该效果会在玩家理智消耗的正常速度之上叠加。蜡烛不会阻止效果，但使用理智药丸可以解除诅咒。</p>]]></string>
-    <string name="ghost_strengths_myling"><![CDATA[<p>在狩猎时，狐灵不像其他幽灵那样发声。您只能在电子干扰附近检测到他们的脚步声和声音。</p>]]></string>
-    <string name="ghost_strengths_obake"><![CDATA[<p>Obake 在操纵环境时可能不会留下痕迹。这意味着它有机会不留下指纹证据。Obake 还可能会使指纹寿命缩短一半。</p>]]></string>
-    <string name="ghost_strengths_oni"><![CDATA[<p>鬼拥有像恶作剧鬼一样移动物体的能力，同时也具有恶魔的攻击性。这使得他们很难在不激怒他们的情况下收集证据。这是它最大的弱点，因为它很可能会在回合初期暴露出来。如果玩家在鬼魂事件期间被鬼触碰，玩家的理智会被消耗两倍。</p>]]></string>
-    <string name="ghost_strengths_onryo"><![CDATA[<p>Onryo 会瞄准火源并将其扑灭。如果 Onryo 扑灭 3 个火焰，并且附近没有其他火焰或十字架，则无论理智水平如何，Onryo 都可以发起狩猎。当玩家死亡后，蜡烛被熄灭的几率就会增加。</p>]]></string>
-    <string name="ghost_strengths_phantom"><![CDATA[<p>幻影会对玩家造成极大的伤害理智。避免在 Phantom 面前或直视 Phantom 太久。它还倾向于被动跟随玩家，这有助于它走出所选房间，从而更难收集证据。</p>]]></string>
-    <string name="ghost_strengths_poltergeist"><![CDATA[<p>恶作剧鬼可以对玩家所在的空间产生重大影响，它们能够投掷大量物体并发出巨大的噪音。每扔出一个物品，附近的任何玩家都会立即消耗 2\% s 点智力。这种情况可能发生在户外和狩猎期间。</p>]]></string>
-    <string name="ghost_strengths_raiju"><![CDATA[<p>当靠近电气设备时，雷珠的速度会变得更快，但地图电源或房间灯光不会变快，并且当靠近此类电气设备时，会将其首选狩猎理智等级提高到 65\% w。如果靠近电子设备，则以 2.5 m/s 的速度行驶；否则，它将以 1.7 m/s 的速度行驶。</p>]]></string>
-    <string name="ghost_strengths_revenant"><![CDATA[<p>亡魂在寻找玩家时将以 1 m/s 的速度行进，如果知道玩家的位置（通过视线、近距离聊天或使用电子设备），就会立即以 3 m/s 的速度行进。除非在到达玩家最后的已知位置后重新获取玩家的位置，否则它会逐渐减慢至 1 m/s。</p>]]></string>
-    <string name="ghost_strengths_shade"><![CDATA[<p>阴影可能很难找到，因此收集证据甚至找到其位置也可能很困难。总体活性较低；然而，较低的玩家理智水平会导致更多的幽灵事件。当玩家位于其首选房间内时，它不会互动或投掷物体。</p>]]></string>
-    <string name="ghost_strengths_spirit"><![CDATA[<p>烈酒没有特别的优势，因为它们是针对新玩家的。不过，别被愚弄了。由于缺乏专业性，两者势均力敌。</p>]]></string>
-    <string name="ghost_strengths_thaye"><![CDATA[<p>泰耶号在任务开始时最为活跃和危险。这使得它在早期就极具威胁性。Thaye 会在调查开始时以 75\% a 进行狩猎，并在老化结束后最终扩展到最低 15\% a。年轻的 Thaye 的速度非常快，为 2.7 m/s，而年老的 Thaye 的移动速度比玩家慢，为 1.0 m/s。</p>]]></string>
-    <string name="ghost_strengths_thetwins"><![CDATA[<p>双生子中的任何一个都可能被激怒，因此，双生子中的任何一个都可以发起狩猎。这意味着狩猎可能会从两个不同的位置开始。</p>]]></string>
-    <string name="ghost_strengths_themimic"><![CDATA[<p>模仿者可能会在调查过程中多次快速模仿任何幽灵类型，这使得调查极其危险且完全不可预测。它复制的行为可以在狩猎期间或之外出现。模仿者无法在狩猎过程中切换到模仿其他幽灵。</p>]]></string>
-    <string name="ghost_strengths_wraith"><![CDATA[<p>幽灵能够通过眨眼的方式找到距离所选房间不远的任何附近玩家的位置。这可能发生在他们房间外很远的地方，甚至在楼层之间。此活动可能会被忽视，因为它可能是无声活动，但它会在着陆位置生成 EMF 读数。在此活动之后，幽灵将走回他们的房间，并可能在此期间与物体互动。据说幽灵传送后可能会立即狩猎，但这可能不准确。</p>]]></string>
-    <string name="ghost_strengths_yokai"><![CDATA[<p>在妖怪附近说话会激怒它，将狩猎时的最低首选理智水平提高到 80%，从而增加其攻击的可能性。</p>]]></string>
-    <string name="ghost_strengths_yurei"><![CDATA[<p>尤里的会掉落玩家的当他们看着它时，理智会比任何其他幽灵快得多——但即使玩家被拒绝，也会降低理智。Yurei 还可以立即从附近的任何玩家身上夺走 15\% s 点生命值；当这种情况发生时，房间的门总是会自动关闭（任何鬼魂都可能这样做，但尤丽的可能性更大）。</p>]]></string>
+    <string name="ghost_info_banshee"><![CDATA[<a>女妖被描述为天生的猎手。他们会尝试通过<font color=#ff6161>一次有选择地针对一名调查员</font>来缓慢地跟踪并逐一抓捕幽灵猎人。</a>]]></string>
+    <string name="ghost_info_demon"><![CDATA[<a>恶魔是最难遇到的鬼魂之一。由于具有高度攻击性，它<font color=#ff6161>比其他幽灵更频繁地发起攻击</font>，因此建议使用十字架来防止狩猎。不过，向显灵板向恶魔提出成功的问题并不会耗尽玩家的理智。</a>]]></string>
+    <string name="ghost_info_deogen"><![CDATA[<a>德奥根犬是天生的猎手。传统的隐藏方法不起作用，因为它对嗅出猎物有敏锐的感觉。你可以逃跑……但你无法隐藏。重复一遍：不要试图隐藏。如果您听到极快的脚步声（如鼓声），请立即离开藏身之处。</a>]]></string>
+    <string name="ghost_info_goryo"><![CDATA[<a>很少有人会在它喜欢的房间之外看到高丽。高丽人还<font color=#ff6161>非常不喜欢在有人在附近时暴露自己</font>。这使得看到 D.O.T.S.如果不通过摄像机远程查看，这是不可能的。</a>]]></string>
+    <string name="ghost_info_hantu"><![CDATA[<a>汉图<font color=#ff6161>喜欢较冷的温度</font>，这将使其能够在狩猎过程中快速移动。这意味着必须启用断路器才能提高闹鬼区域外的整体温度，从而降低 Hantu 的移动速度。</a>]]></string>
+    <string name="ghost_info_jinn"><![CDATA[<a>精灵通过通电获得能力。它可以在狩猎时移动得非常快，并且可以以惊人的速度耗尽理智。在早期版本的恐惧症中，精灵是顶级掠食者，这是有充分理由的。如果追赶远处的玩家且发电机已打开，则它的移动速度为 2.5 m/s；如果发电机关闭且未追赶某人，则其移动速度为 1.7 m/s。</a>]]></string>
+    <string name="ghost_info_mare"><![CDATA[<a>母马是一种<font color=#ff6161>在黑暗中变得更具攻击性</font>的幽灵。</a>]]></string>
+    <string name="ghost_info_moroi"><![CDATA[<a>莫里人会夺走生者的理智。当受害者的理智降低时，诸井人就会变得更强大。尽可能保持理智，以避免不必要的攻击行为。</a>]]></string>
+    <string name="ghost_info_myling"><![CDATA[<a>Myling 会发出奇怪的声音，抛物面麦克风可以拾取这些声音。在狩猎期间，它的脚步声也只能在电子干扰范围（约 10 米）内听到。</a>]]></string>
+    <string name="ghost_info_obake"><![CDATA[<a>Obake 是一种变形器，有时会提出一些不寻常的证据。奥贝克有机会根本不产生指纹，如果过早否定指纹，可能会导致证据收集出现问题。]]></string>
+    <string name="ghost_info_oni"><![CDATA[<a>鬼是一种具有攻击性的幽灵，它<font color=#ff6161> 会根据附近调查员的数量来调整其活动水平</font>。它也可能在鬼屋附近徘徊。</a>]]></string>
+    <string name="ghost_info_onryo"><![CDATA[<a>Onryo 不喜欢<font color=#ff6161>任何形式的火焰</font>（包括蜡烛、打火机等），并且受到高度威胁。如果它试图进入距离火焰源 4 米的范围，它就不会捕猎。</a>]]></string>
+    <string name="ghost_info_phantom"><![CDATA[<a>幻影是一种令人恐惧的鬼魂，<font color=#ff6161>会迅速耗尽看到它的人的理智</font>。</a>]]></string>
+    <string name="ghost_info_poltergeist"><![CDATA[<a>最著名的鬼魂之一是吵闹鬼，也称为吵闹鬼，它<font color=#ff6161>可以操纵周围的多个物体</font>，向受害者传播恐惧。</a>]]></string>
+    <string name="ghost_info_raiju"><![CDATA[<a>Raiju 是一种幽灵，会从周围的设备中<font color=#ff6161>吸取电力</font>。附近过多的电刺激会导致它变得焦躁并更频繁地捕猎。</a>]]></string>
+    <string name="ghost_info_revenant"><![CDATA[<a>亡魂以其在寻找调查员时缓慢的狩猎行为而闻名。搜索时它的速度非常慢，这提供了独特的狩猎声音，有助于确定这种鬼魂类型。</a>]]></string>
+    <string name="ghost_info_shade"><![CDATA[<a>Shade 被认为是<font color=#ff6161>“害羞的幽灵”</font>。虽然调查人员成群结队时很难找到证据，但<font color=#ff6161>如果附近有多人，阴影就不太可能发动攻击</font>。</a>]]></string>
+    <string name="ghost_info_spirit"><![CDATA[<a>灵魂没有特殊的力量，但它仍然和其他幽灵一样危险。</a>]]></string>
+    <string name="ghost_info_thaye"><![CDATA[<a>泰伊人是一种幽灵，在活人面前会迅速衰老。这种衰老在地球上的表现将在任务的早期阶段表现为力量，但在后期阶段表现为弱点。在显灵板上询问泰耶人的年龄，会得到与其实际年龄成正比的回答。随着老化的每个进展阶段，Thaye 的有效速度都会降低 0.175 m/s。</a>]]></string>
+    <string name="ghost_info_thetwins"><![CDATA[<a>双胞胎是一对两个幽灵，能够分别操纵周围的环境。双胞胎之一无法操纵运动传感器，也不会留下确定性证据。双胞胎中的任何一方都可以发起并参与狩猎，但<font color=#ff6161>不能</font>同时发起和参与。</a>]]></string>
+    <string name="ghost_info_themimic"><![CDATA[<a>模仿者是一种难以捉摸、神秘的模仿鬼魂，反映了其他鬼魂类型的特征和行为。留意行为转变。幽灵球是该幽灵必须存在的第四个隐藏证据。</a>]]></string>
+    <string name="ghost_info_wraith"><![CDATA[<a>幽灵是已知的唯一一种<font color=#ff6161>保留飞行能力</font>的幽灵。与其他幽灵一样，幽灵无法穿墙，尽管据说它们具有这种能力。</a>]]></string>
+    <string name="ghost_info_yokai"><![CDATA[<a>妖怪<font color=#ff6161>对声音高度敏感</font>，这使得妖怪极其危险。不过，在附近说话也可能会触发活动，从而更容易找到幽灵房间。</a>]]></string>
+    <string name="ghost_info_yurei"><![CDATA[<a>尤雷是一种幽灵，其能力<font color=#ff6161>会增加玩家理智的被动消耗</font>（尽管大多数幽灵会很快消耗您的理智）。弄脏 Yurei 被发现的房间可以防止它长时间离开该位置。</a>]]></string>
+    <string name="ghost_strengths_banshee"><![CDATA[<a>Banshee 将专注于一名玩家，如果所选目标不在游戏区域内，则会切换到新目标。</a>]]></string>
+    <string name="ghost_strengths_demon"><![CDATA[<a>它们可能很难收集线索，因为它们会频繁攻击玩家。恶魔可以在任何理智值下进行早期狩猎，但其最低目标通常是 70 \% a平均理智值左右。它的狩猎冷却时间，或者说狩猎之间的时间，是 20 秒，比任何其他幽灵快 5 秒。涂抹棒的保护期也较短，可为非灵魂提供 60 秒的安全时间，而不是正常的 90 秒。</a>]]></string>
+    <string name="ghost_strengths_deogen"><![CDATA[<a>Deogen 会感知任何生物，无论隐藏得有多好。选择保持静止对抗 Deogen 会让你丧命。不要依靠突破视线，因为这不会停止追逐，只会让 Deogen 移动得更快。</a>]]></string>
+    <string name="ghost_strengths_goryo"><![CDATA[<a>高丽通常只在附近没有人的情况下才会出现在镜头前。这可能会导致收集适当证据时出现问题，因为它可能会导致否定 D.O.T.S。太早了。</a>]]></string>
+    <string name="ghost_strengths_hantu"><![CDATA[<a>较低的温度使 Hantu 能够以更快的速度移动。视线不会影响 Hantu 的速度。</a>]]></string>
+    <string name="ghost_strengths_jinn"><![CDATA[<a>精灵的速度使其成为一旦开始狩猎就极难逃脱的幽灵。一旦精灵追上玩家，它就会逐渐减速并切换到正常的狩猎速度。如果电源开启，精灵可以立即从附近的玩家身上移除 25\% s 点生命力。</a>]]></string>
+    <string name="ghost_strengths_mare"><![CDATA[<a>母马会尝试关闭灯来增强自身能量，并在 60 度时捕猎\% s（如果电源关闭）。它也会徘徊到其他房间或它喜欢的房间的黑暗区域，并可能从这些位置开始狩猎。母马通过事件破坏房间光源的可能性更大。</a>]]></string>
+    <string name="ghost_strengths_moroi"><![CDATA[<a>诸井人将充分利用失去的每一点理智。团队理智越低，攻击性就会越高。当平均理智值为 0\% a 时，幽灵在狩猎时会变得闪电般快。根据团队理智的平均水平，它的速度范围在最慢 1.5 m/s 到最快 2.25 m/s 之间。</a><br><br><a>幽灵拥有一项隐藏能力 -诅咒——只要受影响的玩家在游戏区域内，就会导致任何玩家以 0.03%/秒的速度消耗理智。如果玩家使用灵盒并得到灵盒的响应，就会产生此效果。该效果会在玩家理智消耗的正常速度之上叠加。蜡烛不会阻止效果，但使用理智药丸可以解除诅咒。</a>]]></string>
+    <string name="ghost_strengths_myling"><![CDATA[<a>在狩猎时，狐灵不像其他幽灵那样发声。您只能在电子干扰附近检测到他们的脚步声和声音。</a>]]></string>
+    <string name="ghost_strengths_obake"><![CDATA[<a>Obake 在操纵环境时可能不会留下痕迹。这意味着它有机会不留下指纹证据。Obake 还可能会使指纹寿命缩短一半。</a>]]></string>
+    <string name="ghost_strengths_oni"><![CDATA[<a>鬼拥有像恶作剧鬼一样移动物体的能力，同时也具有恶魔的攻击性。这使得他们很难在不激怒他们的情况下收集证据。这是它最大的弱点，因为它很可能会在回合初期暴露出来。如果玩家在鬼魂事件期间被鬼触碰，玩家的理智会被消耗两倍。</a>]]></string>
+    <string name="ghost_strengths_onryo"><![CDATA[<a>Onryo 会瞄准火源并将其扑灭。如果 Onryo 扑灭 3 个火焰，并且附近没有其他火焰或十字架，则无论理智水平如何，Onryo 都可以发起狩猎。当玩家死亡后，蜡烛被熄灭的几率就会增加。</a>]]></string>
+    <string name="ghost_strengths_phantom"><![CDATA[<a>幻影会对玩家造成极大的伤害理智。避免在 Phantom 面前或直视 Phantom 太久。它还倾向于被动跟随玩家，这有助于它走出所选房间，从而更难收集证据。</a>]]></string>
+    <string name="ghost_strengths_poltergeist"><![CDATA[<a>恶作剧鬼可以对玩家所在的空间产生重大影响，它们能够投掷大量物体并发出巨大的噪音。每扔出一个物品，附近的任何玩家都会立即消耗 2\% s 点智力。这种情况可能发生在户外和狩猎期间。</a>]]></string>
+    <string name="ghost_strengths_raiju"><![CDATA[<a>当靠近电气设备时，雷珠的速度会变得更快，但地图电源或房间灯光不会变快，并且当靠近此类电气设备时，会将其首选狩猎理智等级提高到 65\% w。如果靠近电子设备，则以 2.5 m/s 的速度行驶；否则，它将以 1.7 m/s 的速度行驶。</a>]]></string>
+    <string name="ghost_strengths_revenant"><![CDATA[<a>亡魂在寻找玩家时将以 1 m/s 的速度行进，如果知道玩家的位置（通过视线、近距离聊天或使用电子设备），就会立即以 3 m/s 的速度行进。除非在到达玩家最后的已知位置后重新获取玩家的位置，否则它会逐渐减慢至 1 m/s。</a>]]></string>
+    <string name="ghost_strengths_shade"><![CDATA[<a>阴影可能很难找到，因此收集证据甚至找到其位置也可能很困难。总体活性较低；然而，较低的玩家理智水平会导致更多的幽灵事件。当玩家位于其首选房间内时，它不会互动或投掷物体。</a>]]></string>
+    <string name="ghost_strengths_spirit"><![CDATA[<a>烈酒没有特别的优势，因为它们是针对新玩家的。不过，别被愚弄了。由于缺乏专业性，两者势均力敌。</a>]]></string>
+    <string name="ghost_strengths_thaye"><![CDATA[<a>泰耶号在任务开始时最为活跃和危险。这使得它在早期就极具威胁性。Thaye 会在调查开始时以 75\% a 进行狩猎，并在老化结束后最终扩展到最低 15\% a。年轻的 Thaye 的速度非常快，为 2.7 m/s，而年老的 Thaye 的移动速度比玩家慢，为 1.0 m/s。</a>]]></string>
+    <string name="ghost_strengths_thetwins"><![CDATA[<a>双生子中的任何一个都可能被激怒，因此，双生子中的任何一个都可以发起狩猎。这意味着狩猎可能会从两个不同的位置开始。</a>]]></string>
+    <string name="ghost_strengths_themimic"><![CDATA[<a>模仿者可能会在调查过程中多次快速模仿任何幽灵类型，这使得调查极其危险且完全不可预测。它复制的行为可以在狩猎期间或之外出现。模仿者无法在狩猎过程中切换到模仿其他幽灵。</a>]]></string>
+    <string name="ghost_strengths_wraith"><![CDATA[<a>幽灵能够通过眨眼的方式找到距离所选房间不远的任何附近玩家的位置。这可能发生在他们房间外很远的地方，甚至在楼层之间。此活动可能会被忽视，因为它可能是无声活动，但它会在着陆位置生成 EMF 读数。在此活动之后，幽灵将走回他们的房间，并可能在此期间与物体互动。据说幽灵传送后可能会立即狩猎，但这可能不准确。</a>]]></string>
+    <string name="ghost_strengths_yokai"><![CDATA[<a>在妖怪附近说话会激怒它，将狩猎时的最低首选理智水平提高到 80%，从而增加其攻击的可能性。</a>]]></string>
+    <string name="ghost_strengths_yurei"><![CDATA[<a>尤里的会掉落玩家的当他们看着它时，理智会比任何其他幽灵快得多——但即使玩家被拒绝，也会降低理智。Yurei 还可以立即从附近的任何玩家身上夺走 15\% s 点生命值；当这种情况发生时，房间的门总是会自动关闭（任何鬼魂都可能这样做，但尤丽的可能性更大）。</a>]]></string>
 
-    <string name="ghost_weaknesses_banshee"><![CDATA[<p>女妖会远离自己的房间，只是为了跟踪目标。女妖永远不会杀死它的非目标玩家，在狩猎过程中它会直接穿过任何它不感兴趣的调查员。它还根据目标的理智程度而不是团队的平均理智程度来进行狩猎。Banshee 与抛物面麦克风有特殊的互动，因为它有机会发出微弱的高音调哀号。</p>]]></string>
-    <string name="ghost_weaknesses_demon"><![CDATA[<p>与其他幽灵不同，通过显灵板向恶魔提出成功的问题不会降低玩家的忠诚度。理智。这使得显灵板成为对抗恶魔的非常有用的工具。恶魔<font color=#ff6161>害怕十字架</font>，通过将十字架的有效范围扩大到 5 米（其他幽灵的正常范围为 3 米），提高了其对抗恶魔的有效性。</p>]]></string>
-    <string name="ghost_weaknesses_deogen"><![CDATA[<p>德根号会追踪猎物直至精疲力竭，但它永远不会超过猎物。继续前进，对抗这个幽灵，并确保提前计划好你的路线。与这个幽灵保持在视线范围内，你会没事的，因为当它靠近视线范围内最近的玩家时，它只能以 0.4 m/s 的速度移动。只要您在视线范围内，即使您正在走路，它也永远无法抓住您。Deogen 只会在 40\% sanity 时进行狩猎。</p>]]></string>
-    <string name="ghost_weaknesses_goryo"><![CDATA[<p>高丽通常会呆在它们出没的地点内或非常靠近它们出没的地点。这样可以更轻松地收集证据。</p>]]></string>
-    <string name="ghost_weaknesses_hantu"><![CDATA[<p>在温暖的地区，汉图人的移动速度会比正常情况下慢。狩猎时，如果断路器关闭，Hantu 会像玩家一样产生冰冻气息，但这种效果不仅限于幽灵房间或房间的温度。</p>]]></string>
-    <string name="ghost_weaknesses_jinn"><![CDATA[<p>精灵依靠地图的电源来实现高速，因此玩家应该寻找建筑物的断路器以消除精灵的能力。精灵无法自行开启电源。</p>]]></string>
-    <string name="ghost_weaknesses_mare"><![CDATA[<p>让母马所在区域的灯一直亮着，会将其狩猎时的理智偏好从 60\% to 40\% a 平均理智值降低。因此，留在明亮的地方以限制其攻击性。母马无法关闭断路器，但它确实能够在玩家激活电灯开关时立即关闭电灯开关，这是一个很容易识别的事件。</p>]]></string>
-    <string name="ghost_weaknesses_moroi"><![CDATA[<p>诸井人对涂抹棒非常敏感。点燃附近的一个会使诸井失明 12 秒。</p>]]></string>
-    <string name="ghost_weaknesses_myling"><![CDATA[<p>Mylings 会更频繁地在抛物面麦克风中发出超自然声音。</p>]]></string>
-    <string name="ghost_weaknesses_obake"><![CDATA[<p>Obake 有时可能会偶然留下 <font color=#ff6161>6 个手指的手印</font>，而不是通常的 5 个。不应使用 5 个手指的手印来排除奥贝克。奥巴克还可以在狩猎过程中随时短暂改变其幽灵模型。如果 Obake 接触某个表面，指纹有可能不会出现；如果任何后续交互产生指纹，这可以用作鬼魂的证据。</p>]]></string>
-    <string name="ghost_weaknesses_oni"><![CDATA[<p>鬼很容易找到，因为当玩家在附近时，它们会忍不住制造骚动。鬼无法施展“幽灵之雾”或“幽灵球”事件。在鬼魂事件期间，它会偏爱完整的显现，而不是阴影显现或隐形显现。这种行为会影响到狩猎，导致鬼在狩猎期间出现的时间较长，但消失的时间很短。</p>]]></string>
-    <string name="ghost_weaknesses_onryo"><![CDATA[<p>火焰源会抑制 Onryo 的攻击机会。在使用耶稣受难像之前，它会首先扑灭所有火焰（就像使用耶稣受难像充电一样）。</p>]]></string>
-    <string name="ghost_weaknesses_phantom"><![CDATA[<p><font color=#ff6161>拍摄 Phantom 的照片会使其暂时消失</font>，并且永远不会显示在照片中。幻影也会让自己受到追捕，因为它会在短时间内物理显现，并在较长时间内消失。</p>]]></string>
-    <string name="ghost_weaknesses_poltergeist"><![CDATA[<p>玩家可以移除房间中的物理物体，从而使吵闹鬼失效。恶鬼可能会与物品进行暴力互动，能够以比普通鬼魂更大的力量投掷物品。它可能会同时与多个物品进行交互，这被称为 Poltergeist 爆炸事件，并且可以通过将大量物品堆积成一堆并观察其活动行为来轻松测试它。在狩猎过程中，物品被操纵的可能性要大得多，因此请检查狩猎路径中是否有大量激动的物品。</p>]]></string>
-    <string name="ghost_weaknesses_raiju"><![CDATA[<p>追踪雷兽更容易，因为它们在狩猎时不断操纵电子设备。</p>]]></string>
-    <string name="ghost_weaknesses_revenant"><![CDATA[<p>当玩家位置未知时，亡魂会非常缓慢，并且可以听到非常明显且缓慢的脚步声。确定是否有亡魂的最佳方法是通过狩猎。</p>]]></string>
-    <string name="ghost_weaknesses_shade"><![CDATA[<p>对抗暗影的力量是数量上的优势，因为他们不会攻击一群人。如果你想阻止狩猎，至少有一名玩家必须靠近幽灵。阴影也更有可能显示阴影形式的模型，相反，它显示完整模型的可能性较小。</p>]]></string>
-    <string name="ghost_weaknesses_spirit"><![CDATA[<p>当灵魂被弄脏时，它在 180 秒内不会狩猎。相比之下，任何其他幽灵都会在 90 秒后捕猎（恶魔除外，它最早可能会在 60 秒后捕猎）。</p>]]></string>
-    <string name="ghost_weaknesses_thaye"><![CDATA[<p>鬼魂在生者面前停留的时间越长，其攻击性、速度和力量就会降低。每个年龄都会降低 0.175 m/s 的速度。Thaye 也没有视线加速功能。</p>]]></string>
-    <string name="ghost_weaknesses_thetwins"><![CDATA[<p>由于他们的联合活动，找到双胞胎应该容易得多。双胞胎的狩猎速度各不相同，狩猎之间随机交替。一个双胞胎以 90\% n 正常速度 (1.5 m/s) 狩猎，而另一个双胞胎以 110\% n 正常速度 (1.9 m/s) 狩猎。</p>]]></string>
-    <string name="ghost_weaknesses_themimic"><![CDATA[<p>幽灵球将与拟态者的 确定性证据一起出现，这使得拟态者成为唯一（从技术上讲）拥有第四个证据的幽灵类型。幽灵球的行为也与正常情况不同。它会跟随模仿者四处游荡，因此请在保持高度团队理智时留意漫游的幽灵球。</p>]]></string>
-    <string name="ghost_weaknesses_wraith"><![CDATA[<p><font color=#ff6161>盐对幽灵有毒</font>，因此它永远不会穿过任何盐。要确认幽灵，请将运动传感器放置在盐堆上。如果运动传感器在盐未受到干扰的情况下检测到运动，则幽灵可能是幽灵！</p>]]></string>
-    <string name="ghost_weaknesses_yokai"><![CDATA[<p>狩猎时，妖怪只会听到靠近它的声音。它只能听到近距离聊天或检测到自身 2.5 米范围内的电子设备。音乐盒诅咒附体也不会导致妖怪移动，直到玩家距离比任何其他鬼魂要求的距离都要近得多。</p>]]></string>
-    <string name="ghost_weaknesses_yurei"><![CDATA[<p>Yurei 很容易受到涂抹棒的攻击，成功弄脏房间会导致 Yurei 停留在原处一段时间。</p>]]></string>
+    <string name="ghost_weaknesses_banshee"><![CDATA[<a>女妖会远离自己的房间，只是为了跟踪目标。女妖永远不会杀死它的非目标玩家，在狩猎过程中它会直接穿过任何它不感兴趣的调查员。它还根据目标的理智程度而不是团队的平均理智程度来进行狩猎。Banshee 与抛物面麦克风有特殊的互动，因为它有机会发出微弱的高音调哀号。</a>]]></string>
+    <string name="ghost_weaknesses_demon"><![CDATA[<a>与其他幽灵不同，通过显灵板向恶魔提出成功的问题不会降低玩家的忠诚度。理智。这使得显灵板成为对抗恶魔的非常有用的工具。恶魔<font color=#ff6161>害怕十字架</font>，通过将十字架的有效范围扩大到 5 米（其他幽灵的正常范围为 3 米），提高了其对抗恶魔的有效性。</a>]]></string>
+    <string name="ghost_weaknesses_deogen"><![CDATA[<a>德根号会追踪猎物直至精疲力竭，但它永远不会超过猎物。继续前进，对抗这个幽灵，并确保提前计划好你的路线。与这个幽灵保持在视线范围内，你会没事的，因为当它靠近视线范围内最近的玩家时，它只能以 0.4 m/s 的速度移动。只要您在视线范围内，即使您正在走路，它也永远无法抓住您。Deogen 只会在 40\% sanity 时进行狩猎。</a>]]></string>
+    <string name="ghost_weaknesses_goryo"><![CDATA[<a>高丽通常会呆在它们出没的地点内或非常靠近它们出没的地点。这样可以更轻松地收集证据。</a>]]></string>
+    <string name="ghost_weaknesses_hantu"><![CDATA[<a>在温暖的地区，汉图人的移动速度会比正常情况下慢。狩猎时，如果断路器关闭，Hantu 会像玩家一样产生冰冻气息，但这种效果不仅限于幽灵房间或房间的温度。</a>]]></string>
+    <string name="ghost_weaknesses_jinn"><![CDATA[<a>精灵依靠地图的电源来实现高速，因此玩家应该寻找建筑物的断路器以消除精灵的能力。精灵无法自行开启电源。</a>]]></string>
+    <string name="ghost_weaknesses_mare"><![CDATA[<a>让母马所在区域的灯一直亮着，会将其狩猎时的理智偏好从 60\% to 40\% a 平均理智值降低。因此，留在明亮的地方以限制其攻击性。母马无法关闭断路器，但它确实能够在玩家激活电灯开关时立即关闭电灯开关，这是一个很容易识别的事件。</a>]]></string>
+    <string name="ghost_weaknesses_moroi"><![CDATA[<a>诸井人对涂抹棒非常敏感。点燃附近的一个会使诸井失明 12 秒。</a>]]></string>
+    <string name="ghost_weaknesses_myling"><![CDATA[<a>Mylings 会更频繁地在抛物面麦克风中发出超自然声音。</a>]]></string>
+    <string name="ghost_weaknesses_obake"><![CDATA[<a>Obake 有时可能会偶然留下 <font color=#ff6161>6 个手指的手印</font>，而不是通常的 5 个。不应使用 5 个手指的手印来排除奥贝克。奥巴克还可以在狩猎过程中随时短暂改变其幽灵模型。如果 Obake 接触某个表面，指纹有可能不会出现；如果任何后续交互产生指纹，这可以用作鬼魂的证据。</a>]]></string>
+    <string name="ghost_weaknesses_oni"><![CDATA[<a>鬼很容易找到，因为当玩家在附近时，它们会忍不住制造骚动。鬼无法施展“幽灵之雾”或“幽灵球”事件。在鬼魂事件期间，它会偏爱完整的显现，而不是阴影显现或隐形显现。这种行为会影响到狩猎，导致鬼在狩猎期间出现的时间较长，但消失的时间很短。</a>]]></string>
+    <string name="ghost_weaknesses_onryo"><![CDATA[<a>火焰源会抑制 Onryo 的攻击机会。在使用耶稣受难像之前，它会首先扑灭所有火焰（就像使用耶稣受难像充电一样）。</a>]]></string>
+    <string name="ghost_weaknesses_phantom"><![CDATA[<a><font color=#ff6161>拍摄 Phantom 的照片会使其暂时消失</font>，并且永远不会显示在照片中。幻影也会让自己受到追捕，因为它会在短时间内物理显现，并在较长时间内消失。</a>]]></string>
+    <string name="ghost_weaknesses_poltergeist"><![CDATA[<a>玩家可以移除房间中的物理物体，从而使吵闹鬼失效。恶鬼可能会与物品进行暴力互动，能够以比普通鬼魂更大的力量投掷物品。它可能会同时与多个物品进行交互，这被称为 Poltergeist 爆炸事件，并且可以通过将大量物品堆积成一堆并观察其活动行为来轻松测试它。在狩猎过程中，物品被操纵的可能性要大得多，因此请检查狩猎路径中是否有大量激动的物品。</a>]]></string>
+    <string name="ghost_weaknesses_raiju"><![CDATA[<a>追踪雷兽更容易，因为它们在狩猎时不断操纵电子设备。</a>]]></string>
+    <string name="ghost_weaknesses_revenant"><![CDATA[<a>当玩家位置未知时，亡魂会非常缓慢，并且可以听到非常明显且缓慢的脚步声。确定是否有亡魂的最佳方法是通过狩猎。</a>]]></string>
+    <string name="ghost_weaknesses_shade"><![CDATA[<a>对抗暗影的力量是数量上的优势，因为他们不会攻击一群人。如果你想阻止狩猎，至少有一名玩家必须靠近幽灵。阴影也更有可能显示阴影形式的模型，相反，它显示完整模型的可能性较小。</a>]]></string>
+    <string name="ghost_weaknesses_spirit"><![CDATA[<a>当灵魂被弄脏时，它在 180 秒内不会狩猎。相比之下，任何其他幽灵都会在 90 秒后捕猎（恶魔除外，它最早可能会在 60 秒后捕猎）。</a>]]></string>
+    <string name="ghost_weaknesses_thaye"><![CDATA[<a>鬼魂在生者面前停留的时间越长，其攻击性、速度和力量就会降低。每个年龄都会降低 0.175 m/s 的速度。Thaye 也没有视线加速功能。</a>]]></string>
+    <string name="ghost_weaknesses_thetwins"><![CDATA[<a>由于他们的联合活动，找到双胞胎应该容易得多。双胞胎的狩猎速度各不相同，狩猎之间随机交替。一个双胞胎以 90\% n 正常速度 (1.5 m/s) 狩猎，而另一个双胞胎以 110\% n 正常速度 (1.9 m/s) 狩猎。</a>]]></string>
+    <string name="ghost_weaknesses_themimic"><![CDATA[<a>幽灵球将与拟态者的 确定性证据一起出现，这使得拟态者成为唯一（从技术上讲）拥有第四个证据的幽灵类型。幽灵球的行为也与正常情况不同。它会跟随模仿者四处游荡，因此请在保持高度团队理智时留意漫游的幽灵球。</a>]]></string>
+    <string name="ghost_weaknesses_wraith"><![CDATA[<a><font color=#ff6161>盐对幽灵有毒</font>，因此它永远不会穿过任何盐。要确认幽灵，请将运动传感器放置在盐堆上。如果运动传感器在盐未受到干扰的情况下检测到运动，则幽灵可能是幽灵！</a>]]></string>
+    <string name="ghost_weaknesses_yokai"><![CDATA[<a>狩猎时，妖怪只会听到靠近它的声音。它只能听到近距离聊天或检测到自身 2.5 米范围内的电子设备。音乐盒诅咒附体也不会导致妖怪移动，直到玩家距离比任何其他鬼魂要求的距离都要近得多。</a>]]></string>
+    <string name="ghost_weaknesses_yurei"><![CDATA[<a>Yurei 很容易受到涂抹棒的攻击，成功弄脏房间会导致 Yurei 停留在原处一段时间。</a>]]></string>
 
     <!-- Hunting Data -->
 
-    <string name="ghost_huntingdata_banshee"><![CDATA[<p>以 50\% S 目标玩家的理智度进行狩猎。</p><p>完全忽略平均理智度。</p>]]></string>
-    <string name="ghost_huntingdata_demon"><![CDATA[<p>通常在 70\% S 理智值时进行狩猎。</p><p>激活能力后，可以在任意理智级别进行狩猎。</p>]]></string>
-    <string name="ghost_huntingdata_deogen"><![CDATA[<p>以 40\% S 速度狩猎。</p><ul><li>冲刺到隐藏玩家位置时为 3.0 m/s。</li><li>0.4 m/s 或更高，同时密切跟踪调查员。</li><li>3.0 m/s 或更低，以保持与调查员的紧密距离。</ul>]]></string>
-    <string name="ghost_huntingdata_goryo"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_hantu"><![CDATA[<p>狩猎温度为 50\% S。</p><ul><li>15°C+ = 1.40 m/s</li><li>12°C  = 1.75 m/s</li><li> 9°C  = 2.10 m/s</li><li> 6°C  = 2.30 m/s</li><li> 3°C  = 2.50 m/s</li><li> 0° C  = 2.70 m/s</li></ul>]]></string>
-    <string name="ghost_huntingdata_jinn"><![CDATA[<p>以 50\% S 强度进行狩猎。</p><ul><li>以 2.5 m/s 的速度移动，同时追逐 3 米以上的调查员且保险丝盒已打开。</li><li>如果不追赶任何人，移动速度为 1.7 m/s。</li></ul>]]></string>
-    <string name="ghost_huntingdata_mare"><![CDATA[<p>如果电源开启，则以 40\% S 强度进行搜寻。</p><p>如果电源关闭，则以 60\% S强度进行搜寻。</p>]]></string>
-    <string name="ghost_huntingdata_moroi"><![CDATA[<p>以 50\% S 理智值进行狩猎。</p><ul><li>理智值 0% - 5% ：2.25 m/s</li><li>理智值 5% - 10% ：2.164 m/s</li><li>健全性 10% - 15%：2.081 m/s</li><li>健全性 15% - 20%：1.998 m/s</li><li>健全性 20% - 25% : 1.915 m/s</li><li>Sanity 25% - 30% : 1.832 m/s</li><li>Sanity 30% - 35% : 1.749 m/s</li><li>Sanity 35% - 40%：1.66 m/s</li><li>健全性 40% - 45%：1.583 m/s</li><li>健全性 45% - 100%：1.5 m/s</li></ul>]]></string>
-    <string name="ghost_huntingdata_myling"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_obake"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_oni"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_onryo"><![CDATA[<p>通常在 60\% S 理智值下进行狩猎。</p><p>如果火被扑灭，可以在任何理智值下进行狩猎。</p>]]></string>
-    <string name="ghost_huntingdata_phantom"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_poltergeist"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_raiju"><![CDATA[<p>通常以 50\% Sanity 进行搜索。</p><p>如果附近有已开机的电子设备，则以 65\% Sanity 进行搜索。</p><ul><li>移动 2.5m/s（如果附近有电子设备）</li><li>如果附近没有电子设备，则以 1.7 m/s 的速度移动</li></ul>]]></string>
-    <string name="ghost_huntingdata_revenant"><![CDATA[<p>以 50\% S 强度进行狩猎。</p><p>移动速度：如果不追逐，则为 1 m/s；如果是追逐，则为 3.0 m/s。</p>]]></string>
-    <string name="ghost_huntingdata_shade"><![CDATA[<p>狩猎时间为 35\% S。</p>]]></string>
-    <string name="ghost_huntingdata_spirit"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_thaye"><![CDATA[<p>分 10 个阶段逐渐变老，每个阶段损失 0.175 m/s 的移动速度。</p><p>在最年轻的时候狩猎年龄为 75\% S。最大移动速度：2.7 m/s</p><p>在 15 岁\% S最大的时候就开始狩猎。最大移动速度：1.0 m/s</p>]]></string>
-    <string name="ghost_huntingdata_thetwins"><![CDATA[<p>狩猎的强度为 50\% S。</p><p>50\% c在狩猎过程中成为双胞胎的几率</p><ul><li>双胞胎 A：1.5 m/最低速度</li><li>双 B：最低 1.9 m/s</li></ul>]]></string>
-    <string name="ghost_huntingdata_themimic"><![CDATA[<p>狩猎偏好取决于被模仿的鬼魂。因此，模仿者可能会狩猎 15\% a 到 100\% S 个体之间的任何地方。</p>]]></string>
-    <string name="ghost_huntingdata_wraith"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
-    <string name="ghost_huntingdata_yokai"><![CDATA[<p>狩猎强度为 50\% S。</p><p>无法听到调查人员的声音或感知电子设备。</p>]]></string>
-    <string name="ghost_huntingdata_yurei"><![CDATA[<p>狩猎强度为 50\% S。</p>]]></string>
+    <string name="ghost_huntingdata_banshee"><![CDATA[<a>以 50\% S 目标玩家的理智度进行狩猎。</a><br><br><a>完全忽略平均理智度。</a>]]></string>
+    <string name="ghost_huntingdata_demon"><![CDATA[<a>通常在 70\% S 理智值时进行狩猎。</a><br><br><a>激活能力后，可以在任意理智级别进行狩猎。</a>]]></string>
+    <string name="ghost_huntingdata_deogen"><![CDATA[<a>以 40\% S 速度狩猎。</a><ul><li>冲刺到隐藏玩家位置时为 3.0 m/s。</li><li>0.4 m/s 或更高，同时密切跟踪调查员。</li><li>3.0 m/s 或更低，以保持与调查员的紧密距离。</ul>]]></string>
+    <string name="ghost_huntingdata_goryo"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_hantu"><![CDATA[<a>狩猎温度为 50\% S。</a><ul><li>15°C+ = 1.40 m/s</li><li>12°C  = 1.75 m/s</li><li> 9°C  = 2.10 m/s</li><li> 6°C  = 2.30 m/s</li><li> 3°C  = 2.50 m/s</li><li> 0° C  = 2.70 m/s</li></ul>]]></string>
+    <string name="ghost_huntingdata_jinn"><![CDATA[<a>以 50\% S 强度进行狩猎。</a><ul><li>以 2.5 m/s 的速度移动，同时追逐 3 米以上的调查员且保险丝盒已打开。</li><li>如果不追赶任何人，移动速度为 1.7 m/s。</li></ul>]]></string>
+    <string name="ghost_huntingdata_mare"><![CDATA[<a>如果电源开启，则以 40\% S 强度进行搜寻。</a><br><br><a>如果电源关闭，则以 60\% S强度进行搜寻。</a>]]></string>
+    <string name="ghost_huntingdata_moroi"><![CDATA[<a>以 50\% S 理智值进行狩猎。</a><ul><li>理智值 0% - 5% ：2.25 m/s</li><li>理智值 5% - 10% ：2.164 m/s</li><li>健全性 10% - 15%：2.081 m/s</li><li>健全性 15% - 20%：1.998 m/s</li><li>健全性 20% - 25% : 1.915 m/s</li><li>Sanity 25% - 30% : 1.832 m/s</li><li>Sanity 30% - 35% : 1.749 m/s</li><li>Sanity 35% - 40%：1.66 m/s</li><li>健全性 40% - 45%：1.583 m/s</li><li>健全性 45% - 100%：1.5 m/s</li></ul>]]></string>
+    <string name="ghost_huntingdata_myling"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_obake"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_oni"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_onryo"><![CDATA[<a>通常在 60\% S 理智值下进行狩猎。</a><br><br><a>如果火被扑灭，可以在任何理智值下进行狩猎。</a>]]></string>
+    <string name="ghost_huntingdata_phantom"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_poltergeist"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_raiju"><![CDATA[<a>通常以 50\% Sanity 进行搜索。</a><br><br><a>如果附近有已开机的电子设备，则以 65\% Sanity 进行搜索。</a><ul><li>移动 2.5m/s（如果附近有电子设备）</li><li>如果附近没有电子设备，则以 1.7 m/s 的速度移动</li></ul>]]></string>
+    <string name="ghost_huntingdata_revenant"><![CDATA[<a>以 50\% S 强度进行狩猎。</a><br><br><a>移动速度：如果不追逐，则为 1 m/s；如果是追逐，则为 3.0 m/s。</a>]]></string>
+    <string name="ghost_huntingdata_shade"><![CDATA[<a>狩猎时间为 35\% S。</a>]]></string>
+    <string name="ghost_huntingdata_spirit"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_thaye"><![CDATA[<a>分 10 个阶段逐渐变老，每个阶段损失 0.175 m/s 的移动速度。</a><br><br><a>在最年轻的时候狩猎年龄为 75\% S。最大移动速度：2.7 m/s</a><br><br><a>在 15 岁\% S最大的时候就开始狩猎。最大移动速度：1.0 m/s</a>]]></string>
+    <string name="ghost_huntingdata_thetwins"><![CDATA[<a>狩猎的强度为 50\% S。</a><br><br><a>50\% c在狩猎过程中成为双胞胎的几率</a><ul><li>双胞胎 A：1.5 m/最低速度</li><li>双 B：最低 1.9 m/s</li></ul>]]></string>
+    <string name="ghost_huntingdata_themimic"><![CDATA[<a>狩猎偏好取决于被模仿的鬼魂。因此，模仿者可能会狩猎 15\% a 到 100\% S 个体之间的任何地方。</a>]]></string>
+    <string name="ghost_huntingdata_wraith"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
+    <string name="ghost_huntingdata_yokai"><![CDATA[<a>狩猎强度为 50\% S。</a><br><br><a>无法听到调查人员的声音或感知电子设备。</a>]]></string>
+    <string name="ghost_huntingdata_yurei"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
     <string name="equipment_section_equipment">设备</string>
 
 
@@ -387,7 +388,7 @@
 
     <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</a><a>此设备会在曝光后 10 秒内为紫外线点充电。</a>]]></string>
     <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</a><a>此设备将在曝光后 5 秒内为紫外线点充电。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。<a><a>该设备将在曝光后 1.5 秒内为紫外线点充电。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。</a><br><br><a>该设备将在曝光后 1.5 秒内为紫外线点充电。</a>]]></string>
 
     <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</a>]]></string>
     <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>经典温度读取器的更新版本，但响应速度更快。不要打开它并每两秒读取一次读数，而是按住“使用”按钮。按钮扫描温度。这使得跑来跑去检查每个房间的温度比 I 级允许的速度要快得多。</a>]]></string>
@@ -643,5 +644,11 @@
     <string name="equipment_info_name_ghostwritingbook">幽灵写作书</string>
     <string name="equipment_info_name_parabolicmicrophone">抛物面麦克风</string>
     <string name="equipment_info_name_headgear">头部装备</string>
+    <string name="general_navigation_secondary">次要</string>
+    <string name="general_navigation_alternative">替代方案</string>
+    <string name="general_navigation_tools">工具</string>
+    <string name="general_navigation_home">主页</string>
+    <string name="general_navigation_primary">主要</string>
+    <string name="general_navigation_menu">目录</string>
 
 </resources>

@@ -46,6 +46,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
  * @author      Sami Shaio
  * @author      Arthur van Hoff
  * @since       1.0
+ * @noinspection ALL
  */
 public class Dimension extends Dimension2D implements java.io.Serializable {
 

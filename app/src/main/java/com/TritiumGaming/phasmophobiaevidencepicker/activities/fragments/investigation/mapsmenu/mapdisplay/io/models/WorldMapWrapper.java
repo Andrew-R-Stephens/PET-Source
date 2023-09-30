@@ -13,7 +13,7 @@ import java.util.Map;
 public class WorldMapWrapper {
 
     @SerializedName("maps")
-    public ArrayList<Map<String, WorldMap>> maps = new ArrayList<>();
+    public final ArrayList<Map<String, WorldMap>> maps = new ArrayList<>();
 
     @Keep
     public static class WorldMap {
@@ -21,11 +21,11 @@ public class WorldMapWrapper {
         @SerializedName("map_id")
         public int map_id;
         @SerializedName("map_name")
-        public String map_name = "";
+        public final String map_name = "";
         @SerializedName("map_floors")
-        public ArrayList<Floor> map_floors = new ArrayList<>();
+        public final ArrayList<Floor> map_floors = new ArrayList<>();
         @SerializedName("map_dimensions")
-        public WorldDimensions map_dimensions = new WorldDimensions();
+        public final WorldDimensions map_dimensions = new WorldDimensions();
 
         @Keep
         public static class WorldDimensions {
@@ -49,9 +49,9 @@ public class WorldMapWrapper {
             @SerializedName("floor_number")
             public int floor_number;
             @SerializedName("floor_name")
-            public String floor_name = "";
+            public final String floor_name = "";
             @SerializedName("image_file")
-            public String image_file = "";
+            public final String image_file = "";
             @SerializedName("floor_pois")
             public ArrayList<POI> floor_pois = new ArrayList<>();
             @SerializedName("floor_rooms")
@@ -77,7 +77,7 @@ public class WorldMapWrapper {
                 public static class RoomPoints {
 
                     @SerializedName("points")
-                    public ArrayList<RoomPoint> points = new ArrayList<>();
+                    public final ArrayList<RoomPoint> points = new ArrayList<>();
 
                     public void print() {
                         for (RoomPoint p : points) {

@@ -9,7 +9,7 @@ public class RoomModel {
     private int id = -1;
     private String name = "";
 
-    private RoomArea roomArea = new RoomArea();
+    private final RoomArea roomArea = new RoomArea();
 
     public RoomArea getRoomArea() {
         return roomArea;

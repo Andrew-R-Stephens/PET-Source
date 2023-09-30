@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 

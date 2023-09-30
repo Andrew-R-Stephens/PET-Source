@@ -107,6 +107,10 @@ public class NewsletterInboxesFragment extends Fragment {
 
         label_title.setText(R.string.messagecenter_inboxestitle_label);
         if(getContext() != null) {
+            label_extranews.setSelected(true);
+            label_petnews.setSelected(true);
+            label_phasnews.setSelected(true);
+
             label_extranews.setText(
                     newsletterViewModel.getInboxType(0).getName(view.getContext()));
             label_petnews.setText(

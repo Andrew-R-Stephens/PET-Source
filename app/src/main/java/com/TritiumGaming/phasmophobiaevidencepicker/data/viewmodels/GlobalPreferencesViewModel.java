@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
+/** @noinspection SameParameterValue*/
 public class GlobalPreferencesViewModel extends ViewModel {
 
     // Review Tracker

@@ -4,7 +4,8 @@ import android.util.Log;
 
 public class MapDimension {
 
-    public int w, h;
+    public final int w;
+    public final int h;
 
     public MapDimension(int w, int h) {
         this.w = w;

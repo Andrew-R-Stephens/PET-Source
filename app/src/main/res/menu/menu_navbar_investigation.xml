@@ -4,21 +4,21 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/open_menu"
-            android:title="Menu"
+            android:title="@string/general_navigation_menu"
             android:icon="@drawable/ic_menu"/>
         <item
-            android:id="@+id/action_global_objectivesFragment"
-            android:title="@string/general_tasks_button"
-            android:icon="@drawable/icon_tasks"/>
+            android:id="@+id/action_global_evidenceFragment"
+            android:title="@string/evidence_evidence_title"
+            android:icon="@drawable/icon_nav_evidence" />
         <item
             android:id="@+id/reset_button"
             android:title="@string/general_evidence_reset_button"
             android:icon="@drawable/icon_reset"
             android:visible="false"/>
         <item
-            android:id="@+id/action_global_evidenceFragment"
-            android:title="@string/evidence_evidence_title"
-            android:icon="@drawable/icon_nav_evidence" />
+            android:id="@+id/action_global_objectivesFragment"
+            android:title="@string/general_tasks_button"
+            android:icon="@drawable/icon_tasks"/>
         <item
             android:id="@+id/action_global_mapMenuFragment"
             android:title="@string/general_maps_button"

@@ -113,6 +113,7 @@ import java.io.IOException;
  *
  * @author Jim Graham
  * @since 1.2
+ * @noinspection PatternVariableCanBeUsed
  */
 public class AffineTransform implements Cloneable, java.io.Serializable {
 

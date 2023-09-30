@@ -424,8 +424,7 @@ public abstract class Point2D implements Cloneable {
      * @since 1.2
      */
     public boolean equals(Object obj) {
-        if (obj instanceof Point2D) {
-            Point2D p2d = (Point2D) obj;
+        if (obj instanceof Point2D p2d) {
             return (getX() == p2d.getX()) && (getY() == p2d.getY());
         }
         return super.equals(obj);

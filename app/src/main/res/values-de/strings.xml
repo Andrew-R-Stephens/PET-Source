@@ -17,131 +17,131 @@
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
-            <p>Wie jeder erfahrene Spieler Ihnen sagen wird, ist <font color=#CC3C3C>Phasmophobia</font> ein fantastisches, herausforderndes und angstauslösendes Spiel, das von <font color=#CC3C3C>Kinetic Games</font> entwickelt wurde.</p>
-            <p><font color=#CC3C3C>P.E.T.</font> ist ein inoffizielles Begleitwerkzeug\-\- das sowohl als Leitfaden für neue Spieler als auch als Assistent für die Veteranen dient.</p>
-            <p><font color=#CC3C3C>Vielen Dank für die Verwendung von P.E.T.!</font><p>
+            <a>Wie jeder erfahrene Spieler Ihnen sagen wird, ist <font color=#CC3C3C>Phasmophobia</font> ein fantastisches, herausforderndes und angstauslösendes Spiel, das von <font color=#CC3C3C>Kinetic Games</font> entwickelt wurde.</a>
+            <a><font color=#CC3C3C>P.E.T.</font> ist ein inoffizielles Begleitwerkzeug\-\- das sowohl als Leitfaden für neue Spieler als auch als Assistent für die Veteranen dient.</a>
+            <a><font color=#CC3C3C>Vielen Dank für die Verwendung von P.E.T.!</font><a>
         ]]>
     </string>
 
     <!-- Ghost description -->
     <string name="ghost_info_banshee" >
         <![CDATA[
-            <p>Banshees werden als natürliche Jäger beschrieben. Sie werden versuchen, Geisterjäger einen nach dem anderen langsam anzupirschen und auszuschalten, indem sie <font color=#ff6161>selektiv jeweils einen Ermittler anvisieren</font>.</p>
+            <a>Banshees werden als natürliche Jäger beschrieben. Sie werden versuchen, Geisterjäger einen nach dem anderen langsam anzupirschen und auszuschalten, indem sie <font color=#ff6161>selektiv jeweils einen Ermittler anvisieren</font>.</a>
         ]]>
     </string>
     <string name="ghost_info_demon" >
         <![CDATA[
-            <p>Ein Dämon ist einer der schlimmsten Geister, denen man begegnen kann. Da er sehr aggressiv ist, <font color=#ff6161>wird er häufiger angreifen als jeder andere Geist</font>, daher wird ein Kruzifix empfohlen, um Jagden zu verhindern. Dem Dämon jedoch erfolgreiche Fragen vom Ouija-Brett zu stellen, wird den Verstand des Spielers nicht beeinträchtigen.</p>
+            <a>Ein Dämon ist einer der schlimmsten Geister, denen man begegnen kann. Da er sehr aggressiv ist, <font color=#ff6161>wird er häufiger angreifen als jeder andere Geist</font>, daher wird ein Kruzifix empfohlen, um Jagden zu verhindern. Dem Dämon jedoch erfolgreiche Fragen vom Ouija-Brett zu stellen, wird den Verstand des Spielers nicht beeinträchtigen.</a>
         ]]>
     </string>
     <string name="ghost_info_deogen" >
         <![CDATA[
-            <p>Der Deogen ist ein natürlicher Jäger. Herkömmliche Versteckmethoden funktionieren nicht, da es ein feines Gespür für das Aufspüren von Beute hat. Du kannst rennen … aber du kannst dich nicht verstecken. Wiederholen Sie: VERSUCHEN SIE NICHT, SICH ZU VERSTECKEN. Wenn Sie extrem schnelle Schritte wie einen Trommelwirbel hören, treten Sie SOFORT aus Ihrem Versteck.</p>
+            <a>Der Deogen ist ein natürlicher Jäger. Herkömmliche Versteckmethoden funktionieren nicht, da es ein feines Gespür für das Aufspüren von Beute hat. Du kannst rennen … aber du kannst dich nicht verstecken. Wiederholen Sie: VERSUCHEN SIE NICHT, SICH ZU VERSTECKEN. Wenn Sie extrem schnelle Schritte wie einen Trommelwirbel hören, treten Sie SOFORT aus Ihrem Versteck.</a>
         ]]>
     </string>
     <string name="ghost_info_goryo">
         <![CDATA[
-            <p>Ein Goryo wird selten außerhalb seines bevorzugten Zimmers gesehen. Ein Goryo <font color=#ff6161>zeigt sich außerdem überhaupt nicht gerne, wenn Menschen in der Nähe sind</font>. Das macht das Sehen von D.O.T.S. unmöglich, ohne es aus der Ferne über eine Videokamera zu sehen.</p>
+            <a>Ein Goryo wird selten außerhalb seines bevorzugten Zimmers gesehen. Ein Goryo <font color=#ff6161>zeigt sich außerdem überhaupt nicht gerne, wenn Menschen in der Nähe sind</font>. Das macht das Sehen von D.O.T.S. unmöglich, ohne es aus der Ferne über eine Videokamera zu sehen.</a>
         ]]>
     </string>
     <string name="ghost_info_hantu">
         <![CDATA[
-            <p>Der Hantu <font color=#ff6161>bevorzugt kältere Temperaturen</font>, wodurch er sich während der Jagd schnell bewegen kann. Das bedeutet, dass der Trennschalter aktiviert werden muss, um die Gesamttemperatur außerhalb des Spukbereichs zu erhöhen und dadurch die Bewegungsgeschwindigkeit des Hantu zu beeinträchtigen.</p>
+            <a>Der Hantu <font color=#ff6161>bevorzugt kältere Temperaturen</font>, wodurch er sich während der Jagd schnell bewegen kann. Das bedeutet, dass der Trennschalter aktiviert werden muss, um die Gesamttemperatur außerhalb des Spukbereichs zu erhöhen und dadurch die Bewegungsgeschwindigkeit des Hantu zu beeinträchtigen.</a>
         ]]>
     </string>
     <string name="ghost_info_jinn" >
         <![CDATA[
-            <p>Ein Dschinn erhält seine Fähigkeiten durch den eingeschalteten Strom. Es kann sich bei der Jagd sehr schnell bewegen und es kann absurd schnell den Verstand verlieren. Dschinn waren in früheren Versionen von Phasmophobia die Spitzenprädatoren, und dafür gibt es einen guten Grund. Es bewegt sich mit 2,5 m/s, wenn es einen weit entfernten Spieler jagt und der Generator eingeschaltet ist, und 1,7 m/s, wenn der Generator ausgeschaltet ist und niemanden verfolgt.</p>
+            <a>Ein Dschinn erhält seine Fähigkeiten durch den eingeschalteten Strom. Es kann sich bei der Jagd sehr schnell bewegen und es kann absurd schnell den Verstand verlieren. Dschinn waren in früheren Versionen von Phasmophobia die Spitzenprädatoren, und dafür gibt es einen guten Grund. Es bewegt sich mit 2,5 m/s, wenn es einen weit entfernten Spieler jagt und der Generator eingeschaltet ist, und 1,7 m/s, wenn der Generator ausgeschaltet ist und niemanden verfolgt.</a>
         ]]>
     </string>
     <string name="ghost_info_mare" >
         <![CDATA[
-            <p>Die Stute ist ein Geist, der im Dunkeln <font color=#ff6161>aggressiver wird</font>.</p>
+            <a>Die Stute ist ein Geist, der im Dunkeln <font color=#ff6161>aggressiver wird</font>.</a>
         ]]>
     </string>
     <string name="ghost_info_moroi">
         <![CDATA[
-            <p>Die Moroi rauben den Lebenden den Verstand. Wenn die geistige Gesundheit seiner Opfer sinkt, wird der Moroi stärker. Halten Sie Ihre geistige Gesundheit so hoch wie möglich, um unerwünschte Aggressivität zu vermeiden.</p>
+            <a>Die Moroi rauben den Lebenden den Verstand. Wenn die geistige Gesundheit seiner Opfer sinkt, wird der Moroi stärker. Halten Sie Ihre geistige Gesundheit so hoch wie möglich, um unerwünschte Aggressivität zu vermeiden.</a>
         ]]>
     </string>
     <string name="ghost_info_myling">
         <![CDATA[
-            <p>Der Myling gibt seltsame Geräusche von sich, die vom Parabolmikrofon aufgenommen werden können. Seine Schritte sind während einer Jagd auch nur innerhalb des elektronischen Störbereichs (der etwa 10 Meter beträgt) zu hören.</p>
+            <a>Der Myling gibt seltsame Geräusche von sich, die vom Parabolmikrofon aufgenommen werden können. Seine Schritte sind während einer Jagd auch nur innerhalb des elektronischen Störbereichs (der etwa 10 Meter beträgt) zu hören.</a>
         ]]>
     </string>
     <string name="ghost_info_obake">
         <![CDATA[
-            <p>Ein Obake ist ein Gestaltwandler, der manchmal ungewöhnliche Beweise hervorbringt. Ein Obake hat die Möglichkeit, überhaupt keine Fingerabdrücke zu produzieren, was zu Problemen bei der Beweisaufnahme führen kann, wenn Fingerabdrücke zu früh negiert werden.
+            <a>Ein Obake ist ein Gestaltwandler, der manchmal ungewöhnliche Beweise hervorbringt. Ein Obake hat die Möglichkeit, überhaupt keine Fingerabdrücke zu produzieren, was zu Problemen bei der Beweisaufnahme führen kann, wenn Fingerabdrücke zu früh negiert werden.
         ]]>
     </string>
     <string name="ghost_info_oni" >
         <![CDATA[
-            <p>Der Oni ist ein aggressiver Geist, der<font color=#ff6161> sein Aktivitätsniveau mit der Anzahl der Ermittler in der Nähe skaliert</font>. Es ist auch wahrscheinlich, dass es in der Nähe des Geisterzimmers herumwandert.</p>
+            <a>Der Oni ist ein aggressiver Geist, der<font color=#ff6161> sein Aktivitätsniveau mit der Anzahl der Ermittler in der Nähe skaliert</font>. Es ist auch wahrscheinlich, dass es in der Nähe des Geisterzimmers herumwandert.</a>
         ]]>
     </string>
     <string name="ghost_info_onryo">
         <![CDATA[
-            <p>Der Onryo mag keine Flammen und ist sehr <font color=#ff6161>gefährdet durch jede Form von Flammen</font> (einschließlich Kerzen, Feuerzeuge usw.). Es jagt nicht, wenn es versucht, sich einer Flammenquelle auf weniger als 4 Meter zu nähern.</p>
+            <a>Der Onryo mag keine Flammen und ist sehr <font color=#ff6161>gefährdet durch jede Form von Flammen</font> (einschließlich Kerzen, Feuerzeuge usw.). Es jagt nicht, wenn es versucht, sich einer Flammenquelle auf weniger als 4 Meter zu nähern.</a>
         ]]>
     </string>
     <string name="ghost_info_phantom" >
         <![CDATA[
-            <p>Ein Phantom ist ein Angst einflößender Geist, der <font color=#ff6161>denjenigen, die es betrachten, schnell den Verstand raubt</font>.</p>
+            <a>Ein Phantom ist ein Angst einflößender Geist, der <font color=#ff6161>denjenigen, die es betrachten, schnell den Verstand raubt</font>.</a>
         ]]>
     </string>
     <string name="ghost_info_poltergeist" >
         <![CDATA[
-            <p>Einer der berühmtesten Geister, ein Poltergeist, auch als lauter Geist bekannt, <font color=#ff6161>kann mehrere Objekte um ihn herum manipulieren</font>, um bei seinen Opfern Angst zu verbreiten.</p>
+            <a>Einer der berühmtesten Geister, ein Poltergeist, auch als lauter Geist bekannt, <font color=#ff6161>kann mehrere Objekte um ihn herum manipulieren</font>, um bei seinen Opfern Angst zu verbreiten.</a>
         ]]>
     </string>
     <string name="ghost_info_raiju">
         <![CDATA[
-            <p>Ein Raiju ist ein Geist, der den Geräten um ihn herum <font color=#ff6161>elektrische Energie entzieht</font>. Zu viel elektrische Stimulation in der Nähe führt dazu, dass es unruhig wird und häufiger jagt.</p>
+            <a>Ein Raiju ist ein Geist, der den Geräten um ihn herum <font color=#ff6161>elektrische Energie entzieht</font>. Zu viel elektrische Stimulation in der Nähe führt dazu, dass es unruhig wird und häufiger jagt.</a>
         ]]>
     </string>
     <string name="ghost_info_revenant" >
         <![CDATA[
-            <p>Ein Revenant ist am besten für sein langsames Jagdverhalten bei der Suche nach Ermittlern bekannt. Es ist bei der Suche methodisch langsam, was deutliche Jagdgeräusche liefert, die bei der Bestimmung dieses Geistertyps helfen.</p>
+            <a>Ein Revenant ist am besten für sein langsames Jagdverhalten bei der Suche nach Ermittlern bekannt. Es ist bei der Suche methodisch langsam, was deutliche Jagdgeräusche liefert, die bei der Bestimmung dieses Geistertyps helfen.</a>
         ]]>
     </string>
     <string name="ghost_info_shade" >
         <![CDATA[
-            <p>Ein Schatten wird als <font color=#ff6161>„schüchternes Gespenst“</font> betrachtet. Während es schwieriger ist, Beweise zu finden, während Ermittler in Gruppen bleiben, <font color=#ff6161>ein Schatten greift weit weniger wahrscheinlich an, wenn sich mehrere Personen in der Nähe befinden</font>.</p>
+            <a>Ein Schatten wird als <font color=#ff6161>„schüchternes Gespenst“</font> betrachtet. Während es schwieriger ist, Beweise zu finden, während Ermittler in Gruppen bleiben, <font color=#ff6161>ein Schatten greift weit weniger wahrscheinlich an, wenn sich mehrere Personen in der Nähe befinden</font>.</a>
         ]]>
     </string>
     <string name="ghost_info_spirit" >
         <![CDATA[
-            <p>Ein Geist hat keine besonderen Stärken, ist aber dennoch genauso gefährlich wie jeder andere Geist.</p>
+            <a>Ein Geist hat keine besonderen Stärken, ist aber dennoch genauso gefährlich wie jeder andere Geist.</a>
         ]]>
     </string>
     <string name="ghost_info_thaye">
         <![CDATA[
-            <p>Der Thaye ist ein Geist, der in Gegenwart der Lebenden schnell altert. Die irdische Repräsentation dieses Alterns wird sich in den frühen Stadien einer Mission als Stärke, in den späteren Stadien jedoch als Schwäche zeigen. Wenn man einen Thaye fragt, wie alt er auf dem Ouija-Brett ist, wird eine Antwort erzeugt, die proportional zu seinem fortschreitenden Alter ist. Mit jeder fortschreitenden Alterungsstufe verringert die Thaye ihre effektive Geschwindigkeit um 0,175 m/s.</p>
+            <a>Der Thaye ist ein Geist, der in Gegenwart der Lebenden schnell altert. Die irdische Repräsentation dieses Alterns wird sich in den frühen Stadien einer Mission als Stärke, in den späteren Stadien jedoch als Schwäche zeigen. Wenn man einen Thaye fragt, wie alt er auf dem Ouija-Brett ist, wird eine Antwort erzeugt, die proportional zu seinem fortschreitenden Alter ist. Mit jeder fortschreitenden Alterungsstufe verringert die Thaye ihre effektive Geschwindigkeit um 0,175 m/s.</a>
         ]]>
     </string>
     <string name="ghost_info_thetwins">
         <![CDATA[
-            <p>Die Zwillinge sind ein Paar aus zwei Geistern, die ihre Umgebung separat manipulieren können. Einer der Zwillinge ist nicht in der Lage, Bewegungssensoren zu manipulieren und wird keine deterministischen Beweise hinterlassen. Jeder Zwilling kann eine Jagd initiieren und daran teilnehmen, aber <font color=#ff6161>nicht</font> beide gleichzeitig.</p>
+            <a>Die Zwillinge sind ein Paar aus zwei Geistern, die ihre Umgebung separat manipulieren können. Einer der Zwillinge ist nicht in der Lage, Bewegungssensoren zu manipulieren und wird keine deterministischen Beweise hinterlassen. Jeder Zwilling kann eine Jagd initiieren und daran teilnehmen, aber <font color=#ff6161>nicht</font> beide gleichzeitig.</a>
         ]]>
     </string>
     <string name="ghost_info_themimic">
         <![CDATA[
-            <p>Der Mimic ist ein schwer fassbarer, mysteriöser Nachahmergeist, der Eigenschaften und Verhaltensweisen anderer Geistertypen widerspiegelt. Achten Sie auf Verhaltensänderungen. Geisterkugeln sind ein vierter, versteckter Beweis, der für diesen Geist vorhanden sein muss.</p>
+            <a>Der Mimic ist ein schwer fassbarer, mysteriöser Nachahmergeist, der Eigenschaften und Verhaltensweisen anderer Geistertypen widerspiegelt. Achten Sie auf Verhaltensänderungen. Geisterkugeln sind ein vierter, versteckter Beweis, der für diesen Geist vorhanden sein muss.</a>
         ]]>
     </string>
     <string name="ghost_info_wraith" >
         <![CDATA[
-            <p>Ein Wraith ist der einzige bekannte Geist, der <font color=#ff6161>die Flugfähigkeit behält</font>. Wie jeder andere Geist kann ein Wraith nicht durch Wände reisen, obwohl ihm diese Fähigkeit nachgesagt wird.</p>
+            <a>Ein Wraith ist der einzige bekannte Geist, der <font color=#ff6161>die Flugfähigkeit behält</font>. Wie jeder andere Geist kann ein Wraith nicht durch Wände reisen, obwohl ihm diese Fähigkeit nachgesagt wird.</a>
         ]]>
     </string>
     <string name="ghost_info_yokai">
         <![CDATA[
-            <p>Der Yokai ist sehr <font color=#ff6161>empfindlich gegenüber Stimmen</font>, was den Yokai extrem gefährlich macht. Das Sprechen in der Nähe kann jedoch auch Aktivitäten auslösen, was das Auffinden des Geisterraums erleichtert.</p>
+            <a>Der Yokai ist sehr <font color=#ff6161>empfindlich gegenüber Stimmen</font>, was den Yokai extrem gefährlich macht. Das Sprechen in der Nähe kann jedoch auch Aktivitäten auslösen, was das Auffinden des Geisterraums erleichtert.</a>
         ]]>
     </string>
     <string name="ghost_info_yurei" >
         <![CDATA[
-            <p>Ein Yurei ist ein Geist, dessen Fähigkeit <font color=#ff6161>den passiven Verlust der geistigen Gesundheit eines Spielers erhöht</font> (obwohl die meisten Geister Ihre geistige Gesundheit ziemlich schnell schwächen). Das Verschmieren des Raums, in dem ein Yurei gefunden wurde, verhindert, dass er für lange Zeit von dem Ort wegwandert.</p>
+            <a>Ein Yurei ist ein Geist, dessen Fähigkeit <font color=#ff6161>den passiven Verlust der geistigen Gesundheit eines Spielers erhöht</font> (obwohl die meisten Geister Ihre geistige Gesundheit ziemlich schnell schwächen). Das Verschmieren des Raums, in dem ein Yurei gefunden wurde, verhindert, dass er für lange Zeit von dem Ort wegwandert.</a>
         ]]>
     </string>
 
@@ -150,27 +150,27 @@
     -->
     <string name="ghost_strengths_banshee" >
         <![CDATA[
-            <p>Die Banshee konzentriert sich auf einen Spieler und wechselt zu einem neuen Ziel, wenn sich das ausgewählte Ziel nicht im Spielbereich befindet.</p>
+            <a>Die Banshee konzentriert sich auf einen Spieler und wechselt zu einem neuen Ziel, wenn sich das ausgewählte Ziel nicht im Spielbereich befindet.</a>
         ]]>
     </string>
     <string name="ghost_strengths_demon" >
         <![CDATA[
-            <p>Es kann schwierig sein, Hinweise auf sie zu sammeln, da sie Spieler sehr häufig angreifen. Der Dämon kann bei jeder geistigen Gesundheit früh\jagen, aber sein Mindestziel liegt normalerweise bei etwa 70\% durchschnittlicher geistiger Gesundheit. Die Abklingzeit der Jagd oder die Zeit zwischen den Jagden beträgt 20 Sekunden, was 5 Sekunden schneller ist als bei jedem anderen Geist. Smudge Sticks haben auch eine kürzere Schutzdauer und gewähren 60 Sekunden Schutz statt der normalen 90 Sekunden für Nicht\-Geistergeister.</p>
+            <a>Es kann schwierig sein, Hinweise auf sie zu sammeln, da sie Spieler sehr häufig angreifen. Der Dämon kann bei jeder geistigen Gesundheit früh\jagen, aber sein Mindestziel liegt normalerweise bei etwa 70\% durchschnittlicher geistiger Gesundheit. Die Abklingzeit der Jagd oder die Zeit zwischen den Jagden beträgt 20 Sekunden, was 5 Sekunden schneller ist als bei jedem anderen Geist. Smudge Sticks haben auch eine kürzere Schutzdauer und gewähren 60 Sekunden Schutz statt der normalen 90 Sekunden für Nicht\-Geistergeister.</a>
         ]]>
     </string>
     <string name="ghost_strengths_deogen">
         <![CDATA[
-            <p>Der Deogen wird jedes Lebewesen spüren, egal wie gut es versteckt ist. Wenn Sie sich entscheiden, gegen ein Deogen stationär zu bleiben, werden Sie getötet. Verlassen Sie sich nicht darauf, die Sichtlinie zu unterbrechen, da dies eine Verfolgung nicht stoppen wird und es dem Deogen nur ermöglicht, sich viel schneller zu bewegen.</p>
+            <a>Der Deogen wird jedes Lebewesen spüren, egal wie gut es versteckt ist. Wenn Sie sich entscheiden, gegen ein Deogen stationär zu bleiben, werden Sie getötet. Verlassen Sie sich nicht darauf, die Sichtlinie zu unterbrechen, da dies eine Verfolgung nicht stoppen wird und es dem Deogen nur ermöglicht, sich viel schneller zu bewegen.</a>
         ]]>
     </string>
     <string name="ghost_strengths_goryo">
         <![CDATA[
-            <p>Ein Goryo zeigt sich oft nur vor der Kamera, wenn keine Menschen in der Nähe sind. Dies kann Probleme beim Sammeln der entsprechenden Beweise verursachen, da es dazu führen kann, dass D.O.T.S. zu früh.</p>
+            <a>Ein Goryo zeigt sich oft nur vor der Kamera, wenn keine Menschen in der Nähe sind. Dies kann Probleme beim Sammeln der entsprechenden Beweise verursachen, da es dazu führen kann, dass D.O.T.S. zu früh.</a>
         ]]>
     </string>
     <string name="ghost_strengths_hantu">
         <![CDATA[
-            <p>Bei niedrigeren Temperaturen bewegt sich der Hantu schneller. Die Sichtlinie hat keinen Einfluss auf die Geschwindigkeit des Hantu.</p>
+            <a>Bei niedrigeren Temperaturen bewegt sich der Hantu schneller. Die Sichtlinie hat keinen Einfluss auf die Geschwindigkeit des Hantu.</a>
 			<ul>
 				<li>15°C+ = 1,40 m/s</li>
 				<li>12°C  = 1,75 m/s</li>
@@ -183,17 +183,17 @@
     </string>
     <string name="ghost_strengths_jinn" >
         <![CDATA[
-            <p>Die Geschwindigkeit eines Dschinn macht es zu einem äußerst schwierigen Geist, dem man entkommen kann, sobald er mit der Jagd beginnt. Sobald der Dschinn einen Spieler eingeholt hat, wird er allmählich langsamer und wechselt zu normaler Jagdgeschwindigkeit. Ein Dschinn kann einem Spieler in der Nähe sofort 25\% geistige Gesundheit entziehen, wenn der Strom eingeschaltet ist.</p>
+            <a>Die Geschwindigkeit eines Dschinn macht es zu einem äußerst schwierigen Geist, dem man entkommen kann, sobald er mit der Jagd beginnt. Sobald der Dschinn einen Spieler eingeholt hat, wird er allmählich langsamer und wechselt zu normaler Jagdgeschwindigkeit. Ein Dschinn kann einem Spieler in der Nähe sofort 25\% geistige Gesundheit entziehen, wenn der Strom eingeschaltet ist.</a>
         ]]>
     </string>
     <string name="ghost_strengths_mare" >
         <![CDATA[
-            <p>Eine Stute versucht, das Licht auszuschalten, um sich zu stärken, und jagt mit 60 %, wenn der Strom ausgeschaltet ist. Es wandert auch in andere Räume oder in dunkle Bereiche seines bevorzugten Raums und kann von diesen Orten aus eine Jagd starten. Eine Stute hat eine erhöhte Wahrscheinlichkeit, die Lichtquelle eines Raums durch ein Ereignis zu zerstören.</p>
+            <a>Eine Stute versucht, das Licht auszuschalten, um sich zu stärken, und jagt mit 60 %, wenn der Strom ausgeschaltet ist. Es wandert auch in andere Räume oder in dunkle Bereiche seines bevorzugten Raums und kann von diesen Orten aus eine Jagd starten. Eine Stute hat eine erhöhte Wahrscheinlichkeit, die Lichtquelle eines Raums durch ein Ereignis zu zerstören.</a>
         ]]>
     </string>
     <string name="ghost_strengths_moroi">
         <![CDATA[
-            <p>Die Moroi werden jedes bisschen verlorene geistige Gesundheit voll ausnutzen. Weniger Vernunft im Team erzeugt ein höheres Maß an Aggressivität. Bei 0 % durchschnittlicher geistiger Gesundheit wird der Geist während einer Jagd blitzschnell. Basierend auf der durchschnittlichen Vernunft des Teams liegt seine Geschwindigkeit zwischen 1,5 m/s bei der langsamsten und 2,25 m/s bei der schnellsten Variante.</p>
+            <a>Die Moroi werden jedes bisschen verlorene geistige Gesundheit voll ausnutzen. Weniger Vernunft im Team erzeugt ein höheres Maß an Aggressivität. Bei 0 % durchschnittlicher geistiger Gesundheit wird der Geist während einer Jagd blitzschnell. Basierend auf der durchschnittlichen Vernunft des Teams liegt seine Geschwindigkeit zwischen 1,5 m/s bei der langsamsten und 2,25 m/s bei der schnellsten Variante.</a>
 			<ul>
 				<li>Gesundheit 0 % \- 5 % : 2,25 m/s</li>
 				<li>Gesundheit 5 % \- 10 % : 2,164 m/s</li>
@@ -206,209 +206,209 @@
 				<li>Gesundheit 40 % \- 45 % : 1,583 m/s</li>
 				<li>Gesundheit 45 % \- 100 % : 1,5 m/s</li>
 			</ul>
-            <p>Der Geist hat eine verborgene Fähigkeit \-\- einen Fluch \-\- der dazu führt, dass jeder Spieler seinen Verstand mit einer Rate von 0,03 %/s verliert, solange sich der betroffene Spieler im Spielbereich befindet. Dieser Effekt wird verursacht, wenn der Spieler die Spirit Box verwendet und eine Antwort von ihr erhält. Der Effekt stapelt sich über der normalen Rate, mit der die geistige Gesundheit des Spielers abnimmt. Kerzen stoppen die Wirkung nicht, aber der Fluch kann durch die Verwendung von Sanity Pills aufgehoben werden.</p>
+            <a>Der Geist hat eine verborgene Fähigkeit \-\- einen Fluch \-\- der dazu führt, dass jeder Spieler seinen Verstand mit einer Rate von 0,03 %/s verliert, solange sich der betroffene Spieler im Spielbereich befindet. Dieser Effekt wird verursacht, wenn der Spieler die Spirit Box verwendet und eine Antwort von ihr erhält. Der Effekt stapelt sich über der normalen Rate, mit der die geistige Gesundheit des Spielers abnimmt. Kerzen stoppen die Wirkung nicht, aber der Fluch kann durch die Verwendung von Sanity Pills aufgehoben werden.</a>
         ]]>
     </string>
     <string name="ghost_strengths_myling">
         <![CDATA[
-            <p>Ein Myling ist während der Jagd nicht so lautstark wie andere Geister. Sie werden ihre Schritte und ihre Stimmgeräusche nur wahrnehmen, wenn Sie sich in der Nähe von elektronischen\-Interferenzen befinden.</p>
+            <a>Ein Myling ist während der Jagd nicht so lautstark wie andere Geister. Sie werden ihre Schritte und ihre Stimmgeräusche nur wahrnehmen, wenn Sie sich in der Nähe von elektronischen\-Interferenzen befinden.</a>
         ]]>
     </string>
     <string name="ghost_strengths_obake">
         <![CDATA[
-            <p>Ein Obake darf keine Spuren hinterlassen, wenn er die Umgebung manipuliert. Dies bedeutet, dass es eine Chance hat, keine Fingerabdrücke zu hinterlassen. Der Obake kann auch die Lebensdauer von Fingerabdrücken um die Hälfte verkürzen.</p>
+            <a>Ein Obake darf keine Spuren hinterlassen, wenn er die Umgebung manipuliert. Dies bedeutet, dass es eine Chance hat, keine Fingerabdrücke zu hinterlassen. Der Obake kann auch die Lebensdauer von Fingerabdrücken um die Hälfte verkürzen.</a>
         ]]>
     </string>
     <string name="ghost_strengths_oni" >
         <![CDATA[
-            <p>Onis besitzen die Fähigkeit, physische Objekte wie ein Poltergeist zu bewegen, während sie gleichzeitig die Aggression eines Dämons zeigen. Dies erschwert es ihnen, Beweise zu sammeln, ohne sie zu verärgern. Dies ist seine größte Schwäche, da es sich wahrscheinlich früh in der Runde zeigen wird. Wenn ein Spieler während eines Geister-Events von einem Oni berührt wird, wird der geistige Verstand des Spielers doppelt so stark geschwächt.</p>
+            <a>Onis besitzen die Fähigkeit, physische Objekte wie ein Poltergeist zu bewegen, während sie gleichzeitig die Aggression eines Dämons zeigen. Dies erschwert es ihnen, Beweise zu sammeln, ohne sie zu verärgern. Dies ist seine größte Schwäche, da es sich wahrscheinlich früh in der Runde zeigen wird. Wenn ein Spieler während eines Geister-Events von einem Oni berührt wird, wird der geistige Verstand des Spielers doppelt so stark geschwächt.</a>
         ]]>
     </string>
     <string name="ghost_strengths_onryo">
         <![CDATA[
-            <p>Der Onryo zielt auf die Flammenquelle und löscht sie. Sollte der Onryo 3 Flammen löschen, kann der Onryo unabhängig von der geistigen Gesundheit eine Jagd einleiten, wenn sich keine andere Flamme oder kein Kruzifix in der Nähe befindet. Wenn ein Spieler stirbt, steigt die Wahrscheinlichkeit, dass Kerzen von da an erlöschen.</p>
+            <a>Der Onryo zielt auf die Flammenquelle und löscht sie. Sollte der Onryo 3 Flammen löschen, kann der Onryo unabhängig von der geistigen Gesundheit eine Jagd einleiten, wenn sich keine andere Flamme oder kein Kruzifix in der Nähe befindet. Wenn ein Spieler stirbt, steigt die Wahrscheinlichkeit, dass Kerzen von da an erlöschen.</a>
         ]]>
     </string>
     <string name="ghost_strengths_phantom" >
         <![CDATA[
-            <p>Phantome werden einen extremen Tribut von der geistigen Gesundheit der Spieler fordern. Vermeiden Sie es, zu lange in der Nähe eines Phantoms zu sein oder es direkt anzusehen. Es hat auch die Tendenz, Spielern passiv zu folgen, was ihm hilft, aus dem von ihm gewählten Raum zu wandern, was es schwieriger macht, Beweise zu sammeln.</p>
+            <a>Phantome werden einen extremen Tribut von der geistigen Gesundheit der Spieler fordern. Vermeiden Sie es, zu lange in der Nähe eines Phantoms zu sein oder es direkt anzusehen. Es hat auch die Tendenz, Spielern passiv zu folgen, was ihm hilft, aus dem von ihm gewählten Raum zu wandern, was es schwieriger macht, Beweise zu sammeln.</a>
         ]]>
     </string>
     <string name="ghost_strengths_poltergeist" >
         <![CDATA[
-            <p>Poltergeister können den Raum, in dem sich die Spieler befinden, stark beeinflussen, da sie zahlreiche Objekte schleudern und laute Geräusche erzeugen können. Pro geworfenem Gegenstand gibt es einen sofortigen Verlust der geistigen Gesundheit von 2\% bei allen Spielern in der Nähe. Dies kann sowohl außerhalb als auch während der Jagd vorkommen.</p>
+            <a>Poltergeister können den Raum, in dem sich die Spieler befinden, stark beeinflussen, da sie zahlreiche Objekte schleudern und laute Geräusche erzeugen können. Pro geworfenem Gegenstand gibt es einen sofortigen Verlust der geistigen Gesundheit von 2\% bei allen Spielern in der Nähe. Dies kann sowohl außerhalb als auch während der Jagd vorkommen.</a>
         ]]>
     </string>
     <string name="ghost_strengths_raiju" >
         <![CDATA[
-            <p>Raiju wird viel schneller, wenn er sich in der Nähe von elektrischen Geräten befindet, aber nicht bei der Stromversorgung der Karte oder den Raumlichtern, und erhöht seine bevorzugte geistige Gesundheit bei der Jagd auf 65 %, während er sich in der Nähe von solchen elektrischen Geräten befindet. In der Nähe eines elektronischen Geräts bewegt es sich mit 2,5 m/s; Andernfalls bewegt es sich mit 1,7 m/s.</p>
+            <a>Raiju wird viel schneller, wenn er sich in der Nähe von elektrischen Geräten befindet, aber nicht bei der Stromversorgung der Karte oder den Raumlichtern, und erhöht seine bevorzugte geistige Gesundheit bei der Jagd auf 65 %, während er sich in der Nähe von solchen elektrischen Geräten befindet. In der Nähe eines elektronischen Geräts bewegt es sich mit 2,5 m/s; Andernfalls bewegt es sich mit 1,7 m/s.</a>
         ]]>
     </string>
     <string name="ghost_strengths_revenant" >
         <![CDATA[
-            <p>Ein Revenant bewegt sich mit 1 m/s, während er nach Spielern sucht, und bewegt sich sofort mit 3 m/s, wenn der Standort eines Spielers bekannt ist (über Sichtverbindung, Proximity-Chat oder Verwendung elektronischer Geräte). . Es verlangsamt sich allmählich auf 1 m/s, es sei denn, der Standort eines Spielers wird erneut erfasst, nachdem er den letzten bekannten Standort des Spielers erreicht hat.</p>
+            <a>Ein Revenant bewegt sich mit 1 m/s, während er nach Spielern sucht, und bewegt sich sofort mit 3 m/s, wenn der Standort eines Spielers bekannt ist (über Sichtverbindung, Proximity-Chat oder Verwendung elektronischer Geräte). . Es verlangsamt sich allmählich auf 1 m/s, es sei denn, der Standort eines Spielers wird erneut erfasst, nachdem er den letzten bekannten Standort des Spielers erreicht hat.</a>
         ]]>
     </string>
     <string name="ghost_strengths_shade" >
         <![CDATA[
-            <p>Schatten können schwierig zu finden sein, und daher kann es schwierig sein, Beweise dafür zu sammeln oder sogar den Standort zu finden. Es hat insgesamt eine geringere Aktivität; Niedrigere geistige Gesundheit der Spieler führen jedoch zu mehr Geisterereignissen. Es wird nicht interagieren oder Objekte werfen, während sich ein Spieler in seinem bevorzugten Raum befindet.</p>
+            <a>Schatten können schwierig zu finden sein, und daher kann es schwierig sein, Beweise dafür zu sammeln oder sogar den Standort zu finden. Es hat insgesamt eine geringere Aktivität; Niedrigere geistige Gesundheit der Spieler führen jedoch zu mehr Geisterereignissen. Es wird nicht interagieren oder Objekte werfen, während sich ein Spieler in seinem bevorzugten Raum befindet.</a>
         ]]>
     </string>
     <string name="ghost_strengths_spirit" >
         <![CDATA[
-            <p>Spirituosen haben keine besonderen Stärken, da sie auf neue Spieler ausgerichtet sind. Lassen Sie sich aber nicht täuschen. Sein Mangel an Spezialität macht es zu einem ausgeglichenen Match.</p>
+            <a>Spirituosen haben keine besonderen Stärken, da sie auf neue Spieler ausgerichtet sind. Lassen Sie sich aber nicht täuschen. Sein Mangel an Spezialität macht es zu einem ausgeglichenen Match.</a>
         ]]>
     </string>
     <string name="ghost_strengths_thaye">
         <![CDATA[
-            <p>Die Thaye sind zu Beginn einer Mission am aktivsten und gefährlichsten. Das macht es schon früh extrem bedrohlich. Der Thaye jagt zu Beginn einer Untersuchung mit 75 % und skaliert schließlich auf mindestens 15 %, nachdem er gealtert ist. Ein junger Thaye ist mit 2,7 m/s sehr schnell, während sich ein alter Thaye mit 1,0 m/s langsamer bewegt als ein Spieler.</p>
+            <a>Die Thaye sind zu Beginn einer Mission am aktivsten und gefährlichsten. Das macht es schon früh extrem bedrohlich. Der Thaye jagt zu Beginn einer Untersuchung mit 75 % und skaliert schließlich auf mindestens 15 %, nachdem er gealtert ist. Ein junger Thaye ist mit 2,7 m/s sehr schnell, während sich ein alter Thaye mit 1,0 m/s langsamer bewegt als ein Spieler.</a>
         ]]>
     </string>
     <string name="ghost_strengths_thetwins">
         <![CDATA[
-            <p>Jeder Zwilling kann verärgert sein und somit kann jeder Zwilling eine Jagd einleiten. Das bedeutet, dass eine Jagd von zwei verschiedenen Orten aus starten kann.</p>
+            <a>Jeder Zwilling kann verärgert sein und somit kann jeder Zwilling eine Jagd einleiten. Das bedeutet, dass eine Jagd von zwei verschiedenen Orten aus starten kann.</a>
         ]]>
     </string>
     <string name="ghost_strengths_themimic">
         <![CDATA[
-            <p>Der Mimic kann jeden Geistertyp während einer Untersuchung schnell mehrmals kopieren, was ihn extrem gefährlich und völlig unberechenbar macht. Das Verhalten, das es kopiert, kann sowohl während als auch außerhalb einer Jagd vorhanden sein. Der Mimic kann nicht wechseln, um einen anderen Geist während der Jagd nachzuahmen.</p>
+            <a>Der Mimic kann jeden Geistertyp während einer Untersuchung schnell mehrmals kopieren, was ihn extrem gefährlich und völlig unberechenbar macht. Das Verhalten, das es kopiert, kann sowohl während als auch außerhalb einer Jagd vorhanden sein. Der Mimic kann nicht wechseln, um einen anderen Geist während der Jagd nachzuahmen.</a>
         ]]>
     </string>
     <string name="ghost_strengths_wraith" >
         <![CDATA[
-            <p>Der Wraith besitzt die Fähigkeit, sich selbst zu jedem Spieler in der Nähe zu blinzeln, der sich in geringer Entfernung von seinem gewählten Raum befindet. Dies kann weit außerhalb ihres Zimmers geschehen, sogar zwischen Stockwerken. Diese Aktivität kann unbemerkt bleiben, da es sich möglicherweise um eine stille Aktivität handelt, sie erzeugt jedoch einen EMF-Messwert am Landeort. Nach dieser Aktivität gehen die Wraith zurück in ihr Zimmer und können während dieser Zeit mit Objekten interagieren. Es wird gesagt, dass ein Wraith direkt nach dem Teleportieren jagen kann, aber das kann ungenau sein.</p>
+            <a>Der Wraith besitzt die Fähigkeit, sich selbst zu jedem Spieler in der Nähe zu blinzeln, der sich in geringer Entfernung von seinem gewählten Raum befindet. Dies kann weit außerhalb ihres Zimmers geschehen, sogar zwischen Stockwerken. Diese Aktivität kann unbemerkt bleiben, da es sich möglicherweise um eine stille Aktivität handelt, sie erzeugt jedoch einen EMF-Messwert am Landeort. Nach dieser Aktivität gehen die Wraith zurück in ihr Zimmer und können während dieser Zeit mit Objekten interagieren. Es wird gesagt, dass ein Wraith direkt nach dem Teleportieren jagen kann, aber das kann ungenau sein.</a>
         ]]>
     </string>
     <string name="ghost_strengths_yokai">
         <![CDATA[
-            <p>Das Sprechen in der Nähe eines Yokai wird ihn verärgern und seine Angriffswahrscheinlichkeit erhöhen, indem die bevorzugte Mindestgesundheitsstufe für die Jagd auf 80\% angehoben wird.</p>
+            <a>Das Sprechen in der Nähe eines Yokai wird ihn verärgern und seine Angriffswahrscheinlichkeit erhöhen, indem die bevorzugte Mindestgesundheitsstufe für die Jagd auf 80\% angehoben wird.</a>
         ]]>
     </string>
     <string name="ghost_strengths_yurei" >
         <![CDATA[
-            <p>Yurie lässt den Verstand der Spieler viel schneller sinken, während sie ihn anschauen, als jeder andere Geist \-\-, kann aber auch den Verstand verringern, selbst wenn ein Spieler abgewiesen wird. Ein Yurei kann außerdem jedem Spieler in der Nähe sofort 15\% geistige Gesundheit entreißen; und wenn dies passiert, schließen sich die Türen des Raums immer von selbst (jeder Geist kann dies tun, aber der Yurei hat eine erhöhte Wahrscheinlichkeit).</p>
+            <a>Yurie lässt den Verstand der Spieler viel schneller sinken, während sie ihn anschauen, als jeder andere Geist \-\-, kann aber auch den Verstand verringern, selbst wenn ein Spieler abgewiesen wird. Ein Yurei kann außerdem jedem Spieler in der Nähe sofort 15\% geistige Gesundheit entreißen; und wenn dies passiert, schließen sich die Türen des Raums immer von selbst (jeder Geist kann dies tun, aber der Yurei hat eine erhöhte Wahrscheinlichkeit).</a>
         ]]>
     </string>
 
     <!-- Weaknesses -->
     <string name="ghost_weaknesses_banshee" >
         <![CDATA[
-            <p>Eine Banshee wird sich weit von ihrem Raum entfernen, nur um ihr Ziel zu verfolgen. Banshees werden niemals ihren Nicht-Zielspieler töten und während einer Jagd gehen sie direkt durch jeden Ermittler, an dem sie nicht interessiert sind. Außerdem basiert ihre Jagd auf der geistigen Gesundheit ihres Ziels und nicht auf der durchschnittlichen geistigen Gesundheit des Teams. Eine Banshee hat eine besondere Interaktion mit dem Parabolmikrofon, da es die Möglichkeit hat, ein leises, hohes Heulen auszustoßen.</p>
+            <a>Eine Banshee wird sich weit von ihrem Raum entfernen, nur um ihr Ziel zu verfolgen. Banshees werden niemals ihren Nicht-Zielspieler töten und während einer Jagd gehen sie direkt durch jeden Ermittler, an dem sie nicht interessiert sind. Außerdem basiert ihre Jagd auf der geistigen Gesundheit ihres Ziels und nicht auf der durchschnittlichen geistigen Gesundheit des Teams. Eine Banshee hat eine besondere Interaktion mit dem Parabolmikrofon, da es die Möglichkeit hat, ein leises, hohes Heulen auszustoßen.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_demon" >
         <![CDATA[
-            <p>Im Gegensatz zu anderen Geistern wird das Stellen einer erfolgreichen Frage über das Ouija-Brett an einen Dämon die geistige Gesundheit der Spieler nicht beeinträchtigen. Dies macht das Ouija-Brett zu einem sehr nützlichen Werkzeug gegen Dämonen. Dämonen <font color=#ff6161>fürchten das Kruzifix</font> und erhöhen seine Wirksamkeit gegen sie, indem die effektive Reichweite des Kruzifixes auf 5 Meter anstelle der normalen 3 Meter für andere Geister erhöht wird.</p>
+            <a>Im Gegensatz zu anderen Geistern wird das Stellen einer erfolgreichen Frage über das Ouija-Brett an einen Dämon die geistige Gesundheit der Spieler nicht beeinträchtigen. Dies macht das Ouija-Brett zu einem sehr nützlichen Werkzeug gegen Dämonen. Dämonen <font color=#ff6161>fürchten das Kruzifix</font> und erhöhen seine Wirksamkeit gegen sie, indem die effektive Reichweite des Kruzifixes auf 5 Meter anstelle der normalen 3 Meter für andere Geister erhöht wird.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_deogen">
         <![CDATA[
-            <p>Das Deogen wird seine Beute bis zur Erschöpfung verfolgen, aber es wird seiner Beute niemals entkommen. Bleiben Sie gegen diesen Geist in Bewegung und stellen Sie sicher, dass Sie Ihre Routen im Voraus planen. Bleiben Sie mit diesem Geist in Sichtweite, und es wird Ihnen nichts passieren, da er sich nur mit 0,4 m/s bewegen kann, wenn er sich in unmittelbarer Nähe des nächsten Spielers in Sichtweite befindet. Solange du dich in Sichtweite befindest, wird es dich niemals einholen können, selbst wenn du gehst. Der Deogen jagt nur bei 40\% geistiger Gesundheit.</p>
+            <a>Das Deogen wird seine Beute bis zur Erschöpfung verfolgen, aber es wird seiner Beute niemals entkommen. Bleiben Sie gegen diesen Geist in Bewegung und stellen Sie sicher, dass Sie Ihre Routen im Voraus planen. Bleiben Sie mit diesem Geist in Sichtweite, und es wird Ihnen nichts passieren, da er sich nur mit 0,4 m/s bewegen kann, wenn er sich in unmittelbarer Nähe des nächsten Spielers in Sichtweite befindet. Solange du dich in Sichtweite befindest, wird es dich niemals einholen können, selbst wenn du gehst. Der Deogen jagt nur bei 40\% geistiger Gesundheit.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_goryo">
         <![CDATA[
-            <p>Goryos halten sich normalerweise innerhalb oder sehr nahe an dem Ort auf, an dem sie spuken. Dies ermöglicht eine einfachere Sammlung von Beweisen.</p>
+            <a>Goryos halten sich normalerweise innerhalb oder sehr nahe an dem Ort auf, an dem sie spuken. Dies ermöglicht eine einfachere Sammlung von Beweisen.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_hantu" >
         <![CDATA[
-            <p>Die Bewegung eines Hantu ist in wärmeren Gebieten langsamer als normal. Während der Jagd und wenn der Unterbrecher ausgeschaltet ist, erzeugt der Hantu ähnlich wie ein Spieler eiskalten Atem, aber dieser Effekt ist nicht auf den Geisterraum oder die Temperatur eines Raums beschränkt.</p>
+            <a>Die Bewegung eines Hantu ist in wärmeren Gebieten langsamer als normal. Während der Jagd und wenn der Unterbrecher ausgeschaltet ist, erzeugt der Hantu ähnlich wie ein Spieler eiskalten Atem, aber dieser Effekt ist nicht auf den Geisterraum oder die Temperatur eines Raums beschränkt.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_jinn" >
         <![CDATA[
-            <p>Dschinn verlassen sich auf die Energiequelle der Karte, um ihre hohen Geschwindigkeiten zu erreichen, daher sollten Spieler nach dem Schutzschalter des Gebäudes suchen, um die Fähigkeit der Dschinn zu entfernen. Ein Dschinn kann den Strom nicht selbst einschalten.</p>
+            <a>Dschinn verlassen sich auf die Energiequelle der Karte, um ihre hohen Geschwindigkeiten zu erreichen, daher sollten Spieler nach dem Schutzschalter des Gebäudes suchen, um die Fähigkeit der Dschinn zu entfernen. Ein Dschinn kann den Strom nicht selbst einschalten.</a>
 		]]>
     </string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
-            <p>Wenn das Licht im Bereich einer Stute eingeschaltet bleibt, sinkt ihre Präferenz für geistige Gesundheit beim Jagen von durchschnittlich 60 % auf 40 %. Bleiben Sie daher in beleuchteten Bereichen, um seine Aggression zu begrenzen. Eine Stute kann den Unterbrecher nicht ausschalten, aber sie hat die Fähigkeit, Lichtschalter sofort auszuschalten, wenn sie von einem Spieler aktiviert werden, was ein Ereignis ist, das sehr leicht erkannt werden kann.</p>
+            <a>Wenn das Licht im Bereich einer Stute eingeschaltet bleibt, sinkt ihre Präferenz für geistige Gesundheit beim Jagen von durchschnittlich 60 % auf 40 %. Bleiben Sie daher in beleuchteten Bereichen, um seine Aggression zu begrenzen. Eine Stute kann den Unterbrecher nicht ausschalten, aber sie hat die Fähigkeit, Lichtschalter sofort auszuschalten, wenn sie von einem Spieler aktiviert werden, was ein Ereignis ist, das sehr leicht erkannt werden kann.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_moroi">
         <![CDATA[
-            <p>Die Moroi reagieren überempfindlich auf den Smudge Stick. Wenn Sie einen in der Nähe anzünden, wird der Moroi 12 Sekunden lang geblendet.</p>
+            <a>Die Moroi reagieren überempfindlich auf den Smudge Stick. Wenn Sie einen in der Nähe anzünden, wird der Moroi 12 Sekunden lang geblendet.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_myling" >
         <![CDATA[
-            <p>Mylings wird häufiger paranormale Geräusche im Parabolmikrofon abgeben.</p>
+            <a>Mylings wird häufiger paranormale Geräusche im Parabolmikrofon abgeben.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_obake" >
         <![CDATA[
-            <p>Zufällig hinterlässt ein Obake manchmal <font color=#ff6161>6-Finger-Handabdrücke</font> anstelle der normalen 5. 5-Finger-Handabdrücke sollten nicht verwendet werden, um den Obake auszuschließen. Der Obake kann sein Geistermodell auch während einer Jagd jederzeit für eine kurze Sekunde ändern. Wenn der Obake eine Oberfläche berührt, besteht die Möglichkeit, dass Fingerabdrücke nicht erscheinen; Dies kann als Beweis für den Geist verwendet werden, falls nachfolgende Interaktionen Fingerabdrücke produzieren.</p>
+            <a>Zufällig hinterlässt ein Obake manchmal <font color=#ff6161>6-Finger-Handabdrücke</font> anstelle der normalen 5. 5-Finger-Handabdrücke sollten nicht verwendet werden, um den Obake auszuschließen. Der Obake kann sein Geistermodell auch während einer Jagd jederzeit für eine kurze Sekunde ändern. Wenn der Obake eine Oberfläche berührt, besteht die Möglichkeit, dass Fingerabdrücke nicht erscheinen; Dies kann als Beweis für den Geist verwendet werden, falls nachfolgende Interaktionen Fingerabdrücke produzieren.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_oni" >
         <![CDATA[
-            <p>Onis sind leicht zu finden, da sie nicht widerstehen können, einen Aufruhr zu verursachen, wenn Spieler in der Nähe sind. Der Oni kann kein \"Ghost Mist\"- oder \"Ghost Ball\"-Event durchführen. Es wird vollständige Manifestationen gegenüber Schattenmanifestationen oder unsichtbaren Manifestationen während Geisterereignissen bevorzugen. Dieses Verhalten überträgt sich auf die Jagd, was dazu führt, dass sich der Oni für längere Zeit manifestiert und während der Jagd für sehr kurze Intervalle verschwindet.</p>
+            <a>Onis sind leicht zu finden, da sie nicht widerstehen können, einen Aufruhr zu verursachen, wenn Spieler in der Nähe sind. Der Oni kann kein \"Ghost Mist\"- oder \"Ghost Ball\"-Event durchführen. Es wird vollständige Manifestationen gegenüber Schattenmanifestationen oder unsichtbaren Manifestationen während Geisterereignissen bevorzugen. Dieses Verhalten überträgt sich auf die Jagd, was dazu führt, dass sich der Oni für längere Zeit manifestiert und während der Jagd für sehr kurze Intervalle verschwindet.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_onryo" >
         <![CDATA[
-            <p>Eine Flammenquelle wirkt, um die Chance eines Onryo zu unterdrücken, anzugreifen. Es löscht zuerst alle Flammen (ähnlich wie bei der Verwendung einer Kruzifix-Ladung), bevor ein Kruzifix verwendet wird.</p>
+            <a>Eine Flammenquelle wirkt, um die Chance eines Onryo zu unterdrücken, anzugreifen. Es löscht zuerst alle Flammen (ähnlich wie bei der Verwendung einer Kruzifix-Ladung), bevor ein Kruzifix verwendet wird.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_phantom" >
         <![CDATA[
-            <p><font color=#ff6161>Wenn Sie ein Phantom fotografieren, verschwindet es vorübergehend</font> und wird niemals auf dem Foto zu sehen sein. Ein Phantom verrät sich auch bei der Jagd, da es sich für kurze Zeit physisch manifestiert und für längere Zeit verschwindet.</p>
+            <a><font color=#ff6161>Wenn Sie ein Phantom fotografieren, verschwindet es vorübergehend</font> und wird niemals auf dem Foto zu sehen sein. Ein Phantom verrät sich auch bei der Jagd, da es sich für kurze Zeit physisch manifestiert und für längere Zeit verschwindet.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_poltergeist" >
         <![CDATA[
-            <p>Spieler können physische Objekte im Raum entfernen, wodurch ein Poltergeist unwirksam wird. Ein Polgergeist kann heftig mit Gegenständen interagieren und einen Gegenstand mit viel größerer Wucht werfen als ein normaler Geist. Es kann mit mehreren Gegenständen gleichzeitig interagieren, was als "Poltergeist-Explosionsereignis" bekannt ist, und es kann leicht getestet werden, indem eine große Anzahl von Gegenständen in einem Stapel gesammelt und sein Verhalten bei Aktivität beobachtet wird. Während einer Jagd besteht eine viel größere Chance, dass Gegenstände manipuliert werden, also schaue nach zahlreichen aufgeregten Gegenständen innerhalb seines Jagdpfads.</p>
+            <a>Spieler können physische Objekte im Raum entfernen, wodurch ein Poltergeist unwirksam wird. Ein Polgergeist kann heftig mit Gegenständen interagieren und einen Gegenstand mit viel größerer Wucht werfen als ein normaler Geist. Es kann mit mehreren Gegenständen gleichzeitig interagieren, was als "Poltergeist-Explosionsereignis" bekannt ist, und es kann leicht getestet werden, indem eine große Anzahl von Gegenständen in einem Stapel gesammelt und sein Verhalten bei Aktivität beobachtet wird. Während einer Jagd besteht eine viel größere Chance, dass Gegenstände manipuliert werden, also schaue nach zahlreichen aufgeregten Gegenständen innerhalb seines Jagdpfads.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_raiju" >
         <![CDATA[
-            <p>Es ist einfacher, einen Raiju aufzuspüren, weil er während der Jagd ständig elektrische Geräte manipuliert.</p>
+            <a>Es ist einfacher, einen Raiju aufzuspüren, weil er während der Jagd ständig elektrische Geräte manipuliert.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_revenant" >
         <![CDATA[
-            <p>Ein Revenant ist sehr langsam, wenn der Standort des Spielers unbekannt ist, und sehr deutliche, langsame Schritte sind zu hören. Der beste Weg, um festzustellen, ob Sie einen Wiedergänger haben, ist die Jagd.</p>
+            <a>Ein Revenant ist sehr langsam, wenn der Standort des Spielers unbekannt ist, und sehr deutliche, langsame Schritte sind zu hören. Der beste Weg, um festzustellen, ob Sie einen Wiedergänger haben, ist die Jagd.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_shade" >
         <![CDATA[
-            <p>Es gibt Stärke in Zahlen gegen einen Schatten, da sie keine Gruppe von Menschen angreifen. Wenn Sie eine Jagd verhindern möchten, muss sich mindestens ein Spieler in unmittelbarer Nähe des Geistes befinden. Ein Schatten zeigt auch eher Schattenformmodelle und umgekehrt ist es weniger wahrscheinlich, dass sein vollständiges Modell angezeigt wird.</p>
+            <a>Es gibt Stärke in Zahlen gegen einen Schatten, da sie keine Gruppe von Menschen angreifen. Wenn Sie eine Jagd verhindern möchten, muss sich mindestens ein Spieler in unmittelbarer Nähe des Geistes befinden. Ein Schatten zeigt auch eher Schattenformmodelle und umgekehrt ist es weniger wahrscheinlich, dass sein vollständiges Modell angezeigt wird.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_spirit" >
         <![CDATA[
-            <p>Wenn ein Geist verschmutzt ist, wird er volle 180 Sekunden lang nicht jagen. Im Gegensatz dazu jagt jeder andere Geist nach 90 Sekunden (mit Ausnahme des Dämons, der bereits nach 60 Sekunden jagen kann).</p>
+            <a>Wenn ein Geist verschmutzt ist, wird er volle 180 Sekunden lang nicht jagen. Im Gegensatz dazu jagt jeder andere Geist nach 90 Sekunden (mit Ausnahme des Dämons, der bereits nach 60 Sekunden jagen kann).</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_thaye">
         <![CDATA[
-            <p>Je länger der Geist in der Gegenwart der Lebenden ist, desto weniger aggressiv, schnell und stark ist er. Jedes Alter verringert die Geschwindigkeit um 0,175 m/s. Die Thaye hat auch keine Sichtlinienbeschleunigung.</p>
+            <a>Je länger der Geist in der Gegenwart der Lebenden ist, desto weniger aggressiv, schnell und stark ist er. Jedes Alter verringert die Geschwindigkeit um 0,175 m/s. Die Thaye hat auch keine Sichtlinienbeschleunigung.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_thetwins" >
         <![CDATA[
-            <p>Aufgrund ihrer kombinierten Aktivität sollte es viel einfacher sein, die Zwillinge zu finden. Die Zwillinge haben eine unterschiedliche Jagdgeschwindigkeit, die zufällig zwischen den Jagden wechselt. Ein Twin jagt mit 90 % Normalgeschwindigkeit (1,5 m/s), während der andere Twin mit 110 % Normalgeschwindigkeit (1,9 m/s) jagt.</p>
+            <a>Aufgrund ihrer kombinierten Aktivität sollte es viel einfacher sein, die Zwillinge zu finden. Die Zwillinge haben eine unterschiedliche Jagdgeschwindigkeit, die zufällig zwischen den Jagden wechselt. Ein Twin jagt mit 90 % Normalgeschwindigkeit (1,5 m/s), während der andere Twin mit 110 % Normalgeschwindigkeit (1,9 m/s) jagt.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_themimic" >
         <![CDATA[
-            <p>Eine Geisterkugel erscheint neben dem deterministischen Beweis von The Mimic, was The Mimic zum einzigen Geistertyp macht, der (technisch gesehen) ein viertes Beweisstück hat. Auch die Geisterkugel verhält sich anders als normal. Es folgt The Mimic, während es umherwandert, also halte Ausschau nach einer umherziehenden Ghost Orb, während du bei hoher Team Sanity bist.</p>
+            <a>Eine Geisterkugel erscheint neben dem deterministischen Beweis von The Mimic, was The Mimic zum einzigen Geistertyp macht, der (technisch gesehen) ein viertes Beweisstück hat. Auch die Geisterkugel verhält sich anders als normal. Es folgt The Mimic, während es umherwandert, also halte Ausschau nach einer umherziehenden Ghost Orb, während du bei hoher Team Sanity bist.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_wraith" >
         <![CDATA[
-            <p><font color=#ff6161>Salz ist für einen Geist giftig</font>, daher wird er niemals durch einen hindurchtreten. Um einen Wraith zu bestätigen, platzieren Sie einen Bewegungssensor über Salzhaufen. Wenn der Bewegungssensor eine Bewegung erkennt, ohne dass das Salt gestört wird, könnte der Geist ein Wraith sein!</p>
+            <a><font color=#ff6161>Salz ist für einen Geist giftig</font>, daher wird er niemals durch einen hindurchtreten. Um einen Wraith zu bestätigen, platzieren Sie einen Bewegungssensor über Salzhaufen. Wenn der Bewegungssensor eine Bewegung erkennt, ohne dass das Salt gestört wird, könnte der Geist ein Wraith sein!</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_yokai" >
         <![CDATA[
-            <p>Während der Jagd hört ein Yokai nur Stimmen in unmittelbarer Nähe. Es kann nur Proximity-Chats hören oder elektronische Geräte innerhalb von 2,5 Metern von sich selbst erkennen. Der verfluchte Besitz der Musikbox bewirkt auch nicht, dass sich der Yokai bewegt, bis sich der Spieler in einer viel geringeren Nähe befindet, als es jeder andere Geist erfordern würde.</p>
+            <a>Während der Jagd hört ein Yokai nur Stimmen in unmittelbarer Nähe. Es kann nur Proximity-Chats hören oder elektronische Geräte innerhalb von 2,5 Metern von sich selbst erkennen. Der verfluchte Besitz der Musikbox bewirkt auch nicht, dass sich der Yokai bewegt, bis sich der Spieler in einer viel geringeren Nähe befindet, als es jeder andere Geist erfordern würde.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_yurei" >
         <![CDATA[
-            <p>Yureis sind anfällig für Smudge Sticks, und wenn der Raum erfolgreich verschmiert wird, bleiben die Yurei für einige Zeit an Ort und Stelle.</p>
+            <a>Yureis sind anfällig für Smudge Sticks, und wenn der Raum erfolgreich verschmiert wird, bleiben die Yurei für einige Zeit an Ort und Stelle.</a>
         ]]>
     </string>
 
@@ -416,19 +416,17 @@
     <!-- Hunting Data -->
     <string name="ghost_huntingdata_banshee" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit des Zielspielers.</p>
-             <p>Die durchschnittliche geistige Gesundheit wird völlig ignoriert.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit des Zielspielers.</a><br><br><a>Die durchschnittliche geistige Gesundheit wird völlig ignoriert.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_demon" >
          <![CDATA[
-             <p>Jagt normalerweise mit 70\% geistiger Gesundheit.</p>
-             <p>Kann bei Aktivierung der Fähigkeit mit jeder geistigen Gesundheit jagen.</p>
+             <a>Jagt normalerweise mit 70\% geistiger Gesundheit.</a><br><br><a>Kann bei Aktivierung der Fähigkeit mit jeder geistigen Gesundheit jagen.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_deogen">
          <![CDATA[
-             <p>Jagt mit 40\% geistiger Gesundheit.</p>
+             <a>Jagt mit 40\% geistiger Gesundheit.</a>
              <ul>
                  <li>3,0 m/s beim Sprinten zum Standort eines versteckten Spielers.</li>
                  <li>0,4 m/s oder mehr, während Sie einem Ermittler genau folgen.</li>
@@ -438,12 +436,12 @@
      </string>
     <string name="ghost_huntingdata_goryo">
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_hantu" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
              <ul>
                  <li>15°C+ = 1,40 m/s</li>
                  <li>12°C = 1,75 m/s</li>
@@ -456,7 +454,7 @@
      </string>
     <string name="ghost_huntingdata_jinn" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
              <ul>
                  <li>Bewegt sich mit 2,5 m/s, während beide einen Ermittler verfolgen, der 3+ Meter entfernt ist und die Sicherungsbox eingeschaltet ist.</li>
                  <li>Bewegt sich 1,7 m/s, wenn er niemanden verfolgt.</li>
@@ -465,13 +463,12 @@
      </string>
     <string name="ghost_huntingdata_mare" >
          <![CDATA[
-             <p>Jagt mit 40\% geistiger Gesundheit, wenn die Kraft eingeschaltet ist.</p>
-             <p>Jagt mit 60\% geistiger Gesundheit, wenn der Strom ausgeschaltet ist.</p>
+             <a>Jagt mit 40\% geistiger Gesundheit, wenn die Kraft eingeschaltet ist.</a><br><br><a>Jagt mit 60\% geistiger Gesundheit, wenn der Strom ausgeschaltet ist.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_moroi">
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
              <ul>
                  <li>Gesundheit 0\% bis 5\%: 2,25 m/s</li>
                  <li>Geistige Gesundheit 5\% bis 10\%: 2,164 m/s</li>
@@ -488,39 +485,37 @@
      </string>
     <string name="ghost_huntingdata_myling" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_obake" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_oni" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_onryo" >
          <![CDATA[
-             <p>Jagt normalerweise mit 60\% geistiger Gesundheit.</p>
-             <p>Darf bei jedem Verstand jagen, wenn das Feuer gelöscht ist.</p>
+             <a>Jagt normalerweise mit 60\% geistiger Gesundheit.</a><br><br><a>Darf bei jedem Verstand jagen, wenn das Feuer gelöscht ist.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_phantom" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_poltergeist" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_raiju" >
          <![CDATA[
-             <p>Jagt normalerweise mit 50\% geistiger Gesundheit.</p>
-             <p>Jagt mit 65\% geistiger Gesundheit, wenn sich in der Nähe eingeschalteter Elektronik befindet.</p>
+             <a>Jagt normalerweise mit 50\% geistiger Gesundheit.</a><br><br><a>Jagt mit 65\% geistiger Gesundheit, wenn sich in der Nähe eingeschalteter Elektronik befindet.</a>
              <ul>
                  <li>Bewegt sich mit 2,5 m/s, wenn sich elektronische Geräte in der Nähe befinden</li>
                  <li>Bewegt sich mit 1,7 m/s, wenn sich kein elektronisches Gerät in der Nähe befindet</li>
@@ -529,31 +524,27 @@
      </string>
     <string name="ghost_huntingdata_revenant" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
-             <p>Bewegungsgeschwindigkeit: 1 m/s, wenn nicht verfolgt; 3,0 m/s bei Verfolgungsjagd.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a><br><br><a>Bewegungsgeschwindigkeit: 1 m/s, wenn nicht verfolgt; 3,0 m/s bei Verfolgungsjagd.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_shade" >
          <![CDATA[
-             <p>Jagt mit 35\% geistiger Gesundheit.</p>
+             <a>Jagt mit 35\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_spirit" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_thaye">
          <![CDATA[
-             <p>Altert schrittweise in 10 Stufen und verliert pro Stufe 0,175 m/s Bewegungsgeschwindigkeit.</p>
-             <p>Jagt im jüngsten Alter mit 75\% geistiger Gesundheit. Maximale Bewegung: 2,7 m/s</p>
-             <p>Jagt im ältesten Alter mit 15\% geistiger Gesundheit. Maximale Bewegung: 1,0 m/s</p>
+             <a>Altert schrittweise in 10 Stufen und verliert pro Stufe 0,175 m/s Bewegungsgeschwindigkeit.</a><br><br><a>Jagt im jüngsten Alter mit 75\% geistiger Gesundheit. Maximale Bewegung: 2,7 m/s</a><br><br><a>Jagt im ältesten Alter mit 15\% geistiger Gesundheit. Maximale Bewegung: 1,0 m/s</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_thetwins" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
-             <p>50\% Chance, während der Jagd einer der beiden Zwillinge zu sein</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a><br><br><a>50\% Chance, während der Jagd einer der beiden Zwillinge zu sein</a>
              <ul>
                  <li>Twin A: mindestens 1,5 m/s</li>
                  <li>Twin B: mindestens 1,9 m/s</li>
@@ -562,23 +553,22 @@
      </string>
     <string name="ghost_huntingdata_themimic" >
          <![CDATA[
-             <p>Jagdpräferenzen basieren auf dem nachgeahmten Geist. Daher kann der Mimic zwischen 15\% und 100\% geistige Gesundheit jagen.</p>
+             <a>Jagdpräferenzen basieren auf dem nachgeahmten Geist. Daher kann der Mimic zwischen 15\% und 100\% geistige Gesundheit jagen.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_wraith" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_yokai" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
-             <p>Kann Ermittler nicht hören oder elektronische Geräte nicht spüren.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a><br><br><a>Kann Ermittler nicht hören oder elektronische Geräte nicht spüren.</a>
          ]]>
      </string>
     <string name="ghost_huntingdata_yurei" >
          <![CDATA[
-             <p>Jagt mit 50\% geistiger Gesundheit.</p>
+             <a>Jagt mit 50\% geistiger Gesundheit.</a>
          ]]>
      </string>
 
@@ -776,6 +766,7 @@
     <string name="map_floor_name_third">Dritte Stock</string>
     <string name="map_floor_name_attic">Dachboden</string>
     <string name="map_floor_name_basement">Keller</string>
+    <string name="general_codex_button">Kodex</string>
     <string name="general_evidence_reset_button">Zurücksetzen</string>
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
     <string name="mapview_instruction_pan">Umsehen: Bewegen mit einem Finger</string>
@@ -951,42 +942,42 @@
     <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>Eine Retro-Metalltaschenlampe, die eine kleine Menge Licht spendet. gerade genug, um herumzukommen.</a>]]></string>
     <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>Diese Taschenlampe strahlt einen viel helleren Lichtstrahl aus.</a>]]></string>
     <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>Diese Taschenlampe projiziert einen viel breiteren Lichtkegel und eignet sich perfekt für große Räume und offene Flächen.</a>]]></string>
-    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>Mit dieser Kamera können Sie Fotos von allen Beweisen machen, die Sie finden. Das Geisterbild wird nur während des Fotoaufnahmevorgangs beeinträchtigt. Seien Sie also vorsichtig, wenn Sie sich zum Fotografieren entscheiden.</a><a>Weitere Informationen zum Aufnehmen von Fotos finden Sie im Abschnitt „Fotos“. Abschnitt in Ihrem Tagebuch.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>Mit dieser Kamera können Sie Fotos von allen Beweisen machen, die Sie finden. Das Geisterbild wird nur während des Fotoaufnahmevorgangs beeinträchtigt. Seien Sie also vorsichtig, wenn Sie sich zum Fotografieren entscheiden.</a><br><br><a>Weitere Informationen zum Aufnehmen von Fotos finden Sie im Abschnitt „Fotos“. Abschnitt in Ihrem Tagebuch.</a>]]></string>
     <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>Mit dieser digitalen Fotokamera können Sie Beweise und paranormale Dinge viel schneller fotografieren als mit der vorherigen Stufe.</a>]]></string>
-    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>Diese Kamera der Spitzenklasse bietet die geringste Verzögerungszeit zwischen Fotos und ermöglicht so eine schnelle Beweisaufnahme.</a><a>Außerdem wurde sie so modifiziert, dass sie weniger anfällig für paranormale Elemente ist, die Störungen verursachen mit dem Bildschirm während Manifestationen.</a>]]></string>
-    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>Diese Streichhölzer eignen sich perfekt zum Anzünden von Feuer und Räucherstäbchen, aber denken Sie daran, dass sie bei nur zehn Anwendungen schnell aufgebraucht sind!</a><a>Sie können auch als kleine Lichtquelle verwendet werden, achten Sie aber darauf damit du dir nicht die Finger verbrennst.</a>]]></string>
-    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>Ein Gasfeuerzeug. Es spendet etwas mehr Licht als Streichhölzer und hält viel länger.</a><a>Sie können sehen, wie die Flüssigkeit im Inneren abfließt, während Sie es verwenden. Stellen Sie sicher, dass Sie im Notfall noch genug übrig haben!</a>]]></string>
-    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>Dieses Feuerzeug könnte einen ganzen Vertrag lang halten, solange Sie es nicht verschwenden!</a><a>Mit einer größeren Flamme ist das Licht heller und hat eine größere Reichweite, perfekt für die dunklen Fluchtwege während eines Angriffs.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>Diese Kamera der Spitzenklasse bietet die geringste Verzögerungszeit zwischen Fotos und ermöglicht so eine schnelle Beweisaufnahme.</a><br><br><a>Außerdem wurde sie so modifiziert, dass sie weniger anfällig für paranormale Elemente ist, die Störungen verursachen mit dem Bildschirm während Manifestationen.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>Diese Streichhölzer eignen sich perfekt zum Anzünden von Feuer und Räucherstäbchen, aber denken Sie daran, dass sie bei nur zehn Anwendungen schnell aufgebraucht sind!</a><br><br><a>Sie können auch als kleine Lichtquelle verwendet werden, achten Sie aber darauf damit du dir nicht die Finger verbrennst.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>Ein Gasfeuerzeug. Es spendet etwas mehr Licht als Streichhölzer und hält viel länger.</a><br><br><a>Sie können sehen, wie die Flüssigkeit im Inneren abfließt, während Sie es verwenden. Stellen Sie sicher, dass Sie im Notfall noch genug übrig haben!</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>Dieses Feuerzeug könnte einen ganzen Vertrag lang halten, solange Sie es nicht verschwenden!</a><br><br><a>Mit einer größeren Flamme ist das Licht heller und hat eine größere Reichweite, perfekt für die dunklen Fluchtwege während eines Angriffs.</a>]]></string>
     <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>Diese kleine Kerze sorgt für Licht und beugt einem Verlust der geistigen Gesundheit vor, aber nur für eine Weile, das Wachs brennt ziemlich schnell ab!</a>]]></string>
-    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>Mit drei Kerzen statt einer ist das Licht viel heller, hat eine größere Reichweite und hält länger.</a><a>Außerdem muss dieser Feuerschein nicht gehalten werden, um seine Wirkung zu entfalten Sie können es platzieren und in der Nähe stehen, um trotzdem von den gesundheitlichen Vorteilen zu profitieren!</a>]]></string>
-    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>Diese Laterne hält für die gesamte Vertragslaufzeit, sodass Sie sich keine Sorgen machen müssen, dass sie ausgeht, wenn Sie sie am meisten brauchen. Genau wie beim Vorgänger können Sie in der Nähe stehen, um die Wirkung zu genießen.</a><a>Schließlich ist es wasserdicht, sodass es sogar bei Regen funktioniert!</a>]]></string>
-    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>Dieses Kruzifix kann gehalten oder platziert werden, um den Geist davon abzuhalten, einen einzelnen Angriff zu starten.</a><a>Stellen Sie sicher, dass es in der Nähe aller Aktivitäten platziert wird, die Sie möglicherweise finden.</a>]]></string>
-    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>Ein Kruzifix aus Metall, mit dem zwei Angriffe mit größerer Reichweite abgewehrt werden können.</a><a>Denken Sie daran, es in der Nähe aller Aktivitäten aufzubewahren, denen Sie begegnen.</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>Mit drei Kerzen statt einer ist das Licht viel heller, hat eine größere Reichweite und hält länger.</a><br><br><a>Außerdem muss dieser Feuerschein nicht gehalten werden, um seine Wirkung zu entfalten Sie können es platzieren und in der Nähe stehen, um trotzdem von den gesundheitlichen Vorteilen zu profitieren!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>Diese Laterne hält für die gesamte Vertragslaufzeit, sodass Sie sich keine Sorgen machen müssen, dass sie ausgeht, wenn Sie sie am meisten brauchen. Genau wie beim Vorgänger können Sie in der Nähe stehen, um die Wirkung zu genießen.</a><br><br><a>Schließlich ist es wasserdicht, sodass es sogar bei Regen funktioniert!</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>Dieses Kruzifix kann gehalten oder platziert werden, um den Geist davon abzuhalten, einen einzelnen Angriff zu starten.</a><br><br><a>Stellen Sie sicher, dass es in der Nähe aller Aktivitäten platziert wird, die Sie möglicherweise finden.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>Ein Kruzifix aus Metall, mit dem zwei Angriffe mit größerer Reichweite abgewehrt werden können.</a><br><br><a>Denken Sie daran, es in der Nähe aller Aktivitäten aufzubewahren, denen Sie begegnen.</a>]]></string>
     <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>Dieses Kruzifix hat eine noch größere Reichweite als seine Vorgängerversion. Darüber hinaus kann ein unbenutztes Kruzifix eine verfluchte Jagd verhindern und beide Verwendungszwecke aufzehren.</a>]]></string>
     <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>Während Sie diesen Behälter halten, können Sie Salzhaufen auf den Boden legen, in der Hoffnung, den Geist aufzuspüren. Wir empfehlen, sie in Türen und in der Nähe von Abzweigungen in Fluren oder Räumen zu platzieren, um die größtmögliche Wahrscheinlichkeit einer Reaktion zu erzielen.</a>]]></string>
     <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>Dieser größere Behälter fasst mehr Salz als sein Vorgänger, sodass Sie lange Salzreihen anbringen können, um breitere Durchgänge problemlos zu blockieren.</a>]]></string>
-    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>Dieses Salz ist so stark, dass es die Beweglichkeit eines Geistes auf zwei Arten beeinträchtigen kann.</a><a>Während ein Geist passiv handelt, wirken diese Linien wie eine Barriere und zwingen den Geist, sich umzudrehen wenn man in eins hineingeht. Ideal, um diese umherstreifenden Geister in einem Raum einzufangen, damit Sie Ihre Beweise finden können.</a><a>Wenn es während eines Angriffs geschieht, wird der Geist verlangsamt, sodass Sie mehr Zeit für die Flucht haben.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>Dieses Salz ist so stark, dass es die Beweglichkeit eines Geistes auf zwei Arten beeinträchtigen kann.</a><br><br><a>Während ein Geist passiv handelt, wirken diese Linien wie eine Barriere und zwingen den Geist, sich umzudrehen wenn man in eins hineingeht. Ideal, um diese umherstreifenden Geister in einem Raum einzufangen, damit Sie Ihre Beweise finden können.</a><br><br><a>Wenn es während eines Angriffs geschieht, wird der Geist verlangsamt, sodass Sie mehr Zeit für die Flucht haben.</a>]]></string>
     <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>Sie können Weihrauch mit einem beliebigen Zünder anzünden, um einen Geist für längere Zeit davon abzuhalten, eine Jagd zu starten. Außerdem können Sie ihn während einer Jagd in der Nähe eines Geistes verwenden, um ihn für ein paar Sekunden zu desorientieren.</a>]]></string>
-    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>Für die Herstellung dieses Räucherstäbchenbündels wurde viel mehr Salbei verwendet, was eine längere Brenndauer ermöglicht und Sie bei Angriffen länger sicher hält.</a><a>Außerdem verlangsamt es die Bewegung des Geistes für einen Teil seine Wirkungsdauer.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>Für die Herstellung dieses Räucherstäbchenbündels wurde viel mehr Salbei verwendet, was eine längere Brenndauer ermöglicht und Sie bei Angriffen länger sicher hält.</a><br><br><a>Außerdem verlangsamt es die Bewegung des Geistes für einen Teil seine Wirkungsdauer.</a>]]></string>
     <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>Mit einer viel größeren Reichweite und längeren Brenndauer können Sie Geister bei einem Angriff viel sicherer abwehren. Wenn der Geist zunächst abgewehrt wird, wird er betäubt und hält seine Bewegung für einen kurzen Zeitraum an.</a>]]></string>
-    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>Befestigen Sie eine Videokamera an diesem Stativ, indem Sie es darauf platzieren. Anschließend können Sie das Stativ tragen und an Orten platzieren, die möglicherweise keine gute Oberfläche für die Beobachtung paranormaler Aktivitäten bieten.</a><a>Geister könnten Ihre platzierten Kameras stören und versuchen, sie umzuwerfen. Stellen Sie sicher, dass Sie sie wieder zurücksetzen hoch, wenn sie auf den Boden gestoßen werden.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>Befestigen Sie eine Videokamera an diesem Stativ, indem Sie es darauf platzieren. Anschließend können Sie das Stativ tragen und an Orten platzieren, die möglicherweise keine gute Oberfläche für die Beobachtung paranormaler Aktivitäten bieten.</a><br><br><a>Geister könnten Ihre platzierten Kameras stören und versuchen, sie umzuwerfen. Stellen Sie sicher, dass Sie sie wieder zurücksetzen hoch, wenn sie auf den Boden gestoßen werden.</a>]]></string>
     <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>Dieses Stativ wurde mit einem Rotationsmotor aufgerüstet. Während Sie die Ansicht der Videokamera vom LKW aus betrachten, können Sie mit den Steuerelementen auf dem Bildschirm den Stativmotor drehen und so einen neuen Blickwinkel erhalten.</a>]]></string>
     <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>Dieses Stativ ist ähnlich wie seine Vorgängerversionen, nur dass es viel stabiler ist und die lästigen Geister es viel seltener umwerfen sollten.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Platzieren Sie diesen Bewegungssensor an Wänden oder am Boden und er blinkt jedes Mal, wenn sich etwas vor ihm bewegt, auch wenn Sie Dinge nicht sehen können.</a>]]></string>
-    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Mit zwei verschiedenen Modi, einer größeren Reichweite und einer akustischen Anzeige eignet sich dieser Sensor perfekt für die paranormale Verfolgung.</a><a>Sie können die Laserform umschalten, indem Sie mit dem Sensor interagieren, nachdem er platziert wurde.{ /3}</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Mit zwei verschiedenen Modi, einer größeren Reichweite und einer akustischen Anzeige eignet sich dieser Sensor perfekt für die paranormale Verfolgung.</a><br><br><a>Sie können die Laserform umschalten, indem Sie mit dem Sensor interagieren, nachdem er platziert wurde.{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Platzieren Sie diese Kamera mit Bewegungserkennung auf dem Boden in der Nähe von Geisteraktivitäten, die Sie möglicherweise entdecken. Wenn es aktiviert ist, schaltet es sich um und blinkt ein helles Licht, wenn ein Geist seinen Erfassungsbereich betritt oder verlässt.</a>]]></string>
-    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Platzieren Sie diese Schallsensoren an Orten, an denen Sie Audio-Interaktionen verfolgen möchten.</a><a>Sobald Sie sie platziert haben, kehren Sie zum LKW zurück und können der Remote-Wiedergabe zuhören, während Sie auf dem Bildschirm des Schallsensors prüfen, ob dies der Fall ist Jeder der Sensoren empfängt Messwerte.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Platzieren Sie diese Schallsensoren an Orten, an denen Sie Audio-Interaktionen verfolgen möchten.</a><br><br><a>Sobald Sie sie platziert haben, kehren Sie zum LKW zurück und können der Remote-Wiedergabe zuhören, während Sie auf dem Bildschirm des Schallsensors prüfen, ob dies der Fall ist Jeder der Sensoren empfängt Messwerte.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Dieser Geräuschsensor wurde verbessert und verfügt nun über drei verschiedene Größeneinstellungen, die mit einer Größentaste auf dem Geräuschsensor-Bildschirm im LKW umgeschaltet werden können.</a>]]></string>
-    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>Das Stativ verfügt über Drehgelenke, sodass Sie mit ihm interagieren können, um die Form des Schallsensors zu ändern.</a><a>Jede Form wird durch die Richtungen dargestellt, in die die Mikrofone zeigen:</a><a>Vorwärts: Kegel / Nach außen: Seiten / Nach innen: Kugel</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>Das Stativ verfügt über Drehgelenke, sodass Sie mit ihm interagieren können, um die Form des Schallsensors zu ändern.</a><br><br><a>Jede Form wird durch die Richtungen dargestellt, in die die Mikrofone zeigen:</a><br><br><a>Vorwärts: Kegel / Nach außen: Seiten / Nach innen: Kugel</a>]]></string>
     <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Trinken Sie diese Flasche Vintage-Schlangenöl, um einen Teil Ihrer geistigen Gesundheit wiederherzustellen. Die Wiederherstellung dauert einige Sekunden und der wiederhergestellte Betrag hängt vom Schwierigkeitsgrad ab, den Sie spielen.</a>]]></string>
     <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>Die Einnahme dieser Pillen wird Ihre geistige Gesundheit schneller wiederherstellen. Sie können mehrere Töpfe nehmen, um die Menge an wiederhergestellter geistiger Gesundheit über die Dauer zu erhöhen.</a>]]></string>
     <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>Dieser Adrenalinschuss stellt Ihre geistige Gesundheit viel schneller wieder her als die beiden vorherigen Versionen. Außerdem verlieren Sie während der gesamten Wirkungsdauer keine Sprintausdauer.</a>]]></string>
     <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>Wenn Sie das Parabolmikrofon und die angeschlossenen Kopfhörer verwenden, können Sie Geräusche weiter entfernt als normal hören, je nachdem, in welche Richtung Sie das Mikrofon ausrichten.</a>]]></string>
-    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>Wir haben dieses Parabolmikrofon durch ein paar Verbesserungen verbessert: einen besseren Sensor und einen kleinen Bildschirm.</a><a>Wenn Sie es einschalten, können Sie entfernte Geräusche hören und eine visuelle Darstellung erhalten Lesen Sie, wie laut das Geräusch ist.</a>]]></string>
-    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>Dieses Parabolmikrofon wurde mit einer visuellen Tonanzeige verbessert.</a><a>Jedes Mal, wenn ein Ton innerhalb der Reichweite des Mikrofons erkannt wird, wird auf dem Bildschirm eine visuelle Anzeige angezeigt, einschließlich Entfernung und Lautstärke, sodass Sie leicht verfolgen können, woher der Ton kommt.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>Wir haben dieses Parabolmikrofon durch ein paar Verbesserungen verbessert: einen besseren Sensor und einen kleinen Bildschirm.</a><br><br><a>Wenn Sie es einschalten, können Sie entfernte Geräusche hören und eine visuelle Darstellung erhalten Lesen Sie, wie laut das Geräusch ist.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>Dieses Parabolmikrofon wurde mit einer visuellen Tonanzeige verbessert.</a><br><br><a>Jedes Mal, wenn ein Ton innerhalb der Reichweite des Mikrofons erkannt wird, wird auf dem Bildschirm eine visuelle Anzeige angezeigt, einschließlich Entfernung und Lautstärke, sodass Sie leicht verfolgen können, woher der Ton kommt.</a>]]></string>
     <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>Wenn Sie sich diese kleine Kamera an den Kopf schnallen, können Ihre Teamkollegen aus der Sicherheit des Lastwagens einen Live-Video-Feed Ihrer Sicht ansehen. Das ist ideal für Multitasking und das Erfassen von Dingen, die Sie möglicherweise übersehen!</a>]]></string>
-    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>Eine kleine, am Kopf befestigte Taschenlampe, die keinen Platz im Inventar einnimmt. Der einzige Nachteil ist, dass das Licht nicht besonders hell oder breit ist.</a><a>Sie können es ein- und ausschalten, indem Sie die Sondertaste gedrückt halten.</a>]]></string>
-    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>Eine Nachtsichtbrille, mit der Sie im Dunkeln sehen können, ohne dass Sie eine Taschenlampe benötigen.</a><a>Seien Sie jedoch gewarnt: Ihre Sicht kann beeinträchtigt sein, wenn Sie sich in Reichweite eines aktiven Geistes befinden, was zu einer Verzerrung der Sicht führen kann Schutzbrille nutzlos.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>Eine kleine, am Kopf befestigte Taschenlampe, die keinen Platz im Inventar einnimmt. Der einzige Nachteil ist, dass das Licht nicht besonders hell oder breit ist.</a><br><br><a>Sie können es ein- und ausschalten, indem Sie die Sondertaste gedrückt halten.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>Eine Nachtsichtbrille, mit der Sie im Dunkeln sehen können, ohne dass Sie eine Taschenlampe benötigen.</a><br><br><a>Seien Sie jedoch gewarnt: Ihre Sicht kann beeinträchtigt sein, wenn Sie sich in Reichweite eines aktiven Geistes befinden, was zu einer Verzerrung der Sicht führen kann Schutzbrille nutzlos.</a>]]></string>
 
     <!--
           Flavor Text
@@ -1183,5 +1174,11 @@
     <string name="equipment_info_name_ghostwritingbook">Geisterbuch</string>
     <string name="equipment_info_name_parabolicmicrophone">Parabolmikrofon</string>
     <string name="equipment_info_name_headgear">Kopfausrüstung</string>
+    <string name="general_navigation_secondary">Sekundär</string>
+    <string name="general_navigation_alternative">Alternative</string>
+    <string name="general_navigation_tools">Tools</string>
+    <string name="general_navigation_home">Startseite</string>
+    <string name="general_navigation_primary">Primär</string>
+    <string name="general_navigation_menu">Menü</string>
 
 </resources>

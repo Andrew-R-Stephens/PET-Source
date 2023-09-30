@@ -49,35 +49,20 @@ public class MapCarouselData {
 
     public String getMapCurrentName() {
         if (mapSizeData != null) {
-            return mapSizeData[getMapCurrentIndex()].getName();
+            return mapSizeData[getMapCurrentIndex()].name();
         }
         return "???";
     }
 
     public int getMapCurrentSize() {
         if (mapSizeData != null) {
-            return mapSizeData[getMapCurrentIndex()].getSize();
+            return mapSizeData[getMapCurrentIndex()].size();
         }
         return 1;
     }
 
 
-    private static class MapSizeData {
-        private final String name;
-        private final int size;
-
-        public MapSizeData(String name, int size) {
-            this.name = name;
-            this.size = size;
-        }
-
-        public int getSize() {
-            return size;
-        }
-
-        public String getName() {
-            return name;
-        }
+    private record MapSizeData(String name, int size) {
     }
 
 }

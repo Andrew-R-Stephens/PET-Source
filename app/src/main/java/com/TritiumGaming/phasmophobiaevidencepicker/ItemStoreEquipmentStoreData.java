@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ItemStoreEquipmentStoreData {
 
-    private ArrayList<ItemStoreEquipmentGroupData> groupData;
+    private final ArrayList<ItemStoreEquipmentGroupData> groupData;
 
     public ItemStoreEquipmentStoreData() {
         groupData = new ArrayList<>();

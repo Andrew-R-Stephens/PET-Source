@@ -47,6 +47,7 @@ public class MapModel {
         return mapFloors.get(0);
     }
 
+    /** @noinspection UnusedReturnValue*/
     public FloorLayer setCurrentLayer(FloorLayer layer) {
 
         if(hasFloorAtLayer(layer)) {

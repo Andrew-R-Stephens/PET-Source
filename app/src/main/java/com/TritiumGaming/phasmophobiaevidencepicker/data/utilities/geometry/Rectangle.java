@@ -552,8 +552,7 @@ public class Rectangle extends Rectangle2D
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof Rectangle) {
-            Rectangle r = (Rectangle)obj;
+        if (obj instanceof Rectangle r) {
             return ((x == r.x) &&
                     (y == r.y) &&
                     (width == r.width) &&

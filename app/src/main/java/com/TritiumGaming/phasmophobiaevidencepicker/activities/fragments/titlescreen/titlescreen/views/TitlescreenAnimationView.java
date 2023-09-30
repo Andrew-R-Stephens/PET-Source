@@ -342,8 +342,7 @@ public class TitlescreenAnimationView extends View {
                  * Try the next Animated
                  */
                 if (!currentAnim.isAlive()) {
-                    if (currentAnim instanceof AnimatedHandData) {
-                        AnimatedHandData data = ((AnimatedHandData) currentAnim);
+                    if (currentAnim instanceof AnimatedHandData data) {
                         animationData.setSelectedHand(
                                 (int) (Math.random() * handuvResId.size()));
                         BitmapUtils.destroyBitmap(bitmap_hand);
@@ -361,8 +360,7 @@ public class TitlescreenAnimationView extends View {
                             bitmap_handRot = data.rotateBitmap(bitmap_hand);
                         }
                         */
-                    } else if (currentAnim instanceof AnimatedWritingData) {
-                        AnimatedWritingData data = ((AnimatedWritingData) currentAnim);
+                    } else if (currentAnim instanceof AnimatedWritingData data) {
                         animationData.setSelectedWriting(
                                 (int) (Math.random() * bookwritingResId.size()));
                         BitmapUtils.destroyBitmap(bitmap_writing);

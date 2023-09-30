@@ -188,6 +188,7 @@ final class Order1 extends Curve {
         return new Order1(x0, y0, x1, y1, -direction);
     }
 
+    /** @noinspection PatternVariableCanBeUsed*/
     public int compareTo(Curve other, double[] yrange) {
         if (!(other instanceof Order1)) {
             return super.compareTo(other, yrange);
