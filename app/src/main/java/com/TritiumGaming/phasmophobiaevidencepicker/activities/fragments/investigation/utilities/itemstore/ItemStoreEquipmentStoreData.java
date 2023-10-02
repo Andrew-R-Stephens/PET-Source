@@ -1,5 +1,7 @@
 
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
+
+import androidx.annotation.DrawableRes;
 
 import java.util.ArrayList;
 
@@ -29,4 +31,9 @@ public class ItemStoreEquipmentStoreData {
     public ItemStoreEquipmentGroupData getGroupAt(int groupIndex) {
         return groupData.get(groupIndex);
     }
+
+    public ArrayList<ItemStoreEquipmentGroupData> getGroups() {
+        return groupData;
+    }
+
 }

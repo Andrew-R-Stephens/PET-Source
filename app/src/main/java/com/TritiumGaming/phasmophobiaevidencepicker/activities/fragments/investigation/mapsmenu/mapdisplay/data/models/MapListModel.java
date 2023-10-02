@@ -207,21 +207,6 @@ public class MapListModel {
         return null;
     }
 
-    public MapModel getCurrentMap() {
-        if(currentMapID >= mapModels.size())
-            return new MapModel();
-
-        return mapModels.get(currentMapID);
-    }
-
-    public void setCurrentMap(int selectedIndex) {
-        if(selectedIndex >= mapModels.size()) {
-            selectedIndex = Math.max(mapModels.size()-1, 0);
-        }
-
-        currentMapID = selectedIndex;
-    }
-
     public synchronized void print() {
         for (MapModel m : mapModels) {
             m.print();

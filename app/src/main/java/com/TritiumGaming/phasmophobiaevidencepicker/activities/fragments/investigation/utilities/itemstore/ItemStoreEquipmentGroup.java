@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,6 +11,8 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 import java.util.ArrayList;
 

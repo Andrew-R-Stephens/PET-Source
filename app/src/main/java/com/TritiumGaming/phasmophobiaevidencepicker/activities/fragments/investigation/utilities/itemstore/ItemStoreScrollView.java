@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
 
 import android.content.Context;
 import android.util.AttributeSet;

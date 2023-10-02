@@ -44,15 +44,8 @@ public class MapViewerFragment extends InvestigationFragment {
     private MapLayerSelectorGroup selectorGroup;
     private AppCompatTextView layerName;
     private POISpinner poiSpinner;
-    private ConstraintLayout button_help;
 
     protected PopupWindow popup;
-
-    /*
-    public MapViewerFragment() {
-        super(R.layout.fragment_mapview);
-    }
-    */
 
     @Nullable
     @Override
@@ -60,9 +53,7 @@ public class MapViewerFragment extends InvestigationFragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        /*if (mapViewViewModel == null) {
-            mapViewViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-        }*/
+
         return inflater.inflate(R.layout.fragment_mapview, container, false);
     }
 
@@ -77,17 +68,12 @@ public class MapViewerFragment extends InvestigationFragment {
         AppCompatImageButton button_nextLayer = view.findViewById(R.id.controller_nextLayerButton);
         AppCompatImageButton button_prevLayer = view.findViewById(R.id.controller_prevLayerButton);
 
-        // INITIALIZE VIEWS
-        //AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        //AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        //View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
         imageDisplay = view.findViewById(R.id.interactiveMapView);
         poiSpinner = view.findViewById(R.id.spinner_poiname);
         layerName = view.findViewById(R.id.textview_floorname);
-        button_help = view.findViewById(R.id.listener_help);
+        ConstraintLayout button_help = view.findViewById(R.id.listener_help);
 
         if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
@@ -99,10 +85,6 @@ public class MapViewerFragment extends InvestigationFragment {
                 }
             }
         }
-
-
-        // SET NAVIGATION ITEMS
-        // label_goto_left.setText(R.string.general_maps_button);
 
         button_nextLayer.setOnClickListener(v -> {
             if (mapMenuViewModel != null && mapMenuViewModel.hasMapData()) {
@@ -135,50 +117,17 @@ public class MapViewerFragment extends InvestigationFragment {
             showHelpPopup();
         });
 
-        /*
-        listener_goto_left.setOnClickListener(v -> {
-            saveStates();
-            Navigation.findNavController(v).popBackStack();
-        });
-        */
+        if (mapMenuViewModel != null) {
+            Log.d("MapName", mapMenuViewModel.getCurrentMapData().getMapName());
+            mapName.setText(mapMenuViewModel.getCurrentMapData().getMapName());
 
-        // LISTENERS
-        /*
-        initNavListeners(
-                listener_goto_left,
-                null,
-                null,
-                null,
-                null,
-                icon_goto_left,
-                null,
-                null,
+            if(imageDisplay != null) {
+                if (poiSpinner != null) {
+                    imageDisplay.init(mapMenuViewModel, poiSpinner);
+                }
 
-                null,
-                null);
-        */
-        /*
-        if (getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            if(popup != null && popup.isShowing()) {
-                                popup.dismiss();
-                            }
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        }
-        */
-
-        if (mapMenuViewModel != null && imageDisplay != null) {
-
-            if(poiSpinner != null) {
-                imageDisplay.init(mapMenuViewModel, poiSpinner);
+                imageDisplay.setMapData(mapMenuViewModel.getCurrentMapData());
             }
-
-            imageDisplay.setMapData(mapMenuViewModel.getCurrentMapData());
 
             MapData tempData = mapMenuViewModel.getCurrentMapData();
             if (tempData != null) {
@@ -186,17 +135,19 @@ public class MapViewerFragment extends InvestigationFragment {
                 for (int i = 0; i < selectorGroup.getSize(); i++) {
                     selectorLayout.addView(selectorGroup.getSelectors()[i]);
                 }
+
+                String mapNameStr = tempData.getMapName();
                 if(mapMenuViewModel.getCurrentMapModel() != null) {
-                    String mapNameStr = mapMenuViewModel.getCurrentMapModel().mapName;
-                    mapName.setText(mapNameStr == null ? tempData.getMapName() : mapNameStr);
-                    mapName.setSelected(true);
+                    String name = mapMenuViewModel.getCurrentMapModel().mapName;
+                    mapNameStr = name.length() > 0 ? name: mapNameStr;
                 }
+                mapName.setText(mapNameStr);
+                mapName.setSelected(true);
             }
         }
 
         startThreads();
         updateComponents();// Spinner click listener
-
 
     }
 
@@ -247,38 +198,6 @@ public class MapViewerFragment extends InvestigationFragment {
         closeButton.setOnClickListener(closeButtonView -> popup.dismiss());
 
         popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
-    }
-
-    protected void initNavListeners(View lstnr_navLeft,
-                                  View lstnr_navMedLeft,
-                                  View lstnr_navCenter,
-                                  View lstnr_navMedRight,
-                                  View lstnr_navRight,
-                                  AppCompatImageView icon_navLeft,
-                                  AppCompatImageView icon_navMedLeft,
-                                  AppCompatImageView icon_navCenter,
-                                  AppCompatImageView icon_navMedRight,
-                                  AppCompatImageView icon_navRight) {
-        if (lstnr_navLeft != null) {
-            ((View) lstnr_navLeft.getParent()).setVisibility(View.VISIBLE);
-            icon_navLeft.setImageResource(R.drawable.icon_evidence);
-            lstnr_navLeft.setOnClickListener(v -> Navigation.findNavController(v)
-                    .popBackStack()
-            );
-        }
-
-        if (lstnr_navMedLeft != null) {
-        }
-
-        if (lstnr_navCenter != null) {
-        }
-
-        if (lstnr_navMedRight != null) {
-        }
-
-        if (lstnr_navRight != null) {
-        }
-
     }
 
     @Override
@@ -352,18 +271,6 @@ public class MapViewerFragment extends InvestigationFragment {
     }
 
     /*
-    @Override
-    public void onResume() {
-        imageDisplay.init(mapViewViewModel);
-
-        stopThreads();
-        startThreads();
-
-        super.onResume();
-    }
-    */
-
-    /*
      *
      * onPause
      * <p>
@@ -378,20 +285,6 @@ public class MapViewerFragment extends InvestigationFragment {
 
         super.onPause();
     }
-
-    /*
-    @Override
-    public void onResume() {
-
-        Log.d("State", "Resuming");
-
-        imageDisplay.init(mapViewViewModel);
-        startThreads();
-        updateComponents();
-
-        super.onResume();
-    }
-    */
 
     /*
      *

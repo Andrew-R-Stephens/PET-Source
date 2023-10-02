@@ -43,4 +43,22 @@
         </item>
     </group>
 
+    <item
+        android:id="@+id/blank"
+        android:title=""
+        android:menuCategory="alternative"/>
+
+    <group
+        android:checkableBehavior="none"
+        android:menuCategory="system">
+        <item android:title="@string/general_navigation_system">
+            <menu>
+                <item
+                android:id="@+id/action_settings"
+                android:title="@string/general_navigation_settings"
+                android:icon="@drawable/icon_gear" />
+            </menu>
+        </item>
+    </group>
+
 </menu>

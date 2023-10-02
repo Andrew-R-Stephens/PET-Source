@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
@@ -109,29 +110,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout88"
-            android:layout_width="0dp"
+        <include
+            android:id="@+id/icon_container"
+            layout="@layout/item_investigation_ghost_icons"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="32dp"
             app:layout_constraintHeight_percent=".04"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintWidth_percent=".5">
-<!--
-
-            <include
-                android:id="@+id/layout_evidenceicons"
-                layout="@layout/item_investigation_ghost_icons"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
--->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintWidth_percent=".5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_contentbody"
@@ -142,7 +132,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout88">
+            app:layout_constraintTop_toBottomOf="@+id/icon_container">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout42"

@@ -142,14 +142,12 @@ public abstract class InvestigationFragment extends Fragment {
     }
 
     public void setOnBackPressed() {
-
         if(getActivity() == null) { return; }
 
         getActivity().getOnBackPressedDispatcher()
                 .addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-
                 backPressedHandler();
             }
         });

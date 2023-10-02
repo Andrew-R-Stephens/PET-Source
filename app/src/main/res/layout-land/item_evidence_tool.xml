@@ -53,9 +53,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:fadeScrollbars="false"
-            android:fadingEdgeLength="50sp"
+            android:fadingEdgeLength="8sp"
             android:fillViewport="true"
-            android:padding="15sp"
+            android:padding="8sp"
             android:requiresFadingEdge="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
@@ -67,9 +67,11 @@
 
             <LinearLayout
                 android:id="@+id/layout_leftList"
-                android:animateLayoutChanges="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:animateLayoutChanges="true"
+                android:clipToPadding="false"
                 android:gravity="center"
                 android:orientation="vertical" />
         </ScrollView>
@@ -122,13 +124,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:fadeScrollbars="false"
-            android:fadingEdgeLength="50sp"
+            android:fadingEdgeLength="8sp"
             android:fillViewport="true"
-            android:padding="15sp"
+            android:padding="8sp"
             android:requiresFadingEdge="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
-            android:verticalScrollbarPosition="left"
+            android:verticalScrollbarPosition="right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,9 +138,11 @@
 
             <LinearLayout
                 android:id="@+id/layout_rightList"
-                android:animateLayoutChanges="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:animateLayoutChanges="true"
+                android:clipToPadding="false"
                 android:gravity="center"
                 android:orientation="vertical">
 

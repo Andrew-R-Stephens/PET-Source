@@ -18,6 +18,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -94,10 +95,10 @@ public class AppSettingsFragment extends Fragment {
 
         SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
 
-        ImageButton btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
-        ImageButton btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        ImageButton btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
-        ImageButton btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
+        AppCompatImageView btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
+        AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
+        AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
+        AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
         ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
 

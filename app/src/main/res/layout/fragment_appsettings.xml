@@ -180,30 +180,17 @@
                                 android:gravity="center"
                                 android:text="@string/settings_generalsettings"
                                 android:textColor="?attr/titleFontColor"
-                                app:layout_constraintBottom_toTopOf="@+id/divider7"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <View
-                                android:id="@+id/divider7"
-                                android:layout_width="0dp"
-                                android:layout_height="3dp"
-                                android:background="@drawable/icon_strikethrough_1"
-                                android:backgroundTint="#FFFFFF"
-                                android:visibility="invisible"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/settings_generalsettings_title"
-                                app:layout_constraintStart_toStartOf="@+id/settings_generalsettings_title"
-                                app:layout_constraintTop_toBottomOf="@+id/settings_generalsettings_title" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constrainlayout_alwayson"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             app:layout_constraintBottom_toTopOf="@+id/constrainlayout_network"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -241,7 +228,6 @@
                             android:id="@+id/constrainlayout_network"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constrainlayout_alwayson">
@@ -279,7 +265,7 @@
                             android:id="@+id/constraintLayout49"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="16dp"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout60"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -289,27 +275,14 @@
                                 android:id="@+id/settings_extrasettings_title"
                                 android:layout_width="0dp"
                                 android:layout_height="30dp"
-                                android:layout_marginTop="16dp"
                                 android:gravity="center"
                                 android:text="@string/settings_extrasettings"
                                 android:textColor="?attr/titleFontColor"
-                                app:layout_constraintBottom_toTopOf="@+id/divider31"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <View
-                                android:id="@+id/divider31"
-                                android:layout_width="0dp"
-                                android:layout_height="3dp"
-                                android:background="@drawable/icon_strikethrough_1"
-                                android:backgroundTint="#FFFFFF"
-                                android:visibility="invisible"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/settings_extrasettings_title"
-                                app:layout_constraintStart_toStartOf="@+id/settings_extrasettings_title"
-                                app:layout_constraintTop_toBottomOf="@+id/settings_extrasettings_title" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -317,7 +290,6 @@
                             android:id="@+id/constraintLayout60"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout57"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -356,10 +328,8 @@
                             android:id="@+id/constraintLayout57"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout60">
 
@@ -468,7 +438,7 @@
                             android:id="@+id/constraintLayout_43"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="16dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout46">
@@ -517,7 +487,7 @@
                             android:id="@+id/constraintLayout_font1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_43"
@@ -546,18 +516,18 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_font1">
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_leftbutton"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_prev"
                                 android:tint="?attr/bodyFontColor"
+                                android:adjustViewBounds="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/font_selectedname"
-                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -576,10 +546,11 @@
                                 app:layout_constraintTop_toTopOf="@+id/font_leftbutton"
                                 app:layout_constraintWidth_percent=".5" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_rightbutton"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -587,7 +558,6 @@
                                 android:tint="?attr/bodyFontColor"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/font_selectedname"
                                 app:layout_constraintTop_toTopOf="@+id/font_leftbutton" />
 
@@ -624,15 +594,15 @@
                             android:id="@+id/constraintLayout71"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             app:layout_constraintEnd_toEndOf="@+id/constraintLayout45"
                             app:layout_constraintStart_toStartOf="@+id/constraintLayout45"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout45">
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/colorblindmode_leftbutton"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="36dp"
+                                android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
@@ -659,10 +629,11 @@
                                 app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton"
                                 app:layout_constraintWidth_percent=".5" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/colorblindmode_rightbutton"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:adjustViewBounds="true"
                                 android:background="#00000000"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"

@@ -1,11 +1,13 @@
 
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
 
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 import java.util.ArrayList;
 

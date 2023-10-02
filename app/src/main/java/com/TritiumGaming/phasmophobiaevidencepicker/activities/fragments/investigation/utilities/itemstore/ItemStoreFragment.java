@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 
 import java.util.ArrayList;
@@ -59,11 +62,6 @@ public class ItemStoreFragment extends InvestigationFragment {
 
         if(getContext() == null || getContext().getResources() == null) { return; }
 
-        // INITIALIZE VIEWS
-        //AppCompatTextView label_goto_left = view.findViewById(R.id.label_goto_left);
-        //AppCompatImageView icon_goto_left = view.findViewById(R.id.icon_goto_left);
-        //View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-
         ViewGroup itemStore = view.findViewById(R.id.item_safehouse_itemstore);
         LinearLayoutCompat parent = itemStore.findViewById(R.id.linearLayout_itemStore_list);
         GridLayout scrollViewPaginator = view.findViewById(R.id.item_safehouse_itemstore_paginator);
@@ -72,7 +70,81 @@ public class ItemStoreFragment extends InvestigationFragment {
         View dataView = view.findViewById(R.id.item_safehouse_itemstore_itemData);
         ImageView close_button = view.findViewById(R.id.close_button);
 
-        //label_goto_left.setText(R.string.evidence_evidence_title);
+        ProgressBar progressBar = view.findViewById(R.id.pBar);
+
+        new Thread(() -> {
+            buildStoreData();
+
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    buildStoreViews(parent, scrollViewPaginator);
+                });
+            }
+
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    scrollView.post(() -> {
+                        int paginatorChildCount = scrollViewPaginator.getChildCount();
+
+                        initScrollViewListeners(scrollViewPaginator, paginatorChildCount);
+                        doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
+
+                        LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
+                        for(int i = 0; i < list.getChildCount(); i++) {
+                            int groupIndex = i;
+                            ItemStoreEquipmentGroup group = (ItemStoreEquipmentGroup) list.getChildAt(i);
+                            group.setVisibility(View.INVISIBLE);
+                            group.setAlpha(0);
+                            for(int j = 0; j < group.getItems().length; j++) {
+
+                                ItemStoreEquipmentItem item = group.getItems()[j];
+                                int itemIndex = j;
+
+                                item.setOnClickListener((itemView) -> {
+                                    boolean newState = !item.isSelected();
+
+                                    if(shopItemSelected != null) {
+                                        shopItemSelected.setSelected(false);
+                                    }
+
+                                    shopItemSelected = item;
+                                    shopItemSelected.setSelected(newState);
+
+                                    buildItemDataView(dataView, groupIndex, itemIndex);
+
+                                    if (newState) {
+                                        openItemDataView(dataView);
+                                    } else {
+                                        closeItemDataView(dataView);
+                                    }
+                                });
+                            }
+
+                            group.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.animate().alpha(0).setDuration(250).setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            progressBar.setVisibility(View.GONE);
+                                            super.onAnimationEnd(animation);
+                                        }
+                                    }).start();
+                                    group.animate()
+                                            .setListener(new AnimatorListenerAdapter() {
+                                                @Override
+                                                public void onAnimationStart(Animator animation) {
+                                                    super.onAnimationStart(animation);
+                                                    group.setVisibility(View.VISIBLE);
+                                                }}
+                                            ).alpha(1).setStartDelay((long)(50f * groupIndex)).setDuration(200);
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+        }).start();
 
         close_button.setOnClickListener(v -> {
             closeItemDataView(dataView);
@@ -80,63 +152,32 @@ public class ItemStoreFragment extends InvestigationFragment {
             if(shopItemSelected != null) {
                 shopItemSelected.setSelected(false);
             }
-
         });
-
-        if(getActivity() != null) {
-            getActivity().runOnUiThread(() -> buildStore(parent, scrollViewPaginator));
-        }
-
-/*
 
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
+                            if(dataView.getVisibility() == View.VISIBLE) {
+                                closeItemDataView(dataView);
+                                return;
+                            }
+                            backPressedHandler();
                         }
                     });
         }
-*/
 
-        LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
+    }
 
-        for(int i = 0; i < list.getChildCount(); i++) {
-            ItemStoreEquipmentGroup group = (ItemStoreEquipmentGroup) list.getChildAt(i);
-            for(int j = 0; j < group.getItems().length; j++) {
-                ItemStoreEquipmentItem item = group.getItems()[j];
-                int groupIndex = i;
-                int itemIndex = j;
-                item.setOnClickListener((itemView) -> {
-                    boolean newState = !item.isSelected();
-
-                    if(shopItemSelected != null) {
-                        shopItemSelected.setSelected(false);
-                    }
-
-                    shopItemSelected = item;
-                    shopItemSelected.setSelected(newState);
-
-                    buildItemDataView(dataView, groupIndex, itemIndex);
-
-                    if (newState) {
-                        openItemDataView(dataView);
-                    } else {
-                        closeItemDataView(dataView);
-                    }
-                });
-            }
-        }
-
-        int paginatorChildCount = scrollViewPaginator.getChildCount();
-
+    @SuppressLint("ClickableViewAccessibility")
+    private void initScrollViewListeners(GridLayout scrollViewPaginator, int paginatorChildCount) {
         scrollViewPaginator.setOnTouchListener((view12, e) -> {
             float maxDimTouchPos = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? e.getY() : e.getX());
             float maxDimPercentage = (maxDimTouchPos) / (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? scrollViewPaginator.getHeight() : scrollViewPaginator.getWidth());
-            int markIndex = Math.max(0, Math.min(paginatorChildCount, (int)((paginatorChildCount) * maxDimPercentage)));
+            int markIndex = Math.max(0, Math.min(paginatorChildCount, (int)(paginatorChildCount * maxDimPercentage)));
             int verticalScrollableHeight = scrollView.getChildAt(0).getMeasuredHeight() - scrollView.getMeasuredHeight();
-            float percent = verticalScrollableHeight * ((markIndex)/(float)(paginatorChildCount-1));
+            float percent = verticalScrollableHeight * ((markIndex)/(float)(paginatorChildCount -1));
 
             scrollView.smoothScrollTo(0, (int)(percent));
 
@@ -148,7 +189,8 @@ public class ItemStoreFragment extends InvestigationFragment {
                 doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
             });
         } else {
-            viewTreeObserverlistener = () -> doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
+            viewTreeObserverlistener = () ->
+                    doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
             scrollView.getViewTreeObserver().addOnScrollChangedListener(viewTreeObserverlistener);
         }
     }
@@ -159,17 +201,17 @@ public class ItemStoreFragment extends InvestigationFragment {
     }
 
     @SuppressLint("ResourceType")
-    private void buildStore(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+    private void buildStoreData() {
         if(getContext() == null) { return; }
 
         TypedArray typed_shop_list = getResources().obtainTypedArray(R.array.shop_equipment_array);
-        scrollViewPaginator.setRowCount(typed_shop_list.length());
+        //scrollViewPaginator.setRowCount(typed_shop_list.length());
 
         for (int i = 0; i < typed_shop_list.length(); i++) {
             @StringRes int equipmentName;
             @IntegerRes int buyCostData;
             @DrawableRes int equipmentIcon;
-            @DrawableRes ArrayList<Integer> tierImages = new ArrayList<>();
+            //@DrawableRes ArrayList<Integer> tierImages = new ArrayList<>();
 
             ItemStoreEquipmentGroupData groupData = new ItemStoreEquipmentGroupData();
 
@@ -181,6 +223,7 @@ public class ItemStoreFragment extends InvestigationFragment {
             buyCostData = typed_shop.getResourceId(6, 0);
 
             groupData.setNameData(equipmentName);
+            groupData.setEquipmentIcon(equipmentIcon);
             groupData.setBuyCostData(buyCostData);
 
             TypedArray typed_equipment_image =
@@ -190,7 +233,8 @@ public class ItemStoreFragment extends InvestigationFragment {
                 @DrawableRes int value = typed_equipment_image.getResourceId(j, 0);
                 groupData.getItemDataAt(j).setImageData(value);
 
-                tierImages.add(value);
+                //tierImages.add(value);
+                groupData.getItemDataAt(j).setImageData(value);
             }
             typed_equipment_image.recycle();
 
@@ -256,16 +300,28 @@ public class ItemStoreFragment extends InvestigationFragment {
 
             typed_shop.recycle();
 
-            addPaginatorIcon(scrollViewPaginator, equipmentIcon);
-            buildItemStoreGroup(parent, equipmentName, tierImages);
-
             storeData.addGroup(groupData);
         }
         typed_shop_list.recycle();
 
+    }
 
-        int paginatorChildCount = scrollViewPaginator.getChildCount();
-        scrollView.post(() -> doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount));
+    @SuppressLint("ResourceType")
+    private void buildStoreViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+        if(getContext() == null) { return; }
+
+        scrollViewPaginator.setRowCount(storeData.getGroups().size());
+
+        for (ItemStoreEquipmentGroupData group: storeData.getGroups()) {
+
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    addPaginatorIcon(scrollViewPaginator, group.getEquipmentIcon());
+                    buildItemStoreGroup(parent, group.getNameData(), group.getTierImages());
+                });
+            }
+        }
+
     }
 
     private void buildItemDataView(View dataView, int groupIndex, int itemIndex) {
@@ -457,6 +513,9 @@ public class ItemStoreFragment extends InvestigationFragment {
         ItemStoreEquipmentGroup itemStoreEquipmentGroup = new ItemStoreEquipmentGroup(getContext());
 
         itemStoreEquipmentGroup.build(equipmentName, tierImages);
+
+        itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
+        itemStoreEquipmentGroup.setAlpha(0);
         parent.addView(itemStoreEquipmentGroup);
 
     }

@@ -1,5 +1,5 @@
 
-package com.TritiumGaming.phasmophobiaevidencepicker;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore;
 
 import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.res.ResourcesCompat;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class ItemStoreEquipmentItem extends AppCompatImageView {
 

@@ -21,7 +21,7 @@ public class WorldMapWrapper {
         @SerializedName("map_id")
         public int map_id;
         @SerializedName("map_name")
-        public final String map_name = "";
+        public String map_name;
         @SerializedName("map_floors")
         public final ArrayList<Floor> map_floors = new ArrayList<>();
         @SerializedName("map_dimensions")

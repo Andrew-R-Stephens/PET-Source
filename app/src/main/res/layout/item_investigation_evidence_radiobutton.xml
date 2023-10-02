@@ -12,11 +12,15 @@
         android:id="@+id/radioIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="2sp"
+        android:padding="2sp"
+        android:minHeight="24dp"
+        android:maxHeight="24dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_inconclusive_unselected" />
+        app:srcCompat="@drawable/icon_inconclusive_unselected"
+        tools:showIn="@layout/item_investigation_evidence_radiogroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

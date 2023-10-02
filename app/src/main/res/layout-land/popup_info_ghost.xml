@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,9 +12,9 @@
         android:id="@+id/constraintLayout36"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,36 +61,28 @@
                 android:id="@+id/label_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:padding="2sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout95"
+                app:layout_constraintEnd_toStartOf="@+id/icon_container"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".4" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout95"
+            <include
+                android:id="@+id/icon_container"
+                layout="@layout/item_investigation_ghost_icons"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:padding="2dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/label_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".25">
-
-                <include
-                    android:id="@+id/layout_evidenceicons"
-                    layout="@layout/item_investigation_ghost_icons"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -125,9 +118,8 @@
         android:id="@+id/layout_contentbody"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,12 +145,12 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_prev"
                 android:tint="#FFFFFF"
-                app:layout_constraintWidth_max="48dp"
-                app:layout_constraintWidth_min="24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
+                app:layout_constraintTop_toTopOf="@+id/label_infoTitle"
+                app:layout_constraintWidth_max="48dp"
+                app:layout_constraintWidth_min="24dp" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -188,12 +180,12 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_next"
                 android:tint="#FFFFFF"
-                app:layout_constraintWidth_max="48dp"
-                app:layout_constraintWidth_min="24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/label_infoTitle"
-                app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
+                app:layout_constraintTop_toTopOf="@+id/label_infoTitle"
+                app:layout_constraintWidth_max="48dp"
+                app:layout_constraintWidth_min="24dp" />
 
             <include
                 android:id="@+id/scrollView_swapping"
@@ -228,8 +220,8 @@
                 android:textColor="?attr/titleFontColor"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView_huntdata"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".15"
                 app:layout_constraintHeight_min="32dp"
+                app:layout_constraintHeight_percent=".15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />

@@ -58,6 +58,20 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout38"
             app:layout_constraintWidth_default="wrap" />
 
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="@android:style/Widget.Material.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:progressTint="#99AEB3"
+            android:visibility="visible"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout38" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_safehouse_itemstore_wrapper"
             android:layout_width="0dp"

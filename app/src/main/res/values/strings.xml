@@ -17,6 +17,8 @@
     <string name="general_navigation_secondary">Secondary</string>
     <string name="general_navigation_alternative">Alternative</string>
     <string name="general_navigation_tools">Tools</string>
+    <string name="general_navigation_settings" translatable="false">Settings</string>
+    <string name="general_navigation_system" translatable="false">System</string>
 
 
     <string name="general_evidence_reset_button">Reset</string>

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/itemStoreFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.ItemStoreFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.ItemStoreFragment"
         android:label="ItemStoreFragment"/>
     <fragment
         android:id="@+id/codexFragment"

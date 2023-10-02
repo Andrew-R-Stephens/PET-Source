@@ -20,11 +20,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -79,6 +78,7 @@ public class EvidenceFragment extends InvestigationFragment {
     protected MapCarouselData mapCarouselData;
 
     protected LinearLayout ghostContainer, evidenceContainer;
+    protected ProgressBar ghostProgressBar, evidenceProgressBar;
 
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
@@ -119,6 +119,7 @@ public class EvidenceFragment extends InvestigationFragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_evidence_solo, container, false);
     }
 
@@ -157,19 +158,20 @@ public class EvidenceFragment extends InvestigationFragment {
             header_ghostLabel = view.findViewById(R.id.textLabel_headerLeft);
             header_evidenceLabel = view.findViewById(R.id.textLabel_headerRight);
             ghostContainer = view.findViewById(R.id.layout_leftList);
+            ghostProgressBar = view.findViewById(R.id.pBar_left);
             evidenceContainer = view.findViewById(R.id.layout_rightList);
+            evidenceProgressBar = view.findViewById(R.id.pBar_right);
         } else {
             header_ghostLabel = view.findViewById(R.id.textLabel_headerRight);
             header_evidenceLabel = view.findViewById(R.id.textLabel_headerLeft);
             ghostContainer = view.findViewById(R.id.layout_rightList);
+            ghostProgressBar = view.findViewById(R.id.pBar_right);
             evidenceContainer = view.findViewById(R.id.layout_leftList);
+            evidenceProgressBar = view.findViewById(R.id.pBar_left);
         }
 
         collapseButton = view.findViewById(R.id.button_collapsesanity);
         expandButton = view.findViewById(R.id.button_raisesanity);
-
-        // SANITY CONSTRAINTS
-        //ConstraintLayout constraint_sanityContainer = view.findViewById(R.id.constraint_sanityContainer);
 
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
@@ -250,9 +252,13 @@ public class EvidenceFragment extends InvestigationFragment {
         header_evidenceLabel.setText(R.string.evidence_evidence_title);
 
 
-        createEvidenceViews(view, evidenceContainer, ghostContainer);
-        createGhostViews(view, ghostContainer);
+        new Thread(() -> {
+            createGhostViews(view, ghostContainer);
+        }).start();
 
+        new Thread(() -> {
+            createEvidenceViews(view, evidenceContainer, ghostContainer);
+        }).start();
 
     }
 
@@ -342,21 +348,29 @@ public class EvidenceFragment extends InvestigationFragment {
     @SuppressLint("ResourceType")
     private void createEvidenceViews(View view, LinearLayout evidenceContainer,
                                      LinearLayout ghostContainer) {
-        if(getActivity() == null) { return; };
 
         final EvidenceViewData[][] evidenceViewDatas = { null };
+        evidenceViewDatas[0] = buildEvidenceViewData();
+        if (evidenceViewDatas[0] == null) return;
 
-        new Thread(() -> {
-            evidenceViewDatas[0] = buildEvidenceViewData();
-            if (evidenceViewDatas[0] == null) return;
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                buildEvidenceViews(view, evidenceContainer, ghostContainer, evidenceViewDatas[0]);
 
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
-                    buildEvidenceViews(view, evidenceContainer, ghostContainer, evidenceViewDatas[0]);
-                });
+                evidenceContainer.post(() -> haltProgressAnimation(evidenceProgressBar));
+            });
+        }
+
+    }
+
+    private void haltProgressAnimation(ProgressBar progressBar) {
+        progressBar.animate().alpha(0).setDuration(250).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                progressBar.setVisibility(View.GONE);
+                super.onAnimationEnd(animation);
             }
         }).start();
-
     }
 
     @SuppressLint("ResourceType")
@@ -374,7 +388,7 @@ public class EvidenceFragment extends InvestigationFragment {
             @IntegerRes int[] descriptions = new int[4];
             @IntegerRes int[] animations = new int[4];
             @IntegerRes int[] unlock_level = new int[3];
-            @IntegerRes int evidenceCost = 0;
+            @IntegerRes int evidenceCost;
 
             TypedArray evidenceType =
                     getContext().getResources().obtainTypedArray(evidenceTypes.getResourceId(i, 0));
@@ -483,10 +497,26 @@ public class EvidenceFragment extends InvestigationFragment {
 
                     evidenceViewModel.getGhostOrderData().updateOrder();
                     requestInvalidateGhostContainer(ghostContainer);
+
+                    ScrollView parentScroller = ((ScrollView)ghostContainer.getParent());
+                    if(parentScroller != null) {
+                        parentScroller.smoothScrollTo(0, 0);
+                    }
                 });
             }
 
+            evidenceParent.setVisibility(View.INVISIBLE);
+            evidenceParent.setAlpha(0);
             evidenceContainer.addView(evidenceParent);
+
+            evidenceParent.animate()
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            super.onAnimationStart(animation);
+                            evidenceParent.setVisibility(View.VISIBLE);
+                        }}
+                    ).alpha(1).setStartDelay((long)(10f * currGroup)).setDuration(100);
         }
     }
 
@@ -710,66 +740,124 @@ public class EvidenceFragment extends InvestigationFragment {
     @SuppressLint("ClickableViewAccessibility")
     public void createGhostViews(View view, LinearLayout ghostContainer) {
 
-        new Thread(() -> {
-            GhostViewData ghostViewData = buildGhostViewData();
-            if (ghostViewData == null) return;
+        GhostViewData ghostViewData = buildGhostViewData();
+        if (ghostViewData == null) return;
 
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> buildGhostViews((ViewGroup) view, ghostContainer, ghostViewData));
-            }
-        }).start();
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                buildGhostViews((ViewGroup) view, ghostContainer, ghostViewData);
+
+                ghostContainer.post(() -> haltProgressAnimation(ghostProgressBar));
+            });
+        }
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private void buildGhostViews(ViewGroup view, LinearLayout ghostContainer, GhostViewData ghostViewData) {
 
-        if (getContext() == null) { return; }
+        if (getContext() == null || getActivity() == null) { return; }
 
-        ghostContainer.removeAllViews();
+        // ghostContainer.removeAllViews();
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
+        int neutralSelColor = typedValue.data;
+        theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
+        int negativeSelColor = typedValue.data;
+        theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
+        int positiveSelColor = typedValue.data;
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
 
-        Log.d("Scores", "===== Reordering =====");
+        ghostContainer.setWeightSum(newGhostOrder.length);
         //Avoid pass null in the root it ignores spaces in the child layout
+        int i = 0;
         for (int j : newGhostOrder) {
 
-            View ghostView = inflater.inflate(
-                    R.layout.item_investigation_ghost,
-                    view,
-                    false);
+            View ghostView = buildGhostView(
+                    view, ghostContainer,
+                    ghostViewData,
+                    neutralSelColor, negativeSelColor, positiveSelColor,
+                    inflater, j);
+            /*
+            ghostView.setVisibility(View.INVISIBLE);
+            ghostView.setAlpha(0);
+            ghostView.animate().setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    super.onAnimationStart(animation);
+                    ghostView.setAlpha(0);
+                    ghostView.setVisibility(View.VISIBLE);
+                }
+            }).setStartDelay(5L *i).setDuration(100).alpha(1);
+            */
 
-            LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
-            AppCompatTextView nameView = ghostView.findViewById(R.id.label_name);
-            ConstraintLayout mainLayout = ghostView.findViewById(R.id.layout_main);
+            i++;
+            ghostView.setVisibility(View.INVISIBLE);
+            ghostView.setAlpha(0);
 
-            LinearLayoutCompat.LayoutParams params =
-                    new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
-            mainLayout.setLayoutParams(params);
+            ghostContainer.addView(ghostView);
 
-            InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
+            final int rowIndex = i;
+            ghostView.post(new Runnable() {
+                @Override
+                public void run() {
+                    ghostView.animate()
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationStart(Animator animation) {
+                                    super.onAnimationStart(animation);
+                                    ghostView.setVisibility(View.VISIBLE);
+                                }}
+                            ).alpha(1).setStartDelay((long)(10f * rowIndex)).setDuration(100);
+                }
+            });
 
-            String ghostName = ghost.getName();
-            nameView.setText(ghostName);
+        }
 
-            redrawGhostRejectionStatus(ghostView, ghost, j, false);
+    }
 
-            TypedValue typedValue = new TypedValue();
-            Resources.Theme theme = getContext().getTheme();
-            theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
-            int neutralSelColor = typedValue.data;
-            theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
-            int negativeSelColor = typedValue.data;
-            theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
-            int positiveSelColor = typedValue.data;
+    @SuppressLint("ClickableViewAccessibility")
+    @NonNull
+    private View buildGhostView(ViewGroup view, LinearLayout ghostContainer,
+                                GhostViewData ghostViewData,
+                                int neutralSelColor, int negativeSelColor, int positiveSelColor,
+                                LayoutInflater inflater, int j) {
 
-            linearLayout_iconRow.setWeightSum(ghost.getEvidence().length);
+        View ghostView = inflater.inflate(
+                R.layout.item_investigation_ghost,
+                view,
+                false);
+
+        LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
+        Log.d("Iconcontainer", (linearLayout_iconRow == null) ? "is null" : "is not nulll");
+
+        //LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.layout);
+        AppCompatTextView nameView = ghostView.findViewById(R.id.label_name);
+
+        ConstraintLayout mainLayout = ghostView.findViewById(R.id.layout_main);
+        LinearLayoutCompat.LayoutParams params =
+                new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
+        mainLayout.setLayoutParams(params);
+
+        InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
+
+        String ghostName = ghost.getName();
+        nameView.setText(ghostName);
+
+        redrawGhostRejectionStatus(ghostView, ghost, j, false);
+
+        if(linearLayout_iconRow != null) {
+            //linearLayout_iconRow.setWeightSum(ghost.getEvidence().length);
+
             int k = 0;
             for (; k < ghost.getEvidence().length; k++) {
-                /*AppCompatImageView evidenceIcon =
-                        (AppCompatImageView) inflater.inflate(R.layout.item_investigation_ghost_icon,
-                                null);*/
+
                 AppCompatImageView evidenceIcon =
                         (AppCompatImageView) linearLayout_iconRow.getChildAt(k);
                 evidenceIcon.setImageResource(ghost.getEvidence()[k].getIcon());
@@ -779,9 +867,15 @@ public class EvidenceFragment extends InvestigationFragment {
                     case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
                     case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
                 }
-                //linearLayout_iconRow.addView(evidenceIcon);
+
             }
 
+            for(; k < linearLayout_iconRow.getChildCount(); k ++) {
+                linearLayout_iconRow.getChildAt(k).setVisibility(View.GONE);
+            }
+        }
+
+        if(getContext() != null) {
             GestureDetectorCompat swipeListener = new GestureDetectorCompat(getContext(),
                     new GhostSwipeListener(
                             ghostContainer,
@@ -794,17 +888,18 @@ public class EvidenceFragment extends InvestigationFragment {
                 swipeListener.onTouchEvent(motionEvent);
                 return true;
             });
+        }
+
+        ghostView.addOnLayoutChangeListener((thisGhostView, i, i1, i2, i3, i4, i5, i6, i7) -> {
+
+            InvestigationData.Ghost thisGhostData = evidenceViewModel.getInvestigationData().getGhost(thisGhostView.getId());
+            redrawGhostRejectionStatus(thisGhostView, thisGhostData, j, false);
 
 
-            ghostView.addOnLayoutChangeListener((thisGhostView, i, i1, i2, i3, i4, i5, i6, i7) -> {
-
-                InvestigationData.Ghost thisGhostData = evidenceViewModel.getInvestigationData().getGhost(thisGhostView.getId());
-                redrawGhostRejectionStatus(thisGhostView, thisGhostData, j, false);
-
-                LinearLayoutCompat iconContainer = thisGhostView.findViewById(R.id.icon_container);
+            if(linearLayout_iconRow != null) {
                 for (int l = 0; l < thisGhostData.getEvidence().length; l++) {
 
-                    AppCompatImageView evidenceIcon = iconContainer.getChildAt(l).findViewById(R.id.evidence_icon);
+                    AppCompatImageView evidenceIcon = linearLayout_iconRow.getChildAt(l).findViewById(R.id.evidence_icon);
 
                     switch (thisGhostData.getEvidence()[l].getRuling()) {
                         case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
@@ -812,12 +907,12 @@ public class EvidenceFragment extends InvestigationFragment {
                         case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
                     }
                 }
-            });
+            }
+        });
 
-            ghostView.setId(j);
-            ghostContainer.addView(ghostView);
+        ghostView.setId(j);
 
-        }
+        return ghostView;
     }
 
     private GhostViewData buildGhostViewData() {
@@ -1076,12 +1171,15 @@ public class EvidenceFragment extends InvestigationFragment {
             LayoutInflater popupInflater =
                     (LayoutInflater) getView().getContext().getSystemService(
                             Context.LAYOUT_INFLATER_SERVICE);
-            View popupView = popupInflater.inflate(R.layout.popup_info_ghost, null);
-            View linearLayout_icons_container = popupInflater.inflate(R.layout.item_investigation_ghost_icons, null);
-            LinearLayoutCompat linearLayout_iconRow = linearLayout_icons_container.findViewById(R.id.icon_container);
+            View popupView =
+                    popupInflater.inflate(R.layout.popup_info_ghost, null);
 
-            ConstraintLayout scrollCons_swapping = popupView.findViewById(R.id.scrollView_swapping);
-            ConstraintLayout scrollCons_huntdata = popupView.findViewById(R.id.scrollView_huntdata);
+            LinearLayoutCompat linearLayout_iconRow = popupView.findViewById(R.id.icon_container);
+
+            ConstraintLayout scrollCons_swapping =
+                    popupView.findViewById(R.id.scrollView_swapping);
+            ConstraintLayout scrollCons_huntdata =
+                    popupView.findViewById(R.id.scrollView_huntdata);
             AppCompatTextView label_name =
                     popupView.findViewById(R.id.label_name);
             ImageButton closeButton = popupView.findViewById(R.id.popup_close_button);

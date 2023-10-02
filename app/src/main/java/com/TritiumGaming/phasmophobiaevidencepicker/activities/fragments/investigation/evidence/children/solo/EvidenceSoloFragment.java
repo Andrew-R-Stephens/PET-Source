@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -119,9 +120,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
 
         View.OnClickListener difficultyListener = v -> {
-            //recreateGhostView();
             evidenceViewModel.getGhostOrderData().updateOrder();
             requestInvalidateGhostContainer(ghostContainer);
+
+            ScrollView parentScroller = ((ScrollView)ghostContainer.getParent());
+            if(parentScroller != null) {
+                parentScroller.smoothScrollTo(0, 0);
+            }
         };
         compositeListenerPrev = new CompositeListener();
         compositeListenerNext = new CompositeListener();
