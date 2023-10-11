@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:showIn="@layout/item_investigation_evidence_radiogroup">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioButton
         android:id="@+id/radioIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="2sp"
+        android:padding="2sp"
+        android:minHeight="24dp"
+        android:maxHeight="48dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

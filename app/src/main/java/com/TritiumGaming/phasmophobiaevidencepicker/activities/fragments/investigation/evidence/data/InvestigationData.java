@@ -38,27 +38,26 @@ public class InvestigationData {
     public void initGhosts(Context c) {
         ghosts = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.ghost_names);
+
+        TypedArray typedArrayEvidence =
+                c.getResources().obtainTypedArray(R.array.ghost_evidence_arrays);
+        TypedArray typedArrayRequiredEvidence =
+                c.getResources().obtainTypedArray(R.array.ghost_requiredevidence_arrays);
         for (int i = 0; i < ghostNames.length; i++) {
             Ghost ghost = new Ghost(i);
             ghost.setName(ghostNames[i]);
 
             // Set Normal Evidence
-            TypedArray typedArrayEvidence =
-                    c.getResources().obtainTypedArray(R.array.ghost_evidence_arrays);
             TypedArray evidenceNameTypedArray =
                     c.getResources().obtainTypedArray(typedArrayEvidence.getResourceId(i, 0));
-            typedArrayEvidence.recycle();
             for (int j = 0; j < evidenceNameTypedArray.length(); j++) {
                 ghost.addEvidence(evidenceNameTypedArray.getString(j));
             }
             evidenceNameTypedArray.recycle();
 
             // Set Required Evidence
-            TypedArray typedArrayRequiredEvidence =
-                    c.getResources().obtainTypedArray(R.array.ghost_requiredevidence_arrays);
             TypedArray requiredEvidenceNameTypedArray =
                     c.getResources().obtainTypedArray(typedArrayRequiredEvidence.getResourceId(i, 0));
-            typedArrayRequiredEvidence.recycle();
             for (int j = 0; j < requiredEvidenceNameTypedArray.length(); j++) {
                 ghost.addNightmareEvidence(requiredEvidenceNameTypedArray.getString(j));
             }
@@ -66,6 +65,8 @@ public class InvestigationData {
 
             ghosts.add(ghost);
         }
+        typedArrayEvidence.recycle();
+        typedArrayRequiredEvidence.recycle();
     }
 
     /**
@@ -74,14 +75,14 @@ public class InvestigationData {
     public void initEvidence(Context c) {
         evidence = new ArrayList<>();
         String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_type_names);
+        TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
         for (int i = 0; i < evidenceNames.length; i++) {
             Evidence evidence = new Evidence();
             evidence.setName(evidenceNames[i]);
-            TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
             evidence.setIcon(typedArray.getResourceId(i, 0));
-            typedArray.recycle();
             InvestigationData.evidence.add(evidence);
         }
+        typedArray.recycle();
     }
 
     /**
@@ -291,21 +292,19 @@ public class InvestigationData {
             for(int i = 0; i < thisGhostEvidence.size(); i++) {
                 Evidence e = thisGhostEvidence.get(i);
                 switch (e.ruling) {
-                    case POSITIVE: {
-                        if(i < 3) {
+                    case POSITIVE -> {
+                        if (i < 3) {
                             posScore++;
                         }
-                        break;
                     }
-                    case NEGATIVE: {
-                        if(!(isNightmare || isInsanity))
+                    case NEGATIVE -> {
+                        if (!(isNightmare || isInsanity))
                             return -6;
 
-                        negScore ++;
-                        if(i >= 3) {
+                        negScore++;
+                        if (i >= 3) {
                             return -7;
                         }
-                        break;
                     }
                 }
             }
@@ -336,6 +335,7 @@ public class InvestigationData {
             return posScore;
         }
 
+        @Override
         public String toString() {
             StringBuilder s = new StringBuilder();
             s.append(name).append(": ");

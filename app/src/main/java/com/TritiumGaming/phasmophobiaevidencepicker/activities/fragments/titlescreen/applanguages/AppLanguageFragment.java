@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -67,14 +68,7 @@ public class AppLanguageFragment extends Fragment {
             Navigation.findNavController(v).popBackStack();
         });
         btn_cancelClose.setOnClickListener(v -> {
-                    if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
-                        globalPreferencesViewModel.setLanguage(
-                                titleScreenViewModel.getLanguageSelectedOriginal(),
-                                getResources().getStringArray(
-                                        R.array.languages_abbreviation));
-                    }
-                    configureLanguage();
-                    Navigation.findNavController(v).popBackStack();
+                    handleDiscardChanges(view);
                 }
         );
 
@@ -83,7 +77,14 @@ public class AppLanguageFragment extends Fragment {
                     new OnBackPressedCallback(true) {
                 @Override
                 public void handleOnBackPressed() {
-                    // Disables OnBackPressed
+                    handleDiscardChanges(view);
+                    if(getContext() != null) {
+                        String message = getString(R.string.toast_discardchanges);
+                        Toast toast = Toast.makeText(getContext().getApplicationContext(),
+                                message,
+                                com.google.android.material.R.integer.material_motion_duration_short_2);
+                        toast.show();
+                    }
                 }
             });
         }
@@ -118,6 +119,17 @@ public class AppLanguageFragment extends Fragment {
                 recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(getContext()));
             }
         }
+    }
+
+    private void handleDiscardChanges(View v) {
+        if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+            globalPreferencesViewModel.setLanguage(
+                    titleScreenViewModel.getLanguageSelectedOriginal(),
+                    getResources().getStringArray(
+                            R.array.languages_abbreviation));
+        }
+        configureLanguage();
+        Navigation.findNavController(v).popBackStack();
     }
 
     /**

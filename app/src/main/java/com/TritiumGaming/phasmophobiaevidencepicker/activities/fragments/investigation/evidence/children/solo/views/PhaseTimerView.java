@@ -105,7 +105,7 @@ public class PhaseTimerView {
             public void onTick(long millisUntilFinished) {
                 if (!phaseTimerData.isPaused() && millisUntilFinished > -1L) {
                     phaseTimerData.setTimeRemaining(millisUntilFinished);
-                    setText();
+                    updateText();
                 }
             }
 
@@ -115,11 +115,11 @@ public class PhaseTimerView {
                     stateControl.checkPaused();
                 }
                 phaseTimerData.setTimeRemaining(0L);
-                setText();
+                updateText();
             }
         };
 
-        setText();
+        updateText();
 
     }
 
@@ -155,7 +155,7 @@ public class PhaseTimerView {
     /**
      * setText method
      */
-    public void setText() {
+    public void updateText() {
         String text = String.format(
                 "%s:%s",
                 new DecimalFormat("0").format(0),
@@ -181,4 +181,12 @@ public class PhaseTimerView {
                         (sanityData.getStartTime() - System.currentTimeMillis())+"");
     }
 
+    public void reset() {
+        createTimer(
+                true,
+                phaseTimerData.getTimeRemaining(),
+                1000L);
+
+        updateText();
+    }
 }

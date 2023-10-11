@@ -19,37 +19,37 @@
         <level-list>
             <item android:minLevel="0" android:maxLevel="1">
                 <bitmap
-                    android:src="@drawable/icon_dots">
+                    android:src="@drawable/icon_ev_dots">
                 </bitmap>
             </item>
             <item android:minLevel="2" android:maxLevel="2">
                 <bitmap
-                    android:src="@drawable/icon_emf5">
+                    android:src="@drawable/icon_ev_emf">
                 </bitmap>
             </item>
             <item android:minLevel="3" android:maxLevel="3">
                 <bitmap
-                    android:src="@drawable/icon_fingerprints">
+                    android:src="@drawable/icon_ev_uv">
                 </bitmap>
             </item>
             <item android:minLevel="4" android:maxLevel="4">
                 <bitmap
-                    android:src="@drawable/icon_freezing">
+                    android:src="@drawable/icon_ev_freezing">
                 </bitmap>
             </item>
             <item android:minLevel="5" android:maxLevel="5">
                 <bitmap
-                    android:src="@drawable/icon_orbs">
+                    android:src="@drawable/icon_ev_orbs">
                 </bitmap>
             </item>
             <item android:minLevel="6" android:maxLevel="6">
                 <bitmap
-                    android:src="@drawable/icon_writing">
+                    android:src="@drawable/icon_ev_writing">
                 </bitmap>
             </item>
             <item android:minLevel="7" android:maxLevel="7">
                 <bitmap
-                    android:src="@drawable/icon_spiritbox">
+                    android:src="@drawable/icon_ev_spiritbox">
                 </bitmap>
             </item>
             <item android:minLevel="8" android:maxLevel="8">

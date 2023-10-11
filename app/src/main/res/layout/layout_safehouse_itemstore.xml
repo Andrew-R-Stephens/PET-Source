@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     >
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.ItemStoreScrollView
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -30,6 +30,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
-    </com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.ItemStoreScrollView>
+    </com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

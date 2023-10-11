@@ -136,22 +136,24 @@
         <item>@string/settings_fontstyle_clean</item>
         <item>@string/settings_fontstyle_longcang</item>
         <item>@string/settings_fontstyle_newtegmon</item>
+        <item>@string/settings_fontstyle_neucha</item>
+        <item>@string/settings_fontstyle_jetbrainsmono</item>
     </string-array>
 
     <!-- Timer Data -->
     <string-array name="evidence_timer_difficulty_names_array">
-        <item>@string/evidence_timer_difficulty_1</item>
-        <item>@string/evidence_timer_difficulty_2</item>
-        <item>@string/evidence_timer_difficulty_3</item>
-        <item>@string/evidence_timer_difficulty_4</item>
-        <item>@string/evidence_timer_difficulty_5</item>
+        <item>@string/investigation_timer_difficulty_1</item>
+        <item>@string/investigation_timer_difficulty_2</item>
+        <item>@string/investigation_timer_difficulty_3</item>
+        <item>@string/investigation_timer_difficulty_4</item>
+        <item>@string/investigation_timer_difficulty_5</item>
     </string-array>
     <string-array name="evidence_timer_difficulty_times_array">
-        <item>@string/evidence_timer_time_1</item>
-        <item>@string/evidence_timer_time_2</item>
-        <item>@string/evidence_timer_time_3</item>
-        <item>@string/evidence_timer_time_3</item>
-        <item>@string/evidence_timer_time_3</item>
+        <item>@string/investigation_timer_time_1</item>
+        <item>@string/investigation_timer_time_2</item>
+        <item>@string/investigation_timer_time_3</item>
+        <item>@string/investigation_timer_time_3</item>
+        <item>@string/investigation_timer_time_3</item>
     </string-array>
 
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="evidence_ghosts_title">Geister</string>
-    <string name="evidence_evidence_title">Beweis</string>
+    <string name="investigation_section_title_ghosts">Geister</string>
+    <string name="investigation_section_title_evidence">Beweis</string>
 
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
 
-    <string name="evidence_timer_difficulty_label">Schwierigkeit:</string>
-    <string name="evidence_timer_label">Vorbereitungszeit:</string>
-    <string name="evidence_timer_difficulty_default">Keine</string>
-    <string name="evidence_timer_difficulty_1">Anfänger</string>
-    <string name="evidence_timer_difficulty_2">Fortgeschritten</string>
-    <string name="evidence_timer_difficulty_3">Profi</string>
+    <string name="investigation_timer_difficulty_label">Schwierigkeit:</string>
+    <string name="investigation_timer_label">Vorbereitungszeit:</string>
+    <string name="investigation_timer_difficulty_default">Keine</string>
+    <string name="investigation_timer_difficulty_1">Anfänger</string>
+    <string name="investigation_timer_difficulty_2">Fortgeschritten</string>
+    <string name="investigation_timer_difficulty_3">Profi</string>
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
@@ -805,6 +805,7 @@
     <string name="ghost_type_wraith">Gespenst</string>
     <string name="ghost_type_yokai">Yokai</string>
     <string name="ghost_type_yurei">Yurei</string>
+    <string name="toast_discardchanges">Änderungen verworfen</string>
     <string name="general_evidence_button">Beweis</string>
     <string name="general_tasks_button">Aufgaben</string>
     <string name="general_maps_button">Karten</string>
@@ -830,11 +831,11 @@
     <string name="objective_info_repelwithsmudge">Den Jagdgeist mit einem Wischstock abwehren</string>
     <string name="objective_info_escapehunt">Échappez au fantastôme Anhänger qu\'il chasse</string>
 
-    <string name="evidence_timer_maplabel">Karte:</string>
-    <string name="evidence_sanity_huntwarn">Jagdwarnung</string>
-    <string name="evidence_timer_actionlabel">Aktion</string>
-    <string name="evidence_timer_setuplabel">Vorbereitung</string>
-    <string name="evidence_sanitymeter_title">maximale geistige Gesundheit</string>
+    <string name="investigation_timer_maplabel">Karte:</string>
+    <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
+    <string name="investigation_timer_actionlabel">Aktion</string>
+    <string name="investigation_timer_setuplabel">Vorbereitung</string>
+    <string name="investigation_sanitymeter_title">maximale geistige Gesundheit</string>
     <string name="settings_enablehuntaudioqueue">Aktivieren Sie Hunt Audio Warning</string>
     <string name="settings_huntwarningflashtimeout">Zeitüberschreitung für Jagdwarnblitze</string>
     <string name="settings_huntwarningflashtimeout_never">Niemals eine Auszeit</string>
@@ -896,7 +897,7 @@
     <string name="review_requesttitle">Bitte beachten Sie die Bewertung P.E.T.!</string>
     <string name="review_accept">Akzeptieren!</string>
     <string name="review_decline">Ablehnen</string>
-    <string name="evidence_timer_difficulty_4">Albtraum</string>
+    <string name="investigation_timer_difficulty_4">Albtraum</string>
     <string name="settings_colorblindnessmode_monochromacy">Achromatopsie</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopía</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopía</string>
@@ -922,7 +923,7 @@
     <string name="popup_ghost_info">Information</string>
 
     <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
-    <string name="evidence_timer_difficulty_5">Wahnsinn</string>
+    <string name="investigation_timer_difficulty_5">Wahnsinn</string>
     <string name="popup_ghost_huntdata">Jagddaten</string>
 
     <string name="settings_appearancesettings">Aussehen</string>

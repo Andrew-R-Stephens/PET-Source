@@ -6,6 +6,9 @@
     <!-- Page Details -->
     <string name="app_name" translatable="false">P.E.T.</string>
 
+    <!-- Toast Messages -->
+    <string name="toast_discardchanges">Changes discarded</string>
+
     <!-- Navigation Labels -->
     <string name="general_evidence_button">Evidence</string>
     <string name="general_maps_button">Maps</string>
@@ -131,6 +134,8 @@
     <string name="settings_fontstyle_clean">Clean</string>
     <string name="settings_fontstyle_longcang" translatable="false">Long Cang</string>
     <string name="settings_fontstyle_newtegmon" translatable="false">New Tegomin</string>
+    <string name="settings_fontstyle_neucha" translatable="false">Neucha</string>
+    <string name="settings_fontstyle_jetbrainsmono" translatable="false">Jetbrains Mono</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -147,31 +152,31 @@
     <!-- Page Details -->
 
     <!-- Team Data -->
-    <string name="evidence_average_sanity_title" translatable="false">Average Sanity</string>
-    <string name="evidence_prep_time_title" translatable="false">Prep Time</string>
-    <string name="evidence_your_sanity_level_title" translatable="false">Your Sanity level</string>
+    <string name="investigation_average_sanity_title" translatable="false">Average Sanity</string>
+    <string name="investigation_prep_time_title" translatable="false">Prep Time</string>
+    <string name="investigation_your_sanity_level_title" translatable="false">Your Sanity level</string>
 
     <!-- Solo/Team Data -->
-    <string name="evidence_timer_label">Preparation Time:</string>
-    <string name="evidence_timer_difficulty_default">None</string>
-    <string name="evidence_timer_difficulty_1">Amateur</string>
-    <string name="evidence_timer_difficulty_2">Intermediate</string>
-    <string name="evidence_timer_difficulty_3">Professional</string>
-    <string name="evidence_timer_difficulty_4">Nightmare</string>
-    <string name="evidence_timer_difficulty_5">Insanity</string>
-    <string name="evidence_timer_difficulty_label">Difficulty:</string>
-    <string name="evidence_timer_maplabel">Map:</string>
-    <string name="evidence_timer_actionlabel">ACTION</string>
-    <string name="evidence_timer_setuplabel">SETUP</string>
-    <string name="evidence_sanity_huntwarn">HUNT WARN</string>
-    <string name="evidence_sanitymeter_title">Max Sanity Level</string>
-    <string name="evidence_ghosts_title">Ghosts</string>
-    <string name="evidence_evidence_title">Evidence</string>
+    <string name="investigation_timer_label">Preparation Time:</string>
+    <string name="investigation_timer_difficulty_default">None</string>
+    <string name="investigation_timer_difficulty_1">Amateur</string>
+    <string name="investigation_timer_difficulty_2">Intermediate</string>
+    <string name="investigation_timer_difficulty_3">Professional</string>
+    <string name="investigation_timer_difficulty_4">Nightmare</string>
+    <string name="investigation_timer_difficulty_5">Insanity</string>
+    <string name="investigation_timer_difficulty_label">Difficulty:</string>
+    <string name="investigation_timer_maplabel">Map:</string>
+    <string name="investigation_timer_actionlabel">ACTION</string>
+    <string name="investigation_timer_setuplabel">SETUP</string>
+    <string name="investigation_sanity_huntwarn">HUNT WARN</string>
+    <string name="investigation_sanitymeter_title">Max Sanity</string>
+    <string name="investigation_section_title_ghosts">Ghosts</string>
+    <string name="investigation_section_title_evidence">Evidence</string>
 
     <!-- Timer Difficulty Times -->
-    <string name="evidence_timer_time_1" translatable="false">300000</string>
-    <string name="evidence_timer_time_2" translatable="false">120000</string>
-    <string name="evidence_timer_time_3" translatable="false">0</string>
+    <string name="investigation_timer_time_1" translatable="false">300000</string>
+    <string name="investigation_timer_time_2" translatable="false">120000</string>
+    <string name="investigation_timer_time_3" translatable="false">0</string>
 
     <!--
         OBJECTIVES PAGE

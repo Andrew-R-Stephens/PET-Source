@@ -49,8 +49,7 @@ public class MapCarouselView {
                 if (i < 0) {
                     i = mapCarouselData.getMapCount() - 1;
                 }
-                mapCarouselData.setMapCurrentIndex(i);
-                mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
+                setCurrentMapIndex(i);
             }
 
         });
@@ -68,10 +67,14 @@ public class MapCarouselView {
                 if (i >= mapCarouselData.getMapCount()) {
                     i = 0;
                 }
-                mapCarouselData.setMapCurrentIndex(i);
-                mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
+                setCurrentMapIndex(i);
             }
         });
+    }
+
+    private void setCurrentMapIndex(int i) {
+        mapCarouselData.setMapCurrentIndex(i);
+        mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
     }
 
     /**

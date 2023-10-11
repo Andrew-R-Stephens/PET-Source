@@ -2,6 +2,7 @@
 
     <!-- Page Details -->
 
+    <string name="toast_discardchanges">Modifiche scartate</string>
     <string name="general_evidence_button">Prova</string>
     <string name="general_maps_button">Mappe</string>
     <string name="general_tasks_button">Compiti</string>
@@ -77,21 +78,21 @@
 
     <!-- Solo/Team Data -->
 
-    <string name="evidence_timer_label">Tempo di preparazione:</string>
-    <string name="evidence_timer_difficulty_default">Nessuno</string>
-    <string name="evidence_timer_difficulty_1">Dilettante</string>
-    <string name="evidence_timer_difficulty_2">Intermedio</string>
-    <string name="evidence_timer_difficulty_3">Professionale</string>
-    <string name="evidence_timer_difficulty_4">Incubo</string>
-    <string name="evidence_timer_difficulty_5">Follia</string>
-    <string name="evidence_timer_difficulty_label">Difficoltà:</string>
-    <string name="evidence_timer_maplabel">Carta geografica:</string>
-    <string name="evidence_timer_actionlabel">AZIONE</string>
-    <string name="evidence_timer_setuplabel">IMPOSTARE</string>
-    <string name="evidence_sanity_huntwarn">CACCIA AVVISO</string>
-    <string name="evidence_sanitymeter_title">Livello massimo di sanità mentale</string>
-    <string name="evidence_ghosts_title">Fantasmi</string>
-    <string name="evidence_evidence_title">Prova</string>
+    <string name="investigation_timer_label">Tempo di preparazione:</string>
+    <string name="investigation_timer_difficulty_default">Nessuno</string>
+    <string name="investigation_timer_difficulty_1">Dilettante</string>
+    <string name="investigation_timer_difficulty_2">Intermedio</string>
+    <string name="investigation_timer_difficulty_3">Professionale</string>
+    <string name="investigation_timer_difficulty_4">Incubo</string>
+    <string name="investigation_timer_difficulty_5">Follia</string>
+    <string name="investigation_timer_difficulty_label">Difficoltà:</string>
+    <string name="investigation_timer_maplabel">Carta geografica:</string>
+    <string name="investigation_timer_actionlabel">AZIONE</string>
+    <string name="investigation_timer_setuplabel">IMPOSTARE</string>
+    <string name="investigation_sanity_huntwarn">CACCIA AVVISO</string>
+    <string name="investigation_sanitymeter_title">Livello massimo di sanità mentale</string>
+    <string name="investigation_section_title_ghosts">Fantasmi</string>
+    <string name="investigation_section_title_evidence">Prova</string>
 
     <!-- Page Details -->
 

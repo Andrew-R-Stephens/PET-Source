@@ -58,22 +58,22 @@ public class AppThemeData {
 
     public static @StyleRes int getColorSpace(int colorSpace) {
         switch (colorSpace) {
-            case 1: {
+            case 1 -> {
                 return R.style.Monochromacy;
             }
-            case 2: {
+            case 2 -> {
                 return R.style.Deuteranomaly;
             }
-            case 3: {
+            case 3 -> {
                 return R.style.Protanomaly;
             }
-            case 4: {
+            case 4 -> {
                 return R.style.Tritanomaly;
             }
-            case 5: {
+            case 5 -> {
                 return R.style.Funhouse;
             }
-            default: {
+            default -> {
                 return R.style.Colorblind_Base;
             }
         }
@@ -81,25 +81,31 @@ public class AppThemeData {
 
     public static @StyleRes int getFontResource(int fontType) {
         switch (fontType) {
-            case 1: {
+            case 1 -> {
                 return R.style.Android;
             }
-            case 2: {
+            case 2 -> {
                 return R.style.Journal;
             }
-            case 3: {
+            case 3 -> {
                 return R.style.Brick;
             }
-            case 4: {
+            case 4 -> {
                 return R.style.Clean;
             }
-            case 5: {
+            case 5 -> {
                 return R.style.LongCang;
             }
-            case 6: {
+            case 6 -> {
                 return R.style.NewTegomin;
             }
-            default: {
+            case 7 -> {
+                return R.style.Neucha;
+            }
+            case 8 -> {
+                return R.style.JetBrainsMono;
+            }
+            default -> {
                 return R.style.Fonts_Base;
             }
         }

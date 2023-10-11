@@ -309,7 +309,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_tier1" />
+                            app:srcCompat="@drawable/icon_tier_1" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -344,7 +344,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_tier2" />
+                            app:srcCompat="@drawable/icon_tier_2" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -380,7 +380,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_tier3" />
+                            app:srcCompat="@drawable/icon_tier_3" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -478,7 +478,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_dots" />
+            app:srcCompat="@drawable/icon_ev_dots" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

@@ -229,6 +229,7 @@
         <item name="rippleColor">?attr/unselectedColor</item>
         <item name="itemRippleColor">?attr/unselectedColor</item>
         <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+        <item name="android:colorControlHighlight">?attr/unselectedColor</item>
     </style>
 
     <style name="PET.MaterialCardView" parent="Widget.MaterialComponents.CardView">
@@ -241,6 +242,12 @@
         <item name="itemRippleColor">?attr/unselectedColor</item>
         <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
         <item name="cardForegroundColor">?attr/unselectedColor</item>
+    </style>
+
+    <style name="PET.ProgressBar" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="android:tintMode">multiply</item>
+        <item name="android:tint">?attr/selectedColor</item>
+        <item name="android:indeterminateDrawable">@drawable/phasmophobia_logo_letter_sm</item>
     </style>
 
     <style name="NavigationDrawerStyle">

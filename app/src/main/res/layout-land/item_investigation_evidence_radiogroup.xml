@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:showIn="@layout/item_investigation_evidence">
 
     <include
         android:id="@+id/radio1"
@@ -35,4 +38,4 @@
         app:layout_constraintStart_toEndOf="@+id/radio2"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioGroup>

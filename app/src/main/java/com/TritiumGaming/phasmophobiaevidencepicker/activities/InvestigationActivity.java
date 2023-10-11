@@ -112,7 +112,7 @@ public class InvestigationActivity extends PETActivity {
 
         if(drawerLayout == null) { return; }
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.evidence_ghosts_title, R.string.evidence_ghosts_title);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.investigation_section_title_ghosts, R.string.investigation_section_title_ghosts);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
@@ -147,7 +147,6 @@ public class InvestigationActivity extends PETActivity {
                         if (item.getItemId() == (R.id.action_home)) {
                             finish();
                         }
-
                     }
 
                     return true;

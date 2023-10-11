@@ -66,6 +66,7 @@
         <item name="secondaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/RobotoMono</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/RobotoMono_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/RobotoMono_Manual</item>
@@ -77,7 +78,7 @@
         <item name="tertiaryFont_BoldNarrow">@style/RobotoMonoBold</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/RobotoMonoBold_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/RobotoMonoBold_Manual</item>
-
+        -->
     </style>
 
 
@@ -102,6 +103,7 @@
         <item name="secondaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/LazyDog</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/LazyDog_Manual</item>
@@ -113,7 +115,7 @@
         <item name="tertiaryFont_BoldNarrow">@style/LazyDogBold</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/LazyDogBold_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/LazyDogBold_Manual</item>
-
+        -->
     </style>
 
     <style name="Brick" parent="Fonts.Base">
@@ -137,6 +139,7 @@
         <item name="secondaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/BrickRegular</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/BrickRegular_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
@@ -148,7 +151,7 @@
         <item name="tertiaryFont_BoldNarrow">@style/BrickRegular</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/BrickRegular_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/BrickRegular_Manual</item>
-
+        -->
 
     </style>
 
@@ -174,6 +177,7 @@
         <item name="secondaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/CleanRegular</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/CleanRegular_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
@@ -185,7 +189,7 @@
         <item name="tertiaryFont_BoldNarrow">@style/CleanRegular</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/CleanRegular_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/CleanRegular_Manual</item>
-
+        -->
     </style>
 
     <style name="LongCang" parent="Fonts.Base">
@@ -209,6 +213,7 @@
         <item name="secondaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/LongCangRegular</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/LongCangRegular_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
@@ -220,6 +225,16 @@
         <item name="tertiaryFont_BoldNarrow">@style/LongCangRegular</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/LongCangRegular_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/LongCangRegular_Manual</item>
+        -->
+
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/LongCangRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/LongCangRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
+
+        <item name="quaternaryFont_Bold">@style/LongCangRegular</item>
+        <item name="quaternaryFont_Bold_Squeeze">@style/LongCangRegular_SqueezeText</item>
+        <item name="quaternaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
 
     </style>
 
@@ -244,6 +259,7 @@
         <item name="secondaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
 
         <!-- Tertiary -->
+        <!--
         <item name="tertiaryFont_Regular">@style/NewTegominRegular</item>
         <item name="tertiaryFont_Regular_Squeeze">@style/NewTegominRegular_SqueezeText</item>
         <item name="tertiaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
@@ -255,7 +271,98 @@
         <item name="tertiaryFont_BoldNarrow">@style/NewTegominRegular</item>
         <item name="tertiaryFont_BoldNarrow_Squeeze">@style/NewTegominRegular_SqueezeText</item>
         <item name="tertiaryFont_BoldNarrow_Manual">@style/NewTegominRegular_Manual</item>
+        -->
 
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/NewTegominRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/NewTegominRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
+
+        <item name="quaternaryFont_Bold">@style/NewTegominRegular</item>
+        <item name="quaternaryFont_Bold_Squeeze">@style/NewTegominRegular_SqueezeText</item>
+        <item name="quaternaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
+
+    </style>
+
+    <style name="Neucha" parent="Fonts.Base">
+
+        <!-- Primary -->
+        <item name="primaryFont_Regular">@style/NeuchaRegular</item>
+        <item name="primaryFont_Regular_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="primaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
+
+        <item name="primaryFont_Bold">@style/NeuchaRegular</item>
+        <item name="primaryFont_Bold_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+
+        <!-- Secondary -->
+        <item name="secondaryFont_Regular">@style/NeuchaRegular</item>
+        <item name="secondaryFont_Regular_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="secondaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
+
+        <item name="secondaryFont_Bold">@style/NeuchaRegular</item>
+        <item name="secondaryFont_Bold_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+
+        <!-- Tertiary -->
+        <!--
+        <item name="tertiaryFont_Regular">@style/NeuchaRegular</item>
+        <item name="tertiaryFont_Regular_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="tertiaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
+
+        <item name="tertiaryFont_Bold">@style/NeuchaRegular</item>
+        <item name="tertiaryFont_Bold_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="tertiaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+
+        <item name="tertiaryFont_BoldNarrow">@style/NeuchaRegular</item>
+        <item name="tertiaryFont_BoldNarrow_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="tertiaryFont_BoldNarrow_Manual">@style/NeuchaRegular_Manual</item>
+        -->
+
+        <!-- Quaternary -->
+        <item name="quaternaryFont_Regular">@style/NeuchaRegular</item>
+        <item name="quaternaryFont_Regular_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="quaternaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
+
+        <item name="quaternaryFont_Bold">@style/NeuchaRegular</item>
+        <item name="quaternaryFont_Bold_Squeeze">@style/NeuchaRegular_SqueezeText</item>
+        <item name="quaternaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+    </style>
+
+    <style name="JetBrainsMono" parent="Fonts.Base">
+
+        <!-- Primary -->
+        <item name="primaryFont_Regular">@style/JetbrainsMonoRegular</item>
+        <item name="primaryFont_Regular_Squeeze">@style/JetbrainsMonoRegular_SqueezeText</item>
+        <item name="primaryFont_Regular_Manual">@style/JetbrainsMonoRegular_Manual</item>
+
+        <item name="primaryFont_Bold">@style/JetbrainsMonoBold</item>
+        <item name="primaryFont_Bold_Squeeze">@style/JetbrainsMonoBold_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/JetbrainsMonoBold_Manual</item>
+
+        <!-- Secondary -->
+        <item name="secondaryFont_Regular">@style/JetbrainsMonoRegular</item>
+        <item name="secondaryFont_Regular_Squeeze">@style/JetbrainsMonoRegular_SqueezeText</item>
+        <item name="secondaryFont_Regular_Manual">@style/JetbrainsMonoRegular_Manual</item>
+
+        <item name="secondaryFont_Bold">@style/JetbrainsMonoBold</item>
+        <item name="secondaryFont_Bold_Squeeze">@style/JetbrainsMonoBold_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/JetbrainsMonoBold_Manual</item>
+
+        <!-- Tertiary -->
+        <!--
+        <item name="tertiaryFont_Regular">@style/JetbrainsMonoItalic</item>
+        <item name="tertiaryFont_Regular_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
+        <item name="tertiaryFont_Regular_Manual">@style/JetbrainsMonoItalic_Manual</item>
+
+        <item name="tertiaryFont_Bold">@style/JetbrainsMonoItalic</item>
+        <item name="tertiaryFont_Bold_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
+        <item name="tertiaryFont_Bold_Manual">@style/JetbrainsMonoItalic_Manual</item>
+
+        <item name="tertiaryFont_BoldNarrow">@style/JetbrainsMonoItalic</item>
+        <item name="tertiaryFont_BoldNarrow_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
+        <item name="tertiaryFont_BoldNarrow_Manual">@style/JetbrainsMonoItalic_Manual</item>
+        -->
     </style>
 
 </resources>

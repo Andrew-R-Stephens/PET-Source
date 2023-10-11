@@ -60,7 +60,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_dots" />
+                    app:srcCompat="@drawable/icon_ev_dots" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView1"
@@ -100,7 +100,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_emf5" />
+                    app:srcCompat="@drawable/icon_ev_emf" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"
@@ -139,7 +139,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_fingerprints" />
+                    app:srcCompat="@drawable/icon_ev_uv" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView2"
@@ -188,7 +188,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_freezing" />
+                    app:srcCompat="@drawable/icon_ev_freezing" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView4"
@@ -228,7 +228,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_orbs" />
+                    app:srcCompat="@drawable/icon_ev_orbs" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView5"
@@ -266,7 +266,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_writing" />
+                    app:srcCompat="@drawable/icon_ev_writing" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView6"
@@ -353,7 +353,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_spiritbox" />
+                    app:srcCompat="@drawable/icon_ev_spiritbox" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView8"

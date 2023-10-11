@@ -7,7 +7,7 @@
         android:minLevel="0"
         android:maxLevel="1" >
         <bitmap
-            android:src="@drawable/icon_tier1"
+            android:src="@drawable/icon_tier_1"
             android:tint="#151B1B"
             android:tintMode="multiply">
         </bitmap>
@@ -17,7 +17,7 @@
         android:minLevel="2"
         android:maxLevel="2" >
         <bitmap
-            android:src="@drawable/icon_tier2"
+            android:src="@drawable/icon_tier_2"
             android:tint="#151B1B"
             android:tintMode="multiply">
         </bitmap>
@@ -28,7 +28,7 @@
         android:minLevel="3"
         android:maxLevel="3" >
         <bitmap
-            android:src="@drawable/icon_tier3"
+            android:src="@drawable/icon_tier_3"
             android:tint="#151B1B"
             android:tintMode="multiply">
         </bitmap>

@@ -2,6 +2,7 @@
 
     <!-- Page Details -->
 
+    <string name="toast_discardchanges">破棄された変更</string>
     <string name="general_evidence_button">証拠</string>
     <string name="general_maps_button">地図</string>
     <string name="general_tasks_button">タスク</string>
@@ -78,21 +79,21 @@
 
     <!-- Solo/Team Data -->
 
-    <string name="evidence_timer_label">準備時間：</string>
-    <string name="evidence_timer_difficulty_default">なし</string>
-    <string name="evidence_timer_difficulty_1">アマチュア</string>
-    <string name="evidence_timer_difficulty_2">中級</string>
-    <string name="evidence_timer_difficulty_3">プロ</string>
-    <string name="evidence_timer_difficulty_4">悪夢</string>
-    <string name="evidence_timer_difficulty_5">狂気</string>
-    <string name="evidence_timer_difficulty_label">困難：</string>
-    <string name="evidence_timer_maplabel">地図：</string>
-    <string name="evidence_timer_actionlabel">アクション</string>
-    <string name="evidence_timer_setuplabel">設定</string>
-    <string name="evidence_sanity_huntwarn">狩猟警告</string>
-    <string name="evidence_sanitymeter_title">最大正気度レベル</string>
-    <string name="evidence_ghosts_title">幽霊</string>
-    <string name="evidence_evidence_title">証拠</string>
+    <string name="investigation_timer_label">準備時間：</string>
+    <string name="investigation_timer_difficulty_default">なし</string>
+    <string name="investigation_timer_difficulty_1">アマチュア</string>
+    <string name="investigation_timer_difficulty_2">中級</string>
+    <string name="investigation_timer_difficulty_3">プロ</string>
+    <string name="investigation_timer_difficulty_4">悪夢</string>
+    <string name="investigation_timer_difficulty_5">狂気</string>
+    <string name="investigation_timer_difficulty_label">困難：</string>
+    <string name="investigation_timer_maplabel">地図：</string>
+    <string name="investigation_timer_actionlabel">アクション</string>
+    <string name="investigation_timer_setuplabel">設定</string>
+    <string name="investigation_sanity_huntwarn">狩猟警告</string>
+    <string name="investigation_sanitymeter_title">最大正気度レベル</string>
+    <string name="investigation_section_title_ghosts">幽霊</string>
+    <string name="investigation_section_title_evidence">証拠</string>
 
     <!-- Page Details -->
 

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
     android:paddingBottom="8dp"
     android:paddingHorizontal="8dp">
 
@@ -123,7 +126,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="start|center_vertical"
-                    android:text="$98"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +167,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="start|center_vertical"
-                    android:text="29"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +208,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="start|center_vertical"
-                    android:text="$290"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -256,7 +256,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="4dp"
-                        android:text="Unlocks at: 29"
                         android:textColor="#99AEB3"
                         android:textSize="20sp" />
 
@@ -278,7 +277,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="4dp"
-                        android:text="Unlocks at: 29"
                         android:textColor="#99AEB3"
                         android:textSize="20sp" />
 
@@ -307,7 +305,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="4dp"
-                android:text="Unlocks at: 29"
                 android:textColor="#99AEB3"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -8,470 +8,458 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="parent">
+    app:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_sanityTracking"
+        android:id="@+id/constraint_sanitycarousel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/rect_border"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout90"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_sanitycarousel"
+            android:id="@+id/constraintLayout21"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/rect_border"
-            android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout90"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".35"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout21"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="5dp"
-                android:background="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_controls"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/difficulty_title"
-                        style="?attr/primaryFont_Regular_Squeeze"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="#00FFFFFF"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/evidence_timer_difficulty_label"
-                        app:layout_constraintBottom_toTopOf="@+id/difficulty_prev"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_chainStyle="spread"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/difficulty_prev"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:adjustViewBounds="true"
-                        android:background="#00000000"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/icon_prev"
-                        android:tint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/difficulty_name"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/difficulty_title" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/difficulty_name"
-                        style="?attr/secondaryFont_Regular_Squeeze"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="@string/evidence_timer_difficulty_default"
-                        app:layout_constraintBottom_toBottomOf="@+id/difficulty_prev"
-                        app:layout_constraintEnd_toStartOf="@+id/difficulty_next"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/difficulty_prev"
-                        app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/difficulty_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:adjustViewBounds="true"
-                        android:background="#00000000"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/icon_next"
-                        android:tint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="@+id/difficulty_prev"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/difficulty_name"
-                        app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout30"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="4dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_controls">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/mapchoice_title"
-                        style="?attr/primaryFont_Regular_Squeeze"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="#00FFFFFF"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/evidence_timer_maplabel"
-                        app:layout_constraintBottom_toTopOf="@+id/mapchoice_prev"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintHorizontal_chainStyle="spread"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/mapchoice_prev"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:adjustViewBounds="true"
-                        android:background="#00000000"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/icon_prev"
-                        android:tint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/mapchoice_name"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mapchoice_title" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/mapchoice_name"
-                        style="?attr/secondaryFont_Regular_Squeeze"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="@string/evidence_timer_difficulty_default"
-                        android:textStyle="normal"
-                        app:layout_constraintBottom_toBottomOf="@+id/mapchoice_prev"
-                        app:layout_constraintEnd_toStartOf="@+id/mapchoice_next"
-                        app:layout_constraintStart_toEndOf="@+id/mapchoice_prev"
-                        app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/mapchoice_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:adjustViewBounds="true"
-                        android:background="#00000000"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/icon_next"
-                        android:tint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="@+id/mapchoice_prev"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/mapchoice_name"
-                        app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout90"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="3dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".25"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_sanitycarousel">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout54"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
-                    android:id="@+id/evidence_sanitymeter_phase_action"
-                    style="?attr/tertiaryFont_Bold_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/rect_border"
-                    android:backgroundTint="#434343"
-                    android:backgroundTintMode="multiply"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="3dp"
-                    android:text="@string/evidence_timer_actionlabel"
-                    android:textColor="#434343"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout20"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_phase_setup"
-                    app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_phase_setup"
-                    app:layout_constraintWidth_percent=".495" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
-                    android:id="@+id/evidence_sanitymeter_phase_setup"
-                    style="?attr/tertiaryFont_Bold_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="1dp"
-                    android:background="@drawable/rect_border"
-                    android:backgroundTint="#434343"
-                    android:backgroundTintMode="multiply"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="3dp"
-                    android:text="@string/evidence_timer_setuplabel"
-                    android:textColor="#434343"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout20"
-                    app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_phase_action"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".495" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout20"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_phase_setup">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/setup_title"
-                        style="?attr/primaryFont_Regular_Squeeze"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="8dp"
-                        android:background="#00FFFFFF"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/evidence_timer_label"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout11"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout20">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout56"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout55"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/evidence_timer_text"
-                            style="?attr/tertiaryFont_Bold_Squeeze"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:gravity="center"
-                            android:hint="@string/app_name"
-                            android:maxLines="1"
-                            android:text="@string/evidence_timer_time_3"
-                            android:textColor="?attr/subtitleFontColor"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_percent=".9" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout55"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout56"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent=".5">
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/timer_play_pause"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginEnd="4dp"
-                            android:adjustViewBounds="true"
-                            android:background="@null"
-                            android:contentDescription="@string/app_name"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/icon_play"
-                            android:tint="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/timer_skip"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintHorizontal_chainStyle="spread_inside"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/timer_skip"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="4dp"
-                            android:adjustViewBounds="true"
-                            android:background="@null"
-                            android:contentDescription="@string/app_name"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/icon_skip"
-                            android:tint="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/timer_play_pause"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout16"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/rect_border"
-            android:padding="8dp"
+            android:layout_marginEnd="5dp"
+            android:background="#00FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout90">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout53"
+                android:id="@+id/constraintLayout_controls"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_huntwarning"
+                android:layout_marginBottom="4dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout30"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/evidence_sanitymeter_title"
-                    style="?attr/tertiaryFont_Regular_Squeeze"
+                    android:id="@+id/difficulty_title"
+                    style="?attr/primaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="1dp"
                     android:background="#00FFFFFF"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/evidence_sanitymeter_title"
-                    app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_progressbar"
+                    android:text="@string/investigation_timer_difficulty_label"
+                    app:layout_constraintBottom_toTopOf="@+id/difficulty_prev"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/evidence_sanitymeter_percentage"
-                    style="@style/TimeRegular"
-                    android:layout_width="0dp"
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/difficulty_prev"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginStart="1dp"
-                    android:background="#00FFFFFF"
-                    android:ems="4"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/evidence_timer_time_3"
-                    app:layout_constraintBottom_toBottomOf="@+id/evidence_sanitymeter_progressbar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".25"
-                    app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_progressbar"
-                    app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_progressbar" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView
-                    android:id="@+id/evidence_sanitymeter_progressbar"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_seekbar"
-                    app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_percentage"
-                    app:layout_constraintHeight_percent=".5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_title" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView
-                    android:id="@+id/evidence_sanitymeter_seekbar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:maxHeight="3dp"
-                    android:progress="50"
-                    android:progressDrawable="@drawable/progressbar_progress"
-                    android:splitTrack="false"
-                    android:thumb="@drawable/seekbar_thumb"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_prev"
+                    android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/difficulty_name"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_progressbar"
-                    app:layout_constraintWidth_percent=".9" />
+                    app:layout_constraintTop_toBottomOf="@+id/difficulty_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/difficulty_name"
+                    style="?attr/secondaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/investigation_timer_difficulty_default"
+                    app:layout_constraintBottom_toBottomOf="@+id/difficulty_prev"
+                    app:layout_constraintEnd_toStartOf="@+id/difficulty_next"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/difficulty_prev"
+                    app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/difficulty_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_next"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/difficulty_prev"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/difficulty_name"
+                    app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout30"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_controls">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mapchoice_title"
+                    style="?attr/primaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#00FFFFFF"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/investigation_timer_maplabel"
+                    app:layout_constraintBottom_toTopOf="@+id/mapchoice_prev"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/mapchoice_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_prev"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mapchoice_name"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mapchoice_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mapchoice_name"
+                    style="?attr/secondaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/investigation_timer_difficulty_default"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/mapchoice_prev"
+                    app:layout_constraintEnd_toStartOf="@+id/mapchoice_next"
+                    app:layout_constraintStart_toEndOf="@+id/mapchoice_prev"
+                    app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/mapchoice_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_next"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/mapchoice_prev"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mapchoice_name"
+                    app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout90"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_sanitycarousel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout54"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
-                android:id="@+id/evidence_sanitymeter_huntwarning"
+                android:id="@+id/evidence_sanitymeter_phase_action"
                 style="?attr/tertiaryFont_Bold_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="1dp"
                 android:background="@drawable/rect_border"
                 android:backgroundTint="#434343"
                 android:backgroundTintMode="multiply"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="5dp"
-                android:text="@string/evidence_sanity_huntwarn"
+                android:padding="3dp"
+                android:text="@string/investigation_timer_actionlabel"
                 android:textColor="#434343"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_phase_setup"
+                app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_phase_setup"
+                app:layout_constraintWidth_percent=".495" />
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
+                android:id="@+id/evidence_sanitymeter_phase_setup"
+                style="?attr/tertiaryFont_Bold_Squeeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="1dp"
+                android:background="@drawable/rect_border"
+                android:backgroundTint="#434343"
+                android:backgroundTintMode="multiply"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="3dp"
+                android:text="@string/investigation_timer_setuplabel"
+                android:textColor="#434343"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout20"
+                app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_phase_action"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".495" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_phase_setup">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/setup_title"
+                    style="?attr/primaryFont_Regular_Squeeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#00FFFFFF"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/investigation_timer_label"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout53" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout20">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout56"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/constraintLayout55"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/evidence_timer_text"
+                        style="?attr/tertiaryFont_Bold_Squeeze"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:hint="@string/app_name"
+                        android:maxLines="1"
+                        android:text="@string/investigation_timer_time_3"
+                        android:textColor="?attr/subtitleFontColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent=".9" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout55"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout56"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".5">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/timer_play_pause"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="4dp"
+                        android:adjustViewBounds="true"
+                        android:background="@null"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_play"
+                        android:tint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/timer_skip"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/timer_skip"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="4dp"
+                        android:adjustViewBounds="true"
+                        android:background="@null"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_skip"
+                        android:tint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/timer_play_pause"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout16"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rect_border"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout90">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout53"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_huntwarning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/evidence_sanitymeter_title"
+                style="?attr/tertiaryFont_Regular_Squeeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="1dp"
+                android:background="#00FFFFFF"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/investigation_sanitymeter_title"
+                app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.data.OutlineTextView
+                android:id="@+id/evidence_sanitymeter_percentage"
+                style="@style/TimeRegular"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="1dp"
+                android:background="#00FFFFFF"
+                android:ems="4"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/investigation_timer_time_3"
+                app:layout_constraintBottom_toBottomOf="@+id/evidence_sanitymeter_progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_progressbar"
+                app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_progressbar" />
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView
+                android:id="@+id/evidence_sanitymeter_progressbar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_seekbar"
+                app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_percentage"
+                app:layout_constraintHeight_percent=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_title" />
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView
+                android:id="@+id/evidence_sanitymeter_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxHeight="3dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/progressbar_progress"
+                android:splitTrack="false"
+                android:thumb="@drawable/seekbar_thumb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_progressbar"
+                app:layout_constraintWidth_percent=".9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
+            android:id="@+id/evidence_sanitymeter_huntwarning"
+            style="?attr/tertiaryFont_Bold_Squeeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/rect_border"
+            android:backgroundTint="#434343"
+            android:backgroundTintMode="multiply"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="@string/investigation_sanity_huntwarn"
+            android:textColor="#434343"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout53" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

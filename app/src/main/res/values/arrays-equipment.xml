@@ -192,6 +192,7 @@
     </string-array>
 
     <!-- Evidence Icons -->
+    <!--
     <integer-array name="evidence_icon_array">
         <item>@drawable/icon_dots</item>
         <item>@drawable/icon_emf5</item>
@@ -200,6 +201,16 @@
         <item>@drawable/icon_orbs</item>
         <item>@drawable/icon_writing</item>
         <item>@drawable/icon_spiritbox</item>
+    </integer-array>
+    -->
+    <integer-array name="evidence_icon_array">
+        <item>@drawable/icon_ev_dots</item>
+        <item>@drawable/icon_ev_emf</item>
+        <item>@drawable/icon_ev_uv</item>
+        <item>@drawable/icon_ev_freezing</item>
+        <item>@drawable/icon_ev_orbs</item>
+        <item>@drawable/icon_ev_writing</item>
+        <item>@drawable/icon_ev_spiritbox</item>
     </integer-array>
 
     <!-- Evidence Example Image -->

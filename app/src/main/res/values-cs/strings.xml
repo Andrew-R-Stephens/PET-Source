@@ -4,6 +4,7 @@
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
+    <string name="toast_discardchanges">" Změny byly zahozeny"</string>
     <string name="general_evidence_button">Důkaz</string>
     <string name="general_maps_button">Mapy</string>
     <string name="general_tasks_button">Úkoly</string>
@@ -81,19 +82,19 @@
         EVIDENCE PAGE
     -->
     <!-- Page Details -->
-    <string name="evidence_timer_label">Čas přípravy:</string>
-    <string name="evidence_timer_difficulty_default">Žádné</string>
-    <string name="evidence_timer_difficulty_1">Amatér</string>
-    <string name="evidence_timer_difficulty_2">Středně pokročilý</string>
-    <string name="evidence_timer_difficulty_3">Profesionál</string>
-    <string name="evidence_timer_maplabel">Mapa:</string>
-    <string name="evidence_timer_difficulty_label">Obtížnost:</string>
-    <string name="evidence_timer_actionlabel">AKCE</string>
-    <string name="evidence_timer_setuplabel">NASTAVENÍ</string>
-    <string name="evidence_sanity_huntwarn">POZOR NA LOV</string>
-    <string name="evidence_sanitymeter_title">MAX. úroveň příčetnosti</string>
-    <string name="evidence_ghosts_title">Duchové</string>
-    <string name="evidence_evidence_title">Důkaz</string>
+    <string name="investigation_timer_label">Čas přípravy:</string>
+    <string name="investigation_timer_difficulty_default">Žádné</string>
+    <string name="investigation_timer_difficulty_1">Amatér</string>
+    <string name="investigation_timer_difficulty_2">Středně pokročilý</string>
+    <string name="investigation_timer_difficulty_3">Profesionál</string>
+    <string name="investigation_timer_maplabel">Mapa:</string>
+    <string name="investigation_timer_difficulty_label">Obtížnost:</string>
+    <string name="investigation_timer_actionlabel">AKCE</string>
+    <string name="investigation_timer_setuplabel">NASTAVENÍ</string>
+    <string name="investigation_sanity_huntwarn">POZOR NA LOV</string>
+    <string name="investigation_sanitymeter_title">MAX. úroveň příčetnosti</string>
+    <string name="investigation_section_title_ghosts">Duchové</string>
+    <string name="investigation_section_title_evidence">Důkaz</string>
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_demon">Démon</string>
@@ -927,7 +928,7 @@
     <string name="spiritbox_entry_q7_3">Můžeme s něčím pomoci?</string>
     <string name="spiritbox_entry_q7_9">Co chcete?</string>
     <string name="spiritbox_entry_q7_11">Proč jste tady?</string>
-    <string name="evidence_timer_difficulty_4">Noční můra</string>
+    <string name="investigation_timer_difficulty_4">Noční můra</string>
     <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
     <string name="spiritbox_entry_q8_1">Jaký je můj zdravý rozum?</string>
     <string name="spiritbox_entry_q8_2">Jak moc jsem blázen?</string>
@@ -940,7 +941,7 @@
     <string name="popup_ghost_info">Informace</string>
 
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
-    <string name="evidence_timer_difficulty_5">Šílenství</string>
+    <string name="investigation_timer_difficulty_5">Šílenství</string>
     <string name="popup_ghost_huntdata">Údaje o lovu</string>
 
     <string name="settings_appearancesettings">Vzhled</string>

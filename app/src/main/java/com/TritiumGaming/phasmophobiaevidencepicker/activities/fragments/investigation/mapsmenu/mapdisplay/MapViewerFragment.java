@@ -68,6 +68,8 @@ public class MapViewerFragment extends InvestigationFragment {
         AppCompatImageButton button_nextLayer = view.findViewById(R.id.controller_nextLayerButton);
         AppCompatImageButton button_prevLayer = view.findViewById(R.id.controller_prevLayerButton);
 
+        AppCompatImageView button_back = view.findViewById(R.id.button_back);
+
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
         imageDisplay = view.findViewById(R.id.interactiveMapView);
@@ -117,6 +119,10 @@ public class MapViewerFragment extends InvestigationFragment {
             showHelpPopup();
         });
 
+        button_back.setOnClickListener(v -> {
+            handleBackAction();
+        });
+
         if (mapMenuViewModel != null) {
             Log.d("MapName", mapMenuViewModel.getCurrentMapData().getMapName());
             mapName.setText(mapMenuViewModel.getCurrentMapData().getMapName());
@@ -149,6 +155,10 @@ public class MapViewerFragment extends InvestigationFragment {
         startThreads();
         updateComponents();// Spinner click listener
 
+    }
+
+    public void handleBackAction() {
+        backPressedHandler();
     }
 
     public void setMapLayer(int index) {

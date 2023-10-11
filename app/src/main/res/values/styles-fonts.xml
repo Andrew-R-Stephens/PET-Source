@@ -363,4 +363,109 @@
         <item name="android:textColor">?attr/bodyFontColor</item>
     </style>
 
+    <!-- Neucha Regular -->
+    <style name="NeuchaRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="NeuchaRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="NeuchaRegular_Manual">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!--
+        JETBRAINS MONO
+    -->
+
+    <!-- JetbrainsMono Regular -->
+    <style name="JetbrainsMonoRegular" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoRegular_Manual">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- JetbrainsMono Italic -->
+    <style name="JetbrainsMonoItalic" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoItalic_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoItalic_Manual">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- JetbrainsMono Thin -->
+    <style name="JetbrainsMonoThin" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoThin_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoThin_Manual">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+    <!-- JetbrainsMono ExtraBold -->
+    <style name="JetbrainsMonoBold" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+    <style name="JetbrainsMonoBold_Manual">
+        <item name="android:fontFamily">@font/jetbrains_mono</item>
+        <item name="fontFamily">@font/jetbrains_mono</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/bodyFontColor</item>
+    </style>
+
+
 </resources>

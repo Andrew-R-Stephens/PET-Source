@@ -4,6 +4,7 @@
         UNIVERSAL DETAILS
     -->
     <!-- Page Details -->
+    <string name="toast_discardchanges">Изменения отменены</string>
     <string name="general_evidence_button">Доказательства</string>
     <string name="general_maps_button">Карты</string>
     <string name="general_tasks_button">Задачи</string>
@@ -93,21 +94,21 @@
 
 
     <!-- Solo/Team Data -->
-    <string name="evidence_timer_label">Время подготовки:</string>
-    <string name="evidence_timer_difficulty_default">Нет</string>
-    <string name="evidence_timer_difficulty_1">Любитель</string>
-    <string name="evidence_timer_difficulty_2">Средний</string>
-    <string name="evidence_timer_difficulty_3">Профессионал</string>
-    <string name="evidence_timer_difficulty_4">Кошмар</string>
-    <string name="evidence_timer_difficulty_5">Безумие</string>
-    <string name="evidence_timer_difficulty_label">Сложность:</string>
-    <string name="evidence_timer_maplabel">Карта:</string>
-    <string name="evidence_timer_actionlabel">ДЕЙСТВИЕ</string>
-    <string name="evidence_timer_setuplabel">НАСТРОЙКА</string>
-    <string name="evidence_sanity_huntwarn">ПРЕДУПРЕЖДЕНИЕ ОХОТЫ</string>
-    <string name="evidence_sanitymeter_title">МАКСИМАЛЬНЫЙ уровень вменяемости</string>
-    <string name="evidence_ghosts_title">Призраки</string>
-    <string name="evidence_evidence_title">Доказательства</string>
+    <string name="investigation_timer_label">Время подготовки:</string>
+    <string name="investigation_timer_difficulty_default">Нет</string>
+    <string name="investigation_timer_difficulty_1">Любитель</string>
+    <string name="investigation_timer_difficulty_2">Средний</string>
+    <string name="investigation_timer_difficulty_3">Профессионал</string>
+    <string name="investigation_timer_difficulty_4">Кошмар</string>
+    <string name="investigation_timer_difficulty_5">Безумие</string>
+    <string name="investigation_timer_difficulty_label">Сложность:</string>
+    <string name="investigation_timer_maplabel">Карта:</string>
+    <string name="investigation_timer_actionlabel">ДЕЙСТВИЕ</string>
+    <string name="investigation_timer_setuplabel">НАСТРОЙКА</string>
+    <string name="investigation_sanity_huntwarn">ПРЕДУПРЕЖДЕНИЕ ОХОТЫ</string>
+    <string name="investigation_sanitymeter_title">МАКСИМАЛЬНЫЙ уровень вменяемости</string>
+    <string name="investigation_section_title_ghosts">Призраки</string>
+    <string name="investigation_section_title_evidence">Доказательства</string>
     <string name="popup_ghost_strength">Сильные стороны</string>
     <string name="popup_ghost_weakness">Слабые стороны</string>
     <string name="popup_ghost_info">Информация</string>

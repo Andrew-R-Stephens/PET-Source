@@ -22,13 +22,16 @@
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"
-            app:destination="@id/objectivesFragment" />
+            app:destination="@id/objectivesFragment"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_evidenceFragment_to_mapMenuFragment"
-            app:destination="@id/mapMenuFragment" />
+            app:destination="@id/mapMenuFragment"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_evidenceFragment_to_codexFragment"
-            app:destination="@id/codexFragment" />
+            app:destination="@id/codexFragment"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
@@ -48,14 +51,30 @@
         android:label="MapViewerFragment" />
     <action
         android:id="@+id/action_global_objectivesFragment"
-        app:destination="@id/objectivesFragment" />
+        app:destination="@id/objectivesFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out" />
     <action
         android:id="@+id/action_global_evidenceFragment"
-        app:destination="@id/evidenceFragment" />
+        app:destination="@id/evidenceFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_mapMenuFragment"
-        app:destination="@id/mapMenuFragment" />
+        app:destination="@id/mapMenuFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out" />
     <action
         android:id="@+id/action_global_codexFragment"
-        app:destination="@id/codexFragment" />
+        app:destination="@id/codexFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out" />
 </navigation>

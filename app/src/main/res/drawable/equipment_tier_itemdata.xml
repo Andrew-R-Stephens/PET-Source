@@ -34,7 +34,8 @@
                 android:scaleWidth="75%"
                 android:scaleHeight="75%"
                 android:scaleGravity="start|top"
-                android:drawable="@drawable/equipment_tier_square_itemdata" />
+                android:drawable="@drawable/equipment_tier_square_itemdata"
+                />
         </item>
 
         <item>

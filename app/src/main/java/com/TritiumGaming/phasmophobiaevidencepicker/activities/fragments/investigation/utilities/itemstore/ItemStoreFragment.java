@@ -32,6 +32,12 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.data.ItemStoreEquipmentGroupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.data.ItemStoreEquipmentItemData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.data.ItemStoreEquipmentStoreData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreEquipmentGroup;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreEquipmentItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreScrollView;
 
 import java.util.ArrayList;
 
@@ -59,6 +65,8 @@ public class ItemStoreFragment extends InvestigationFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        AppCompatImageView back_button = view.findViewById(R.id.button_back);
 
         if(getContext() == null || getContext().getResources() == null) { return; }
 
@@ -154,20 +162,27 @@ public class ItemStoreFragment extends InvestigationFragment {
             }
         });
 
+        back_button.setOnClickListener(v -> {
+            handleBackAction(dataView);
+        });
+
         if(getActivity() != null) {
             getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            if(dataView.getVisibility() == View.VISIBLE) {
-                                closeItemDataView(dataView);
-                                return;
-                            }
-                            backPressedHandler();
-                        }
-                    });
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        handleBackAction(dataView);
+                    }
+                });
         }
+    }
 
+    public void handleBackAction(View dataView) {
+        if(dataView.getVisibility() == View.VISIBLE) {
+            closeItemDataView(dataView);
+            return;
+        }
+        backPressedHandler();
     }
 
     @SuppressLint("ClickableViewAccessibility")

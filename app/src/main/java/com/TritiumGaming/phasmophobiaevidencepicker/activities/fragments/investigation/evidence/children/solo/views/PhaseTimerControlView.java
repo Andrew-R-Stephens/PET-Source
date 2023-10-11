@@ -107,5 +107,9 @@ public class PhaseTimerControlView {
             pause();
     }
 
+    public void reset() {
+        pause();
+    }
+
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <item>
@@ -20,7 +21,6 @@
             android:top="10dp"
             android:bottom="10dp" >
         </item>
-
         <item
             android:id="@+id/ic_tier"
             android:left="2dp">
@@ -32,7 +32,6 @@
                 android:drawable="@drawable/equipment_tier_square" />
 
         </item>
-
         <item
             android:id="@+id/ic_border">
             <selector>

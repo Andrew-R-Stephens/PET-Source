@@ -125,4 +125,8 @@ public class WarnTextView extends AppCompatTextView {
         }
     }
 
+    public void reset() {
+        setState(false);
+    }
+
 }

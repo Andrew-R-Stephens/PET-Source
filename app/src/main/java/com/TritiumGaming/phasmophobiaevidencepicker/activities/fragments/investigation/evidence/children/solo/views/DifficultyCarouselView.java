@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
 /**
  * DifficultySelectControl class
@@ -19,9 +20,9 @@ public class DifficultyCarouselView {
     private PhaseTimerControlView timerControlView;
     private AppCompatTextView difficultyNameView;
     private SanitySeekBarView sanityProgressBar;
-    private WarnTextView warnTextView;
+    private WarnTextView warnTextView_warn, warnTextView_setup, warnTextView_action;
 
-    private EvidenceFragment.CompositeListener compositeListenerPrev, compositeListenerNext;
+    private CompositeListener compositeListenerPrev, compositeListenerNext;
 
 
     /**
@@ -34,7 +35,9 @@ public class DifficultyCarouselView {
             AppCompatImageButton prevButton,
             AppCompatImageButton nextButton,
             AppCompatTextView difficultyNameView,
-            WarnTextView warnTextView,
+            WarnTextView warnTextView_warn,
+            WarnTextView warnTextView_setup,
+            WarnTextView warnTextView_action,
             SanitySeekBarView sanityProgressBar) {
 
         this.difficultyCarouselData = difficultyCarouselData;
@@ -43,7 +46,9 @@ public class DifficultyCarouselView {
         this.difficultyNameView = difficultyNameView;
         this.timerView = timerView;
         this.sanityProgressBar = sanityProgressBar;
-        this.warnTextView = warnTextView;
+        this.warnTextView_warn = warnTextView_warn;
+        this.warnTextView_setup = warnTextView_setup;
+        this.warnTextView_action = warnTextView_action;
 
         setPrev(prevButton);
         setNext(nextButton);
@@ -59,15 +64,7 @@ public class DifficultyCarouselView {
         prev.setOnClickListener(v -> {
 
             if (difficultyCarouselData.decrementDifficulty()) {
-                difficultyCarouselData.resetSanityData();
-                if(difficultyCarouselData.getDifficultyIndex() == 4) {
-                    difficultyCarouselData.getEvidenceViewModel().getSanityData().setInsanityActual(25f);
-                }
-                sanityProgressBar.updateProgress();
-                difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
-                timerControlView.pause();
-                createTimerView();
-                warnTextView.invalidate();
+                updateRelatedComponents();
                 compositeListenerPrev.onClick(v);
             }
         });
@@ -82,18 +79,25 @@ public class DifficultyCarouselView {
         next.setOnClickListener(v -> {
 
             if (difficultyCarouselData.incrementDifficulty()) {
-                difficultyCarouselData.resetSanityData();
-                if(difficultyCarouselData.getDifficultyIndex() == 4) {
-                    difficultyCarouselData.getEvidenceViewModel().getSanityData().setInsanityActual(25f);
-                }
-                sanityProgressBar.updateProgress();
-                difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
-                timerControlView.pause();
-                createTimerView();
-                warnTextView.invalidate();
+                updateRelatedComponents();
                 compositeListenerNext.onClick(v);
             }
         });
+    }
+
+    private void updateRelatedComponents() {
+        difficultyCarouselData.resetSanityData();
+        if(difficultyCarouselData.getDifficultyIndex() == 4) {
+            difficultyCarouselData.getEvidenceViewModel().getSanityData().setInsanityActual(25f);
+        }
+        sanityProgressBar.updateProgress();
+        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
+        timerControlView.pause();
+        createTimerView();
+
+        warnTextView_warn.reset();
+        warnTextView_setup.reset();
+        warnTextView_action.reset();
     }
 
     /**
@@ -123,8 +127,8 @@ public class DifficultyCarouselView {
     }
 
     public void registerListener(
-            EvidenceFragment.CompositeListener compositeListenerPrev,
-            EvidenceFragment.CompositeListener compositeListenerNext
+            CompositeListener compositeListenerPrev,
+            CompositeListener compositeListenerNext
     ) {
 
         this.compositeListenerPrev = compositeListenerPrev;

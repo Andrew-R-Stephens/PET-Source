@@ -3,6 +3,7 @@
 
     <!-- Page Details -->
 
+    <string name="toast_discardchanges">Alterações descartadas</string>
     <string name="general_evidence_button">Evidência</string>
     <string name="general_maps_button">Mapas</string>
     <string name="general_tasks_button">Tarefas</string>
@@ -78,21 +79,21 @@
 
     <!-- Solo/Team Data -->
 
-    <string name="evidence_timer_label">Tempo de preparação:</string>
-    <string name="evidence_timer_difficulty_default">Nenhum</string>
-    <string name="evidence_timer_difficulty_1">Amador</string>
-    <string name="evidence_timer_difficulty_2">Intermediário</string>
-    <string name="evidence_timer_difficulty_3">Profissional</string>
-    <string name="evidence_timer_difficulty_4">Pesadelo</string>
-    <string name="evidence_timer_difficulty_5">Insanidade</string>
-    <string name="evidence_timer_difficulty_label">Dificuldade:</string>
-    <string name="evidence_timer_maplabel">Mapa:</string>
-    <string name="evidence_timer_actionlabel">AÇÃO</string>
-    <string name="evidence_timer_setuplabel">CONFIGURAR</string>
-    <string name="evidence_sanity_huntwarn">AVISO DE CAÇA</string>
-    <string name="evidence_sanitymeter_title">Nível máximo de sanidade</string>
-    <string name="evidence_ghosts_title">Fantasmas</string>
-    <string name="evidence_evidence_title">Evidência</string>
+    <string name="investigation_timer_label">Tempo de preparação:</string>
+    <string name="investigation_timer_difficulty_default">Nenhum</string>
+    <string name="investigation_timer_difficulty_1">Amador</string>
+    <string name="investigation_timer_difficulty_2">Intermediário</string>
+    <string name="investigation_timer_difficulty_3">Profissional</string>
+    <string name="investigation_timer_difficulty_4">Pesadelo</string>
+    <string name="investigation_timer_difficulty_5">Insanidade</string>
+    <string name="investigation_timer_difficulty_label">Dificuldade:</string>
+    <string name="investigation_timer_maplabel">Mapa:</string>
+    <string name="investigation_timer_actionlabel">AÇÃO</string>
+    <string name="investigation_timer_setuplabel">CONFIGURAR</string>
+    <string name="investigation_sanity_huntwarn">AVISO DE CAÇA</string>
+    <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
+    <string name="investigation_section_title_ghosts">Fantasmas</string>
+    <string name="investigation_section_title_evidence">Evidência</string>
 
     <!-- Page Details -->
 

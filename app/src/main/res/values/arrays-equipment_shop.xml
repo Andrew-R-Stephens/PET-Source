@@ -197,7 +197,7 @@
     </integer-array>
     <integer-array name="shop_equipment_soundsensor" >
         <item>@string/equipment_info_name_soundsensor</item>
-        <item>@drawable/icon_sh_spiritboxaudio</item>
+        <item>@drawable/icon_sh_soundsensor</item>
         <item>@array/shop_equipment_soundsensor_images</item>
         <item>@array/shop_equipment_soundsensor_data_flavortext</item>
         <item>@array/shop_equipment_soundsensor_data_info</item>

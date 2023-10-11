@@ -3,42 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:showIn="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_constraintLayout"
+    <include
+        android:id="@+id/layout_evidence_tool_wrapper"
+        layout="@layout/item_evidence_tool_wrapper"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout41"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout41"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout_sanityTracking"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_toggleSanity"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_tab_arrow_land"
+            app:layout_constraintBottom_toTopOf="@+id/button_reset"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_reset"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_tab_reset_land"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_toggleSanity" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_sanityTracking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".25">
 
         <include
             android:id="@+id/layout_sanity_tool"
             layout="@layout/item_sanity_tool"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/layout_evidence_tool"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".25" />
-
-        <include
-            android:id="@+id/layout_evidence_tool"
-            layout="@layout/item_evidence_tool"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:animateLayoutChanges="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/layout_sanity_tool"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

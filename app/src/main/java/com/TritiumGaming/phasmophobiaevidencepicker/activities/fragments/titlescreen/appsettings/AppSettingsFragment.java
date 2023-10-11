@@ -22,6 +22,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -309,7 +310,14 @@ public class AppSettingsFragment extends Fragment {
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
-                            //THIS SHOULD DISABLE BACK PRESSED
+                            Navigation.findNavController(view).popBackStack();
+                            if(getContext() != null) {
+                                String message = getString(R.string.toast_discardchanges);
+                                Toast toast = Toast.makeText(getContext().getApplicationContext(),
+                                        message,
+                                        com.google.android.material.R.integer.material_motion_duration_short_2);
+                                toast.show();
+                            }
                         }
                     });
         }
@@ -370,6 +378,7 @@ public class AppSettingsFragment extends Fragment {
             ft.setReorderingAllowed(false);
         }
         ft.detach(AppSettingsFragment.this).commitNow();
+        ft = getParentFragmentManager().beginTransaction();
         ft.attach(AppSettingsFragment.this).commitNow();
     }
 

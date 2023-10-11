@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="evidence_ghosts_title">Fantômes</string>
-    <string name="evidence_evidence_title">Preuve</string>
+    <string name="investigation_section_title_ghosts">Fantômes</string>
+    <string name="investigation_section_title_evidence">Preuve</string>
 
     <string name="titlescreen_beta_label">Bêta</string>
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
 
-    <string name="evidence_timer_difficulty_label">Difficulté:</string>
-    <string name="evidence_timer_label">Temps de préparation:</string>
-    <string name="evidence_timer_difficulty_default">Aucun</string>
-    <string name="evidence_timer_difficulty_1">Amatrice</string>
-    <string name="evidence_timer_difficulty_2">Intermédiaire</string>
-    <string name="evidence_timer_difficulty_3">Professionnel</string>
+    <string name="investigation_timer_difficulty_label">Difficulté:</string>
+    <string name="investigation_timer_label">Temps de préparation:</string>
+    <string name="investigation_timer_difficulty_default">Aucun</string>
+    <string name="investigation_timer_difficulty_1">Amatrice</string>
+    <string name="investigation_timer_difficulty_2">Intermédiaire</string>
+    <string name="investigation_timer_difficulty_3">Professionnel</string>
 
 
     <string name="aboutinfo_aboutapp_info">
@@ -648,6 +648,7 @@
     <string name="ghost_type_wraith">Spectre</string>
     <string name="ghost_type_yokai">Yokai</string>
     <string name="ghost_type_yurei">Yurei</string>
+    <string name="toast_discardchanges">Modifications rejetées</string>
     <string name="general_evidence_button">Preuve</string>
     <string name="general_maps_button">Plans</string>
     <string name="general_tasks_button">Tâches</string>
@@ -673,11 +674,11 @@
     <string name="objective_info_extinguishcandle">Faire souffler une bougie par le fantôme</string>
     <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe de 25% ou moins</string>
 
-    <string name="evidence_timer_maplabel">Carte :</string>
-    <string name="evidence_sanity_huntwarn">Avertissement de chasse</string>
-    <string name="evidence_timer_actionlabel">Action</string>
-    <string name="evidence_timer_setuplabel">Préparation</string>
-    <string name="evidence_sanitymeter_title">Santé mentale maximale</string>
+    <string name="investigation_timer_maplabel">Carte :</string>
+    <string name="investigation_sanity_huntwarn">Avertissement de chasse</string>
+    <string name="investigation_timer_actionlabel">Action</string>
+    <string name="investigation_timer_setuplabel">Préparation</string>
+    <string name="investigation_sanitymeter_title">Santé mentale maximale</string>
     <string name="settings_enablehuntaudioqueue">Avertissement sonore lors de chasse</string>
     <string name="settings_huntwarningflashtimeout">délai de flash d\'avertissement de chasse</string>
     <string name="settings_huntwarningflashtimeout_never">Jamais Dépasser</string>
@@ -738,7 +739,7 @@
     <string name="review_requesttitle">Veuillez considérer la note P.E.T.!</string>
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
-    <string name="evidence_timer_difficulty_4">Cauchemar</string>
+    <string name="investigation_timer_difficulty_4">Cauchemar</string>
     <string name="settings_colorblindnessmode_monochromacy">Achromatopsie</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deutéranopie</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
@@ -764,7 +765,7 @@
     <string name="popup_ghost_info">Informations</string>
 
     <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
-    <string name="evidence_timer_difficulty_5">Folie</string>
+    <string name="investigation_timer_difficulty_5">Folie</string>
     <string name="popup_ghost_huntdata">Données de Chasse</string>
 
     <string name="settings_appearancesettings">Apparence</string>

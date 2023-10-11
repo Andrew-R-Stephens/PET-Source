@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
@@ -22,6 +25,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
 /**
  * EvidenceSoloFragment class
@@ -74,7 +78,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         AppCompatImageButton difficulty_next = view.findViewById(R.id.difficulty_next);
         AppCompatImageButton map_prev = view.findViewById(R.id.mapchoice_prev);
         AppCompatImageButton map_next = view.findViewById(R.id.mapchoice_next);
-        //View navigation_fragListener_reset = view.findViewById(R.id.listener_resetAll);
+        AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
         sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
@@ -86,26 +90,37 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             }
         });
 
-        /*
-        navigation_fragListener_reset.setOnClickListener(v -> {
+        button_reset.setOnClickListener(v -> {
                     reset();
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+                    /*
+                    FragmentTransaction ft;
+
+                    ft = getParentFragmentManager().beginTransaction();
                     if (Build.VERSION.SDK_INT >= 26) {
                         ft.setReorderingAllowed(false);
                     }
                     ft.detach(EvidenceSoloFragment.this).commitNow();
+
+                    ft = getParentFragmentManager().beginTransaction();
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        ft.setReorderingAllowed(false);
+                    }
                     ft.attach(EvidenceSoloFragment.this).commitNow();
+                    */
                 }
         );
-*/
-        // TIMER CONTROL
+
+        /*
+            TIMER CONTROL
+         */
 
         phaseTimerCountdownView = new PhaseTimerView(
                 sanityData,
                 phaseTimerData,
                 phaseTimerTextView);
 
-        PhaseTimerControlView playPauseButton = new PhaseTimerControlView(
+        playPauseButton = new PhaseTimerControlView(
                 phaseTimerData,
                 phaseTimerCountdownView,
                 timer_play_pause,
@@ -113,7 +128,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 R.drawable.icon_pause);
 
         // MAP SELECTION
-        MapCarouselView mapTrackControl = new MapCarouselView(
+        mapTrackControl = new MapCarouselView(
             mapCarouselData,
             map_prev, map_next, map_name);
 
@@ -123,7 +138,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             evidenceViewModel.getGhostOrderData().updateOrder();
             requestInvalidateGhostContainer(ghostContainer);
 
-            ScrollView parentScroller = ((ScrollView)ghostContainer.getParent());
+            ScrollView parentScroller = ((ScrollView)ghostContainer
+                    .findViewById(R.id.list).getParent());
             if(parentScroller != null) {
                 parentScroller.smoothScrollTo(0, 0);
             }
@@ -142,7 +158,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name,
-                sanityWarningTextView,
+                sanityWarningTextView, sanityPhaseView_action, sanityPhaseView_setup,
                 sanitySeekBarView
         );
 
@@ -167,6 +183,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         disableUIThread();
 
         super.softReset();
+
+        requestInvalidateComponents();
+
+        enableUIThread();
+    }
+
+    @Override
+    public void requestInvalidateComponents() {
+        super.requestInvalidateComponents();
+
+        sanityPhaseView_setup.reset();
+        sanityPhaseView_action.reset();
     }
 
     /**

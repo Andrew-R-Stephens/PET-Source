@@ -39,7 +39,7 @@ public class SanityMeterView extends View {
     private final Rect sanityRect = new Rect();
 
     @ColorInt
-    int themeColor = 0;
+    int themeColor = 0, sanityTint = 0;
     private ColorFilter filter = null;
 
     private Bitmap sanityImg_bottom = null;
@@ -101,6 +101,8 @@ public class SanityMeterView extends View {
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
         themeColor = Color.WHITE;
+        theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
+        sanityTint = typedValue.data;
     }
 
     /**
@@ -190,7 +192,6 @@ public class SanityMeterView extends View {
 
         paint.setStrokeWidth(1f);
         paint.setColor(Color.argb(0, 255, 255, 255));
-        //paint.setColor(Color.argb(0, 255, 255, 255));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawOval(containerRect, paint);
 
@@ -201,6 +202,7 @@ public class SanityMeterView extends View {
                     Color.rgb((255),
                             (int) (255 * sanityData.getInsanityPercent()),
                             (int) (255 * sanityData.getInsanityPercent())));
+
             if (sanityData != null) {
                 canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
             }
@@ -209,24 +211,11 @@ public class SanityMeterView extends View {
             paint.setStyle(Paint.Style.STROKE);
             canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
 
-            /*
-            float inset = 20;
-            paint.setStrokeWidth(1f);
-            paint.setColor(Color.BLACK);
-            paint.setStyle(Paint.Style.FILL);
-            canvas.drawOval(
-                    containerRect.left+inset,
-                    containerRect.top+inset,
-                    containerRect.right-inset,
-                    containerRect.bottom-inset, paint);
-            */
-
             createFilterColor(
                     Color.red(themeColor),
                     (int) (Color.green(themeColor) * sanityData.getInsanityPercent()),
                     (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));
         }
-
 
         if (sanityRect != null) {
             if (sanityImg_bottom != null) {

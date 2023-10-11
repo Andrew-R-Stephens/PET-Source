@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.ItemStoreEquipmentItem
+<com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.views.ItemStoreEquipmentItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tier_item"
@@ -9,4 +9,4 @@
     app:layout_constraintHeight_min="0dp"
     app:layout_constraintHeight_max="98dp"
     android:adjustViewBounds="true"
-    app:srcCompat="@drawable/equipment_tier_itemdata" />
+    android:src="@drawable/equipment_tier_itemdata" />
