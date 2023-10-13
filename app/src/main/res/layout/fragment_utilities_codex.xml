@@ -50,6 +50,8 @@
         android:layout_height="3dp"
         android:background="@drawable/icon_strikethrough_1"
         android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -32,14 +32,11 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
@@ -54,11 +51,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidenceViewData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioGroup;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostPopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
@@ -75,13 +74,14 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class EvidenceFragment extends InvestigationFragment {
 
+    protected GhostPopupData ghostPopupData;
     protected SanityData sanityData;
     protected PhaseTimerData phaseTimerData;
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
-    protected LinearLayout ghostContainer;
-    protected LinearLayout evidenceContainer;
+    protected LinearLayout list_ghosts;
+    protected LinearLayout list_evidences;
     protected ProgressBar ghostProgressBar,
             evidenceProgressBar;
 
@@ -101,9 +101,11 @@ public class EvidenceFragment extends InvestigationFragment {
     protected SanityMeterView sanityMeterView;
     protected WarnTextView sanityWarningTextView;
 
+    /*
     protected Drawable icon_circle;
     protected Drawable[] icons_strikethrough;
     private String[] titles;
+    */
 
     @ColorInt int fontEmphasisColor = 0;
 
@@ -152,15 +154,17 @@ public class EvidenceFragment extends InvestigationFragment {
             fontEmphasisColor = typedValue.data;
         }
 
+        /*
         titles = new String[] {
                 getResources().getString(R.string.popup_ghost_info),
                 getResources().getString(R.string.popup_ghost_strength),
                 getResources().getString(R.string.popup_ghost_weakness)
         };
+        */
 
         // GHOST / EVIDENCE CONTAINERS
         AppCompatTextView header_ghostLabel, header_evidenceLabel;
-        ConstraintLayout
+        FrameLayout
                 section_left = view.findViewById(R.id.column_left),
                 section_right = view.findViewById(R.id.column_right);
         section_right.findViewById(R.id.scrollview)
@@ -168,15 +172,15 @@ public class EvidenceFragment extends InvestigationFragment {
         if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
             header_ghostLabel = section_left.findViewById(R.id.label_container);
             header_evidenceLabel = section_right.findViewById(R.id.label_container);
-            ghostContainer = section_left.findViewById(R.id.list);
-            evidenceContainer = section_right.findViewById(R.id.list);
+            list_ghosts = section_left.findViewById(R.id.list);
+            list_evidences = section_right.findViewById(R.id.list);
             ghostProgressBar = section_left.findViewById(R.id.progressbar);
             evidenceProgressBar = section_right.findViewById(R.id.progressbar);
         } else {
             header_ghostLabel = section_right.findViewById(R.id.label_container);
             header_evidenceLabel = section_left.findViewById(R.id.label_container);
-            ghostContainer = section_right.findViewById(R.id.list);
-            evidenceContainer =  section_left.findViewById(R.id.list);
+            list_ghosts = section_right.findViewById(R.id.list);
+            list_evidences =  section_left.findViewById(R.id.list);
             ghostProgressBar = section_right.findViewById(R.id.progressbar);
             evidenceProgressBar = section_left.findViewById(R.id.progressbar);
         }
@@ -198,6 +202,7 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
+        /*
         // DRAWABLES
         icons_strikethrough = new Drawable[]{
                 ResourcesCompat.getDrawable(getResources(), R.drawable.icon_strikethrough_1, getContext().getTheme()),
@@ -206,6 +211,7 @@ public class EvidenceFragment extends InvestigationFragment {
                 ResourcesCompat.getDrawable(getResources(), R.drawable.icon_ev_omit, getContext().getTheme()),
         };
         icon_circle = ResourcesCompat.getDrawable(getResources(), R.drawable.icon_circle, getContext().getTheme());
+        */
 
         if(toggleSanityButton != null) {
             toggleSanityButton.setOnClickListener(v -> {
@@ -257,6 +263,8 @@ public class EvidenceFragment extends InvestigationFragment {
                 sanityData,
                 sanityPercentTextView);
 
+        /*
+
         // COLORS
         @ColorInt int color_strikethrough = Color.WHITE, color_circle = Color.WHITE;
         TypedValue typedValue = new TypedValue();
@@ -274,6 +282,7 @@ public class EvidenceFragment extends InvestigationFragment {
             d.setTint(color_strikethrough);
         }
         icon_circle.setTint(color_circle);
+*/
 
         // SANITY
         if (sanitySeekBarView != null) {
@@ -285,13 +294,20 @@ public class EvidenceFragment extends InvestigationFragment {
             sanityPercentTextView.setText(String.format("%1$-4s", sanityData.toPercentString()));
         }
 
-
+        /*
         new Thread(() -> {
-            createGhostViews(view, ghostContainer);
+            createGhostViews(view, list_ghosts);
         }).start();
 
         new Thread(() -> {
-            createEvidenceViews(view, evidenceContainer, ghostContainer);
+            createEvidenceViews(view, list_evidences, list_ghosts);
+        }).start();
+        */
+
+        new Thread(this::createGhostViews).start();
+
+        new Thread(() -> {
+            createEvidenceViews(view, list_evidences, list_ghosts);
         }).start();
 
     }
@@ -572,8 +588,8 @@ public class EvidenceFragment extends InvestigationFragment {
             return;
         }
 
-        if (popup != null) {
-            popup.dismiss();
+        if (popupWindow != null) {
+            popupWindow.dismiss();
         }
 
         LayoutInflater inflaterPopup =
@@ -687,7 +703,7 @@ public class EvidenceFragment extends InvestigationFragment {
                 scroller,
                 indicator);
 
-        closeButton.setOnClickListener(v1 -> popup.dismiss());
+        closeButton.setOnClickListener(v1 -> popupWindow.dismiss());
 
         label.setText(evidenceViewData.getName(getContext()));
         info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
@@ -705,13 +721,13 @@ public class EvidenceFragment extends InvestigationFragment {
             e.printStackTrace();
         }
 
-        popup = new PopupWindow(
+        popupWindow = new PopupWindow(
                 customView,
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT
         );
-        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
-        popup.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0);
+        popupWindow.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
+        popupWindow.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0);
 
         if (getActivity() != null) {
             MobileAds.initialize(getActivity(), initializationStatus -> {
@@ -798,6 +814,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
     }
 
+    /*
     @SuppressLint("ClickableViewAccessibility")
     public void createGhostViews(View view, LinearLayout ghostContainer) {
 
@@ -813,7 +830,77 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
     }
+    */
 
+    /*
+    @SuppressLint("ClickableViewAccessibility")
+    public void createGhostViews(View view, LinearLayout ghostContainer) {
+
+        GhostViewData ghostViewData = buildGhostViewData();
+        if (ghostViewData == null) return;
+
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                buildGhostViews(ghostViewData);
+
+                ghostContainer.post(() -> haltProgressAnimation(ghostProgressBar));
+            });
+        }
+
+    }
+    */
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void createGhostViews() {
+
+        ghostPopupData = new GhostPopupData(getContext());
+
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                buildGhostViews();
+
+                list_ghosts.post(() -> haltProgressAnimation(ghostProgressBar));
+            });
+        }
+
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void buildGhostViews() {
+
+        if(getContext() == null) { return; }
+
+        int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
+
+        list_ghosts.setWeightSum(newGhostOrder.length);
+
+        for (int j : newGhostOrder) {
+
+            GhostView ghostView = new GhostView(getContext()) {
+
+                @Override
+                public void createGhostDetailPopup() {
+
+                    if (popupWindow != null) {
+                        popupWindow.dismiss();
+                    }
+
+                    GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
+                    ghostPopupWindow.build(evidenceViewModel, ghostPopupData, j, adRequest);
+                    popupWindow = ghostPopupWindow.getPopupWindow();
+
+                }
+            };
+
+            ghostView.build(evidenceViewModel, j);
+
+            list_ghosts.addView(ghostView);
+
+        }
+
+    }
+
+    /*
     @SuppressLint("ClickableViewAccessibility")
     private void buildGhostViews(ViewGroup view, LinearLayout ghostContainer, GhostViewData ghostViewData) {
 
@@ -836,7 +923,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         ghostContainer.setWeightSum(newGhostOrder.length);
         //Avoid pass null in the root it ignores spaces in the child layout
-        int i = 0;
+        //int i = 0;
         for (int j : newGhostOrder) {
 
             View ghostView = buildGhostView(
@@ -845,48 +932,33 @@ public class EvidenceFragment extends InvestigationFragment {
                     neutralSelColor, negativeSelColor, positiveSelColor,
                     inflater, j);
 
+            View ghostView = buildGhostView(
+                    ghostViewData, j);
+
             i++;
-            ghostView.setVisibility(View.INVISIBLE);
-            ghostView.setAlpha(0);
 
             ghostContainer.addView(ghostView);
-
-            final int rowIndex = i;
-            ghostView.post(new Runnable() {
-                @Override
-                public void run() {
-                    ghostView.animate()
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationStart(Animator animation) {
-                                    super.onAnimationStart(animation);
-                                    ghostView.setVisibility(View.VISIBLE);
-                                }}
-                            ).alpha(1).setStartDelay((long)(10f * rowIndex)).setDuration(100);
-                }
-            });
 
         }
 
     }
+    */
 
+    /*
     @SuppressLint("ClickableViewAccessibility")
-    @NonNull
     private View buildGhostView(ViewGroup view, LinearLayout ghostContainer,
                                 GhostViewData ghostViewData,
                                 int neutralSelColor, int negativeSelColor, int positiveSelColor,
                                 LayoutInflater inflater, int j) {
-
         View ghostView = inflater.inflate(
                 R.layout.item_investigation_ghost,
                 view,
                 false);
+        if(getContext() == null) { return null; }
 
-        LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
-        Log.d("Iconcontainer", (linearLayout_iconRow == null) ? "is null" : "is not nulll");
+        GhostView ghostView = new GhostView(getContext());
 
         //LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.layout);
-        AppCompatTextView nameView = ghostView.findViewById(R.id.label_name);
 
         ConstraintLayout mainLayout = ghostView.findViewById(R.id.layout_main);
         LinearLayoutCompat.LayoutParams params =
@@ -894,7 +966,12 @@ public class EvidenceFragment extends InvestigationFragment {
                         ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
         mainLayout.setLayoutParams(params);
 
-        InvestigationData.Ghost ghost = evidenceViewModel.getInvestigationData().getGhost(j);
+        AppCompatTextView nameView = ghostView.findViewById(R.id.label_name);
+        LinearLayoutCompat linearLayout_iconRow = ghostView.findViewById(R.id.icon_container);
+        Log.d("Iconcontainer", (linearLayout_iconRow == null) ? "is null" : "is not nulll");
+
+        InvestigationData.Ghost ghostData = evidenceViewModel.getInvestigationData().getGhost(j);
+        ghostView.build(evidenceViewModel, ghostData, j, ghostViewData);
 
         String ghostName = ghost.getName();
         nameView.setText(ghostName);
@@ -963,7 +1040,9 @@ public class EvidenceFragment extends InvestigationFragment {
 
         return ghostView;
     }
+    */
 
+    /*
     private GhostViewData buildGhostViewData() {
 
         if(getContext() == null) {
@@ -1006,7 +1085,9 @@ public class EvidenceFragment extends InvestigationFragment {
                 huntDatas);
 
     }
+    */
 
+    /*
     private void redrawGhostRejectionStatus(View ghostView, InvestigationData.Ghost ghost, int index, boolean animate) {
         int score = ghost.getEvidenceScore();
         AppCompatImageView statusIcon = ghostView.findViewById(R.id.icon_status);
@@ -1029,6 +1110,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
     }
+    */
 
     public void fadeOutIndicatorAnimation(ConstraintLayout bodyCons, ConstraintLayout container, ScrollView scroller, View indicator) {
         scroller.post(() -> {
@@ -1117,13 +1199,13 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
 
-        if(evidenceContainer != null) {
-            forceResetEvidenceContainer(evidenceContainer);
-            evidenceContainer.invalidate();
+        if(list_evidences != null) {
+            forceResetEvidenceContainer(list_evidences);
+            list_evidences.invalidate();
         }
 
-        if(ghostContainer != null) {
-            forceResetGhostContainer(ghostContainer);
+        if(list_ghosts != null) {
+            forceResetGhostContainer(list_ghosts);
             //ghostContainer.invalidate();
         }
 
@@ -1168,9 +1250,9 @@ public class EvidenceFragment extends InvestigationFragment {
             sanityMeterView.recycleBitmaps();
         }
 
-        if(popup != null) {
-            popup.dismiss();
-            popup = null;
+        if(popupWindow != null) {
+            popupWindow.dismiss();
+            popupWindow = null;
         }
 
         super.onDestroyView();
@@ -1189,7 +1271,8 @@ public class EvidenceFragment extends InvestigationFragment {
         super.onResume();
     }
 
-    private class GhostSwipeListener extends GestureDetector.SimpleOnGestureListener {
+    /*
+    public class GhostSwipeListener extends GestureDetector.SimpleOnGestureListener {
         private final LinearLayout ghostContainer;
         private final View view;
         private final int index;
@@ -1377,7 +1460,7 @@ public class EvidenceFragment extends InvestigationFragment {
                 mAdView.loadAd(adRequest);
             }
         }
-    }
+    }*/
 
     public class EvidenceNameGesture extends GestureDetector.SimpleOnGestureListener {
 

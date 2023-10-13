@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;

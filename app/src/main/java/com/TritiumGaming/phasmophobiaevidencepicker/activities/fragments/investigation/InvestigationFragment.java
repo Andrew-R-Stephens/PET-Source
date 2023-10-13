@@ -38,7 +38,7 @@ public abstract class InvestigationFragment extends Fragment {
     protected MapMenuViewModel mapMenuViewModel;
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
 
-    protected PopupWindow popup;
+    protected PopupWindow popupWindow;
 
     protected AdRequest adRequest;
 
@@ -125,8 +125,8 @@ public abstract class InvestigationFragment extends Fragment {
             return;
         }
 
-        if(popup != null && popup.isShowing()) {
-            popup.dismiss();
+        if(popupWindow != null && popupWindow.isShowing()) {
+            popupWindow.dismiss();
             return;
         }
 

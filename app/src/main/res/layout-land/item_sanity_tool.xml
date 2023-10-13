@@ -397,7 +397,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.data.OutlineTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
                 android:id="@+id/evidence_sanitymeter_percentage"
                 style="@style/TimeRegular"
                 android:layout_width="0dp"
