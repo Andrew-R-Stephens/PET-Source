@@ -657,4 +657,6 @@
     <string name="general_navigation_home">Página inicial</string>
     <string name="general_navigation_primary">Primário</string>
     <string name="general_navigation_menu">cardápio</string>
+    <string name="codex_section_equipment">Equipamento</string>
+    <string name="codex_section_more">Mais em breve</string>
 </resources>

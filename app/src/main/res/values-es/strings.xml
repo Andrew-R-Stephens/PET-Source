@@ -1191,4 +1191,6 @@
     <string name="general_navigation_home">Inicio</string>
     <string name="general_navigation_primary">Primario</string>
     <string name="general_navigation_menu">El Menú</string>
+    <string name="codex_section_equipment">Equipo</string>
+    <string name="codex_section_more">Más muy pronto</string>
 </resources>

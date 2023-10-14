@@ -258,4 +258,10 @@
     <string name="spiritbox_entry_q8_3">How insane am I?</string>
     <string name="spiritbox_entry_q8_4">Am I insane?</string>
 
+    <!--
+        Codex Fragment
+    -->
+    <string name="codex_section_equipment">Equipment</string>
+    <string name="codex_section_more">More coming soon</string>
+
 </resources>

@@ -1624,4 +1624,6 @@
     <string name="general_navigation_home">Domů</string>
     <string name="general_navigation_primary">Primární</string>
     <string name="general_navigation_menu">Menu</string>
+    <string name="codex_section_equipment">Zařízení</string>
+    <string name="codex_section_more">Více již brzy</string>
 </resources>

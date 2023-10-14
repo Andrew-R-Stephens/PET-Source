@@ -72,11 +72,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout100"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:background="@drawable/equipment_itemdata_border_inner"
             android:padding="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
 
@@ -85,7 +85,7 @@
                 layout="@layout/item_shop_tool_itemdata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -95,18 +95,18 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout103"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout101"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/itemStoreEquipmentItemData"
-                app:layout_constraintTop_toTopOf="@+id/itemStoreEquipmentItemData">
+                app:layout_constraintStart_toStartOf="@+id/itemStoreEquipmentItemData"
+                app:layout_constraintTop_toBottomOf="@+id/itemStoreEquipmentItemData">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_cost"
@@ -114,17 +114,16 @@
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_itemcost"
                     style="?attr/quaternaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -137,17 +136,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout101"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout102"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout103"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout103"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout103">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_unlock"
@@ -155,17 +153,16 @@
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_unlocklevel"
                     style="?attr/quaternaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -178,17 +175,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout102"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/itemStoreEquipmentItemData"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout101"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout101"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout101">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_upgrade_cost"
@@ -196,17 +192,16 @@
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_upgradecost"
-                    style="?attr/quaternaryFont_Regular_Manual"
+                    style="?attr/quaternaryFont_Regular_Squeeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
                     android:textColor="#99AEB3"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -224,8 +219,8 @@
             android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout100">
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout100"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
 
             <ScrollView
                 android:layout_width="0dp"
@@ -234,10 +229,10 @@
                 android:fadingEdge="vertical"
                 android:fadingEdgeLength="8dp"
                 android:orientation="vertical"
-                android:requiresFadingEdge="vertical"
-                android:scrollbarStyle="insideInset"
                 android:paddingHorizontal="4dp"
+                android:requiresFadingEdge="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
                 app:layout_constraintBottom_toTopOf="@+id/divider5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -286,30 +281,51 @@
 
             <View
                 android:id="@+id/divider5"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="2dp"
-                android:layout_marginBottom="670dp"
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider"
                 android:backgroundTint="#99AEB3"
                 android:foregroundTintMode="add"
-                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes"
-                tools:layout_editor_absoluteX="10dp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_itemshop_attributes"
-                style="?attr/quaternaryFont_Bold_Manual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:textColor="#99AEB3"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes_wrapper"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@id/textview_itemshop_attributes_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="false"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="8dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                android:layout_weight="1"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:paddingBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_itemshop_attributes"
+                    style="?attr/quaternaryFont_Bold_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:maxLines="2"
+                    android:padding="4dp"
+                    android:textColor="#99AEB3"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

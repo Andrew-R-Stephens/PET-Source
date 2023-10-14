@@ -181,7 +181,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         @Override
         public boolean onSingleTapUp(@NonNull MotionEvent e) {
-            createEvidenceDetailPopup();
+            createPopup();
 
             return true;
         }
@@ -232,7 +232,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
     }
 
-    public abstract void createEvidenceDetailPopup();
+    public abstract void createPopup();
 
     public abstract void requestInvalidateGhostContainer();
 

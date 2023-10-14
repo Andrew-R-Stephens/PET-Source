@@ -651,5 +651,7 @@
     <string name="general_navigation_home">主页</string>
     <string name="general_navigation_primary">主要</string>
     <string name="general_navigation_menu">目录</string>
+    <string name="codex_section_equipment">设备</string>
+    <string name="codex_section_more">更多即将推出</string>
 
 </resources>

@@ -35,9 +35,6 @@ public class CodexFragment extends InvestigationFragment {
         super.onViewCreated(view, savedInstanceState);
 
         GridLayout gridView = view.findViewById(R.id.grid_codex);
-        AppCompatImageView prev = view.findViewById(R.id.button_prev);
-        AppCompatTextView title = view.findViewById(R.id.codex_title);
-
 
         MaterialCardView gotoCodex = gridView.findViewById(R.id.grid_codexmenu_option1);
         gotoCodex.setOnClickListener(v -> Navigation.findNavController(v)

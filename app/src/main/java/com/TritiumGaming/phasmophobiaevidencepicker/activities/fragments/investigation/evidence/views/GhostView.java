@@ -214,12 +214,12 @@ public abstract class GhostView extends ConstraintLayout {
 
         @Override
         public boolean onSingleTapUp(@NonNull MotionEvent e) {
-            createGhostDetailPopup();
+            createPopup();
 
             return super.onSingleTapConfirmed(e);
         }
 
     }
 
-    public abstract void createGhostDetailPopup();
+    public abstract void createPopup();
 }

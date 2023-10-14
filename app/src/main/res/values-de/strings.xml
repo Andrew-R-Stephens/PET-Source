@@ -1181,5 +1181,7 @@
     <string name="general_navigation_home">Startseite</string>
     <string name="general_navigation_primary">Primär</string>
     <string name="general_navigation_menu">Menü</string>
+    <string name="codex_section_equipment">Ausrüstung</string>
+    <string name="codex_section_more">Mehr folgt bald</string>
 
 </resources>

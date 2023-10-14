@@ -654,4 +654,6 @@
     <string name="general_navigation_home">ホーム</string>
     <string name="general_navigation_primary">プライマリ</string>
     <string name="general_navigation_menu">メニュー</string>
+    <string name="codex_section_equipment">装置</string>
+    <string name="codex_section_more">さらに近日公開予定</string>
 </resources>

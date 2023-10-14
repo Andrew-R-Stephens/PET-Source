@@ -1628,4 +1628,6 @@
     <string name="general_navigation_home">Главная</string>
     <string name="general_navigation_primary">Основной</string>
     <string name="general_navigation_menu">меню</string>
+    <string name="codex_section_equipment">Оборудование</string>
+    <string name="codex_section_more">Продолжение следует</string>
 </resources>

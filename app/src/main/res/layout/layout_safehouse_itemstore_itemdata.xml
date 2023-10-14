@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/equipment_itemdata_border_inner"
             android:padding="2dp"
+            app:layout_constraintHeight_percent=".2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
@@ -94,7 +95,7 @@
                 android:id="@+id/constraintLayout103"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout101"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -226,20 +227,22 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout100">
 
             <ScrollView
+                android:id="@+id/scrollView3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:fadeScrollbars="false"
                 android:fadingEdge="vertical"
                 android:fadingEdgeLength="8dp"
                 android:orientation="vertical"
-                android:requiresFadingEdge="vertical"
-                android:scrollbarStyle="insideInset"
                 android:paddingHorizontal="4dp"
+                android:requiresFadingEdge="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
                 app:layout_constraintBottom_toTopOf="@+id/divider5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
@@ -276,7 +279,7 @@
                         android:layout_weight="1"
                         android:padding="4dp"
                         android:textColor="#99AEB3"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -288,26 +291,47 @@
                 android:layout_height="2dp"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="2dp"
-                android:layout_marginBottom="670dp"
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider"
                 android:backgroundTint="#99AEB3"
                 android:foregroundTintMode="add"
-                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes"
-                tools:layout_editor_absoluteX="10dp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_itemshop_attributes"
-                style="?attr/quaternaryFont_Bold_Manual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:textColor="#99AEB3"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes_wrapper"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@id/textview_itemshop_attributes_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="false"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="8dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                android:layout_weight="1"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:paddingBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_itemshop_attributes"
+                    style="?attr/quaternaryFont_Bold_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:maxLines="2"
+                    android:padding="4dp"
+                    android:textColor="#99AEB3"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
