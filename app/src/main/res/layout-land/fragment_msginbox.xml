@@ -17,70 +17,44 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout31"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".07"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.02"
-            app:layout_constraintWidth_percent=".8">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout66"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/button_prev"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_prev"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
-                app:layout_constraintHeight_percent=".8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".2">
+                app:tint="?attr/subtitleFontColor" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/button_prev"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:background="#00000000"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_prev"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="?attr/subtitleFontColor" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_title"
+                style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="56dp"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:contentDescription="@string/app_name"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:text="@string/messagecenter_inboxestitle_label"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout66"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textview_title"
-                    style="@style/NorseRegular"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:background="#00000000"
-                    android:contentDescription="@string/app_name"
-                    android:gravity="center"
-                    android:scaleType="centerInside"
-                    android:text="@string/messagecenter_inboxestitle_label"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".8"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".8" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toEndOf="@+id/button_prev"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +87,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textview_extranews"
-                    app:layout_constraintHeight_percent=".6"
+                    app:layout_constraintHeight_percent=".9"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,38 +118,43 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
-                        app:tint="?attr/negativeSelColor"
-                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_newsupdateinbox"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button_newsupdateinbox"
                         app:layout_constraintHeight_percent=".5"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_newsupdateinbox"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
-                        app:layout_constraintWidth_percent=".2" />
+                        app:layout_constraintWidth_percent=".2"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_extranews"
-                    style="@style/NorseRegular"
+                    style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
-                    android:gravity="center_horizontal|top"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:scaleType="centerInside"
+                    android:singleLine="true"
                     android:text="@string/messagecenter_inbox_general"
                     android:textColor="?attr/titleFontColor"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout71"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/constraintLayout71"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout71"
-                    app:layout_constraintWidth_percent=".5" />
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout71" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -196,7 +175,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textview_petupdateinbox"
-                    app:layout_constraintHeight_percent=".6"
+                    app:layout_constraintHeight_percent=".9"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
@@ -227,38 +206,41 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
-                        app:tint="?attr/negativeSelColor"
-                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_petupdateinbox"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button_petupdateinbox"
                         app:layout_constraintHeight_percent=".5"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_petupdateinbox"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
-                        app:layout_constraintWidth_percent=".2" />
+                        app:layout_constraintWidth_percent=".2"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_petupdateinbox"
-                    style="@style/NorseRegular"
+                    style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
-                    android:gravity="center_horizontal|top"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:scaleType="centerInside"
+                    android:singleLine="true"
                     android:text="@string/messagecenter_inbox_pet"
                     android:textColor="?attr/titleFontColor"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout70"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".3"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/constraintLayout70"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout70"
-                    app:layout_constraintWidth_percent=".5" />
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout70" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -279,7 +261,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textview_phasupdateinbox"
-                    app:layout_constraintHeight_percent=".6"
+                    app:layout_constraintHeight_percent=".9"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
@@ -310,39 +292,42 @@
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_mail_unavailable"
-                        app:tint="?attr/negativeSelColor"
-                        app:tintMode="multiply"
                         app:layout_constraintBottom_toBottomOf="@+id/button_phasupdateinbox"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button_phasupdateinbox"
                         app:layout_constraintHeight_percent=".5"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_phasupdateinbox"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
-                        app:layout_constraintWidth_percent=".2" />
+                        app:layout_constraintWidth_percent=".2"
+                        app:tint="?attr/negativeSelColor"
+                        app:tintMode="multiply" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_phasupdateinbox"
-                    style="@style/NorseRegular"
+                    style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
-                    android:gravity="center_horizontal|top"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:scaleType="centerInside"
+                    android:singleLine="true"
                     android:text="@string/messagecenter_inbox_phas"
                     android:textColor="?attr/titleFontColor"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout72"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".3"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/constraintLayout72"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout72"
-                    app:layout_constraintWidth_percent=".5" />
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout72" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -105,6 +105,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_negative_unselected"
                 android:tint="?attr/subtitleFontColor"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,23 +136,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/title_left"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="36dp"
                 android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
                 android:src="@drawable/icon_prev"
                 android:tint="#FFFFFF"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/label_infoTitle"
                 app:layout_constraintWidth_max="48dp"
                 app:layout_constraintWidth_min="24dp" />
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_infoTitle"
@@ -165,7 +166,7 @@
                 android:textColor="?attr/titleFontColor"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView_swapping"
                 app:layout_constraintEnd_toStartOf="@+id/title_right"
-                app:layout_constraintHeight_min="32dp"
+                app:layout_constraintHeight_min="36dp"
                 app:layout_constraintStart_toEndOf="@+id/title_left"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
@@ -174,12 +175,14 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/title_right"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="36dp"
                 android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_next"
                 android:tint="#FFFFFF"
+                android:padding="4dp"
+                android:adjustViewBounds="true"
                 app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/label_infoTitle"
@@ -192,11 +195,11 @@
                 layout="@layout/item_scrollview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_infoTitle" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

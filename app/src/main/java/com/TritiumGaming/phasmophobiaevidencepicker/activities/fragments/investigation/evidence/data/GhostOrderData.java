@@ -112,6 +112,7 @@ public class GhostOrderData {
     }
 
     public boolean hasChanges() {
+
         if(prevOrder == null) {
             createPrevOrder();
         }
@@ -123,6 +124,7 @@ public class GhostOrderData {
             if(currOrder[i] != prevOrder[i])
                 return true;
         }
+
         return false;
     }
 

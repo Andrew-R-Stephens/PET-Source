@@ -18,7 +18,9 @@ public abstract class AbstractAnimatedGraphic {
     protected final Rect r = new Rect();
 
     protected int SCREENW, SCREENH;
-    protected int MAX_ALPHA = 200, MIN_SIZE = 2, MAX_SIZE = 3, MAX_ROTATION = 45, MAX_TICK = 100;
+    protected int MAX_ALPHA = 200,
+            MIN_SIZE = 2, MAX_SIZE = 3,
+            MAX_ROTATION = 45, MAX_TICK = 100;
 
     protected int alpha = 0, tickIncrementDirection = 1, currentTick = 0;
     protected double fadeTick = .2, x, y, width, height, scale = 1;
@@ -126,4 +128,12 @@ public abstract class AbstractAnimatedGraphic {
         }
     }
 
+    public void setRect() {
+    }
+
+    public void initDims(int screenW, int screenH) {
+        setScreenW(screenW);
+        setScreenH(screenH);
+        setRect();
+    }
 }

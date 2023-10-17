@@ -1,6 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
@@ -76,6 +78,23 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      */
     public void setRect() {
         r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
+    }
+
+    /**
+     * rotateBitmap
+     * <p>
+     * Creates a rotated copy of the original Bitmap
+     *
+     * @param original- original Bitmap
+     * @return new rotated Bitmap
+     */
+    public Bitmap rotateBitmap(Bitmap original) {
+        int width = original.getWidth();
+        int height = original.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.preRotate(90);
+
+        return Bitmap.createBitmap(original, 0, 0, width, height, matrix, true);
     }
 
     /**

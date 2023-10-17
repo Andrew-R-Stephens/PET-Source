@@ -3,32 +3,16 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -44,26 +28,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidenceViewData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidencePopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidencePopupWindow;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostPopupWindow;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * EvidenceFragment class
@@ -225,22 +200,17 @@ public class EvidenceFragment extends InvestigationFragment {
             initCollapsible();
         }
 
-        sanitySeekBarView.init(
-                sanityData,
-                sanityPercentTextView);
-
         // SANITY
         if (sanitySeekBarView != null) {
+            sanitySeekBarView.init(
+                    sanityData,
+                    sanityPercentTextView);
             sanitySeekBarView.resetProgress();
         }
 
         sanityMeterView.init(sanityData);
-        if (sanityData != null) {
-            sanityPercentTextView.setText(String.format("%1$-4s", sanityData.toPercentString()));
-        }
 
         new Thread(this::createGhostViews).start();
-
         new Thread(this::createEvidenceViews).start();
 
     }
@@ -299,9 +269,10 @@ public class EvidenceFragment extends InvestigationFragment {
     protected void requestInvalidateGhostContainer() {
         if(evidenceViewModel.getGhostOrderData().hasChanges()) {
             reorderGhostViews();
+        } else {
+            updateGhostViews();
         }
     }
-
     protected void forceResetGhostContainer() {
         reorderGhostViews();
     }
@@ -329,6 +300,13 @@ public class EvidenceFragment extends InvestigationFragment {
 
         }
 
+    }
+
+    private void updateGhostViews() {
+        for(int i = 0; i < list_ghosts.getChildCount(); i++) {
+            GhostView g = (GhostView) list_ghosts.getChildAt(i);
+            g.forceUpdateComponents();
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -430,7 +408,6 @@ public class EvidenceFragment extends InvestigationFragment {
         if(evidenceViewModel != null) {
             evidenceViewModel.getGhostOrderData().updateOrder();
         }
-
 
         if(list_evidences != null) {
             forceResetEvidenceContainer();

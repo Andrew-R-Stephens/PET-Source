@@ -5,42 +5,26 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidencePopupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-
-import pl.droidsonroids.gif.GifImageView;
 
 public abstract class EvidenceView extends ConstraintLayout {
 
@@ -105,12 +89,11 @@ public abstract class EvidenceView extends ConstraintLayout {
                         evidenceViewModel.getRadioButtonsChecked()[groupIndex]]);
 
         for(int j = 0; j < radioGroup.getChildCount(); j++) {
-            final int currRadio = j;
 
             EvidenceRadioButton evidenceRadioButton = radioGroup.getChildAt(j).findViewById(R.id.radioIcon);
-            evidenceRadioButton.setImageLevel(currRadio + 1);
+            evidenceRadioButton.setImageLevel(j + 1);
             int selectedRatio = evidenceViewModel.getRadioButtonsChecked()[groupIndex];
-            evidenceRadioButton.setState(currRadio == selectedRatio);
+            evidenceRadioButton.setState(j == selectedRatio);
 
             evidenceViewModel.getInvestigationData().getEvidences().get(groupIndex)
                     .setRuling(InvestigationData.Evidence.Ruling.values()[
@@ -119,7 +102,7 @@ public abstract class EvidenceView extends ConstraintLayout {
             // ---
             EvidenceSelectGesture evidenceSelectGesture =
                     new EvidenceSelectGesture(list_ghosts, groupIndex,
-                            radioGroup, currRadio, evidenceRadioButton);
+                            radioGroup, j, evidenceRadioButton);
             GestureDetector selectDetector =
                     new GestureDetector(getContext(), evidenceSelectGesture);
             evidenceRadioButton.setOnTouchListener((v, motionEvent) ->
@@ -146,9 +129,9 @@ public abstract class EvidenceView extends ConstraintLayout {
 
     }
 
-    private void selectEvidenceIcon(LinearLayout ghostContainer, int currGroup,
-                                    ConstraintLayout radioGroup, int currRadio,
-                                    AppCompatImageView icon) {
+    private void onSelectEvidenceIcon(LinearLayout ghostContainer, int currGroup,
+                                      ConstraintLayout radioGroup, int currRadio,
+                                      AppCompatImageView icon) {
 
         for(int k = 0; k < radioGroup.getChildCount(); k++) {
             AppCompatImageView allIcon = radioGroup.getChildAt(k).findViewById(R.id.radioIcon);
@@ -225,7 +208,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         @Override
         public boolean onSingleTapUp(@NonNull MotionEvent e) {
-            selectEvidenceIcon(ghostContainer, currGroup, radioGroup, currRadio, icon);
+            onSelectEvidenceIcon(ghostContainer, currGroup, radioGroup, currRadio, icon);
 
             return true;
         }

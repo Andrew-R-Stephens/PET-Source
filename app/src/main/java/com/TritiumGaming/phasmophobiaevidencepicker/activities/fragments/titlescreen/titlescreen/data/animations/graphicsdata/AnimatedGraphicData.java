@@ -204,4 +204,5 @@ public class AnimatedGraphicData {
     public boolean hasData() {
         return !allPool.isEmpty() && hasQueue();
     }
+
 }

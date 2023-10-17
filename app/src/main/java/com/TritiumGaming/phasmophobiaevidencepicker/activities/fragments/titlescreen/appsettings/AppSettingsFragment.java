@@ -100,8 +100,8 @@ public class AppSettingsFragment extends Fragment {
         AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
         AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
         AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
-        ConstraintLayout listener_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
-        ConstraintLayout listener_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
+        View listener_confirmClose = view.findViewById(R.id.listener_confirm);
+        View listener_cancelClose = view.findViewById(R.id.listener_cancel);
 
         if(getActivity() != null) {
             googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());

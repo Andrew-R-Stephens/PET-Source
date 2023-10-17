@@ -559,8 +559,7 @@ public class TitlescreenFragment extends Fragment {
 
                 public void run() {
                     animationView.init(titleScreenViewModel, bitmapUtils);
-                    animationView.buildImages();
-                    animationView.buildData();
+
                 }
 
             };

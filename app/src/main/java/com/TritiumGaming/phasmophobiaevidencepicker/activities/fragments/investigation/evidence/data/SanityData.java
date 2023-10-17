@@ -319,7 +319,7 @@ public class SanityData {
         NumberFormat percentageFormat = NumberFormat.getPercentInstance();
         percentageFormat.setMinimumFractionDigits(0);
 
-        return percentageFormat.format(getInsanityPercent());
+        return percentageFormat.format(getInsanityPercent()).replace("%", "");
     }
 
     /**

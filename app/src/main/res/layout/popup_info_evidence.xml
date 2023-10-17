@@ -84,6 +84,7 @@
                 android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
+                android:padding="4dp"
                 android:src="@drawable/icon_negative_unselected"
                 android:tint="?attr/subtitleFontColor"
                 app:layout_constraintBottom_toBottomOf="parent"

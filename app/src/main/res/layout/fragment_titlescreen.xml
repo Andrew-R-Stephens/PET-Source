@@ -20,7 +20,7 @@
         android:id="@+id/titlescreen_mainconstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,13 +29,12 @@
             android:id="@+id/constraintLayout31"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:minHeight="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".06"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_percent=".8">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -123,46 +122,35 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout58"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_appicon"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/label_titledescription"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
+            app:layout_constraintWidth_percent=".75"
+            app:layout_constraintHeight_percent=".35"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icon_appicon"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:cropToPadding="true"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31"
+            app:srcCompat="@drawable/app_icon_sm" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_titledescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:gravity="center_horizontal|top"
             android:maxLines="1"
             android:text="@string/titlescreen_description"
             android:textColor="?attr/splashtitleFontColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
-            app:layout_constraintHeight_percent=".04"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31"
-            app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintWidth_percent=".75" />
+            app:layout_constraintEnd_toEndOf="@+id/icon_appicon"
+            app:layout_constraintHeight_percent=".05"
+            app:layout_constraintStart_toStartOf="@+id/icon_appicon"
+            app:layout_constraintTop_toBottomOf="@+id/icon_appicon" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout34"
@@ -192,13 +180,13 @@
                 app:layout_constraintHeight_percent=".4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.25"
                 app:layout_constraintWidth_percent=".75" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/button_start_mult"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:alpha="0"
                 android:background="@drawable/icon_square_filled"
                 android:contentDescription="@string/app_name"
                 android:ellipsize="end"
@@ -209,6 +197,7 @@
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="@string/app_name"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button_start_solo"
                 app:layout_constraintHeight_percent=".4"
@@ -223,14 +212,18 @@
             android:id="@+id/listener_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout34">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout34"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout34"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout34"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/icon_language"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
@@ -249,23 +242,24 @@
                 android:maxLines="1"
                 android:textColor="?attr/bodyFontColor"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/icon_language"
                 app:layout_constraintStart_toStartOf="@+id/icon_language"
                 app:layout_constraintTop_toBottomOf="@+id/icon_language" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
-            app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-1890816745443024/7620657926"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

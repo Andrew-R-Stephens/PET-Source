@@ -167,9 +167,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         // SANITY METER
 
         sanityMeterView.init(sanityData);
-        if (sanityData != null) {
-            sanityPercentTextView.setText(String.format("%1$-4s", sanityData.toPercentString()));
-        }
 
         enableUIThread();
     }

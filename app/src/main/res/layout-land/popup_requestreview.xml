@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="20sp"
         android:background="@drawable/popup_rating_fg"
+        android:padding="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".3"
+        app:layout_constraintWidth_percent=".5"
+        app:layout_constraintHeight_percent=".75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".75">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_ratingstitle"
@@ -74,34 +74,34 @@
                 style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@drawable/icon_square_alt"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@string/review_accept"
                 android:padding="2sp"
-                android:background="@drawable/icon_square_alt"
+                android:text="@string/review_accept"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/label_decline"
                 app:layout_constraintHeight_percent=".5"
-                app:layout_constraintWidth_percent=".45"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_decline"
                 style="@style/NorseRegular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@drawable/icon_square_alt"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@string/review_decline"
                 android:padding="2sp"
-                android:background="@drawable/icon_square_alt"
+                android:text="@string/review_decline"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".5"
-                app:layout_constraintWidth_percent=".45"
                 app:layout_constraintStart_toEndOf="@+id/label_accept"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,6 +12,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  * @author TritiumGamingStudios
  */
 public class AnimatedMirrorData extends AbstractAnimatedGraphic {
+
     /**
      * @param screenW
      * @param screenH

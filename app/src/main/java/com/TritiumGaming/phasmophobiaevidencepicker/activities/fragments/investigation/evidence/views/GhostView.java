@@ -5,8 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -15,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,11 +20,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
@@ -93,7 +88,6 @@ public abstract class GhostView extends ConstraintLayout {
         redrawGhostRejectionStatus(ghostData, groupIndex, false);
 
         if(linearLayout_iconRow != null) {
-            //linearLayout_iconRow.setWeightSum(ghost.getEvidence().length);
 
             int k = 0;
             for (; k < ghostData.getEvidence().length; k++) {
@@ -160,6 +154,26 @@ public abstract class GhostView extends ConstraintLayout {
                         ).alpha(1).setStartDelay((long)(10f * groupIndex)).setDuration(100);
             }
         });
+    }
+
+    public void forceUpdateComponents() {
+        LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
+        if(linearLayout_iconRow == null) { return; }
+
+        for (int k = 0; k < ghostData.getEvidence().length; k++) {
+
+            AppCompatImageView evidenceIcon =
+                    (AppCompatImageView) linearLayout_iconRow.getChildAt(k);
+
+            switch (ghostData.getEvidence()[k].getRuling()) {
+                case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
+                case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
+                case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
+            }
+        }
+
+        redrawGhostRejectionStatus(ghostData, ghostData.getId(), true);
+
     }
 
     private void redrawGhostRejectionStatus(InvestigationData.Ghost ghost, int index, boolean animate) {
