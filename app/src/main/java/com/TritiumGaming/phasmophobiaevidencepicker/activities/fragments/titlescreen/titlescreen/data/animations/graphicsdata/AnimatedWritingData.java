@@ -16,6 +16,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
  */
 public class AnimatedWritingData extends AbstractAnimatedGraphic {
 
+    private final int bitmapW, bitmapH;
+
     /**
      * @param screenW
      * @param screenH
@@ -31,6 +33,9 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
             AnimatedGraphicData animationData) {
         super(screenW, screenH);
 
+        this.bitmapW = bitmapW;
+        this.bitmapH = bitmapH;
+
         MAX_ALPHA = 200;
         MAX_SIZE = 1;//3;
         MIN_SIZE = 1;//2;
@@ -38,10 +43,11 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
         MAX_TICK = 500;
 
         setScale(1);
-        //setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
         setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
-        setWidth(bitmapW);
-        setHeight(bitmapH);
+
+        setWidth();
+        setHeight();
+
         setX();
         setY();
 
@@ -50,6 +56,16 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
                         (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
 
         animationData.setRotWriting(rotation);
+    }
+
+    @Override
+    public void setWidth() {
+        setWidth(bitmapW);
+    }
+
+    @Override
+    public void setHeight() {
+        setHeight(bitmapH);
     }
 
     /**

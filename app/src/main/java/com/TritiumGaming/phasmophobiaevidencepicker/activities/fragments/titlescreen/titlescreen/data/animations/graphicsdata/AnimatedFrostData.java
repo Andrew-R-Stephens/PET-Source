@@ -39,6 +39,16 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
         this.MAX_TICK = tickMax;
     }
 
+    @Override
+    public void setWidth() {
+        setWidth(SCREENW);
+    }
+
+    @Override
+    public void setHeight() {
+        setHeight(SCREENH);
+    }
+
     /**
      *
      */

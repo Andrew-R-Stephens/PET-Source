@@ -23,7 +23,10 @@ public abstract class AbstractAnimatedGraphic {
             MAX_ROTATION = 45, MAX_TICK = 100;
 
     protected int alpha = 0, tickIncrementDirection = 1, currentTick = 0;
-    protected double fadeTick = .2, x, y, width, height, scale = 1;
+    protected double fadeTick = .2,
+            x, y,
+            width, height,
+            scale = 1;
     protected float rotation = 1;
     protected boolean isAlive = true;
 
@@ -57,18 +60,12 @@ public abstract class AbstractAnimatedGraphic {
         this.scale = scale;
     }
 
-    /**
-     * @param w
-     */
     public void setWidth(double w) {
-        this.width = w;
+        width = w;
     }
 
-    /**
-     * @param h
-     */
     public void setHeight(double h) {
-        this.height = h;
+        height = h;
     }
 
     /**
@@ -91,11 +88,6 @@ public abstract class AbstractAnimatedGraphic {
     public Rect getRect() {
         return r;
     }
-
-    /**
-     *
-     */
-    public abstract void tick();
 
     /**
      *
@@ -128,12 +120,21 @@ public abstract class AbstractAnimatedGraphic {
         }
     }
 
-    public void setRect() {
-    }
+    public abstract void setWidth();
+
+    public abstract void setHeight();
+
+    public abstract void tick();
+
+    public abstract void setRect();
 
     public void initDims(int screenW, int screenH) {
         setScreenW(screenW);
         setScreenH(screenH);
+
+        setWidth();
+        setHeight();
+
         setRect();
     }
 }

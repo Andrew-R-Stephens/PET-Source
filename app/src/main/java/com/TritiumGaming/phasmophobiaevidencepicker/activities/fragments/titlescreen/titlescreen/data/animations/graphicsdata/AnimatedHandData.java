@@ -16,6 +16,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
  */
 public class AnimatedHandData extends AbstractAnimatedGraphic {
 
+    private final int bitmapW, bitmapH;
+
     public AnimatedHandData(int screenW, int screenH, int bitmapW, int bitmapH) {
         super(screenW, screenH);
 
@@ -26,12 +28,22 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
 
         setScale(1);
         //setScale((Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * .1);
-        setWidth(bitmapW);
-        setHeight(bitmapH);
+        setWidth(this.bitmapW = bitmapW);
+        setHeight(this.bitmapH = bitmapH);
         setX(Math.random() * SCREENW);
         setY(Math.random() * SCREENH);
         setRotation((float) (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION));
         setTickMax((int) ((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)));
+    }
+
+    @Override
+    public void setWidth() {
+        setWidth(bitmapW);
+    }
+
+    @Override
+    public void setHeight() {
+        setHeight(bitmapH);
     }
 
     /**

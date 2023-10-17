@@ -30,10 +30,18 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
 
         setX();
         setY();
+
         setDest();
+
         ANIM_TICK_MAX = getRandTickMax((int) (ANIM_TICK_MAX * .5), ANIM_TICK_MAX);
         DEST_TICK_MAX = getRandTickMax((int) (DEST_TICK_MAX * .5), DEST_TICK_MAX);
     }
+
+    @Override
+    public void setWidth() { }
+
+    @Override
+    public void setHeight() { }
 
     /**
      *
@@ -166,5 +174,8 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
     public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(Color.argb(alpha, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
     }
+
+    @Override
+    public void setRect() { }
 
 }

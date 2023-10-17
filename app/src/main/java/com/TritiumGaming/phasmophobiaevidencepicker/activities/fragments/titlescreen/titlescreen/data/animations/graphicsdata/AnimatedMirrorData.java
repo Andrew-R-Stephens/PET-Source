@@ -21,14 +21,27 @@ public class AnimatedMirrorData extends AbstractAnimatedGraphic {
         super(screenW, screenH);
 
         MAX_TICK = 500;
+        fadeTick = .7;
 
         setScale(1);
-        setWidth(SCREENW);
-        setHeight(SCREENH);
+
+        setWidth();
+        setHeight();
+
         setX();
         setY();
+
         setTickMax((int) ((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)));
-        fadeTick = .7;
+    }
+
+    @Override
+    public void setWidth() {
+        setWidth(SCREENW);
+    }
+
+    @Override
+    public void setHeight() {
+        setHeight(SCREENH);
     }
 
     /**
