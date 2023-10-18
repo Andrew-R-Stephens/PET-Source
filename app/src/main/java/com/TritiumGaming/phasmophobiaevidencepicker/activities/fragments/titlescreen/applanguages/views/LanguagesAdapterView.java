@@ -17,6 +17,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import java.util.ArrayList;
 
 public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterView.ViewHolder> {
+
     private static int mPreviousIndex = 0;
     private final ArrayList<String> languages;
     private final OnLanguageListener onLanguageListener;

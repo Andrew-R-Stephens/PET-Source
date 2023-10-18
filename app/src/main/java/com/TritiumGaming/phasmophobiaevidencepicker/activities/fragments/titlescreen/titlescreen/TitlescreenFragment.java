@@ -28,6 +28,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
@@ -37,6 +38,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenV
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
@@ -79,6 +85,7 @@ public class TitlescreenFragment extends Fragment {
         initViewModels();
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
+
     }
 
     @Override
@@ -125,8 +132,8 @@ public class TitlescreenFragment extends Fragment {
 
         renderAd(view);
 
+        if(! (getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates()))
         initReviewRequest(button_review);
-
         //doIntroductionRequest();
         doReviewRequest();
 

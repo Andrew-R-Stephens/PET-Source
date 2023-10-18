@@ -1,14 +1,21 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
+import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,12 +29,49 @@ public class TitleScreenActivity extends PETActivity {
     private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
     private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
 
+    protected AppUpdateManager appUpdateManager;
+    protected int updateType = AppUpdateType.IMMEDIATE;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_titlescreen);
 
         requestAdsConsentInformation();
+    }
+
+    public boolean checkForAppUpdates() {
+        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+
+        AtomicBoolean hasUpdate = new AtomicBoolean(false);
+
+        appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
+            boolean isUpdateAvailable = info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE;
+            boolean isUpdateAllowed = updateType == AppUpdateType.IMMEDIATE;
+            if (isUpdateAvailable && isUpdateAllowed) {
+                try {
+                    appUpdateManager.startUpdateFlowForResult(info, updateType, TitleScreenActivity.this, 123);
+                    hasUpdate.set(true);
+                } catch (IntentSender.SendIntentException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        return hasUpdate.get();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 123) {
+            if(resultCode != RESULT_OK) {
+                Log.e("UpdateResult", "Update Failed!");
+            } else {
+                Log.e("UpdateResult", "Update Succeeded!");
+            }
+        }
     }
 
     public void initPrefs() {
@@ -92,5 +136,19 @@ public class TitleScreenActivity extends PETActivity {
 
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(updateType == AppUpdateType.IMMEDIATE) {
+            appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
+                if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(info, updateType, TitleScreenActivity.this, 123);
+                    } catch (IntentSender.SendIntentException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
+    }
 }
