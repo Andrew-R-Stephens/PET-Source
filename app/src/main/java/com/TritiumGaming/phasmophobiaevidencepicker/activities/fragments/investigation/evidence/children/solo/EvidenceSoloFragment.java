@@ -112,7 +112,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         /*
             TIMER CONTROL
          */
-
         phaseTimerCountdownView = new PhaseTimerView(
                 sanityData,
                 phaseTimerData,

@@ -9,7 +9,7 @@
     </style>
     <style name="AutoTextSizeBody_SqueezeText">
         <item name="autoSizeMinTextSize">1sp</item>
-        <item name="autoSizeMaxTextSize">50sp</item>
+        <item name="autoSizeMaxTextSize">200sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
     </style>

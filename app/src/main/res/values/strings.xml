@@ -81,7 +81,7 @@
                 <font color=#FF0000>P</font>.<font color=#FF0000>E</font>.<font color=#FF0000>T</font>.
             ]]>
     </string>
-    <string name="aboutinfo_developerinfo_devname" translatable="false">Tritium Gaming Studios</string>
+    <string name="aboutinfo_developerinfo_devname" translatable="false">Tritium Studios</string>
     <string name="aboutinfo_developerinfo_address" translatable="false">TritiumGamingStudiosDM@gmail.com</string>
     <string name="aboutinfo_title_about">About</string>
     <string name="aboutinfo_version">Version</string>

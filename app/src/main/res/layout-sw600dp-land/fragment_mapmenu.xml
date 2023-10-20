@@ -78,7 +78,7 @@
                 android:fadingEdgeLength="50sp"
                 android:gravity="center"
                 android:horizontalSpacing="20sp"
-                android:numColumns="4"
+                android:numColumns="5"
                 android:paddingStart="0sp"
                 android:paddingEnd="10sp"
                 android:requiresFadingEdge="vertical"

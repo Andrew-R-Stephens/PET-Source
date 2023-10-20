@@ -82,7 +82,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:fadeScrollbars="false"
                 android:fillViewport="true"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -90,6 +89,7 @@
                 android:scrollbarThumbVertical="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout_discord"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -168,91 +168,86 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_developerinfo_title"
+                style="?attr/primaryFont_Regular_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/aboutinfo_developerinfo_title"
                 android:textColor="?attr/titleFontColor"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout37"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                 android:id="@+id/constraintLayout37"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/aboutinfo_specialthanks_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutinfo_developerinfo_title">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textview_devTitle_label"
-                    style="?attr/secondaryFont_Regular_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="start|bottom"
-                    android:text="@string/aboutinfo_developerinfo_developer"
-                    android:textColor="?attr/titleFontColor"
-                    app:layout_constraintBottom_toTopOf="@+id/textview_devTitle_name"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/appinfo_developerinfo_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/appinfo_developerinfo_email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textview_devEmail_label"
-                    style="?attr/secondaryFont_Regular_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="start|bottom"
-                    android:text="@string/aboutinfo_developerinfo_contact"
-                    android:textColor="?attr/titleFontColor"
-                    app:layout_constraintBottom_toTopOf="@+id/textview_devEmail_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textview_devTitle_name" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_devTitle_label"
+                        style="?attr/secondaryFont_Regular_Squeeze"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:text="@string/aboutinfo_developerinfo_developer"
+                        android:textColor="?attr/titleFontColor" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textview_devEmail_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:gravity="center"
-                    android:text="@string/aboutinfo_developerinfo_address"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textview_devEmail_label" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_devTitle_name"
+                        style="?attr/secondaryFont_Regular_Squeeze"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="@string/aboutinfo_developerinfo_devname" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textview_devTitle_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:gravity="center"
-                    android:text="@string/aboutinfo_developerinfo_devname"
-                    app:layout_constraintBottom_toTopOf="@+id/textview_devEmail_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textview_devTitle_label" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_devEmail_label"
+                        style="?attr/secondaryFont_Regular_Squeeze"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:text="@string/aboutinfo_developerinfo_contact"
+                        android:textColor="?attr/titleFontColor" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_devEmail_name"
+                        style="?attr/secondaryFont_Regular_Squeeze"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="@string/aboutinfo_developerinfo_address" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </ScrollView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_specialthanks_title"
+                style="?attr/primaryFont_Regular_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/aboutinfo_specialthanks_title"
                 android:textColor="?attr/titleFontColor"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintBottom_toTopOf="@+id/aboutapp_specialthanks_scrollview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

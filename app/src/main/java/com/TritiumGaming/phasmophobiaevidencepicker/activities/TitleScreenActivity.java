@@ -62,7 +62,8 @@ public class TitleScreenActivity extends PETActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 123) {
@@ -139,7 +140,7 @@ public class TitleScreenActivity extends PETActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(updateType == AppUpdateType.IMMEDIATE) {
+        if(appUpdateManager != null && updateType == AppUpdateType.IMMEDIATE) {
             appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
                 if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
                     try {

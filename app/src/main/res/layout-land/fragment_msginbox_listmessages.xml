@@ -23,9 +23,9 @@
             android:adjustViewBounds="true"
             android:background="#00000000"
             android:contentDescription="@string/app_name"
+            android:padding="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/icon_prev"
-            android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,12 +56,12 @@
         android:layout_width="0dp"
         android:layout_height="3dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintWidth_percent=".8"
         android:background="@drawable/icon_strikethrough_1"
         android:backgroundTint="#4AFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout31" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout31"
+        app:layout_constraintWidth_percent=".8" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_messageslist"
@@ -91,7 +91,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         android:background="#00FFFFFF"
         app:adSize="BANNER"

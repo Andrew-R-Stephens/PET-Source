@@ -22,6 +22,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtil
 public class SanitySeekBarView extends AppCompatSeekBar {
 
     private SanityData sanityData;
+    private AppCompatTextView sanityPercentTextView;
 
     public SanitySeekBarView(@NonNull Context context) {
         super(context);
@@ -37,6 +38,7 @@ public class SanitySeekBarView extends AppCompatSeekBar {
 
     public void init(SanityData sanityData, AppCompatTextView sanityPercentTextView){
         this.sanityData = sanityData;
+        this.sanityPercentTextView = sanityPercentTextView;
 
         setProgress((int)sanityData.getSanityActual());
 
@@ -49,8 +51,10 @@ public class SanitySeekBarView extends AppCompatSeekBar {
                     sanityData.tick();
 
                     /*sanityPercentTextView.setText(sanityData.toPercentString());*/
-                    sanityPercentTextView.setText(formatSanityPercent());
-                    sanityPercentTextView.invalidate();
+                    if(sanityPercentTextView != null) {
+                        sanityPercentTextView.setText(formatSanityPercent());
+                        //sanityPercentTextView.invalidate();
+                    }
 
                 }
             }
@@ -64,13 +68,26 @@ public class SanitySeekBarView extends AppCompatSeekBar {
             }
         });
 
-        sanityPercentTextView.setText(formatSanityPercent());
+        if(sanityPercentTextView != null) {
+            sanityPercentTextView.setText(formatSanityPercent());
+        }
     }
 
     @SuppressLint("DefaultLocale")
     public String formatSanityPercent() {
         String nbsp = "\u00A0";
-        String input = String.format("%3d", Integer.parseInt(sanityData.toPercentString()));
+
+        String percentStr = sanityData.toPercentString();
+        percentStr = percentStr.trim();
+
+        int percentNum = 100;
+        try {
+            percentNum = Integer.parseInt(percentStr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        String input = String.format("%3d", percentNum);
 
         StringBuilder output = new StringBuilder();
         int i = 0;
@@ -88,13 +105,17 @@ public class SanitySeekBarView extends AppCompatSeekBar {
 
     public void updateProgress() {
         setProgress((int) sanityData.getSanityActual());
-        formatSanityPercent();
+        if(sanityPercentTextView != null) {
+            sanityPercentTextView.setText(formatSanityPercent());
+        }
         invalidate();
     }
 
     public void resetProgress() {
         setProgress(0);
-        formatSanityPercent();
+        if(sanityPercentTextView != null) {
+            sanityPercentTextView.setText(formatSanityPercent());
+        }
         invalidate();
     }
 

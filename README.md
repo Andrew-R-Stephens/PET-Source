@@ -19,19 +19,36 @@
 </div>
 
 <div align='center'> 
-    <h2>Features List</h2>
+    <h2>Demo Screenshots</h2>
+    <div>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_1.png"><img title="Title Screen" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_1_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_4.png"><img title="Evidence Fragment (Not Interacted)" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_4_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_7.png"><img title="Evidence Fragment (Interacted)" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_7_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_8.png"><img title="Missions Fragment" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_8_thumbnail.png" alt="screenshot" /></a>
+    </div>
+    <div>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_5.png"><img title="Ghost Type Information" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_5_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_6.png"><img title="Evidence Type Information" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_6_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_9.png"><img title="Map Select Fragment" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_9_thumbnail.png" alt="screenshot" /></a>
+        <a href="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_10.png"><img title="Interactive Map Fragment" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/screenshot_10_thumbnail.png" alt="screenshot" /></a>
+    </div>
 </div>
+
+<div align='center'><h2>Technologies Used</h2></div>
+<div align='center' style="display:float">
+  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold"/>
+</div>
+
 <div>
+    <h3>Core Features</h3>
     <ul>
-        <li>Accessibility</li>
-        <ul>
-            <li>Multiple Languages: English, Chinese (Simplified), Czech, French, German, Italian, Japanese, Portuguese, Russian, Spanish</li>
-            <li>Colorblindness</li>
-            <li>Portrait / Landscape orientations</li>
-            <li>Device types: Phone, Tablet, Desktop</li>
-        </ul>
-        <li>RSS Feed pulled from official Phasmophobia changelogs on Steam.</li>
-        <li>Access to the PET support Discord.</li>
         <li>Investigation tool scores and displays ghosts based on the evidence provided and the difficulty chosen.</li>
         <li>Hunt timer and hunt warning audio indicator.</li>
         <li>Interactive Map which displays the location of rooms, cursed possessions, and fuse box.</li>
@@ -56,25 +73,25 @@
         <li>Thematic resemblance to Phasmophobia.</li>
         <li>Kept up-to-date with Phasmophobia changes.</li>
     </ul>
+    <h3>Accessibility Features</h3>
+    <ul>
+        <ul>
+            <li>Multiple Languages: English, Chinese (Simplified), Czech, French, German, Italian, Japanese, Portuguese, Russian, Spanish</li>
+            <li>Colorblind Themes</li>
+            <li>Device support: Phones, Tablets, and Desktop</li>
+            <li>Orientation support: Portrait / Landscape</li>
+        </ul>
+        <li>RSS Feed pulled from official Phasmophobia changelogs on Steam.</li>
+        <li>Access to the PET support Discord.</li>
+    </ul>
 </div>
 
 <div align='center'>
     <h2>Acknowledgements</h2>
-    <div><a href="https://store.steampowered.com/app/739630/Phasmophobia/">Phasmophobia (Official Game)</a></div> 
-</div>
-
-> Phasmophobia is the official game which Phasmophobia Evidence Tool is used to assist users with.
-
-<div align='center'><h2>Technologies Used</h2></div>
-<div align='center' style="display:float">
-  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold"/>
+    <div><a href="https://store.steampowered.com/app/739630/Phasmophobia/"><h3>Phasmophobia (Official Game)</h3></a></div> 
+    <div><a href="https://store.steampowered.com/app/739630/Phasmophobia/"><img width="30%" src="https://cdn.akamai.steamstatic.com/steam/apps/739630/header.jpg?t=1693954450"/></a></div>
+    <h4><label>Thank you to the team at Kinetic Games for such an amazing game!</label></h4>
+    <h4><label>And a huge thanks to Daniel Knighter for his permission to use the name and likeness Phasmophobia for this project!</label></h4>
 </div>
 
 <div align='center'>
