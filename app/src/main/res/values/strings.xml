@@ -10,6 +10,9 @@
     <string name="toast_discardchanges">Changes discarded</string>
 
     <!-- Navigation Labels -->
+    <string name="navigation_open_state">Navigation Drawer opened.</string>
+    <string name="navigation_closed_state">Navigation Drawer closed.</string>
+
     <string name="general_evidence_button">Evidence</string>
     <string name="general_maps_button">Maps</string>
     <string name="general_tasks_button">Tasks</string>

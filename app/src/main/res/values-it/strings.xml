@@ -656,4 +656,6 @@
     <string name="codex_section_equipment">Attrezzatura</string>
     <string name="codex_section_more">Maggiori informazioni tra breve</string>
 
+    <string name="navigation_open_state">Cassetto di navigazione aperto.</string>
+    <string name="navigation_closed_state">Cassetto di navigazione chiuso.</string>
 </resources>

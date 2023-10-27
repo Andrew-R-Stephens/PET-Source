@@ -1626,4 +1626,7 @@
     <string name="general_navigation_menu">Menu</string>
     <string name="codex_section_equipment">Zařízení</string>
     <string name="codex_section_more">Více již brzy</string>
+
+    <string name="navigation_open_state">Navigační vysouvací panel byl otevřen.</string>
+    <string name="navigation_closed_state">Zásuvka navigace uzavřena.</string>
 </resources>

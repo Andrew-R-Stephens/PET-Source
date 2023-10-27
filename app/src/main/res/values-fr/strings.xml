@@ -1183,4 +1183,6 @@
     <string name="codex_section_equipment">Équipement</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
 
+    <string name="navigation_open_state">Tiroir de navigation ouvert.</string>
+    <string name="navigation_closed_state">Tiroir de navigation fermé.</string>
 </resources>

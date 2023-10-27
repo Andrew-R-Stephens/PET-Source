@@ -6,6 +6,7 @@
     android:id="@+id/constraint_mainevidence"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:showIn="@layout/fragment_evidence_solo"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/constraintLayout_sanityTracking"
@@ -63,6 +64,5 @@
         </FrameLayout>
 
     </GridLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

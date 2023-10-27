@@ -112,7 +112,7 @@ public class InvestigationActivity extends PETActivity {
 
         if(drawerLayout == null) { return; }
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.investigation_section_title_ghosts, R.string.investigation_section_title_ghosts);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_open_state, R.string.navigation_closed_state);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button

@@ -659,4 +659,6 @@
     <string name="general_navigation_menu">cardápio</string>
     <string name="codex_section_equipment">Equipamento</string>
     <string name="codex_section_more">Mais em breve</string>
+    <string name="navigation_open_state">Gaveta de navegação aberta.</string>
+    <string name="navigation_closed_state">Gaveta de navegação fechada.</string>
 </resources>

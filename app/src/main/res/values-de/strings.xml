@@ -1184,4 +1184,6 @@
     <string name="codex_section_equipment">Ausrüstung</string>
     <string name="codex_section_more">Mehr folgt bald</string>
 
+    <string name="navigation_open_state">Navigationsschublade geöffnet.</string>
+    <string name="navigation_closed_state">Navigationsleiste geschlossen.</string>
 </resources>

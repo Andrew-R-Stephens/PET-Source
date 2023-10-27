@@ -656,4 +656,7 @@
     <string name="general_navigation_menu">メニュー</string>
     <string name="codex_section_equipment">装置</string>
     <string name="codex_section_more">さらに近日公開予定</string>
+
+    <string name="navigation_open_state">ナビゲーション ドロワーが開きました。</string>
+    <string name="navigation_closed_state">ナビゲーション ドロワーが閉じられました。</string>
 </resources>

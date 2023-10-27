@@ -168,6 +168,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param languageNames
      */
     public void setLanguage(int position, String[] languageNames) {
+        if(position < 0 || position >= languageNames.length) { return; }
+
         setLanguageName(languageNames[position]);
     }
 

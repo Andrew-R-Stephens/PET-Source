@@ -1630,4 +1630,6 @@
     <string name="general_navigation_menu">меню</string>
     <string name="codex_section_equipment">Оборудование</string>
     <string name="codex_section_more">Продолжение следует</string>
+    <string name="navigation_open_state">Отдел навигации открыт.</string>
+    <string name="navigation_closed_state">Ящик навигации закрыт.</string>
 </resources>
