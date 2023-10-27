@@ -266,5 +266,10 @@
     -->
     <string name="codex_section_equipment">Equipment</string>
     <string name="codex_section_more">More coming soon</string>
+    <string name="codex_label_gh_ost" translatable="false">
+        <![CDATA[
+            <a><font color="#99AEB3">GH</font><font color="#FFB43D">//OS.T</font></a>
+        ]]>
+    </string>
 
 </resources>

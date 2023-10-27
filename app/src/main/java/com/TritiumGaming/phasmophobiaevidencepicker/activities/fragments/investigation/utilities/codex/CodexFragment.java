@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.google.android.material.card.MaterialCardView;
 
 public class CodexFragment extends InvestigationFragment {
@@ -25,7 +27,7 @@ public class CodexFragment extends InvestigationFragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_utilities_codex2, container, false);
+        return inflater.inflate(R.layout.fragment_utilities_codex, container, false);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -40,6 +42,8 @@ public class CodexFragment extends InvestigationFragment {
         gotoCodex.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(R.id.action_codexFragment_to_itemStoreFragment));
 
+        AppCompatTextView label_ghostOS = view.findViewById(R.id.label_codex_ghostos);
+        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)));
     }
 
     @Override

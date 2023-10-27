@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard"
-    tools:showIn="@layout/fragment_utilities_codex2"
+    tools:showIn="@layout/fragment_utilities_codex"
     android:theme="@style/PET.MaterialCardView"
     android:layout_width="0dp"
     android:layout_height="wrap_content"

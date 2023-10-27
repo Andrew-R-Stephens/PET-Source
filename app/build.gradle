@@ -50,8 +50,8 @@ android {
 
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 89
-        versionName "8.2.1.1"
+        versionCode 90
+        versionName "8.2.2"
 
         externalNativeBuild {
             cmake {
@@ -107,7 +107,7 @@ android {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-analytics:21.3.0'
+    implementation 'com.google.firebase:firebase-analytics:21.4.0'
     implementation 'androidx.core:core-ktx:1.12.0'
 
     implementation 'com.android.support:multidex:1.0.3'
@@ -149,9 +149,9 @@ dependencies {
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-crashlytics:18.4.3'
-    implementation 'com.google.firebase:firebase-analytics:21.3.0'
-    implementation 'com.google.firebase:firebase-perf:20.4.1'
+    implementation 'com.google.firebase:firebase-crashlytics:18.5.1'
+    implementation 'com.google.firebase:firebase-analytics:21.4.0'
+    implementation 'com.google.firebase:firebase-perf:20.5.0'
 
     // GOOGLE ADS
     implementation 'com.google.android.gms:play-services-ads:22.4.0'

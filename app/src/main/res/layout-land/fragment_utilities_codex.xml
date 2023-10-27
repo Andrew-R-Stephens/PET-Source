@@ -48,14 +48,14 @@
         android:fadingEdgeLength="50sp"
         android:gravity="center"
         android:horizontalSpacing="20sp"
+        android:padding="16dp"
         android:requiresFadingEdge="vertical"
         android:rowCount="5"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbarStyle="outsideOverlay"
         android:useDefaultMargins="true"
         android:verticalSpacing="20dp"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout35"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
@@ -64,18 +64,18 @@
             android:id="@+id/grid_codexmenu_option1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:label_text="@string/codex_section_equipment"
-            app:background_image="@drawable/thumbnail_shop"
-            android:padding="8dp"
             android:layout_rowSpan="1"
             android:layout_columnSpan="2"
             android:layout_columnWeight="2"
-            app:layout_constraintHeight_min="48dp"
-            app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
+            android:padding="8dp"
+            app:background_image="@drawable/thumbnail_shop"
             app:cardBackgroundColor="#99AEB3"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_equipment"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="#99AEB3"
             app:strokeColor="#99AEB3"
             app:strokeWidth="2dp" />
 
@@ -83,39 +83,39 @@
             android:id="@+id/grid_codexmenu_option2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:label_text="@string/codex_section_more"
-            android:padding="8dp"
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
-            app:layout_constraintHeight_min="48dp"
-            app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
+            android:alpha=".5"
+            android:padding="8dp"
             app:cardBackgroundColor="#99AEB3"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_more"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="#99AEB3"
             app:strokeColor="#99AEB3"
-            app:strokeWidth="2dp"
-            android:alpha=".5"/>
+            app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:label_text="@string/codex_section_more"
-            android:padding="8dp"
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
-            app:layout_constraintHeight_min="48dp"
-            app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
+            android:alpha=".5"
+            android:padding="8dp"
             app:cardBackgroundColor="#99AEB3"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_more"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="#99AEB3"
             app:strokeColor="#99AEB3"
-            app:strokeWidth="2dp"
-            android:alpha=".5"/>
+            app:strokeWidth="2dp" />
 
         <!--
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
@@ -184,5 +184,31 @@
             -->
 
     </GridLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout35"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#161C1C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grid_codex">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_codex_ghostos"
+            style="@style/JetbrainsMonoBold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="4dp"
+            android:gravity="end"
+            android:text="GH//OS.T"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
