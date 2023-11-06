@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -132,10 +133,17 @@ public class TitlescreenFragment extends Fragment {
 
         renderAd(view);
 
-        if(! (getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates()))
-        initReviewRequest(button_review);
+        if(! (getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates())) {
+            initReviewRequest(button_review);
+        }
+
         //doIntroductionRequest();
-        doReviewRequest();
+
+        try {
+            doReviewRequest();
+        } catch (IntentSender.SendIntentException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -217,13 +225,13 @@ public class TitlescreenFragment extends Fragment {
     /**
      * doReviewRequest method
      */
-    public void doReviewRequest() {
+    public void doReviewRequest() throws IntentSender.SendIntentException {
 
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().canRequestReview()) {
 
             Log.d("Review", "Review Request Accepted");
-            Thread tempThread = new Thread(() -> {
+            new Thread(() -> {
                 try {
                     Thread.sleep(1000L);
                 } catch (InterruptedException e) {
@@ -236,8 +244,7 @@ public class TitlescreenFragment extends Fragment {
                         globalPreferencesViewModel.saveToFile(getContext());
                     }
                 }
-            });
-            tempThread.start();
+            }).start();
 
         } else {
             Log.d("Review", "Review Request Denied");

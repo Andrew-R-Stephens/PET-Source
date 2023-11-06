@@ -277,7 +277,7 @@ public class ItemStoreFragment extends InvestigationFragment {
                         getContext().getResources().obtainTypedArray(typed_equipment_attributes.getResourceId(j, 0));
                 TypedArray typed_equipment_attributes_positive_list =
                         getContext().getResources().obtainTypedArray(typed_equipment_attributes_positive.getResourceId(0, 0));
-                for (int l = 0; l < typed_equipment_attributes_positive.length(); l++) {
+                for (int l = 0; l < typed_equipment_attributes_positive_list.length(); l++) {
                     @StringRes int value = typed_equipment_attributes_positive_list.getResourceId(l, 0);
                     groupData.getItemDataAt(j).addPositiveAttribute(value);
                 }

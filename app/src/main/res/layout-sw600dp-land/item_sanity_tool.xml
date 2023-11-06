@@ -397,18 +397,16 @@
                 style="?attr/tertiaryFont_Regular_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="#00FFFFFF"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/investigation_sanitymeter_title"
                 app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_percentage"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_max="48dp"
+                app:layout_constraintHeight_max="36dp"
                 app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_progressbar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintVertical_chainStyle="spread" />
 
             <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
                 android:id="@+id/evidence_sanitymeter_percentage"
@@ -422,9 +420,9 @@
                 android:maxLines="1"
                 android:padding="2dp"
                 android:text="@string/investigation_timer_time_3"
-                app:layout_constraintBottom_toBottomOf="@+id/evidence_sanitymeter_progressbar"
+                app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_seekbar"
                 app:layout_constraintEnd_toEndOf="@+id/evidence_sanitymeter_title"
-                app:layout_constraintHeight_max="48dp"
+                app:layout_constraintHeight_max="36dp"
                 app:layout_constraintHeight_percent=".25"
                 app:layout_constraintStart_toStartOf="@+id/evidence_sanitymeter_title"
                 app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_title" />
@@ -436,21 +434,21 @@
                 android:layout_margin="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginBottom="8dp"
                 android:background="#00FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/evidence_sanitymeter_seekbar"
+                android:maxHeight="96dp"
+                app:layout_constraintBottom_toBottomOf="@+id/evidence_sanitymeter_percentage"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_title"
                 app:layout_constraintWidth_percent=".4" />
 
             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView
                 android:id="@+id/evidence_sanitymeter_seekbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:maxHeight="3dp"
                 android:padding="4dp"
                 android:progress="50"
@@ -460,8 +458,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_progressbar"
-                app:layout_constraintWidth_percent=".9" />
+                app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_percentage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView

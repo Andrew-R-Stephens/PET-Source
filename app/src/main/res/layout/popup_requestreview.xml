@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="20sp"
+        android:padding="8dp"
         android:background="@drawable/popup_rating_fg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +22,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_ratingstitle"
+            style="?attr/primaryFont_Regular_Squeeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -47,10 +48,11 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:rating="5"
                 android:stepSize="1"
+                android:foregroundGravity="center"
                 android:theme="@style/RequestRatingBar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +73,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_accept"
+                style="?attr/primaryFont_Regular_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -82,11 +85,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/label_decline"
                 app:layout_constraintHeight_percent=".5"
                 app:layout_constraintWidth_percent=".45"
+                android:maxWidth="96dp"
+                android:maxHeight="48dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_decline"
+                style="?attr/primaryFont_Regular_Squeeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -98,6 +104,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".5"
                 app:layout_constraintWidth_percent=".45"
+                android:maxWidth="96dp"
+                android:maxHeight="48dp"
                 app:layout_constraintStart_toEndOf="@+id/label_accept"
                 app:layout_constraintTop_toTopOf="parent" />
 
