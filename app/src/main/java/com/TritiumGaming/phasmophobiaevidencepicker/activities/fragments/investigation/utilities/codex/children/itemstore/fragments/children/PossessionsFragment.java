@@ -18,7 +18,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata.possessions.ItemStorePossessionItemData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata.possessions.ItemStorePossessionsGroupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata.possessions.ItemStorePossnsGroupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
@@ -36,7 +36,7 @@ public class PossessionsFragment extends ItemStoreFragment {
             @StringRes int possessionName;
             @DrawableRes int possessionIcon;
 
-            ItemStorePossessionsGroupData groupData = new ItemStorePossessionsGroupData();
+            ItemStorePossnsGroupData groupData = new ItemStorePossnsGroupData();
 
             TypedArray typed_shop =
                     getContext().getResources().obtainTypedArray(typed_shop_list.getResourceId(i, 0));
@@ -166,7 +166,7 @@ public class PossessionsFragment extends ItemStoreFragment {
     protected void buildItemDataView(View dataView, int groupIndex, int itemIndex) {
         if(getContext() == null) { return; }
 
-        ItemStorePossessionsGroupData groupData = (ItemStorePossessionsGroupData) storeData.getGroupAt(groupIndex);
+        ItemStorePossnsGroupData groupData = (ItemStorePossnsGroupData) storeData.getGroupAt(groupIndex);
         ItemStorePossessionItemData itemData = (ItemStorePossessionItemData) groupData.getItemDataAt(itemIndex);
 
         AppCompatTextView itemNameView = dataView.findViewById(R.id.safehouse_shop_tool_label);
