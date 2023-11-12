@@ -929,7 +929,7 @@
     <string name="settings_appearancesettings">Aussehen</string>
     <string name="settings_fontstylesettings">Schriftstil</string>
     <string name="evidence_section_overview">Überblick</string>
-    <string name="store_title">Ausrüstungsladen</string>
+    <string name="store_title_equipment">Ausrüstungsladen</string>
     <string name="equipment_section_tiers">Ebenen</string>
     <string name="settings_adsconsentcontrolsettings">GDPR-Konfiguration</string>
     <string name="settings_adsconsentcontrolsettings_button">Bearbeiten</string>

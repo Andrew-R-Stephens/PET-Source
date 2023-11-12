@@ -10,13 +10,11 @@ import android.widget.GridLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.google.android.material.card.MaterialCardView;
 
 public class CodexFragment extends InvestigationFragment {
@@ -40,7 +38,11 @@ public class CodexFragment extends InvestigationFragment {
 
         MaterialCardView gotoCodex = gridView.findViewById(R.id.grid_codexmenu_option1);
         gotoCodex.setOnClickListener(v -> Navigation.findNavController(v)
-                .navigate(R.id.action_codexFragment_to_itemStoreFragment));
+                .navigate(R.id.action_codexFragment_to_equipmentStoreFragment));
+
+        MaterialCardView gotoCursedPossessions = gridView.findViewById(R.id.grid_codexmenu_option2);
+        gotoCursedPossessions.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(R.id.action_codexFragment_to_cursedPossessionsFragment));
 
         AppCompatTextView label_ghostOS = view.findViewById(R.id.label_codex_ghostos);
         label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)));

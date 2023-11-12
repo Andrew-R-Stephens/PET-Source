@@ -205,7 +205,7 @@
     <string name="spiritbox_entry_q8_3">Quão louco eu sou?</string>
     <string name="spiritbox_entry_q8_4">Eu sou insano?</string>
     <string name="evidence_section_overview">Visão geral</string>
-    <string name="store_title">Loja de Equipamentos</string>
+    <string name="store_title_equipment">Loja de Equipamentos</string>
     <string name="equipment_section_tiers">Níveis</string>
     <string name="evidence_requirement_level_title">Nível de desbloqueio:</string>
     <string name="evidence_requirement_cost_title">Custo:</string>

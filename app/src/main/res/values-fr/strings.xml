@@ -771,7 +771,7 @@
     <string name="settings_appearancesettings">Apparence</string>
     <string name="settings_fontstylesettings">"Le Style de Police "</string>
     <string name="evidence_section_overview">Aperçu</string>
-    <string name="store_title">Magasin d\'Equipement</string>
+    <string name="store_title_equipment">Magasin d\'Equipement</string>
     <string name="equipment_section_tiers">Niveaux</string>
     <string name="settings_adsconsentcontrolsettings">Configuration GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modifier</string>

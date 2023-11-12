@@ -284,12 +284,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout52"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout_tier"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_min="48dp"
-                    app:layout_constraintHeight_percent=".1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 

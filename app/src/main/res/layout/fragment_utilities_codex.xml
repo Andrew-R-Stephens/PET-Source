@@ -86,12 +86,12 @@
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
-            android:alpha=".5"
             android:padding="8dp"
+            app:background_image="@drawable/thumbnail_possessions"
             app:cardBackgroundColor="#99AEB3"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
-            app:label_text="@string/codex_section_more"
+            app:label_text="@string/store_title_cursedpossessions"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
             app:rippleColor="#99AEB3"
@@ -116,6 +116,26 @@
             app:rippleColor="#99AEB3"
             app:strokeColor="#99AEB3"
             app:strokeWidth="2dp" />
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:padding="8dp"
+            app:label_text="@string/codex_section_more"
+            app:cardBackgroundColor="#99AEB3"
+            app:cardElevation="15dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="#99AEB3"
+            app:strokeColor="#99AEB3"
+            app:strokeWidth="2dp"
+            android:alpha=".5"
+            />
 
         <!--
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard

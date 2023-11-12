@@ -143,7 +143,7 @@
 
 
     <!-- Titles -->
-    <string name="store_title">Equipment Shop</string>
+    <string name="store_title_equipment">Equipment Shop</string>
     <string name="equipment_section_tiers">Tiers</string>
     <string name="equipment_section_equipment">Equipment</string>
     <string name="evidence_requirement_level_title">Unlock Level:</string>

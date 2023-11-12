@@ -940,7 +940,7 @@
     <string name="settings_appearancesettings">Apariencia</string>
     <string name="settings_fontstylesettings">"Estilo de Fuente "</string>
     <string name="evidence_section_overview">Descripción General</string>
-    <string name="store_title">Tienda de Equipos</string>
+    <string name="store_title_equipment">Tienda de Equipos</string>
     <string name="equipment_section_tiers">Niveles</string>
     <string name="settings_adsconsentcontrolsettings">Configuración GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Editar</string>

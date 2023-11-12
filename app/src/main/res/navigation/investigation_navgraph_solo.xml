@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentnavgraph"
     app:startDestination="@id/evidenceFragment">
 
     <fragment
-        android:id="@+id/itemStoreFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.itemstore.ItemStoreFragment"
-        android:label="ItemStoreFragment"/>
+        android:id="@+id/equipmentStoreFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.fragments.children.EquipmentFragment"
+        android:label="equipmentStoreFragment" />
     <fragment
         android:id="@+id/codexFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.CodexFragment"
         android:label="CodexFragment">
         <action
-            android:id="@+id/action_codexFragment_to_itemStoreFragment"
-            app:destination="@id/itemStoreFragment" />
+            android:id="@+id/action_codexFragment_to_equipmentStoreFragment"
+            app:destination="@id/equipmentStoreFragment" />
+        <action
+            android:id="@+id/action_codexFragment_to_cursedPossessionsFragment"
+            app:destination="@id/cursedPosessionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/evidenceFragment"
@@ -77,4 +81,8 @@
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
         app:popExitAnim="@android:anim/fade_out" />
+    <fragment
+        android:id="@+id/cursedPosessionsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.fragments.children.PossessionsFragment"
+        android:label="CursedPosessionsFragment" />
 </navigation>

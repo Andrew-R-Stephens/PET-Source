@@ -206,7 +206,7 @@
     <string name="spiritbox_entry_q8_3">我到底有多疯狂？</string>
     <string name="spiritbox_entry_q8_4">我疯了吗？</string>
     <string name="evidence_section_overview">概述</string>
-    <string name="store_title">装备店</string>
+    <string name="store_title_equipment">装备店</string>
     <string name="equipment_section_tiers">层级</string>
     <string name="evidence_requirement_level_title">解锁等级：</string>
     <string name="evidence_requirement_cost_title">成本：</string>

@@ -204,7 +204,7 @@
     <string name="spiritbox_entry_q8_3">Quanto sono pazzo?</string>
     <string name="spiritbox_entry_q8_4">Sono pazzo?</string>
     <string name="evidence_section_overview">Panoramica</string>
-    <string name="store_title">Negozio di Attrezzature</string>
+    <string name="store_title_equipment">Negozio di Attrezzature</string>
     <string name="equipment_section_tiers">Livelli</string>
     <string name="evidence_requirement_level_title">Livello di sblocco:</string>
     <string name="evidence_requirement_cost_title">Costo:</string>
