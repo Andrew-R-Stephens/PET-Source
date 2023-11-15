@@ -81,7 +81,9 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
 
             if(getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
+                    Log.d("Err", "Building Store Views");
                     buildStoreViews(parent, scrollViewPaginator);
+                    Log.d("Err", "Finished Building Store Views");
                 });
             }
 
@@ -90,12 +92,25 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                     scrollView.post(() -> {
                         boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
+                        boolean isScrollable;
+                        if(isPortrait) {
+                            isScrollable = scrollView.getHeight() < scrollView.getChildAt(0).getHeight() + scrollView.getPaddingTop() + scrollView.getPaddingBottom();
+                        } else {
+                            isScrollable = scrollView.getWidth() < scrollView.getChildAt(0).getWidth() + scrollView.getPaddingStart() + scrollView.getPaddingEnd();
+                        }
+
                         int paginatorChildCount = isPortrait ?
                                 scrollViewPaginator.getRowCount() :
                                 scrollViewPaginator.getColumnCount();
 
                         initScrollViewListeners(scrollViewPaginator, paginatorChildCount);
                         doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
+
+                        if(isScrollable) {
+                            scrollViewPaginator.setVisibility(View.VISIBLE);
+                        } else {
+                            scrollViewPaginator.setVisibility(View.GONE);
+                        }
 
                         LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
                         for(int i = 0; i < list.getChildCount(); i++) {

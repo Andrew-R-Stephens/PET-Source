@@ -50,9 +50,10 @@
             <include
                 android:id="@+id/include"
                 layout="@layout/item_itemstore_scrollview_image"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+
                 app:layout_constraintBottom_toBottomOf="@+id/include2"
                 app:layout_constraintEnd_toStartOf="@+id/include2"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -62,7 +63,7 @@
             <include
                 android:id="@+id/include2"
                 layout="@layout/item_itemstore_scrollview_image"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="8dp"
@@ -74,7 +75,7 @@
             <include
                 android:id="@+id/include3"
                 layout="@layout/item_itemstore_scrollview_image"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="8dp"
