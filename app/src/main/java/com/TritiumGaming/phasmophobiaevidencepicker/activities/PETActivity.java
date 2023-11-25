@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemeData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -69,11 +69,11 @@ public abstract class PETActivity extends AppCompatActivity {
     }
 
     public int getFontStyle(int fontType) {
-        return AppThemeData.getFontResource(fontType);
+        return AppThemesData.getFontResource(fontType);
     }
 
     public int getColorSpace(int colorSpace) {
-        return AppThemeData.getColorSpace(colorSpace);
+        return AppThemesData.getThemeAt(colorSpace);
     }
 
     /**

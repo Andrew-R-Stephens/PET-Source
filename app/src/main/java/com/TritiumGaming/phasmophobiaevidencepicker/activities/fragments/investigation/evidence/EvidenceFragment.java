@@ -423,10 +423,6 @@ public class EvidenceFragment extends InvestigationFragment {
             sanitySeekBarView.resetProgress();
         }
 
-        if (sanityData != null) {
-            sanityPercentTextView.setText(String.format("%1$-4s", sanityData.toPercentString()));
-        }
-
         if(phaseTimerData != null) {
             playPauseButton.pause();
             phaseTimerCountdownView.reset();

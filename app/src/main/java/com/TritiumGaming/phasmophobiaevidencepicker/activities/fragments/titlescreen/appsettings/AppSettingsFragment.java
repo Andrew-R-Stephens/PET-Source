@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,7 +28,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemeData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
@@ -107,6 +105,7 @@ public class AppSettingsFragment extends Fragment {
             googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
         }
 
+        /*
         // COLORBLIND DATA
         TypedArray colorTypedArray =
                 getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
@@ -116,23 +115,23 @@ public class AppSettingsFragment extends Fragment {
         }
         colorTypedArray.recycle();
 
-        AppThemeData colorSpaceData = new AppThemeData(colorspaceNames);
+        AppThemesData colorSpaceData = new AppThemesData(colorspaceNames);
         int oldColorIndex = 0;
         if (globalPreferencesViewModel != null) {
             oldColorIndex = globalPreferencesViewModel.getColorSpace();
         }
-        colorSpaceData.setIndex(oldColorIndex);
+        oldColorIndex = oldColorIndex < colorspaceNames.length ? oldColorIndex : 0;
+        
+        colorSpaceData.setSelectedIndex(oldColorIndex);
+
         text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
 
-        /*
-         * Setting Colorblind Themes
-         */
         // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
             colorSpaceData.iterate(-1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
             if (globalPreferencesViewModel != null && getContext() != null) {
-                globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
+                globalPreferencesViewModel.setColorSpace(colorSpaceData.getSelectedIndex());
             }
         });
 
@@ -140,7 +139,29 @@ public class AppSettingsFragment extends Fragment {
             colorSpaceData.iterate(1);
             text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
             if (globalPreferencesViewModel != null) {
-                globalPreferencesViewModel.setColorSpace(colorSpaceData.getIndex());
+                globalPreferencesViewModel.setColorSpace(colorSpaceData.getSelectedIndex());
+            }
+        });
+        */
+
+        AppThemesData appThemesData = new AppThemesData(getContext(), globalPreferencesViewModel);
+
+        text_colorblindmode_selectedname.setText(appThemesData.getCurrentName());
+
+        // COLORBLIND LISTENERS
+        btn_colorblindMode_left.setOnClickListener(v -> {
+            appThemesData.iterateSelection(-1);
+            text_colorblindmode_selectedname.setText(getString(appThemesData.getCurrentName()));
+            if (globalPreferencesViewModel != null && getContext() != null) {
+                globalPreferencesViewModel.setColorSpace(appThemesData.getSelectedIndex());
+            }
+        });
+
+        btn_colorblindMode_right.setOnClickListener(v -> {
+            appThemesData.iterateSelection(1);
+            text_colorblindmode_selectedname.setText(getString(appThemesData.getCurrentName()));
+            if (globalPreferencesViewModel != null) {
+                globalPreferencesViewModel.setColorSpace(appThemesData.getSelectedIndex());
             }
         });
 
@@ -303,6 +324,8 @@ public class AppSettingsFragment extends Fragment {
 
             saveStates();
             Navigation.findNavController(v).popBackStack();
+
+            Log.d("Theme", appThemesData.getCurrentStyle() + " " + appThemesData.getCurrentName());
         });
 
         if(getActivity() != null) {

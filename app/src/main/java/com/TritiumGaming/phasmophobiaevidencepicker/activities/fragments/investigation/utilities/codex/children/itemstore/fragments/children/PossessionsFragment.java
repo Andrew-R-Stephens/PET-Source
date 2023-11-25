@@ -126,7 +126,7 @@ public class PossessionsFragment extends ItemStoreFragment {
         dataView.setVisibility(View.INVISIBLE);
     }
 
-    protected void buildItemStoreGroup(
+    protected void createGroup(
             LinearLayoutCompat parent,
             ItemStoreGroupData group
     ) {
@@ -147,7 +147,7 @@ public class PossessionsFragment extends ItemStoreFragment {
     }
 
     @SuppressLint("ResourceType")
-    protected void buildStoreViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+    protected void buildGroupViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
         if(getContext() == null) { return; }
 
         scrollViewPaginator.setRowCount(storeData.getGroups().size());
@@ -157,13 +157,13 @@ public class PossessionsFragment extends ItemStoreFragment {
             if(getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     addPaginatorIcon(scrollViewPaginator, group.getPaginationIcon());
-                    buildItemStoreGroup(parent, group);
+                    createGroup(parent, group);
                 });
             }
         }
     }
 
-    protected void buildItemDataView(View dataView, int groupIndex, int itemIndex) {
+    protected void buildDataPopupView(View dataView, int groupIndex, int itemIndex) {
         if(getContext() == null) { return; }
 
         ItemStorePossnsGroupData groupData = (ItemStorePossnsGroupData) storeData.getGroupAt(groupIndex);
@@ -197,6 +197,23 @@ public class PossessionsFragment extends ItemStoreFragment {
             altnametextView.setText(Html.fromHtml(getString(itemData.getAltName())));
         } catch (Resources.NotFoundException e) {
             altnametextView.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
+
+        try {
+            String attrData = itemData.getAllAttributesAsFormattedHTML(getContext());
+            if(attrData == null || attrData.length() > 0) {
+                attrtextView.setVisibility(View.GONE);
+            } else {
+                attrtextView.setVisibility(View.VISIBLE);
+
+                if(getContext() != null) {
+                    attrtextView.setText(attrData);
+                }
+            }
+
+        } catch (Resources.NotFoundException e) {
+            attrtextView.setVisibility(View.GONE);
             e.printStackTrace();
         }
 

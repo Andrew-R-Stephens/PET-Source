@@ -118,14 +118,6 @@
     <!--
         SETTINGS PAGE
     -->
-    <!-- Colorblind Data -->
-    <string-array name="settings_colorblindnessmode_array">
-        <item>@string/settings_colorblindnessmode_normal</item>
-        <item>@string/settings_colorblindnessmode_monochromacy</item>
-        <item>@string/settings_colorblindnessmode_deuteranomaly</item>
-        <item>@string/settings_colorblindnessmode_protanomaly</item>
-        <item>@string/settings_colorblindnessmode_tritanomaly</item>
-    </string-array>
 
     <!-- Font-Style Data -->
     <string-array name="settings_fontstyle_array">

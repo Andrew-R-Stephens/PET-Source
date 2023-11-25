@@ -25,6 +25,36 @@
         <item name="android:textViewStyle">?attr/primaryFont_Regular</item>
     </style>
 
+    <style name="NonColorblind.Base" parent="Colorblind.Base">
+        <item name="titleFontColor">@color/red_light</item>
+        <item name="subtitleFontColor">@color/red_medHigh</item>
+        <item name="splashtitleFontColor">@color/red_med</item>
+
+        <item name="bodyFontColor">@color/white</item>
+        <item name="bodyEmphasisFontColor">@color/red_light</item>
+
+        <item name="light_active">@color/red_high</item>
+        <item name="light_inactive">@color/red_dull</item>
+        <item name="light_off">@color/cb_mono_white_lowmed</item>
+
+        <item name="switchColor">@color/red_medHigh</item>
+        <item name="progressBarColorStart">@color/red_med</item>
+        <item name="progressBarColorEnd">@color/red_med</item>
+        <item name="strikethroughColor">@color/red_medHigh</item>
+        <item name="circleColor">@color/green_bright</item>
+
+        <item name="selectedColor">@color/cb_norm_item_selected</item>
+        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
+
+        <item name="positiveSelColor">@color/green_bright</item>
+        <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
+        <item name="negativeSelColor">@color/red_medHigh</item>
+
+        <item name="poiFillColor">@color/red_medHigh_poi</item>
+        <item name="roomBorderColor">@color/red_medHigh_selbord</item>
+        <item name="roomFillColor">@color/yellow_bright_selfill</item>
+    </style>
+
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">
 
         <item name="titleFontColor">@color/red_light</item>
@@ -57,40 +87,7 @@
 
     </style>
 
-    <style name="NonColorblind.Base" parent="Colorblind.Base">
-        <item name="titleFontColor">@color/red_light</item>
-        <item name="subtitleFontColor">@color/red_medHigh</item>
-        <item name="splashtitleFontColor">@color/red_med</item>
-
-        <item name="bodyFontColor">@color/white</item>
-        <item name="bodyEmphasisFontColor">@color/red_light</item>
-
-        <item name="light_active">@color/red_high</item>
-        <item name="light_inactive">@color/red_dull</item>
-        <item name="light_off">@color/cb_mono_white_lowmed</item>
-
-        <item name="switchColor">@color/red_medHigh</item>
-        <item name="progressBarColorStart">@color/red_med</item>
-        <item name="progressBarColorEnd">@color/red_med</item>
-        <item name="strikethroughColor">@color/red_medHigh</item>
-        <item name="circleColor">@color/green_bright</item>
-
-        <item name="selectedColor">@color/cb_norm_item_selected</item>
-        <item name="unselectedColor">@color/cb_norm_item_unselected</item>
-
-        <item name="positiveSelColor">@color/green_bright</item>
-        <item name="neutralSelColor">@color/cb_mono_white_highmed</item>
-        <item name="negativeSelColor">@color/red_medHigh</item>
-
-        <item name="poiFillColor">@color/red_medHigh_poi</item>
-        <item name="roomBorderColor">@color/red_medHigh_selbord</item>
-        <item name="roomFillColor">@color/yellow_bright_selfill</item>
-
-
-    </style>
-
-
-    <!-- -->
+    <!-- Colorblindness -->
     <style name="Monochromacy" parent="Colorblind.Base">
 
         <item name="titleFontColor">@color/cb_mono_white_high</item>
@@ -186,11 +183,105 @@
 
     </style>
 
-    <style name="Funhouse" parent="NonColorblind.Base">
-        <item name="backgroundColor">#4B2840</item>
-        <item name="middlegroundColor">#EEABC4</item>
-        <item name="foregroundColor" >#861388</item>
+    <!-- Skins -->
+
+    <style name="Skin" parent="NonColorblind.Base">
+        <!-- -->
     </style>
+
+    <style name="Prestige" parent="Skin">
+        <!-- -->
+    </style>
+
+    <style name="Event" parent="Skin">
+        <!-- -->
+    </style>
+
+    <style name="Recruit" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#E78702</item>
+        <item name="foregroundColor" >#FFFFFF</item>
+    </style>
+
+    <style name="Investigator" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#89114F</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+    <style name="PrivateInvestigator" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#FC9E3E</item>
+        <item name="foregroundColor" >#FFFFFF</item>
+    </style>
+
+    <style name="Detective" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#18F199</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+    <style name="Technician" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#B5100D</item>
+        <item name="foregroundColor" >#FFFFFF</item>
+    </style>
+
+    <style name="Specialist" parent="Prestige">
+        <item name="backgroundColor">#101C0B</item>
+        <item name="middlegroundColor">#A5E90D</item>
+        <item name="foregroundColor" >#FCFDFC</item>
+    </style>
+
+    <style name="Analyst" parent="Prestige">
+        <item name="backgroundColor">#1B1516</item>
+        <item name="middlegroundColor">#685A52</item>
+        <item name="foregroundColor" >#FFFFFF</item>
+    </style>
+
+    <style name="Agent" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#685A52</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+    <style name="Operator" parent="Prestige">
+        <item name="backgroundColor">#280C39</item>
+        <item name="titleFontColor">#5D2FDB</item>
+        <item name="foregroundColor" >#E728E9</item>
+    </style>
+
+    <style name="Commissioner" parent="Prestige">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#3C3B3C</item>
+        <item name="foregroundColor" >#FFAE3F</item>
+    </style>
+
+
+    <style name="Easter" parent="Event">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#89114F</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+    <style name="Halloween" parent="Event">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#89114F</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+    <style name="Winter" parent="Event">
+        <item name="backgroundColor">@color/black</item>
+        <item name="middlegroundColor">#89114F</item>
+        <item name="foregroundColor" >#F11284</item>
+    </style>
+
+
+
+
+
+
+    <!-- COMPONENT STYLING -->
 
     <style name="PET.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="enforceMaterialTheme">false</item>

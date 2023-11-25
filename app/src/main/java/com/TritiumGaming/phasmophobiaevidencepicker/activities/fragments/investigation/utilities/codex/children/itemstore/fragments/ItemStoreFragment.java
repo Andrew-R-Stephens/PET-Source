@@ -28,7 +28,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.ItemStoreData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.fragments.children.PossessionsFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
@@ -82,7 +81,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
             if(getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     Log.d("Err", "Building Store Views");
-                    buildStoreViews(parent, scrollViewPaginator);
+                    buildGroupViews(parent, scrollViewPaginator);
                     Log.d("Err", "Finished Building Store Views");
                 });
             }
@@ -133,7 +132,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                                     itemSelected = item;
                                     itemSelected.setSelected(newState);
 
-                                    buildItemDataView(dataView, groupIndex, itemIndex);
+                                    buildDataPopupView(dataView, groupIndex, itemIndex);
 
                                     if (newState) {
                                         openItemDataView(dataView);
@@ -251,15 +250,15 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
     @SuppressLint("ResourceType")
     protected abstract void buildStoreData();
 
-    protected abstract void buildItemStoreGroup(
+    protected abstract void createGroup(
             LinearLayoutCompat parent,
             ItemStoreGroupData group
     );
 
     @SuppressLint("ResourceType")
-    protected abstract void buildStoreViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator);
+    protected abstract void buildGroupViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator);
 
-    protected abstract void buildItemDataView(View dataView, int groupIndex, int itemIndex);
+    protected abstract void buildDataPopupView(View dataView, int groupIndex, int itemIndex);
 
     protected void addPaginatorIcon(GridLayout scrollViewPaginator, Integer icon) {
         boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;

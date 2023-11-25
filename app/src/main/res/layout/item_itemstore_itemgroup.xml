@@ -33,7 +33,6 @@
         android:id="@+id/itemGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
         android:paddingBottom="4dp"
         android:orientation="horizontal"
         android:gravity="center"
@@ -53,7 +52,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-
                 app:layout_constraintBottom_toBottomOf="@+id/include2"
                 app:layout_constraintEnd_toStartOf="@+id/include2"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"

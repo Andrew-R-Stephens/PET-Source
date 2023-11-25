@@ -3,18 +3,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Bundle;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.GridLayout;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -148,7 +143,7 @@ public class EquipmentFragment extends ItemStoreFragment {
         dataView.setVisibility(View.INVISIBLE);
     }
 
-    protected void buildItemStoreGroup(
+    protected void createGroup(
             LinearLayoutCompat parent,
             ItemStoreGroupData group
     ) {
@@ -169,7 +164,7 @@ public class EquipmentFragment extends ItemStoreFragment {
     }
 
     @SuppressLint("ResourceType")
-    protected void buildStoreViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+    protected void buildGroupViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
         if(getContext() == null) { return; }
 
         scrollViewPaginator.setRowCount(storeData.getGroups().size());
@@ -179,14 +174,14 @@ public class EquipmentFragment extends ItemStoreFragment {
             if(getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     addPaginatorIcon(scrollViewPaginator, group.getPaginationIcon());
-                    buildItemStoreGroup(parent, group);
+                    createGroup(parent, group);
                 });
             }
         }
 
     }
 
-    protected void buildItemDataView(View dataView, int groupIndex, int itemIndex) {
+    protected void buildDataPopupView(View dataView, int groupIndex, int itemIndex) {
         ItemStoreEquipmentGroupData groupData = (ItemStoreEquipmentGroupData) storeData.getGroupAt(groupIndex);
         ItemStoreEquipmentItemData itemData = (ItemStoreEquipmentItemData)groupData.getItemDataAt(itemIndex);
 

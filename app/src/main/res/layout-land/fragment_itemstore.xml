@@ -96,6 +96,7 @@
                 android:layout_marginBottom="4dp"
                 android:visibility="invisible"
                 app:layout_constraintHeight_max="48dp"
+                android:maxHeight="48dp"
                 app:layout_constraintBottom_toTopOf="@+id/item_safehouse_itemstore"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_default="wrap"

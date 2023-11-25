@@ -122,13 +122,24 @@
     <string name="settings_enablehuntaudioqueue">Enable Hunt Audio Warning</string>
     <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
+
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
     <string name="settings_colorblindnessmode_monochromacy">Achromatopsia</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
-    <string name="settings_colormode_funhouse" translatable="false">Funhouse</string>
+    <string name="settings_colormode_prestige_recruit" translatable="false">Recruit</string>
+    <string name="settings_colormode_prestige_investigator" translatable="false">Investigator</string>
+    <string name="settings_colormode_prestige_privateinvestigator" translatable="false">Private Investigator</string>
+    <string name="settings_colormode_prestige_detective" translatable="false">Detective</string>
+    <string name="settings_colormode_prestige_technician" translatable="false">Technician</string>
+    <string name="settings_colormode_prestige_specialist" translatable="false">Specialist</string>
+    <string name="settings_colormode_prestige_analyst" translatable="false">Analyst</string>
+    <string name="settings_colormode_prestige_agent" translatable="false">Agent</string>
+    <string name="settings_colormode_prestige_operator" translatable="false">Operator</string>
+    <string name="settings_colormode_prestige_commissioner" translatable="false">Commissioner</string>
+
     <!-- Font-Style Types -->
     <string name="settings_fontstyle_classic">P.E.T. Classic</string>
     <string name="settings_fontstyle_android">Android</string>
