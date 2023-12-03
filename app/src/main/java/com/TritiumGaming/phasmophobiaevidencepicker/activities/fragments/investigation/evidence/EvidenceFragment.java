@@ -3,13 +3,16 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,12 +35,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.EvidencePopupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidencePopupWindow;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioGroup;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostPopupWindow;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.GhostView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidencePopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceRadioGroup;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostPopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation.InvestigationList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
 /**
@@ -47,18 +54,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
  */
 public class EvidenceFragment extends InvestigationFragment {
 
-    protected GhostPopupData ghostPopupData;
-    protected EvidencePopupData evidencePopupData;
-
     protected SanityData sanityData;
     protected PhaseTimerData phaseTimerData;
     protected DifficultyCarouselData difficultyCarouselData;
     protected MapCarouselData mapCarouselData;
 
-    protected LinearLayout list_ghosts;
-    protected LinearLayout list_evidences;
-    protected ProgressBar ghostProgressBar,
-            evidenceProgressBar;
+    protected GhostList ghostList;
+    protected EvidenceList evidenceList;
 
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
@@ -104,6 +106,8 @@ public class EvidenceFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        if(getContext() == null) { return; }
+
         if(evidenceViewModel != null) {
             sanityData = evidenceViewModel.getSanityData();
             phaseTimerData = evidenceViewModel.getPhaseTimerData();
@@ -115,29 +119,48 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         // GHOST / EVIDENCE CONTAINERS
-        AppCompatTextView header_ghostLabel, header_evidenceLabel;
         FrameLayout
-                section_left = view.findViewById(R.id.column_left),
-                section_right = view.findViewById(R.id.column_right);
-        section_right.findViewById(R.id.scrollview)
+                column_left = view.findViewById(R.id.column_left),
+                column_right = view.findViewById(R.id.column_right);
+        column_right.findViewById(R.id.scrollview)
                 .setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+
+        InvestigationSection ghost_section;
+        InvestigationSection evidence_section;
+
         if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
-            header_ghostLabel = section_left.findViewById(R.id.label_container);
-            header_evidenceLabel = section_right.findViewById(R.id.label_container);
-            list_ghosts = section_left.findViewById(R.id.list);
-            list_evidences = section_right.findViewById(R.id.list);
-            ghostProgressBar = section_left.findViewById(R.id.progressbar);
-            evidenceProgressBar = section_right.findViewById(R.id.progressbar);
+            ghost_section = (InvestigationSection) column_left.getChildAt(0);
+            evidence_section = (InvestigationSection) column_right.getChildAt(0);
         } else {
-            header_ghostLabel = section_right.findViewById(R.id.label_container);
-            header_evidenceLabel = section_left.findViewById(R.id.label_container);
-            list_ghosts = section_right.findViewById(R.id.list);
-            list_evidences =  section_left.findViewById(R.id.list);
-            ghostProgressBar = section_right.findViewById(R.id.progressbar);
-            evidenceProgressBar = section_left.findViewById(R.id.progressbar);
+            evidence_section = (InvestigationSection) column_left.getChildAt(0);
+            ghost_section = (InvestigationSection) column_right.getChildAt(0);
         }
-        header_evidenceLabel.setText(R.string.investigation_section_title_evidence);
-        header_ghostLabel.setText(R.string.investigation_section_title_ghosts);
+
+        ghost_section.setLabel(getString(R.string.investigation_section_title_ghosts));
+        evidence_section.setLabel(getString(R.string.investigation_section_title_evidence));
+
+        ScrollView ghost_scrollview = ghost_section.findViewById(R.id.scrollview);
+        ScrollView evidence_scrollview = evidence_section.findViewById(R.id.scrollview);
+
+        ghostList = new GhostList(getContext());
+        evidenceList = new EvidenceList(getContext());
+
+        ghostList.init(evidenceViewModel, popupWindow,
+                ghost_section.findViewById(R.id.progressbar),
+                adRequest);
+        evidenceList.init(evidenceViewModel, popupWindow,
+                evidence_section.findViewById(R.id.progressbar),
+                adRequest, ghostList);
+
+        ViewStub list_ghosts = ghost_section.findViewById(R.id.list);
+        ViewStub list_evidence = evidence_section.findViewById(R.id.list);
+
+        ghost_scrollview.removeView(list_ghosts);
+        ghost_scrollview.addView(ghostList);
+
+        evidence_scrollview.removeView(list_evidence);
+        evidence_scrollview.addView(evidenceList);
+
         //ghostContainer.requestDisallowInterceptTouchEvent(true);
 
         toggleSanityButton = view.findViewById(R.id.button_toggleSanity);
@@ -210,8 +233,8 @@ public class EvidenceFragment extends InvestigationFragment {
 
         sanityMeterView.init(sanityData);
 
-        new Thread(this::createGhostViews).start();
-        new Thread(this::createEvidenceViews).start();
+        new Thread(ghostList::createGhostViews).start();
+        new Thread(evidenceList::createEvidenceViews).start();
 
     }
 
@@ -224,6 +247,7 @@ public class EvidenceFragment extends InvestigationFragment {
             toggleSanityButton.setImageLevel(2);
         }
     }
+/*
 
     @SuppressLint("ClickableViewAccessibility")
     public void createGhostViews() {
@@ -239,7 +263,8 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
     }
-
+*/
+/*
     @SuppressLint("ResourceType")
     private void createEvidenceViews() {
 
@@ -253,7 +278,8 @@ public class EvidenceFragment extends InvestigationFragment {
             });
         }
 
-    }
+    }*/
+/*
 
     private void haltProgressAnimation(ProgressBar progressBar) {
         progressBar.animate().alpha(0).setDuration(250).setListener(
@@ -265,6 +291,8 @@ public class EvidenceFragment extends InvestigationFragment {
             }
         }).start();
     }
+*/
+/*
 
     protected void requestInvalidateGhostContainer() {
         if(evidenceViewModel.getGhostOrderData().hasChanges()) {
@@ -276,15 +304,17 @@ public class EvidenceFragment extends InvestigationFragment {
     protected void forceResetGhostContainer() {
         reorderGhostViews();
     }
-
+*/
+/*
     private void forceResetEvidenceContainer() {
 
-        for(int i = 0; i < list_evidences.getChildCount(); i++) {
-            ((EvidenceRadioGroup)list_evidences.getChildAt(i).findViewById(R.id.radioGroup))
+        for(int i = 0; i < evidenceList.getChildCount(); i++) {
+            ((EvidenceRadioGroup)evidenceList.getChildAt(i).findViewById(R.id.radioGroup))
                     .reset(evidenceViewModel, i);
         }
 
-    }
+    }*/
+/*
 
     protected void reorderGhostViews() {
 
@@ -343,6 +373,8 @@ public class EvidenceFragment extends InvestigationFragment {
         }
     }
 
+*/
+/*
 
     @SuppressLint("ClickableViewAccessibility")
     private void buildEvidenceViews() {
@@ -386,6 +418,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
     }
+*/
 
     @Override
     public void softReset() {
@@ -409,13 +442,12 @@ public class EvidenceFragment extends InvestigationFragment {
             evidenceViewModel.getGhostOrderData().updateOrder();
         }
 
-        if(list_evidences != null) {
-            forceResetEvidenceContainer();
-            list_evidences.invalidate();
+        if(evidenceList != null) {
+            evidenceList.forceResetEvidenceContainer();
         }
 
-        if(list_ghosts != null) {
-            forceResetGhostContainer();
+        if(ghostList != null) {
+            ghostList.forceResetGhostContainer();
         }
 
         // SANITY

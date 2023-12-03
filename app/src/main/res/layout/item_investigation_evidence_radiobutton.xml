@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/item_investigation_evidence_radiogroup">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.EvidenceRadioButton
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceRadioButton
         android:id="@+id/radioIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"

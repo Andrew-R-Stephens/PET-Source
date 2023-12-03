@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -23,6 +23,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostList;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
 /**
@@ -133,9 +134,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         View.OnClickListener difficultyListener = v -> {
             evidenceViewModel.getGhostOrderData().updateOrder();
-            requestInvalidateGhostContainer();
+            ((GhostList)ghostList).requestInvalidateGhostContainer();
 
-            ScrollView parentScroller = ((ScrollView) list_ghosts
+            ScrollView parentScroller = ((ScrollView) ghostList
                     .findViewById(R.id.list).getParent());
             if(parentScroller != null) {
                 parentScroller.smoothScrollTo(0, 0);

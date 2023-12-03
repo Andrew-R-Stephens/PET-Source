@@ -1,9 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +34,11 @@ public class InvestigationSection extends ConstraintLayout {
         initView();
     }
 
-    public void initView() {
+    private void initView() {
         inflate(getContext(), R.layout.item_evidence_tool_section, this);
     }
 
+    public void setLabel(String label) {
+        ((TextView)findViewById(R.id.label_container)).setText(label);
+    }
 }
