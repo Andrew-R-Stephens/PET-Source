@@ -1,0 +1,12 @@
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+      <item
+          android:id="@+id/icon_tier"
+          android:bottom="8dp"
+          android:left="8dp"
+          android:right="8dp"
+          android:top="8dp"
+          android:drawable="@drawable/equipment_tier_badge_itemdata">
+
+      </item>
+</layer-list>

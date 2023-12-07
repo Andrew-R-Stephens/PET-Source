@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Component Styles
+    -->
+    <style name="SwitchTheme" parent="Theme.AppCompat">
+        <item name="colorControlActivated">?attr/switchColor</item>
+    </style>
+
+    <style name="RequestRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">?attr/bodyFontColor</item>
+        <item name="colorControlActivated">?attr/titleFontColor</item>
+    </style>
+
+    <declare-styleable name="GhostView">
+        <attr name="showText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="EvidenceView">
+        <attr name="color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EquipmentTiers">
+        <attr name="equipment_tier" format="enum">
+            <enum name="TIER_1" value="1"/>
+            <enum name="TIER_2" value="2"/>
+            <enum name="TIER_3" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

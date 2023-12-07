@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Colors
+    -->
+    <attr name="titleFontColor" format="reference|color" />
+    <attr name="subtitleFontColor" format="reference|color" />
+    <attr name="splashtitleFontColor" format="reference|color" />
+
+    <attr name="foregroundColor" format="reference|color" />
+    <attr name="middlegroundColor" format="reference|color" />
+    <attr name="backgroundColor" format="reference|color" />
+    <attr name="windowStrokeColor" format="reference|color" />
+    <attr name="windowBackgroundColor" format="reference|color" />
+
+    <attr name="bodyFontColor" format="reference|color" />
+    <attr name="bodyEmphasisFontColor" format="reference|color" />
+
+    <attr name="light_active" format="reference|color" />
+    <attr name="light_inactive" format="reference|color" />
+    <attr name="light_off" format="reference|color" />
+    <attr name="switchColor" format="reference|color" />
+    <attr name="progressBarColorStart" format="reference|color" />
+    <attr name="progressBarColorEnd" format="reference|color" />
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+
+    <attr name="selectedColor" format="reference|color" />
+    <attr name="unselectedColor" format="reference|color" />
+
+    <attr name="positiveSelColor" format="reference|color" />
+    <attr name="negativeSelColor" format="reference|color" />
+    <attr name="neutralSelColor" format="reference|color" />
+
+    <attr name="poiFillColor" format="reference|color" />
+    <attr name="roomBorderColor" format="reference|color" />
+    <attr name="roomFillColor" format="reference|color" />
+    <!--
+        Fonts
+    -->
+
+    <!-- AutoFit -->
+    <attr name="primaryFont_Regular" format="reference" />
+    <attr name="primaryFont_Bold" format="reference" />
+
+    <attr name="secondaryFont_Regular" format="reference" />
+    <attr name="secondaryFont_Bold" format="reference" />
+
+    <attr name="tertiaryFont_Regular" format="reference" />
+    <attr name="tertiaryFont_Bold" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow" format="reference" />
+
+    <attr name="quaternaryFont_Regular" format="reference" />
+    <attr name="quaternaryFont_Bold" format="reference" />
+
+    <!-- Squeeze -->
+    <attr name="primaryFont_Regular_Squeeze" format="reference" />
+    <attr name="primaryFont_Bold_Squeeze" format="reference" />
+
+    <attr name="secondaryFont_Regular_Squeeze" format="reference" />
+    <attr name="secondaryFont_Bold_Squeeze" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Squeeze" format="reference" />
+    <attr name="tertiaryFont_Bold_Squeeze" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Squeeze" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Squeeze" format="reference" />
+    <attr name="quaternaryFont_Bold_Squeeze" format="reference" />
+
+    <!-- Manual -->
+    <attr name="primaryFont_Regular_Manual" format="reference" />
+    <attr name="primaryFont_Bold_Manual" format="reference" />
+
+    <attr name="secondaryFont_Regular_Manual" format="reference" />
+    <attr name="secondaryFont_Bold_Manual" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Manual" format="reference" />
+    <attr name="tertiaryFont_Bold_Manual" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Manual" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Manual" format="reference" />
+    <attr name="quaternaryFont_Bold_Manual" format="reference" />
+
+    <!--
+        Radio Selector
+    -->
+    <attr name="state_done" format="boolean" />
+    <attr name="state_enabled" format="boolean" />
+    <attr name="state_selected" format="boolean" />
+
+    <attr name="equipment_type" format="enum">
+        <enum name="DOTS_1" value="1"/>
+        <enum name="DOTS_2" value="2"/>
+        <enum name="DOTS_3" value="3"/>
+        <enum name="EMF_1" value="1"/>
+        <enum name="EMF_2" value="2"/>
+        <enum name="EMF_3" value="3"/>
+        <enum name="UV_1" value="1"/>
+        <enum name="UV_2" value="2"/>
+        <enum name="UV_3" value="3"/>
+        <enum name="THERMO_1" value="1"/>
+        <enum name="THERMO_2" value="2"/>
+        <enum name="THERMO_3" value="3"/>
+        <enum name="VCAM_1" value="1"/>
+        <enum name="VCAM_2" value="2"/>
+        <enum name="VCAM_3" value="3"/>
+        <enum name="GWRITING_1" value="1"/>
+        <enum name="GWRITING_2" value="2"/>
+        <enum name="GWRITING_3" value="3"/>
+        <enum name="SBOX_1" value="1"/>
+        <enum name="SBOX_2" value="2"/>
+        <enum name="SBOX_3" value="3"/>
+    </attr>
+
+    <attr name="tempFontStyle" format="reference"/>
+
+    <declare-styleable name="OutlineTextView">
+        <attr name="outlineColor" format="color" />
+        <attr name="outlineWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CodexGridCard">
+        <attr name="label_text" format="string" />
+        <attr name="background_image" format="reference" />
+    </declare-styleable>
+
+</resources>

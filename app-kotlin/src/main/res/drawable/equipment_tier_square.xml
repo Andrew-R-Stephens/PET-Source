@@ -1,0 +1,39 @@
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item>
+    <layer-list>
+      <item>
+        <selector>
+          <item
+            app:state_selected="false">
+            <shape>
+              <solid
+                  android:color="#99AEB3" />
+            </shape>
+          </item>
+          <item
+              app:state_selected="true" >
+            <shape>
+              <solid
+                  android:color="#FFB43D" />
+            </shape>
+          </item>
+        </selector>
+      </item>
+
+      <item
+          android:id="@+id/icon_tier"
+          android:bottom="8dp"
+          android:left="8dp"
+          android:right="8dp"
+          android:top="8dp"
+          android:drawable="@drawable/equipment_tier_badge">
+
+      </item>
+
+    </layer-list>
+
+  </item>
+
+</selector>

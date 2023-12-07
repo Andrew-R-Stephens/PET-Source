@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        SPIRIT BOX PAGE
+    -->
+    <!-- General Entries -->
+    <string-array name="ghostspeaktool_general_array">
+        <item>@string/spiritbox_entry_q6_8</item>
+        <item>@string/spiritbox_entry_q6_7</item>
+        <item>@string/spiritbox_entry_q6_9</item>
+        <item>@string/spiritbox_entry_q6_12</item>
+        <item>@string/spiritbox_entry_q6_13</item>
+        <item>@string/spiritbox_entry_q6_14</item>
+        <item>@string/spiritbox_entry_q6_16</item>
+        <item>@string/spiritbox_entry_q6_17</item>
+        <item>@string/spiritbox_entry_q6_18</item>
+        <item>@string/spiritbox_entry_q0_2</item>
+        <item>@string/spiritbox_entry_q0_5</item>
+        <item>@string/spiritbox_entry_q0_6</item>
+        <item>@string/spiritbox_entry_q0_7</item>
+        <item>@string/spiritbox_entry_q0_8</item>
+        <item>@string/spiritbox_entry_q0_9</item>
+        <item>@string/spiritbox_entry_q0_3</item>
+    </string-array>
+    <!-- Spirit Box Entries -->
+    <string-array name="ghostspeaktool_spiritbox_array">
+        <item>@string/spiritbox_entry_q5_7</item>
+        <item>@string/spiritbox_entry_q3_5</item>
+        <item>@string/spiritbox_entry_q5_1</item>
+        <item>@string/spiritbox_entry_q1_1</item>
+        <item>@string/spiritbox_entry_q1_2</item>
+        <item>@string/spiritbox_entry_q1_3</item>
+        <item>@string/spiritbox_entry_q1_6</item>
+        <item>@string/spiritbox_entry_q1_7</item>
+        <item>@string/spiritbox_entry_q6_5</item>
+        <item>@string/spiritbox_entry_q7_9</item>
+        <item>@string/spiritbox_entry_q7_11</item>
+    </string-array>
+    <!-- Ouija Board Entries -->
+    <string-array name="ghostspeaktool_oijaboard_array">
+        <item>@string/spiritbox_entry_q5_7</item>
+        <item>@string/spiritbox_entry_q6_5</item>
+        <item>@string/spiritbox_entry_q6_9</item>
+        <item>@string/spiritbox_entry_q0_2</item>
+        <item>@string/spiritbox_entry_q0_7</item>
+        <item>@string/spiritbox_entry_q1_1</item>
+        <item>@string/spiritbox_entry_q1_2</item>
+        <item>@string/spiritbox_entry_q1_3</item>
+        <item>@string/spiritbox_entry_q1_6</item>
+        <item>@string/spiritbox_entry_q1_7</item>
+        <item>@string/spiritbox_entry_q2_1</item>
+        <item>@string/spiritbox_entry_q3_5</item>
+        <item>@string/spiritbox_entry_q5_1</item>
+        <item>@string/spiritbox_entry_q6_7</item>
+        <item>@string/spiritbox_entry_q6_8</item>
+        <item>@string/spiritbox_entry_q6_12</item>
+        <item>@string/spiritbox_entry_q6_13</item>
+        <item>@string/spiritbox_entry_q6_14</item>
+        <item>@string/spiritbox_entry_q6_16</item>
+        <item>@string/spiritbox_entry_q6_17</item>
+        <item>@string/spiritbox_entry_q6_18</item>
+        <item>@string/spiritbox_entry_q7_3</item>
+        <item>@string/spiritbox_entry_q7_9</item>
+        <item>@string/spiritbox_entry_q7_11</item>
+        <item>@string/spiritbox_entry_q8_1</item>
+        <item>@string/spiritbox_entry_q8_2</item>
+        <item>@string/spiritbox_entry_q8_3</item>
+        <item>@string/spiritbox_entry_q8_4</item>
+    </string-array>
+
+</resources>

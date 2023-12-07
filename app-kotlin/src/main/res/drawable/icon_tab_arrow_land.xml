@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:left="-3dp">
+
+        <shape>
+
+            <solid
+                android:width="48dp"
+                android:height="96dp"
+                android:color="@color/black"
+                />
+
+            <corners
+                android:topRightRadius="8dp"
+                android:bottomRightRadius="8dp"/>
+
+            <stroke
+                android:color="@color/white"
+                android:width="2dp"
+                />
+        </shape>
+
+    </item>
+
+    <item
+        android:top="24dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:bottom="24dp">
+
+        <level-list>
+
+            <item
+                android:minLevel="0"
+                android:maxLevel="1">
+
+                <vector
+                    android:width="20dp"
+                    android:height="24dp"
+                    android:viewportWidth="200"
+                    android:viewportHeight="200">
+
+                    <group
+                        android:rotation="180"
+                        android:pivotY="100"
+                        android:pivotX="100"
+                        >
+
+                        <path
+                            android:pathData="M99.5,49.6c-40.7,27.2 -74.1,49.8 -74.3,50.2 -0.2,0.7 148,100.2 149.3,100.2 0.3,-0 0.5,-45 0.5,-100 0,-55 -0.3,-100 -0.7,-99.9 -0.5,-0 -34.1,22.3 -74.8,49.5z"
+                            android:fillColor="@color/white"
+                            android:strokeColor="#00000000"/>
+                    </group>
+
+                </vector>
+
+            </item>
+
+            <item
+                android:minLevel="2"
+                android:maxLevel="2">
+
+                <vector
+                    android:width="20dp"
+                    android:height="24dp"
+                    android:viewportWidth="200"
+                    android:viewportHeight="200">
+
+                    <group
+                        android:rotation="0"
+                        android:pivotY="100"
+                        android:pivotX="100"
+                        >
+
+                        <path
+                            android:pathData="M99.5,49.6c-40.7,27.2 -74.1,49.8 -74.3,50.2 -0.2,0.7 148,100.2 149.3,100.2 0.3,-0 0.5,-45 0.5,-100 0,-55 -0.3,-100 -0.7,-99.9 -0.5,-0 -34.1,22.3 -74.8,49.5z"
+                            android:fillColor="@color/white"
+                            android:strokeColor="#00000000"/>
+                    </group>
+
+                </vector>
+
+            </item>
+
+        </level-list>
+
+    </item>
+
+</layer-list>

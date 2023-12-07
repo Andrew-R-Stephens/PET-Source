@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Color Styles -->
+    <integer-array name="settings_themes_color_array">
+        <item>@array/settings_themes_colorblind_array</item>
+        <!--<item>@array/settings_themes_prestige_array</item>-->
+    </integer-array>
+
+    <!-- Sub-Theme: Colorblind -->
+    <integer-array name="settings_themes_colorblind_array">
+        <item>@array/settings_themes_colorblind_id_array</item>
+        <item>@array/settings_themes_colorblind_name_array</item>
+        <item>@array/settings_themes_colorblind_style_array</item>
+    </integer-array>
+
+    <integer-array name="settings_themes_colorblind_id_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+    <string-array name="settings_themes_colorblind_name_array">
+        <item>@string/settings_colorblindnessmode_normal</item>
+        <item>@string/settings_colorblindnessmode_monochromacy</item>
+        <item>@string/settings_colorblindnessmode_deuteranomaly</item>
+        <item>@string/settings_colorblindnessmode_protanomaly</item>
+        <item>@string/settings_colorblindnessmode_tritanomaly</item>
+    </string-array>
+    <integer-array name="settings_themes_colorblind_style_array">
+        <item>@style/NonColorblind.Base</item>
+        <item>@style/Monochromacy</item>
+        <item>@style/Deuteranomaly</item>
+        <item>@style/Protanomaly</item>
+        <item>@style/Tritanomaly</item>
+    </integer-array>
+
+    <!-- Sub-Theme: Prestige -->
+    <integer-array name="settings_themes_prestige_array">
+        <item>@array/settings_themes_prestige_id_array</item>
+        <item>@array/settings_themes_prestige_name_array</item>
+        <item>@array/settings_themes_prestige_style_array</item>
+    </integer-array>
+
+    <integer-array name="settings_themes_prestige_id_array">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </integer-array>
+    <string-array name="settings_themes_prestige_name_array">
+        <item>@string/settings_colormode_prestige_recruit</item>
+        <item>@string/settings_colormode_prestige_investigator</item>
+        <item>@string/settings_colormode_prestige_privateinvestigator</item>
+        <item>@string/settings_colormode_prestige_detective</item>
+        <item>@string/settings_colormode_prestige_technician</item>
+        <item>@string/settings_colormode_prestige_specialist</item>
+        <item>@string/settings_colormode_prestige_analyst</item>
+        <item>@string/settings_colormode_prestige_agent</item>
+        <item>@string/settings_colormode_prestige_operator</item>
+        <item>@string/settings_colormode_prestige_commissioner</item>
+    </string-array>
+    <integer-array name="settings_themes_prestige_style_array">
+        <item>@style/Recruit</item>
+        <item>@style/Investigator</item>
+        <item>@style/PrivateInvestigator</item>
+        <item>@style/Detective</item>
+        <item>@style/Technician</item>
+        <item>@style/Specialist</item>
+        <item>@style/Analyst</item>
+        <item>@style/Agent</item>
+        <item>@style/Operator</item>
+        <item>@style/Commissioner</item>
+    </integer-array>
+
+
+    <!-- _______ -->
+
+
+    <!-- Font Styles -->
+    <integer-array name="settings_themes_fonts_array">
+        <item>@array/settings_themes_font_array</item>
+    </integer-array>
+
+    <!-- Sub-Theme: Colorblind -->
+    <integer-array name="settings_themes_font_array">
+        <item>@array/settings_themes_font_id_array</item>
+        <item>@array/settings_themes_font_name_array</item>
+        <item>@array/settings_themes_font_style_array</item>
+    </integer-array>
+
+    <integer-array name="settings_themes_font_id_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+    <string-array name="settings_themes_font_name_array">
+        <item>@string/settings_fontstyle_classic</item>
+        <item>@string/settings_fontstyle_android</item>
+        <item>@string/settings_fontstyle_journal</item>
+        <item>@string/settings_fontstyle_brick</item>
+        <item>@string/settings_fontstyle_clean</item>
+        <item>@string/settings_fontstyle_longcang</item>
+        <item>@string/settings_fontstyle_newtegmon</item>
+        <item>@string/settings_fontstyle_neucha</item>
+        <item>@string/settings_fontstyle_jetbrainsmono</item>
+    </string-array>
+    <integer-array name="settings_themes_font_style_array">
+        <item>@style/Fonts.Base</item>
+        <item>@style/Android</item>
+        <item>@style/Journal</item>
+        <item>@style/Brick</item>
+        <item>@style/Clean</item>
+        <item>@style/LongCang</item>
+        <item>@style/NewTegomin</item>
+        <item>@style/Neucha</item>
+        <item>@style/JetBrainsMono</item>
+    </integer-array>
+
+</resources>
