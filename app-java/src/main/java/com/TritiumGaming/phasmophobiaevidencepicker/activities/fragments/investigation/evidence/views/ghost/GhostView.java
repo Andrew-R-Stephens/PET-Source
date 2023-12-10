@@ -24,13 +24,14 @@ import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.Ghost;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 public abstract class GhostView extends ConstraintLayout {
 
     private EvidenceViewModel evidenceViewModel;
 
-    private InvestigationData.Ghost ghostData;
+    private Ghost ghostData;
 
     private @IntegerRes int neutralSelColor, negativeSelColor, positiveSelColor;
 
@@ -176,7 +177,7 @@ public abstract class GhostView extends ConstraintLayout {
 
     }
 
-    private void redrawGhostRejectionStatus(InvestigationData.Ghost ghost, int index, boolean animate) {
+    private void redrawGhostRejectionStatus(Ghost ghost, int index, boolean animate) {
 
         int score = ghost.getEvidenceScore();
         AppCompatImageView statusIcon = findViewById(R.id.icon_status);
