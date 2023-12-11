@@ -31,7 +31,7 @@ public class FontThemeControl extends AThemeControl {
     protected void build(Context context) {
         // COLORBLIND DATA
         TypedArray subThemesArray =
-                context.getResources().obtainTypedArray(R.array.settings_themes_fonts_array);
+                context.getResources().obtainTypedArray(R.array.settings_fontstyle_array);
 
         for (int i = 0; i < subThemesArray.length(); i++) {
             TypedArray themeArray =

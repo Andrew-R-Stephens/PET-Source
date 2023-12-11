@@ -1,8 +1,6 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.data.itemdata;
 
-import android.util.AttributeSet;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 

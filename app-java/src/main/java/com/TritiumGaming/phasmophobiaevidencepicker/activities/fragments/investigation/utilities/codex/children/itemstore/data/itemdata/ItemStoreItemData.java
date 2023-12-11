@@ -4,12 +4,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-import java.util.ArrayList;
 
 public abstract class ItemStoreItemData {
 

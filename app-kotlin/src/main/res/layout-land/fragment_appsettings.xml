@@ -26,6 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_settingstitle"
                 android:layout_width="0dp"
@@ -35,6 +36,7 @@
                 android:text="@string/settings_title"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/listener_cancel"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
@@ -121,9 +123,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
+            android:id="@+id/scrollView4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:fadeScrollbars="false"
             android:fillViewport="true"
@@ -131,7 +136,7 @@
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarStyle="outsideInset"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/scrollView5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27">
 
@@ -227,10 +232,10 @@
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:text="@string/settings_extrasettings"
                     android:textColor="?attr/titleFontColor"
-                    android:layout_marginTop="16dp"
                     android:textSize="24dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -312,9 +317,9 @@
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:layout_marginTop="8dp"
                     android:text="@string/settings_huntwarningflashtimeout"
                     android:textSize="18dp" />
 
@@ -375,12 +380,38 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fadeScrollbars="false"
+            android:fillViewport="true"
+            android:measureAllChildren="true"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideInset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/scrollView4"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout27">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_style_title"
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:text="@string/settings_appearancesettings"
                     android:textColor="?attr/titleFontColor"
@@ -396,16 +427,17 @@
                     android:gravity="center"
                     android:text="@string/settings_colorblindnessmode_note"
                     android:textColor="?attr/neutralSelColor"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/font_title"
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="@string/settings_fontstylesettings"
-                    android:layout_marginTop="8dp"
                     android:textSize="16dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -464,9 +496,9 @@
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:layout_marginTop="8dp"
                     android:text="@string/settings_colorblindnessmode_title"
                     android:textSize="16dp" />
 

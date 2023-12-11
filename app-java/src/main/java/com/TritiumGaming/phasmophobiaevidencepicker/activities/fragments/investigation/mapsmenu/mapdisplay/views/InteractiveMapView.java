@@ -41,6 +41,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

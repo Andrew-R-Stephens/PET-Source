@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 

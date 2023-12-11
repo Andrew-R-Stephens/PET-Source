@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Themes -->
+    <!-- Color Styles -->
     <integer-array name="settings_themes_array">
         <item>@array/settings_themes_colorblind_array</item>
         <!--<item>@array/settings_themes_prestige_array</item>-->
@@ -78,6 +78,56 @@
         <item>@style/Agent</item>
         <item>@style/Operator</item>
         <item>@style/Commissioner</item>
+    </integer-array>
+
+
+    <!-- _______ -->
+
+
+    <!-- Font Styles -->
+    <integer-array name="settings_themes_fonts_array">
+        <item>@array/settings_themes_font_array</item>
+    </integer-array>
+
+    <!-- Sub-Theme: Colorblind -->
+    <integer-array name="settings_themes_font_array">
+        <item>@array/settings_themes_font_id_array</item>
+        <item>@array/settings_themes_font_name_array</item>
+        <item>@array/settings_themes_font_style_array</item>
+    </integer-array>
+
+    <integer-array name="settings_themes_font_id_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+    <string-array name="settings_themes_font_name_array">
+        <item>@string/settings_fontstyle_classic</item>
+        <item>@string/settings_fontstyle_android</item>
+        <item>@string/settings_fontstyle_journal</item>
+        <item>@string/settings_fontstyle_brick</item>
+        <item>@string/settings_fontstyle_clean</item>
+        <item>@string/settings_fontstyle_longcang</item>
+        <item>@string/settings_fontstyle_newtegmon</item>
+        <item>@string/settings_fontstyle_neucha</item>
+        <item>@string/settings_fontstyle_jetbrainsmono</item>
+    </string-array>
+    <integer-array name="settings_themes_font_style_array">
+        <item>@style/Fonts.Base</item>
+        <item>@style/Android</item>
+        <item>@style/Journal</item>
+        <item>@style/Brick</item>
+        <item>@style/Clean</item>
+        <item>@style/LongCang</item>
+        <item>@style/NewTegomin</item>
+        <item>@style/Neucha</item>
+        <item>@style/JetBrainsMono</item>
     </integer-array>
 
 </resources>

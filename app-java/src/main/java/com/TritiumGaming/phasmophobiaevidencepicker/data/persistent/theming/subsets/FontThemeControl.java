@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.sub
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
@@ -11,7 +10,6 @@ import androidx.annotation.StyleRes;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.AThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * ColorSpaceData class

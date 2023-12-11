@@ -43,7 +43,7 @@ public class Ghost {
     }
 
     public void addEvidence(String evidence) {
-        for (Evidence e : InvestigationData.evidence) {
+        for (Evidence e : InvestigationData.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addEvidence(e);
                 break;
@@ -56,7 +56,7 @@ public class Ghost {
     }
 
     public void addNightmareEvidence(String evidence) {
-        for (Evidence e : InvestigationData.evidence) {
+        for (Evidence e : InvestigationData.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addNightmareEvidence(e);
                 break;
@@ -123,7 +123,7 @@ public class Ghost {
 
         int posScore = 0, negScore = 0;
 
-        for (Evidence e : InvestigationData.evidence) {
+        for (Evidence e : InvestigationData.evidenceList.getList()) {
             boolean isContained = false;
             for (Evidence eThis : thisGhostEvidence) {
                 if (e == eThis) {

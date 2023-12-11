@@ -29,9 +29,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 

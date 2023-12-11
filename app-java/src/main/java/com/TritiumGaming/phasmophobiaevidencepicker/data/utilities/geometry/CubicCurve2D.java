@@ -1,14 +1,14 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 import static java.lang.Math.ulp;
 
 import android.os.Build;
+
+import java.io.Serializable;
+import java.util.Arrays;
 
 
 public abstract class CubicCurve2D implements Shape, Cloneable {

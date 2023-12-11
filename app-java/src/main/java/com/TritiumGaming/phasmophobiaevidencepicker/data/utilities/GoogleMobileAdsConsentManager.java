@@ -1,7 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
 import android.app.Activity;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm.OnConsentFormDismissedListener;
 import com.google.android.ump.ConsentInformation;

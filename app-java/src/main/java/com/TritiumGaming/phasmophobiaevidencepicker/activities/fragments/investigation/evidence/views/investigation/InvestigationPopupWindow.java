@@ -2,17 +2,12 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class InvestigationPopupWindow extends ConstraintLayout {
 

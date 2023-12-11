@@ -47,8 +47,6 @@ public class InvestigationActivity extends PETActivity {
 
     public void initComponents() {
 
-        // NavController navController = Navigation.findNavController(fragmentContainerView);
-
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 

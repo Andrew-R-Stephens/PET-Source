@@ -1,7 +1,7 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.util.*;
+import java.util.NoSuchElementException;
 
 class RectIterator implements PathIterator {
     double x, y, w, h;

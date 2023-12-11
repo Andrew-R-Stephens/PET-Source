@@ -11,6 +11,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.EvidenceList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.GhostList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
 
 import java.util.Arrays;
@@ -41,7 +43,6 @@ public class EvidenceViewModel extends ViewModel {
         if (!hasInvestigationData()) {
             Log.d("ViewModel", "creating new invest data");
             setInvestigationData(new InvestigationData(this, c));
-            investigationData.print();
         }
 
         if (!hasDifficultyCarouselData()) {
@@ -170,7 +171,7 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     public void createRadioButtonsChecked() {
-        radioButtonsChecked = new int[InvestigationData.getEvidenceCount()];
+        radioButtonsChecked = new int[EvidenceList.getCount()];
         Arrays.fill(radioButtonsChecked, 1);
     }
 
@@ -197,7 +198,7 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     public void createRejectionPile() {
-        rejectionPile = new boolean[InvestigationData.getGhostCount()];
+        rejectionPile = new boolean[GhostList.getCount()];
     }
 
     public boolean swapStatusInRejectedPile(int index) {
@@ -211,10 +212,11 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     public void updateRejectionPile() {
-        rejectionPile = new boolean[InvestigationData.getGhostCount()];
+        rejectionPile = new boolean[GhostList.getCount()];
 
         for(int i = 0; i < rejectionPile.length; i++) {
-            rejectionPile[i] = investigationData.getGhost(i).getIsForcefullyRejected();
+            rejectionPile[i] =
+                    investigationData.getGhostList().getAt(i).getIsForcefullyRejected();
         }
     }
 

@@ -397,7 +397,8 @@
                     android:gravity="center"
                     android:text="@string/settings_colorblindnessmode_note"
                     android:textColor="?attr/neutralSelColor"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/font_title"

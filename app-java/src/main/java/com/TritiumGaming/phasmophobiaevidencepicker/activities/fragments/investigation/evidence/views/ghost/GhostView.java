@@ -23,7 +23,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.Ghost;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
@@ -78,7 +77,7 @@ public abstract class GhostView extends ConstraintLayout {
     public void build(EvidenceViewModel evidenceViewModel, int groupIndex) {
 
         this.evidenceViewModel = evidenceViewModel;
-        this.ghostData = evidenceViewModel.getInvestigationData().getGhost(groupIndex);
+        this.ghostData = evidenceViewModel.getInvestigationData().getGhostList().getAt(groupIndex);
 
         AppCompatTextView nameView = findViewById(R.id.label_name);
         LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
@@ -217,7 +216,7 @@ public abstract class GhostView extends ConstraintLayout {
 
             evidenceViewModel.getGhostOrderData().updateOrder();
 
-            redrawGhostRejectionStatus(evidenceViewModel.getInvestigationData().getGhost(index), index, true);
+            redrawGhostRejectionStatus(evidenceViewModel.getInvestigationData().getGhostList().getAt(index), index, true);
 
             Bundle params = new Bundle();
             params.putString("event_type", "ghost_swiped");

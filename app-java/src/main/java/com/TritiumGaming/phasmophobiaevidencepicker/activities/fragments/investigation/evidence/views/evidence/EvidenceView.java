@@ -23,7 +23,6 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.Evidence;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
@@ -82,10 +81,10 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         EvidenceRadioGroup radioGroup = findViewById(R.id.radioGroup);
 
-        name.setText(evidenceViewModel.getInvestigationData()
-                .getEvidences().get(groupIndex).getName());
+        name.setText(evidenceViewModel.getInvestigationData().getEvidenceList()
+                .getList().get(groupIndex).getName());
 
-        evidenceViewModel.getInvestigationData().getEvidences().get(groupIndex)
+        evidenceViewModel.getInvestigationData().getEvidenceList().getList().get(groupIndex)
                 .setRuling(Evidence.Ruling.values()[
                         evidenceViewModel.getRadioButtonsChecked()[groupIndex]]);
 
@@ -96,7 +95,7 @@ public abstract class EvidenceView extends ConstraintLayout {
             int selectedRatio = evidenceViewModel.getRadioButtonsChecked()[groupIndex];
             evidenceRadioButton.setState(j == selectedRatio);
 
-            evidenceViewModel.getInvestigationData().getEvidences().get(groupIndex)
+            evidenceViewModel.getInvestigationData().getEvidenceList().getList().get(groupIndex)
                     .setRuling(Evidence.Ruling.values()[
                             evidenceViewModel.getRadioButtonsChecked()[groupIndex]]);
 
@@ -141,7 +140,7 @@ public abstract class EvidenceView extends ConstraintLayout {
         icon.setImageState(new int[] { (R.attr.state_selected) }, true);
 
         evidenceViewModel.setRadioButtonChecked(currGroup, currRadio);
-        evidenceViewModel.getInvestigationData().getEvidences().get(currGroup)
+        evidenceViewModel.getInvestigationData().getEvidenceList().getList().get(currGroup)
                 .setRuling(Evidence.Ruling.values()[
                         evidenceViewModel.getRadioButtonsChecked()[currGroup]]);
 

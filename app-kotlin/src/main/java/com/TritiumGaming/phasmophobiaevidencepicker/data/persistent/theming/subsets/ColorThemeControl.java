@@ -31,7 +31,7 @@ public class ColorThemeControl extends AThemeControl {
     protected void build(Context context) {
         // COLORBLIND DATA
         TypedArray subThemesArray =
-                context.getResources().obtainTypedArray(R.array.settings_themes_color_array);
+                context.getResources().obtainTypedArray(R.array.settings_themes_colorblind_array);
 
         for (int i = 0; i < subThemesArray.length(); i++) {
             TypedArray themeArray =

@@ -8,9 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.AThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -70,36 +67,10 @@ public abstract class PETActivity extends AppCompatActivity {
 
     }
 
-    /*
-    public int getFontStyle(int fontType) {
-        return AThemeControl.getFontResource(fontType);
-    }
-    */
-
-    /*
-    public int getFontStyle(int fontType) {
-
-        return new FontThemeControl(this, globalPreferencesViewModel).getCurrentStyle();
-    }
-    */
-
     public int getFontStyle(int fontType) {
 
         return globalPreferencesViewModel.getFontThemeControl().getThemeAt(fontType);
     }
-
-    /*
-    public int getColorSpace(int colorSpace) {
-        return AThemeControl.getThemeAt(colorSpace);
-    }
-    */
-
-    /*
-    public int getColorSpace(int colorSpace) {
-
-        return new ColorThemeControl(this, globalPreferencesViewModel).getCurrentStyle();
-    }
-    */
 
     public int getColorSpace(int colorSpace) {
 

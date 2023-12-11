@@ -2,11 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.StyleRes;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 import java.util.ArrayList;
 

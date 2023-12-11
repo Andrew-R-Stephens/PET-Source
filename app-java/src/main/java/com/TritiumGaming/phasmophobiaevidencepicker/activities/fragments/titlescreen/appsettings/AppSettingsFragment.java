@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
