@@ -47,7 +47,7 @@ public class ColorThemeControl extends AThemeControl {
                 int themeCount = themeNamesArray.length();
 
                 for (int k = 0; k < themeCount; k++) {
-                    @StringRes int idRes = themeIDsArray.getResourceId(k, 0);
+                    String idRes = themeIDsArray.getString(k);
                     @StringRes int nameRes = themeNamesArray.getResourceId(k, 0);
                     @StyleRes int styleRes = themeStyleArray.getResourceId(k, 0);
 

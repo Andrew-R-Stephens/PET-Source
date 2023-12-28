@@ -27,8 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:background="@drawable/radiobutton_1"
-        android:backgroundTint="@color/cb_mono_white_med"
-        android:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView_languageChoiceIcon2"
         app:layout_constraintStart_toEndOf="@+id/imageView_languageChoiceIcon"
@@ -48,7 +46,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textColor="?attr/titleFontColor"
+            android:textColor="?attr/textColorPrimary"
             android:textSize="30sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

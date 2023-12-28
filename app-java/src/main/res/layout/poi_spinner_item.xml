@@ -11,7 +11,7 @@
     android:padding="8dp"
     android:maxLines="2"
     android:overlapAnchor="false"
-    android:textColor="?attr/bodyFontColor"
+    android:textColor="?attr/textColorBody"
     app:autoSizeTextType="uniform"
     app:autoSizeMinTextSize="14sp"
     app:autoSizeMaxTextSize="20sp"

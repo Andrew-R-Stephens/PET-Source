@@ -6,11 +6,17 @@ import androidx.annotation.StyleRes;
 public class CustomTheme {
 
     private final @StringRes int name;
-    private final @StringRes int id;
+    private final String hashID;
     private final @StyleRes int styleId;
 
+    public CustomTheme(String id, int name, int styleId) {
+        this.hashID = id;
+        this.name = name;
+        this.styleId = styleId;
+    }
+
     public CustomTheme(int id, int name, int styleId) {
-        this.id = id;
+        this.hashID = "-1";
         this.name = name;
         this.styleId = styleId;
     }
@@ -19,8 +25,8 @@ public class CustomTheme {
         return name;
     }
 
-    public @StringRes int getID() {
-        return id;
+    public String getID() {
+        return hashID;
     }
 
     public @StyleRes int getStyle() {

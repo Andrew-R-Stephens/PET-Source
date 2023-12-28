@@ -29,7 +29,7 @@
                     <shape>
                         <stroke
                             android:width="2dp"
-                            android:color="#99AEB3"/>
+                            android:color="?attr/codex_2"/>
                     </shape>
                 </item>
                 <item
@@ -37,7 +37,7 @@
                     <shape>
                         <stroke
                             android:width="2dp"
-                            android:color="#FFB43D"/>
+                            android:color="?attr/codex_4"/>
                     </shape>
                 </item>
             </selector>

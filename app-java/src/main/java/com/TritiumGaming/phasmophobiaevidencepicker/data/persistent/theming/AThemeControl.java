@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
 import java.util.ArrayList;
@@ -22,10 +23,25 @@ public abstract class AThemeControl {
     public AThemeControl(Context context) {
         build(context);
     }
+    /*
+    public void init(String savedID) {
+        setSavedIndex(savedID);
+        setSelectedIndex(savedIndex);
+    }
+    */
+    public void init(String savedID) {
+        setSavedIndex(getIndexOfID(savedID));
+        setSelectedIndex(savedIndex);
+    }
 
-    public void init(int savedIndex) {
-        setSavedIndex(savedIndex);
-        setSelectedIndex(getSavedIndex());
+    private int getIndexOfID(String savedID) {
+        for(int i = 0; i < themes.size(); i++) {
+            if(themes.get(i).getID().equals(savedID)) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     @SuppressLint("Recycle, ResourceType")
@@ -97,12 +113,15 @@ public abstract class AThemeControl {
         return getCurrentTheme().getName();
     }
 
-    /**
-     * @return
-     */
+    public String getID() {
+        return getCurrentTheme().getID();
+    }
+
+    /*
     public @StyleRes int getCurrentStyle() {
         return getCurrentTheme().getStyle();
     }
+    */
 
     public CustomTheme getAppThemeAt(int index) {
 
@@ -122,6 +141,7 @@ public abstract class AThemeControl {
 
     }
 
+    /*
     public @StyleRes int getThemeAt(int index) {
 
         CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
@@ -139,5 +159,11 @@ public abstract class AThemeControl {
         return theme.getStyle();
 
     }
+    */
 
+    /*
+    public boolean hasChanges() {
+        return savedIndex != selectedIndex;
+    }
+    */
 }

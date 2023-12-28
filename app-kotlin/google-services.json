@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "83595434940",
+    "project_id": "phasmophobiaevidencepicker",
+    "storage_bucket": "phasmophobiaevidencepicker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83595434940:android:d5b043a164d9fff00ce9b9",
+        "android_client_info": {
+          "package_name": "com.TritiumGaming.phasmophobiaevidencepicker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83595434940-q76jjuum419pd8eeslgt4s8sq6eql5tb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.TritiumGaming.phasmophobiaevidencepicker",
+            "certificate_hash": "66a4331e13861fdf2481a7df822d7220fedfd525"
+          }
+        },
+        {
+          "client_id": "83595434940-jack6s8tii5u6rltqb69uahare5gf3ut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA83pBQHgfU3_Gac2r37KG8_97WGie0h6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83595434940-jack6s8tii5u6rltqb69uahare5gf3ut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1890816745443024~8234901440"
+    }
+  ],
+  "configuration_version": "1"
+}

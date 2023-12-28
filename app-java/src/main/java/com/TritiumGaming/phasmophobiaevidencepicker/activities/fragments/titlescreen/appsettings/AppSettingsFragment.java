@@ -1,10 +1,19 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +22,8 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -33,9 +44,18 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtil
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.FirebaseUiException;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class AppSettingsFragment extends Fragment {
 
@@ -44,6 +64,8 @@ public class AppSettingsFragment extends Fragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
+
+    private boolean showEmail = false;
 
     @Nullable
     @Override
@@ -101,10 +123,94 @@ public class AppSettingsFragment extends Fragment {
         View listener_confirmClose = view.findViewById(R.id.listener_confirm);
         View listener_cancelClose = view.findViewById(R.id.listener_cancel);
 
+        AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
+        AppCompatButton btn_account_logout = view.findViewById(R.id.settings_account_logout_button);
+        AppCompatButton btn_account_delete = view.findViewById(R.id.settings_account_delete_button);
+        ConstraintLayout btn_account_infoContainer = view.findViewById(R.id.constraintLayout_accountInformation);
+        AppCompatTextView btn_account_info = view.findViewById(R.id.settings_accountsettings_info);
+
         if(getActivity() != null) {
             googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
         }
 
+        btn_account_login.setOnClickListener(v -> {
+            manualSignInAccount();
+
+            view.invalidate();
+        });
+        btn_account_logout.setOnClickListener(v -> {
+            signOutAccount();
+
+            view.invalidate();
+        });
+        btn_account_delete.setOnClickListener(v -> {
+            deleteAccount();
+
+            view.invalidate();
+        });
+
+        String accountTitle = "Email: ";
+        final String accountEmail;
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null) {
+            accountEmail = firebaseUser.getEmail();
+        } else {
+            accountEmail = "";
+        }
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
+        @ColorInt int obfuscationColor = typedValue.data;
+        int startSpan = Math.min(4, (int)(accountEmail.indexOf('@')*.8));
+        int endSpan = accountEmail.length();
+        SpannableString email_obfuscated =
+                new SpannableString(accountEmail);
+        email_obfuscated.setSpan(
+                new BackgroundColorSpan(obfuscationColor),
+                startSpan,
+                endSpan,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        email_obfuscated.setSpan(
+                new ForegroundColorSpan(obfuscationColor),
+                startSpan,
+                endSpan,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        SpannableString email_displayed =
+                new SpannableString(accountEmail);
+
+        btn_account_infoContainer.setOnClickListener(v -> {
+            showEmail = !showEmail;
+
+            if(showEmail) {
+                btn_account_info.setText(email_displayed);
+            } else {
+                btn_account_info.setText(email_obfuscated);
+            }
+        });
+
+        if(firebaseUser == null) {
+            btn_account_login.setVisibility(View.VISIBLE);
+            btn_account_logout.setVisibility(View.GONE);
+            btn_account_infoContainer.setVisibility(View.GONE);
+            btn_account_delete.setVisibility(View.GONE);
+        } else {
+            btn_account_login.setVisibility(View.GONE);
+            btn_account_logout.setVisibility(View.VISIBLE);
+            btn_account_infoContainer.setVisibility(View.VISIBLE);
+            btn_account_delete.setVisibility(View.VISIBLE);
+            btn_account_info.setText(email_displayed);
+
+            if(!showEmail) {
+                btn_account_info.setText(email_obfuscated);
+            }
+        }
+
+        /*
+         * Setting Colorblindness Theme
+         */
         // COLORBLIND DATA
         ColorThemeControl colorThemesData = globalPreferencesViewModel.getColorThemeControl();
         text_colorblindmode_selectedname.setText(colorThemesData.getCurrentName());
@@ -117,6 +223,7 @@ public class AppSettingsFragment extends Fragment {
             text_colorblindmode_selectedname.setText(getString(themeControl.getCurrentName()));
 
             demoColorStyle(themeControl);
+            //demoStyles();
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
@@ -126,6 +233,7 @@ public class AppSettingsFragment extends Fragment {
             text_colorblindmode_selectedname.setText(getString(themeControl.getCurrentName()));
 
             demoColorStyle(themeControl);
+            //demoStyles();
         });
 
         /*
@@ -137,19 +245,23 @@ public class AppSettingsFragment extends Fragment {
 
         // FONT-STYLE LISTENERS
         btn_fontStyle_left.setOnClickListener(v -> {
-            fontThemesData.iterateSelection(-1);
+            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
-            text_fontStyle_selectedname.setText(getString(fontThemesData.getCurrentName()));
+            themeControl.iterateSelection(-1);
+            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
 
-            demoFontStyle(fontThemesData);
+            demoFontStyle(themeControl);
+            //demoStyles();
         });
 
         btn_fontStyle_right.setOnClickListener(v -> {
-            fontThemesData.iterateSelection(1);
+            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
-            text_fontStyle_selectedname.setText(getString(fontThemesData.getCurrentName()));
+            themeControl.iterateSelection(1);
+            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
 
-            demoFontStyle(fontThemesData);
+            demoFontStyle(themeControl);
+            //demoStyles();
         });
 
         // SWITCHES
@@ -316,20 +428,35 @@ public class AppSettingsFragment extends Fragment {
         }
     }
 
-    private void revertDemoChanges() {
-        globalPreferencesViewModel.getFontThemeControl().revertSelection();
-        globalPreferencesViewModel.getColorThemeControl().revertSelection();
+    private void demoStyles() {
+        PETActivity activity = ((PETActivity)getActivity());
+        if(activity != null) {
+            activity.changeTheme(
+                    globalPreferencesViewModel.getColorTheme(),
+                    globalPreferencesViewModel.getFontTheme()
+            );
+        }
+        refreshFragment();
+    }
 
-        if (getActivity() != null) {
-            ((PETActivity) getActivity()).
-                    changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
+    private void revertDemoChanges() {
+        globalPreferencesViewModel.getColorThemeControl().revertSelection();
+        globalPreferencesViewModel.getFontThemeControl().revertSelection();
+
+        PETActivity activity = ((PETActivity)getActivity());
+        if (activity != null) {
+            activity.changeTheme(
+                            globalPreferencesViewModel.getColorTheme(),
+                            globalPreferencesViewModel.getFontTheme());
         }
     }
 
     private void demoFontStyle(FontThemeControl fontThemeControl) {
         PETActivity activity = ((PETActivity)getActivity());
         if(activity != null) {
-            activity.changeTheme(-1, fontThemeControl.getSelectedIndex());
+            activity.changeTheme(
+                    globalPreferencesViewModel.getColorTheme(),
+                    fontThemeControl.getAppThemeAt(fontThemeControl.getSelectedIndex()));
         }
         refreshFragment();
     }
@@ -337,7 +464,9 @@ public class AppSettingsFragment extends Fragment {
     private void demoColorStyle(ColorThemeControl colorThemeControl) {
         PETActivity activity = ((PETActivity)getActivity());
         if(activity != null) {
-            activity.changeTheme(colorThemeControl.getSelectedIndex(), -1);
+            activity.changeTheme(
+                    colorThemeControl.getAppThemeAt(colorThemeControl.getSelectedIndex()),
+                    globalPreferencesViewModel.getFontTheme());
         }
         refreshFragment();
     }
@@ -374,7 +503,6 @@ public class AppSettingsFragment extends Fragment {
         ft.attach(AppSettingsFragment.this).commitNow();
     }
 
-
     private void initFirebase() {
         if(getContext() != null){
             analytics = FirebaseAnalytics.getInstance(getContext());
@@ -395,33 +523,121 @@ public class AppSettingsFragment extends Fragment {
 
             globalPreferencesViewModel.saveToFile(getContext());
         }
-        if (getActivity() != null) {
-            ((PETActivity) getActivity()).
-                    changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
-        }
-        if(globalPreferencesViewModel.getIsAlwaysOn()) {
-            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
-        /*
-        if(getActivity() != null && mustRefresh) {
-            getActivity().recreate();
+        PETActivity activity = ((PETActivity) getActivity());
+        if (activity != null) {
+            activity.changeTheme(
+                            globalPreferencesViewModel.getColorTheme(),
+                            globalPreferencesViewModel.getFontTheme());
+            if(globalPreferencesViewModel.getIsAlwaysOn() ) {
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+            activity.recreate();
         }
+    }
 
-        if (getView() != null) {
-            getView().setKeepScreenOn(globalPreferencesViewModel.getIsAlwaysOn());
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            result -> {
+                try {
+                    onSignInResultAccount(result);
+                } catch (RuntimeException e) {
+                    String message = "Login Error: " + e.getMessage();
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+                }
+            }
+    );
+
+    /**
+     *
+     */
+    public void manualSignInAccount() {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Log.d("ManuLogin", "User null!");
+            return;
         }
-        */
+        Log.d("ManuLogin", "Continuing to sign-in.");
+
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setIsSmartLockEnabled(false)
+                .build();
+
+        signInLauncher.launch(signInIntent);
 
     }
 
     /**
-     * onPause method
+     *
      */
-    @Override
-    public void onPause() {
+    private void onSignInResultAccount(FirebaseAuthUIAuthenticationResult result) {
+        IdpResponse response = result.getIdpResponse();
+        if (result.getResultCode() == RESULT_OK) {
+            // Successfully signed in
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user != null) {
+                String message = "Welcome " + user.getDisplayName();
+                Toast toast = Toast.makeText(requireActivity(),
+                        message,
+                        com.google.android.material.R.integer.material_motion_duration_short_2);
+                toast.show();
 
-        super.onPause();
+                refreshFragment();
+            }
+        } else {
+            FirebaseUiException error = response.getError();
+            String message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+            Toast toast = Toast.makeText(requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2);
+            toast.show();
+        }
     }
 
+    /**
+     *
+     */
+    public void signOutAccount() {
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            return;
+        }
+
+        AuthUI.getInstance()
+                .signOut(requireContext())
+                .addOnCompleteListener(task -> {
+
+                    String message = "User signed out";
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+
+                    refreshFragment();
+                });
+    }
+
+    /**
+     *
+     */
+    public void deleteAccount() {
+        AuthUI.getInstance()
+                .delete(requireContext())
+                .addOnCompleteListener(task -> {
+                    String message = "Successfully removed account.";
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+
+                    refreshFragment();
+                });
+    }
 }

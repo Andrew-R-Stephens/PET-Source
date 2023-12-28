@@ -29,7 +29,7 @@
         android:singleLine="true"
         android:text="@string/equipment_info_name_dots"
         android:textAllCaps="true"
-        android:textColor="#99AEB3"
+        android:textColor="?attr/codex_2"
         android:textSize="18sp" />
 
     <ScrollView

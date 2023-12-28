@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="@+id/label_name"
         app:layout_constraintStart_toStartOf="@+id/label_name"
         app:layout_constraintTop_toTopOf="@+id/label_name"
-        app:srcCompat="@drawable/investigation_omit" />
+        app:srcCompat="@drawable/investigation_ghost_ruling" />
 
     <include
         android:id="@+id/icon_container"

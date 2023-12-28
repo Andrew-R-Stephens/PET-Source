@@ -5,6 +5,10 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
+import android.view.animation.Transformation;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -22,6 +26,8 @@ public class WarnTextView extends AppCompatTextView {
 
     private boolean state = false;
     private boolean flashOn = false;
+
+    private final int OFF = 0, INACTIVE = 1, ACTIVE = 2;
 
     private @ColorInt
     int color_active, color_inactive, color_off;
@@ -53,9 +59,6 @@ public class WarnTextView extends AppCompatTextView {
         init();
     }
 
-    /**
-     *
-     */
     private void init() {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
@@ -65,11 +68,10 @@ public class WarnTextView extends AppCompatTextView {
         color_inactive = typedValue.data;
         theme.resolveAttribute(R.attr.light_off, typedValue, true);
         color_off = typedValue.data;
+
+        getBackground().setLevel(0);
     }
 
-    /**
-     * @param canFlash
-     */
     public void toggleFlash(boolean canFlash) {
         int c;
         if (this.state) {
@@ -86,9 +88,61 @@ public class WarnTextView extends AppCompatTextView {
         setTextColor(c);
     }
 
-    /**
-     * @param state
-     */
+
+    public void setState(boolean state) {
+
+        if (this.state = state) {
+            getBackground().setLevel(ACTIVE);
+
+            if (flashOn) {
+                setTextColor(color_active);
+            }
+            else {
+                setTextColor(color_inactive);
+            }
+        } else {
+            getBackground().setLevel(OFF);
+            setTextColor(color_off);
+        }
+    }
+
+    public void setState(boolean state, boolean flashOn) {
+        if (this.state = state) {
+            getBackground().setLevel(ACTIVE);
+            if (this.flashOn = flashOn) {
+                setTextColor(color_active);
+            }
+            else {
+                setTextColor(color_inactive);
+            }
+        } else {
+            getBackground().setLevel(OFF);
+            setTextColor(color_off);
+        }
+    }
+
+    public void reset() {
+        setState(false);
+    }
+
+    /*
+    public void toggleFlash(boolean canFlash) {
+        int c;
+        if (this.state) {
+            if (canFlash && (flashOn = !flashOn)) {
+                c = color_active;
+            }
+            else {
+                c = color_inactive;
+            }
+        } else {
+            c = color_off;
+        }
+
+        setTextColor(c);
+    }
+
+
     public void setState(boolean state) {
 
         if (this.state = state) {
@@ -106,10 +160,6 @@ public class WarnTextView extends AppCompatTextView {
         }
     }
 
-    /**
-     * @param state
-     * @param flashOn
-     */
     public void setState(boolean state, boolean flashOn) {
         if (this.state = state) {
             setBackgroundTintList(ColorStateList.valueOf(color_active));
@@ -128,5 +178,6 @@ public class WarnTextView extends AppCompatTextView {
     public void reset() {
         setState(false);
     }
+    */
 
 }

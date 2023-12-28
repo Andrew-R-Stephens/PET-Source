@@ -39,3 +39,8 @@
 -keep class com.google.gson.examples.android.model.** { *; }
 -keep class com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper.** { *; }
 
+# Credential Manager directives
+-if class androidx.credentials.CredentialManager
+-keep class androidx.credentials.playservices.** {
+  *;
+}

@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 /**
  * SanityMeterView class
@@ -34,6 +35,10 @@ public class SanityMeterView extends View {
     private SanityData sanityData = null;
 
     private final Paint paint = new Paint();
+
+    private @ColorInt int
+            sanityStart = Color.GREEN/*R.attr.sanityColorStart*/;
+    private @ColorInt int sanityEnd = Color.BLUE/*R.attr.sanityColorEnd*/;
 
     private final RectF containerRect = new RectF();
     private final Rect sanityRect = new Rect();
@@ -92,17 +97,22 @@ public class SanityMeterView extends View {
         filter = new PorterDuffColorFilter(
                 ContextCompat.getColor(
                         getContext(),
-                        R.color.map_tint_blue),
+                        R.color.white),
                 PorterDuff.Mode.MULTIPLY);
 
         buildImages();
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
+        theme.resolveAttribute(R.attr.textColorPrimary, typedValue, true);
         themeColor = Color.WHITE;
         theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
         sanityTint = typedValue.data;
+
+        theme.resolveAttribute(R.attr.sanityColorStart, typedValue, true);
+        sanityStart = typedValue.data;
+        theme.resolveAttribute(R.attr.sanityColorEnd, typedValue, true);
+        sanityEnd = typedValue.data;
     }
 
     /**
@@ -168,6 +178,10 @@ public class SanityMeterView extends View {
         filter = new PorterDuffColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY);
     }
 
+    public void createFilterColor(@ColorInt int color) {
+        filter = new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY);
+    }
+
     /**
      * @param canvas
      */
@@ -198,33 +212,48 @@ public class SanityMeterView extends View {
         float insanityDegree;
         if (sanityData != null) {
             insanityDegree = sanityData.getInsanityDegree();
-            paint.setColor(
+            /*paint.setColor(
                     Color.rgb((255),
                             (int) (255 * sanityData.getInsanityPercent()),
-                            (int) (255 * sanityData.getInsanityPercent())));
+                            (int) (255 * sanityData.getInsanityPercent())));*/
+            paint.setColor(
+                    Color.rgb(
+                            (int) (255 * sanityData.getInsanityPercent()),
+                            (int) (255 * sanityData.getInsanityPercent()),
+                            (int) (255 * sanityData.getInsanityPercent())
+                    ));
+
+            @ColorInt int sanityColor =
+                    ColorUtils.interpolate(sanityStart, sanityEnd, sanityData.getInsanityPercent());
+            //createFilterColor(sanityColor);
+            paint.setColor(sanityColor);
+            //paint.setColorFilter(filter);
 
             if (sanityData != null) {
                 canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
             }
+            paint.setColorFilter(null);
             paint.setStrokeWidth(5f);
             paint.setColor(Color.BLACK);
             paint.setStyle(Paint.Style.STROKE);
             canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
 
-            createFilterColor(
+            /*createFilterColor(
                     Color.red(themeColor),
                     (int) (Color.green(themeColor) * sanityData.getInsanityPercent()),
-                    (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));
+                    (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));*/
         }
 
         if (sanityRect != null) {
             if (sanityImg_bottom != null) {
-                paint.setColorFilter(filter);
+                //paint.setColorFilter(filter);
+                paint.setColorFilter(null);
+
                 sanityRect.set(0, 0,
                         sanityImg_bottom.getWidth(),
                         sanityImg_bottom.getHeight());
                 canvas.drawBitmap(sanityImg_bottom, sanityRect, containerRect, paint);
-                paint.setColorFilter(null);
+                //paint.setColorFilter(null);
             }
             if (sanityImg_top != null) {
                 sanityRect.set(0, 0,

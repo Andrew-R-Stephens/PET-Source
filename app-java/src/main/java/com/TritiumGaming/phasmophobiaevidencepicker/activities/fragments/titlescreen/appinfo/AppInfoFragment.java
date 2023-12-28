@@ -74,7 +74,7 @@ public class AppInfoFragment extends Fragment {
         int color;
         if (getContext() != null) {
             Resources.Theme theme = getContext().getTheme();
-            theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
+            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
         }
         color = typedValue.data;
 

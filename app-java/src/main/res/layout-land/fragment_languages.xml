@@ -68,7 +68,7 @@
                     app:layout_constraintHeight_percent=".4"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:tint="?attr/subtitleFontColor" />
+                    app:tint="?attr/textColorSecondary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,7 +124,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:tint="?attr/subtitleFontColor" />
+                    app:tint="?attr/textColorSecondary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

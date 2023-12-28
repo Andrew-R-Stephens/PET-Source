@@ -165,6 +165,9 @@ public class InvestigationActivity extends PETActivity {
                     if(drawerLayout != null) {
 
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        if(navController.getCurrentDestination() != null) {
+                            navController.navigate(navController.getCurrentDestination().getId());
+                        }
                     }
 
                     return true;
@@ -174,14 +177,18 @@ public class InvestigationActivity extends PETActivity {
                     if(drawerLayout != null) {
                         if (drawerLayout.isOpen()) {
                             drawerLayout.closeDrawer(GravityCompat.START);
+
                         } else {
                             drawerLayout.openDrawer(GravityCompat.START);
                         }
+
                     }
                 }
                 return true;
 
             });
+
+            navView.setItemIconTintList(null);
         }
     }
 

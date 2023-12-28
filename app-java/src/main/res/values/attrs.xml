@@ -4,38 +4,77 @@
     <!--
         Colors
     -->
-    <attr name="titleFontColor" format="reference|color" />
-    <attr name="subtitleFontColor" format="reference|color" />
-    <attr name="splashtitleFontColor" format="reference|color" />
+    <attr name="textColorPrimary" format="reference|color" />
+    <attr name="textColorSecondary" format="reference|color" />
+    <attr name="textColorTertiary" format="reference|color" />
+    <attr name="textColorBody" format="reference|color" />
+    <attr name="textColorBodyEmphasis" format="reference|color" />
 
+    <attr name="splashTextColor" format="reference|color" />
     <attr name="foregroundColor" format="reference|color" />
     <attr name="middlegroundColor" format="reference|color" />
     <attr name="backgroundColor" format="reference|color" />
+    <attr name="backgroundColorOnBackground" format="reference|color" />
+    <attr name="navigationBarColor" format="reference|color" />
+    <attr name="statusBarColor" format="reference|color" />
+
     <attr name="windowStrokeColor" format="reference|color" />
     <attr name="windowBackgroundColor" format="reference|color" />
-
-    <attr name="bodyFontColor" format="reference|color" />
-    <attr name="bodyEmphasisFontColor" format="reference|color" />
+    <attr name="fragmentBackgroundColor" format="reference|color" />
 
     <attr name="light_active" format="reference|color" />
     <attr name="light_inactive" format="reference|color" />
     <attr name="light_off" format="reference|color" />
+
     <attr name="switchColor" format="reference|color" />
+    <attr name="inboxNotification" format="reference|color" />
+
+    <attr name="navigationFooterIcon" format="reference|color" />
+    <attr name="navigationFooterIconAlt" format="reference|color" />
+    <attr name="sanityColorStart" format="reference|color" />
+    <attr name="sanityColorEnd" format="reference|color" />
+
     <attr name="progressBarColorStart" format="reference|color" />
     <attr name="progressBarColorEnd" format="reference|color" />
-    <attr name="strikethroughColor" format="reference|color" />
-    <attr name="circleColor" format="reference|color" />
 
     <attr name="selectedColor" format="reference|color" />
+    <attr name="selectedColor2" format="reference|color" />
     <attr name="unselectedColor" format="reference|color" />
 
     <attr name="positiveSelColor" format="reference|color" />
     <attr name="negativeSelColor" format="reference|color" />
     <attr name="neutralSelColor" format="reference|color" />
 
-    <attr name="poiFillColor" format="reference|color" />
-    <attr name="roomBorderColor" format="reference|color" />
-    <attr name="roomFillColor" format="reference|color" />
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+
+    <attr name="mapPoiFillColor" format="reference|color" />
+    <attr name="mapRoomFillColor" format="reference|color" />
+    <attr name="mapRoomBorderColor" format="reference|color" />
+
+    <attr name="theme_badge" format="reference" />
+
+    <attr name="a" format="reference|color" />
+    <attr name="b" format="reference|color" />
+    <attr name="c" format="reference|color" />
+    <attr name="d" format="reference|color" />
+    <attr name="e" format="reference|color" />
+    <attr name="f" format="reference|color" />
+    <attr name="g" format="reference|color" />
+    <attr name="h" format="reference|color" />
+    <attr name="i" format="reference|color" />
+    <attr name="j" format="reference|color" />
+    <attr name="k" format="reference|color" />
+    <attr name="l" format="reference|color" />
+    <attr name="m" format="reference|color" />
+    <attr name="n" format="reference|color" />
+
+    <attr name="codex_1" format="reference|color" />
+    <attr name="codex_2" format="reference|color" />
+    <attr name="codex_3" format="reference|color" />
+    <attr name="codex_4" format="reference|color" />
+    <attr name="codex_5" format="reference|color" />
+
     <!--
         Fonts
     -->

@@ -27,7 +27,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/review_requesttitle"
-            android:textColor="?attr/subtitleFontColor"
+            android:textColor="?attr/textColorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".3"

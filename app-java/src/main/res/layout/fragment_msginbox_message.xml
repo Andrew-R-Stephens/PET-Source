@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/subtitleFontColor" />
+            app:tint="?attr/textColorSecondary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,7 +65,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:scaleType="centerInside"
-                android:textColor="?attr/titleFontColor"
+                android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/textView_messageDate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".6"
@@ -79,7 +79,7 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/cb_mono_white_med"
+                android:textColor="@color/white_M400"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif-monospace"
                     android:text="@string/app_name"
-                    android:textColor="?attr/neutralSelColor"
+                    android:textColor="?attr/textColorBody"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:fontFamily="serif-monospace" />

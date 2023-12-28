@@ -1,0 +1,141 @@
+<resources>
+
+    <!-- Colorblindness -->
+    <style name="Monochromacy" parent="Colorblind.Base">
+
+        <item name="textColorPrimary">@color/white</item>
+        <item name="textColorSecondary">@color/white</item>
+        <item name="textColorTertiary">@color/white</item>
+
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/white</item>
+
+        <item name="light_active">@color/white</item>
+        <item name="light_inactive">@color/white_M400</item>
+
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/white_M500</item>
+
+        <item name="progressBarColorStart">@color/white_M500</item>
+        <item name="progressBarColorEnd">@color/white_M300</item>
+
+        <item name="switchColor">@color/white_M100</item>
+        <item name="inboxNotification">@color/white_M600</item>
+        <item name="strikethroughColor">@color/white_M100</item>
+        <item name="circleColor">@color/white</item>
+
+        <item name="selectedColor">@color/white_M100</item>
+        <item name="unselectedColor">@color/white_M600</item>
+
+        <item name="positiveSelColor">@color/white</item>
+        <item name="neutralSelColor">@color/white_M400</item>
+        <item name="negativeSelColor">@color/white_M600</item>
+
+        <item name="mapPoiFillColor">@color/white_A75</item>
+        <item name="mapRoomBorderColor">@color/white_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_M50_A10</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/white_M200</item>
+
+        <item name="splashTextColor">@color/white_M200</item>
+
+    </style>
+
+    <style name="Deuteranomaly" parent="Colorblind.Base">
+
+        <item name="textColorPrimary">@color/blue_M175</item>
+        <item name="textColorSecondary">@color/blue_M200</item>
+        <item name="textColorTertiary">@color/blue_M250</item>
+
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/blue_M175</item>
+
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/yellow</item>
+
+        <item name="progressBarColorStart">@color/yellow_M500</item>
+        <item name="progressBarColorEnd">@color/yellow_M300</item>
+
+        <item name="light_active">@color/yellow</item>
+        <item name="light_inactive">@color/yellow_A40</item>
+
+        <item name="switchColor">@color/yellow_M100</item>
+        <item name="inboxNotification">@color/blue_M650</item>
+        <item name="strikethroughColor">@color/blue_M175</item>
+        <item name="circleColor">@color/yellow</item>
+
+        <item name="selectedColor">@color/yellow</item>
+        <item name="unselectedColor">@color/white_M600</item>
+
+        <item name="positiveSelColor">@color/yellow</item>
+        <item name="neutralSelColor">@color/white_M400</item>
+        <item name="negativeSelColor">@color/blue_M650</item>
+
+        <item name="mapPoiFillColor">@color/blue_M175_A75</item>
+        <item name="mapRoomBorderColor">@color/blue_M200_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/yellow_M100</item>
+
+        <item name="splashTextColor">@color/white_M200</item>
+    </style>
+
+    <style name="Protanomaly" parent="Colorblind.Base">
+
+        <item name="textColorPrimary">@color/blue_M175</item>
+        <item name="textColorSecondary">@color/blue_M200</item>
+        <item name="textColorTertiary">@color/blue_M250</item>
+
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/blue_M175</item>
+
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/yellow</item>
+
+        <item name="progressBarColorStart">@color/yellow_M500</item>
+        <item name="progressBarColorEnd">@color/yellow_M300</item>
+
+        <item name="light_active">@color/yellow</item>
+        <item name="light_inactive">@color/yellow_A40</item>
+
+        <item name="switchColor">@color/yellow_M100</item>
+        <item name="inboxNotification">@color/blue_M650</item>
+        <item name="strikethroughColor">@color/blue_M175</item>
+        <item name="circleColor">@color/yellow</item>
+
+        <item name="selectedColor">@color/yellow</item>
+        <item name="unselectedColor">@color/white_M600</item>
+
+        <item name="positiveSelColor">@color/yellow</item>
+        <item name="neutralSelColor">@color/white_M400</item>
+        <item name="negativeSelColor">@color/blue_M650</item>
+
+        <item name="mapPoiFillColor">@color/blue_M175_A75</item>
+        <item name="mapRoomBorderColor">@color/blue_M200_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/yellow_M100</item>
+
+        <item name="splashTextColor">@color/yellow_M100</item>
+    </style>
+
+    <style name="Tritanomaly" parent="Colorblind.Base">
+
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/red</item>
+
+        <item name="progressBarColorStart">@color/red_M500</item>
+        <item name="progressBarColorEnd">@color/red_M300</item>
+
+        <item name="switchColor">@color/red</item>
+        <item name="circleColor">@color/green</item>
+        <item name="neutralSelColor">@color/white</item>
+
+        <item name="mapPoiFillColor">@color/red_A75</item>
+
+    </style>
+
+</resources>

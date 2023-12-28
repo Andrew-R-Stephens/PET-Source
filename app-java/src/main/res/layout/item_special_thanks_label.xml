@@ -11,7 +11,7 @@
         style="?attr/secondaryFont_Regular_Squeeze"
         android:layout_height="24dp"
         android:layout_width="0dp"
-        android:textColor="?attr/bodyFontColor"
+        android:textColor="?attr/textColorBody"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

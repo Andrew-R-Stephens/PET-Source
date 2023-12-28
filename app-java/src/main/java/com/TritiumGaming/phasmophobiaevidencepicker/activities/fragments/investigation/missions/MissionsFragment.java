@@ -184,6 +184,7 @@ public class MissionsFragment extends InvestigationFragment {
 
     }
 
+    /*
     protected void initNavListeners(View lstnr_navLeft,
                                   View lstnr_navMedLeft,
                                   View lstnr_navCenter,
@@ -233,6 +234,7 @@ public class MissionsFragment extends InvestigationFragment {
         }
 
     }
+    */
 
     @Override
     public void softReset() {

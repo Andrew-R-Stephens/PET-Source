@@ -9,8 +9,8 @@
     </style>
 
     <style name="RequestRatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">?attr/bodyFontColor</item>
-        <item name="colorControlActivated">?attr/titleFontColor</item>
+        <item name="colorControlNormal">?attr/textColorBody</item>
+        <item name="colorControlActivated">?attr/textColorPrimary</item>
     </style>
 
     <declare-styleable name="GhostView">

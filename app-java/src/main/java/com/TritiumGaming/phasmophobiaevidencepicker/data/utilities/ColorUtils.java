@@ -1,6 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
+import static androidx.core.graphics.ColorUtils.blendARGB;
+
 import android.graphics.Color;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 
 public class ColorUtils {
 
@@ -38,4 +43,10 @@ public class ColorUtils {
                 rgb[ARGB.B.ordinal()] = b
                 );
     }
+
+    public static int interpolate(@ColorInt int startColor, @ColorInt int endColor,
+                                  @FloatRange(from = 0.0, to = 1.0) float ratio) {
+        return blendARGB(endColor, startColor, ratio);
+    }
+
 }

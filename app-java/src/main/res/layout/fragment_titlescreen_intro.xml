@@ -23,7 +23,7 @@
             android:layout_height="49dp"
             android:src="@drawable/icon_negative_unselected"
             android:tintMode="multiply"
-            android:tint="@color/red_high"
+            android:tint="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

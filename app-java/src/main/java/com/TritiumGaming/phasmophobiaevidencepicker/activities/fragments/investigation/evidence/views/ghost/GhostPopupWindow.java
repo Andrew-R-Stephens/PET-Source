@@ -99,7 +99,7 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         // THEME
         Resources.Theme theme = getContext().getTheme();
         TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(R.attr.bodyEmphasisFontColor, typedValue, true);
+        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
         @ColorInt int fontEmphasisColor = typedValue.data;
 
 

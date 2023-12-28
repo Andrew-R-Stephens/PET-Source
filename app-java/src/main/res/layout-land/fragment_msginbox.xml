@@ -37,7 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/subtitleFontColor" />
+                app:tint="?attr/textColorSecondary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textview_title"
@@ -146,7 +146,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="1.0"
-                                app:tint="?attr/negativeSelColor"
+                                app:tint="?attr/inboxNotification"
                                 app:tintMode="multiply" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,7 +165,7 @@
                             android:maxLines="2"
                             android:text="@string/messagecenter_inbox_general"
                             app:autoSizeMinTextSize="24sp"
-                            android:textColor="?attr/titleFontColor"
+                            android:textColor="?attr/textColorPrimary"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -239,7 +239,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="1.0"
-                                app:tint="?attr/negativeSelColor"
+                                app:tint="?attr/inboxNotification"
                                 app:tintMode="multiply" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -258,7 +258,7 @@
                             android:maxLines="2"
                             android:text="@string/messagecenter_inbox_pet"
                             app:autoSizeMinTextSize="24sp"
-                            android:textColor="?attr/titleFontColor"
+                            android:textColor="?attr/textColorPrimary"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -332,7 +332,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="1.0"
-                                app:tint="?attr/negativeSelColor"
+                                app:tint="?attr/inboxNotification"
                                 app:tintMode="multiply" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -352,7 +352,7 @@
                             android:maxLines="2"
                             app:autoSizeMinTextSize="24sp"
                             android:text="@string/messagecenter_inbox_phas"
-                            android:textColor="?attr/titleFontColor"
+                            android:textColor="?attr/textColorPrimary"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

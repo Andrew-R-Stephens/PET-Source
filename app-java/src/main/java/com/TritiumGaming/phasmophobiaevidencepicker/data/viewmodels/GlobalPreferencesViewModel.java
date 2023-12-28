@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 
@@ -64,18 +65,24 @@ public class GlobalPreferencesViewModel extends ViewModel {
         );
 
         fontThemeControl = new FontThemeControl(context);
-        fontThemeControl.init(
+        /*fontThemeControl.init(
                 sharedPref.getInt(
                         context.getResources().getString(R.string.preference_fontType),
-                        getFontType()
+                        getFontTheme()
+                )
+        );*/
+        fontThemeControl.init(
+                sharedPref.getString(
+                        context.getResources().getString(R.string.preference_savedFont),
+                        getFontThemeID()
                 )
         );
 
         colorThemeControl = new ColorThemeControl(context);
         colorThemeControl.init(
-                sharedPref.getInt(
-                        context.getResources().getString(R.string.preference_colorSpace),
-                        getColorSpace()
+                sharedPref.getString(
+                        context.getResources().getString(R.string.preference_savedTheme),
+                        getColorThemeID()
             )
         );
 
@@ -250,43 +257,39 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return huntWarningFlashTimeout;
     }
 
-    /*public void setColorSpace(int colorSpace) {
-        this.colorThemeControl.setSelectedIndex(colorSpace);
-    }*/
-    /*public void setColorSpace(int colorSpace) {
-        this.colorSpace = colorSpace;
-    }*/
-
     /**
      * getColorSpace method
      *
      * @return ColorSpace
      */
-    public int getColorSpace() {
+    /*
+    public int getColorTheme() {
         return colorThemeControl.getSavedIndex();
     }
-    /*public int getColorSpace() {
-        return colorSpace;
-    }*/
-
-    /*public void setFontType(int fontType) {
-        this.fontThemeControl.setSelectedIndex(fontType);
-    }*/
-    /*public void setFontType(int fontType) {
-        this.fontType = fontType;
-    }*/
+    */
+    public String getColorThemeID() {
+        return colorThemeControl.getID();
+    }
+    public CustomTheme getColorTheme() {
+        return colorThemeControl.getCurrentTheme();
+    }
 
     /**
      * getFontType method
      *
      * @return fontType
      */
-    public int getFontType() {
+    /*
+    public int getFontTheme() {
         return fontThemeControl.getSavedIndex();
     }
-    /*public int getFontType() {
-        return fontType;
-    }*/
+    */
+    public String getFontThemeID() {
+        return fontThemeControl.getID();
+    }
+    public CustomTheme getFontTheme() {
+        return fontThemeControl.getCurrentTheme();
+    }
 
     public FontThemeControl getFontThemeControl() {
         return fontThemeControl;
@@ -425,7 +428,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
             editor = getEditor(c);
         }
 
-        editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
+        editor.putString(c.getResources().getString(R.string.preference_savedTheme), getColorThemeID());
 
         if(localApply) {
             editor.apply();
@@ -444,7 +447,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
             editor = getEditor(c);
         }
 
-        editor.putInt(c.getResources().getString(R.string.preference_fontType), getFontType());
+        editor.putString(c.getResources().getString(R.string.preference_savedFont), getFontThemeID());
 
         if(localApply) {
             editor.apply();
@@ -584,8 +587,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
         settings.put("always_on", getIsAlwaysOn()+"");
         settings.put("warning_enabled", getIsHuntAudioAllowed()+"");
         settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
-        settings.put("color_theme", getColorSpace()+"");
-        settings.put("font_type", getFontType()+"");
+        settings.put("color_theme", getColorThemeID()+"");
+        settings.put("font_type", getFontThemeID()+"");
         settings.put("left_support", getIsLeftHandSupportEnabled()+"");
         settings.put("can_show_intro", getCanShowIntroduction()+"");
         if(getReviewRequestData() != null) {
@@ -610,7 +613,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Always On: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()) +
                 "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()) +
                 "; Hunt Warning Flash Timeout: " + sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()) +
-                "; Color Space: " + sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()) +
+                "; Color Space: " + sharedPref.getString(context.getResources().getString(R.string.preference_savedTheme), getColorThemeID()) +
                 "; ReviewRequestData: [" +
                 "Time Alive: " + sharedPref.getLong(context.getResources().getString(R.string.reviewtracking_appTimeAlive), 0) +
                 "; Times Opened: " + sharedPref.getInt(context.getResources().getString(R.string.reviewtracking_appTimesOpened), 0) +
@@ -628,7 +631,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Always On: " + getIsAlwaysOn() +
                 "; Is Hunt Audio Allowed: " + getIsHuntAudioAllowed() +
                 "; Hunt Warning Flash Timeout: " + getHuntWarningFlashTimeout() +
-                "; Color Space: " +getColorSpace() +
+                "; Color Space: " + getColorThemeID() +
                 "; Can Show Introduction: " + getCanShowIntroduction() +
                 "; ReviewRequestData: [" + getReviewRequestData().toString() + "]");
     }

@@ -65,7 +65,7 @@ public abstract class EvidenceView extends ConstraintLayout {
         if (context != null) {
             Resources.Theme theme = context.getTheme();
             TypedValue typedValue = new TypedValue();
-            theme.resolveAttribute(R.attr.bodyEmphasisFontColor, typedValue, true);
+            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
             fontEmphasisColor = typedValue.data;
         }
 

@@ -35,7 +35,7 @@
             android:id="@+id/icon_arrow"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:background="#99AEB3"
+            android:background="?attr/codex_2"
             android:paddingTop="4dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_arrow_topright"
-                android:tint="#161C1C"
+                android:tint="?attr/codex_1"
                 android:tintMode="multiply"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

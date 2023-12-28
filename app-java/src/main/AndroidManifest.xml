@@ -53,6 +53,8 @@
             android:configChanges="locale|orientation">
         </activity>
 
+        <activity android:name=".activities.FirebaseUIActivity" />
+
     </application>
 
     <!--

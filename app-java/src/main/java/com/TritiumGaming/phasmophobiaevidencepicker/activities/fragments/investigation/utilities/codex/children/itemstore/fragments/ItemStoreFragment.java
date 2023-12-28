@@ -4,10 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -44,6 +47,10 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
 
     protected View dataView;
 
+    private int
+            selColor = Color.parseColor("#2D3635"),
+            unselColor = Color.parseColor("#FFB43D");
+
     @Nullable
     @Override
     public View onCreateView(
@@ -61,6 +68,13 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         super.onViewCreated(view, savedInstanceState);
 
         if(getContext() == null || getContext().getResources() == null) { return; }
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
+        unselColor = typedValue.data;
+        theme.resolveAttribute(R.attr.codex_5, typedValue, true);
+        selColor = typedValue.data;
 
         AppCompatTextView titleView = view.findViewById(R.id.label_pagetitle);
         ViewGroup itemStore = view.findViewById(R.id.item_safehouse_itemstore);
@@ -272,7 +286,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         param.height = (!isPortrait) ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
         equipmentView.setLayoutParams(param);
         equipmentView.setImageResource(icon);
-        setIconFilter(equipmentView, "#2D3635", 1f);
+        setIconFilter(equipmentView, /*"#2D3635"*/ selColor, 1f);
         scrollViewPaginator.addView(equipmentView);
     }
 
@@ -387,13 +401,11 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         for(int j = 0; j < paginatorChildCount; j++) {
             ImageView icon = scrollViewPaginator.getChildAt(j)
                     .findViewById(R.id.image_equipmentIcon);
-            //setIconFilter(icon, Color.argb(255, 255, 255, 255), .5f);
-            setIconFilter(icon, "#2D3635", 1f);
+            setIconFilter(icon, selColor, 1f);
         }
         ImageView icon = scrollViewPaginator.getChildAt(markIndex)
                 .findViewById(R.id.image_equipmentIcon);
-        //setIconFilter(icon, Color.argb(255, 255, 0, 0), .75f);
-        setIconFilter(icon, "#FFB43D", 1f);
+        setIconFilter(icon, unselColor, 1f);
     }
 
     private static void setIconFilter(ImageView icon, int colorInt, float alpha) {

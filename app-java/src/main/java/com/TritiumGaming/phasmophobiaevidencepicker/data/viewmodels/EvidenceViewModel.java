@@ -25,9 +25,13 @@ import java.util.Arrays;
 public class EvidenceViewModel extends ViewModel {
 
     private InvestigationData investigationData;
+    private GhostOrderData ghostOrderData;
+
+    private int[] radioButtonsChecked;
+    private boolean[] rejectionPile;
+
     private SanityRunnable sanityRunnable;
     private SanityData sanityData;
-    private GhostOrderData ghostOrderData;
 
     private PhaseTimerData phaseTimerData;
     private MapCarouselData mapCarouselData;
@@ -35,24 +39,19 @@ public class EvidenceViewModel extends ViewModel {
 
     private boolean isCollapsed = false;
 
-    private int[] radioButtonsChecked;
-    private boolean[] rejectionPile;
 
     public void init(Context c) {
 
         if (!hasInvestigationData()) {
-            Log.d("ViewModel", "creating new invest data");
             setInvestigationData(new InvestigationData(this, c));
         }
 
         if (!hasDifficultyCarouselData()) {
-            Log.d("ViewModel", "creating new diff data");
             difficultyCarouselData = new DifficultyCarouselData(this, c);
         }
 
         if (!hasMapCarouselData()) {
-            Log.d("ViewModel", "creating new mapcar data");
-            mapCarouselData = new MapCarouselData(this);
+            mapCarouselData = new MapCarouselData();
         }
 
         if (!hasSanityData()) {

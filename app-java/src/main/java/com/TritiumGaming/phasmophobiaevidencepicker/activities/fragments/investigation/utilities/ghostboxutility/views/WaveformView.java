@@ -93,9 +93,9 @@ public class WaveformView extends View {
         TypedValue typedValue = new TypedValue();
         if (getContext() != null && getContext().getTheme() != null) {
             Resources.Theme theme = getContext().getTheme();
-            theme.resolveAttribute(R.attr.titleFontColor, typedValue, true);
+            theme.resolveAttribute(R.attr.textColorPrimary, typedValue, true);
             color_waveform = typedValue.data;
-            theme.resolveAttribute(R.attr.subtitleFontColor, typedValue, true);
+            theme.resolveAttribute(R.attr.textColorSecondary, typedValue, true);
             color_frame = typedValue.data;
         }
 

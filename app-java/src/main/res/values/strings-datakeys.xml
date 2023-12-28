@@ -13,6 +13,7 @@
     <string name="preference_general_news_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
     <string name="preference_pet_changelog_link" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
     <string name="preference_phasmophobia_changelog_link" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
+    <string name="web_client_id" translatable="false">856655760718-3cdovai12i4l8pv9g09pch05eva35e10.apps.googleusercontent.com</string>
     <string name="preference_newsletter_lastreaddate_general" translatable="false">newsletter_lastreaddate_general</string>
     <string name="preference_newsletter_lastreaddate_pet" translatable="false">newsletter_lastreaddate_pet</string>
     <string name="preference_newsletter_lastreaddate_phas" translatable="false">newsletter_lastreaddate_phas</string>
@@ -22,8 +23,10 @@
     <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
     <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
-    <string name="preference_colorSpace" translatable="false">colorSpace</string>
-    <string name="preference_fontType" translatable="false">fontType</string>
+    <!--<string name="preference_colorSpace" translatable="false">colorSpace</string>
+    <string name="preference_fontType" translatable="false">fontType</string>-->
+    <string name="preference_savedTheme" translatable="false">savedTheme</string>
+    <string name="preference_savedFont" translatable="false">savedFont</string>
     <!-- Review Tracking -->
     <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>

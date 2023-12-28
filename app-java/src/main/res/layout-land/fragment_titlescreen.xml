@@ -91,7 +91,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:layout_constraintWidth_percent=".5"
-                    app:tint="?attr/negativeSelColor"
+                    app:tint="?attr/inboxNotification"
                     app:tintMode="multiply" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,7 +163,7 @@
                 android:maxLines="1"
                 android:text="@string/titlescreen_description"
                 android:textAllCaps="true"
-                android:textColor="?attr/splashtitleFontColor"
+                android:textColor="?attr/splashTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
@@ -213,7 +213,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="?attr/bodyFontColor"
+                android:textColor="?attr/textColorBody"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/icon_language"
