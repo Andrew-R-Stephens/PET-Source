@@ -28,3 +28,8 @@ Keystore.jks
 /app-java/release/
 /app-java/libs/processing-core.jar
 /app-java/build/
+/app-kotlin/google-services.json
+/app-kotlin/upload_certificate.pem
+/app-kotlin/release/
+/app-kotlin/libs/processing-core.jar
+/app-kotlin/build/
