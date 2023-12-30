@@ -61,9 +61,14 @@ public class InvestigationList extends LinearLayout {
 
     protected void init(EvidenceViewModel evidenceViewModel, PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
         this.evidenceViewModel = evidenceViewModel;
+        this.adRequest = adRequest;
+
+        init(popupWindow, progressBar);
+    }
+
+    public void init(PopupWindow popupWindow, ProgressBar progressBar) {
         this.popupWindow = popupWindow;
         this.progressBar = progressBar;
-        this.adRequest = adRequest;
     }
 
     protected void haltProgressAnimation(ProgressBar progressBar) {
@@ -75,12 +80,6 @@ public class InvestigationList extends LinearLayout {
                         super.onAnimationEnd(animation);
                     }
                 }).start();
-    }
-
-    public void init(PopupWindow popupWindow, ProgressBar progressBar) {
-        this.popupWindow = popupWindow;
-        this.progressBar = progressBar;
-
     }
 
     public @LayoutRes int getLayoutRes() {

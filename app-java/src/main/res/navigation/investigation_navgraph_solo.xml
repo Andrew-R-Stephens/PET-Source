@@ -54,19 +54,21 @@
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.MapViewerFragment"
         android:label="MapViewerFragment" />
     <action
+        android:id="@+id/action_global_evidenceFragment"
+        app:destination="@id/evidenceFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:launchSingleTop="true"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right"
+        app:popUpToInclusive="true" />
+    <action
         android:id="@+id/action_global_objectivesFragment"
         app:destination="@id/objectivesFragment"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
         app:popExitAnim="@android:anim/fade_out" />
-    <action
-        android:id="@+id/action_global_evidenceFragment"
-        app:destination="@id/evidenceFragment"
-        app:enterAnim="@android:anim/fade_in"
-        app:exitAnim="@android:anim/fade_out"
-        app:popEnterAnim="@android:anim/slide_in_left"
-        app:popExitAnim="@android:anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_mapMenuFragment"
         app:destination="@id/mapMenuFragment"

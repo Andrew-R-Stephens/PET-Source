@@ -44,8 +44,6 @@ public class MapViewerFragment extends InvestigationFragment {
     private AppCompatTextView layerName;
     private POISpinner poiSpinner;
 
-    protected PopupWindow popup;
-
     @Nullable
     @Override
     public View onCreateView(
@@ -188,8 +186,8 @@ public class MapViewerFragment extends InvestigationFragment {
             return;
         }
 
-        if (popup != null) {
-            popup.dismiss();
+        if (popupWindow != null) {
+            popupWindow.dismiss();
         }
 
         LayoutInflater popupInflater =
@@ -198,15 +196,15 @@ public class MapViewerFragment extends InvestigationFragment {
         View popupView = popupInflater.inflate(R.layout.popup_info_maphelp, null);
         ImageButton closeButton = popupView.findViewById(R.id.popup_close_button);
 
-        popup = new PopupWindow(
+        popupWindow = new PopupWindow(
                 popupView,
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT
         );
 
-        closeButton.setOnClickListener(closeButtonView -> popup.dismiss());
+        closeButton.setOnClickListener(closeButtonView -> popupWindow.dismiss());
 
-        popup.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
+        popupWindow.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
     }
 
     @Override

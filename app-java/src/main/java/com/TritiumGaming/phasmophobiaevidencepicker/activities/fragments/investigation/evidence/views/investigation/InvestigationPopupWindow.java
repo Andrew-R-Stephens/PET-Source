@@ -42,4 +42,9 @@ public class InvestigationPopupWindow extends ConstraintLayout {
         return popupWindow;
     }
 
+    public void setPopupWindow(PopupWindow popupWindow) {
+        this.popupWindow = popupWindow;
+
+        popupWindow.setContentView(this);
+    }
 }

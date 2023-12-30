@@ -19,9 +19,9 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/investigation_navgraph_solo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:navGraph="@navigation/investigation_navgraph_solo" />
+            android:layout_height="match_parent" />
 
         <!-- this the navigation view which draws and shows the navigation drawer -->
         <!-- include the menu created in the menu folder -->

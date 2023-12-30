@@ -82,43 +82,6 @@
     </style>
 
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">
-        <item name="textColorPrimary">@color/red_M250</item>
-        <item name="textColorSecondary">@color/red_M300</item>
-        <item name="textColorTertiary">@color/red_M350</item>
-
-        <item name="navigationFooterIcon">?attr/unselectedColor</item>
-        <item name="navigationFooterIconAlt">@color/white_M200</item>
-
-        <item name="splashTextColor">@color/red_M350</item>
-
-        <item name="textColorBody">@color/white</item>
-        <item name="textColorBodyEmphasis">@color/red_M250</item>
-
-        <item name="light_active">@color/red</item>
-        <item name="light_inactive">@color/red_A40</item>
-        <item name="light_off">@color/white_M600</item>
-
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/red</item>
-
-        <item name="progressBarColorStart">@color/red_M500</item>
-        <item name="progressBarColorEnd">@color/red_M350</item>
-
-        <item name="switchColor">@color/red_M300</item>
-        <item name="strikethroughColor">@color/red_M300</item>
-        <item name="circleColor">@color/green</item>
-
-        <item name="selectedColor">@color/red</item>
-        <item name="selectedColor2">@color/red_A40</item>
-        <item name="unselectedColor">@color/white_M600</item>
-
-        <item name="positiveSelColor">@color/green</item>
-        <item name="neutralSelColor">@color/white_M100</item>
-        <item name="negativeSelColor">@color/red_M300</item>
-
-        <item name="mapPoiFillColor">@color/red_M300_A75</item>
-        <item name="mapRoomBorderColor">@color/red_M300_A58</item>
-        <item name="mapRoomFillColor">@color/yellow_A10</item>
     </style>
 
 </resources>
