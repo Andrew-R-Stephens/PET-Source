@@ -152,6 +152,7 @@ public class MapViewerFragment extends InvestigationFragment {
         startThreads();
         updateComponents();// Spinner click listener
 
+        initAd(view.findViewById(R.id.adView));
     }
 
     public void handleBackAction() {

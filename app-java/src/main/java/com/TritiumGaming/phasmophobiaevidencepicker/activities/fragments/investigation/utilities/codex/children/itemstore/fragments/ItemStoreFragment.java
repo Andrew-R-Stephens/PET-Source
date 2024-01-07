@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -20,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -203,6 +203,8 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                     }
                 });
         }
+
+        stylizeLogo(view.findViewById(R.id.label_codex_ghostos));
     }
 
     protected abstract void setPageTitle(AppCompatTextView titleView);
@@ -416,6 +418,22 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
     /** @noinspection SameParameterValue*/
     private static void setIconFilter(ImageView icon, String colorString, float alpha) {
         setIconFilter(icon, Color.parseColor(colorString), alpha);
+    }
+
+
+    public void stylizeLogo(AppCompatTextView label_ghostOS) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = requireContext().getTheme();
+        theme.resolveAttribute(R.attr.codex_2, typedValue, true);
+        int color1 = typedValue.data;
+        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
+        int color2 = typedValue.data;
+        String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
+        String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
+
+        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)
+                .replaceAll("#99AEB3", color1Hex)
+                .replaceAll("#FFB43D", color2Hex)));
     }
 
     @Override

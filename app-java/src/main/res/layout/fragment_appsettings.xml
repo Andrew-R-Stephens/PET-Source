@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,7 +44,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:text="Account Settings"
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp"
@@ -258,6 +256,8 @@
                 android:text="@string/settings_cancel"
                 android:textColor="?attr/textColorBodyEmphasis"
                 android:textSize="18sp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -285,6 +285,8 @@
                 android:text="@string/settings_confirm"
                 android:textColor="?attr/textColorBodyEmphasis"
                 android:textSize="18sp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -328,7 +330,6 @@
                     style="?attr/primaryFont_Regular_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="start"
                     android:text="@string/settings_generalsettings"
@@ -366,6 +367,8 @@
                         android:gravity="start|center_vertical"
                         android:text="@string/settings_screenalwayson"
                         android:textSize="16sp"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/switch_alwayson_switch"
@@ -404,6 +407,8 @@
                         android:gravity="start|center_vertical"
                         android:text="@string/settings_networktitle"
                         android:textSize="16sp"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
@@ -455,6 +460,8 @@
                         android:gravity="start|center_vertical"
                         android:text="@string/settings_enableLeftHandSupport"
                         android:textSize="16sp"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
@@ -494,6 +501,8 @@
                         android:gravity="start|center_vertical"
                         android:text="@string/settings_enablehuntaudioqueue"
                         android:textSize="16sp"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/switch_huntwarningaudio_switch"
@@ -518,9 +527,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:maxLines="1"
                             android:text="@string/settings_huntwarningflashtimeout"
                             android:textSize="18sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -542,6 +552,9 @@
                                 android:layout_height="wrap_content"
                                 android:background="#00FFFFFF"
                                 android:gravity="center"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
+                                android:textAlignment="center"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -557,9 +570,11 @@
                                 android:background="#00FFFFFF"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:maxLines="1"
+                                android:textAlignment="center"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
                                 android:textSize="16sp"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -723,12 +738,13 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:padding="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout47"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -738,13 +754,14 @@
                                 style="?attr/primaryFont_Regular_Manual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
                                 android:gravity="center"
-                                android:scrollbarAlwaysDrawVerticalTrack="true"
                                 android:text="@string/settings_colortheme_title"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                                app:layout_constraintStart_toStartOf="@+id/constraintLayout71"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -766,7 +783,6 @@
                                 android:id="@+id/constraintLayout71"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -775,50 +791,65 @@
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/colorblindmode_leftbutton"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="36dp"
+                                    android:layout_height="48dp"
                                     android:adjustViewBounds="true"
                                     android:contentDescription="@string/app_name"
                                     android:minWidth="48dp"
                                     android:minHeight="48dp"
+                                    android:padding="8dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/icon_prev"
                                     android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/colorblindmode_selectedname"
+                                    app:layout_constraintEnd_toStartOf="@+id/constraintLayout69"
                                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/colorblindmode_selectedname"
-                                    style="?attr/primaryFont_Regular_Manual"
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/constraintLayout69"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/settings_colorblindnessmode_normal"
-                                    android:textColor="?attr/textColorBodyEmphasis"
-                                    android:textSize="14sp"
+                                    android:layout_height="0dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/colorblindmode_rightbutton"
                                     app:layout_constraintStart_toEndOf="@+id/colorblindmode_leftbutton"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintWidth_percent=".5" />
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/colorblindmode_selectedname"
+                                        style="?attr/primaryFont_Regular"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="marquee"
+                                        android:gravity="center"
+                                        android:singleLine="true"
+                                        android:text="@string/settings_colorblindnessmode_normal"
+                                        android:textAlignment="center"
+                                        android:textColor="?attr/textColorBodyEmphasis"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/colorblindmode_rightbutton"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="36dp"
+                                    android:layout_height="48dp"
                                     android:adjustViewBounds="true"
                                     android:contentDescription="@string/app_name"
                                     android:minWidth="48dp"
                                     android:minHeight="48dp"
+                                    android:padding="8dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/icon_next"
                                     android:tint="?attr/textColorBody"
-                                    app:layout_constraintBottom_toBottomOf="@+id/colorblindmode_leftbutton"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toEndOf="@+id/colorblindmode_selectedname"
-                                    app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton" />
+                                    app:layout_constraintStart_toEndOf="@+id/constraintLayout69"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -837,16 +868,18 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:padding="8dp">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/font_title"
                             style="?attr/primaryFont_Regular_Manual"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/settings_fontstylesettings"
                             android:textSize="16sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_font2"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -854,7 +887,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout_font2"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -864,50 +897,66 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_leftbutton"
                                 android:layout_width="wrap_content"
-                                android:layout_height="36dp"
+                                android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:minWidth="48dp"
                                 android:minHeight="48dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_prev"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/font_selectedname"
+                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout66"
                                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/font_selectedname"
-                                style="?attr/primaryFont_Regular_Manual"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout66"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/settings_colorblindnessmode_normal"
-                                android:textColor="?attr/textColorBodyEmphasis"
-                                android:textSize="14sp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/font_rightbutton"
-                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/font_leftbutton"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintWidth_percent=".5" />
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/font_selectedname"
+                                    style="?attr/primaryFont_Regular_Manual"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:singleLine="true"
+                                    android:text="@string/settings_colorblindnessmode_normal"
+                                    android:textAlignment="center"
+                                    android:textColor="?attr/textColorBodyEmphasis"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_rightbutton"
                                 android:layout_width="wrap_content"
-                                android:layout_height="36dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="1dp"
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:minWidth="48dp"
                                 android:minHeight="48dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_next"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/font_selectedname"
+                                app:layout_constraintStart_toEndOf="@+id/constraintLayout66"
                                 app:layout_constraintTop_toTopOf="@+id/font_leftbutton" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>

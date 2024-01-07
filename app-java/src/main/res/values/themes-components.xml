@@ -14,13 +14,26 @@
         <item name="itemRippleColor">?attr/unselectedColor</item>
         <item name="rippleColor">?attr/unselectedColor</item>
         <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+
+        <item name="compatShadowEnabled">false</item>
     </style>
 
     <style name="PET.SideNavigationView" parent="Theme.MaterialComponents">
+
         <item name="enforceMaterialTheme">false</item>
         <item name="android:checkable">false</item>
-        <item name="compatShadowEnabled">true</item>
-        <item name="elevation">@dimen/navbar_elevation</item>
+
+        <item name="itemIconTint">?attr/navigationFooterIcon</item>
+        <item name="itemTextAppearanceInactive">?attr/navigationFooterIcon</item>
+        <item name="itemTextAppearanceActive">?attr/navigationFooterIconAlt</item>
+        <item name="itemTextColor">@null</item>
+        <item name="itemRippleColor">?attr/unselectedColor</item>
+        <item name="rippleColor">?attr/unselectedColor</item>
+        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
+
+        <item name="compatShadowEnabled">false</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
         <item name="itemIconSize">@dimen/navbar_icon_size</item>
         <item name="labelVisibilityMode">unlabeled</item>
         <item name="itemPaddingTop">@dimen/navbar_margin</item>
@@ -31,28 +44,25 @@
         <item name="itemBackground">@null</item>
         <item name="itemHorizontalTranslationEnabled">false</item>
         <item name="android:background">@color/transparent</item>
-        <item name="itemIconTint">?attr/neutralSelColor</item>
-        <item name="itemTextAppearanceInactive">?attr/neutralSelColor</item>
-        <item name="itemTextAppearanceActive">@color/white</item>
-        <item name="itemTextColor">@null</item>
+        <item name="android:backgroundTint">@color/transparent</item>
         <item name="tabRippleColor">?attr/unselectedColor</item>
         <item name="tabUnboundedRipple">?attr/unselectedColor</item>
-        <item name="rippleColor">?attr/unselectedColor</item>
-        <item name="itemRippleColor">?attr/unselectedColor</item>
-        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
         <item name="android:colorControlHighlight">?attr/unselectedColor</item>
+
+        <item name="itemMinHeight">@null</item>
+        <item name="menuGravity">center</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="PET.MaterialCardView" parent="Widget.MaterialComponents.CardView">
         <item name="enforceMaterialTheme">false</item>
         <item name="android:checkable">false</item>
-        <item name="backgroundColor">@color/transparent</item>
-        <item name="tabRippleColor">?attr/unselectedColor</item>
-        <item name="tabUnboundedRipple">?attr/unselectedColor</item>
-        <item name="rippleColor">?attr/unselectedColor</item>
-        <item name="itemRippleColor">?attr/unselectedColor</item>
-        <item name="simpleItemSelectedRippleColor">?attr/unselectedColor</item>
-        <item name="cardForegroundColor">?attr/unselectedColor</item>
+        <item name="cardElevation">15dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
+
+    <style name="CodexGridCard" parent="PET.MaterialCardView">
+
     </style>
 
     <style name="PET.ProgressBar" parent="Widget.Material3.CircularProgressIndicator">
@@ -81,6 +91,15 @@
         <!-- item padding right in menu-->
         <item name="android:listPreferredItemPaddingRight">8dp</item>
         <item name="listPreferredItemPaddingRight">8dp</item>
+    </style>
+
+    <style name="SwitchTheme" parent="Theme.AppCompat">
+        <item name="colorControlActivated">?attr/switchColor</item>
+    </style>
+
+    <style name="RequestRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">?attr/textColorBody</item>
+        <item name="colorControlActivated">?attr/textColorPrimary</item>
     </style>
 
 </resources>

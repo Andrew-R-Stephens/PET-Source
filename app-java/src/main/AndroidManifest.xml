@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:configChanges="locale|orientation"
-        android:theme="@style/Colorblind.Base"
+        android:theme="@style/NonColorblind.Base"
         android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:largeHeap="true"
@@ -36,7 +36,7 @@
 
         <activity
             android:name=".activities.TitleScreenActivity"
-            android:theme="@style/Colorblind.Base"
+            android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
             android:exported="true">
 
@@ -49,60 +49,10 @@
 
         <activity
             android:name=".activities.InvestigationActivity"
-            android:theme="@style/Colorblind.Base"
-            android:configChanges="locale|orientation">
-        </activity>
-
-        <activity android:name=".activities.FirebaseUIActivity" />
-
-    </application>
-
-    <!--
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:configChanges="locale|orientation"
-        android:theme="@style/Colorblind.Base"
-        android:fullBackupContent="@xml/backup_descriptor"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        tools:targetApi="34">
-
-        &lt;!&ndash; Delay app measurement until MobileAds.initialize() is called. &ndash;&gt;
-        <meta-data
-            android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
-            android:value="true"/>
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1890816745443024~8234901440"/>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
-        <activity
-            android:name=".activities.TitleScreenActivity"
-            android:theme="@style/Colorblind.Base"
-            android:configChanges="locale|orientation"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activities.InvestigationActivity"
-            android:theme="@style/Colorblind.Base"
+            android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation">
         </activity>
 
     </application>
-    -->
 
 </manifest>

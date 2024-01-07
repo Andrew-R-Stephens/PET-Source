@@ -30,6 +30,8 @@
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/white_M200</item>
 
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
         <item name="splashTextColor">@color/red_M350</item>
 
         <item name="textColorPrimary">@color/red_M250</item>
@@ -73,6 +75,7 @@
         <item name="codex_3">#151B1B</item>
         <item name="codex_4">#FFB43D</item>
         <item name="codex_5">#2D3635</item>
+        <item name="codex_grid_background_tint">#40161C1C</item>
 
         <item name="theme_badge">@drawable/app_icon_sm</item>
 

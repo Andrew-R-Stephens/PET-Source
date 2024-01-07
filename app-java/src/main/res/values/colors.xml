@@ -183,15 +183,7 @@
 
     <!-- Black -->
     <color name="black">#000000</color>
+    <color name="black_A75">#BF000000</color>
     <color name="black_M50">#080808</color>
-
-    <color name="codex_1"></color>
-    <color name="codex_2"></color>
-    <color name="codex_3"></color>
-    <color name="codex_4"></color>
-    <color name="codex_5"></color>
-    <color name="codex_6"></color>
-    <color name="codex_7"></color>
-    <color name="codex_8"></color>
 
 </resources>

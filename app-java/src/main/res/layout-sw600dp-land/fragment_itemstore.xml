@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -77,9 +75,7 @@
             android:id="@+id/item_safehouse_itemstore_wrapper"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/evidence_item_layer_grid"
-            android:backgroundTint="#40FFFFFF"
-            android:backgroundTintMode="multiply"
+            android:background="@drawable/codex_grid_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

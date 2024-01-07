@@ -6,7 +6,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 

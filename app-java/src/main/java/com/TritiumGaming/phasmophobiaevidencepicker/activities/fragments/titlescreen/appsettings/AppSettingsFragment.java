@@ -38,6 +38,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.firebase.firestore.transactions.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
@@ -582,7 +583,7 @@ public class AppSettingsFragment extends Fragment {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseUser user = new FirestoreUser().getCurrentFirebaseUser();
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),
@@ -591,6 +592,10 @@ public class AppSettingsFragment extends Fragment {
                 toast.show();
 
                 refreshFragment();
+
+                FirestoreUser fu = new FirestoreUser();
+                fu.createUserRecord();
+
             }
         } else {
             FirebaseUiException error = response.getError();

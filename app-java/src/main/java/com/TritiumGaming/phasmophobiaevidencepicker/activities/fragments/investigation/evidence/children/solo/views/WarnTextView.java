@@ -1,14 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-import android.view.animation.Transformation;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;

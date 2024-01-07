@@ -1,67 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
 
     <!-- Skins -->
 
     <style name="Skin" parent="NonColorblind.Base">
-        <!--
-        <item name="android:colorBackground">@color/black</item>
-        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
-        <item name="android:navigationBarColor">@color/black</item>
-        <item name="foregroundColor">@color/white</item>
-        <item name="middlegroundColor">@color/white_M400</item>
-        <item name="backgroundColor" >@color/black</item>
-        <item name="backgroundColorOnBackground" >@color/black_M50</item>
-        <item name="statusBarColor" >?attr/backgroundColor</item>
-        <item name="navigationBarColor" >?attr/backgroundColor</item>
-        <item name="windowBackgroundColor">@color/black</item>
-        <item name="windowStrokeColor">@color/white</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/black</item>
-        <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:textViewStyle">?attr/primaryFont_Regular</item>
-
-        <item name="textColorPrimary">@color/red_M250</item>
-        <item name="textColorSecondary">@color/red_M300</item>
-        <item name="textColorTertiary">@color/red_M350</item>
-        <item name="textColorBody">@color/white</item>
-        <item name="textColorBodyEmphasis">@color/red_M250</item>
-        <item name="light_active">@color/red</item>
-        <item name="light_inactive">@color/red_A40</item>
-        <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/red_M300</item>
-        <item name="inboxNotification">@color/red_M300</item>
-        <item name="strikethroughColor">@color/red_M300</item>
-        <item name="circleColor">@color/green</item>
-        <item name="selectedColor">@color/red</item>
-        <item name="selectedColor2">@color/red_A40</item>
-        <item name="unselectedColor">@color/white_M600</item>
-        <item name="positiveSelColor">@color/green</item>
-        <item name="neutralSelColor">@color/white_M100</item>
-        <item name="negativeSelColor">@color/red_M300</item>
-        <item name="mapPoiFillColor">@color/red_M300_A75</item>
-        <item name="mapRoomBorderColor">@color/red_M300_A58</item>
-        <item name="mapRoomFillColor">@color/yellow_A10</item>
-
-        <item name="progressBarColorStart">@color/red_M350</item>
-        <item name="progressBarColorEnd">@color/red_M350</item>
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/red</item>
-
-        <item name="navigationFooterIcon">?attr/unselectedColor</item>
-        <item name="navigationFooterIconAlt">@color/white_M200</item>
-
-        <item name="splashTextColor">@color/red_M350</item>
-
-        <item name="codex_1">@color/red</item>
-        <item name="codex_2">@color/green</item>
-        <item name="codex_3">@color/blue</item>
-        <item name="codex_4">@color/purple</item>
-        <item name="codex_5">@color/orange</item>
-        -->
     </style>
 
 
@@ -134,6 +77,8 @@
         <item name="mapRoomBorderColor">@color/orange_M300_A58</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
+        <item name="backgroundColor_mapviewOverlay">#BF090500</item>
+
         <item name="progressBarColorStart">@color/orange_M500</item>
         <item name="progressBarColorEnd">@color/orange_M300</item>
         <item name="sanityColorStart">@color/white</item>
@@ -146,8 +91,13 @@
         <item name="codex_3">#252423</item>
         <item name="codex_4">@color/orange_M150</item>
         <item name="codex_5">#252423</item>
+        <item name="codex_grid_background_tint">#40232C2C</item>
 
         <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
+
+        <item name="navigationFooterIcon">#818180</item>
+        <item name="navigationFooterIconAlt">@color/orange_M150</item>
+
     </style>
 
 
@@ -213,8 +163,14 @@
         <item name="codex_3">#200413</item>
         <item name="codex_4">@color/purple_M75</item>
         <item name="codex_5">#3C3237</item>
+        <item name="codex_grid_background_tint">#40390721</item>
 
         <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
+
+        <item name="navigationFooterIcon">#4DD71472</item>
+        <item name="navigationFooterIconAlt">@color/purple_M250</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
 
         <!--
         <item name="textColorPrimary">@color/purple_M250</item>
@@ -315,8 +271,15 @@
         <item name="codex_3">#332312</item>
         <item name="codex_4">@color/orange_M10</item>
         <item name="codex_5">#3A3631</item>
+        <item name="codex_grid_background_tint">#403E2A17</item>
 
         <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
+
+        <item name="navigationFooterIcon">#8078522B</item>
+        <item name="navigationFooterIconAlt">@color/orange_M10</item>
+
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
     </style>
 
 
@@ -359,14 +322,14 @@
         <item name="light_off">#2E332F</item>
         <item name="switchColor">@color/green_M25</item>
         <item name="inboxNotification">@color/green_M25</item>
-        <item name="strikethroughColor">@color/white_M850</item>
+        <item name="strikethroughColor">@color/white_M300</item>
         <item name="circleColor">@color/green_M25</item>
         <item name="selectedColor">@color/green_M25</item>
         <item name="selectedColor2">@color/green_M525</item>
         <item name="unselectedColor">@color/white_M600</item>
         <item name="positiveSelColor">@color/green_M25</item>
-        <item name="neutralSelColor">@color/white_M300</item>
-        <item name="negativeSelColor">@color/white_M850</item>
+        <item name="neutralSelColor">@color/white_M600</item>
+        <item name="negativeSelColor">@color/white_M300</item>
         <item name="mapPoiFillColor">#BF1A9863</item>
         <item name="mapRoomBorderColor">#941A9863</item>
         <item name="mapRoomFillColor">#1A1A9863</item>
@@ -383,8 +346,14 @@
         <item name="codex_3">@color/green_M825</item>
         <item name="codex_4">@color/green_M25</item>
         <item name="codex_5">@color/white_M850</item>
+        <item name="codex_grid_background_tint">#401E221F</item>
 
         <item name="theme_badge">@drawable/theme_badge_4_detective</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/green_M25</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0F100F</item>
 
         <!--
         <item name="a">@color/white_M20</item>
@@ -520,8 +489,15 @@
         <item name="codex_3">#250807</item>
         <item name="codex_4">@color/white</item>
         <item name="codex_5">#575050</item>
+        <item name="codex_grid_background_tint">#403E1312</item>
 
         <item name="theme_badge">@drawable/theme_badge_5_technician</item>
+
+        <item name="navigationFooterIcon">@color/white_M600</item>
+        <item name="navigationFooterIconAlt">@color/red_M375</item>
+
+
+        <item name="backgroundColor_mapviewOverlay">#BF050C04</item>
 
     </style>
 
@@ -593,8 +569,15 @@
         <item name="codex_3">#24291F</item>
         <item name="codex_4">@color/green_M150</item>
         <item name="codex_5">#545B4D</item>
+        <item name="codex_grid_background_tint">#40070C05</item>
 
         <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
+
+        <item name="navigationFooterIcon">#545B4D</item>
+        <item name="navigationFooterIconAlt">@color/green_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF070C05</item>
+
     </style>
 
 
@@ -662,8 +645,15 @@
         <item name="codex_3">#255BAF</item>
         <item name="codex_4">#7BCD26</item>
         <item name="codex_5">#101E01</item>
+        <item name="codex_grid_background_tint">#4007152B</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
+
+        <item name="navigationFooterIcon">@color/orange_M525</item>
+        <item name="navigationFooterIconAlt">#2667CD</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF1B1516</item>
+
     </style>
 
 
@@ -712,7 +702,7 @@
         <item name="circleColor">@color/blue_M90</item>
         <item name="selectedColor">#167467</item>
         <item name="selectedColor2">#167467</item>
-        <item name="unselectedColor">#1D4E49</item>
+        <item name="unselectedColor">#858686</item>
         <item name="positiveSelColor">@color/blue_M90</item>
         <item name="neutralSelColor">#5E7E7B</item>
         <item name="negativeSelColor">#1D4E49</item>
@@ -732,8 +722,15 @@
         <item name="codex_3">#202A29</item>
         <item name="codex_4">@color/blue_M90</item>
         <item name="codex_5">#5E7E7B</item>
+        <item name="codex_grid_background_tint">#40101515</item>
 
         <item name="theme_badge">@drawable/theme_badge_8_agent</item>
+
+        <item name="navigationFooterIcon">#858686</item>
+        <item name="navigationFooterIconAlt">@color/blue_M90</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF101515</item>
+
     </style>
 
 
@@ -800,8 +797,15 @@
         <item name="codex_3">#370C37</item>
         <item name="codex_4">@color/purple_M150</item>
         <item name="codex_5">#53425E</item>
+        <item name="codex_grid_background_tint">#40130B29</item>
 
         <item name="theme_badge">@drawable/theme_badge_9_operator</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/purple_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF00000E</item>
+
 
     </style>
 
@@ -869,8 +873,15 @@
         <item name="codex_3">#130B00</item>
         <item name="codex_4">@color/orange_M05</item>
         <item name="codex_5">#3C3B3B</item>
+        <item name="codex_grid_background_tint">#40232323</item>
 
         <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#E5A348</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF080808</item>
+
     </style>
 
 
@@ -942,8 +953,15 @@
         <item name="codex_3">#09231D</item>
         <item name="codex_4">@color/orange_M75</item>
         <item name="codex_5">#2D3332</item>
+        <item name="codex_grid_background_tint">#40203E36</item>
 
         <item name="theme_badge">@drawable/theme_badge_easter</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/orange_M75</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF030C0A</item>
+
     </style>
 
 
@@ -1012,8 +1030,15 @@
         <item name="codex_3">#130700</item>
         <item name="codex_4">#EC700D</item>
         <item name="codex_5">#373737</item>
+        <item name="codex_grid_background_tint">#401B0A00</item>
 
         <item name="theme_badge">@drawable/theme_badge_halloween23</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#C85E0D</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0C0400</item>
+
 
     </style>
 
@@ -1083,8 +1108,15 @@
         <item name="codex_3">@color/blue_M750</item>
         <item name="codex_4">@color/orange_M50</item>
         <item name="codex_5">#2A2E45</item>
+        <item name="codex_grid_background_tint">#40293750</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday22</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/blue_M125</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0D0E19</item>
+
     </style>
 
 
@@ -1141,9 +1173,9 @@
         <item name="inboxNotification">#E9AD4C</item>
         <item name="strikethroughColor">#447CDE</item>
         <item name="circleColor">#E9AD4C</item>
-        <item name="selectedColor">#447CDE</item>
-        <item name="selectedColor2">#447CDE</item>
-        <item name="unselectedColor">#2A2E45</item>
+        <item name="selectedColor">#E9AD4C</item>
+        <item name="selectedColor2">#E9AD4C</item>
+        <item name="unselectedColor">#213A67</item>
         <item name="positiveSelColor">#E9AD4C</item>
         <item name="neutralSelColor">@color/white</item>
         <item name="negativeSelColor">#447CDE</item>
@@ -1159,12 +1191,19 @@
         <item name="splashTextColor">#447CDE</item>
 
         <item name="codex_1">#2A487E</item>
-        <item name="codex_2">#D6CDBD</item>
-        <item name="codex_3">#213A67</item>
+        <item name="codex_2">#ECDDC5</item>
+        <item name="codex_3">#447CDE</item>
         <item name="codex_4">#E9AD4C</item>
-        <item name="codex_5">#0A1323</item>
+        <item name="codex_5">#344663</item>
+        <item name="codex_grid_background_tint">#402A487E</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday23</item>
+
+        <item name="navigationFooterIcon">#B1AEA9</item>
+        <item name="navigationFooterIconAlt">#E9AD4C</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF1B1C33</item>
+
 
     </style>
 
@@ -1235,8 +1274,15 @@
         <item name="codex_3">#131517</item>
         <item name="codex_4">@color/blue_M75</item>
         <item name="codex_5">#2C3032</item>
+        <item name="codex_grid_background_tint">#401D2023</item>
 
         <item name="theme_badge">@drawable/theme_badge_discord</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/blue_M75</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF131517</item>
+
 
     </style>
 
@@ -1304,8 +1350,15 @@
         <item name="codex_3">#3C0A14</item>
         <item name="codex_4">@color/red_M225</item>
         <item name="codex_5">#1E1013</item>
+        <item name="codex_grid_background_tint">#40510E1B</item>
 
         <item name="theme_badge">@drawable/theme_badge_cc</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#DF1740</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF080808</item>
+
 
     </style>
 
@@ -1373,8 +1426,15 @@
         <item name="codex_3">#333333</item>
         <item name="codex_4">@color/yellow_M25</item>
         <item name="codex_5">#332E09</item>
+        <item name="codex_grid_background_tint">#40535353</item>
 
         <item name="theme_badge">@drawable/theme_badge_dev</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/yellow_M25</item>
+
+        <item name="backgroundColor_mapviewOverlay">#40535353</item>
+
     </style>
 
 
@@ -1442,8 +1502,15 @@
         <item name="codex_3">#492126</item>
         <item name="codex_4">@color/red_M150</item>
         <item name="codex_5">@color/purple_M850</item>
+        <item name="codex_grid_background_tint">#4033292B</item>
 
         <item name="theme_badge">@drawable/theme_badge_translator</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/red_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
     </style>
 
 
@@ -1513,8 +1580,15 @@
         <item name="codex_3">#0A151C</item>
         <item name="codex_4">@color/orange_M250</item>
         <item name="codex_5">#090A0B</item>
+        <item name="codex_grid_background_tint">#40161C1C</item>
 
         <item name="theme_badge">@drawable/theme_badge_winner</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/orange_M250</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF060C10</item>
+
     </style>
 
 
@@ -1582,8 +1656,15 @@
         <item name="codex_3">#1E1235</item>
         <item name="codex_4">#AA7FFD</item>
         <item name="codex_5">@color/blue_M850</item>
+        <item name="codex_grid_background_tint">#400A0C0C</item>
 
         <item name="theme_badge">@drawable/theme_badge_artist</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/purple_M550</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0A0C0C</item>
+
 
     </style>
 

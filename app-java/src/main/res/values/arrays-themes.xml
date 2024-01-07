@@ -15,11 +15,6 @@
     </integer-array>
 
     <string-array name="settings_themes_colorblind_id_array">
-        <!--<item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>-->
         <item>CzjtxSbXRwIpX8SYR0ttngAND</item>
         <item>ey6VbQN5tx0MgR8tw4iJq3J8L</item>
         <item>9Ec5cQIB0Jb73gbQ3a9R5kScX</item>
@@ -49,26 +44,6 @@
     </integer-array>
 
     <string-array name="settings_themes_primary_id_array">
-        <!--<item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>-->
         <item>9QWud4Mj5C4jYp1hOA91b6G0L</item>
         <item>1UdIWr97JGtOoRszQHpBYfK5U</item>
         <item>1oF0ZF78LqA64zRyn8ozgMqLu</item>

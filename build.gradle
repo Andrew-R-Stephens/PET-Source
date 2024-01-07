@@ -2,12 +2,14 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.9.0'
-        compose_version = '1.5.4'
         ndkVersion = '22.1.7171670'
-        ext {
-            compose_ui_version = '1.4.0'
-        }
+        kotlin_version = '1.9.0'
+
+        compose_version = '1.5.4'
+        compose_ui_version = '1.4.0'
+
+        fragment_version = '1.6.2'
+        work_version = '2.9.0'
     }
     repositories {
         google()

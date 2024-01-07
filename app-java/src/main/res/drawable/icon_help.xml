@@ -5,7 +5,7 @@
     <item>
         <shape>
             <solid
-                android:color="@color/black"
+                android:color="?attr/backgroundColor"
                 />
         </shape>
     </item>
@@ -21,8 +21,6 @@
             <size
                 android:height="16dp"
                 android:width="16dp" />
-
-
         </shape>
 
     </item>

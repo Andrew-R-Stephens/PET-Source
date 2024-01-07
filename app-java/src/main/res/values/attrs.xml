@@ -9,11 +9,11 @@
     <attr name="textColorTertiary" format="reference|color" />
     <attr name="textColorBody" format="reference|color" />
     <attr name="textColorBodyEmphasis" format="reference|color" />
-
     <attr name="splashTextColor" format="reference|color" />
     <attr name="foregroundColor" format="reference|color" />
     <attr name="middlegroundColor" format="reference|color" />
     <attr name="backgroundColor" format="reference|color" />
+    <attr name="backgroundColor_mapviewOverlay" format="reference|color" />
     <attr name="backgroundColorOnBackground" format="reference|color" />
     <attr name="navigationBarColor" format="reference|color" />
     <attr name="statusBarColor" format="reference|color" />
@@ -74,6 +74,7 @@
     <attr name="codex_3" format="reference|color" />
     <attr name="codex_4" format="reference|color" />
     <attr name="codex_5" format="reference|color" />
+    <attr name="codex_grid_background_tint" format="reference|color" />
 
     <!--
         Fonts
@@ -151,17 +152,5 @@
         <enum name="SBOX_2" value="2"/>
         <enum name="SBOX_3" value="3"/>
     </attr>
-
-    <attr name="tempFontStyle" format="reference"/>
-
-    <declare-styleable name="OutlineTextView">
-        <attr name="outlineColor" format="color" />
-        <attr name="outlineWidth" format="dimension" />
-    </declare-styleable>
-
-    <declare-styleable name="CodexGridCard">
-        <attr name="label_text" format="string" />
-        <attr name="background_image" format="reference" />
-    </declare-styleable>
 
 </resources>

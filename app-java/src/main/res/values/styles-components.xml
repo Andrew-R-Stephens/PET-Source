@@ -4,14 +4,17 @@
     <!--
         Component Styles
     -->
-    <style name="SwitchTheme" parent="Theme.AppCompat">
-        <item name="colorControlActivated">?attr/switchColor</item>
-    </style>
+    <declare-styleable name="OutlineTextView">
+        <attr name="outlineColor" format="color" />
+        <attr name="outlineWidth" format="dimension" />
+    </declare-styleable>
 
-    <style name="RequestRatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">?attr/textColorBody</item>
-        <item name="colorControlActivated">?attr/textColorPrimary</item>
-    </style>
+    <declare-styleable name="CodexGridCard">
+        <attr name="label_text" format="string"/>
+        <attr name="background_image" format="reference"/>
+
+        <attr name="strokeWidth" format="dimension"/>
+    </declare-styleable>
 
     <declare-styleable name="GhostView">
         <attr name="showText" format="boolean" />
