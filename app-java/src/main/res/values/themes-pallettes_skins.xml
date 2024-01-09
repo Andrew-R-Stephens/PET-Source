@@ -60,15 +60,15 @@
         <item name="textColorTertiary">@color/orange_M400</item>
         <item name="textColorBody">@color/white</item>
         <item name="textColorBodyEmphasis">@color/orange_M250</item>
-        <item name="light_active">@color/yellow</item>
+        <item name="light_active">@color/orange_M150</item>
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/orange_M300</item>
-        <item name="inboxNotification">@color/yellow</item>
+        <item name="inboxNotification">@color/orange_M150</item>
         <item name="strikethroughColor">@color/orange_M300</item>
         <item name="circleColor">@color/orange</item>
-        <item name="selectedColor">@color/yellow</item>
-        <item name="selectedColor2">@color/yellow</item>
+        <item name="selectedColor">@color/orange_M150</item>
+        <item name="selectedColor2">@color/orange_M150</item>
         <item name="unselectedColor">@color/white_M600</item>
         <item name="positiveSelColor">@color/yellow</item>
         <item name="neutralSelColor">@color/white_M100</item>
@@ -87,7 +87,8 @@
         <item name="splashTextColor">@color/orange_M150</item>
 
         <item name="codex_1">#232C2C</item>
-        <item name="codex_2">#B2B1B1</item>
+        <!--<item name="codex_2">#B2B1B1</item>-->
+        <item name="codex_2">@color/orange_M150</item>
         <item name="codex_3">#252423</item>
         <item name="codex_4">@color/orange_M150</item>
         <item name="codex_5">#252423</item>
@@ -266,8 +267,10 @@
 
         <item name="splashTextColor">@color/orange_M10</item>
 
-        <item name="codex_1">#3E2A17</item>
-        <item name="codex_2">#CDC0B2</item>
+        <!--<item name="codex_1">#3E2A17</item>-->
+        <item name="codex_1">#150F08</item>
+        <!--<item name="codex_2">#CDC0B2</item>-->
+        <item name="codex_2">@color/orange_M10</item>
         <item name="codex_3">#332312</item>
         <item name="codex_4">@color/orange_M10</item>
         <item name="codex_5">#3A3631</item>
@@ -342,7 +345,8 @@
         <item name="splashTextColor">@color/green_M25</item>
 
         <item name="codex_1">#1E221F</item>
-        <item name="codex_2">#97B3A7</item>
+        <!--<item name="codex_2">#97B3A7</item>-->
+        <item name="codex_2">#B0E3CE</item>
         <item name="codex_3">@color/green_M825</item>
         <item name="codex_4">@color/green_M25</item>
         <item name="codex_5">@color/white_M850</item>
@@ -484,9 +488,10 @@
 
         <item name="splashTextColor">@color/red_M375</item>
 
-        <item name="codex_1">#3E1312</item>
+        <!--<item name="codex_1">#3E1312</item>-->
+        <item name="codex_1">#200605</item>
         <item name="codex_2">#E4DEDE</item>
-        <item name="codex_3">#250807</item>
+        <item name="codex_3">#120202</item>
         <item name="codex_4">@color/white</item>
         <item name="codex_5">#575050</item>
         <item name="codex_grid_background_tint">#403E1312</item>
@@ -565,7 +570,7 @@
         <item name="splashTextColor">@color/green_M150</item>
 
         <item name="codex_1">#070C05</item>
-        <item name="codex_2">#CCD1C0</item>
+        <item name="codex_2">#D9ECAF</item>
         <item name="codex_3">#24291F</item>
         <item name="codex_4">@color/green_M150</item>
         <item name="codex_5">#545B4D</item>
@@ -640,12 +645,12 @@
 
         <item name="splashTextColor">#2667CD</item>
 
-        <item name="codex_1">#07152B</item>
+        <item name="codex_1">#1C1917</item>
         <item name="codex_2">#EDE5E7</item>
         <item name="codex_3">#255BAF</item>
         <item name="codex_4">#7BCD26</item>
         <item name="codex_5">#101E01</item>
-        <item name="codex_grid_background_tint">#4007152B</item>
+        <item name="codex_grid_background_tint">#40201B19</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
 
@@ -887,7 +892,6 @@
 
     <!-- Events -->
 
-
     <style name="Easter" parent="Event">
         <item name="k">@color/white</item>
         <item name="l">#F8E8BD</item>
@@ -907,7 +911,7 @@
         <item name="foregroundColor">#E1EBE5</item>
         <item name="middlegroundColor">#7CAB91</item>
         <item name="backgroundColor" >#030C0A</item>
-        <item name="backgroundColorOnBackground">#030C0A</item>
+        <item name="backgroundColorOnBackground">#061915</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#030C0A</item>
@@ -1380,7 +1384,7 @@
         <item name="foregroundColor">#E2E2DF</item>
         <item name="middlegroundColor">@color/white_M400</item>
         <item name="backgroundColor" >@color/black_M50</item>
-        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >#171502</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/black_M50</item>
@@ -1422,7 +1426,8 @@
         <item name="splashTextColor">@color/yellow_M25</item>
 
         <item name="codex_1">#535353</item>
-        <item name="codex_2">#AFA98C</item>
+        <!--<item name="codex_2">#AFA98C</item>-->
+        <item name="codex_2">@color/yellow_M25</item>
         <item name="codex_3">#333333</item>
         <item name="codex_4">@color/yellow_M25</item>
         <item name="codex_5">#332E09</item>

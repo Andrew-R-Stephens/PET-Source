@@ -8,7 +8,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
         <item name="android:layoutDirection">ltr</item>
-        <item name="android:textViewStyle">?attr/primaryFont_Regular</item>
+        <item name="android:textViewStyle">?attr/primaryFont_Regular_Squeeze</item>
         <item name="android:colorBackground">@color/black</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black</item>
