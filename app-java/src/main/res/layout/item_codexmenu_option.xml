@@ -57,7 +57,7 @@
 
         <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
             android:id="@+id/label_itemName"
-            style="?attr/primaryFont_Regular_Squeeze"
+            style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"

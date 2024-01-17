@@ -12,6 +12,7 @@
         <item>@array/settings_themes_colorblind_id_array</item>
         <item>@array/settings_themes_colorblind_name_array</item>
         <item>@array/settings_themes_colorblind_style_array</item>
+        <item>@bool/settings_themes_colorblind_defaultAvailable</item>
     </integer-array>
 
     <string-array name="settings_themes_colorblind_id_array">
@@ -36,11 +37,14 @@
         <item>@style/Tritanomaly</item>
     </integer-array>
 
+    <bool name="settings_themes_colorblind_defaultAvailable">true</bool>
+
     <!-- Sub-Theme: Prestige -->
     <integer-array name="settings_themes_primary_array">
         <item>@array/settings_themes_primary_id_array</item>
         <item>@array/settings_themes_primary_name_array</item>
         <item>@array/settings_themes_primary_style_array</item>
+        <item>@bool/settings_themes_primary_defaultAvailable</item>
     </integer-array>
 
     <string-array name="settings_themes_primary_id_array">
@@ -115,6 +119,7 @@
         <item>@style/Artist</item>
     </integer-array>
 
+    <bool name="settings_themes_primary_defaultAvailable">false</bool>
 
     <!-- _______ -->
 

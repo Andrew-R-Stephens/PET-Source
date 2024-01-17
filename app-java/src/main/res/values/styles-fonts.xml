@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base -->
-    <style name="AutoTextSizeBody">
+    
+    <!-- Base Weight -->
+    <style name="DefaultStyle">
+        <item name="android:textColor">?attr/textColorBody</item>
+    </style>
+    
+    <!-- Base Sizing -->
+    <style name="ManualSize" parent="DefaultStyle">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="AutoTextSizeBody" parent="DefaultStyle">
         <item name="autoSizeMinTextSize">18sp</item>
         <item name="autoSizeMaxTextSize">50sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
     </style>
-    <style name="AutoTextSizeBody_SqueezeText">
+    <style name="AutoTextSizeBody_SqueezeText" parent="DefaultStyle">
         <item name="autoSizeMinTextSize">1sp</item>
         <item name="autoSizeMaxTextSize">200sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
         <item name="autoSizeTextType">uniform</item>
     </style>
 
+    <!-- Base Weight -->
     <style name="Regular">
         <item name="android:textStyle">normal</item>
     </style>
@@ -22,365 +32,311 @@
     </style>
 
     <!-- Typewriter Regular -->
-    <style name="TypewriterRegular" parent = "AutoTextSizeBody">
+    <style name="TypewriterRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="TypewriterRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="TypewriterRegular_Manual">
+    <style name="TypewriterRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Typewriter Bold -->
-    <style name="TypewriterBold" parent = "AutoTextSizeBody">
+    <style name="TypewriterBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="TypewriterBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="TypewriterBold_Manual">
+    <style name="TypewriterBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">serif-monospace</item>
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Norse Regular -->
-    <style name="NorseRegular" parent = "AutoTextSizeBody">
+    <style name="NorseRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="NorseRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="NorseRegular_Manual">
+    <style name="NorseRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Norse Bold -->
-    <style name="NorseBold" parent = "AutoTextSizeBody">
+    <style name="NorseBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="NorseBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="NorseBold_Manual">
+    <style name="NorseBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/norse</item>
         <item name="fontFamily">@font/norse</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- East Regular -->
-    <style name="EastRegular" parent = "AutoTextSizeBody">
+    <style name="EastRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="EastRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="EastRegular_Manual">
+    <style name="EastRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/eastseadokdo</item>
         <item name="fontFamily">@font/eastseadokdo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Time Regular -->
-    <style name="TimeRegular" parent = "AutoTextSizeBody">
+    <style name="TimeRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="TimeRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="TimeRegular_Manual">
+    <style name="TimeRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Time Bold -->
-    <style name="TimeBold" parent = "AutoTextSizeBody">
+    <style name="TimeBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="TimeBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="TimeBold_Manual">
+    <style name="TimeBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Norse Bold-Narrow -->
-    <style name="TimeBoldNarrow" parent = "AutoTextSizeBody">
+    <style name="TimeBoldNarrow_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
-    </style>
-    <style name="TimeBoldNarrow_Manual">
-        <item name="android:fontFamily">@font/digitaldream</item>
-        <item name="fontFamily">@font/digitaldream</item>
-        <item name="android:textStyle">bold|italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="TimeBoldNarrow_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/digitaldream</item>
         <item name="fontFamily">@font/digitaldream</item>
         <item name="android:textStyle">bold|italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
+    </style>
+    <style name="TimeBoldNarrow_Manual" parent="ManualSize">
+        <item name="android:fontFamily">@font/digitaldream</item>
+        <item name="fontFamily">@font/digitaldream</item>
+        <item name="android:textStyle">bold|italic</item>
     </style>
 
     <!-- Roboto-Mono -->
-    <style name="RobotoMono" parent = "AutoTextSizeBody">
+    <style name="RobotoMono_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="RobotoMono_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="RobotoMono_Manual">
+    <style name="RobotoMono_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Roboto-Mono Medium -->
-    <style name="RobotoMonoMedium" parent = "AutoTextSizeBody">
+    <style name="RobotoMonoMedium_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="RobotoMonoMedium_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="RobotoMonoMedium_Manual">
+    <style name="RobotoMonoMedium_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Roboto-Mono Bold -->
-    <style name="RobotoMonoBold" parent = "AutoTextSizeBody">
+    <style name="RobotoMonoBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="RobotoMonoBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="RobotoMonoBold_Manual">
+    <style name="RobotoMonoBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Lazy Dog-Mono -->
-    <style name="LazyDog" parent = "AutoTextSizeBody">
+    <style name="LazyDog_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="LazyDog_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="LazyDog_Manual">
+    <style name="LazyDog_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Lazy Dog - Bold -->
-    <style name="LazyDogBold" parent = "AutoTextSizeBody">
+    <style name="LazyDogBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="LazyDogBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="LazyDogBold_Manual">
+    <style name="LazyDogBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/lazydog</item>
         <item name="fontFamily">@font/lazydog</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
 
     <!-- Brick Regular -->
-    <style name="BrickRegular" parent = "AutoTextSizeBody">
+    <style name="BrickRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/geo</item>
         <item name="fontFamily">@font/geo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="BrickRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/geo</item>
         <item name="fontFamily">@font/geo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="BrickRegular_Manual">
+    <style name="BrickRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/geo</item>
         <item name="fontFamily">@font/geo</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
 
     <!-- Clean Regular -->
-    <style name="CleanRegular" parent = "AutoTextSizeBody">
+    <style name="CleanRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/cuyabra</item>
         <item name="fontFamily">@font/cuyabra</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="CleanRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/cuyabra</item>
         <item name="fontFamily">@font/cuyabra</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="CleanRegular_Manual">
+    <style name="CleanRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/cuyabra</item>
         <item name="fontFamily">@font/cuyabra</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- LongCang Regular -->
-    <style name="LongCangRegular" parent = "AutoTextSizeBody">
+    <style name="LongCangRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/longcang</item>
         <item name="fontFamily">@font/longcang</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="LongCangRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/longcang</item>
         <item name="fontFamily">@font/longcang</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="LongCangRegular_Manual">
+    <style name="LongCangRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/longcang</item>
         <item name="fontFamily">@font/longcang</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- NewTegomin Regular -->
-    <style name="NewTegominRegular" parent = "AutoTextSizeBody">
+    <style name="NewTegominRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/newtegomin</item>
         <item name="fontFamily">@font/newtegomin</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="NewTegominRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/newtegomin</item>
         <item name="fontFamily">@font/newtegomin</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="NewTegominRegular_Manual">
+    <style name="NewTegominRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/newtegomin</item>
         <item name="fontFamily">@font/newtegomin</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- Neucha Regular -->
-    <style name="NeuchaRegular" parent = "AutoTextSizeBody">
+    <style name="NeuchaRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/neucha</item>
         <item name="fontFamily">@font/neucha</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="NeuchaRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/neucha</item>
         <item name="fontFamily">@font/neucha</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="NeuchaRegular_Manual">
+    <style name="NeuchaRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/neucha</item>
         <item name="fontFamily">@font/neucha</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!--
@@ -388,83 +344,71 @@
     -->
 
     <!-- JetbrainsMono Regular -->
-    <style name="JetbrainsMonoRegular" parent = "AutoTextSizeBody">
+    <style name="JetbrainsMonoRegular_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="JetbrainsMonoRegular_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="JetbrainsMonoRegular_Manual">
+    <style name="JetbrainsMonoRegular_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- JetbrainsMono Italic -->
-    <style name="JetbrainsMonoItalic" parent = "AutoTextSizeBody">
+    <style name="JetbrainsMonoItalic_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="JetbrainsMonoItalic_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="JetbrainsMonoItalic_Manual">
+    <style name="JetbrainsMonoItalic_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- JetbrainsMono Thin -->
-    <style name="JetbrainsMonoThin" parent = "AutoTextSizeBody">
+    <style name="JetbrainsMonoThin_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="JetbrainsMonoThin_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="JetbrainsMonoThin_Manual">
+    <style name="JetbrainsMonoThin_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
     <!-- JetbrainsMono ExtraBold -->
-    <style name="JetbrainsMonoBold" parent = "AutoTextSizeBody">
+    <style name="JetbrainsMonoBold_Auto" parent = "AutoTextSizeBody">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
     <style name="JetbrainsMonoBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
-    <style name="JetbrainsMonoBold_Manual">
+    <style name="JetbrainsMonoBold_Manual" parent="ManualSize">
         <item name="android:fontFamily">@font/jetbrains_mono</item>
         <item name="fontFamily">@font/jetbrains_mono</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/textColorBody</item>
     </style>
 
 

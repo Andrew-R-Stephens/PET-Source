@@ -40,7 +40,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textview_title"
-                style="@style/NorseRegular"
+                style="@style/NorseRegular_Auto"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -146,7 +146,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_phasupdateinbox"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -237,7 +237,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_extranews"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -330,7 +330,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_petupdateinbox"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"

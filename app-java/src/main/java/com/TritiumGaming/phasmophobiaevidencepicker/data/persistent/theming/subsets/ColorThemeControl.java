@@ -41,6 +41,8 @@ public class ColorThemeControl extends AThemeControl {
                     context.getResources().obtainTypedArray(themeArray.getResourceId(1, 0));
             TypedArray themeStyleArray =
                     context.getResources().obtainTypedArray(themeArray.getResourceId(2, 0));
+            boolean isUnlocked =
+                    context.getResources().getBoolean(themeArray.getResourceId(3, 0));
 
             if((themeNamesArray.length() == themeStyleArray.length()) &&
                     (themeNamesArray.length() == themeIDsArray.length())) {
@@ -51,7 +53,9 @@ public class ColorThemeControl extends AThemeControl {
                     @StringRes int nameRes = themeNamesArray.getResourceId(k, 0);
                     @StyleRes int styleRes = themeStyleArray.getResourceId(k, 0);
 
-                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes);
+                    CustomTheme tempTheme = new CustomTheme(
+                            idRes, nameRes, styleRes,
+                            isUnlocked);
 
                     themes.add(tempTheme);
                 }

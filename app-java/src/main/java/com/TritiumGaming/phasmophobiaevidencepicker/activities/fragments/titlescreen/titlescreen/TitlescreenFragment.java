@@ -104,7 +104,8 @@ public class TitlescreenFragment extends Fragment {
         button_info.setOnClickListener(this::gotoAppInfoFragment);
         button_settings.setOnClickListener(this::gotoAppSettingsFragment);
         button_language.setOnClickListener(this::gotoLanguagesFragment);
-        button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
+        //button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
+        button_msgInbox.setOnClickListener(this::gotoMarketplaceFragment);
         button_startSolo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                 intent.putExtra("lobby", 0);
@@ -270,6 +271,11 @@ public class TitlescreenFragment extends Fragment {
                 navigate(R.id.action_titleScreenFragment_to_inboxFragment);
     }
 
+    private void gotoMarketplaceFragment(View v) {
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_marketplaceFragment);
+    }
+
     /**
      * gotoAppInfoFragment method
      */
@@ -283,7 +289,6 @@ public class TitlescreenFragment extends Fragment {
      * gotoAppSettingsFragment method
      */
     private void gotoAppSettingsFragment(View v) {
-
         Navigation.findNavController(v).
                 navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
     }

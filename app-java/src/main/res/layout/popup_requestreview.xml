@@ -22,7 +22,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_ratingstitle"
-            style="?attr/primaryFont_Regular_Squeeze"
+            style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -73,7 +73,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_accept"
-                style="?attr/primaryFont_Regular_Squeeze"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -92,7 +92,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_decline"
-                style="?attr/primaryFont_Regular_Squeeze"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

@@ -37,6 +37,17 @@
         <item name="g">#252423</item>
         <item name="h">@color/orange_M950</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/orange_M150</item>
+        <item name="theme_coreColor_2">@color/orange_M300</item>
+        <item name="theme_coreColor_3">@color/orange_M900</item>
+        <item name="theme_coreColor_4">@color/orange_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M100</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/yellow</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/orange_M950</item>
         <item name="android:statusBarColor">@color/orange_M950</item>
         <item name="android:navigationBarColor">@color/orange_M950</item>
@@ -95,6 +106,7 @@
         <item name="codex_grid_background_tint">#40232C2C</item>
 
         <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
+        <item name="theme_title">Recruit</item>
 
         <item name="navigationFooterIcon">#818180</item>
         <item name="navigationFooterIconAlt">@color/orange_M150</item>
@@ -112,6 +124,17 @@
         <item name="g">@color/purple_M950</item>
         <item name="h">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/purple_M75</item>
+        <item name="theme_coreColor_2">@color/purple_M75</item>
+        <item name="theme_coreColor_3">@color/purple_M525</item>
+        <item name="theme_coreColor_4">@color/purple_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M300</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/purple_M950</item>
         <item name="android:statusBarColor">@color/purple_M950</item>
         <item name="android:navigationBarColor">@color/purple_M950</item>
@@ -167,6 +190,7 @@
         <item name="codex_grid_background_tint">#40390721</item>
 
         <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
+        <item name="theme_title">Investigator</item>
 
         <item name="navigationFooterIcon">#4DD71472</item>
         <item name="navigationFooterIconAlt">@color/purple_M250</item>
@@ -220,6 +244,17 @@
         <item name="e">@color/orange_M510</item>
         <item name="f">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/orange_M20</item>
+        <item name="theme_coreColor_2">@color/orange_M10</item>
+        <item name="theme_coreColor_3">@color/orange</item>
+        <item name="theme_coreColor_4">@color/orange_M510</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/orange_M85</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/black</item>
         <item name="android:statusBarColor">@color/black</item>
         <item name="android:navigationBarColor">@color/black</item>
@@ -277,6 +312,7 @@
         <item name="codex_grid_background_tint">#403E2A17</item>
 
         <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
+        <item name="theme_title">Private Investigator</item>
 
         <item name="navigationFooterIcon">#8078522B</item>
         <item name="navigationFooterIconAlt">@color/orange_M10</item>
@@ -297,6 +333,17 @@
         <item name="j">@color/green_M950</item>
         <item name="k">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white_M20</item>
+        <item name="theme_coreColor_2">@color/green_M25</item>
+        <item name="theme_coreColor_3">@color/green_M525</item>
+        <item name="theme_coreColor_4">@color/green_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M750</item>
+        <item name="theme_coreColor_7">@color/green_M825</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/green_M875</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/green_M875</item>
@@ -353,6 +400,7 @@
         <item name="codex_grid_background_tint">#401E221F</item>
 
         <item name="theme_badge">@drawable/theme_badge_4_detective</item>
+        <item name="theme_title">Detective</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/green_M25</item>
@@ -439,7 +487,18 @@
         <item name="i">#081204</item>
         <item name="j">#050C04</item>
         <item name="k">@color/black</item>
-        
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/red_M375</item>
+        <item name="theme_coreColor_2">#91100C</item>
+        <item name="theme_coreColor_3">#5E0D0B</item>
+        <item name="theme_coreColor_4">#050C04</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#E0E0E0</item>
+        <item name="theme_coreColor_7">#ABABAB</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#050C04</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#050C04</item>
@@ -497,6 +556,7 @@
         <item name="codex_grid_background_tint">#403E1312</item>
 
         <item name="theme_badge">@drawable/theme_badge_5_technician</item>
+        <item name="theme_title">Technician</item>
 
         <item name="navigationFooterIcon">@color/white_M600</item>
         <item name="navigationFooterIconAlt">@color/red_M375</item>
@@ -522,6 +582,17 @@
         <item name="l">#070C05</item>
         <item name="m">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/green_M150</item>
+        <item name="theme_coreColor_2">#80994D</item>
+        <item name="theme_coreColor_3">@color/green_M850</item>
+        <item name="theme_coreColor_4">#070C05</item>
+        <item name="theme_coreColor_5">#FEFEFE</item>
+        <item name="theme_coreColor_6">#E7E8E7</item>
+        <item name="theme_coreColor_7">#C9CCC8</item>
+        <item name="theme_coreColor_8">@color/white_M600</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#070C05</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#070C05</item>
@@ -577,6 +648,7 @@
         <item name="codex_grid_background_tint">#40070C05</item>
 
         <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
+        <item name="theme_title">Specialist</item>
 
         <item name="navigationFooterIcon">#545B4D</item>
         <item name="navigationFooterIconAlt">@color/green_M150</item>
@@ -598,6 +670,17 @@
         <item name="i">@color/red_M950</item>
         <item name="j" >@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#CD2547</item>
+        <item name="theme_coreColor_2">#2667CD</item>
+        <item name="theme_coreColor_3">#7BCD26</item>
+        <item name="theme_coreColor_4">#101E01</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#A7968C</item>
+        <item name="theme_coreColor_7">@color/orange_M525</item>
+        <item name="theme_coreColor_8">@color/red_M850</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/red_M850</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/red_M850</item>
@@ -653,6 +736,7 @@
         <item name="codex_grid_background_tint">#40201B19</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
+        <item name="theme_title">Analyst</item>
 
         <item name="navigationFooterIcon">@color/orange_M525</item>
         <item name="navigationFooterIconAlt">#2667CD</item>
@@ -675,6 +759,17 @@
         <item name="j">#101515</item>
         <item name="l">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">@color/blue_M90</item>
+        <item name="theme_coreColor_3">#167467</item>
+        <item name="theme_coreColor_4">#1D4E49</item>
+        <item name="theme_coreColor_5">#858686</item>
+        <item name="theme_coreColor_6">#5E7E7B</item>
+        <item name="theme_coreColor_7">#202A29</item>
+        <item name="theme_coreColor_8">#101515</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#101515</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#101515</item>
@@ -730,6 +825,7 @@
         <item name="codex_grid_background_tint">#40101515</item>
 
         <item name="theme_badge">@drawable/theme_badge_8_agent</item>
+        <item name="theme_title">Agent</item>
 
         <item name="navigationFooterIcon">#858686</item>
         <item name="navigationFooterIconAlt">@color/blue_M90</item>
@@ -750,6 +846,17 @@
         <item name="h">@color/purple_M875</item>
         <item name="i">@color/blue_M950</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/purple_M150</item>
+        <item name="theme_coreColor_2">@color/purple_M450</item>
+        <item name="theme_coreColor_3">@color/blue_M150</item>
+        <item name="theme_coreColor_4">@color/purple_M250</item>
+        <item name="theme_coreColor_5">#F9F8FA</item>
+        <item name="theme_coreColor_6">@color/purple_M475</item>
+        <item name="theme_coreColor_7">@color/purple_M875</item>
+        <item name="theme_coreColor_8">@color/blue_M950</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/blue_M950</item>
         <item name="android:statusBarColor">@color/blue_M950</item>
         <item name="android:navigationBarColor">@color/blue_M950</item>
@@ -774,8 +881,6 @@
         <item name="light_inactive">@color/purple_M50_A40</item>
         <item name="textColorPrimary">@color/blue_M150</item>
         <item name="light_active">@color/blue_M150</item>
-        <item name="negativeSelColor">@color/blue_M150</item>
-        <item name="positiveSelColor">@color/purple_M150</item>
         <item name="textColorBodyEmphasis">@color/purple_M250</item>
         <item name="switchColor">@color/purple_M300</item>
         <item name="inboxNotification">@color/purple_M150</item>
@@ -787,6 +892,8 @@
         <item name="selectedColor2">?attr/light_inactive</item>
         <item name="textColorTertiary">@color/purple_M450</item>
         <item name="unselectedColor">@color/purple_M475</item>
+        <item name="negativeSelColor">@color/blue_M150</item>
+        <item name="positiveSelColor">@color/purple_M150</item>
         <item name="neutralSelColor">@color/purple_M475</item>
         <item name="light_off">@color/purple_M875</item>
 
@@ -805,6 +912,7 @@
         <item name="codex_grid_background_tint">#40130B29</item>
 
         <item name="theme_badge">@drawable/theme_badge_9_operator</item>
+        <item name="theme_title">Operator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M150</item>
@@ -826,6 +934,17 @@
         <item name="i">@color/black_M50</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#F8EFD9</item>
+        <item name="theme_coreColor_2">@color/orange_M05</item>
+        <item name="theme_coreColor_3">#E5A348</item>
+        <item name="theme_coreColor_4">#765932</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#ACAAAC</item>
+        <item name="theme_coreColor_7">@color/purple_M825</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/black_M50</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black_M50</item>
@@ -881,6 +1000,7 @@
         <item name="codex_grid_background_tint">#40232323</item>
 
         <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
+        <item name="theme_title">Commissioner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#E5A348</item>
@@ -905,6 +1025,17 @@
         <item name="f">#1C180D</item>
         <item name="d">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">#F8E8BD</item>
+        <item name="theme_coreColor_3">@color/orange_M75</item>
+        <item name="theme_coreColor_4">@color/white_M600</item>
+        <item name="theme_coreColor_5">#E1EBE5</item>
+        <item name="theme_coreColor_6">@color/green_M550</item>
+        <item name="theme_coreColor_7">#21654A</item>
+        <item name="theme_coreColor_8">#030C0A</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#030C0A</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#030C0A</item>
@@ -960,6 +1091,7 @@
         <item name="codex_grid_background_tint">#40203E36</item>
 
         <item name="theme_badge">@drawable/theme_badge_easter</item>
+        <item name="theme_title">Easter</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M75</item>
@@ -982,6 +1114,17 @@
         <item name="l">#0C0400</item>
         <item name="m">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#EC700D</item>
+        <item name="theme_coreColor_2">#C85E0D</item>
+        <item name="theme_coreColor_3">#9F4B0D</item>
+        <item name="theme_coreColor_4">#3F1602</item>
+        <item name="theme_coreColor_5">#D7CCC3</item>
+        <item name="theme_coreColor_6">#373737</item>
+        <item name="theme_coreColor_7">#130700</item>
+        <item name="theme_coreColor_8">#0C0400</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#0C0400</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#0C0400</item>
@@ -1037,6 +1180,7 @@
         <item name="codex_grid_background_tint">#401B0A00</item>
 
         <item name="theme_badge">@drawable/theme_badge_halloween23</item>
+        <item name="theme_title">Halloween \'23</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#C85E0D</item>
@@ -1060,6 +1204,17 @@
         <item name="i">#0D0E19</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#FEFEFE</item>
+        <item name="theme_coreColor_2">#DDDCDB</item>
+        <item name="theme_coreColor_3">#F8BC7F</item>
+        <item name="theme_coreColor_4">@color/orange_M50</item>
+        <item name="theme_coreColor_5">@color/blue_M125</item>
+        <item name="theme_coreColor_6">#2E5497</item>
+        <item name="theme_coreColor_7">#2A2E45</item>
+        <item name="theme_coreColor_8">#0D0E19</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#0D0E19</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#0D0E19</item>
@@ -1115,6 +1270,7 @@
         <item name="codex_grid_background_tint">#40293750</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday22</item>
+        <item name="theme_title">Holiday \'22</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M125</item>
@@ -1147,6 +1303,17 @@
         <item name="k">#1B1C33</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">#FEFEFE</item>
+        <item name="theme_coreColor_3">#E4D0AE</item>
+        <item name="theme_coreColor_4">#E9AD4C</item>
+        <item name="theme_coreColor_5">#447CDE</item>
+        <item name="theme_coreColor_6">#2A487E</item>
+        <item name="theme_coreColor_7">#344663</item>
+        <item name="theme_coreColor_8">#1B1C33</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#1B1C33</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#1B1C33</item>
@@ -1202,6 +1369,7 @@
         <item name="codex_grid_background_tint">#402A487E</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday23</item>
+        <item name="theme_title">Holiday \'23</item>
 
         <item name="navigationFooterIcon">#B1AEA9</item>
         <item name="navigationFooterIconAlt">#E9AD4C</item>
@@ -1226,6 +1394,17 @@
         <item name="m">#131517</item>
         <item name="d">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#AAB3F3</item>
+        <item name="theme_coreColor_2">@color/blue_M75</item>
+        <item name="theme_coreColor_3">#5763EC</item>
+        <item name="theme_coreColor_4">@color/blue_M850</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#F3F3F7</item>
+        <item name="theme_coreColor_7">#C3C4C6</item>
+        <item name="theme_coreColor_8">#131517</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#131517</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#131517</item>
@@ -1281,6 +1460,7 @@
         <item name="codex_grid_background_tint">#401D2023</item>
 
         <item name="theme_badge">@drawable/theme_badge_discord</item>
+        <item name="theme_title">Discord</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M75</item>
@@ -1302,6 +1482,17 @@
         <item name="h">@color/black_M50</item>
         <item name="i">#010000</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#DF1740</item>
+        <item name="theme_coreColor_2">@color/red_M225</item>
+        <item name="theme_coreColor_3">#510E1B</item>
+        <item name="theme_coreColor_4">#1E1013</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#CACACA</item>
+        <item name="theme_coreColor_7">#99AEB3</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/black_M50</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black_M50</item>
@@ -1357,6 +1548,7 @@
         <item name="codex_grid_background_tint">#40510E1B</item>
 
         <item name="theme_badge">@drawable/theme_badge_cc</item>
+        <item name="theme_title">Content Creator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#DF1740</item>
@@ -1378,6 +1570,17 @@
         <item name="h">#020301</item>
         <item name="i">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_2">#CFCCB4</item>
+        <item name="theme_coreColor_3">#D3C667</item>
+        <item name="theme_coreColor_4">#4E4507</item>
+        <item name="theme_coreColor_1">@color/yellow_M25</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#E2E2DF</item>
+        <item name="theme_coreColor_7">#535353</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/black_M50</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black_M50</item>
@@ -1434,6 +1637,7 @@
         <item name="codex_grid_background_tint">#40535353</item>
 
         <item name="theme_badge">@drawable/theme_badge_dev</item>
+        <item name="theme_title">Developer</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/yellow_M25</item>
@@ -1455,6 +1659,17 @@
         <item name="i">@color/purple_M850</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#FCFAFB</item>
+        <item name="theme_coreColor_2">#E1C9CC</item>
+        <item name="theme_coreColor_3">#D99CA5</item>
+        <item name="theme_coreColor_4">@color/red_M150</item>
+        <item name="theme_coreColor_5">@color/white_M400</item>
+        <item name="theme_coreColor_6">@color/white_M600</item>
+        <item name="theme_coreColor_7">@color/purple_M850</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">@color/black</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/black</item>
@@ -1510,6 +1725,7 @@
         <item name="codex_grid_background_tint">#4033292B</item>
 
         <item name="theme_badge">@drawable/theme_badge_translator</item>
+        <item name="theme_title">Translator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/red_M150</item>
@@ -1531,6 +1747,17 @@
         <item name="i">#090A0B</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#ECDFCD</item>
+        <item name="theme_coreColor_2">#DABA80</item>
+        <item name="theme_coreColor_3">@color/orange_M250</item>
+        <item name="theme_coreColor_4">#936305</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M500</item>
+        <item name="theme_coreColor_7">@color/blue_M850</item>
+        <item name="theme_coreColor_8">#060C10</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#060C10</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#060C10</item>
@@ -1588,6 +1815,7 @@
         <item name="codex_grid_background_tint">#40161C1C</item>
 
         <item name="theme_badge">@drawable/theme_badge_winner</item>
+        <item name="theme_title">Winner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M250</item>
@@ -1609,6 +1837,17 @@
         <item name="i">#0A0C0C</item>
         <item name="j">@color/black</item>
 
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#E3D6F7</item>
+        <item name="theme_coreColor_2">#AA7FFD</item>
+        <item name="theme_coreColor_3">@color/purple_M550</item>
+        <item name="theme_coreColor_4">#432878</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#B0ACBA</item>
+        <item name="theme_coreColor_7">@color/blue_M850</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
         <item name="android:colorBackground">#0A0C0C</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#0A0C0C</item>
@@ -1664,6 +1903,7 @@
         <item name="codex_grid_background_tint">#400A0C0C</item>
 
         <item name="theme_badge">@drawable/theme_badge_artist</item>
+        <item name="theme_title">Artist</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M550</item>

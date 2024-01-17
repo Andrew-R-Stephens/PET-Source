@@ -17,7 +17,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_objectivesTitle"
-            style="?attr/primaryFont_Regular"
+            style="?attr/primaryFont_Regular_Auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -266,7 +266,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_debriefTitle"
-            style="?attr/primaryFont_Regular"
+            style="?attr/primaryFont_Regular_Auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -296,7 +296,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_ghostName"
-                    style="?attr/primaryFont_Regular"
+                    style="?attr/primaryFont_Regular_Auto"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -396,7 +396,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/label_everyone"
-                            style="?attr/primaryFont_Regular"
+                            style="?attr/primaryFont_Regular_Auto"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -435,7 +435,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/label_alone"
-                            style="?attr/primaryFont_Regular"
+                            style="?attr/primaryFont_Regular_Auto"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"

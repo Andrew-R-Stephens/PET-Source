@@ -7,9 +7,10 @@
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout81"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,17 +30,17 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:padding="2dp"
+                android:src="@android:drawable/ic_menu_revert"
                 android:tint="?attr/codex_3"
                 android:tintMode="multiply"
-                android:src="@android:drawable/ic_menu_revert"
-                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_pagetitle"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="?attr/codex_2"
@@ -62,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:indeterminateTintMode="multiply"
             android:indeterminateTint="?attr/codex_2"
+            android:indeterminateTintMode="multiply"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +121,48 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout35"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/codex_1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/adView"
+        app:layout_constraintTop_toTopOf="@+id/adView">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_codex_ghostos"
+            style="@style/JetbrainsMonoBold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:text="GH//OS.T"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        android:background="?attr/codex_1"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout81" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

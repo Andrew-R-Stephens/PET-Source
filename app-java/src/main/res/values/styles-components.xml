@@ -36,4 +36,8 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="MarketplaceItem">
+        <attr name="enforcedTheme" format="reference" />
+    </declare-styleable>
+
 </resources>

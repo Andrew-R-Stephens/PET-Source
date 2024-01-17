@@ -28,7 +28,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/safehouse_shop_tool_label"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -115,7 +115,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_itemcost"
-                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -156,7 +156,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_unlocklevel"
-                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"

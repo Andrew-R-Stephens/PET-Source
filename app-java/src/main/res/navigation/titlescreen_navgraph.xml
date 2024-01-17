@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_titleScreenFragment_to_onboardingFragment"
             app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_marketplaceFragment"
+            app:destination="@id/marketplaceFragment" />
     </fragment>
 
     <activity
@@ -100,4 +103,12 @@
     <action
         android:id="@+id/action_global_titleScreenFragment"
         app:destination="@id/titleScreenFragment" />
+    <fragment
+        android:id="@+id/marketplaceFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceFragment"
+        android:label="MarketplaceFragment" >
+        <action
+            android:id="@+id/action_marketplaceFragment_to_titleScreenFragment"
+            app:destination="@id/titleScreenFragment" />
+    </fragment>
 </navigation>

@@ -51,7 +51,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_cancel_label"
-                    style="@style/NorseRegular"
+                    style="@style/NorseRegular_Auto"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -108,7 +108,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_confirm_label"
-                    style="@style/NorseRegular"
+                    style="@style/NorseRegular_Auto"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"

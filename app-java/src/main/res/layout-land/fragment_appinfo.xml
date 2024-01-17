@@ -57,7 +57,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_version"
-            style="?attr/secondaryFont_Regular"
+            style="?attr/secondaryFont_Regular_Auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -168,7 +168,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_developerinfo_title"
-                style="?attr/primaryFont_Regular_Squeeze"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -203,7 +203,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_devTitle_label"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:gravity="bottom|center_horizontal"
@@ -212,7 +212,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_devTitle_name"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:gravity="center"
@@ -220,7 +220,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_devEmail_label"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:layout_marginTop="8dp"
@@ -230,7 +230,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_devEmail_name"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:gravity="center"
@@ -241,7 +241,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_specialthanks_title"
-                style="?attr/primaryFont_Regular_Squeeze"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"

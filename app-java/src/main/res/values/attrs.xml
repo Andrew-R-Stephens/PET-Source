@@ -52,6 +52,7 @@
     <attr name="mapRoomFillColor" format="reference|color" />
     <attr name="mapRoomBorderColor" format="reference|color" />
 
+    <attr name="theme_title" format="string" />
     <attr name="theme_badge" format="reference" />
 
     <attr name="a" format="reference|color" />
@@ -69,6 +70,15 @@
     <attr name="m" format="reference|color" />
     <attr name="n" format="reference|color" />
 
+    <attr name="theme_coreColor_1" format="reference|color" />
+    <attr name="theme_coreColor_2" format="reference|color" />
+    <attr name="theme_coreColor_3" format="reference|color" />
+    <attr name="theme_coreColor_4" format="reference|color" />
+    <attr name="theme_coreColor_5" format="reference|color" />
+    <attr name="theme_coreColor_6" format="reference|color" />
+    <attr name="theme_coreColor_7" format="reference|color" />
+    <attr name="theme_coreColor_8" format="reference|color" />
+
     <attr name="codex_1" format="reference|color" />
     <attr name="codex_2" format="reference|color" />
     <attr name="codex_3" format="reference|color" />
@@ -81,32 +91,32 @@
     -->
 
     <!-- AutoFit -->
-    <attr name="primaryFont_Regular" format="reference" />
-    <attr name="primaryFont_Bold" format="reference" />
+    <attr name="primaryFont_Regular_Auto" format="reference" />
+    <attr name="primaryFont_Bold_Auto" format="reference" />
 
-    <attr name="secondaryFont_Regular" format="reference" />
-    <attr name="secondaryFont_Bold" format="reference" />
+    <attr name="secondaryFont_Regular_Auto" format="reference" />
+    <attr name="secondaryFont_Bold_Auto" format="reference" />
 
-    <attr name="tertiaryFont_Regular" format="reference" />
-    <attr name="tertiaryFont_Bold" format="reference" />
-    <attr name="tertiaryFont_BoldNarrow" format="reference" />
+    <attr name="tertiaryFont_Regular_Auto" format="reference" />
+    <attr name="tertiaryFont_Bold_Auto" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Auto" format="reference" />
 
-    <attr name="quaternaryFont_Regular" format="reference" />
-    <attr name="quaternaryFont_Bold" format="reference" />
+    <attr name="quaternaryFont_Regular_Auto" format="reference" />
+    <attr name="quaternaryFont_Bold_Auto" format="reference" />
 
     <!-- Squeeze -->
-    <attr name="primaryFont_Regular_Squeeze" format="reference" />
-    <attr name="primaryFont_Bold_Squeeze" format="reference" />
+    <attr name="primaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="primaryFont_Bold_AutoSqueeze" format="reference" />
 
-    <attr name="secondaryFont_Regular_Squeeze" format="reference" />
-    <attr name="secondaryFont_Bold_Squeeze" format="reference" />
+    <attr name="secondaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="secondaryFont_Bold_AutoSqueeze" format="reference" />
 
-    <attr name="tertiaryFont_Regular_Squeeze" format="reference" />
-    <attr name="tertiaryFont_Bold_Squeeze" format="reference" />
-    <attr name="tertiaryFont_BoldNarrow_Squeeze" format="reference" />
+    <attr name="tertiaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_Bold_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_AutoSqueeze" format="reference" />
 
-    <attr name="quaternaryFont_Regular_Squeeze" format="reference" />
-    <attr name="quaternaryFont_Bold_Squeeze" format="reference" />
+    <attr name="quaternaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="quaternaryFont_Bold_AutoSqueeze" format="reference" />
 
     <!-- Manual -->
     <attr name="primaryFont_Regular_Manual" format="reference" />

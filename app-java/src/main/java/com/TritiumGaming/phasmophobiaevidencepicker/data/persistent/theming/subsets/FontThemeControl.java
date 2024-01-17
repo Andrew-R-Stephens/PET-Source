@@ -51,7 +51,7 @@ public class FontThemeControl extends AThemeControl {
                     @StringRes int nameRes = themeNamesArray.getResourceId(k, 0);
                     @StyleRes int styleRes = themeStyleArray.getResourceId(k, 0);
 
-                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes);
+                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes, true);
 
                     themes.add(tempTheme);
                 }

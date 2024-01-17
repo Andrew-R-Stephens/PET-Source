@@ -34,90 +34,89 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
+                android:padding="8dp"
                 android:maxLines="1"
                 android:text="@string/settings_title"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/listener_cancel"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView2"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
-                app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
-                app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_negative_unselected" />
-
-            <View
-                android:id="@+id/listener_cancel"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
-                app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
+                app:layout_constraintStart_toEndOf="@+id/listener_cancel"
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/settings_cancel_label"
-                style="?attr/quaternaryFont_Regular_Manual"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/listener_cancel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:scaleType="fitCenter"
-                android:text="@string/settings_cancel"
-                android:textColor="?attr/selectedColor"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_positive_unselected" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
+                    app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
+                    app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_negative_unselected" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/settings_confirm_label"
-                style="?attr/quaternaryFont_Regular_Manual"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:scaleType="fitCenter"
-                android:text="@string/settings_confirm"
-                android:textColor="?attr/selectedColor"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_cancel_label"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="@string/settings_cancel"
+                    android:textColor="?attr/selectedColor"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <View
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/listener_confirm"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_positive_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_confirm_label"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="@string/settings_confirm"
+                    android:textColor="?attr/selectedColor"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -260,7 +259,7 @@
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/settings_account_login_button"
-                                style="?attr/primaryFont_Regular_Squeeze"
+                                style="?attr/primaryFont_Regular_AutoSqueeze"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:layout_marginVertical="8dp"
@@ -276,7 +275,7 @@
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/settings_account_logout_button"
-                                style="?attr/primaryFont_Regular_Squeeze"
+                                style="?attr/primaryFont_Regular_AutoSqueeze"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:layout_marginVertical="8dp"
@@ -293,7 +292,7 @@
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/settings_account_delete_button"
-                                style="?attr/primaryFont_Regular_Squeeze"
+                                style="?attr/primaryFont_Regular_AutoSqueeze"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:layout_marginVertical="8dp"
@@ -447,7 +446,7 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_leftHandMode_switch"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -486,7 +485,7 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_huntwarningaudio_switch"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -941,7 +940,7 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_ads_label"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
                         android:layout_marginTop="32dp"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
@@ -40,7 +41,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_accountsettings_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/quaternaryFont_Bold_Manual"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -57,8 +58,7 @@
                     android:id="@+id/constraintLayout_accountInformation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:paddingVertical="8dp"
+                    android:padding="8dp"
                     android:visibility="visible"
                     android:minHeight="48dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout_account"
@@ -68,10 +68,9 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/settings_accountsettings_label"
-                        style="?attr/primaryFont_Regular_Manual"
+                        style="?attr/quaternaryFont_Bold_Manual"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
                         android:background="@color/transparent"
                         android:ellipsize="marquee"
                         android:focusable="true"
@@ -83,43 +82,46 @@
                         android:textSize="18sp"
                         android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintEnd_toStartOf="@+id/settings_accountsettings_info"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/settings_accountsettings_info"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="wrap_content"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
                         android:background="@color/transparent"
-                        android:gravity="center"
-                        android:text="Account:"
-                        android:textColor="?attr/textColorBody"
                         android:ellipsize="marquee"
-                        android:singleLine="true"
-                        android:focusableInTouchMode="true"
                         android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="***"
+                        android:textColor="?attr/textColorBody"
                         android:textSize="18sp"
                         android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/settings_accountsettings_label"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_label"
+                        app:layout_constraintTop_toTopOf="@+id/settings_accountsettings_label"
+                        app:layout_constraintWidth_default="wrap" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/settings_accountsettings_info"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/settings_accountsettings_info"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_label"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_info"
+                        app:layout_constraintTop_toTopOf="@+id/settings_accountsettings_info"
                         app:srcCompat="@android:drawable/ic_menu_view" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,12 +136,12 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_account_login_button"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginVertical="8dp"
                         android:background="@drawable/radiobutton_1_disabled"
-                        android:padding="4dp"
+                        android:padding="8dp"
                         android:text="Log in"
                         android:textColor="?attr/textColorBody"
                         android:visibility="visible"
@@ -150,13 +152,13 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_account_logout_button"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginVertical="8dp"
                         android:background="@drawable/radiobutton_1_disabled"
                         android:maxLines="1"
-                        android:padding="4dp"
+                        android:padding="8dp"
                         android:text="Log out"
                         android:textColor="?attr/textColorBody"
                         android:visibility="gone"
@@ -167,13 +169,13 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_account_delete_button"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginVertical="8dp"
                         android:background="@drawable/radiobutton_1_disabled"
                         android:maxLines="1"
-                        android:padding="4dp"
+                        android:padding="8dp"
                         android:text="Delete Account"
                         android:textColor="?attr/textColorBody"
                         android:visibility="gone"
@@ -217,89 +219,89 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/settings_title"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
                 app:layout_constraintStart_toEndOf="@+id/listener_cancel"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView2"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
-                app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
-                app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_negative_unselected" />
-
-            <View
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/listener_cancel"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
-                app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/settings_cancel_label"
-                style="?attr/quaternaryFont_Regular_Manual"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:scaleType="fitCenter"
-                android:text="@string/settings_cancel"
-                android:textColor="?attr/textColorBodyEmphasis"
-                android:textSize="18sp"
-                android:ellipsize="marquee"
-                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_positive_unselected" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_negative_unselected" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/settings_confirm_label"
-                style="?attr/quaternaryFont_Regular_Manual"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:scaleType="fitCenter"
-                android:text="@string/settings_confirm"
-                android:textColor="?attr/textColorBodyEmphasis"
-                android:textSize="18sp"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_cancel_label"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:ellipsize="marquee"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:singleLine="true"
+                    android:text="@string/settings_cancel"
+                    android:textColor="?attr/textColorBodyEmphasis"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <View
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/listener_confirm"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_positive_unselected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_confirm_label"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:ellipsize="marquee"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:singleLine="true"
+                    android:text="@string/settings_confirm"
+                    android:textColor="?attr/textColorBodyEmphasis"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -327,7 +329,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_generalsettings_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -418,7 +420,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_extrasettings_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -435,7 +437,7 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_leftHandMode_switch"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -476,7 +478,7 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_huntwarningaudio_switch"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -607,7 +609,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_style_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -973,7 +975,7 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_ads_label"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
                         android:layout_marginTop="32dp"

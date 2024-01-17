@@ -83,6 +83,13 @@ public abstract class AThemeControl {
      * @param dir
      */
     public void iterateSelection(int dir) {
+        iterateSelection(dir, selectedIndex);
+    }
+
+    /**
+     * @param dir
+     */
+    public void iterateSelection(int dir, int start) {
 
         selectedIndex += dir;
 
@@ -92,13 +99,19 @@ public abstract class AThemeControl {
         else if (selectedIndex >= themes.size()) {
             selectedIndex = 0;
         }
+
+        if(!getCurrentTheme().isUnlocked()) {
+            if(start != selectedIndex) {
+                iterateSelection(dir, start);
+            }
+        }
     }
 
     public CustomTheme getCurrentTheme() {
 
         CustomTheme theme = themes.get(selectedIndex);
         if(theme == null) {
-            new CustomTheme(0, -1, defaultStyle);
+            new CustomTheme("-1", -1, defaultStyle);
         }
 
         return theme;
@@ -124,7 +137,7 @@ public abstract class AThemeControl {
 
     public CustomTheme getAppThemeAt(int index) {
 
-        CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
+        CustomTheme tempTheme = new CustomTheme("-1", -1, defaultStyle);
 
         if(index >= themes.size())
         {
@@ -132,12 +145,28 @@ public abstract class AThemeControl {
         }
 
         CustomTheme theme = themes.get(index);
+
         if(theme == null) {
             return tempTheme;
         }
 
         return theme;
 
+    }
+
+    public CustomTheme getThemeByUUID(String uuid) {
+        for(CustomTheme customTheme: themes) {
+            if(customTheme.getID().equals(uuid)) {
+                return customTheme;
+            }
+        }
+        return new CustomTheme("-1", -1, defaultStyle);
+    }
+
+    public void revertUnlockStatus() {
+        for(CustomTheme theme: themes) {
+            theme.revertUnlockStatus();
+        }
     }
 
     /*

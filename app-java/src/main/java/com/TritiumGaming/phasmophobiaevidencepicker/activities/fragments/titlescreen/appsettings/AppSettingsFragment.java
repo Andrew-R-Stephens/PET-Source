@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -38,13 +39,17 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.firebase.firestore.transactions.FirestoreUser;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.PETTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
@@ -53,6 +58,9 @@ import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,7 +74,7 @@ public class AppSettingsFragment extends Fragment {
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
 
-    private boolean showEmail = false;
+    private boolean showEmail = false, loadThemes = true;
 
     @Nullable
     @Override
@@ -99,36 +107,36 @@ public class AppSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        AppCompatTextView text_colorblindmode_selectedname =
+        final AppCompatTextView text_colorTheme_selectedname =
                 view.findViewById(R.id.colorblindmode_selectedname);
         final AppCompatTextView text_fontStyle_selectedname = view.findViewById(R.id.font_selectedname);
 
-        AppCompatTextView switch_huntwarning_timetext =
+        final AppCompatTextView switch_huntwarning_timetext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_timetext);
-        AppCompatTextView switch_huntwarning_othertext =
+        final AppCompatTextView switch_huntwarning_othertext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_othertext);
 
-        SwitchCompat switch_isAlwaysOn_switch = view.findViewById(R.id.switch_alwayson_switch);
-        SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
-        SwitchCompat switch_huntwarningaudio_switch =
+        final SwitchCompat switch_isAlwaysOn_switch = view.findViewById(R.id.switch_alwayson_switch);
+        final SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
+        final SwitchCompat switch_huntwarningaudio_switch =
                 view.findViewById(R.id.switch_huntwarningaudio_switch);
-        SwitchCompat switch_leftHandMode_switch =
+        final SwitchCompat switch_leftHandMode_switch =
                 view.findViewById(R.id.switch_leftHandMode_switch);
 
-        SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
+        final SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
 
-        AppCompatImageView btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
-        AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
-        AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
-        View listener_confirmClose = view.findViewById(R.id.listener_confirm);
-        View listener_cancelClose = view.findViewById(R.id.listener_cancel);
+        final AppCompatImageView btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
+        final AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
+        final AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
+        final AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
+        final View listener_confirmClose = view.findViewById(R.id.listener_confirm);
+        final View listener_cancelClose = view.findViewById(R.id.listener_cancel);
 
-        AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
-        AppCompatButton btn_account_logout = view.findViewById(R.id.settings_account_logout_button);
-        AppCompatButton btn_account_delete = view.findViewById(R.id.settings_account_delete_button);
-        ConstraintLayout btn_account_infoContainer = view.findViewById(R.id.constraintLayout_accountInformation);
-        AppCompatTextView btn_account_info = view.findViewById(R.id.settings_accountsettings_info);
+        final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
+        final AppCompatButton btn_account_logout = view.findViewById(R.id.settings_account_logout_button);
+        final AppCompatButton btn_account_delete = view.findViewById(R.id.settings_account_delete_button);
+        final ConstraintLayout btn_account_infoContainer = view.findViewById(R.id.constraintLayout_accountInformation);
+        final AppCompatTextView btn_account_info = view.findViewById(R.id.settings_accountsettings_info);
 
         if(getActivity() != null) {
             googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
@@ -150,7 +158,6 @@ public class AppSettingsFragment extends Fragment {
             view.invalidate();
         });
 
-        String accountTitle = "Email: ";
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser != null) {
@@ -158,29 +165,19 @@ public class AppSettingsFragment extends Fragment {
         } else {
             accountEmail = "";
         }
+        SpannableString email_displayed =
+                new SpannableString(accountEmail);
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getContext().getTheme();
         theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
         @ColorInt int obfuscationColor = typedValue.data;
-        int startSpan = Math.min(4, (int)(accountEmail.indexOf('@')*.8));
-        int endSpan = accountEmail.length();
-        SpannableString email_obfuscated =
-                new SpannableString(accountEmail);
-        email_obfuscated.setSpan(
-                new BackgroundColorSpan(obfuscationColor),
-                startSpan,
-                endSpan,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        email_obfuscated.setSpan(
-                new ForegroundColorSpan(obfuscationColor),
-                startSpan,
-                endSpan,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-        SpannableString email_displayed =
-                new SpannableString(accountEmail);
+        SpannableString email_obfuscated = email_displayed;
+        if(accountEmail != null) {
+            email_obfuscated = FormatterUtils.obfuscateEmailSpannable(
+                    accountEmail, obfuscationColor);
+        }
+        SpannableString finalEmail_obfuscated = email_obfuscated;
 
         btn_account_infoContainer.setOnClickListener(v -> {
             showEmail = !showEmail;
@@ -188,7 +185,7 @@ public class AppSettingsFragment extends Fragment {
             if(showEmail) {
                 btn_account_info.setText(email_displayed);
             } else {
-                btn_account_info.setText(email_obfuscated);
+                btn_account_info.setText(finalEmail_obfuscated);
             }
         });
 
@@ -214,16 +211,19 @@ public class AppSettingsFragment extends Fragment {
          */
         // COLORBLIND DATA
         ColorThemeControl colorThemesData = globalPreferencesViewModel.getColorThemeControl();
-        text_colorblindmode_selectedname.setText(colorThemesData.getCurrentName());
+        text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
 
         // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
             themeControl.iterateSelection(-1);
-            text_colorblindmode_selectedname.setText(getString(themeControl.getCurrentName()));
+            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
 
             demoColorStyle(themeControl);
+
+            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
+
             //demoStyles();
         });
 
@@ -231,9 +231,12 @@ public class AppSettingsFragment extends Fragment {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
             themeControl.iterateSelection(1);
-            text_colorblindmode_selectedname.setText(getString(themeControl.getCurrentName()));
+            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
 
             demoColorStyle(themeControl);
+
+            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
+
             //demoStyles();
         });
 
@@ -427,6 +430,64 @@ public class AppSettingsFragment extends Fragment {
             AppCompatButton adsButton = view.findViewById(R.id.settings_ads_label);
             adsButton.setOnClickListener(v -> showAdsConsentForm(v.getContext()));
         }
+
+        if(loadThemes) {
+            getUserPurchaseHistory();
+            //getMarketplaceColorThemes();
+            loadThemes = false;
+        }
+    }
+
+    private void getUserPurchaseHistory() {
+        try {
+            CollectionReference purchaseHistoryCollection =
+                    FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
+
+            if (purchaseHistoryCollection == null) {
+                return;
+            }
+
+            purchaseHistoryCollection.get().addOnCompleteListener(task -> {
+                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    DocumentReference documentReference = documentSnapshot.getReference();
+
+                    String uuid = documentReference.getId();
+                    CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            .getThemeByUUID(uuid);
+                    customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getMarketplaceColorThemes() {
+        FirestoreMarketplace.getThemes()
+            .addOnFailureListener(e -> {
+                Log.d("Firestore", "Theme document query FAILED!");
+                e.printStackTrace();
+            }).addOnCompleteListener(task -> {
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+
+                    if (!documentSnapshot.exists()) {
+                        Log.d("Firestore", "Theme document snapshot DNE.");
+                    }
+
+                    try {
+                        PETTheme tempTheme = documentSnapshot.toObject(PETTheme.class);
+                        if(tempTheme != null) {
+                            PETTheme petTheme = new PETTheme(
+                                    documentSnapshot.getReference().getId(),
+                                    tempTheme);
+                            Log.d("Firestore", petTheme.toString());
+                        }
+                    } catch (Exception e) {
+                        Log.d("Firestore", "Error CREATING PETTheme!");
+                        e.printStackTrace();
+                    }
+                }
+            });
     }
 
     private void demoStyles() {
@@ -583,7 +644,7 @@ public class AppSettingsFragment extends Fragment {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = new FirestoreUser().getCurrentFirebaseUser();
+            FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),
@@ -593,13 +654,21 @@ public class AppSettingsFragment extends Fragment {
 
                 refreshFragment();
 
-                FirestoreUser fu = new FirestoreUser();
-                fu.createUserRecord();
+                // Generate a Firestore document for the User with default data if needed
+                FirestoreUser.buildUserDocument();
+                getUserPurchaseHistory();
 
             }
         } else {
-            FirebaseUiException error = response.getError();
-            String message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+
+            String message = "ERROR: (Error data could not be acquired).";
+            if(response != null) {
+                FirebaseUiException error = response.getError();
+                if(error != null) {
+                    message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+                }
+            }
+
             Toast toast = Toast.makeText(requireActivity(),
                     message,
                     com.google.android.material.R.integer.material_motion_duration_short_2);
@@ -625,6 +694,11 @@ public class AppSettingsFragment extends Fragment {
                             com.google.android.material.R.integer.material_motion_duration_short_2);
                     toast.show();
 
+                    globalPreferencesViewModel.getColorThemeControl().revertUnlockStatus();
+                    globalPreferencesViewModel.getColorThemeControl().setSelectedIndex(0);
+                    globalPreferencesViewModel.getColorThemeControl().setSavedIndex(0);
+                    demoColorStyle(globalPreferencesViewModel.getColorThemeControl());
+
                     refreshFragment();
                 });
     }
@@ -644,5 +718,11 @@ public class AppSettingsFragment extends Fragment {
 
                     refreshFragment();
                 });
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
     }
 }

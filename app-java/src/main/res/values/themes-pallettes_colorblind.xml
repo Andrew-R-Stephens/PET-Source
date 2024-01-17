@@ -40,6 +40,7 @@
 
         <item name="splashTextColor">@color/white_M200</item>
 
+        <item name="theme_title">Monochromacy</item>
     </style>
 
     <style name="Deuteranomaly" parent="Colorblind.Base">
@@ -80,6 +81,8 @@
         <item name="navigationFooterIconAlt">@color/yellow_M100</item>
 
         <item name="splashTextColor">@color/white_M200</item>
+
+        <item name="theme_title">Deuteranomaly</item>
     </style>
 
     <style name="Protanomaly" parent="Colorblind.Base">
@@ -120,6 +123,8 @@
         <item name="navigationFooterIconAlt">@color/yellow_M100</item>
 
         <item name="splashTextColor">@color/yellow_M100</item>
+
+        <item name="theme_title">Protanomaly</item>
     </style>
 
     <style name="Tritanomaly" parent="Colorblind.Base">
@@ -135,6 +140,8 @@
         <item name="neutralSelColor">@color/white</item>
 
         <item name="mapPoiFillColor">@color/red_A75</item>
+
+        <item name="theme_title">Tritanomaly</item>
 
     </style>
 

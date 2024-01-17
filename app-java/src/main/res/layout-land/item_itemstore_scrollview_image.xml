@@ -14,6 +14,8 @@
     android:adjustViewBounds="true"
     android:minHeight="24dp"
     android:maxHeight="96dp"
+    android:minWidth="24dp"
+    android:maxWidth="96dp"
     app:layout_constraintDimensionRatio="1"
     app:srcCompat="@drawable/equipment_tier_item"
     />

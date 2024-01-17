@@ -64,7 +64,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textview_title"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -154,7 +154,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_floorname"
-                    style="?attr/quaternaryFont_Bold_Squeeze"
+                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="26dp"
                     android:gravity="center"
@@ -214,7 +214,7 @@
 
             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.POISpinner
                 android:id="@+id/spinner_poiname"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="2dp"

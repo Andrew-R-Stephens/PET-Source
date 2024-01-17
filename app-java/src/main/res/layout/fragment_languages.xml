@@ -51,7 +51,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_cancel_label"
-                    style="?attr/primaryFont_Regular_Squeeze"
+                    style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -108,7 +108,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_confirm_label"
-                    style="?attr/primaryFont_Regular_Squeeze"
+                    style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"

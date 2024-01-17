@@ -137,7 +137,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_overview_text"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="2dp"
@@ -178,7 +178,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_tiers_text"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="2dp"
