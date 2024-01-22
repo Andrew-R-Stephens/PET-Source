@@ -4,6 +4,9 @@
     <!--
         PERSISTENT PREFERENCE DATA KEYS
     -->
+    <!-- Ad Units -->
+    <string name="ad_banner_1" translatable="false">ca-app-pub-1890816745443024/7620657926</string>
+    <string name="ad_rewarded_1" translatable="false">ca-app-pub-1890816745443024/3221666922</string>
     <!-- Local Files -->
     <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
     <!-- Page Details -->

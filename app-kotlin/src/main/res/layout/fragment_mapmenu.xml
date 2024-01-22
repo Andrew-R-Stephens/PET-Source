@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mapmenu_main_constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mapmenu_title"
-        style="?attr/primaryFont_Regular_Squeeze"
+        style="?attr/primaryFont_Regular_AutoSqueeze"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/general_maps_button"
-        android:textColor="?attr/titleFontColor"
+        android:textColor="?attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintHeight_max="48dp"
@@ -61,13 +59,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:background="#00FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".95"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".85">
+            app:layout_constraintTop_toTopOf="parent">
 
             <GridView
                 android:id="@+id/grid_maps"
@@ -93,6 +93,18 @@
             </GridView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+            android:background="#00FFFFFF"
+            app:adSize="BANNER"
+            app:adUnitId="@string/ad_banner_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,7 +2,7 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.util.*;
+import java.util.NoSuchElementException;
 
 class QuadIterator implements PathIterator {
     QuadCurve2D quad;

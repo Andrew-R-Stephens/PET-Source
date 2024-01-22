@@ -4,10 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.LayoutTransition;
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,7 +16,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceList;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.google.android.gms.ads.AdRequest;
 
@@ -64,9 +61,14 @@ public class InvestigationList extends LinearLayout {
 
     protected void init(EvidenceViewModel evidenceViewModel, PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
         this.evidenceViewModel = evidenceViewModel;
+        this.adRequest = adRequest;
+
+        init(popupWindow, progressBar);
+    }
+
+    public void init(PopupWindow popupWindow, ProgressBar progressBar) {
         this.popupWindow = popupWindow;
         this.progressBar = progressBar;
-        this.adRequest = adRequest;
     }
 
     protected void haltProgressAnimation(ProgressBar progressBar) {
@@ -78,12 +80,6 @@ public class InvestigationList extends LinearLayout {
                         super.onAnimationEnd(animation);
                     }
                 }).start();
-    }
-
-    public void init(PopupWindow popupWindow, ProgressBar progressBar) {
-        this.popupWindow = popupWindow;
-        this.progressBar = progressBar;
-
     }
 
     public @LayoutRes int getLayoutRes() {

@@ -71,7 +71,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/difficulty_name"
-                    style="?attr/secondaryFont_Regular"
+                    style="?attr/secondaryFont_Regular_Auto"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -144,7 +144,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mapchoice_name"
-                    style="?attr/secondaryFont_Regular"
+                    style="?attr/secondaryFont_Regular_Auto"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -234,14 +234,14 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/evidence_timer_text"
-                        style="?attr/tertiaryFont_Bold"
+                        style="?attr/tertiaryFont_Bold_Auto"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"
                         android:hint="@string/app_name"
                         android:maxLines="1"
                         android:text="@string/investigation_timer_time_3"
-                        android:textColor="?attr/subtitleFontColor"
+                        android:textColor="?attr/textColorSecondary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

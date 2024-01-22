@@ -1,10 +1,14 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen;
 
+import android.animation.AnimatorInflater;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Rect;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;

@@ -4,7 +4,7 @@
     <item>
         <shape>
             <solid
-                android:color="#F2000000"/>
+                android:color="?attr/backgroundColorOnBackground"/>
             <corners
                 android:radius="32dp" />
 
@@ -13,7 +13,7 @@
     <item>
         <shape>
             <stroke
-                android:color="@color/cb_mono_white_high"
+                android:color="@color/white"
                 android:width="3dp"
                 />
             <corners

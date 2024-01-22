@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/evidence_item_layer_grid"
-    android:backgroundTint="#40FFFFFF"
-    android:backgroundTintMode="multiply"
+    android:background="@drawable/codex_grid_background"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout38"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#99AEB3"
+        android:background="?attr/codex_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_pagetitle"
-            style="?attr/quaternaryFont_Bold_Squeeze"
+            style="?attr/quaternaryFont_Bold_AutoSqueeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             android:padding="4dp"
             android:text="@string/general_codex_button"
             android:textAllCaps="true"
-            android:textColor="#2D3635"
+            android:textColor="?attr/codex_5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight="40dp"
@@ -66,17 +63,17 @@
             android:layout_height="wrap_content"
             android:layout_rowSpan="1"
             android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
+            android:layout_columnWeight="2"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_shop"
-            app:cardBackgroundColor="#99AEB3"
+            app:cardBackgroundColor="?attr/codex_2"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_equipment"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
-            app:strokeColor="#99AEB3"
+            app:rippleColor="?attr/codex_2"
+            app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
@@ -88,54 +85,55 @@
             android:layout_columnWeight="1"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_possessions"
-            app:cardBackgroundColor="#99AEB3"
+            app:cardBackgroundColor="?attr/codex_2"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/store_title_cursedpossessions"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
-            app:strokeColor="#99AEB3"
+            app:rippleColor="?attr/codex_2"
+            app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:theme="@style/CodexGridCard"
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:alpha=".5"
             android:padding="8dp"
-            app:cardBackgroundColor="#99AEB3"
+            app:cardBackgroundColor="?attr/codex_2"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_more"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
-            app:strokeColor="#99AEB3"
+            app:rippleColor="?attr/codex_2"
+            app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:theme="@style/CodexGridCard"
             android:layout_rowSpan="1"
             android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
+            android:layout_columnWeight="2"
+            android:alpha=".5"
             android:padding="8dp"
-            app:label_text="@string/codex_section_more"
-            app:cardBackgroundColor="#99AEB3"
+            app:cardBackgroundColor="?attr/codex_2"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_more"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="#99AEB3"
-            app:strokeColor="#99AEB3"
-            app:strokeWidth="2dp"
-            android:alpha=".5"
-            />
+            app:rippleColor="?attr/codex_2"
+            app:strokeColor="?attr/codex_2"
+            app:strokeWidth="2dp" />
 
         <!--
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
@@ -209,8 +207,8 @@
         android:id="@+id/constraintLayout35"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#161C1C"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?attr/codex_1"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grid_codex">
@@ -220,15 +218,29 @@
             style="@style/JetbrainsMonoBold_Manual"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="GH//OS.T"
-            android:textSize="12sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="4dp"
+            android:gravity="end|center_vertical"
+            android:text="GH//OS.T"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        android:background="?attr/codex_1"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_banner_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout35" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

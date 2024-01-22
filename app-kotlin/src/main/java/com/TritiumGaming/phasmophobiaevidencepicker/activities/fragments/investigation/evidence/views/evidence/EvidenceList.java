@@ -45,8 +45,12 @@ public class EvidenceList extends InvestigationList {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void buildEvidenceViews() {
+    private void buildEvidenceViews(PopupWindow pw) {
+
+        this.popupWindow = pw;
+
         if(getContext() == null) { return; }
+
 
         for(int i = 0; i < popupData.getCount(); i++) {
             final int groupIndex = i;
@@ -65,10 +69,11 @@ public class EvidenceList extends InvestigationList {
 
                     EvidencePopupWindow evidencePopupWindow =
                             new EvidencePopupWindow(getContext());
+                    evidencePopupWindow.setPopupWindow(popupWindow);
                     evidencePopupWindow.build(
                             evidenceViewModel, popupRecord, groupIndex, adRequest);
 
-                    popupWindow = evidencePopupWindow.getPopupWindow();
+                    //popupWindow = evidencePopupWindow.getPopupWindow();
 
                 }
 
@@ -88,14 +93,14 @@ public class EvidenceList extends InvestigationList {
     }
 
     @SuppressLint("ResourceType")
-    public void createEvidenceViews() {
+    public void createEvidenceViews(PopupWindow popupWindow) {
 
         popupData = new EvidencePopupData(getContext());
 
         Activity activity = (Activity) getContext();
         if(activity != null) {
             activity.runOnUiThread(() -> {
-                buildEvidenceViews();
+                buildEvidenceViews(popupWindow);
 
                 this.post(() -> haltProgressAnimation(progressBar));
             });

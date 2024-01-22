@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mapview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout92"
@@ -31,9 +30,7 @@
                 android:id="@+id/constraintLayout_mapviewbody"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/evidence_item_layer_grid"
-                android:backgroundTint="#80FFFFFF"
-                android:backgroundTintMode="multiply"
+                android:background="@drawable/codex_grid_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -58,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="1dp"
-                    android:background="#BF000000"
+                    android:background="?attr/backgroundColor_mapviewOverlay"
                     android:padding="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/listener_help"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +121,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginEnd="1dp"
-                    android:background="#BF000000"
+                    android:background="?attr/backgroundColor_mapviewOverlay"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +144,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_title"
-                        style="?attr/quaternaryFont_Bold_Squeeze"
+                        style="?attr/quaternaryFont_Bold_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="8dp"
@@ -182,7 +179,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_floorname"
-                        style="?attr/quaternaryFont_Bold_Squeeze"
+                        style="?attr/quaternaryFont_Bold_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="32dp"
@@ -201,7 +198,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="1dp"
                     android:layout_marginBottom="1dp"
-                    android:background="#BF000000"
+                    android:background="?attr/backgroundColor_mapviewOverlay"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/listener_help"
                     app:layout_constraintStart_toStartOf="parent"
@@ -223,7 +220,7 @@
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.POISpinner
                         android:id="@+id/spinner_poiname"
-                        style="?attr/quaternaryFont_Bold_Squeeze"
+                        style="?attr/quaternaryFont_Bold_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="16dp"

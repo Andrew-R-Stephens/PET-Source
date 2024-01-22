@@ -41,6 +41,9 @@
         <item name="splashTextColor">@color/white_M200</item>
 
         <item name="theme_title">Monochromacy</item>
+
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
     </style>
 
     <style name="Deuteranomaly" parent="Colorblind.Base">
@@ -83,6 +86,9 @@
         <item name="splashTextColor">@color/white_M200</item>
 
         <item name="theme_title">Deuteranomaly</item>
+
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
     </style>
 
     <style name="Protanomaly" parent="Colorblind.Base">
@@ -125,6 +131,9 @@
         <item name="splashTextColor">@color/yellow_M100</item>
 
         <item name="theme_title">Protanomaly</item>
+
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
     </style>
 
     <style name="Tritanomaly" parent="Colorblind.Base">
@@ -142,6 +151,8 @@
         <item name="mapPoiFillColor">@color/red_A75</item>
 
         <item name="theme_title">Tritanomaly</item>
+
+        <item name="buttonFilterOnPrimary">@color/white</item>
 
     </style>
 

@@ -1,0 +1,1916 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Skins -->
+
+    <style name="Skin" parent="NonColorblind.Base">
+        <!-- -->
+    </style>
+
+
+    <!-- Skins Base -->
+
+    <style name="Prestige" parent="Skin">
+        <!-- -->
+    </style>
+
+    <style name="Event" parent="Skin">
+        <!-- -->
+    </style>
+
+    <style name="Community" parent="Skin">
+        <!-- -->
+    </style>
+
+
+
+    <!-- Prestiges -->
+
+    <style name="Recruit" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">@color/white_M50</item>
+        <item name="c">@color/orange_M150</item>
+        <item name="d">#B2B1B1</item>
+        <item name="e">#818180</item>
+        <item name="f">#515151</item>
+        <item name="g">#252423</item>
+        <item name="h">@color/orange_M950</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/orange_M150</item>
+        <item name="theme_coreColor_2">@color/orange_M300</item>
+        <item name="theme_coreColor_3">@color/orange_M900</item>
+        <item name="theme_coreColor_4">@color/orange_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M100</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/yellow</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/orange_M950</item>
+        <item name="android:statusBarColor">@color/orange_M950</item>
+        <item name="android:navigationBarColor">@color/orange_M950</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#818180</item>
+        <item name="backgroundColor">@color/orange_M950</item>
+        <item name="backgroundColorOnBackground">@color/orange_M900</item>
+        <item name="statusBarColor">?attr/backgroundColor</item>
+        <item name="navigationBarColor">?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/orange_M950</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/orange_M950</item>
+        <item name="colorPrimaryVariant">@color/orange_M950</item>
+        <item name="colorOnPrimary">@color/orange_M950</item>
+        <item name="colorSecondary">@color/orange_M950</item>
+        <item name="colorSecondaryVariant">@color/orange_M950</item>
+        <item name="colorOnSecondary">@color/orange_M950</item>
+
+        <item name="textColorPrimary">@color/orange_M250</item>
+        <item name="textColorSecondary">@color/orange_M300</item>
+        <item name="textColorTertiary">@color/orange_M400</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/orange_M250</item>
+        <item name="light_active">@color/orange_M150</item>
+        <item name="light_inactive">@color/orange_M50_A40</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/orange_M300</item>
+        <item name="inboxNotification">@color/orange_M150</item>
+        <item name="strikethroughColor">@color/orange_M300</item>
+        <item name="circleColor">@color/orange</item>
+        <item name="selectedColor">@color/orange_M150</item>
+        <item name="selectedColor2">@color/orange_M150</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/yellow</item>
+        <item name="neutralSelColor">@color/white_M100</item>
+        <item name="negativeSelColor">@color/orange_M300</item>
+        <item name="mapPoiFillColor">@color/orange_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/orange_M300_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF090500</item>
+
+        <item name="progressBarColorStart">@color/orange_M500</item>
+        <item name="progressBarColorEnd">@color/orange_M300</item>
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/orange_M150</item>
+
+        <item name="splashTextColor">@color/orange_M150</item>
+
+        <item name="codex_1">#232C2C</item>
+        <!--<item name="codex_2">#B2B1B1</item>-->
+        <item name="codex_2">@color/orange_M150</item>
+        <item name="codex_3">#252423</item>
+        <item name="codex_4">@color/orange_M150</item>
+        <item name="codex_5">#252423</item>
+        <item name="codex_grid_background_tint">#40232C2C</item>
+
+        <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
+        <item name="theme_title">@string/settings_colormode_prestige_recruit</item>
+
+        <item name="navigationFooterIcon">#818180</item>
+        <item name="navigationFooterIconAlt">@color/orange_M150</item>
+
+    </style>
+
+
+    <style name="Investigator" parent="Prestige">
+        <item name="a">@color/white_M10</item>
+        <item name="b">@color/white_M50</item>
+        <item name="c">@color/white_M300</item>
+        <item name="d">@color/purple_M75</item>
+        <item name="e">@color/purple_M250</item>
+        <item name="f">@color/purple_M525</item>
+        <item name="g">@color/purple_M950</item>
+        <item name="h">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/purple_M75</item>
+        <item name="theme_coreColor_2">@color/purple_M75</item>
+        <item name="theme_coreColor_3">@color/purple_M525</item>
+        <item name="theme_coreColor_4">@color/purple_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M300</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/purple_M950</item>
+        <item name="android:statusBarColor">@color/purple_M950</item>
+        <item name="android:navigationBarColor">@color/purple_M950</item>
+        <item name="foregroundColor">@color/white_M10</item>
+        <item name="middlegroundColor">@color/purple_M250</item>
+        <item name="backgroundColor">@color/purple_M950</item>
+        <item name="backgroundColorOnBackground">@color/purple_M900</item>
+        <item name="statusBarColor">?attr/backgroundColor</item>
+        <item name="navigationBarColor">?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/purple_M950</item>
+        <item name="windowStrokeColor">@color/white_M10</item>
+        <item name="colorPrimary">@color/purple_M950</item>
+        <item name="colorPrimaryVariant">@color/purple_M950</item>
+        <item name="colorOnPrimary">@color/purple_M950</item>
+        <item name="colorSecondary">@color/purple_M950</item>
+        <item name="colorSecondaryVariant">@color/purple_M950</item>
+        <item name="colorOnSecondary">@color/purple_M950</item>
+
+        <item name="textColorPrimary">@color/purple_M75</item>
+        <item name="textColorSecondary">@color/purple_M250</item>
+        <item name="textColorTertiary">@color/purple_M525</item>
+        <item name="textColorBody">@color/white_M10</item>
+        <item name="textColorBodyEmphasis">@color/purple_M250</item>
+        <item name="light_active">@color/purple_M75</item>
+        <item name="light_inactive">#6689114F</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/purple_M75</item>
+        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="strikethroughColor">@color/purple_M525</item>
+        <item name="circleColor">@color/purple_M75</item>
+        <item name="selectedColor">@color/purple_M75</item>
+        <item name="selectedColor2">@color/purple_M75</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/purple_M75</item>
+        <item name="neutralSelColor">@color/white_M50</item>
+        <item name="negativeSelColor">@color/purple_M525</item>
+        <item name="mapPoiFillColor">#BFF11284</item>
+        <item name="mapRoomBorderColor">#94F11284</item>
+        <item name="mapRoomFillColor">#1AF11284</item>
+
+        <item name="progressBarColorStart">@color/white_M10</item>
+        <item name="progressBarColorEnd">@color/purple_M75</item>
+        <item name="sanityColorStart">@color/white_M10</item>
+        <item name="sanityColorEnd">@color/purple_M75</item>
+
+        <item name="splashTextColor">@color/purple_M75</item>
+
+        <item name="codex_1">#390721</item>
+        <item name="codex_2">@color/white_M300</item>
+        <item name="codex_3">#200413</item>
+        <item name="codex_4">@color/purple_M75</item>
+        <item name="codex_5">#3C3237</item>
+        <item name="codex_grid_background_tint">#40390721</item>
+
+        <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_investigator</item>
+
+        <item name="navigationFooterIcon">#4DD71472</item>
+        <item name="navigationFooterIconAlt">@color/purple_M250</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
+
+        <!--
+        <item name="textColorPrimary">@color/purple_M250</item>
+        <item name="textColorSecondary">@color/purple_M300</item>
+        <item name="textColorTertiary">@color/purple_M400</item>
+        <item name="textColorBody">@color/white_M10</item>
+        <item name="textColorBodyEmphasis">@color/purple_M250</item>
+        <item name="light_active">@color/purple_M75</item>
+        <item name="light_inactive">@color/purple_M50_A40</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/purple_M300</item>
+        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="strikethroughColor">@color/purple_M300</item>
+        <item name="circleColor">@color/purple</item>
+        <item name="selectedColor">@color/purple_M75</item>
+        <item name="selectedColor2">@color/purple_M75</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/purple_M75</item>
+        <item name="neutralSelColor">@color/white_M50</item>
+        <item name="negativeSelColor">@color/purple_M300</item>
+        <item name="mapPoiFillColor">@color/purple_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/purple_M300_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="progressBarColorStart">@color/purple_M500</item>
+        <item name="progressBarColorEnd">@color/purple_M300</item>
+        <item name="sanityColorStart">@color/white_M10</item>
+        <item name="sanityColorEnd">@color/purple_M75</item>
+
+        <item name="splashTextColor">@color/purple_M75</item>
+
+        <item name="codex_1">#390721</item>
+        <item name="codex_2">@color/white_M300</item>
+        <item name="codex_3">#200413</item>
+        <item name="codex_4">@color/purple_M75</item>
+        <item name="codex_5">#3C3237</item>
+        -->
+    </style>
+
+
+    <style name="PrivateInvestigator" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">@color/orange_M85</item>
+        <item name="c">@color/orange_M20</item>
+        <item name="d">@color/orange_M10</item>
+        <item name="e">@color/orange_M510</item>
+        <item name="f">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/orange_M20</item>
+        <item name="theme_coreColor_2">@color/orange_M10</item>
+        <item name="theme_coreColor_3">@color/orange</item>
+        <item name="theme_coreColor_4">@color/orange_M510</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/orange_M85</item>
+        <item name="theme_coreColor_7">@color/white_M600</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="foregroundColor">?attr/a</item>
+        <item name="middlegroundColor">?attr/e</item>
+        <item name="backgroundColor" >@color/black</item>
+        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">?attr/a</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="textColorPrimary">@color/orange_M20</item>
+        <item name="textColorSecondary">@color/orange_M10</item>
+        <item name="textColorTertiary">@color/orange_M510</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/orange_M20</item>
+        <item name="light_active">@color/orange</item>
+        <item name="light_inactive">@color/orange_M50_A40</item>
+        <item name="light_off">@color/orange_M510</item>
+        <item name="switchColor">@color/orange_M10</item>
+        <item name="inboxNotification">@color/orange_M10</item>
+        <item name="strikethroughColor">@color/orange_M510</item>
+        <item name="circleColor">@color/orange</item>
+        <item name="selectedColor">@color/orange_M10</item>
+        <item name="selectedColor2">@color/orange_M50_A40</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/orange_M10</item>
+        <item name="neutralSelColor">@color/orange_M85</item>
+        <item name="negativeSelColor">@color/orange_M510</item>
+        <item name="mapPoiFillColor">@color/orange_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/orange_M300_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="progressBarColorStart">@color/orange_M85</item>
+        <item name="progressBarColorEnd">@color/orange_M10</item>
+        <item name="sanityColorStart">@color/orange_M85</item>
+        <item name="sanityColorEnd">@color/orange_M10</item>
+
+        <item name="splashTextColor">@color/orange_M10</item>
+
+        <!--<item name="codex_1">#3E2A17</item>-->
+        <item name="codex_1">#150F08</item>
+        <!--<item name="codex_2">#CDC0B2</item>-->
+        <item name="codex_2">@color/orange_M10</item>
+        <item name="codex_3">#332312</item>
+        <item name="codex_4">@color/orange_M10</item>
+        <item name="codex_5">#3A3631</item>
+        <item name="codex_grid_background_tint">#403E2A17</item>
+
+        <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_privateinvestigator</item>
+
+        <item name="navigationFooterIcon">#8078522B</item>
+        <item name="navigationFooterIconAlt">@color/orange_M10</item>
+
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
+    </style>
+
+
+    <style name="Detective" parent="Prestige">
+        <item name="a">@color/white_M20</item>
+        <item name="b">@color/white_M750</item>
+        <item name="c">@color/white_M850</item>
+        <item name="f">@color/green_M25</item>
+        <item name="g">@color/green_M525</item>
+        <item name="h">@color/green_M825</item>
+        <item name="i">@color/green_M875</item>
+        <item name="j">@color/green_M950</item>
+        <item name="k">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white_M20</item>
+        <item name="theme_coreColor_2">@color/green_M25</item>
+        <item name="theme_coreColor_3">@color/green_M525</item>
+        <item name="theme_coreColor_4">@color/green_M950</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M750</item>
+        <item name="theme_coreColor_7">@color/green_M825</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/green_M875</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/green_M875</item>
+        <item name="foregroundColor">@color/white_M20</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/green_M875</item>
+        <item name="backgroundColorOnBackground" >@color/green_M825</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/green_M875</item>
+        <item name="windowStrokeColor">@color/white_M20</item>
+        <item name="colorPrimary">@color/green_M875</item>
+        <item name="colorPrimaryVariant">@color/green_M875</item>
+        <item name="colorOnPrimary">@color/green_M875</item>
+        <item name="colorSecondary">@color/green_M875</item>
+        <item name="colorSecondaryVariant">@color/green_M875</item>
+        <item name="colorOnSecondary">@color/green_M875</item>
+
+        <item name="textColorPrimary">@color/green_M25</item>
+        <item name="textColorSecondary">@color/green_M525</item>
+        <item name="textColorTertiary">#44BF8C</item>
+        <item name="textColorBody">@color/white_M20</item>
+        <item name="textColorBodyEmphasis">@color/green_M525</item>
+        <item name="light_active">@color/green_M25</item>
+        <item name="light_inactive">@color/green_M525</item>
+        <item name="light_off">#2E332F</item>
+        <item name="switchColor">@color/green_M25</item>
+        <item name="inboxNotification">@color/green_M25</item>
+        <item name="strikethroughColor">@color/white_M300</item>
+        <item name="circleColor">@color/green_M25</item>
+        <item name="selectedColor">@color/green_M25</item>
+        <item name="selectedColor2">@color/green_M525</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/green_M25</item>
+        <item name="neutralSelColor">@color/white_M600</item>
+        <item name="negativeSelColor">@color/white_M300</item>
+        <item name="mapPoiFillColor">#BF1A9863</item>
+        <item name="mapRoomBorderColor">#941A9863</item>
+        <item name="mapRoomFillColor">#1A1A9863</item>
+
+        <item name="progressBarColorStart">@color/white_M20</item>
+        <item name="progressBarColorEnd">@color/green_M25</item>
+        <item name="sanityColorStart">@color/white_M20</item>
+        <item name="sanityColorEnd">@color/green_M25</item>
+
+        <item name="splashTextColor">@color/green_M25</item>
+
+        <item name="codex_1">#1E221F</item>
+        <!--<item name="codex_2">#97B3A7</item>-->
+        <item name="codex_2">#B0E3CE</item>
+        <item name="codex_3">@color/green_M825</item>
+        <item name="codex_4">@color/green_M25</item>
+        <item name="codex_5">@color/white_M850</item>
+        <item name="codex_grid_background_tint">#401E221F</item>
+
+        <item name="theme_badge">@drawable/theme_badge_4_detective</item>
+        <item name="theme_title">@string/settings_colormode_prestige_detective</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/green_M25</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0F100F</item>
+
+        <!--
+        <item name="a">@color/white_M20</item>
+        <item name="b">@color/white_M750</item>
+        <item name="c">@color/white_M850</item>
+        <item name="d">@color/purple_M75</item>
+        <item name="e">@color/purple_M400</item>
+        <item name="f">@color/green_M25</item>
+        <item name="g">@color/green_M525</item>
+        <item name="h">@color/green_M825</item>
+        <item name="i">@color/green_M875</item>
+        <item name="j">@color/green_M950</item>
+        <item name="k">@color/black</item>
+
+        <item name="android:colorBackground">@color/green_M950</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/green_M950</item>
+        <item name="foregroundColor">@color/white_M20</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/green_M950</item>
+        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/green_M950</item>
+        <item name="windowStrokeColor">@color/white_M20</item>
+        <item name="colorPrimary">@color/green_M950</item>
+        <item name="colorPrimaryVariant">@color/green_M950</item>
+        <item name="colorOnPrimary">@color/green_M950</item>
+        <item name="colorSecondary">@color/green_M950</item>
+        <item name="colorSecondaryVariant">@color/green_M950</item>
+        <item name="colorOnSecondary">@color/green_M950</item>
+
+        <item name="textColorPrimary">@color/purple_M75</item>
+        <item name="textColorSecondary">@color/green_M25</item>
+        <item name="textColorTertiary">@color/green_M525</item>
+        <item name="textColorBody">@color/white_M20</item>
+        <item name="textColorBodyEmphasis">@color/green_M525</item>
+        <item name="light_active">@color/green_M25</item>
+        <item name="light_inactive">@color/green_M525</item>
+        <item name="light_off">@color/green_M825</item>
+        <item name="switchColor">@color/purple_M75</item>
+        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="strikethroughColor">?attr/negativeSelColor</item>
+        <item name="circleColor">?attr/positiveSelColor</item>
+        <item name="selectedColor">@color/green_M25</item>
+        <item name="selectedColor2">?attr/light_inactive</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/purple_M75</item>
+        <item name="neutralSelColor">@color/white_M300</item>
+        <item name="negativeSelColor">@color/green_M525</item>
+        <item name="mapPoiFillColor">@color/purple_M400_A75</item>
+        <item name="mapRoomBorderColor">@color/green_M525</item>
+        <item name="mapRoomFillColor">@color/purple_M400_A10</item>
+
+        <item name="progressBarColorStart">@color/white_M20</item>
+        <item name="progressBarColorEnd">@color/purple_M75</item>
+        <item name="sanityColorStart">@color/white_M20</item>
+        <item name="sanityColorEnd">@color/purple_M75</item>
+
+        <item name="codex_1">#1E221F</item>
+        <item name="codex_2">#97B3A7</item>
+        <item name="codex_3">@color/green_M825</item>
+        <item name="codex_4">@color/green_M25</item>
+        <item name="codex_5">@color/white_M850</item>
+        -->
+
+    </style>
+
+
+    <style name="Technician" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">#E0E0E0</item>
+        <item name="c">#ABABAB</item>
+        <item name="d">@color/red_M375</item>
+        <item name="e">#91100C</item>
+        <item name="f">#5E0D0B</item>
+        <item name="g">#280A09</item>
+        <item name="h">#102508</item>
+        <item name="i">#081204</item>
+        <item name="j">#050C04</item>
+        <item name="k">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/red_M375</item>
+        <item name="theme_coreColor_2">#91100C</item>
+        <item name="theme_coreColor_3">#5E0D0B</item>
+        <item name="theme_coreColor_4">#050C04</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#E0E0E0</item>
+        <item name="theme_coreColor_7">#ABABAB</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#050C04</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#050C04</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >#050C04</item>
+        <item name="backgroundColorOnBackground" >#081204</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#050C04</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#050C04</item>
+        <item name="colorPrimaryVariant">#050C04</item>
+        <item name="colorOnPrimary">#050C04</item>
+        <item name="colorSecondary">#050C04</item>
+        <item name="colorSecondaryVariant">#050C04</item>
+        <item name="colorOnSecondary">#050C04</item>
+
+        <item name="textColorPrimary">@color/red_M375</item>
+        <item name="textColorSecondary">#91100C</item>
+        <item name="textColorTertiary">#8E3431</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#ABABAB</item>
+        <item name="light_active">@color/red_M375</item>
+        <item name="light_inactive">#5E0D0B</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/red_M375</item>
+        <item name="inboxNotification">@color/red_M375</item>
+        <item name="strikethroughColor">#5E0D0B</item>
+        <item name="circleColor">@color/red_M375</item>
+        <item name="selectedColor">@color/red_M375</item>
+        <item name="selectedColor2">?attr/light_inactive</item>
+        <item name="unselectedColor">@color/white_M500</item>
+        <item name="positiveSelColor">@color/red_M375</item>
+        <item name="neutralSelColor">@color/white_M600</item>
+        <item name="negativeSelColor">#ABABAB</item>
+
+        <item name="mapPoiFillColor">#1A91100C</item>
+        <item name="mapRoomBorderColor">#91100C</item>
+        <item name="mapRoomFillColor">#BF91100C</item>
+
+        <item name="progressBarColorStart">#E0E0E0</item>
+        <item name="progressBarColorEnd">@color/red_M375</item>
+        <item name="sanityColorStart">#E0E0E0</item>
+        <item name="sanityColorEnd">@color/red_M375</item>
+
+        <item name="splashTextColor">@color/red_M375</item>
+
+        <!--<item name="codex_1">#3E1312</item>-->
+        <item name="codex_1">#200605</item>
+        <item name="codex_2">#E4DEDE</item>
+        <item name="codex_3">#120202</item>
+        <item name="codex_4">@color/white</item>
+        <item name="codex_5">#575050</item>
+        <item name="codex_grid_background_tint">#403E1312</item>
+
+        <item name="theme_badge">@drawable/theme_badge_5_technician</item>
+        <item name="theme_title">@string/settings_colormode_prestige_technician</item>
+
+        <item name="navigationFooterIcon">@color/white_M600</item>
+        <item name="navigationFooterIconAlt">@color/red_M375</item>
+
+
+        <item name="backgroundColor_mapviewOverlay">#BF050C04</item>
+
+    </style>
+
+
+    <style name="Specialist" parent="Prestige">
+        <item name="a">#FEFEFE</item>
+        <item name="b">@color/white_M25</item>
+        <item name="c">#E7E8E7</item>
+        <item name="d">#C9CCC8</item>
+        <item name="e">#30362B</item>
+        <item name="f">#545B4D</item>
+        <item name="g">@color/green_M150</item>
+        <item name="h">#80994D</item>
+        <item name="i">#A0B17B</item>
+        <item name="j">@color/green_M850</item>
+        <item name="k">#0F1B0A</item>
+        <item name="l">#070C05</item>
+        <item name="m">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/green_M150</item>
+        <item name="theme_coreColor_2">#80994D</item>
+        <item name="theme_coreColor_3">@color/green_M850</item>
+        <item name="theme_coreColor_4">#070C05</item>
+        <item name="theme_coreColor_5">#FEFEFE</item>
+        <item name="theme_coreColor_6">#E7E8E7</item>
+        <item name="theme_coreColor_7">#C9CCC8</item>
+        <item name="theme_coreColor_8">@color/white_M600</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#070C05</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#070C05</item>
+        <item name="foregroundColor">#FEFEFE</item>
+        <item name="middlegroundColor">#C9CCC8</item>
+        <item name="backgroundColor" >#070C05</item>
+        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#070C05</item>
+        <item name="windowStrokeColor">#FEFEFE</item>
+        <item name="colorPrimary">#070C05</item>
+        <item name="colorPrimaryVariant">#070C05</item>
+        <item name="colorOnPrimary">#070C05</item>
+        <item name="colorSecondary">#070C05</item>
+        <item name="colorSecondaryVariant">#070C05</item>
+        <item name="colorOnSecondary">#070C05</item>
+
+        <item name="textColorPrimary">@color/green_M150</item>
+        <item name="textColorSecondary">#80994D</item>
+        <item name="textColorTertiary">#545B4D</item>
+        <item name="textColorBody">#FEFEFE</item>
+        <item name="textColorBodyEmphasis">#80994D</item>
+        <item name="light_active">@color/green_M150</item>
+        <item name="light_inactive">#80994D</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/green_M150</item>
+        <item name="inboxNotification">@color/green_M150</item>
+        <item name="strikethroughColor">#A0B17B</item>
+        <item name="circleColor">@color/green_M150</item>
+        <item name="selectedColor">#80994D</item>
+        <item name="selectedColor2">#80994D</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/green_M150</item>
+        <item name="neutralSelColor">#545B4D</item>
+        <item name="negativeSelColor">#A0B17B</item>
+        <item name="mapPoiFillColor">@color/green_M150_A75</item>
+        <item name="mapRoomBorderColor">@color/green_M150_A58</item>
+        <item name="mapRoomFillColor">@color/green_M150_A10</item>
+
+        <item name="progressBarColorStart">#80994D</item>
+        <item name="progressBarColorEnd">@color/green_M150</item>
+        <item name="sanityColorStart">#E7E8E7</item>
+        <item name="sanityColorEnd">@color/green_M150</item>
+
+        <item name="splashTextColor">@color/green_M150</item>
+
+        <item name="codex_1">#070C05</item>
+        <item name="codex_2">#D9ECAF</item>
+        <item name="codex_3">#24291F</item>
+        <item name="codex_4">@color/green_M150</item>
+        <item name="codex_5">#545B4D</item>
+        <item name="codex_grid_background_tint">#40070C05</item>
+
+        <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
+        <item name="theme_title">@string/settings_colormode_prestige_specialist</item>
+
+        <item name="navigationFooterIcon">#545B4D</item>
+        <item name="navigationFooterIconAlt">@color/green_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF070C05</item>
+
+    </style>
+
+
+    <style name="Analyst" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">#CD2547</item>
+        <item name="c">#7BCD26</item>
+        <item name="d">#2667CD</item>
+        <item name="e">#A7968C</item>
+        <item name="f">#84736A</item>
+        <item name="g">@color/orange_M525</item>
+        <item name="h">@color/red_M850</item>
+        <item name="i">@color/red_M950</item>
+        <item name="j" >@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#CD2547</item>
+        <item name="theme_coreColor_2">#2667CD</item>
+        <item name="theme_coreColor_3">#7BCD26</item>
+        <item name="theme_coreColor_4">#101E01</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#A7968C</item>
+        <item name="theme_coreColor_7">@color/orange_M525</item>
+        <item name="theme_coreColor_8">@color/red_M850</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/red_M850</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/red_M850</item>
+        <item name="foregroundColor">#A7968C</item>
+        <item name="middlegroundColor">#84736A</item>
+        <item name="backgroundColor" >@color/red_M850</item>
+        <item name="backgroundColorOnBackground" >@color/orange_M525</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/red_M850</item>
+        <item name="windowStrokeColor">#A7968C</item>
+        <item name="colorPrimary">@color/red_M850</item>
+        <item name="colorPrimaryVariant">@color/red_M850</item>
+        <item name="colorOnPrimary">@color/red_M850</item>
+        <item name="colorSecondary">@color/red_M850</item>
+        <item name="colorSecondaryVariant">@color/red_M850</item>
+        <item name="colorOnSecondary">@color/red_M850</item>
+
+        <item name="textColorPrimary">#CD2547</item>
+        <item name="textColorSecondary">#7BCD26</item>
+        <item name="textColorTertiary">#2667CD</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#A7968C</item>
+        <item name="light_active">#2667CD</item>
+        <item name="light_inactive">@color/orange_M525</item>
+        <item name="light_off">@color/red_M850</item>
+        <item name="switchColor">#2667CD</item>
+        <item name="inboxNotification">#CD2547</item>
+        <item name="strikethroughColor">#CD2547</item>
+        <item name="circleColor">#7BCD26</item>
+        <item name="selectedColor">#2667CD</item>
+        <item name="selectedColor2">#2667CD</item>
+        <item name="unselectedColor">@color/orange_M525</item>
+        <item name="positiveSelColor">#7BCD26</item>
+        <item name="neutralSelColor">#A7968C</item>
+        <item name="negativeSelColor">#CD2547</item>
+        <item name="mapPoiFillColor">#BF2667CD</item>
+        <item name="mapRoomBorderColor">#942667CD</item>
+        <item name="mapRoomFillColor">#1A2667CD</item>
+
+        <item name="progressBarColorStart">#A7968C</item>
+        <item name="progressBarColorEnd">#2667CD</item>
+        <item name="sanityColorStart">#A7968C</item>
+        <item name="sanityColorEnd">#2667CD</item>
+
+        <item name="splashTextColor">#2667CD</item>
+
+        <item name="codex_1">#1C1917</item>
+        <item name="codex_2">#EDE5E7</item>
+        <item name="codex_3">#255BAF</item>
+        <item name="codex_4">#7BCD26</item>
+        <item name="codex_5">#101E01</item>
+        <item name="codex_grid_background_tint">#40201B19</item>
+
+        <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
+        <item name="theme_title">@string/settings_colormode_prestige_analyst</item>
+
+        <item name="navigationFooterIcon">@color/orange_M525</item>
+        <item name="navigationFooterIconAlt">#2667CD</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF1B1516</item>
+
+    </style>
+
+
+    <style name="Agent" parent="Prestige">
+        <item name="a" >@color/white</item>
+        <item name="b">#858686</item>
+        <item name="c">#5E7E7B</item>
+        <item name="d">@color/blue_M90</item>
+        <item name="e">#117166</item>
+        <item name="f">#02A996</item>
+        <item name="g">#167467</item>
+        <item name="h">#1D4E49</item>
+        <item name="i">#202A29</item>
+        <item name="j">#101515</item>
+        <item name="l">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">@color/blue_M90</item>
+        <item name="theme_coreColor_3">#167467</item>
+        <item name="theme_coreColor_4">#1D4E49</item>
+        <item name="theme_coreColor_5">#858686</item>
+        <item name="theme_coreColor_6">#5E7E7B</item>
+        <item name="theme_coreColor_7">#202A29</item>
+        <item name="theme_coreColor_8">#101515</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#101515</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#101515</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#868586</item>
+        <item name="backgroundColor" >#101515</item>
+        <item name="backgroundColorOnBackground" >#131919</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#0E1212</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#101515</item>
+        <item name="colorPrimaryVariant">#101515</item>
+        <item name="colorOnPrimary">#101515</item>
+        <item name="colorSecondary">#101515</item>
+        <item name="colorSecondaryVariant">#101515</item>
+        <item name="colorOnSecondary">#101515</item>
+
+        <item name="textColorPrimary">@color/blue_M90</item>
+        <item name="textColorSecondary">#02A996</item>
+        <item name="textColorTertiary">#167467</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#167467</item>
+        <item name="light_active">@color/blue_M90</item>
+        <item name="light_inactive">#1D4E49</item>
+        <item name="light_off">#202A29</item>
+        <item name="switchColor">@color/blue_M90</item>
+        <item name="inboxNotification">@color/blue_M90</item>
+        <item name="strikethroughColor">#1D4E49</item>
+        <item name="circleColor">@color/blue_M90</item>
+        <item name="selectedColor">#167467</item>
+        <item name="selectedColor2">#167467</item>
+        <item name="unselectedColor">#858686</item>
+        <item name="positiveSelColor">@color/blue_M90</item>
+        <item name="neutralSelColor">#5E7E7B</item>
+        <item name="negativeSelColor">#1D4E49</item>
+        <item name="mapPoiFillColor">#BF02A996</item>
+        <item name="mapRoomBorderColor">#9402A996</item>
+        <item name="mapRoomFillColor">#1A02A996</item>
+
+        <item name="progressBarColorStart">@color/white</item>
+        <item name="progressBarColorEnd">@color/blue_M90</item>
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/blue_M90</item>
+
+        <item name="splashTextColor">@color/blue_M90</item>
+
+        <item name="codex_1">#101515</item>
+        <item name="codex_2">#B7CFCC</item>
+        <item name="codex_3">#202A29</item>
+        <item name="codex_4">@color/blue_M90</item>
+        <item name="codex_5">#5E7E7B</item>
+        <item name="codex_grid_background_tint">#40101515</item>
+
+        <item name="theme_badge">@drawable/theme_badge_8_agent</item>
+        <item name="theme_title">@string/settings_colormode_prestige_agent</item>
+
+        <item name="navigationFooterIcon">#858686</item>
+        <item name="navigationFooterIconAlt">@color/blue_M90</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF101515</item>
+
+    </style>
+
+
+    <style name="Operator" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">#FEFEFE</item>
+        <item name="c">#F9F8FA</item>
+        <item name="d">@color/purple_M475</item>
+        <item name="e">@color/blue_M150</item>
+        <item name="f">@color/purple_M150</item>
+        <item name="g">@color/purple_M450</item>
+        <item name="h">@color/purple_M875</item>
+        <item name="i">@color/blue_M950</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/purple_M150</item>
+        <item name="theme_coreColor_2">@color/purple_M450</item>
+        <item name="theme_coreColor_3">@color/blue_M150</item>
+        <item name="theme_coreColor_4">@color/purple_M250</item>
+        <item name="theme_coreColor_5">#F9F8FA</item>
+        <item name="theme_coreColor_6">@color/purple_M475</item>
+        <item name="theme_coreColor_7">@color/purple_M875</item>
+        <item name="theme_coreColor_8">@color/blue_M950</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/blue_M950</item>
+        <item name="android:statusBarColor">@color/blue_M950</item>
+        <item name="android:navigationBarColor">@color/blue_M950</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">?attr/e</item>
+        <item name="backgroundColor" >@color/blue_M950</item>
+        <item name="backgroundColorOnBackground" >@color/blue_M900</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/blue_M950</item>
+        <item name="windowStrokeColor">?attr/a</item>
+        <item name="colorPrimary">@color/blue_M950</item>
+        <item name="colorPrimaryVariant">@color/blue_M950</item>
+        <item name="colorOnPrimary">@color/blue_M950</item>
+        <item name="colorSecondary">@color/blue_M950</item>
+        <item name="colorSecondaryVariant">@color/blue_M950</item>
+        <item name="colorOnSecondary">@color/blue_M950</item>
+
+        <item name="textColorBody">#F9F8FA</item>
+        <item name="circleColor">@color/purple</item>
+        <item name="mapRoomFillColor">@color/purple_A10</item>
+        <item name="light_inactive">@color/purple_M50_A40</item>
+        <item name="textColorPrimary">@color/blue_M150</item>
+        <item name="light_active">@color/blue_M150</item>
+        <item name="textColorBodyEmphasis">@color/purple_M250</item>
+        <item name="switchColor">@color/purple_M300</item>
+        <item name="inboxNotification">@color/purple_M150</item>
+        <item name="strikethroughColor">@color/purple_M300</item>
+        <item name="textColorSecondary">@color/purple_M300</item>
+        <item name="mapRoomBorderColor">@color/purple_M300_A58</item>
+        <item name="mapPoiFillColor">@color/purple_M300_A75</item>
+        <item name="selectedColor">@color/purple_M450</item>
+        <item name="selectedColor2">?attr/light_inactive</item>
+        <item name="textColorTertiary">@color/purple_M450</item>
+        <item name="unselectedColor">@color/purple_M475</item>
+        <item name="negativeSelColor">@color/blue_M150</item>
+        <item name="positiveSelColor">@color/purple_M150</item>
+        <item name="neutralSelColor">@color/purple_M475</item>
+        <item name="light_off">@color/purple_M875</item>
+
+        <item name="progressBarColorStart">@color/purple_M500</item>
+        <item name="progressBarColorEnd">@color/blue_M150</item>
+        <item name="sanityColorStart">#F9F8FA</item>
+        <item name="sanityColorEnd">@color/purple_M150</item>
+
+        <item name="splashTextColor">@color/purple_M150</item>
+
+        <item name="codex_1">#130B29</item>
+        <item name="codex_2">#C5BCCD</item>
+        <item name="codex_3">#370C37</item>
+        <item name="codex_4">@color/purple_M150</item>
+        <item name="codex_5">#53425E</item>
+        <item name="codex_grid_background_tint">#40130B29</item>
+
+        <item name="theme_badge">@drawable/theme_badge_9_operator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_operator</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/purple_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF00000E</item>
+
+
+    </style>
+
+
+    <style name="Commissioner" parent="Prestige">
+        <item name="a">@color/white</item>
+        <item name="b">#ACAAAC</item>
+        <item name="c">#F8EFD9</item>
+        <item name="d">@color/orange_M05</item>
+        <item name="e">#E5A348</item>
+        <item name="f">#765932</item>
+        <item name="h">@color/purple_M825</item>
+        <item name="i">@color/black_M50</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#F8EFD9</item>
+        <item name="theme_coreColor_2">@color/orange_M05</item>
+        <item name="theme_coreColor_3">#E5A348</item>
+        <item name="theme_coreColor_4">#765932</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#ACAAAC</item>
+        <item name="theme_coreColor_7">@color/purple_M825</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/black_M50</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black_M50</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >@color/purple_M825</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black_M50</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black_M50</item>
+        <item name="colorPrimaryVariant">@color/black_M50</item>
+        <item name="colorOnPrimary">@color/black_M50</item>
+        <item name="colorSecondary">@color/black_M50</item>
+        <item name="colorSecondaryVariant">@color/black_M50</item>
+        <item name="colorOnSecondary">@color/black_M50</item>
+
+        <item name="textColorPrimary">@color/orange_M05</item>
+        <item name="textColorSecondary">#E5A348</item>
+        <item name="textColorTertiary">#765932</item>
+        <item name="textColorBody">#F8EFD9</item>
+        <item name="textColorBodyEmphasis">#ACAAAC</item>
+        <item name="light_active">@color/orange_M05</item>
+        <item name="light_inactive">#765932</item>
+        <item name="light_off">@color/purple_M825</item>
+        <item name="switchColor">@color/orange_M10</item>
+        <item name="inboxNotification">@color/orange_M05</item>
+        <item name="strikethroughColor">#765932</item>
+        <item name="circleColor">@color/orange_M05</item>
+        <item name="selectedColor">#E5A348</item>
+        <item name="selectedColor2">#E5A348</item>
+        <item name="unselectedColor">#ACAAAC</item>
+        <item name="positiveSelColor">@color/orange_M05</item>
+        <item name="neutralSelColor">#ACAAAC</item>
+        <item name="negativeSelColor">#765932</item>
+        <item name="mapPoiFillColor">@color/orange_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/orange_M300_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="progressBarColorStart">#F8EFD9</item>
+        <item name="progressBarColorEnd">@color/orange_M05</item>
+        <item name="sanityColorStart">#F8EFD9</item>
+        <item name="sanityColorEnd">@color/orange_M05</item>
+
+        <item name="splashTextColor">@color/orange_M05</item>
+
+        <item name="codex_1">#232323</item>
+        <item name="codex_2">#FFF9F0</item>
+        <item name="codex_3">#130B00</item>
+        <item name="codex_4">@color/orange_M05</item>
+        <item name="codex_5">#3C3B3B</item>
+        <item name="codex_grid_background_tint">#40232323</item>
+
+        <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
+        <item name="theme_title">@string/settings_colormode_prestige_commissioner</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#E5A348</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF080808</item>
+
+    </style>
+
+
+    <!-- Events -->
+
+    <style name="Easter" parent="Event">
+        <item name="k">@color/white</item>
+        <item name="l">#F8E8BD</item>
+        <item name="c">@color/orange_M75</item>
+        <item name="j">#E1EBE5</item>
+        <item name="i">#7CAB91</item>
+        <item name="b">@color/green_M550</item>
+        <item name="g">#21654A</item>
+        <item name="a">@color/green_M650</item>
+        <item name="e">#030C0A</item>
+        <item name="f">#1C180D</item>
+        <item name="d">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">#F8E8BD</item>
+        <item name="theme_coreColor_3">@color/orange_M75</item>
+        <item name="theme_coreColor_4">@color/white_M600</item>
+        <item name="theme_coreColor_5">#E1EBE5</item>
+        <item name="theme_coreColor_6">@color/green_M550</item>
+        <item name="theme_coreColor_7">#21654A</item>
+        <item name="theme_coreColor_8">#030C0A</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#030C0A</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#030C0A</item>
+        <item name="foregroundColor">#E1EBE5</item>
+        <item name="middlegroundColor">#7CAB91</item>
+        <item name="backgroundColor" >#030C0A</item>
+        <item name="backgroundColorOnBackground">#061915</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#030C0A</item>
+        <item name="windowStrokeColor">#E1EBE5</item>
+        <item name="colorPrimary">#030C0A</item>
+        <item name="colorPrimaryVariant">#030C0A</item>
+        <item name="colorOnPrimary">#030C0A</item>
+        <item name="colorSecondary">#030C0A</item>
+        <item name="colorSecondaryVariant">#030C0A</item>
+        <item name="colorOnSecondary">#030C0A</item>
+
+        <item name="textColorPrimary">@color/green_M550</item>
+        <item name="textColorSecondary">@color/orange_M75</item>
+        <item name="textColorTertiary">#21654A</item>
+        <item name="textColorBody">#E1EBE5</item>
+        <item name="textColorBodyEmphasis">#F8E8BD</item>
+        <item name="light_active">@color/orange_M75</item>
+        <item name="light_inactive">#F8E8BD</item>
+        <item name="light_off">#1C180D</item>
+        <item name="switchColor">@color/orange_M75</item>
+        <item name="inboxNotification">@color/orange_M75</item>
+        <item name="strikethroughColor">#21654A</item>
+        <item name="circleColor">@color/orange_M75</item>
+        <item name="selectedColor">#F8E8BD</item>
+        <item name="selectedColor2">@color/green_M550</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/orange_M75</item>
+        <item name="neutralSelColor">#E1EBE5</item>
+        <item name="negativeSelColor">#21654A</item>
+        <item name="mapPoiFillColor">#BF348662</item>
+        <item name="mapRoomBorderColor">#94ECC768</item>
+        <item name="mapRoomFillColor">#1AECC768</item>
+
+        <item name="progressBarColorStart">#E1EBE5</item>
+        <item name="progressBarColorEnd">@color/orange_M75</item>
+        <item name="sanityColorStart">#E1EBE5</item>
+        <item name="sanityColorEnd">@color/orange_M75</item>
+
+        <item name="splashTextColor">@color/green_M550</item>
+
+        <item name="codex_1">#203E36</item>
+        <item name="codex_2">#F8E8BD</item>
+        <item name="codex_3">#09231D</item>
+        <item name="codex_4">@color/orange_M75</item>
+        <item name="codex_5">#2D3332</item>
+        <item name="codex_grid_background_tint">#40203E36</item>
+
+        <item name="theme_badge">@drawable/theme_badge_easter</item>
+        <item name="theme_title">@string/settings_colormode_event_easter</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/orange_M75</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF030C0A</item>
+
+    </style>
+
+
+    <style name="Halloween23" parent="Event">
+        <item name="a">@color/white</item>
+        <item name="b">#373737</item>
+        <item name="e">#D7CCC3</item>
+        <item name="f">#9F4B0D</item>
+        <item name="g">#B3540A</item>
+        <item name="h">#C85E0D</item>
+        <item name="i">#EC700D</item>
+        <item name="j">#3F1602</item>
+        <item name="k">#130700</item>
+        <item name="l">#0C0400</item>
+        <item name="m">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#EC700D</item>
+        <item name="theme_coreColor_2">#C85E0D</item>
+        <item name="theme_coreColor_3">#9F4B0D</item>
+        <item name="theme_coreColor_4">#3F1602</item>
+        <item name="theme_coreColor_5">#D7CCC3</item>
+        <item name="theme_coreColor_6">#373737</item>
+        <item name="theme_coreColor_7">#130700</item>
+        <item name="theme_coreColor_8">#0C0400</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#0C0400</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#0C0400</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#D7CCC3</item>
+        <item name="backgroundColor" >#0C0400</item>
+        <item name="backgroundColorOnBackground" >#3F1602</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#0C0400</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#0C0400</item>
+        <item name="colorPrimaryVariant">#0C0400</item>
+        <item name="colorOnPrimary">#0C0400</item>
+        <item name="colorSecondary">#0C0400</item>
+        <item name="colorSecondaryVariant">#0C0400</item>
+        <item name="colorOnSecondary">#0C0400</item>
+
+        <item name="textColorPrimary">#EC700D</item>
+        <item name="textColorSecondary">#C85E0D</item>
+        <item name="textColorTertiary">#9F4B0D</item>
+        <item name="textColorBody">#D7CCC3</item>
+        <item name="textColorBodyEmphasis">#B3540A</item>
+        <item name="light_active">#EC700D</item>
+        <item name="light_inactive">#9F4B0D</item>
+        <item name="light_off">#3F1602</item>
+        <item name="switchColor">#EC700D</item>
+        <item name="inboxNotification">#EC700D</item>
+        <item name="strikethroughColor">#D7CCC3</item>
+        <item name="circleColor">#EC700D</item>
+        <item name="selectedColor">#C85E0D</item>
+        <item name="selectedColor2">#C85E0D</item>
+        <item name="unselectedColor">#373737</item>
+        <item name="positiveSelColor">#EC700D</item>
+        <item name="neutralSelColor">#373737</item>
+        <item name="negativeSelColor">#D7CCC3</item>
+        <item name="mapPoiFillColor">#BFEC700D</item>
+        <item name="mapRoomBorderColor">#94EC700D</item>
+        <item name="mapRoomFillColor">#1AEC700D</item>
+
+        <item name="progressBarColorStart">#D7CCC3</item>
+        <item name="progressBarColorEnd">#EC700D</item>
+        <item name="sanityColorStart">#D7CCC3</item>
+        <item name="sanityColorEnd">#EC700D</item>
+
+        <item name="splashTextColor">#EC700D</item>
+
+        <item name="codex_1">#1B0A00</item>
+        <item name="codex_2">#D7CCC3</item>
+        <item name="codex_3">#130700</item>
+        <item name="codex_4">#EC700D</item>
+        <item name="codex_5">#373737</item>
+        <item name="codex_grid_background_tint">#401B0A00</item>
+
+        <item name="theme_badge">@drawable/theme_badge_halloween23</item>
+        <item name="theme_title">@string/settings_colormode_event_halloween</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#C85E0D</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0C0400</item>
+
+
+    </style>
+
+
+    <style name="Holiday22" parent="Event">
+        <item name="a">#FEFEFE</item>
+        <item name="b">#DDDCDB</item>
+        <item name="c">@color/orange_M50</item>
+        <item name="d">#645956</item>
+        <item name="e">#F1F3F7</item>
+        <item name="f">@color/blue_M125</item>
+        <item name="k">#2E5497</item>
+        <item name="g">#2A2E45</item>
+        <item name="h">@color/blue_M750</item>
+        <item name="i">#0D0E19</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#FEFEFE</item>
+        <item name="theme_coreColor_2">#DDDCDB</item>
+        <item name="theme_coreColor_3">#F8BC7F</item>
+        <item name="theme_coreColor_4">@color/orange_M50</item>
+        <item name="theme_coreColor_5">@color/blue_M125</item>
+        <item name="theme_coreColor_6">#2E5497</item>
+        <item name="theme_coreColor_7">#2A2E45</item>
+        <item name="theme_coreColor_8">#0D0E19</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#0D0E19</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#0D0E19</item>
+        <item name="foregroundColor">#FEFEFE</item>
+        <item name="middlegroundColor">#645956</item>
+        <item name="backgroundColor" >#0D0E19</item>
+        <item name="backgroundColorOnBackground" >#151529</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#0D0E19</item>
+        <item name="windowStrokeColor">#FEFEFE</item>
+        <item name="colorPrimary">#0D0E19</item>
+        <item name="colorPrimaryVariant">#0D0E19</item>
+        <item name="colorOnPrimary">#0D0E19</item>
+        <item name="colorSecondary">#0D0E19</item>
+        <item name="colorSecondaryVariant">#0D0E19</item>
+        <item name="colorOnSecondary">#0D0E19</item>
+
+        <item name="textColorPrimary">@color/orange_M50</item>
+        <item name="textColorSecondary">@color/blue_M125</item>
+        <item name="textColorTertiary">#2E5497</item>
+        <item name="textColorBody">#FEFEFE</item>
+        <item name="textColorBodyEmphasis">#F8BC7F</item>
+        <item name="light_active">@color/blue_M125</item>
+        <item name="light_inactive">#2A2E45</item>
+        <item name="light_off">@color/blue_M750</item>
+        <item name="switchColor">@color/blue_M125</item>
+        <item name="inboxNotification">@color/blue_M125</item>
+        <item name="strikethroughColor">@color/blue_M125</item>
+        <item name="circleColor">@color/orange_M50</item>
+        <item name="selectedColor">@color/blue_M125</item>
+        <item name="selectedColor2">@color/blue_M125</item>
+        <item name="unselectedColor">#2A2E45</item>
+        <item name="positiveSelColor">@color/orange_M50</item>
+        <item name="neutralSelColor">#DDDCDB</item>
+        <item name="negativeSelColor">@color/blue_M125</item>
+        <item name="mapPoiFillColor">#BFF58514</item>
+        <item name="mapRoomBorderColor">#94447CDD</item>
+        <item name="mapRoomFillColor">#1A447CDD</item>
+
+        <item name="progressBarColorStart">#FEFEFE</item>
+        <item name="progressBarColorEnd">@color/orange_M50</item>
+        <item name="sanityColorStart">#FEFEFE</item>
+        <item name="sanityColorEnd">@color/orange_M50</item>
+
+        <item name="splashTextColor">@color/blue_M125</item>
+
+        <item name="codex_1">#293750</item>
+        <item name="codex_2">#F3E8DE</item>
+        <item name="codex_3">@color/blue_M750</item>
+        <item name="codex_4">@color/orange_M50</item>
+        <item name="codex_5">#2A2E45</item>
+        <item name="codex_grid_background_tint">#40293750</item>
+
+        <item name="theme_badge">@drawable/theme_badge_holiday22</item>
+        <item name="theme_title">@string/settings_colormode_event_holiday22</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/blue_M125</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0D0E19</item>
+
+    </style>
+
+
+    <style name="Holiday23" parent="Event">
+        <!-- TODO Reveal Badge -->
+        <!--
+        <item name="a">#FEFEFE</item>
+        <item name="b">#DDDCDB</item>
+        <item name="c">@color/orange_M50</item>
+        <item name="d">#645956</item>
+        <item name="e">#F1F3F7</item>
+        <item name="f">@color/blue_M125</item>
+        <item name="k">#2E5497</item>
+        <item name="g">#2A2E45</item>
+        <item name="h">@color/blue_M750</item>
+        <item name="i">#0D0E19</item>
+        <item name="j">@color/black</item>
+        -->
+        <item name="a">@color/white</item>
+        <item name="b">#E4D0AE</item>
+        <item name="c">#E9AD4C</item>
+        <item name="d">#447CDE</item>
+        <item name="f">#213A67</item>
+        <item name="k">#1B1C33</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">#FEFEFE</item>
+        <item name="theme_coreColor_3">#E4D0AE</item>
+        <item name="theme_coreColor_4">#E9AD4C</item>
+        <item name="theme_coreColor_5">#447CDE</item>
+        <item name="theme_coreColor_6">#2A487E</item>
+        <item name="theme_coreColor_7">#344663</item>
+        <item name="theme_coreColor_8">#1B1C33</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#1B1C33</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#1B1C33</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#645956</item>
+        <item name="backgroundColor">#1B1C33</item>
+        <item name="backgroundColorOnBackground" >#131423</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#1B1C33</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#1B1C33</item>
+        <item name="colorPrimaryVariant">#1B1C33</item>
+        <item name="colorOnPrimary">#1B1C33</item>
+        <item name="colorSecondary">#1B1C33</item>
+        <item name="colorSecondaryVariant">#1B1C33</item>
+        <item name="colorOnSecondary">#1B1C33</item>
+
+        <item name="textColorPrimary">#E9AD4C</item>
+        <item name="textColorSecondary">#447CDE</item>
+        <item name="textColorTertiary">#2E5497</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#E4D0AE</item>
+        <item name="light_active">#E9AD4C</item>
+        <item name="light_inactive">#40E9AD4C</item>
+        <item name="light_off">#2A2E45</item>
+        <item name="switchColor">#447CDE</item>
+        <item name="inboxNotification">#E9AD4C</item>
+        <item name="strikethroughColor">#447CDE</item>
+        <item name="circleColor">#E9AD4C</item>
+        <item name="selectedColor">#E9AD4C</item>
+        <item name="selectedColor2">#E9AD4C</item>
+        <item name="unselectedColor">#213A67</item>
+        <item name="positiveSelColor">#E9AD4C</item>
+        <item name="neutralSelColor">@color/white</item>
+        <item name="negativeSelColor">#447CDE</item>
+        <item name="mapPoiFillColor">#BFE9AD4C</item>
+        <item name="mapRoomBorderColor">#94E9AD4C</item>
+        <item name="mapRoomFillColor">#1AE9AD4C</item>
+
+        <item name="progressBarColorStart">#FEFEFE</item>
+        <item name="progressBarColorEnd">#E9AD4C</item>
+        <item name="sanityColorStart">#FEFEFE</item>
+        <item name="sanityColorEnd">#E9AD4C</item>
+
+        <item name="splashTextColor">#447CDE</item>
+
+        <item name="codex_1">#2A487E</item>
+        <item name="codex_2">#ECDDC5</item>
+        <item name="codex_3">#447CDE</item>
+        <item name="codex_4">#E9AD4C</item>
+        <item name="codex_5">#344663</item>
+        <item name="codex_grid_background_tint">#402A487E</item>
+
+        <item name="theme_badge">@drawable/theme_badge_holiday23</item>
+        <item name="theme_title">@string/settings_colormode_event_holiday23</item>
+
+        <item name="navigationFooterIcon">#B1AEA9</item>
+        <item name="navigationFooterIconAlt">#E9AD4C</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF1B1C33</item>
+
+
+    </style>
+
+
+    <!-- Community -->
+
+    <style name="Discord" parent="Community">
+        <item name="i">@color/white</item>
+        <item name="j">#F3F3F7</item>
+        <item name="h">#E9E9EA</item>
+        <item name="g">#C3C4C6</item>
+        <item name="k">#AAB3F3</item>
+        <item name="l">#717AF2</item>
+        <item name="b">@color/blue_M75</item>
+        <item name="a">@color/blue_M850</item>
+        <item name="m">#131517</item>
+        <item name="d">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#AAB3F3</item>
+        <item name="theme_coreColor_2">@color/blue_M75</item>
+        <item name="theme_coreColor_3">#5763EC</item>
+        <item name="theme_coreColor_4">@color/blue_M850</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#F3F3F7</item>
+        <item name="theme_coreColor_7">#C3C4C6</item>
+        <item name="theme_coreColor_8">#131517</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#131517</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#131517</item>
+        <item name="foregroundColor">#F3F3F7</item>
+        <item name="middlegroundColor">#C3C4C6</item>
+        <item name="backgroundColor" >#131517</item>
+        <item name="backgroundColorOnBackground" >@color/blue_M850</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#131517</item>
+        <item name="windowStrokeColor">#F3F3F7</item>
+        <item name="colorPrimary">#131517</item>
+        <item name="colorPrimaryVariant">#131517</item>
+        <item name="colorOnPrimary">#131517</item>
+        <item name="colorSecondary">#131517</item>
+        <item name="colorSecondaryVariant">#131517</item>
+        <item name="colorOnSecondary">#131517</item>
+
+        <item name="textColorPrimary">@color/blue_M75</item>
+        <item name="textColorSecondary">#717AF2</item>
+        <item name="textColorTertiary">#AAB3F3</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#AAB3F3</item>
+        <item name="light_active">@color/blue_M75</item>
+        <item name="light_inactive">#AAB3F3</item>
+        <item name="light_off">@color/blue_M850</item>
+        <item name="switchColor">@color/blue_M75</item>
+        <item name="inboxNotification">@color/blue_M75</item>
+        <item name="strikethroughColor">#C3C4C6</item>
+        <item name="circleColor">@color/blue_M75</item>
+        <item name="selectedColor">#AAB3F3</item>
+        <item name="selectedColor2">#AAB3F3</item>
+        <item name="unselectedColor">@color/blue_M850</item>
+        <item name="positiveSelColor">@color/blue_M75</item>
+        <item name="neutralSelColor">#F3F3F7</item>
+        <item name="negativeSelColor">#C3C4C6</item>
+        <item name="mapPoiFillColor">#BF5763EC</item>
+        <item name="mapRoomBorderColor">#945763EC</item>
+        <item name="mapRoomFillColor">#1A5763EC</item>
+
+        <item name="progressBarColorStart">#F3F3F7</item>
+        <item name="progressBarColorEnd">@color/blue_M75</item>
+        <item name="sanityColorStart">#F3F3F7</item>
+        <item name="sanityColorEnd">@color/blue_M75</item>
+
+        <item name="splashTextColor">@color/blue_M75</item>
+
+        <item name="codex_1">#1D2023</item>
+        <item name="codex_2">#AAB3F3</item>
+        <item name="codex_3">#131517</item>
+        <item name="codex_4">@color/blue_M75</item>
+        <item name="codex_5">#2C3032</item>
+        <item name="codex_grid_background_tint">#401D2023</item>
+
+        <item name="theme_badge">@drawable/theme_badge_discord</item>
+        <item name="theme_title">@string/settings_colormode_community_discord</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/blue_M75</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF131517</item>
+
+
+    </style>
+
+
+    <style name="ContentCreator" parent="Community">
+        <item name="a">@color/white</item>
+        <item name="b">#CACACA</item>
+        <item name="c">@color/red_M225</item>
+        <item name="d">#9B1B35</item>
+        <item name="e">#510E1B</item>
+        <item name="f">#1E1013</item>
+        <item name="g">#040303</item>
+        <item name="h">@color/black_M50</item>
+        <item name="i">#010000</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#DF1740</item>
+        <item name="theme_coreColor_2">@color/red_M225</item>
+        <item name="theme_coreColor_3">#510E1B</item>
+        <item name="theme_coreColor_4">#1E1013</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#CACACA</item>
+        <item name="theme_coreColor_7">#99AEB3</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/black_M50</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black_M50</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#CACACA</item>
+        <item name="backgroundColor" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >#190509</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black_M50</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black_M50</item>
+        <item name="colorPrimaryVariant">@color/black_M50</item>
+        <item name="colorOnPrimary">@color/black_M50</item>
+        <item name="colorSecondary">@color/black_M50</item>
+        <item name="colorSecondaryVariant">@color/black_M50</item>
+        <item name="colorOnSecondary">@color/black_M50</item>
+
+        <item name="textColorPrimary">@color/red_M225</item>
+        <item name="textColorSecondary">#9B1B35</item>
+        <item name="textColorTertiary">#510E1B</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#9B1B35</item>
+        <item name="light_active">@color/red_M225</item>
+        <item name="light_inactive">#510E1B</item>
+        <item name="light_off">#1E1013</item>
+        <item name="switchColor">@color/red_M225</item>
+        <item name="inboxNotification">@color/red_M225</item>
+        <item name="strikethroughColor">#780C0C</item>
+        <item name="circleColor">#DF1740</item>
+        <item name="selectedColor">@color/red_M225</item>
+        <item name="selectedColor2">@color/red_M225</item>
+        <item name="unselectedColor">#510E1B</item>
+        <item name="positiveSelColor">#DF1740</item>
+        <item name="neutralSelColor">#CACACA</item>
+        <item name="negativeSelColor">#780C0C</item>
+        <item name="mapPoiFillColor">#BFCD2547</item>
+        <item name="mapRoomBorderColor">#94CD2547</item>
+        <item name="mapRoomFillColor">#1ACD2547</item>
+
+        <item name="progressBarColorStart">#CACACA</item>
+        <item name="progressBarColorEnd">@color/red_M225</item>
+        <item name="sanityColorStart">#CACACA</item>
+        <item name="sanityColorEnd">@color/red_M225</item>
+
+        <item name="splashTextColor">@color/red_M225</item>
+
+        <item name="codex_1">#510E1B</item>
+        <item name="codex_2">#99AEB3</item>
+        <item name="codex_3">#3C0A14</item>
+        <item name="codex_4">@color/red_M225</item>
+        <item name="codex_5">#1E1013</item>
+        <item name="codex_grid_background_tint">#40510E1B</item>
+
+        <item name="theme_badge">@drawable/theme_badge_cc</item>
+        <item name="theme_title">@string/settings_colormode_community_contentcreator</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">#DF1740</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF080808</item>
+
+
+    </style>
+
+
+    <style name="Developer" parent="Community">
+        <item name="a">@color/white</item>
+        <item name="b">#E2E2DF</item>
+        <item name="c">#AFA98C</item>
+        <item name="d">@color/yellow_M25</item>
+        <item name="e">#868036</item>
+        <item name="f">#4E4507</item>
+        <item name="g">#171502</item>
+        <item name="h">#020301</item>
+        <item name="i">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_2">#CFCCB4</item>
+        <item name="theme_coreColor_3">#D3C667</item>
+        <item name="theme_coreColor_4">#4E4507</item>
+        <item name="theme_coreColor_1">@color/yellow_M25</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#E2E2DF</item>
+        <item name="theme_coreColor_7">#535353</item>
+        <item name="theme_coreColor_8">@color/black_M50</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/black_M50</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black_M50</item>
+        <item name="foregroundColor">#E2E2DF</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >#171502</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black_M50</item>
+        <item name="windowStrokeColor">#E2E2DF</item>
+        <item name="colorPrimary">@color/black_M50</item>
+        <item name="colorPrimaryVariant">@color/black_M50</item>
+        <item name="colorOnPrimary">@color/black_M50</item>
+        <item name="colorSecondary">@color/black_M50</item>
+        <item name="colorSecondaryVariant">@color/black_M50</item>
+        <item name="colorOnSecondary">@color/black_M50</item>
+
+        <item name="textColorPrimary">@color/yellow_M25</item>
+        <item name="textColorSecondary">#CDB70B</item>
+        <item name="textColorTertiary">#D3C667</item>
+        <item name="textColorBody">#E2E2DF</item>
+        <item name="textColorBodyEmphasis">#CFCCB4</item>
+        <item name="light_active">@color/yellow_M25</item>
+        <item name="light_inactive">#66ECD316</item>
+        <item name="light_off">#1AECD316</item>
+        <item name="switchColor">@color/yellow_M25</item>
+        <item name="inboxNotification">@color/yellow_M25</item>
+        <item name="strikethroughColor">#E2E2DF</item>
+        <item name="circleColor">@color/yellow_M25</item>
+        <item name="selectedColor">@color/yellow_M25</item>
+        <item name="selectedColor2">@color/yellow_M25</item>
+        <item name="unselectedColor">#E2E2DF</item>
+        <item name="positiveSelColor">@color/yellow_M25</item>
+        <item name="neutralSelColor">#4E4507</item>
+        <item name="negativeSelColor">#E2E2DF</item>
+        <item name="mapPoiFillColor">#BFECD316</item>
+        <item name="mapRoomBorderColor">#94ECD316</item>
+        <item name="mapRoomFillColor">#1AECD316</item>
+
+        <item name="progressBarColorStart">#E2E2DF</item>
+        <item name="progressBarColorEnd">@color/yellow_M25</item>
+        <item name="sanityColorStart">#E2E2DF</item>
+        <item name="sanityColorEnd">@color/yellow_M25</item>
+
+        <item name="splashTextColor">@color/yellow_M25</item>
+
+        <item name="codex_1">#535353</item>
+        <!--<item name="codex_2">#AFA98C</item>-->
+        <item name="codex_2">@color/yellow_M25</item>
+        <item name="codex_3">#333333</item>
+        <item name="codex_4">@color/yellow_M25</item>
+        <item name="codex_5">#332E09</item>
+        <item name="codex_grid_background_tint">#40535353</item>
+
+        <item name="theme_badge">@drawable/theme_badge_dev</item>
+        <item name="theme_title">@string/settings_colormode_community_developer</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/yellow_M25</item>
+
+        <item name="backgroundColor_mapviewOverlay">#40535353</item>
+
+    </style>
+
+
+    <style name="Translator" parent="Community">
+        <item name="a" >@color/white</item>
+        <item name="b">#FCFAFB</item>
+        <item name="c">#E1C9CC</item>
+        <item name="d">#D99CA5</item>
+        <item name="e">#DA7F88</item>
+        <item name="f">@color/red_M150</item>
+        <item name="g">#878887</item>
+        <item name="h">#535052</item>
+        <item name="i">@color/purple_M850</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#FCFAFB</item>
+        <item name="theme_coreColor_2">#E1C9CC</item>
+        <item name="theme_coreColor_3">#D99CA5</item>
+        <item name="theme_coreColor_4">@color/red_M150</item>
+        <item name="theme_coreColor_5">@color/white_M400</item>
+        <item name="theme_coreColor_6">@color/white_M600</item>
+        <item name="theme_coreColor_7">@color/purple_M850</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/black</item>
+        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="textColorPrimary">@color/red_M150</item>
+        <item name="textColorSecondary">#DA7F88</item>
+        <item name="textColorTertiary">#D99CA5</item>
+        <item name="textColorBody">#FCFAFB</item>
+        <item name="textColorBodyEmphasis">#E1C9CC</item>
+        <item name="light_active">@color/red_M150</item>
+        <item name="light_inactive">#535052</item>
+        <item name="light_off">@color/purple_M850</item>
+        <item name="switchColor">@color/red_M150</item>
+        <item name="inboxNotification">@color/red_M150</item>
+        <item name="strikethroughColor">#D99CA5</item>
+        <item name="circleColor">@color/red_M150</item>
+        <item name="selectedColor">@color/red_M150</item>
+        <item name="selectedColor2">?attr/light_inactive</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">@color/red_M150</item>
+        <item name="neutralSelColor">#E1C9CC</item>
+        <item name="negativeSelColor">@color/purple_M850</item>
+        <item name="mapPoiFillColor">@color/red_M150</item>
+        <item name="mapRoomBorderColor">@color/red_M150</item>
+        <item name="mapRoomFillColor">#D99CA5</item>
+
+        <item name="progressBarColorStart">#FCFAFB</item>
+        <item name="progressBarColorEnd">@color/red_M150</item>
+        <item name="sanityColorStart">#FCFAFB</item>
+        <item name="sanityColorEnd">@color/red_M150</item>
+
+        <item name="splashTextColor">@color/red_M150</item>
+
+        <item name="codex_1">#33292B</item>
+        <item name="codex_2">#E1C9CC</item>
+        <item name="codex_3">#492126</item>
+        <item name="codex_4">@color/red_M150</item>
+        <item name="codex_5">@color/purple_M850</item>
+        <item name="codex_grid_background_tint">#4033292B</item>
+
+        <item name="theme_badge">@drawable/theme_badge_translator</item>
+        <item name="theme_title">@string/settings_colormode_community_translator</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/red_M150</item>
+
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
+    </style>
+
+
+    <style name="Winner" parent="Community">
+        <item name="a" >@color/white</item>
+        <item name="b">#878D8F</item>
+        <item name="c">#3F4346</item>
+        <item name="d">#ECDFCD</item>
+        <item name="e">#DABA80</item>
+        <item name="f">@color/orange_M250</item>
+        <item name="g">#936305</item>
+        <item name="h">@color/blue_M850</item>
+        <item name="i">#090A0B</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#ECDFCD</item>
+        <item name="theme_coreColor_2">#DABA80</item>
+        <item name="theme_coreColor_3">@color/orange_M250</item>
+        <item name="theme_coreColor_4">#936305</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white_M500</item>
+        <item name="theme_coreColor_7">@color/blue_M850</item>
+        <item name="theme_coreColor_8">#060C10</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#060C10</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#060C10</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >#060C10</item>
+        <item name="backgroundColorOnBackground" >#091319</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#060C10</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#060C10</item>
+        <item name="colorPrimaryVariant">#060C10</item>
+        <item name="colorOnPrimary">#060C10</item>
+        <item name="colorSecondary">#060C10</item>
+        <item name="colorSecondaryVariant">#060C10</item>
+        <item name="colorOnSecondary">#060C10</item>
+
+        <item name="textColorPrimary">@color/orange_M250</item>
+        <item name="textColorSecondary">#936305</item>
+        <item name="textColorTertiary">@color/orange_M300</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#DABA80</item>
+        <item name="light_active">#DABA80</item>
+        <item name="light_inactive">@color/blue_M850</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">#936305</item>
+        <item name="inboxNotification">@color/orange_M250</item>
+        <item name="strikethroughColor">#936305</item>
+        <item name="circleColor">@color/orange_M250</item>
+        <item name="selectedColor">#DABA80</item>
+        <item name="selectedColor2">@color/blue_M850</item>
+        <item name="unselectedColor">@color/white_M600</item>
+
+        <item name="positiveSelColor">@color/orange_M250</item>
+        <item name="neutralSelColor">@color/white_M500</item>
+        <item name="negativeSelColor">#ECDFCD</item>
+
+        <item name="mapPoiFillColor">#936305</item>
+        <item name="mapRoomBorderColor">#936305</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="progressBarColorStart">#ECDFCD</item>
+        <item name="progressBarColorEnd">@color/orange_M250</item>
+        <item name="sanityColorStart">#ECDFCD</item>
+        <item name="sanityColorEnd">@color/orange_M250</item>
+
+        <item name="splashTextColor">@color/orange_M250</item>
+
+        <item name="codex_1">@color/blue_M850</item>
+        <item name="codex_2">#BFB5A6</item>
+        <item name="codex_3">#0A151C</item>
+        <item name="codex_4">@color/orange_M250</item>
+        <item name="codex_5">#090A0B</item>
+        <item name="codex_grid_background_tint">#40161C1C</item>
+
+        <item name="theme_badge">@drawable/theme_badge_winner</item>
+        <item name="theme_title">@string/settings_colormode_community_winner</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/orange_M250</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF060C10</item>
+
+    </style>
+
+
+    <style name="Artist" parent="Community">
+        <item name="a">@color/white</item>
+        <item name="b">#E3D6F7</item>
+        <item name="c">#AA7FFD</item>
+        <item name="d">@color/purple_M550</item>
+        <item name="e">#432878</item>
+        <item name="f">#B0ACBA</item>
+        <item name="g">#7E7C7E</item>
+        <item name="h">@color/blue_M850</item>
+        <item name="i">#0A0C0C</item>
+        <item name="j">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">#E3D6F7</item>
+        <item name="theme_coreColor_2">#AA7FFD</item>
+        <item name="theme_coreColor_3">@color/purple_M550</item>
+        <item name="theme_coreColor_4">#432878</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">#B0ACBA</item>
+        <item name="theme_coreColor_7">@color/blue_M850</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#0A0C0C</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#0A0C0C</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >#0A0C0C</item>
+        <item name="backgroundColorOnBackground" >#131717</item>
+        <item name="statusBarColor" >#0A0C0C</item>
+        <item name="navigationBarColor" >#0A0C0C</item>
+        <item name="windowBackgroundColor">#0A0C0C</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#0A0C0C</item>
+        <item name="colorPrimaryVariant">#0A0C0C</item>
+        <item name="colorOnPrimary">#0A0C0C</item>
+        <item name="colorSecondary">#0A0C0C</item>
+        <item name="colorSecondaryVariant">#0A0C0C</item>
+        <item name="colorOnSecondary">#0A0C0C</item>
+
+        <item name="textColorPrimary">@color/purple_M550</item>
+        <item name="textColorSecondary">#5B399E</item>
+        <item name="textColorTertiary">#AA7FFD</item>
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">#E3D6F7</item>
+        <item name="light_active">@color/purple_M550</item>
+        <item name="light_inactive">#5B399E</item>
+        <item name="light_off">@color/white_M600</item>
+        <item name="switchColor">@color/purple_M550</item>
+        <item name="inboxNotification">@color/purple_M550</item>
+        <item name="strikethroughColor">#5B399E</item>
+        <item name="circleColor">#E3D6F7</item>
+        <item name="selectedColor">@color/purple_M550</item>
+        <item name="selectedColor2">#5B399E</item>
+        <item name="unselectedColor">@color/white_M600</item>
+        <item name="positiveSelColor">#E3D6F7</item>
+        <item name="neutralSelColor">#7E7C7E</item>
+        <item name="negativeSelColor">@color/purple_M550</item>
+        <item name="mapPoiFillColor">#5B399E</item>
+        <item name="mapRoomBorderColor">#5B399E</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <item name="progressBarColorStart">#E3D6F7</item>
+        <item name="progressBarColorEnd">#AA7FFD</item>
+        <item name="sanityColorStart">#E3D6F7</item>
+        <item name="sanityColorEnd">@color/purple_M550</item>
+
+        <item name="splashTextColor">#AA7FFD</item>
+
+        <item name="codex_1">#0A0C0C</item>
+        <item name="codex_2">#E3D6F7</item>
+        <item name="codex_3">#1E1235</item>
+        <item name="codex_4">#AA7FFD</item>
+        <item name="codex_5">@color/blue_M850</item>
+        <item name="codex_grid_background_tint">#400A0C0C</item>
+
+        <item name="theme_badge">@drawable/theme_badge_artist</item>
+        <item name="theme_title">@string/settings_colormode_community_artist</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/purple_M550</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF0A0C0C</item>
+
+
+    </style>
+
+</resources>

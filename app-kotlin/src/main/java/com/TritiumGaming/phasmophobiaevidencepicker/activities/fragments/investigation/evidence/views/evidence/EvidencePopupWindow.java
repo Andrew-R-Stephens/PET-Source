@@ -71,7 +71,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         // THEME
         Resources.Theme theme = getContext().getTheme();
         TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(R.attr.bodyEmphasisFontColor, typedValue, true);
+        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
         @ColorInt int fontEmphasisColor = typedValue.data;
 
         AppCompatImageButton closeButton = findViewById(R.id.popup_close_button);
@@ -98,7 +98,77 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getContext().getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(getContext()),
                 "#ff6161", fontEmphasisColor + "")));
+
+
+
         //MAIN STATES
+        select_overview.setImageLevel(1);
+        select_overview.setOnClickListener(selectView -> {
+            select_overview.setImageLevel(1);
+            select_tiers.setImageLevel(0);
+
+            layout_overview.setVisibility(View.VISIBLE);
+            layout_tiers.setVisibility(View.GONE);
+
+            animation_fullscreen.setImageResource(evidenceRecord.getAnimation(getContext(), 0));
+        });
+        select_tiers.setOnClickListener(selectView -> {
+            select_overview.setImageLevel(0);
+            select_tiers.setImageLevel(1);
+
+            layout_tiers.setVisibility(View.VISIBLE);
+            layout_overview.setVisibility(View.GONE);
+
+            select_tier_1.setImageLevel(1);
+            select_tier_2.setImageLevel(0);
+            select_tier_3.setImageLevel(0);
+            generateEvidenceTierView(1, animation_fullscreen,
+                    evidenceRecord.getDescription(getContext(), 1),
+                    evidenceRecord.getAnimation(getContext(), 1),
+                    evidenceRecord.getUnlockLevel(getContext(), 0),
+                    fontEmphasisColor);
+        });
+
+        //TIER STATES
+
+        select_tier_1.setImageLevel(1);
+        select_tier_1.setOnClickListener(selectView -> {
+            select_tier_1.setImageLevel(1);
+            select_tier_2.setImageLevel(0);
+            select_tier_3.setImageLevel(0);
+
+            generateEvidenceTierView(1, animation_fullscreen,
+                    evidenceRecord.getDescription(getContext(), 1),
+                    evidenceRecord.getAnimation(getContext(), 1),
+                    evidenceRecord.getUnlockLevel(getContext(), 0),
+                    fontEmphasisColor);
+        });
+        select_tier_2.setOnClickListener(selectView -> {
+            select_tier_2.setImageLevel(1);
+            select_tier_1.setImageLevel(0);
+            select_tier_3.setImageLevel(0);
+
+            generateEvidenceTierView(2, animation_fullscreen,
+                    evidenceRecord.getDescription(getContext(), 2),
+                    evidenceRecord.getAnimation(getContext(), 2),
+                    evidenceRecord.getUnlockLevel(getContext(), 1),
+                    fontEmphasisColor);
+        });
+        select_tier_3.setOnClickListener(selectView -> {
+            select_tier_3.setImageLevel(1);
+            select_tier_1.setImageLevel(0);
+            select_tier_2.setImageLevel(0);
+
+            generateEvidenceTierView(3, animation_fullscreen,
+                    evidenceRecord.getDescription(getContext(), 3),
+                    evidenceRecord.getAnimation(getContext(), 3),
+                    evidenceRecord.getUnlockLevel(getContext(), 2),
+                    fontEmphasisColor);
+        });
+
+
+        //MAIN STATES
+        /*
         select_overview.setImageState(new int[]{R.attr.state_done}, true);
         select_overview.setOnClickListener(selectView -> {
             select_overview.setImageState(new int[]{R.attr.state_done}, true);
@@ -161,7 +231,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
                     evidenceRecord.getUnlockLevel(getContext(), 2),
                     fontEmphasisColor);
         });
-
+        */
 
         animation.setOnClickListener(view12 -> {
             if(animation_fullscreen.getVisibility() != View.VISIBLE) {

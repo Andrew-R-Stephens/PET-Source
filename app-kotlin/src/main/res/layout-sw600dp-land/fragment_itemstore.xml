@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout81"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +19,7 @@
             android:id="@+id/constraintLayout38"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#99AEB3"
+            android:background="?attr/codex_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,25 +30,25 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:padding="2dp"
-                android:tint="#151B1B"
-                android:tintMode="multiply"
                 android:src="@android:drawable/ic_menu_revert"
-                app:layout_constraintDimensionRatio="1"
+                android:tint="?attr/codex_3"
+                android:tintMode="multiply"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_pagetitle"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#99AEB3"
+                android:background="?attr/codex_2"
                 android:gravity="center"
                 android:padding="4dp"
                 android:text="@string/store_title_equipment"
                 android:textAllCaps="true"
-                android:textColor="#2D3635"
+                android:textColor="?attr/codex_5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight="40dp"
@@ -64,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:indeterminateTint="?attr/codex_2"
             android:indeterminateTintMode="multiply"
-            android:indeterminateTint="#99AEB3"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,9 +76,7 @@
             android:id="@+id/item_safehouse_itemstore_wrapper"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/evidence_item_layer_grid"
-            android:backgroundTint="#40FFFFFF"
-            android:backgroundTintMode="multiply"
+            android:background="@drawable/codex_grid_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +121,48 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout35"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/codex_1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/adView"
+        app:layout_constraintTop_toTopOf="@+id/adView">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_codex_ghostos"
+            style="@style/JetbrainsMonoBold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:text="GH//OS.T"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        android:background="?attr/codex_1"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_banner_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout81" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

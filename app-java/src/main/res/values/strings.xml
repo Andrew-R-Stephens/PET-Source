@@ -127,6 +127,8 @@
 
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>
+    <string name="settings_colorblindnessmode_defaultName" translatable="false">Default</string>
+    <string name="settings_colorblindnessmode_defaultID" translatable="false">CzjtxSbXRwIpX8SYR0ttngAND</string>
     <string name="settings_colortheme_normal" translatable="false">P.E.T. Classic</string>
     <string name="settings_colorblindnessmode_monochromacy">Achromatopsia</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>

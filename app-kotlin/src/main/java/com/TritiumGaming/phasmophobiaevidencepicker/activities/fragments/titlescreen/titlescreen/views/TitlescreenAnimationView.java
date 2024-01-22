@@ -423,16 +423,16 @@ public class TitlescreenAnimationView extends View {
             for (AbstractAnimatedGraphic a : titleScreenViewModel.getAnimationData().getCurrentPool()) {
                 if (a != null) {
                     paint.setColorFilter(a.getFilter());
-                    if (a instanceof AnimatedMirrorData) {
-                        a.draw(canvas, paint, bitmap_mirror);
-                    } else if (a instanceof AnimatedWritingData) {
-                        a.draw(canvas, paint, bitmap_writingRot);
-                    } else if (a instanceof AnimatedHandData) {
-                        a.draw(canvas, paint, bitmap_handRot);
-                    } else if (a instanceof AnimatedOrbData) {
-                        a.draw(canvas, paint, bitmap_orb);
-                    } else if (a instanceof AnimatedFrostData) {
-                        a.draw(canvas, paint, bitmap_frost);
+                    if (a instanceof AnimatedMirrorData mirror) {
+                        mirror.draw(canvas, paint, bitmap_mirror);
+                    } else if (a instanceof AnimatedWritingData writing) {
+                        writing.draw(canvas, paint, bitmap_writingRot);
+                    } else if (a instanceof AnimatedHandData hand) {
+                        hand.draw(canvas, paint, bitmap_handRot);
+                    } else if (a instanceof AnimatedOrbData orb) {
+                        orb.draw(canvas, paint, bitmap_orb);
+                    } else if (a instanceof AnimatedFrostData frost) {
+                        frost.draw(canvas, paint, bitmap_frost);
                     }
                 }
             }

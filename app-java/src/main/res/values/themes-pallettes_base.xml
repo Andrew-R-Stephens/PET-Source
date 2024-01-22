@@ -81,6 +81,8 @@
         <item name="mapRoomBorderColor">@color/red_M300_A58</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
         <!-- Codex Colors -->
         <item name="codex_1">#161C1C</item>
         <item name="codex_2">#99AEB3</item>

@@ -29,7 +29,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toolspiritbox_title"
-                style="@style/NorseRegular"
+                style="@style/NorseRegular_Auto"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -84,12 +84,12 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"
                         android:text="Aggression Prompts"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toTopOf="@+id/scrollView_list1"
                         app:layout_constraintEnd_toEndOf="@+id/scrollView_list1"
                         app:layout_constraintStart_toStartOf="@+id/scrollView_list1"
@@ -131,12 +131,12 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView2"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"
                         android:text="Spirit Box Prompts"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toTopOf="@+id/scrollView_list2"
                         app:layout_constraintEnd_toEndOf="@+id/scrollView_list2"
                         app:layout_constraintStart_toStartOf="@+id/scrollView_list2"
@@ -180,13 +180,13 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView3"
-                        style="@style/NorseRegular"
+                        style="@style/NorseRegular_Auto"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:fontFamily="@font/norse_regular"
                         android:gravity="center"
                         android:text="Ouija Board Prompts"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toTopOf="@+id/scrollView_list3"
                         app:layout_constraintEnd_toEndOf="@+id/scrollView_list3"
                         app:layout_constraintStart_toStartOf="@+id/scrollView_list3"

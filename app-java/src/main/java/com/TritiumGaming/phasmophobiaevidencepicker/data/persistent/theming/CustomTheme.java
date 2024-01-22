@@ -12,13 +12,10 @@ public class CustomTheme {
     private final @StringRes int name;
     private final String hashID;
     private final @StyleRes int styleId;
-    private Availability unlockedState = Availability.LOCKED;
-
+    private Availability unlockedState; // start LOCKED
 
     public CustomTheme(String id, int name, int styleId) {
-        this.hashID = id;
-        this.name = name;
-        this.styleId = styleId;
+        this(id, name, styleId, false);
     }
 
     public CustomTheme(String id, int name, int styleId, boolean isUnlocked) {

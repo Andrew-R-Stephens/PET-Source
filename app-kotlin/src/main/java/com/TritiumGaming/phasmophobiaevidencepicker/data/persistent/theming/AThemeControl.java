@@ -2,11 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.StyleRes;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 import java.util.ArrayList;
 
@@ -25,10 +22,25 @@ public abstract class AThemeControl {
     public AThemeControl(Context context) {
         build(context);
     }
+    /*
+    public void init(String savedID) {
+        setSavedIndex(savedID);
+        setSelectedIndex(savedIndex);
+    }
+    */
+    public void init(String savedID) {
+        setSavedIndex(getIndexOfID(savedID));
+        setSelectedIndex(savedIndex);
+    }
 
-    public void init(int savedIndex) {
-        setSavedIndex(savedIndex);
-        setSelectedIndex(getSavedIndex());
+    private int getIndexOfID(String savedID) {
+        for(int i = 0; i < themes.size(); i++) {
+            if(themes.get(i).getID().equals(savedID)) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     @SuppressLint("Recycle, ResourceType")
@@ -71,6 +83,13 @@ public abstract class AThemeControl {
      * @param dir
      */
     public void iterateSelection(int dir) {
+        iterateSelection(dir, selectedIndex);
+    }
+
+    /**
+     * @param dir
+     */
+    public void iterateSelection(int dir, int start) {
 
         selectedIndex += dir;
 
@@ -80,13 +99,19 @@ public abstract class AThemeControl {
         else if (selectedIndex >= themes.size()) {
             selectedIndex = 0;
         }
+
+        if(!getCurrentTheme().isUnlocked()) {
+            if(start != selectedIndex) {
+                iterateSelection(dir, start);
+            }
+        }
     }
 
     public CustomTheme getCurrentTheme() {
 
         CustomTheme theme = themes.get(selectedIndex);
         if(theme == null) {
-            new CustomTheme(0, -1, defaultStyle);
+            new CustomTheme("-1", -1, defaultStyle);
         }
 
         return theme;
@@ -100,16 +125,19 @@ public abstract class AThemeControl {
         return getCurrentTheme().getName();
     }
 
-    /**
-     * @return
-     */
+    public String getID() {
+        return getCurrentTheme().getID();
+    }
+
+    /*
     public @StyleRes int getCurrentStyle() {
         return getCurrentTheme().getStyle();
     }
+    */
 
     public CustomTheme getAppThemeAt(int index) {
 
-        CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
+        CustomTheme tempTheme = new CustomTheme("-1", -1, defaultStyle);
 
         if(index >= themes.size())
         {
@@ -117,6 +145,7 @@ public abstract class AThemeControl {
         }
 
         CustomTheme theme = themes.get(index);
+
         if(theme == null) {
             return tempTheme;
         }
@@ -125,6 +154,22 @@ public abstract class AThemeControl {
 
     }
 
+    public CustomTheme getThemeByUUID(String uuid) {
+        for(CustomTheme customTheme: themes) {
+            if(customTheme.getID().equals(uuid)) {
+                return customTheme;
+            }
+        }
+        return new CustomTheme("-1", -1, defaultStyle);
+    }
+
+    public void revertAllUnlockedStatuses() {
+        for(CustomTheme theme: themes) {
+            theme.revertUnlockStatus();
+        }
+    }
+
+    /*
     public @StyleRes int getThemeAt(int index) {
 
         CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
@@ -142,5 +187,11 @@ public abstract class AThemeControl {
         return theme.getStyle();
 
     }
+    */
 
+    /*
+    public boolean hasChanges() {
+        return savedIndex != selectedIndex;
+    }
+    */
 }

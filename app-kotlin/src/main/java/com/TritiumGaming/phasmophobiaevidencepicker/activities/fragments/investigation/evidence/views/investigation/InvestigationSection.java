@@ -2,8 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;

@@ -5,7 +5,7 @@
     <item>
         <shape>
             <solid
-                android:color="@color/black"
+                android:color="?attr/backgroundColor"
                 />
         </shape>
     </item>
@@ -16,13 +16,11 @@
                 android:radius="4dp"
                 />
             <stroke
-                android:color="@color/cb_mono_white_highmed"
+                android:color="@color/white_M100"
                 android:width="2dp" />
             <size
                 android:height="16dp"
                 android:width="16dp" />
-
-
         </shape>
 
     </item>

@@ -163,7 +163,7 @@
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         android:background="?attr/codex_1"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

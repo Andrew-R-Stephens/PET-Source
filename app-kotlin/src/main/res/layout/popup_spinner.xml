@@ -9,7 +9,7 @@
     android:singleLine="false"
     android:maxLines="2"
     android:overlapAnchor="false"
-    android:textColor="?attr/bodyFontColor"
+    android:textColor="?attr/textColorBody"
     android:textStyle="bold"
     app:autoSizeTextType="uniform"
     app:autoSizeMinTextSize="14sp"

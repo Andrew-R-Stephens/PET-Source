@@ -2,7 +2,6 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="8dp"
@@ -29,7 +28,7 @@
         android:singleLine="true"
         android:text="@string/equipment_info_name_dots"
         android:textAllCaps="true"
-        android:textColor="#99AEB3"
+        android:textColor="?attr/codex_2"
         android:textSize="18sp" />
 
     <ScrollView

@@ -41,6 +41,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -103,13 +104,13 @@ public class InteractiveMapView extends View {
         if (getContext() != null && getContext().getTheme() != null) {
             Resources.Theme theme = getContext().getTheme();
 
-            theme.resolveAttribute(R.attr.poiFillColor, typedValue, true);
+            theme.resolveAttribute(R.attr.mapPoiFillColor, typedValue, true);
             poiColor = typedValue.data;
 
-            theme.resolveAttribute(R.attr.roomBorderColor, typedValue, true);
+            theme.resolveAttribute(R.attr.mapRoomBorderColor, typedValue, true);
             selectedBorderColor = typedValue.data;
 
-            theme.resolveAttribute(R.attr.roomFillColor, typedValue, true);
+            theme.resolveAttribute(R.attr.mapRoomFillColor, typedValue, true);
             selectedFillColor = typedValue.data;
         }
 

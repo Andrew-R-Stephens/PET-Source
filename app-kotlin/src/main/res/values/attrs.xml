@@ -4,69 +4,119 @@
     <!--
         Colors
     -->
-    <attr name="titleFontColor" format="reference|color" />
-    <attr name="subtitleFontColor" format="reference|color" />
-    <attr name="splashtitleFontColor" format="reference|color" />
-
+    <attr name="textColorPrimary" format="reference|color" />
+    <attr name="textColorSecondary" format="reference|color" />
+    <attr name="textColorTertiary" format="reference|color" />
+    <attr name="textColorBody" format="reference|color" />
+    <attr name="textColorBodyEmphasis" format="reference|color" />
+    <attr name="splashTextColor" format="reference|color" />
     <attr name="foregroundColor" format="reference|color" />
     <attr name="middlegroundColor" format="reference|color" />
     <attr name="backgroundColor" format="reference|color" />
+    <attr name="backgroundColor_mapviewOverlay" format="reference|color" />
+    <attr name="backgroundColorOnBackground" format="reference|color" />
+    <attr name="navigationBarColor" format="reference|color" />
+    <attr name="statusBarColor" format="reference|color" />
+
     <attr name="windowStrokeColor" format="reference|color" />
     <attr name="windowBackgroundColor" format="reference|color" />
-
-    <attr name="bodyFontColor" format="reference|color" />
-    <attr name="bodyEmphasisFontColor" format="reference|color" />
+    <attr name="fragmentBackgroundColor" format="reference|color" />
 
     <attr name="light_active" format="reference|color" />
     <attr name="light_inactive" format="reference|color" />
     <attr name="light_off" format="reference|color" />
+
     <attr name="switchColor" format="reference|color" />
+    <attr name="inboxNotification" format="reference|color" />
+
+    <attr name="navigationFooterIcon" format="reference|color" />
+    <attr name="navigationFooterIconAlt" format="reference|color" />
+    <attr name="sanityColorStart" format="reference|color" />
+    <attr name="sanityColorEnd" format="reference|color" />
+
     <attr name="progressBarColorStart" format="reference|color" />
     <attr name="progressBarColorEnd" format="reference|color" />
-    <attr name="strikethroughColor" format="reference|color" />
-    <attr name="circleColor" format="reference|color" />
 
     <attr name="selectedColor" format="reference|color" />
+    <attr name="selectedColor2" format="reference|color" />
     <attr name="unselectedColor" format="reference|color" />
 
     <attr name="positiveSelColor" format="reference|color" />
     <attr name="negativeSelColor" format="reference|color" />
     <attr name="neutralSelColor" format="reference|color" />
 
-    <attr name="poiFillColor" format="reference|color" />
-    <attr name="roomBorderColor" format="reference|color" />
-    <attr name="roomFillColor" format="reference|color" />
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+
+    <attr name="mapPoiFillColor" format="reference|color" />
+    <attr name="mapRoomFillColor" format="reference|color" />
+    <attr name="mapRoomBorderColor" format="reference|color" />
+
+    <attr name="theme_title" format="string" />
+    <attr name="theme_badge" format="reference" />
+
+    <attr name="a" format="reference|color" />
+    <attr name="b" format="reference|color" />
+    <attr name="c" format="reference|color" />
+    <attr name="d" format="reference|color" />
+    <attr name="e" format="reference|color" />
+    <attr name="f" format="reference|color" />
+    <attr name="g" format="reference|color" />
+    <attr name="h" format="reference|color" />
+    <attr name="i" format="reference|color" />
+    <attr name="j" format="reference|color" />
+    <attr name="k" format="reference|color" />
+    <attr name="l" format="reference|color" />
+    <attr name="m" format="reference|color" />
+    <attr name="n" format="reference|color" />
+
+    <attr name="theme_coreColor_1" format="reference|color" />
+    <attr name="theme_coreColor_2" format="reference|color" />
+    <attr name="theme_coreColor_3" format="reference|color" />
+    <attr name="theme_coreColor_4" format="reference|color" />
+    <attr name="theme_coreColor_5" format="reference|color" />
+    <attr name="theme_coreColor_6" format="reference|color" />
+    <attr name="theme_coreColor_7" format="reference|color" />
+    <attr name="theme_coreColor_8" format="reference|color" />
+
+    <attr name="codex_1" format="reference|color" />
+    <attr name="codex_2" format="reference|color" />
+    <attr name="codex_3" format="reference|color" />
+    <attr name="codex_4" format="reference|color" />
+    <attr name="codex_5" format="reference|color" />
+    <attr name="codex_grid_background_tint" format="reference|color" />
+
     <!--
         Fonts
     -->
 
     <!-- AutoFit -->
-    <attr name="primaryFont_Regular" format="reference" />
-    <attr name="primaryFont_Bold" format="reference" />
+    <attr name="primaryFont_Regular_Auto" format="reference" />
+    <attr name="primaryFont_Bold_Auto" format="reference" />
 
-    <attr name="secondaryFont_Regular" format="reference" />
-    <attr name="secondaryFont_Bold" format="reference" />
+    <attr name="secondaryFont_Regular_Auto" format="reference" />
+    <attr name="secondaryFont_Bold_Auto" format="reference" />
 
-    <attr name="tertiaryFont_Regular" format="reference" />
-    <attr name="tertiaryFont_Bold" format="reference" />
-    <attr name="tertiaryFont_BoldNarrow" format="reference" />
+    <attr name="tertiaryFont_Regular_Auto" format="reference" />
+    <attr name="tertiaryFont_Bold_Auto" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Auto" format="reference" />
 
-    <attr name="quaternaryFont_Regular" format="reference" />
-    <attr name="quaternaryFont_Bold" format="reference" />
+    <attr name="quaternaryFont_Regular_Auto" format="reference" />
+    <attr name="quaternaryFont_Bold_Auto" format="reference" />
 
     <!-- Squeeze -->
-    <attr name="primaryFont_Regular_Squeeze" format="reference" />
-    <attr name="primaryFont_Bold_Squeeze" format="reference" />
+    <attr name="primaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="primaryFont_Bold_AutoSqueeze" format="reference" />
 
-    <attr name="secondaryFont_Regular_Squeeze" format="reference" />
-    <attr name="secondaryFont_Bold_Squeeze" format="reference" />
+    <attr name="secondaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="secondaryFont_Bold_AutoSqueeze" format="reference" />
 
-    <attr name="tertiaryFont_Regular_Squeeze" format="reference" />
-    <attr name="tertiaryFont_Bold_Squeeze" format="reference" />
-    <attr name="tertiaryFont_BoldNarrow_Squeeze" format="reference" />
+    <attr name="tertiaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_Bold_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_AutoSqueeze" format="reference" />
 
-    <attr name="quaternaryFont_Regular_Squeeze" format="reference" />
-    <attr name="quaternaryFont_Bold_Squeeze" format="reference" />
+    <attr name="quaternaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="quaternaryFont_Bold_AutoSqueeze" format="reference" />
 
     <!-- Manual -->
     <attr name="primaryFont_Regular_Manual" format="reference" />
@@ -112,17 +162,5 @@
         <enum name="SBOX_2" value="2"/>
         <enum name="SBOX_3" value="3"/>
     </attr>
-
-    <attr name="tempFontStyle" format="reference"/>
-
-    <declare-styleable name="OutlineTextView">
-        <attr name="outlineColor" format="color" />
-        <attr name="outlineWidth" format="dimension" />
-    </declare-styleable>
-
-    <declare-styleable name="CodexGridCard">
-        <attr name="label_text" format="string" />
-        <attr name="background_image" format="reference" />
-    </declare-styleable>
 
 </resources>

@@ -82,6 +82,7 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
 
         //color on item unselecting item
         holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);
+
     }
 
     @Override

@@ -954,7 +954,7 @@
 
     <integer name="equipment_requirement_upgradecost_flashlight_1" >0</integer>
     <integer name="equipment_requirement_upgradecost_flashlight_2" >3000</integer>
-    <integer name="equipment_requirement_upgradecost_flashlight_3" >2500</integer>
+    <integer name="equipment_requirement_upgradecost_flashlight_3" >3000</integer>
 
     <integer name="equipment_requirement_upgradecost_photocamera_1" >0</integer>
     <integer name="equipment_requirement_upgradecost_photocamera_2" >3000</integer>

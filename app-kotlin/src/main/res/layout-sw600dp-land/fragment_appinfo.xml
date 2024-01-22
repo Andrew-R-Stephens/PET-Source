@@ -25,14 +25,14 @@
             android:padding="4dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_negative_unselected"
-            android:tint="?attr/subtitleFontColor"
+            android:tint="?attr/textColorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_settingstitle"
-            style="?attr/primaryFont_Regular_Squeeze"
+            style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_version"
-            style="?attr/secondaryFont_Regular_Squeeze"
+            style="?attr/secondaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -108,7 +108,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/aboutinfo_developerinfo_title"
-            android:textColor="?attr/titleFontColor"
+            android:textColor="?attr/textColorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout37"
             app:layout_constraintHeight_max="48dp"
             app:layout_constraintHeight_percent=".1"
@@ -139,16 +139,16 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_devTitle_label"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:gravity="bottom|center_horizontal"
                     android:text="@string/aboutinfo_developerinfo_developer"
-                    android:textColor="?attr/titleFontColor" />
+                    android:textColor="?attr/textColorPrimary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_devTitle_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
                     android:layout_height="24dp"
                     android:gravity="center"
@@ -156,16 +156,16 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_devEmail_label"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:gravity="bottom|center_horizontal"
                     android:text="@string/aboutinfo_developerinfo_contact"
-                    android:textColor="?attr/titleFontColor" />
+                    android:textColor="?attr/textColorPrimary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_devEmail_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
                     android:layout_height="24dp"
                     android:gravity="center"
@@ -197,7 +197,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_discord"
-                android:tint="?attr/titleFontColor"
+                android:tint="?attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/appinfo_joinDiscord"
                 app:layout_constraintStart_toStartOf="parent"
@@ -224,7 +224,7 @@
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:text="@string/aboutinfo_specialthanks_title"
-            android:textColor="?attr/titleFontColor"
+            android:textColor="?attr/textColorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/scrollView2"
             app:layout_constraintHeight_max="48dp"
             app:layout_constraintHeight_percent=".1"

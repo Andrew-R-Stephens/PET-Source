@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.children.itemstore.views;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         }
         for(; i < grid.getChildCount(); i++) {
             View v = grid.getChildAt(i);
-            v.setVisibility(INVISIBLE);
+            v.setVisibility(GONE);
         }
 
         AppCompatTextView textView_name = findViewById(R.id.safehouse_shop_tool_label);

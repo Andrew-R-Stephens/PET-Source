@@ -5,24 +5,22 @@ import static android.view.View.GONE;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
+import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.drm.DrmManagerClient;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -31,6 +29,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -44,43 +43,51 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.PETTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class MarketplaceFragment extends Fragment {
 
-    private FirebaseAnalytics analytics;
-    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
-
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
 
-    protected ViewTreeObserver.OnScrollChangedListener viewTreeObserverListener;
+    private LinearLayout linearLayout_marketplace_items;
+    private AppCompatTextView label_account_credits;
+
+    private RewardedAd rewardedAd = null;
 
     private boolean showEmail = false, loadThemes = true;
+
+    private long user_credits = 0;
 
     @Nullable
     @Override
@@ -88,8 +95,6 @@ public class MarketplaceFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-
-        initFirebase();
 
         // OBTAIN VIEW MODEL REFERENCE
         if (globalPreferencesViewModel == null) {
@@ -121,18 +126,20 @@ public class MarketplaceFragment extends Fragment {
         final ConstraintLayout constraint_account_name = view.findViewById(R.id.constraint_account_name);
         final CardView cardview_account = view.findViewById(R.id.cardView_account);
         final AppCompatTextView label_account_info = view.findViewById(R.id.settings_accountsettings_info);
+        label_account_credits = view.findViewById(R.id.label_credits_actual);
+        final AppCompatButton button_ad_watch = view.findViewById(R.id.button_ad_watch);
 
         final ScrollView scrollview_marketplace_items = view.findViewById(R.id.scrollview_marketplace_items);
-
-        if(getActivity() != null) {
-            googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
-        }
+        linearLayout_marketplace_items =
+                (LinearLayout)scrollview_marketplace_items.getChildAt(0);
 
         btn_account_login.setOnClickListener(v -> {
             manualSignInAccount();
 
             view.invalidate();
         });
+
+        button_ad_watch.setOnClickListener(v -> showRewardedAd());
 
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -202,13 +209,44 @@ public class MarketplaceFragment extends Fragment {
         }
 
         if(loadThemes) {
-            getUserPurchaseHistory();
-            //getMarketplaceColorThemes();
+            try {
+                DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
+                creditDoc.get().addOnCompleteListener(task -> {
+                    Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                    if(c != null) {
+                        user_credits = (long)c;
+                    } else {
+                        user_credits = -1;
+                    }
+
+                    label_account_credits.setText(String.valueOf(user_credits));
+                });
+
+                creditDoc.addSnapshotListener((documentSnapshot, error) -> {
+                    if(documentSnapshot == null) { return; }
+
+                    Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                    if(c != null) {
+                        user_credits = (long)c;
+                    } else {
+                        user_credits = -1;
+                    }
+
+                    label_account_credits.setText(String.valueOf(user_credits));
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            populateMarketplaceUnPurchasedItems();
+
             loadThemes = false;
         }
+
+        loadRewardedAd(null);
     }
 
-    private void getUserPurchaseHistory() {
+    private void populateMarketplaceUnPurchasedItems() {
         try {
             CollectionReference purchaseHistoryCollection =
                     FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
@@ -226,38 +264,139 @@ public class MarketplaceFragment extends Fragment {
                             .getThemeByUUID(uuid);
                     customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
                 }
+
+                populateMarketplace();
             });
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
-    private void getMarketplaceColorThemes() {
-        FirestoreMarketplace.getThemes()
-            .addOnFailureListener(e -> {
-                Log.d("Firestore", "Theme document query FAILED!");
-                e.printStackTrace();
-            }).addOnCompleteListener(task -> {
-                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+    private void populateMarketplace() {
 
-                    if (!documentSnapshot.exists()) {
-                        Log.d("Firestore", "Theme document snapshot DNE.");
-                    }
+        LinearLayout prestige = new LinearLayout(getContext());
+        LinearLayout event = new LinearLayout(getContext());
+        LinearLayout community = new LinearLayout(getContext());
 
+        linearLayout_marketplace_items.addView(prestige);
+        linearLayout_marketplace_items.addView(event);
+        linearLayout_marketplace_items.addView(community);
+
+        populateList(prestige, "group", "Prestige", "priority", Query.Direction.ASCENDING);
+        populateList(event, "group", "Event", null, null);
+        populateList(community, "group", "Community", null, null);
+    }
+
+    private void populateList(LinearLayout list, String field, String value, String orderField, Query.Direction order) {
+        list.setOrientation(LinearLayout.VERTICAL);
+        list.setLayoutTransition(new LayoutTransition());
+        list.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        addMarketplaceThemes(list, field, value, orderField, order);
+    }
+
+    private void addMarketplaceThemes(LinearLayout list, String field, String value,
+                                      String orderField, Query.Direction order) {
+
+        Task<QuerySnapshot> query = null;
+        try {
+            query = FirestoreMarketplace.getThemesWhere(field, value, orderField, order);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        query.addOnCompleteListener(task -> {
+            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+
+                if (!documentSnapshot.exists()) {
+                    Log.d("Firestore", "Theme document snapshot DNE.");
+                } else {
                     try {
                         PETTheme tempTheme = documentSnapshot.toObject(PETTheme.class);
-                        if(tempTheme != null) {
-                            PETTheme petTheme = new PETTheme(
-                                    documentSnapshot.getReference().getId(),
-                                    tempTheme);
-                            Log.d("Firestore", petTheme.toString());
+                        if (tempTheme != null) {
+                            CustomTheme theme = globalPreferencesViewModel.getColorThemeControl()
+                                    .getThemeByUUID(documentSnapshot.getReference().getId());
+                            @StyleRes int style = theme.getStyle();
+
+                            MarketplaceItem marketplaceItem =
+                                    new MarketplaceItem(new ContextThemeWrapper(
+                                            getContext(), style), null, style);
+                            marketplaceItem.setPurchaseable(!theme.isUnlocked());
+                            marketplaceItem.setCreditCost(tempTheme.getBuyCredits());
+                            AppCompatButton buyButton = marketplaceItem.getBuyButton();
+                            if(buyButton != null) {
+                                buyButton.setOnClickListener(v -> {
+                                    try {
+                                        FirestoreAccountCredit.getCreditsDocument()
+                                                .get().addOnCompleteListener(creditTask -> {
+                                                    Object c = creditTask.getResult().get("earnedCredits");
+                                                    if (c == null) {
+                                                        return;
+                                                    }
+                                                    user_credits = (long) c;
+
+                                                    if (user_credits >= marketplaceItem.getCreditCost()) {
+
+                                                        OnSuccessListener<DocumentSnapshot> callback =
+                                                                dss ->
+                                                                {
+                                                                    try {
+                                                                        FirestoreAccountCredit.removeCredits(marketplaceItem.getCreditCost());
+                                                                    } catch (Exception e) {
+                                                                        throw new RuntimeException(e);
+                                                                    }
+                                                                };
+                                                        try {
+                                                            FirestorePurchaseHistory.addPurchaseDocument(callback, documentSnapshot.getReference().getId());
+                                                        } catch (Exception e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                        Toast.makeText(getActivity(),
+                                                                "Skin purchased!",
+                                                                Toast.LENGTH_SHORT).show();
+
+                                                        marketplaceItem.animate()
+                                                                .setDuration(300)
+                                                                .translationX(list.getWidth())
+                                                                .setListener(new AnimatorListenerAdapter() {
+                                                                    @Override
+                                                                    public void onAnimationStart(Animator animation) {
+                                                                        super.onAnimationStart(animation);
+
+                                                                        marketplaceItem.setEnabled(false);
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onAnimationEnd(Animator animation) {
+                                                                        super.onAnimationEnd(animation);
+
+                                                                        list.removeView(marketplaceItem);
+                                                                    }
+                                                                })
+                                                                .start();
+
+                                                    } else {
+                                                        Toast.makeText(getActivity(),
+                                                                "Not enough credits for purchase!",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                });
+                            }
+
+                            list.addView(marketplaceItem);
                         }
                     } catch (Exception e) {
                         Log.d("Firestore", "Error CREATING PETTheme!");
                         e.printStackTrace();
                     }
                 }
-            });
+            }
+        });
     }
 
     /**
@@ -271,13 +410,6 @@ public class MarketplaceFragment extends Fragment {
         ft.detach(MarketplaceFragment.this).commitNow();
         ft = getParentFragmentManager().beginTransaction();
         ft.attach(MarketplaceFragment.this).commitNow();
-    }
-
-    private void initFirebase() {
-        if(getContext() != null){
-            analytics = FirebaseAnalytics.getInstance(getContext());
-            Log.d("Firebase", "Obtained instance.");
-        }
     }
 
     /**
@@ -352,7 +484,12 @@ public class MarketplaceFragment extends Fragment {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
+            FirebaseUser user = null;
+            try {
+                user = FirestoreUser.getCurrentFirebaseUser();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),
@@ -363,8 +500,45 @@ public class MarketplaceFragment extends Fragment {
                 refreshFragment();
 
                 // Generate a Firestore document for the User with default data if needed
-                FirestoreUser.buildUserDocument();
-                getUserPurchaseHistory();
+                try {
+                    FirestoreUser.buildUserDocument().get().addOnCompleteListener(task1 -> {
+
+                        try {
+                            DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
+                            creditDoc.get().addOnCompleteListener(task -> {
+                                Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                                if(c != null) {
+                                    user_credits = (long)c;
+                                } else {
+                                    user_credits = -1;
+                                }
+
+                                label_account_credits.setText(String.valueOf(user_credits));
+                            });
+
+                            creditDoc.addSnapshotListener((documentSnapshot, error) -> {
+                                if(documentSnapshot == null) { return; }
+
+                                Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                                if(c != null) {
+                                    user_credits = (long)c;
+                                } else {
+                                    user_credits = -1;
+                                }
+
+                                label_account_credits.setText(String.valueOf(user_credits));
+                            });
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        populateMarketplaceUnPurchasedItems();
+                    });
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
             }
         } else {
@@ -381,6 +555,66 @@ public class MarketplaceFragment extends Fragment {
                     message,
                     com.google.android.material.R.integer.material_motion_duration_short_2);
             toast.show();
+        }
+    }
+
+    private OnAdLoadedListener onAdLoadedListener;
+    public interface OnAdLoadedListener {
+        void onAdLoaded();
+    }
+    public void setOnAdLoadedListener(OnAdLoadedListener listener) {
+        onAdLoadedListener = listener;
+    }
+
+    public void loadRewardedAd(OnAdLoadedListener listener) {
+
+        RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
+                new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(RewardedAd ad) {
+                        Log.d("RewardedAd", "Ad was loaded.");
+                        rewardedAd = ad;
+                        ServerSideVerificationOptions options = new ServerSideVerificationOptions
+                                .Builder()
+                                .setCustomData("SAMPLE_CUSTOM_DATA_STRING")
+                                .build();
+                        rewardedAd.setServerSideVerificationOptions(options);
+
+                        if(listener != null) {
+                            listener.onAdLoaded();
+                        }
+                    }
+                    @Override
+                    public void onAdFailedToLoad(LoadAdError loadAdError) {
+                        Log.d("RewardedAd", loadAdError.toString());
+                        rewardedAd = null;
+                    }
+                });
+
+    }
+
+    public void showRewardedAd() {
+
+        if (rewardedAd != null) {
+            PETActivity activityContext = (PETActivity) requireActivity();
+            rewardedAd.show(activityContext, rewardItem -> {
+                // Handle the reward.
+                Log.d("RewardedAd", "The user earned the reward.");
+                int rewardAmount = rewardItem.getAmount();
+
+                try {
+                    FirestoreAccountCredit.addCredits(rewardAmount);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                // A watched ad cannot be re-watched, so chamber another ad
+                loadRewardedAd(null);
+            });
+        } else {
+            Log.d("RewardedAd", "The rewarded ad wasn't ready yet.");
+
+            loadRewardedAd(this::showRewardedAd);
         }
     }
 

@@ -36,6 +36,8 @@ public class InvestigationActivity extends PETActivity {
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
+    public NavigationBarView navigationBarView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -46,8 +48,6 @@ public class InvestigationActivity extends PETActivity {
     }
 
     public void initComponents() {
-
-        // NavController navController = Navigation.findNavController(fragmentContainerView);
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
@@ -64,7 +64,6 @@ public class InvestigationActivity extends PETActivity {
         NavigationView navDrawerView = findViewById(R.id.layout_navigation_drawer_view);
         Log.d("Drawer", navDrawerView == null ? "null" : "not null");
         setNavigationDrawer(navDrawerView, navController);
-
     }
 
     protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
@@ -112,7 +111,10 @@ public class InvestigationActivity extends PETActivity {
 
         if(drawerLayout == null) { return; }
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_open_state, R.string.navigation_closed_state);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this, drawerLayout,
+                R.string.navigation_open_state,
+                R.string.navigation_closed_state);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
@@ -151,6 +153,7 @@ public class InvestigationActivity extends PETActivity {
 
                     return true;
                 });
+
             }
         }
     }
@@ -158,10 +161,11 @@ public class InvestigationActivity extends PETActivity {
     public void setNavigationBarBehavior(NavigationBarView navView, NavController navController) {
 
         if(navView != null) {
-            NavigationUI.setupWithNavController(navView, navController);
-            navView.setOnItemSelectedListener(item -> {
+            this.navigationBarView = navView;
 
-                Log.d("Bar", "item: " + item.getTitle());
+            NavigationUI.setupWithNavController(navView, navController);
+
+            navView.setOnItemSelectedListener(item -> {
 
                 if(NavigationUI.onNavDestinationSelected(item, navController)) {
                     if(drawerLayout != null) {
@@ -176,14 +180,18 @@ public class InvestigationActivity extends PETActivity {
                     if(drawerLayout != null) {
                         if (drawerLayout.isOpen()) {
                             drawerLayout.closeDrawer(GravityCompat.START);
+
                         } else {
                             drawerLayout.openDrawer(GravityCompat.START);
                         }
+
                     }
                 }
                 return true;
 
             });
+
+            navView.setItemIconTintList(null);
         }
     }
 

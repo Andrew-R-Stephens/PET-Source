@@ -48,7 +48,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/difficulty_title"
-                    style="?attr/primaryFont_Regular_Squeeze"
+                    style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="4dp"
@@ -80,7 +80,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/difficulty_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -121,7 +121,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mapchoice_title"
-                    style="?attr/primaryFont_Regular_Squeeze"
+                    style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="4dp"
@@ -153,7 +153,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mapchoice_name"
-                    style="?attr/secondaryFont_Regular_Squeeze"
+                    style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -211,7 +211,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/setup_title"
-                    style="?attr/primaryFont_Regular_Squeeze"
+                    style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#00FFFFFF"
@@ -246,14 +246,14 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/evidence_timer_text"
-                        style="?attr/tertiaryFont_Bold_Squeeze"
+                        style="?attr/tertiaryFont_Bold_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"
                         android:hint="@string/app_name"
                         android:maxLines="1"
                         android:text="@string/investigation_timer_time_3"
-                        android:textColor="?attr/subtitleFontColor"
+                        android:textColor="?attr/textColorSecondary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -358,7 +358,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/evidence_sanitymeter_title"
-                    style="?attr/tertiaryFont_Regular_Squeeze"
+                    style="?attr/tertiaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#00FFFFFF"
@@ -373,7 +373,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/evidence_sanitymeter_percentage"
-                    style="?attr/tertiaryFont_Regular_Squeeze"
+                    style="?attr/tertiaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#00FFFFFF"
@@ -429,17 +429,15 @@
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                     android:id="@+id/evidence_sanitymeter_phase_action"
-                    style="?attr/tertiaryFont_Bold_Squeeze"
+                    style="?attr/tertiaryFont_Bold_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/rect_border"
-                    android:backgroundTint="#434343"
-                    android:backgroundTintMode="multiply"
+                    android:background="@drawable/warnview"
                     android:gravity="center"
                     android:maxLines="1"
                     android:padding="3dp"
                     android:text="@string/investigation_timer_actionlabel"
-                    android:textColor="#434343"
+                    android:textColor="?attr/light_off"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -449,17 +447,15 @@
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                     android:id="@+id/evidence_sanitymeter_phase_setup"
-                    style="?attr/tertiaryFont_Bold_Squeeze"
+                    style="?attr/tertiaryFont_Bold_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/rect_border"
-                    android:backgroundTint="#434343"
-                    android:backgroundTintMode="multiply"
+                    android:background="@drawable/warnview"
                     android:gravity="center"
                     android:maxLines="1"
                     android:padding="3dp"
                     android:text="@string/investigation_timer_setuplabel"
-                    android:textColor="#434343"
+                    android:textColor="?attr/light_off"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/evidence_sanitymeter_phase_action"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -471,17 +467,15 @@
 
             <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView
                 android:id="@+id/evidence_sanitymeter_huntwarning"
-                style="?attr/tertiaryFont_Bold_Squeeze"
+                style="?attr/tertiaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/rect_border"
-                android:backgroundTint="#434343"
-                android:backgroundTintMode="multiply"
+                android:background="@drawable/warnview"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="@string/investigation_sanity_huntwarn"
-                android:textColor="#434343"
+                android:textColor="?attr/light_off"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".5"

@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<selector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<level-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        app:state_done="false"
+        android:minLevel="0"
+        android:maxLevel="0"
         android:drawable="@drawable/radiobutton_1_disabled"/>
 
     <item
-        app:state_done="true"
+        android:minLevel="1"
+        android:maxLevel="1"
         android:drawable="@drawable/radiobutton_1_enabled"/>
 
-</selector>
+</level-list>
 
+
+
+    <!--
+
+    <selector
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item
+            app:state_done="false"
+            android:drawable="@drawable/radiobutton_1_disabled"/>
+
+        <item
+            app:state_done="true"
+            android:drawable="@drawable/radiobutton_1_enabled"/>
+
+    </selector>
+
+    -->

@@ -29,6 +29,8 @@
     <attr name="switchColor" format="reference|color" />
     <attr name="inboxNotification" format="reference|color" />
 
+    <attr name="buttonFilterOnPrimary" format="reference|color" />
+
     <attr name="navigationFooterIcon" format="reference|color" />
     <attr name="navigationFooterIconAlt" format="reference|color" />
     <attr name="sanityColorStart" format="reference|color" />
@@ -54,6 +56,7 @@
 
     <attr name="theme_title" format="string" />
     <attr name="theme_badge" format="reference" />
+
 
     <attr name="a" format="reference|color" />
     <attr name="b" format="reference|color" />

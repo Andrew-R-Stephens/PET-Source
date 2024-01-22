@@ -2,12 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
@@ -16,8 +11,6 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 
 public class SanitySeekBarView extends AppCompatSeekBar {
 

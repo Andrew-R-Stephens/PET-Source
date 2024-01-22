@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentnavgraph"
     app:startDestination="@id/evidenceFragment">
 
@@ -27,14 +26,23 @@
         <action
             android:id="@+id/action_evidence_to_objectives"
             app:destination="@id/objectivesFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_evidenceFragment_to_mapMenuFragment"
             app:destination="@id/mapMenuFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_evidenceFragment_to_codexFragment"
             app:destination="@id/codexFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
@@ -54,19 +62,21 @@
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.MapViewerFragment"
         android:label="MapViewerFragment" />
     <action
+        android:id="@+id/action_global_evidenceFragment"
+        app:destination="@id/evidenceFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:launchSingleTop="true"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right"
+        app:popUpToInclusive="true" />
+    <action
         android:id="@+id/action_global_objectivesFragment"
         app:destination="@id/objectivesFragment"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
         app:popExitAnim="@android:anim/fade_out" />
-    <action
-        android:id="@+id/action_global_evidenceFragment"
-        app:destination="@id/evidenceFragment"
-        app:enterAnim="@android:anim/fade_in"
-        app:exitAnim="@android:anim/fade_out"
-        app:popEnterAnim="@android:anim/slide_in_left"
-        app:popExitAnim="@android:anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_mapMenuFragment"
         app:destination="@id/mapMenuFragment"

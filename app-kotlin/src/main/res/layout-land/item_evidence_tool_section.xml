@@ -7,12 +7,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/label_container"
-        style="?attr/primaryFont_Regular_Squeeze"
+        style="?attr/primaryFont_Regular_AutoSqueeze"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="Title"
-        android:textColor="?attr/titleFontColor"
+        android:textColor="?attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/scrollview"
         app:layout_constraintHeight_min="36dp"
         app:layout_constraintHeight_percent=".05"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:indeterminateTint="?attr/titleFontColor"
+        android:indeterminateTint="?attr/textColorPrimary"
         android:indeterminateTintMode="multiply"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

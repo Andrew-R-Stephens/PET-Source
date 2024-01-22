@@ -1,0 +1,103 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.PhasmophobiaEvidenceTool" parent="Theme.AppCompat">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:textViewStyle">?attr/primaryFont_Regular_AutoSqueeze</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/black</item>
+        <!--<item name="backgroundColorOnBackground" >@color/black_M50</item>-->
+        <item name="backgroundColorOnBackground" >#0F0F0F</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/white_M200</item>
+
+        <!-- Theme Core -->
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">@color/white</item>
+        <item name="theme_coreColor_3">@color/white</item>
+        <item name="theme_coreColor_4">@color/white</item>
+        <item name="theme_coreColor_5">@color/white</item>
+        <item name="theme_coreColor_6">@color/white</item>
+        <item name="theme_coreColor_7">@color/white</item>
+        <item name="theme_coreColor_8">@color/white</item>
+
+        <!-- Theme Attributes -->
+        <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
+        <item name="splashTextColor">@color/red_M350</item>
+
+        <item name="textColorPrimary">@color/red_M250</item>
+        <item name="textColorSecondary">@color/red_M300</item>
+        <item name="textColorTertiary">@color/red_M350</item>
+
+        <item name="textColorBody">@color/white</item>
+        <item name="textColorBodyEmphasis">@color/red_M250</item>
+
+        <item name="light_active">@color/red</item>
+        <item name="light_inactive">@color/red_A40</item>
+        <item name="light_off">@color/white_M600</item>
+
+        <item name="sanityColorStart">@color/white</item>
+        <item name="sanityColorEnd">@color/red</item>
+
+        <item name="progressBarColorStart">@color/red_M350</item>
+        <item name="progressBarColorEnd">@color/red_M350</item>
+
+        <item name="switchColor">@color/red_M300</item>
+        <item name="inboxNotification">@color/red_M300</item>
+
+        <item name="selectedColor">@color/red</item>
+        <item name="selectedColor2">@color/red_A40</item>
+        <item name="unselectedColor">@color/white_M600</item>
+
+        <item name="strikethroughColor">@color/red_M300</item>
+        <item name="circleColor">@color/green</item>
+
+        <item name="positiveSelColor">@color/green</item>
+        <item name="neutralSelColor">@color/white_M100</item>
+        <item name="negativeSelColor">@color/red_M300</item>
+
+        <item name="mapPoiFillColor">@color/red_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/red_M300_A58</item>
+        <item name="mapRoomFillColor">@color/yellow_A10</item>
+
+        <!-- Codex Colors -->
+        <item name="codex_1">#161C1C</item>
+        <item name="codex_2">#99AEB3</item>
+        <item name="codex_3">#151B1B</item>
+        <item name="codex_4">#FFB43D</item>
+        <item name="codex_5">#2D3635</item>
+        <item name="codex_grid_background_tint">#40161C1C</item>
+
+    </style>
+
+    <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">
+        <item name="theme_badge">@drawable/app_icon_sm</item>
+        <item name="theme_title">Color Blind</item>
+    </style>
+
+    <style name="NonColorblind.Base" parent="Colorblind.Base">
+        <item name="theme_title">Classic</item>
+    </style>
+
+</resources>

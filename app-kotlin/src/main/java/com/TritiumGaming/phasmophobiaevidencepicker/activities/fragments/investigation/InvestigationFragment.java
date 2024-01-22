@@ -15,12 +15,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 
@@ -103,6 +106,7 @@ public abstract class InvestigationFragment extends Fragment {
             ((InvestigationActivity) getActivity()).initComponents();
         }
 
+        initAd(view.findViewById(R.id.adView));
     }
 
     /**
@@ -116,6 +120,16 @@ public abstract class InvestigationFragment extends Fragment {
             analytics = FirebaseAnalytics.getInstance(getContext());
             Log.d("Firebase", "Obtained instance.");
         }
+    }
+
+    protected void initAd(AdView mAdView) {
+        if(mAdView == null) {
+            return;
+        }
+
+        MobileAds.initialize(requireContext(), initializationStatus -> { });
+        adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     public void backPressedHandler() {

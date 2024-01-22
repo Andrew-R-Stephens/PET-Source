@@ -1,11 +1,16 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,8 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -28,14 +35,30 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.AppThemesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.FirebaseUiException;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class AppSettingsFragment extends Fragment {
 
@@ -44,6 +67,8 @@ public class AppSettingsFragment extends Fragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
+
+    private boolean showEmail = false, loadThemes = true;
 
     @Nullable
     @Override
@@ -76,122 +101,165 @@ public class AppSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        AppCompatTextView text_colorblindmode_selectedname =
+        final AppCompatTextView text_colorTheme_selectedname =
                 view.findViewById(R.id.colorblindmode_selectedname);
         final AppCompatTextView text_fontStyle_selectedname = view.findViewById(R.id.font_selectedname);
 
-        AppCompatTextView switch_huntwarning_timetext =
+        final AppCompatTextView switch_huntwarning_timetext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_timetext);
-        AppCompatTextView switch_huntwarning_othertext =
+        final AppCompatTextView switch_huntwarning_othertext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_othertext);
 
-        SwitchCompat switch_isAlwaysOn_switch = view.findViewById(R.id.switch_alwayson_switch);
-        SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
-        SwitchCompat switch_huntwarningaudio_switch =
+        final SwitchCompat switch_isAlwaysOn_switch = view.findViewById(R.id.switch_alwayson_switch);
+        final SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
+        final SwitchCompat switch_huntwarningaudio_switch =
                 view.findViewById(R.id.switch_huntwarningaudio_switch);
-        SwitchCompat switch_leftHandMode_switch =
+        final SwitchCompat switch_leftHandMode_switch =
                 view.findViewById(R.id.switch_leftHandMode_switch);
 
-        SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
+        final SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
 
-        AppCompatImageView btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
-        AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
-        AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
-        AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
-        View listener_confirmClose = view.findViewById(R.id.listener_confirm);
-        View listener_cancelClose = view.findViewById(R.id.listener_cancel);
+        final AppCompatImageView btn_colorblindMode_left = view.findViewById(R.id.colorblindmode_leftbutton);
+        final AppCompatImageView btn_colorblindMode_right = view.findViewById(R.id.colorblindmode_rightbutton);
+        final AppCompatImageView btn_fontStyle_left = view.findViewById(R.id.font_leftbutton);
+        final AppCompatImageView btn_fontStyle_right = view.findViewById(R.id.font_rightbutton);
+        final View listener_confirmClose = view.findViewById(R.id.listener_confirm);
+        final View listener_cancelClose = view.findViewById(R.id.listener_cancel);
+
+        final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
+        final AppCompatButton btn_account_logout = view.findViewById(R.id.settings_account_logout_button);
+        final AppCompatButton btn_account_delete = view.findViewById(R.id.settings_account_delete_button);
+        final ConstraintLayout btn_account_infoContainer = view.findViewById(R.id.constraintLayout_accountInformation);
+        final AppCompatTextView btn_account_info = view.findViewById(R.id.settings_accountsettings_info);
 
         if(getActivity() != null) {
             googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(getActivity());
         }
 
+        btn_account_login.setOnClickListener(v -> {
+            manualSignInAccount();
+
+            view.invalidate();
+        });
+        btn_account_logout.setOnClickListener(v -> {
+            signOutAccount();
+
+            view.invalidate();
+        });
+        btn_account_delete.setOnClickListener(v -> {
+            deleteAccount();
+
+            view.invalidate();
+        });
+
+        final String accountEmail;
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null) {
+            accountEmail = firebaseUser.getEmail();
+        } else {
+            accountEmail = "";
+        }
+        SpannableString email_displayed =
+                new SpannableString(accountEmail);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
+        @ColorInt int obfuscationColor = typedValue.data;
+        SpannableString email_obfuscated = email_displayed;
+        if(accountEmail != null) {
+            email_obfuscated = FormatterUtils.obfuscateEmailSpannable(
+                    accountEmail, obfuscationColor);
+        }
+        SpannableString finalEmail_obfuscated = email_obfuscated;
+
+        btn_account_infoContainer.setOnClickListener(v -> {
+            showEmail = !showEmail;
+
+            if(showEmail) {
+                btn_account_info.setText(email_displayed);
+            } else {
+                btn_account_info.setText(finalEmail_obfuscated);
+            }
+        });
+
+        if(firebaseUser == null) {
+            btn_account_login.setVisibility(View.VISIBLE);
+            btn_account_logout.setVisibility(View.GONE);
+            btn_account_infoContainer.setVisibility(View.GONE);
+            btn_account_delete.setVisibility(View.GONE);
+        } else {
+            btn_account_login.setVisibility(View.GONE);
+            btn_account_logout.setVisibility(View.VISIBLE);
+            btn_account_infoContainer.setVisibility(View.VISIBLE);
+            btn_account_delete.setVisibility(View.VISIBLE);
+            btn_account_info.setText(email_displayed);
+
+            if(!showEmail) {
+                btn_account_info.setText(email_obfuscated);
+            }
+        }
+
         /*
+         * Setting Colorblindness Theme
+         */
         // COLORBLIND DATA
-        TypedArray colorTypedArray =
-                getResources().obtainTypedArray(R.array.settings_colorblindnessmode_array);
-        String[] colorspaceNames = new String[colorTypedArray.length()];
-        for (int i = 0; i < colorspaceNames.length; i++) {
-            colorspaceNames[i] = colorTypedArray.getString(i);
-        }
-        colorTypedArray.recycle();
-
-        AppThemesData colorSpaceData = new AppThemesData(colorspaceNames);
-        int oldColorIndex = 0;
-        if (globalPreferencesViewModel != null) {
-            oldColorIndex = globalPreferencesViewModel.getColorSpace();
-        }
-        oldColorIndex = oldColorIndex < colorspaceNames.length ? oldColorIndex : 0;
-        
-        colorSpaceData.setSelectedIndex(oldColorIndex);
-
-        text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
+        ColorThemeControl colorThemesData = globalPreferencesViewModel.getColorThemeControl();
+        text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
 
         // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
-            colorSpaceData.iterate(-1);
-            text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (globalPreferencesViewModel != null && getContext() != null) {
-                globalPreferencesViewModel.setColorSpace(colorSpaceData.getSelectedIndex());
-            }
+            ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
+
+            themeControl.iterateSelection(-1);
+            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
+
+            demoColorStyle(themeControl);
+
+            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
+
+            //demoStyles();
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
-            colorSpaceData.iterate(1);
-            text_colorblindmode_selectedname.setText(colorSpaceData.getColorSpaceName());
-            if (globalPreferencesViewModel != null) {
-                globalPreferencesViewModel.setColorSpace(colorSpaceData.getSelectedIndex());
-            }
-        });
-        */
+            ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
-        AppThemesData appThemesData = new AppThemesData(getContext(), globalPreferencesViewModel);
+            themeControl.iterateSelection(1);
+            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
 
-        text_colorblindmode_selectedname.setText(appThemesData.getCurrentName());
+            demoColorStyle(themeControl);
 
-        // COLORBLIND LISTENERS
-        btn_colorblindMode_left.setOnClickListener(v -> {
-            appThemesData.iterateSelection(-1);
-            text_colorblindmode_selectedname.setText(getString(appThemesData.getCurrentName()));
-            if (globalPreferencesViewModel != null && getContext() != null) {
-                globalPreferencesViewModel.setColorSpace(appThemesData.getSelectedIndex());
-            }
-        });
+            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
 
-        btn_colorblindMode_right.setOnClickListener(v -> {
-            appThemesData.iterateSelection(1);
-            text_colorblindmode_selectedname.setText(getString(appThemesData.getCurrentName()));
-            if (globalPreferencesViewModel != null) {
-                globalPreferencesViewModel.setColorSpace(appThemesData.getSelectedIndex());
-            }
+            //demoStyles();
         });
 
         /*
          * Setting Fonts
          */
         // FONT-STYLE DATA
-        TypedArray fontTypedArray =
-                getResources().obtainTypedArray(R.array.settings_fontstyle_array);
-        String[] fontStyleNames = new String[fontTypedArray.length()];
-        for (int i = 0; i < fontStyleNames.length; i++) {
-            fontStyleNames[i] = fontTypedArray.getString(i);
-        }
-        fontTypedArray.recycle();
-
-        FontStylesData fontStyleData = new FontStylesData(fontStyleNames);
-        int oldFontIndex = 0;
-        if (globalPreferencesViewModel != null) {
-            oldFontIndex = globalPreferencesViewModel.getFontType();
-        }
-        fontStyleData.setIndex(oldFontIndex);
-        text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+        FontThemeControl fontThemesData = globalPreferencesViewModel.getFontThemeControl();
+        text_fontStyle_selectedname.setText(fontThemesData.getCurrentName());
 
         // FONT-STYLE LISTENERS
         btn_fontStyle_left.setOnClickListener(v -> {
-            setFontStyle(-1, text_fontStyle_selectedname, fontStyleData);
+            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
+
+            themeControl.iterateSelection(-1);
+            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+
+            demoFontStyle(themeControl);
+            //demoStyles();
         });
 
         btn_fontStyle_right.setOnClickListener(v -> {
-            setFontStyle(1, text_fontStyle_selectedname, fontStyleData);
+            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
+
+            themeControl.iterateSelection(1);
+            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+
+            demoFontStyle(themeControl);
+            //demoStyles();
         });
 
         // SWITCHES
@@ -308,7 +376,10 @@ public class AppSettingsFragment extends Fragment {
         }
 
         // CANCEL BUTTON
-        listener_cancelClose.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+        listener_cancelClose.setOnClickListener(v -> {
+            revertDemoChanges();
+            Navigation.findNavController(v).popBackStack();
+        });
 
         // CONFIRM BUTTON
         listener_confirmClose.setOnClickListener(v -> {
@@ -324,8 +395,6 @@ public class AppSettingsFragment extends Fragment {
 
             saveStates();
             Navigation.findNavController(v).popBackStack();
-
-            Log.d("Theme", appThemesData.getCurrentStyle() + " " + appThemesData.getCurrentName());
         });
 
         if(getActivity() != null) {
@@ -333,7 +402,9 @@ public class AppSettingsFragment extends Fragment {
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
+                            revertDemoChanges();
                             Navigation.findNavController(view).popBackStack();
+
                             if(getContext() != null) {
                                 String message = getString(R.string.toast_discardchanges);
                                 Toast toast = Toast.makeText(getContext().getApplicationContext(),
@@ -353,25 +424,110 @@ public class AppSettingsFragment extends Fragment {
             AppCompatButton adsButton = view.findViewById(R.id.settings_ads_label);
             adsButton.setOnClickListener(v -> showAdsConsentForm(v.getContext()));
         }
+
+        if(loadThemes) {
+            getUserPurchaseHistory();
+            //getMarketplaceColorThemes();
+            loadThemes = false;
+        }
     }
 
-    private void setFontStyle(int iterateDirection, AppCompatTextView text_fontStyle_selectedname, FontStylesData fontStyleData) {
-        fontStyleData.iterate(iterateDirection);
-        int fontIndex = fontStyleData.getIndex();
+    private void getUserPurchaseHistory() {
+        try {
+            CollectionReference purchaseHistoryCollection =
+                    FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
 
-        text_fontStyle_selectedname.setText(fontStyleData.getFontStylesName());
+            if (purchaseHistoryCollection == null) {
+                return;
+            }
 
-        if (globalPreferencesViewModel != null && getContext() != null) {
-            globalPreferencesViewModel.setFontType(fontIndex);
+            purchaseHistoryCollection.get().addOnCompleteListener(task -> {
+                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    DocumentReference documentReference = documentSnapshot.getReference();
+
+                    String uuid = documentReference.getId();
+                    CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            .getThemeByUUID(uuid);
+                    customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+    }
 
+    /*
+    private void getMarketplaceColorThemes() {
+        FirestoreMarketplace.getThemes()
+            .addOnFailureListener(e -> {
+                Log.d("Firestore", "Theme document query FAILED!");
+                e.printStackTrace();
+            }).addOnCompleteListener(task -> {
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+
+                    if (!documentSnapshot.exists()) {
+                        Log.d("Firestore", "Theme document snapshot DNE.");
+                    }
+
+                    try {
+                        PETTheme tempTheme = documentSnapshot.toObject(PETTheme.class);
+                        if(tempTheme != null) {
+                            PETTheme petTheme = new PETTheme(
+                                    documentSnapshot.getReference().getId(),
+                                    tempTheme);
+                            Log.d("Firestore", petTheme.toString());
+                        }
+                    } catch (Exception e) {
+                        Log.d("Firestore", "Error CREATING PETTheme!");
+                        e.printStackTrace();
+                    }
+                }
+            });
+    }
+    */
+
+    private void demoStyles() {
         PETActivity activity = ((PETActivity)getActivity());
         if(activity != null) {
-            activity.changeTheme(-1, fontIndex);
+            activity.changeTheme(
+                    globalPreferencesViewModel.getColorTheme(),
+                    globalPreferencesViewModel.getFontTheme()
+            );
         }
         refreshFragment();
     }
 
+    private void revertDemoChanges() {
+        globalPreferencesViewModel.getColorThemeControl().revertSelection();
+        globalPreferencesViewModel.getFontThemeControl().revertSelection();
+
+        PETActivity activity = ((PETActivity)getActivity());
+        if (activity != null) {
+            activity.changeTheme(
+                            globalPreferencesViewModel.getColorTheme(),
+                            globalPreferencesViewModel.getFontTheme());
+        }
+    }
+
+    private void demoFontStyle(FontThemeControl fontThemeControl) {
+        PETActivity activity = ((PETActivity)getActivity());
+        if(activity != null) {
+            activity.changeTheme(
+                    globalPreferencesViewModel.getColorTheme(),
+                    fontThemeControl.getAppThemeAt(fontThemeControl.getSelectedIndex()));
+        }
+        refreshFragment();
+    }
+
+    private void demoColorStyle(ColorThemeControl colorThemeControl) {
+        PETActivity activity = ((PETActivity)getActivity());
+        if(activity != null) {
+            activity.changeTheme(
+                    colorThemeControl.getAppThemeAt(colorThemeControl.getSelectedIndex()),
+                    globalPreferencesViewModel.getFontTheme());
+        }
+        refreshFragment();
+    }
 
     public void showAdsConsentForm(Context context) {
 
@@ -405,7 +561,6 @@ public class AppSettingsFragment extends Fragment {
         ft.attach(AppSettingsFragment.this).commitNow();
     }
 
-
     private void initFirebase() {
         if(getContext() != null){
             analytics = FirebaseAnalytics.getInstance(getContext());
@@ -421,35 +576,161 @@ public class AppSettingsFragment extends Fragment {
     public void saveStates() {
 
         if (globalPreferencesViewModel != null && getContext() != null) {
+            globalPreferencesViewModel.getFontThemeControl().setSavedIndex();
+            globalPreferencesViewModel.getColorThemeControl().setSavedIndex();
+
             globalPreferencesViewModel.saveToFile(getContext());
         }
-        if (getActivity() != null) {
-            ((PETActivity) getActivity()).
-                    changeTheme(globalPreferencesViewModel.getColorSpace(), globalPreferencesViewModel.getFontType());
-        }
-        if(globalPreferencesViewModel.getIsAlwaysOn()) {
-            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
-        /*
-        if(getActivity() != null && mustRefresh) {
-            getActivity().recreate();
+        PETActivity activity = ((PETActivity) getActivity());
+        if (activity != null) {
+            activity.changeTheme(
+                            globalPreferencesViewModel.getColorTheme(),
+                            globalPreferencesViewModel.getFontTheme());
+            if(globalPreferencesViewModel.getIsAlwaysOn() ) {
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+            activity.recreate();
         }
+    }
 
-        if (getView() != null) {
-            getView().setKeepScreenOn(globalPreferencesViewModel.getIsAlwaysOn());
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            result -> {
+                try {
+                    onSignInResultAccount(result);
+                } catch (RuntimeException e) {
+                    String message = "Login Error: " + e.getMessage();
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+                }
+            }
+    );
+
+    /**
+     *
+     */
+    public void manualSignInAccount() {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Log.d("ManuLogin", "User null!");
+            return;
         }
-        */
+        Log.d("ManuLogin", "Continuing to sign-in.");
+
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setIsSmartLockEnabled(false)
+                .build();
+
+        signInLauncher.launch(signInIntent);
 
     }
 
     /**
-     * onPause method
+     *
      */
-    @Override
-    public void onPause() {
+    private void onSignInResultAccount(FirebaseAuthUIAuthenticationResult result) {
+        IdpResponse response = result.getIdpResponse();
+        if (result.getResultCode() == RESULT_OK) {
+            // Successfully signed in
+            FirebaseUser user = null;
+            try {
+                user = FirestoreUser.getCurrentFirebaseUser();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            if(user != null) {
+                String message = "Welcome " + user.getDisplayName();
+                Toast toast = Toast.makeText(requireActivity(),
+                        message,
+                        com.google.android.material.R.integer.material_motion_duration_short_2);
+                toast.show();
 
-        super.onPause();
+                refreshFragment();
+
+                // Generate a Firestore document for the User with default data if needed
+                try {
+                    FirestoreUser.buildUserDocument();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                getUserPurchaseHistory();
+
+            }
+        } else {
+
+            String message = "ERROR: (Error data could not be acquired).";
+            if(response != null) {
+                FirebaseUiException error = response.getError();
+                if(error != null) {
+                    message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+                }
+            }
+
+            Toast toast = Toast.makeText(requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2);
+            toast.show();
+        }
     }
 
+    /**
+     *
+     */
+    public void signOutAccount() {
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            return;
+        }
+
+        AuthUI.getInstance()
+                .signOut(requireContext())
+                .addOnCompleteListener(task -> {
+
+                    String message = "User signed out";
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+
+                    globalPreferencesViewModel.getColorThemeControl().revertAllUnlockedStatuses();
+                    globalPreferencesViewModel.getColorThemeControl().setSelectedIndex(-1);
+                    globalPreferencesViewModel.getColorThemeControl().setSavedIndex(-1);
+
+                    globalPreferencesViewModel.saveColorSpace(getContext());
+
+                    demoColorStyle(globalPreferencesViewModel.getColorThemeControl());
+
+
+                });
+    }
+
+    /**
+     *
+     */
+    public void deleteAccount() {
+        AuthUI.getInstance()
+                .delete(requireContext())
+                .addOnCompleteListener(task -> {
+                    String message = "Successfully removed account.";
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+
+                    refreshFragment();
+                });
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+    }
 }

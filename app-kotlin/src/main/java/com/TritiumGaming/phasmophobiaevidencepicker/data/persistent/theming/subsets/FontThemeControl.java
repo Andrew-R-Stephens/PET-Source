@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.sub
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
@@ -11,7 +10,6 @@ import androidx.annotation.StyleRes;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.AThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * ColorSpaceData class
@@ -29,9 +27,9 @@ public class FontThemeControl extends AThemeControl {
     @Override
     @SuppressLint("Recycle, ResourceType")
     protected void build(Context context) {
-        // COLORBLIND DATA
+        // FONT DATA
         TypedArray subThemesArray =
-                context.getResources().obtainTypedArray(R.array.settings_fontstyle_array);
+                context.getResources().obtainTypedArray(R.array.settings_themes_fonts_array);
 
         for (int i = 0; i < subThemesArray.length(); i++) {
             TypedArray themeArray =
@@ -49,11 +47,11 @@ public class FontThemeControl extends AThemeControl {
                 int themeCount = themeNamesArray.length();
 
                 for (int k = 0; k < themeCount; k++) {
-                    @StringRes int idRes = themeIDsArray.getResourceId(k, 0);
+                    String idRes = themeIDsArray.getString(k);
                     @StringRes int nameRes = themeNamesArray.getResourceId(k, 0);
                     @StyleRes int styleRes = themeStyleArray.getResourceId(k, 0);
 
-                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes);
+                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes, true);
 
                     themes.add(tempTheme);
                 }

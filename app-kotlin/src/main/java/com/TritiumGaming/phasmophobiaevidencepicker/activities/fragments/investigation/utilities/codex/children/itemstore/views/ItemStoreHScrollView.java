@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.invest
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
 
 public class ItemStoreHScrollView extends HorizontalScrollView {
 

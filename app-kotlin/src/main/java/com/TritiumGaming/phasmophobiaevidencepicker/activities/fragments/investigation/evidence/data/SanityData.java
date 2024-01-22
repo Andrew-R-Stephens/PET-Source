@@ -54,7 +54,6 @@ public class SanityData {
         int diffIndex = evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex();
 
         if (difficultyRate != null && (diffIndex >= 0 && diffIndex < difficultyRate.length)) {
-
             return difficultyRate[diffIndex];
         }
 
@@ -74,16 +73,23 @@ public class SanityData {
     public double getDropRate() {
         if (evidenceViewModel != null) {
 
-            if (evidenceViewModel.getPhaseTimerData().getTimeRemaining() <= 0L) {
+            int currMapSize = evidenceViewModel.getMapCarouselData().getMapCurrentSize();
 
-                return dropRate_normal[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
+            if (evidenceViewModel.getPhaseTimerData().getTimeRemaining() <= 0L) {
+                return getNormalDrainRate(currMapSize);
             }
 
-            return dropRate_setup[evidenceViewModel.getMapCarouselData().getMapCurrentSize()];
+            return getSanityDrainRate(currMapSize);
         }
 
         return 1;
     }
+
+    public double getNormalDrainRate(int mapSize) {
+        return dropRate_normal[mapSize];
+    }
+
+    public double getSanityDrainRate(int mapSize) { return dropRate_setup[mapSize]; }
 
     /**
      * setStartTime method

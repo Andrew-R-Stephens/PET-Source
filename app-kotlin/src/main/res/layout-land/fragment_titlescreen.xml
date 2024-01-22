@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:background="?attr/backgroundColor"
     android:layout_width="match_parent"
@@ -91,7 +90,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:layout_constraintWidth_percent=".5"
-                    app:tint="?attr/negativeSelColor"
+                    app:tint="?attr/inboxNotification"
                     app:tintMode="multiply" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,7 +162,7 @@
                 android:maxLines="1"
                 android:text="@string/titlescreen_description"
                 android:textAllCaps="true"
-                android:textColor="?attr/splashtitleFontColor"
+                android:textColor="?attr/splashTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".05"
@@ -184,7 +183,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:maxLines="1"
-            android:padding="5dp"
+            android:padding="8dp"
             android:text="@string/titlescreen_button"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout28"
@@ -213,7 +212,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="?attr/bodyFontColor"
+                android:textColor="?attr/textColorBody"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/icon_language"
@@ -242,7 +241,7 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

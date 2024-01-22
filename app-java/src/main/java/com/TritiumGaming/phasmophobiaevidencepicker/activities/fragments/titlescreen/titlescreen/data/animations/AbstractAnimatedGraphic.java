@@ -1,8 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations;
 
 import android.graphics.Bitmap;
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 
@@ -117,6 +119,24 @@ public abstract class AbstractAnimatedGraphic {
         if (BitmapUtils.bitmapExists(bitmap) && canvas != null) {
             canvas.drawBitmap(
                     bitmap, null, getRect(), paint);
+        }
+    }
+
+    /**
+     * @param canvas
+     * @param paint
+     * @param bitmap1
+     * @param bitmap2
+     */
+    public void draw(Canvas canvas, Paint paint, Bitmap bitmap1, Bitmap bitmap2) {
+
+        if (BitmapUtils.bitmapExists(bitmap1) && canvas != null) {
+
+            canvas.drawBitmap(
+                    bitmap1, null, getRect(), paint);
+
+            canvas.drawBitmap(
+                    bitmap2, null, getRect(), paint);
         }
     }
 

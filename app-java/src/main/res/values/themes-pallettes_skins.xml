@@ -5,6 +5,7 @@
     <!-- Skins -->
 
     <style name="Skin" parent="NonColorblind.Base">
+        <!-- -->
     </style>
 
 
@@ -25,7 +26,6 @@
 
 
     <!-- Prestiges -->
-
 
     <style name="Recruit" parent="Prestige">
         <item name="a">@color/white</item>
@@ -75,7 +75,6 @@
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/orange_M300</item>
-        <item name="inboxNotification">@color/orange_M150</item>
         <item name="strikethroughColor">@color/orange_M300</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M150</item>
@@ -106,10 +105,13 @@
         <item name="codex_grid_background_tint">#40232C2C</item>
 
         <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
-        <item name="theme_title">Recruit</item>
+        <item name="theme_title">@string/settings_colormode_prestige_recruit</item>
 
         <item name="navigationFooterIcon">#818180</item>
         <item name="navigationFooterIconAlt">@color/orange_M150</item>
+
+        <item name="buttonFilterOnPrimary">@color/white_M50</item>
+        <item name="inboxNotification">@color/orange_M150</item>
 
     </style>
 
@@ -163,6 +165,7 @@
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/purple_M75</item>
         <item name="inboxNotification">@color/purple_M75</item>
+        <item name="buttonFilterOnPrimary">@color/white_M300</item>
         <item name="strikethroughColor">@color/purple_M525</item>
         <item name="circleColor">@color/purple_M75</item>
         <item name="selectedColor">@color/purple_M75</item>
@@ -190,12 +193,13 @@
         <item name="codex_grid_background_tint">#40390721</item>
 
         <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
-        <item name="theme_title">Investigator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_investigator</item>
 
         <item name="navigationFooterIcon">#4DD71472</item>
         <item name="navigationFooterIconAlt">@color/purple_M250</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
+
 
         <!--
         <item name="textColorPrimary">@color/purple_M250</item>
@@ -207,7 +211,7 @@
         <item name="light_inactive">@color/purple_M50_A40</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/purple_M300</item>
-        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="filterColorOnPrimary">@color/purple_M75</item>
         <item name="strikethroughColor">@color/purple_M300</item>
         <item name="circleColor">@color/purple</item>
         <item name="selectedColor">@color/purple_M75</item>
@@ -282,7 +286,7 @@
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/orange_M510</item>
         <item name="switchColor">@color/orange_M10</item>
-        <item name="inboxNotification">@color/orange_M10</item>
+        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="strikethroughColor">@color/orange_M510</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M10</item>
@@ -312,12 +316,14 @@
         <item name="codex_grid_background_tint">#403E2A17</item>
 
         <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
-        <item name="theme_title">Private Investigator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_privateinvestigator</item>
 
         <item name="navigationFooterIcon">#8078522B</item>
         <item name="navigationFooterIconAlt">@color/orange_M10</item>
 
         <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
+       <item name="inboxNotification">@color/orange_M10</item>
 
     </style>
 
@@ -371,7 +377,7 @@
         <item name="light_inactive">@color/green_M525</item>
         <item name="light_off">#2E332F</item>
         <item name="switchColor">@color/green_M25</item>
-        <item name="inboxNotification">@color/green_M25</item>
+        <item name="buttonFilterOnPrimary">@color/white_M20</item>
         <item name="strikethroughColor">@color/white_M300</item>
         <item name="circleColor">@color/green_M25</item>
         <item name="selectedColor">@color/green_M25</item>
@@ -400,12 +406,14 @@
         <item name="codex_grid_background_tint">#401E221F</item>
 
         <item name="theme_badge">@drawable/theme_badge_4_detective</item>
-        <item name="theme_title">Detective</item>
+        <item name="theme_title">@string/settings_colormode_prestige_detective</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/green_M25</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0F100F</item>
+
+       <item name="inboxNotification">@color/green_M25</item>
 
         <!--
         <item name="a">@color/white_M20</item>
@@ -447,7 +455,7 @@
         <item name="light_inactive">@color/green_M525</item>
         <item name="light_off">@color/green_M825</item>
         <item name="switchColor">@color/purple_M75</item>
-        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="filterColorOnPrimary">@color/purple_M75</item>
         <item name="strikethroughColor">?attr/negativeSelColor</item>
         <item name="circleColor">?attr/positiveSelColor</item>
         <item name="selectedColor">@color/green_M25</item>
@@ -526,7 +534,7 @@
         <item name="light_inactive">#5E0D0B</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/red_M375</item>
-        <item name="inboxNotification">@color/red_M375</item>
+        <item name="buttonFilterOnPrimary">#E0E0E0</item>
         <item name="strikethroughColor">#5E0D0B</item>
         <item name="circleColor">@color/red_M375</item>
         <item name="selectedColor">@color/red_M375</item>
@@ -556,13 +564,15 @@
         <item name="codex_grid_background_tint">#403E1312</item>
 
         <item name="theme_badge">@drawable/theme_badge_5_technician</item>
-        <item name="theme_title">Technician</item>
+        <item name="theme_title">@string/settings_colormode_prestige_technician</item>
 
         <item name="navigationFooterIcon">@color/white_M600</item>
         <item name="navigationFooterIconAlt">@color/red_M375</item>
 
 
         <item name="backgroundColor_mapviewOverlay">#BF050C04</item>
+
+       <item name="inboxNotification">@color/red_M375</item>
 
     </style>
 
@@ -620,7 +630,7 @@
         <item name="light_inactive">#80994D</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/green_M150</item>
-        <item name="inboxNotification">@color/green_M150</item>
+        <item name="buttonFilterOnPrimary">#A0B17B</item>
         <item name="strikethroughColor">#A0B17B</item>
         <item name="circleColor">@color/green_M150</item>
         <item name="selectedColor">#80994D</item>
@@ -648,12 +658,14 @@
         <item name="codex_grid_background_tint">#40070C05</item>
 
         <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
-        <item name="theme_title">Specialist</item>
+        <item name="theme_title">@string/settings_colormode_prestige_specialist</item>
 
         <item name="navigationFooterIcon">#545B4D</item>
         <item name="navigationFooterIconAlt">@color/green_M150</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF070C05</item>
+
+       <item name="inboxNotification">@color/green_M150</item>
 
     </style>
 
@@ -708,7 +720,7 @@
         <item name="light_inactive">@color/orange_M525</item>
         <item name="light_off">@color/red_M850</item>
         <item name="switchColor">#2667CD</item>
-        <item name="inboxNotification">#CD2547</item>
+        <item name="buttonFilterOnPrimary">#CD2547</item>
         <item name="strikethroughColor">#CD2547</item>
         <item name="circleColor">#7BCD26</item>
         <item name="selectedColor">#2667CD</item>
@@ -736,12 +748,14 @@
         <item name="codex_grid_background_tint">#40201B19</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
-        <item name="theme_title">Analyst</item>
+        <item name="theme_title">@string/settings_colormode_prestige_analyst</item>
 
         <item name="navigationFooterIcon">@color/orange_M525</item>
         <item name="navigationFooterIconAlt">#2667CD</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF1B1516</item>
+
+       <item name="inboxNotification">#D3C9C3</item>
 
     </style>
 
@@ -797,7 +811,7 @@
         <item name="light_inactive">#1D4E49</item>
         <item name="light_off">#202A29</item>
         <item name="switchColor">@color/blue_M90</item>
-        <item name="inboxNotification">@color/blue_M90</item>
+        <item name="buttonFilterOnPrimary">@color/white</item>
         <item name="strikethroughColor">#1D4E49</item>
         <item name="circleColor">@color/blue_M90</item>
         <item name="selectedColor">#167467</item>
@@ -825,12 +839,14 @@
         <item name="codex_grid_background_tint">#40101515</item>
 
         <item name="theme_badge">@drawable/theme_badge_8_agent</item>
-        <item name="theme_title">Agent</item>
+        <item name="theme_title">@string/settings_colormode_prestige_agent</item>
 
         <item name="navigationFooterIcon">#858686</item>
         <item name="navigationFooterIconAlt">@color/blue_M90</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF101515</item>
+
+       <item name="inboxNotification">@color/blue_M90</item>
 
     </style>
 
@@ -884,6 +900,7 @@
         <item name="textColorBodyEmphasis">@color/purple_M250</item>
         <item name="switchColor">@color/purple_M300</item>
         <item name="inboxNotification">@color/purple_M150</item>
+        <item name="buttonFilterOnPrimary">@color/purple_M475</item>
         <item name="strikethroughColor">@color/purple_M300</item>
         <item name="textColorSecondary">@color/purple_M300</item>
         <item name="mapRoomBorderColor">@color/purple_M300_A58</item>
@@ -912,7 +929,7 @@
         <item name="codex_grid_background_tint">#40130B29</item>
 
         <item name="theme_badge">@drawable/theme_badge_9_operator</item>
-        <item name="theme_title">Operator</item>
+        <item name="theme_title">@string/settings_colormode_prestige_operator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M150</item>
@@ -973,6 +990,7 @@
         <item name="light_off">@color/purple_M825</item>
         <item name="switchColor">@color/orange_M10</item>
         <item name="inboxNotification">@color/orange_M05</item>
+        <item name="buttonFilterOnPrimary">#FDF9EE</item>
         <item name="strikethroughColor">#765932</item>
         <item name="circleColor">@color/orange_M05</item>
         <item name="selectedColor">#E5A348</item>
@@ -1000,12 +1018,13 @@
         <item name="codex_grid_background_tint">#40232323</item>
 
         <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
-        <item name="theme_title">Commissioner</item>
+        <item name="theme_title">@string/settings_colormode_prestige_commissioner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#E5A348</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
+
 
     </style>
 
@@ -1015,7 +1034,7 @@
     <style name="Easter" parent="Event">
         <item name="k">@color/white</item>
         <item name="l">#F8E8BD</item>
-        <item name="c">@color/orange_M75</item>
+        <item name="c">@color/orange_M05</item>
         <item name="j">#E1EBE5</item>
         <item name="i">#7CAB91</item>
         <item name="b">@color/green_M550</item>
@@ -1063,7 +1082,8 @@
         <item name="light_inactive">#F8E8BD</item>
         <item name="light_off">#1C180D</item>
         <item name="switchColor">@color/orange_M75</item>
-        <item name="inboxNotification">@color/orange_M75</item>
+        <item name="buttonFilterOnPrimary">#E1EBE5</item>
+        <item name="inboxNotification">@color/orange_M05</item>
         <item name="strikethroughColor">#21654A</item>
         <item name="circleColor">@color/orange_M75</item>
         <item name="selectedColor">#F8E8BD</item>
@@ -1091,7 +1111,7 @@
         <item name="codex_grid_background_tint">#40203E36</item>
 
         <item name="theme_badge">@drawable/theme_badge_easter</item>
-        <item name="theme_title">Easter</item>
+        <item name="theme_title">@string/settings_colormode_event_easter</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M75</item>
@@ -1152,7 +1172,7 @@
         <item name="light_inactive">#9F4B0D</item>
         <item name="light_off">#3F1602</item>
         <item name="switchColor">#EC700D</item>
-        <item name="inboxNotification">#EC700D</item>
+        <item name="buttonFilterOnPrimary">#D7CCC3</item>
         <item name="strikethroughColor">#D7CCC3</item>
         <item name="circleColor">#EC700D</item>
         <item name="selectedColor">#C85E0D</item>
@@ -1180,13 +1200,14 @@
         <item name="codex_grid_background_tint">#401B0A00</item>
 
         <item name="theme_badge">@drawable/theme_badge_halloween23</item>
-        <item name="theme_title">Halloween \'23</item>
+        <item name="theme_title">@string/settings_colormode_event_halloween</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#C85E0D</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0C0400</item>
 
+       <item name="inboxNotification">#EC700D</item>
 
     </style>
 
@@ -1242,7 +1263,7 @@
         <item name="light_inactive">#2A2E45</item>
         <item name="light_off">@color/blue_M750</item>
         <item name="switchColor">@color/blue_M125</item>
-        <item name="inboxNotification">@color/blue_M125</item>
+        <item name="buttonFilterOnPrimary">#F8BC7F</item>
         <item name="strikethroughColor">@color/blue_M125</item>
         <item name="circleColor">@color/orange_M50</item>
         <item name="selectedColor">@color/blue_M125</item>
@@ -1270,12 +1291,14 @@
         <item name="codex_grid_background_tint">#40293750</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday22</item>
-        <item name="theme_title">Holiday \'22</item>
+        <item name="theme_title">@string/settings_colormode_event_holiday22</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M125</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0D0E19</item>
+
+       <item name="inboxNotification">#6996E4</item>
 
     </style>
 
@@ -1341,7 +1364,7 @@
         <item name="light_inactive">#40E9AD4C</item>
         <item name="light_off">#2A2E45</item>
         <item name="switchColor">#447CDE</item>
-        <item name="inboxNotification">#E9AD4C</item>
+        <item name="buttonFilterOnPrimary">#447CDE</item>
         <item name="strikethroughColor">#447CDE</item>
         <item name="circleColor">#E9AD4C</item>
         <item name="selectedColor">#E9AD4C</item>
@@ -1369,13 +1392,14 @@
         <item name="codex_grid_background_tint">#402A487E</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday23</item>
-        <item name="theme_title">Holiday \'23</item>
+        <item name="theme_title">@string/settings_colormode_event_holiday23</item>
 
         <item name="navigationFooterIcon">#B1AEA9</item>
         <item name="navigationFooterIconAlt">#E9AD4C</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF1B1C33</item>
 
+       <item name="inboxNotification">#E9AD4C</item>
 
     </style>
 
@@ -1432,7 +1456,7 @@
         <item name="light_inactive">#AAB3F3</item>
         <item name="light_off">@color/blue_M850</item>
         <item name="switchColor">@color/blue_M75</item>
-        <item name="inboxNotification">@color/blue_M75</item>
+        <item name="buttonFilterOnPrimary">#AAB3F3</item>
         <item name="strikethroughColor">#C3C4C6</item>
         <item name="circleColor">@color/blue_M75</item>
         <item name="selectedColor">#AAB3F3</item>
@@ -1460,13 +1484,14 @@
         <item name="codex_grid_background_tint">#401D2023</item>
 
         <item name="theme_badge">@drawable/theme_badge_discord</item>
-        <item name="theme_title">Discord</item>
+        <item name="theme_title">@string/settings_colormode_community_discord</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M75</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF131517</item>
 
+       <item name="inboxNotification">#F3F3F7</item>
 
     </style>
 
@@ -1520,7 +1545,7 @@
         <item name="light_inactive">#510E1B</item>
         <item name="light_off">#1E1013</item>
         <item name="switchColor">@color/red_M225</item>
-        <item name="inboxNotification">@color/red_M225</item>
+        <item name="buttonFilterOnPrimary">#CACACA</item>
         <item name="strikethroughColor">#780C0C</item>
         <item name="circleColor">#DF1740</item>
         <item name="selectedColor">@color/red_M225</item>
@@ -1548,13 +1573,14 @@
         <item name="codex_grid_background_tint">#40510E1B</item>
 
         <item name="theme_badge">@drawable/theme_badge_cc</item>
-        <item name="theme_title">Content Creator</item>
+        <item name="theme_title">@string/settings_colormode_community_contentcreator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#DF1740</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
 
+       <item name="inboxNotification">@color/red_M225</item>
 
     </style>
 
@@ -1608,7 +1634,7 @@
         <item name="light_inactive">#66ECD316</item>
         <item name="light_off">#1AECD316</item>
         <item name="switchColor">@color/yellow_M25</item>
-        <item name="inboxNotification">@color/yellow_M25</item>
+        <item name="buttonFilterOnPrimary">#D3C667</item>
         <item name="strikethroughColor">#E2E2DF</item>
         <item name="circleColor">@color/yellow_M25</item>
         <item name="selectedColor">@color/yellow_M25</item>
@@ -1637,12 +1663,14 @@
         <item name="codex_grid_background_tint">#40535353</item>
 
         <item name="theme_badge">@drawable/theme_badge_dev</item>
-        <item name="theme_title">Developer</item>
+        <item name="theme_title">@string/settings_colormode_community_developer</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/yellow_M25</item>
 
         <item name="backgroundColor_mapviewOverlay">#40535353</item>
+
+        <item name="inboxNotification">#E2E2DF</item>
 
     </style>
 
@@ -1697,7 +1725,7 @@
         <item name="light_inactive">#535052</item>
         <item name="light_off">@color/purple_M850</item>
         <item name="switchColor">@color/red_M150</item>
-        <item name="inboxNotification">@color/red_M150</item>
+        <item name="buttonFilterOnPrimary">#FCFAFB</item>
         <item name="strikethroughColor">#D99CA5</item>
         <item name="circleColor">@color/red_M150</item>
         <item name="selectedColor">@color/red_M150</item>
@@ -1725,12 +1753,14 @@
         <item name="codex_grid_background_tint">#4033292B</item>
 
         <item name="theme_badge">@drawable/theme_badge_translator</item>
-        <item name="theme_title">Translator</item>
+        <item name="theme_title">@string/settings_colormode_community_translator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/red_M150</item>
 
         <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
+
+        <item name="inboxNotification">#DA7F88</item>
 
     </style>
 
@@ -1785,7 +1815,7 @@
         <item name="light_inactive">@color/blue_M850</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">#936305</item>
-        <item name="inboxNotification">@color/orange_M250</item>
+        <item name="buttonFilterOnPrimary">@color/white</item>
         <item name="strikethroughColor">#936305</item>
         <item name="circleColor">@color/orange_M250</item>
         <item name="selectedColor">#DABA80</item>
@@ -1815,12 +1845,14 @@
         <item name="codex_grid_background_tint">#40161C1C</item>
 
         <item name="theme_badge">@drawable/theme_badge_winner</item>
-        <item name="theme_title">Winner</item>
+        <item name="theme_title">@string/settings_colormode_community_winner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M250</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF060C10</item>
+
+        <item name="inboxNotification">#DABA80</item>
 
     </style>
 
@@ -1875,7 +1907,7 @@
         <item name="light_inactive">#5B399E</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/purple_M550</item>
-        <item name="inboxNotification">@color/purple_M550</item>
+        <item name="buttonFilterOnPrimary">#E3D6F7</item>
         <item name="strikethroughColor">#5B399E</item>
         <item name="circleColor">#E3D6F7</item>
         <item name="selectedColor">@color/purple_M550</item>
@@ -1903,13 +1935,14 @@
         <item name="codex_grid_background_tint">#400A0C0C</item>
 
         <item name="theme_badge">@drawable/theme_badge_artist</item>
-        <item name="theme_title">Artist</item>
+        <item name="theme_title">@string/settings_colormode_community_artist</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M550</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0A0C0C</item>
 
+        <item name="inboxNotification">#E3D6F7</item>
 
     </style>
 

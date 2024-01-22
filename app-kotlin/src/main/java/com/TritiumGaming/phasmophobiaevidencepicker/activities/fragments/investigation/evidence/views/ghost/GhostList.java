@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.EvidenceFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation.InvestigationList;
@@ -42,14 +41,14 @@ public class GhostList extends InvestigationList {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void createGhostViews() {
+    public void createGhostViews(PopupWindow popupWindow) {
 
         popupData = new GhostPopupData(getContext());
 
         Activity activity = (Activity) getContext();
         if(activity != null) {
             activity.runOnUiThread(() -> {
-                buildGhostViews();
+                buildGhostViews(popupWindow);
 
                 post(() -> haltProgressAnimation(progressBar));
             });
@@ -92,7 +91,9 @@ public class GhostList extends InvestigationList {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void buildGhostViews() {
+    private void buildGhostViews(PopupWindow pw) {
+
+        this.popupWindow = pw;
 
         if(getContext() == null) { return; }
 
@@ -112,8 +113,9 @@ public class GhostList extends InvestigationList {
                     }
 
                     GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
+                    ghostPopupWindow.setPopupWindow(popupWindow);
                     ghostPopupWindow.build(evidenceViewModel, popupData, j, adRequest);
-                    popupWindow = ghostPopupWindow.getPopupWindow();
+                    //popupWindow = ghostPopupWindow.getPopupWindow();
 
                 }
             };

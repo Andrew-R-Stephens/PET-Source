@@ -39,11 +39,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenV
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
@@ -109,14 +104,14 @@ public class TitlescreenFragment extends Fragment {
         button_info.setOnClickListener(this::gotoAppInfoFragment);
         button_settings.setOnClickListener(this::gotoAppSettingsFragment);
         button_language.setOnClickListener(this::gotoLanguagesFragment);
-        button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
+        //button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
+        button_msgInbox.setOnClickListener(this::gotoMarketplaceFragment);
         button_startSolo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                 intent.putExtra("lobby", 0);
                 startActivity(intent);
             }
         );
-
         /*button_startMult.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                 intent.putExtra("lobby", 1);
@@ -133,7 +128,7 @@ public class TitlescreenFragment extends Fragment {
 
         renderAd(view);
 
-        if(! (getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates())) {
+        if(!(getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates())) {
             initReviewRequest(button_review);
         }
 
@@ -276,6 +271,11 @@ public class TitlescreenFragment extends Fragment {
                 navigate(R.id.action_titleScreenFragment_to_inboxFragment);
     }
 
+    private void gotoMarketplaceFragment(View v) {
+        Navigation.findNavController(v).
+                navigate(R.id.action_titleScreenFragment_to_marketplaceFragment);
+    }
+
     /**
      * gotoAppInfoFragment method
      */
@@ -289,7 +289,6 @@ public class TitlescreenFragment extends Fragment {
      * gotoAppSettingsFragment method
      */
     private void gotoAppSettingsFragment(View v) {
-
         Navigation.findNavController(v).
                 navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
     }

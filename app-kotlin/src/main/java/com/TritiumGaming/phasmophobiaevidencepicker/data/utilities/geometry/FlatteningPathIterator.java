@@ -1,7 +1,7 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-import java.util.*;
+import java.util.NoSuchElementException;
 
 public class FlatteningPathIterator implements PathIterator {
     static final int GROW_SIZE = 24;    // Multiple of cubic & quad curve size

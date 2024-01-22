@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -37,11 +36,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/subtitleFontColor" />
+                app:tint="?attr/textColorSecondary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textview_title"
-                style="@style/NorseRegular"
+                style="@style/NorseRegular_Auto"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -138,13 +137,13 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0"
-                            app:tint="?attr/negativeSelColor"
+                            app:tint="?attr/inboxNotification"
                             app:tintMode="multiply" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_extranews"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -158,7 +157,7 @@
                         android:scaleType="centerInside"
                         android:singleLine="true"
                         android:text="@string/messagecenter_inbox_general"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -231,13 +230,13 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0"
-                            app:tint="?attr/negativeSelColor"
+                            app:tint="?attr/inboxNotification"
                             app:tintMode="multiply" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_petupdateinbox"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -251,7 +250,7 @@
                         android:scaleType="centerInside"
                         android:singleLine="true"
                         android:text="@string/messagecenter_inbox_pet"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -325,14 +324,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0"
-                            app:tint="?attr/negativeSelColor"
+                            app:tint="?attr/inboxNotification"
                             app:tintMode="multiply" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_phasupdateinbox"
-                        style="?attr/primaryFont_Regular_Squeeze"
+                        style="?attr/primaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:adjustViewBounds="true"
@@ -346,7 +345,7 @@
                         android:scaleType="centerInside"
                         android:singleLine="true"
                         android:text="@string/messagecenter_inbox_phas"
-                        android:textColor="?attr/titleFontColor"
+                        android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -366,7 +365,7 @@
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         android:background="#00FFFFFF"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

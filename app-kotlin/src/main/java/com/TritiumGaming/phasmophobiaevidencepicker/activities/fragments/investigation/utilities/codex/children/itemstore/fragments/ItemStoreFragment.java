@@ -4,10 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +47,10 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
 
     protected View dataView;
 
+    private int
+            selColor = Color.parseColor("#2D3635"),
+            unselColor = Color.parseColor("#FFB43D");
+
     @Nullable
     @Override
     public View onCreateView(
@@ -61,6 +68,13 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         super.onViewCreated(view, savedInstanceState);
 
         if(getContext() == null || getContext().getResources() == null) { return; }
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
+        unselColor = typedValue.data;
+        theme.resolveAttribute(R.attr.codex_5, typedValue, true);
+        selColor = typedValue.data;
 
         AppCompatTextView titleView = view.findViewById(R.id.label_pagetitle);
         ViewGroup itemStore = view.findViewById(R.id.item_safehouse_itemstore);
@@ -189,6 +203,8 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                     }
                 });
         }
+
+        stylizeLogo(view.findViewById(R.id.label_codex_ghostos));
     }
 
     protected abstract void setPageTitle(AppCompatTextView titleView);
@@ -272,7 +288,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         param.height = (!isPortrait) ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
         equipmentView.setLayoutParams(param);
         equipmentView.setImageResource(icon);
-        setIconFilter(equipmentView, "#2D3635", 1f);
+        setIconFilter(equipmentView, /*"#2D3635"*/ selColor, 1f);
         scrollViewPaginator.addView(equipmentView);
     }
 
@@ -387,13 +403,11 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         for(int j = 0; j < paginatorChildCount; j++) {
             ImageView icon = scrollViewPaginator.getChildAt(j)
                     .findViewById(R.id.image_equipmentIcon);
-            //setIconFilter(icon, Color.argb(255, 255, 255, 255), .5f);
-            setIconFilter(icon, "#2D3635", 1f);
+            setIconFilter(icon, selColor, 1f);
         }
         ImageView icon = scrollViewPaginator.getChildAt(markIndex)
                 .findViewById(R.id.image_equipmentIcon);
-        //setIconFilter(icon, Color.argb(255, 255, 0, 0), .75f);
-        setIconFilter(icon, "#FFB43D", 1f);
+        setIconFilter(icon, unselColor, 1f);
     }
 
     private static void setIconFilter(ImageView icon, int colorInt, float alpha) {
@@ -404,6 +418,22 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
     /** @noinspection SameParameterValue*/
     private static void setIconFilter(ImageView icon, String colorString, float alpha) {
         setIconFilter(icon, Color.parseColor(colorString), alpha);
+    }
+
+
+    public void stylizeLogo(AppCompatTextView label_ghostOS) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = requireContext().getTheme();
+        theme.resolveAttribute(R.attr.codex_2, typedValue, true);
+        int color1 = typedValue.data;
+        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
+        int color2 = typedValue.data;
+        String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
+        String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
+
+        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)
+                .replaceAll("#99AEB3", color1Hex)
+                .replaceAll("#FFB43D", color2Hex)));
     }
 
     @Override

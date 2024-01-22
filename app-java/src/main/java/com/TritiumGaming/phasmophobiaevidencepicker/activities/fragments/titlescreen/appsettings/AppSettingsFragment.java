@@ -6,13 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -40,8 +36,6 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.PETTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
@@ -211,33 +205,54 @@ public class AppSettingsFragment extends Fragment {
          */
         // COLORBLIND DATA
         ColorThemeControl colorThemesData = globalPreferencesViewModel.getColorThemeControl();
-        text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
+        try {
+            text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // COLORBLIND LISTENERS
         btn_colorblindMode_left.setOnClickListener(v -> {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
             themeControl.iterateSelection(-1);
-            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
+            try {
+                text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             demoColorStyle(themeControl);
-
-            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
-
-            //demoStyles();
+            /*
+            try {
+                Log.d("ColorTheme",
+                        getString(themeControl.getCurrentName()) + " " +
+                        themeControl.getCurrentTheme().getUnlockedState().name());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            */
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
             themeControl.iterateSelection(1);
-            text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
+            try {
+                text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             demoColorStyle(themeControl);
-
-            Log.d("Theme", getString(themeControl.getCurrentName()) + " " + themeControl.getCurrentTheme().getUnlockedState().name());
-
-            //demoStyles();
+            /*
+            try {
+                Log.d("ColorTheme",
+                        getString(themeControl.getCurrentName()) + " " +
+                        themeControl.getCurrentTheme().getUnlockedState().name());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
         });
 
         /*
@@ -245,14 +260,22 @@ public class AppSettingsFragment extends Fragment {
          */
         // FONT-STYLE DATA
         FontThemeControl fontThemesData = globalPreferencesViewModel.getFontThemeControl();
-        text_fontStyle_selectedname.setText(fontThemesData.getCurrentName());
+        try {
+            text_fontStyle_selectedname.setText(fontThemesData.getCurrentName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // FONT-STYLE LISTENERS
         btn_fontStyle_left.setOnClickListener(v -> {
             FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
             themeControl.iterateSelection(-1);
-            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+            try {
+                text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             demoFontStyle(themeControl);
             //demoStyles();
@@ -262,7 +285,11 @@ public class AppSettingsFragment extends Fragment {
             FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
             themeControl.iterateSelection(1);
-            text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+            try {
+                text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             demoFontStyle(themeControl);
             //demoStyles();
@@ -436,6 +463,8 @@ public class AppSettingsFragment extends Fragment {
             //getMarketplaceColorThemes();
             loadThemes = false;
         }
+
+        btn_account_delete.setVisibility(View.GONE);
     }
 
     private void getUserPurchaseHistory() {
@@ -458,10 +487,11 @@ public class AppSettingsFragment extends Fragment {
                 }
             });
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
+    /*
     private void getMarketplaceColorThemes() {
         FirestoreMarketplace.getThemes()
             .addOnFailureListener(e -> {
@@ -489,6 +519,7 @@ public class AppSettingsFragment extends Fragment {
                 }
             });
     }
+    */
 
     private void demoStyles() {
         PETActivity activity = ((PETActivity)getActivity());
@@ -644,7 +675,12 @@ public class AppSettingsFragment extends Fragment {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
+            FirebaseUser user = null;
+            try {
+                user = FirestoreUser.getCurrentFirebaseUser();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),
@@ -655,7 +691,11 @@ public class AppSettingsFragment extends Fragment {
                 refreshFragment();
 
                 // Generate a Firestore document for the User with default data if needed
-                FirestoreUser.buildUserDocument();
+                try {
+                    FirestoreUser.buildUserDocument();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 getUserPurchaseHistory();
 
             }
@@ -694,12 +734,19 @@ public class AppSettingsFragment extends Fragment {
                             com.google.android.material.R.integer.material_motion_duration_short_2);
                     toast.show();
 
-                    globalPreferencesViewModel.getColorThemeControl().revertUnlockStatus();
-                    globalPreferencesViewModel.getColorThemeControl().setSelectedIndex(0);
-                    globalPreferencesViewModel.getColorThemeControl().setSavedIndex(0);
-                    demoColorStyle(globalPreferencesViewModel.getColorThemeControl());
+                    ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
-                    refreshFragment();
+                    themeControl.revertAllUnlockedStatuses();
+
+                    themeControl.iterateSelection(0);
+                    themeControl.setSelectedIndex(0);
+                    themeControl.setSavedIndex(0);
+                    //globalPreferencesViewModel.getColorThemeControl().init();
+
+                    globalPreferencesViewModel.saveColorSpace(getContext());
+
+                    demoColorStyle(themeControl);
+
                 });
     }
 

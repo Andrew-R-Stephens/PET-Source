@@ -1,8 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.InvestigationFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard;
 import com.google.android.material.card.MaterialCardView;
 
 public class CodexFragment extends InvestigationFragment {
@@ -36,16 +39,31 @@ public class CodexFragment extends InvestigationFragment {
 
         GridLayout gridView = view.findViewById(R.id.grid_codex);
 
-        MaterialCardView gotoCodex = gridView.findViewById(R.id.grid_codexmenu_option1);
+        CodexGridCard gotoCodex = gridView.findViewById(R.id.grid_codexmenu_option1);
         gotoCodex.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(R.id.action_codexFragment_to_equipmentStoreFragment));
 
-        MaterialCardView gotoCursedPossessions = gridView.findViewById(R.id.grid_codexmenu_option2);
+        CodexGridCard gotoCursedPossessions = gridView.findViewById(R.id.grid_codexmenu_option2);
         gotoCursedPossessions.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(R.id.action_codexFragment_to_cursedPossessionsFragment));
 
-        AppCompatTextView label_ghostOS = view.findViewById(R.id.label_codex_ghostos);
-        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)));
+        stylizeLogo(view.findViewById(R.id.label_codex_ghostos));
+
+    }
+
+    public void stylizeLogo(AppCompatTextView label_ghostOS) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = requireContext().getTheme();
+        theme.resolveAttribute(R.attr.codex_2, typedValue, true);
+        int color1 = typedValue.data;
+        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
+        int color2 = typedValue.data;
+        String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
+        String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
+
+        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)
+                .replaceAll("#99AEB3", color1Hex)
+                .replaceAll("#FFB43D", color2Hex)));
     }
 
     @Override

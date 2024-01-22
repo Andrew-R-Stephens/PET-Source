@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -29,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/subtitleFontColor" />
+            app:tint="?attr/textColorSecondary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,7 +56,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textview_title"
-                style="@style/NorseRegular"
+                style="@style/NorseRegular_Auto"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
@@ -66,7 +65,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:scaleType="centerInside"
-                android:textColor="?attr/titleFontColor"
+                android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_messageDate"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,12 +73,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView_messageDate"
-                style="@style/NorseRegular"
+                style="@style/NorseRegular_Auto"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/cb_mono_white_med"
+                android:textColor="@color/white_M400"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textview_title"
@@ -119,7 +118,7 @@
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         android:background="#00FFFFFF"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

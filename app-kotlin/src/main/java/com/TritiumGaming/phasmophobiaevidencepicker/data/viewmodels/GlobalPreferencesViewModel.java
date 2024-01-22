@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +27,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
     private String languageName = Locale.getDefault().getLanguage();
 
     // Persistent Styles
-    private int colorSpace = 0;
-    private int fontType = 0;
+    private FontThemeControl fontThemeControl;
+    private ColorThemeControl colorThemeControl;
 
     // Generic settings
     private int huntWarningFlashTimeout = -1;
@@ -51,17 +54,36 @@ public class GlobalPreferencesViewModel extends ViewModel {
         setIsAlwaysOn(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()));
         setHuntWarningAudioAllowed(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
         setHuntWarningFlashTimeout(sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()));
-        setColorSpace(sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()));
-        setFontType(sharedPref.getInt(context.getResources().getString(R.string.preference_fontType), getFontType()));
+
         setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), getIsLeftHandSupportEnabled()));
-        setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
-        setLanguageName(sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()));
         setCanShowIntroduction(sharedPref.getBoolean(context.getResources().getString(R.string.tutorialTracking_canShowIntroduction), getCanShowIntroduction()));
 
         reviewRequestData = new ReviewTrackingData(
                 sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false),
                 sharedPref.getLong(context.getResources().getString(R.string.reviewtracking_appTimeAlive), 0),
                 sharedPref.getInt(context.getResources().getString(R.string.reviewtracking_appTimesOpened), 0)
+        );
+
+        fontThemeControl = new FontThemeControl(context);
+        /*fontThemeControl.init(
+                sharedPref.getInt(
+                        context.getResources().getString(R.string.preference_fontType),
+                        getFontTheme()
+                )
+        );*/
+        fontThemeControl.init(
+                sharedPref.getString(
+                        context.getResources().getString(R.string.preference_savedFont),
+                        getFontThemeID()
+                )
+        );
+
+        colorThemeControl = new ColorThemeControl(context);
+        colorThemeControl.init(
+                sharedPref.getString(
+                        context.getResources().getString(R.string.preference_savedTheme),
+                        getColorThemeID()
+            )
         );
 
         saveToFile(context);
@@ -236,30 +258,20 @@ public class GlobalPreferencesViewModel extends ViewModel {
     }
 
     /**
-     * setColorSpace method
-     *
-     * @param colorSpace
-     */
-    public void setColorSpace(int colorSpace) {
-        this.colorSpace = colorSpace;
-    }
-
-    /**
      * getColorSpace method
      *
      * @return ColorSpace
      */
-    public int getColorSpace() {
-        return colorSpace;
+    /*
+    public int getColorTheme() {
+        return colorThemeControl.getSavedIndex();
     }
-
-    /**
-     * setFontType method
-     *
-     * @param fontType
-     */
-    public void setFontType(int fontType) {
-        this.fontType = fontType;
+    */
+    public String getColorThemeID() {
+        return colorThemeControl.getID();
+    }
+    public CustomTheme getColorTheme() {
+        return colorThemeControl.getCurrentTheme();
     }
 
     /**
@@ -267,8 +279,24 @@ public class GlobalPreferencesViewModel extends ViewModel {
      *
      * @return fontType
      */
-    public int getFontType() {
-        return fontType;
+    /*
+    public int getFontTheme() {
+        return fontThemeControl.getSavedIndex();
+    }
+    */
+    public String getFontThemeID() {
+        return fontThemeControl.getID();
+    }
+    public CustomTheme getFontTheme() {
+        return fontThemeControl.getCurrentTheme();
+    }
+
+    public FontThemeControl getFontThemeControl() {
+        return fontThemeControl;
+    }
+
+    public ColorThemeControl getColorThemeControl() {
+        return colorThemeControl;
     }
 
     public void setCanShowIntroduction(boolean canShowIntroduction) {
@@ -282,7 +310,6 @@ public class GlobalPreferencesViewModel extends ViewModel {
     public boolean canShowIntroduction() {
         return canShowIntroduction && reviewRequestData.getTimesOpened() <= 1;
     }
-
 
     /**
      *
@@ -395,13 +422,23 @@ public class GlobalPreferencesViewModel extends ViewModel {
      * @param editor
      * @param localApply
      */
+    public void saveColorSpace(Context c) {
+        saveColorSpace(c, getEditor(c), false);
+    }
+
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
     private void saveColorSpace(
             Context c, SharedPreferences.Editor editor, boolean localApply) {
         if(editor == null) {
             editor = getEditor(c);
         }
 
-        editor.putInt(c.getResources().getString(R.string.preference_colorSpace), getColorSpace());
+        editor.putString(c.getResources().getString(R.string.preference_savedTheme), getColorThemeID());
 
         if(localApply) {
             editor.apply();
@@ -420,7 +457,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
             editor = getEditor(c);
         }
 
-        editor.putInt(c.getResources().getString(R.string.preference_fontType), getFontType());
+        editor.putString(c.getResources().getString(R.string.preference_savedFont), getFontThemeID());
 
         if(localApply) {
             editor.apply();
@@ -560,8 +597,8 @@ public class GlobalPreferencesViewModel extends ViewModel {
         settings.put("always_on", getIsAlwaysOn()+"");
         settings.put("warning_enabled", getIsHuntAudioAllowed()+"");
         settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
-        settings.put("color_theme", getColorSpace()+"");
-        settings.put("font_type", getFontType()+"");
+        settings.put("color_theme", getColorThemeID()+"");
+        settings.put("font_type", getFontThemeID()+"");
         settings.put("left_support", getIsLeftHandSupportEnabled()+"");
         settings.put("can_show_intro", getCanShowIntroduction()+"");
         if(getReviewRequestData() != null) {
@@ -586,7 +623,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Always On: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()) +
                 "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()) +
                 "; Hunt Warning Flash Timeout: " + sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()) +
-                "; Color Space: " + sharedPref.getInt(context.getResources().getString(R.string.preference_colorSpace), getColorSpace()) +
+                "; Color Space: " + sharedPref.getString(context.getResources().getString(R.string.preference_savedTheme), getColorThemeID()) +
                 "; ReviewRequestData: [" +
                 "Time Alive: " + sharedPref.getLong(context.getResources().getString(R.string.reviewtracking_appTimeAlive), 0) +
                 "; Times Opened: " + sharedPref.getInt(context.getResources().getString(R.string.reviewtracking_appTimesOpened), 0) +
@@ -604,8 +641,9 @@ public class GlobalPreferencesViewModel extends ViewModel {
                 "; Always On: " + getIsAlwaysOn() +
                 "; Is Hunt Audio Allowed: " + getIsHuntAudioAllowed() +
                 "; Hunt Warning Flash Timeout: " + getHuntWarningFlashTimeout() +
-                "; Color Space: " +getColorSpace() +
+                "; Color Space: " + getColorThemeID() +
                 "; Can Show Introduction: " + getCanShowIntroduction() +
                 "; ReviewRequestData: [" + getReviewRequestData().toString() + "]");
     }
+
 }

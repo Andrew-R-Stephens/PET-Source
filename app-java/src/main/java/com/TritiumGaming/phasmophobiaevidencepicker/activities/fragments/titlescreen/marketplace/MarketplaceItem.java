@@ -3,25 +3,21 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewOutlineProvider;
 
 import androidx.annotation.IntegerRes;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.google.android.material.card.MaterialCardView;
 
 public class MarketplaceItem extends MaterialCardView {
+
+    private long creditCost = 0;
 
     public MarketplaceItem(Context context) {
         super(context, null);
@@ -40,8 +36,9 @@ public class MarketplaceItem extends MaterialCardView {
     }
 
     public void init(Context context, AttributeSet attrs) {
+        Log.d("MPView", "Inflating");
 
-        addView(inflate(context, R.layout.item_marketplace_item, null));
+        inflate(context, R.layout.item_marketplace_theme, this);
 
         int strokeColor = R.color.white;
         if (context != null) {
@@ -52,7 +49,6 @@ public class MarketplaceItem extends MaterialCardView {
         }
 
         setRadius(16);
-        //setCardBackgroundColor(getResources().getColor(R.color.transparent));
 
         setStrokeColor(ColorUtils.interpolate(
                 getResources().getColor(R.color.white),
@@ -78,5 +74,26 @@ public class MarketplaceItem extends MaterialCardView {
         } finally {
             a.recycle();
         }
+    }
+
+    public void setPurchaseable(boolean isEnabled) {
+        if(isEnabled) { return; }
+
+        setVisibility(GONE);
+    }
+
+    public void setCreditCost(long creditCost) {
+        this.creditCost = creditCost;
+
+        AppCompatTextView label_credits = findViewById(R.id.label_credits_cost);
+        label_credits.setText(String.valueOf(creditCost));
+    }
+
+    public long getCreditCost() {
+        return creditCost;
+    }
+
+    public AppCompatButton getBuyButton() {
+        return findViewById(R.id.button_transactItem);
     }
 }

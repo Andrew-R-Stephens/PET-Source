@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.GhostList;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 public class GhostOrderData {
@@ -30,7 +31,7 @@ public class GhostOrderData {
      */
     private void createPrevOrder() {
 
-        prevOrder = new int[InvestigationData.getGhostCount()];
+        prevOrder = new int[InvestigationData.ghostList.getList().size()];
 
         for(int i = 0; i < prevOrder.length; i++) {
             prevOrder[i] = i;
@@ -44,7 +45,7 @@ public class GhostOrderData {
      */
     private void createCurrOrder() {
 
-        currOrder = new int[InvestigationData.getGhostCount()];
+        currOrder = new int[InvestigationData.ghostList.getList().size()];
 
         for(int i = 0; i < currOrder.length; i++) {
             currOrder[i] = i;
@@ -54,7 +55,7 @@ public class GhostOrderData {
 
     public void updateOrder() {
 
-        int[] newOrder = new int[InvestigationData.getGhostCount()];
+        int[] newOrder = new int[InvestigationData.ghostList.getList().size()];
 
         // Replace previous with current
         if(currOrder == null) {
@@ -73,10 +74,10 @@ public class GhostOrderData {
         // Order placeholder array based on scores
         for (int i = 0; i < newOrder.length - 1; ) {
 
-            int ratingA = evidenceViewModel.getInvestigationData().getGhost(
-                    newOrder[i]).getEvidenceScore();
-            int ratingB = evidenceViewModel.getInvestigationData().getGhost(
-                    newOrder[i + 1]).getEvidenceScore();
+            GhostList ghostList = evidenceViewModel.getInvestigationData().getGhostList();
+
+            int ratingA = ghostList.getAt(newOrder[i]).getEvidenceScore();
+            int ratingB = ghostList.getAt(newOrder[i + 1]).getEvidenceScore();
 
             if (ratingA < ratingB) {
                 int t = newOrder[i + 1];

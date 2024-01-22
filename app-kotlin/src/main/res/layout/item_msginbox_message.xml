@@ -41,11 +41,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_messageListName"
-            style="?attr/quaternaryFont_Bold"
+            style="?attr/quaternaryFont_Bold_Auto"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textColor="?attr/titleFontColor"
+            android:textColor="?attr/textColorPrimary"
             android:maxLines="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

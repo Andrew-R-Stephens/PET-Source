@@ -43,7 +43,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_info"
+                android:src="@drawable/icon_ts_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -68,12 +68,23 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerInside"
-                    android:src="@drawable/icon_newspaper"
+                    android:src="@drawable/icon_ts_news"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_inboxalert"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_ts_news_notify"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_inbox"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/button_inbox"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <!--
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_inboxalert"
                     android:layout_width="0dp"
@@ -89,6 +100,7 @@
                     app:layout_constraintWidth_percent=".5"
                     app:tint="?attr/inboxNotification"
                     app:tintMode="multiply" />
+                    -->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -98,7 +110,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_review"
+                android:src="@drawable/icon_ts_review"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_settings"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -112,7 +124,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_gear"
+                android:src="@drawable/icon_ts_settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -228,7 +240,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_globe"
+                android:src="@drawable/icon_ts_globe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -258,7 +270,7 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+        app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

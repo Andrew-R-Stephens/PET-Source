@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mapmenu_main_constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mapmenu_title"
-        style="?attr/primaryFont_Regular_Squeeze"
+        style="?attr/primaryFont_Regular_AutoSqueeze"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/general_maps_button"
-        android:textColor="?attr/titleFontColor"
+        android:textColor="?attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintHeight_max="48dp"

@@ -36,7 +36,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/subtitleFontColor"
+                android:tint="?attr/textColorSecondary"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
                 android:scaleType="fitCenter"
                 android:padding="4dp"
                 android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/subtitleFontColor"
+                android:tint="?attr/textColorSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_overview_text"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="2dp"
@@ -146,7 +146,7 @@
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
                         android:text="@string/evidence_section_overview"
-                        android:textColor="?attr/bodyFontColor"
+                        android:textColor="?attr/textColorBody"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +178,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_tiers_text"
-                        style="?attr/secondaryFont_Regular_Squeeze"
+                        style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="2dp"
@@ -187,7 +187,7 @@
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
                         android:text="@string/equipment_section_equipment"
-                        android:textColor="?attr/bodyFontColor"
+                        android:textColor="?attr/textColorBody"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -465,7 +465,7 @@
             android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
             android:background="#00FFFFFF"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-1890816745443024/7620657926"
+            app:adUnitId="@string/ad_banner_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

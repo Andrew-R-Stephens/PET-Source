@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -29,9 +31,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.evidence.EvidenceList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.ghost.GhostList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
@@ -220,8 +222,12 @@ public class EvidenceFragment extends InvestigationFragment {
 
         sanityMeterView.init(sanityData);
 
-        new Thread(ghostList::createGhostViews).start();
-        new Thread(evidenceList::createEvidenceViews).start();
+        popupWindow = new PopupWindow(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+
+        new Thread(() -> ghostList.createGhostViews(popupWindow)).start();
+        new Thread(() -> evidenceList.createEvidenceViews(popupWindow)).start();
 
     }
 
@@ -234,178 +240,6 @@ public class EvidenceFragment extends InvestigationFragment {
             toggleSanityButton.setImageLevel(2);
         }
     }
-/*
-
-    @SuppressLint("ClickableViewAccessibility")
-    public void createGhostViews() {
-
-        ghostPopupData = new GhostPopupData(getContext());
-
-        if(getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
-                buildGhostViews();
-
-                list_ghosts.post(() -> haltProgressAnimation(ghostProgressBar));
-            });
-        }
-
-    }
-*/
-/*
-    @SuppressLint("ResourceType")
-    private void createEvidenceViews() {
-
-        evidencePopupData = new EvidencePopupData(getContext());
-
-        if(getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
-                buildEvidenceViews();
-
-                list_evidences.post(() -> haltProgressAnimation(evidenceProgressBar));
-            });
-        }
-
-    }*/
-/*
-
-    private void haltProgressAnimation(ProgressBar progressBar) {
-        progressBar.animate().alpha(0).setDuration(250).setListener(
-                new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                progressBar.setVisibility(View.GONE);
-                super.onAnimationEnd(animation);
-            }
-        }).start();
-    }
-*/
-/*
-
-    protected void requestInvalidateGhostContainer() {
-        if(evidenceViewModel.getGhostOrderData().hasChanges()) {
-            reorderGhostViews();
-        } else {
-            updateGhostViews();
-        }
-    }
-    protected void forceResetGhostContainer() {
-        reorderGhostViews();
-    }
-*/
-/*
-    private void forceResetEvidenceContainer() {
-
-        for(int i = 0; i < evidenceList.getChildCount(); i++) {
-            ((EvidenceRadioGroup)evidenceList.getChildAt(i).findViewById(R.id.radioGroup))
-                    .reset(evidenceViewModel, i);
-        }
-
-    }*/
-/*
-
-    protected void reorderGhostViews() {
-
-        GhostOrderData ghostOrderData = evidenceViewModel.getGhostOrderData();
-        int[] currOrder = ghostOrderData.getCurrOrder();
-
-        for (int j : currOrder) {
-
-            View childView = list_ghosts.findViewById(j);
-
-            list_ghosts.removeView(childView);
-            list_ghosts.addView(childView);
-
-        }
-
-    }
-
-    private void updateGhostViews() {
-        for(int i = 0; i < list_ghosts.getChildCount(); i++) {
-            GhostView g = (GhostView) list_ghosts.getChildAt(i);
-            g.forceUpdateComponents();
-        }
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private void buildGhostViews() {
-
-        if(getContext() == null) { return; }
-
-        int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
-
-        list_ghosts.setWeightSum(newGhostOrder.length);
-
-        for (int j : newGhostOrder) {
-
-            GhostView ghostView = new GhostView(getContext()) {
-
-                @Override
-                public void createPopup() {
-
-                    if (popupWindow != null) {
-                        popupWindow.dismiss();
-                    }
-
-                    GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
-                    ghostPopupWindow.build(evidenceViewModel, ghostPopupData, j, adRequest);
-                    popupWindow = ghostPopupWindow.getPopupWindow();
-
-                }
-            };
-
-            ghostView.build(evidenceViewModel, j);
-
-            list_ghosts.addView(ghostView);
-
-        }
-    }
-
-*/
-/*
-
-    @SuppressLint("ClickableViewAccessibility")
-    private void buildEvidenceViews() {
-        if(getContext() == null) { return; }
-
-        for(int i = 0; i < evidencePopupData.getCount(); i++) {
-            final int groupIndex = i;
-
-            EvidencePopupData.EvidencePopupRecord popupRecord =
-                    evidencePopupData.getEvidencePopupRecordAt(i);
-
-            EvidenceView evidenceView = new EvidenceView(getContext()) {
-
-                @Override
-                public void createPopup() {
-
-                    if (popupWindow != null) {
-                        popupWindow.dismiss();
-                    }
-
-                    EvidencePopupWindow evidencePopupWindow =
-                            new EvidencePopupWindow(getContext());
-                    evidencePopupWindow.build(
-                            evidenceViewModel, popupRecord, groupIndex, adRequest);
-
-                    popupWindow = evidencePopupWindow.getPopupWindow();
-
-                }
-
-                @Override
-                public void requestInvalidateGhostContainer() {
-                    EvidenceFragment.this.requestInvalidateGhostContainer();
-                }
-
-            };
-
-            evidenceView.build(evidenceViewModel, i, list_ghosts);
-
-            list_evidences.addView(evidenceView);
-
-        }
-
-    }
-*/
 
     @Override
     public void softReset() {

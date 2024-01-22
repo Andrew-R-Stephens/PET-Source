@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.sub
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
@@ -11,7 +10,6 @@ import androidx.annotation.StyleRes;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.AThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 
 /**
  * ColorSpaceData class
@@ -31,7 +29,7 @@ public class ColorThemeControl extends AThemeControl {
     protected void build(Context context) {
         // COLORBLIND DATA
         TypedArray subThemesArray =
-                context.getResources().obtainTypedArray(R.array.settings_themes_colorblind_array);
+                context.getResources().obtainTypedArray(R.array.settings_themes_color_array);
 
         for (int i = 0; i < subThemesArray.length(); i++) {
             TypedArray themeArray =
@@ -43,17 +41,21 @@ public class ColorThemeControl extends AThemeControl {
                     context.getResources().obtainTypedArray(themeArray.getResourceId(1, 0));
             TypedArray themeStyleArray =
                     context.getResources().obtainTypedArray(themeArray.getResourceId(2, 0));
+            boolean isUnlocked =
+                    context.getResources().getBoolean(themeArray.getResourceId(3, 0));
 
             if((themeNamesArray.length() == themeStyleArray.length()) &&
                     (themeNamesArray.length() == themeIDsArray.length())) {
                 int themeCount = themeNamesArray.length();
 
                 for (int k = 0; k < themeCount; k++) {
-                    @StringRes int idRes = themeIDsArray.getResourceId(k, 0);
+                    String idRes = themeIDsArray.getString(k);
                     @StringRes int nameRes = themeNamesArray.getResourceId(k, 0);
                     @StyleRes int styleRes = themeStyleArray.getResourceId(k, 0);
 
-                    CustomTheme tempTheme = new CustomTheme(idRes, nameRes, styleRes);
+                    CustomTheme tempTheme = new CustomTheme(
+                            idRes, nameRes, styleRes,
+                            isUnlocked);
 
                     themes.add(tempTheme);
                 }

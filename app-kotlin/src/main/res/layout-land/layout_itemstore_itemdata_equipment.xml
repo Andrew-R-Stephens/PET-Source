@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -32,7 +30,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/safehouse_shop_tool_label"
-                style="?attr/quaternaryFont_Bold_Squeeze"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -49,7 +47,7 @@
                 android:singleLine="true"
                 android:text="@string/equipment_info_name_dots"
                 android:textAllCaps="true"
-                android:textColor="#99AEB3"
+                android:textColor="?attr/codex_2"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/close_button"
@@ -60,10 +58,10 @@
                 android:id="@+id/close_button"
                 android:layout_width="48dp"
                 android:layout_height="0dp"
-                android:background="#99AEB3"
+                android:background="?attr/codex_2"
                 android:padding="2dp"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:tint="#151B1B"
+                android:tint="?attr/codex_3"
                 android:tintMode="multiply"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +108,7 @@
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_cost"
-                    android:tint="#99AEB3"
+                    android:tint="?attr/codex_2"
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,13 +117,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_itemcost"
-                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
-                    android:textColor="#99AEB3"
+                    android:textColor="?attr/codex_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
@@ -149,7 +147,7 @@
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_unlock"
-                    android:tint="#99AEB3"
+                    android:tint="?attr/codex_2"
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -158,13 +156,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_unlocklevel"
-                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
-                    android:textColor="#99AEB3"
+                    android:textColor="?attr/codex_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
@@ -188,7 +186,7 @@
                     android:adjustViewBounds="true"
                     android:padding="1dp"
                     android:src="@drawable/icon_shop_upgrade_cost"
-                    android:tint="#99AEB3"
+                    android:tint="?attr/codex_2"
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,13 +195,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_upgradecost"
-                    style="?attr/quaternaryFont_Regular_Squeeze"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="start|center_vertical"
-                    android:textColor="#99AEB3"
+                    android:textColor="?attr/codex_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
@@ -251,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="4dp"
-                        android:textColor="#99AEB3"
+                        android:textColor="?attr/codex_2"
                         android:textSize="20sp" />
 
                     <View
@@ -262,7 +260,7 @@
                         android:layout_marginVertical="2dp"
                         android:layout_weight="1"
                         android:background="?android:attr/listDivider"
-                        android:backgroundTint="#99AEB3"
+                        android:backgroundTint="?attr/codex_2"
                         android:foregroundTintMode="add" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -272,7 +270,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="4dp"
-                        android:textColor="#99AEB3"
+                        android:textColor="?attr/codex_2"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -287,7 +285,7 @@
                 android:layout_marginVertical="2dp"
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider"
-                android:backgroundTint="#99AEB3"
+                android:backgroundTint="?attr/codex_2"
                 android:foregroundTintMode="add"
                 app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes_wrapper"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -319,7 +317,7 @@
                     android:layout_height="match_parent"
                     android:maxLines="2"
                     android:padding="4dp"
-                    android:textColor="#99AEB3"
+                    android:textColor="?attr/codex_2"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

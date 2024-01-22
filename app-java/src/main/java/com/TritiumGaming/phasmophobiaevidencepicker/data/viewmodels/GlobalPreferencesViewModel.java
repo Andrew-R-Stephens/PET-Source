@@ -65,12 +65,6 @@ public class GlobalPreferencesViewModel extends ViewModel {
         );
 
         fontThemeControl = new FontThemeControl(context);
-        /*fontThemeControl.init(
-                sharedPref.getInt(
-                        context.getResources().getString(R.string.preference_fontType),
-                        getFontTheme()
-                )
-        );*/
         fontThemeControl.init(
                 sharedPref.getString(
                         context.getResources().getString(R.string.preference_savedFont),
@@ -414,6 +408,10 @@ public class GlobalPreferencesViewModel extends ViewModel {
         if(localApply) {
             editor.apply();
         }
+    }
+
+    public void saveColorSpace(Context c) {
+        saveColorSpace(c, getEditor(c), true);
     }
 
     /**

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/action_home"
@@ -9,23 +8,21 @@
             android:icon="@drawable/icon_nav_home"/>
     </group>
 
-    <group
-        android:checkableBehavior="none"
-        android:menuCategory="alternative">
+    <group android:checkableBehavior="none">
         <item android:title="@string/general_navigation_primary">
             <menu>
                 <item
-                    android:id="@+id/action_global_evidenceFragment"
+                    android:id="@+id/evidenceFragment"
                     android:title="@string/investigation_section_title_evidence"
-                    android:icon="@drawable/icon_nav_evidence" />
+                    android:icon="@drawable/icon_nav_evidence_selector" />
                 <item
-                    android:id="@+id/action_global_objectivesFragment"
+                    android:id="@+id/objectivesFragment"
                     android:title="@string/general_tasks_button"
-                    android:icon="@drawable/icon_tasks"/>
+                    android:icon="@drawable/icon_nav_tasks_selector"/>
                 <item
-                    android:id="@+id/action_global_mapMenuFragment"
+                    android:id="@+id/mapMenuFragment"
                     android:title="@string/general_maps_button"
-                    android:icon="@drawable/icon_nav_mapmenu2"/>
+                    android:icon="@drawable/icon_nav_mapmenu2_selector"/>
             </menu>
         </item>
     </group>
@@ -37,8 +34,9 @@
             <menu>
                 <item
                 android:id="@+id/action_global_codexFragment"
+
                 android:title="@string/general_codex_button"
-                android:icon="@drawable/icon_nav_codex" />
+                android:icon="@drawable/icon_nav_codex_selector" />
             </menu>
         </item>
     </group>

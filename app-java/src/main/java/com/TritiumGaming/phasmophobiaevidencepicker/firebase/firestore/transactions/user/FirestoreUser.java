@@ -16,31 +16,43 @@ public class FirestoreUser {
 
     private static final String COLLECTION_USERS = "Users";
 
-    public static FirebaseUser getCurrentFirebaseUser() {
+    public static FirebaseUser getCurrentFirebaseUser()
+            throws Exception {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public static DocumentReference buildUserDocument() {
+    public static DocumentReference buildUserDocument()
+            throws Exception {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference userCollection = db.collection(COLLECTION_USERS);
         DocumentReference currentUserDoc = userCollection.document(getCurrentFirebaseUser().getUid());
 
+        FirebaseUser user = getCurrentFirebaseUser();
+
         currentUserDoc.set(new HashMap<String, Object>(), SetOptions.merge())
-            .addOnSuccessListener(unused -> Log.d("Firestore", "User document " + getCurrentFirebaseUser().getUid() + " successfully FOUND!"))
+            .addOnSuccessListener(unused -> Log.d("Firestore", "User document " + user.getUid() + " successfully FOUND!"))
             .addOnFailureListener(e -> {
-                Log.d("Firestore", "User document " + getCurrentFirebaseUser().getUid() + " could NOT be GENERATED / LOCATED!");
+                Log.d("Firestore", "User document " + user.getUid() + " could NOT be GENERATED / LOCATED!");
                 e.printStackTrace();
             })
             .addOnCompleteListener(task -> {
-                Log.d("Firestore", "User document " + getCurrentFirebaseUser().getUid() + " process complete.");
+                Log.d("Firestore", "User document " + user.getUid() + " process complete.");
 
                 currentUserDoc.get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        FirestoreAccount.init(documentSnapshot.getReference());
-                        FirestorePurchaseHistory.init(documentSnapshot.getReference());
+                        try {
+                            FirestoreAccount.init();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            FirestorePurchaseHistory.init();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
 
-                        Log.d("Firestore", "User document " + getCurrentFirebaseUser().getUid() + " successfully INITIALIZED!");
+                        Log.d("Firestore", "User document " + user.getUid() + " successfully INITIALIZED!");
                     }
                 });
             });
@@ -48,9 +60,10 @@ public class FirestoreUser {
         return currentUserDoc;
     }
 
-    public static DocumentReference getUserDocument() throws RuntimeException {
+    public static DocumentReference getUserDocument()
+            throws Exception {
         if(getCurrentFirebaseUser() == null) {
-            throw new RuntimeException("Null Pointer Exception: Firebase User not assigned");
+            throw new Exception("Null Pointer Exception: Firebase User not assigned");
         }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
