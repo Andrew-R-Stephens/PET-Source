@@ -3,16 +3,12 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 
 public class MarketplaceListLayout extends LinearLayout {
 
@@ -41,7 +37,7 @@ public class MarketplaceListLayout extends LinearLayout {
     }
 
     public void init() {
-        inflate(getContext(), R.layout.layout_marketplace_grouplist, this);
+        inflate(getContext(), R.layout.layout_marketplace_grouplabel, this);
 
         setOrientation(LinearLayout.VERTICAL);
         setLayoutTransition(new LayoutTransition());

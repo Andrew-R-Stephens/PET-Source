@@ -44,18 +44,6 @@ public class FirestoreMarketplace {
         return merchandiseDocument.collection(COLLECTION_BUNDLES);
     }
 
-    /*
-    public static Task<QuerySnapshot> getThemes() throws Exception {
-        return getThemeCollection().get();
-    }
-
-    public static Task<QuerySnapshot> getThemesWhere(String field, String value) throws Exception {
-        return FirestoreMarketplace.getThemeCollection()
-                .whereEqualTo(field, value)
-                .get();
-    }
-    */
-
     public static Task<QuerySnapshot> getThemesWhere(
             String filterField, String value, String orderField, Query.Direction order)
             throws Exception {

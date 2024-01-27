@@ -61,23 +61,9 @@ public class MarketplaceSingleThemeView extends MaterialCardView {
         setUseCompatPadding(true);
         setClipToPadding(false);
 
-        /*TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.MarketplaceItem,
-                0, 0);*/
-
-        /*@IntegerRes int themeRes =
-                a.getType(R.styleable.MarketplaceItem_enforcedTheme);*/
-
         invalidate();
         requestLayout();
 
-        /*try {
-            invalidate();
-            requestLayout();
-        } finally {
-            a.recycle();
-        }*/
     }
 
     public void setPurchaseable(boolean isEnabled) {

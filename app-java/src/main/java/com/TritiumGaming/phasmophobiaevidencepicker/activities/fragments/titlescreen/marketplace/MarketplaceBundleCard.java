@@ -7,6 +7,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.google.android.material.card.MaterialCardView;
 
@@ -36,22 +38,18 @@ public class MarketplaceBundleCard extends MaterialCardView {
         setCardBackgroundColor(getResources().getColor(R.color.transparent));
         setElevation(0);
 
-        /*
-        setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        1f));
-        */
-
         setForegroundGravity(Gravity.CENTER);
 
         setClipToPadding(false);
         setSelected(true);
 
-        /*
-        invalidate();
-        requestLayout();
-        */
+    }
+
+    public void setObtained(boolean isUnlocked) {
+        AppCompatImageView obtained = findViewById(R.id.image_obtained);
+
+        if(obtained != null) {
+            obtained.setVisibility(isUnlocked ? VISIBLE : GONE);
+        }
     }
 }

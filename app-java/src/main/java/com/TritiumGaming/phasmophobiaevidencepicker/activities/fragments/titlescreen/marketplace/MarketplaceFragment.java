@@ -80,6 +80,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -277,11 +279,8 @@ public class MarketplaceFragment extends Fragment {
             CollectionReference purchaseHistoryCollection =
                     FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
 
-            if (purchaseHistoryCollection == null) {
-                return;
-            }
-
             purchaseHistoryCollection.get().addOnCompleteListener(task -> {
+
                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                     DocumentReference documentReference = documentSnapshot.getReference();
 
@@ -291,17 +290,12 @@ public class MarketplaceFragment extends Fragment {
                     customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
                 }
 
-                populateMarketplace();
+                populateBundledThemes();
+                populateIndividualThemes();
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void populateMarketplace() {
-        populateBundledThemes();
-
-        populateIndividualThemes();
     }
 
     public void populateBundledThemes() {
@@ -453,13 +447,19 @@ public class MarketplaceFragment extends Fragment {
                     Log.d("Firestore", "Theme document snapshot DNE.");
                 } else {
                     try {
+                        String uuid = documentSnapshot.getReference().getId();
+
                         MarketSingleTheme inboundTheme = documentSnapshot.toObject(MarketSingleTheme.class);
                         if (inboundTheme != null) {
-                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
-                                    .getThemeByUUID(documentSnapshot.getReference().getId());
+                            inboundTheme = new MarketSingleTheme(uuid, inboundTheme);
+
+                            CustomTheme customTheme =
+                                    globalPreferencesViewModel.getColorThemeControl()
+                                            .getThemeByUUID(uuid);
                             @StyleRes int style = customTheme.getStyle();
 
-                            MarketplaceSingleThemeView marketplaceItem = buildMarketplaceSingleThemeView(
+                            MarketplaceSingleThemeView marketplaceItem =
+                                    buildMarketplaceSingleThemeView(
                                     list, inboundTheme, customTheme, style);
 
                             if(!customTheme.isUnlocked()) {
@@ -522,18 +522,12 @@ public class MarketplaceFragment extends Fragment {
                     Map<String, Object> data = documentSnapshot.getData();
                     if(data != null) {
                         String docId = documentSnapshot.getReference().getId();
-                        String name = (String) data.get("name");
-                        Log.d("Firestore", "Name: " + name);
-                        Long buyCredits = (Long)data.get("buyCredits");
-                        Log.d("Firestore", "BuyCredits: " + (buyCredits != null ? String.valueOf(buyCredits.longValue()) : "0"));
 
                         List<?> documentRefs = (List<?>) data.get("items");
                         ArrayList<String> themeIDs = new ArrayList<>();
                         if(documentRefs != null) {
                             for (Object item : documentRefs) {
                                 if(item instanceof DocumentReference documentRef) {
-                                    Log.d("Firestore",
-                                            "Items: " + documentRef.getId());
                                     themeIDs.add(documentRef.getId());
                                 }
                             }
@@ -554,14 +548,15 @@ public class MarketplaceFragment extends Fragment {
                                         .getThemeByUUID(themeID));
                             }
                             bundle = new MarketThemeBundle(docId, bundle, customThemes);
+                            if(!bundle.isUnlocked()) {
+                                MarketplaceBundleThemeView marketplaceItem =
+                                        buildMarketplaceBundleThemeView(
+                                                list, bundle);
 
-                            MarketplaceBundleThemeView marketplaceItem =
-                                    buildMarketplaceBundleThemeView(
-                                    list, bundle);
-
-                            list.addView(marketplaceItem);
-                            list.requestLayout();
-                            list.invalidate();
+                                list.addView(marketplaceItem);
+                                list.requestLayout();
+                                list.invalidate();
+                            }
                             /*
                             if(!customTheme.isUnlocked()) {
                                 list.addView(marketplaceItem);
@@ -620,10 +615,15 @@ public class MarketplaceFragment extends Fragment {
             OnFirestoreProcessListener buyButtonCallback = new OnFirestoreProcessListener() {
                 @Override
                 public void onSuccess() {
+                    ArrayList<String> uuids = new ArrayList<>();
+                    for(CustomTheme t: bundleThemes.getThemes()) {
+                        uuids.add(t.getID());
+                    }
 
                     try {
-                        FirestorePurchaseHistory.addPurchaseDocument(
-                                String.valueOf(marketplaceBundleView.getId()),
+                        FirestorePurchaseHistory.addPurchaseDocuments(
+                                uuids,
+                                "Theme Bundle",
                                 purchaseListener);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -711,8 +711,8 @@ public class MarketplaceFragment extends Fragment {
 
                     try {
                         FirestorePurchaseHistory.addPurchaseDocument(
-                                /*documentSnapshot.getReference().getId(),*/
-                                String.valueOf(marketplaceItem.getId()),
+                                String.valueOf(tempTheme.getUuid()),
+                                "Single Theme",
                                 purchaseListener);
                     } catch (Exception e) {
                         e.printStackTrace();

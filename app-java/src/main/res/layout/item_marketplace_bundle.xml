@@ -43,6 +43,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingHorizontal="8dp"
+            style="?attr/quaternaryFont_Bold_Manual"
+            android:gravity="start"
+            android:text="Includes:"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:textColor="?attr/backgroundColor"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:focusable="true"
+            app:layout_constraintHeight="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintlayout_1"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout75"
             android:layout_width="match_parent"
@@ -53,27 +74,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!--
-            <GridLayout
-                android:id="@+id/themesList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:useDefaultMargins="true"
-                app:layout_constrainedHeight="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </GridLayout>
-            -->
-
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarThumbHorizontal="@drawable/scrollbar_thumb_dark"
+                android:paddingBottom="2dp"
                 android:scrollbarStyle="outsideInset"
+                android:fadeScrollbars="false"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="8dp"
+                android:requiresFadingEdge="horizontal"
                 app:layout_constraintHeight_default="wrap"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

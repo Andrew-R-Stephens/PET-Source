@@ -29,16 +29,16 @@ public class MarketplaceBundleThemeView extends MaterialCardView {
     public MarketplaceBundleThemeView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context/*, attrs*/);
+        init(context);
     }
 
     public MarketplaceBundleThemeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context/*, attrs*/);
+        init(context);
     }
 
-    public void init(Context context/*, AttributeSet attrs*/) {
+    public void init(Context context) {
         inflate(context, R.layout.item_marketplace_bundle, this);
 
         setLayoutParams(
@@ -65,23 +65,8 @@ public class MarketplaceBundleThemeView extends MaterialCardView {
         setUseCompatPadding(true);
         setClipToPadding(false);
 
-        /*TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.MarketplaceItem,
-                0, 0);*/
-
-        /*@IntegerRes int themeRes =
-                a.getType(R.styleable.MarketplaceItem_enforcedTheme);*/
-
         invalidate();
         requestLayout();
-
-        /*try {
-            invalidate();
-            requestLayout();
-        } finally {
-            a.recycle();
-        }*/
     }
 
     public void setPurchaseable(boolean isEnabled) {
@@ -111,43 +96,20 @@ public class MarketplaceBundleThemeView extends MaterialCardView {
 
         LinearLayout themesList = findViewById(R.id.themesList);
 
-        /*
-        GridLayout grid = findViewById(R.id.themesList);
-        if(grid == null) { return; }
-
-        int columns = 5;
-        int rows = bundleThemes.getThemes().size() / columns;
-        grid.setColumnCount(columns);
-        grid.setRowCount(rows);
-        */
-
         for(CustomTheme theme: bundleThemes.getThemes()) {
-            Log.d("BundleView", getContext().getString(theme.getName()));
+
             MarketplaceBundleCard card = new MarketplaceBundleCard(
                     new ContextThemeWrapper(getContext(), theme.getStyle()),
                     null, theme.getStyle());
             card.setLayoutParams(
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+
+            card.setObtained(theme.isUnlocked());
 
             themesList.addView(card);
 
-            /*
-            double count = bundleThemes.getThemes().size();
-            int maxColumns = 5;
-            int minColumns = (int)Math.floor(maxColumns / 2.0);
-            int columns = (int)Math.max(Math.min(maxColumns, count), minColumns);
-
-            grid.setColumnCount((int)columns);
-
-            GridLayout.Spec rowSpan = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-            GridLayout.Spec colSpan = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-
-            GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams(
-                    rowSpan, colSpan
-            );
-            grid.addView(card, gridParam);
-            */
         }
     }
 }

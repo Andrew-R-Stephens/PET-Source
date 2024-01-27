@@ -120,7 +120,7 @@
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/settings_account_login_button"
-                            style="?attr/primaryFont_Regular_AutoSqueeze"
+                            style="?attr/quaternaryFont_Bold_AutoSqueeze"
                             android:layout_width="wrap_content"
                             android:layout_height="48dp"
                             android:layout_marginVertical="8dp"
@@ -317,7 +317,7 @@
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/settings_account_buy_button"
-                                    style="?attr/primaryFont_Regular_AutoSqueeze"
+                                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
                                     android:layout_width="wrap_content"
                                     android:layout_height="48dp"
                                     android:layout_gravity="center"
@@ -354,7 +354,7 @@
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/button_ad_watch"
-                                    style="?attr/primaryFont_Regular_AutoSqueeze"
+                                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
                                     android:layout_width="wrap_content"
                                     android:layout_height="48dp"
                                     android:layout_gravity="center"
