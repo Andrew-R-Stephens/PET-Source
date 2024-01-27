@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:enforcedTheme="@style/Recruit"/>
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:enforcedTheme="@style/Investigator"/>
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:enforcedTheme="@style/PrivateInvestigator"/>

@@ -1,26 +1,23 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme;
 
-import androidx.annotation.NonNull;
-
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class PETTheme {
+public class MarketSingleTheme {
 
     private String uuid;
     private String name, group;
     private int buyCredits;
 
-    public PETTheme() {
+    public MarketSingleTheme() {
     }
 
-    public PETTheme(int buyCredits, String group, String name) {
+    public MarketSingleTheme(int buyCredits, String group, String name) {
         this.buyCredits = buyCredits;
         this.group = group;
         this.name = name;
     }
 
-    public PETTheme(String uuid, @NotNull PETTheme theme) {
+    public MarketSingleTheme(String uuid, @NotNull MarketSingleTheme theme) {
         this.uuid = uuid;
         this.buyCredits = theme.getBuyCredits();
         this.group = theme.getGroup();

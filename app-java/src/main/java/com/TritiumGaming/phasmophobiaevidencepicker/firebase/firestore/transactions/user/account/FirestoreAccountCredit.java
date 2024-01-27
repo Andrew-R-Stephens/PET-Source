@@ -2,10 +2,18 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreAccount;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.SetOptions;
 
@@ -48,7 +56,7 @@ public class FirestoreAccountCredit {
             .addOnFailureListener(Throwable::printStackTrace);
     }
 
-    public static CollectionReference getAccountCollection()
+    private static CollectionReference getAccountCollection()
             throws Exception {
         return FirestoreUser.getUserDocument().collection(COLLECTION_ACCOUNT);
     }
@@ -59,12 +67,79 @@ public class FirestoreAccountCredit {
     }
 
     public static void addCredits(long creditAmount) throws Exception {
-        getCreditsDocument().update(FIELD_CREDITS_EARNED, FieldValue.increment(creditAmount));
+        addCredits(creditAmount, null);
+    }
+
+    public static void addCredits(long creditAmount, OnFirestoreProcessListener callback) throws Exception {
+        DocumentReference creditDocument = getCreditsDocument();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put(FIELD_CREDITS_EARNED, FieldValue.increment(creditAmount));
+
+        creditDocument.update(data)
+                .addOnSuccessListener(unused -> {
+                    if (callback != null) {
+                        callback.onSuccess();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    if (callback != null) {
+                        callback.onFailure();
+                    }
+                })
+                .addOnCompleteListener(task -> {
+                    if (callback != null) {
+                        callback.onComplete();
+                    }
+                });
     }
 
     public static void removeCredits(long creditAmount) throws Exception {
-        getCreditsDocument().update(FIELD_CREDITS_EARNED, FieldValue.increment(-creditAmount));
-        getCreditsDocument().update(FIELD_CREDITS_SPENT, FieldValue.increment(creditAmount));
+        removeCredits(creditAmount, null);
+    }
+
+    public static void removeCredits(long creditAmount, OnFirestoreProcessListener callback)
+            throws Exception {
+        DocumentReference creditDocument = getCreditsDocument();
+
+        creditDocument.get().addOnCompleteListener(task -> {
+
+            Long storedCredits = task.getResult().get(FIELD_CREDITS_EARNED, Long.class);
+            if(storedCredits != null && storedCredits < creditAmount) {
+                if(callback != null) {
+                    callback.onFailure();
+                }
+
+                return;
+            }
+
+            Map<String, Object> data = new HashMap<>();
+            data.put(FIELD_CREDITS_EARNED, FieldValue.increment(-creditAmount));
+            data.put(FIELD_CREDITS_SPENT, FieldValue.increment(creditAmount));
+
+            task.getResult().getReference().update(data)
+                    .addOnSuccessListener(result -> {
+                        if (callback != null) {
+                            callback.onSuccess();
+                        }
+                    })
+                    .addOnFailureListener(error -> {
+                        if (callback != null) {
+                            callback.onFailure();
+                        }
+                        error.printStackTrace();
+                    })
+                    .addOnCompleteListener(result -> {
+                        if (callback != null) {
+                            callback.onComplete();
+                        }
+                    });
+
+            if(callback != null) {
+                callback.onComplete();
+            }
+        });
+
     }
 
 }

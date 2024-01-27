@@ -2,14 +2,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import static android.app.Activity.RESULT_OK;
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.drm.DrmManagerClient;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -19,8 +18,9 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -44,13 +44,23 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.PETTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.bundle.MarketThemeBundle;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.MarketSingleTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
@@ -61,8 +71,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,8 +80,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MarketplaceFragment extends Fragment {
 
@@ -81,13 +91,17 @@ public class MarketplaceFragment extends Fragment {
     private TitlescreenViewModel titleScreenViewModel = null;
 
     private LinearLayout linearLayout_marketplace_items;
-    private AppCompatTextView label_account_credits;
+    private AppCompatTextView label_account_credits, label_marketplace_error;
+
+    private ProgressBar market_progressbar;
 
     private RewardedAd rewardedAd = null;
 
     private boolean showEmail = false, loadThemes = true;
 
     private long user_credits = 0;
+
+    private BillingClient billingClient;
 
     @Nullable
     @Override
@@ -126,12 +140,15 @@ public class MarketplaceFragment extends Fragment {
         final ConstraintLayout constraint_account_name = view.findViewById(R.id.constraint_account_name);
         final CardView cardview_account = view.findViewById(R.id.cardView_account);
         final AppCompatTextView label_account_info = view.findViewById(R.id.settings_accountsettings_info);
+        label_marketplace_error = view.findViewById(R.id.market_loaderror);
         label_account_credits = view.findViewById(R.id.label_credits_actual);
         final AppCompatButton button_ad_watch = view.findViewById(R.id.button_ad_watch);
 
         final ScrollView scrollview_marketplace_items = view.findViewById(R.id.scrollview_marketplace_items);
         linearLayout_marketplace_items =
                 (LinearLayout)scrollview_marketplace_items.getChildAt(0);
+
+        market_progressbar = view.findViewById(R.id.market_progressbar);
 
         btn_account_login.setOnClickListener(v -> {
             manualSignInAccount();
@@ -141,8 +158,20 @@ public class MarketplaceFragment extends Fragment {
 
         button_ad_watch.setOnClickListener(v -> showRewardedAd());
 
+        if(getActivity() != null) {
+            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+                    new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            Navigation.findNavController(view).popBackStack();
+                        }
+                    });
+        }
+
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
         if(firebaseUser != null) {
             accountEmail = firebaseUser.getEmail();
         } else {
@@ -172,12 +201,15 @@ public class MarketplaceFragment extends Fragment {
             }
         });
 
+
         if(firebaseUser == null) {
-            constraint_requestlogin.setVisibility(View.VISIBLE);
+            constraint_requestlogin.setVisibility(VISIBLE);
             cardview_account.setVisibility(GONE);
+
+            market_progressbar.setVisibility(GONE);
         } else {
             constraint_requestlogin.setVisibility(GONE);
-            cardview_account.setVisibility(View.VISIBLE);
+            cardview_account.setVisibility(VISIBLE);
             label_account_info.setText(email_displayed);
 
             if(!showEmail) {
@@ -185,65 +217,59 @@ public class MarketplaceFragment extends Fragment {
             }
         }
 
+
         // CANCEL BUTTON
         button_back.setOnClickListener(v -> {
             Navigation.findNavController(v).popBackStack();
         });
 
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-
-                            if(getContext() != null) {
-                                String message = getString(R.string.toast_discardchanges);
-                                Toast toast = Toast.makeText(getContext().getApplicationContext(),
-                                        message,
-                                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                                toast.show();
-                            }
-                        }
-                    });
-        }
-
         if(loadThemes) {
-            try {
-                DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
-                creditDoc.get().addOnCompleteListener(task -> {
-                    Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                    if(c != null) {
-                        user_credits = (long)c;
-                    } else {
-                        user_credits = -1;
-                    }
 
-                    label_account_credits.setText(String.valueOf(user_credits));
-                });
-
-                creditDoc.addSnapshotListener((documentSnapshot, error) -> {
-                    if(documentSnapshot == null) { return; }
-
-                    Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                    if(c != null) {
-                        user_credits = (long)c;
-                    } else {
-                        user_credits = -1;
-                    }
-
-                    label_account_credits.setText(String.valueOf(user_credits));
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            initAccountCreditListener();
 
             populateMarketplaceUnPurchasedItems();
 
             loadThemes = false;
         }
 
-        loadRewardedAd(null);
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(() -> loadRewardedAd(null));
+        }
+
+        if(getActivity() != null) {
+            getActivity().runOnUiThread(this::initBillingClient);
+        }
+    }
+
+    private void initAccountCreditListener() {
+        try {
+            DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
+            creditDoc.get().addOnCompleteListener(task -> {
+                Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                if(c != null) {
+                    user_credits = (long)c;
+                } else {
+                    user_credits = -1;
+                }
+
+                label_account_credits.setText(String.valueOf(user_credits));
+            });
+
+            creditDoc.addSnapshotListener((documentSnapshot, error) -> {
+                if(documentSnapshot == null) { return; }
+
+                Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
+                if(c != null) {
+                    user_credits = (long)c;
+                } else {
+                    user_credits = -1;
+                }
+
+                label_account_credits.setText(String.valueOf(user_credits));
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void populateMarketplaceUnPurchasedItems() {
@@ -273,122 +299,174 @@ public class MarketplaceFragment extends Fragment {
     }
 
     private void populateMarketplace() {
+        populateBundledThemes();
 
-        LinearLayout prestige = new LinearLayout(getContext());
-        LinearLayout event = new LinearLayout(getContext());
-        LinearLayout community = new LinearLayout(getContext());
+        populateIndividualThemes();
+    }
+
+    public void populateBundledThemes() {
+        MarketplaceListLayout bundles = new MarketplaceListLayout(getContext());
+        bundles.setLabel("Theme Bundles");
+
+        bundles.showLabel(GONE);
+
+        linearLayout_marketplace_items.addView(bundles);
+
+        OnFirestoreProcessListener processCompleteListener =
+                new OnFirestoreProcessListener() {
+            boolean thrown = false;
+            boolean labelShown = true;
+
+            @Override
+            public void onFailure() {
+                if(!thrown)
+                    thrown = true;
+
+                labelShown = false;
+
+                market_progressbar.setVisibility(GONE);
+                label_marketplace_error.setVisibility(VISIBLE);
+
+                Toast.makeText(getActivity(),
+                                "Could not access the marketplace.",
+                                Toast.LENGTH_SHORT)
+                        .show();
+
+            }
+
+            @Override
+            public void onSuccess() {
+                if(!thrown)
+                    thrown = true;
+            }
+
+            @Override
+            public void onComplete() {
+                if(!thrown)
+                    thrown = true;
+
+                if(labelShown) {
+                    bundles.showLabel(VISIBLE);
+                }
+
+                market_progressbar.setVisibility(GONE);
+            }
+        };
+
+        if(!NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference())) {
+            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                    .show();
+            processCompleteListener.onFailure();
+
+            return;
+        }
+
+        addMarketplaceBundleThemes(bundles, null, null, null, null, processCompleteListener);
+    }
+
+    private void populateIndividualThemes() {
+        MarketplaceListLayout prestige = new MarketplaceListLayout(getContext());
+        prestige.setLabel("Prestige Themes");
+        MarketplaceListLayout event = new MarketplaceListLayout(getContext());
+        event.setLabel("Event Themes");
+        MarketplaceListLayout community = new MarketplaceListLayout(getContext());
+        community.setLabel("Community Themes");
 
         linearLayout_marketplace_items.addView(prestige);
         linearLayout_marketplace_items.addView(event);
         linearLayout_marketplace_items.addView(community);
 
-        populateList(prestige, "group", "Prestige", "priority", Query.Direction.ASCENDING);
-        populateList(event, "group", "Event", null, null);
-        populateList(community, "group", "Community", null, null);
+        OnFirestoreProcessListener processCompleteListener = new OnFirestoreProcessListener() {
+            boolean thrown = false;
+            boolean labelShown = false;
+
+            @Override
+            public void onFailure() {
+                if(!thrown)
+                    thrown = true;
+
+                market_progressbar.setVisibility(GONE);
+                label_marketplace_error.setVisibility(VISIBLE);
+
+                Toast.makeText(getActivity(),
+                                "Could not access the marketplace.",
+                                Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onSuccess() {
+                if(!thrown)
+                    thrown = true;
+
+                labelShown = true;
+            }
+
+            @Override
+            public void onComplete() {
+                if(!thrown)
+                    thrown = true;
+
+                market_progressbar.setVisibility(GONE);
+            }
+
+        };
+
+        if(!NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference())) {
+            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                    .show();
+            processCompleteListener.onFailure();
+
+            return;
+        }
+
+        addMarketplaceSingleThemes(prestige, "group", "Prestige", "priority", Query.Direction.ASCENDING, processCompleteListener);
+        addMarketplaceSingleThemes(event, "group", "Event", null, null, processCompleteListener);
+        addMarketplaceSingleThemes(community, "group", "Community", null, null, processCompleteListener);
     }
 
-    private void populateList(LinearLayout list, String field, String value, String orderField, Query.Direction order) {
-        list.setOrientation(LinearLayout.VERTICAL);
-        list.setLayoutTransition(new LayoutTransition());
-        list.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        addMarketplaceThemes(list, field, value, orderField, order);
-    }
-
-    private void addMarketplaceThemes(LinearLayout list, String field, String value,
-                                      String orderField, Query.Direction order) {
+    private void addMarketplaceSingleThemes(MarketplaceListLayout list, String field, String value,
+                                            String orderField, Query.Direction order,
+                                            OnFirestoreProcessListener listener) {
 
         Task<QuerySnapshot> query = null;
         try {
             query = FirestoreMarketplace.getThemesWhere(field, value, orderField, order);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        query.addOnCompleteListener(task -> {
-            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
 
+        if(query == null) {
+            listener.onFailure();
+            return;
+        }
+
+        query.addOnSuccessListener(snapshot -> {
+            if(listener != null) {
+                listener.onSuccess();
+            }
+
+            for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
                 if (!documentSnapshot.exists()) {
                     Log.d("Firestore", "Theme document snapshot DNE.");
                 } else {
                     try {
-                        PETTheme tempTheme = documentSnapshot.toObject(PETTheme.class);
-                        if (tempTheme != null) {
-                            CustomTheme theme = globalPreferencesViewModel.getColorThemeControl()
+                        MarketSingleTheme inboundTheme = documentSnapshot.toObject(MarketSingleTheme.class);
+                        if (inboundTheme != null) {
+                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
                                     .getThemeByUUID(documentSnapshot.getReference().getId());
-                            @StyleRes int style = theme.getStyle();
+                            @StyleRes int style = customTheme.getStyle();
 
-                            MarketplaceItem marketplaceItem =
-                                    new MarketplaceItem(new ContextThemeWrapper(
-                                            getContext(), style), null, style);
-                            marketplaceItem.setPurchaseable(!theme.isUnlocked());
-                            marketplaceItem.setCreditCost(tempTheme.getBuyCredits());
-                            AppCompatButton buyButton = marketplaceItem.getBuyButton();
-                            if(buyButton != null) {
-                                buyButton.setOnClickListener(v -> {
-                                    try {
-                                        FirestoreAccountCredit.getCreditsDocument()
-                                                .get().addOnCompleteListener(creditTask -> {
-                                                    Object c = creditTask.getResult().get("earnedCredits");
-                                                    if (c == null) {
-                                                        return;
-                                                    }
-                                                    user_credits = (long) c;
+                            MarketplaceSingleThemeView marketplaceItem = buildMarketplaceSingleThemeView(
+                                    list, inboundTheme, customTheme, style);
 
-                                                    if (user_credits >= marketplaceItem.getCreditCost()) {
-
-                                                        OnSuccessListener<DocumentSnapshot> callback =
-                                                                dss ->
-                                                                {
-                                                                    try {
-                                                                        FirestoreAccountCredit.removeCredits(marketplaceItem.getCreditCost());
-                                                                    } catch (Exception e) {
-                                                                        throw new RuntimeException(e);
-                                                                    }
-                                                                };
-                                                        try {
-                                                            FirestorePurchaseHistory.addPurchaseDocument(callback, documentSnapshot.getReference().getId());
-                                                        } catch (Exception e) {
-                                                            throw new RuntimeException(e);
-                                                        }
-
-                                                        Toast.makeText(getActivity(),
-                                                                "Skin purchased!",
-                                                                Toast.LENGTH_SHORT).show();
-
-                                                        marketplaceItem.animate()
-                                                                .setDuration(300)
-                                                                .translationX(list.getWidth())
-                                                                .setListener(new AnimatorListenerAdapter() {
-                                                                    @Override
-                                                                    public void onAnimationStart(Animator animation) {
-                                                                        super.onAnimationStart(animation);
-
-                                                                        marketplaceItem.setEnabled(false);
-                                                                    }
-
-                                                                    @Override
-                                                                    public void onAnimationEnd(Animator animation) {
-                                                                        super.onAnimationEnd(animation);
-
-                                                                        list.removeView(marketplaceItem);
-                                                                    }
-                                                                })
-                                                                .start();
-
-                                                    } else {
-                                                        Toast.makeText(getActivity(),
-                                                                "Not enough credits for purchase!",
-                                                                Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-                                    } catch (Exception e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                });
+                            if(!customTheme.isUnlocked()) {
+                                list.addView(marketplaceItem);
+                                list.requestLayout();
+                                list.invalidate();
                             }
-
-                            list.addView(marketplaceItem);
                         }
                     } catch (Exception e) {
                         Log.d("Firestore", "Error CREATING PETTheme!");
@@ -396,7 +474,304 @@ public class MarketplaceFragment extends Fragment {
                     }
                 }
             }
+
+        }).addOnFailureListener(e -> {
+            if (listener != null) {
+                listener.onFailure();
+            }
+        })
+        .addOnCompleteListener(task -> {
+            if(listener != null) {
+                listener.onComplete();
+            }
+
+            if(list.getChildCount() <= 1) {
+                list.setVisibility(GONE);
+            } else {
+                list.showLabel(VISIBLE);
+            }
         });
+    }
+
+    private void addMarketplaceBundleThemes(MarketplaceListLayout list, String field, String value,
+                                            String orderField, Query.Direction order,
+                                            OnFirestoreProcessListener listener) {
+
+        Task<QuerySnapshot> query = null;
+        try {
+            query = FirestoreMarketplace.getBundleWhere(field, value, orderField, order);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(query == null) {
+            listener.onFailure();
+            return;
+        }
+
+        query.addOnSuccessListener(snapshot -> {
+            if(listener != null) {
+                listener.onSuccess();
+            }
+
+            for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
+                if (!documentSnapshot.exists()) {
+                    Log.d("Firestore", "Bundle document snapshot DNE.");
+                } else {
+
+                    Map<String, Object> data = documentSnapshot.getData();
+                    if(data != null) {
+                        String docId = documentSnapshot.getReference().getId();
+                        String name = (String) data.get("name");
+                        Log.d("Firestore", "Name: " + name);
+                        Long buyCredits = (Long)data.get("buyCredits");
+                        Log.d("Firestore", "BuyCredits: " + (buyCredits != null ? String.valueOf(buyCredits.longValue()) : "0"));
+
+                        List<?> documentRefs = (List<?>) data.get("items");
+                        ArrayList<String> themeIDs = new ArrayList<>();
+                        if(documentRefs != null) {
+                            for (Object item : documentRefs) {
+                                if(item instanceof DocumentReference documentRef) {
+                                    Log.d("Firestore",
+                                            "Items: " + documentRef.getId());
+                                    themeIDs.add(documentRef.getId());
+                                }
+                            }
+                        }
+
+                        MarketThemeBundle bundle = null;
+                        try {
+                            bundle = documentSnapshot.toObject(MarketThemeBundle.class);
+                        } catch (Exception e) {
+                            Log.d("Firestore", "Error CREATING PETTheme!");
+                            e.printStackTrace();
+                        }
+
+                        if (bundle != null) {
+                            ArrayList<CustomTheme> customThemes = new ArrayList<>();
+                            for(String themeID: themeIDs) {
+                                customThemes.add(globalPreferencesViewModel.getColorThemeControl()
+                                        .getThemeByUUID(themeID));
+                            }
+                            bundle = new MarketThemeBundle(docId, bundle, customThemes);
+
+                            MarketplaceBundleThemeView marketplaceItem =
+                                    buildMarketplaceBundleThemeView(
+                                    list, bundle);
+
+                            list.addView(marketplaceItem);
+                            list.requestLayout();
+                            list.invalidate();
+                            /*
+                            if(!customTheme.isUnlocked()) {
+                                list.addView(marketplaceItem);
+                                list.requestLayout();
+                                list.invalidate();
+                            }
+                            */
+                        }
+
+
+                    }
+                }
+            }
+
+        }).addOnFailureListener(e -> {
+            if (listener != null) {
+                listener.onFailure();
+            }
+        })
+        .addOnCompleteListener(task -> {
+            if(list.getChildCount() <= 1) {
+                list.setVisibility(GONE);
+            } else {
+                //list.showLabel(GONE);
+            }
+
+            if(listener != null) {
+                listener.onComplete();
+            }
+
+        });
+    }
+
+    @NonNull
+    private MarketplaceBundleThemeView buildMarketplaceBundleThemeView(
+            MarketplaceListLayout list, MarketThemeBundle bundleThemes) {
+
+        MarketplaceBundleThemeView marketplaceBundleView =
+                new MarketplaceBundleThemeView(getContext(), null);
+
+        /*TODO marketplaceBundle.setPurchaseable(!theme.isUnlocked());*/
+        marketplaceBundleView.setBundle(bundleThemes);
+        marketplaceBundleView.setCreditCost(bundleThemes.getBuyCredits());
+
+        AppCompatButton buyButton = marketplaceBundleView.getBuyButton();
+
+        if(buyButton != null) {
+
+            OnFirestoreProcessListener purchaseListener = new OnFirestoreProcessListener() {
+                @Override
+                public void onFailure() {
+                    Log.d("Firestore", "Could not add/retrieve purchase document!");
+                }
+            };
+
+            OnFirestoreProcessListener buyButtonCallback = new OnFirestoreProcessListener() {
+                @Override
+                public void onSuccess() {
+
+                    try {
+                        FirestorePurchaseHistory.addPurchaseDocument(
+                                String.valueOf(marketplaceBundleView.getId()),
+                                purchaseListener);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if(getActivity() != null) {
+                        Toast.makeText(requireActivity(),
+                                "Skin purchased!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure() {
+                    if(getActivity() != null) {
+                        Toast.makeText(requireActivity(),
+                                "Not enough credits for purchase!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onComplete() {
+                    ViewPropertyAnimator marketItemAnimation =
+                        marketplaceBundleView.animate()
+                            .setDuration(300)
+                            .translationX(list.getWidth())
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationStart(Animator animation) {
+                                    super.onAnimationStart(animation);
+
+                                    marketplaceBundleView.setEnabled(false);
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+
+                                    list.removeView(marketplaceBundleView);
+                                }
+                            });
+                    marketItemAnimation.start();
+                }
+            };
+
+            buyButton.setOnClickListener(v -> {
+                try {
+                    FirestoreAccountCredit.removeCredits(
+                            marketplaceBundleView.getCreditCost(),
+                            buyButtonCallback);
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        return marketplaceBundleView;
+    }
+
+
+    @NonNull
+    private MarketplaceSingleThemeView buildMarketplaceSingleThemeView(
+            MarketplaceListLayout list, MarketSingleTheme tempTheme, CustomTheme theme, int style) {
+
+        MarketplaceSingleThemeView marketplaceItem =
+                new MarketplaceSingleThemeView(new ContextThemeWrapper(
+                        getContext(), style), null, style);
+        marketplaceItem.setPurchaseable(!theme.isUnlocked());
+        marketplaceItem.setCreditCost(tempTheme.getBuyCredits());
+        AppCompatButton buyButton = marketplaceItem.getBuyButton();
+
+        if(buyButton != null) {
+
+            OnFirestoreProcessListener purchaseListener = new OnFirestoreProcessListener() {
+                @Override
+                public void onFailure() {
+                    Log.d("Firestore", "Could not add/retrieve purchase document!");
+                }
+            };
+
+            OnFirestoreProcessListener buyButtonCallback = new OnFirestoreProcessListener() {
+                @Override
+                public void onSuccess() {
+
+                    try {
+                        FirestorePurchaseHistory.addPurchaseDocument(
+                                /*documentSnapshot.getReference().getId(),*/
+                                String.valueOf(marketplaceItem.getId()),
+                                purchaseListener);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if(getActivity() != null) {
+                        Toast.makeText(requireActivity(),
+                                "Skin purchased!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure() {
+                    if(getActivity() != null) {
+                        Toast.makeText(requireActivity(),
+                                "Not enough credits for purchase!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onComplete() {
+                    ViewPropertyAnimator marketItemAnimation =
+                        marketplaceItem.animate()
+                            .setDuration(300)
+                            .translationX(list.getWidth())
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationStart(Animator animation) {
+                                    super.onAnimationStart(animation);
+
+                                    marketplaceItem.setEnabled(false);
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+
+                                    list.removeView(marketplaceItem);
+                                }
+                            });
+                    marketItemAnimation.start();
+                }
+            };
+
+            buyButton.setOnClickListener(v -> {
+                try {
+
+                    FirestoreAccountCredit.removeCredits(
+                            marketplaceItem.getCreditCost(),
+                            buyButtonCallback);
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        return marketplaceItem;
     }
 
     /**
@@ -419,23 +794,6 @@ public class MarketplaceFragment extends Fragment {
      */
     public void saveStates() {
 
-        if (globalPreferencesViewModel != null && getContext() != null) {
-            globalPreferencesViewModel.getFontThemeControl().setSavedIndex();
-            globalPreferencesViewModel.getColorThemeControl().setSavedIndex();
-
-            globalPreferencesViewModel.saveToFile(getContext());
-        }
-
-        PETActivity activity = ((PETActivity) getActivity());
-        if (activity != null) {
-            activity.changeTheme(
-                            globalPreferencesViewModel.getColorTheme(),
-                            globalPreferencesViewModel.getFontTheme());
-            if(globalPreferencesViewModel.getIsAlwaysOn() ) {
-                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            }
-            activity.recreate();
-        }
     }
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -463,6 +821,14 @@ public class MarketplaceFragment extends Fragment {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
+        if(!NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference())) {
+            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                    .show();
+
+            return;
+        }
+
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
@@ -488,7 +854,7 @@ public class MarketplaceFragment extends Fragment {
             try {
                 user = FirestoreUser.getCurrentFirebaseUser();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
@@ -502,47 +868,15 @@ public class MarketplaceFragment extends Fragment {
                 // Generate a Firestore document for the User with default data if needed
                 try {
                     FirestoreUser.buildUserDocument().get().addOnCompleteListener(task1 -> {
-
-                        try {
-                            DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
-                            creditDoc.get().addOnCompleteListener(task -> {
-                                Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                                if(c != null) {
-                                    user_credits = (long)c;
-                                } else {
-                                    user_credits = -1;
-                                }
-
-                                label_account_credits.setText(String.valueOf(user_credits));
-                            });
-
-                            creditDoc.addSnapshotListener((documentSnapshot, error) -> {
-                                if(documentSnapshot == null) { return; }
-
-                                Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                                if(c != null) {
-                                    user_credits = (long)c;
-                                } else {
-                                    user_credits = -1;
-                                }
-
-                                label_account_credits.setText(String.valueOf(user_credits));
-                            });
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        populateMarketplaceUnPurchasedItems();
+                        initAccountCreditListener();
                     });
 
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
 
             }
         } else {
-
             String message = "ERROR: (Error data could not be acquired).";
             if(response != null) {
                 FirebaseUiException error = response.getError();
@@ -558,12 +892,8 @@ public class MarketplaceFragment extends Fragment {
         }
     }
 
-    private OnAdLoadedListener onAdLoadedListener;
     public interface OnAdLoadedListener {
         void onAdLoaded();
-    }
-    public void setOnAdLoadedListener(OnAdLoadedListener listener) {
-        onAdLoadedListener = listener;
     }
 
     public void loadRewardedAd(OnAdLoadedListener listener) {
@@ -614,7 +944,13 @@ public class MarketplaceFragment extends Fragment {
         } else {
             Log.d("RewardedAd", "The rewarded ad wasn't ready yet.");
 
-            loadRewardedAd(this::showRewardedAd);
+            if(NetworkUtils.isNetworkAvailable(getContext(),
+                    globalPreferencesViewModel.getNetworkPreference())) {
+                loadRewardedAd(this::showRewardedAd);
+            } else {
+                Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
+            }
         }
     }
 
@@ -622,5 +958,106 @@ public class MarketplaceFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
+    }
+
+
+    public void initBillingClient() {
+        handlePendingPurchases();
+
+        connectToGooglePlayBilling();
+    }
+
+    private void handlePendingPurchases() {
+        billingClient = BillingClient.newBuilder(requireContext())
+                .setListener(purchasesUpdatedListener)
+                .enablePendingPurchases()
+                .build();
+
+        Log.d("Billing", "Pending purchases will be handled.");
+    }
+
+    private void connectToGooglePlayBilling() {
+        Log.d("Billing", "Attempting to setup Billing...");
+
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    Log.d("Billing", "Billing setup finished successfully!");
+                    // The BillingClient is ready. You can query purchases here.
+                    queryMarketplaceItems();
+                } else {
+                    Log.d("Billing", "Billing setup unsuccessful.\nCode: " +
+                            billingResult.getResponseCode() + "\nDebug: " +
+                            billingResult.getDebugMessage());
+                }
+            }
+            @Override
+            public void onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+                Log.d("Billing", "Billing service disconnected.");
+
+                connectToGooglePlayBilling();
+            }
+        });
+
+    }
+
+    // Google Billing Library
+    private final PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, list) -> {
+        if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
+                list != null && !list.isEmpty()) {
+            for(Purchase purchase: list) {
+                if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED &&
+                    !purchase.isAcknowledged()) {
+                    Toast.makeText(getContext(), "Purchase successful!", Toast.LENGTH_LONG);
+                }
+            }
+        }
+    };
+
+    public void queryMarketplaceItems() {
+        Log.d("Billing", "Obtaining list of Marketplace items...");
+
+        List<String> productIds = new ArrayList<>();
+        productIds.add("credits_100");
+        productIds.add("credits_500");
+        productIds.add("credits_1000");
+
+        List<QueryProductDetailsParams.Product> productsQueryList = new ArrayList<>();
+        for(String id: productIds) {
+            Log.d("Billing", "Building item " + id);
+            QueryProductDetailsParams.Product product = QueryProductDetailsParams.Product.newBuilder()
+                    .setProductId(id)
+                    .setProductType(BillingClient.ProductType.INAPP)
+                    .build();
+            productsQueryList.add(product);
+        }
+
+        QueryProductDetailsParams queryProductDetailsParams =
+                QueryProductDetailsParams.newBuilder()
+                        .setProductList(
+                                productsQueryList)
+                        .build();
+
+        billingClient.queryProductDetailsAsync(
+                queryProductDetailsParams,
+                (billingResult, productDetailsList) -> {
+                    // check billingResult
+                    // process returned productDetailsList
+                    if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
+                            !productDetailsList.isEmpty()) {
+
+                        Log.d("Billing", "Finished querying Marketplace with " +
+                                productDetailsList.size() + " results.");
+
+                        for(ProductDetails productDetails: productDetailsList) {
+                            Log.d("Billing", productDetails.toString());
+                        }
+                    }
+                }
+        );
+
     }
 }

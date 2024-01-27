@@ -411,102 +411,102 @@
                 android:showDividers="middle" >
 
                 <!--
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Recruit" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Investigator" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/PrivateInvestigator" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Detective" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Technician" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Specialist" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Analyst" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Agent" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Operator" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Commissioner" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Easter" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Holiday22" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Holiday23" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Halloween23" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Discord" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/ContentCreator" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Developer" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Translator" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Winner" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/Artist" />

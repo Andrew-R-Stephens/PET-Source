@@ -16,7 +16,7 @@
         <item name="middlegroundColor">@color/white_M400</item>
         <item name="backgroundColor" >@color/black</item>
         <!--<item name="backgroundColorOnBackground" >@color/black_M50</item>-->
-        <item name="backgroundColorOnBackground" >#0F0F0F</item>
+        <item name="backgroundColorOnBackground" >#191616</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/black</item>

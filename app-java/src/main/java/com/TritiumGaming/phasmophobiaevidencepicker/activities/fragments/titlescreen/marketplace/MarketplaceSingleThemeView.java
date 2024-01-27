@@ -2,12 +2,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-import androidx.annotation.IntegerRes;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -15,30 +14,33 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.google.android.material.card.MaterialCardView;
 
-public class MarketplaceItem extends MaterialCardView {
+public class MarketplaceSingleThemeView extends MaterialCardView {
 
     private long creditCost = 0;
 
-    public MarketplaceItem(Context context) {
+    public MarketplaceSingleThemeView(Context context) {
         super(context, null);
     }
 
-    public MarketplaceItem(Context context, AttributeSet attrs) {
+    public MarketplaceSingleThemeView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context, attrs);
+        init(context/*, attrs*/);
     }
 
-    public MarketplaceItem(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MarketplaceSingleThemeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context, attrs);
+        init(context/*, attrs*/);
     }
 
-    public void init(Context context, AttributeSet attrs) {
-        Log.d("MPView", "Inflating");
-
+    public void init(Context context/*, AttributeSet attrs*/) {
         inflate(context, R.layout.item_marketplace_theme, this);
+
+        setLayoutParams(
+                new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
 
         int strokeColor = R.color.white;
         if (context != null) {
@@ -59,21 +61,23 @@ public class MarketplaceItem extends MaterialCardView {
         setUseCompatPadding(true);
         setClipToPadding(false);
 
-        TypedArray a = context.getTheme().obtainStyledAttributes(
+        /*TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.MarketplaceItem,
-                0, 0);
+                0, 0);*/
 
-        @IntegerRes int themeRes =
-                a.getType(R.styleable.MarketplaceItem_enforcedTheme);
-        Log.d("Themetype", themeRes + "");
+        /*@IntegerRes int themeRes =
+                a.getType(R.styleable.MarketplaceItem_enforcedTheme);*/
 
-        try {
+        invalidate();
+        requestLayout();
+
+        /*try {
             invalidate();
             requestLayout();
         } finally {
             a.recycle();
-        }
+        }*/
     }
 
     public void setPurchaseable(boolean isEnabled) {

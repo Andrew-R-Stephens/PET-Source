@@ -6,9 +6,8 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="?attr/enforcedTheme"
     android:background="@color/white_M100"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView">
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceBundleThemeView">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -28,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_bundleTitle"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 style="?attr/primaryFont_Bold_AutoSqueeze"
@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:padding="4dp"
                 android:textAllCaps="true"
-                android:text="?attr/theme_title"
+                android:text="Temp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,106 +53,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView5"
+            <!--
+            <GridLayout
+                android:id="@+id/themesList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:maxHeight="96dp"
-                android:scaleType="fitCenter"
-                android:src="?attr/theme_badge"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".2" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:minHeight="48dp"
+                android:useDefaultMargins="true"
+                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/appCompatImageView5"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <GridLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:rowCount="2"
-                    android:columnCount="4"
-                    android:useDefaultMargins="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+            </GridLayout>
+            -->
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_1"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"/>
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarStyle="outsideInset"
+                app:layout_constraintHeight_default="wrap"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_2"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
+                <LinearLayout
+                    android:id="@+id/themesList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_3"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
+                </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_4"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_5"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_6"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_7"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardBackgroundColor="?attr/theme_coreColor_8"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1" />
-
-                </GridLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,6 +165,7 @@
         android:scaleY="5"
         android:src="?attr/theme_badge"
         android:translationZ="-1dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

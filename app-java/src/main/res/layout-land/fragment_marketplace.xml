@@ -376,7 +376,7 @@
                                         android:visibility="visible" />
 
                                     <androidx.appcompat.widget.AppCompatTextView
-                                        android:id="@+id/settings_account_buy_button"
+                                        android:id="@+id/label_ads_description"
                                         style="?attr/quaternaryFont_Bold_Manual"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -397,6 +397,35 @@
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/market_progressbar"
+            style="@android:style/Widget.Material.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="?attr/textColorPrimary"
+            android:indeterminateTintMode="multiply"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout82"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/market_loaderror"
+            style="?attr/quaternaryFont_Bold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Uh oh! There was an error connecting to the marketplace."
+            android:textColor="?attr/textColorTertiary"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/scrollview_marketplace_items"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
 
         <ScrollView
             android:id="@+id/scrollview_marketplace_items"

@@ -2,21 +2,12 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.theme.PETTheme;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 public class FirestoreMarketplace {
 
@@ -24,7 +15,8 @@ public class FirestoreMarketplace {
             COLLECTION_STORE = "Store",
             DOCUMENT_MERCHANDISE = "Merchandise",
 
-            COLLECTION_THEMES = "Themes";
+            COLLECTION_THEMES = "Themes",
+            COLLECTION_BUNDLES = "Bundles";
 
     public static CollectionReference getThemeCollection() throws Exception {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -35,9 +27,24 @@ public class FirestoreMarketplace {
         DocumentReference merchandiseDocument = storeCollection.document(DOCUMENT_MERCHANDISE);
 
         Log.d("Firestore", "READING Themes collection.");
+
         return merchandiseDocument.collection(COLLECTION_THEMES);
     }
 
+    public static CollectionReference getBundlesCollection() throws Exception {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Log.d("Firestore", "READING Store collection.");
+        CollectionReference storeCollection = db.collection(COLLECTION_STORE);
+        Log.d("Firestore", "READING Merchandise document.");
+        DocumentReference merchandiseDocument = storeCollection.document(DOCUMENT_MERCHANDISE);
+
+        Log.d("Firestore", "READING Themes collection.");
+
+        return merchandiseDocument.collection(COLLECTION_BUNDLES);
+    }
+
+    /*
     public static Task<QuerySnapshot> getThemes() throws Exception {
         return getThemeCollection().get();
     }
@@ -47,6 +54,7 @@ public class FirestoreMarketplace {
                 .whereEqualTo(field, value)
                 .get();
     }
+    */
 
     public static Task<QuerySnapshot> getThemesWhere(
             String filterField, String value, String orderField, Query.Direction order)
@@ -62,6 +70,25 @@ public class FirestoreMarketplace {
         return query
                 .orderBy(orderField, order)
                 .get();
+    }
+
+    public static Task<QuerySnapshot> getBundleWhere(
+            String filterField, String value, String orderField, Query.Direction order)
+            throws Exception {
+
+        Query query = FirestoreMarketplace.getBundlesCollection();
+        if(filterField != null && value != null) {
+            query = FirestoreMarketplace.getBundlesCollection()
+                    .whereEqualTo(filterField, value);
+        }
+
+        if(orderField != null && order != null) {
+            return query
+                    .orderBy(orderField, order)
+                    .get();
+        }
+
+        return query.get();
     }
 
 

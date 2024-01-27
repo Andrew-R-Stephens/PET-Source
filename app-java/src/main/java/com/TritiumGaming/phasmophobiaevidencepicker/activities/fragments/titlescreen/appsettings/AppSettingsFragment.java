@@ -36,6 +36,7 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
@@ -468,6 +469,7 @@ public class AppSettingsFragment extends Fragment {
     }
 
     private void getUserPurchaseHistory() {
+
         try {
             CollectionReference purchaseHistoryCollection =
                     FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
@@ -476,13 +478,15 @@ public class AppSettingsFragment extends Fragment {
                 return;
             }
 
-            purchaseHistoryCollection.get().addOnCompleteListener(task -> {
+            purchaseHistoryCollection.get()
+                    .addOnCompleteListener(task -> {
                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                     DocumentReference documentReference = documentSnapshot.getReference();
 
                     String uuid = documentReference.getId();
                     CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
                             .getThemeByUUID(uuid);
+
                     customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
                 }
             });
@@ -654,7 +658,15 @@ public class AppSettingsFragment extends Fragment {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        if(!NetworkUtils.isNetworkAvailable(getContext(),
+                globalPreferencesViewModel.getNetworkPreference())) {
+            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                    .show();
+
+            return;
+        }
+
+        List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
@@ -696,6 +708,7 @@ public class AppSettingsFragment extends Fragment {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+
                 getUserPurchaseHistory();
 
             }
@@ -741,7 +754,6 @@ public class AppSettingsFragment extends Fragment {
                     themeControl.iterateSelection(0);
                     themeControl.setSelectedIndex(0);
                     themeControl.setSavedIndex(0);
-                    //globalPreferencesViewModel.getColorThemeControl().init();
 
                     globalPreferencesViewModel.saveColorSpace(getContext());
 

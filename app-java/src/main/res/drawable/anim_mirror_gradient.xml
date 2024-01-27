@@ -9,7 +9,7 @@
             <gradient
                 android:type="radial"
                 android:gradientRadius="90%"
-                android:centerColor="@color/blue_M200"
+                android:centerColor="@color/blue"
                 android:endColor="@color/transparent"
                 android:centerX=".5"
                 android:centerY=".5">
@@ -24,7 +24,7 @@
             <gradient
                 android:type="radial"
                 android:gradientRadius="75%"
-                android:centerColor="@color/blue_M200"
+                android:centerColor="@color/blue"
                 android:endColor="@color/transparent"
                 android:centerX=".5"
                 android:centerY=".5">
