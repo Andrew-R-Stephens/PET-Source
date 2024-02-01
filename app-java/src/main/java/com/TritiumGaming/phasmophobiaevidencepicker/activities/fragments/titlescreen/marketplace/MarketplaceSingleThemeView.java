@@ -4,19 +4,20 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleTheme;
 import com.google.android.material.card.MaterialCardView;
 
 public class MarketplaceSingleThemeView extends MaterialCardView {
 
-    private long creditCost = 0;
+    private MarketSingleTheme theme = null;
 
     public MarketplaceSingleThemeView(Context context) {
         super(context, null);
@@ -25,16 +26,16 @@ public class MarketplaceSingleThemeView extends MaterialCardView {
     public MarketplaceSingleThemeView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context/*, attrs*/);
+        init(context);
     }
 
     public MarketplaceSingleThemeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context/*, attrs*/);
+        init(context);
     }
 
-    public void init(Context context/*, AttributeSet attrs*/) {
+    public void init(Context context) {
         inflate(context, R.layout.item_marketplace_theme, this);
 
         setLayoutParams(
@@ -60,30 +61,49 @@ public class MarketplaceSingleThemeView extends MaterialCardView {
 
         setUseCompatPadding(true);
         setClipToPadding(false);
+    }
 
-        invalidate();
-        requestLayout();
+    public void setPurchasable() {
+        if(theme == null) {
+            return;
+        }
+
+        if(theme.isUnlocked())
+            setVisibility(GONE); {
+        }
 
     }
 
-    public void setPurchaseable(boolean isEnabled) {
-        if(isEnabled) { return; }
-
-        setVisibility(GONE);
-    }
-
-    public void setCreditCost(long creditCost) {
-        this.creditCost = creditCost;
-
+    public void setCreditCost() {
         AppCompatTextView label_credits = findViewById(R.id.label_credits_cost);
-        label_credits.setText(String.valueOf(creditCost));
+
+        if(theme == null || label_credits == null) {
+            return;
+        }
+
+        label_credits.setText(String.valueOf(theme.getBuyCredits()));
     }
 
     public long getCreditCost() {
-        return creditCost;
+        return theme.getBuyCredits();
     }
 
-    public AppCompatButton getBuyButton() {
-        return findViewById(R.id.button_transactItem);
+    public void setTheme(MarketSingleTheme theme) {
+        this.theme = theme;
+
+        setPurchasable();
+        setCreditCost();
+    }
+
+    public void validate() {
+        setPurchasable();
+    }
+
+    public void setBuyButtonListener(OnClickListener buyButtonListener) {
+        View buyButton = findViewById(R.id.button_transactItem);
+
+        if(buyButton != null) {
+            buyButton.setOnClickListener(buyButtonListener);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -39,20 +40,39 @@ public class MarketplaceListLayout extends LinearLayout {
     public void init() {
         inflate(getContext(), R.layout.layout_marketplace_grouplabel, this);
 
-        setOrientation(LinearLayout.VERTICAL);
         setLayoutTransition(new LayoutTransition());
-        setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        setOrientation(LinearLayout.VERTICAL);
+    }
+
+    public void setOrientation(int orientation) {
+        super.setOrientation(orientation);
+        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
 
     public void setLabel(String text) {
-        AppCompatTextView label = (AppCompatTextView)findViewById(R.id.label);
-        label.setText(text);
+        AppCompatTextView label = findViewById(R.id.label);
+        if(label != null) {
+            label.setText(text);
+        }
     }
 
     public void showLabel(int visibility) {
-        AppCompatTextView label = (AppCompatTextView)findViewById(R.id.label);
-        label.setVisibility(visibility);
+        AppCompatTextView label = findViewById(R.id.label);
+        if(label != null) {
+            label.setVisibility(visibility);
+        }
+    }
+
+    public void validateItems() {
+        for(int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            if(child instanceof MarketplaceSingleThemeView singleThemeView) {
+                singleThemeView.validate();
+            }
+            else if(child instanceof MarketplaceBundleThemeView bundleThemeView) {
+                bundleThemeView.validate();
+            }
+        }
     }
 }

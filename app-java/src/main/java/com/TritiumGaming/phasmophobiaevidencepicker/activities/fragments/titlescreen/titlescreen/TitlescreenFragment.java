@@ -95,7 +95,7 @@ public class TitlescreenFragment extends Fragment {
         animationView = view.findViewById(R.id.titlescreen_backgroundanimation);
         AppCompatTextView label_languageName = view.findViewById(R.id.label_languageName);
         AppCompatTextView button_startSolo = view.findViewById(R.id.button_start_solo);
-        AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
+        //AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
         AppCompatImageView icon_appIcon = view.findViewById(R.id.icon_appicon);
         AppCompatImageView button_info = view.findViewById(R.id.button_info);
         AppCompatImageView button_settings = view.findViewById(R.id.button_settings);

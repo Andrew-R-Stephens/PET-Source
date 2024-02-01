@@ -4,15 +4,16 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.google.android.material.card.MaterialCardView;
 
 public class MarketplaceBundleCard extends MaterialCardView {
+
+    private CustomTheme theme;
 
     public MarketplaceBundleCard(Context context) {
         super(context, null);
@@ -23,7 +24,7 @@ public class MarketplaceBundleCard extends MaterialCardView {
     public MarketplaceBundleCard(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context/*, attrs*/);
+        init(context);
     }
 
     public MarketplaceBundleCard(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -42,14 +43,23 @@ public class MarketplaceBundleCard extends MaterialCardView {
 
         setClipToPadding(false);
         setSelected(true);
-
     }
 
-    public void setObtained(boolean isUnlocked) {
-        AppCompatImageView obtained = findViewById(R.id.image_obtained);
+    public void setTheme(CustomTheme theme) {
+        this.theme = theme;
 
-        if(obtained != null) {
-            obtained.setVisibility(isUnlocked ? VISIBLE : GONE);
+        setObtainedIconVisibility();
+    }
+
+    public void setObtainedIconVisibility() {
+        AppCompatImageView lockedState = findViewById(R.id.image_obtained);
+
+        if(this.theme != null && lockedState != null) {
+            lockedState.setVisibility(this.theme.isUnlocked() ? VISIBLE : GONE);
         }
+    }
+
+    public void validate() {
+        setObtainedIconVisibility();
     }
 }

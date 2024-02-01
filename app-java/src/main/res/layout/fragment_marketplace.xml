@@ -325,7 +325,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:background="@drawable/radiobutton_1_disabled"
                                     android:padding="8dp"
-                                    android:text="Buy"
+                                    android:text="Purchase"
                                     android:textColor="?attr/textColorBody"
                                     android:tooltipText="Purchase credits"
                                     android:visibility="visible" />
@@ -433,6 +433,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView_account">
 
             <LinearLayout
+                android:id="@+id/list_marketplace_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

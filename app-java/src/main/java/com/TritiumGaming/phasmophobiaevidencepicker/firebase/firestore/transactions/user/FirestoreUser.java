@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreTransactionHistory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -23,10 +23,8 @@ public class FirestoreUser {
 
     public static DocumentReference buildUserDocument()
             throws Exception {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        CollectionReference userCollection = db.collection(COLLECTION_USERS);
-        DocumentReference currentUserDoc = userCollection.document(getCurrentFirebaseUser().getUid());
+        DocumentReference currentUserDoc = getUserDocument();
 
         FirebaseUser user = getCurrentFirebaseUser();
 
@@ -43,11 +41,6 @@ public class FirestoreUser {
                     if (documentSnapshot.exists()) {
                         try {
                             FirestoreAccount.init();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        try {
-                            FirestorePurchaseHistory.init();
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

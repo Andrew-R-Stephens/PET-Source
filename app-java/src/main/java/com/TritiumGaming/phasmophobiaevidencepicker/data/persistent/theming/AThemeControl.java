@@ -2,13 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.StyleRes;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 
 import java.util.ArrayList;
 
@@ -29,7 +24,7 @@ public abstract class AThemeControl {
     }
 
     public void init() {
-        setSavedIndex(getIndexOfID(getDefaultTheme().getID()));
+        setSavedIndex(getIndexOfID(CustomTheme.getDefaultTheme().getID()));
         setSelectedIndex(savedIndex);
     }
 
@@ -57,7 +52,7 @@ public abstract class AThemeControl {
 
     public void setSavedIndex(int savedIndex) {
         if(savedIndex < 0 || savedIndex >= themes.size()) {
-            savedIndex = getIndexOfID(getDefaultTheme().getID());
+            savedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
         }
 
         this.savedIndex = savedIndex;
@@ -68,7 +63,7 @@ public abstract class AThemeControl {
      */
     public void setSelectedIndex(int selectedIndex) {
         if(selectedIndex < 0 || selectedIndex >= themes.size()) {
-            selectedIndex = getIndexOfID(getDefaultTheme().getID());
+            selectedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
         }
 
         this.selectedIndex = selectedIndex;
@@ -123,12 +118,12 @@ public abstract class AThemeControl {
     public CustomTheme getCurrentTheme() {
 
         if(selectedIndex >= themes.size() || selectedIndex < 0) {
-            return getDefaultTheme();
+            return CustomTheme.getDefaultTheme();
         }
 
         CustomTheme theme = themes.get(selectedIndex);
         if(theme == null) {
-            return getDefaultTheme();
+            return CustomTheme.getDefaultTheme();
         }
 
         return theme;
@@ -149,23 +144,17 @@ public abstract class AThemeControl {
         return getCurrentTheme().getID();
     }
 
-    /*
-    public @StyleRes int getCurrentStyle() {
-        return getCurrentTheme().getStyle();
-    }
-    */
-
-    public CustomTheme getAppThemeAt(int index) {
+    public CustomTheme getThemeAtIndex(int index) {
 
         if(index >= themes.size() || selectedIndex < 0)
         {
-            return getDefaultTheme();
+            return CustomTheme.getDefaultTheme();
         }
 
         CustomTheme theme = themes.get(index);
 
         if(theme == null) {
-            return getDefaultTheme();
+            return CustomTheme.getDefaultTheme();
         }
 
         return theme;
@@ -178,7 +167,7 @@ public abstract class AThemeControl {
                 return customTheme;
             }
         }
-        return getDefaultTheme();
+        return CustomTheme.getDefaultTheme();
     }
 
     public void revertAllUnlockedStatuses() {
@@ -187,36 +176,4 @@ public abstract class AThemeControl {
         }
     }
 
-    public CustomTheme getDefaultTheme() {
-        return new CustomTheme(
-                "CzjtxSbXRwIpX8SYR0ttngAND",
-                R.string.settings_colorblindnessmode_defaultName,
-                defaultStyle);
-    }
-
-    /*
-    public @StyleRes int getThemeAt(int index) {
-
-        CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
-
-        if(index >= themes.size())
-        {
-            return tempTheme.getStyle();
-        }
-
-        CustomTheme theme = themes.get(index);
-        if(theme == null) {
-            return tempTheme.getStyle();
-        }
-
-        return theme.getStyle();
-
-    }
-    */
-
-    /*
-    public boolean hasChanges() {
-        return savedIndex != selectedIndex;
-    }
-    */
 }

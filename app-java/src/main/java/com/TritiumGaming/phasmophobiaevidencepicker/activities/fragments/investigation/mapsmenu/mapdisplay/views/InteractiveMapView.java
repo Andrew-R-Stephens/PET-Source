@@ -441,10 +441,6 @@ public class InteractiveMapView extends View {
                 canvas.drawPath(wallpath, paint);
             }
 
-            /*
-            float radiusScaled = (scaleY / getHeight()) * 24;
-            radiusScaled = Math.min((Math.max(12, radiusScaled)), 36);
-            */
             float fontSize = (scaleX / getWidth()) * 24;
             paint.setTextSize(Math.min(36, Math.max(12, fontSize)));
 
@@ -473,35 +469,6 @@ public class InteractiveMapView extends View {
                         canvas.drawBitmap(b, interactivePoiData.getMatrix(), paint);
                     }
 
-                    /*
-                    paint.setColorFilter(null);
-                    //set color to yellow
-                    paint.setColor(Color.argb(25, 255, 255, 0));
-                    paint.setStyle(Paint.Style.FILL);
-                    canvas.drawCircle(x, y, radiusScaled, paint);
-
-                    paint.setStrokeWidth(2);
-                    paint.setStyle(Paint.Style.STROKE);
-                    canvas.drawCircle(x, y, radiusScaled, paint);
-                    */
-                    /*
-                    if(scaleX / getWidth() > 1.5) {
-
-                        String title = FontUtils.toTitle(poi.getType().name());
-                        float width = paint.measureText(title);
-
-                        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-                        paint.setStrokeWidth(2);
-                        paint.setColor(Color.argb(255, 255, 255, 255));
-                        canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
-
-                        paint.setStrokeWidth(0);
-                        paint.setStyle(Paint.Style.FILL);
-                        paint.setColor(Color.argb(255, 0, 0, 0));
-                        canvas.drawText(title, x - (width * .5f), y + radiusScaled, paint);
-
-                    }
-                    */
                 }
             }
 
@@ -510,6 +477,8 @@ public class InteractiveMapView extends View {
 
         if (frameRect == null) {
             frameRect = new Rect(1, 1, getWidth() - 1, getHeight() - 1);
+        } else {
+            frameRect.bottom = getHeight() -1;
         }
 
         if (paint != null) {

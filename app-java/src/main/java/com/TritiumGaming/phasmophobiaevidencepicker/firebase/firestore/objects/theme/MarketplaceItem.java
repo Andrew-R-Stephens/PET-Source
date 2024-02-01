@@ -1,0 +1,45 @@
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme;
+
+public abstract class MarketplaceItem {
+
+    protected String uuid;
+    protected String name;
+    protected long buyCredits;
+
+    public MarketplaceItem() {
+    }
+
+    public MarketplaceItem(long buyCredits, String name) {
+        setBuyCredits(buyCredits);
+        setName(name);
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
+    protected void setBuyCredits(long buyCredits) {
+        this.buyCredits = buyCredits;
+    }
+
+    protected void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public long getBuyCredits() {
+        return buyCredits;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String toString() {
+        return getUuid() + " " + getName() + " " + getBuyCredits();
+    }
+}
+

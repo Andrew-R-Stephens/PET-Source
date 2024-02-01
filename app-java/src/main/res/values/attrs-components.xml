@@ -36,6 +36,10 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="MarketplaceMtxView">
+        <attr name="billingTheme" format="reference" />
+    </declare-styleable>
+
     <declare-styleable name="MarketplaceSingleThemeView">
         <attr name="enforcedTheme" format="reference" />
     </declare-styleable>

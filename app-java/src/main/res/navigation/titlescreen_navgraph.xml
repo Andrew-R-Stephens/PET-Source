@@ -110,5 +110,16 @@
         <action
             android:id="@+id/action_marketplaceFragment_to_titleScreenFragment"
             app:destination="@id/titleScreenFragment" />
+        <action
+            android:id="@+id/action_marketplaceFragment_to_marketplaceBillingFragment"
+            app:destination="@id/marketplaceBillingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/marketplaceBillingFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.billing.MarketplaceBillingFragment"
+        android:label="MarketplaceBillingFragment" >
+        <action
+            android:id="@+id/action_marketplaceBillingFragment_to_marketplaceFragment"
+            app:destination="@id/marketplaceFragment" />
     </fragment>
 </navigation>

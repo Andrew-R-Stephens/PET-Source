@@ -3,11 +3,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
+
 public class CustomTheme {
 
     public enum Availability {
         LOCKED, UNLOCKED_DEFAULT, UNLOCKED_PURCHASE
-    };
+    }
 
     private final @StringRes int name;
     private final String hashID;
@@ -55,6 +57,23 @@ public class CustomTheme {
 
     public Availability getUnlockedState() {
         return unlockedState;
+    }
+
+    public static CustomTheme getDefaultTheme() {
+        return new CustomTheme(
+                "CzjtxSbXRwIpX8SYR0ttngAND",
+                R.string.settings_colorblindnessmode_defaultName,
+                R.style.Theme_PhasmophobiaEvidenceTool);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomTheme{" +
+                "name=" + name +
+                ", hashID='" + hashID + '\'' +
+                ", styleId=" + styleId +
+                ", unlockedState=" + unlockedState +
+                '}';
     }
 
 }

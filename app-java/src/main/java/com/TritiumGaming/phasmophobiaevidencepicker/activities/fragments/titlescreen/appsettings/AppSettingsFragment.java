@@ -44,7 +44,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtil
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreTransactionHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transaction.FirestoreUnlockHistory;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
@@ -57,7 +58,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -469,16 +469,18 @@ public class AppSettingsFragment extends Fragment {
     }
 
     private void getUserPurchaseHistory() {
+        CollectionReference unlockHistoryCollection = null;
+        try {
+            unlockHistoryCollection =
+                    FirestoreUnlockHistory.getUnlockHistoryCollection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(unlockHistoryCollection == null) { return; }
 
         try {
-            CollectionReference purchaseHistoryCollection =
-                    FirestorePurchaseHistory.getUserPurchaseHistoryCollection();
-
-            if (purchaseHistoryCollection == null) {
-                return;
-            }
-
-            purchaseHistoryCollection.get()
+            unlockHistoryCollection.get()
                     .addOnCompleteListener(task -> {
                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                     DocumentReference documentReference = documentSnapshot.getReference();
@@ -494,36 +496,6 @@ public class AppSettingsFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-    /*
-    private void getMarketplaceColorThemes() {
-        FirestoreMarketplace.getThemes()
-            .addOnFailureListener(e -> {
-                Log.d("Firestore", "Theme document query FAILED!");
-                e.printStackTrace();
-            }).addOnCompleteListener(task -> {
-                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-
-                    if (!documentSnapshot.exists()) {
-                        Log.d("Firestore", "Theme document snapshot DNE.");
-                    }
-
-                    try {
-                        PETTheme tempTheme = documentSnapshot.toObject(PETTheme.class);
-                        if(tempTheme != null) {
-                            PETTheme petTheme = new PETTheme(
-                                    documentSnapshot.getReference().getId(),
-                                    tempTheme);
-                            Log.d("Firestore", petTheme.toString());
-                        }
-                    } catch (Exception e) {
-                        Log.d("Firestore", "Error CREATING PETTheme!");
-                        e.printStackTrace();
-                    }
-                }
-            });
-    }
-    */
 
     private void demoStyles() {
         PETActivity activity = ((PETActivity)getActivity());
@@ -553,7 +525,7 @@ public class AppSettingsFragment extends Fragment {
         if(activity != null) {
             activity.changeTheme(
                     globalPreferencesViewModel.getColorTheme(),
-                    fontThemeControl.getAppThemeAt(fontThemeControl.getSelectedIndex()));
+                    fontThemeControl.getThemeAtIndex(fontThemeControl.getSelectedIndex()));
         }
         refreshFragment();
     }
@@ -562,7 +534,7 @@ public class AppSettingsFragment extends Fragment {
         PETActivity activity = ((PETActivity)getActivity());
         if(activity != null) {
             activity.changeTheme(
-                    colorThemeControl.getAppThemeAt(colorThemeControl.getSelectedIndex()),
+                    colorThemeControl.getThemeAtIndex(colorThemeControl.getSelectedIndex()),
                     globalPreferencesViewModel.getFontTheme());
         }
         refreshFragment();

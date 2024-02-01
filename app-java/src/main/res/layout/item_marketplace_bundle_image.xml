@@ -60,6 +60,7 @@
         android:textSize="14sp"
         android:textColor="?attr/backgroundColor"
         android:ellipsize="marquee"
+        android:marqueeRepeatLimit="-1"
         android:singleLine="true"
         android:focusable="true"
         app:layout_constraintHeight="wrap_content"

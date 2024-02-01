@@ -50,7 +50,7 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="48dp"
                 android:gravity="center"
-                android:text="Marketplace"
+                android:text="Shop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button_back"
@@ -101,41 +101,11 @@
                         android:text="Please log in to claim Marketplace content."
                         android:textColor="?attr/textColorPrimary"
                         android:textSize="20sp"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_account"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_account"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/settings_requestlogin_title">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/settings_account_login_button"
-                            style="?attr/quaternaryFont_Bold_AutoSqueeze"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:layout_marginVertical="8dp"
-                            android:background="@drawable/radiobutton_1_disabled"
-                            android:padding="8dp"
-                            android:text="Log in"
-                            android:textColor="?attr/textColorBody"
-                            android:visibility="visible"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -173,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:padding="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout80"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView_account_credits"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -195,8 +165,8 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/settings_accountsettings_info"
                         style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:background="@color/transparent"
                         android:ellipsize="marquee"
@@ -214,7 +184,7 @@
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_title"
                         app:layout_constraintTop_toTopOf="@+id/settings_accountsettings_title"
-                        app:layout_constraintWidth_default="wrap" />
+                        app:layout_constrainedWidth="true" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView4"
@@ -235,17 +205,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/materialCardView_account_credits"
-                    app:layout_constraintEnd_toEndOf="@+id/constraint_account_name"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardView_account_credits"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraint_account_name">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/appCompatImageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/icon_shop_cost"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView"
                         style="?attr/quaternaryFont_Bold_Manual"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
                         android:gravity="end|center_vertical"
                         android:maxLines="1"
                         android:text="Credits:"
@@ -255,17 +236,19 @@
                         app:layout_constraintEnd_toStartOf="@+id/label_credits_actual"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_credits_actual"
                         style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
                         android:gravity="start|center_vertical"
-                        android:text="100"
+                        android:text="\?"
                         android:textSize="18sp"
+                        app:layout_constrainedWidth="true"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView"
@@ -281,8 +264,8 @@
                     app:cardCornerRadius="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/constraint_account_name"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout80">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraint_account_credits"
@@ -291,95 +274,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_accountInformation">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout74"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/constraintLayout_buy"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/constraintLayout_ads"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/settings_account_buy_button"
-                                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginBottom="8dp"
-                                    android:background="@drawable/radiobutton_1_disabled"
-                                    android:padding="8dp"
-                                    android:text="Buy"
-                                    android:textColor="?attr/textColorBody"
-                                    android:tooltipText="Purchase credits"
-                                    android:visibility="visible" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/label_buy_description"
-                                    style="?attr/quaternaryFont_Bold_Manual"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Purchase credits"
-                                    android:textSize="14sp" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/constraintLayout_ads"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_buy"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/button_ad_watch"
-                                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginBottom="8dp"
-                                    android:background="@drawable/radiobutton_1_disabled"
-                                    android:padding="8dp"
-                                    android:text="Watch Ad"
-                                    android:textColor="?attr/textColorBody"
-                                    android:tooltipText="Watch an Ad"
-                                    android:visibility="visible" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/label_ads_description"
-                                    style="?attr/quaternaryFont_Bold_Manual"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Earn Credits by watching ads"
-                                    android:textSize="14sp" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_accountInformation"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -408,12 +303,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Uh oh! There was an error connecting to the marketplace."
-            android:textColor="?attr/textColorTertiary"
             android:textSize="18sp"
+            android:textColor="?attr/textColorTertiary"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/scrollview_marketplace_items"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
 
         <ScrollView
@@ -437,9 +332,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:divider="@drawable/divider_invisible"
-                android:showDividers="middle" >
-
-            </LinearLayout>
+                android:showDividers="middle" />
 
         </ScrollView>
 

@@ -23,7 +23,6 @@ import java.util.Map;
 public class FirestoreAccountCredit {
 
     public final static String
-            COLLECTION_ACCOUNT = "Account",
             DOCUMENT_CREDITS = "Credits",
             FIELD_CREDITS_EARNED = "earnedCredits",
             FIELD_CREDITS_SPENT = "spentCredits";
@@ -54,16 +53,20 @@ public class FirestoreAccountCredit {
                                 Log.d("Firestore", "User Credits INITIALIZATION process complete!"));
             })
             .addOnFailureListener(Throwable::printStackTrace);
+
     }
 
+    /*
     private static CollectionReference getAccountCollection()
             throws Exception {
         return FirestoreUser.getUserDocument().collection(COLLECTION_ACCOUNT);
     }
+    */
 
     public static DocumentReference getCreditsDocument()
             throws Exception {
-        return getAccountCollection().document(DOCUMENT_CREDITS);
+        return FirestoreAccount.getAccountCollection()
+                .document(DOCUMENT_CREDITS);
     }
 
     public static void addCredits(long creditAmount) throws Exception {

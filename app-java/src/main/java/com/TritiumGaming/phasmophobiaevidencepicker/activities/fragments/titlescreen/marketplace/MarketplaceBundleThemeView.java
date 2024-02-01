@@ -3,24 +3,23 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.bundle.MarketThemeBundle;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundle;
 import com.google.android.material.card.MaterialCardView;
 
 public class MarketplaceBundleThemeView extends MaterialCardView {
 
-    private long creditCost = 0;
+    private MarketThemeBundle bundle = null;
 
     public MarketplaceBundleThemeView(Context context) {
         super(context, null);
@@ -64,52 +63,107 @@ public class MarketplaceBundleThemeView extends MaterialCardView {
 
         setUseCompatPadding(true);
         setClipToPadding(false);
-
-        invalidate();
-        requestLayout();
-    }
-
-    public void setPurchaseable(boolean isEnabled) {
-        if(isEnabled) { return; }
-
-        setVisibility(GONE);
-    }
-
-    public void setCreditCost(long creditCost) {
-        this.creditCost = creditCost;
-
-        AppCompatTextView label_credits = findViewById(R.id.label_credits_cost);
-        label_credits.setText(String.valueOf(creditCost));
     }
 
     public long getCreditCost() {
-        return creditCost;
+        if(bundle == null) {
+            return 0;
+        }
+
+        return bundle.getDiscountedBuyCredits();
     }
 
-    public AppCompatButton getBuyButton() {
-        return findViewById(R.id.button_transactItem);
+    public void setBundle(MarketThemeBundle bundle) {
+        this.bundle = bundle;
+
+        if(bundle == null) {
+            return;
+        }
+
+        AppCompatTextView titleView = findViewById(R.id.label_bundleTitle);
+        if(titleView != null) {
+            titleView.setText(this.bundle.getName());
+        }
+
+        AppCompatTextView costView = findViewById(R.id.label_credits_cost);
+        if(costView != null) {
+            //costView.setText(String.valueOf(this.bundle.getBuyCredits()));
+            costView.setText(String.valueOf(this.bundle.getDiscountedBuyCredits()));
+        }
+
+        buildThemes();
     }
 
-    public void setBundle(MarketThemeBundle bundleThemes) {
-        AppCompatTextView title = findViewById(R.id.label_bundleTitle);
-        title.setText(bundleThemes.getName());
-
+    public void buildThemes() {
         LinearLayout themesList = findViewById(R.id.themesList);
 
-        for(CustomTheme theme: bundleThemes.getThemes()) {
+        if(bundle != null) {
+            for (CustomTheme theme : bundle.getThemes()) {
 
-            MarketplaceBundleCard card = new MarketplaceBundleCard(
-                    new ContextThemeWrapper(getContext(), theme.getStyle()),
-                    null, theme.getStyle());
-            card.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+                MarketplaceBundleCard card = new MarketplaceBundleCard(
+                        new ContextThemeWrapper(
+                                getContext(),
+                                theme.getStyle()),
+                        null,
+                        theme.getStyle());
+                card.setTheme(theme);
 
-            card.setObtained(theme.isUnlocked());
+                card.setLayoutParams(
+                        new LinearLayout.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
-            themesList.addView(card);
+                themesList.addView(card);
+            }
+        }
+    }
 
+    public void validate() {
+        if(!validateVisibility()) {
+            return;
+        }
+
+        validateThemesList();
+    }
+
+    private void validateThemesList() {
+        LinearLayout themesList = findViewById(R.id.themesList);
+        if(bundle != null) {
+            for (int i = 0; i < themesList.getChildCount(); i++) {
+
+                View child = themesList.getChildAt(i);
+                if(child instanceof MarketplaceBundleCard bundleCard) {
+                    bundleCard.validate();
+                }
+            }
+
+            setCreditCost();
+        }
+    }
+
+    private boolean validateVisibility() {
+        boolean isAvailable = bundle.getLockedItemCount() > 1;
+
+        setVisibility(isAvailable ? VISIBLE : GONE);
+
+        return isAvailable;
+    }
+
+    public void setCreditCost() {
+        AppCompatTextView label_credits = findViewById(R.id.label_credits_cost);
+
+        if(bundle == null) {
+            return;
+        }
+
+        label_credits.setText(String.valueOf(bundle.getDiscountedBuyCredits()));
+    }
+
+    public void setBuyButtonListener(OnClickListener buyButtonListener) {
+        View buyButton = findViewById(R.id.button_transactItem);
+
+        if(buyButton != null) {
+            buyButton.setOnClickListener(buyButtonListener);
         }
     }
 }
