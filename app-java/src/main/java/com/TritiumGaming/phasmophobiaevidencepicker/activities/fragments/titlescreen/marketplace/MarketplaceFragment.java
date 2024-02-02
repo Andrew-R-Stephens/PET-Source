@@ -41,6 +41,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.FirestoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
@@ -78,7 +79,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class MarketplaceFragment extends Fragment {
+public class MarketplaceFragment extends FirestoreFragment {
 
     private GlobalPreferencesViewModel globalPreferencesViewModel = null;
     private TitlescreenViewModel titleScreenViewModel = null;
@@ -93,9 +94,7 @@ public class MarketplaceFragment extends Fragment {
 
     private RewardedAd rewardedAd = null;
 
-    private boolean showEmail = false, loadThemes = true;
-
-    private long user_credits = 0;
+    private boolean showEmail = false;
 
     @Nullable
     @Override
@@ -221,13 +220,11 @@ public class MarketplaceFragment extends Fragment {
             Navigation.findNavController(v).popBackStack();
         });
 
-        if(getActivity() != null) {
 
-            getActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
-            getActivity().runOnUiThread(() -> new Thread(this::populateMarketplaceUnPurchasedItems).start());
+        requireActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
+        requireActivity().runOnUiThread(() -> new Thread(this::populateMarketplaceUnPurchasedItems).start());
 
-            getActivity().runOnUiThread(() -> loadRewardedAd(null));
-        }
+        requireActivity().runOnUiThread(() -> loadRewardedAd(null));
     }
     /**
      * gotoLanguagesFragment method
@@ -240,13 +237,10 @@ public class MarketplaceFragment extends Fragment {
     private void initAccountCreditListener() {
         try {
             DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
-            creditDoc.get().addOnCompleteListener(task -> {
-                Object c = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                if(c != null) {
-                    user_credits = (long)c;
-                } else {
-                    user_credits = -1;
-                }
+            creditDoc.get()
+                    .addOnCompleteListener(task -> {
+                Long credits_read = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
+                long user_credits = credits_read != null ? credits_read : 0;
 
                 label_account_credits.setText(String.valueOf(user_credits));
             });
@@ -254,12 +248,8 @@ public class MarketplaceFragment extends Fragment {
             creditDoc.addSnapshotListener((documentSnapshot, error) -> {
                 if(documentSnapshot == null) { return; }
 
-                Object c = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED);
-                if(c != null) {
-                    user_credits = (long)c;
-                } else {
-                    user_credits = -1;
-                }
+                Long credits_read = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
+                long user_credits = credits_read != null ? credits_read : 0;
 
                 label_account_credits.setText(String.valueOf(user_credits));
             });
@@ -786,28 +776,6 @@ public class MarketplaceFragment extends Fragment {
 
                     @Override
                     public void onComplete() {
-                        /*
-                        ViewPropertyAnimator marketItemAnimation =
-                                marketplaceItemView.animate()
-                                        .setDuration(300)
-                                        .translationX(list.getWidth())
-                                        .setListener(new AnimatorListenerAdapter() {
-                                            @Override
-                                            public void onAnimationStart(Animator animation) {
-                                                super.onAnimationStart(animation);
-
-                                                marketplaceItemView.setEnabled(false);
-                                            }
-
-                                            @Override
-                                            public void onAnimationEnd(Animator animation) {
-                                                super.onAnimationEnd(animation);
-
-                                                list.removeView(marketplaceItemView);
-                                            }
-                                        });
-                        marketItemAnimation.start();
-                        */
                         Log.d("Bundle", "Single theme process completed.");
                     }
                 };
@@ -999,113 +967,4 @@ public class MarketplaceFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-
-        super.onResume();
-    }
-
-    /*
-    public void initBillingClient() {
-        handlePendingPurchases();
-        connectToGooglePlayBilling();
-    }
-
-    private void handlePendingPurchases() {
-        billingClient = BillingClient.newBuilder(requireContext())
-                .setListener(purchasesUpdatedListener)
-                .enablePendingPurchases()
-                .build();
-
-        Log.d("Billing", "Pending purchases will be handled.");
-    }
-
-    private void connectToGooglePlayBilling() {
-        Log.d("Billing", "Attempting to setup Billing...");
-
-        billingClient.startConnection(new BillingClientStateListener() {
-            @Override
-            public void onBillingSetupFinished(BillingResult billingResult) {
-                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                    Log.d("Billing", "Billing setup finished successfully!");
-                    // The BillingClient is ready. You can query purchases here.
-                    queryMarketplaceItems();
-                } else {
-                    Log.d("Billing", "Billing setup unsuccessful.\nCode: " +
-                            billingResult.getResponseCode() + "\nDebug: " +
-                            billingResult.getDebugMessage());
-                }
-            }
-            @Override
-            public void onBillingServiceDisconnected() {
-                // Try to restart the connection on the next request to
-                // Google Play by calling the startConnection() method.
-                Log.d("Billing", "Billing service disconnected.");
-
-                connectToGooglePlayBilling();
-            }
-        });
-
-    }
-
-    // Google Billing Library
-    private final PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, list) -> {
-        if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
-                list != null && !list.isEmpty()) {
-            for(Purchase purchase: list) {
-                if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED &&
-                    !purchase.isAcknowledged()) {
-                    Toast.makeText(getContext(), "Purchase successful!", Toast.LENGTH_LONG);
-                }
-            }
-        }
-    };
-
-    public void queryMarketplaceItems() {
-        Log.d("Billing", "Obtaining list of Marketplace items...");
-
-        List<String> productIds = new ArrayList<>();
-        productIds.add("credits_100");
-        productIds.add("credits_500");
-        productIds.add("credits_1000");
-
-        List<QueryProductDetailsParams.Product> productsQueryList = new ArrayList<>();
-        for(String id: productIds) {
-            Log.d("Billing", "Building item " + id);
-            QueryProductDetailsParams.Product product =
-                QueryProductDetailsParams.Product.newBuilder()
-                    .setProductId(id)
-                    .setProductType(BillingClient.ProductType.INAPP)
-                    .build();
-            productsQueryList.add(product);
-        }
-
-        QueryProductDetailsParams queryProductDetailsParams =
-            QueryProductDetailsParams.newBuilder()
-                    .setProductList(
-                            productsQueryList)
-                    .build();
-
-        billingClient.queryProductDetailsAsync(
-                queryProductDetailsParams,
-                (billingResult, productDetailsList) -> {
-                    // check billingResult
-                    // process returned productDetailsList
-                    if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
-                            !productDetailsList.isEmpty()) {
-
-                        Log.d("Billing", "Finished querying Marketplace with " +
-                                productDetailsList.size() + " results.");
-
-                        for(ProductDetails productDetails: productDetailsList) {
-
-                            MarketBillableItem billableItem = new MarketBillableItem(productDetails);
-                            Log.d("Billing", billableItem.toString());
-
-                        }
-                    }
-                }
-        );
-
-    }*/
 }

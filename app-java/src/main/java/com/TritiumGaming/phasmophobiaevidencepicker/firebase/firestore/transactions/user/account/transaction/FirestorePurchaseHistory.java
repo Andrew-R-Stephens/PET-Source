@@ -20,8 +20,8 @@ public class FirestorePurchaseHistory {
     private final static String FIELD_DATE_PURCHASED = "datePurchased";
 
     private final static String
-            FIELD_TYPE = "type",
-            FIELD_PURCHASE_REFERENCE = "uuid";
+            FIELD_PURCHASE_REFERENCE = "product_ref",
+            FIELD_ORDER_ID = "order_id";
 
     public static void init()
             throws Exception {
@@ -52,39 +52,44 @@ public class FirestorePurchaseHistory {
         return purchaseHistoryCollection.document(DOCUMENT_PURCHASED_ITEM);
     }
 
-    private static void addPurchaseDocument(
-            String purchaseUUID, OnFirestoreProcessListener callback)
+    public static void addPurchaseDocument(
+            DocumentReference purchaseReferenceDoc, String orderID, OnFirestoreProcessListener callback)
             throws Exception {
         CollectionReference purchaseHistoryCollection = getPurchaseHistoryCollection();
 
-        if(purchaseUUID == null) { return; }
+        if(purchaseReferenceDoc == null || orderID == null) { return; }
 
         Map<String, Object> documentData = new HashMap<>();
-        documentData.put(FIELD_PURCHASE_REFERENCE, purchaseUUID);
+        documentData.put(FIELD_PURCHASE_REFERENCE, purchaseReferenceDoc);
+        documentData.put(FIELD_ORDER_ID, orderID);
         documentData.put(FIELD_DATE_PURCHASED, Timestamp.now());
 
         purchaseHistoryCollection.add(documentData)
                 .addOnSuccessListener(unused -> {
-                    callback.onSuccess();
+                    if(callback != null) {
+                        callback.onSuccess();
+                    }
 
-                    Log.d("Firestore", "Purchase document of " + purchaseUUID + " GENERATED / LOCATED!");
+                    Log.d("Firestore", "Purchase document of " +
+                            purchaseReferenceDoc.getId() + " GENERATED / LOCATED!");
                 })
                 .addOnFailureListener(e -> {
-                    callback.onFailure();
+                    if(callback != null) {
+                        callback.onFailure();
+                    }
 
-                    Log.d("Firestore", "Purchase document of " + purchaseUUID + " could NOT be GENERATED / LOCATED!");
+                    Log.d("Firestore", "Purchase document of " +
+                            purchaseReferenceDoc.getId() + " could NOT be GENERATED / LOCATED!");
                     e.printStackTrace();
                 })
                 .addOnCompleteListener(task -> {
-                    callback.onComplete();
+                    if (callback != null) {
+                        callback.onComplete();
+                    }
 
-                    Log.d("Firestore", "Purchase document of " + purchaseUUID + " process complete.");
+                    Log.d("Firestore", "Purchase document of " +
+                            purchaseReferenceDoc.getId() + " process complete.");
                 });
-    }
-
-    public static void purchaseCredits(String purchaseUUID, OnFirestoreProcessListener callback)
-            throws Exception {
-        addPurchaseDocument(purchaseUUID, callback);
     }
 
 }
