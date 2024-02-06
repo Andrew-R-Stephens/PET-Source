@@ -38,6 +38,7 @@
         <item name="h">@color/orange_M950</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M150</item>
         <item name="theme_coreColor_1">@color/orange_M150</item>
         <item name="theme_coreColor_2">@color/orange_M300</item>
         <item name="theme_coreColor_3">@color/orange_M900</item>
@@ -127,6 +128,7 @@
         <item name="h">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/purple_M75</item>
         <item name="theme_coreColor_1">@color/purple_M75</item>
         <item name="theme_coreColor_2">@color/purple_M75</item>
         <item name="theme_coreColor_3">@color/purple_M525</item>
@@ -249,6 +251,7 @@
         <item name="f">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M10</item>
         <item name="theme_coreColor_1">@color/orange_M20</item>
         <item name="theme_coreColor_2">@color/orange_M10</item>
         <item name="theme_coreColor_3">@color/orange</item>
@@ -340,6 +343,7 @@
         <item name="k">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M25</item>
         <item name="theme_coreColor_1">@color/white_M20</item>
         <item name="theme_coreColor_2">@color/green_M25</item>
         <item name="theme_coreColor_3">@color/green_M525</item>
@@ -497,6 +501,7 @@
         <item name="k">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M375</item>
         <item name="theme_coreColor_1">@color/red_M375</item>
         <item name="theme_coreColor_2">#91100C</item>
         <item name="theme_coreColor_3">#5E0D0B</item>
@@ -593,6 +598,7 @@
         <item name="m">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M850</item>
         <item name="theme_coreColor_1">@color/green_M150</item>
         <item name="theme_coreColor_2">#80994D</item>
         <item name="theme_coreColor_3">@color/green_M850</item>
@@ -609,7 +615,7 @@
         <item name="foregroundColor">#FEFEFE</item>
         <item name="middlegroundColor">#C9CCC8</item>
         <item name="backgroundColor" >#070C05</item>
-        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >#0F1B0A</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#070C05</item>
@@ -683,6 +689,7 @@
         <item name="j" >@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#84736A</item>
         <item name="theme_coreColor_1">#CD2547</item>
         <item name="theme_coreColor_2">#2667CD</item>
         <item name="theme_coreColor_3">#7BCD26</item>
@@ -774,6 +781,7 @@
         <item name="l">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/blue_M90</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">@color/blue_M90</item>
         <item name="theme_coreColor_3">#167467</item>
@@ -863,6 +871,7 @@
         <item name="i">@color/blue_M950</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/purple_M450</item>
         <item name="theme_coreColor_1">@color/purple_M150</item>
         <item name="theme_coreColor_2">@color/purple_M450</item>
         <item name="theme_coreColor_3">@color/blue_M150</item>
@@ -952,6 +961,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M05</item>
         <item name="theme_coreColor_1">#F8EFD9</item>
         <item name="theme_coreColor_2">@color/orange_M05</item>
         <item name="theme_coreColor_3">#E5A348</item>
@@ -1045,6 +1055,7 @@
         <item name="d">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M550</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">#F8E8BD</item>
         <item name="theme_coreColor_3">@color/orange_M75</item>
@@ -1135,6 +1146,7 @@
         <item name="m">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#EC700D</item>
         <item name="theme_coreColor_1">#EC700D</item>
         <item name="theme_coreColor_2">#C85E0D</item>
         <item name="theme_coreColor_3">#9F4B0D</item>
@@ -1226,6 +1238,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/blue_M125</item>
         <item name="theme_coreColor_1">#FEFEFE</item>
         <item name="theme_coreColor_2">#DDDCDB</item>
         <item name="theme_coreColor_3">#F8BC7F</item>
@@ -1327,6 +1340,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#447CDE</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">#FEFEFE</item>
         <item name="theme_coreColor_3">#E4D0AE</item>
@@ -1419,6 +1433,7 @@
         <item name="d">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#717AF2</item>
         <item name="theme_coreColor_1">#AAB3F3</item>
         <item name="theme_coreColor_2">@color/blue_M75</item>
         <item name="theme_coreColor_3">#5763EC</item>
@@ -1508,6 +1523,7 @@
         <item name="i">#010000</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M225</item>
         <item name="theme_coreColor_1">#DF1740</item>
         <item name="theme_coreColor_2">@color/red_M225</item>
         <item name="theme_coreColor_3">#510E1B</item>
@@ -1597,6 +1613,7 @@
         <item name="i">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/yellow_M25</item>
         <item name="theme_coreColor_2">#CFCCB4</item>
         <item name="theme_coreColor_3">#D3C667</item>
         <item name="theme_coreColor_4">#4E4507</item>
@@ -1688,6 +1705,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M150</item>
         <item name="theme_coreColor_1">#FCFAFB</item>
         <item name="theme_coreColor_2">#E1C9CC</item>
         <item name="theme_coreColor_3">#D99CA5</item>
@@ -1778,6 +1796,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M250</item>
         <item name="theme_coreColor_1">#ECDFCD</item>
         <item name="theme_coreColor_2">#DABA80</item>
         <item name="theme_coreColor_3">@color/orange_M250</item>
@@ -1870,6 +1889,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#AA7FFD</item>
         <item name="theme_coreColor_1">#E3D6F7</item>
         <item name="theme_coreColor_2">#AA7FFD</item>
         <item name="theme_coreColor_3">@color/purple_M550</item>

@@ -38,7 +38,6 @@ import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
@@ -70,7 +69,7 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_marketplace_billing, container, false);
+        return inflater.inflate(R.layout.fragment_marketplace_mtx, container, false);
     }
 
     @SuppressLint("ResourceType")
@@ -334,35 +333,38 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
         billablesQuery
             .addOnSuccessListener(snapshot -> {
 
-                List<QueryProductDetailsParams.Product> productsQueryList =
-                        new ArrayList<>(snapshot.size());
-
+                List<QueryProductDetailsParams.Product> productsQueryList = new ArrayList<>();
                 for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
 
                     if (!documentSnapshot.exists()) {
-                        Log.d("Billing", "Microtransaction document snapshot DNE.");
                         continue;
                     }
 
-                    String purchase_id = documentSnapshot.get("product_id", String.class);
+                    String purchase_id =
+                            documentSnapshot.get("product_id", String.class);
                     if (purchase_id == null) {
                         continue;
                     }
 
-                    Long tier = documentSnapshot.get("tier", Long.class);
-                    if (tier == null) {
+                    Boolean active_status =
+                            documentSnapshot.get("active_status", Boolean.class);
+                    if (active_status == null || !active_status) {
                         continue;
                     }
 
-                    Log.d("Billing", "Building item " + purchase_id);
+                    Log.d("Billing", "Building ProductDetail for " + purchase_id);
                     QueryProductDetailsParams.Product product =
                             QueryProductDetailsParams.Product.newBuilder()
                                     .setProductId(purchase_id)
                                     .setProductType(BillingClient.ProductType.INAPP)
                                     .build();
 
-                    productsQueryList.add(tier.intValue(), product);
+                    productsQueryList.add(product);
                 }
+
+                Log.d("Billing", "Finished querying database for MTX Billable items. " +
+                        productsQueryList.size() + " results.\n" +
+                        "Now querying Play Console for matching in-app products.");
 
                 QueryProductDetailsParams queryProductDetailsParams =
                         QueryProductDetailsParams.newBuilder()
@@ -378,11 +380,12 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
                             BillingClient.BillingResponseCode.OK &&
                             !productDetailsList.isEmpty()) {
 
-                            Log.d("Billing", "Finished querying Marketplace with " +
+                            Log.d("Billing",
+                                    "Finished querying Play Console in-app products. " +
                                     productDetailsList.size() + " results.");
                             try {
                                 requireActivity().runOnUiThread(() ->
-                                        buildMtxProducts(productDetailsList));
+                                        buildMtxProductsList(productDetailsList));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -393,23 +396,26 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
                 Log.d("Billing", "Microtransaction query failed!");
                 e.printStackTrace();
             }).addOnCompleteListener(task -> {
-                Log.d("Billing", "Microtransaction query completed!");
-                ProgressBar progressbar = requireView().findViewById(R.id.market_progressbar);
-                progressbar.setVisibility(GONE);
+                stopProgressBarLoop();
             });
     }
 
-    private void buildMtxProducts(List<ProductDetails> productDetailsList) {
+    private void stopProgressBarLoop() {
+        try {
+            ProgressBar progressbar = requireView().findViewById(R.id.market_progressbar);
+            progressbar.setVisibility(GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void buildMtxProductsList(List<ProductDetails> productDetailsList) {
 
         MarketplaceListLayout marketplaceList =
                 new MarketplaceListLayout(getContext(), null);
-        marketplaceList.setVisibility(VISIBLE);
-        /*marketplaceList.setLabel("Companion Credits");
-        marketplaceList.showLabel(VISIBLE);*/
-
-        list_mtx_items.addView(marketplaceList);
 
         for (ProductDetails productDetails : productDetailsList) {
+
             MarketplaceMtxItem mtxItem =
                     new MarketplaceMtxItem(productDetails);
             Log.d("Billing", "Adding " + mtxItem);
@@ -424,6 +430,12 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
                 e.printStackTrace();
             }
         }
+
+        if(list_mtx_items.getChildCount() > 1) {
+            marketplaceList.setVisibility(VISIBLE);
+            list_mtx_items.addView(marketplaceList);
+        }
+
     }
 
     @NonNull

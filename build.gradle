@@ -6,11 +6,11 @@ buildscript {
         kotlin_version = '1.9.0'
 
         compose_version = '1.5.4'
-        compose_ui_version = '1.4.0'
+        compose_ui_version = '1.6.0'
 
         fragment_version = '1.6.2'
         work_version = '2.9.0'
-        agp_version = '8.2.1'
+        agp_version = '8.2.2'
 
         billing_version = '6.1.0'
     }

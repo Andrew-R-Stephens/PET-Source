@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.AccountLoginRequestView"
+    tools:showIn="@layout/fragment_marketplace">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_requestlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_requestlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/backgroundColorOnBackground"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settings_requestlogin_title"
+                style="?attr/quaternaryFont_Bold_Manual"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/marketplace_error_login_required"
+                android:textColor="?attr/textColorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_requestlogin_title">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/settings_account_login_button"
+                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@drawable/radiobutton_1_disabled"
+                    android:padding="8dp"
+                    android:text="@string/account_button_login"
+                    android:textColor="?attr/textColorBody"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</merge>
+        

@@ -28,6 +28,7 @@
             android:id="@+id/constraintLayout27"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -49,7 +50,7 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="48dp"
                 android:gravity="center"
-                android:text="Marketplace"
+                android:text="Shop"
                 app:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,7 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/icon_strikethrough_1"
@@ -69,9 +70,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
 
+
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.AccountLoginRequestView
             android:id="@+id/layout_account_requestlogin"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,19 +81,11 @@
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.AccountDetailsView
             android:id="@+id/layout_account_details"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
-
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.AccountObtainCreditsView
-            android:id="@+id/layout_account_obtainCredits"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_account_details" />
 
         <ProgressBar
             android:id="@+id/market_progressbar"
@@ -113,9 +107,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/marketplace_connection_error"
-            android:textColor="?attr/textColorTertiary"
+            android:text="Uh oh! There was an error connecting to the marketplace."
             android:textSize="18sp"
+            android:textColor="?attr/textColorTertiary"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,19 +120,15 @@
             android:id="@+id/scrollview_marketplace_items"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:fadeScrollbars="false"
             android:fillViewport="true"
             android:measureAllChildren="true"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarStyle="outsideInset"
-            android:fadingEdgeLength="8dp"
-            android:fadingEdge="vertical"
-            android:requiresFadingEdge="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_account_obtainCredits">
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_details">
 
             <LinearLayout
                 android:id="@+id/list_marketplace_items"

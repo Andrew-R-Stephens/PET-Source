@@ -32,6 +32,7 @@
         <item name="navigationFooterIconAlt">@color/white_M200</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M350</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">@color/white</item>
         <item name="theme_coreColor_3">@color/white</item>

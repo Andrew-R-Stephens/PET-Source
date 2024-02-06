@@ -165,13 +165,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/app_icon_sm" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
                 android:id="@+id/label_titledescription"
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:ellipsize="end"
                 android:gravity="center_horizontal|top"
                 android:maxLines="1"
+                app:outlineWidth="2dp"
+                app:outlineColor="@color/black"
                 android:text="@string/titlescreen_description"
                 android:textAllCaps="true"
                 android:textColor="?attr/splashTextColor"

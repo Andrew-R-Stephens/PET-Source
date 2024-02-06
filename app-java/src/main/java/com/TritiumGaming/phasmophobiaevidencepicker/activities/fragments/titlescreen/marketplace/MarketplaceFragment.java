@@ -90,6 +90,8 @@ public class MarketplaceFragment extends FirestoreFragment {
 
     private AppCompatTextView label_account_credits, label_marketplace_error;
 
+    private AccountObtainCreditsView obtainCreditsView;
+
     private ProgressBar market_progressbar;
 
     private RewardedAd rewardedAd = null;
@@ -126,17 +128,18 @@ public class MarketplaceFragment extends FirestoreFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         final AppCompatImageView button_back = view.findViewById(R.id.button_back);
-
         final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
-
         final ConstraintLayout constraint_requestlogin = view.findViewById(R.id.constraint_requestlogin);
         final ConstraintLayout constraint_account_name = view.findViewById(R.id.constraint_account_name);
-        final CardView cardview_account = view.findViewById(R.id.cardView_account);
+        final View cardview_account = view.findViewById(R.id.cardView_account);
         final AppCompatTextView label_account_info = view.findViewById(R.id.settings_accountsettings_info);
-        label_marketplace_error = view.findViewById(R.id.market_loaderror);
-        label_account_credits = view.findViewById(R.id.label_credits_actual);
         final AppCompatButton button_ad_watch = view.findViewById(R.id.button_ad_watch);
         final AppCompatButton button_buy = view.findViewById(R.id.settings_account_buy_button);
+
+        obtainCreditsView = view.findViewById(R.id.layout_account_obtainCredits);
+
+        label_marketplace_error = view.findViewById(R.id.market_loaderror);
+        label_account_credits = view.findViewById(R.id.label_credits_actual);
 
         final ScrollView scrollview_marketplace_items = view.findViewById(R.id.scrollview_marketplace_items);
         if(scrollview_marketplace_items != null) {
@@ -188,16 +191,18 @@ public class MarketplaceFragment extends FirestoreFragment {
         }
 
         SpannableString finalEmail_obfuscated = email_obfuscated;
-        constraint_account_name.setOnClickListener(v -> {
-            showEmail = !showEmail;
 
-            if(showEmail) {
-                label_account_info.setText(email_displayed);
-            } else {
-                label_account_info.setText(finalEmail_obfuscated);
-            }
-        });
+        if(constraint_account_name != null) {
+            constraint_account_name.setOnClickListener(v -> {
+                showEmail = !showEmail;
 
+                if (showEmail) {
+                    label_account_info.setText(email_displayed);
+                } else {
+                    label_account_info.setText(finalEmail_obfuscated);
+                }
+            });
+        }
 
         if(firebaseUser == null) {
             constraint_requestlogin.setVisibility(VISIBLE);
@@ -207,11 +212,13 @@ public class MarketplaceFragment extends FirestoreFragment {
         } else {
             constraint_requestlogin.setVisibility(GONE);
             cardview_account.setVisibility(VISIBLE);
-            label_account_info.setText(email_displayed);
-
-            if(!showEmail) {
-                label_account_info.setText(email_obfuscated);
+            if(label_account_info != null) {
+                label_account_info.setText(email_displayed);
+                if(!showEmail) {
+                    label_account_info.setText(email_obfuscated);
+                }
             }
+
         }
 
 
@@ -220,11 +227,11 @@ public class MarketplaceFragment extends FirestoreFragment {
             Navigation.findNavController(v).popBackStack();
         });
 
+        requireActivity().runOnUiThread(() -> loadRewardedAd(null));
 
         requireActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
         requireActivity().runOnUiThread(() -> new Thread(this::populateMarketplaceUnPurchasedItems).start());
 
-        requireActivity().runOnUiThread(() -> loadRewardedAd(null));
     }
     /**
      * gotoLanguagesFragment method
@@ -923,6 +930,9 @@ public class MarketplaceFragment extends FirestoreFragment {
                                 .build();
                         rewardedAd.setServerSideVerificationOptions(options);
 
+                        int rewardQuantity = rewardedAd.getRewardItem().getAmount();
+                        obtainCreditsView.setWatchAdsLabelDescription(rewardQuantity);
+
                         if(listener != null) {
                             listener.onAdLoaded();
                         }
@@ -948,7 +958,7 @@ public class MarketplaceFragment extends FirestoreFragment {
                 try {
                     FirestoreAccountCredit.addCredits(rewardAmount);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
 
                 // A watched ad cannot be re-watched, so chamber another ad

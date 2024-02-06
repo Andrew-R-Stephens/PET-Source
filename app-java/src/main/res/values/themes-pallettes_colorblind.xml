@@ -44,6 +44,7 @@
 
         <item name="buttonFilterOnPrimary">@color/white</item>
 
+        <item name="theme_colorPrimary">@color/white_M100</item>
     </style>
 
     <style name="Deuteranomaly" parent="Colorblind.Base">
@@ -89,6 +90,7 @@
 
         <item name="buttonFilterOnPrimary">@color/white</item>
 
+        <item name="theme_colorPrimary">@color/blue_M175</item>
     </style>
 
     <style name="Protanomaly" parent="Colorblind.Base">
@@ -134,6 +136,7 @@
 
         <item name="buttonFilterOnPrimary">@color/white</item>
 
+        <item name="theme_colorPrimary">@color/blue_M175</item>
     </style>
 
     <style name="Tritanomaly" parent="Colorblind.Base">
@@ -154,6 +157,7 @@
 
         <item name="buttonFilterOnPrimary">@color/white</item>
 
+        <item name="theme_colorPrimary">@color/red</item>
     </style>
 
 </resources>
