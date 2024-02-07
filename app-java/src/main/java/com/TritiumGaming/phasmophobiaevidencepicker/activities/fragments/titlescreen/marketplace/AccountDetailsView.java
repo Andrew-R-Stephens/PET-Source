@@ -45,10 +45,6 @@ public class AccountDetailsView extends ConstraintLayout {
     public void init(Context context) {
         inflate(context, R.layout.layout_account_details_2, this);
 
-        setUsernameInitials();
-    }
-
-    private void setUsernameInitials() {
         FirebaseUser user = null;
         try {
             user = FirestoreUser.getCurrentFirebaseUser();
@@ -56,20 +52,30 @@ public class AccountDetailsView extends ConstraintLayout {
             e.printStackTrace();
         }
 
+        setUsernameInitials(user);
+        setContainerVisibility(user);
+    }
+
+    private void setContainerVisibility(FirebaseUser user) {
+        if(user == null) {
+            setVisibility(GONE);
+        } else {
+            setVisibility(VISIBLE);
+        }
+    }
+
+    private void setUsernameInitials(FirebaseUser user) {
         if(user == null) {
             return;
         }
 
-        String displayName = user.getDisplayName();
-
         OutlineTextView textView_initials = findViewById(R.id.label_username_initials);
-
         if(textView_initials == null) {
             return;
         }
 
-
         StringBuilder displayInitials = new StringBuilder();
+        String displayName = user.getDisplayName();
         if(displayName != null) {
             String[] names = displayName.split(" ");
 

@@ -549,9 +549,9 @@
         <item name="neutralSelColor">@color/white_M600</item>
         <item name="negativeSelColor">#ABABAB</item>
 
-        <item name="mapPoiFillColor">#1A91100C</item>
-        <item name="mapRoomBorderColor">#91100C</item>
-        <item name="mapRoomFillColor">#BF91100C</item>
+        <item name="mapPoiFillColor">#BF91100C</item>
+        <item name="mapRoomBorderColor">#8091100C</item>
+        <item name="mapRoomFillColor">#1A91100C</item>
 
         <item name="progressBarColorStart">#E0E0E0</item>
         <item name="progressBarColorEnd">@color/red_M375</item>
@@ -573,7 +573,6 @@
 
         <item name="navigationFooterIcon">@color/white_M600</item>
         <item name="navigationFooterIconAlt">@color/red_M375</item>
-
 
         <item name="backgroundColor_mapviewOverlay">#BF050C04</item>
 
@@ -1752,9 +1751,9 @@
         <item name="positiveSelColor">@color/red_M150</item>
         <item name="neutralSelColor">#E1C9CC</item>
         <item name="negativeSelColor">@color/purple_M850</item>
-        <item name="mapPoiFillColor">@color/red_M150</item>
-        <item name="mapRoomBorderColor">@color/red_M150</item>
-        <item name="mapRoomFillColor">#D99CA5</item>
+        <item name="mapPoiFillColor">#BFD66D7B</item>
+        <item name="mapRoomBorderColor">#80D66D7B</item>
+        <item name="mapRoomFillColor">#1AD99CA5</item>
 
         <item name="progressBarColorStart">#FCFAFB</item>
         <item name="progressBarColorEnd">@color/red_M150</item>
@@ -1845,8 +1844,8 @@
         <item name="neutralSelColor">@color/white_M500</item>
         <item name="negativeSelColor">#ECDFCD</item>
 
-        <item name="mapPoiFillColor">#936305</item>
-        <item name="mapRoomBorderColor">#936305</item>
+        <item name="mapPoiFillColor">#BF936305</item>
+        <item name="mapRoomBorderColor">#80936305</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
         <item name="progressBarColorStart">#ECDFCD</item>
@@ -1936,8 +1935,8 @@
         <item name="positiveSelColor">#E3D6F7</item>
         <item name="neutralSelColor">#7E7C7E</item>
         <item name="negativeSelColor">@color/purple_M550</item>
-        <item name="mapPoiFillColor">#5B399E</item>
-        <item name="mapRoomBorderColor">#5B399E</item>
+        <item name="mapPoiFillColor">#BF5B399E</item>
+        <item name="mapRoomBorderColor">#805B399E</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
         <item name="progressBarColorStart">#E3D6F7</item>

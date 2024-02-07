@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AccountLoginRequestView extends ConstraintLayout {
 
@@ -37,6 +39,23 @@ public class AccountLoginRequestView extends ConstraintLayout {
 
     public void init(Context context) {
         inflate(context, R.layout.layout_account_login_request, this);
+
+        FirebaseUser user = null;
+        try {
+            user = FirestoreUser.getCurrentFirebaseUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        setContainerVisibility(user);
+    }
+
+    private void setContainerVisibility(FirebaseUser user) {
+        if(user == null) {
+            setVisibility(VISIBLE);
+        } else {
+            setVisibility(GONE);
+        }
     }
 
 }

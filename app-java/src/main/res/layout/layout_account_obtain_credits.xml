@@ -19,56 +19,16 @@
             android:id="@+id/constraint_account_credits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_accountInformation">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/constraintLayout_buy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:orientation="vertical"
-                android:padding="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout_ads"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/settings_account_buy_button"
-                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/radiobutton_1_disabled"
-                    android:backgroundTint="?attr/textColorBodyEmphasis"
-                    android:backgroundTintMode="multiply"
-                    android:padding="8dp"
-                    android:text="@string/marketplace_button_purchase_credits"
-                    android:textColor="?attr/textColorBody"
-                    android:visibility="visible" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/label_buy_description"
-                    style="?attr/quaternaryFont_Bold_Manual"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/marketplace_description_purchase_credits"
-                    android:textSize="14sp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/constraintLayout_ads"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
                 android:orientation="vertical"
                 android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -84,9 +44,8 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
-                    android:background="@drawable/radiobutton_1_disabled"
-                    android:backgroundTint="?attr/textColorBodyEmphasis"
-                    android:backgroundTintMode="multiply"
+                    android:background="@drawable/button_marketplace_1"
+                    android:enabled="false"
                     android:padding="8dp"
                     android:text="@string/marketplace_button_watch_ad"
                     android:textColor="?attr/textColorBody"
@@ -98,6 +57,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/constraintLayout_buy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout_ads"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/settings_account_buy_button"
+                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_marketplace_1"
+                    android:padding="8dp"
+                    android:text="@string/marketplace_button_purchase_credits"
+                    android:textColor="?attr/textColorBody"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_buy_description"
+                    style="?attr/quaternaryFont_Bold_Manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/marketplace_description_purchase_credits"
                     android:textSize="14sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

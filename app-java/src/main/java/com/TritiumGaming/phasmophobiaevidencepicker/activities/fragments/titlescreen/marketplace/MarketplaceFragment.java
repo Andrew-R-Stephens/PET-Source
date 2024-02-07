@@ -168,9 +168,9 @@ public class MarketplaceFragment extends FirestoreFragment {
                 });
         }
 
+        /* TODO Add to Account Details view
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
 
         if(firebaseUser != null) {
             accountEmail = firebaseUser.getEmail();
@@ -203,15 +203,20 @@ public class MarketplaceFragment extends FirestoreFragment {
                 }
             });
         }
+        */
 
+        /* TODO Add to Account Details view
         if(firebaseUser == null) {
             constraint_requestlogin.setVisibility(VISIBLE);
             cardview_account.setVisibility(GONE);
+            obtainCreditsView.setVisibility(GONE);
 
             market_progressbar.setVisibility(GONE);
         } else {
             constraint_requestlogin.setVisibility(GONE);
             cardview_account.setVisibility(VISIBLE);
+            obtainCreditsView.setVisibility(VISIBLE);
+
             if(label_account_info != null) {
                 label_account_info.setText(email_displayed);
                 if(!showEmail) {
@@ -219,14 +224,19 @@ public class MarketplaceFragment extends FirestoreFragment {
                 }
             }
 
-        }
+        }*/
 
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser == null) {
+            market_progressbar.setVisibility(GONE);
+        }
 
         // CANCEL BUTTON
         button_back.setOnClickListener(v -> {
             Navigation.findNavController(v).popBackStack();
         });
 
+        obtainCreditsView.enableAdWatchButton(false);
         requireActivity().runOnUiThread(() -> loadRewardedAd(null));
 
         requireActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
@@ -932,6 +942,7 @@ public class MarketplaceFragment extends FirestoreFragment {
 
                         int rewardQuantity = rewardedAd.getRewardItem().getAmount();
                         obtainCreditsView.setWatchAdsLabelDescription(rewardQuantity);
+                        obtainCreditsView.enableAdWatchButton(true);
 
                         if(listener != null) {
                             listener.onAdLoaded();
@@ -940,6 +951,7 @@ public class MarketplaceFragment extends FirestoreFragment {
                     @Override
                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                         Log.d("RewardedAd", loadAdError.toString());
+                        obtainCreditsView.enableAdWatchButton(false);
                         rewardedAd = null;
                     }
                 });

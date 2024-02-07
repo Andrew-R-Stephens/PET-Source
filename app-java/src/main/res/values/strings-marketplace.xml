@@ -6,9 +6,9 @@
     <string name="marketplace_button_watch_ad" translatable="false">Earn Credits</string>
     <string name="marketplace_button_purchase_credits" translatable="false">Purchase Credits</string>
     <plurals name="marketplace_description_watch_ad" translatable="false">
-        <item quantity="one">%d Companion Credit</item>
-        <item quantity="other">%d Companion Credits</item>
+        <item quantity="one">Companion Credit</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
-    <string name="marketplace_description_watch_ad" translatable="false" formatted="true">Watch an ad to earn %s.</string>
+    <string name="marketplace_description_watch_ad" translatable="false">Watch an ad to earn %s %s.</string>
     <string name="marketplace_description_purchase_credits" translatable="false">Purchase credits directly.</string>
 </resources>

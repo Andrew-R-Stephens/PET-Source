@@ -49,4 +49,9 @@ public class ColorUtils {
         return blendARGB(endColor, startColor, ratio);
     }
 
+    public static String intToHex(int color) {
+        if(String.valueOf(color).length() < 6) { return "#FFFFFF"; }
+        return String.format("#%06X", 0xFFFFFF & color);
+    }
+
 }

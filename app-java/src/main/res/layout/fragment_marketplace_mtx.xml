@@ -66,6 +66,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/icon_strikethrough_1"
             android:backgroundTint="@color/white_M600"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_requestlogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
@@ -75,14 +76,19 @@
             android:id="@+id/layout_account_requestlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.AccountDetailsView
             android:id="@+id/layout_account_details"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollview_marketplace_items"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
