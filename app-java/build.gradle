@@ -123,7 +123,6 @@ dependencies {
     //implementation 'com.itextpdf:itextpdf:5.5.13.3'
 
     /*
-
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
@@ -158,7 +157,8 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    implementation 'com.google.firebase:firebase-auth:22.3.1'
+    //implementation 'com.google.firebase:firebase-auth:22.3.1'
+    implementation 'com.google.firebase:firebase-auth'
     implementation platform('com.google.firebase:firebase-bom:32.7.0')
     // GOOGLE FIREBASE FIRESTORE
     implementation("com.google.firebase:firebase-firestore")
@@ -198,6 +198,17 @@ dependencies {
     // DO NOT UPDATE THIS -- BREAKING CHANGES
     implementation 'commons-io:commons-io:2.6'
 
+    /*
+        ---- START----
+        ANDROIDX LEANBACK
+    */
+    implementation "androidx.leanback:leanback:$leanback_version"
+    // leanback-preference is an add-on that provides a settings UI for TV apps.
+    implementation "androidx.leanback:leanback-preference:$leanback_version"
+    // leanback-paging is an add-on that simplifies adding paging support to a RecyclerView Adapter.
+    implementation "androidx.leanback:leanback-paging:1.1.0-alpha11"
+    // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
+    implementation "androidx.leanback:leanback-tab:1.1.0-beta01"
 
     /*
         ---- START----

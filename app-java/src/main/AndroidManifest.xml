@@ -3,6 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -22,7 +32,8 @@
         android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        tools:targetApi="34">
+        tools:targetApi="34"
+        android:banner="@mipmap/ic_launcher">
 
         <!-- Delay app measurement until MobileAds.initialize() is called. -->
         <meta-data
@@ -54,6 +65,17 @@
             android:configChanges="locale|orientation">
         </activity>
 
+        <activity
+            android:name=".activities.OnboardingActivity"
+            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Onboarding"
+            android:configChanges="locale|orientation"
+            android:exported="true">
+
+            <intent-filter>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

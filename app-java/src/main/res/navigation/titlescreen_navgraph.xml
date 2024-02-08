@@ -27,11 +27,12 @@
             android:id="@+id/action_titleScreenFragment_to_appLanguageFragment"
             app:destination="@id/appLanguageFragment" />
         <action
-            android:id="@+id/action_titleScreenFragment_to_onboardingFragment"
-            app:destination="@id/onboardingFragment" />
-        <action
             android:id="@+id/action_titleScreenFragment_to_marketplaceFragment"
             app:destination="@id/marketplaceFragment" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_onboardingActivity"
+            app:destination="@id/onboardingActivity"
+            app:launchSingleTop="true" />
     </fragment>
 
     <activity
@@ -92,14 +93,6 @@
             android:id="@+id/action_appLanguageFragment_to_titleScreenFragment"
             app:destination="@id/titleScreenFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/onboardingFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.introduction.OnboardingFragment"
-        android:label="OnboardingFragment" >
-        <action
-            android:id="@+id/action_onboardingFragment_to_titleScreenFragment"
-            app:destination="@id/titleScreenFragment" />
-    </fragment>
     <action
         android:id="@+id/action_global_titleScreenFragment"
         app:destination="@id/titleScreenFragment" />
@@ -122,4 +115,8 @@
             android:id="@+id/action_marketplaceBillingFragment_to_marketplaceFragment"
             app:destination="@id/marketplaceFragment" />
     </fragment>
+    <activity
+        android:id="@+id/onboardingActivity"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.OnboardingActivity"
+        android:label="OnboardingActivity" />
 </navigation>

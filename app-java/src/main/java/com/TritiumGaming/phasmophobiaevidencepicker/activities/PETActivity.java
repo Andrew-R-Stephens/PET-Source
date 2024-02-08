@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.OnboardingViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
@@ -50,6 +51,7 @@ public abstract class PETActivity extends AppCompatActivity {
 
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected PermissionsViewModel permissionsViewModel;
+    protected OnboardingViewModel onboardingViewModel;
 
 
     // Firebase auth
@@ -71,14 +73,13 @@ public abstract class PETActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-
         initFirebase();
         initViewModels();
         initPrefs();
 
-        automaticSignInAccount();
+        super.onCreate(savedInstanceState);
 
+        automaticSignInAccount();
     }
 
     protected void initFirebase() {
@@ -96,6 +97,11 @@ public abstract class PETActivity extends AppCompatActivity {
                 PermissionsViewModel.class);
         permissionsViewModel = new ViewModelProvider(this).get(
                 PermissionsViewModel.class);
+
+        onboardingViewModel = factory.create(
+                OnboardingViewModel.class);
+        onboardingViewModel = new ViewModelProvider(this).get(
+                OnboardingViewModel.class);
 
         return factory;
     }
@@ -240,9 +246,7 @@ public abstract class PETActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     *
-     */
+    /*
     public void signOutAccount() {
         if(FirebaseAuth.getInstance().getCurrentUser() == null) {
             return;
@@ -260,9 +264,6 @@ public abstract class PETActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     *
-     */
     public void deleteAccount() {
         AuthUI.getInstance()
                 .delete(this)
@@ -274,6 +275,6 @@ public abstract class PETActivity extends AppCompatActivity {
                     toast.show();
                 });
     }
-
+    */
 
 }

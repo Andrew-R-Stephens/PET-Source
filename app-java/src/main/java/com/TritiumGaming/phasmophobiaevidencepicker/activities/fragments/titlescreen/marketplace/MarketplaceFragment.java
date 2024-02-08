@@ -168,7 +168,9 @@ public class MarketplaceFragment extends FirestoreFragment {
                 });
         }
 
-        /* TODO Add to Account Details view
+
+        // TODO Add to Account Details view
+        /*
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -205,7 +207,7 @@ public class MarketplaceFragment extends FirestoreFragment {
         }
         */
 
-        /* TODO Add to Account Details view
+        /*
         if(firebaseUser == null) {
             constraint_requestlogin.setVisibility(VISIBLE);
             cardview_account.setVisibility(GONE);

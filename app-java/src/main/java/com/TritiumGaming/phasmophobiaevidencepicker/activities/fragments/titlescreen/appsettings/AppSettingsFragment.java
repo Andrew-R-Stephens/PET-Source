@@ -625,7 +625,7 @@ public class AppSettingsFragment extends Fragment {
      */
     public void manualSignInAccount() {
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Log.d("ManuLogin", "User null!");
+            Log.d("ManuLogin", "User not null!");
             return;
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
@@ -682,7 +682,6 @@ public class AppSettingsFragment extends Fragment {
                 }
 
                 getUserPurchaseHistory();
-
             }
         } else {
 

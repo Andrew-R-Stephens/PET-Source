@@ -10,6 +10,7 @@
     <!-- Local Files -->
     <string name="localFile_ghostEvidencePair_name" translatable="false">GhostEvidencePair.json</string>
     <!-- Page Details -->
+    <string name="preferences_onboardingFile_name" translatable="false">Onboarding_Preferences</string>
     <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
     <string name="preferences_newsletterFile_name" translatable="false">Newsletter_Preferences</string>
     <string name="preference_latestDatabaseVersion" translatable="false">LatestDatabaseVersion</string>
@@ -35,5 +36,6 @@
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
     <string name="reviewtracking_appTimeAlive" translatable="false">appTimeAlive</string>
     <string name="reviewtracking_appTimesOpened" translatable="false">appTimesOpened</string>
+    <string name="onboarding_canShow_intro" />
 
 </resources>

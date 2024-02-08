@@ -2,13 +2,17 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.icu.util.LocaleData;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
+import androidx.preference.PreferenceManager;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.introduction.OnboardingFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
@@ -47,6 +51,9 @@ public class TitleScreenActivity extends PETActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_titlescreen);
+        Log.d("Titlescreen", "OnCreate");
+
+        requestOnboardingActivity();
 
         requestAdsConsentInformation();
     }
@@ -70,6 +77,13 @@ public class TitleScreenActivity extends PETActivity {
         });
 
         return hasUpdate.get();
+    }
+
+    public void requestOnboardingActivity() {
+        if (onboardingViewModel.getCanShowIntroduction()) {
+            Log.d("Onboarding", "Starting Activity");
+            startActivity(new Intent(this, OnboardingActivity.class));
+        }
     }
 
     @Override
@@ -145,7 +159,6 @@ public class TitleScreenActivity extends PETActivity {
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.initialize(this);
-
     }
 
     @Override
