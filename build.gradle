@@ -6,7 +6,7 @@ buildscript {
         kotlin_version = '1.9.0'
 
         compose_version = '1.5.4'
-        compose_ui_version = '1.6.0'
+        compose_ui_version = '1.6.2'
 
         fragment_version = '1.6.2'
         work_version = '2.9.0'
@@ -22,7 +22,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
-        classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.google.gms:google-services:4.4.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
