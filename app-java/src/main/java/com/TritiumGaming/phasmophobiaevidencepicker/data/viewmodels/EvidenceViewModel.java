@@ -39,7 +39,6 @@ public class EvidenceViewModel extends ViewModel {
 
     private boolean isCollapsed = false;
 
-
     public void init(Context c) {
 
         if (!hasInvestigationData()) {

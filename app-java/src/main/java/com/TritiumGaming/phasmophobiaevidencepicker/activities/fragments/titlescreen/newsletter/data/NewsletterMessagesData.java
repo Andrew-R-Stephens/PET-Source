@@ -97,16 +97,6 @@ public class NewsletterMessagesData {
         return requiresNotify = !mostRecentDateFound.equalsIgnoreCase(lastReadDate);
     }
 
-    /*
-    public int getMessageCount() {
-        return messages.size();
-    }
-
-    public String getMostRecentDate() {
-        return mostRecentDateFound;
-    }
-    */
-
     public String getLastReadDate() {
         return lastReadDate;
     }

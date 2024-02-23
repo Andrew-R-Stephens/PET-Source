@@ -15,7 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class OutlineTextView extends AppCompatTextView {
 
-    private float defaultOutlineWidth = 0f;
+    private final float defaultOutlineWidth = 0f;
     private boolean isDrawing = false;
     private int outlineColor = 0;
     private float outlineWidth = 0f;

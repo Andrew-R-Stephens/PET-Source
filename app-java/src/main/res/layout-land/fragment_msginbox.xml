@@ -58,31 +58,25 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <GridLayout
+            android:id="@+id/list_inboxes"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:useDefaultMargins="true"
+            android:columnCount="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintWidth_percent=".75">
 
-            <GridLayout
-                android:id="@+id/constraintLayout68"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:columnCount="3"
-                android:rowCount="1"
-                android:useDefaultMargins="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".75"
-                app:layout_constraintHeight_percent=".9">
-
+            <!--
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -359,11 +353,9 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
+                -->
 
-            </GridLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </GridLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

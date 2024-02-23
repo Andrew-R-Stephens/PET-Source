@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class MapListModel {
 
-    private int currentMapID = 0;
+    private final int currentMapID = 0;
     public ArrayList<MapModel> mapModels;
 
     public MapListModel(WorldMapWrapper worldMapWrapper) {

@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,40 +23,22 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
-public class AppInfoFragment extends Fragment {
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-
-    private TitlescreenViewModel titleScreenViewModel = null;
-
+public class AppInfoFragment extends MainMenusFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel =
-                    new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-        }
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null) {
-            globalPreferencesViewModel.init(getContext());
-        }
 
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel =
-                    new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
-        }
+        super.init();
 
         return inflater.inflate(R.layout.fragment_appinfo, container, false);
     }
@@ -65,18 +46,22 @@ public class AppInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
+
         TypedArray typedArray =
                 getResources().obtainTypedArray(R.array.aboutinfo_specialthanks_list);
 
         // INITIALIZE FONT EMPHASIS COLOR
         TypedValue typedValue = new TypedValue();
         @ColorInt
-        int color;
-        if (getContext() != null) {
-            Resources.Theme theme = getContext().getTheme();
+        int color = getResources().getColor(R.color.white);
+        try {
+            Resources.Theme theme = requireContext().getTheme();
             theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
+            color = typedValue.data;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
-        color = typedValue.data;
 
         // INITIALIZE VIEWS
         AppCompatImageButton closeButton = view.findViewById(R.id.popup_close_button);
@@ -87,45 +72,38 @@ public class AppInfoFragment extends Fragment {
 
         AppCompatTextView discordLabel = view.findViewById(R.id.appinfo_joinDiscord);
 
-        ConstraintLayout appinfo_discordclickbutton = view.findViewById(R.id.constraintLayout_discord);
+        ConstraintLayout appinfo_discordButton = view.findViewById(R.id.constraintLayout_discord);
 
         LinearLayoutCompat linearLayout_specialThanks =
                 view.findViewById(R.id.scrollview_list_specialthanks);
 
         // LISTENERS
-        closeButton.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
-        appinfo_discordclickbutton.setOnClickListener(v -> startActivity(
+        closeButton.setOnClickListener(v -> {
+            try {
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
+        });
+        appinfo_discordButton.setOnClickListener(v -> startActivity(
                 new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)))));
-
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        }
 
         // ABOUT APP - TITLE
         String abouttitle = getResources().getString(R.string.aboutinfo_title_about);
         Spannable aboutPET = (Spannable) Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getResources().getString(R.string.aboutinfo_title_petstylized),
-                "#FF0000", color + ""));
+                "#FF0000", String.valueOf(color)));
         title.setText(TextUtils.concat(abouttitle, " ", aboutPET));
 
         // ABOUT APP - VERSION
         String versionData = getResources().getString(R.string.aboutinfo_version) + ": ";
         try {
-            if (getContext() != null) {
-                PackageInfo pInfo = getContext().getPackageManager().getPackageInfo(
-                        getContext().getPackageName(),
+                PackageInfo pInfo = requireContext().getPackageManager().getPackageInfo(
+                        requireContext().getPackageName(),
                         0);
                 versionData += pInfo.versionName;
-            }
-        } catch (
-                PackageManager.NameNotFoundException e) {
+        } catch (IllegalStateException | PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             versionData = "Version Unknown";
         }
@@ -135,7 +113,7 @@ public class AppInfoFragment extends Fragment {
         aboutapp_info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getResources().getString(R.string.aboutinfo_aboutapp_info),
                 "#CC3C3C",
-                color + "")));
+                String.valueOf(color))));
 
 
         // DISCORD LABEL
@@ -148,19 +126,31 @@ public class AppInfoFragment extends Fragment {
         int nameCount = typedArray.length();
         for (int i = 0; i < nameCount; i++) {
 
-            if(getView() != null && getView().getContext() != null) {
+            try {
                 LayoutInflater inflater =
-                        (LayoutInflater) getView().getContext().getSystemService(
+                        (LayoutInflater) requireView().getContext().getSystemService(
                                 Context.LAYOUT_INFLATER_SERVICE);
-                ConstraintLayout specialThanksItem_layout = (ConstraintLayout) inflater.inflate(R.layout.item_special_thanks_label, null);
-                AppCompatTextView textView_username = specialThanksItem_layout.findViewById(R.id.specialThanks_username);
+
+                ConstraintLayout specialThanksItem_layout =
+                        (ConstraintLayout) inflater.inflate(
+                                R.layout.item_special_thanks_label,
+                                null);
+                AppCompatTextView textView_username =
+                        specialThanksItem_layout.findViewById(R.id.specialThanks_username);
                 textView_username.setText(typedArray.getString(i));
+
                 linearLayout_specialThanks.addView(specialThanksItem_layout);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         }
 
         typedArray.recycle();
 
+    }
+
+    @Override
+    protected void initViewModels() {
     }
 
 }

@@ -76,7 +76,11 @@
     <fragment
         android:id="@+id/appInfoFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appinfo.AppInfoFragment"
-        android:label="AppInfoFragment" />
+        android:label="AppInfoFragment" >
+        <action
+            android:id="@+id/action_appInfoFragment_to_titleScreenFragment"
+            app:destination="@id/titleScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/appSettingsFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.AppSettingsFragment"

@@ -92,6 +92,8 @@
         <item name="codex_5">#2D3635</item>
         <item name="codex_grid_background_tint">#40161C1C</item>
 
+        <item name="buttonColor">?attr/light_inactive</item>
+        <item name="colorOnButton">?attr/textColorBody</item>
     </style>
 
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">

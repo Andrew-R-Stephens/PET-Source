@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -48,6 +50,15 @@ public class AccountLoginRequestView extends ConstraintLayout {
         }
 
         setContainerVisibility(user);
+    }
+
+    public void setMessage(@StringRes int message) {
+        setMessage(getContext().getString(message));
+    }
+
+    public void setMessage(String message) {
+        AppCompatTextView textView = findViewById(R.id.settings_requestlogin_title);
+        textView.setText(message);
     }
 
     private void setContainerVisibility(FirebaseUser user) {

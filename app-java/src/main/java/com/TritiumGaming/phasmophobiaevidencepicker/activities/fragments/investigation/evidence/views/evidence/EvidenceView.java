@@ -157,7 +157,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         @Override
         public boolean onDown(@NonNull MotionEvent e) {
-            Log.i("onDown :", "" + e.getAction());
+            Log.i("onDown :", String.valueOf(e.getAction()));
 
             return true;
         }
@@ -201,7 +201,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         @Override
         public boolean onDown(@NonNull MotionEvent e) {
-            Log.i("onDown :", "" + e.getAction());
+            Log.i("onDown :", String.valueOf(e.getAction()));
 
             return true;
         }

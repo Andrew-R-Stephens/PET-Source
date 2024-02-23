@@ -2,35 +2,26 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities;
 
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
-import android.icu.util.LocaleData;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.navigation.Navigation;
-import androidx.preference.PreferenceManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.introduction.OnboardingFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.ProductDetailsResponseListener;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.QueryProductDetailsParams;
-import com.android.billingclient.api.SkuDetailsParams;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.OnboardingViewModel;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.common.collect.ImmutableList;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -40,6 +31,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author TritiumGamingStudios
  */
 public class TitleScreenActivity extends PETActivity {
+
+    protected OnboardingViewModel onboardingViewModel;
+    protected NewsletterViewModel newsLetterViewModel;
 
     private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
     private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
@@ -53,9 +47,36 @@ public class TitleScreenActivity extends PETActivity {
         setContentView(R.layout.activity_titlescreen);
         Log.d("Titlescreen", "OnCreate");
 
-        requestOnboardingActivity();
+        //requestOnboardingActivity();
 
         requestAdsConsentInformation();
+    }
+
+    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
+
+        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
+
+        super.initViewModels();
+
+        initOnboardingViewModel(factory);
+        initNewsletterViewModel(factory);
+
+        return factory;
+    }
+
+    private void initOnboardingViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        onboardingViewModel = factory.create(
+                OnboardingViewModel.class);
+        onboardingViewModel = new ViewModelProvider(this).get(
+                OnboardingViewModel.class);
+    }
+
+    private void initNewsletterViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        newsLetterViewModel = factory.create(
+                NewsletterViewModel.class);
+        newsLetterViewModel = new ViewModelProvider(this).get(
+                NewsletterViewModel.class);
+        //newsLetterViewModel.init(this);
     }
 
     public boolean checkForAppUpdates() {
@@ -100,8 +121,8 @@ public class TitleScreenActivity extends PETActivity {
         }
     }
 
-    public void initPrefs() {
-        super.initPrefs();
+    public void initPreferences() {
+        super.initPreferences();
 
         globalPreferencesViewModel.incrementAppOpenCount(getApplicationContext());
 
@@ -176,5 +197,6 @@ public class TitleScreenActivity extends PETActivity {
             });
         }
     }
+
 
 }

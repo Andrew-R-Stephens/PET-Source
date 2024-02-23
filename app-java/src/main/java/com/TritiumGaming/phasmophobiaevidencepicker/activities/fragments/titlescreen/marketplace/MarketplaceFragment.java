@@ -8,12 +8,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,29 +20,20 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.FirestoreFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundle;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleTheme;
@@ -75,14 +62,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class MarketplaceFragment extends FirestoreFragment {
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-    private TitlescreenViewModel titleScreenViewModel = null;
+public class MarketplaceFragment extends MainMenusFragment {
 
     private LinearLayout list_marketplace_items;
     private MarketplaceListLayout marketList_bundles,
@@ -94,9 +77,7 @@ public class MarketplaceFragment extends FirestoreFragment {
 
     private ProgressBar market_progressbar;
 
-    private RewardedAd rewardedAd = null;
-
-    private boolean showEmail = false;
+    private RewardedAd rewardedAd;
 
     @Nullable
     @Override
@@ -105,20 +86,7 @@ public class MarketplaceFragment extends FirestoreFragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel = new ViewModelProvider(
-                    requireActivity()).get(GlobalPreferencesViewModel.class);
-            // INITIALIZE VIEW MODEL
-            if (getContext() != null) {
-                globalPreferencesViewModel.init(getContext());
-            }
-        }
-
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel = new ViewModelProvider(
-                    requireActivity()).get(TitlescreenViewModel.class);
-        }
+        super.init();
 
         return inflater.inflate(R.layout.fragment_marketplace, container, false);
     }
@@ -127,12 +95,10 @@ public class MarketplaceFragment extends FirestoreFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
+
         final AppCompatImageView button_back = view.findViewById(R.id.button_back);
         final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
-        final ConstraintLayout constraint_requestlogin = view.findViewById(R.id.constraint_requestlogin);
-        final ConstraintLayout constraint_account_name = view.findViewById(R.id.constraint_account_name);
-        final View cardview_account = view.findViewById(R.id.cardView_account);
-        final AppCompatTextView label_account_info = view.findViewById(R.id.settings_accountsettings_info);
         final AppCompatButton button_ad_watch = view.findViewById(R.id.button_ad_watch);
         final AppCompatButton button_buy = view.findViewById(R.id.settings_account_buy_button);
 
@@ -157,17 +123,6 @@ public class MarketplaceFragment extends FirestoreFragment {
         button_ad_watch.setOnClickListener(v -> showRewardedAd());
 
         button_buy.setOnClickListener(this::gotoBillingMarketplace);
-
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        Navigation.findNavController(view).popBackStack();
-                    }
-                });
-        }
-
 
         // TODO Add to Account Details view
         /*
@@ -235,7 +190,12 @@ public class MarketplaceFragment extends FirestoreFragment {
 
         // CANCEL BUTTON
         button_back.setOnClickListener(v -> {
-            Navigation.findNavController(v).popBackStack();
+            try {
+
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         });
 
         obtainCreditsView.enableAdWatchButton(false);
@@ -245,24 +205,35 @@ public class MarketplaceFragment extends FirestoreFragment {
         requireActivity().runOnUiThread(() -> new Thread(this::populateMarketplaceUnPurchasedItems).start());
 
     }
+
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+    }
+
     /**
      * gotoLanguagesFragment method
      */
     public void gotoBillingMarketplace(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment);
+        //navigateTo(R.id.action_marketplaceFragment_to_marketplaceBillingFragment);
+
+        Navigation.findNavController(requireActivity(), R.id.action_marketplaceFragment_to_marketplaceBillingFragment);
     }
 
     private void initAccountCreditListener() {
         try {
             DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
             creditDoc.get()
-                    .addOnCompleteListener(task -> {
-                Long credits_read = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
-                long user_credits = credits_read != null ? credits_read : 0;
+                    .addOnSuccessListener(task -> {
+                        Long credits_read = task.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
+                        long user_credits = credits_read != null ? credits_read : 0;
 
-                label_account_credits.setText(String.valueOf(user_credits));
-            });
+                        label_account_credits.setText(String.valueOf(user_credits));
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Firestore", "Could get user's account credit count!");
+                        e.printStackTrace();
+                    });
 
             creditDoc.addSnapshotListener((documentSnapshot, error) -> {
                 if(documentSnapshot == null) { return; }
@@ -290,20 +261,25 @@ public class MarketplaceFragment extends FirestoreFragment {
 
         try {
             unlockHistoryCollection.get()
-                .addOnCompleteListener(task -> {
+                    .addOnSuccessListener(task -> {
+                        for(DocumentSnapshot documentSnapshot : task.getDocuments()) {
+                            DocumentReference documentReference = documentSnapshot.getReference();
 
-                    for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                        DocumentReference documentReference = documentSnapshot.getReference();
+                            String uuid = documentReference.getId();
+                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                                    .getThemeByUUID(uuid);
+                            customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                        }
 
-                        String uuid = documentReference.getId();
-                        CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
-                                .getThemeByUUID(uuid);
-                        customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
-                    }
-
-                    populateBundledThemes();
-                    populateIndividualThemes();
-                });
+                        populateBundledThemes();
+                        populateIndividualThemes();
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Firestore", "Could not populate user's unlock history!");
+                        market_progressbar.setVisibility(GONE);
+                        label_marketplace_error.setVisibility(VISIBLE);
+                        e.printStackTrace();
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -350,15 +326,22 @@ public class MarketplaceFragment extends FirestoreFragment {
     }
 
     public void populateBundledThemes() {
+        try {
+            marketList_bundles = new MarketplaceListLayout(requireContext());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
 
-        marketList_bundles = new MarketplaceListLayout(getContext());
+        if(marketList_bundles == null) {
+            return;
+        }
+
         marketList_bundles.setLabel("Theme Bundles");
         marketList_bundles.showLabel(GONE);
 
         list_marketplace_items.addView(marketList_bundles);
 
-        OnFirestoreProcessListener processCompleteListener =
-                new OnFirestoreProcessListener() {
+        OnFirestoreProcessListener processCompleteListener = new OnFirestoreProcessListener() {
             boolean thrown = false;
             boolean labelShown = true;
 
@@ -372,10 +355,14 @@ public class MarketplaceFragment extends FirestoreFragment {
                 market_progressbar.setVisibility(GONE);
                 label_marketplace_error.setVisibility(VISIBLE);
 
-                Toast.makeText(getActivity(),
-                                "Could not access the marketplace.",
-                                Toast.LENGTH_SHORT)
-                        .show();
+                try {
+                    Toast.makeText(requireActivity(),
+                                    "Could not access the marketplace.",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -398,25 +385,40 @@ public class MarketplaceFragment extends FirestoreFragment {
             }
         };
 
-        if(!NetworkUtils.isNetworkAvailable(getContext(),
+        try {
+            if(!NetworkUtils.isNetworkAvailable(requireContext(),
                 globalPreferencesViewModel.getNetworkPreference())) {
-            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show();
-            processCompleteListener.onFailure();
 
-            return;
+                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
+
+                processCompleteListener.onFailure();
+                return;
+            }
+
+            addMarketplaceBundleThemes(marketList_bundles, null, null, null, null, processCompleteListener);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
-
-        addMarketplaceBundleThemes(marketList_bundles, null, null, null, null, processCompleteListener);
     }
 
     private void populateIndividualThemes() {
 
-        marketList_prestige = new MarketplaceListLayout(getContext());
+        try {
+            marketList_prestige = new MarketplaceListLayout(requireContext());
+            marketList_event = new MarketplaceListLayout(requireContext());
+            marketList_community = new MarketplaceListLayout(requireContext());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        if(marketList_prestige == null || marketList_event == null ||
+                marketList_community == null) {
+            return;
+        }
+
         marketList_prestige.setLabel("Prestige Themes");
-        marketList_event = new MarketplaceListLayout(getContext());
         marketList_event.setLabel("Event Themes");
-        marketList_community = new MarketplaceListLayout(getContext());
         marketList_community.setLabel("Community Themes");
 
         list_marketplace_items.addView(marketList_prestige);
@@ -459,18 +461,23 @@ public class MarketplaceFragment extends FirestoreFragment {
 
         };
 
-        if(!NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference())) {
-            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show();
-            processCompleteListener.onFailure();
+        try {
+            if(!NetworkUtils.isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.getNetworkPreference())) {
+                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
+                processCompleteListener.onFailure();
 
-            return;
+                return;
+            }
+
+            addMarketplaceSingleThemes(marketList_prestige, "group", "Prestige", "priority", Query.Direction.ASCENDING, processCompleteListener);
+            addMarketplaceSingleThemes(marketList_event, "group", "Event", null, null, processCompleteListener);
+            addMarketplaceSingleThemes(marketList_community, "group", "Community", null, null, processCompleteListener);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
-        addMarketplaceSingleThemes(marketList_prestige, "group", "Prestige", "priority", Query.Direction.ASCENDING, processCompleteListener);
-        addMarketplaceSingleThemes(marketList_event, "group", "Event", null, null, processCompleteListener);
-        addMarketplaceSingleThemes(marketList_community, "group", "Community", null, null, processCompleteListener);
     }
 
     private void addMarketplaceSingleThemes(MarketplaceListLayout list, String field, String value,
@@ -513,8 +520,14 @@ public class MarketplaceFragment extends FirestoreFragment {
 
                         marketSingleTheme = new MarketSingleTheme(uuid, marketSingleTheme, customTheme);
 
-                        MarketplaceSingleThemeView marketplaceItem =
-                                buildMarketplaceSingleThemeView(list, marketSingleTheme);
+                        MarketplaceSingleThemeView marketplaceItem;
+                        try {
+                            marketplaceItem =
+                                    buildMarketplaceSingleThemeView(list, marketSingleTheme);
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                            continue;
+                        }
 
                         if(!marketSingleTheme.isUnlocked()) {
                             list.addView(marketplaceItem);
@@ -721,14 +734,15 @@ public class MarketplaceFragment extends FirestoreFragment {
 
     @NonNull
     private MarketplaceSingleThemeView buildMarketplaceSingleThemeView(
-            MarketplaceListLayout list, MarketSingleTheme marketSingleTheme) {
+            MarketplaceListLayout list, MarketSingleTheme marketSingleTheme)
+    throws IllegalStateException {
 
         MarketplaceSingleThemeView marketplaceItemView =
                 new MarketplaceSingleThemeView(new ContextThemeWrapper(
-                        getContext(), marketSingleTheme.getStyle()),
-                        null, marketSingleTheme.getStyle());
-        marketplaceItemView.setTheme(marketSingleTheme);
+                            requireContext(), marketSingleTheme.getStyle()),
+                            null, marketSingleTheme.getStyle());
 
+        marketplaceItemView.setTheme(marketSingleTheme);
 
         View.OnClickListener buyButtonListener = new View.OnClickListener() {
             @Override
@@ -815,9 +829,7 @@ public class MarketplaceFragment extends FirestoreFragment {
         return marketplaceItemView;
     }
 
-    /**
-     * refreshFragment
-     */
+    /*
     public void refreshFragment() {
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
         if (Build.VERSION.SDK_INT >= 26) {
@@ -827,6 +839,7 @@ public class MarketplaceFragment extends FirestoreFragment {
         ft = getParentFragmentManager().beginTransaction();
         ft.attach(MarketplaceFragment.this).commitNow();
     }
+    */
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
@@ -861,7 +874,7 @@ public class MarketplaceFragment extends FirestoreFragment {
             return;
         }
 
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
@@ -951,7 +964,7 @@ public class MarketplaceFragment extends FirestoreFragment {
                         }
                     }
                     @Override
-                    public void onAdFailedToLoad(LoadAdError loadAdError) {
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         Log.d("RewardedAd", loadAdError.toString());
                         obtainCreditsView.enableAdWatchButton(false);
                         rewardedAd = null;

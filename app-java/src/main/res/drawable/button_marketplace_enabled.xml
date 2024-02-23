@@ -9,7 +9,7 @@
         android:height="48dp"/>
 
     <solid
-        android:color="?attr/light_inactive"
+        android:color="?attr/buttonColor"
         />
 
     <corners

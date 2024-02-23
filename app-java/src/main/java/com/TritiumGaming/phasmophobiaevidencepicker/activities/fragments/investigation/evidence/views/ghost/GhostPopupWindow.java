@@ -126,10 +126,10 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         title.setText(titles[detailIndex]);
         data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 cycleDetails[detailIndex],
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
         data_huntdata.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getContext().getString(ghostPopupData.getHuntData(groupIndex)),
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
 
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -151,7 +151,7 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
             title.setText(titles[detailIndex]);
             data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     cycleDetails[detailIndex],
-                    "#ff6161", fontEmphasisColor + "")));
+                    "#ff6161", String.valueOf(fontEmphasisColor))));
 
             fadeOutIndicatorAnimation(
                     bodyCons,
@@ -167,7 +167,7 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
             title.setText(titles[detailIndex]);
             data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                     cycleDetails[detailIndex],
-                    "#ff6161", fontEmphasisColor + "")));
+                    "#ff6161", String.valueOf(fontEmphasisColor))));
 
             fadeOutIndicatorAnimation(
                     bodyCons,

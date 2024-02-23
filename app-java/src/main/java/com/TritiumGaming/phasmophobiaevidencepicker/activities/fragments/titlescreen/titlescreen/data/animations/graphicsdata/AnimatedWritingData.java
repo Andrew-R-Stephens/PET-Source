@@ -7,6 +7,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AbstractAnimatedGraphic;
 
 /**
@@ -154,7 +156,9 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      * @param original- original Bitmap
      * @return new rotated Bitmap
      */
-    public Bitmap rotateBitmap(Bitmap original) {
+    @Override
+    public Bitmap rotateBitmap(@NonNull Bitmap original)
+            throws IllegalStateException, NullPointerException {
         int width = original.getWidth();
         int height = original.getHeight();
         Matrix matrix = new Matrix();

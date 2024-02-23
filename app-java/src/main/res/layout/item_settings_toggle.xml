@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start|center_vertical"
+        android:inputType="text"
+        android:textColor="?attr/switchColor"
+        android:textIsSelectable="false"
+        android:theme="@style/SwitchTheme"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/switch_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/switch_description"
+        style="?attr/primaryFont_Regular_Manual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="start|center_vertical"
+        android:textSize="16sp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_toggle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</merge>
+
+                

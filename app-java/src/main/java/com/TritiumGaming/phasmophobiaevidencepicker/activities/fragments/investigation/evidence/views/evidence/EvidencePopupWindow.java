@@ -36,7 +36,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class EvidencePopupWindow extends InvestigationPopupWindow {
 
-    private int detailIndex = 0;
+    private final int detailIndex = 0;
 
     public EvidencePopupWindow(@NonNull Context context) {
         super(context);
@@ -97,7 +97,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         // Init
         label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getContext().getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(getContext()),
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
 
 
 
@@ -253,7 +253,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         label.setText(evidenceRecord.getName(getContext()));
         info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 evidenceRecord.getDescription(getContext(), 0),
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
 
         TypedArray typedArray;
         try {
@@ -291,10 +291,10 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
         details.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 description,
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
         levelView.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getContext().getString(R.string.evidence_requirement_level_title) + " " + level,
-                "#ff6161", fontEmphasisColor + "")));
+                "#ff6161", String.valueOf(fontEmphasisColor))));
 
         animationView.setImageResource(animation);
         animation_fullscreen.setImageResource(animation);

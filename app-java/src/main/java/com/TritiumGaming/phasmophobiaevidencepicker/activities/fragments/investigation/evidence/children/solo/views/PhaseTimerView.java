@@ -177,8 +177,8 @@ public class PhaseTimerView {
         }
         timer = null;
         Log.d("Timer",
-                phaseTimerData.getTimeRemaining() -
-                        (sanityData.getStartTime() - System.currentTimeMillis())+"");
+                String.valueOf(phaseTimerData.getTimeRemaining() -
+                        (sanityData.getStartTime() - System.currentTimeMillis())));
     }
 
     public void reset() {

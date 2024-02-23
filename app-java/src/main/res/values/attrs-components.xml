@@ -48,4 +48,13 @@
         <attr name="bundleEnforcedTheme" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="SettingsToggleItem">
+        <attr name="settings_toggle_description" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="NewsletterInboxView">
+        <attr name="inbox_title" format="reference|string" />
+        <attr name="inbox_icon" format="reference" />
+    </declare-styleable>
+
 </resources>

@@ -8,35 +8,26 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.OnboardingViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.ProductDetailsResponseListener;
-import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.QueryProductDetailsParams;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.common.collect.ImmutableList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,7 +42,6 @@ public abstract class PETActivity extends AppCompatActivity {
 
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected PermissionsViewModel permissionsViewModel;
-    protected OnboardingViewModel onboardingViewModel;
 
 
     // Firebase auth
@@ -73,40 +63,50 @@ public abstract class PETActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        initFirebase();
-        initViewModels();
-        initPrefs();
-
         super.onCreate(savedInstanceState);
+
+        initFirebaseAnalytics();
+        initViewModels();
+        initPreferences();
 
         automaticSignInAccount();
     }
 
-    protected void initFirebase() {
-        analytics = FirebaseAnalytics.getInstance(this);
+    protected void initFirebaseAnalytics() {
+        try {
+            analytics = FirebaseAnalytics.getInstance(this);
+            Log.d("Firebase", "Obtained instance.");
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 
     protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
 
-        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel.class);
-        globalPreferencesViewModel.init(PETActivity.this);
-
-        permissionsViewModel = factory.create(
-                PermissionsViewModel.class);
-        permissionsViewModel = new ViewModelProvider(this).get(
-                PermissionsViewModel.class);
-
-        onboardingViewModel = factory.create(
-                OnboardingViewModel.class);
-        onboardingViewModel = new ViewModelProvider(this).get(
-                OnboardingViewModel.class);
+        initGlobalPreferencesViewModel(factory);
+        initPermissionsViewModel(factory);
 
         return factory;
     }
 
-    protected void initPrefs() {
+    private void initGlobalPreferencesViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        globalPreferencesViewModel = factory.create(
+                GlobalPreferencesViewModel.class);
+        globalPreferencesViewModel = new ViewModelProvider(this).get(
+                GlobalPreferencesViewModel.class);
+        globalPreferencesViewModel.init(PETActivity.this);
+    }
+
+    private void initPermissionsViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        permissionsViewModel = factory.create(
+                PermissionsViewModel.class);
+        permissionsViewModel = new ViewModelProvider(this).get(
+                PermissionsViewModel.class);
+    }
+
+    protected void initPreferences() {
         //set colorSpace
         changeTheme(globalPreferencesViewModel.getColorTheme(), globalPreferencesViewModel.getFontTheme());
 
@@ -177,7 +177,7 @@ public abstract class PETActivity extends AppCompatActivity {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
@@ -185,6 +185,9 @@ public abstract class PETActivity extends AppCompatActivity {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setIsSmartLockEnabled(false)
+                .setTosAndPrivacyPolicyUrls(
+                        getString(R.string.preference_termsofservice_link),
+                        getString(R.string.preference_privacypolicy_link))
                 .build();
 
         signInLauncher.launch(signInIntent);
@@ -201,7 +204,7 @@ public abstract class PETActivity extends AppCompatActivity {
         }
         Log.d("AutoLogin", "User is null. Attempting silent log in.");
 
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         AuthUI.getInstance().silentSignIn(this, providers)
@@ -239,11 +242,15 @@ public abstract class PETActivity extends AppCompatActivity {
         } else {
             FirebaseUiException error = response.getError();
             String message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
-            Toast toast = Toast.makeText(getApplicationContext(),
+            Toast toast = Toast.makeText(this,
                     message,
                     com.google.android.material.R.integer.material_motion_duration_short_2);
             toast.show();
         }
+    }
+
+    public FirebaseAnalytics getFirebaseAnalytics() {
+        return analytics;
     }
 
     /*

@@ -1128,6 +1128,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF030C0A</item>
 
+        <item name="colorOnButton">?attr/backgroundColor</item>
     </style>
 
 

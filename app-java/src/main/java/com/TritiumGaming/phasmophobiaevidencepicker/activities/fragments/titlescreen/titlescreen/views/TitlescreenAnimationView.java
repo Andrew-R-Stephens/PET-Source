@@ -4,22 +4,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AbstractAnimatedGraphic;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AnimatedGraphicQueue;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.graphicsdata.AnimatedFrostData;
@@ -41,17 +36,20 @@ import java.util.ConcurrentModificationException;
  */
 public class TitlescreenAnimationView extends View {
 
-    private TitlescreenViewModel titleScreenViewModel = null;
-    private BitmapUtils bitmapUtils = null;
+    private TitlescreenViewModel titleScreenViewModel;
 
-    private ArrayList<Integer> bookwritingResId = new ArrayList<>();
-    private ArrayList<Integer> handuvResId = new ArrayList<>();
+    private BitmapUtils bitmapUtils;
+
+    private Thread thread_initAnima, thread_tickAnim, thread_renderAnim, thread_initReady;
+
+    private boolean canAnimateBackground = true;
+
+    private ArrayList<Integer> writingResIds = new ArrayList<>();
+    private ArrayList<Integer> handResIds = new ArrayList<>();
 
     private final Paint paint = new Paint();
-    private Bitmap
-            bitmap_orb = null, bitmap_hand = null, bitmap_writing = null,
-            bitmap_frost = null, bitmap_mirror = null,
-            bitmap_handRot = null, bitmap_writingRot = null;
+    private Bitmap bitmap_orb, bitmap_hand, bitmap_writing, bitmap_frost, bitmap_mirror,
+            bitmap_handRot, bitmap_writingRot;
 
     /**
      * @param context The parent Context
@@ -91,34 +89,32 @@ public class TitlescreenAnimationView extends View {
         this.titleScreenViewModel = titleScreenViewModel;
         this.bitmapUtils = bitmapUtils;
 
+        AnimatedGraphicData data = this.titleScreenViewModel.getAnimationData();
+
         //Set writing resources
         TypedArray bookwritingArray =
                 getResources().obtainTypedArray(R.array.anim_bookwriting_images);
-        bookwritingResId = new ArrayList<>();
+        writingResIds = new ArrayList<>();
         for (int i = 0; i < bookwritingArray.length(); i++) {
-            bookwritingResId.add(bookwritingArray.getResourceId(i, 0));
+            writingResIds.add(bookwritingArray.getResourceId(i, 0));
         }
         bookwritingArray.recycle();
 
         //Set hand resources
         TypedArray handUVArray =
                 getResources().obtainTypedArray(R.array.anim_hand_images);
-        handuvResId = new ArrayList<>();
+        handResIds = new ArrayList<>();
         for (int i = 0; i < handUVArray.length(); i++) {
-            handuvResId.add(handUVArray.getResourceId(i, 0));
+            handResIds.add(handUVArray.getResourceId(i, 0));
         }
         handUVArray.recycle();
 
-        if (titleScreenViewModel != null &&
-                titleScreenViewModel.getAnimationData().getSelectedWriting() == -1) {
-            titleScreenViewModel.getAnimationData().
-                    setSelectedWriting((int) (Math.random() * bookwritingResId.size()));
+        if (data.getSelectedWriting() == -1) {
+            data.setSelectedWriting((int) (Math.random() * writingResIds.size()));
         }
 
-        if (titleScreenViewModel != null &&
-                titleScreenViewModel.getAnimationData().getSelectedHand() == -1) {
-            titleScreenViewModel.getAnimationData().
-                    setSelectedHand((int) (Math.random() * handuvResId.size()));
+        if (data.getSelectedHand() == -1) {
+            data.setSelectedHand((int) (Math.random() * handResIds.size()));
         }
 
         buildImages();
@@ -129,26 +125,24 @@ public class TitlescreenAnimationView extends View {
      *
      */
     public void buildImages() {
+        AnimatedGraphicData data = titleScreenViewModel.getAnimationData();
+
         bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
                 compileBitmaps(getContext());
         bitmap_frost = bitmapUtils.setResource(R.drawable.anim_frost).
                 compileBitmaps(getContext());
         bitmap_hand = bitmapUtils.setResource(
-                handuvResId.get(titleScreenViewModel.getAnimationData().getSelectedHand())).
+                handResIds.get(data.getSelectedHand())).
                 compileBitmaps(getContext());
         bitmap_writing = bitmapUtils.setResource(
-                bookwritingResId.get(titleScreenViewModel.getAnimationData().getSelectedWriting())).
+                writingResIds.get(data.getSelectedWriting())).
                 compileBitmaps(getContext());
-        /*Bitmap mirror_gradient = bitmapUtils.setResource(R.drawable.anim_mirror_gradient)
-                .compileBitmaps(getContext());*/
 
         bitmap_mirror = bitmapUtils.setResource(R.drawable.anim_mirror_crack)
                 .addResource(R.drawable.anim_mirror_gradient, PorterDuff.Mode.MULTIPLY)
                 .addResource(R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
                 .compileBitmaps(getContext());
 
-        /*Bitmap mirror_gradient = bitmapUtils.setResource(R.drawable.anim_mirror_gradient)
-                .compileBitmaps(getContext());*/
     }
 
     /**
@@ -173,12 +167,16 @@ public class TitlescreenAnimationView extends View {
         if (animationData.hasData()) {
             for (AbstractAnimatedGraphic animated : animationData.getAllPool()) {
                 if (animated instanceof AnimatedHandData a) {
-                    if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                    try {
                         bitmap_handRot = a.rotateBitmap(bitmap_hand);
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
                     }
                 } else if (animated instanceof AnimatedWritingData a) {
-                    if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                    try {
                         bitmap_writingRot = a.rotateBitmap(bitmap_writing);
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
                     }
                 }
             }
@@ -191,9 +189,8 @@ public class TitlescreenAnimationView extends View {
         //Add orbs
         for (int i = 0; i < ORB_COUNT; i++) {
             if (BitmapUtils.bitmapExists(bitmap_orb)) {
-                animationData.addToAllPool(new AnimatedOrbData(
-                        screenW,
-                        screenH));
+                AnimatedOrbData data = new AnimatedOrbData(screenW, screenH);
+                animationData.addToAllPool(data);
             }
         }
         //Add hands
@@ -201,13 +198,14 @@ public class TitlescreenAnimationView extends View {
             if (BitmapUtils.bitmapExists(bitmap_hand)) {
                 int bW = bitmap_hand.getWidth();
                 int bH = bitmap_hand.getHeight();
-                animationData.addToAllPool(new AnimatedHandData(
-                        screenW,
-                        screenH,
-                        bW,
-                        bH));
-                bitmap_handRot = ((AnimatedHandData) animationData.getLastFromAllPool()).
-                        rotateBitmap(bitmap_hand);
+                AnimatedHandData data = new AnimatedHandData(
+                        screenW, screenH, bW, bH);
+                animationData.addToAllPool(data);
+                try {
+                    bitmap_handRot = data.rotateBitmap(bitmap_hand);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -216,36 +214,30 @@ public class TitlescreenAnimationView extends View {
             if (BitmapUtils.bitmapExists(bitmap_writing)) {
                 int bW = bitmap_writing.getWidth();
                 int bH = bitmap_writing.getHeight();
-                animationData.addToAllPool(new AnimatedWritingData(
-                        screenW,
-                        screenH,
-                        bW,
-                        bH,
-                        animationData));
-                bitmap_writingRot = ((AnimatedWritingData) animationData.
-                        getLastFromAllPool()).rotateBitmap(bitmap_writing);
+                AnimatedWritingData data = new AnimatedWritingData(
+                        screenW, screenH, bW, bH, animationData);
+                animationData.addToAllPool(data);
+                try {
+                    bitmap_writingRot = data.rotateBitmap(bitmap_writing);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         //Add Frost
         for (int i = 0; i < FROST_COUNT; i++) {
             if (BitmapUtils.bitmapExists(bitmap_frost)) {
-                animationData.addToAllPool(
-                        new AnimatedFrostData(
-                            screenW,
-                            screenH
-                        )
-                );
+                AnimatedFrostData data = new AnimatedFrostData(screenW, screenH);
+                animationData.addToAllPool(data);
             }
         }
 
         //Add Mirror
         for (int i = 0; i < MIRROR_COUNT; i++) {
             if (BitmapUtils.bitmapExists(bitmap_mirror)) {
-                animationData.addToAllPool(
-                        new AnimatedMirrorData(
-                                screenW,
-                                screenH));
+                AnimatedMirrorData data = new AnimatedMirrorData(screenW, screenH);
+                animationData.addToAllPool(data);
             }
         }
 
@@ -373,13 +365,13 @@ public class TitlescreenAnimationView extends View {
                 if (!currentAnim.isAlive()) {
                     if (currentAnim instanceof AnimatedHandData data) {
                         animationData.setSelectedHand(
-                                (int) (Math.random() * handuvResId.size()));
+                                (int) (Math.random() * handResIds.size()));
 
                         BitmapUtils.destroyBitmap(bitmap_hand);
                         BitmapUtils.destroyBitmap(bitmap_handRot);
 
                         bitmapUtils.setResource(
-                                handuvResId.get(animationData.getSelectedHand()));
+                                handResIds.get(animationData.getSelectedHand()));
                         bitmap_hand = bitmapUtils.compileBitmaps(getContext());
 
                         if (BitmapUtils.bitmapExists(bitmap_hand)) {
@@ -395,13 +387,13 @@ public class TitlescreenAnimationView extends View {
                         */
                     } else if (currentAnim instanceof AnimatedWritingData data) {
                         animationData.setSelectedWriting(
-                                (int) (Math.random() * bookwritingResId.size()));
+                                (int) (Math.random() * writingResIds.size()));
 
                         BitmapUtils.destroyBitmap(bitmap_writing);
                         BitmapUtils.destroyBitmap(bitmap_writingRot);
 
                         bitmapUtils.setResource(
-                                bookwritingResId.get(animationData.getSelectedWriting()));
+                                writingResIds.get(animationData.getSelectedWriting()));
                         bitmap_writing = bitmapUtils.compileBitmaps(getContext());
 
                         if (BitmapUtils.bitmapExists(bitmap_writing)) {
@@ -481,4 +473,181 @@ public class TitlescreenAnimationView extends View {
         System.gc();
     }
 
+
+    public void startAnimInitThreads(
+            TitlescreenViewModel titleScreenViewModel, BitmapUtils bitmapUtils) {
+
+        if (thread_initAnima == null) {
+            thread_initAnima = new Thread() {
+                public void run() {
+                    init(titleScreenViewModel, bitmapUtils);
+                }
+            };
+            thread_initAnima.start();
+        }
+
+        if (thread_initReady == null) {
+            thread_initReady = new Thread(() -> {
+
+                while (!canAnimateBackground) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                startAnimThreads();
+
+            });
+
+            thread_initReady.start();
+        }
+    }
+
+    private void startAnimTickThread() {
+        if (thread_tickAnim == null) {
+            canAnimateBackground = true;
+            thread_tickAnim = new Thread() {
+
+                public void run() {
+                    while (canAnimateBackground) {
+                        update();
+                        try {
+                            tick();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                private void tick() throws InterruptedException {
+                    long now = System.nanoTime();
+                    long updateTime = System.nanoTime() - now;
+                    double TARGET_FPS = 30, MAX_FPS = 60;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        try {
+                            TARGET_FPS = getContext().getDisplay().getRefreshRate();
+                            if (TARGET_FPS > MAX_FPS) {
+                                TARGET_FPS = MAX_FPS;
+                            }
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    //TARGET_FPS = 200;
+                    long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
+                    long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
+
+                    if (wait < 0) {
+                        wait = 1;
+                    }
+
+                    Thread.sleep(wait);
+                }
+
+                private void update() {
+                    try {
+                        TitlescreenAnimationView.this.tick();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            thread_tickAnim.start();
+        }
+    }
+
+    private void startAnimDrawThread() {
+        if (thread_renderAnim != null) { return; }
+
+        thread_renderAnim = new Thread() {
+
+            public void run() {
+                while (canAnimateBackground) {
+                    invalidate();
+                    try {
+                        tick();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            private void tick() throws InterruptedException {
+                long now = System.nanoTime();
+                long updateTime = System.nanoTime() - now;
+                double TARGET_FPS = 24, MAX_FPS = 60;
+
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                            (getContext().getDisplay() != null)) {
+                        TARGET_FPS = getContext().getDisplay().getRefreshRate();
+                        if (TARGET_FPS > MAX_FPS) {
+                            TARGET_FPS = MAX_FPS;
+                        }
+                    }
+
+                    long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
+                    long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
+
+                    if (wait < 0) {
+                        wait = 1;
+                    }
+
+                    Thread.sleep(wait);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            private void invalidate() {
+                try {
+                    ((PETActivity)getContext()).runOnUiThread(TitlescreenAnimationView.this::invalidate);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread_renderAnim.start();
+    }
+
+    public void startAnimThreads() {
+        startAnimTickThread();
+        startAnimDrawThread();
+    }
+
+    public void stopAnimInitThreads() {
+        if (thread_initAnima != null) {
+            thread_initAnima.interrupt();
+            thread_initAnima = null;
+        }
+        if (thread_initReady != null) {
+            thread_initReady.interrupt();
+            thread_initReady = null;
+        }
+    }
+
+    public void stopAnimTickThread() {
+        if (thread_tickAnim != null) {
+            thread_tickAnim.interrupt();
+            thread_tickAnim = null;
+        }
+    }
+
+    public void stopAnimDrawThread() {
+        if (thread_renderAnim != null) {
+            thread_renderAnim.interrupt();
+            thread_renderAnim = null;
+        }
+    }
+
+    public void stopAnimThreads() {
+        stopAnimDrawThread();
+        stopAnimTickThread();
+    }
+
+    public void canAnimateBackground(boolean canAnimateBackground) {
+        this.canAnimateBackground = canAnimateBackground;
+    }
 }

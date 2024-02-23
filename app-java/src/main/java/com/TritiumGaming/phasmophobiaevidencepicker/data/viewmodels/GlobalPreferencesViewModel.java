@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -20,10 +21,13 @@ import java.util.Locale;
 /** @noinspection SameParameterValue*/
 public class GlobalPreferencesViewModel extends ViewModel {
 
+    private static final @StringRes int fileName = R.string.preferences_globalFile_name;
+
     // Review Tracker
     private ReviewTrackingData reviewRequestData;
 
     // Language
+    //private LanguageControl languageControl;
     private String languageName = Locale.getDefault().getLanguage();
 
     // Persistent Styles
@@ -85,14 +89,13 @@ public class GlobalPreferencesViewModel extends ViewModel {
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(
-                context.getResources().getString(R.string.preferences_globalFile_name),
+                context.getResources().getString(fileName),
                 Context.MODE_PRIVATE);
     }
 
     private static SharedPreferences.Editor getEditor(Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_globalFile_name),
+                context.getResources().getString(fileName),
                 Context.MODE_PRIVATE);
         return sharedPref.edit();
     }
@@ -113,7 +116,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
         return networkPreference;
     }
 
-    public void incrementAppOpenCount(Context context) {
+    public void incrementAppOpenCount(@NonNull Context context) {
 
         getReviewRequestData().incrementTimesOpened();
 
@@ -157,10 +160,9 @@ public class GlobalPreferencesViewModel extends ViewModel {
      *
      * @return The language specified in the Preferences data, or otherwise English
      */
-    public String getLanguage(Context context) {
+    public String getLanguage(@NonNull Context context) {
         String lang = context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_globalFile_name), Context.MODE_PRIVATE).getString(
+                context.getResources().getString(fileName), Context.MODE_PRIVATE).getString(
                 "chosenLanguage", "en");
 
         Log.d("Current Chosen Language", lang);
@@ -557,7 +559,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
      *
      * @param context The Activity context.
      */
-    public void saveToFile(Context context) {
+    public void saveToFile(@NonNull Context context) {
 
         SharedPreferences.Editor editor = getEditor(context);
 
@@ -580,19 +582,19 @@ public class GlobalPreferencesViewModel extends ViewModel {
     @NonNull
     public HashMap<String, String> getDataAsList() {
         HashMap<String, String> settings = new HashMap<>();
-        settings.put("network_pref", getNetworkPreference()+"");
+        settings.put("network_pref", String.valueOf(getNetworkPreference()));
         settings.put("language", getLanguageName());
-        settings.put("always_on", getIsAlwaysOn()+"");
-        settings.put("warning_enabled", getIsHuntAudioAllowed()+"");
-        settings.put("warning_timeout", getHuntWarningFlashTimeout()+"");
-        settings.put("color_theme", getColorThemeID()+"");
-        settings.put("font_type", getFontThemeID()+"");
-        settings.put("left_support", getIsLeftHandSupportEnabled()+"");
-        settings.put("can_show_intro", getCanShowIntroduction()+"");
+        settings.put("always_on", String.valueOf(getIsAlwaysOn()));
+        settings.put("warning_enabled", String.valueOf(getIsHuntAudioAllowed()));
+        settings.put("warning_timeout", String.valueOf(getHuntWarningFlashTimeout()));
+        settings.put("color_theme", getColorThemeID());
+        settings.put("font_type", getFontThemeID());
+        settings.put("left_support", String.valueOf(getIsLeftHandSupportEnabled()));
+        settings.put("can_show_intro", String.valueOf(getCanShowIntroduction()));
         if(getReviewRequestData() != null) {
-            settings.put("review_request", getReviewRequestData().canRequestReview()+"");
-            settings.put("times_opened", getReviewRequestData().getTimesOpened()+"");
-            settings.put("active_time", getReviewRequestData().getTimeActive()+"");
+            settings.put("review_request", String.valueOf(getReviewRequestData().canRequestReview()));
+            settings.put("times_opened", String.valueOf(getReviewRequestData().getTimesOpened()));
+            settings.put("active_time", String.valueOf(getReviewRequestData().getTimeActive()));
         }
 
         return settings;
@@ -605,7 +607,7 @@ public class GlobalPreferencesViewModel extends ViewModel {
     public void printFromFile(Context context) {
         SharedPreferences sharedPref = getSharedPreferences(context);
 
-        Log.d("GlobalPreferencesFile",
+        Log.d(context.getString(fileName),
                 "NetworkPreference: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_network), getNetworkPreference()) +
                 "; Language: " + sharedPref.getString(context.getResources().getString(R.string.preference_language), getLanguageName()) +
                 "; Always On: " + sharedPref.getBoolean(context.getResources().getString(R.string.preference_isAlwaysOn), getIsAlwaysOn()) +

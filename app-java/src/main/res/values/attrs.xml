@@ -90,6 +90,8 @@
     <attr name="codex_5" format="reference|color" />
     <attr name="codex_grid_background_tint" format="reference|color" />
 
+    <attr name="buttonColor" format="reference|color" />
+    <attr name="colorOnButton" format="reference|color" />
     <!--
         Fonts
     -->

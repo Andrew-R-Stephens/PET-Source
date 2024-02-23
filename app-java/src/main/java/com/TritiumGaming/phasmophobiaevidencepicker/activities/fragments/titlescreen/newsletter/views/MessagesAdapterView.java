@@ -14,7 +14,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlesc
 
 import java.util.ArrayList;
 
-public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
+public class MessagesAdapterView
+        extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
 
     private final ArrayList<NewsletterMessageData> messages;
     private final OnMessageListener onMessageListener;
@@ -26,13 +27,16 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
         this.onMessageListener = onMessageListener;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+
         public final AppCompatTextView label_messageTitle;
         private final OnMessageListener onMessageListener;
 
         public ViewHolder(View view, OnMessageListener onMessageListener) {
             super(view);
-            label_messageTitle = itemView.findViewById(R.id.textView_messageListName);
+            label_messageTitle = itemView.findViewById(R.id.textView_messageName);
             view.setOnClickListener(this);
             this.onMessageListener = onMessageListener;
         }
@@ -49,7 +53,7 @@ public class MessagesAdapterView extends RecyclerView.Adapter<MessagesAdapterVie
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View messageView = inflater.inflate(
-                R.layout.item_msginbox_message, parent, false);
+                R.layout.item_newsletter_inbox_message, parent, false);
         return new ViewHolder(messageView, this.onMessageListener);
     }
 

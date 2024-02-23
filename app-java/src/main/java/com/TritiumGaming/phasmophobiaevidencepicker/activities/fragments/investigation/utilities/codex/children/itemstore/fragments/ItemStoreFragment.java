@@ -92,16 +92,18 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         new Thread(() -> {
             buildStoreData();
 
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
+            try {
+                requireActivity().runOnUiThread(() -> {
                     Log.d("Err", "Building Store Views");
                     buildGroupViews(parent, scrollViewPaginator);
                     Log.d("Err", "Finished Building Store Views");
                 });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
 
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
+            try {
+                requireActivity().runOnUiThread(() -> {
                     scrollView.post(() -> {
                         boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
@@ -179,6 +181,8 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                         }
                     });
                 });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         }).start();
 

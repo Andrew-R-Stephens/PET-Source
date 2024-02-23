@@ -45,11 +45,10 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/button_marketplace_1"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:padding="8dp"
                     android:text="@string/marketplace_button_watch_ad"
-                    android:textColor="?attr/textColorBody"
-                    android:visibility="visible" />
+                    android:textColor="?attr/colorOnButton" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/label_ads_description"

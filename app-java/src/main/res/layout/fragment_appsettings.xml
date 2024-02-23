@@ -235,7 +235,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="0dp"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
@@ -274,7 +274,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="0dp"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
@@ -338,85 +338,17 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constrainlayout_alwayson"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_alwaysOn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_screenalwayson" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_alwayson_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        android:minHeight="48dp"
-                        android:minWidth="48dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_alwayson_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_alwayson_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_screenalwayson"
-                        android:textSize="16sp"
-                        android:ellipsize="marquee"
-                        android:singleLine="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_alwayson_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constrainlayout_network"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_network"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_network_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        android:minHeight="48dp"
-                        android:minWidth="48dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_network_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_network_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_networktitle"
-                        android:textSize="16sp"
-                        android:ellipsize="marquee"
-                        android:singleLine="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_networktitle" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_extrasettings_title"
@@ -430,87 +362,17 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout60"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_leftHandMode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enableLeftHandSupport" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_leftHandMode_switch"
-                        style="@style/NorseRegular_Auto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        android:minHeight="48dp"
-                        android:minWidth="48dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_leftHandMode_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_leftHandMode_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_enableLeftHandSupport"
-                        android:textSize="16sp"
-                        android:ellipsize="marquee"
-                        android:singleLine="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout57"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_huntwarningaudio"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_huntwarningaudio_switch"
-                        style="@style/NorseRegular_Auto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        android:minHeight="48dp"
-                        android:minWidth="48dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_huntwarningaudio_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_huntwarningaudio_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_enablehuntaudioqueue"
-                        android:textSize="16sp"
-                        android:ellipsize="marquee"
-                        android:singleLine="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_huntwarningaudio_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enablehuntaudioqueue" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

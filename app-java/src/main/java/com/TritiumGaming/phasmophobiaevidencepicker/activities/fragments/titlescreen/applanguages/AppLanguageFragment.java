@@ -1,54 +1,37 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages;
 
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.applanguages.views.LanguagesAdapterView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AppLanguageFragment extends Fragment {
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-    private TitlescreenViewModel titleScreenViewModel = null;
+public class AppLanguageFragment extends MainMenusFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel = new ViewModelProvider(
-                    requireActivity()).get(GlobalPreferencesViewModel.class);
-        }
-        if (getContext() != null) {
-            globalPreferencesViewModel.init(getContext());
-        }
 
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel = new ViewModelProvider(
-                    requireActivity()).get(TitlescreenViewModel.class);
-        }
+        super.init();
 
         return inflater.inflate(R.layout.fragment_languages, container, false);
     }
@@ -56,89 +39,117 @@ public class AppLanguageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
+
         // INITIALIZE VIEWS
         ConstraintLayout btn_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
         ConstraintLayout btn_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
         RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
 
-
         // LISTENERS
         btn_confirmClose.setOnClickListener(v -> {
             titleScreenViewModel.setLanguageSelectedOriginal(-1);
-            Navigation.findNavController(v).popBackStack();
+            try {
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         });
-        btn_cancelClose.setOnClickListener(v -> {
-                    handleDiscardChanges(view);
-                }
-        );
 
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                @Override
-                public void handleOnBackPressed() {
-                    handleDiscardChanges(view);
-                    if(getContext() != null) {
-                        String message = getString(R.string.toast_discardchanges);
-                        Toast toast = Toast.makeText(getContext().getApplicationContext(),
-                                message,
-                                com.google.android.material.R.integer.material_motion_duration_short_2);
-                        toast.show();
-                    }
-                }
-            });
-        }
+        btn_cancelClose.setOnClickListener(v -> handleDiscardChanges());
 
         // DATA
-        if (getContext() != null) {
+        int selected = 0;
+        ArrayList<String> languageNames = new ArrayList<>();
+        try {
+            languageNames = new ArrayList<>(Arrays.asList(
+                    requireContext().getResources().getStringArray(
+                            R.array.languages_name)));
 
-            ArrayList<String> languageNames = new ArrayList<>(Arrays.asList(
-                    getContext().getResources().getStringArray(R.array.languages_name)));
-            int selected = globalPreferencesViewModel.getLanguageIndex(
+            selected = globalPreferencesViewModel.getLanguageIndex(
                     new ArrayList<>(Arrays.asList(
-                        getContext().getResources().getStringArray(
-                                R.array.languages_abbreviation))));
-            if(titleScreenViewModel.getLanguageSelectedOriginal() == -1) {
+                            requireContext().getResources().getStringArray(
+                                    R.array.languages_abbreviation))));
+            if (titleScreenViewModel.getLanguageSelectedOriginal() == -1) {
                 titleScreenViewModel.setLanguageSelectedOriginal(selected);
             }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
 
-            for (int i = 0; i < languageNames.size(); i++) {
-                LanguagesAdapterView adapter = new LanguagesAdapterView(
-                        languageNames, selected, position -> {
-                            if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
-                                globalPreferencesViewModel.setLanguage(
-                                        position,
-                                        AppLanguageFragment.this.getResources().getStringArray(
-                                                R.array.languages_abbreviation));
-                                titleScreenViewModel.setCanRefreshFragment(true);
-                            }
-                            AppLanguageFragment.this.configureLanguage();
-                            AppLanguageFragment.this.refreshFragment();
-                        });
-                recyclerViewLanguages.setAdapter(adapter);
-                recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(getContext()));
+        for (int i = 0; i < languageNames.size(); i++) {
+            LanguagesAdapterView adapter = new LanguagesAdapterView(
+                    languageNames, selected, position -> {
+                        if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
+                            globalPreferencesViewModel.setLanguage(
+                                    position,
+                                    AppLanguageFragment.this.getResources().getStringArray(
+                                            R.array.languages_abbreviation));
+                            titleScreenViewModel.setCanRefreshFragment(true);
+                        }
+                        AppLanguageFragment.this.configureLanguage();
+                        AppLanguageFragment.this.refreshFragment();
+                    });
+            recyclerViewLanguages.setAdapter(adapter);
+            try {
+                recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(requireContext()));
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private void handleDiscardChanges(View v) {
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+        initTitleScreenViewModel();
+    }
+
+    @Override
+    protected void backPressedHandler() {
+        handleDiscardChanges();
+
+        String message = getString(R.string.toast_discardchanges);
+        try {
+            Toast.makeText(requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2).show();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void handleDiscardChanges() {
         if (globalPreferencesViewModel != null && titleScreenViewModel != null) {
             globalPreferencesViewModel.setLanguage(
                     titleScreenViewModel.getLanguageSelectedOriginal(),
                     getResources().getStringArray(
                             R.array.languages_abbreviation));
+            Log.d("Languages", "Set language = " + titleScreenViewModel.getLanguageSelectedOriginal());
         }
+        Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (titleScreenViewModel == null ? "null" : "not null." ));
+
         configureLanguage();
-        Navigation.findNavController(v).popBackStack();
+
+        try {
+            Navigation.findNavController(requireView()).popBackStack();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * configureLanguage
      */
     public void configureLanguage() {
-        if (globalPreferencesViewModel != null && getActivity() != null) {
-            ((TitleScreenActivity) getActivity()).setLanguage(
-                    globalPreferencesViewModel.getLanguageName());
+        if (globalPreferencesViewModel != null) {
+            try {
+                ((TitleScreenActivity) requireActivity()).setLanguage(
+                        globalPreferencesViewModel.getLanguageName());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -147,12 +158,7 @@ public class AppLanguageFragment extends Fragment {
      */
     public void refreshFragment() {
         if (titleScreenViewModel != null && titleScreenViewModel.canRefreshFragment()) {
-            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            if (Build.VERSION.SDK_INT >= 26) {
-                ft.setReorderingAllowed(false);
-            }
-            ft.detach(AppLanguageFragment.this).commitNow();
-            ft.attach(AppLanguageFragment.this).commitNow();
+            super.refreshFragment();
             titleScreenViewModel.setCanRefreshFragment(false);
         }
     }
@@ -164,8 +170,12 @@ public class AppLanguageFragment extends Fragment {
      * TODO
      */
     public void saveStates() {
-        if (globalPreferencesViewModel != null && getContext() != null) {
-            globalPreferencesViewModel.saveToFile(getContext());
+        if (globalPreferencesViewModel != null) {
+            try {
+                globalPreferencesViewModel.saveToFile(requireContext());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 

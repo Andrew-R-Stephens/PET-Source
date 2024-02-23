@@ -27,8 +27,6 @@ import com.google.android.material.navigation.NavigationView;
  */
 public class InvestigationActivity extends PETActivity {
 
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
-
     protected EvidenceViewModel evidenceViewModel;
     protected ObjectivesViewModel objectivesViewModel;
     protected MapMenuViewModel mapMenuViewModel;
@@ -47,7 +45,58 @@ public class InvestigationActivity extends PETActivity {
 
     }
 
-    public void initComponents() {
+    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
+
+        super.initViewModels();
+
+        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
+
+        initEvidenceViewModel(factory);
+        initObjectivesViewModel(factory);
+        initMapMenuViewModel(factory);
+
+        return factory;
+    }
+
+    private void initMapMenuViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        mapMenuViewModel = factory.create(
+                MapMenuViewModel.class);
+    }
+
+    private void initObjectivesViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        objectivesViewModel = factory.create(
+                ObjectivesViewModel.class);
+    }
+
+    private void initEvidenceViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+        evidenceViewModel = factory.create(
+                EvidenceViewModel.class);
+    }
+
+    protected void initPreferences() {
+        super.initPreferences();
+
+        setLanguage(getAppLanguage());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        recreate();
+    }
+
+    public void resetViewModels() {
+        if(objectivesViewModel != null) {
+            objectivesViewModel.reset();
+        }
+        if(evidenceViewModel != null) {
+            evidenceViewModel.reset();
+        }
+    }
+
+    public void initNavigationComponents() {
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
@@ -63,50 +112,10 @@ public class InvestigationActivity extends PETActivity {
 
         NavigationView navDrawerView = findViewById(R.id.layout_navigation_drawer_view);
         Log.d("Drawer", navDrawerView == null ? "null" : "not null");
-        setNavigationDrawer(navDrawerView, navController);
+        buildNavigationDrawer(navDrawerView, navController);
     }
 
-    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
-
-        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
-
-        evidenceViewModel = factory.create(
-                EvidenceViewModel.class);
-
-        objectivesViewModel = factory.create(
-                ObjectivesViewModel.class);
-
-        mapMenuViewModel = factory.create(
-                MapMenuViewModel.class);
-
-        return factory;
-    }
-
-    protected void initPrefs() {
-        super.initPrefs();
-
-        setLanguage(getAppLanguage());
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        recreate();
-    }
-
-    public void clearViewModels() {
-        if(objectivesViewModel != null) {
-            objectivesViewModel.reset();
-        }
-        if(evidenceViewModel != null) {
-            evidenceViewModel.reset();
-        }
-    }
-
-
-    private void setNavigationDrawer(NavigationView navView, NavController navController) {
+    private void buildNavigationDrawer(NavigationView navView, NavController navController) {
         drawerLayout = findViewById(R.id.layout_navigation_drawer);
 
         if(drawerLayout == null) { return; }
@@ -196,7 +205,7 @@ public class InvestigationActivity extends PETActivity {
     }
 
 
-    public boolean closeDrawer() {
+    public boolean closeNavigationDrawer() {
         if(drawerLayout != null) {
             if (drawerLayout.isOpen()) {
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -218,7 +227,7 @@ public class InvestigationActivity extends PETActivity {
     @Override
     public void onBackPressed() {
 
-        clearViewModels();
+        resetViewModels();
 
         super.onBackPressed();
     }
@@ -226,7 +235,7 @@ public class InvestigationActivity extends PETActivity {
     @Override
     public void finish() {
 
-        clearViewModels();
+        resetViewModels();
 
         super.finish();
     }

@@ -37,12 +37,6 @@ public class MapMenuFragment extends InvestigationFragment {
 
     private MapListModel mapListModel;
 
-    /*
-    public MapMenuFragment() {
-        super(R.layout.fragment_mapmenu);
-    }
-    */
-
     @Nullable
     @Override
     public View onCreateView(

@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.util.Log;
@@ -18,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -26,15 +24,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
@@ -42,16 +38,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subs
 import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.GoogleMobileAdsConsentManager;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreTransactionHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transaction.FirestoreUnlockHistory;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -61,13 +53,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.HashMap;
 import java.util.List;
 
-public class AppSettingsFragment extends Fragment {
+public class AppSettingsFragment extends MainMenusFragment {
 
-    private FirebaseAnalytics analytics;
     private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-    private TitlescreenViewModel titleScreenViewModel = null;
 
     private boolean showEmail = false, loadThemes = true;
 
@@ -78,22 +66,7 @@ public class AppSettingsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        initFirebase();
-
-        // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel = new ViewModelProvider(
-                    requireActivity()).get(GlobalPreferencesViewModel.class);
-            // INITIALIZE VIEW MODEL
-            if (getContext() != null) {
-                globalPreferencesViewModel.init(getContext());
-            }
-        }
-
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel = new ViewModelProvider(
-                    requireActivity()).get(TitlescreenViewModel.class);
-        }
+        super.init();
 
         return inflater.inflate(R.layout.fragment_appsettings, container, false);
     }
@@ -101,6 +74,8 @@ public class AppSettingsFragment extends Fragment {
     @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
 
         final AppCompatTextView text_colorTheme_selectedname =
                 view.findViewById(R.id.colorblindmode_selectedname);
@@ -111,12 +86,12 @@ public class AppSettingsFragment extends Fragment {
         final AppCompatTextView switch_huntwarning_othertext =
                 view.findViewById(R.id.seekbar_huntwarningtimeout_othertext);
 
-        final SwitchCompat switch_isAlwaysOn_switch = view.findViewById(R.id.switch_alwayson_switch);
-        final SwitchCompat switch_network_switch = view.findViewById(R.id.switch_network_switch);
-        final SwitchCompat switch_huntwarningaudio_switch =
-                view.findViewById(R.id.switch_huntwarningaudio_switch);
-        final SwitchCompat switch_leftHandMode_switch =
-                view.findViewById(R.id.switch_leftHandMode_switch);
+        final SettingsToggleItem toggle_isAlwaysOn = view.findViewById(R.id.toggle_alwaysOn);
+        final SettingsToggleItem toggle_network = view.findViewById(R.id.toggle_network);
+        final SettingsToggleItem toggle_huntwarningaudio =
+                view.findViewById(R.id.toggle_huntwarningaudio);
+        final SettingsToggleItem toggle_leftHandMode =
+                view.findViewById(R.id.toggle_leftHandMode);
 
         final SeekBar seekBar_huntwarningTimeout = view.findViewById(R.id.settings_huntwarning_seekbar);
 
@@ -164,9 +139,14 @@ public class AppSettingsFragment extends Fragment {
                 new SpannableString(accountEmail);
 
         TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-        @ColorInt int obfuscationColor = typedValue.data;
+        @ColorInt int obfuscationColor = getResources().getColor(R.color.white);
+        try {
+            Resources.Theme theme = requireContext().getTheme();
+            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
+            obfuscationColor = typedValue.data;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
         SpannableString email_obfuscated = email_displayed;
         if(accountEmail != null) {
             email_obfuscated = FormatterUtils.obfuscateEmailSpannable(
@@ -224,15 +204,6 @@ public class AppSettingsFragment extends Fragment {
             }
 
             demoColorStyle(themeControl);
-            /*
-            try {
-                Log.d("ColorTheme",
-                        getString(themeControl.getCurrentName()) + " " +
-                        themeControl.getCurrentTheme().getUnlockedState().name());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            */
         });
 
         btn_colorblindMode_right.setOnClickListener(v -> {
@@ -246,14 +217,6 @@ public class AppSettingsFragment extends Fragment {
             }
 
             demoColorStyle(themeControl);
-            /*
-            try {
-                Log.d("ColorTheme",
-                        getString(themeControl.getCurrentName()) + " " +
-                        themeControl.getCurrentTheme().getUnlockedState().name());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
         });
 
         /*
@@ -299,48 +262,49 @@ public class AppSettingsFragment extends Fragment {
         // SWITCHES
         if (globalPreferencesViewModel != null) {
             // Screen Always On
-            if (switch_isAlwaysOn_switch != null) {
-                switch_isAlwaysOn_switch.setChecked(globalPreferencesViewModel.getIsAlwaysOn());
-                switch_isAlwaysOn_switch.setOnClickListener(v -> {
+            if (toggle_isAlwaysOn != null) {
+                toggle_isAlwaysOn.setChecked(globalPreferencesViewModel.getIsAlwaysOn());
+                View.OnClickListener listener = (v -> {
                     if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setIsAlwaysOn(
-                                switch_isAlwaysOn_switch.isChecked());
+                                toggle_isAlwaysOn.isChecked());
                     }
                 });
+                toggle_isAlwaysOn.setSwitchClickListener(listener);
             }
             // Allow Mobile Data
-            if (switch_network_switch != null) {
-                switch_network_switch.setChecked(
-                        globalPreferencesViewModel.getNetworkPreference());
-                switch_network_switch.setOnClickListener(v -> {
+            if (toggle_network != null) {
+                toggle_network.setChecked(globalPreferencesViewModel.getNetworkPreference());
+                View.OnClickListener listener = (v -> {
                     if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setNetworkPreference(
-                                switch_network_switch.isChecked());
+                                toggle_network.isChecked());
                     }
                 });
+                toggle_network.setSwitchClickListener(listener);
             }
             // Allow Hunt Warning Audio
-            if (switch_huntwarningaudio_switch != null) {
-                switch_huntwarningaudio_switch.setChecked(
-                        globalPreferencesViewModel.getIsHuntAudioAllowed());
-                switch_huntwarningaudio_switch.setOnClickListener(v -> {
+            if (toggle_huntwarningaudio != null) {
+                toggle_huntwarningaudio.setChecked(globalPreferencesViewModel.getIsHuntAudioAllowed());
+                View.OnClickListener listener = (v -> {
                     if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setHuntWarningAudioAllowed(
-                                switch_huntwarningaudio_switch.isChecked());
+                                toggle_huntwarningaudio.isChecked());
                     }
                 });
+                toggle_huntwarningaudio.setSwitchClickListener(listener);
             }
 
             // Allow Hunt Warning Audio
-            if (switch_leftHandMode_switch != null) {
-                switch_leftHandMode_switch.setChecked(
-                        globalPreferencesViewModel.getIsLeftHandSupportEnabled());
-                switch_leftHandMode_switch.setOnClickListener(v -> {
+            if (toggle_leftHandMode != null) {
+                toggle_leftHandMode.setChecked(globalPreferencesViewModel.getIsLeftHandSupportEnabled());
+                View.OnClickListener listener = (v -> {
                     if (globalPreferencesViewModel != null) {
                         globalPreferencesViewModel.setLeftHandSupportEnabled(
-                                switch_leftHandMode_switch.isChecked());
+                                toggle_leftHandMode.isChecked());
                     }
                 });
+                toggle_leftHandMode.setSwitchClickListener(listener);
             }
         }
 
@@ -412,7 +376,12 @@ public class AppSettingsFragment extends Fragment {
         // CANCEL BUTTON
         listener_cancelClose.setOnClickListener(v -> {
             revertDemoChanges();
-            Navigation.findNavController(v).popBackStack();
+
+            try {
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         });
 
         // CONFIRM BUTTON
@@ -428,27 +397,13 @@ public class AppSettingsFragment extends Fragment {
             analytics.logEvent("event_settings", params);
 
             saveStates();
-            Navigation.findNavController(v).popBackStack();
+
+            try {
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         });
-
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            revertDemoChanges();
-                            Navigation.findNavController(view).popBackStack();
-
-                            if(getContext() != null) {
-                                String message = getString(R.string.toast_discardchanges);
-                                Toast toast = Toast.makeText(getContext().getApplicationContext(),
-                                        message,
-                                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                                toast.show();
-                            }
-                        }
-                    });
-        }
 
         // Include a privacy setting if applicable
         if (googleMobileAdsConsentManager.isPrivacyOptionsRequired()) {
@@ -468,6 +423,33 @@ public class AppSettingsFragment extends Fragment {
         btn_account_delete.setVisibility(View.GONE);
     }
 
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+    }
+
+    @Override
+    protected void backPressedHandler() {
+        revertDemoChanges();
+
+        try {
+            Navigation.findNavController(requireView()).popBackStack();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String message = getString(R.string.toast_discardchanges);
+            Toast toast = Toast.makeText(requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2);
+            toast.show();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void getUserPurchaseHistory() {
         CollectionReference unlockHistoryCollection = null;
         try {
@@ -481,17 +463,21 @@ public class AppSettingsFragment extends Fragment {
 
         try {
             unlockHistoryCollection.get()
-                    .addOnCompleteListener(task -> {
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    DocumentReference documentReference = documentSnapshot.getReference();
+                    .addOnSuccessListener(task -> {
+                        for(DocumentSnapshot documentSnapshot : task.getDocuments()) {
+                            DocumentReference documentReference = documentSnapshot.getReference();
 
-                    String uuid = documentReference.getId();
-                    CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
-                            .getThemeByUUID(uuid);
+                            String uuid = documentReference.getId();
+                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                                    .getThemeByUUID(uuid);
 
-                    customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
-                }
-            });
+                            customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Firestore", "Could not retrieve unlock history!");
+                        e.printStackTrace();
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -512,70 +498,56 @@ public class AppSettingsFragment extends Fragment {
         globalPreferencesViewModel.getColorThemeControl().revertSelection();
         globalPreferencesViewModel.getFontThemeControl().revertSelection();
 
-        PETActivity activity = ((PETActivity)getActivity());
-        if (activity != null) {
-            activity.changeTheme(
-                            globalPreferencesViewModel.getColorTheme(),
-                            globalPreferencesViewModel.getFontTheme());
+        try {
+            ((PETActivity) requireActivity()).changeTheme(
+                    globalPreferencesViewModel.getColorTheme(),
+                    globalPreferencesViewModel.getFontTheme());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 
     private void demoFontStyle(FontThemeControl fontThemeControl) {
-        PETActivity activity = ((PETActivity)getActivity());
-        if(activity != null) {
-            activity.changeTheme(
+        try {
+            ((PETActivity) requireActivity()).changeTheme(
                     globalPreferencesViewModel.getColorTheme(),
                     fontThemeControl.getThemeAtIndex(fontThemeControl.getSelectedIndex()));
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
         refreshFragment();
     }
 
     private void demoColorStyle(ColorThemeControl colorThemeControl) {
-        PETActivity activity = ((PETActivity)getActivity());
-        if(activity != null) {
-            activity.changeTheme(
+        try {
+            ((PETActivity) requireActivity()).changeTheme(
                     colorThemeControl.getThemeAtIndex(colorThemeControl.getSelectedIndex()),
                     globalPreferencesViewModel.getFontTheme());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
         refreshFragment();
     }
 
     public void showAdsConsentForm(Context context) {
 
-        // Handle changes to user consent.
-        googleMobileAdsConsentManager.showPrivacyOptionsForm(
-                getActivity(),
-                formError -> {
-                    if (formError != null) {
-                        Toast.makeText(
-                                        context,
-                                        formError.getMessage(),
-                                        Toast.LENGTH_SHORT)
-                                .show();
+        try {
+            // Handle changes to user consent.
+            googleMobileAdsConsentManager.showPrivacyOptionsForm(
+                    requireActivity(),
+                    formError -> {
+                        if (formError != null) {
+                            Toast.makeText(
+                                            context,
+                                            formError.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
                     }
-                }
-        );
-        Log.d("AdsConsent", "should show consent form");
-
-    }
-
-    /**
-     * refreshFragment
-     */
-    public void refreshFragment() {
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        if (Build.VERSION.SDK_INT >= 26) {
-            ft.setReorderingAllowed(false);
-        }
-        ft.detach(AppSettingsFragment.this).commitNow();
-        ft = getParentFragmentManager().beginTransaction();
-        ft.attach(AppSettingsFragment.this).commitNow();
-    }
-
-    private void initFirebase() {
-        if(getContext() != null){
-            analytics = FirebaseAnalytics.getInstance(getContext());
-            Log.d("Firebase", "Obtained instance.");
+            );
+            Log.d("AdsConsent", "should show consent form");
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 
@@ -590,34 +562,45 @@ public class AppSettingsFragment extends Fragment {
             globalPreferencesViewModel.getFontThemeControl().setSavedIndex();
             globalPreferencesViewModel.getColorThemeControl().setSavedIndex();
 
-            globalPreferencesViewModel.saveToFile(getContext());
+            try {
+                globalPreferencesViewModel.saveToFile(requireContext());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
 
-        PETActivity activity = ((PETActivity) getActivity());
-        if (activity != null) {
+        try {
+            PETActivity activity = ((PETActivity) requireActivity());
             activity.changeTheme(
-                            globalPreferencesViewModel.getColorTheme(),
-                            globalPreferencesViewModel.getFontTheme());
-            if(globalPreferencesViewModel.getIsAlwaysOn() ) {
+                    globalPreferencesViewModel.getColorTheme(),
+                    globalPreferencesViewModel.getFontTheme());
+            if (globalPreferencesViewModel.getIsAlwaysOn()) {
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
             activity.recreate();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
+
     }
 
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            result -> {
-                try {
-                    onSignInResultAccount(result);
-                } catch (RuntimeException e) {
-                    String message = "Login Error: " + e.getMessage();
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
+    private final ActivityResultLauncher<Intent> signInLauncher =
+            registerForActivityResult(
+                new FirebaseAuthUIActivityResultContract(),
+                result -> {
+                    try {
+                        onSignInResultAccount(result);
+                    } catch (RuntimeException runtimeException) {
+                        String message = "Login Error: " + runtimeException.getMessage();
+                        try {
+                            Toast.makeText(requireActivity(),
+                                    message,
+                                    com.google.android.material.R.integer.material_motion_duration_short_2).show();
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            }
     );
 
     /**
@@ -630,13 +613,20 @@ public class AppSettingsFragment extends Fragment {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
-        if(!NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference())) {
-            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show();
+        try {
+            if(!NetworkUtils.isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.getNetworkPreference())) {
+                Toast.makeText(requireActivity(),
+                                "Internet not available.",
+                                Toast.LENGTH_SHORT)
+                        .show();
 
-            return;
+                return;
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
+
 
         List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -646,6 +636,10 @@ public class AppSettingsFragment extends Fragment {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setIsSmartLockEnabled(false)
+                .setTosAndPrivacyPolicyUrls(
+                        getString(R.string.preference_termsofservice_link),
+                        getString(R.string.preference_privacypolicy_link)
+                )
                 .build();
 
         signInLauncher.launch(signInIntent);
@@ -713,10 +707,13 @@ public class AppSettingsFragment extends Fragment {
                 .addOnCompleteListener(task -> {
 
                     String message = "User signed out";
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
+                    try {
+                        Toast.makeText(requireActivity(),
+                                message,
+                                com.google.android.material.R.integer.material_motion_duration_short_2).show();
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
 
                     ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
@@ -741,18 +738,16 @@ public class AppSettingsFragment extends Fragment {
                 .delete(requireContext())
                 .addOnCompleteListener(task -> {
                     String message = "Successfully removed account.";
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
+                    try {
+                        Toast.makeText(requireActivity(),
+                                message,
+                                com.google.android.material.R.integer.material_motion_duration_short_2).show();
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
 
                     refreshFragment();
                 });
     }
 
-    @Override
-    public void onResume() {
-
-        super.onResume();
-    }
 }

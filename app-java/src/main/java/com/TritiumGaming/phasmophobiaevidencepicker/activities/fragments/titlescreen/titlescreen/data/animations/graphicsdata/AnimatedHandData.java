@@ -6,6 +6,8 @@ import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
+import androidx.annotation.NonNull;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.data.animations.AbstractAnimatedGraphic;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
@@ -132,7 +134,10 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      * @param original
      * @return
      */
-    public Bitmap rotateBitmap(Bitmap original) {
+    @Override
+    public Bitmap rotateBitmap(@NonNull Bitmap original)
+            throws IllegalStateException, NullPointerException {
+
         if(!BitmapUtils.bitmapExists(original))
             return null;
 

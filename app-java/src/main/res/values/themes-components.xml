@@ -2,7 +2,6 @@
 <resources>
 
     <!-- COMPONENT STYLING -->
-
     <style name="Theme.PhasmophobiaEvidenceTool.Onboarding" parent="Theme.AppCompat.Leanback.Onboarding">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>

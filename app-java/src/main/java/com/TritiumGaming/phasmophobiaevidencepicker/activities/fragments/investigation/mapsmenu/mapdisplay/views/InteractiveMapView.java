@@ -83,7 +83,7 @@ public class InteractiveMapView extends View {
 
     private GestureDetectorCompat mDetector;
 
-    private float pulseAlpha = 1f;
+    private final float pulseAlpha = 1f;
 
     /**
      * InteractiveMapControlView parameterized constructor

@@ -274,11 +274,10 @@ public class Rectangle extends Rectangle2D
         h += y;
         H += Y;
         if (H <= Y) {
-            if (h >= y || H > h) return false;
+            return h < y && H <= h;
         } else {
-            if (h >= y && H > h) return false;
+            return h < y || H <= h;
         }
-        return true;
     }
 
     @Deprecated

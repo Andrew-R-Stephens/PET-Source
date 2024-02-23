@@ -343,7 +343,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 
 
     public void setCurve(double[] coords, int offset) {
-        setCurve(coords[offset + 0], coords[offset + 1],
+        setCurve(coords[offset], coords[offset + 1],
                  coords[offset + 2], coords[offset + 3],
                  coords[offset + 4], coords[offset + 5],
                  coords[offset + 6], coords[offset + 7]);
@@ -357,7 +357,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 
 
     public void setCurve(Point2D[] pts, int offset) {
-        setCurve(pts[offset + 0].getX(), pts[offset + 0].getY(),
+        setCurve(pts[offset].getX(), pts[offset].getY(),
                  pts[offset + 1].getX(), pts[offset + 1].getY(),
                  pts[offset + 2].getX(), pts[offset + 2].getY(),
                  pts[offset + 3].getX(), pts[offset + 3].getY());
@@ -390,7 +390,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 
 
     public static double getFlatnessSq(double[] coords, int offset) {
-        return getFlatnessSq(coords[offset + 0], coords[offset + 1],
+        return getFlatnessSq(coords[offset], coords[offset + 1],
                              coords[offset + 2], coords[offset + 3],
                              coords[offset + 4], coords[offset + 5],
                              coords[offset + 6], coords[offset + 7]);
@@ -398,7 +398,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 
 
     public static double getFlatness(double[] coords, int offset) {
-        return getFlatness(coords[offset + 0], coords[offset + 1],
+        return getFlatness(coords[offset], coords[offset + 1],
                            coords[offset + 2], coords[offset + 3],
                            coords[offset + 4], coords[offset + 5],
                            coords[offset + 6], coords[offset + 7]);
@@ -459,7 +459,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     public static void subdivide(double[] src, int srcoff,
                                  double[] left, int leftoff,
                                  double[] right, int rightoff) {
-        double x1 = src[srcoff + 0];
+        double x1 = src[srcoff];
         double y1 = src[srcoff + 1];
         double ctrlx1 = src[srcoff + 2];
         double ctrly1 = src[srcoff + 3];
@@ -468,7 +468,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         double x2 = src[srcoff + 6];
         double y2 = src[srcoff + 7];
         if (left != null) {
-            left[leftoff + 0] = x1;
+            left[leftoff] = x1;
             left[leftoff + 1] = y1;
         }
         if (right != null) {
@@ -496,7 +496,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
             left[leftoff + 7] = centery;
         }
         if (right != null) {
-            right[rightoff + 0] = centerx;
+            right[rightoff] = centerx;
             right[rightoff + 1] = centery;
             right[rightoff + 2] = ctrlx2;
             right[rightoff + 3] = ctrly2;

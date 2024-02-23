@@ -7,16 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -32,21 +30,17 @@ import com.google.firebase.analytics.FirebaseAnalytics;
  *
  * @author TritiumGamingStudios
  */
-public abstract class InvestigationFragment extends Fragment {
-
-    protected FirebaseAnalytics analytics;
+public abstract class InvestigationFragment extends PETFragment {
 
     protected EvidenceViewModel evidenceViewModel;
     protected ObjectivesViewModel objectivesViewModel;
     protected MapMenuViewModel mapMenuViewModel;
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
-
-    protected PopupWindow popupWindow;
 
     protected AdRequest adRequest;
 
-
-    public InvestigationFragment() {}
+    public InvestigationFragment() {
+        super();
+    }
 
     /**
      * EvidenceFragment constructor
@@ -74,39 +68,44 @@ public abstract class InvestigationFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        initFirebase();
+        super.init();
 
+        try {
+            ((InvestigationActivity) requireActivity()).initNavigationComponents();
+        } catch (IllegalStateException e) {
+             e.printStackTrace();
+        }
+
+        initAd(view.findViewById(R.id.adView));
+    }
+
+    protected void initViewModels() {
+        initGlobalPreferencesViewModel();
+        initEvidenceViewModel();
+        initObjectivesViewModel();
+        initMapMenuViewModel();
+    }
+
+    private void initMapMenuViewModel() {
+        if (mapMenuViewModel == null) {
+            mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
+            mapMenuViewModel.init(getContext());
+        }
+    }
+
+    private void initObjectivesViewModel() {
+        if (objectivesViewModel == null) {
+            objectivesViewModel =
+                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
+        }
+    }
+
+    private void initEvidenceViewModel() {
         if (evidenceViewModel == null) {
             evidenceViewModel =
                     new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
             evidenceViewModel.init(getContext());
         }
-
-        if (objectivesViewModel == null) {
-            objectivesViewModel =
-                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
-        }
-
-        if (mapMenuViewModel == null) {
-            mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-            mapMenuViewModel.init(getContext());
-        }
-
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel =
-                    new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
-            if (getContext() != null) {
-                globalPreferencesViewModel.init(getContext());
-            }
-        }
-
-        setOnBackPressed();
-
-        if(getActivity() != null) {
-            ((InvestigationActivity) getActivity()).initComponents();
-        }
-
-        initAd(view.findViewById(R.id.adView));
     }
 
     /**
@@ -114,13 +113,6 @@ public abstract class InvestigationFragment extends Fragment {
      * Resets component data without completely rebuilding the Fragment
      */
     public abstract void softReset();
-
-    protected void initFirebase() {
-        if(getContext() != null){
-            analytics = FirebaseAnalytics.getInstance(getContext());
-            Log.d("Firebase", "Obtained instance.");
-        }
-    }
 
     protected void initAd(AdView mAdView) {
         if(mAdView == null) {
@@ -134,9 +126,12 @@ public abstract class InvestigationFragment extends Fragment {
 
     public void backPressedHandler() {
 
-        if(super.getActivity() != null &&
-                ((InvestigationActivity)super.getActivity()).closeDrawer()) {
-            return;
+        try {
+            if (((InvestigationActivity) requireActivity()).closeNavigationDrawer()) {
+                return;
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         if(popupWindow != null && popupWindow.isShowing()) {
@@ -144,27 +139,15 @@ public abstract class InvestigationFragment extends Fragment {
             return;
         }
 
-        if(getActivity() != null && getView() != null) {
-            Log.d("Backstack", "Popping");
-            NavController navController = Navigation.findNavController(getView());
-            if(!navController.popBackStack()) {
+        Log.d("Backstack", "Popping");
+        try {
+            if(!Navigation.findNavController(requireView()).popBackStack()) {
                 Log.d("Backstack", "Could not Pop");
-                getActivity().finish();
+                requireActivity().finish();
             }
-
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
-    }
-
-    public void setOnBackPressed() {
-        if(getActivity() == null) { return; }
-
-        getActivity().getOnBackPressedDispatcher()
-                .addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                backPressedHandler();
-            }
-        });
     }
 
 }

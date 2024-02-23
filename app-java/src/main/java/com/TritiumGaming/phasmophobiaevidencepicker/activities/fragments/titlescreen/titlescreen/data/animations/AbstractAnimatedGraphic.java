@@ -77,6 +77,10 @@ public abstract class AbstractAnimatedGraphic {
         rotation = rot;
     }
 
+    public Bitmap rotateBitmap(Bitmap original) throws IllegalStateException, NullPointerException {
+        return original;
+    }
+
     /**
      * @return
      */

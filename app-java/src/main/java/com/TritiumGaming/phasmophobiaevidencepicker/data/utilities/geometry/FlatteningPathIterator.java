@@ -146,7 +146,7 @@ public class FlatteningPathIterator implements PathIterator {
                 // Move the coordinates to the end of the array.
                 holdIndex = hold.length - 6;
                 holdEnd = hold.length - 2;
-                hold[holdIndex + 0] = curx;
+                hold[holdIndex] = curx;
                 hold[holdIndex + 1] = cury;
                 hold[holdIndex + 2] = hold[0];
                 hold[holdIndex + 3] = hold[1];
@@ -191,7 +191,7 @@ public class FlatteningPathIterator implements PathIterator {
                 // Move the coordinates to the end of the array.
                 holdIndex = hold.length - 8;
                 holdEnd = hold.length - 2;
-                hold[holdIndex + 0] = curx;
+                hold[holdIndex] = curx;
                 hold[holdIndex + 1] = cury;
                 hold[holdIndex + 2] = hold[0];
                 hold[holdIndex + 3] = hold[1];
@@ -242,7 +242,7 @@ public class FlatteningPathIterator implements PathIterator {
         }
         int type = holdType;
         if (type != SEG_CLOSE) {
-            coords[0] = (float) hold[holdIndex + 0];
+            coords[0] = (float) hold[holdIndex];
             coords[1] = (float) hold[holdIndex + 1];
             if (type != SEG_MOVETO) {
                 type = SEG_LINETO;
@@ -257,7 +257,7 @@ public class FlatteningPathIterator implements PathIterator {
         }
         int type = holdType;
         if (type != SEG_CLOSE) {
-            coords[0] = hold[holdIndex + 0];
+            coords[0] = hold[holdIndex];
             coords[1] = hold[holdIndex + 1];
             if (type != SEG_MOVETO) {
                 type = SEG_LINETO;

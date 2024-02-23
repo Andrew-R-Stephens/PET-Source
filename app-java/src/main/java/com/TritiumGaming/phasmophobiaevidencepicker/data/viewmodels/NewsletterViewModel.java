@@ -2,9 +2,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -22,6 +26,8 @@ import java.util.ArrayList;
  */
 public class NewsletterViewModel extends ViewModel {
 
+    private static final @StringRes int fileName = R.string.preferences_newsletterFile_name;
+
     private boolean requiresNotify = false;
 
     private InboxType type = InboxType.GENERAL;
@@ -33,11 +39,7 @@ public class NewsletterViewModel extends ViewModel {
      *
      * @param context - The current Activity's context
      */
-    public boolean init(Context context) {
-
-        if(context == null) {
-            return false;
-        }
+    public boolean init(@NonNull Context context) {
 
         SharedPreferences sharedPref = getSharedPreferences(context);
 
@@ -45,21 +47,21 @@ public class NewsletterViewModel extends ViewModel {
         if((inbox = getInbox(InboxType.GENERAL)) != null) {
             setLastReadDate(InboxType.GENERAL,
                     sharedPref.getString(
-                            context.getResources().getString(R.string.preference_newsletter_lastreaddate_general),
+                            context.getString(R.string.preference_newsletter_lastreaddate_general),
                             inbox.getLastReadDate()));
         }
 
         if((inbox = getInbox(InboxType.PET)) != null) {
             setLastReadDate(InboxType.PET,
                     sharedPref.getString(
-                            context.getResources().getString(R.string.preference_newsletter_lastreaddate_pet),
+                            context.getString(R.string.preference_newsletter_lastreaddate_pet),
                             inbox.getLastReadDate()));
         }
 
         if((inbox = getInbox(InboxType.PHASMOPHOBIA)) != null) {
             setLastReadDate(InboxType.PHASMOPHOBIA,
                     sharedPref.getString(
-                            context.getResources().getString(R.string.preference_newsletter_lastreaddate_phas),
+                            context.getString(R.string.preference_newsletter_lastreaddate_phas),
                             inbox.getLastReadDate()));
         }
 
@@ -71,20 +73,16 @@ public class NewsletterViewModel extends ViewModel {
 
     public void registerInboxes(@NonNull Context context) {
         try {
-
             new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getResources().
-                            getString(R.string.preference_phasmophobia_changelog_link),
+                    context.getString(R.string.preference_phasmophobia_changelog_link),
                     NewsletterViewModel.InboxType.PHASMOPHOBIA, this);
 
             new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getResources().
-                            getString(R.string.preference_general_news_link),
+                    context.getString(R.string.preference_general_news_link),
                     NewsletterViewModel.InboxType.GENERAL, this);
 
             new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getResources().
-                            getString(R.string.preference_pet_changelog_link),
+                    context.getString(R.string.preference_pet_changelog_link),
                     NewsletterViewModel.InboxType.PET, this);
 
         } catch (XmlPullParserException e) {
@@ -94,15 +92,13 @@ public class NewsletterViewModel extends ViewModel {
 
     public static SharedPreferences getSharedPreferences(@NonNull Context context) {
         return context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_newsletterFile_name),
+                context.getString(fileName),
                 Context.MODE_PRIVATE);
     }
 
     public static SharedPreferences.Editor getEditor(@NonNull Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getResources().getString(
-                        R.string.preferences_newsletterFile_name),
+                context.getString(fileName),
                 Context.MODE_PRIVATE);
         return sharedPref.edit();
     }
@@ -118,6 +114,7 @@ public class NewsletterViewModel extends ViewModel {
                 isUpToDate = false;
                 break;
             }
+
         }
         return isUpToDate;
     }
@@ -207,13 +204,14 @@ public class NewsletterViewModel extends ViewModel {
     }
 
     public void compareAllInboxDates() {
-        requiresNotify =
-                (getInbox(InboxType.GENERAL) != null &&
-                        getInbox(InboxType.GENERAL).compareDates()) ||
-                        (getInbox(InboxType.PET) != null &&
-                                getInbox(InboxType.PET).compareDates()) ||
-                        (getInbox(InboxType.PHASMOPHOBIA) != null &&
-                                getInbox(InboxType.PHASMOPHOBIA).compareDates());
+        boolean general = (getInbox(InboxType.GENERAL) != null &&
+                getInbox(InboxType.GENERAL).compareDates());
+        boolean pet = (getInbox(InboxType.PET) != null &&
+                getInbox(InboxType.PET).compareDates());
+        boolean phasmophobia = (getInbox(InboxType.PHASMOPHOBIA) != null &&
+                getInbox(InboxType.PHASMOPHOBIA).compareDates());
+
+        requiresNotify = general || pet || phasmophobia;
     }
 
     public boolean requiresNotify() {
@@ -224,20 +222,21 @@ public class NewsletterViewModel extends ViewModel {
     private void saveLastReadDate(
             @NonNull Context c, SharedPreferences.Editor editor, boolean localApply,
             InboxType inboxType) {
+
         if (editor == null) {
             editor = getEditor(c);
         }
 
-        String target =
-                c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
+        String target = "";
         switch (inboxType) {
-            case PET: {
+            case PET -> {
                 target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
-                break;
             }
-            case PHASMOPHOBIA: {
+            case PHASMOPHOBIA -> {
                 target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
-                break;
+            }
+            case GENERAL -> {
+                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
             }
         }
 
@@ -295,6 +294,25 @@ public class NewsletterViewModel extends ViewModel {
 
             return name[id];
         }
+
+        public int getIcon(@NonNull Context context) {
+            TypedArray typed_inbox_icons = context.getResources().obtainTypedArray(R.array.messagecenter_inboxicons);
+
+            @DrawableRes int icon = typed_inbox_icons.getResourceId(id, 0);
+            typed_inbox_icons.recycle();
+
+            return icon;
+        }
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(NewsletterMessagesData data: inboxMessageList) {
+            stringBuilder.append(data).append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 }

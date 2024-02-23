@@ -96,7 +96,7 @@ public class OnboardingViewModel extends ViewModel {
     @NonNull
     public HashMap<String, String> getDataAsList() {
         HashMap<String, String> settings = new HashMap<>();
-        settings.put("can_show_intro", getCanShowIntroduction()+"");
+        settings.put("can_show_intro", String.valueOf(getCanShowIntroduction()));
 
         return settings;
     }

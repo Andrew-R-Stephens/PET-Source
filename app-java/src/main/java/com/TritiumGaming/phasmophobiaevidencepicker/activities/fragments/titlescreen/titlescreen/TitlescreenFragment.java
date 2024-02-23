@@ -1,16 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen;
 
-import android.animation.AnimatorInflater;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.graphics.Rect;
-import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,23 +19,16 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.TitleScreenActivity;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.titlescreen.views.TitlescreenAnimationView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -48,7 +36,6 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Locale;
 
@@ -57,24 +44,16 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class TitlescreenFragment extends Fragment {
+public class TitlescreenFragment extends MainMenusFragment {
 
-    private FirebaseAnalytics analytics;
-
-    private GlobalPreferencesViewModel globalPreferencesViewModel = null;
-    private TitlescreenViewModel titleScreenViewModel = null;
-    private NewsletterViewModel newsLetterViewModel = null;
-
-    private final BitmapUtils bitmapUtils = new BitmapUtils();
-
-    private PopupWindow popup = null;
     private TitlescreenAnimationView animationView = null;
     private View inboxNotify;
 
-    private boolean canRunAnim = true, canRunMessageCenter = true;
+    private final BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private Thread thread_initAnima = null, thread_tickAnim = null, thread_renderAnim = null,
-            thread_initReady = null, thread_messageCenter = null;
+    private boolean canRunMessageCenter = true;
+
+    private Thread thread_messageCenter = null;
 
     @Nullable
     @Override
@@ -82,8 +61,7 @@ public class TitlescreenFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        initFirebase();
-        initViewModels();
+        super.init();
 
         return inflater.inflate(R.layout.fragment_titlescreen, container, false);
 
@@ -92,8 +70,12 @@ public class TitlescreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        super.onViewCreated(view, savedInstanceState);
+
         // INITIALIZE VIEWS
         animationView = view.findViewById(R.id.titlescreen_backgroundanimation);
+        inboxNotify = view.findViewById(R.id.img_inboxalert);
+
         AppCompatTextView label_languageName = view.findViewById(R.id.label_languageName);
         AppCompatTextView button_startSolo = view.findViewById(R.id.button_start_solo);
         //AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
@@ -103,20 +85,24 @@ public class TitlescreenFragment extends Fragment {
         AppCompatImageView button_review = view.findViewById(R.id.button_review);
         AppCompatImageView button_msgInbox = view.findViewById(R.id.button_inbox);
         View button_language = view.findViewById(R.id.listener_language);
-        inboxNotify = view.findViewById(R.id.img_inboxalert);
 
         // LISTENERS
         button_info.setOnClickListener(this::gotoAppInfoFragment);
         button_settings.setOnClickListener(this::gotoAppSettingsFragment);
         button_language.setOnClickListener(this::gotoLanguagesFragment);
-        //button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
-        button_msgInbox.setOnClickListener(this::gotoMarketplaceFragment);
+        button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
+        //button_msgInbox.setOnClickListener(this::gotoMarketplaceFragment);
         button_startSolo.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), InvestigationActivity.class);
-                intent.putExtra("lobby", 0);
-                startActivity(intent);
-            }
+                    try {
+                        Intent intent = new Intent(requireActivity(), InvestigationActivity.class);
+                        intent.putExtra("lobby", 0);
+                        startActivity(intent);
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
+                }
         );
+
         /*button_startMult.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), InvestigationActivity.class);
                 intent.putExtra("lobby", 1);
@@ -131,10 +117,14 @@ public class TitlescreenFragment extends Fragment {
         setBackgroundLogo(icon_appIcon);
         setLanguageName(label_languageName);
 
-        renderAd(view);
+        loadBannerAd(view);
 
-        if(!(getActivity() != null && ((TitleScreenActivity)getActivity()).checkForAppUpdates())) {
-            initReviewRequest(button_review);
+        try {
+            if (!((TitleScreenActivity) requireActivity()).checkForAppUpdates()) {
+                initReviewRequest(button_review);
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         //doIntroductionRequest();
@@ -147,46 +137,36 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
-    private void initFirebase() {
-        if(getContext() != null){
-            analytics = FirebaseAnalytics.getInstance(getContext());
-        }
+    @Override
+    protected void backPressedHandler() {
+        closePopup();
     }
 
-    private void initViewModels() {
-        // OBTAIN VIEW MODEL REFERENCE
-        if (globalPreferencesViewModel == null) {
-            globalPreferencesViewModel = new ViewModelProvider(requireActivity()).
-                    get(GlobalPreferencesViewModel.class);
-        }
-        // INITIALIZE VIEW MODEL
-        if (getContext() != null) {
-            globalPreferencesViewModel.init(getContext());
-        }
-
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel = new ViewModelProvider(requireActivity()).
-                    get(TitlescreenViewModel.class);
-        }
-
-        if (newsLetterViewModel == null) {
-            newsLetterViewModel = new ViewModelProvider(requireActivity()).
-                    get(NewsletterViewModel.class);
-        }
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+        initTitleScreenViewModel();
+        initNewsletterViewModel();
     }
 
     public void loadMessageCenter() {
-        if(newsLetterViewModel != null && getContext() != null) {
-            newsLetterViewModel.registerInboxes(getContext());
+        if(newsLetterViewModel != null) {
+            try {
+                newsLetterViewModel.registerInboxes(requireContext());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void setBackgroundLogo(AppCompatImageView icon_appIcon) {
-        Context context = getContext();
-        if (context != null) {
-            bitmapUtils.clearResources();
-            bitmapUtils.setResource(R.drawable.app_icon_sm);
-            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(context));
+        bitmapUtils.clearResources();
+        bitmapUtils.setResource(R.drawable.app_icon_sm);
+
+        try {
+            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 
@@ -199,11 +179,17 @@ public class TitlescreenFragment extends Fragment {
         label_languageName.setText(chosenLanguage);
     }
 
-    private void renderAd(View view) {
-        if (getActivity() != null) {
-            MobileAds.initialize(getActivity(), initializationStatus -> {
+    private void loadBannerAd(View view) {
+        try {
+            MobileAds.initialize(requireActivity(), initializationStatus -> {
             });
-            AdView mAdView = view.findViewById(R.id.adView);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        AdView mAdView = view.findViewById(R.id.adView);
+
+        if (titleScreenViewModel != null) {
             if (!titleScreenViewModel.hasAdRequest()) {
                 titleScreenViewModel.setAdRequest(new AdRequest.Builder().build());
             }
@@ -211,11 +197,47 @@ public class TitlescreenFragment extends Fragment {
         }
     }
 
+    private void gotoMessageCenterFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment);
+    }
+
+    private void gotoMarketplaceFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_marketplaceFragment);
+    }
+
+    /**
+     * gotoAppInfoFragment method
+     */
+    private void gotoAppInfoFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appInfoFragment);
+    }
+
+
+    /**
+     * gotoAppSettingsFragment method
+     */
+    private void gotoAppSettingsFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
+    }
+
+    /**
+     * gotoLanguagesFragment method
+     */
+    public void gotoLanguagesFragment(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment);
+    }
+
     public void initReviewRequest(AppCompatImageView button_review) {
         // REQUEST REVIEW LISTENER
         if (globalPreferencesViewModel != null &&
                 globalPreferencesViewModel.getReviewRequestData().getTimesOpened() > 2) {
-            button_review.setOnClickListener(v -> showReviewPopup(getView()));
+            button_review.setOnClickListener(v -> {
+                try {
+                    showReviewPopup(requireView());
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             button_review.setEnabled(false);
             button_review.setVisibility(View.INVISIBLE);
@@ -237,12 +259,19 @@ public class TitlescreenFragment extends Fragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (getActivity() != null && getContext() != null) {
-                    globalPreferencesViewModel.getReviewRequestData().setWasRequested(true);
-                    getActivity().runOnUiThread(() -> showReviewPopup(getView()));
-                    if (getContext() != null) {
-                        globalPreferencesViewModel.saveToFile(getContext());
-                    }
+
+                globalPreferencesViewModel.getReviewRequestData().setWasRequested(true);
+                try {
+                    requireActivity().runOnUiThread(() -> {
+                        try {
+                            showReviewPopup(requireView());
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    globalPreferencesViewModel.saveToFile(requireContext());
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
                 }
             }).start();
 
@@ -252,68 +281,14 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
-    public void doIntroductionRequest() {
-        // REQUEST REVIEW LISTENER
-        if (globalPreferencesViewModel != null &&
-                globalPreferencesViewModel.canShowIntroduction()) {
-
-            Thread tempThread = new Thread(() -> {
-                try {
-                    Thread.sleep(100L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (getActivity() != null && getContext() != null) {
-                    getActivity().runOnUiThread(() -> showIntroductionPopup(getView()));
-                }
-            });
-            tempThread.start();
-        }
-    }
-
-    private void gotoMessageCenterFragment(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_titleScreenFragment_to_inboxFragment);
-    }
-
-    private void gotoMarketplaceFragment(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_titleScreenFragment_to_marketplaceFragment);
-    }
-
-    /**
-     * gotoAppInfoFragment method
-     */
-    private void gotoAppInfoFragment(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_titleScreenFragment_to_appInfoFragment);
-    }
-
-
-    /**
-     * gotoAppSettingsFragment method
-     */
-    private void gotoAppSettingsFragment(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_titleScreenFragment_to_appSettingsFragment);
-    }
-
-    /**
-     * gotoLanguagesFragment method
-     */
-    public void gotoLanguagesFragment(View v) {
-        Navigation.findNavController(v).
-                navigate(R.id.action_titleScreenFragment_to_appLanguageFragment);
-    }
-
     /**
      * showReviewPopup method
      */
-    public void showReviewPopup(View parentView) {
+    public void showReviewPopup(@NonNull View parentView) {
 
         //DESTROY PREVIOUS POPUP
-        if (popup != null) {
-            popup.dismiss();
+        if (popupWindow != null) {
+            popupWindow.dismiss();
         }
         //INFLATE LAYOUT
         LayoutInflater inflater = (LayoutInflater) requireView().getContext().
@@ -322,65 +297,23 @@ public class TitlescreenFragment extends Fragment {
         View customView = inflater.inflate(R.layout.popup_requestreview, null);
 
         // INITIALIZE POPUPWINDOW
-        popup = new PopupWindow(
+        popupWindow = new PopupWindow(
                 customView,
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT
         );
-        popup.setOutsideTouchable(false);
+        popupWindow.setOutsideTouchable(false);
 
         AppCompatTextView acceptButton = customView.findViewById(R.id.label_accept);
         AppCompatTextView declineButton = customView.findViewById(R.id.label_decline);
 
         // LISTENERS
         acceptButton.setOnClickListener(v -> {
-            popup.dismiss();
-            popup = null;
+            popupWindow.dismiss();
+            popupWindow = null;
 
-            //THIS IS FOR THE IN-APP REVIEW
-            if (getContext() != null) {
-                ReviewManager manager =
-                        ReviewManagerFactory.create(getContext());
-                Task<ReviewInfo> request = manager.requestReviewFlow();
-                request.addOnCompleteListener(requestTask -> {
-                    if (requestTask.isSuccessful()) {
-                        Log.e("ReviewManager", "Task Successful");
-                        // We can get the ReviewInfo object
-                        ReviewInfo reviewInfo = requestTask.getResult();
-                        if (getActivity() != null) {
-                            Task<Void> flow = manager.launchReviewFlow(getActivity(), reviewInfo);
-                            flow.addOnCompleteListener(flowTask -> {
-                                // DO NOTHING
-                            });
+            startReviewLauncher();
 
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(getResources().
-                                    getString(R.string.review_storelink_website)));
-                            intent.setPackage("com.android.vending");
-
-                            try {
-                                Log.e("ReviewManager",
-                                        "SUCCEEDED intent navigation to the App Store.");
-                                getContext().startActivity(intent);
-                            } catch (ActivityNotFoundException e) {
-                                Log.e("ReviewManager",
-                                        "FAILED intent navigation to the App Store.");
-                                e.printStackTrace();
-
-                                Bundle params = new Bundle();
-                                params.putString("event_type", "review_navigation");
-                                params.putString("event_details", "navigation_failed");
-                                analytics.logEvent("event_review_manager", params);
-                            }
-                        }
-                    } else {
-                        Log.e("ReviewManager", "Task Failed");
-                        if (requestTask.getException() != null) {
-                            (requestTask.getException()).printStackTrace();
-                        }
-                    }
-                });
-            }
         });
 
         declineButton.setOnClickListener(v -> {
@@ -389,17 +322,17 @@ public class TitlescreenFragment extends Fragment {
             params.putString("event_details", "request_rejected");
             analytics.logEvent("event_review_manager", params);
 
-            popup.dismiss();
-            popup = null;
+            popupWindow.dismiss();
+            popupWindow = null;
         });
 
         // FINALIZE
-        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
+        popupWindow.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
 
         boolean success = parentView.post(() -> {
             //Log.d("Review", "Is displaying");
-            if(popup != null) {
-                popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
+            if(popupWindow != null) {
+                popupWindow.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
             }
 
         });
@@ -414,75 +347,73 @@ public class TitlescreenFragment extends Fragment {
 
     }
 
-    /**
-     * showReviewPopup method
-     */
-    public void showIntroductionPopup(View parentView) {
+    private void startReviewLauncher() {
+        //THIS IS FOR THE IN-APP REVIEW
+        try {
+            ReviewManager manager =
+                    ReviewManagerFactory.create(requireContext());
 
-        //DESTROY PREVIOUS POPUP
-        if (popup != null) {
-            popup.dismiss();
+            Task<ReviewInfo> request = manager.requestReviewFlow();
+            request.addOnCompleteListener(requestTask -> {
+                if (requestTask.isSuccessful()) {
+                    Log.e("ReviewManager", "Task Successful");
+                    // We can get the ReviewInfo object
+                    ReviewInfo reviewInfo = requestTask.getResult();
+
+                    try {
+                        Task<Void> flow = manager.launchReviewFlow(requireActivity(), reviewInfo);
+                        flow.addOnCompleteListener(flowTask -> {
+                            // DO NOTHING
+                        });
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(getResources().
+                            getString(R.string.review_storelink_website)));
+                    intent.setPackage("com.android.vending");
+
+                    try {
+                        requireContext().startActivity(intent);
+                        Log.e("ReviewManager",
+                                "SUCCEEDED intent navigation to the App Store.");
+                    } catch (IllegalStateException |ActivityNotFoundException e) {
+                        Log.e("ReviewManager",
+                                "FAILED intent navigation to the App Store.");
+                        e.printStackTrace();
+
+                        Bundle params = new Bundle();
+                        params.putString("event_type", "review_navigation");
+                        params.putString("event_details", "navigation_failed");
+                        analytics.logEvent("event_review_manager", params);
+                    }
+                } else {
+                    Log.e("ReviewManager", "Task Failed");
+                    if (requestTask.getException() != null) {
+                        (requestTask.getException()).printStackTrace();
+                    }
+                }
+            });
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
-        //INFLATE LAYOUT
-        LayoutInflater inflater = (LayoutInflater) requireView().getContext().
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.fragment_titlescreen_intro, null);
-
-        // INITIALIZE POPUPWINDOW
-        popup = new PopupWindow(
-                customView,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-        );
-        popup.setOutsideTouchable(false);
-
-        AppCompatImageButton closeButton = customView.findViewById(R.id.popup_close_button);
-        closeButton.setOnClickListener(view -> {
-            globalPreferencesViewModel.setCanShowIntroduction(false);
-            globalPreferencesViewModel.saveToFile(getContext());
-            popup.dismiss();
-            popup = null;
-        });
-
-        // FINALIZE
-        popup.setAnimationStyle(androidx.navigation.ui.R.anim.nav_default_enter_anim);
-
-        boolean success = parentView.post(() -> {
-            //Log.d("Review", "Is displaying");
-            if(popup != null) {
-                popup.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0);
-            }
-        });
-
-        Log.d("ReviewRequest", (success ? "SUCCESSFUL" : "UNSUCCESSFUL"));
-
-        Bundle params = new Bundle();
-        params.putString("event_type", "started");
-        params.putString("event_details",
-                "request_" + (success ? "successful" : "unsuccessful"));
-        analytics.logEvent("event_introduction_start", params);
-
     }
 
     private void doMessageCenterNotification() {
         Log.d("MessageCenter", "Starting animation");
-        Context context = getContext();
-        if(context != null) {
-            Animation animation = AnimationUtils.loadAnimation(context,
+
+        try {
+            Animation animation = AnimationUtils.loadAnimation(requireContext(),
                     R.anim.notifyblink);
             if(inboxNotify != null) {
                 inboxNotify.setAlpha(1f);
                 inboxNotify.startAnimation(animation);
             }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
     }
-
-    private boolean checkInternetConnection() {
-        return (NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference()));
-    }
-
 
     private void startLoadMessageCenterThread() {
 
@@ -503,7 +434,7 @@ public class TitlescreenFragment extends Fragment {
                 if (!newsLetterViewModel.isUpToDate()) {
                     Log.d("MessageCenter",
                             "[Attempt " + currentCycle + "/" + MAX_CYCLES + "] " +
-                                    "Inboxes are not up to date yet! Retrying...");
+                                    "Inboxes are not up to date yet! Retrying...\n");
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -521,8 +452,9 @@ public class TitlescreenFragment extends Fragment {
                     " Loading completed.");
 
             // INITIALIZE VIEW MODEL
-            if(getContext() != null) {
-                if(!newsLetterViewModel.init(getContext())) {
+            /*
+            try {
+                if(!newsLetterViewModel.init(requireContext())) {
                     Log.e("MessageCenter",
                             "Initialization failed.");
                     Bundle params = new Bundle();
@@ -532,10 +464,22 @@ public class TitlescreenFragment extends Fragment {
                 }
                 newsLetterViewModel.compareAllInboxDates();
                 if (newsLetterViewModel.requiresNotify()) {
-                    if (getActivity() != null) {
-                        getActivity().runOnUiThread(this::doMessageCenterNotification);
-                    }
+                    requireActivity().runOnUiThread(this::doMessageCenterNotification);
                 }
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
+            */
+            try {
+                if(!newsLetterViewModel.init(requireContext())) {
+                    Log.e("MessageCenter", "Initialization failed.");
+                }
+                newsLetterViewModel.compareAllInboxDates();
+                if (newsLetterViewModel.requiresNotify()) {
+                    requireActivity().runOnUiThread(this::doMessageCenterNotification);
+                }
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
 
         });
@@ -543,7 +487,6 @@ public class TitlescreenFragment extends Fragment {
         thread_messageCenter.start();
 
     }
-
 
     private void startInitMessageCenterThread() {
 
@@ -559,136 +502,6 @@ public class TitlescreenFragment extends Fragment {
         }
     }
 
-    /**
-     * startAnimThreads method
-     */
-    public void startAnimThreads() {
-        startAnimTickThread();
-        startAnimDrawThread();
-    }
-
-    /**
-     * startAnimInitThreads method
-     */
-    private void startAnimInitThreads() {
-
-        if (thread_initAnima == null) {
-            thread_initAnima = new Thread() {
-
-                public void run() {
-                    animationView.init(titleScreenViewModel, bitmapUtils);
-
-                }
-
-            };
-            thread_initAnima.start();
-        }
-
-        if (thread_initReady == null) {
-            thread_initReady = new Thread(() -> {
-
-                while (!canRunAnim) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                startAnimThreads();
-
-            });
-
-            thread_initReady.start();
-        }
-    }
-
-    /**
-     * startAnimTickThread method
-     */
-    private void startAnimTickThread() {
-        if (thread_tickAnim == null) {
-            canRunAnim = true;
-            thread_tickAnim = new Thread() {
-                public void run() {
-                while (canRunAnim) {
-                    try {
-                        try {
-                            animationView.tick();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        long now = System.nanoTime();
-                        long updateTime = System.nanoTime() - now;
-                        double TARGET_FPS = 30;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                                (getContext() != null && getContext().getDisplay() != null)) {
-                            TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                            if (TARGET_FPS > 60) {
-                                TARGET_FPS = 60;
-                            }
-                        }
-                        //TARGET_FPS = 200;
-                        long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
-                        long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
-
-                        if (wait < 0) {
-                            wait = 1;
-                        }
-
-                        Thread.sleep(wait);
-
-                    } catch (InterruptedException e) {
-                        //Log.e("TitleScreenFragment", "InterruptedException error handled.");
-                    }
-                }
-                }
-            };
-            thread_tickAnim.start();
-        }
-    }
-
-    /**
-     * startAnimDrawThread method
-     */
-    private void startAnimDrawThread() {
-        if (thread_renderAnim == null) {
-            thread_renderAnim = new Thread() {
-                public void run() {
-                while (canRunAnim) {
-                    try {
-                        if (getActivity() != null) {
-                            getActivity().runOnUiThread(() -> animationView.invalidate());
-                        }
-                        long now = System.nanoTime();
-                        long updateTime = System.nanoTime() - now;
-                        double TARGET_FPS = 24;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                                (getContext() != null && getContext().getDisplay() != null)) {
-                            TARGET_FPS = getContext().getDisplay().getRefreshRate();
-                            if (TARGET_FPS > 60) {
-                                TARGET_FPS = 60;
-                            }
-                        }
-                        long OPTIMAL_TIME = (long) (1000000000 / TARGET_FPS);
-                        long wait = (long) ((OPTIMAL_TIME - updateTime) / 1000000.0);
-
-                        if (wait < 0) {
-                            wait = 1;
-                        }
-
-                        Thread.sleep(wait);
-
-                    } catch (InterruptedException e) {
-                        //Log.e("TitleScreenFragment", "InterruptedException error handled.");
-                    }
-                }
-                }
-            };
-            thread_renderAnim.start();
-        }
-    }
-
     private void stopLoadMessageCenterThread() {
         if (thread_messageCenter != null) {
             thread_messageCenter.interrupt();
@@ -697,54 +510,15 @@ public class TitlescreenFragment extends Fragment {
     }
 
     /**
-     * stopAnimInitThreads method
-     */
-    public void stopAnimInitThreads() {
-        if (thread_initAnima != null) {
-            thread_initAnima.interrupt();
-            thread_initAnima = null;
-        }
-        if (thread_initReady != null) {
-            thread_initReady.interrupt();
-            thread_initReady = null;
-        }
-    }
-
-    /**
-     * stopAnimTickThread method
-     */
-    public void stopAnimTickThread() {
-        if (thread_tickAnim != null) {
-            thread_tickAnim.interrupt();
-            thread_tickAnim = null;
-        }
-    }
-
-    /**
-     * stopAnimDrawThread method
-     */
-    public void stopAnimDrawThread() {
-        if (thread_renderAnim != null) {
-            thread_renderAnim.interrupt();
-            thread_renderAnim = null;
-        }
-    }
-
-    /**
-     * stopAnimThreads method
-     */
-
-    public void stopAnimThreads() {
-        stopAnimDrawThread();
-        stopAnimTickThread();
-    }
-
-    /**
      * saveStates method
      */
     public void saveStates() {
-        if (globalPreferencesViewModel != null && getContext() != null) {
-            globalPreferencesViewModel.saveToFile(getContext());
+        if (globalPreferencesViewModel != null) {
+            try {
+                globalPreferencesViewModel.saveToFile(requireContext());
+            } catch (IllegalStateException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -754,22 +528,21 @@ public class TitlescreenFragment extends Fragment {
     @Override
     public void onPause() {
 
-        // DESTROY POPUP
-        if (popup != null) {
-            popup.dismiss();
-            popup = null;
-        }
-
         // SAVE PERSISTENT DATA
         saveStates();
 
         // STOP THREADS
-        stopAnimThreads();
-        stopAnimInitThreads();
-        canRunAnim = false;
+        animationView.stopAnimThreads();
+        animationView.stopAnimInitThreads();
+        animationView.canAnimateBackground(false);
+
         stopLoadMessageCenterThread();
         if(newsLetterViewModel.isUpToDate()) {
             canRunMessageCenter = false;
+            Log.d("MessageCenter", "IS up to date");
+            Log.d("MessageCenter", newsLetterViewModel.toString());
+        } else {
+            Log.d("MessageCenter", "IS NOT up to date");
         }
 
         // RECYCLE ANIMATION VIEW
@@ -786,8 +559,9 @@ public class TitlescreenFragment extends Fragment {
     public void onResume() {
 
         // START THREADS
-        startAnimInitThreads();
-        startAnimThreads();
+        animationView.startAnimInitThreads(titleScreenViewModel, bitmapUtils);
+        animationView.startAnimThreads();
+
         startInitMessageCenterThread();
 
         super.onResume();

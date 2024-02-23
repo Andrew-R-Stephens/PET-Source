@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -22,7 +21,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.FirestoreFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceListLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItem;
@@ -53,7 +53,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketplaceBillingFragment extends FirestoreFragment {
+public class MarketplaceBillingFragment extends MainMenusFragment {
 
     private BillingClient billingClient;
 
@@ -84,24 +84,24 @@ public class MarketplaceBillingFragment extends FirestoreFragment {
 
         initAccountView();
 
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        }
-
         list_mtx_items.setVisibility(VISIBLE);
 
-        back_button.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+        back_button.setOnClickListener(v -> {
+            try {
+                Navigation.findNavController(v).popBackStack();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
+        });
 
         requireActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
 
         initBillingClient();
 
+    }
+
+    @Override
+    protected void initViewModels() {
     }
 
     private void initAccountView() {

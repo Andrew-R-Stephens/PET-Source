@@ -4,27 +4,27 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 import java.util.Vector;
 
 final class Order3 extends Curve {
-    private double x0;
-    private double y0;
-    private double cx0;
-    private double cy0;
-    private double cx1;
-    private double cy1;
-    private double x1;
-    private double y1;
+    private final double x0;
+    private final double y0;
+    private final double cx0;
+    private final double cy0;
+    private final double cx1;
+    private final double cy1;
+    private final double x1;
+    private final double y1;
 
-    private double xmin;
-    private double xmax;
+    private final double xmin;
+    private final double xmax;
 
-    private double xcoeff0;
-    private double xcoeff1;
-    private double xcoeff2;
-    private double xcoeff3;
+    private final double xcoeff0;
+    private final double xcoeff1;
+    private final double xcoeff2;
+    private final double xcoeff3;
 
-    private double ycoeff0;
-    private double ycoeff1;
-    private double ycoeff2;
-    private double ycoeff3;
+    private final double ycoeff0;
+    private final double ycoeff1;
+    private final double ycoeff2;
+    private final double ycoeff3;
 
     public static void insert(Vector<Curve> curves, double[] tmp,
                               double x0, double y0,
@@ -64,7 +64,7 @@ final class Order3 extends Curve {
         }
         while (numparams >= 0) {
             addInstance(curves,
-                        tmp[index + 0], tmp[index + 1],
+                        tmp[index], tmp[index + 1],
                         tmp[index + 2], tmp[index + 3],
                         tmp[index + 4], tmp[index + 5],
                         tmp[index + 6], tmp[index + 7],
@@ -172,7 +172,7 @@ final class Order3 extends Curve {
         cy1 = coords[pos+5];
         x1 = cx1 + (x1 - cx1) * t;
         y1 = cy1 + (y1 - cy1) * t;
-        x0 = coords[pos+0];
+        x0 = coords[pos];
         y0 = coords[pos+1];
         cx0 = coords[pos+2];
         cy0 = coords[pos+3];
@@ -427,7 +427,7 @@ final class Order3 extends Curve {
             }
         }
         boolean verbose = false;
-        if (false && t >= 0 && t <= 1) {
+        if (false) {
             y = YforT(t);
             long tdiff = diffbits(t, origt);
             long ydiff = diffbits(y, origy);
@@ -570,7 +570,7 @@ final class Order3 extends Curve {
             split(eqn, 0, t0 / t1);
             i = 6;
         }
-        return new Order3(eqn[i+0], ystart,
+        return new Order3(eqn[i], ystart,
                           eqn[i+2], eqn[i+3],
                           eqn[i+4], eqn[i+5],
                           eqn[i+6], yend,

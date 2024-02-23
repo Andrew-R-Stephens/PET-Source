@@ -342,7 +342,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_generalsettings_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -351,85 +351,21 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constrainlayout_alwayson"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_alwaysOn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_screenalwayson" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_alwayson_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:minWidth="48dp"
-                        android:minHeight="48dp"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_alwayson_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_alwayson_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_screenalwayson"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_alwayson_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constrainlayout_network"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_network"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_network_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:minWidth="48dp"
-                        android:minHeight="48dp"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_network_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_network_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_networktitle"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_network_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_networktitle" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_extrasettings_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -439,83 +375,17 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout60"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_leftHandMode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enableLeftHandSupport" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_leftHandMode_switch"
-                        style="@style/NorseRegular_Auto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:minWidth="48dp"
-                        android:minHeight="48dp"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_leftHandMode_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_leftHandMode_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_enableLeftHandSupport"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_leftHandMode_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout57"
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_huntwarningaudio"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_huntwarningaudio_switch"
-                        style="@style/NorseRegular_Auto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:inputType="text"
-                        android:minWidth="48dp"
-                        android:minHeight="48dp"
-                        android:textColor="?attr/switchColor"
-                        android:textIsSelectable="false"
-                        android:theme="@style/SwitchTheme"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch_huntwarningaudio_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/switch_huntwarningaudio_text"
-                        style="?attr/primaryFont_Regular_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/settings_enablehuntaudioqueue"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/switch_huntwarningaudio_switch"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enablehuntaudioqueue" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -534,9 +404,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:maxLines="1"
                             android:text="@string/settings_huntwarningflashtimeout"
                             android:textSize="18sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -558,6 +429,9 @@
                                 android:layout_height="wrap_content"
                                 android:background="#00FFFFFF"
                                 android:gravity="center"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
+                                android:textAlignment="center"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -573,9 +447,11 @@
                                 android:background="#00FFFFFF"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:maxLines="1"
+                                android:textAlignment="center"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
                                 android:textSize="16sp"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -590,11 +466,11 @@
                                 android:layout_height="wrap_content"
                                 android:max="100"
                                 android:maxHeight="3dp"
-                                android:minHeight="48dp"
                                 android:progress="100"
                                 android:progressDrawable="@drawable/progressbar_progress"
                                 android:splitTrack="false"
                                 android:thumb="@drawable/seekbar_thumb"
+                                android:minHeight="48dp"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -608,7 +484,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_style_title"
-                    style="?attr/primaryFont_Regular_Manual"
+                    style="?attr/primaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -739,12 +615,13 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:padding="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout47"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -754,35 +631,34 @@
                                 style="?attr/primaryFont_Regular_Manual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
                                 android:gravity="center"
-                                android:scrollbarAlwaysDrawVerticalTrack="true"
                                 android:text="@string/settings_colortheme_title"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                                app:layout_constraintStart_toStartOf="@+id/constraintLayout71"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/imageView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
                                 android:adjustViewBounds="true"
                                 android:cropToPadding="true"
-                                android:maxHeight="36dp"
+                                android:padding="4dp"
                                 android:src="?attr/theme_badge"
+                                app:layout_constraintWidth_max="48dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout71"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintWidth_max="36dp" />
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/constraintLayout71"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -791,50 +667,65 @@
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/colorblindmode_leftbutton"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="36dp"
+                                    android:layout_height="48dp"
                                     android:adjustViewBounds="true"
                                     android:contentDescription="@string/app_name"
                                     android:minWidth="48dp"
                                     android:minHeight="48dp"
+                                    android:padding="8dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/icon_prev"
                                     android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/colorblindmode_selectedname"
+                                    app:layout_constraintEnd_toStartOf="@+id/constraintLayout69"
                                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/colorblindmode_selectedname"
-                                    style="?attr/primaryFont_Regular_Manual"
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/constraintLayout69"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/settings_colorblindnessmode_normal"
-                                    android:textColor="?attr/textColorBodyEmphasis"
-                                    android:textSize="14sp"
+                                    android:layout_height="0dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/colorblindmode_rightbutton"
                                     app:layout_constraintStart_toEndOf="@+id/colorblindmode_leftbutton"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintWidth_percent=".5" />
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/colorblindmode_selectedname"
+                                        style="?attr/primaryFont_Regular_Manual"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="marquee"
+                                        android:gravity="center_horizontal|top"
+                                        android:singleLine="true"
+                                        android:text="@string/settings_colorblindnessmode_normal"
+                                        android:textAlignment="center"
+                                        android:textColor="?attr/textColorBodyEmphasis"
+                                        android:textSize="16sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/colorblindmode_rightbutton"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="36dp"
+                                    android:layout_height="48dp"
                                     android:adjustViewBounds="true"
                                     android:contentDescription="@string/app_name"
                                     android:minWidth="48dp"
                                     android:minHeight="48dp"
+                                    android:padding="8dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/icon_next"
                                     android:tint="?attr/textColorBody"
-                                    app:layout_constraintBottom_toBottomOf="@+id/colorblindmode_leftbutton"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toEndOf="@+id/colorblindmode_selectedname"
-                                    app:layout_constraintTop_toTopOf="@+id/colorblindmode_leftbutton" />
+                                    app:layout_constraintStart_toEndOf="@+id/constraintLayout69"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -853,16 +744,18 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:padding="8dp">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/font_title"
                             style="?attr/primaryFont_Regular_Manual"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/settings_fontstylesettings"
                             android:textSize="16sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_font2"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -870,7 +763,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout_font2"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -880,50 +773,67 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_leftbutton"
                                 android:layout_width="wrap_content"
-                                android:layout_height="36dp"
+                                android:layout_height="48dp"
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:minWidth="48dp"
                                 android:minHeight="48dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_prev"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/font_selectedname"
+                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout66"
                                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/font_selectedname"
-                                style="?attr/primaryFont_Regular_Manual"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout66"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/settings_colorblindnessmode_normal"
-                                android:textColor="?attr/textColorBodyEmphasis"
-                                android:textSize="14sp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/font_rightbutton"
-                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/font_leftbutton"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintWidth_percent=".5" />
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/font_selectedname"
+                                    style="?attr/primaryFont_Regular_Manual"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:gravity="center_horizontal|top"
+                                    android:singleLine="true"
+                                    android:text="@string/settings_colorblindnessmode_normal"
+                                    android:textAlignment="center"
+                                    android:textColor="?attr/textColorBodyEmphasis"
+                                    android:textSize="16sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/font_rightbutton"
                                 android:layout_width="wrap_content"
-                                android:layout_height="36dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="1dp"
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:minWidth="48dp"
                                 android:minHeight="48dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/icon_next"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/font_selectedname"
+                                app:layout_constraintStart_toEndOf="@+id/constraintLayout66"
                                 app:layout_constraintTop_toTopOf="@+id/font_leftbutton" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>

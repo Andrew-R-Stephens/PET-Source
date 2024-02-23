@@ -6,19 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.PETFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.MainMenusFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -28,10 +27,7 @@ import com.google.android.gms.ads.MobileAds;
  *
  * @author TritiumGamingStudios
  */
-public class NewsletterMessageFragment extends Fragment {
-
-    private TitlescreenViewModel titleScreenViewModel = null;
-    private NewsletterViewModel newsletterViewModel = null;
+public class NewsletterMessageFragment extends MainMenusFragment {
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -45,14 +41,7 @@ public class NewsletterMessageFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
 
-        if (titleScreenViewModel == null) {
-            titleScreenViewModel =
-                    new ViewModelProvider(requireActivity()).get(TitlescreenViewModel.class);
-        }
-        if (newsletterViewModel == null) {
-            newsletterViewModel =
-                    new ViewModelProvider(requireActivity()).get(NewsletterViewModel.class);
-        }
+        super.init();
 
         return inflater.inflate(R.layout.fragment_msginbox_message, container, false);
     }
@@ -69,18 +58,8 @@ public class NewsletterMessageFragment extends Fragment {
         // LISTENERS
         button_back.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-        if (getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        }
-
         // SET CONTENT
-        NewsletterMessageData message = newsletterViewModel.getCurrentMessage();
+        NewsletterMessageData message = newsLetterViewModel.getCurrentMessage();
         if (message != null) {
             label_title.setText(Html.fromHtml(message.getTitle()));
             label_date.setText(Html.fromHtml(message.getDate()));
@@ -101,6 +80,13 @@ public class NewsletterMessageFragment extends Fragment {
             mAdView.loadAd(titleScreenViewModel.getAdRequest());
         }
 
+    }
+
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+        initTitleScreenViewModel();
+        initNewsletterViewModel();
     }
 
 }

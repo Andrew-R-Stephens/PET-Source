@@ -19,9 +19,9 @@ public class InteractiveMapData {
     private float panX = 1f, panY = 1f;
 
     /** @noinspection CanBeFinal*/
-    private Matrix matrix = new Matrix();
+    private final Matrix matrix = new Matrix();
     /** @noinspection CanBeFinal*/
-    private BitmapFactory.Options options = new BitmapFactory.Options();
+    private final BitmapFactory.Options options = new BitmapFactory.Options();
 
     private int imgW, imgH;
     private int w, h;

@@ -89,7 +89,7 @@ public interface Shape {
      * @see #getBounds2D
      * @since 1.2
      */
-    public Rectangle getBounds();
+    Rectangle getBounds();
 
     /**
      * Returns a high precision and more accurate bounding box of
@@ -135,7 +135,7 @@ public interface Shape {
      * @see #getBounds
      * @since 1.2
      */
-    public Rectangle2D getBounds2D();
+    Rectangle2D getBounds2D();
 
     /**
      * Tests if the specified coordinates are inside the boundary of the
@@ -149,7 +149,7 @@ public interface Shape {
      *         otherwise.
      * @since 1.2
      */
-    public boolean contains(double x, double y);
+    boolean contains(double x, double y);
 
     /**
      * Tests if a specified {@link Point2D} is inside the boundary
@@ -162,7 +162,7 @@ public interface Shape {
      *          {@code false} otherwise.
      * @since 1.2
      */
-    public boolean contains(Point2D p);
+    boolean contains(Point2D p);
 
     /**
      * Tests if the interior of the {@code Shape} intersects the
@@ -202,7 +202,7 @@ public interface Shape {
      *
      * @since 1.2
      */
-    public boolean intersects(double x, double y, double w, double h);
+    boolean intersects(double x, double y, double w, double h);
 
     /**
      * Tests if the interior of the {@code Shape} intersects the
@@ -234,7 +234,7 @@ public interface Shape {
      * @see #intersects(double, double, double, double)
      * @since 1.2
      */
-    public boolean intersects(Rectangle2D r);
+    boolean intersects(Rectangle2D r);
 
     /**
      * Tests if the interior of the {@code Shape} entirely contains
@@ -278,7 +278,7 @@ public interface Shape {
      * @see #intersects
      * @since 1.2
      */
-    public boolean contains(double x, double y, double w, double h);
+    boolean contains(double x, double y, double w, double h);
 
     /**
      * Tests if the interior of the {@code Shape} entirely contains the
@@ -312,7 +312,7 @@ public interface Shape {
      * @see #contains(double, double, double, double)
      * @since 1.2
      */
-    public boolean contains(Rectangle2D r);
+    boolean contains(Rectangle2D r);
 
     /**
      * Returns an iterator object that iterates along the
@@ -338,7 +338,7 @@ public interface Shape {
      *          traverses the geometry of the {@code Shape}.
      * @since 1.2
      */
-    public PathIterator getPathIterator(AffineTransform at);
+    PathIterator getPathIterator(AffineTransform at);
 
     /**
      * Returns an iterator object that iterates along the {@code Shape}
@@ -381,5 +381,5 @@ public interface Shape {
      *         a flattened view of the geometry of the  {@code Shape}.
      * @since 1.2
      */
-    public PathIterator getPathIterator(AffineTransform at, double flatness);
+    PathIterator getPathIterator(AffineTransform at, double flatness);
 }

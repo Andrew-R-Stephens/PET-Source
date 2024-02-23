@@ -35,63 +35,77 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/constraintLayout76"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?attr/backgroundColorOnBackground"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout68"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_title"
-                style="?attr/primaryFont_Regular_Auto"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:maxLines="2"
-                android:scaleType="centerInside"
-                android:textColor="?attr/textColorPrimary"
-                app:layout_constraintBottom_toTopOf="@+id/textView_messageDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView_messageDate"
-                style="?attr/primaryFont_Regular_Auto"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/white_M400"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview_title" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_title"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:scaleType="centerInside"
+                    android:text="Test"
+                    android:textSize="24sp"
+                    android:textColor="?attr/textColorBodyEmphasis"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_messageDate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_messageDate"
+                    style="?attr/quaternaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="?attr/textColorBody"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_title" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/constraintLayout68"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout76"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout76"
@@ -99,8 +113,15 @@
 
             <ScrollView
                 android:id="@+id/scrollView4_messageslist"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbarFadeDuration="-1"
+                android:fadeScrollbars="false"
+                android:requiresFadingEdge="vertical"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -109,17 +130,15 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView_messageContent"
+                    style="?attr/quaternaryFont_Bold_Manual"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif-monospace"
                     android:text="@string/app_name"
-                    android:textColor="?attr/textColorBody"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="serif-monospace" />
+                    android:textColor="?attr/textColorBody" />
             </ScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

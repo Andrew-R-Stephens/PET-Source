@@ -64,8 +64,12 @@ public class MissionsFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        if(getContext() != null) {
-            data = new MissionsData(getContext());
+        super.init();
+
+        try {
+            data = new MissionsData(requireContext());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         AppCompatTextView label_alone = view.findViewById(R.id.label_alone);
@@ -82,22 +86,26 @@ public class MissionsFragment extends InvestigationFragment {
         // COLORS
         @ColorInt int color_unselectedItem = Color.LTGRAY, color_selectedItem = Color.RED;
         TypedValue typedValue = new TypedValue();
-        if (getContext() != null && getContext().getTheme() != null) {
-            Resources.Theme theme = getContext().getTheme();
+        try {
+            Resources.Theme theme = requireContext().getTheme();
             theme.resolveAttribute(R.attr.unselectedColor, typedValue, true);
             color_unselectedItem = typedValue.data;
             theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
             color_selectedItem = typedValue.data;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+        try {
+            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
                             Navigation.findNavController(view).popBackStack();
                         }
                     });
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         // OBJECTIVE BUTTONS

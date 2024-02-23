@@ -13,7 +13,9 @@ import com.google.android.gms.ads.AdRequest;
 public class TitlescreenViewModel extends ViewModel {
 
     private final AnimatedGraphicData animationData = new AnimatedGraphicData();
+
     private AdRequest adRequest = null;
+
     private boolean canRefreshFragment = true;
     private int languageSelectedOriginal = -1;
 

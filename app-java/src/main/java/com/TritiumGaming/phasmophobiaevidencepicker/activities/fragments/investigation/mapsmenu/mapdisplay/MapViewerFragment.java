@@ -60,6 +60,8 @@ public class MapViewerFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        super.init();
+
         LinearLayout selectorLayout = view.findViewById(R.id.linearlayout_floorindicators);
 
         AppCompatImageButton button_nextLayer = view.findViewById(R.id.controller_nextLayerButton);
@@ -69,10 +71,11 @@ public class MapViewerFragment extends InvestigationFragment {
 
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
 
+        ConstraintLayout button_help = view.findViewById(R.id.listener_help);
+
         imageDisplay = view.findViewById(R.id.interactiveMapView);
         poiSpinner = view.findViewById(R.id.spinner_poiname);
         layerName = view.findViewById(R.id.textview_floorname);
-        ConstraintLayout button_help = view.findViewById(R.id.listener_help);
 
         if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();

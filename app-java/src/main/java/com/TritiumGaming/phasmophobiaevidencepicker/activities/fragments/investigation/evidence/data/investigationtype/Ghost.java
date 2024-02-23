@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Ghost {
 
-    private InvestigationData investigationData;
+    private final InvestigationData investigationData;
 
     private int id = -1;
     private String name = "NA";

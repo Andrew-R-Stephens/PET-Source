@@ -27,8 +27,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 /** @noinspection CanBeFinal, CanBeFinal */
 final class Order0 extends Curve {
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
     public Order0(double x, double y) {
         super(INCREASING);

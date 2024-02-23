@@ -1340,7 +1340,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 state = APPLY_TRANSLATE;
                 type = TYPE_TRANSLATION;
             }
-            return;
         }
     }
 
@@ -1702,7 +1701,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 this.state = state | APPLY_SCALE;
                 this.type = TYPE_UNKNOWN;
             }
-            return;
         }
     }
 
@@ -1768,7 +1766,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 this.state = state | APPLY_SCALE | APPLY_SHEAR;
                 this.type = TYPE_UNKNOWN;
             }
-            return;
         }
     }
 
@@ -3137,7 +3134,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3252,7 +3248,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3348,7 +3343,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 dstPts[dstOff++] = srcPts[srcOff++];
                 dstPts[dstOff++] = srcPts[srcOff++];
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3444,7 +3438,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 dstPts[dstOff++] = (float) (srcPts[srcOff++]);
                 dstPts[dstOff++] = (float) (srcPts[srcOff++]);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3668,7 +3661,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3825,7 +3817,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
