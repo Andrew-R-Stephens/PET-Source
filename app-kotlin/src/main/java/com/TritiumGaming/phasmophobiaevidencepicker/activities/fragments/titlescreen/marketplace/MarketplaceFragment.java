@@ -3,8 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titles
 import static android.app.Activity.RESULT_OK;
 import static android.view.View.GONE;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -41,7 +39,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.TitlescreenViewModel;

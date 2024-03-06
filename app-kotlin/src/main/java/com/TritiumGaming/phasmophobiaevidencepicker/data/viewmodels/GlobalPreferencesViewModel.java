@@ -8,10 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.ReviewTrackingData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.ColorThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.subsets.FontThemeControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.ReviewTrackingData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl;
 
 import java.util.ArrayList;
 import java.util.HashMap;

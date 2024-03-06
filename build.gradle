@@ -1,36 +1,29 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
 
     ext {
         ndkVersion = '22.1.7171670'
         kotlin_version = '1.9.0'
 
-        compose_version = '1.5.4'
-        compose_ui_version = '1.6.2'
-
-        fragment_version = '1.6.2'
-        work_version = '2.9.0'
-        agp_version = '8.2.2'
-
-        leanback_version = '1.2.0-alpha04'
-        billing_version = '6.1.0'
     }
+
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:$agp_version"
-        classpath 'com.google.gms:google-services:4.4.1'
+        classpath libs.android.toolsBuild.gradle
+        classpath libs.googleGms.services
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
         // Add the Crashlytics Gradle plugin
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
+        classpath libs.firebase.crashlyticsGradle
         // Add the dependency for the Performance Monitoring plugin
-        classpath 'com.google.firebase:perf-plugin:1.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath libs.firebase.perfPlugin
+        classpath libs.kotlin.gradlePlugin
         // Performance Monitoring plugin
     }
 }

@@ -1,18 +1,13 @@
-
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     //id 'kotlin-android'
+
+    // Apply the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
-
-apply plugin: 'com.android.application'
-
-// Apply the Crashlytics Gradle plugin
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.firebase.firebase-perf'
-
 
 def playcoreDir = file('G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk')
 
@@ -95,8 +90,6 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-
-
     lint {
         disable 'RestrictedApi'
     }
@@ -110,131 +103,114 @@ android {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-analytics:21.5.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation libs.firebase.analytics
+    implementation libs.androidx.core.ktx
 
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation libs.android.support.multidex
 
     //noinspection GradleDependency
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'com.google.code.gson:gson:2.10.1'
-
-    //implementation 'com.googlecode.jinahya:ocap-api:1.3.1'
-    //implementation 'com.itextpdf:itextpdf:5.5.13.3'
-
-    /*
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
-            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-        }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
-            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-        }
-    }
-    */
+    implementation libs.kotlin.stdlib
+    implementation libs.google.gson
 
     // PRIMARY
-    implementation "androidx.work:work-runtime:$work_version"
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.11.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation libs.androidx.work.runtime
+    implementation libs.androidx.appcompat.core
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.navigation.fragmentKtx
+    implementation libs.androidx.navigation.uiKtx
+    implementation libs.androidx.cardview.core
+    implementation libs.androidx.legacy.supportV4
+    implementation libs.android.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.testExt.junit
+    androidTestImplementation libs.androidx.espresso.core
 
     // --- Google Credential Manager ----
-    implementation("androidx.credentials:credentials:1.3.0-alpha01")
-    implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha01")
-    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    implementation(libs.androidx.credentials.core)
+    implementation(libs.androidx.credentials.playServicesAuth)
+    implementation libs.firebaseUi.auth
     // Phillip Lackner suggested for OTC (one-tap client)
-    implementation 'com.google.firebase:firebase-auth-ktx:22.3.1'
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    implementation libs.firebase.authKtx
+    implementation libs.android.playServices.auth
     // ----------------------------------
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    //implementation 'com.google.firebase:firebase-auth:22.3.1'
-    implementation 'com.google.firebase:firebase-auth'
-    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation libs.firebase.auth
+    implementation platform(libs.firebase.bom)
     // GOOGLE FIREBASE FIRESTORE
-    implementation("com.google.firebase:firebase-firestore")
+    implementation libs.firebase.firestore
     // GOOGLE BILLING API
-    implementation "com.android.billingclient:billing:$billing_version"
+    implementation libs.android.billing.core
 
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-crashlytics:18.6.2'
-    implementation 'com.google.firebase:firebase-analytics:21.5.1'
-    implementation 'com.google.firebase:firebase-perf:20.5.2'
-
+    implementation libs.firebase.crashlyticsCore
+    implementation libs.firebase.analytics
+    implementation libs.firebase.perfCore
     // GOOGLE ADS
-    implementation 'com.google.android.gms:play-services-ads:22.6.0'
-    implementation 'com.google.android.ump:user-messaging-platform:2.2.0'
+    implementation libs.android.playServices.ads
+    implementation libs.android.ump.core
 
     //GOOGLE GSON
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation libs.google.gson
 
     // IN-APP REVIEWS
     /* This dependency is downloaded from the Google’s Maven repository.
      * So, make sure you also include that repository in your project's build.gradle file.*/
-    implementation 'com.google.android.play:core:1.10.3'
+    implementation libs.android.play.core
     // For Kotlin users also add the Kotlin extensions library for Play Core:
-    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation libs.android.play.coreKtx
     // This dependency is downloaded from the Google’s Maven repository.
     // So, make sure you also include that repository in your project's build.gradle file.
 
     // FRAGMENTS
     // Java language implementation
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    // implementation libs.androidx.fragment
+    implementation libs.androidx.fragmentKtx
 
     // For use with animated gifs
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
+    implementation libs.droidsonroids.gifDrawable
 
     // DO NOT UPDATE THIS -- BREAKING CHANGES
-    implementation 'commons-io:commons-io:2.6'
+    implementation libs.commonsIo.core
 
     /*
         ---- START----
         ANDROIDX LEANBACK
     */
-    implementation "androidx.leanback:leanback:$leanback_version"
+    implementation libs.androidx.leanback.core
     // leanback-preference is an add-on that provides a settings UI for TV apps.
-    implementation "androidx.leanback:leanback-preference:$leanback_version"
+    implementation libs.androidx.leanback.preference
     // leanback-paging is an add-on that simplifies adding paging support to a RecyclerView Adapter.
-    implementation "androidx.leanback:leanback-paging:1.1.0-alpha11"
+    implementation libs.androidx.leanback.paging
     // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
-    implementation "androidx.leanback:leanback-tab:1.1.0-beta01"
+    implementation libs.androidx.leanback.tab
 
     /*
         ---- START----
         ANDROID COMPOSE
     */
-    implementation platform('androidx.compose:compose-bom:2023.10.01')
-    androidTestImplementation platform('androidx.compose:compose-bom:2023.10.01')
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation platform(libs.androidx.compose.bom)
+    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation libs.androidx.composeUi.testJunit4
+    debugImplementation libs.androidx.composeUi.testManifest
 
     // Android Studio Preview support
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation libs.androidx.composeUi.tooling
 
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation libs.androidx.composeUi.core
+    implementation libs.androidx.composeMaterial.core
+    implementation libs.androidx.composeUi.toolingPreview
 
-    implementation 'androidx.activity:activity-compose:1.8.2'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.7.0"
-    implementation "androidx.navigation:navigation-compose:2.7.7"
+    implementation libs.androidx.activityCompose
+    implementation libs.androidx.lifecycle.runtimeKtx
+    implementation libs.androidx.lifecycle.viewmodelCompose
+    implementation libs.androidx.lifecycle.runtimeCompose
+    implementation libs.androidx.navigation.compose
 
-    implementation "io.coil-kt:coil-compose:2.2.2"
+    implementation libs.coilKt.compose
 
     /*
         ----- END -----

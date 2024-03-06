@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -36,7 +35,7 @@ public class BorderTextView extends ConstraintLayout {
     }
 
     public void init(Context context) {
-        inflate(context, R.layout.layout_lebeled_textview, this);
+        inflate(context, R.layout.layout_labeled_textview, this);
     }
 
 }

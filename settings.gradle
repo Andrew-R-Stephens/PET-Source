@@ -1,4 +1,4 @@
 include ':app-java'
+include ':app-kotlin'
 rootProject.name = "PhasmophobiaEvidencePicker"
-include ':app-kotlin'
-include ':app-kotlin'
+//include ':app-kotlin'

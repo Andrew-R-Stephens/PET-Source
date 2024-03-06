@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.AccountDetailsView" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardView_account"
@@ -97,16 +99,20 @@
                     android:id="@+id/label_credits_actual"
                     style="?attr/quaternaryFont_Bold_Manual"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:gravity="start|center_vertical"
                     android:text="0"
                     android:textColor="?attr/textColorBodyEmphasis"
                     android:textSize="24sp"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
                     app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView6"
-                    app:layout_constraintWidth="wrap_content" />
+                    app:layout_constraintWidth="wrap_content"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

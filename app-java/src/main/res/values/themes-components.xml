@@ -102,13 +102,11 @@
     </style>
 
     <style name="NavigationDrawerStyle">
-
         <item name="android:textSize">18sp</item><!-- text size in menu-->
         <item name="textAppearanceListItemSmall">?attr/quaternaryFont_Regular_Manual</item>
         <item name="textAppearanceListItemSecondary">?attr/quaternaryFont_Regular_Manual</item>
         <item name="textAppearanceListItem">?attr/quaternaryFont_Regular_Manual</item>
         <item name="android:textAppearance">?attr/quaternaryFont_Regular_Manual</item>
-
 
         <!-- item size in menu-->
         <item name="android:listPreferredItemHeightSmall">40dp</item>
@@ -121,6 +119,8 @@
         <!-- item padding right in menu-->
         <item name="android:listPreferredItemPaddingRight">8dp</item>
         <item name="listPreferredItemPaddingRight">8dp</item>
+
+        <item name="background">?attr/backgroundColor</item>
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat">

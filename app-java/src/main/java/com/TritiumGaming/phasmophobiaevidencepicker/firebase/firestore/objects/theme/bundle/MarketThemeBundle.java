@@ -1,6 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.persistent.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.MarketplaceItem;
 
 import org.jetbrains.annotations.NotNull;

@@ -47,7 +47,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".activities.TitleScreenActivity"
+            android:name=".activities.mainmenus.MainMenuActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -60,13 +60,13 @@
         </activity>
 
         <activity
-            android:name=".activities.InvestigationActivity"
+            android:name=".activities.investigation.InvestigationActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation">
         </activity>
 
         <activity
-            android:name=".activities.OnboardingActivity"
+            android:name=".activities.onboarding.OnboardingActivity"
             android:theme="@style/Theme.PhasmophobiaEvidenceTool.Onboarding"
             android:configChanges="locale|orientation"
             android:exported="true">
