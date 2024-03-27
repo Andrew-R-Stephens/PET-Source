@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers;
 
+import androidx.annotation.NonNull;
+
 /**
  * ReviewTrackingData class
  *
@@ -85,6 +87,7 @@ public class ReviewTrackingData {
         ||*/ (timesOpened >= TARGET_TIMES_OPENED);
     }
 
+    @NonNull
     public String toString() {
         return "Time Active: " + getTimeActive() + "; Times Opened: " + getTimesOpened() +
                 "; Can Request Review: " + canRequestReview();

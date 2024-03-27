@@ -27,6 +27,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
@@ -488,7 +490,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param Tx the {@code AffineTransform} object to copy
      * @since 1.2
      */
-    public AffineTransform(AffineTransform Tx) {
+    public AffineTransform(@NonNull AffineTransform Tx) {
         this.m00 = Tx.m00;
         this.m10 = Tx.m10;
         this.m01 = Tx.m01;
@@ -538,7 +540,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * the array is greater than 6, the first 6 values are taken.
      * @since 1.2
      */
-    public AffineTransform(float[] flatmatrix) {
+    public AffineTransform(@NonNull float[] flatmatrix) {
         m00 = flatmatrix[0];
         m10 = flatmatrix[1];
         m01 = flatmatrix[2];
@@ -588,7 +590,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * the array is greater than 6, the first 6 values are taken.
      * @since 1.2
      */
-    public AffineTransform(double[] flatmatrix) {
+    public AffineTransform(@NonNull double[] flatmatrix) {
         m00 = flatmatrix[0];
         m10 = flatmatrix[1];
         m01 = flatmatrix[2];
@@ -616,6 +618,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  translation transformation, created with the specified vector.
      * @since 1.2
      */
+    @NonNull
     public static AffineTransform getTranslateInstance(double tx, double ty) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToTranslation(tx, ty);
@@ -640,6 +643,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  transformation, created with the specified angle of rotation.
      * @since 1.2
      */
+    @NonNull
     public static AffineTransform getRotateInstance(double theta) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToRotation(theta);
@@ -681,6 +685,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  rotation.
      * @since 1.2
      */
+    @NonNull
     public static AffineTransform getRotateInstance(double theta,
                                                     double anchorx,
                                                     double anchory)
@@ -710,6 +715,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  coordinates according to the specified rotation vector.
      * @since 1.6
      */
+    @NonNull
     public static AffineTransform getRotateInstance(double vecx, double vecy) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToRotation(vecx, vecy);
@@ -741,6 +747,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  specified rotation vector.
      * @since 1.6
      */
+    @NonNull
     public static AffineTransform getRotateInstance(double vecx,
                                                     double vecy,
                                                     double anchorx,
@@ -765,6 +772,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  coordinates by the specified number of quadrants.
      * @since 1.6
      */
+    @NonNull
     public static AffineTransform getQuadrantRotateInstance(int numquadrants) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToQuadrantRotation(numquadrants);
@@ -790,6 +798,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  specified anchor point.
      * @since 1.6
      */
+    @NonNull
     public static AffineTransform getQuadrantRotateInstance(int numquadrants,
                                                             double anchorx,
                                                             double anchory)
@@ -815,6 +824,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  coordinates by the specified factors.
      * @since 1.2
      */
+    @NonNull
     public static AffineTransform getScaleInstance(double sx, double sy) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToScale(sx, sy);
@@ -837,6 +847,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *  coordinates by the specified multipliers.
      * @since 1.2
      */
+    @NonNull
     public static AffineTransform getShearInstance(double shx, double shy) {
         AffineTransform Tx = new AffineTransform();
         Tx.setToShear(shx, shy);
@@ -1151,7 +1162,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @see #getTranslateY
      * @since 1.2
      */
-    public void getMatrix(double[] flatmatrix) {
+    public void getMatrix(@NonNull double[] flatmatrix) {
         flatmatrix[0] = m00;
         flatmatrix[1] = m10;
         flatmatrix[2] = m01;
@@ -1340,7 +1351,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 state = APPLY_TRANSLATE;
                 type = TYPE_TRANSLATION;
             }
-            return;
         }
     }
 
@@ -1702,7 +1712,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 this.state = state | APPLY_SCALE;
                 this.type = TYPE_UNKNOWN;
             }
-            return;
         }
     }
 
@@ -1768,7 +1777,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 this.state = state | APPLY_SCALE | APPLY_SHEAR;
                 this.type = TYPE_UNKNOWN;
             }
-            return;
         }
     }
 
@@ -2191,7 +2199,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * copy the transform
      * @since 1.2
      */
-    public void setTransform(AffineTransform Tx) {
+    public void setTransform(@NonNull AffineTransform Tx) {
         this.m00 = Tx.m00;
         this.m10 = Tx.m10;
         this.m01 = Tx.m01;
@@ -2248,7 +2256,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @since 1.2
      */
     @SuppressWarnings("fallthrough")
-    public void concatenate(AffineTransform Tx) {
+    public void concatenate(@NonNull AffineTransform Tx) {
         double M0, M1;
         double T00, T01, T10, T11;
         double T02, T12;
@@ -2457,7 +2465,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @since 1.2
      */
     @SuppressWarnings("fallthrough")
-    public void preConcatenate(AffineTransform Tx) {
+    public void preConcatenate(@NonNull AffineTransform Tx) {
         double M0, M1;
         double T00, T01, T10, T11;
         double T02, T12;
@@ -2672,6 +2680,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * if the matrix cannot be inverted.
      * @since 1.2
      */
+    @NonNull
     public AffineTransform createInverse()
         throws NoninvertibleTransformException
     {
@@ -2897,7 +2906,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * {@code ptSrc} and storing the result in {@code ptDst}.
      * @since 1.2
      */
-    public Point2D transform(Point2D ptSrc, Point2D ptDst) {
+    @NonNull
+    public Point2D transform(Point2D ptSrc, @Nullable Point2D ptDst) {
         if (ptDst == null) {
             if (ptSrc instanceof Point2D.Double) {
                 ptDst = new Point2D.Double();
@@ -3049,8 +3059,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param numPts the number of points to be transformed
      * @since 1.2
      */
-    public void transform(float[] srcPts, int srcOff,
-                          float[] dstPts, int dstOff,
+    public void transform(@NonNull float[] srcPts, int srcOff,
+                          @NonNull float[] dstPts, int dstOff,
                           int numPts) {
         double M00, M01, M02, M10, M11, M12;    // For caching
         if (dstPts == srcPts &&
@@ -3137,7 +3147,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3164,8 +3173,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param numPts the number of point objects to be transformed
      * @since 1.2
      */
-    public void transform(double[] srcPts, int srcOff,
-                          double[] dstPts, int dstOff,
+    public void transform(@NonNull double[] srcPts, int srcOff,
+                          @NonNull double[] dstPts, int dstOff,
                           int numPts) {
         double M00, M01, M02, M10, M11, M12;    // For caching
         if (dstPts == srcPts &&
@@ -3252,7 +3261,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3348,7 +3356,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 dstPts[dstOff++] = srcPts[srcOff++];
                 dstPts[dstOff++] = srcPts[srcOff++];
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3444,7 +3451,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 dstPts[dstOff++] = (float) (srcPts[srcOff++]);
                 dstPts[dstOff++] = (float) (srcPts[srcOff++]);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3469,8 +3475,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *                                         inverted.
      * @since 1.2
      */
+    @NonNull
     @SuppressWarnings("fallthrough")
-    public Point2D inverseTransform(Point2D ptSrc, Point2D ptDst)
+    public Point2D inverseTransform(Point2D ptSrc, @Nullable Point2D ptDst)
         throws NoninvertibleTransformException
     {
         if (ptDst == null) {
@@ -3555,8 +3562,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *                                         inverted.
      * @since 1.2
      */
-    public void inverseTransform(double[] srcPts, int srcOff,
-                                 double[] dstPts, int dstOff,
+    public void inverseTransform(@NonNull double[] srcPts, int srcOff,
+                                 @NonNull double[] dstPts, int dstOff,
                                  int numPts)
         throws NoninvertibleTransformException
     {
@@ -3668,7 +3675,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3699,7 +3705,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * transformation.
      * @since 1.2
      */
-    public Point2D deltaTransform(Point2D ptSrc, Point2D ptDst) {
+    @NonNull
+    public Point2D deltaTransform(Point2D ptSrc, @Nullable Point2D ptDst) {
         if (ptDst == null) {
             if (ptSrc instanceof Point2D.Double) {
                 ptDst = new Point2D.Double();
@@ -3767,8 +3774,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * transformed
      * @since 1.2
      */
-    public void deltaTransform(double[] srcPts, int srcOff,
-                               double[] dstPts, int dstOff,
+    public void deltaTransform(@NonNull double[] srcPts, int srcOff,
+                               @NonNull double[] dstPts, int dstOff,
                                int numPts) {
         double M00, M01, M10, M11;      // For caching
         if (dstPts == srcPts &&
@@ -3825,7 +3832,6 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff,
                                  numPts * 2);
             }
-            return;
         }
 
         /* NOTREACHED */
@@ -3841,7 +3847,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * of the transformed {@code Shape}, or null if {@code pSrc} is null.
      * @since 1.2
      */
-    public Shape createTransformedShape(Shape pSrc) {
+    @Nullable
+    public Shape createTransformedShape(@Nullable Shape pSrc) {
         if (pSrc == null) {
             return null;
         }
@@ -3861,6 +3868,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * {@code Object}.
      * @since 1.2
      */
+    @NonNull
     public String toString() {
         return ("AffineTransform[["
                 + _matround(m00) + ", "
@@ -3888,6 +3896,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * {@code AffineTransform} object.
      * @since 1.2
      */
+    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Object clone() {
         try {
@@ -3952,7 +3961,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param  s the {@code ObjectOutputStream} to write
      * @throws IOException if an I/O error occurs
      */
-    private void writeObject(java.io.ObjectOutputStream s)
+    private void writeObject(@NonNull java.io.ObjectOutputStream s)
         throws java.io.IOException
     {
         s.defaultWriteObject();
@@ -3966,7 +3975,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *         not be found
      * @throws IOException if an I/O error occurs
      */
-    private void readObject(java.io.ObjectInputStream s)
+    private void readObject(@NonNull java.io.ObjectInputStream s)
         throws java.lang.ClassNotFoundException, java.io.IOException
     {
         s.defaultReadObject();

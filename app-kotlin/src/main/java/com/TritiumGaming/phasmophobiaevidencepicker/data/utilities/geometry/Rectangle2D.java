@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -179,7 +181,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
-        public void setRect(Rectangle2D r) {
+        public void setRect(@NonNull Rectangle2D r) {
             this.x = (float) r.getX();
             this.y = (float) r.getY();
             this.width = (float) r.getWidth();
@@ -223,6 +225,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D getBounds2D() {
             return new Float(x, y, width, height);
         }
@@ -231,6 +234,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D createIntersection(Rectangle2D r) {
             Rectangle2D dest;
             if (r instanceof Float) {
@@ -246,6 +250,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D createUnion(Rectangle2D r) {
             Rectangle2D dest;
             if (r instanceof Float) {
@@ -264,6 +269,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@code Rectangle2D}.
          * @since 1.2
          */
+        @NonNull
         public String toString() {
             return getClass().getName()
                 + "[x=" + x +
@@ -393,7 +399,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
-        public void setRect(Rectangle2D r) {
+        public void setRect(@NonNull Rectangle2D r) {
             this.x = r.getX();
             this.y = r.getY();
             this.width = r.getWidth();
@@ -427,6 +433,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D getBounds2D() {
             return new Double(x, y, width, height);
         }
@@ -435,7 +442,8 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
-        public Rectangle2D createIntersection(Rectangle2D r) {
+        @NonNull
+        public Rectangle2D createIntersection(@NonNull Rectangle2D r) {
             Rectangle2D dest = new Rectangle2D.Double();
             Rectangle2D.intersect(this, r, dest);
             return dest;
@@ -445,7 +453,8 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@inheritDoc}
          * @since 1.2
          */
-        public Rectangle2D createUnion(Rectangle2D r) {
+        @NonNull
+        public Rectangle2D createUnion(@NonNull Rectangle2D r) {
             Rectangle2D dest = new Rectangle2D.Double();
             Rectangle2D.union(this, r, dest);
             return dest;
@@ -458,6 +467,7 @@ public abstract class Rectangle2D extends RectangularShape {
          * {@code Rectangle2D}.
          * @since 1.2
          */
+        @NonNull
         public String toString() {
             return getClass().getName()
                 + "[x=" + x +
@@ -507,7 +517,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * @param r the specified {@code Rectangle2D}
      * @since 1.2
      */
-    public void setRect(Rectangle2D r) {
+    public void setRect(@NonNull Rectangle2D r) {
         setRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -566,7 +576,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code false} otherwise.
      * @since 1.2
      */
-    public boolean intersectsLine(Line2D l) {
+    public boolean intersectsLine(@NonNull Line2D l) {
         return intersectsLine(l.getX1(), l.getY1(), l.getX2(), l.getY2());
     }
 
@@ -603,7 +613,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * @see #OUT_BOTTOM
      * @since 1.2
      */
-    public int outcode(Point2D p) {
+    public int outcode(@NonNull Point2D p) {
         return outcode(p.getX(), p.getY());
     }
 
@@ -627,6 +637,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@inheritDoc}
      * @since 1.2
      */
+    @NonNull
     public Rectangle2D getBounds2D() {
         return (Rectangle2D) clone();
     }
@@ -705,9 +716,9 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code src2}
      * @since 1.2
      */
-    public static void intersect(Rectangle2D src1,
-                                 Rectangle2D src2,
-                                 Rectangle2D dest) {
+    public static void intersect(@NonNull Rectangle2D src1,
+                                 @NonNull Rectangle2D src2,
+                                 @NonNull Rectangle2D dest) {
         double x1 = Math.max(src1.getMinX(), src2.getMinX());
         double y1 = Math.max(src1.getMinY(), src2.getMinY());
         double x2 = Math.min(src1.getMaxX(), src2.getMaxX());
@@ -744,9 +755,9 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code src2}
      * @since 1.2
      */
-    public static void union(Rectangle2D src1,
-                             Rectangle2D src2,
-                             Rectangle2D dest) {
+    public static void union(@NonNull Rectangle2D src1,
+                             @NonNull Rectangle2D src2,
+                             @NonNull Rectangle2D dest) {
         double x1 = Math.min(src1.getMinX(), src2.getMinX());
         double y1 = Math.min(src1.getMinY(), src2.getMinY());
         double x2 = Math.max(src1.getMaxX(), src2.getMaxX());
@@ -799,7 +810,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code Rectangle2D}.
      * @since 1.2
      */
-    public void add(Point2D pt) {
+    public void add(@NonNull Point2D pt) {
         add(pt.getX(), pt.getY());
     }
 
@@ -811,7 +822,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code Rectangle2D}.
      * @since 1.2
      */
-    public void add(Rectangle2D r) {
+    public void add(@NonNull Rectangle2D r) {
         double x1 = Math.min(getMinX(), r.getMinX());
         double x2 = Math.max(getMaxX(), r.getMaxX());
         double y1 = Math.min(getMinY(), r.getMinY());
@@ -835,6 +846,7 @@ public abstract class Rectangle2D extends RectangularShape {
      *          {@code Rectangle2D}, one segment at a time.
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at) {
         return new RectIterator(this, at);
     }
@@ -860,6 +872,7 @@ public abstract class Rectangle2D extends RectangularShape {
      *          {@code Rectangle2D}, one segment at a time.
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return new RectIterator(this, at);
     }

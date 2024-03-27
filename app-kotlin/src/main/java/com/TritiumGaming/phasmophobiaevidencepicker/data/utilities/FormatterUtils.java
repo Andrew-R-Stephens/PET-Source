@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
@@ -18,7 +19,8 @@ import java.text.DecimalFormat;
 
 public class FormatterUtils {
 
-    public static String millisToTime(String format, long millis) {
+    @NonNull
+    public static String millisToTime(@NonNull String format, long millis) {
 
         long minutes = millis / 60L;
         long seconds = millis % 60L;
@@ -29,10 +31,12 @@ public class FormatterUtils {
 
     }
 
+    @NonNull
     public static String wrapCData(String raw) {
         return String.format("%s%s%s", "<![CDATA[", raw, "]]>");
     }
 
+    @NonNull
     public static SpannableString obfuscateEmailSpannable(@NotNull String accountEmail,
                                                           @ColorInt int obfuscationColor) {
 

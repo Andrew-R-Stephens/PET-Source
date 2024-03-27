@@ -22,7 +22,8 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.MarketplaceListLayout;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItem;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables;
@@ -190,8 +191,8 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
     // Google Billing Library
     private final PurchasesUpdatedListener purchasesUpdatedListener = this::handlePendingPurchases;
 
-    private void handlePendingPurchases(BillingResult billingResult,
-                                        List<Purchase> list) {
+    private void handlePendingPurchases(@NonNull BillingResult billingResult,
+                                        @Nullable List<Purchase> list) {
         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
                 list != null && !list.isEmpty()) {
 
@@ -229,7 +230,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
         }
     }
 
-    private void handlePurchase(Purchase purchase) {
+    private void handlePurchase(@NonNull Purchase purchase) {
 
         ConsumeParams consumeParams =
                 ConsumeParams.newBuilder()
@@ -408,7 +409,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
         }
     }
 
-    private void buildMtxProductsList(List<ProductDetails> productDetailsList) {
+    private void buildMtxProductsList(@NonNull List<ProductDetails> productDetailsList) {
 
         MarketplaceListLayout marketplaceList =
                 new MarketplaceListLayout(getContext(), null);
@@ -420,7 +421,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
             Log.d("Billing", "Adding " + mtxItem);
 
             try {
-                MarketplaceMtxView marketplaceMtxView =
+                BillableItemView marketplaceMtxView =
                         buildMarketplaceMtxView(mtxItem);
 
                 list_mtx_items.addView(marketplaceMtxView);
@@ -438,9 +439,9 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
     }
 
     @NonNull
-    private MarketplaceMtxView buildMarketplaceMtxView(MarketplaceMtxItem mtxItem) {
-        MarketplaceMtxView marketplaceMtxView =
-            new MarketplaceMtxView(requireContext(), null);
+    private BillableItemView buildMarketplaceMtxView(MarketplaceMtxItem mtxItem) {
+        BillableItemView marketplaceMtxView =
+            new BillableItemView(requireContext(), null);
 
         marketplaceMtxView.setBillableItem(mtxItem);
         marketplaceMtxView.setBuyButtonListener(v -> {

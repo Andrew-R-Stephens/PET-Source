@@ -7,6 +7,9 @@ import static java.lang.Math.ulp;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -63,6 +66,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Float(x1, y1);
         }
@@ -78,6 +82,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlP1() {
             return new Point2D.Float(ctrlx1, ctrly1);
         }
@@ -93,6 +98,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlP2() {
             return new Point2D.Float(ctrlx2, ctrly2);
         }
@@ -108,6 +114,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Float(x2, y2);
         }
@@ -145,6 +152,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Rectangle2D getBounds2D() {
             float left   = Math.min(Math.min(x1, x2),
                                     Math.min(ctrlx1, ctrlx2));
@@ -212,6 +220,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Double(x1, y1);
         }
@@ -227,6 +236,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlP1() {
             return new Point2D.Double(ctrlx1, ctrly1);
         }
@@ -242,6 +252,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlP2() {
             return new Point2D.Double(ctrlx2, ctrly2);
         }
@@ -257,6 +268,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Double(x2, y2);
         }
@@ -278,6 +290,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Rectangle2D getBounds2D() {
             double left   = Math.min(Math.min(x1, x2),
                                      Math.min(ctrlx1, ctrlx2));
@@ -342,29 +355,29 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                                   double x2, double y2);
 
 
-    public void setCurve(double[] coords, int offset) {
-        setCurve(coords[offset + 0], coords[offset + 1],
+    public void setCurve(@NonNull double[] coords, int offset) {
+        setCurve(coords[offset], coords[offset + 1],
                  coords[offset + 2], coords[offset + 3],
                  coords[offset + 4], coords[offset + 5],
                  coords[offset + 6], coords[offset + 7]);
     }
 
 
-    public void setCurve(Point2D p1, Point2D cp1, Point2D cp2, Point2D p2) {
+    public void setCurve(@NonNull Point2D p1, @NonNull Point2D cp1, @NonNull Point2D cp2, @NonNull Point2D p2) {
         setCurve(p1.getX(), p1.getY(), cp1.getX(), cp1.getY(),
                  cp2.getX(), cp2.getY(), p2.getX(), p2.getY());
     }
 
 
-    public void setCurve(Point2D[] pts, int offset) {
-        setCurve(pts[offset + 0].getX(), pts[offset + 0].getY(),
+    public void setCurve(@NonNull Point2D[] pts, int offset) {
+        setCurve(pts[offset].getX(), pts[offset].getY(),
                  pts[offset + 1].getX(), pts[offset + 1].getY(),
                  pts[offset + 2].getX(), pts[offset + 2].getY(),
                  pts[offset + 3].getX(), pts[offset + 3].getY());
     }
 
 
-    public void setCurve(CubicCurve2D c) {
+    public void setCurve(@NonNull CubicCurve2D c) {
         setCurve(c.getX1(), c.getY1(), c.getCtrlX1(), c.getCtrlY1(),
                  c.getCtrlX2(), c.getCtrlY2(), c.getX2(), c.getY2());
     }
@@ -389,16 +402,16 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public static double getFlatnessSq(double[] coords, int offset) {
-        return getFlatnessSq(coords[offset + 0], coords[offset + 1],
+    public static double getFlatnessSq(@NonNull double[] coords, int offset) {
+        return getFlatnessSq(coords[offset], coords[offset + 1],
                              coords[offset + 2], coords[offset + 3],
                              coords[offset + 4], coords[offset + 5],
                              coords[offset + 6], coords[offset + 7]);
     }
 
 
-    public static double getFlatness(double[] coords, int offset) {
-        return getFlatness(coords[offset + 0], coords[offset + 1],
+    public static double getFlatness(@NonNull double[] coords, int offset) {
+        return getFlatness(coords[offset], coords[offset + 1],
                            coords[offset + 2], coords[offset + 3],
                            coords[offset + 4], coords[offset + 5],
                            coords[offset + 6], coords[offset + 7]);
@@ -422,9 +435,9 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public static void subdivide(CubicCurve2D src,
-                                 CubicCurve2D left,
-                                 CubicCurve2D right) {
+    public static void subdivide(@NonNull CubicCurve2D src,
+                                 @Nullable CubicCurve2D left,
+                                 @Nullable CubicCurve2D right) {
         double x1 = src.getX1();
         double y1 = src.getY1();
         double ctrlx1 = src.getCtrlX1();
@@ -456,10 +469,10 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public static void subdivide(double[] src, int srcoff,
-                                 double[] left, int leftoff,
-                                 double[] right, int rightoff) {
-        double x1 = src[srcoff + 0];
+    public static void subdivide(@NonNull double[] src, int srcoff,
+                                 @Nullable double[] left, int leftoff,
+                                 @Nullable double[] right, int rightoff) {
+        double x1 = src[srcoff];
         double y1 = src[srcoff + 1];
         double ctrlx1 = src[srcoff + 2];
         double ctrly1 = src[srcoff + 3];
@@ -468,7 +481,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         double x2 = src[srcoff + 6];
         double y2 = src[srcoff + 7];
         if (left != null) {
-            left[leftoff + 0] = x1;
+            left[leftoff] = x1;
             left[leftoff + 1] = y1;
         }
         if (right != null) {
@@ -496,7 +509,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
             left[leftoff + 7] = centery;
         }
         if (right != null) {
-            right[rightoff + 0] = centerx;
+            right[rightoff] = centerx;
             right[rightoff + 1] = centery;
             right[rightoff + 2] = ctrlx2;
             right[rightoff + 3] = ctrly2;
@@ -506,12 +519,12 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public static int solveCubic(double[] eqn) {
+    public static int solveCubic(@NonNull double[] eqn) {
         return solveCubic(eqn, eqn);
     }
 
 
-    public static int solveCubic(double[] eqn, double[] res) {
+    public static int solveCubic(@NonNull double[] eqn, @NonNull double[] res) {
         // From Graphics Gems:
         // http://tog.acm.org/resources/GraphicsGems/gems/Roots3And4.c
         final double d = eqn[3];
@@ -604,7 +617,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     // computation of res might have missed, so this method should only be
     // used when the roots in res have been computed using an algorithm
     // that never underestimates the number of roots (such as solveCubic above)
-    private static int fixRoots(double[] eqn, double[] res, int num) {
+    private static int fixRoots(@NonNull double[] eqn, @NonNull double[] res, int num) {
         double[] intervals = {eqn[1], 2*eqn[2], 3*eqn[3]};
         int critCount = QuadCurve2D.solveQuadratic(intervals, intervals);
         if (critCount == 2 && intervals[0] == intervals[1]) {
@@ -704,7 +717,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
     // use newton's method.
-    private static double refineRootWithHint(double[] eqn, double min, double max, double t) {
+    private static double refineRootWithHint(@NonNull double[] eqn, double min, double max, double t) {
         if (!inInterval(t, min, max)) {
             return t;
         }
@@ -728,7 +741,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         return origt;
     }
 
-    private static double bisectRootWithHint(double[] eqn, double x0, double xe, double hint) {
+    private static double bisectRootWithHint(@NonNull double[] eqn, double x0, double xe, double hint) {
         double delta1 = Math.min(abs(hint - x0) / 64, 0.0625);
         double delta2 = Math.min(abs(hint - xe) / 64, 0.0625);
         double x02 = hint - delta1;
@@ -758,7 +771,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         return bisectRoot(eqn, x0, xe);
     }
 
-    private static double bisectRoot(double[] eqn, double x0, double xe) {
+    private static double bisectRoot(@NonNull double[] eqn, double x0, double xe) {
         double fx0 = solveEqn(eqn, 3, x0);
         double m = x0 + (xe - x0) / 2;
         while (m != x0 && m != xe) {
@@ -794,7 +807,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         return (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
     }
 
-    private static double solveEqn(double[] eqn, int order, double t) {
+    private static double solveEqn(@NonNull double[] eqn, int order, double t) {
         double v = eqn[order];
         while (--order >= 0) {
             v = v * t + eqn[order];
@@ -810,7 +823,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
      * long to include here.
      * Precondition: eqn must represent a cubic polynomial
      */
-    private static double getRootUpperBound(double[] eqn) {
+    private static double getRootUpperBound(@NonNull double[] eqn) {
         double d = eqn[3];
         double a = eqn[2];
         double b = eqn[1];
@@ -849,7 +862,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean contains(Point2D p) {
+    public boolean contains(@NonNull Point2D p) {
         return contains(p.getX(), p.getY());
     }
 
@@ -870,7 +883,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean intersects(Rectangle2D r) {
+    public boolean intersects(@NonNull Rectangle2D r) {
         return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -908,7 +921,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean contains(Rectangle2D r) {
+    public boolean contains(@NonNull Rectangle2D r) {
         return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -918,16 +931,19 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
     }
 
 
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at) {
         return new CubicIterator(this, at);
     }
 
 
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return new FlatteningPathIterator(getPathIterator(at), flatness);
     }
 
 
+    @NonNull
     public Object clone() {
         try {
             return super.clone();

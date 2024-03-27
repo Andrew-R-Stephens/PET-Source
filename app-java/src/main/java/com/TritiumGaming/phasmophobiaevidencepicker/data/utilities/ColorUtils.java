@@ -6,6 +6,7 @@ import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
 
 public class ColorUtils {
 
@@ -49,6 +50,7 @@ public class ColorUtils {
         return blendARGB(endColor, startColor, ratio);
     }
 
+    @NonNull
     public static String intToHex(int color) {
         if(String.valueOf(color).length() < 6) { return "#FFFFFF"; }
         return String.format("#%06X", 0xFFFFFF & color);

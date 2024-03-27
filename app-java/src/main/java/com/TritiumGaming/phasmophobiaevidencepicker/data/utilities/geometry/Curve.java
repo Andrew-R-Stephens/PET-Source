@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.util.Vector;
 
 /** @noinspection CanBeFinal*/
@@ -10,11 +12,11 @@ public abstract class Curve {
 
     protected int direction;
 
-    public static void insertMove(Vector<Curve> curves, double x, double y) {
+    public static void insertMove(@NonNull Vector<Curve> curves, double x, double y) {
         curves.add(new Order0(x, y));
     }
 
-    public static void insertLine(Vector<Curve> curves,
+    public static void insertLine(@NonNull Vector<Curve> curves,
                                   double x0, double y0,
                                   double x1, double y1)
     {
@@ -33,7 +35,7 @@ public abstract class Curve {
 
     public static void insertQuad(Vector<Curve> curves,
                                   double x0, double y0,
-                                  double[] coords)
+                                  @NonNull double[] coords)
     {
         double y1 = coords[3];
         if (y0 > y1) {
@@ -55,7 +57,7 @@ public abstract class Curve {
 
     public static void insertCubic(Vector<Curve> curves,
                                    double x0, double y0,
-                                   double[] coords)
+                                   @NonNull double[] coords)
     {
         double y1 = coords[5];
         if (y0 > y1) {
@@ -78,7 +80,7 @@ public abstract class Curve {
     }
 
 
-    public static int pointCrossingsForPath(PathIterator pi,
+    public static int pointCrossingsForPath(@NonNull PathIterator pi,
                                             double px, double py)
     {
         if (pi.isDone()) {
@@ -267,7 +269,7 @@ public abstract class Curve {
     public static final int RECT_INTERSECTS = 0x80000000;
 
 
-    public static int rectCrossingsForPath(PathIterator pi,
+    public static int rectCrossingsForPath(@NonNull PathIterator pi,
                                            double rxmin, double rymin,
                                            double rxmax, double rymax)
     {
@@ -634,6 +636,7 @@ public abstract class Curve {
         return Double.longBitsToDouble(Double.doubleToLongBits(v)+1);
     }
 
+    @NonNull
     public String toString() {
         return ("Curve["+
                 getOrder()+", "+
@@ -644,6 +647,7 @@ public abstract class Curve {
                 "]");
     }
 
+    @NonNull
     public String controlPointString() {
         return "";
     }
@@ -681,7 +685,7 @@ public abstract class Curve {
         return 0;
     }
 
-    public boolean accumulateCrossings(Crossings c) {
+    public boolean accumulateCrossings(@NonNull Crossings c) {
         double xhi = c.getXHi();
         if (getXMin() >= xhi) {
             return false;
@@ -747,7 +751,7 @@ public abstract class Curve {
     public abstract Curve getReversedCurve();
     public abstract Curve getSubCurve(double ystart, double yend, int dir);
 
-    public int compareTo(Curve that, double[] yrange) {
+    public int compareTo(@NonNull Curve that, @NonNull double[] yrange) {
         /*
         System.out.println(this+".compareTo("+that+")");
         System.out.println("target range = "+yrange[0]+"=>"+yrange[1]);
@@ -911,7 +915,7 @@ public abstract class Curve {
 
     public static final double TMIN = 1E-3;
 
-    public boolean findIntersect(Curve that, double[] yrange, double ymin,
+    public boolean findIntersect(@NonNull Curve that, double[] yrange, double ymin,
                                  int slevel, int tlevel,
                                  double s0, double xs0, double ys0,
                                  double s1, double xs1, double ys1,

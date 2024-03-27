@@ -23,6 +23,10 @@
         <!-- -->
     </style>
 
+    <style name="Special" parent="Skin">
+        <!-- -->
+    </style>
+
 
 
     <!-- Prestiges -->
@@ -38,6 +42,7 @@
         <item name="h">@color/orange_M950</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M150</item>
         <item name="theme_coreColor_1">@color/orange_M150</item>
         <item name="theme_coreColor_2">@color/orange_M300</item>
         <item name="theme_coreColor_3">@color/orange_M900</item>
@@ -74,8 +79,7 @@
         <item name="light_active">@color/orange_M150</item>
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/orange_M300</item>
-        <item name="inboxNotification">@color/orange_M150</item>
+        <item name="switchColorOn">@color/orange_M300</item>
         <item name="strikethroughColor">@color/orange_M300</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M150</item>
@@ -111,6 +115,9 @@
         <item name="navigationFooterIcon">#818180</item>
         <item name="navigationFooterIconAlt">@color/orange_M150</item>
 
+        <item name="buttonFilterOnPrimary">@color/white_M50</item>
+        <item name="inboxNotification">@color/orange_M150</item>
+
     </style>
 
 
@@ -125,6 +132,7 @@
         <item name="h">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/purple_M75</item>
         <item name="theme_coreColor_1">@color/purple_M75</item>
         <item name="theme_coreColor_2">@color/purple_M75</item>
         <item name="theme_coreColor_3">@color/purple_M525</item>
@@ -161,8 +169,9 @@
         <item name="light_active">@color/purple_M75</item>
         <item name="light_inactive">#6689114F</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/purple_M75</item>
+        <item name="switchColorOn">@color/purple_M75</item>
         <item name="inboxNotification">@color/purple_M75</item>
+        <item name="buttonFilterOnPrimary">@color/white_M300</item>
         <item name="strikethroughColor">@color/purple_M525</item>
         <item name="circleColor">@color/purple_M75</item>
         <item name="selectedColor">@color/purple_M75</item>
@@ -197,6 +206,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
 
+
         <!--
         <item name="textColorPrimary">@color/purple_M250</item>
         <item name="textColorSecondary">@color/purple_M300</item>
@@ -207,7 +217,7 @@
         <item name="light_inactive">@color/purple_M50_A40</item>
         <item name="light_off">@color/white_M600</item>
         <item name="switchColor">@color/purple_M300</item>
-        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="filterColorOnPrimary">@color/purple_M75</item>
         <item name="strikethroughColor">@color/purple_M300</item>
         <item name="circleColor">@color/purple</item>
         <item name="selectedColor">@color/purple_M75</item>
@@ -245,6 +255,7 @@
         <item name="f">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M10</item>
         <item name="theme_coreColor_1">@color/orange_M20</item>
         <item name="theme_coreColor_2">@color/orange_M10</item>
         <item name="theme_coreColor_3">@color/orange</item>
@@ -281,8 +292,8 @@
         <item name="light_active">@color/orange</item>
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/orange_M510</item>
-        <item name="switchColor">@color/orange_M10</item>
-        <item name="inboxNotification">@color/orange_M10</item>
+        <item name="switchColorOn">@color/orange_M10</item>
+        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="strikethroughColor">@color/orange_M510</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M10</item>
@@ -319,6 +330,8 @@
 
         <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
 
+       <item name="inboxNotification">@color/orange_M10</item>
+
     </style>
 
 
@@ -334,6 +347,7 @@
         <item name="k">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M25</item>
         <item name="theme_coreColor_1">@color/white_M20</item>
         <item name="theme_coreColor_2">@color/green_M25</item>
         <item name="theme_coreColor_3">@color/green_M525</item>
@@ -370,8 +384,8 @@
         <item name="light_active">@color/green_M25</item>
         <item name="light_inactive">@color/green_M525</item>
         <item name="light_off">#2E332F</item>
-        <item name="switchColor">@color/green_M25</item>
-        <item name="inboxNotification">@color/green_M25</item>
+        <item name="switchColorOn">@color/green_M25</item>
+        <item name="buttonFilterOnPrimary">@color/white_M20</item>
         <item name="strikethroughColor">@color/white_M300</item>
         <item name="circleColor">@color/green_M25</item>
         <item name="selectedColor">@color/green_M25</item>
@@ -406,6 +420,8 @@
         <item name="navigationFooterIconAlt">@color/green_M25</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0F100F</item>
+
+       <item name="inboxNotification">@color/green_M25</item>
 
         <!--
         <item name="a">@color/white_M20</item>
@@ -447,7 +463,7 @@
         <item name="light_inactive">@color/green_M525</item>
         <item name="light_off">@color/green_M825</item>
         <item name="switchColor">@color/purple_M75</item>
-        <item name="inboxNotification">@color/purple_M75</item>
+        <item name="filterColorOnPrimary">@color/purple_M75</item>
         <item name="strikethroughColor">?attr/negativeSelColor</item>
         <item name="circleColor">?attr/positiveSelColor</item>
         <item name="selectedColor">@color/green_M25</item>
@@ -489,6 +505,7 @@
         <item name="k">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M375</item>
         <item name="theme_coreColor_1">@color/red_M375</item>
         <item name="theme_coreColor_2">#91100C</item>
         <item name="theme_coreColor_3">#5E0D0B</item>
@@ -525,8 +542,8 @@
         <item name="light_active">@color/red_M375</item>
         <item name="light_inactive">#5E0D0B</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/red_M375</item>
-        <item name="inboxNotification">@color/red_M375</item>
+        <item name="switchColorOn">@color/red_M375</item>
+        <item name="buttonFilterOnPrimary">#E0E0E0</item>
         <item name="strikethroughColor">#5E0D0B</item>
         <item name="circleColor">@color/red_M375</item>
         <item name="selectedColor">@color/red_M375</item>
@@ -536,9 +553,9 @@
         <item name="neutralSelColor">@color/white_M600</item>
         <item name="negativeSelColor">#ABABAB</item>
 
-        <item name="mapPoiFillColor">#1A91100C</item>
-        <item name="mapRoomBorderColor">#91100C</item>
-        <item name="mapRoomFillColor">#BF91100C</item>
+        <item name="mapPoiFillColor">#BF91100C</item>
+        <item name="mapRoomBorderColor">#8091100C</item>
+        <item name="mapRoomFillColor">#1A91100C</item>
 
         <item name="progressBarColorStart">#E0E0E0</item>
         <item name="progressBarColorEnd">@color/red_M375</item>
@@ -561,8 +578,9 @@
         <item name="navigationFooterIcon">@color/white_M600</item>
         <item name="navigationFooterIconAlt">@color/red_M375</item>
 
-
         <item name="backgroundColor_mapviewOverlay">#BF050C04</item>
+
+       <item name="inboxNotification">@color/red_M375</item>
 
     </style>
 
@@ -583,6 +601,7 @@
         <item name="m">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M850</item>
         <item name="theme_coreColor_1">@color/green_M150</item>
         <item name="theme_coreColor_2">#80994D</item>
         <item name="theme_coreColor_3">@color/green_M850</item>
@@ -599,7 +618,7 @@
         <item name="foregroundColor">#FEFEFE</item>
         <item name="middlegroundColor">#C9CCC8</item>
         <item name="backgroundColor" >#070C05</item>
-        <item name="backgroundColorOnBackground" >@color/black_M50</item>
+        <item name="backgroundColorOnBackground" >#0F1B0A</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#070C05</item>
@@ -619,8 +638,8 @@
         <item name="light_active">@color/green_M150</item>
         <item name="light_inactive">#80994D</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/green_M150</item>
-        <item name="inboxNotification">@color/green_M150</item>
+        <item name="switchColorOn">@color/green_M150</item>
+        <item name="buttonFilterOnPrimary">#A0B17B</item>
         <item name="strikethroughColor">#A0B17B</item>
         <item name="circleColor">@color/green_M150</item>
         <item name="selectedColor">#80994D</item>
@@ -655,6 +674,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF070C05</item>
 
+       <item name="inboxNotification">@color/green_M150</item>
+
     </style>
 
 
@@ -671,6 +692,7 @@
         <item name="j" >@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#84736A</item>
         <item name="theme_coreColor_1">#CD2547</item>
         <item name="theme_coreColor_2">#2667CD</item>
         <item name="theme_coreColor_3">#7BCD26</item>
@@ -707,8 +729,8 @@
         <item name="light_active">#2667CD</item>
         <item name="light_inactive">@color/orange_M525</item>
         <item name="light_off">@color/red_M850</item>
-        <item name="switchColor">#2667CD</item>
-        <item name="inboxNotification">#CD2547</item>
+        <item name="switchColorOn">#2667CD</item>
+        <item name="buttonFilterOnPrimary">#CD2547</item>
         <item name="strikethroughColor">#CD2547</item>
         <item name="circleColor">#7BCD26</item>
         <item name="selectedColor">#2667CD</item>
@@ -743,6 +765,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF1B1516</item>
 
+       <item name="inboxNotification">#D3C9C3</item>
+
     </style>
 
 
@@ -760,6 +784,7 @@
         <item name="l">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/blue_M90</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">@color/blue_M90</item>
         <item name="theme_coreColor_3">#167467</item>
@@ -796,8 +821,8 @@
         <item name="light_active">@color/blue_M90</item>
         <item name="light_inactive">#1D4E49</item>
         <item name="light_off">#202A29</item>
-        <item name="switchColor">@color/blue_M90</item>
-        <item name="inboxNotification">@color/blue_M90</item>
+        <item name="switchColorOn">@color/blue_M90</item>
+        <item name="buttonFilterOnPrimary">@color/white</item>
         <item name="strikethroughColor">#1D4E49</item>
         <item name="circleColor">@color/blue_M90</item>
         <item name="selectedColor">#167467</item>
@@ -832,6 +857,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF101515</item>
 
+       <item name="inboxNotification">@color/blue_M90</item>
+
     </style>
 
 
@@ -847,6 +874,7 @@
         <item name="i">@color/blue_M950</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/purple_M450</item>
         <item name="theme_coreColor_1">@color/purple_M150</item>
         <item name="theme_coreColor_2">@color/purple_M450</item>
         <item name="theme_coreColor_3">@color/blue_M150</item>
@@ -882,8 +910,9 @@
         <item name="textColorPrimary">@color/blue_M150</item>
         <item name="light_active">@color/blue_M150</item>
         <item name="textColorBodyEmphasis">@color/purple_M250</item>
-        <item name="switchColor">@color/purple_M300</item>
+        <item name="switchColorOn">@color/purple_M300</item>
         <item name="inboxNotification">@color/purple_M150</item>
+        <item name="buttonFilterOnPrimary">@color/purple_M475</item>
         <item name="strikethroughColor">@color/purple_M300</item>
         <item name="textColorSecondary">@color/purple_M300</item>
         <item name="mapRoomBorderColor">@color/purple_M300_A58</item>
@@ -935,6 +964,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M05</item>
         <item name="theme_coreColor_1">#F8EFD9</item>
         <item name="theme_coreColor_2">@color/orange_M05</item>
         <item name="theme_coreColor_3">#E5A348</item>
@@ -971,8 +1001,9 @@
         <item name="light_active">@color/orange_M05</item>
         <item name="light_inactive">#765932</item>
         <item name="light_off">@color/purple_M825</item>
-        <item name="switchColor">@color/orange_M10</item>
+        <item name="switchColorOn">@color/orange_M10</item>
         <item name="inboxNotification">@color/orange_M05</item>
+        <item name="buttonFilterOnPrimary">#FDF9EE</item>
         <item name="strikethroughColor">#765932</item>
         <item name="circleColor">@color/orange_M05</item>
         <item name="selectedColor">#E5A348</item>
@@ -1007,6 +1038,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
 
+
     </style>
 
 
@@ -1015,7 +1047,7 @@
     <style name="Easter" parent="Event">
         <item name="k">@color/white</item>
         <item name="l">#F8E8BD</item>
-        <item name="c">@color/orange_M75</item>
+        <item name="c">@color/orange_M05</item>
         <item name="j">#E1EBE5</item>
         <item name="i">#7CAB91</item>
         <item name="b">@color/green_M550</item>
@@ -1026,6 +1058,7 @@
         <item name="d">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/green_M550</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">#F8E8BD</item>
         <item name="theme_coreColor_3">@color/orange_M75</item>
@@ -1062,8 +1095,9 @@
         <item name="light_active">@color/orange_M75</item>
         <item name="light_inactive">#F8E8BD</item>
         <item name="light_off">#1C180D</item>
-        <item name="switchColor">@color/orange_M75</item>
-        <item name="inboxNotification">@color/orange_M75</item>
+        <item name="switchColorOn">@color/orange_M75</item>
+        <item name="buttonFilterOnPrimary">#E1EBE5</item>
+        <item name="inboxNotification">@color/orange_M05</item>
         <item name="strikethroughColor">#21654A</item>
         <item name="circleColor">@color/orange_M75</item>
         <item name="selectedColor">#F8E8BD</item>
@@ -1098,6 +1132,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF030C0A</item>
 
+        <item name="colorOnButton">?attr/backgroundColor</item>
     </style>
 
 
@@ -1115,6 +1150,7 @@
         <item name="m">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#EC700D</item>
         <item name="theme_coreColor_1">#EC700D</item>
         <item name="theme_coreColor_2">#C85E0D</item>
         <item name="theme_coreColor_3">#9F4B0D</item>
@@ -1151,8 +1187,8 @@
         <item name="light_active">#EC700D</item>
         <item name="light_inactive">#9F4B0D</item>
         <item name="light_off">#3F1602</item>
-        <item name="switchColor">#EC700D</item>
-        <item name="inboxNotification">#EC700D</item>
+        <item name="switchColorOn">#EC700D</item>
+        <item name="buttonFilterOnPrimary">#D7CCC3</item>
         <item name="strikethroughColor">#D7CCC3</item>
         <item name="circleColor">#EC700D</item>
         <item name="selectedColor">#C85E0D</item>
@@ -1187,6 +1223,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF0C0400</item>
 
+       <item name="inboxNotification">#EC700D</item>
 
     </style>
 
@@ -1205,6 +1242,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/blue_M125</item>
         <item name="theme_coreColor_1">#FEFEFE</item>
         <item name="theme_coreColor_2">#DDDCDB</item>
         <item name="theme_coreColor_3">#F8BC7F</item>
@@ -1241,8 +1279,8 @@
         <item name="light_active">@color/blue_M125</item>
         <item name="light_inactive">#2A2E45</item>
         <item name="light_off">@color/blue_M750</item>
-        <item name="switchColor">@color/blue_M125</item>
-        <item name="inboxNotification">@color/blue_M125</item>
+        <item name="switchColorOn">@color/blue_M125</item>
+        <item name="buttonFilterOnPrimary">#F8BC7F</item>
         <item name="strikethroughColor">@color/blue_M125</item>
         <item name="circleColor">@color/orange_M50</item>
         <item name="selectedColor">@color/blue_M125</item>
@@ -1277,6 +1315,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF0D0E19</item>
 
+       <item name="inboxNotification">#6996E4</item>
+
     </style>
 
 
@@ -1304,6 +1344,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#447CDE</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">#FEFEFE</item>
         <item name="theme_coreColor_3">#E4D0AE</item>
@@ -1340,8 +1381,8 @@
         <item name="light_active">#E9AD4C</item>
         <item name="light_inactive">#40E9AD4C</item>
         <item name="light_off">#2A2E45</item>
-        <item name="switchColor">#447CDE</item>
-        <item name="inboxNotification">#E9AD4C</item>
+        <item name="switchColorOn">#447CDE</item>
+        <item name="buttonFilterOnPrimary">#447CDE</item>
         <item name="strikethroughColor">#447CDE</item>
         <item name="circleColor">#E9AD4C</item>
         <item name="selectedColor">#E9AD4C</item>
@@ -1376,6 +1417,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF1B1C33</item>
 
+       <item name="inboxNotification">#E9AD4C</item>
 
     </style>
 
@@ -1395,6 +1437,7 @@
         <item name="d">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#717AF2</item>
         <item name="theme_coreColor_1">#AAB3F3</item>
         <item name="theme_coreColor_2">@color/blue_M75</item>
         <item name="theme_coreColor_3">#5763EC</item>
@@ -1431,8 +1474,8 @@
         <item name="light_active">@color/blue_M75</item>
         <item name="light_inactive">#AAB3F3</item>
         <item name="light_off">@color/blue_M850</item>
-        <item name="switchColor">@color/blue_M75</item>
-        <item name="inboxNotification">@color/blue_M75</item>
+        <item name="switchColorOn">@color/blue_M75</item>
+        <item name="buttonFilterOnPrimary">#AAB3F3</item>
         <item name="strikethroughColor">#C3C4C6</item>
         <item name="circleColor">@color/blue_M75</item>
         <item name="selectedColor">#AAB3F3</item>
@@ -1467,6 +1510,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF131517</item>
 
+       <item name="inboxNotification">#F3F3F7</item>
 
     </style>
 
@@ -1483,6 +1527,7 @@
         <item name="i">#010000</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M225</item>
         <item name="theme_coreColor_1">#DF1740</item>
         <item name="theme_coreColor_2">@color/red_M225</item>
         <item name="theme_coreColor_3">#510E1B</item>
@@ -1519,8 +1564,8 @@
         <item name="light_active">@color/red_M225</item>
         <item name="light_inactive">#510E1B</item>
         <item name="light_off">#1E1013</item>
-        <item name="switchColor">@color/red_M225</item>
-        <item name="inboxNotification">@color/red_M225</item>
+        <item name="switchColorOn">@color/red_M225</item>
+        <item name="buttonFilterOnPrimary">#CACACA</item>
         <item name="strikethroughColor">#780C0C</item>
         <item name="circleColor">#DF1740</item>
         <item name="selectedColor">@color/red_M225</item>
@@ -1555,6 +1600,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
 
+       <item name="inboxNotification">@color/red_M225</item>
 
     </style>
 
@@ -1571,6 +1617,7 @@
         <item name="i">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/yellow_M25</item>
         <item name="theme_coreColor_2">#CFCCB4</item>
         <item name="theme_coreColor_3">#D3C667</item>
         <item name="theme_coreColor_4">#4E4507</item>
@@ -1607,8 +1654,8 @@
         <item name="light_active">@color/yellow_M25</item>
         <item name="light_inactive">#66ECD316</item>
         <item name="light_off">#1AECD316</item>
-        <item name="switchColor">@color/yellow_M25</item>
-        <item name="inboxNotification">@color/yellow_M25</item>
+        <item name="switchColorOn">@color/yellow_M25</item>
+        <item name="buttonFilterOnPrimary">#D3C667</item>
         <item name="strikethroughColor">#E2E2DF</item>
         <item name="circleColor">@color/yellow_M25</item>
         <item name="selectedColor">@color/yellow_M25</item>
@@ -1644,6 +1691,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#40535353</item>
 
+        <item name="inboxNotification">#E2E2DF</item>
+
     </style>
 
 
@@ -1660,6 +1709,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M150</item>
         <item name="theme_coreColor_1">#FCFAFB</item>
         <item name="theme_coreColor_2">#E1C9CC</item>
         <item name="theme_coreColor_3">#D99CA5</item>
@@ -1696,8 +1746,8 @@
         <item name="light_active">@color/red_M150</item>
         <item name="light_inactive">#535052</item>
         <item name="light_off">@color/purple_M850</item>
-        <item name="switchColor">@color/red_M150</item>
-        <item name="inboxNotification">@color/red_M150</item>
+        <item name="switchColorOn">@color/red_M150</item>
+        <item name="buttonFilterOnPrimary">#FCFAFB</item>
         <item name="strikethroughColor">#D99CA5</item>
         <item name="circleColor">@color/red_M150</item>
         <item name="selectedColor">@color/red_M150</item>
@@ -1706,9 +1756,9 @@
         <item name="positiveSelColor">@color/red_M150</item>
         <item name="neutralSelColor">#E1C9CC</item>
         <item name="negativeSelColor">@color/purple_M850</item>
-        <item name="mapPoiFillColor">@color/red_M150</item>
-        <item name="mapRoomBorderColor">@color/red_M150</item>
-        <item name="mapRoomFillColor">#D99CA5</item>
+        <item name="mapPoiFillColor">#BFD66D7B</item>
+        <item name="mapRoomBorderColor">#80D66D7B</item>
+        <item name="mapRoomFillColor">#1AD99CA5</item>
 
         <item name="progressBarColorStart">#FCFAFB</item>
         <item name="progressBarColorEnd">@color/red_M150</item>
@@ -1732,6 +1782,8 @@
 
         <item name="backgroundColor_mapviewOverlay">@color/black_A75</item>
 
+        <item name="inboxNotification">#DA7F88</item>
+
     </style>
 
 
@@ -1748,6 +1800,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/orange_M250</item>
         <item name="theme_coreColor_1">#ECDFCD</item>
         <item name="theme_coreColor_2">#DABA80</item>
         <item name="theme_coreColor_3">@color/orange_M250</item>
@@ -1784,8 +1837,8 @@
         <item name="light_active">#DABA80</item>
         <item name="light_inactive">@color/blue_M850</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">#936305</item>
-        <item name="inboxNotification">@color/orange_M250</item>
+        <item name="switchColorOn">#936305</item>
+        <item name="buttonFilterOnPrimary">@color/white</item>
         <item name="strikethroughColor">#936305</item>
         <item name="circleColor">@color/orange_M250</item>
         <item name="selectedColor">#DABA80</item>
@@ -1796,8 +1849,8 @@
         <item name="neutralSelColor">@color/white_M500</item>
         <item name="negativeSelColor">#ECDFCD</item>
 
-        <item name="mapPoiFillColor">#936305</item>
-        <item name="mapRoomBorderColor">#936305</item>
+        <item name="mapPoiFillColor">#BF936305</item>
+        <item name="mapRoomBorderColor">#80936305</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
         <item name="progressBarColorStart">#ECDFCD</item>
@@ -1822,6 +1875,8 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF060C10</item>
 
+        <item name="inboxNotification">#DABA80</item>
+
     </style>
 
 
@@ -1838,6 +1893,7 @@
         <item name="j">@color/black</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">#AA7FFD</item>
         <item name="theme_coreColor_1">#E3D6F7</item>
         <item name="theme_coreColor_2">#AA7FFD</item>
         <item name="theme_coreColor_3">@color/purple_M550</item>
@@ -1874,8 +1930,8 @@
         <item name="light_active">@color/purple_M550</item>
         <item name="light_inactive">#5B399E</item>
         <item name="light_off">@color/white_M600</item>
-        <item name="switchColor">@color/purple_M550</item>
-        <item name="inboxNotification">@color/purple_M550</item>
+        <item name="switchColorOn">@color/purple_M550</item>
+        <item name="buttonFilterOnPrimary">#E3D6F7</item>
         <item name="strikethroughColor">#5B399E</item>
         <item name="circleColor">#E3D6F7</item>
         <item name="selectedColor">@color/purple_M550</item>
@@ -1884,8 +1940,8 @@
         <item name="positiveSelColor">#E3D6F7</item>
         <item name="neutralSelColor">#7E7C7E</item>
         <item name="negativeSelColor">@color/purple_M550</item>
-        <item name="mapPoiFillColor">#5B399E</item>
-        <item name="mapRoomBorderColor">#5B399E</item>
+        <item name="mapPoiFillColor">#BF5B399E</item>
+        <item name="mapRoomBorderColor">#805B399E</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
         <item name="progressBarColorStart">#E3D6F7</item>
@@ -1910,7 +1966,199 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF0A0C0C</item>
 
+        <item name="inboxNotification">#E3D6F7</item>
 
+    </style>
+
+    <style name="Whiteboard" parent="Skin">
+        <item name="android:colorBackground">@color/black_M50</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/white_M100</item>
+        <item name="foregroundColor">@color/white_M100</item>
+        <item name="middlegroundColor">@color/white_M100</item>
+        <item name="backgroundColor" >@color/white_M100</item>
+        <item name="backgroundColorOnBackground" >@color/white_M100</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/white_M100</item>
+        <item name="windowStrokeColor">@color/black_M50</item>
+        <item name="colorPrimary">@color/white_M100</item>
+        <item name="colorPrimaryVariant">@color/white_M100</item>
+        <item name="colorOnPrimary">@color/white_M100</item>
+        <item name="colorSecondary">@color/white_M100</item>
+        <item name="colorSecondaryVariant">@color/white_M100</item>
+        <item name="colorOnSecondary">@color/white_M100</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/white_M200</item>
+
+        <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/white</item>
+        <item name="theme_coreColor_1">@color/white</item>
+        <item name="theme_coreColor_2">@color/white</item>
+        <item name="theme_coreColor_3">@color/white_M100</item>
+        <item name="theme_coreColor_4">@color/white_M500</item>
+        <item name="theme_coreColor_5">@color/red_M100</item>
+        <item name="theme_coreColor_6">@color/red_M300</item>
+        <item name="theme_coreColor_7">@color/black_M50</item>
+        <item name="theme_coreColor_8">@color/black</item>
+
+        <!-- Theme Attributes -->
+        <item name="backgroundColor_mapviewOverlay">@color/white_M100</item>
+
+        <item name="splashTextColor">@color/black_M50</item>
+
+        <item name="textColorPrimary">@color/black_M50</item>
+        <item name="textColorSecondary">@color/black_M50</item>
+        <item name="textColorTertiary">@color/black_M50</item>
+
+        <item name="textColorBody">@color/black_M50</item>
+        <item name="textColorBodyEmphasis">@color/red_M100</item>
+
+        <item name="light_active">@color/black_M50</item>
+        <item name="light_inactive">@color/black_M50</item>
+        <item name="light_off">@color/white_M500</item>
+
+        <item name="sanityColorStart">@color/white_M100</item>
+        <item name="sanityColorEnd">@color/black_M50</item>
+
+        <item name="progressBarColorStart">@color/white_M100</item>
+        <item name="progressBarColorEnd">@color/black_M50</item>
+
+        <item name="switchColorOn">@color/black_M50</item>
+        <item name="inboxNotification">@color/red_M100</item>
+
+        <item name="selectedColor">@color/red_M100</item>
+        <item name="selectedColor2">@color/red_M100</item>
+        <item name="unselectedColor">@color/white_M500</item>
+
+        <item name="strikethroughColor">@color/red_M300</item>
+        <item name="circleColor">@color/black_M50</item>
+
+        <item name="positiveSelColor">@color/red_M100</item>
+        <item name="neutralSelColor">@color/black_M50</item>
+        <item name="negativeSelColor">@color/white_M500</item>
+
+        <item name="mapPoiFillColor">@color/red_M300_A75</item>
+        <item name="mapRoomBorderColor">@color/red_M300_A58</item>
+        <item name="mapRoomFillColor">@color/red_A75</item>
+
+        <item name="buttonFilterOnPrimary">@color/white_M100</item>
+
+        <!-- Codex Colors -->
+        <item name="codex_1">@color/black_A75</item>
+        <item name="codex_2">@color/white_M100</item>
+        <item name="codex_3">@color/black_M50</item>
+        <item name="codex_4">@color/red_M100</item>
+        <item name="codex_5">@color/black_A75</item>
+        <item name="codex_grid_background_tint">@color/white_M100</item>
+
+        <item name="buttonColor">?attr/light_inactive</item>
+        <item name="colorOnButton">?attr/textColorBody</item>
+    </style>
+
+    <style name="StrategemHero" parent="Special">
+        <item name="a">@color/white</item>
+        <item name="b">#A3A3A3</item>
+        <item name="c">#FFD608</item>
+        <item name="d">#BA9F36</item>
+        <item name="e">#A04907</item>
+        <item name="f">#DE2C38</item>
+        <item name="g">#700000</item>
+        <item name="h">#000B17</item>
+        <item name="i">#06223B</item>
+        <item name="j">#0D3A63</item>
+        <item name="k">#2D70A1</item>
+        <item name="l">#B7CBDC</item>
+        <item name="m">#E2EDFB</item>
+        <item name="n">#16564A</item>
+        <item name="o">#95D2C8</item>
+        <item name="p">#BBBFB3</item>
+        <item name="q">@color/black</item>
+
+        <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/white</item>
+        <item name="theme_coreColor_1">#A3A3A3</item>
+        <item name="theme_coreColor_2">#FFD608</item>
+        <item name="theme_coreColor_3">#A04907</item>
+        <item name="theme_coreColor_4">#DE2C38</item>
+        <item name="theme_coreColor_5">#B7CBDC</item>
+        <item name="theme_coreColor_6">#95D2C8</item>
+        <item name="theme_coreColor_7">#0D3A63</item>
+        <item name="theme_coreColor_8">#000B17</item>
+
+        <!-- Theme Attributes -->
+        <item name="android:colorBackground">#001021</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">#000B17</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">#645956</item>
+        <item name="backgroundColor">#000B17</item>
+        <item name="backgroundColorOnBackground" >#000E1E</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">#000B17</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">#000B17</item>
+        <item name="colorPrimaryVariant">#000B17</item>
+        <item name="colorOnPrimary">#000B17</item>
+        <item name="colorSecondary">#000B17</item>
+        <item name="colorSecondaryVariant">#000B17</item>
+        <item name="colorOnSecondary">#000B17</item>
+
+        <item name="textColorPrimary">#FFD608</item>
+        <item name="textColorSecondary">@color/white</item>
+        <item name="textColorTertiary">#2E5497</item>
+        <item name="textColorBody">#A3A3A3</item>
+        <item name="textColorBodyEmphasis">@color/white</item>
+        <item name="light_active">#FFD608</item>
+        <item name="light_inactive">#40FFD608</item>
+        <item name="light_off">#B7CBDC</item>
+        <item name="switchColorOn">#FFD608</item>
+        <item name="switchColorOff">#B7CBDC</item>
+        <item name="strikethroughColor">#B7CBDC</item>
+        <item name="circleColor">#FFD608</item>
+        <item name="selectedColor">#FFD608</item>
+        <item name="selectedColor2">#FFD608</item>
+        <item name="unselectedColor">#A3A3A3</item>
+        <item name="positiveSelColor">#FFD608</item>
+        <item name="neutralSelColor">#A3A3A3</item>
+        <item name="negativeSelColor">#B7CBDC</item>
+
+        <item name="mapPoiFillColor">#BFE9AD4C</item>
+        <item name="mapRoomBorderColor">#94E9AD4C</item>
+        <item name="mapRoomFillColor">#1AE9AD4C</item>
+
+        <item name="progressBarColorStart">#B7CBDC</item>
+        <item name="progressBarColorEnd">#DE2C38</item>
+        <item name="sanityColorStart">#B7CBDC</item>
+        <item name="sanityColorEnd">#DE2C38</item>
+
+        <item name="splashTextColor">#447CDE</item>
+
+        <item name="codex_1">#001021</item>
+        <item name="codex_2">#B7CBDC</item>
+        <item name="codex_3">#001021</item>
+        <item name="codex_4">#FFD608</item>
+        <item name="codex_5">#A3A3A3</item>
+
+        <item name="codex_grid_background_tint">#40001021</item>
+
+        <item name="theme_badge">@drawable/app_icon_sm</item>
+        <item name="theme_title">@string/settings_skin_strategemHero</item>
+
+        <item name="navigationFooterIcon">@color/white</item>
+        <item name="navigationFooterIconAlt">#FFD608</item>
+
+        <item name="backgroundColor_mapviewOverlay">#BF001021</item>
+
+        <item name="inboxNotification">#95D2C8</item>
+
+        <item name="buttonFilterOnPrimary">#B7CBDC</item>
+        <item name="buttonBorderOnPrimary">@color/white</item>
+        <item name="buttonBackgroundOnPrimary">#B7CBDC</item>
+
+        <item name="colorActionPrimary">#FFD608</item>
     </style>
 
 </resources>

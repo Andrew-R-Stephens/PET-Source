@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 public class Rectangle extends Rectangle2D
     implements Shape, java.io.Serializable
 {
@@ -19,7 +21,7 @@ public class Rectangle extends Rectangle2D
         this(0, 0, 0, 0);
     }
 
-    public Rectangle(Rectangle r) {
+    public Rectangle(@NonNull Rectangle r) {
         this(r.x, r.y, r.width, r.height);
     }
 
@@ -34,15 +36,15 @@ public class Rectangle extends Rectangle2D
         this(0, 0, width, height);
     }
 
-    public Rectangle(Point p, Dimension d) {
+    public Rectangle(@NonNull Point p, @NonNull Dimension d) {
         this(p.x, p.y, d.width, d.height);
     }
 
-    public Rectangle(Point p) {
+    public Rectangle(@NonNull Point p) {
         this(p.x, p.y, 0, 0);
     }
 
-    public Rectangle(Dimension d) {
+    public Rectangle(@NonNull Dimension d) {
         this(0, 0, d.width, d.height);
     }
 
@@ -62,15 +64,17 @@ public class Rectangle extends Rectangle2D
         return height;
     }
 
+    @NonNull
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
 
+    @NonNull
     public Rectangle2D getBounds2D() {
         return new Rectangle(x, y, width, height);
     }
 
-    public void setBounds(Rectangle r) {
+    public void setBounds(@NonNull Rectangle r) {
         setBounds(r.x, r.y, r.width, r.height);
     }
 
@@ -129,11 +133,12 @@ public class Rectangle extends Rectangle2D
         this.height = height;
     }
 
+    @NonNull
     public Point getLocation() {
         return new Point(x, y);
     }
 
-    public void setLocation(Point p) {
+    public void setLocation(@NonNull Point p) {
         setLocation(p.x, p.y);
     }
 
@@ -214,11 +219,12 @@ public class Rectangle extends Rectangle2D
         this.y = newv;
     }
 
+    @NonNull
     public Dimension getSize() {
         return new Dimension(width, height);
     }
 
-    public void setSize(Dimension d) {
+    public void setSize(@NonNull Dimension d) {
         setSize(d.width, d.height);
     }
 
@@ -232,7 +238,7 @@ public class Rectangle extends Rectangle2D
         this.height = height;
     }
 
-    public boolean contains(Point p) {
+    public boolean contains(@NonNull Point p) {
         return contains(p.x, p.y);
     }
 
@@ -240,7 +246,7 @@ public class Rectangle extends Rectangle2D
         return inside(x, y);
     }
 
-    public boolean contains(Rectangle r) {
+    public boolean contains(@NonNull Rectangle r) {
         return contains(r.x, r.y, r.width, r.height);
     }
 
@@ -274,11 +280,10 @@ public class Rectangle extends Rectangle2D
         h += y;
         H += Y;
         if (H <= Y) {
-            if (h >= y || H > h) return false;
+            return h < y && H <= h;
         } else {
-            if (h >= y && H > h) return false;
+            return h < y || H <= h;
         }
-        return true;
     }
 
     @Deprecated
@@ -302,7 +307,7 @@ public class Rectangle extends Rectangle2D
                 (h < y || h > Y));
     }
 
-    public boolean intersects(Rectangle r) {
+    public boolean intersects(@NonNull Rectangle r) {
         int tw = this.width;
         int th = this.height;
         int rw = r.width;
@@ -325,7 +330,8 @@ public class Rectangle extends Rectangle2D
                 (th < ty || th > ry));
     }
 
-    public Rectangle intersection(Rectangle r) {
+    @NonNull
+    public Rectangle intersection(@NonNull Rectangle r) {
         int tx1 = this.x;
         int ty1 = this.y;
         int rx1 = r.x;
@@ -348,7 +354,8 @@ public class Rectangle extends Rectangle2D
         return new Rectangle(tx1, ty1, (int) tx2, (int) ty2);
     }
 
-    public Rectangle union(Rectangle r) {
+    @NonNull
+    public Rectangle union(@NonNull Rectangle r) {
         long tx2 = this.width;
         long ty2 = this.height;
         if ((tx2 | ty2) < 0) {
@@ -411,11 +418,11 @@ public class Rectangle extends Rectangle2D
         reshape(x1, y1, (int) x2, (int) y2);
     }
 
-    public void add(Point pt) {
+    public void add(@NonNull Point pt) {
         add(pt.x, pt.y);
     }
 
-    public void add(Rectangle r) {
+    public void add(@NonNull Rectangle r) {
         long tx2 = this.width;
         long ty2 = this.height;
         if ((tx2 | ty2) < 0) {
@@ -561,6 +568,7 @@ public class Rectangle extends Rectangle2D
         return super.equals(obj);
     }
 
+    @NonNull
     public String toString() {
         return getClass().getName() + "[x=" + x + ",y=" + y + ",width=" + width + ",height=" + height + "]";
     }

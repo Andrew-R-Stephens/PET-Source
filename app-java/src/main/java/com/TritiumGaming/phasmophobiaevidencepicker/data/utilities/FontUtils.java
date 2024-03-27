@@ -5,6 +5,9 @@ import android.text.Spanned;
 import android.util.TypedValue;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * FontStyler class
  *
@@ -17,6 +20,7 @@ public class FontUtils {
      * @param colorHex
      * @return
      */
+    @NonNull
     public static String setColor(String plainStr, String colorHex) {
         return "<font color=#" + colorHex + ">" + plainStr + "</font>";
     }
@@ -26,7 +30,7 @@ public class FontUtils {
      * @param dpActual
      * @return
      */
-    public static float dpToSp(View view, float dpActual) {
+    public static float dpToSp(@NonNull View view, float dpActual) {
         return (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, dpActual, view.getContext().
                 getResources().getDisplayMetrics())) /
                 view.getContext().getResources().getDisplayMetrics().scaledDensity;
@@ -44,7 +48,8 @@ public class FontUtils {
      * @param msg
      * @return
      */
-    public static String replaceHTMLFontColor(String msg, String oldColor, String newColor) {
+    @NonNull
+    public static String replaceHTMLFontColor(@Nullable String msg, String oldColor, String newColor) {
         if (msg == null) {
             return "";
         }
@@ -64,7 +69,8 @@ public class FontUtils {
      * @param msg - raw HTML content
      * @return trimmedHTML
      */
-    public static String removeXMLImgSrcTags(String msg) {
+    @NonNull
+    public static String removeXMLImgSrcTags(@Nullable String msg) {
         if (msg == null) {
             return "";
         }
@@ -91,7 +97,8 @@ public class FontUtils {
      * @param msg - raw HTML content
      * @return trimmed content
      */
-    public static String removeXMLPubDateClockTime(String msg) {
+    @NonNull
+    public static String removeXMLPubDateClockTime(@Nullable String msg) {
         if (msg == null) {
             return "";
         }
@@ -105,7 +112,8 @@ public class FontUtils {
         return msg.substring(0, endIndex).trim();
     }
 
-    public static String toTitle(String s) {
+    @NonNull
+    public static String toTitle(@NonNull String s) {
 
         StringBuilder titleCase = new StringBuilder(s.length());
         boolean nextTitleCase = true;

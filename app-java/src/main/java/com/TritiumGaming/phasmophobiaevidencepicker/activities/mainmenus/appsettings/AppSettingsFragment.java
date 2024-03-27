@@ -400,6 +400,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
     }
 
+    /*
     private void initAccountView(AppCompatButton btn_account_login, AppCompatButton btn_account_logout, AppCompatButton btn_account_delete, ConstraintLayout btn_account_infoContainer, AppCompatTextView btn_account_info) {
         String accountEmail = "";
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -452,6 +453,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             }
         }
     }
+    */
 
     @Override
     protected void initViewModels() {
@@ -539,7 +541,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         }
     }
 
-    private void demoColorStyle(ColorThemeControl colorThemeControl) {
+    private void demoColorStyle(@NonNull ColorThemeControl colorThemeControl) {
         try {
             ((PETActivity) requireActivity()).changeTheme(
                     colorThemeControl.getThemeAtIndex(colorThemeControl.getSelectedIndex()),
@@ -550,7 +552,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         refreshFragment();
     }
 
-    private void demoFontStyle(FontThemeControl fontThemeControl) {
+    private void demoFontStyle(@NonNull FontThemeControl fontThemeControl) {
         try {
             ((PETActivity) requireActivity()).changeTheme(
                     globalPreferencesViewModel.getColorTheme(),

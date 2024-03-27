@@ -26,6 +26,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 
+import androidx.annotation.NonNull;
+
 /**
  * The {@code Dimension} class encapsulates the width and
  * height of a component (in integer precision) in a single object.
@@ -92,7 +94,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      *               {@code width} and
      *               {@code height} values
      */
-    public Dimension(Dimension d) {
+    public Dimension(@NonNull Dimension d) {
         this(d.width, d.height);
     }
 
@@ -149,6 +151,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      *           {@code Dimension} with the same width and height
      * @since    1.1
      */
+    @NonNull
     public Dimension getSize() {
         return new Dimension(width, height);
     }
@@ -160,7 +163,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * @param    d  the new size for this {@code Dimension} object
      * @since    1.1
      */
-    public void setSize(Dimension d) {
+    public void setSize(@NonNull Dimension d) {
         setSize(d.width, d.height);
     }
 
@@ -211,6 +214,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * @return  a string representation of this {@code Dimension}
      *          object
      */
+    @NonNull
     public String toString() {
         return getClass().getName() + "[width=" + width + ",height=" + height + "]";
     }

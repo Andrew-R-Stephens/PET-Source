@@ -15,7 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class OutlineTextView extends AppCompatTextView {
 
-    private float defaultOutlineWidth = 0f;
+    private final float defaultOutlineWidth = 0f;
     private boolean isDrawing = false;
     private int outlineColor = 0;
     private float outlineWidth = 0f;
@@ -38,7 +38,7 @@ public class OutlineTextView extends AppCompatTextView {
         init(context, attrs);
     }
 
-    public void init(Context c, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public void init(@NonNull Context c, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         if (attrs != null) {
             TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.OutlineTextView);
             outlineColor = a.getColor(R.styleable.OutlineTextView_outlineColor, getCurrentTextColor());

@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
@@ -59,6 +60,7 @@ public class CustomTheme {
         return unlockedState;
     }
 
+    @NonNull
     public static CustomTheme getDefaultTheme() {
         return new CustomTheme(
                 "CzjtxSbXRwIpX8SYR0ttngAND",
@@ -66,6 +68,7 @@ public class CustomTheme {
                 R.style.Theme_PhasmophobiaEvidenceTool);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CustomTheme{" +

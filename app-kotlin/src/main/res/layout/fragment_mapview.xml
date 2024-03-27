@@ -6,20 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="2dp">
+    android:layout_marginEnd="8dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:padding="2dp"
         android:src="@android:drawable/ic_menu_revert"
         android:tint="@color/white"
         android:tintMode="multiply"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout_mapviewbody"
-        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +33,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_back">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
             android:id="@+id/interactiveMapView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#00FFFFFF"
+            android:background="@color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,8 +50,8 @@
             android:id="@+id/constraintLayout44"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             android:background="?attr/backgroundColor_mapviewOverlay"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +143,7 @@
                     android:contentDescription="@string/app_name"
                     android:padding="4dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/icon_arrow_left"
+                    android:src="@drawable/icon_arrow_fill_left"
                     android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textview_floorname"
@@ -174,7 +172,7 @@
                     android:contentDescription="@string/app_name"
                     android:padding="4dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/icon_arrow_right"
+                    android:src="@drawable/icon_arrow_fill_right"
                     android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +210,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.POISpinner
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
                 android:id="@+id/spinner_poiname"
                 style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
@@ -262,7 +260,6 @@
         app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mapviewbody" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

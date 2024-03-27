@@ -25,10 +25,12 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 /** @noinspection CanBeFinal, CanBeFinal */
 final class Order0 extends Curve {
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
     public Order0(double x, double y) {
         super(INCREASING);
@@ -112,26 +114,28 @@ final class Order0 extends Curve {
         return 0;
     }
 
-    public boolean accumulateCrossings(Crossings c) {
+    public boolean accumulateCrossings(@NonNull Crossings c) {
         return (x > c.getXLo() &&
                 x < c.getXHi() &&
                 y > c.getYLo() &&
                 y < c.getYHi());
     }
 
-    public void enlarge(Rectangle2D r) {
+    public void enlarge(@NonNull Rectangle2D r) {
         r.add(x, y);
     }
 
+    @NonNull
     public Curve getSubCurve(double ystart, double yend, int dir) {
         return this;
     }
 
+    @NonNull
     public Curve getReversedCurve() {
         return this;
     }
 
-    public int getSegment(double[] coords) {
+    public int getSegment(@NonNull double[] coords) {
         coords[0] = x;
         coords[1] = y;
         return PathIterator.SEG_MOVETO;

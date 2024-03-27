@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
@@ -87,6 +88,7 @@ public class NewsletterViewModel extends SharedViewModel {
         }
     }
 
+    /*
     public static SharedPreferences getSharedPreferences(@NonNull Context context) {
         return context.getSharedPreferences(
                 context.getString(fileName),
@@ -99,6 +101,7 @@ public class NewsletterViewModel extends SharedViewModel {
                 Context.MODE_PRIVATE);
         return sharedPref.edit();
     }
+    */
 
     public boolean isUpToDate() {
         if(inboxMessageList == null) {
@@ -116,13 +119,16 @@ public class NewsletterViewModel extends SharedViewModel {
         return isUpToDate;
     }
 
-    public void addInbox(NewsletterMessagesData inbox, InboxType type) {
+    public void addInbox(@NonNull NewsletterMessagesData inbox, InboxType type) {
         if (inboxMessageList == null) {
             inboxMessageList = new ArrayList<>(10);
         }
 
         try {
+            inbox.compareDates();
+            inbox.setIsReady(true);
             inbox.setInboxType(type);
+
             inboxMessageList.add(inbox);
         } catch (NullPointerException | ArrayIndexOutOfBoundsException ex) {
             ex.printStackTrace();
@@ -137,6 +143,7 @@ public class NewsletterViewModel extends SharedViewModel {
         return type;
     }
 
+    @Nullable
     public NewsletterMessagesData getCurrentInbox() {
         if (inboxMessageList == null) {
             return null;
@@ -156,6 +163,7 @@ public class NewsletterViewModel extends SharedViewModel {
         return InboxType.values()[pos];
     }
 
+    @Nullable
     public NewsletterMessagesData getInbox(InboxType inboxType) {
         if(inboxMessageList == null) {
             return null;
@@ -177,6 +185,7 @@ public class NewsletterViewModel extends SharedViewModel {
         currentMessageID = position;
     }
 
+    @Nullable
     public NewsletterMessageData getCurrentMessage() {
         if(getCurrentInbox() == null || getCurrentInbox().getMessages() == null) {
             return null;
@@ -201,6 +210,7 @@ public class NewsletterViewModel extends SharedViewModel {
     }
 
     public void compareAllInboxDates() {
+
         boolean general = (getInbox(InboxType.GENERAL) != null &&
                 getInbox(InboxType.GENERAL).compareDates());
         boolean pet = (getInbox(InboxType.PET) != null &&
@@ -217,8 +227,8 @@ public class NewsletterViewModel extends SharedViewModel {
 
     /** @noinspection SameParameterValue*/
     private void saveLastReadDate(
-            @NonNull Context c, SharedPreferences.Editor editor, boolean localApply,
-            InboxType inboxType) {
+            @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply,
+            @NonNull InboxType inboxType) {
 
         if (editor == null) {
             editor = getEditor(c);
@@ -226,15 +236,12 @@ public class NewsletterViewModel extends SharedViewModel {
 
         String target = "";
         switch (inboxType) {
-            case PET -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
-            }
-            case PHASMOPHOBIA -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
-            }
-            case GENERAL -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
-            }
+            case PET -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
+            case PHASMOPHOBIA -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
+            case GENERAL -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
         }
 
         editor.putString(
@@ -265,7 +272,7 @@ public class NewsletterViewModel extends SharedViewModel {
     /**
      * saveToFile method
      */
-    public void saveToFile(Context context, InboxType inboxType) {
+    public void saveToFile(@NonNull Context context, @NonNull InboxType inboxType) {
 
         SharedPreferences.Editor editor = getEditor(context);
 
@@ -302,6 +309,7 @@ public class NewsletterViewModel extends SharedViewModel {
         }
     }
 
+    @NonNull
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 

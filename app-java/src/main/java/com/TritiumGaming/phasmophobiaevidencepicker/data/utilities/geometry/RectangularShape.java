@@ -3,6 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 /**
  * {@code RectangularShape} is the base class for a number of
  * {@link Shape} objects whose geometry is defined by a rectangular frame.
@@ -136,6 +138,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @see #setFrame(Rectangle2D)
      * @since 1.2
      */
+    @NonNull
     public Rectangle2D getFrame() {
         return new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
     }
@@ -176,7 +179,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @see #getFrame
      * @since 1.2
      */
-    public void setFrame(Point2D loc, Dimension2D size) {
+    public void setFrame(@NonNull Point2D loc, @NonNull Dimension2D size) {
         setFrame(loc.getX(), loc.getY(), size.getWidth(), size.getHeight());
     }
 
@@ -189,7 +192,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @see #getFrame
      * @since 1.2
      */
-    public void setFrame(Rectangle2D r) {
+    public void setFrame(@NonNull Rectangle2D r) {
         setFrame(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -230,7 +233,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @param p2 the end {@code Point2D} of the specified diagonal
      * @since 1.2
      */
-    public void setFrameFromDiagonal(Point2D p1, Point2D p2) {
+    public void setFrameFromDiagonal(@NonNull Point2D p1, @NonNull Point2D p2) {
         setFrameFromDiagonal(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
 
@@ -262,7 +265,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @param corner the specified corner {@code Point2D}
      * @since 1.2
      */
-    public void setFrameFromCenter(Point2D center, Point2D corner) {
+    public void setFrameFromCenter(@NonNull Point2D center, @NonNull Point2D corner) {
         setFrameFromCenter(center.getX(), center.getY(),
                            corner.getX(), corner.getY());
     }
@@ -271,7 +274,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean contains(Point2D p) {
+    public boolean contains(@NonNull Point2D p) {
         return contains(p.getX(), p.getY());
     }
 
@@ -279,7 +282,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean intersects(Rectangle2D r) {
+    public boolean intersects(@NonNull Rectangle2D r) {
         return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -287,7 +290,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean contains(Rectangle2D r) {
+    public boolean contains(@NonNull Rectangle2D r) {
         return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -295,6 +298,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.2
      */
+    @NonNull
     public Rectangle getBounds() {
         double width = getWidth();
         double height = getHeight();
@@ -337,6 +341,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      *          the {@code Shape} object's flattened geometry.
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return new FlatteningPathIterator(getPathIterator(at), flatness);
     }
@@ -349,6 +354,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * @see        java.lang.Cloneable
      * @since      1.2
      */
+    @NonNull
     public Object clone() {
         try {
             return super.clone();

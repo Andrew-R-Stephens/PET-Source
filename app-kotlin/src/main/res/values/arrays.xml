@@ -92,6 +92,11 @@
         <item>@string/messagecenter_inbox_pet</item>
         <item>@string/messagecenter_inbox_phas</item>
     </string-array>
+    <integer-array name="messagecenter_inboxicons">
+        <item>@drawable/icon_newspaper</item>
+        <item>@drawable/app_icon_sm</item>
+        <item>@drawable/phasmophobia_logo_letter_sm</item>
+    </integer-array>
 
     <!--
         ABOUT INFO PAGE

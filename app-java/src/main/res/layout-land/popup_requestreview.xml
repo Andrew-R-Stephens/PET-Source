@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
@@ -9,35 +10,39 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/popup_rating_fg"
-        android:padding="20sp"
+        android:padding="8dp"
+        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent=".5"
-        app:layout_constraintHeight_percent=".75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".75">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/label_ratingstitle"
             style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:maxLines="1"
+            android:padding="8dp"
             android:text="@string/review_requesttitle"
             android:textColor="?attr/textColorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout18"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +52,11 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:foregroundGravity="center"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:rating="5"
                 android:stepSize="1"
-                android:isIndicator="true"
                 android:theme="@style/RequestRatingBar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,25 +68,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout18"
-            app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout18"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/label_accept"
-                style="@style/NorseRegular_Auto"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="48dp"
                 android:background="@drawable/icon_square_alt"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="2sp"
+                android:padding="8dp"
                 android:text="@string/review_accept"
-                android:minHeight="48dp"
-                android:maxWidth="96dp"
+                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/label_decline"
                 app:layout_constraintHeight_percent=".5"
@@ -89,18 +93,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".45" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/label_decline"
-                style="@style/NorseRegular_Auto"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="48dp"
                 android:background="@drawable/icon_square_alt"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="2sp"
+                android:padding="8dp"
                 android:text="@string/review_decline"
-                android:minHeight="48dp"
-                android:maxWidth="96dp"
+                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".5"

@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.util.NoSuchElementException;
 
 class RectIterator implements PathIterator {
@@ -8,7 +10,7 @@ class RectIterator implements PathIterator {
     AffineTransform affine;
     int index;
 
-    RectIterator(Rectangle2D r, AffineTransform at) {
+    RectIterator(@NonNull Rectangle2D r, AffineTransform at) {
         this.x = r.getX();
         this.y = r.getY();
         this.w = r.getWidth();

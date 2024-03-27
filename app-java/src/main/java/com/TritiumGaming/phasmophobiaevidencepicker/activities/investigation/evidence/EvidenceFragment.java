@@ -89,16 +89,8 @@ public class EvidenceFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        /*
-        if(evidenceViewModel != null) {
-            sanityData = evidenceViewModel.getSanityData();
-            phaseTimerData = evidenceViewModel.getPhaseTimerData();
-            difficultyCarouselData = evidenceViewModel.getDifficultyCarouselData();
-        }
-        */
-
-        if(evidenceViewModel.getSanityData()/*sanityData*/ != null) {
-            evidenceViewModel.getSanityData()/*sanityData*/
+        if(evidenceViewModel.getSanityData() != null) {
+            evidenceViewModel.getSanityData()
                     .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
         }
 
@@ -207,12 +199,12 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY
         if (sanitySeekBarView != null) {
             sanitySeekBarView.init(
-                    evidenceViewModel.getSanityData()/*sanityData*/,
+                    evidenceViewModel.getSanityData(),
                     sanityPercentTextView);
             sanitySeekBarView.resetProgress();
         }
 
-        sanityMeterView.init(evidenceViewModel.getSanityData()/*sanityData*/);
+        sanityMeterView.init(evidenceViewModel.getSanityData());
 
         popupWindow = new PopupWindow(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -269,7 +261,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         if(evidenceViewModel != null &&
-                evidenceViewModel.getPhaseTimerData()/*phaseTimerData*/ != null) {
+                evidenceViewModel.getPhaseTimerData() != null) {
             playPauseButton.pause();
             phaseTimerCountdownView.reset();
         }

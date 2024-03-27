@@ -1,8 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.newsletter.data.NewsletterMessagesData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.NewsletterViewModel;
+import androidx.annotation.Nullable;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -29,6 +31,7 @@ public class RSSParserUtils {
         new Thread(new RSSThread(factory, urlStr)).start();
     }
 
+    @Nullable
     public InputStream getInputStream(String urlStr) {
         try {
             URL url = new URL(urlStr);

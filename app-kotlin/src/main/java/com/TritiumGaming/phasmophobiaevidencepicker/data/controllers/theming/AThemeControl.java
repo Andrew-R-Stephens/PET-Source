@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 
 import java.util.ArrayList;
@@ -16,18 +17,19 @@ public abstract class AThemeControl {
 
     protected @StyleRes int defaultStyle;
 
+    @NonNull
     protected ArrayList<CustomTheme> themes = new ArrayList<>();
     protected int savedIndex, selectedIndex;
 
     public AThemeControl(Context context) {
         build(context);
     }
-    /*
-    public void init(String savedID) {
-        setSavedIndex(savedID);
+
+    public void init() {
+        setSavedIndex(getIndexOfID(CustomTheme.getDefaultTheme().getID()));
         setSelectedIndex(savedIndex);
     }
-    */
+
     public void init(String savedID) {
         setSavedIndex(getIndexOfID(savedID));
         setSelectedIndex(savedIndex);
@@ -51,13 +53,21 @@ public abstract class AThemeControl {
     }
 
     public void setSavedIndex(int savedIndex) {
-        this.savedIndex = savedIndex < themes.size() ? savedIndex : 0;
+        if(savedIndex < 0 || savedIndex >= themes.size()) {
+            savedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
+        }
+
+        this.savedIndex = savedIndex;
     }
 
     /**
      * @param selectedIndex
      */
     public void setSelectedIndex(int selectedIndex) {
+        if(selectedIndex < 0 || selectedIndex >= themes.size()) {
+            selectedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
+        }
+
         this.selectedIndex = selectedIndex;
     }
 
@@ -107,21 +117,29 @@ public abstract class AThemeControl {
         }
     }
 
+    @NonNull
     public CustomTheme getCurrentTheme() {
+
+        if(selectedIndex >= themes.size() || selectedIndex < 0) {
+            return CustomTheme.getDefaultTheme();
+        }
 
         CustomTheme theme = themes.get(selectedIndex);
         if(theme == null) {
-            new CustomTheme("-1", -1, defaultStyle);
+            return CustomTheme.getDefaultTheme();
         }
 
         return theme;
-
     }
 
     /**
      * @return
      */
-    public int getCurrentName() {
+    public int getCurrentName() throws Exception {
+        CustomTheme theme = getCurrentTheme();
+        if(theme == null) {
+            throw new Exception("No theme set.");
+        }
         return getCurrentTheme().getName();
     }
 
@@ -129,38 +147,32 @@ public abstract class AThemeControl {
         return getCurrentTheme().getID();
     }
 
-    /*
-    public @StyleRes int getCurrentStyle() {
-        return getCurrentTheme().getStyle();
-    }
-    */
+    @NonNull
+    public CustomTheme getThemeAtIndex(int index) {
 
-    public CustomTheme getAppThemeAt(int index) {
-
-        CustomTheme tempTheme = new CustomTheme("-1", -1, defaultStyle);
-
-        if(index >= themes.size())
+        if(index >= themes.size() || selectedIndex < 0)
         {
-            return tempTheme;
+            return CustomTheme.getDefaultTheme();
         }
 
         CustomTheme theme = themes.get(index);
 
         if(theme == null) {
-            return tempTheme;
+            return CustomTheme.getDefaultTheme();
         }
 
         return theme;
 
     }
 
+    @NonNull
     public CustomTheme getThemeByUUID(String uuid) {
         for(CustomTheme customTheme: themes) {
             if(customTheme.getID().equals(uuid)) {
                 return customTheme;
             }
         }
-        return new CustomTheme("-1", -1, defaultStyle);
+        return CustomTheme.getDefaultTheme();
     }
 
     public void revertAllUnlockedStatuses() {
@@ -169,29 +181,4 @@ public abstract class AThemeControl {
         }
     }
 
-    /*
-    public @StyleRes int getThemeAt(int index) {
-
-        CustomTheme tempTheme = new CustomTheme(0, -1, defaultStyle);
-
-        if(index >= themes.size())
-        {
-            return tempTheme.getStyle();
-        }
-
-        CustomTheme theme = themes.get(index);
-        if(theme == null) {
-            return tempTheme.getStyle();
-        }
-
-        return theme.getStyle();
-
-    }
-    */
-
-    /*
-    public boolean hasChanges() {
-        return savedIndex != selectedIndex;
-    }
-    */
 }

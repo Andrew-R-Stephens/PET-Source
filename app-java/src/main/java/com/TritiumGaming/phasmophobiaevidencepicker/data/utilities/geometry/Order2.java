@@ -2,6 +2,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.util.Vector;
 
 final class Order2 extends Curve {
@@ -21,7 +23,7 @@ final class Order2 extends Curve {
     private final double ycoeff1;
     private final double ycoeff2;
 
-    public static void insert(Vector<Curve> curves, double[] tmp,
+    public static void insert(@NonNull Vector<Curve> curves, @NonNull double[] tmp,
                               double x0, double y0,
                               double cx0, double cy0,
                               double x1, double y1,
@@ -48,7 +50,7 @@ final class Order2 extends Curve {
                     tmp[i1 + 4], tmp[i1 + 5], direction);
     }
 
-    public static void addInstance(Vector<Curve> curves,
+    public static void addInstance(@NonNull Vector<Curve> curves,
                                    double x0, double y0,
                                    double cx0, double cy0,
                                    double x1, double y1,
@@ -109,7 +111,7 @@ final class Order2 extends Curve {
      * parametric subranges [0..t] and [t..1].  Store the results back
      * into the array at coords[pos...pos+5] and coords[pos+4...pos+9].
      */
-    public static void split(double[] coords, int pos, double t) {
+    public static void split(@NonNull double[] coords, int pos, double t) {
         double x0, y0, cx, cy, x1, y1;
         coords[pos+8] = x1 = coords[pos+4];
         coords[pos+9] = y1 = coords[pos+5];
@@ -357,7 +359,7 @@ final class Order2 extends Curve {
         return t1;
     }
 
-    public void enlarge(Rectangle2D r) {
+    public void enlarge(@NonNull Rectangle2D r) {
         r.add(x0, y0);
         double t = -xcoeff1 / (2 * xcoeff2);
         if (t > 0 && t < 1) {
@@ -404,11 +406,12 @@ final class Order2 extends Curve {
                           dir);
     }
 
+    @NonNull
     public Curve getReversedCurve() {
         return new Order2(x0, y0, cx0, cy0, x1, y1, -direction);
     }
 
-    public int getSegment(double[] coords) {
+    public int getSegment(@NonNull double[] coords) {
         coords[0] = cx0;
         coords[1] = cy0;
         if (direction == INCREASING) {
@@ -421,6 +424,7 @@ final class Order2 extends Curve {
         return PathIterator.SEG_QUADTO;
     }
 
+    @NonNull
     public String controlPointString() {
         return ("("+round(cx0)+", "+round(cy0)+"), ");
     }

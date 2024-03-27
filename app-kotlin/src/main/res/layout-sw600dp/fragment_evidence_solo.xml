@@ -35,20 +35,26 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/button_toggleSanity"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="36dp"
             android:adjustViewBounds="true"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_tab_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_reset"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/button_reset"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
+            android:padding="8dp"
             android:src="@drawable/icon_tab_reset"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

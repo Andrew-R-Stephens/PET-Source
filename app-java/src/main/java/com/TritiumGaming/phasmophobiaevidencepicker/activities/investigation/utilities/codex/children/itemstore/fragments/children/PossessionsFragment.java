@@ -10,6 +10,7 @@ import android.view.ViewStub;
 import android.widget.GridLayout;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -115,11 +116,11 @@ public class PossessionsFragment extends ItemStoreFragment {
 
     }
 
-    protected void setPageTitle(AppCompatTextView titleView) {
+    protected void setPageTitle(@NonNull AppCompatTextView titleView) {
         titleView.setText(R.string.store_title_cursedpossessions);
     }
 
-    protected void setDataViewLayout(View view) {
+    protected void setDataViewLayout(@NonNull View view) {
         ViewStub dv = view.findViewById(R.id.item_safehouse_itemstore_itemData);
         dv.setLayoutResource(R.layout.layout_itemstore_itemdata_possessions);
         dataView = dv.inflate();
@@ -127,8 +128,8 @@ public class PossessionsFragment extends ItemStoreFragment {
     }
 
     protected void createGroup(
-            LinearLayoutCompat parent,
-            ItemStoreGroupData group
+            @NonNull LinearLayoutCompat parent,
+            @NonNull ItemStoreGroupData group
     ) {
 
         if(getContext() == null) { return; }
@@ -147,23 +148,25 @@ public class PossessionsFragment extends ItemStoreFragment {
     }
 
     @SuppressLint("ResourceType")
-    protected void buildGroupViews(LinearLayoutCompat parent, GridLayout scrollViewPaginator) {
+    protected void buildGroupViews(@NonNull LinearLayoutCompat parent, @NonNull GridLayout scrollViewPaginator) {
         if(getContext() == null) { return; }
 
         scrollViewPaginator.setRowCount(storeData.getGroups().size());
 
         for (ItemStoreGroupData group: storeData.getGroups()) {
 
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
+            try {
+                requireActivity().runOnUiThread(() -> {
                     addPaginatorIcon(scrollViewPaginator, group.getPaginationIcon());
                     createGroup(parent, group);
                 });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    protected void buildDataPopupView(View dataView, int groupIndex, int itemIndex) {
+    protected void buildDataPopupView(@NonNull View dataView, int groupIndex, int itemIndex) {
         if(getContext() == null) { return; }
 
         ItemStorePossnsGroupData groupData = (ItemStorePossnsGroupData) storeData.getGroupAt(groupIndex);

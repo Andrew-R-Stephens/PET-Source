@@ -1,5 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities;
 
+import androidx.annotation.Nullable;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
@@ -29,6 +31,7 @@ public class RSSParserUtils {
         new Thread(new RSSThread(factory, urlStr)).start();
     }
 
+    @Nullable
     public InputStream getInputStream(String urlStr) {
         try {
             URL url = new URL(urlStr);
@@ -94,8 +97,8 @@ public class RSSParserUtils {
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
-                        NewsletterMessageData message = new NewsletterMessageData(title,
-                                description, date);
+                        NewsletterMessageData message = new NewsletterMessageData(
+                                title, description, date);
                         if (message.hasContent()) {
                             messageList.add(message);
                         }
@@ -107,8 +110,10 @@ public class RSSParserUtils {
                 }
                 in.close();
 
+                /*
                 messageList.compareDates();
                 messageList.setIsReady(true);
+                */
                 newsLetterViewModel.addInbox(messageList, inboxType);
 
             } catch (XmlPullParserException | IOException e) {

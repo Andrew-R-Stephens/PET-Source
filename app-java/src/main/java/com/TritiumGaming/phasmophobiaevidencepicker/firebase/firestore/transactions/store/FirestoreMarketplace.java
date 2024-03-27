@@ -2,6 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreAccount;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.google.android.gms.tasks.Task;
@@ -16,6 +18,7 @@ public class FirestoreMarketplace {
     private static final String
             COLLECTION_STORE = "Store";
 
+    @NonNull
     public static CollectionReference getStoreCollection() throws Exception {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

@@ -110,7 +110,7 @@ public abstract class InvestigationFragment extends PETFragment {
      */
     public abstract void softReset();
 
-    protected void initAd(AdView mAdView) {
+    protected void initAd(@Nullable AdView mAdView) {
         if(mAdView == null) {
             return;
         }

@@ -5,6 +5,7 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,6 +21,12 @@ import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.FormError;
+import com.google.android.ump.UserMessagingPlatform;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -48,9 +55,12 @@ public class MainMenuActivity extends PETActivity {
 
         //requestOnboardingActivity();
 
-        requestAdsConsentInformation();
+        //showConsentForm();
+        //requestAdsConsentInformation(); Moved to PETActivity
+        createConsentInformation();
     }
 
+    @NonNull
     protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
 
         ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
@@ -61,14 +71,14 @@ public class MainMenuActivity extends PETActivity {
         return factory;
     }
 
-    private void initOnboardingViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+    private void initOnboardingViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         onboardingViewModel = factory.create(
                 OnboardingViewModel.class);
         onboardingViewModel = new ViewModelProvider(this).get(
                 OnboardingViewModel.class);
     }
 
-    private void initNewsletterViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+    private void initNewsletterViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         newsLetterViewModel = factory.create(
                 NewsletterViewModel.class);
         newsLetterViewModel = new ViewModelProvider(this).get(
@@ -95,6 +105,20 @@ public class MainMenuActivity extends PETActivity {
         });
 
         return hasUpdate.get();
+    }
+
+    private void completePendingAppUpdates() {
+        if(appUpdateManager != null && updateType == AppUpdateType.IMMEDIATE) {
+            appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
+                if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(info, updateType, MainMenuActivity.this, 123);
+                    } catch (IntentSender.SendIntentException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     public void requestOnboardingActivity() {
@@ -129,71 +153,11 @@ public class MainMenuActivity extends PETActivity {
         }
     }
 
-    private void requestAdsConsentInformation() {
-
-        // Set your test devices. Check your logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
-        // to get test ads on this device."
-        MobileAds.setRequestConfiguration(
-                new RequestConfiguration.Builder().setTestDeviceIds(List.of("9E93747E0D90133B5298FD010482BD8F"))
-                        .build());
-
-        googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(this);
-
-        googleMobileAdsConsentManager.gatherConsent(
-                consentError -> {
-                    if (consentError != null) {
-                        // Consent not obtained in current session.
-                        Log.w(
-                                "AdConsentManager",
-                                String.format(
-                                        "%s: %s",
-                                        consentError.getErrorCode(),
-                                        consentError.getMessage()));
-                    }
-
-                    if (googleMobileAdsConsentManager.canRequestAds()) {
-                        initializeMobileAdsSdk();
-                    }
-
-                    if (googleMobileAdsConsentManager.isPrivacyOptionsRequired()) {
-                        // Regenerate the options menu to include a privacy setting.
-                        invalidateOptionsMenu();
-                    }
-                }
-        );
-
-        // This sample attempts to load ads using consent obtained in the previous session.
-        if (googleMobileAdsConsentManager.canRequestAds()) {
-            initializeMobileAdsSdk();
-        }
-    }
-
-    private void initializeMobileAdsSdk() {
-        if (isMobileAdsInitializeCalled.getAndSet(true)) {
-            return;
-        }
-
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.initialize(this);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-        if(appUpdateManager != null && updateType == AppUpdateType.IMMEDIATE) {
-            appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
-                if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    try {
-                        appUpdateManager.startUpdateFlowForResult(info, updateType, MainMenuActivity.this, 123);
-                    } catch (IntentSender.SendIntentException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-        }
-    }
 
+        completePendingAppUpdates();
+    }
 
 }

@@ -4,6 +4,7 @@ import android.os.Build;
 import android.widget.PopupWindow;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,6 +20,7 @@ public abstract class PETFragment extends Fragment {
 
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
 
+    @Nullable
     protected PopupWindow popupWindow;
 
     protected PETFragment() {

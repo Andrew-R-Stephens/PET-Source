@@ -29,6 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.data.GhostBoxUtilityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
@@ -41,12 +42,15 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptureListener {
+public class GhostBoxFragment extends InvestigationFragment implements Visualizer.OnDataCaptureListener {
 
     private PermissionsViewModel permissionsViewModel;
 
+    @Nullable
     private WaveformView waveFormView = null;
+    @Nullable
     private TextToSpeech textToSpeech = null;
+    @Nullable
     private Visualizer visualizer = null;
 
     /**
@@ -73,8 +77,9 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
                     requireActivity()).get(PermissionsViewModel.class);
         }
 
-        AppCompatTextView title = view.findViewById(R.id.textView_fragtitle);
+        AppCompatTextView title = view.findViewById(R.id.textView_title);
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
+
         /*
         AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
         AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
@@ -114,7 +119,11 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
                     getContext(), view, R.array.ghostspeaktool_oijaboard_array, scrollview_list3);
 
             if (!permissionsViewModel.isRecordAudioAllowed()) {
-                requestAudioPermissions(getContext(), getActivity());
+                try {
+                    requestAudioPermissions(requireContext(), requireActivity());
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -122,14 +131,18 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
 
         startTextToSpeech();
 
-        if(getActivity() != null) {
-            getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+        try {
+            requireActivity()
+                    .getOnBackPressedDispatcher()
+                    .addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
                             Navigation.findNavController(view).popBackStack();
                         }
                     });
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 
@@ -141,10 +154,14 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
     public void setScrollListEntries(@NonNull Context context,
                                      View view,
                                      @ArrayRes int arrayRes,
-                                     LinearLayout destination) {
-
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-
+                                     @NonNull LinearLayout destination) {
+        LayoutInflater inflater;
+        try {
+            inflater = LayoutInflater.from(requireContext());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return;
+        }
         GhostBoxUtilityData toolGhostSpeakData = new GhostBoxUtilityData();
 
         int[] spiritBoxEntries = toolGhostSpeakData.getEntries(context, arrayRes);
@@ -206,23 +223,27 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
      */
     private void startTextToSpeech() {
         if (textToSpeech == null) {
-            textToSpeech = new TextToSpeech(getContext(), status -> {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeech.setLanguage(Locale.getDefault());
-                    if (result == TextToSpeech.LANG_MISSING_DATA ||
-                            result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS",
-                                "Language " +
-                                        Locale.getDefault().getDisplayCountry() + " not supported");
+            try {
+                textToSpeech = new TextToSpeech(requireContext(), status -> {
+                    if (status == TextToSpeech.SUCCESS) {
+                        int result = textToSpeech.setLanguage(Locale.getDefault());
+                        if (result == TextToSpeech.LANG_MISSING_DATA ||
+                                result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                            Log.e("TTS",
+                                    "Language " +
+                                            Locale.getDefault().getDisplayCountry() + " not supported");
+                            stopTextToSpeech();
+                            visitTTSVoiceDownloads();
+                        }
+                    } else {
+                        Log.d("TTS", "Initialization failed");
                         stopTextToSpeech();
                         visitTTSVoiceDownloads();
                     }
-                } else {
-                    Log.d("TTS", "Initialization failed");
-                    stopTextToSpeech();
-                    visitTTSVoiceDownloads();
-                }
-            });
+                });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -248,19 +269,20 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
         try {
             Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (getContext() != null) {
-                getContext().startActivity(intent);
-            }
-            else {
-                Log.e("TTS", "Context is null");
+            try {
+                requireContext().startActivity(intent);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         } catch (Exception e) {
-            if (getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
+            try {
+                requireActivity().runOnUiThread(() -> {
                     Toast toast = Toast.makeText(getContext(),
                             "Could not locate Text to Speech Settings Page", Toast.LENGTH_LONG);
                     toast.show();
                 });
+            } catch (IllegalStateException e2) {
+                e2.printStackTrace();
             }
             e.printStackTrace();
         }
@@ -273,7 +295,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
      */
     @Override
     public void onWaveFormDataCapture(Visualizer thisVisualiser,
-                                      byte[] waveform,
+                                      @NonNull byte[] waveform,
                                       int samplingRate) {
         if (waveFormView != null) {
             if (textToSpeech != null && textToSpeech.isSpeaking()) {
@@ -303,7 +325,7 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
      * @param c The context
      * @param a The current activity
      */
-    private void requestAudioPermissions(Context c, Activity a) {
+    private void requestAudioPermissions(@NonNull Context c, @NonNull Activity a) {
 
         if (ContextCompat.checkSelfPermission(
                 c, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -341,6 +363,14 @@ public class GhostBoxFragment extends Fragment implements Visualizer.OnDataCaptu
             Log.d("RecordAudio", "Accepted3");
         }
     }
+
+    @Override
+    protected void initViewModels() {
+        super.initViewModels();
+    }
+
+    @Override
+    public void softReset() { }
 
     /**
      *

@@ -1,6 +1,9 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -8,6 +11,7 @@ public abstract class Crossings {
     public static final boolean debug = false;
 
     int limit = 0;
+    @NonNull
     double[] yranges = new double[10];
 
     double xlo, ylo, xhi, yhi;
@@ -52,7 +56,8 @@ public abstract class Crossings {
 
     public abstract boolean covers(double ystart, double yend);
 
-    public static Crossings findCrossings(Vector<? extends Curve> curves,
+    @Nullable
+    public static Crossings findCrossings(@NonNull Vector<? extends Curve> curves,
                                           double xlo, double ylo,
                                           double xhi, double yhi)
     {
@@ -70,7 +75,8 @@ public abstract class Crossings {
         return cross;
     }
 
-    public static Crossings findCrossings(PathIterator pi,
+    @Nullable
+    public static Crossings findCrossings(@NonNull PathIterator pi,
                                           double xlo, double ylo,
                                           double xhi, double yhi)
     {
@@ -212,9 +218,9 @@ public abstract class Crossings {
         return false;
     }
 
-    private Vector<Curve> tmp = new Vector<>();
+    private final Vector<Curve> tmp = new Vector<>();
 
-    public boolean accumulateQuad(double x0, double y0, double[] coords) {
+    public boolean accumulateQuad(double x0, double y0, @NonNull double[] coords) {
         if (y0 < ylo && coords[1] < ylo && coords[3] < ylo) {
             return false;
         }
@@ -244,7 +250,7 @@ public abstract class Crossings {
         return false;
     }
 
-    public boolean accumulateCubic(double x0, double y0, double[] coords) {
+    public boolean accumulateCubic(double x0, double y0, @NonNull double[] coords) {
         if (y0 < ylo && coords[1] < ylo &&
             coords[3] < ylo && coords[5] < ylo)
         {
@@ -419,7 +425,7 @@ public abstract class Crossings {
                                  crosscounts, cur/2+1,
                                  rem/2);
             }
-            yranges[cur+0] = lo;
+            yranges[cur] = lo;
             yranges[cur+1] = hi;
             crosscounts[cur/2] = dir;
             limit += 2;
@@ -436,7 +442,7 @@ public abstract class Crossings {
             }
             if (cur < limit) {
                 int rdir = crosscounts[cur/2];
-                double yrlo = yranges[cur+0];
+                double yrlo = yranges[cur];
                 double yrhi = yranges[cur+1];
                 if (yrhi == ystart && rdir == direction) {
                     // Remove the range from the list and collapse it
@@ -451,7 +457,7 @@ public abstract class Crossings {
                     remove(cur);
                     ystart = yrlo;
                     rdir = crosscounts[cur/2];
-                    yrlo = yranges[cur+0];
+                    yrlo = yranges[cur];
                     yrhi = yranges[cur+1];
                 }
                 if (yend < yrlo) {

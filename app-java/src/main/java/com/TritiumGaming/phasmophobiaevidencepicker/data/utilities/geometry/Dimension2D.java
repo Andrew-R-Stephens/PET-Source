@@ -4,6 +4,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 /**
@@ -70,7 +71,7 @@ public abstract class Dimension2D implements Cloneable {
      * object
      * @since 1.2
      */
-    public void setSize(Dimension2D d) {
+    public void setSize(@NonNull Dimension2D d) {
         setSize(d.getWidth(), d.getHeight());
     }
 
@@ -82,6 +83,7 @@ public abstract class Dimension2D implements Cloneable {
      * @see        java.lang.Cloneable
      * @since      1.2
      */
+    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Object clone() {
         try {

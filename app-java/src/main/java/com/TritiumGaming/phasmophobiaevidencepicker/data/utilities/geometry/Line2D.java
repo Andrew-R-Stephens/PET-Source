@@ -27,6 +27,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
@@ -104,7 +105,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param p2 the end {@code Point2D} of this line segment
          * @since 1.2
          */
-        public Float(Point2D p1, Point2D p2) {
+        public Float(@NonNull Point2D p1, @NonNull Point2D p2) {
             setLine(p1, p2);
         }
 
@@ -128,6 +129,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Float(x1, y1);
         }
@@ -152,6 +154,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Float(x2, y2);
         }
@@ -187,6 +190,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D getBounds2D() {
             float x, y, w, h;
             if (x1 < x2) {
@@ -272,7 +276,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param p2 the end {@code Point2D} of this line segment
          * @since 1.2
          */
-        public Double(Point2D p1, Point2D p2) {
+        public Double(@NonNull Point2D p1, @NonNull Point2D p2) {
             setLine(p1, p2);
         }
 
@@ -296,6 +300,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Double(x1, y1);
         }
@@ -320,6 +325,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Double(x2, y2);
         }
@@ -339,6 +345,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.2
          */
+        @NonNull
         public Rectangle2D getBounds2D() {
             double x, y, w, h;
             if (x1 < x2) {
@@ -442,7 +449,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @param p2 the end {@code Point2D} of the line segment
      * @since 1.2
      */
-    public void setLine(Point2D p1, Point2D p2) {
+    public void setLine(@NonNull Point2D p1, @NonNull Point2D p2) {
         setLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
 
@@ -452,7 +459,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @param l the specified {@code Line2D}
      * @since 1.2
      */
-    public void setLine(Line2D l) {
+    public void setLine(@NonNull Line2D l) {
         setLine(l.getX1(), l.getY1(), l.getX2(), l.getY2());
     }
 
@@ -566,7 +573,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see #relativeCCW(double, double, double, double, double, double)
      * @since 1.2
      */
-    public int relativeCCW(Point2D p) {
+    public int relativeCCW(@NonNull Point2D p) {
         return relativeCCW(getX1(), getY1(), getX2(), getY2(),
                            p.getX(), p.getY());
     }
@@ -637,7 +644,7 @@ public abstract class Line2D implements Shape, Cloneable {
      *                  {@code false} otherwise.
      * @since 1.2
      */
-    public boolean intersectsLine(Line2D l) {
+    public boolean intersectsLine(@NonNull Line2D l) {
         return linesIntersect(l.getX1(), l.getY1(), l.getX2(), l.getY2(),
                               getX1(), getY1(), getX2(), getY2());
     }
@@ -783,7 +790,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see #ptLineDistSq(Point2D)
      * @since 1.2
      */
-    public double ptSegDistSq(Point2D pt) {
+    public double ptSegDistSq(@NonNull Point2D pt) {
         return ptSegDistSq(getX1(), getY1(), getX2(), getY2(),
                            pt.getX(), pt.getY());
     }
@@ -823,7 +830,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see #ptLineDist(Point2D)
      * @since 1.2
      */
-    public double ptSegDist(Point2D pt) {
+    public double ptSegDist(@NonNull Point2D pt) {
         return ptSegDist(getX1(), getY1(), getX2(), getY2(),
                          pt.getX(), pt.getY());
     }
@@ -935,7 +942,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see #ptSegDistSq(Point2D)
      * @since 1.2
      */
-    public double ptLineDistSq(Point2D pt) {
+    public double ptLineDistSq(@NonNull Point2D pt) {
         return ptLineDistSq(getX1(), getY1(), getX2(), getY2(),
                             pt.getX(), pt.getY());
     }
@@ -972,7 +979,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see #ptSegDist(Point2D)
      * @since 1.2
      */
-    public double ptLineDist(Point2D pt) {
+    public double ptLineDist(@NonNull Point2D pt) {
         return ptLineDist(getX1(), getY1(), getX2(), getY2(),
                          pt.getX(), pt.getY());
     }
@@ -1020,7 +1027,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean intersects(Rectangle2D r) {
+    public boolean intersects(@NonNull Rectangle2D r) {
         return r.intersectsLine(getX1(), getY1(), getX2(), getY2());
     }
 
@@ -1080,6 +1087,7 @@ public abstract class Line2D implements Shape, Cloneable {
      *          {@code Line2D}.
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at) {
         return new LineIterator(this, at);
     }
@@ -1102,6 +1110,7 @@ public abstract class Line2D implements Shape, Cloneable {
      *                  flattened {@code Line2D}
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return new LineIterator(this, at);
     }
@@ -1114,6 +1123,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @see        java.lang.Cloneable
      * @since      1.2
      */
+    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Object clone() {
         try {

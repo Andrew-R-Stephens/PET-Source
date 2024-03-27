@@ -339,6 +339,23 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <!-- Neucha Regular -->
+    <style name="NeuchaBold_Auto" parent = "AutoTextSizeBody">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="NeuchaBold_SqueezeText" parent = "AutoTextSizeBody_SqueezeText">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="NeuchaBold_Manual" parent="ManualSize">
+        <item name="android:fontFamily">@font/neucha</item>
+        <item name="fontFamily">@font/neucha</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!--
         JETBRAINS MONO
     -->

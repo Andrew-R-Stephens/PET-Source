@@ -4,14 +4,18 @@ plugins {
     id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     //id 'kotlin-android'
+
+    // Apply the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
 
-apply plugin: 'com.android.application'
+// apply plugin: 'com.android.application'
 
 // Apply the Crashlytics Gradle plugin
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.firebase.firebase-perf'
+// apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.firebase.crashlytics'
+//apply plugin: 'com.google.firebase.firebase-perf'
 
 
 def playcoreDir = file('G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk')
@@ -91,8 +95,12 @@ android {
     }
 
     compileOptions {
+        sourceCompatibility JavaVersion.VERSION_22
+        targetCompatibility JavaVersion.VERSION_22
+        /*
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        */
     }
 
 
@@ -143,7 +151,6 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    //implementation 'com.google.firebase:firebase-auth:22.3.1'
     implementation libs.firebase.auth
     implementation platform(libs.firebase.bom)
     // GOOGLE FIREBASE FIRESTORE

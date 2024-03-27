@@ -19,7 +19,9 @@ import com.google.android.ump.UserMessagingPlatform;
  * you can choose another consent management platform to capture consent.
  */
 public class GoogleMobileAdsConsentManager {
+    @NonNull
     private final Activity activity;
+    @NonNull
     private final ConsentInformation consentInformation;
 
     /** Interface definition for a callback to be invoked when consent gathering is complete. */
@@ -47,7 +49,7 @@ public class GoogleMobileAdsConsentManager {
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
      * consent form if necessary. */
     public void gatherConsent(
-            OnConsentGatheringCompleteListener onConsentGatheringCompleteListener) {
+            @NonNull OnConsentGatheringCompleteListener onConsentGatheringCompleteListener) {
         // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(activity)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
@@ -76,8 +78,8 @@ public class GoogleMobileAdsConsentManager {
 
     /** Helper method to call the UMP SDK method to present the privacy options form. */
     public void showPrivacyOptionsForm(
-            Activity activity,
-            OnConsentFormDismissedListener onConsentFormDismissedListener) {
+            @NonNull Activity activity,
+            @NonNull OnConsentFormDismissedListener onConsentFormDismissedListener) {
         UserMessagingPlatform.showPrivacyOptionsForm(activity, onConsentFormDismissedListener);
     }
 }

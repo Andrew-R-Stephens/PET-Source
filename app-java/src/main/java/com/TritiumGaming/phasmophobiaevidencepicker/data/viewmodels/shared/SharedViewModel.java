@@ -21,17 +21,17 @@ import java.util.Locale;
 /** @noinspection SameParameterValue*/
 public abstract class SharedViewModel extends ViewModel {
 
-    protected static @StringRes int fileName;
+    protected @StringRes int fileName;
 
     public abstract boolean init(@NonNull Context context);
 
-    protected static SharedPreferences getSharedPreferences(Context context) {
+    protected SharedPreferences getSharedPreferences(@NonNull Context context) {
         return context.getSharedPreferences(
                 context.getResources().getString(fileName),
                 Context.MODE_PRIVATE);
     }
 
-    protected static SharedPreferences.Editor getEditor(Context context) {
+    protected SharedPreferences.Editor getEditor(@NonNull Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getResources().getString(fileName),
                 Context.MODE_PRIVATE);

@@ -65,11 +65,16 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
-        final AppCompatButton btn_account_logout = view.findViewById(R.id.settings_account_logout_button);
-        final AppCompatButton btn_account_delete = view.findViewById(R.id.settings_account_delete_button);
-        final ConstraintLayout btn_account_infoContainer = view.findViewById(R.id.constraintLayout_accountInformation);
-        final AppCompatTextView btn_account_info = view.findViewById(R.id.settings_accountsettings_info);
+        final AppCompatButton btn_account_login =
+                view.findViewById(R.id.settings_account_login_button);
+        final AppCompatButton btn_account_logout =
+                view.findViewById(R.id.settings_account_logout_button);
+        final AppCompatButton btn_account_delete =
+                view.findViewById(R.id.settings_account_delete_button);
+        final ConstraintLayout btn_account_infoContainer =
+                view.findViewById(R.id.constraintLayout_accountInformation);
+        final AppCompatTextView btn_account_info =
+                view.findViewById(R.id.settings_accountsettings_info);
 
         btn_account_login.setOnClickListener(v -> {
             manualSignInAccount();
@@ -122,7 +127,8 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
             if(showEmail) {
                 btn_account_info.setText(email_displayed);
             } else {
-                btn_account_info.setText(finalEmail_obfuscated1 != null ? finalEmail_obfuscated1 : "?");
+                btn_account_info.setText(
+                        finalEmail_obfuscated1 != null ? finalEmail_obfuscated1 : "?");
             }
         });
 
@@ -224,11 +230,16 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
-        if(!NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference())) {
-            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show();
+        try {
+            if(!NetworkUtils.isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.getNetworkPreference())) {
+                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
 
+                return;
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
             return;
         }
 
@@ -249,16 +260,12 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
     /**
      *
      */
-    private void onSignInResultAccount(FirebaseAuthUIAuthenticationResult result) {
+    private void onSignInResultAccount(@NonNull FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = null;
-            try {
-                user = FirestoreUser.getCurrentFirebaseUser();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
+
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),

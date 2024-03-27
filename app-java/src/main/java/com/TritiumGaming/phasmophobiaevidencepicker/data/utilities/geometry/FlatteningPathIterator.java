@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.util.NoSuchElementException;
 
 public class FlatteningPathIterator implements PathIterator {
@@ -13,6 +15,7 @@ public class FlatteningPathIterator implements PathIterator {
 
     int limit;                          // Maximum number of recursion levels
 
+    @NonNull
     double[] hold = new double[14];     // The cache of interpolated coords
                                         // Note that this must be long enough
                                         // to store a full cubic segment and

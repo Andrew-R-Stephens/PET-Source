@@ -3,6 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
@@ -43,6 +45,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Float(x1, y1);
         }
@@ -58,6 +61,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlPt() {
             return new Point2D.Float(ctrlx, ctrly);
         }
@@ -73,6 +77,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Float(x2, y2);
         }
@@ -104,6 +109,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Rectangle2D getBounds2D() {
             float left   = Math.min(Math.min(x1, x2), ctrlx);
             float top    = Math.min(Math.min(y1, y2), ctrly);
@@ -160,6 +166,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP1() {
             return new Point2D.Double(x1, y1);
         }
@@ -175,6 +182,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getCtrlPt() {
             return new Point2D.Double(ctrlx, ctrly);
         }
@@ -190,6 +198,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Point2D getP2() {
             return new Point2D.Double(x2, y2);
         }
@@ -208,6 +217,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         }
 
 
+        @NonNull
         public Rectangle2D getBounds2D() {
             double left   = Math.min(Math.min(x1, x2), ctrlx);
             double top    = Math.min(Math.min(y1, y2), ctrly);
@@ -258,28 +268,28 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
                                   double x2, double y2);
 
 
-    public void setCurve(double[] coords, int offset) {
-        setCurve(coords[offset + 0], coords[offset + 1],
+    public void setCurve(@NonNull double[] coords, int offset) {
+        setCurve(coords[offset], coords[offset + 1],
                  coords[offset + 2], coords[offset + 3],
                  coords[offset + 4], coords[offset + 5]);
     }
 
 
-    public void setCurve(Point2D p1, Point2D cp, Point2D p2) {
+    public void setCurve(@NonNull Point2D p1, @NonNull Point2D cp, @NonNull Point2D p2) {
         setCurve(p1.getX(), p1.getY(),
                  cp.getX(), cp.getY(),
                  p2.getX(), p2.getY());
     }
 
 
-    public void setCurve(Point2D[] pts, int offset) {
-        setCurve(pts[offset + 0].getX(), pts[offset + 0].getY(),
+    public void setCurve(@NonNull Point2D[] pts, int offset) {
+        setCurve(pts[offset].getX(), pts[offset].getY(),
                  pts[offset + 1].getX(), pts[offset + 1].getY(),
                  pts[offset + 2].getX(), pts[offset + 2].getY());
     }
 
 
-    public void setCurve(QuadCurve2D c) {
+    public void setCurve(@NonNull QuadCurve2D c) {
         setCurve(c.getX1(), c.getY1(),
                  c.getCtrlX(), c.getCtrlY(),
                  c.getX2(), c.getY2());
@@ -300,15 +310,15 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public static double getFlatnessSq(double[] coords, int offset) {
-        return Line2D.ptSegDistSq(coords[offset + 0], coords[offset + 1],
+    public static double getFlatnessSq(@NonNull double[] coords, int offset) {
+        return Line2D.ptSegDistSq(coords[offset], coords[offset + 1],
                                   coords[offset + 4], coords[offset + 5],
                                   coords[offset + 2], coords[offset + 3]);
     }
 
 
-    public static double getFlatness(double[] coords, int offset) {
-        return Line2D.ptSegDist(coords[offset + 0], coords[offset + 1],
+    public static double getFlatness(@NonNull double[] coords, int offset) {
+        return Line2D.ptSegDist(coords[offset], coords[offset + 1],
                                 coords[offset + 4], coords[offset + 5],
                                 coords[offset + 2], coords[offset + 3]);
     }
@@ -333,9 +343,9 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public static void subdivide(QuadCurve2D src,
-                                 QuadCurve2D left,
-                                 QuadCurve2D right) {
+    public static void subdivide(@NonNull QuadCurve2D src,
+                                 @Nullable QuadCurve2D left,
+                                 @Nullable QuadCurve2D right) {
         double x1 = src.getX1();
         double y1 = src.getY1();
         double ctrlx = src.getCtrlX();
@@ -357,17 +367,17 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public static void subdivide(double[] src, int srcoff,
-                                 double[] left, int leftoff,
-                                 double[] right, int rightoff) {
-        double x1 = src[srcoff + 0];
+    public static void subdivide(@NonNull double[] src, int srcoff,
+                                 @Nullable double[] left, int leftoff,
+                                 @Nullable double[] right, int rightoff) {
+        double x1 = src[srcoff];
         double y1 = src[srcoff + 1];
         double ctrlx = src[srcoff + 2];
         double ctrly = src[srcoff + 3];
         double x2 = src[srcoff + 4];
         double y2 = src[srcoff + 5];
         if (left != null) {
-            left[leftoff + 0] = x1;
+            left[leftoff] = x1;
             left[leftoff + 1] = y1;
         }
         if (right != null) {
@@ -387,7 +397,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
             left[leftoff + 5] = ctrly;
         }
         if (right != null) {
-            right[rightoff + 0] = ctrlx;
+            right[rightoff] = ctrlx;
             right[rightoff + 1] = ctrly;
             right[rightoff + 2] = x2;
             right[rightoff + 3] = y2;
@@ -395,12 +405,12 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public static int solveQuadratic(double[] eqn) {
+    public static int solveQuadratic(@NonNull double[] eqn) {
         return solveQuadratic(eqn, eqn);
     }
 
 
-    public static int solveQuadratic(double[] eqn, double[] res) {
+    public static int solveQuadratic(@NonNull double[] eqn, double[] res) {
         double a = eqn[2];
         double b = eqn[1];
         double c = eqn[0];
@@ -538,24 +548,23 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean contains(Point2D p) {
+    public boolean contains(@NonNull Point2D p) {
         return contains(p.getX(), p.getY());
     }
 
 
-    private static void fillEqn(double[] eqn, double val,
+    private static void fillEqn(@NonNull double[] eqn, double val,
                                 double c1, double cp, double c2) {
         eqn[0] = c1 - val;
         eqn[1] = cp + cp - c1 - c1;
         eqn[2] = c1 - cp - cp + c2;
-        return;
     }
 
 
     private static int evalQuadratic(double[] vals, int num,
                                      boolean include0,
                                      boolean include1,
-                                     double[] inflect,
+                                     @Nullable double[] inflect,
                                      double c1, double ctrl, double c2) {
         int j = 0;
         for (int i = 0; i < num; i++) {
@@ -787,7 +796,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean intersects(Rectangle2D r) {
+    public boolean intersects(@NonNull Rectangle2D r) {
         return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -805,7 +814,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public boolean contains(Rectangle2D r) {
+    public boolean contains(@NonNull Rectangle2D r) {
         return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -815,16 +824,19 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at) {
         return new QuadIterator(this, at);
     }
 
 
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return new FlatteningPathIterator(getPathIterator(at), flatness);
     }
 
 
+    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Object clone() {
         try {

@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 /**
  * A point representing a location in {@code (x,y)} coordinate space,
  * specified in integer precision.
@@ -51,7 +53,7 @@ public class Point extends Point2D implements java.io.Serializable {
      * @param       p a point
      * @since       1.1
      */
-    public Point(Point p) {
+    public Point(@NonNull Point p) {
         this(p.x, p.y);
     }
 
@@ -90,6 +92,7 @@ public class Point extends Point2D implements java.io.Serializable {
      * @return      a copy of this point, at the same location
      * @since       1.1
      */
+    @NonNull
     public Point getLocation() {
         return new Point(x, y);
     }
@@ -101,7 +104,7 @@ public class Point extends Point2D implements java.io.Serializable {
      * @param       p  a point, the new location for this point
      * @since       1.1
      */
-    public void setLocation(Point p) {
+    public void setLocation(@NonNull Point p) {
         setLocation(p.x, p.y);
     }
 
@@ -190,6 +193,7 @@ public class Point extends Point2D implements java.io.Serializable {
      *
      * @return  a string representation of this point
      */
+    @NonNull
     public String toString() {
         return getClass().getName() + "[x=" + x + ",y=" + y + "]";
     }

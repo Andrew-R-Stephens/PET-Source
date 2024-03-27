@@ -35,6 +35,14 @@
         tools:targetApi="34"
         android:banner="@mipmap/ic_launcher">
 
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource" />
+
+        <!--
+            Meta-Data
+        -->
         <!-- Delay app measurement until MobileAds.initialize() is called. -->
         <meta-data
             android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
@@ -45,7 +53,13 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <!-- Required for Consent Mode v2 https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced -->
+        <meta-data android:name="google_analytics_default_allow_ad_user_data" android:value="true" />
+        <meta-data android:name="google_analytics_default_allow_ad_personalization_signals" android:value="true" />
 
+        <!--
+            Activities
+        -->
         <activity
             android:name=".activities.mainmenus.MainMenuActivity"
             android:theme="@style/NonColorblind.Base"

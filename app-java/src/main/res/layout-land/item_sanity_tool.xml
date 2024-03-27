@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/difficulty_title"
+                    android:id="@+id/carousel_title"
                     style="?attr/primaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -60,6 +60,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+<!--
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/difficulty_prev"
@@ -77,9 +78,27 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/difficulty_title" />
+-->
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/difficulty_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_prev"
+                    android:tint="#FFFFFF"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/carousel_name"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carousel_title" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/difficulty_name"
+                    android:id="@+id/carousel_name"
                     style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -90,7 +109,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/difficulty_prev"
                     app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
-
+<!--
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/difficulty_next"
                     android:layout_width="wrap_content"
@@ -107,6 +126,24 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/difficulty_name"
                     app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
+                -->
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/difficulty_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_next"
+                    android:tint="#FFFFFF"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/difficulty_prev"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/carousel_name"
+                    app:layout_constraintTop_toTopOf="@+id/difficulty_prev" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,6 +173,26 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+<!--
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/mapchoice_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_prev"
+                    android:tint="#FFFFFF"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mapchoice_name"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mapchoice_title" />
+-->
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/mapchoice_prev"
@@ -167,6 +224,24 @@
                     app:layout_constraintEnd_toStartOf="@+id/mapchoice_next"
                     app:layout_constraintStart_toEndOf="@+id/mapchoice_prev"
                     app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
+<!--
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/mapchoice_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_next"
+                    android:tint="#FFFFFF"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mapchoice_prev"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mapchoice_name"
+                    app:layout_constraintTop_toTopOf="@+id/mapchoice_prev" />
+-->
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/mapchoice_next"

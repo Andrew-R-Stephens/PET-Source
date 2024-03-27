@@ -2,6 +2,9 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
@@ -122,7 +125,7 @@ public abstract class Path2D implements Shape, Cloneable {
     abstract int rectCrossings(double rxmin, double rymin,
                                double rxmax, double rymax);
 
-    static byte[] expandPointTypes(byte[] oldPointTypes, int needed) {
+    static byte[] expandPointTypes(@NonNull byte[] oldPointTypes, int needed) {
         final int oldSize = oldPointTypes.length;
         final int newSizeMin = oldSize + needed;
         if (newSizeMin < oldSize) {
@@ -245,8 +248,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @since 1.6
          */
         public Float(Shape s, AffineTransform at) {
-            if (s instanceof Path2D) {
-                Path2D p2d = (Path2D) s;
+            if (s instanceof Path2D p2d) {
                 setWindingRule(p2d.windingRule);
                 this.numTypes = p2d.numTypes;
                 // trim arrays:
@@ -274,7 +276,7 @@ public abstract class Path2D implements Shape, Cloneable {
         }
 
         @Override
-        float[] cloneCoordsFloat(AffineTransform at) {
+        float[] cloneCoordsFloat(@Nullable AffineTransform at) {
             // trim arrays:
             float[] ret;
             if (at == null) {
@@ -287,7 +289,7 @@ public abstract class Path2D implements Shape, Cloneable {
         }
 
         @Override
-        double[] cloneCoordsDouble(AffineTransform at) {
+        double[] cloneCoordsDouble(@Nullable AffineTransform at) {
             // trim arrays:
             double[] ret = new double[numCoords];
             if (at == null) {
@@ -310,6 +312,7 @@ public abstract class Path2D implements Shape, Cloneable {
             floatCoords[numCoords++] = (float) y;
         }
 
+        @NonNull
         Point2D getPoint(int coordindex) {
             return new Point2D.Float(floatCoords[coordindex],
                                      floatCoords[coordindex+1]);
@@ -329,7 +332,7 @@ public abstract class Path2D implements Shape, Cloneable {
             }
         }
 
-        static float[] expandCoords(float[] oldCoords, int needed) {
+        static float[] expandCoords(@NonNull float[] oldCoords, int needed) {
             final int oldSize = oldCoords.length;
             final int newSizeMin = oldSize + needed;
             if (newSizeMin < oldSize) {
@@ -721,7 +724,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
-        public final void append(PathIterator pi, boolean connect) {
+        public final void append(@NonNull PathIterator pi, boolean connect) {
             float[] coords = new float[6];
             while (!pi.isDone()) {
                 switch (pi.currentSegment(coords)) {
@@ -764,7 +767,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
-        public final void transform(AffineTransform at) {
+        public final void transform(@NonNull AffineTransform at) {
             at.transform(floatCoords, 0, floatCoords, 0, numCoords / 2);
         }
 
@@ -772,6 +775,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
+        @NonNull
         public final synchronized Rectangle2D getBounds2D() {
             float x1, y1, x2, y2;
             int i = numCoords;
@@ -803,7 +807,8 @@ public abstract class Path2D implements Shape, Cloneable {
          *
          * @since 1.6
          */
-        public final PathIterator getPathIterator(AffineTransform at) {
+        @NonNull
+        public final PathIterator getPathIterator(@Nullable AffineTransform at) {
             if (at == null) {
                 return new CopyIterator(this);
             } else {
@@ -819,6 +824,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @see        java.lang.Cloneable
          * @since      1.6
          */
+        @NonNull
         public final Object clone() {
             // Note: It would be nice to have this return Path2D
             // but one of our subclasses (GeneralPath) needs to
@@ -965,7 +971,7 @@ public abstract class Path2D implements Shape, Cloneable {
          *
          * @since 1.6
          */
-        private void writeObject(java.io.ObjectOutputStream s)
+        private void writeObject(@NonNull java.io.ObjectOutputStream s)
             throws java.io.IOException
         {
             super.writeObject(s, false);
@@ -988,7 +994,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @throws IOException if an I/O error occurs
          * @since 1.6
          */
-        private void readObject(java.io.ObjectInputStream s)
+        private void readObject(@NonNull java.io.ObjectInputStream s)
             throws java.lang.ClassNotFoundException, java.io.IOException
         {
             super.readObject(s, false);
@@ -997,12 +1003,12 @@ public abstract class Path2D implements Shape, Cloneable {
         static class CopyIterator extends Path2D.Iterator {
             float[] floatCoords;
 
-            CopyIterator(Path2D.Float p2df) {
+            CopyIterator(@NonNull Path2D.Float p2df) {
                 super(p2df);
                 this.floatCoords = p2df.floatCoords;
             }
 
-            public int currentSegment(float[] coords) {
+            public int currentSegment(@NonNull float[] coords) {
                 int type = path.pointTypes[typeIdx];
                 int numCoords = curvecoords[type];
                 if (numCoords > 0) {
@@ -1028,7 +1034,7 @@ public abstract class Path2D implements Shape, Cloneable {
             float[] floatCoords;
             AffineTransform affine;
 
-            TxIterator(Path2D.Float p2df, AffineTransform at) {
+            TxIterator(@NonNull Path2D.Float p2df, AffineTransform at) {
                 super(p2df);
                 this.floatCoords = p2df.floatCoords;
                 this.affine = at;
@@ -1144,8 +1150,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @since 1.6
          */
         public Double(Shape s, AffineTransform at) {
-            if (s instanceof Path2D) {
-                Path2D p2d = (Path2D) s;
+            if (s instanceof Path2D p2d) {
                 setWindingRule(p2d.windingRule);
                 this.numTypes = p2d.numTypes;
                 // trim arrays:
@@ -1173,7 +1178,7 @@ public abstract class Path2D implements Shape, Cloneable {
         }
 
         @Override
-        float[] cloneCoordsFloat(AffineTransform at) {
+        float[] cloneCoordsFloat(@Nullable AffineTransform at) {
             // trim arrays:
             float[] ret = new float[numCoords];
             if (at == null) {
@@ -1187,7 +1192,7 @@ public abstract class Path2D implements Shape, Cloneable {
         }
 
         @Override
-        double[] cloneCoordsDouble(AffineTransform at) {
+        double[] cloneCoordsDouble(@Nullable AffineTransform at) {
             // trim arrays:
             double[] ret;
             if (at == null) {
@@ -1209,6 +1214,7 @@ public abstract class Path2D implements Shape, Cloneable {
             doubleCoords[numCoords++] = y;
         }
 
+        @NonNull
         Point2D getPoint(int coordindex) {
             return new Point2D.Double(doubleCoords[coordindex],
                                       doubleCoords[coordindex+1]);
@@ -1228,7 +1234,7 @@ public abstract class Path2D implements Shape, Cloneable {
             }
         }
 
-        static double[] expandCoords(double[] oldCoords, int needed) {
+        static double[] expandCoords(@NonNull double[] oldCoords, int needed) {
             final int oldSize = oldCoords.length;
             final int newSizeMin = oldSize + needed;
             if (newSizeMin < oldSize) {
@@ -1510,7 +1516,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
-        public final void append(PathIterator pi, boolean connect) {
+        public final void append(@NonNull PathIterator pi, boolean connect) {
             double[] coords = new double[6];
             while (!pi.isDone()) {
                 switch (pi.currentSegment(coords)) {
@@ -1553,7 +1559,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
-        public final void transform(AffineTransform at) {
+        public final void transform(@NonNull AffineTransform at) {
             at.transform(doubleCoords, 0, doubleCoords, 0, numCoords / 2);
         }
 
@@ -1561,6 +1567,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * {@inheritDoc}
          * @since 1.6
          */
+        @NonNull
         public final synchronized Rectangle2D getBounds2D() {
             double x1, y1, x2, y2;
             int i = numCoords;
@@ -1596,7 +1603,8 @@ public abstract class Path2D implements Shape, Cloneable {
          *         of this {@code Shape}'s outline
          * @since 1.6
          */
-        public final PathIterator getPathIterator(AffineTransform at) {
+        @NonNull
+        public final PathIterator getPathIterator(@Nullable AffineTransform at) {
             if (at == null) {
                 return new CopyIterator(this);
             } else {
@@ -1612,6 +1620,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @see        java.lang.Cloneable
          * @since      1.6
          */
+        @NonNull
         public final Object clone() {
             // Note: It would be nice to have this return Path2D
             // but one of our subclasses (GeneralPath) needs to
@@ -1753,7 +1762,7 @@ public abstract class Path2D implements Shape, Cloneable {
          *
          * @since 1.6
          */
-        private void writeObject(java.io.ObjectOutputStream s)
+        private void writeObject(@NonNull java.io.ObjectOutputStream s)
             throws java.io.IOException
         {
             super.writeObject(s, true);
@@ -1776,7 +1785,7 @@ public abstract class Path2D implements Shape, Cloneable {
          * @throws IOException if an I/O error occurs         *
          * @since 1.6
          */
-        private void readObject(java.io.ObjectInputStream s)
+        private void readObject(@NonNull java.io.ObjectInputStream s)
             throws java.lang.ClassNotFoundException, java.io.IOException
         {
             super.readObject(s, true);
@@ -1785,7 +1794,7 @@ public abstract class Path2D implements Shape, Cloneable {
         static class CopyIterator extends Path2D.Iterator {
             double[] doubleCoords;
 
-            CopyIterator(Path2D.Double p2dd) {
+            CopyIterator(@NonNull Path2D.Double p2dd) {
                 super(p2dd);
                 this.doubleCoords = p2dd.doubleCoords;
             }
@@ -1801,7 +1810,7 @@ public abstract class Path2D implements Shape, Cloneable {
                 return type;
             }
 
-            public int currentSegment(double[] coords) {
+            public int currentSegment(@NonNull double[] coords) {
                 int type = path.pointTypes[typeIdx];
                 int numCoords = curvecoords[type];
                 if (numCoords > 0) {
@@ -1816,7 +1825,7 @@ public abstract class Path2D implements Shape, Cloneable {
             double[] doubleCoords;
             AffineTransform affine;
 
-            TxIterator(Path2D.Double p2dd, AffineTransform at) {
+            TxIterator(@NonNull Path2D.Double p2dd, AffineTransform at) {
                 super(p2dd);
                 this.doubleCoords = p2dd.doubleCoords;
                 this.affine = at;
@@ -1938,7 +1947,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *                to connect the new geometry to the existing path
      * @since 1.6
      */
-    public final void append(Shape s, boolean connect) {
+    public final void append(@NonNull Shape s, boolean connect) {
         append(s.getPathIterator(null), connect);
     }
 
@@ -2009,6 +2018,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         the path or {@code null} if there are no points in the path.
      * @since 1.6
      */
+    @Nullable
     public final synchronized Point2D getCurrentPoint() {
         int index = numCoords;
         if (numTypes < 1 || index < 1) {
@@ -2080,7 +2090,8 @@ public abstract class Path2D implements Shape, Cloneable {
      *         {@code AffineTransform}.
      * @since 1.6
      */
-    public final synchronized Shape createTransformedShape(AffineTransform at) {
+    @NonNull
+    public final synchronized Shape createTransformedShape(@Nullable AffineTransform at) {
         Path2D p2d = (Path2D) clone();
         if (at != null) {
             p2d.transform(at);
@@ -2111,7 +2122,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         specified {@code PathIterator}; {@code false} otherwise
      * @since 1.6
      */
-    public static boolean contains(PathIterator pi, double x, double y) {
+    public static boolean contains(@NonNull PathIterator pi, double x, double y) {
         if (x * 0.0 + y * 0.0 == 0.0) {
             /* N * 0.0 is 0.0 only if N is finite.
              * Here we know that both x and y are finite.
@@ -2143,7 +2154,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         specified {@code PathIterator}; {@code false} otherwise
      * @since 1.6
      */
-    public static boolean contains(PathIterator pi, Point2D p) {
+    public static boolean contains(@NonNull PathIterator pi, @NonNull Point2D p) {
         return contains(pi, p.getX(), p.getY());
     }
 
@@ -2175,7 +2186,7 @@ public abstract class Path2D implements Shape, Cloneable {
      * {@inheritDoc}
      * @since 1.6
      */
-    public final boolean contains(Point2D p) {
+    public final boolean contains(@NonNull Point2D p) {
         return contains(p.getX(), p.getY());
     }
 
@@ -2210,7 +2221,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         the specified rectangular area; {@code false} otherwise.
      * @since 1.6
      */
-    public static boolean contains(PathIterator pi,
+    public static boolean contains(@NonNull PathIterator pi,
                                    double x, double y, double w, double h)
     {
         if (java.lang.Double.isNaN(x+w) || java.lang.Double.isNaN(y+h)) {
@@ -2261,7 +2272,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         the specified {@code Rectangle2D}; {@code false} otherwise.
      * @since 1.6
      */
-    public static boolean contains(PathIterator pi, Rectangle2D r) {
+    public static boolean contains(@NonNull PathIterator pi, @NonNull Rectangle2D r) {
         return contains(pi, r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -2324,7 +2335,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *
      * @since 1.6
      */
-    public final boolean contains(Rectangle2D r) {
+    public final boolean contains(@NonNull Rectangle2D r) {
         return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -2360,7 +2371,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         coordinates intersect each other; {@code false} otherwise.
      * @since 1.6
      */
-    public static boolean intersects(PathIterator pi,
+    public static boolean intersects(@NonNull PathIterator pi,
                                      double x, double y, double w, double h)
     {
         if (java.lang.Double.isNaN(x+w) || java.lang.Double.isNaN(y+h)) {
@@ -2411,7 +2422,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *         intersect each other; {@code false} otherwise.
      * @since 1.6
      */
-    public static boolean intersects(PathIterator pi, Rectangle2D r) {
+    public static boolean intersects(@NonNull PathIterator pi, @NonNull Rectangle2D r) {
         return intersects(pi, r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -2472,7 +2483,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *
      * @since 1.6
      */
-    public final boolean intersects(Rectangle2D r) {
+    public final boolean intersects(@NonNull Rectangle2D r) {
         return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -2487,6 +2498,7 @@ public abstract class Path2D implements Shape, Cloneable {
      *
      * @since 1.6
      */
+    @NonNull
     public final PathIterator getPathIterator(AffineTransform at,
                                               double flatness)
     {
@@ -2501,6 +2513,7 @@ public abstract class Path2D implements Shape, Cloneable {
      * @see        java.lang.Cloneable
      * @since      1.6
      */
+    @NonNull
     public abstract Object clone();
         // Note: It would be nice to have this return Path2D
         // but one of our subclasses (GeneralPath) needs to
@@ -2536,7 +2549,7 @@ public abstract class Path2D implements Shape, Cloneable {
     private static final byte SERIAL_SEG_CLOSE         = 0x60;
     private static final byte SERIAL_PATH_END          = 0x61;
 
-    final void writeObject(java.io.ObjectOutputStream s, boolean isdbl)
+    final void writeObject(@NonNull java.io.ObjectOutputStream s, boolean isdbl)
         throws java.io.IOException
     {
         s.defaultWriteObject();
@@ -2613,7 +2626,7 @@ public abstract class Path2D implements Shape, Cloneable {
         s.writeByte(SERIAL_PATH_END);
     }
 
-    final void readObject(java.io.ObjectInputStream s, boolean storedbl)
+    final void readObject(@NonNull java.io.ObjectInputStream s, boolean storedbl)
         throws java.lang.ClassNotFoundException, java.io.IOException
     {
         s.defaultReadObject();

@@ -1,6 +1,8 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 import java.util.Vector;
 
 final class Order3 extends Curve {
@@ -26,7 +28,7 @@ final class Order3 extends Curve {
     private final double ycoeff2;
     private final double ycoeff3;
 
-    public static void insert(Vector<Curve> curves, double[] tmp,
+    public static void insert(@NonNull Vector<Curve> curves, @NonNull double[] tmp,
                               double x0, double y0,
                               double cx0, double cy0,
                               double cx1, double cy1,
@@ -78,7 +80,7 @@ final class Order3 extends Curve {
         }
     }
 
-    public static void addInstance(Vector<Curve> curves,
+    public static void addInstance(@NonNull Vector<Curve> curves,
                                    double x0, double y0,
                                    double cx0, double cy0,
                                    double cx1, double cy1,
@@ -133,7 +135,7 @@ final class Order3 extends Curve {
      */
     public static int getHorizontalParams(double c0, double cp0,
                                           double cp1, double c1,
-                                          double[] ret) {
+                                          @NonNull double[] ret) {
         if (c0 <= cp0 && cp0 <= cp1 && cp1 <= c1) {
             return 0;
         }
@@ -164,7 +166,7 @@ final class Order3 extends Curve {
      * parametric subranges [0..t] and [t..1].  Store the results back
      * into the array at coords[pos...pos+7] and coords[pos+6...pos+13].
      */
-    public static void split(double[] coords, int pos, double t) {
+    public static void split(@NonNull double[] coords, int pos, double t) {
         double x0, y0, cx0, cy0, cx1, cy1, x1, y1;
         coords[pos+12] = x1 = coords[pos+6];
         coords[pos+13] = y1 = coords[pos+7];
@@ -512,7 +514,7 @@ final class Order3 extends Curve {
         return t1;
     }
 
-    public void enlarge(Rectangle2D r) {
+    public void enlarge(@NonNull Rectangle2D r) {
         r.add(x0, y0);
         double[] eqn = {xcoeff1, 2 * xcoeff2, 3 * xcoeff3};
         int numroots = QuadCurve2D.solveQuadratic(eqn, eqn);
@@ -577,6 +579,7 @@ final class Order3 extends Curve {
                           dir);
     }
 
+    @NonNull
     public Curve getReversedCurve() {
         return new Order3(x0, y0, cx0, cy0, cx1, cy1, x1, y1, -direction);
     }
@@ -600,6 +603,7 @@ final class Order3 extends Curve {
         return PathIterator.SEG_CUBICTO;
     }
 
+    @NonNull
     public String controlPointString() {
         return (("("+round(getCX0())+", "+round(getCY0())+"), ")+
                 ("("+round(getCX1())+", "+round(getCY1())+"), "));

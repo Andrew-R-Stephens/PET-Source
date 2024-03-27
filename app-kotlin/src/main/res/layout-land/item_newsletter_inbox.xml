@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintDimensionRatio="1"
+        app:cardBackgroundColor="?attr/backgroundColorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_petnews_listener"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout60"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/inboxTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/inboxIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:alpha="100"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    app:layout_constraintWidth_min="96dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_newspaper"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/notifyIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_mail_unavailable"
+                    app:layout_constraintBottom_toBottomOf="@+id/inboxIcon"
+                    app:layout_constraintEnd_toEndOf="@+id/inboxIcon"
+                    app:layout_constraintHeight_percent=".5"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/inboxIcon"
+                    app:layout_constraintTop_toTopOf="@+id/inboxIcon"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:tint="?attr/inboxNotification"
+                    app:tintMode="multiply" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/inboxTitle"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scaleType="centerInside"
+                android:singleLine="true"
+                android:text="@string/messagecenter_inbox_general"
+                android:textColor="?attr/textColorPrimary"
+                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout60"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout60"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout60" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</merge>
+
+                

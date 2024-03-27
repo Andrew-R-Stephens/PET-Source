@@ -5,15 +5,15 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.DifficultyCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.MapCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.children.solo.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.GhostOrderData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.EvidenceList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.investigationtype.GhostList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.evidence.data.runnables.SanityRunnable;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.MapCarouselData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 
 import java.util.Arrays;
 
@@ -39,15 +39,14 @@ public class EvidenceViewModel extends ViewModel {
 
     private boolean isCollapsed = false;
 
-
-    public void init(Context c) {
+    public void init(Context context) {
 
         if (!hasInvestigationData()) {
-            setInvestigationData(new InvestigationData(this, c));
+            setInvestigationData(new InvestigationData(context, this));
         }
 
         if (!hasDifficultyCarouselData()) {
-            difficultyCarouselData = new DifficultyCarouselData(this, c);
+            difficultyCarouselData = new DifficultyCarouselData(context, this);
         }
 
         if (!hasMapCarouselData()) {
@@ -71,12 +70,32 @@ public class EvidenceViewModel extends ViewModel {
         return phaseTimerData != null;
     }
 
-    public PhaseTimerData getPhaseTimerData() {
-        return phaseTimerData;
-    }
-
     private boolean hasMapCarouselData() {
         return mapCarouselData != null;
+    }
+
+    public boolean hasDifficultyCarouselData() {
+        return difficultyCarouselData != null;
+    }
+
+    public boolean hasInvestigationData() {
+        return investigationData != null;
+    }
+
+    public boolean hasSanityRunnable() {
+        return sanityRunnable != null;
+    }
+
+    public boolean hasSanityData() {
+        return sanityData != null;
+    }
+
+    public boolean hasGhostOrderData() {
+        return ghostOrderData != null;
+    }
+
+    public PhaseTimerData getPhaseTimerData() {
+        return phaseTimerData;
     }
 
     public MapCarouselData getMapCarouselData() {
@@ -87,78 +106,28 @@ public class EvidenceViewModel extends ViewModel {
         return difficultyCarouselData;
     }
 
-    public boolean hasDifficultyCarouselData() {
-        return difficultyCarouselData != null;
-    }
-
-    /**
-     * @param investigationData
-     */
-    public void setInvestigationData(InvestigationData investigationData) {
-        this.investigationData = investigationData;
-    }
-
-    /**
-     * @return
-     */
     public InvestigationData getInvestigationData() {
         return investigationData;
     }
 
-    /**
-     * @return
-     */
-    public boolean hasInvestigationData() {
-        return investigationData != null;
-    }
-
-    /**
-     * @param sanityRunnable
-     */
-    public void setSanityRunnable(SanityRunnable sanityRunnable) {
-        this.sanityRunnable = sanityRunnable;
-    }
-
-    /**
-     * @return
-     */
     public SanityRunnable getSanityRunnable() {
         return sanityRunnable;
     }
 
-    /**
-     * @return
-     */
-    public boolean hasSanityRunnable() {
-        return sanityRunnable != null;
-    }
-
-    /**
-     * @return
-     */
     public SanityData getSanityData() {
         return sanityData;
     }
 
-    /**
-     * @return
-     */
-    public boolean hasSanityData() {
-        return sanityData != null;
-    }
-
-    /**
-     * @return
-     */
     public GhostOrderData getGhostOrderData() {
         return ghostOrderData;
     }
 
-    /**
-     * @return
-     */
-    public boolean hasGhostOrderData() {
-        return ghostOrderData != null;
+    public void setInvestigationData(InvestigationData investigationData) {
+        this.investigationData = investigationData;
+    }
+
+    public void setSanityRunnable(SanityRunnable sanityRunnable) {
+        this.sanityRunnable = sanityRunnable;
     }
 
     public void setCollapsed(boolean isCollapsed) {
@@ -236,6 +205,12 @@ public class EvidenceViewModel extends ViewModel {
         return getRejectionPile()[index];
     }
 
+    public void skipSanityToPercent(int lowerBounds, int higherBounds, int newValue) {
+        if ((!(getPhaseTimerData().getTimeRemaining() > lowerBounds))
+                && getSanityData().getSanityActual() < higherBounds) {
+            getSanityData().setProgressManually(newValue);
+        }
+    }
     public void reset() {
         createRadioButtonsChecked();
 

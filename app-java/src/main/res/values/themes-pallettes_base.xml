@@ -64,7 +64,8 @@
         <item name="progressBarColorStart">@color/red_M350</item>
         <item name="progressBarColorEnd">@color/red_M350</item>
 
-        <item name="switchColor">@color/red_M300</item>
+        <item name="switchColorOn">@color/red_M300</item>
+        <item name="switchColorOff">@color/white_M200</item>
         <item name="inboxNotification">@color/red_M300</item>
 
         <item name="selectedColor">@color/red</item>
@@ -94,6 +95,8 @@
 
         <item name="buttonColor">?attr/light_inactive</item>
         <item name="colorOnButton">?attr/textColorBody</item>
+
+        <item name="colorActionPrimary">?attr/textColorBody</item>
     </style>
 
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">

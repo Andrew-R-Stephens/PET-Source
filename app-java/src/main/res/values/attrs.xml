@@ -4,6 +4,10 @@
     <!--
         Colors
     -->
+    <attr name="colorActionPrimary" format="reference|color" />
+    <attr name="colorActionSecondary" format="reference|color" />
+    <attr name="colorActionTertiary" format="reference|color" />
+
     <attr name="textColorPrimary" format="reference|color" />
     <attr name="textColorSecondary" format="reference|color" />
     <attr name="textColorTertiary" format="reference|color" />
@@ -26,10 +30,13 @@
     <attr name="light_inactive" format="reference|color" />
     <attr name="light_off" format="reference|color" />
 
-    <attr name="switchColor" format="reference|color" />
+    <attr name="switchColorOn" format="reference|color" />
+    <attr name="switchColorOff" format="reference|color" />
     <attr name="inboxNotification" format="reference|color" />
 
     <attr name="buttonFilterOnPrimary" format="reference|color" />
+    <attr name="buttonBorderOnPrimary" format="reference|color" />
+    <attr name="buttonBackgroundOnPrimary" format="reference|color" />
 
     <attr name="navigationFooterIcon" format="reference|color" />
     <attr name="navigationFooterIconAlt" format="reference|color" />
@@ -73,6 +80,9 @@
     <attr name="l" format="reference|color" />
     <attr name="m" format="reference|color" />
     <attr name="n" format="reference|color" />
+    <attr name="o" format="reference|color" />
+    <attr name="p" format="reference|color" />
+    <attr name="q" format="reference|color" />
 
     <attr name="theme_coreColor_1" format="reference|color" />
     <attr name="theme_coreColor_2" format="reference|color" />

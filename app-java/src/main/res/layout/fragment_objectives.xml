@@ -408,7 +408,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
+                android:background="@color/transparent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_alone"
@@ -425,7 +425,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:background="#00000000"
+                android:background="@color/transparent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_everyone"
@@ -436,7 +436,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_alone"
-                style="?attr/primaryFont_Regular_Auto"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -444,17 +444,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button_alone"
                 app:layout_constraintHeight_percent=".15"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/button_alone"
                 app:layout_constraintTop_toBottomOf="@+id/button_alone" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_everyone"
-                style="?attr/primaryFont_Regular_Auto"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/objectives_title_response_everyone"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="@+id/label_alone"
                 app:layout_constraintEnd_toEndOf="@+id/button_everyone"
                 app:layout_constraintStart_toStartOf="@+id/button_everyone"

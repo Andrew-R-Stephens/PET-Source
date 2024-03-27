@@ -1,13 +1,15 @@
 
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+
 final class Order1 extends Curve {
-    private double x0;
-    private double y0;
-    private double x1;
-    private double y1;
-    private double xmin;
-    private double xmax;
+    private final double x0;
+    private final double y0;
+    private final double x1;
+    private final double y1;
+    private final double xmin;
+    private final double xmax;
 
     public Order1(double x0, double y0,
                   double x1, double y1,
@@ -126,7 +128,7 @@ final class Order1 extends Curve {
         return t1;
     }
 
-    public boolean accumulateCrossings(Crossings c) {
+    public boolean accumulateCrossings(@NonNull Crossings c) {
         double xlo = c.getXLo();
         double ylo = c.getYLo();
         double xhi = c.getXHi();
@@ -165,7 +167,7 @@ final class Order1 extends Curve {
         return false;
     }
 
-    public void enlarge(Rectangle2D r) {
+    public void enlarge(@NonNull Rectangle2D r) {
         r.add(x0, y0);
         r.add(x1, y1);
     }
@@ -184,12 +186,13 @@ final class Order1 extends Curve {
         return new Order1(xstart, ystart, xend, yend, dir);
     }
 
+    @NonNull
     public Curve getReversedCurve() {
         return new Order1(x0, y0, x1, y1, -direction);
     }
 
     /** @noinspection PatternVariableCanBeUsed*/
-    public int compareTo(Curve other, double[] yrange) {
+    public int compareTo(Curve other, @NonNull double[] yrange) {
         if (!(other instanceof Order1)) {
             return super.compareTo(other, yrange);
         }

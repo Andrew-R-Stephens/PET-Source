@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.mapsmenu.mapdisplay.data.models.MapModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel;
 
 /**
  * MapMenuViewModel class
@@ -25,7 +27,7 @@ public class MapMenuViewModel extends ViewModel {
 
     private MapModel currentMapModel;
 
-    public void init(Context context) {
+    public void init(@NonNull Context context) {
 
         // SET DATA
         if (!hasMapData()) {
@@ -40,7 +42,7 @@ public class MapMenuViewModel extends ViewModel {
      * @param context
      */
     @SuppressLint("ResourceType")
-    public void setMapData(Context context) {
+    public void setMapData(@NonNull Context context) {
 
         TypedArray typedArray =
                 context.getResources().obtainTypedArray(R.array.maps_resources_array);
@@ -109,6 +111,7 @@ public class MapMenuViewModel extends ViewModel {
         return mapData;
     }
 
+    @Nullable
     public String[] getMapNames() {
         if(hasMapData()) {
             String[] mapNames = new String[mapData.length];
@@ -168,6 +171,7 @@ public class MapMenuViewModel extends ViewModel {
      *
      * @return MapData
      */
+    @Nullable
     public MapData getCurrentMapData() {
         if (!hasMapData()) {
             return null;

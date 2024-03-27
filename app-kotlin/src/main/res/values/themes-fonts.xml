@@ -291,18 +291,18 @@
         <item name="primaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
         <item name="primaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
 
-        <item name="primaryFont_Bold_Auto">@style/NeuchaRegular_Auto</item>
-        <item name="primaryFont_Bold_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-        <item name="primaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+        <item name="primaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
+        <item name="primaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
+        <item name="primaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
 
         <!-- Secondary -->
         <item name="secondaryFont_Regular_Auto">@style/NeuchaRegular_Auto</item>
         <item name="secondaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
         <item name="secondaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
 
-        <item name="secondaryFont_Bold_Auto">@style/NeuchaRegular_Auto</item>
-        <item name="secondaryFont_Bold_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-        <item name="secondaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+        <item name="secondaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
+        <item name="secondaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
+        <item name="secondaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
 
         <!-- Tertiary -->
         <!--
@@ -324,9 +324,9 @@
         <item name="quaternaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
         <item name="quaternaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
 
-        <item name="quaternaryFont_Bold_Auto">@style/NeuchaRegular_Auto</item>
-        <item name="quaternaryFont_Bold_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-        <item name="quaternaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
+        <item name="quaternaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
+        <item name="quaternaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
+        <item name="quaternaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
     </style>
 
     <style name="JetBrainsMono" parent="Fonts.Base">

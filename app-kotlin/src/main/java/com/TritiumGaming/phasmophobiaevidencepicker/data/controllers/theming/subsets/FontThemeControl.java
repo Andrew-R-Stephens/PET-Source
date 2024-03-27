@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 
@@ -26,7 +27,7 @@ public class FontThemeControl extends AThemeControl {
 
     @Override
     @SuppressLint("Recycle, ResourceType")
-    protected void build(Context context) {
+    protected void build(@NonNull Context context) {
         // FONT DATA
         TypedArray subThemesArray =
                 context.getResources().obtainTypedArray(R.array.settings_themes_fonts_array);

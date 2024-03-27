@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreAccount;
@@ -63,6 +64,7 @@ public class FirestoreAccountCredit {
     }
     */
 
+    @NonNull
     public static DocumentReference getCreditsDocument()
             throws Exception {
         return FirestoreAccount.getAccountCollection()
@@ -73,7 +75,7 @@ public class FirestoreAccountCredit {
         addCredits(creditAmount, null);
     }
 
-    public static void addCredits(long creditAmount, OnFirestoreProcessListener callback) throws Exception {
+    public static void addCredits(long creditAmount, @Nullable OnFirestoreProcessListener callback) throws Exception {
         DocumentReference creditDocument = getCreditsDocument();
 
         Map<String, Object> data = new HashMap<>();
@@ -101,7 +103,7 @@ public class FirestoreAccountCredit {
         removeCredits(creditAmount, null);
     }
 
-    public static void removeCredits(long creditAmount, OnFirestoreProcessListener callback)
+    public static void removeCredits(long creditAmount, @Nullable OnFirestoreProcessListener callback)
             throws Exception {
         DocumentReference creditDocument = getCreditsDocument();
 

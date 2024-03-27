@@ -124,7 +124,8 @@
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat">
-        <item name="colorControlActivated">?attr/switchColor</item>
+        <item name="colorControlActivated">?attr/switchColorOn</item>
+        <item name="colorSwitchThumbNormal">?attr/switchColorOff</item>
     </style>
 
     <style name="RequestRatingBar" parent="Theme.AppCompat">

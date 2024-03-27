@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardOuter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?attr/backgroundColorOnBackground"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+                android:id="@+id/label"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="-1"
+                android:padding="4dp"
+                android:singleLine="true"
+                app:outlineWidth="2dp"
+                app:outlineColor="@color/black"
+                android:text="Test"
+                android:textAllCaps="true"
+                android:textColor="?attr/textColorBodyEmphasis"
+                android:visibility="gone" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

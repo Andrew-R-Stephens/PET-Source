@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData;
@@ -11,9 +12,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mis
  */
 public class ObjectivesViewModel extends ViewModel {
 
+    @Nullable
     private MissionsData.Objective[] objectivesSpinnerObjectives = null;
+    @Nullable
     private boolean[] isObjectiveCompleted = null;
 
+    @Nullable
     private String ghostName = null;
 
     private boolean responseState = false; // alone , group

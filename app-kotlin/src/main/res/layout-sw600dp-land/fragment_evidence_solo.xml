@@ -38,6 +38,8 @@
             android:scaleType="fitCenter"
             android:src="@drawable/icon_tab_arrow_land"
             app:layout_constraintBottom_toTopOf="@+id/button_reset"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside" />

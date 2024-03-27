@@ -11,6 +11,7 @@
             android:tintMode="multiply">
         </bitmap>
     </item>
+
     <item
         android:id="@+id/tier2_icon"
         android:minLevel="2"

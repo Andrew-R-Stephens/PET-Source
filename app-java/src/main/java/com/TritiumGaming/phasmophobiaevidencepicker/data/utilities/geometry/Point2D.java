@@ -27,6 +27,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
@@ -132,6 +133,7 @@ public abstract class Point2D implements Cloneable {
          * @return a string representation of this {@code Point2D}.
          * @since 1.2
          */
+        @NonNull
         public String toString() {
             return "Point2D.Float["+x+", "+y+"]";
         }
@@ -216,6 +218,7 @@ public abstract class Point2D implements Cloneable {
          * @return a string representation of this {@code Point2D}.
          * @since 1.2
          */
+        @NonNull
         public String toString() {
             return "Point2D.Double["+x+", "+y+"]";
         }
@@ -274,7 +277,7 @@ public abstract class Point2D implements Cloneable {
      * this {@code Point2D}
      * @since 1.2
      */
-    public void setLocation(Point2D p) {
+    public void setLocation(@NonNull Point2D p) {
         setLocation(p.getX(), p.getY());
     }
 
@@ -344,7 +347,7 @@ public abstract class Point2D implements Cloneable {
      * {@code Point2D} to a specified {@code Point2D}.
      * @since 1.2
      */
-    public double distanceSq(Point2D pt) {
+    public double distanceSq(@NonNull Point2D pt) {
         double px = pt.getX() - this.getX();
         double py = pt.getY() - this.getY();
         return (px * px + py * py);
@@ -378,7 +381,7 @@ public abstract class Point2D implements Cloneable {
      * the specified {@code Point2D}.
      * @since 1.2
      */
-    public double distance(Point2D pt) {
+    public double distance(@NonNull Point2D pt) {
         double px = pt.getX() - this.getX();
         double py = pt.getY() - this.getY();
         return Math.sqrt(px * px + py * py);
@@ -392,6 +395,7 @@ public abstract class Point2D implements Cloneable {
      * @see        java.lang.Cloneable
      * @since      1.2
      */
+    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Object clone() {
         try {

@@ -10,7 +10,7 @@
             <solid
                 android:width="96dp"
                 android:height="48dp"
-                android:color="@color/black"
+                android:color="?attr/backgroundColor"
                 />
 
             <corners
@@ -18,7 +18,7 @@
                 android:topRightRadius="8dp"/>
 
             <stroke
-                android:color="@color/white"
+                android:color="?attr/textColorBody"
                 android:width="2dp"
                 />
         </shape>
@@ -51,7 +51,7 @@
 
                         <path
                             android:pathData="M99.5,49.6c-40.7,27.2 -74.1,49.8 -74.3,50.2 -0.2,0.7 148,100.2 149.3,100.2 0.3,-0 0.5,-45 0.5,-100 0,-55 -0.3,-100 -0.7,-99.9 -0.5,-0 -34.1,22.3 -74.8,49.5z"
-                            android:fillColor="@color/white"
+                            android:fillColor="?attr/textColorBody"
                             android:strokeColor="#00000000"/>
                     </group>
 
@@ -76,7 +76,7 @@
                         >
                         <path
                             android:pathData="M99.5,49.6c-40.7,27.2 -74.1,49.8 -74.3,50.2 -0.2,0.7 148,100.2 149.3,100.2 0.3,-0 0.5,-45 0.5,-100 0,-55 -0.3,-100 -0.7,-99.9 -0.5,-0 -34.1,22.3 -74.8,49.5z"
-                            android:fillColor="@color/white"
+                            android:fillColor="?attr/textColorBody"
                             android:strokeColor="#00000000"/>
                     </group>
 

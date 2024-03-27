@@ -20,51 +20,65 @@
             android:id="@+id/constraintLayout38"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/button_topnav_left"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:PETImageButtonType="back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/popup_close_button"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:adjustViewBounds="true"
+                android:background="@color/transparent"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_negative_unselected"
+                android:tint="?attr/textColorSecondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            -->
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_settingstitle"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="56dp"
                 android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/label_version"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/popup_close_button"
+                app:layout_constraintHeight_min="30dp"
+                app:layout_constraintStart_toEndOf="@+id/button_topnav_left"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                android:padding="4dp"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_version"
+                style="?attr/secondaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/label_settingstitle"
+                app:layout_constraintHeight_min="18dp"
+                app:layout_constraintHeight_percent=".3"
+                app:layout_constraintStart_toStartOf="@+id/label_settingstitle"
+                app:layout_constraintTop_toBottomOf="@+id/label_settingstitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/label_version"
-            style="?attr/secondaryFont_Regular_Auto"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxLines="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout38" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout39"
@@ -73,7 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout40"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_version">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
 
             <ScrollView
                 android:id="@+id/scrollView2"
@@ -158,13 +172,12 @@
             android:id="@+id/constraintLayout40"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/constraintLayout39"
-            app:layout_constraintTop_toBottomOf="@+id/label_version">
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout39">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_developerinfo_title"
@@ -174,9 +187,9 @@
                 android:gravity="center"
                 android:text="@string/aboutinfo_developerinfo_title"
                 android:textColor="?attr/textColorPrimary"
-                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout37"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -247,9 +260,9 @@
                 android:gravity="center"
                 android:text="@string/aboutinfo_specialthanks_title"
                 android:textColor="?attr/textColorPrimary"
-                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintBottom_toTopOf="@+id/aboutapp_specialthanks_scrollview"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout37" />
 

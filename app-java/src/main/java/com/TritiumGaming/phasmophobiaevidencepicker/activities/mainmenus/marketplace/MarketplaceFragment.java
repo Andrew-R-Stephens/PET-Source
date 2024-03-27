@@ -29,6 +29,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeBundleCardView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeSingleCardView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
@@ -76,6 +80,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
     private ProgressBar market_progressbar;
 
+    @Nullable
     private RewardedAd rewardedAd;
 
     @Nullable
@@ -436,10 +441,14 @@ public class MarketplaceFragment extends MainMenuFragment {
                 market_progressbar.setVisibility(GONE);
                 label_marketplace_error.setVisibility(VISIBLE);
 
-                Toast.makeText(getActivity(),
-                                "Could not access the marketplace.",
-                                Toast.LENGTH_SHORT)
-                        .show();
+                try {
+                    Toast.makeText(requireActivity(),
+                                    "Could not access the marketplace.",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -479,9 +488,9 @@ public class MarketplaceFragment extends MainMenuFragment {
 
     }
 
-    private void addMarketplaceSingleThemes(MarketplaceListLayout list, String field, String value,
+    private void addMarketplaceSingleThemes(@NonNull MarketplaceListLayout list, @NonNull String field, String value,
                                             String orderField, Query.Direction order,
-                                            OnFirestoreProcessListener listener) {
+                                            @NonNull OnFirestoreProcessListener listener) {
 
         Task<QuerySnapshot> query = null;
         try {
@@ -519,7 +528,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
                         marketSingleTheme = new MarketSingleTheme(uuid, marketSingleTheme, customTheme);
 
-                        MarketplaceSingleThemeView marketplaceItem;
+                        ThemeSingleCardView marketplaceItem;
                         try {
                             marketplaceItem =
                                     buildMarketplaceSingleThemeView(list, marketSingleTheme);
@@ -555,9 +564,9 @@ public class MarketplaceFragment extends MainMenuFragment {
         });
     }
 
-    private void addMarketplaceBundleThemes(MarketplaceListLayout list, String field, String value,
+    private void addMarketplaceBundleThemes(@NonNull MarketplaceListLayout list, String field, String value,
                                             String orderField, Query.Direction order,
-                                            OnFirestoreProcessListener listener) {
+                                            @NonNull OnFirestoreProcessListener listener) {
 
         Task<QuerySnapshot> query = null;
         try {
@@ -612,13 +621,15 @@ public class MarketplaceFragment extends MainMenuFragment {
                         }
                         bundle = new MarketThemeBundle(docId, bundle, customThemes);
                         if(!bundle.isUnlocked()) {
-                            MarketplaceBundleThemeView marketplaceItem =
+                            ThemeBundleCardView marketplaceItem =
                                     buildMarketplaceBundleThemeView(
                                             list, bundle);
 
-                            list.addView(marketplaceItem);
-                            list.requestLayout();
-                            list.invalidate();
+                            if(marketplaceItem != null) {
+                                list.addView(marketplaceItem);
+                                list.requestLayout();
+                                list.invalidate();
+                            }
                         }
                     }
 
@@ -642,12 +653,18 @@ public class MarketplaceFragment extends MainMenuFragment {
         });
     }
 
-    @NonNull
-    private MarketplaceBundleThemeView buildMarketplaceBundleThemeView(
-            MarketplaceListLayout list, MarketThemeBundle bundleThemes) {
+    @Nullable
+    private ThemeBundleCardView buildMarketplaceBundleThemeView(
+            @NonNull MarketplaceListLayout list, @NonNull MarketThemeBundle bundleThemes) {
 
-        MarketplaceBundleThemeView marketplaceBundleView =
-                new MarketplaceBundleThemeView(getContext(), null);
+        ThemeBundleCardView marketplaceBundleView;
+        try {
+            marketplaceBundleView =
+                    new ThemeBundleCardView(requireContext(), null);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return null;
+        }
         marketplaceBundleView.setBundle(bundleThemes);
 
         View.OnClickListener buyButtonListener = v -> {
@@ -693,19 +710,23 @@ public class MarketplaceFragment extends MainMenuFragment {
                         e.printStackTrace();
                     }
 
-                    if(getActivity() != null) {
+                    try {
                         Toast.makeText(requireActivity(),
                                 "Skin purchased!",
                                 Toast.LENGTH_SHORT).show();
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
                     }
                 }
 
                 @Override
                 public void onFailure() {
-                    if(getActivity() != null) {
+                    try {
                         Toast.makeText(requireActivity(),
                                 "Not enough credits for purchase!",
                                 Toast.LENGTH_SHORT).show();
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
                     }
                 }
 
@@ -732,12 +753,12 @@ public class MarketplaceFragment extends MainMenuFragment {
 
 
     @NonNull
-    private MarketplaceSingleThemeView buildMarketplaceSingleThemeView(
-            MarketplaceListLayout list, MarketSingleTheme marketSingleTheme)
+    private ThemeSingleCardView buildMarketplaceSingleThemeView(
+            @NonNull MarketplaceListLayout list, @NonNull MarketSingleTheme marketSingleTheme)
     throws IllegalStateException {
 
-        MarketplaceSingleThemeView marketplaceItemView =
-                new MarketplaceSingleThemeView(new ContextThemeWrapper(
+        ThemeSingleCardView marketplaceItemView =
+                new ThemeSingleCardView(new ContextThemeWrapper(
                             requireContext(), marketSingleTheme.getStyle()),
                             null, marketSingleTheme.getStyle());
 
@@ -790,19 +811,23 @@ public class MarketplaceFragment extends MainMenuFragment {
                             e.printStackTrace();
                         }
 
-                        if(getActivity() != null) {
+                        try {
                             Toast.makeText(requireActivity(),
                                     "Skin purchased!",
                                     Toast.LENGTH_SHORT).show();
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
                         }
                     }
 
                     @Override
                     public void onFailure() {
-                        if(getActivity() != null) {
+                        try {
                             Toast.makeText(requireActivity(),
                                     "Not enough credits for purchase!",
                                     Toast.LENGTH_SHORT).show();
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -847,10 +872,14 @@ public class MarketplaceFragment extends MainMenuFragment {
                     onSignInResultAccount(result);
                 } catch (RuntimeException e) {
                     String message = "Login Error: " + e.getMessage();
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
+                    try {
+                        Toast toast = Toast.makeText(requireActivity(),
+                                message,
+                                com.google.android.material.R.integer.material_motion_duration_short_2);
+                        toast.show();
+                    } catch (IllegalStateException e2) {
+                        e2.printStackTrace();
+                    }
                 }
             }
     );
@@ -865,12 +894,16 @@ public class MarketplaceFragment extends MainMenuFragment {
         }
         Log.d("ManuLogin", "Continuing to sign-in.");
 
-        if(!NetworkUtils.isNetworkAvailable(getContext(),
-                globalPreferencesViewModel.getNetworkPreference())) {
-            Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show();
+        try {
+            if (!NetworkUtils.isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.getNetworkPreference())) {
+                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
 
-            return;
+                return;
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
 
         List<AuthUI.IdpConfig> providers = List.of(
@@ -890,7 +923,7 @@ public class MarketplaceFragment extends MainMenuFragment {
     /**
      *
      */
-    private void onSignInResultAccount(FirebaseAuthUIAuthenticationResult result) {
+    private void onSignInResultAccount(@NonNull FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
@@ -902,10 +935,14 @@ public class MarketplaceFragment extends MainMenuFragment {
             }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
-                Toast toast = Toast.makeText(requireActivity(),
-                        message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                toast.show();
+                try {
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
 
                 refreshFragment();
 
@@ -929,10 +966,14 @@ public class MarketplaceFragment extends MainMenuFragment {
                 }
             }
 
-            Toast toast = Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
+            try {
+                Toast toast = Toast.makeText(requireActivity(),
+                        message,
+                        com.google.android.material.R.integer.material_motion_duration_short_2);
+                toast.show();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -940,7 +981,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         void onAdLoaded();
     }
 
-    public void loadRewardedAd(OnAdLoadedListener listener) {
+    public void loadRewardedAd(@Nullable OnAdLoadedListener listener) {
 
         RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
                 new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
@@ -975,8 +1016,7 @@ public class MarketplaceFragment extends MainMenuFragment {
     public void showRewardedAd() {
 
         if (rewardedAd != null) {
-            PETActivity activityContext = (PETActivity) requireActivity();
-            rewardedAd.show(activityContext, rewardItem -> {
+            rewardedAd.show(requireActivity(), rewardItem -> {
                 // Handle the reward.
                 Log.d("RewardedAd", "The user earned the reward.");
                 int rewardAmount = rewardItem.getAmount();
@@ -993,12 +1033,16 @@ public class MarketplaceFragment extends MainMenuFragment {
         } else {
             Log.d("RewardedAd", "The rewarded ad wasn't ready yet.");
 
-            if(NetworkUtils.isNetworkAvailable(getContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
-                loadRewardedAd(this::showRewardedAd);
-            } else {
-                Toast.makeText(getActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                        .show();
+            try {
+                if(NetworkUtils.isNetworkAvailable(requireContext(),
+                        globalPreferencesViewModel.getNetworkPreference())) {
+                    loadRewardedAd(this::showRewardedAd);
+                } else {
+                        Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                                .show();
+                }
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
         }
     }

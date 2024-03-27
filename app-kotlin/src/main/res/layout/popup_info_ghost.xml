@@ -8,108 +8,32 @@
     android:background="?attr/backgroundColor"
     android:gravity="center">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout36"
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.NavHeaderLayout
+        android:id="@+id/navigation_header_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:NavHeaderLayoutButtonLeft="none"
+        app:NavHeaderLayoutButtonRight="cancel"
+        app:NavHeaderLayoutCenterTitle=""
+        app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout50"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintlayout_1"
-            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
-            app:layout_constraintStart_toEndOf="@+id/constraintlayout_12"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_name"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:padding="2sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                android:padding="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/popup_contentbody_constraintlayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:paddingBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
+        app:layout_constraintEnd_toEndOf="@+id/navigation_header_container"
+        app:layout_constraintStart_toStartOf="@+id/navigation_header_container"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_header_container">
 
         <include
             android:id="@+id/icon_container"
@@ -153,10 +77,10 @@
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:padding="4dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_prev"
                     android:tint="#FFFFFF"
-                    android:padding="4dp"
                     app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
                     app:layout_constraintStart_toStartOf="parent"
@@ -190,10 +114,10 @@
                     android:adjustViewBounds="true"
                     android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:padding="4dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_next"
                     android:tint="#FFFFFF"
-                    android:padding="4dp"
                     app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_infoTitle"

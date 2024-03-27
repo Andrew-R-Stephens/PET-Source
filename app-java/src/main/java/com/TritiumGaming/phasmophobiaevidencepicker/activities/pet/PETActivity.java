@@ -1,13 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.Toast;
-
-import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,16 +16,21 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.Cus
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.FirebaseUiException;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
+import com.google.firebase.analytics.ConsentBuilder;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.analytics.FirebaseAnalytics.ConsentType;
+import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * InvestigationActivity class
@@ -40,19 +44,30 @@ public abstract class PETActivity extends AppCompatActivity {
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected PermissionsViewModel permissionsViewModel;
 
+    private ConsentInformation consentInformation;
+    // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
+    private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //createConsentInformation();
         initFirebaseAnalytics();
+
         initViewModels();
         initPreferences();
 
         automaticSignInAccount();
     }
 
+    /**
+     * <p>Initialize the FirebaseAnalytics reference.</p>
+     * <p>Set FirebaseAnalytics consent types to <a href="https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2">Consent V2</a>.</p>
+     **/
     protected void initFirebaseAnalytics() {
         try {
+            //Obtain FirebaseAnalytics instance
             analytics = FirebaseAnalytics.getInstance(this);
             Log.d("Firebase", "Obtained instance.");
         } catch (IllegalStateException e) {
@@ -70,7 +85,7 @@ public abstract class PETActivity extends AppCompatActivity {
         return factory;
     }
 
-    private void initGlobalPreferencesViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+    private void initGlobalPreferencesViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         globalPreferencesViewModel = factory.create(
                 GlobalPreferencesViewModel.class);
         globalPreferencesViewModel = new ViewModelProvider(this).get(
@@ -78,7 +93,7 @@ public abstract class PETActivity extends AppCompatActivity {
         globalPreferencesViewModel.init(PETActivity.this);
     }
 
-    private void initPermissionsViewModel(ViewModelProvider.AndroidViewModelFactory factory) {
+    private void initPermissionsViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         permissionsViewModel = factory.create(
                 PermissionsViewModel.class);
         permissionsViewModel = new ViewModelProvider(this).get(
@@ -101,7 +116,7 @@ public abstract class PETActivity extends AppCompatActivity {
      *
      * @param colorSpace to be set
      */
-    public void changeTheme(CustomTheme colorSpace, CustomTheme fontType) {
+    public void changeTheme(@Nullable CustomTheme colorSpace, @Nullable CustomTheme fontType) {
 
         if(fontType != null) {
             int styleId = fontType.getStyle();
@@ -120,7 +135,7 @@ public abstract class PETActivity extends AppCompatActivity {
      *
      * @param language The desired new language
      */
-    public boolean setLanguage(String language) {
+    public boolean setLanguage(@NonNull String language) {
         boolean isChanged = false;
 
         Locale defaultLocale = Locale.getDefault();
@@ -159,7 +174,8 @@ public abstract class PETActivity extends AppCompatActivity {
         List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
-        AuthUI.getInstance().silentSignIn(this, providers)
+        AuthUI.getInstance()
+                .silentSignIn(this, providers)
                 .continueWithTask(task -> {
                     if (task.isSuccessful()) {
                         return task;
@@ -178,6 +194,71 @@ public abstract class PETActivity extends AppCompatActivity {
 
     public FirebaseAnalytics getFirebaseAnalytics() {
         return analytics;
+    }
+
+    // Show a privacy options button if required.
+    public boolean isPrivacyOptionsRequired() {
+        return consentInformation.getPrivacyOptionsRequirementStatus()
+                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
+    }
+
+    protected void createConsentInformation() {
+        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA)
+                .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
+                .build();
+
+        // Create a ConsentRequestParameters object.
+        ConsentRequestParameters params = new ConsentRequestParameters
+                .Builder()
+                .setConsentDebugSettings(debugSettings)
+                .setTagForUnderAgeOfConsent(false)
+                .build();
+
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                () -> {
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                            this,
+                            loadAndShowError -> {
+                                if (loadAndShowError != null) {
+                                    // Consent gathering failed.
+                                    Log.w("ConsentManagerV2", String.format("%s: %s",
+                                            loadAndShowError.getErrorCode(),
+                                            loadAndShowError.getMessage()));
+                                }
+
+                                // Consent has been gathered.
+                            }
+                    );
+                },
+                requestConsentError -> {
+                    // Consent gathering failed.
+                    Log.w("ConsentManagerV2", String.format("%s: %s",
+                            requestConsentError.getErrorCode(),
+                            requestConsentError.getMessage()));
+                });
+        // Check if you can initialize the Google Mobile Ads SDK in parallel
+        // while checking for new consent information. Consent obtained in
+        // the previous session can be used to request ads.
+        if (consentInformation.canRequestAds()) {
+            initializeMobileAdsSdk();
+        }
+    }
+
+    private void initializeMobileAdsSdk() {
+        if (isMobileAdsInitializeCalled.getAndSet(true)) {
+            return;
+        }
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.initialize(this);
+
+        // TODO: Request an ad.
+        // InterstitialAd.load(...);
     }
 
     /*

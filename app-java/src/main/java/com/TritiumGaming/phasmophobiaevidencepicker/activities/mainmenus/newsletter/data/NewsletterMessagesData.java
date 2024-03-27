@@ -2,6 +2,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsle
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
 
 import java.text.ParseException;
@@ -15,6 +18,7 @@ public class NewsletterMessagesData {
     private boolean isReady = false;
 
     private String lastReadDate = "NA";
+    @NonNull
     private String mostRecentDateFound = "NA";
 
     boolean requiresNotify;
@@ -30,17 +34,18 @@ public class NewsletterMessagesData {
         return type;
     }
 
-    public void add(NewsletterMessageData msg) {
+    public void add(@NonNull NewsletterMessageData msg) {
         setMostRecentDate(msg.getDate());
 
         messages.add(msg);
     }
 
+    @NonNull
     public ArrayList<NewsletterMessageData> getMessages() {
         return messages;
     }
 
-    public void setLastReadDate(String date) {
+    public void setLastReadDate(@Nullable String date) {
 
         if (date == null) {
             Log.d("Message Center", "Date is null");
@@ -65,13 +70,13 @@ public class NewsletterMessagesData {
         lastReadDate = output;
     }
 
-    public void setMostRecentDate(String date) {
+    public void setMostRecentDate(@Nullable String date) {
 
         if (date == null) {
             return;
         }
 
-        if(messages.size() == 0) {
+        if(messages.isEmpty()) {
 
             SimpleDateFormat parser =
                     new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
@@ -115,6 +120,7 @@ public class NewsletterMessagesData {
         return isReady;
     }
 
+    @NonNull
     public String toString() {
         StringBuilder t = new StringBuilder();
 

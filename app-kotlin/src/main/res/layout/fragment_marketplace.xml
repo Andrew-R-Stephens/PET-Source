@@ -28,7 +28,6 @@
             android:id="@+id/constraintLayout27"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,6 +50,7 @@
                 android:layout_marginEnd="48dp"
                 android:gravity="center"
                 android:text="Marketplace"
+                app:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button_back"
@@ -60,333 +60,72 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="3dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/icon_strikethrough_1"
             android:backgroundTint="@color/white_M600"
-            app:layout_constraintBottom_toTopOf="@+id/cardView_requestlogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView_requestlogin"
-            android:layout_width="match_parent"
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
+            android:id="@+id/layout_account_requestlogin"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView_account"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider">
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraint_requestlogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:background="?attr/backgroundColorOnBackground"
-                    app:layout_constraintBottom_toTopOf="@+id/materialCardView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/settings_requestlogin_title"
-                        style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Please log in to claim Marketplace content."
-                        android:textColor="?attr/textColorPrimary"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_account"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_account"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/settings_requestlogin_title">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/settings_account_login_button"
-                            style="?attr/primaryFont_Regular_AutoSqueeze"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:layout_marginVertical="8dp"
-                            android:background="@drawable/radiobutton_1_disabled"
-                            android:padding="8dp"
-                            android:text="Log in"
-                            android:textColor="?attr/textColorBody"
-                            android:visibility="visible"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView_account"
-            android:layout_width="match_parent"
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
+            android:id="@+id/layout_account_details"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/scrollview_marketplace_items"
+            android:paddingBottom="8dp"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_obtainCredits"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView_requestlogin">
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
+            android:id="@+id/layout_account_obtainCredits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_details" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraint_account_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout80"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+        <ProgressBar
+            android:id="@+id/market_progressbar"
+            style="@android:style/Widget.Material.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="?attr/textColorPrimary"
+            android:indeterminateTintMode="multiply"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/settings_accountsettings_title"
-                        style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start|center_vertical"
-                        android:text="Account:"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/settings_accountsettings_info"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/settings_accountsettings_info"
-                        style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@color/transparent"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="***"
-                        android:textColor="?attr/textColorBody"
-                        android:textSize="18sp"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="@+id/settings_accountsettings_title"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_title"
-                        app:layout_constraintTop_toTopOf="@+id/settings_accountsettings_title"
-                        app:layout_constraintWidth_default="wrap" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/settings_accountsettings_info"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_info"
-                        app:layout_constraintTop_toTopOf="@+id/settings_accountsettings_info"
-                        app:srcCompat="@android:drawable/ic_menu_view" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout80"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/materialCardView_account_credits"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraint_account_name">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView"
-                        style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:gravity="end|center_vertical"
-                        android:maxLines="1"
-                        android:text="Credits:"
-                        android:textColor="?attr/textColorBody"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/label_credits_actual"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label_credits_actual"
-                        style="?attr/quaternaryFont_Bold_Manual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="start|center_vertical"
-                        android:text="100"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView_account_credits"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="?attr/backgroundColorOnBackground"
-                    app:cardCornerRadius="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout80">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraint_account_credits"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_accountInformation">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout74"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/constraintLayout_buy"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/constraintLayout_ads"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/settings_account_buy_button"
-                                    style="?attr/primaryFont_Regular_AutoSqueeze"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginBottom="8dp"
-                                    android:background="@drawable/radiobutton_1_disabled"
-                                    android:padding="8dp"
-                                    android:text="Buy"
-                                    android:textColor="?attr/textColorBody"
-                                    android:tooltipText="Purchase credits"
-                                    android:visibility="visible" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/label_buy_description"
-                                    style="?attr/quaternaryFont_Bold_Manual"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Purchase credits"
-                                    android:textSize="14sp" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/constraintLayout_ads"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout_buy"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/button_ad_watch"
-                                    style="?attr/primaryFont_Regular_AutoSqueeze"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="48dp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginBottom="8dp"
-                                    android:background="@drawable/radiobutton_1_disabled"
-                                    android:padding="8dp"
-                                    android:text="Watch Ad"
-                                    android:textColor="?attr/textColorBody"
-                                    android:tooltipText="Watch an Ad"
-                                    android:visibility="visible" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/label_ads_description"
-                                    style="?attr/quaternaryFont_Bold_Manual"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Earn Credits by watching ads"
-                                    android:textSize="14sp" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/market_loaderror"
+            style="?attr/quaternaryFont_Bold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/marketplace_connection_error"
+            android:textColor="?attr/textColorTertiary"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
 
         <ScrollView
             android:id="@+id/scrollview_marketplace_items"
@@ -398,121 +137,21 @@
             android:measureAllChildren="true"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarStyle="outsideInset"
+            android:fadingEdgeLength="8dp"
+            android:fadingEdge="vertical"
+            android:requiresFadingEdge="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView_account">
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_obtainCredits">
 
             <LinearLayout
+                android:id="@+id/list_marketplace_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:divider="@drawable/divider_invisible"
-                android:showDividers="middle" >
-
-                <!--
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Recruit" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Investigator" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/PrivateInvestigator" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Detective" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Technician" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Specialist" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Analyst" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Agent" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Operator" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Commissioner" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Easter" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Holiday22" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Holiday23" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Halloween23" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Discord" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ContentCreator" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Developer" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Translator" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Winner" />
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.titlescreen.marketplace.MarketplaceSingleThemeView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Artist" />
-                -->
-
-            </LinearLayout>
+                android:orientation="vertical"
+                android:showDividers="middle" />
 
         </ScrollView>
 

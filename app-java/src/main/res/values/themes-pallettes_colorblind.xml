@@ -19,7 +19,7 @@
         <item name="progressBarColorStart">@color/white_M500</item>
         <item name="progressBarColorEnd">@color/white_M300</item>
 
-        <item name="switchColor">@color/white_M100</item>
+        <item name="switchColorOn">@color/white_M100</item>
         <item name="inboxNotification">@color/white_M600</item>
         <item name="strikethroughColor">@color/white_M100</item>
         <item name="circleColor">@color/white</item>
@@ -65,7 +65,7 @@
         <item name="light_active">@color/yellow</item>
         <item name="light_inactive">@color/yellow_A40</item>
 
-        <item name="switchColor">@color/yellow_M100</item>
+        <item name="switchColorOn">@color/yellow_M100</item>
         <item name="inboxNotification">@color/blue_M650</item>
         <item name="strikethroughColor">@color/blue_M175</item>
         <item name="circleColor">@color/yellow</item>
@@ -111,7 +111,7 @@
         <item name="light_active">@color/yellow</item>
         <item name="light_inactive">@color/yellow_A40</item>
 
-        <item name="switchColor">@color/yellow_M100</item>
+        <item name="switchColorOn">@color/yellow_M100</item>
         <item name="inboxNotification">@color/blue_M650</item>
         <item name="strikethroughColor">@color/blue_M175</item>
         <item name="circleColor">@color/yellow</item>
@@ -147,7 +147,7 @@
         <item name="progressBarColorStart">@color/red_M500</item>
         <item name="progressBarColorEnd">@color/red_M300</item>
 
-        <item name="switchColor">@color/red</item>
+        <item name="switchColorOn">@color/red</item>
         <item name="circleColor">@color/green</item>
         <item name="neutralSelColor">@color/white</item>
 

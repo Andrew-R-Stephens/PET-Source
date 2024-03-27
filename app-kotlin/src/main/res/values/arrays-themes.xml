@@ -21,6 +21,8 @@
         <item>9Ec5cQIB0Jb73gbQ3a9R5kScX</item>
         <item>44uBEX9ID9131TMG3yH7T2P1Q</item>
         <item>28yi3LJWYMbA7v87RMAEznISy</item>
+        <item>tempWhiteboard</item>
+        <item>tempStratHero</item>
     </string-array>
     <string-array name="settings_themes_colorblind_name_array">
         <item>@string/settings_colorblindnessmode_normal</item>
@@ -28,6 +30,8 @@
         <item>@string/settings_colorblindnessmode_deuteranomaly</item>
         <item>@string/settings_colorblindnessmode_protanomaly</item>
         <item>@string/settings_colorblindnessmode_tritanomaly</item>
+        <item>@string/settings_skin_whiteboard</item>
+        <item>@string/settings_skin_strategemHero</item>
     </string-array>
     <integer-array name="settings_themes_colorblind_style_array">
         <item>@style/NonColorblind.Base</item>
@@ -35,6 +39,8 @@
         <item>@style/Deuteranomaly</item>
         <item>@style/Protanomaly</item>
         <item>@style/Tritanomaly</item>
+        <item>@style/Whiteboard</item>
+        <item>@style/StrategemHero</item>
     </integer-array>
 
     <bool name="settings_themes_colorblind_defaultAvailable">true</bool>

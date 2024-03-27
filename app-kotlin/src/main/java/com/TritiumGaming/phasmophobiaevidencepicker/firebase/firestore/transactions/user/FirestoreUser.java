@@ -2,7 +2,10 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestorePurchaseHistory;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreTransactionHistory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -16,42 +19,44 @@ public class FirestoreUser {
 
     private static final String COLLECTION_USERS = "Users";
 
-    public static FirebaseUser getCurrentFirebaseUser()
-            throws Exception {
+    @Nullable
+    public static FirebaseUser getCurrentFirebaseUser() {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public static DocumentReference buildUserDocument() throws Exception {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    @NonNull
+    public static DocumentReference buildUserDocument()
+            throws Exception {
 
-        CollectionReference userCollection = db.collection(COLLECTION_USERS);
-        DocumentReference currentUserDoc = userCollection.document(getCurrentFirebaseUser().getUid());
+        DocumentReference currentUserDoc = getUserDocument();
 
         FirebaseUser user = getCurrentFirebaseUser();
+        if(user == null) {
+            throw new NullFirebaseUserException("Aborting creation of new User in database.");
+        }
 
         currentUserDoc.set(new HashMap<String, Object>(), SetOptions.merge())
-            .addOnSuccessListener(unused -> Log.d("Firestore", "User document " + user.getUid() + " successfully FOUND!"))
+            .addOnSuccessListener(unused -> Log.d("Firestore", "User document " +
+                    user.getUid() + " successfully FOUND!"))
             .addOnFailureListener(e -> {
-                Log.d("Firestore", "User document " + user.getUid() + " could NOT be GENERATED / LOCATED!");
+                Log.d("Firestore", "User document " +
+                        user.getUid() + " could NOT be GENERATED / LOCATED!");
                 e.printStackTrace();
             })
             .addOnCompleteListener(task -> {
-                Log.d("Firestore", "User document " + user.getUid() + " process complete.");
+                Log.d("Firestore", "User document " +
+                        user.getUid() + " process complete.");
 
                 currentUserDoc.get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         try {
                             FirestoreAccount.init();
                         } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        try {
-                            FirestorePurchaseHistory.init();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
+                            e.printStackTrace();
                         }
 
-                        Log.d("Firestore", "User document " + user.getUid() + " successfully INITIALIZED!");
+                        Log.d("Firestore", "User document " +
+                                user.getUid() + " successfully INITIALIZED!");
                     }
                 });
             });
@@ -59,10 +64,12 @@ public class FirestoreUser {
         return currentUserDoc;
     }
 
+    @NonNull
     public static DocumentReference getUserDocument()
             throws Exception {
+
         if(getCurrentFirebaseUser() == null) {
-            throw new Exception("Null Pointer Exception: Firebase User not assigned");
+            throw new NullFirebaseUserException();
         }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -70,6 +77,17 @@ public class FirestoreUser {
         CollectionReference userCollection = db.collection(COLLECTION_USERS);
         return userCollection.document(getCurrentFirebaseUser().getUid());
 
+    }
+
+    public static class NullFirebaseUserException extends Exception {
+        private static final String ERROR_MESSAGE = "FirebaseUser is null.";
+        public NullFirebaseUserException() {
+            super(ERROR_MESSAGE);
+        }
+
+        public NullFirebaseUserException(String extendedMessage) {
+            super(ERROR_MESSAGE + " " + extendedMessage);
+        }
     }
 
 }

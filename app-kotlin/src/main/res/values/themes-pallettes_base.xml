@@ -16,7 +16,7 @@
         <item name="middlegroundColor">@color/white_M400</item>
         <item name="backgroundColor" >@color/black</item>
         <!--<item name="backgroundColorOnBackground" >@color/black_M50</item>-->
-        <item name="backgroundColorOnBackground" >#0F0F0F</item>
+        <item name="backgroundColorOnBackground" >#191616</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/black</item>
@@ -32,6 +32,7 @@
         <item name="navigationFooterIconAlt">@color/white_M200</item>
 
         <!-- Theme Core -->
+        <item name="theme_colorPrimary">@color/red_M350</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">@color/white</item>
         <item name="theme_coreColor_3">@color/white</item>
@@ -63,7 +64,8 @@
         <item name="progressBarColorStart">@color/red_M350</item>
         <item name="progressBarColorEnd">@color/red_M350</item>
 
-        <item name="switchColor">@color/red_M300</item>
+        <item name="switchColorOn">@color/red_M300</item>
+        <item name="switchColorOff">@color/white_M200</item>
         <item name="inboxNotification">@color/red_M300</item>
 
         <item name="selectedColor">@color/red</item>
@@ -81,6 +83,8 @@
         <item name="mapRoomBorderColor">@color/red_M300_A58</item>
         <item name="mapRoomFillColor">@color/yellow_A10</item>
 
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
         <!-- Codex Colors -->
         <item name="codex_1">#161C1C</item>
         <item name="codex_2">#99AEB3</item>
@@ -89,6 +93,10 @@
         <item name="codex_5">#2D3635</item>
         <item name="codex_grid_background_tint">#40161C1C</item>
 
+        <item name="buttonColor">?attr/light_inactive</item>
+        <item name="colorOnButton">?attr/textColorBody</item>
+
+        <item name="colorActionPrimary">?attr/textColorBody</item>
     </style>
 
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">

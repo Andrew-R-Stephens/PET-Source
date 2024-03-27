@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public abstract class AThemeControl {
 
     protected @StyleRes int defaultStyle;
 
+    @NonNull
     protected ArrayList<CustomTheme> themes = new ArrayList<>();
     protected int savedIndex, selectedIndex;
 
@@ -115,6 +117,7 @@ public abstract class AThemeControl {
         }
     }
 
+    @NonNull
     public CustomTheme getCurrentTheme() {
 
         if(selectedIndex >= themes.size() || selectedIndex < 0) {
@@ -144,6 +147,7 @@ public abstract class AThemeControl {
         return getCurrentTheme().getID();
     }
 
+    @NonNull
     public CustomTheme getThemeAtIndex(int index) {
 
         if(index >= themes.size() || selectedIndex < 0)
@@ -161,6 +165,7 @@ public abstract class AThemeControl {
 
     }
 
+    @NonNull
     public CustomTheme getThemeByUUID(String uuid) {
         for(CustomTheme customTheme: themes) {
             if(customTheme.getID().equals(uuid)) {

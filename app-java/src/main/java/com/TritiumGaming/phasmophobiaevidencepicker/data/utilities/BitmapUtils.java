@@ -14,6 +14,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
@@ -37,6 +39,7 @@ public class BitmapUtils {
 
     private int maxTextureSize;
     public ArrayList<Integer> resources = new ArrayList<>();
+    @NonNull
     public ArrayList<PorterDuff.Mode> filters = new ArrayList<>();
 
     /**
@@ -50,6 +53,7 @@ public class BitmapUtils {
      * @param resource
      * @return
      */
+    @NonNull
     public BitmapUtils setResource(@DrawableRes int resource) {
         clearResources();
         addResource(resource);
@@ -67,6 +71,7 @@ public class BitmapUtils {
     /**
      * @param resource
      */
+    @NonNull
     public BitmapUtils addResource(@DrawableRes int resource) {
         this.resources.add(resource);
         this.filters.add(null);
@@ -77,6 +82,7 @@ public class BitmapUtils {
     /**
      * @param resource
      */
+    @NonNull
     public BitmapUtils addResource(@DrawableRes int resource, PorterDuff.Mode filterMode) {
         this.resources.add(resource);
         this.filters.add(filterMode);
@@ -147,7 +153,8 @@ public class BitmapUtils {
      * @param context
      * @return
      */
-    public Bitmap compileBitmaps(Context context) {
+    @Nullable
+    public Bitmap compileBitmaps(@NonNull Context context) {
 
         if(resources == null || filters == null) {
              return null;
@@ -172,7 +179,7 @@ public class BitmapUtils {
      * @param previousBitmap
      * @return
      */
-    public Bitmap compileNextBitmap(Context context, Bitmap previousBitmap) {
+    public Bitmap compileNextBitmap(@NonNull Context context, @NonNull Bitmap previousBitmap) {
         currentLayer++;
         return createBitmap(context, previousBitmap, resources.get(currentLayer), null);
     }
@@ -223,7 +230,7 @@ public class BitmapUtils {
      * @param id
      * @return
      */
-    private Bitmap createBitmap(Context c, Bitmap baseLayer, int id, PorterDuff.Mode mode) {
+    private Bitmap createBitmap(@NonNull Context c, @NonNull Bitmap baseLayer, int id, PorterDuff.Mode mode) {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
@@ -290,7 +297,8 @@ public class BitmapUtils {
      * @return
      * @throws OutOfMemoryError
      */
-    private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer, PorterDuff.Mode mode) throws OutOfMemoryError {
+    @Nullable
+    private Bitmap addLayer(@Nullable Bitmap baseLayer, @NonNull Bitmap topLayer, @Nullable PorterDuff.Mode mode) throws OutOfMemoryError {
         if (baseLayer == null && BitmapUtils.bitmapExists(topLayer)) {
             baseLayer = Bitmap.createBitmap(
                     topLayer.getWidth(),
@@ -318,18 +326,19 @@ public class BitmapUtils {
      * @param b
      * @return
      */
-    public static boolean bitmapExists(Bitmap b) {
+    public static boolean bitmapExists(@Nullable Bitmap b) {
         return b != null && !b.isRecycled();
     }
 
-    public static void destroyBitmap(Bitmap b) {
+    public static void destroyBitmap(@NonNull Bitmap b) {
         if (bitmapExists(b)) {
             b.recycle();
         }
     }
 
+    @Nullable
     public static Bitmap getBitmapFromVector(
-            Context context, int drawableId, BitmapFactory.Options options) {
+            @NonNull Context context, int drawableId, @NonNull BitmapFactory.Options options) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);
         if(drawable == null) { return null; }
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.PhaseTimerLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setup_title_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_min="14dp"
+        app:layout_constraintHeight_percent=".2"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/setup_title"
+            style="?attr/primaryFont_Regular_AutoSqueeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:text="@string/investigation_timer_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_title_wrapper">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/evidence_timer_text"
+            style="?attr/tertiaryFont_Bold_AutoSqueeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:hint="@string/app_name"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="@string/investigation_timer_time_3"
+            android:textColor="?attr/textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout55"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout55"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/evidence_timer_text"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/timer_play_pause"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:tint="?attr/textColorBody"
+                app:PETImageButtonType="play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/timer_skip"
+                app:layout_constraintHeight_max="48dp"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="48dp" />
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/timer_skip"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:tint="?attr/textColorBody"
+                app:PETImageButtonBackground="@drawable/icon_skip"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="48dp"
+                app:layout_constraintStart_toEndOf="@+id/timer_play_pause"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="48dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>
+

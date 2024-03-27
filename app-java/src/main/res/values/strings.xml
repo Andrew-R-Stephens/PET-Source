@@ -135,6 +135,7 @@
     <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
     <string name="settings_skin_whiteboard" translatable="false">Whiteboard</string>
+    <string name="settings_skin_strategemHero" translatable="false">Strategem Hero</string>
     <string name="settings_colormode_prestige_recruit" translatable="false">Recruit</string>
     <string name="settings_colormode_prestige_investigator" translatable="false">Investigator</string>
     <string name="settings_colormode_prestige_privateinvestigator" translatable="false">Private Investigator</string>

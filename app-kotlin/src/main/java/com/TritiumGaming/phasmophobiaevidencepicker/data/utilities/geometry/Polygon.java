@@ -1,5 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.Arrays;
 
 
@@ -78,6 +81,7 @@ public class Polygon implements Shape, java.io.Serializable {
      * @see #getBounds()
      * @since 1.0
      */
+    @Nullable
     protected Rectangle bounds;
 
     /**
@@ -115,7 +119,7 @@ public class Polygon implements Shape, java.io.Serializable {
      *             {@code ypoints} is {@code null}.
      * @since 1.0
      */
-    public Polygon(int[] xpoints, int[] ypoints, int npoints) {
+    public Polygon(@NonNull int[] xpoints, @NonNull int[] ypoints, int npoints) {
         // Fix 4489009: should throw IndexOutOfBoundsException instead
         // of OutOfMemoryError if npoints is huge and > {x,y}points.length
         if (npoints > xpoints.length || npoints > ypoints.length) {
@@ -315,7 +319,7 @@ public class Polygon implements Shape, java.io.Serializable {
      * @see #contains(double, double)
      * @since 1.0
      */
-    public boolean contains(Point p) {
+    public boolean contains(@NonNull Point p) {
         return contains(p.x, p.y);
     }
 
@@ -428,6 +432,7 @@ public class Polygon implements Shape, java.io.Serializable {
         return ((hits & 1) != 0);
     }
 
+    @Nullable
     private Crossings getCrossings(double xlo, double ylo,
                                    double xhi, double yhi)
     {
@@ -454,7 +459,7 @@ public class Polygon implements Shape, java.io.Serializable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean contains(Point2D p) {
+    public boolean contains(@NonNull Point2D p) {
         return contains(p.getX(), p.getY());
     }
 
@@ -475,7 +480,7 @@ public class Polygon implements Shape, java.io.Serializable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean intersects(Rectangle2D r) {
+    public boolean intersects(@NonNull Rectangle2D r) {
         return intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -496,7 +501,7 @@ public class Polygon implements Shape, java.io.Serializable {
      * {@inheritDoc}
      * @since 1.2
      */
-    public boolean contains(Rectangle2D r) {
+    public boolean contains(@NonNull Rectangle2D r) {
         return contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -513,6 +518,7 @@ public class Polygon implements Shape, java.io.Serializable {
      *          geometry of this {@code Polygon}.
      * @since 1.2
      */
+    @NonNull
     public PathIterator getPathIterator(AffineTransform at) {
         return new PolygonPathIterator(this, at);
     }
@@ -547,7 +553,7 @@ public class Polygon implements Shape, java.io.Serializable {
         AffineTransform transform;
         int index;
 
-        public PolygonPathIterator(Polygon pg, AffineTransform at) {
+        public PolygonPathIterator(@NonNull Polygon pg, AffineTransform at) {
             poly = pg;
             transform = at;
             if (pg.npoints == 0) {

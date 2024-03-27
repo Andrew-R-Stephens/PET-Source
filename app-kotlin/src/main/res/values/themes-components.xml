@@ -2,6 +2,36 @@
 <resources>
 
     <!-- COMPONENT STYLING -->
+    <style name="Theme.PhasmophobiaEvidenceTool.Onboarding" parent="Theme.AppCompat.Leanback.Onboarding">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:textViewStyle">?attr/primaryFont_Regular_AutoSqueeze</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="foregroundColor">@color/white</item>
+        <item name="middlegroundColor">@color/white_M400</item>
+        <item name="backgroundColor" >@color/black</item>
+        <!--<item name="backgroundColorOnBackground" >@color/black_M50</item>-->
+        <item name="backgroundColorOnBackground" >#191616</item>
+        <item name="statusBarColor" >?attr/backgroundColor</item>
+        <item name="navigationBarColor" >?attr/backgroundColor</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="navigationFooterIcon">?attr/unselectedColor</item>
+        <item name="navigationFooterIconAlt">@color/white_M200</item>
+    </style>
 
     <style name="PET.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="enforceMaterialTheme">false</item>
@@ -72,13 +102,11 @@
     </style>
 
     <style name="NavigationDrawerStyle">
-
         <item name="android:textSize">18sp</item><!-- text size in menu-->
         <item name="textAppearanceListItemSmall">?attr/quaternaryFont_Regular_Manual</item>
         <item name="textAppearanceListItemSecondary">?attr/quaternaryFont_Regular_Manual</item>
         <item name="textAppearanceListItem">?attr/quaternaryFont_Regular_Manual</item>
         <item name="android:textAppearance">?attr/quaternaryFont_Regular_Manual</item>
-
 
         <!-- item size in menu-->
         <item name="android:listPreferredItemHeightSmall">40dp</item>
@@ -91,10 +119,13 @@
         <!-- item padding right in menu-->
         <item name="android:listPreferredItemPaddingRight">8dp</item>
         <item name="listPreferredItemPaddingRight">8dp</item>
+
+        <item name="background">?attr/backgroundColor</item>
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat">
-        <item name="colorControlActivated">?attr/switchColor</item>
+        <item name="colorControlActivated">?attr/switchColorOn</item>
+        <item name="colorSwitchThumbNormal">?attr/switchColorOff</item>
     </style>
 
     <style name="RequestRatingBar" parent="Theme.AppCompat">

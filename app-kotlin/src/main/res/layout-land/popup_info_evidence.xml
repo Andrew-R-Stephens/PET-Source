@@ -20,78 +20,67 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_12"
-            android:layout_width="wrap_content"
+            android:id="@+id/constraintLayout36"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout50"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_placeholder"
-                android:layout_width="wrap_content"
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/button_left"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                android:visibility="invisible"
+                app:PETImageButtonType="none"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout50"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintlayout_1"
-            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_1"
-            app:layout_constraintStart_toEndOf="@+id/constraintlayout_12"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_name"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout50"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="4dp"
-                android:gravity="center"
-                android:padding="2sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".5" />
+                app:layout_constraintEnd_toStartOf="@+id/button_right"
+                app:layout_constraintStart_toEndOf="@+id/button_left"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_title"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:padding="2sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/icon_container"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".4" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                <include
+                    android:id="@+id/icon_container"
+                    layout="@layout/item_investigation_ghost_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView_title"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/popup_close_button"
-                android:layout_width="wrap_content"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                android:id="@+id/button_right"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                android:padding="4dp"
+                app:PETImageButtonType="cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -103,7 +92,7 @@
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout50">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout36">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/popup_contentbody_constraintlayout_headers"
@@ -121,10 +110,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginBottom="4dp"
-                    app:layout_constraintHeight_percent=".2"
-                    app:layout_constraintHeight_min="28dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintlayout_tiers"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="28dp"
+                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -163,10 +152,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="4dp"
-                    app:layout_constraintHeight_percent=".2"
-                    app:layout_constraintHeight_min="28dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="28dp"
+                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintlayout_overview">
 

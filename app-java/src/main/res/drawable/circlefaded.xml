@@ -9,9 +9,9 @@
 
     <gradient
         android:startColor="@color/white_M400"
-        android:endColor="@color/black"
-        android:gradientRadius="250sp"
         android:centerColor="@color/white_M600"
+        android:endColor="@color/transparent"
+        android:gradientRadius="250sp"
         android:type="radial" />
 
 </shape>
