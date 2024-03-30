@@ -82,37 +82,25 @@ public abstract class InvestigationFragment extends PETFragment {
         initMapMenuViewModel();
     }
 
-    private void initEvidenceViewModel() {
-        try {
-            if (evidenceViewModel == null) {
-                evidenceViewModel =
-                        new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
-                evidenceViewModel.init(requireContext());
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+    private void initMapMenuViewModel() {
+        if (mapMenuViewModel == null) {
+            mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
+            mapMenuViewModel.init(getContext());
         }
     }
 
     private void initObjectivesViewModel() {
-        try {
-            if (objectivesViewModel == null) {
-                objectivesViewModel =
-                        new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        if (objectivesViewModel == null) {
+            objectivesViewModel =
+                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
         }
     }
 
-    private void initMapMenuViewModel() {
-        try {
-            if (mapMenuViewModel == null) {
-                mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-                    mapMenuViewModel.init(requireContext());
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+    private void initEvidenceViewModel() {
+        if (evidenceViewModel == null) {
+            evidenceViewModel =
+                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
+            evidenceViewModel.init(getContext());
         }
     }
 

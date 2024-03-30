@@ -97,8 +97,8 @@ public class RSSParserUtils {
                         }
                     } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
-                        NewsletterMessageData message = new NewsletterMessageData(title,
-                                description, date);
+                        NewsletterMessageData message = new NewsletterMessageData(
+                                title, description, date);
                         if (message.hasContent()) {
                             messageList.add(message);
                         }
@@ -110,8 +110,10 @@ public class RSSParserUtils {
                 }
                 in.close();
 
+                /*
                 messageList.compareDates();
                 messageList.setIsReady(true);
+                */
                 newsLetterViewModel.addInbox(messageList, inboxType);
 
             } catch (XmlPullParserException | IOException e) {

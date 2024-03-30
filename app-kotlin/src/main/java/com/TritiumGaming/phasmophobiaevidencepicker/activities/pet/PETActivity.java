@@ -22,6 +22,7 @@ import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
+import com.google.firebase.analytics.ConsentBuilder;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.analytics.FirebaseAnalytics.ConsentType;
 import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus;
@@ -173,7 +174,8 @@ public abstract class PETActivity extends AppCompatActivity {
         List<AuthUI.IdpConfig> providers = List.of(
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
-        AuthUI.getInstance().silentSignIn(this, providers)
+        AuthUI.getInstance()
+                .silentSignIn(this, providers)
                 .continueWithTask(task -> {
                     if (task.isSuccessful()) {
                         return task;
@@ -258,42 +260,6 @@ public abstract class PETActivity extends AppCompatActivity {
         // TODO: Request an ad.
         // InterstitialAd.load(...);
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_menu, menu);
-        MenuItem moreMenu = menu.findItem(R.id.action_more);
-        moreMenu.setVisible(isPrivacyOptionsRequired());
-        return true;
-    }
-    */
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // ...
-
-        popup.setOnMenuItemClickListener(
-                popupMenuItem -> {
-                    if (popupMenuItem.getItemId() == R.id.privacy_settings) {
-                        // Present the privacy options form when a user interacts with
-                        // the privacy settings button.
-                        UserMessagingPlatform.showPrivacyOptionsForm(
-                                this,
-                                formError -> {
-                                    if (formError != null) {
-                                        // Handle the error.
-                                    }
-                                }
-                        );
-                        return true;
-                    }
-                    return false;
-                });
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
     /*
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(

@@ -70,7 +70,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         }
 
         /* INITIALIZE VIEWS */
-        //AppCompatImageView btn_goto_tools = view.findViewById(R.id.icon_goto_medLeft);
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
 
@@ -82,14 +81,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         AppCompatTextView difficulty_name = sanityCarouselView_difficulty.findViewById(R.id.carousel_name);
         AppCompatImageButton difficulty_prev = sanityCarouselView_difficulty.findViewById(R.id.carousel_prev);
         AppCompatImageButton difficulty_next = sanityCarouselView_difficulty.findViewById(R.id.carousel_next);
-        /*
-        AppCompatTextView difficulty_name = view.findViewById(R.id.carousel_name);
-        AppCompatTextView map_name = view.findViewById(R.id.mapchoice_name);
-        AppCompatImageButton difficulty_prev = view.findViewById(R.id.difficulty_prev);
-        AppCompatImageButton difficulty_next = view.findViewById(R.id.difficulty_next);
-        AppCompatImageButton map_prev = view.findViewById(R.id.mapchoice_prev);
-        AppCompatImageButton map_next = view.findViewById(R.id.mapchoice_next);
-        */
         AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
         sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
         sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
@@ -140,7 +131,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         /* DIFFICULTY SELECTION */
         difficultyCarouselView.init(
-                evidenceViewModel.getDifficultyCarouselData()/*difficultyCarouselData*/,
+                evidenceViewModel.getDifficultyCarouselData(),
                 phaseTimerCountdownView,
                 playPauseButton,
                 difficulty_prev,
@@ -153,12 +144,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         phaseTimerCountdownView.setTimerControls(playPauseButton);
 
         difficultyCarouselView.setIndex(
-                evidenceViewModel.getDifficultyCarouselData()/*difficultyCarouselData*/
+                evidenceViewModel.getDifficultyCarouselData()
                         .getDifficultyIndex());
 
         /* SANITY METER */
         sanityMeterView.init(
-                evidenceViewModel.getSanityData()/*sanityData*/);
+                evidenceViewModel.getSanityData());
 
         enableUIThread();
     }
@@ -290,12 +281,18 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     }
 
     public MediaPlayer getHuntWarningAudio(@NonNull String appLang) {
-        return switch (appLang) {
-            case "es" -> MediaPlayer.create(getContext(), R.raw.huntwarning_es);
-            case "fr" -> MediaPlayer.create(getContext(), R.raw.huntwarning_fr);
-            case "de" -> MediaPlayer.create(getContext(), R.raw.huntwarning_de);
-            default -> MediaPlayer.create(getContext(), R.raw.huntwarning_en);
-        };
+        MediaPlayer p = null;
+        try {
+            p = switch (appLang) {
+                case "es" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_es);
+                case "fr" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_fr);
+                case "de" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_de);
+                default -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en);
+            };
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+        return p;
     }
 
     /**
@@ -305,15 +302,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void onPause() {
         disableUIThread();
 
-        if (evidenceViewModel != null && evidenceViewModel.getSanityData()/*sanityData*/ != null) {
+        if (evidenceViewModel != null && evidenceViewModel.getSanityData() != null) {
 
             if (evidenceViewModel.hasSanityRunnable()) {
                 evidenceViewModel.getSanityRunnable().haltMediaPlayer();
                 evidenceViewModel.getSanityRunnable().dereferenceViews();
             }
         }
-
-        //saveStates();
 
         super.onPause();
     }

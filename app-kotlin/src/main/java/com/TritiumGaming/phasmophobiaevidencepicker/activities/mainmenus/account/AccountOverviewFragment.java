@@ -231,7 +231,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         Log.d("ManuLogin", "Continuing to sign-in.");
 
         try {
-            if (!NetworkUtils.isNetworkAvailable(requireContext(),
+            if(!NetworkUtils.isNetworkAvailable(requireContext(),
                     globalPreferencesViewModel.getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();

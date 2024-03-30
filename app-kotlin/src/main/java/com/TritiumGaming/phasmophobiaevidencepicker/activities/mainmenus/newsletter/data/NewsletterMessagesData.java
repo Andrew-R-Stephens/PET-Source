@@ -76,7 +76,7 @@ public class NewsletterMessagesData {
             return;
         }
 
-        if(messages.size() == 0) {
+        if(messages.isEmpty()) {
 
             SimpleDateFormat parser =
                     new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);

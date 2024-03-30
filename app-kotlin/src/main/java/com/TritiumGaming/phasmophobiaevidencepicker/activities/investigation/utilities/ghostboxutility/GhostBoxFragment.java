@@ -132,7 +132,9 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
         startTextToSpeech();
 
         try {
-            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+            requireActivity()
+                    .getOnBackPressedDispatcher()
+                    .addCallback(getViewLifecycleOwner(),
                     new OnBackPressedCallback(true) {
                         @Override
                         public void handleOnBackPressed() {
@@ -153,9 +155,13 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
                                      View view,
                                      @ArrayRes int arrayRes,
                                      @NonNull LinearLayout destination) {
-
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-
+        LayoutInflater inflater;
+        try {
+            inflater = LayoutInflater.from(requireContext());
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return;
+        }
         GhostBoxUtilityData toolGhostSpeakData = new GhostBoxUtilityData();
 
         int[] spiritBoxEntries = toolGhostSpeakData.getEntries(context, arrayRes);
@@ -217,23 +223,27 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
      */
     private void startTextToSpeech() {
         if (textToSpeech == null) {
-            textToSpeech = new TextToSpeech(getContext(), status -> {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeech.setLanguage(Locale.getDefault());
-                    if (result == TextToSpeech.LANG_MISSING_DATA ||
-                            result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS",
-                                "Language " +
-                                        Locale.getDefault().getDisplayCountry() + " not supported");
+            try {
+                textToSpeech = new TextToSpeech(requireContext(), status -> {
+                    if (status == TextToSpeech.SUCCESS) {
+                        int result = textToSpeech.setLanguage(Locale.getDefault());
+                        if (result == TextToSpeech.LANG_MISSING_DATA ||
+                                result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                            Log.e("TTS",
+                                    "Language " +
+                                            Locale.getDefault().getDisplayCountry() + " not supported");
+                            stopTextToSpeech();
+                            visitTTSVoiceDownloads();
+                        }
+                    } else {
+                        Log.d("TTS", "Initialization failed");
                         stopTextToSpeech();
                         visitTTSVoiceDownloads();
                     }
-                } else {
-                    Log.d("TTS", "Initialization failed");
-                    stopTextToSpeech();
-                    visitTTSVoiceDownloads();
-                }
-            });
+                });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 

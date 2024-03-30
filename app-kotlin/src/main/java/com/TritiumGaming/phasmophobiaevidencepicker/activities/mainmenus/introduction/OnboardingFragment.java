@@ -2,14 +2,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.introd
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.animation.TimeInterpolator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -85,27 +82,17 @@ public class OnboardingFragment extends OnboardingSupportFragment {
     @NonNull
     @Override
     protected Animator onCreateTitleAnimator() {
-        try {
-            return AnimatorInflater.loadAnimator(
-                    requireContext(),
-                    R.animator.onboarding_reset_animation);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        return new AnimatorSet();
+        return AnimatorInflater.loadAnimator(
+                getContext(),
+                R.animator.onboarding_reset_animation);
     }
 
     @NonNull
     @Override
     protected Animator onCreateDescriptionAnimator() {
-        try {
-            return AnimatorInflater.loadAnimator(
-                    requireContext(),
-                    R.animator.onboarding_reset_animation);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        return new AnimatorSet();
+        return AnimatorInflater.loadAnimator(
+                getContext(),
+                R.animator.onboarding_reset_animation);
     }
 
     @Nullable

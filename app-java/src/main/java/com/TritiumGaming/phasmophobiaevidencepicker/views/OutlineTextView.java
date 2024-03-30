@@ -53,7 +53,6 @@ public class OutlineTextView extends AppCompatTextView {
         setOutlineColor(outlineColor);
     }
 
-
     public void setOutlineColor(int color) {
         outlineColor = color;
     }

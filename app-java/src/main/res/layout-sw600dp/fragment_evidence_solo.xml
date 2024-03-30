@@ -35,15 +35,16 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/button_toggleSanity"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="4dp"
             android:adjustViewBounds="true"
-            android:paddingLeft="8dp"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/icon_tab_arrow"
+            android:src="@drawable/icon_tab_sanity"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_reset"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
@@ -53,13 +54,31 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:adjustViewBounds="true"
+            android:padding="4dp"
             android:scaleType="fitCenter"
-            android:padding="8dp"
             android:src="@drawable/icon_tab_reset"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_toggleEmpty"
             app:layout_constraintStart_toEndOf="@+id/button_toggleSanity"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_toggleEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:adjustViewBounds="true"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_tab_sanity"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_reset"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".2"
         app:layout_constraintStart_toStartOf="parent">
+        <!--
 
         <include
             android:id="@+id/layout_sanity_tool"
@@ -78,6 +98,15 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+-->
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -88,6 +88,7 @@ public class NewsletterViewModel extends SharedViewModel {
         }
     }
 
+    /*
     public static SharedPreferences getSharedPreferences(@NonNull Context context) {
         return context.getSharedPreferences(
                 context.getString(fileName),
@@ -100,6 +101,7 @@ public class NewsletterViewModel extends SharedViewModel {
                 Context.MODE_PRIVATE);
         return sharedPref.edit();
     }
+    */
 
     public boolean isUpToDate() {
         if(inboxMessageList == null) {
@@ -123,7 +125,10 @@ public class NewsletterViewModel extends SharedViewModel {
         }
 
         try {
+            inbox.compareDates();
+            inbox.setIsReady(true);
             inbox.setInboxType(type);
+
             inboxMessageList.add(inbox);
         } catch (NullPointerException | ArrayIndexOutOfBoundsException ex) {
             ex.printStackTrace();
@@ -205,6 +210,7 @@ public class NewsletterViewModel extends SharedViewModel {
     }
 
     public void compareAllInboxDates() {
+
         boolean general = (getInbox(InboxType.GENERAL) != null &&
                 getInbox(InboxType.GENERAL).compareDates());
         boolean pet = (getInbox(InboxType.PET) != null &&
@@ -230,15 +236,12 @@ public class NewsletterViewModel extends SharedViewModel {
 
         String target = "";
         switch (inboxType) {
-            case PET -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
-            }
-            case PHASMOPHOBIA -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
-            }
-            case GENERAL -> {
-                target = c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
-            }
+            case PET -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
+            case PHASMOPHOBIA -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
+            case GENERAL -> target =
+                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
         }
 
         editor.putString(

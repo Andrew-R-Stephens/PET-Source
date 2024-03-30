@@ -89,16 +89,8 @@ public class EvidenceFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        /*
-        if(evidenceViewModel != null) {
-            sanityData = evidenceViewModel.getSanityData();
-            phaseTimerData = evidenceViewModel.getPhaseTimerData();
-            difficultyCarouselData = evidenceViewModel.getDifficultyCarouselData();
-        }
-        */
-
-        if(evidenceViewModel.getSanityData()/*sanityData*/ != null) {
-            evidenceViewModel.getSanityData()/*sanityData*/
+        if(evidenceViewModel.getSanityData() != null) {
+            evidenceViewModel.getSanityData()
                     .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
         }
 
@@ -123,22 +115,15 @@ public class EvidenceFragment extends InvestigationFragment {
         ScrollView ghost_scrollview = ghostSection.findViewById(R.id.scrollview);
         ScrollView evidence_scrollview = evidenceSection.findViewById(R.id.scrollview);
 
-        try {
-            ghostList = new GhostList(requireContext());
-            ghostList.init(evidenceViewModel, popupWindow,
-                    ghostSection.findViewById(R.id.progressbar),
-                    adRequest);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        try {
-            evidenceList = new EvidenceList(requireContext());
-            evidenceList.init(evidenceViewModel, popupWindow,
-                    evidenceSection.findViewById(R.id.progressbar),
-                    adRequest, ghostList);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        ghostList = new GhostList(getContext());
+        evidenceList = new EvidenceList(getContext());
+
+        ghostList.init(evidenceViewModel, popupWindow,
+                ghostSection.findViewById(R.id.progressbar),
+                adRequest);
+        evidenceList.init(evidenceViewModel, popupWindow,
+                evidenceSection.findViewById(R.id.progressbar),
+                adRequest, ghostList);
 
         ViewStub list_ghosts = ghostSection.findViewById(R.id.list);
         ViewStub list_evidence = evidenceSection.findViewById(R.id.list);
@@ -214,12 +199,12 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY
         if (sanitySeekBarView != null) {
             sanitySeekBarView.init(
-                    evidenceViewModel.getSanityData()/*sanityData*/,
+                    evidenceViewModel.getSanityData(),
                     sanityPercentTextView);
             sanitySeekBarView.resetProgress();
         }
 
-        sanityMeterView.init(evidenceViewModel.getSanityData()/*sanityData*/);
+        sanityMeterView.init(evidenceViewModel.getSanityData());
 
         popupWindow = new PopupWindow(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -276,7 +261,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         if(evidenceViewModel != null &&
-                evidenceViewModel.getPhaseTimerData()/*phaseTimerData*/ != null) {
+                evidenceViewModel.getPhaseTimerData() != null) {
             playPauseButton.pause();
             phaseTimerCountdownView.reset();
         }

@@ -9,7 +9,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AccountDetailsView extends ConstraintLayout {
@@ -72,32 +71,9 @@ public class AccountDetailsView extends ConstraintLayout {
             throw new FirestoreUser.NullFirebaseUserException();
         }
 
-        OutlineTextView textView_initials = findViewById(R.id.label_username_initials);
-        if(textView_initials == null) {
-            throw new Exception("TextView for Initials is null");
-        }
-
-        StringBuilder displayInitials = new StringBuilder();
-        String displayName = user.getDisplayName();
-        if(displayName != null) {
-            String[] names = displayName.split(" ");
-
-            for(String name: names) {
-
-                String trimmedName = name.trim();
-
-                if(!trimmedName.isEmpty()) {
-                    char initial = trimmedName.charAt(0);
-
-                    displayInitials.append(initial);
-
-                    if(displayInitials.length() >= 2) {
-                        break;
-                    }
-                }
-            }
-
-            textView_initials.setText(displayInitials);
+        AccountIconView accountIcon = findViewById(R.id.account_icon);
+        if(accountIcon != null) {
+            accountIcon.createAccountInitials(user.getDisplayName());
         }
     }
 

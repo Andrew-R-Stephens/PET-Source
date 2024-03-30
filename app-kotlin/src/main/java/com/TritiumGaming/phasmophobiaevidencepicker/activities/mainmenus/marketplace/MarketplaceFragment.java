@@ -472,12 +472,8 @@ public class MarketplaceFragment extends MainMenuFragment {
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
                     globalPreferencesViewModel.getNetworkPreference())) {
-                try {
-                    Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                            .show();
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                        .show();
                 processCompleteListener.onFailure();
 
                 return;
@@ -660,7 +656,6 @@ public class MarketplaceFragment extends MainMenuFragment {
     @Nullable
     private ThemeBundleCardView buildMarketplaceBundleThemeView(
             @NonNull MarketplaceListLayout list, @NonNull MarketThemeBundle bundleThemes) {
-
 
         ThemeBundleCardView marketplaceBundleView;
         try {
@@ -877,10 +872,14 @@ public class MarketplaceFragment extends MainMenuFragment {
                     onSignInResultAccount(result);
                 } catch (RuntimeException e) {
                     String message = "Login Error: " + e.getMessage();
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
+                    try {
+                        Toast toast = Toast.makeText(requireActivity(),
+                                message,
+                                com.google.android.material.R.integer.material_motion_duration_short_2);
+                        toast.show();
+                    } catch (IllegalStateException e2) {
+                        e2.printStackTrace();
+                    }
                 }
             }
     );
@@ -896,7 +895,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         Log.d("ManuLogin", "Continuing to sign-in.");
 
         try {
-            if(!NetworkUtils.isNetworkAvailable(requireContext(),
+            if (!NetworkUtils.isNetworkAvailable(requireContext(),
                     globalPreferencesViewModel.getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
@@ -905,7 +904,6 @@ public class MarketplaceFragment extends MainMenuFragment {
             }
         } catch (IllegalStateException e) {
             e.printStackTrace();
-            return;
         }
 
         List<AuthUI.IdpConfig> providers = List.of(
@@ -937,10 +935,14 @@ public class MarketplaceFragment extends MainMenuFragment {
             }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
-                Toast toast = Toast.makeText(requireActivity(),
-                        message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                toast.show();
+                try {
+                    Toast toast = Toast.makeText(requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2);
+                    toast.show();
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
 
                 refreshFragment();
 
@@ -964,10 +966,14 @@ public class MarketplaceFragment extends MainMenuFragment {
                 }
             }
 
-            Toast toast = Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
+            try {
+                Toast toast = Toast.makeText(requireActivity(),
+                        message,
+                        com.google.android.material.R.integer.material_motion_duration_short_2);
+                toast.show();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -1010,8 +1016,7 @@ public class MarketplaceFragment extends MainMenuFragment {
     public void showRewardedAd() {
 
         if (rewardedAd != null) {
-            PETActivity activityContext = (PETActivity) requireActivity();
-            rewardedAd.show(activityContext, rewardItem -> {
+            rewardedAd.show(requireActivity(), rewardItem -> {
                 // Handle the reward.
                 Log.d("RewardedAd", "The user earned the reward.");
                 int rewardAmount = rewardItem.getAmount();
@@ -1029,12 +1034,12 @@ public class MarketplaceFragment extends MainMenuFragment {
             Log.d("RewardedAd", "The rewarded ad wasn't ready yet.");
 
             try {
-                if (NetworkUtils.isNetworkAvailable(requireContext(),
+                if(NetworkUtils.isNetworkAvailable(requireContext(),
                         globalPreferencesViewModel.getNetworkPreference())) {
                     loadRewardedAd(this::showRewardedAd);
                 } else {
-                    Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                            .show();
+                        Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
+                                .show();
                 }
             } catch (IllegalStateException e) {
                 e.printStackTrace();

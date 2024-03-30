@@ -33,3 +33,4 @@ Keystore.jks
 /app-kotlin/release/
 /app-kotlin/libs/processing-core.jar
 /app-kotlin/build/
+/Keystore_old.jks

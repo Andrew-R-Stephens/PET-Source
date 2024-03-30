@@ -410,13 +410,9 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
     }
 
     private void buildMtxProductsList(@NonNull List<ProductDetails> productDetailsList) {
-        MarketplaceListLayout marketplaceList;
-        try {
-            marketplaceList = new MarketplaceListLayout(requireContext(), null);
-        }catch (IllegalStateException e) {
-            e.printStackTrace();
-            return;
-        }
+
+        MarketplaceListLayout marketplaceList =
+                new MarketplaceListLayout(getContext(), null);
 
         for (ProductDetails productDetails : productDetailsList) {
 

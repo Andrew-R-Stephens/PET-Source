@@ -40,15 +40,15 @@ public abstract class PETFragment extends Fragment {
     protected abstract void initViewModels();
 
     protected void initGlobalPreferencesViewModel() {
-        try {
-            if (globalPreferencesViewModel == null) {
+        if (globalPreferencesViewModel == null) {
+            try {
                 globalPreferencesViewModel =
                         new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
 
                 globalPreferencesViewModel.init(requireContext());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
         }
     }
 
@@ -56,12 +56,12 @@ public abstract class PETFragment extends Fragment {
      * saveStates method
      */
     protected void saveGlobalPreferencesViewModel() {
-        try {
-            if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.saveToFile(requireContext());
+        if (globalPreferencesViewModel != null) {
+            try {
+                globalPreferencesViewModel.saveToFile(requireContext());
+            } catch (IllegalStateException e){
+                e.printStackTrace();
             }
-        } catch (IllegalStateException e){
-            e.printStackTrace();
         }
     }
 
@@ -87,7 +87,7 @@ public abstract class PETFragment extends Fragment {
 
         try {
             Navigation.findNavController(requireView()).popBackStack();
-    } catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             e.printStackTrace();
         }
     }

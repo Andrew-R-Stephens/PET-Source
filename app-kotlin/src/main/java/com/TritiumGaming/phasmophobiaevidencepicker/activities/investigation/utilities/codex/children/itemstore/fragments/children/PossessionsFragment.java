@@ -149,6 +149,7 @@ public class PossessionsFragment extends ItemStoreFragment {
 
     @SuppressLint("ResourceType")
     protected void buildGroupViews(@NonNull LinearLayoutCompat parent, @NonNull GridLayout scrollViewPaginator) {
+        if(getContext() == null) { return; }
 
         scrollViewPaginator.setRowCount(storeData.getGroups().size());
 
@@ -166,6 +167,7 @@ public class PossessionsFragment extends ItemStoreFragment {
     }
 
     protected void buildDataPopupView(@NonNull View dataView, int groupIndex, int itemIndex) {
+        if(getContext() == null) { return; }
 
         ItemStorePossnsGroupData groupData = (ItemStorePossnsGroupData) storeData.getGroupAt(groupIndex);
         ItemStorePossessionItemData itemData = (ItemStorePossessionItemData) groupData.getItemDataAt(itemIndex);
@@ -202,8 +204,8 @@ public class PossessionsFragment extends ItemStoreFragment {
         }
 
         try {
-            String attrData = itemData.getAllAttributesAsFormattedHTML(requireContext());
-            if(!attrData.isEmpty()) {
+            String attrData = itemData.getAllAttributesAsFormattedHTML(getContext());
+            if(attrData == null || attrData.length() > 0) {
                 attrtextView.setVisibility(View.GONE);
             } else {
                 attrtextView.setVisibility(View.VISIBLE);
@@ -213,25 +215,19 @@ public class PossessionsFragment extends ItemStoreFragment {
                 }
             }
 
-        } catch (IllegalStateException | Resources.NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
             attrtextView.setVisibility(View.GONE);
             e.printStackTrace();
         }
 
-        try {
-            attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(requireContext())));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        if(getContext() != null) {
+            attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(getContext())));
         }
 
         LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
-        try {
-            layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), requireContext().getTheme()));
-            layerDrawable.setLevel(0);
-            itemImageView.invalidate();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), getContext().getTheme()));
+        layerDrawable.setLevel(0);
+        itemImageView.invalidate();
     }
 
     @Override

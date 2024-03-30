@@ -645,11 +645,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         themeControl.setSelectedIndex(0);
         themeControl.setSavedIndex(0);
 
-        try {
-            globalPreferencesViewModel.saveColorSpace(requireContext());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        globalPreferencesViewModel.saveColorSpace(getContext());
 
         demoColorStyle(themeControl);
     }
