@@ -51,9 +51,7 @@ public class OnboardingViewModel extends SharedViewModel {
      */
     public void saveCanShowIntroduction(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(c.getResources().getString(R.string.tutorialTracking_canShowIntroduction),
                 getCanShowIntroduction());

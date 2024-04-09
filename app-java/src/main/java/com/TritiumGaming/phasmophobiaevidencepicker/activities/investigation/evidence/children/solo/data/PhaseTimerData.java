@@ -5,7 +5,9 @@ public class PhaseTimerData {
     private final DifficultyCarouselData difficultyCarouselData;
 
     private boolean isPaused = true;
-    private long timeRemaining = -1L;
+
+    private final long TIME_DEFAULT = -1L, TIME_MIN = 0L;
+    private long timeRemaining = TIME_DEFAULT;
 
     public PhaseTimerData(DifficultyCarouselData difficultyCarouselData) {
         this.difficultyCarouselData = difficultyCarouselData;
@@ -29,12 +31,16 @@ public class PhaseTimerData {
         return timeRemaining;
     }
 
+    public boolean hasTimeRemaining() {
+        return timeRemaining < TIME_MIN;
+    }
+
     public void setTimeRemaining(long timeRemaining) {
         this.timeRemaining = timeRemaining;
     }
 
     public boolean isSetupPhase() {
-        return timeRemaining > 0L;
+        return timeRemaining > TIME_MIN;
     }
 
     public void reset() {

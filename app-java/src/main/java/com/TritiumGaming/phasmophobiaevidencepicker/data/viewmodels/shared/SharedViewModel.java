@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModel;
 
@@ -26,16 +27,22 @@ public abstract class SharedViewModel extends ViewModel {
     public abstract boolean init(@NonNull Context context);
 
     protected SharedPreferences getSharedPreferences(@NonNull Context context) {
+        String fileTitle = context.getResources().getString(fileName);
+
         return context.getSharedPreferences(
-                context.getResources().getString(fileName),
+                fileTitle,
                 Context.MODE_PRIVATE);
     }
 
-    protected SharedPreferences.Editor getEditor(@NonNull Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getResources().getString(fileName),
-                Context.MODE_PRIVATE);
-        return sharedPref.edit();
+    protected @Nullable SharedPreferences.Editor getEditor(@NonNull Context context)
+            throws NullPointerException
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        if(sharedPreferences == null) {
+            throw new NullPointerException("SharedPreferences object was null.");
+        }
+
+        return sharedPreferences.edit();
     }
 
     /**

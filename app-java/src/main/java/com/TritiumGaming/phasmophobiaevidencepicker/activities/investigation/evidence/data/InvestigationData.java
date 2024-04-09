@@ -15,6 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
  */
 public class InvestigationData {
 
+    @NonNull
     private final EvidenceViewModel evidenceViewModel;
 
     @NonNull
@@ -22,7 +23,8 @@ public class InvestigationData {
     @NonNull
     public static EvidenceList evidenceList = new EvidenceList();
 
-    public InvestigationData(@NonNull Context context, EvidenceViewModel evidenceViewModel) {
+    public InvestigationData(
+            @NonNull Context context, @NonNull EvidenceViewModel evidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel;
 
         evidenceList.init(context);

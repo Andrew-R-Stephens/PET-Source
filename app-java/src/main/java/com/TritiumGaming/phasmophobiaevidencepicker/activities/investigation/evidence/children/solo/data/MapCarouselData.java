@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 
 public class MapCarouselData {
 
+    public record MapSizeData(String name, int size) {}
+
     private MapSizeData[] mapSizeData;
 
     private int mapCurrent = 0;
 
-    public MapCarouselData() {
-    }
+    public MapCarouselData() {}
 
     public void setMapCurrentIndex(int index) {
         this.mapCurrent = index;
@@ -48,7 +49,6 @@ public class MapCarouselData {
         }
         return 1;
     }
-
 
     public boolean hasMapSizeData() {
         return mapSizeData == null;

@@ -5,10 +5,10 @@ import android.media.MediaPlayer;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
@@ -26,13 +26,13 @@ public class SanityRunnable implements Runnable {
     private final GlobalPreferencesViewModel globalPreferencesViewModel;
 
     @Nullable
-    private SanityMeterView sanityMeterSoloView;
+    private SanityMeterView sanityMeterView;
     @Nullable
-    private SanitySeekBarView sanityMeterSeekBar;
+    private SanitySeekBarView sanitySeekBarView;
     @Nullable
     private AppCompatTextView sanityMeterTextView;
     @Nullable
-    private WarnTextView setupPhaseTextView, actionPhaseTextView, huntWarningTextView;
+    private SanityWarningView setupPhaseTextView, actionPhaseTextView, huntWarningTextView;
 
     @Nullable
     private MediaPlayer audio_huntWarn;
@@ -46,9 +46,9 @@ public class SanityRunnable implements Runnable {
      * Locally sets references to Views and Resources found within the parent Fragment.
      *
      * @param evidenceViewModel -
-     * @param sanityMeterSoloView -
-     * @param sanityMeterTextView -
-     * @param sanityMeterSeekBar -
+     * @param  -
+     * @param sanityMeterView -
+     * @param sanitySeekBar -
      * @param setupPhaseTextView -
      * @param actionPhaseTextView -
      * @param huntWarningTextView -
@@ -57,20 +57,20 @@ public class SanityRunnable implements Runnable {
     public SanityRunnable(
             EvidenceViewModel evidenceViewModel,
             GlobalPreferencesViewModel globalPreferencesViewModel,
-            SanityMeterView sanityMeterSoloView,
-            AppCompatTextView sanityMeterTextView,
+            SanityMeterView sanityMeterView,
+            AppCompatTextView sanitySeekBar,
             SanitySeekBarView sanityMeterSeekBar,
-            WarnTextView setupPhaseTextView,
-            WarnTextView actionPhaseTextView,
-            WarnTextView huntWarningTextView,
+            SanityWarningView setupPhaseTextView,
+            SanityWarningView actionPhaseTextView,
+            SanityWarningView huntWarningTextView,
             MediaPlayer audio_huntWarn) {
 
         this.evidenceViewModel = evidenceViewModel;
         this.globalPreferencesViewModel = globalPreferencesViewModel;
 
-        this.sanityMeterSoloView = sanityMeterSoloView;
-        this.sanityMeterTextView = sanityMeterTextView;
-        this.sanityMeterSeekBar = sanityMeterSeekBar;
+        this.sanityMeterView = sanityMeterView;
+        this.sanityMeterTextView = sanitySeekBar;
+        this.sanitySeekBarView = sanityMeterSeekBar;
         this.setupPhaseTextView = setupPhaseTextView;
         this.actionPhaseTextView = actionPhaseTextView;
         this.huntWarningTextView = huntWarningTextView;
@@ -98,74 +98,75 @@ public class SanityRunnable implements Runnable {
     @Override
     public void run() {
 
+        if(evidenceViewModel == null) { return; }
+
         SanityData sanityData = evidenceViewModel.getSanityData();
         PhaseTimerData phaseTimerData = evidenceViewModel.getPhaseTimerData();
 
-        if (sanityData != null) {
-            if (sanityData.getStartTime() == -1) {
-                sanityData.setStartTime(System.currentTimeMillis());
-            }
+        if (sanityData == null) { return; }
+            if (sanityData.isNewCycle()) { sanityData.initStartTime(); }
 
-            if (!sanityData.isPaused()) {
-                if (phaseTimerData != null && !phaseTimerData.isPaused()) {
+        if (!sanityData.isPaused()) {
 
-                    sanityData.tick();
-                    if(sanityMeterTextView != null) {
-                        sanityMeterTextView.setText(sanityData.toPercentString());
+            if (phaseTimerData != null && !phaseTimerData.isPaused()) {
+
+                sanityData.tick();
+
+                if(sanityMeterTextView != null) {
+                    sanityMeterTextView.setText(sanityData.toPercentString());
+                }
+
+                if (setupPhaseTextView != null) {
+                    setupPhaseTextView.setState(phaseTimerData.isSetupPhase(), true);
+                }
+
+                if (actionPhaseTextView != null) {
+                    actionPhaseTextView.setState(!phaseTimerData.isSetupPhase(), true);
+                }
+
+                if (audio_huntWarn != null) {
+                    if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
+                            !phaseTimerData.isSetupPhase() && sanityData.canWarn()) {
+                        audio_huntWarn.start();
+                        sanityData.setCanWarn(false);
                     }
+                }
 
-                    if (setupPhaseTextView != null) {
-                        setupPhaseTextView.setState(phaseTimerData.isSetupPhase(), true);
-                    }
-
-                    if (actionPhaseTextView != null) {
-                        actionPhaseTextView.setState(!phaseTimerData.isSetupPhase(), true);
-                    }
-
-                    if (audio_huntWarn != null) {
-                        if (globalPreferencesViewModel.isHuntWarningAudioAllowed() &&
-                                !phaseTimerData.isSetupPhase() && sanityData.canWarn()) {
-                            audio_huntWarn.start();
-                            sanityData.setCanWarn(false);
-                        }
-                    }
-
-                    if (sanityData.getInsanityPercent() < .7) {
-                        if (!phaseTimerData.isSetupPhase()) {
-                            if (sanityData.canFlashWarning()) {
-                                if ((wait * (double) ++flashTick) > 1000L / 2.0) {
-                                    if (huntWarningTextView != null) {
-                                        huntWarningTextView.toggleFlash(true);
-                                    }
-                                    flashTick = 0;
-
-                                } else if (huntWarningTextView != null) {
-                                    huntWarningTextView.setState(true);
+                if (sanityData.getInsanityPercent() < .7) {
+                    if (!phaseTimerData.isSetupPhase()) {
+                        if (sanityData.canFlashWarning()) {
+                            if ((wait * (double) ++flashTick) > 1000L / 2.0) {
+                                if (huntWarningTextView != null) {
+                                    huntWarningTextView.toggleFlash(true);
                                 }
+                                flashTick = 0;
+
+                            } else if (huntWarningTextView != null) {
+                                huntWarningTextView.setState(true);
                             }
-                        } else if (huntWarningTextView != null) {
-                            huntWarningTextView.setState(false);
                         }
                     } else if (huntWarningTextView != null) {
                         huntWarningTextView.setState(false);
                     }
-                    if (!sanityData.isPaused()) {
-                        if(sanityMeterSeekBar != null) {
-                            sanityMeterSeekBar.updateProgress();
-                        }
+                } else if (huntWarningTextView != null) {
+                    huntWarningTextView.setState(false);
+                }
+                if (!sanityData.isPaused()) {
+                    if(sanitySeekBarView != null) {
+                        sanitySeekBarView.updateProgress();
                     }
                 }
+            }
 
-                if (sanityMeterSoloView != null) {
-                    sanityMeterSoloView.invalidate();
-                }
+            if (sanityMeterView != null) {
+                sanityMeterView.invalidate();
             }
         }
     }
 
     public void dereferenceViews() {
-        sanityMeterSoloView = null;
-        sanityMeterSeekBar = null;
+        sanityMeterView = null;
+        sanitySeekBarView = null;
         sanityMeterTextView = null;
         setupPhaseTextView = null;
         actionPhaseTextView = null;

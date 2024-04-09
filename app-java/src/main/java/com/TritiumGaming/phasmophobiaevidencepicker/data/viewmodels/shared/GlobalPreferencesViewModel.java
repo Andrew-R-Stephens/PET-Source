@@ -116,7 +116,11 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
 
         getReviewRequestData().incrementTimesOpened();
 
-        saveTimesOpened(context, getEditor(context), true);
+        try {
+            saveTimesOpened(context, getEditor(context), true);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -312,17 +316,15 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveNetworkPreference(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_network),
                 getNetworkPreference());
-
         if(localApply) {
             editor.apply();
         }
+
     }
 
     /**
@@ -333,15 +335,13 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveChosenLanguage(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putString(
                 c.getResources().getString(R.string.preference_language),
                 getLanguageName());
 
-        if(localApply) {
+        if (localApply) {
             editor.apply();
         }
     }
@@ -354,9 +354,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveAlwaysOnState(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_isAlwaysOn),
@@ -375,9 +373,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveHuntWarningAudioAllowed(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(
                 c.getResources().getString(R.string.preference_isHuntAudioWarningAllowed),
@@ -396,9 +392,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveHuntWarningFlashTimeout(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putInt(
                 c.getResources().getString(R.string.preference_huntWarningFlashTimeout),
@@ -421,9 +415,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveColorSpace(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putString(c.getResources().getString(R.string.preference_savedTheme), getColorThemeID());
 
@@ -440,9 +432,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveFontType(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putString(c.getResources().getString(R.string.preference_savedFont), getFontThemeID());
 
@@ -459,9 +449,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveAppTimeAlive(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putLong(c.getResources().getString(R.string.reviewtracking_appTimeAlive),
                 getReviewRequestData().getTimeActive());
@@ -479,9 +467,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveTimesOpened(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putInt(c.getResources().getString(R.string.reviewtracking_appTimesOpened),
                 getReviewRequestData().getTimesOpened());
@@ -499,9 +485,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveCanRequestReview(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(c.getResources().getString(R.string.reviewtracking_canRequestReview),
                 getReviewRequestData().getWasRequested());
@@ -519,9 +503,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     private void saveIsLeftHandSupportEnabled(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(c.getResources().getString(R.string.preference_isLeftHandSupportEnabled),
                 getIsLeftHandSupportEnabled());
@@ -539,9 +521,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
      */
     public void saveCanShowIntroduction(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(c.getResources().getString(R.string.tutorialTracking_canShowIntroduction),
                 getCanShowIntroduction());

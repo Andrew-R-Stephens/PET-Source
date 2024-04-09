@@ -229,10 +229,7 @@ public class NewsletterViewModel extends SharedViewModel {
     private void saveLastReadDate(
             @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply,
             @NonNull InboxType inboxType) {
-
-        if (editor == null) {
-            editor = getEditor(c);
-        }
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         String target = "";
         switch (inboxType) {

@@ -208,7 +208,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
                 android:id="@+id/evidence_sanitymeter_phase_action"
                 style="?attr/tertiaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
@@ -227,7 +227,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".495" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
                 android:id="@+id/evidence_sanitymeter_phase_setup"
                 style="?attr/tertiaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
@@ -457,7 +457,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_percentage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
             android:id="@+id/evidence_sanitymeter_huntwarning"
             style="?attr/tertiaryFont_Bold_AutoSqueeze"
             android:layout_width="0dp"

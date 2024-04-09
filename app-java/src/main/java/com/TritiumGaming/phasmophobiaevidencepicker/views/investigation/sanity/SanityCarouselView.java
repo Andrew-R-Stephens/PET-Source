@@ -87,4 +87,12 @@ public class SanityCarouselView extends ConstraintLayout {
         }
     }
 
+    public void setRightListener() {
+
+    }
+
+    public void setLeftListener() {
+
+    }
+
 }

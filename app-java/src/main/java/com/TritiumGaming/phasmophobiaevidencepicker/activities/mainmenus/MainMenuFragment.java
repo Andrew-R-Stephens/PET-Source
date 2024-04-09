@@ -53,16 +53,6 @@ public abstract class MainMenuFragment extends PETFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    /*
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
-
-        super.init();
-    }
-    */
-
     protected void initViewModels() {
         super.initGlobalPreferencesViewModel();
     }
@@ -96,7 +86,7 @@ public abstract class MainMenuFragment extends PETFragment {
     protected void saveNewsletterViewModel() {
         if (newsLetterViewModel != null) {
             try {
-                newsLetterViewModel.saveToFile(requireContext());
+                newsLetterViewModel.saveToFile(requireActivity());
             } catch (IllegalStateException e){
                 e.printStackTrace();
             }
@@ -104,6 +94,8 @@ public abstract class MainMenuFragment extends PETFragment {
     }
 
     protected void initAdView(@NonNull AdView adView) {
+        if(mainMenuViewModel == null) { return; }
+
         try {
             MobileAds.initialize(requireActivity(), initializationStatus -> {
             });

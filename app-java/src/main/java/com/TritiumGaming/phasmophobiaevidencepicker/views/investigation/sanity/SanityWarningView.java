@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,7 +18,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
  *
  * @author TritiumGamingStudios
  */
-public class WarnTextView extends AppCompatTextView {
+public class SanityWarningView extends AppCompatTextView {
 
     private boolean state = false;
     private boolean flashOn = false;
@@ -31,7 +31,7 @@ public class WarnTextView extends AppCompatTextView {
     /**
      * @param context
      */
-    public WarnTextView(@NonNull Context context) {
+    public SanityWarningView(@NonNull Context context) {
         super(context);
         init();
     }
@@ -40,7 +40,7 @@ public class WarnTextView extends AppCompatTextView {
      * @param context
      * @param attrs
      */
-    public WarnTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public SanityWarningView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -50,7 +50,7 @@ public class WarnTextView extends AppCompatTextView {
      * @param attrs
      * @param defStyleAttr
      */
-    public WarnTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SanityWarningView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

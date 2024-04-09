@@ -24,7 +24,8 @@ public class EvidenceMPHostFragment extends Fragment {
     private MPHostViewModel MPHostViewModel;
 
     public EvidenceMPHostFragment() {
-        super(R.layout.fragment_evidence_mult_host);
+        /*
+        super(R.layout.fragment_evidence_mult_host);*/
     }
 
     @Nullable
@@ -36,7 +37,8 @@ public class EvidenceMPHostFragment extends Fragment {
         if (MPHostViewModel == null)
             MPHostViewModel = new ViewModelProvider(requireActivity()).get(MPHostViewModel.class);
 
-        return inflater.inflate(R.layout.fragment_evidence_mult_host, container, false);
+        return inflater.inflate(null, container, false);/*
+        return inflater.inflate(R.layout.fragment_evidence_mult_host, container, false);*/
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

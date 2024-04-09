@@ -24,7 +24,9 @@ public class EvidenceMPClientFragment extends Fragment {
     private MPClientViewModel MPClientViewModel;
 
     public EvidenceMPClientFragment() {
+        /*
         super(R.layout.fragment_evidence_mult_client);
+        */
     }
 
     @Nullable
@@ -38,7 +40,9 @@ public class EvidenceMPClientFragment extends Fragment {
                     new ViewModelProvider(requireActivity()).get(MPClientViewModel.class);
 
         return inflater.inflate(
-                R.layout.fragment_evidence_mult_client, container, false);
+                null, container, false);/*
+        return inflater.inflate(
+                R.layout.fragment_evidence_mult_client, container, false);*/
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

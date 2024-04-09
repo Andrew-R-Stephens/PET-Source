@@ -30,7 +30,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.PhaseTimerControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 
 /**
@@ -59,7 +59,7 @@ public class EvidenceFragment extends InvestigationFragment {
     protected MapCarouselView mapTrackControl;
     protected SanitySeekBarView sanitySeekBarView;
     protected SanityMeterView sanityMeterView;
-    protected WarnTextView sanityWarningTextView;
+    protected SanityWarningView sanityWarningTextView;
 
 
     /**

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
 
 /**
  * DifficultySelectControl class
@@ -20,7 +21,7 @@ public class DifficultyCarouselView {
     private PhaseTimerControlView timerControlView;
     private AppCompatTextView difficultyNameView;
     private SanitySeekBarView sanityProgressBar;
-    private WarnTextView warnTextView_warn, warnTextView_setup, warnTextView_action;
+    private SanityWarningView warnTextView_warn, warnTextView_setup, warnTextView_action;
 
     private CompositeListener compositeListenerPrev, compositeListenerNext;
 
@@ -35,9 +36,9 @@ public class DifficultyCarouselView {
             @NonNull AppCompatImageButton prevButton,
             @NonNull AppCompatImageButton nextButton,
             AppCompatTextView difficultyNameView,
-            WarnTextView warnTextView_warn,
-            WarnTextView warnTextView_setup,
-            WarnTextView warnTextView_action,
+            SanityWarningView warnTextView_warn,
+            SanityWarningView warnTextView_setup,
+            SanityWarningView warnTextView_action,
             SanitySeekBarView sanityProgressBar) {
 
         this.difficultyCarouselData = difficultyCarouselData;

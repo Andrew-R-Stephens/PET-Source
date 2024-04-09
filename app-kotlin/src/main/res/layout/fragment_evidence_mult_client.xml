@@ -423,7 +423,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider23">
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.WarnTextView
+                    <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
                         android:id="@+id/evidence_sanitymeter_huntwarning"
                         android:layout_width="0dp"
                         android:layout_height="0dp"

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:minLevel="0"
+        android:maxLevel="0" >
+
+        <bitmap android:src="@drawable/rect_border"
+            android:tintMode="multiply"
+            android:tint="?attr/light_off"
+            />
+
+    </item>
+
+    <item
+        android:minLevel="1"
+        android:maxLevel="1" >
+
+        <level-list>
+
+            <item
+                android:minLevel="0"
+                android:maxLevel="0">
+
+                <bitmap android:src="@drawable/rect_border"
+                    android:tintMode="multiply"
+                    android:tint="?attr/light_inactive"
+                    />
+
+            </item>
+
+            <item
+                android:minLevel="1"
+                android:maxLevel="1">
+
+                <bitmap android:src="@drawable/rect_border"
+                    android:tintMode="multiply"
+                    android:tint="?attr/light_active"
+                    />
+
+            </item>
+
+        </level-list>
+
+    </item>
+
+</level-list>

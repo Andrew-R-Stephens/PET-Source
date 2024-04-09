@@ -25,7 +25,9 @@ public class PhaseTimerView {
 
     @Nullable
     private CountDownTimer timer;
+    @Nullable
     private PhaseTimerControlView stateControl;
+    @Nullable
     private AppCompatTextView timerTextView;
 
     /**
@@ -34,7 +36,7 @@ public class PhaseTimerView {
      * @param recipientView -
      */
     public PhaseTimerView(SanityData sanityData,
-                          @NonNull PhaseTimerData phaseTimerData,
+                          PhaseTimerData phaseTimerData,
                           AppCompatTextView recipientView) {
 
         this.sanityData = sanityData;
@@ -42,8 +44,7 @@ public class PhaseTimerView {
 
         setTimerTextView(recipientView);
 
-        createTimer(
-                true,
+        createTimer(true,
                 phaseTimerData.getTimeRemaining(),
                 1000L);
 
@@ -66,17 +67,9 @@ public class PhaseTimerView {
      *
      * @param timerTextView -
      */
-    public void setTimerTextView(AppCompatTextView timerTextView) {
+    public void setTimerTextView(@Nullable AppCompatTextView timerTextView) {
         this.timerTextView = timerTextView;
     }
-
-    /*
-    public void recreateTimer(long millisInFuture, long countDownInterval) {
-        phaseTimerData.setTimeRemaining(millisInFuture);
-
-        createTimer(millisInFuture, countDownInterval);
-    }
-    */
 
     /**
      * createTimer method
@@ -89,7 +82,7 @@ public class PhaseTimerView {
         destroyTimer();
 
         if(isFresh) {
-            if(sanityData.getStartTime() != -1 && !sanityData.isPaused()) {
+            if(!sanityData.isNewCycle() && !sanityData.isPaused()) {
                 Log.d("SettingTimeRemaining",
                         phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
                                 " " + (sanityData.getStartTime() - System.currentTimeMillis()));
@@ -97,8 +90,15 @@ public class PhaseTimerView {
                         phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
                                 (sanityData.getStartTime() - System.currentTimeMillis())
                 );
+            } else {
+                Log.d("SettingTimeRemaining", "Not new Cycle, Not Paused " +
+                        phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
+                        " " + (sanityData.getStartTime() - System.currentTimeMillis()));
             }
         } else {
+            Log.d("SettingTimeRemaining", "Not Fresh " +
+                    phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
+                            " " + (sanityData.getStartTime() - System.currentTimeMillis()));
             phaseTimerData.setTimeRemaining(millisInFuture);
         }
 
@@ -185,8 +185,7 @@ public class PhaseTimerView {
     }
 
     public void reset() {
-        createTimer(
-                true,
+        createTimer(true,
                 phaseTimerData.getTimeRemaining(),
                 1000L);
 

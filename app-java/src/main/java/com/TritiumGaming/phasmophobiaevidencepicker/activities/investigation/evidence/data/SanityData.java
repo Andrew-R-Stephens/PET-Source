@@ -102,6 +102,14 @@ public class SanityData {
         this.startTime = startTime;
     }
 
+    public void resetStartTime() {
+        setStartTime(-1);
+    }
+
+    public void initStartTime() {
+        setStartTime(System.currentTimeMillis());
+    }
+
     /**
      * getStartTime method
      *
@@ -109,6 +117,10 @@ public class SanityData {
      */
     public long getStartTime() {
         return startTime;
+    }
+
+    public boolean isNewCycle() {
+        return startTime == -1;
     }
 
     public void setFlashTimeoutMax(int flashTimeoutMax) {
@@ -124,24 +136,19 @@ public class SanityData {
         flashTimeoutStart = timeout;
     }
 
+    public void resetFlashTimeoutStart() {
+        setFlashTimeoutStart(-1);
+    }
+
     /**
      * getSanityActual
      *
      * @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.
      */
     public long getSanityActual() {
-
         long insanityActualTemp = (int) (insanityActual);
 
-        if (insanityActualTemp > 100L) {
-            return 100L;
-        }
-        else if (insanityActualTemp < 0L) {
-            return 0L;
-        }
-
-        return insanityActualTemp;
-
+        return Math.max(Math.min(insanityActualTemp, 100L), 0L);
     }
 
     /**
@@ -150,7 +157,8 @@ public class SanityData {
      * @param insanityActual - The decimal form of the sanity level.
      */
     public void setInsanityActual(float insanityActual) {
-        this.insanityActual = insanityActual;
+        final long SANITY_MAX = 100L;
+        this.insanityActual = Math.min(insanityActual, SANITY_MAX);
     }
 
     /**
@@ -161,16 +169,10 @@ public class SanityData {
      * @return The sanity level that's missing. MAX_SANITY - insanityActual.
      */
     public long getInsanityActual() {
-
         long insanityActualTemp = (int) (MAX_SANITY - insanityActual);
 
-        if (insanityActualTemp > 100L) {
-            return 100L;
-        }
-        else if (insanityActualTemp < 0L) {
-            return 0L;
-        }
-        return insanityActualTemp;
+        final long SANITY_MAX = 100L, SANITY_MIN = 0L;
+        return Math.max(Math.min(insanityActualTemp, SANITY_MAX), SANITY_MIN);
 
     }
 
@@ -201,7 +203,7 @@ public class SanityData {
      */
     public void setProgressManually() {
         setProgressManually((long) insanityActual);
-        setFlashTimeoutStart(-1);
+        resetFlashTimeoutStart();
     }
 
     /**
@@ -218,7 +220,7 @@ public class SanityData {
                 (System.currentTimeMillis() +
                 (MAX_SANITY - progressOverride / getDifficultyRate() / getDropRate() / .001));
         setStartTime((long) newStartTime);
-        setFlashTimeoutStart(-1);
+        resetFlashTimeoutStart();
     }
 
     /**
@@ -298,21 +300,28 @@ public class SanityData {
      */
     public void tick() {
         double multiplier = .001;
-        // Multiplier which drops the rate to appropriate levels
-        // Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
-        // investigation phase.
-        insanityActual = (float) ((((System.currentTimeMillis() - (getStartTime() == -1 ?
+        final float PERCENT_HALF = .5f;
+        final long SANITY_HALF = 50L;
+
+        /*
+        Multiplier which drops the rate to appropriate levels
+        Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
+        investigation phase.
+        */
+        setInsanityActual(
+                (float) ((((System.currentTimeMillis() - (getStartTime() == -1 ?
                 System.currentTimeMillis() :
-                getStartTime())) * multiplier * getDropRate()) * getDifficultyRate()));
-        if (insanityActual >= 100L) {
-            insanityActual = 100L;
-        }
+                getStartTime())) * multiplier * getDropRate()) * getDifficultyRate()))
+        );
+
         if (evidenceViewModel != null) {
-            // If the Countdown timer still has time, and the player's sanity is less than or
-            // equal to halfway gone, set the remaining sanity to half.
-            if (getInsanityPercent() <= .5 &&
-                    evidenceViewModel.getPhaseTimerData().getTimeRemaining() > 0L) {
-                setProgressManually(50);
+            /*
+            If the Countdown timer still has time, and the player's sanity is less than or
+            equal to halfway gone, set the remaining sanity to half.
+            */
+            if (getInsanityPercent() <= PERCENT_HALF &&
+                    evidenceViewModel.getPhaseTimerData().hasTimeRemaining()) {
+                setProgressManually(SANITY_HALF);
             }
         }
     }
@@ -337,11 +346,15 @@ public class SanityData {
      * Defaults all persistent data.
      */
     public void reset() {
-        setStartTime(-1);
-        setFlashTimeoutStart(-1);
+        resetStartTime();
+        resetFlashTimeoutStart();
         setCanWarn(true);
         tick();
-        setInsanityActual(evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex() == 4 ? 25f : 0);
+        final float SANITY_QUARTER = 25f;
+        final long SANITY_EMPTY = 0L;
+        setInsanityActual(
+                evidenceViewModel.getDifficultyCarouselData().getDifficultyIndex() == 4 ?
+                        SANITY_QUARTER : SANITY_EMPTY);
     }
 
 }

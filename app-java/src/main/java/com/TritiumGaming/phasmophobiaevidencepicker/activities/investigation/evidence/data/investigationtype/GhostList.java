@@ -16,7 +16,8 @@ public class GhostList {
     @Nullable
     public static ArrayList<Ghost> ghostList = null;
 
-    public void init(@NonNull Context c, InvestigationData investigationData) {
+    public void init(
+            @NonNull Context c, @NonNull InvestigationData investigationData) {
         ghostList = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.ghost_names);
 
@@ -51,10 +52,12 @@ public class GhostList {
     }
 
     public static int getCount() {
+        if(ghostList == null) { return 0; }
         return ghostList.size();
     }
 
     public Ghost getAt(int index) {
+        if(ghostList == null) { return null; }
         return ghostList.get(index);
     }
 
@@ -66,7 +69,11 @@ public class GhostList {
      * Resets the Ruling for each Evidence type
      */
     public void reset() {
-        for (Ghost g : getList()) {
+
+        ArrayList<Ghost> ghostList = getList();
+        if(ghostList == null) { return; }
+
+        for (Ghost g : ghostList) {
             g.setIsForcefullyRejected(false);
         }
     }

@@ -1,7 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data;
 
 import android.content.Context;
+import android.content.res.Resources;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -11,53 +13,50 @@ public class DifficultyCarouselData {
 
     private final EvidenceViewModel evidenceViewModel;
 
-    @Nullable
-    private String[] difficultyNames = null;
-    @Nullable
-    private long[] difficultyTimes = null;
+    @NonNull
+    private String[] titles = new String[0];
+    @NonNull
+    private long[] times = new long[0];
 
-    private int difficulty = 0;
+    public enum Difficulty { AMATEUR, INTERMEDIATE, PROFESSIONAL, NIGHTMARE, INSANITY }
+    private int difficulty = Difficulty.AMATEUR.ordinal();
 
-    public DifficultyCarouselData(@Nullable Context context, EvidenceViewModel evidenceViewModel) {
+    public DifficultyCarouselData(@NonNull Context context, @NonNull EvidenceViewModel evidenceViewModel) {
 
         this.evidenceViewModel = evidenceViewModel;
 
-        String[] difficultyNames = null;
-        String[] difficultyTimes = null;
-
-        if (context != null) {
-            difficultyNames =
-                    context.getResources().getStringArray(R.array.evidence_timer_difficulty_names_array);
-            difficultyTimes =
-                    context.getResources().getStringArray(R.array.evidence_timer_difficulty_times_array);
+        try {
+            String[] difficultyNames = context.getResources()
+                    .getStringArray(R.array.evidence_timer_difficulty_names_array);
+            setTitles(difficultyNames);
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
         }
 
-        setDifficultyNames(difficultyNames);
-        setDifficultyTimes(difficultyTimes);
+        try {
+            String[] difficultyTimes = context.getResources()
+                    .getStringArray(R.array.evidence_timer_difficulty_times_array);
+            setTimes(difficultyTimes);
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void setDifficultyNames(String[] difficultyNames) {
-        this.difficultyNames = difficultyNames;
+    public void setTitles(@NonNull String[] titles) {
+        this.titles = titles;
     }
 
-    /**
-     * setDifficultyTimes
-     *
-     * @param dt
-     */
-    private void setDifficultyTimes(@Nullable String[] dt) {
-        long[] temp = new long[0];
-        if (dt != null) {
-            temp = new long[dt.length];
-            for (int i = 0; i < dt.length; i++)
-                temp[i] = Long.parseLong(dt[i]);
-        }
+    private void setTimes(@NonNull String[] times) {
+        long[] temp = new long[times.length];
+        for (int i = 0; i < times.length; i++)
+            temp[i] = Long.parseLong(times[i]);
+
         setDifficultyTimes(temp);
     }
 
     public void setDifficultyTimes(long[] difficultyTimes) {
-        this.difficultyTimes = difficultyTimes;
+        this.times = difficultyTimes;
     }
 
     /**
@@ -75,21 +74,25 @@ public class DifficultyCarouselData {
     }
 
     public long getCurrentDifficultyTime() {
-        return difficultyTimes[getDifficultyIndex()];
+        if(times == null) { return 0L; }
+
+        return times[getDifficultyIndex()];
     }
 
     public String getCurrentDifficultyName() {
-        return difficultyNames[getDifficultyIndex()];
+        if(titles == null) { return "NA"; }
+
+        return titles[getDifficultyIndex()];
     }
 
     public boolean decrementDifficulty() {
-        if (evidenceViewModel != null) {
+        if (evidenceViewModel != null && titles != null) {
 
-            int state = getDifficultyIndex() - 1;
-            if (state < 0) {
-                state = difficultyNames.length - 1;
+            int difficultyIndex = getDifficultyIndex() - 1;
+            if (difficultyIndex < 0) {
+                difficultyIndex = titles.length - 1;
             }
-            setDifficultyIndex(state);
+            setDifficultyIndex(difficultyIndex);
 
             if (evidenceViewModel.hasSanityData()) {
                 evidenceViewModel.getSanityData().setCanWarn(true);
@@ -102,10 +105,10 @@ public class DifficultyCarouselData {
     }
 
     public boolean incrementDifficulty() {
-        if (evidenceViewModel != null) {
+        if (evidenceViewModel != null && titles != null) {
 
             int state = getDifficultyIndex() + 1;
-            if (state >= difficultyNames.length) {
+            if (state >= titles.length) {
                 state = 0;
             }
             setDifficultyIndex(state);
@@ -133,8 +136,6 @@ public class DifficultyCarouselData {
     }
 
     public boolean isDifficulty(int difficultyIndex) {
-        //Log.d("Diff", getDifficultyIndex() + " vs " + difficultyIndex);
-
         return getDifficultyIndex() == difficultyIndex;
     }
 

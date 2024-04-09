@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData;
@@ -39,30 +40,48 @@ public class EvidenceViewModel extends ViewModel {
 
     private boolean isCollapsed = false;
 
-    public void init(Context context) {
+    public void init(@NonNull Context context) {
+        initInvestigationData(context);
+        initDifficultyCarouselData(context);
+        initMapCarouselData();
+        initSanityData();
+        initGhostOrderData();
+        initPhaseTimerData();
+    }
 
+    private void initInvestigationData(@NonNull Context context) {
         if (!hasInvestigationData()) {
             setInvestigationData(new InvestigationData(context, this));
         }
+    }
 
-        if (!hasDifficultyCarouselData()) {
-            difficultyCarouselData = new DifficultyCarouselData(context, this);
+    private void initPhaseTimerData() {
+        if (!hasPhaseTimerData()) {
+            phaseTimerData = new PhaseTimerData(difficultyCarouselData);
         }
+    }
 
-        if (!hasMapCarouselData()) {
-            mapCarouselData = new MapCarouselData();
-        }
-
-        if (!hasSanityData()) {
-            sanityData = new SanityData(this);
-        }
-
+    private void initGhostOrderData() {
         if (!hasGhostOrderData()) {
             ghostOrderData = new GhostOrderData(this);
         }
+    }
 
-        if (!hasPhaseTimerData()) {
-            phaseTimerData = new PhaseTimerData(difficultyCarouselData);
+    private void initSanityData() {
+        if (!hasSanityData()) {
+            sanityData = new SanityData(this);
+        }
+    }
+
+    private void initMapCarouselData() {
+        if (!hasMapCarouselData()) {
+            mapCarouselData = new MapCarouselData();
+        }
+    }
+
+    private void initDifficultyCarouselData(@NonNull Context context) {
+        if (!hasDifficultyCarouselData()) {
+            difficultyCarouselData = new DifficultyCarouselData(context, this);
         }
     }
 

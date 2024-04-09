@@ -15,7 +15,7 @@ public class AnimatedGraphicQueue {
     private int tick, timeout, maxTimeout;
 
     @NonNull
-    private ArrayList<Integer> queue = new ArrayList<>();
+    private final ArrayList<Integer> queue = new ArrayList<>();
 
     /**
      * @param maxSize
@@ -82,9 +82,6 @@ public class AnimatedGraphicQueue {
      * @param num
      */
     public void enqueue(int num) {
-        if(queue == null) {
-            queue = new ArrayList<>();
-        }
 
         if (queue.size() < maxSize) {
             if(num >= 0) {
@@ -102,9 +99,6 @@ public class AnimatedGraphicQueue {
      * @param num
      */
     public void enqueue(int index, int num) {
-        if(queue == null) {
-            queue = new ArrayList<>();
-        }
 
         if (queue.size() < maxSize) {
             queue.add(index, num);
@@ -122,9 +116,6 @@ public class AnimatedGraphicQueue {
      * @return
      */
     public int dequeue() {
-        if(queue == null) {
-            queue = new ArrayList<>();
-        }
 
         if (queue.isEmpty()) {
             refill();
