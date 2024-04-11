@@ -4,10 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIcon
 import com.google.android.material.card.MaterialCardView
-import kotlin.math.min
+import com.google.firebase.auth.FirebaseUser
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) : super(context) {
@@ -56,6 +57,9 @@ class AccountIconView : MaterialCardView {
 
         val profileIcon = findViewById<ComposeView>(R.id.profile_icon)
         profileIcon.setContent { AccountIcon() }
+
+        val user = FirestoreUser.getCurrentFirebaseUser()
+        createAccountInitials(user?.displayName)
     }
 
     fun createAccountInitials(displayName: String?) {
@@ -65,7 +69,7 @@ class AccountIconView : MaterialCardView {
                 displayName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             for (name in names) {
                 val trimmedName = name.trim { it <= ' ' }
-                if (!trimmedName.isEmpty()) {
+                if (trimmedName.isNotEmpty()) {
                     val initial = trimmedName[0]
                     displayInitials.append(initial)
                     if (displayInitials.length >= 2) {
@@ -73,7 +77,7 @@ class AccountIconView : MaterialCardView {
                     }
                 }
             }
-            if (displayInitials.length > 0) {
+            if (displayInitials.isNotEmpty()) {
                 setAccountInitials(displayInitials.toString())
             }
         }

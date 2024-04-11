@@ -23,7 +23,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 @Composable
 @Preview
 fun AccountIcon() {
-    // [START android_compose_clip_image]
     val context = LocalContext.current;
     val typedValue = TypedValue()
     context.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
@@ -35,7 +34,7 @@ fun AccountIcon() {
 
     val size = 48.dp
     val borderWidth = 4.dp / 200.dp * size
-    val borderColor = colorResId/*Color(context.theme.resources.getColor(colorResId))*/
+    val borderColor = colorResId
 
     Image(
         /*painter = painterResource(id = iconResource),*/
@@ -47,5 +46,4 @@ fun AccountIcon() {
             .clip(CircleShape)
             .border(borderWidth, borderColor, CircleShape)
     )
-    // [END android_compose_clip_image]
 }

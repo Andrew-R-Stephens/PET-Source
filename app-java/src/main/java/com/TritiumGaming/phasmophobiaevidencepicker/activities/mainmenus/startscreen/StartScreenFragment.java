@@ -22,6 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.compose.ui.platform.ComposeView;
+import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -30,6 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -38,6 +41,7 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -84,14 +88,24 @@ public class StartScreenFragment extends MainMenuFragment {
         //AppCompatTextView button_startMult = view.findViewById(R.id.button_start_mult);
         AppCompatImageView icon_appIcon = view.findViewById(R.id.icon_appicon);
         AppCompatImageView button_info = view.findViewById(R.id.button_info);
-        AppCompatImageView button_settings = view.findViewById(R.id.button_settings);
+        ComposeView button_settings = view.findViewById(R.id.button_settings);
         AppCompatImageView button_review = view.findViewById(R.id.button_review);
         AppCompatImageView button_msgInbox = view.findViewById(R.id.button_inbox);
         View button_language = view.findViewById(R.id.listener_language);
 
         // LISTENERS
         button_info.setOnClickListener(this::gotoAppInfoFragment);
-        button_settings.setOnClickListener(this::gotoAppSettingsFragment);
+        //button_settings.setOnClickListener(this::gotoAppSettingsFragment);
+        PETMenusKt.setStartScreenSettingsIconDropdown(
+                button_settings,
+                R.drawable.icon_gear,
+                R.navigation.titlescreen_navgraph,
+                new Integer[]{
+                        R.id.appSettingsFragment,
+                        R.id.appLanguageFragment,
+                        R.id.marketplaceFragment
+                }
+        );
         button_language.setOnClickListener(this::gotoLanguagesFragment);
         button_msgInbox.setOnClickListener(this::gotoMessageCenterFragment);
         //button_msgInbox.setOnClickListener(this::gotoMarketplaceFragment);
