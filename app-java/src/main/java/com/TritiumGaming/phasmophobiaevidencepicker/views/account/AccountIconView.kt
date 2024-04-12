@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.getCurrentFirebaseUserDisplayNameInitials
 import com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIcon
 import com.google.android.material.card.MaterialCardView
-import com.google.firebase.auth.FirebaseUser
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) : super(context) {
@@ -45,9 +45,7 @@ class AccountIconView : MaterialCardView {
 
     private fun setAccountInitials(initials: String) {
         val outlineTextView = findViewById<OutlineTextView>(R.id.label_username_initials)
-        if (outlineTextView != null) {
-            outlineTextView.text = initials
-        }
+        outlineTextView?.text = initials
     }
 
     private fun setDefaults() {
@@ -63,23 +61,8 @@ class AccountIconView : MaterialCardView {
     }
 
     fun createAccountInitials(displayName: String?) {
-        val displayInitials = StringBuilder()
-        if (displayName != null) {
-            val names =
-                displayName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            for (name in names) {
-                val trimmedName = name.trim { it <= ' ' }
-                if (trimmedName.isNotEmpty()) {
-                    val initial = trimmedName[0]
-                    displayInitials.append(initial)
-                    if (displayInitials.length >= 2) {
-                        break
-                    }
-                }
-            }
-            if (displayInitials.isNotEmpty()) {
-                setAccountInitials(displayInitials.toString())
-            }
-        }
+        val displayInitials = getCurrentFirebaseUserDisplayNameInitials(displayName)
+
+        setAccountInitials(displayInitials?:"")
     }
 }

@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreTransactionHistory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -77,6 +76,26 @@ public class FirestoreUser {
         CollectionReference userCollection = db.collection(COLLECTION_USERS);
         return userCollection.document(getCurrentFirebaseUser().getUid());
 
+    }
+
+    public static String getCurrentFirebaseUserDisplayNameInitials(String displayName) {
+
+        StringBuilder displayInitials = new StringBuilder();
+        if (displayName != null) {
+            String[] names = displayName.split(" ");
+
+            for (String name : names) {
+                String trimmedName = name.trim();
+                if (!trimmedName.isEmpty()) {
+                    char initial = trimmedName.charAt(0);
+                    displayInitials.append(initial);
+                    if (displayInitials.length() >= 2) {
+                        break;
+                    }
+                }
+            }
+        }
+        return displayInitials.toString();
     }
 
     public static class NullFirebaseUserException extends Exception {

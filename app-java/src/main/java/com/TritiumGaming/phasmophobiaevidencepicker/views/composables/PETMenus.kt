@@ -46,7 +46,7 @@ fun StartScreenSettingsIconDropdown(
 
     val navDeepLinkBuilder = NavDeepLinkBuilder(localContext).setGraph(navGraphId)
 
-    var expanded by remember { mutableStateOf(true) }
+    var expanded by remember { mutableStateOf(false) }
 
     val typedValue = TypedValue()
     localContext.theme.resolveAttribute(
@@ -83,8 +83,7 @@ fun StartScreenSettingsIconDropdown(
                 onBackground = Color.Transparent,
                 surfaceContainer = Color.Transparent,
                 onPrimary = Color.Transparent,
-                surfaceContainerLowest = Color.Transparent,
-
+                surfaceContainerLowest = Color.Transparent
             ),
             shapes = MaterialTheme.shapes.copy(medium = RoundedCornerShape(20))
         ) {
@@ -97,7 +96,8 @@ fun StartScreenSettingsIconDropdown(
                         navDeepLinkBuilder
                             .setDestination(navigationRoutes[0])
                             .createPendingIntent().send()
-                    }) {
+                    }
+                ) {
                     Icon(
                         painterResource(id = R.drawable.icon_gear),
                         tint = Color.Unspecified,
@@ -111,7 +111,8 @@ fun StartScreenSettingsIconDropdown(
                         navDeepLinkBuilder
                             .setDestination(navigationRoutes[1])
                             .createPendingIntent().send()
-                    }) {
+                    }
+                ) {
                     Icon(
                         painterResource(id = R.drawable.icon_globe),
                         tint = Color.Unspecified,
@@ -128,7 +129,8 @@ fun StartScreenSettingsIconDropdown(
                     },
                     modifier = Modifier
                         .size(48.dp)
-                        .padding(8.dp)) {
+                        .padding(8.dp)
+                ) {
                     AndroidView(
                         modifier = Modifier.fillMaxSize(), // Occupy the max size in the Compose UI tree
                         factory = { context ->
