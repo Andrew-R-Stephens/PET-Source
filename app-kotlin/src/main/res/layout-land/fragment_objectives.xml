@@ -73,7 +73,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle1">
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence1_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                         app:layout_constraintWidth_min="48dp"
                         tools:ignore="DuplicateSpeakableTextCheck" />
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -144,7 +144,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle2">
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence2_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_min="48dp" />
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -213,7 +213,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle3">
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence3_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -230,7 +230,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_min="48dp" />
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
+                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"

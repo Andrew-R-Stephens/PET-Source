@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.BorderTextView"
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.BorderTextView"
     tools:showIn="@layout/layout_account_details">
 
     <androidx.appcompat.widget.AppCompatTextView

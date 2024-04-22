@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:showIn="@layout/fragment_evidence_solo"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout">
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityToolsLayout">
 
 
 
@@ -381,7 +381,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 -->
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityTrackerView
+    <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityTrackerView
         android:id="@+id/sanityTrackerView"
         android:layout_width="0dp"
         android:layout_height="0dp"

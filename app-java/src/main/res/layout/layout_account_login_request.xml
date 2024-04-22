@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView"
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.android.views.account.AccountLoginRequestView"
     >
 
     <androidx.cardview.widget.CardView

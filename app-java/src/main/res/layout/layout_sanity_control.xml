@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityTrackerView"
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.android.views.investigation.sanity.SanityTrackerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanityMeterView
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.views.SanityMeterView
             android:id="@+id/evidence_sanitymeter_progressbar"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -51,7 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView
+            <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.children.solo.views.SanitySeekBarView
                 android:id="@+id/evidence_sanitymeter_seekbar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

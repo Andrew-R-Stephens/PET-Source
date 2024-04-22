@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem
+<com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tier_item"

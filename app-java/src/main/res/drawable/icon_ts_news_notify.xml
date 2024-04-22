@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/icon_newspaper_notification" >
+
+    <item
+        android:drawable="@drawable/icon_ts_news"/>
+
+    <item
+        android:id="@+id/notificationIcon">
 
         <inset
+            android:drawable="@drawable/icon_ts_news_notify_anim"
+            android:insetRight="1%"
+            android:insetBottom="1%"
             android:insetLeft="50%"
-            android:insetTop="50%"
-            android:insetBottom="2%"
-            android:insetRight="2%">
-            <bitmap
-                android:src="@drawable/icon_mail_unavailable"
-                android:tintMode="multiply"
-                android:tint="?attr/inboxNotification"
-                >
-            </bitmap>
-        </inset>
+            android:insetTop="50%"/>
     </item>
+
 </layer-list>
+

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.PhaseTimerLayout">
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.PhaseTimerLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/setup_title_wrapper"
@@ -71,7 +71,7 @@
             app:layout_constraintStart_toEndOf="@+id/evidence_timer_text"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+            <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
                 android:id="@+id/timer_play_pause"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -87,7 +87,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_max="48dp" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+            <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
                 android:id="@+id/timer_skip"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

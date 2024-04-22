@@ -3,17 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:showIn="@layout/layout_account_details_2"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView">
-<!--
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/profile_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:src="@drawable/icon_profile" />
--->
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.android.views.account.AccountIconView">
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/profile_icon"
@@ -21,7 +11,7 @@
         android:layout_height="wrap_content"
         />
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+    <com.tritiumstudios.phasmophobiaevidencetool.android.views.OutlineTextView
         android:id="@+id/label_username_initials"
         style="?attr/primaryFont_Regular_AutoSqueeze"
         android:layout_width="match_parent"

@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+        <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
             android:id="@+id/button_left"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -65,7 +65,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+        <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
             android:id="@+id/button_right"
             android:layout_width="48dp"
             android:layout_height="48dp"

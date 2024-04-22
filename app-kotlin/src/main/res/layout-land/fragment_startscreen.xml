@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+    <com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.startscreen.views.StartScreenAnimationView
         android:id="@+id/backgroundanimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -165,7 +165,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/app_icon_sm" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView
                 android:id="@+id/label_titledescription"
                 android:layout_width="0dp"
                 android:layout_height="32dp"

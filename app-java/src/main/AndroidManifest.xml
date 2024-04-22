@@ -61,7 +61,7 @@
             Activities
         -->
         <activity
-            android:name=".activities.mainmenus.MainMenuActivity"
+            android:name=".android.activities.mainmenus.MainMenuActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -74,13 +74,14 @@
         </activity>
 
         <activity
-            android:name=".activities.investigation.InvestigationActivity"
+            android:name=".android.activities.investigation.InvestigationActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation">
         </activity>
 
+
         <activity
-            android:name=".activities.onboarding.OnboardingActivity"
+            android:name=".android.activities.onboarding.OnboardingActivity"
             android:theme="@style/Theme.PhasmophobiaEvidenceTool.Onboarding"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -90,6 +91,8 @@
             </intent-filter>
 
         </activity>
+
+
     </application>
 
 </manifest>

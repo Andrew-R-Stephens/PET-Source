@@ -37,7 +37,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+                <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
                     android:id="@+id/interactiveMapView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -218,7 +218,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
+                    <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.mapsmenu.mapdisplay.POISpinner
                         android:id="@+id/spinner_poiname"
                         style="?attr/quaternaryFont_Bold_AutoSqueeze"
                         android:layout_width="0dp"

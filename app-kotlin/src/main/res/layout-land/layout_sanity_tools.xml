@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout"
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityToolsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,7 +35,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityCarouselView
+                <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityCarouselView
                     android:id="@+id/mapCarouselView"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -47,7 +47,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityCarouselView
+                <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityCarouselView
                     android:id="@+id/difficultyCarouselView"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout88">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningLayout
+                <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityWarningLayout
                     android:id="@+id/sanityWarningLayout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -79,7 +79,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.PhaseTimerLayout
+                <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.PhaseTimerLayout
                     android:id="@+id/constraintLayout93"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -94,7 +94,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityTrackerView
+        <com.tritiumstudios.phasmophobiaevidencetool.views.investigation.sanity.SanityTrackerView
             android:id="@+id/sanityTrackerView"
             android:layout_width="0dp"
             android:layout_height="0dp"

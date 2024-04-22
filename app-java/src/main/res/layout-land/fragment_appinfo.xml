@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+            <com.tritiumstudios.phasmophobiaevidencetool.android.views.PETImageButton
                 android:id="@+id/button_topnav_left"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

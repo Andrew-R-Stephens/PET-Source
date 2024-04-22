@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.NavHeaderLayout
+    <com.tritiumstudios.phasmophobiaevidencetool.android.views.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

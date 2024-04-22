@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animator xmlns:android="http://schemas.android.com/apk/res/android"
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
     android:repeatCount="infinite"
     android:repeatMode="reverse"
     android:valueFrom="-100"
     android:valueTo="100"
     android:valueType="intType"
-
-    android:fromAlpha="0.5"
-    android:toAlpha="0.9"
+    android:fromAlpha="50"
+    android:toAlpha="90"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:duration="1200"/>
+

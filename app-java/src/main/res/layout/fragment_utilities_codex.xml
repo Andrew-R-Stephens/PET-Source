@@ -57,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
             app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
             app:strokeColor="?attr/codex_2"
             app:strokeWidth="2dp" />
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.views.CodexGridCard
             android:id="@+id/grid_codexmenu_option4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

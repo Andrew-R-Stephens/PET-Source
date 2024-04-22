@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:background="?attr/backgroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+    <com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.startscreen.views.StartScreenAnimationView
         android:id="@+id/backgroundanimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -32,79 +33,40 @@
             android:id="@+id/constraintLayout31"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".8">
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintHeight_max="48dp">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/button_info"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_settings"
+                tools:composableName="StartScreenSettingsIconDropdown"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:padding="4dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_ts_info"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
+                app:layout_constraintEnd_toStartOf="@+id/button_inbox"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout10"
-                android:layout_width="wrap_content"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_inbox"
+                tools:composableName="NewsAlert"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_review"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_info"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/button_inbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/app_name"
-                    android:padding="4dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_ts_news"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_inboxalert"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:src="@drawable/icon_ts_news_notify"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_inbox"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/button_inbox"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <!--
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_inboxalert"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:src="@drawable/icon_mail_unavailable"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_inbox"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".5"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/button_inbox"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:layout_constraintWidth_percent=".5"
-                    app:tint="?attr/inboxNotification"
-                    app:tintMode="multiply" />
-                    -->
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toEndOf="@+id/button_settings"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/button_review"
@@ -116,23 +78,22 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_ts_review"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_settings"
+                app:layout_constraintEnd_toStartOf="@+id/button_info"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
+                app:layout_constraintStart_toEndOf="@+id/button_inbox"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/button_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_info"
+                tools:composableName="AccountIconView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:padding="4dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_ts_settings"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button_review"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -143,10 +104,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_start_solo"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout8"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
 
@@ -161,119 +121,116 @@
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toTopOf="@+id/label_titledescription"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".75"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/app_icon_sm" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.tritiumstudios.phasmophobiaevidencetool.android.views.OutlineTextView
                 android:id="@+id/label_titledescription"
                 android:layout_width="0dp"
-                android:layout_height="32dp"
+                android:layout_height="0dp"
                 android:ellipsize="end"
                 android:gravity="center_horizontal|top"
                 android:maxLines="1"
-                app:outlineWidth="2dp"
-                app:outlineColor="@color/black"
                 android:text="@string/titlescreen_description"
                 android:textAllCaps="true"
                 android:textColor="?attr/splashTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/icon_appicon" />
+                app:layout_constraintTop_toBottomOf="@+id/icon_appicon"
+                app:outlineColor="@color/black"
+                app:outlineWidth="2dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--Start Hunting Solo-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_start_solo"
-            style="?attr/primaryFont_Bold_AutoSqueeze"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/button_filledsq"
-            android:contentDescription="@string/app_name"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:insetLeft="8dp"
-            android:insetRight="8dp"
-            android:insetTop="4dp"
-            android:insetBottom="4dp"
-            app:layout_constraintHeight_min="48dp"
-            android:includeFontPadding="true"
-            android:padding="8dp"
-            android:maxLines="1"
-            android:text="@string/titlescreen_button"
-            android:textAllCaps="true"
-            android:textColor="?attr/textColorBody"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout28"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
-            app:layout_constraintHeight_max="48dp"
-            app:layout_constraintHeight_percent=".4"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout28"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout28"
-            app:layout_constraintWidth_percent=".3" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
 
-        <!--
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/button_start_solo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/icon_square_filled"
-            android:contentDescription="@string/app_name"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:maxLines="1"
-            android:padding="8dp"
-            android:text="@string/titlescreen_button"
-            android:textAllCaps="true"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout28"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
-            app:layout_constraintHeight_max="48dp"
-            app:layout_constraintHeight_percent=".4"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout28"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout28"
-            app:layout_constraintWidth_percent=".3" />
-        -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/listener_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout28"
-            app:layout_constraintEnd_toEndOf="@+id/button_start_solo"
-            app:layout_constraintStart_toStartOf="@+id/button_start_solo"
-            app:layout_constraintTop_toBottomOf="@+id/button_start_solo">
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_languageName"
-                style="?attr/primaryFont_Regular_Manual"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_start_solo"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_filledsq"
+                android:contentDescription="@string/app_name"
                 android:ellipsize="end"
                 android:gravity="center"
+                android:includeFontPadding="true"
                 android:maxLines="1"
+                android:padding="12dp"
+                android:text="@string/titlescreen_button"
+                android:textAllCaps="true"
                 android:textColor="?attr/textColorBody"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/icon_language"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icon_language"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:padding="4dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_ts_globe"
+                app:layout_constraintBottom_toTopOf="@+id/listener_language"
+                app:layout_constraintDimensionRatio="16:3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHeight_max="64dp"
+                app:layout_constraintHeight_min="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".75"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/listener_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/button_start_solo"
+                app:layout_constraintStart_toStartOf="@+id/button_start_solo"
+                app:layout_constraintTop_toBottomOf="@+id/button_start_solo">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_languageName"
+                    style="?attr/primaryFont_Regular_Manual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="?attr/textColorBody"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/icon_language"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_ts_globe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

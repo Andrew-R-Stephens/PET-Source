@@ -104,7 +104,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 -->
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout
+        <com.tritiumstudios.phasmophobiaevidencetool.android.views.investigation.sanity.SanityToolsLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

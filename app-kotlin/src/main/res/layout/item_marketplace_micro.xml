@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="?attr/billingTheme"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView">
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.marketplace.billing.view.BillableItemView">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView
                 style="?attr/primaryFont_Bold_Manual"
                 android:id="@+id/label_mtx_content"
                 android:layout_width="0dp"

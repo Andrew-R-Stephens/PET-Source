@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView" >
+    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.account.AccountDetailsView" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardView_account"
@@ -35,7 +35,7 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_profile" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView
                 android:id="@+id/label_username_initials"
                 style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 app:outlineWidth="3dp"
                 app:textAllCaps="true">
 
-            </com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView>
+            </com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView>
 
         </com.google.android.material.card.MaterialCardView>
 

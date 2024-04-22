@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.views.investigation.InvestigationSection
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -33,7 +33,7 @@
         app:layout_constraintStart_toEndOf="@+id/column_left"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection
+        <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.views.investigation.InvestigationSection
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
