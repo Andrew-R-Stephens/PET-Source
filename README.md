@@ -1,6 +1,6 @@
 
 
-<img width="100%" height="100%" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet-repo-profile_thin.png"/>
+<img width="100%" height="100%" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet-repo-profile_thin.png" alt=""/>
 
 
 
@@ -36,14 +36,14 @@
 
 <div align='center'><h2>Technologies Used</h2></div>
 <div align='center' style="display:float">
-  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold"/>
-  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold"/>
+  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold" alt=""/>
 </div>
 
 <div>

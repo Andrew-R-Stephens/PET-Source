@@ -12,7 +12,7 @@ plugins {
 def playcoreDir = file("G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk")
 
 android {
-    namespace = "com.tritiumstudios.phasmophobiaevidencetool"
+    namespace = "com.TritiumGaming.phasmophobiaevidencepicker"
 
     compileSdk = 34
     ndkVersion = ndkVersion

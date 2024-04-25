@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item>
@@ -22,14 +23,14 @@
                 <selector>
                     <item app:state_selected="true">
                         <bitmap
-                            android:src="@drawable/icon_negative_selected"
+                            android:src="@drawable/icon_selector_neg_sel"
                             android:tintMode="multiply"
                             android:tint="?attr/negativeSelColor">
                         </bitmap>
                     </item>
                     <item app:state_selected="false">
                         <bitmap
-                            android:src="@drawable/icon_negative_unselected"
+                            android:src="@drawable/icon_selector_neg_unsel"
                             android:tintMode="multiply"
                             android:tint="?attr/neutralSelColor">
                         </bitmap>
@@ -42,17 +43,16 @@
                 <selector>
                     <item app:state_selected="true">
                         <bitmap
-                            android:src="@drawable/icon_inconclusive_selected"
+                            android:src="@drawable/icon_selector_inc_sel"
                             android:tintMode="multiply"
                             android:tint="?attr/neutralSelColor">
                         </bitmap>
                     </item>
                     <item app:state_selected="false">
                         <bitmap
-                            android:src="@drawable/icon_inconclusive_unselected"
+                            android:src="@drawable/icon_selector_inc_unsel"
                             android:tintMode="multiply"
-                            android:tint="?attr/neutralSelColor">
-                        </bitmap>
+                            android:tint="?attr/neutralSelColor"/>
                     </item>
                 </selector>
             </item>
@@ -62,14 +62,14 @@
                 <selector>
                     <item app:state_selected="true">
                         <bitmap
-                            android:src="@drawable/icon_positive_selected"
+                            android:src="@drawable/icon_selector_pos_sel"
                             android:tintMode="multiply"
                             android:tint="?attr/positiveSelColor">
                         </bitmap>
                     </item>
                     <item app:state_selected="false">
                         <bitmap
-                            android:src="@drawable/icon_positive_unselected"
+                            android:src="@drawable/icon_selector_pos_unsel"
                             android:tintMode="multiply"
                             android:tint="?attr/neutralSelColor">
                         </bitmap>

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/item_investigation_evidence_radiogroup">
 
-    <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.views.evidence.EvidenceRadioButton
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioButton
         android:id="@+id/radioIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -20,6 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_inconclusive_unselected" />
+        app:srcCompat="@drawable/icon_selector_inc_unsel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

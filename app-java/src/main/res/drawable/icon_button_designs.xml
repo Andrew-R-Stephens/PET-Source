@@ -20,18 +20,18 @@
         <item
             android:minLevel="3"
             android:maxLevel="3"
-            android:drawable="@drawable/icon_ev_positive_unsel"/>
+            android:drawable="@drawable/icon_selector_pos_unsel"/>
         <item
             android:minLevel="4"
             android:maxLevel="4"
-            android:drawable="@drawable/icon_ev_negative_unsel"/>
+            android:drawable="@drawable/icon_selector_neg_unsel"/>
         <item
             android:minLevel="5"
             android:maxLevel="5"
-            android:drawable="@drawable/icon_play" />
+            android:drawable="@drawable/icon_control_play" />
         <item
             android:minLevel="6"
             android:maxLevel="6"
-            android:drawable="@drawable/icon_pause" />
+            android:drawable="@drawable/icon_control_pause" />
 
 </level-list>

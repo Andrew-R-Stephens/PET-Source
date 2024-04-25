@@ -29,6 +29,6 @@
         android:right="4dp"
         android:bottom="4dp"
         android:left="4dp"
-        android:drawable="@drawable/icon_inconclusive_unselected" />
+        android:drawable="@drawable/icon_selector_inc_unsel" />
 
 </layer-list>

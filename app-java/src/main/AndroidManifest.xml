@@ -21,6 +21,7 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
+        tools:targetApi="34"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,7 +33,6 @@
         android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        tools:targetApi="34"
         android:banner="@mipmap/ic_launcher">
 
         <property
@@ -61,7 +61,7 @@
             Activities
         -->
         <activity
-            android:name=".android.activities.mainmenus.MainMenuActivity"
+            android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -74,14 +74,13 @@
         </activity>
 
         <activity
-            android:name=".android.activities.investigation.InvestigationActivity"
+            android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation">
         </activity>
 
-
         <activity
-            android:name=".android.activities.onboarding.OnboardingActivity"
+            android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity"
             android:theme="@style/Theme.PhasmophobiaEvidenceTool.Onboarding"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -91,7 +90,6 @@
             </intent-filter>
 
         </activity>
-
 
     </application>
 

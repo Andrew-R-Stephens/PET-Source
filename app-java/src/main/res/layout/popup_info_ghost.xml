@@ -8,7 +8,7 @@
     android:background="?attr/backgroundColor"
     android:gravity="center">
 
-    <com.tritiumstudios.phasmophobiaevidencetool.android.views.NavHeaderLayout
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.NavHeaderLayout
         android:id="@+id/navigation_header_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                     android:contentDescription="@string/app_name"
                     android:padding="4dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_prev"
+                    android:src="@drawable/icon_arrow_60_left"
                     android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
@@ -116,7 +116,7 @@
                     android:contentDescription="@string/app_name"
                     android:padding="4dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_next"
+                    android:src="@drawable/icon_arrow_60_right"
                     android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -41,7 +41,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_prev" />
+                app:srcCompat="@drawable/icon_arrow_60_left" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="?attr/primaryFont_Regular_AutoSqueeze"
@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
 
-        <com.tritiumstudios.phasmophobiaevidencetool.android.views.account.AccountLoginRequestView
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
             android:id="@+id/layout_account_requestlogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-        <com.tritiumstudios.phasmophobiaevidencetool.android.views.account.AccountDetailsView
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
             android:id="@+id/layout_account_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
 
-        <com.tritiumstudios.phasmophobiaevidencetool.android.views.account.AccountObtainCreditsView
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
             android:id="@+id/layout_account_obtainCredits"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

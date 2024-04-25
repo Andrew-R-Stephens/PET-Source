@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/equipmentStoreFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.children.itemstore.fragments.children.EquipmentFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.children.EquipmentFragment"
         android:label="equipmentStoreFragment" />
     <fragment
         android:id="@+id/codexFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.CodexFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.CodexFragment"
         android:label="CodexFragment">
         <action
             android:id="@+id/action_codexFragment_to_equipmentStoreFragment"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/evidenceFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.evidence.children.solo.EvidenceSoloFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.EvidenceSoloFragment"
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"
@@ -47,11 +47,11 @@
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.missions.MissionsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.MissionsFragment"
         android:label="ObjectivesFragment" />
     <fragment
         android:id="@+id/mapMenuFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.mapsmenu.MapMenuFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.MapMenuFragment"
         android:label="MapMenuFragment" >
         <action
             android:id="@+id/action_mapMenuFragment_to_mapViewerFragment"
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapViewerFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.mapsmenu.mapdisplay.MapViewerFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.MapViewerFragment"
         android:label="MapViewerFragment" />
     <action
         android:id="@+id/action_global_evidenceFragment"
@@ -93,6 +93,6 @@
         app:popExitAnim="@android:anim/fade_out" />
     <fragment
         android:id="@+id/cursedPosessionsFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.codex.children.itemstore.fragments.children.PossessionsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.children.PossessionsFragment"
         android:label="CursedPosessionsFragment" />
 </navigation>

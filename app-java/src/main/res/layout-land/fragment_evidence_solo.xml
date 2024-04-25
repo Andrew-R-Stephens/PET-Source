@@ -81,7 +81,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.tritiumstudios.phasmophobiaevidencetool.android.views.investigation.sanity.SanityToolsLayout
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout
         android:id="@+id/constraintLayout_sanityTracking"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_title">
 
-            <com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.utilities.ghostboxutility.views.WaveformView
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView
                 android:id="@+id/waveFormView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/titleScreenFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.startscreen.StartScreenFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.StartScreenFragment"
         android:label="TitleScreenFragment" >
         <action
             android:id="@+id/action_titleScreenFragment_to_investigationActivity_Solo"
@@ -37,15 +37,15 @@
 
     <activity
         android:id="@+id/investigationActivity_Solo"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.InvestigationActivity"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity"
         android:label="InvestigationActivity_solo" />
     <activity
         android:id="@+id/investigationActivity_Mult"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.investigation.InvestigationActivity"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity"
         android:label="InvestigationActivity_Mult" />
     <fragment
         android:id="@+id/inboxFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.newsletter.NewsInboxesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.NewsInboxesFragment"
         android:label="InboxFragment" >
         <action
             android:id="@+id/action_inboxFragment_to_titleScreenFragment"
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/inboxMessageListFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.newsletter.NewsMessagesFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.NewsMessagesFragment"
         android:label="InboxMessageListFragment" >
         <action
             android:id="@+id/action_inboxMessageListFragment_to_inboxFragment"
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/inboxMessageFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.newsletter.NewsMessageFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.NewsMessageFragment"
         android:label="InboxMessageFragment" >
         <action
             android:id="@+id/action_inboxMessageFragment_to_inboxMessageListFragment"
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/appInfoFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.appinfo.AppInfoFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appinfo.AppInfoFragment"
         android:label="AppInfoFragment" >
         <action
             android:id="@+id/action_appInfoFragment_to_titleScreenFragment"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/appSettingsFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.appsettings.AppSettingsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.AppSettingsFragment"
         android:label="AppSettingsFragment" >
         <action
             android:id="@+id/action_appSettingsFragment_to_titleScreenFragment"
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/appLanguageFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.applanguages.AppLanguageFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.AppLanguageFragment"
         android:label="AppLanguageFragment" >
         <action
             android:id="@+id/action_appLanguageFragment_to_titleScreenFragment"
@@ -102,7 +102,7 @@
         app:destination="@id/titleScreenFragment" />
     <fragment
         android:id="@+id/marketplaceFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.marketplace.MarketplaceFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.MarketplaceFragment"
         android:label="MarketplaceFragment" >
         <action
             android:id="@+id/action_marketplaceFragment_to_titleScreenFragment"
@@ -113,7 +113,7 @@
     </fragment>
     <fragment
         android:id="@+id/marketplaceBillingFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.mainmenus.marketplace.billing.MarketplaceBillingFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.MarketplaceBillingFragment"
         android:label="MarketplaceBillingFragment" >
         <action
             android:id="@+id/action_marketplaceBillingFragment_to_marketplaceFragment"
@@ -121,6 +121,6 @@
     </fragment>
     <activity
         android:id="@+id/onboardingActivity"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.android.activities.onboarding.OnboardingActivity"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity"
         android:label="OnboardingActivity" />
 </navigation>

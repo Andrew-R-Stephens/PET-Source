@@ -50,10 +50,8 @@
                     android:src="@drawable/icon_ev_spiritbox">
                 </bitmap>
             </item>
-            <item android:minLevel="8" android:maxLevel="8">
-                <bitmap
-                    android:src="@drawable/icon_inconclusive_unselected">
-                </bitmap>
+            <item android:minLevel="8" android:maxLevel="8"
+                android:drawable="@drawable/icon_selector_inc_unsel">
             </item>
         </level-list>
     </item>
