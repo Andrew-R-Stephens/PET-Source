@@ -23,6 +23,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType;
 
 public class PossessionsFragment extends ItemStoreFragment {
 
@@ -134,16 +135,17 @@ public class PossessionsFragment extends ItemStoreFragment {
 
         if(getContext() == null) { return; }
 
-        ItemStoreGroup itemStoreEquipmentGroup = new ItemStoreGroup(getContext(),
+        ItemStoreGroup itemStorePossessionsGroup = new ItemStoreGroup(getContext(),
                 (group.getSize() > 3 ?
                         R.layout.item_itemstore_itemgroup_long :
                         R.layout.item_itemstore_itemgroup));
 
-        itemStoreEquipmentGroup.build(R.drawable.equipment_possession_item, group.getNameData(), group.getItemImages(), false);
+        //itemStorePossessionsGroup.build(R.drawable.equipment_possession_item, group.getNameData(), group.getItemImages(), false);
+        itemStorePossessionsGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getPossession());
 
-        itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
-        itemStoreEquipmentGroup.setAlpha(0);
-        parent.addView(itemStoreEquipmentGroup);
+        itemStorePossessionsGroup.setVisibility(View.INVISIBLE);
+        itemStorePossessionsGroup.setAlpha(0);
+        parent.addView(itemStorePossessionsGroup);
 
     }
 

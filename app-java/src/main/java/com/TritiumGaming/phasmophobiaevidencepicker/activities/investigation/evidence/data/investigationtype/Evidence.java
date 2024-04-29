@@ -4,6 +4,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.R;
+
 /**
  * Evidence enums
  */
@@ -19,10 +21,16 @@ public class Evidence {
         NEGATIVE, NEUTRAL, POSITIVE
     }
 
-    public void setName(String name) {
+    public Evidence() {
+        setName("Null");
+        setIcon(R.drawable.icon_ev_dots);
+    }
+
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 
+    @Nullable
     public String getName() {
         return name;
     }

@@ -6,9 +6,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 
 import java.text.DecimalFormat;
 

@@ -18,7 +18,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
@@ -53,12 +52,12 @@ fun AccountIcon() {
     Box(
         modifier = Modifier
             .size(size)
-            .background(backgroundColorResId)
             .clip(CircleShape)
+            .background(backgroundColorResId)
             .border(borderWidth, borderColor, CircleShape)
     ) {
         val contentScale = ContentScale.Inside
-        val contentDescription = stringResource(id = R.string.codex_label_gh_ost)
+        val contentDescription = "Outer Box"
 
         if (FirestoreUser.getCurrentFirebaseUser() == null) {
             Image(
@@ -79,16 +78,5 @@ fun AccountIcon() {
                 contentScale = contentScale
             )
         }
-}
-/*
-Image(
-    *//*painter = painterResource(id = iconResource),*//*
-    painter = painterResource(id = imageResId),
-    contentDescription = stringResource(id = R.string.codex_label_gh_ost),
-    contentScale = ContentScale.Inside,
-    modifier = Modifier
-        .size(size)
-        .clip(CircleShape)
-        .border(borderWidth, borderColor, CircleShape)
-)*/
+    }
 }

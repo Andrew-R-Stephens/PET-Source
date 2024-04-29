@@ -181,7 +181,13 @@ public class EvidenceViewModel extends ViewModel {
     }
 
     public void setRadioButtonChecked(int evidenceIndex, int buttonIndex) {
-        radioButtonsChecked[evidenceIndex] = buttonIndex;
+        if(radioButtonsChecked == null) {
+            createRadioButtonsChecked();
+        }
+
+        if(evidenceIndex >= 0 && evidenceIndex < radioButtonsChecked.length) {
+            radioButtonsChecked[evidenceIndex] = buttonIndex;
+        }
     }
 
     public void createRejectionPile() {

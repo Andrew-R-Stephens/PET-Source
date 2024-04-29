@@ -36,7 +36,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavDeepLinkBuilder
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-
 @Composable
 @Preview
 fun IconDropdownMenu(

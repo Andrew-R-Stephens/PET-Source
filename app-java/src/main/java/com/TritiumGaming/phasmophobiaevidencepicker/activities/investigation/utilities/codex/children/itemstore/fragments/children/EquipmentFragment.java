@@ -23,6 +23,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType;
 
 public class EquipmentFragment extends ItemStoreFragment {
 
@@ -156,7 +157,8 @@ public class EquipmentFragment extends ItemStoreFragment {
                         R.layout.item_itemstore_itemgroup_long :
                         R.layout.item_itemstore_itemgroup));
 
-        itemStoreEquipmentGroup.build(R.drawable.equipment_tier_item, group.getNameData(), group.getItemImages(), true);
+        //itemStoreEquipmentGroup.build(R.drawable.equipment_tier_item, group.getNameData(), group.getItemImages(), true);
+        itemStoreEquipmentGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getEquipment());
 
         itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
         itemStoreEquipmentGroup.setAlpha(0);

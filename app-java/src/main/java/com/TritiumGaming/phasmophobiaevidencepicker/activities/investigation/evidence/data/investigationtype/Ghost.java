@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Ghost {
 
-    private final InvestigationData investigationData;
+    private InvestigationData investigationData;
 
     private int id = -1;
     private String name = "NA";
@@ -17,6 +17,10 @@ public class Ghost {
 
     private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();
     private final ArrayList<Evidence> thisGhostRequiredEvidence = new ArrayList<>();
+
+    public Ghost() {
+        setId(0);
+    }
 
     public Ghost(InvestigationData investigationData, int id) {
         this.investigationData = investigationData;
@@ -197,7 +201,7 @@ public class Ghost {
         for(Evidence e: thisGhostEvidence) {
             s.append(e.getName()).append(", ");
         }
-        if(thisGhostRequiredEvidence.size() > 0) {
+        if(!thisGhostRequiredEvidence.isEmpty()) {
             s.append(" / ");
         }
         for (Evidence e : thisGhostRequiredEvidence) {

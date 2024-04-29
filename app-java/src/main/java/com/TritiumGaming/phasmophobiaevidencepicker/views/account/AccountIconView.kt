@@ -3,12 +3,12 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.account
 import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.getCurrentFirebaseUserDisplayNameInitials
 import com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIcon
 import com.google.android.material.card.MaterialCardView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) : super(context) {

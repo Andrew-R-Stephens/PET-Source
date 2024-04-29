@@ -2,10 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ut
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -13,8 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.compose.ui.platform.ComposeView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreComposablesKt;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,36 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         }
     }
 
+    public void build(
+            @StringRes int name,
+            @NonNull @IntegerRes ArrayList<Integer> icons,
+            ItemStoreType type) {
+
+        ComposeView grid = findViewById(R.id.groupList);
+        ItemStoreComposablesKt.createGroup(grid, icons, type);
+
+        /*
+        int i = 0;
+        for(; (i < grid.getChildCount()) && (i < equipmentIcons.size()); i++) {
+            ItemStoreItem item = (ItemStoreItem) grid.getChildAt(i);
+            item.setImageResource(containerSrc);
+            item.setSelected(false);
+            item.setTier(hasTier ? i+1 : 0);
+            item.setEquipment(equipmentIcons.get(i));
+        }
+        for(; i < grid.getChildCount(); i++) {
+            View v = grid.getChildAt(i);
+            v.setVisibility(GONE);
+        }
+        */
+
+        AppCompatTextView textView_name = findViewById(R.id.safehouse_shop_tool_label);
+        String title = getResources().getString(name);
+        textView_name.setText(title);
+        textView_name.setSelected(true);
+    }
+
+    /*
     public void build(@DrawableRes int containerSrc, @StringRes int name, @NonNull @IntegerRes ArrayList<Integer> equipmentIcons, boolean hasTier) {
 
         ViewGroup grid = findViewById(R.id.groupList);
@@ -77,6 +108,7 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         textView_name.setText(title);
         textView_name.setSelected(true);
     }
+    */
 
     @NonNull
     public ItemStoreItem[] getItems() {

@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
 
