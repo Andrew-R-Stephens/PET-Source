@@ -115,8 +115,8 @@ public class EvidenceFragment extends InvestigationFragment {
         ScrollView ghost_scrollview = ghostSection.findViewById(R.id.scrollview);
         ScrollView evidence_scrollview = evidenceSection.findViewById(R.id.scrollview);
 
-        ghostList = new GhostList(getContext());
-        evidenceList = new EvidenceList(getContext());
+        ghostList = new GhostList(requireContext());
+        evidenceList = new EvidenceList(requireContext());
 
         ghostList.init(evidenceViewModel, popupWindow,
                 ghostSection.findViewById(R.id.progressbar),
@@ -248,7 +248,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         if(evidenceList != null) {
-            evidenceList.forceResetEvidenceContainer();
+            //evidenceList.forceResetEvidenceContainer();
         }
 
         if(ghostList != null) {

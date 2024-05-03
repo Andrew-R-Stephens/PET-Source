@@ -43,7 +43,7 @@
   <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=googlefirebase&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold" alt=""/>
-  <img src="https://img.shields.io/badge/-XML-333333?logo=xml&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-JSON-black?logo=json&logoColor=white&style=bold" alt=""/>
 </div>
 
 <div>

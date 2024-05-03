@@ -106,4 +106,8 @@
         <attr name="inbox_icon" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="AccountIconView">
+        <attr name="accountInitials" format="reference|string"/>
+    </declare-styleable>
+
 </resources>

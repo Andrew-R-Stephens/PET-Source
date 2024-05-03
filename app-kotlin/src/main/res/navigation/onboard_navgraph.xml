@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.introduction.OnboardingFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.introduction.OnboardingFragment"
         android:label="OnboardingFragment" />
 </navigation>

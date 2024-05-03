@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item>
@@ -20,64 +21,47 @@
                 android:minLevel="0"
                 android:maxLevel="1">
                 <selector>
-                    <item app:state_selected="true">
-                        <bitmap
-                            android:src="@drawable/icon_negative_selected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/negativeSelColor">
-                        </bitmap>
-                    </item>
-                    <item app:state_selected="false">
-                        <bitmap
-                            android:src="@drawable/icon_negative_unselected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/neutralSelColor">
-                        </bitmap>
-                    </item>
+                    <item app:state_selected="true"
+                        android:drawable="@drawable/icon_selector_neg_sel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/negativeSelColor" />
+                    <item app:state_selected="false"
+                        android:drawable="@drawable/icon_selector_neg_unsel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/neutralSelColor" />
                 </selector>
             </item>
+
             <item
                 android:minLevel="2"
                 android:maxLevel="2">
                 <selector>
-                    <item app:state_selected="true">
-                        <bitmap
-                            android:src="@drawable/icon_inconclusive_selected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/neutralSelColor">
-                        </bitmap>
-                    </item>
-                    <item app:state_selected="false">
-                        <bitmap
-                            android:src="@drawable/icon_inconclusive_unselected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/neutralSelColor">
-                        </bitmap>
-                    </item>
+                    <item app:state_selected="true"
+                        android:drawable="@drawable/icon_selector_inc_sel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/neutralSelColor" />
+                    <item app:state_selected="false"
+                        android:drawable="@drawable/icon_selector_inc_unsel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/neutralSelColor" />
                 </selector>
             </item>
+
             <item
                 android:minLevel="3"
                 android:maxLevel="3">
                 <selector>
-                    <item app:state_selected="true">
-                        <bitmap
-                            android:src="@drawable/icon_positive_selected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/positiveSelColor">
-                        </bitmap>
-                    </item>
-                    <item app:state_selected="false">
-                        <bitmap
-                            android:src="@drawable/icon_positive_unselected"
-                            android:tintMode="multiply"
-                            android:tint="?attr/neutralSelColor">
-                        </bitmap>
-                    </item>
+                    <item app:state_selected="true"
+                        android:drawable="@drawable/icon_selector_pos_sel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/positiveSelColor" />
+                    <item app:state_selected="false"
+                        android:drawable="@drawable/icon_selector_pos_unsel"
+                        android:tintMode="multiply"
+                        android:tint="?attr/neutralSelColor" />
                 </selector>
             </item>
         </level-list>
     </item>
-
 
 </layer-list>

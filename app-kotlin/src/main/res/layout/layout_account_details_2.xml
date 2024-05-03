@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.account.AccountDetailsView" >
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardView_account"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="4dp"
         android:paddingTop="4dp"
@@ -18,61 +18,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:cardBackgroundColor="@color/black"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/cardview_creditview"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:src="@drawable/icon_profile" />
-
-            <com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView
-                android:id="@+id/label_username_initials"
-                style="?attr/primaryFont_Regular_AutoSqueeze"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ellipsize="marquee"
-                android:gravity="center"
-                android:maxLength="2"
-                android:padding="4dp"
-                android:singleLine="true"
-                android:text="AS"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:outlineColor="@color/black"
-                app:outlineWidth="3dp"
-                app:textAllCaps="true">
-
-            </com.tritiumstudios.phasmophobiaevidencetool.views.OutlineTextView>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview_creditview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardCornerRadius="8dp"
             app:cardBackgroundColor="?attr/backgroundColorOnBackground"
-            app:layout_constraintBottom_toBottomOf="@+id/materialCardView2"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/account_icon"
+            app:layout_constraintHeight="wrap_content"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/materialCardView2"
-            app:layout_constraintWidth="wrap_content"
-            app:layout_constraintHeight="wrap_content">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout80"
@@ -100,23 +57,34 @@
                     style="?attr/quaternaryFont_Bold_Manual"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:gravity="start|center_vertical"
+                    android:lines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:text="0"
                     android:textColor="?attr/textColorBodyEmphasis"
                     android:textSize="24sp"
-                    android:lines="1"
-                    android:singleLine="true"
-                    android:scrollHorizontally="true"
-                    android:ellipsize="end"
                     app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView6"
-                    app:layout_constraintWidth="wrap_content"/>
+                    app:layout_constraintWidth="wrap_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
+            android:id="@+id/account_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:accountInitials="TN"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/cardview_creditview"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,7 +2,7 @@
 
 <animated-vector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/icon_reset2">
+    android:drawable="@drawable/icon_control_reset">
 
     <target
         android:name="icon_reset_arrow"

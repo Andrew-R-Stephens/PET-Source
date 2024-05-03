@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -24,6 +24,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal" />
 
-    </com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView>
+    </com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

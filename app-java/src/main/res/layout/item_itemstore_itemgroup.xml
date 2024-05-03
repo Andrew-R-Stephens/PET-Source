@@ -41,13 +41,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/groupList"
             tools:composableName="ItemStoreGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        -->
 
-        <!--
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/groupList"
             android:layout_width="match_parent"
@@ -90,7 +91,6 @@
                 app:layout_constraintTop_toTopOf="@+id/include2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        -->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

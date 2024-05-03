@@ -2,8 +2,10 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ut
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -49,6 +51,7 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         }
     }
 
+    /*
     public void build(
             @StringRes int name,
             @NonNull @IntegerRes ArrayList<Integer> icons,
@@ -57,7 +60,6 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         ComposeView grid = findViewById(R.id.groupList);
         ItemStoreComposablesKt.createGroup(grid, icons, type);
 
-        /*
         int i = 0;
         for(; (i < grid.getChildCount()) && (i < equipmentIcons.size()); i++) {
             ItemStoreItem item = (ItemStoreItem) grid.getChildAt(i);
@@ -70,15 +72,14 @@ public class ItemStoreGroup extends LinearLayoutCompat {
             View v = grid.getChildAt(i);
             v.setVisibility(GONE);
         }
-        */
 
         AppCompatTextView textView_name = findViewById(R.id.safehouse_shop_tool_label);
         String title = getResources().getString(name);
         textView_name.setText(title);
         textView_name.setSelected(true);
     }
+    */
 
-    /*
     public void build(@DrawableRes int containerSrc, @StringRes int name, @NonNull @IntegerRes ArrayList<Integer> equipmentIcons, boolean hasTier) {
 
         ViewGroup grid = findViewById(R.id.groupList);
@@ -108,7 +109,6 @@ public class ItemStoreGroup extends LinearLayoutCompat {
         textView_name.setText(title);
         textView_name.setSelected(true);
     }
-    */
 
     @NonNull
     public ItemStoreItem[] getItems() {

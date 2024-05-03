@@ -143,3 +143,16 @@ class ItemStoreType {
     }
 
 }
+
+fun setEquipmentSimple(
+    composeView: ComposeView?,
+    image: Int = 0,
+    tierLevel: Int = TierLevel.One.value
+) {
+    composeView?.setContent {
+        EquipmentSimple(
+            image = image,
+            tierLevel = TierLevel(tierLevel)
+        )
+    }
+}

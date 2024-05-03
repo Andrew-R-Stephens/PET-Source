@@ -162,6 +162,12 @@ public class EvidenceViewModel extends ViewModel {
         Arrays.fill(radioButtonsChecked, 1);
     }
 
+    public void resetRadioButtonsChecked() {
+        if(radioButtonsChecked != null) {
+            Arrays.fill(radioButtonsChecked, 1);
+        }
+    }
+
     /**
      * @param radioButtonsChecked
      */
@@ -237,7 +243,7 @@ public class EvidenceViewModel extends ViewModel {
         }
     }
     public void reset() {
-        createRadioButtonsChecked();
+        resetRadioButtonsChecked();
 
         if(hasGhostOrderData()) {
             ghostOrderData.createOrder();

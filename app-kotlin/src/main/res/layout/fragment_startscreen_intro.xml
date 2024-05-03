@@ -21,7 +21,7 @@
             android:id="@+id/button_topnav_left"
             android:layout_width="48dp"
             android:layout_height="49dp"
-            android:src="@drawable/icon_negative_unselected"
+            android:src="@drawable/icon_selector_neg_unsel"
             android:tintMode="multiply"
             android:tint="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"

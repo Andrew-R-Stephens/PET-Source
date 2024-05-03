@@ -73,7 +73,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle1">
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence1_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                         android:contentDescription="@string/app_name"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/icon_positive_unselected"
+                        android:src="@drawable/icon_selector_pos_unsel"
                         android:tint="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
                         app:layout_constraintWidth_min="48dp"
                         tools:ignore="DuplicateSpeakableTextCheck" />
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -144,7 +144,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle2">
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence2_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
                         android:contentDescription="@string/app_name"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/icon_positive_unselected"
+                        android:src="@drawable/icon_selector_pos_unsel"
                         android:tint="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +161,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_min="48dp" />
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -213,7 +213,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_objectivetitle3">
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsCompletedButton
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence3_button_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                         android:contentDescription="@string/app_name"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/icon_positive_unselected"
+                        android:src="@drawable/icon_selector_pos_unsel"
                         android:tint="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +230,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_min="48dp" />
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.activities.investigation.missions.views.MissionsSpinner
+                    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -387,7 +387,7 @@
                             android:contentDescription="@string/app_name"
                             android:minHeight="48dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_everyone"
+                            android:src="@drawable/icon_response_everyone"
                             app:layout_constraintBottom_toTopOf="@+id/label_everyone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHeight_min="48dp"
@@ -426,7 +426,7 @@
                             android:background="#00000000"
                             android:contentDescription="@string/app_name"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_alone"
+                            android:src="@drawable/icon_response_alone"
                             app:layout_constraintBottom_toTopOf="@+id/label_alone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_chainStyle="spread"

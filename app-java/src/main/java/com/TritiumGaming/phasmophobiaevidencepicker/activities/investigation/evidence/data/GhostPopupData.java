@@ -10,14 +10,15 @@ import androidx.annotation.StringRes;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
+import org.jetbrains.annotations.NotNull;
+
 public class GhostPopupData {
 
     private String ghostName;
     private @StringRes int[] infos, strengths, weaknesses, huntDatas;
 
-    public GhostPopupData(@Nullable Context context) {
+    public GhostPopupData(@NotNull Context context) {
 
-        if(context == null) { return; }
         Resources resources = context.getResources();
         if(resources == null) { return; }
 

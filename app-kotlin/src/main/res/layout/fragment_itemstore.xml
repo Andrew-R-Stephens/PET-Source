@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
@@ -59,16 +60,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
+        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStorePaginator
             android:id="@+id/item_safehouse_itemstore_paginator"
-            layout="@layout/layout_itemstore_scrollview_paginator"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="16dp"
             android:visibility="invisible"
+            android:orientation="vertical"
+            android:maxWidth="48dp"
+            android:columnCount="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_safehouse_itemstore_wrapper"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +114,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ViewStub
+            <FrameLayout
                 android:id="@+id/item_safehouse_itemstore_itemData"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -23,11 +24,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreComposablesKt;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.TierLevel;
 
 public class EquipmentFragment extends ItemStoreFragment {
 
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType"})
     protected void buildStoreData() {
         if(getContext() == null) { return; }
 
@@ -157,8 +160,8 @@ public class EquipmentFragment extends ItemStoreFragment {
                         R.layout.item_itemstore_itemgroup_long :
                         R.layout.item_itemstore_itemgroup));
 
-        //itemStoreEquipmentGroup.build(R.drawable.equipment_tier_item, group.getNameData(), group.getItemImages(), true);
-        itemStoreEquipmentGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getEquipment());
+        itemStoreEquipmentGroup.build(R.drawable.equipment_tier_item, group.getNameData(), group.getItemImages(), true);
+        //itemStoreEquipmentGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getEquipment());
 
         itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
         itemStoreEquipmentGroup.setAlpha(0);
@@ -187,6 +190,7 @@ public class EquipmentFragment extends ItemStoreFragment {
     }
 
     protected void buildDataPopupView(@NonNull View dataView, int groupIndex, int itemIndex) {
+
         ItemStoreEquipmentGroupData groupData = (ItemStoreEquipmentGroupData) storeData.getGroupAt(groupIndex);
         ItemStoreEquipmentItemData itemData = (ItemStoreEquipmentItemData)groupData.getItemDataAt(itemIndex);
 
@@ -197,6 +201,7 @@ public class EquipmentFragment extends ItemStoreFragment {
         AppCompatTextView buycostView = dataView.findViewById(R.id.textview_itemcost);
         AppCompatTextView upgradeCostView = dataView.findViewById(R.id.textview_upgradecost);
         AppCompatTextView upgradeLevelView = dataView.findViewById(R.id.textview_unlocklevel);
+        //ComposeView itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);
         ItemStoreItem itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);//.findViewById(R.id.tier_item);
 
         StringBuilder buyCost = new StringBuilder("$");
@@ -223,10 +228,17 @@ public class EquipmentFragment extends ItemStoreFragment {
         if(getContext() != null) {
             attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(getContext())));
         }
+        /*ItemStoreComposablesKt.setEquipmentSimple(
+                itemImageView,
+                itemData.getImageData(),
+                itemIndex+1
+        );*/
         LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
         layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), getContext().getTheme()));
         layerDrawable.setLevel(itemIndex+1);
+
         itemImageView.invalidate();
+
     }
 
     @Override

@@ -111,7 +111,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_safehouse_itemstore_paginator" />
 
-            <ViewStub
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreDataView
                 android:id="@+id/item_safehouse_itemstore_itemData"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

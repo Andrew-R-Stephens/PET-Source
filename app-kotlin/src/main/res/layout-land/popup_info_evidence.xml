@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                 android:id="@+id/button_left"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -74,7 +74,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                 android:id="@+id/button_right"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -96,24 +96,21 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/popup_contentbody_constraintlayout_headers"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginVertical="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent=".8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".1">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintlayout_overview"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="96dp"
+                    android:layout_height="48dp"
+                    android:padding="4dp"
                     android:layout_marginBottom="4dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintlayout_tiers"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_min="28dp"
-                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -149,13 +146,12 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintlayout_tiers"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="96dp"
+                    android:layout_height="48dp"
                     android:layout_marginTop="4dp"
+                    android:padding="4dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_min="28dp"
-                    app:layout_constraintHeight_percent=".2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintlayout_overview">
 
@@ -267,12 +263,12 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintlayout_tiers_1"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="4dp"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintlayout_tiers_2"
-                        app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -286,7 +282,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/radiobutton_1" />
-
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/textView_tiers_1_image_bg"
@@ -303,12 +298,12 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintlayout_tiers_2"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintlayout_tiers_3"
-                        app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintlayout_tiers_1">
@@ -338,12 +333,12 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintlayout_tiers_3"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintlayout_tiers_2">

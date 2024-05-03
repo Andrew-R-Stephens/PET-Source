@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:focusable="true"
     android:padding="8dp">
@@ -88,6 +89,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_max="96dp"
                 app:layout_constraintWidth_percent=".25" />
+
+            <!--
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/itemStoreEquipmentItemData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="96dp"
+                app:layout_constraintWidth_percent=".25" />
+            -->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout103"

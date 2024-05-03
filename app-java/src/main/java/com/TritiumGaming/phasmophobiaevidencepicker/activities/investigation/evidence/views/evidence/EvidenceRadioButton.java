@@ -11,7 +11,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class EvidenceRadioButton extends AppCompatImageView {
 
-
     public EvidenceRadioButton(@NonNull Context context) {
         super(context);
         init();

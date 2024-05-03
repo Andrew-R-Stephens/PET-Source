@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout73"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout73"
-        app:srcCompat="@drawable/icon_next" />
+        app:srcCompat="@drawable/icon_arrow_60_right" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/constraintLayout73"
@@ -61,6 +61,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout73"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout73"
-        app:srcCompat="@drawable/icon_next" />
+        app:srcCompat="@drawable/icon_arrow_60_right" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

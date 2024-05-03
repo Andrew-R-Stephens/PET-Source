@@ -26,6 +26,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.EvidencePopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.google.android.gms.ads.AdRequest;
@@ -64,15 +65,11 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
     public void build(EvidenceViewModel evidenceViewModel,
                       @NonNull EvidencePopupData.EvidencePopupRecord evidenceRecord,
-                      int groupIndex, AdRequest adRequest) {
-
-        if(getContext() == null) { return; }
+                      AdRequest adRequest) {
 
         // THEME
-        Resources.Theme theme = getContext().getTheme();
-        TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-        @ColorInt int fontEmphasisColor = typedValue.data;
+        @ColorInt int fontEmphasisColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
         AppCompatImageButton closeButton = findViewById(R.id.button_right);
         AppCompatTextView label = findViewById(R.id.textView_title);
@@ -99,8 +96,6 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
                 getContext().getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(getContext()),
                 "#ff6161", String.valueOf(fontEmphasisColor))));
-
-
 
         //MAIN STATES
         select_overview.setImageLevel(1);
@@ -167,81 +162,14 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
                     fontEmphasisColor);
         });
 
-
-        //MAIN STATES
-        /*
-        select_overview.setImageState(new int[]{R.attr.state_done}, true);
-        select_overview.setOnClickListener(selectView -> {
-            select_overview.setImageState(new int[]{R.attr.state_done}, true);
-            select_tiers.setImageState(new int[]{-R.attr.state_done}, true);
-
-            layout_overview.setVisibility(View.VISIBLE);
-            layout_tiers.setVisibility(View.GONE);
-
-            animation_fullscreen.setImageResource(evidenceRecord.getAnimation(getContext(), 0));
-        });
-        select_tiers.setOnClickListener(selectView -> {
-            select_tiers.setImageState(new int[]{R.attr.state_done}, true);
-            select_overview.setImageState(new int[]{-R.attr.state_done}, true);
-
-            layout_tiers.setVisibility(View.VISIBLE);
-            layout_overview.setVisibility(View.GONE);
-
-            select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-            generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(getContext(), 1),
-                    evidenceRecord.getUnlockLevel(getContext(), 0),
-                    fontEmphasisColor);
-        });
-
-        //TIER STATES
-        select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-        select_tier_1.setOnClickListener(selectView -> {
-            select_tier_1.setImageState(new int[]{R.attr.state_done}, true);
-            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-
-            generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(getContext(), 1),
-                    evidenceRecord.getUnlockLevel(getContext(), 0),
-                    fontEmphasisColor);
-        });
-        select_tier_2.setOnClickListener(selectView -> {
-            select_tier_2.setImageState(new int[]{R.attr.state_done}, true);
-            select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
-            select_tier_3.setImageState(new int[]{-R.attr.state_done}, true);
-
-            generateEvidenceTierView(2, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 2),
-                    evidenceRecord.getAnimation(getContext(), 2),
-                    evidenceRecord.getUnlockLevel(getContext(), 1),
-                    fontEmphasisColor);
-        });
-        select_tier_3.setOnClickListener(selectView -> {
-            select_tier_3.setImageState(new int[]{R.attr.state_done}, true);
-            select_tier_1.setImageState(new int[]{-R.attr.state_done}, true);
-            select_tier_2.setImageState(new int[]{-R.attr.state_done}, true);
-
-            generateEvidenceTierView(3, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 3),
-                    evidenceRecord.getAnimation(getContext(), 3),
-                    evidenceRecord.getUnlockLevel(getContext(), 2),
-                    fontEmphasisColor);
-        });
-        */
-
-        animation.setOnClickListener(view12 -> {
+        animation.setOnClickListener(v -> {
             if(animation_fullscreen.getVisibility() != View.VISIBLE) {
                 animation_fullscreen.setVisibility(View.VISIBLE);
             }
         });
-        animation_fullscreen.setOnClickListener(view1 -> {
-            if(view1.getVisibility() == View.VISIBLE) {
-                view1.setVisibility(View.GONE);
+        animation_fullscreen.setOnClickListener(v -> {
+            if(v.getVisibility() == View.VISIBLE) {
+                v.setVisibility(View.GONE);
             }
         });
 
@@ -300,12 +228,10 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         animationView.setImageResource(animation);
         animation_fullscreen.setImageResource(animation);
 
-        if(getContext() != null) {
-            TypedArray typedArray =
-                    getContext().getResources().obtainTypedArray(R.array.equipment_tiers);
-            title.setText(typedArray.getString(tierIndex-1));
-            typedArray.recycle();
-        }
+        TypedArray typedArray =
+                getResources().obtainTypedArray(R.array.equipment_tiers);
+        title.setText(typedArray.getString(tierIndex-1));
+        typedArray.recycle();
 
 
         animationView.setOnClickListener(v -> {

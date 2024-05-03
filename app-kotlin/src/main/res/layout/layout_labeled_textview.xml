@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.views.BorderTextView"
-    tools:showIn="@layout/layout_account_details">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.BorderTextView">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/rect_border"
+        app:layout_constraintBottom_toBottomOf="@+id/label"
+        app:layout_constraintEnd_toEndOf="@+id/label"
+        app:layout_constraintStart_toStartOf="@+id/label"
+        app:layout_constraintTop_toTopOf="@+id/label"
+        android:contentDescription="TODO" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/label"

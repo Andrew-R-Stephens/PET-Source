@@ -20,11 +20,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationComposablesKt;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 public abstract class EvidenceView extends ConstraintLayout {
 
@@ -54,7 +61,7 @@ public abstract class EvidenceView extends ConstraintLayout {
         initView(context);
     }
 
-    public void initView(@Nullable Context context) {
+    public void initView(@NonNull Context context) {
         inflate(context, R.layout.item_investigation_evidence, this);
 
         LinearLayoutCompat.LayoutParams params =
@@ -62,15 +69,52 @@ public abstract class EvidenceView extends ConstraintLayout {
                         ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
         setLayoutParams(params);
 
-        if (context != null) {
-            Resources.Theme theme = context.getTheme();
-            TypedValue typedValue = new TypedValue();
-            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-            fontEmphasisColor = typedValue.data;
-        }
+        fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex, LinearLayout list_ghosts) {
+
+        this.evidenceViewModel = evidenceViewModel;
+        this.groupIndex = groupIndex;
+
+        AppCompatTextView name = findViewById(R.id.label_name);
+        name.setText(evidenceViewModel.getInvestigationData().getEvidenceList()
+                .getList().get(groupIndex).getName());
+
+        ComposeView radioGroupComposable = findViewById(R.id.radioGroup);
+        InvestigationComposablesKt.setRulingGroup(
+                radioGroupComposable, evidenceViewModel, groupIndex,
+                () -> {
+                    onSelectEvidenceIcon(list_ghosts);
+                    return null;
+                }
+        );
+
+        setVisibility(View.INVISIBLE);
+        setAlpha(0);
+
+        animate()
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        super.onAnimationStart(animation);
+                        setVisibility(View.VISIBLE);
+                    }}
+                )
+                .alpha(1)
+                .setStartDelay((long)(10f * groupIndex))
+                .setDuration(100);
+
+        EvidenceNameGesture evidenceNameGesture =
+                new EvidenceNameGesture();
+        GestureDetector nameDetector =
+                new GestureDetector(getContext(), evidenceNameGesture);
+        name.setOnTouchListener((v, motionEvent) -> nameDetector.onTouchEvent(motionEvent));
 
     }
 
+    /*
     @SuppressLint("ClickableViewAccessibility")
     public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex, LinearLayout list_ghosts) {
 
@@ -90,7 +134,7 @@ public abstract class EvidenceView extends ConstraintLayout {
 
         for(int j = 0; j < radioGroup.getChildCount(); j++) {
 
-            EvidenceRadioButton evidenceRadioButton = radioGroup.getChildAt(j).findViewById(R.id.radioIcon);
+            EvidenceRadioButton evidenceRadioButton = (EvidenceRadioButton) radioGroup.getChildAt(j);
             evidenceRadioButton.setImageLevel(j + 1);
             int selectedRatio = evidenceViewModel.getRadioButtonsChecked()[groupIndex];
             evidenceRadioButton.setState(j == selectedRatio);
@@ -128,13 +172,25 @@ public abstract class EvidenceView extends ConstraintLayout {
         name.setOnTouchListener((v, motionEvent) -> nameDetector.onTouchEvent(motionEvent));
 
     }
+    */
 
+    private void onSelectEvidenceIcon(@NonNull LinearLayout ghostContainer) {
+
+        requestInvalidateGhostContainer();
+
+        ScrollView parentScroller = ((ScrollView) ghostContainer.getParent());
+        if(parentScroller != null) {
+            parentScroller.smoothScrollTo(0, 0);
+        }
+    }
+
+    /*
     private void onSelectEvidenceIcon(@NonNull LinearLayout ghostContainer, int currGroup,
                                       @NonNull ConstraintLayout radioGroup, int currRadio,
                                       @NonNull AppCompatImageView icon) {
 
         for(int k = 0; k < radioGroup.getChildCount(); k++) {
-            AppCompatImageView allIcon = radioGroup.getChildAt(k).findViewById(R.id.radioIcon);
+            AppCompatImageView allIcon = (EvidenceRadioButton) radioGroup.getChildAt(k);//.findViewById(R.id.radioIcon);
             allIcon.setImageState(new int[] { -R.attr.state_selected }, true);
         }
         icon.setImageState(new int[] { (R.attr.state_selected) }, true);
@@ -152,6 +208,7 @@ public abstract class EvidenceView extends ConstraintLayout {
             parentScroller.smoothScrollTo(0, 0);
         }
     }
+    */
 
     public class EvidenceNameGesture extends GestureDetector.SimpleOnGestureListener {
 
@@ -168,20 +225,9 @@ public abstract class EvidenceView extends ConstraintLayout {
 
             return true;
         }
-
-        /*
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            Log.i("onSingleTap2 :", "" + e.getAction());
-            if(!isLongPressed) {
-                showEvidencePopup(view, evidenceViewData);
-            }
-            return true;
-        }
-        */
-
     }
 
+    /*
     public class EvidenceSelectGesture extends GestureDetector.SimpleOnGestureListener {
 
         private final LinearLayout ghostContainer;
@@ -214,6 +260,7 @@ public abstract class EvidenceView extends ConstraintLayout {
         }
 
     }
+    */
 
     public abstract void createPopup();
 

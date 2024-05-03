@@ -22,7 +22,6 @@
             android:bottom="10dp" >
         </item>
 
-        <!--
         <item
             android:id="@+id/ic_tier"
             android:left="2dp">
@@ -33,7 +32,6 @@
                 android:scaleGravity="start|top"
                 android:drawable="@drawable/equipment_tier_square" />
         </item>
-        -->
 
         <item
             android:id="@+id/ic_border">

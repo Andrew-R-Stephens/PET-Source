@@ -53,7 +53,6 @@ public class GhostList extends InvestigationList {
                 post(() -> haltProgressAnimation(progressBar));
             });
         }
-
     }
 
     public void requestInvalidateGhostContainer() {

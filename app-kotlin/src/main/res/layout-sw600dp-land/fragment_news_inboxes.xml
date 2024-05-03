@@ -32,7 +32,7 @@
                 android:contentDescription="@string/app_name"
                 android:padding="4dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_prev"
+                android:src="@drawable/icon_arrow_60_left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

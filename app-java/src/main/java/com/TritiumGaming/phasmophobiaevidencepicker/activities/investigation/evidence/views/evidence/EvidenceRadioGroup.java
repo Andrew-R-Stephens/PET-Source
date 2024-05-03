@@ -18,21 +18,30 @@ public class EvidenceRadioGroup extends ConstraintLayout {
 
     public EvidenceRadioGroup(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public EvidenceRadioGroup(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
     public EvidenceRadioGroup(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    public void init() {
+        inflate(getContext(), R.layout.item_investigation_evidence_radiogroup, this);
     }
 
     public void reset(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex) {
+        /*
         for(int i = 0; i < getChildCount(); i++) {
-            EvidenceRadioButton button = getChildAt(i).findViewById(R.id.radioIcon);
+            EvidenceRadioButton button = (EvidenceRadioButton) getChildAt(i);//.findViewById(R.id.radioIcon);
             button.setState(evidenceViewModel.getRadioButtonsChecked()[groupIndex] == i);
         }
+        */
     }
 
 }

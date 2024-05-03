@@ -60,7 +60,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_negative_unselected" />
+                    app:srcCompat="@drawable/icon_selector_neg_unsel" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_cancel_label"
@@ -99,7 +99,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_positive_unselected" />
+                    app:srcCompat="@drawable/icon_selector_pos_unsel" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_confirm_label"
@@ -167,7 +167,7 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumstudios.phasmophobiaevidencetool.views.account.AccountDetailsView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
                     android:id="@+id/accountDetailsView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountDetailsView">
 
-                    <com.tritiumstudios.phasmophobiaevidencetool.views.account.AccountLoginRequestView
+                    <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -205,13 +205,13 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
                     android:id="@+id/toggle_alwaysOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_screenalwayson" />
 
-                <com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
                     android:id="@+id/toggle_network"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,13 +229,13 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
                     android:id="@+id/toggle_leftHandMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enableLeftHandSupport" />
 
-                <com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
                     android:id="@+id/toggle_huntwarningaudio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -418,7 +418,7 @@
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/icon_prev"
+                                android:src="@drawable/icon_arrow_60_left"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/colortheme_selectedname"
@@ -447,7 +447,7 @@
                                 android:adjustViewBounds="true"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/icon_next"
+                                android:src="@drawable/icon_arrow_60_right"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="@+id/colortheme_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -528,7 +528,7 @@
                                     android:minHeight="48dp"
                                     android:padding="8dp"
                                     android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_prev"
+                                    android:src="@drawable/icon_arrow_60_left"
                                     android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout69"
@@ -574,7 +574,7 @@
                                     android:minHeight="48dp"
                                     android:padding="8dp"
                                     android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_next"
+                                    android:src="@drawable/icon_arrow_60_right"
                                     android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -634,7 +634,7 @@
                                 android:minHeight="48dp"
                                 android:padding="8dp"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/icon_prev"
+                                android:src="@drawable/icon_arrow_60_left"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout66"
@@ -683,7 +683,7 @@
                                 android:minHeight="48dp"
                                 android:padding="8dp"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/icon_next"
+                                android:src="@drawable/icon_arrow_60_right"
                                 android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"

@@ -22,21 +22,21 @@
             android:right="10dp"
             android:top="10dp"
             android:bottom="10dp">
+
             <bitmap
-                android:src="@drawable/icon_shop_crucifix_1"
-            >
-            </bitmap>
+                android:src="@drawable/icon_shop_crucifix_1" />
         </item>
 
+        <!--
         <item
             android:id="@+id/ic_tier">
             <scale
                 android:scaleWidth="75%"
                 android:scaleHeight="75%"
                 android:scaleGravity="start|top"
-                android:drawable="@drawable/equipment_tier_square_itemdata"
-                />
+                android:drawable="@drawable/equipment_tier_square_itemdata" />
         </item>
+        -->
 
         <item>
             <shape>

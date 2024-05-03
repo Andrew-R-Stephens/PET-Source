@@ -44,16 +44,28 @@ public class EvidenceList extends InvestigationList {
         this.ghostList = ghostList;
     }
 
+    @SuppressLint("ResourceType")
+    public void createEvidenceViews(PopupWindow popupWindow) {
+
+        popupData = new EvidencePopupData(getContext());
+
+        Activity activity = (Activity) getContext();
+        if(activity != null) {
+            activity.runOnUiThread(() -> {
+                buildEvidenceViews(popupWindow);
+
+                this.post(() -> haltProgressAnimation(progressBar));
+            });
+        }
+
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private void buildEvidenceViews(PopupWindow pw) {
 
         this.popupWindow = pw;
 
-        if(getContext() == null) { return; }
-
-
         for(int i = 0; i < popupData.getCount(); i++) {
-            final int groupIndex = i;
 
             EvidencePopupData.EvidencePopupRecord popupRecord =
                     popupData.getEvidencePopupRecordAt(i);
@@ -71,10 +83,7 @@ public class EvidenceList extends InvestigationList {
                             new EvidencePopupWindow(getContext());
                     evidencePopupWindow.setPopupWindow(popupWindow);
                     evidencePopupWindow.build(
-                            evidenceViewModel, popupRecord, groupIndex, adRequest);
-
-                    //popupWindow = evidencePopupWindow.getPopupWindow();
-
+                            evidenceViewModel, popupRecord, adRequest);
                 }
 
                 @Override
@@ -87,34 +96,17 @@ public class EvidenceList extends InvestigationList {
             evidenceView.build(evidenceViewModel, i, ghostList);
 
             this.addView(evidenceView);
-
         }
-
     }
 
-    @SuppressLint("ResourceType")
-    public void createEvidenceViews(PopupWindow popupWindow) {
-
-        popupData = new EvidencePopupData(getContext());
-
-        Activity activity = (Activity) getContext();
-        if(activity != null) {
-            activity.runOnUiThread(() -> {
-                buildEvidenceViews(popupWindow);
-
-                this.post(() -> haltProgressAnimation(progressBar));
-            });
-        }
-
-    }
-
+    /*
     public void forceResetEvidenceContainer() {
 
         for(int i = 0; i < this.getChildCount(); i++) {
             ((EvidenceRadioGroup)this.getChildAt(i).findViewById(R.id.radioGroup))
                     .reset(evidenceViewModel, i);
         }
-
     }
+    */
 
 }

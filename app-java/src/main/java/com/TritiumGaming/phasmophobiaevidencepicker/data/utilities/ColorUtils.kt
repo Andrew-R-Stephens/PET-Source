@@ -59,6 +59,7 @@ object ColorUtils {
         A, R, G, B
     }
 
+    @JvmStatic
     fun getColorFromAttribute(context: Context, attribute: Int) : Int {
         val typedValue = TypedValue()
         context.theme.resolveAttribute(attribute, typedValue, true)

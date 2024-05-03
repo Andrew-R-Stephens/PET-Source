@@ -26,6 +26,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
@@ -65,8 +66,6 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
                       @NonNull GhostPopupData ghostPopupData,
                       int groupIndex, AdRequest adRequest) {
 
-        if(getContext() == null) { return; }
-
         LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
 
         ConstraintLayout scrollCons_swapping =
@@ -98,10 +97,7 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         };
 
         // THEME
-        Resources.Theme theme = getContext().getTheme();
-        TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-        @ColorInt int fontEmphasisColor = typedValue.data;
+        @ColorInt int fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
 
         for (int i = 0; i < evidenceViewModel.getInvestigationData().getGhostList()
@@ -113,7 +109,6 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
 
             evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData().getGhostList()
                     .getAt(groupIndex).getEvidence()[i].getIcon());
-
         }
 
         label_name.setText(evidenceViewModel.getInvestigationData().getGhostList()

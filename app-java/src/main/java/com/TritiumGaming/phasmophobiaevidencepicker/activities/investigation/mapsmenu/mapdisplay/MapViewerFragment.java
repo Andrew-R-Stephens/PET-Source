@@ -216,7 +216,7 @@ public class MapViewerFragment extends InvestigationFragment {
 
     }
 
-    /*
+    /**
      * startThreads
      * <p>
      * Starts a Thread which loads images into the InteractiveMapDisplayView
@@ -239,7 +239,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
     }
 
-    /*
+    /**
      *
      * stopThreads
      */
@@ -250,7 +250,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
     }
 
-    /*
+    /**
      *
      * updateComponents
      */
@@ -272,7 +272,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
     }
 
-    /*
+    /**
      *
      * saveStates
      * <p>
@@ -285,7 +285,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
     }
 
-    /*
+    /**
      *
      * onPause
      * <p>
@@ -294,14 +294,11 @@ public class MapViewerFragment extends InvestigationFragment {
     @Override
     public void onPause() {
         stopThreads();
-        /*if (imageDisplay != null) {
-            imageDisplay.recycleBitmaps();
-        }*/
 
         super.onPause();
     }
 
-    /*
+    /**
      *
      * onDestroy
      * <p>
@@ -310,14 +307,11 @@ public class MapViewerFragment extends InvestigationFragment {
     @Override
     public void onDestroy() {
         stopThreads();
-        /*if (imageDisplay != null) {
-            imageDisplay.recycleBitmaps();
-        }*/
 
         super.onDestroy();
     }
 
-    /*
+    /**
      *
      * Forces garbage collection on low memory
      */
@@ -328,7 +322,7 @@ public class MapViewerFragment extends InvestigationFragment {
         super.onLowMemory();
     }
 
-    /*
+    /**
      *
      * LayerSelectorGroup class
      * <p>
@@ -339,7 +333,7 @@ public class MapViewerFragment extends InvestigationFragment {
         @NonNull
         private final MapLayerSelector[] selectors;
 
-        /*
+        /**
          *
          * LayerSelectorGroup constructor
          *
@@ -355,7 +349,7 @@ public class MapViewerFragment extends InvestigationFragment {
             }
         }
 
-        /*
+        /**
          *
          * setSelected
          * <p>
@@ -371,7 +365,7 @@ public class MapViewerFragment extends InvestigationFragment {
             }
         }
 
-        /*
+        /**
          *
          * deSelectAll
          * <p>
@@ -385,7 +379,7 @@ public class MapViewerFragment extends InvestigationFragment {
             }
         }
 
-        /*
+        /**
          *
          * getSelectors
          *
@@ -395,7 +389,7 @@ public class MapViewerFragment extends InvestigationFragment {
             return selectors;
         }
 
-        /*
+        /**
          *
          * getSize
          *
@@ -409,7 +403,7 @@ public class MapViewerFragment extends InvestigationFragment {
             return selectors.length;
         }
 
-        /*
+        /**
          *
          * Selector class
          * <p>
@@ -422,7 +416,7 @@ public class MapViewerFragment extends InvestigationFragment {
                     R.drawable.icon_selector_sel};
             private boolean isSelected = false;
 
-            /*
+            /**
              *
              * Selector constructor
              */
@@ -446,7 +440,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 setColorFilter(Color.WHITE);
             }
 
-            /*
+            /**
              *
              * setSelected
              *
@@ -459,7 +453,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 updateImage();
             }
 
-            /*
+            /**
              *
              * updateImage
              * <p>
@@ -475,7 +469,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 }
             }
 
-            /*
+            /**
              *
              * isSelected
              *

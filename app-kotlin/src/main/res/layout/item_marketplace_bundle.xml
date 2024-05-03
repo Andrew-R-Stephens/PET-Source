@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white_M100"
-    tools:parentTag="com.tritiumstudios.phasmophobiaevidencetool.activities.mainmenus.marketplace.views.ThemeBundleCardView">
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeBundleCardView">
 
     <LinearLayout
         android:layout_width="0dp"

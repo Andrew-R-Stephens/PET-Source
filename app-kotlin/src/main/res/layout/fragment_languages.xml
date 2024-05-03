@@ -47,7 +47,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_negative_unselected" />
+                    app:srcCompat="@drawable/icon_selector_neg_unsel" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_cancel_label"
@@ -59,7 +59,7 @@
                     android:contentDescription="@string/app_name"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_negative_unselected"
+                    android:src="@drawable/icon_selector_neg_unsel"
                     android:text="@string/settings_cancel"
                     android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -104,7 +104,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_positive_unselected" />
+                    app:srcCompat="@drawable/icon_selector_pos_unsel" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_confirm_label"
@@ -116,7 +116,7 @@
                     android:contentDescription="@string/app_name"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_positive_unselected"
+                    android:src="@drawable/icon_selector_pos_unsel"
                     android:text="@string/settings_confirm"
                     android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"

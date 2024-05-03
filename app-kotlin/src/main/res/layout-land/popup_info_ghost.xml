@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
             android:id="@+id/button_left"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -65,7 +65,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.tritiumstudios.phasmophobiaevidencetool.views.PETImageButton
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
             android:id="@+id/button_right"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -105,7 +105,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon_prev"
+                android:src="@drawable/icon_arrow_60_left"
                 android:tint="#FFFFFF"
                 android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
@@ -140,7 +140,7 @@
                 android:background="#00000000"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_next"
+                android:src="@drawable/icon_arrow_60_right"
                 android:tint="#FFFFFF"
                 android:padding="4dp"
                 android:adjustViewBounds="true"

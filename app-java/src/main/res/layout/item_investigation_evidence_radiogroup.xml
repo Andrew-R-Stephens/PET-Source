@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioGroup
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/item_investigation_evidence"
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioButton
         android:id="@+id/radio1"
-        layout="@layout/item_investigation_evidence_radiobutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingHorizontal="2sp"
+        android:minHeight="24dp"
+        android:maxHeight="48dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/radio2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_selector_inc_unsel" />
 
-    <include
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioButton
         android:id="@+id/radio2"
-        layout="@layout/item_investigation_evidence_radiobutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingHorizontal="2sp"
+        android:minHeight="24dp"
+        android:maxHeight="48dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/radio3"
         app:layout_constraintStart_toEndOf="@+id/radio1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_selector_inc_unsel" />
 
-    <include
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioButton
         android:id="@+id/radio3"
-        layout="@layout/item_investigation_evidence_radiobutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingHorizontal="2sp"
+        android:minHeight="24dp"
+        android:maxHeight="48dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/radio2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_selector_inc_unsel" />
 
-</com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceRadioGroup>
+</merge>
