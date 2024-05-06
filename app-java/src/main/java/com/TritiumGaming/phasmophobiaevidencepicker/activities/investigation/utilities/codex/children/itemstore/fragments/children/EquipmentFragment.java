@@ -161,7 +161,6 @@ public class EquipmentFragment extends ItemStoreFragment {
                         R.layout.item_itemstore_itemgroup));
 
         itemStoreEquipmentGroup.build(R.drawable.equipment_tier_item, group.getNameData(), group.getItemImages(), true);
-        //itemStoreEquipmentGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getEquipment());
 
         itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
         itemStoreEquipmentGroup.setAlpha(0);

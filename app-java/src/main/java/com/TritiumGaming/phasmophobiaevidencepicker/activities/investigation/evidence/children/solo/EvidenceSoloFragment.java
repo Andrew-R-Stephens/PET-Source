@@ -185,22 +185,20 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      */
     public void enableUIThread() {
 
-        if (evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
+        if (evidenceViewModel != null && evidenceViewModel.sanityRunnable == null) {
 
             try {
                 String appLang = ((InvestigationActivity) requireActivity()).getAppLanguage();
-                evidenceViewModel.setSanityRunnable(
-                        new SanityRunnable(
-                                evidenceViewModel,
-                                globalPreferencesViewModel,
-                                sanityMeterView,
-                                sanityPercentTextView,
-                                sanitySeekBarView,
-                                sanityPhaseView_setup,
-                                sanityPhaseView_action,
-                                sanityWarningTextView,
-                                getHuntWarningAudio(appLang))
-                );
+                evidenceViewModel.sanityRunnable = new SanityRunnable(
+                        evidenceViewModel,
+                        globalPreferencesViewModel,
+                        sanityMeterView,
+                        sanityPercentTextView,
+                        sanitySeekBarView,
+                        sanityPhaseView_setup,
+                        sanityPhaseView_action,
+                        sanityWarningTextView,
+                        getHuntWarningAudio(appLang));
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             }
@@ -238,14 +236,14 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                             if (wait < 0) {
                                 wait = 1;
                             }
-                            evidenceViewModel.getSanityRunnable().setWait(wait);
+                            evidenceViewModel.sanityRunnable.setWait(wait);
                             Thread.sleep(wait);
                         }
 
                         private void update() {
                             try {
                                 requireActivity().runOnUiThread(
-                                        evidenceViewModel.getSanityRunnable());
+                                        evidenceViewModel.sanityRunnable);
                             } catch (IllegalStateException e) {
                                 e.printStackTrace();
                             }
@@ -267,7 +265,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 evidenceViewModel.getSanityData().setPaused(true);
             }
 
-            SanityRunnable sanityRunnable = evidenceViewModel.getSanityRunnable();
+            SanityRunnable sanityRunnable = evidenceViewModel.sanityRunnable;
 
             if (sanityThread != null) {
                 sanityThread.interrupt();
@@ -275,7 +273,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 if (sanityRunnable != null) {
                     sanityRunnable.haltMediaPlayer();
                     sanityRunnable.dereferenceViews();
-                    evidenceViewModel.setSanityRunnable(null);
+                    evidenceViewModel.sanityRunnable = null;
                 }
 
                 sanityThread = null;
@@ -310,8 +308,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         if (evidenceViewModel != null && evidenceViewModel.getSanityData() != null) {
 
             if (evidenceViewModel.hasSanityRunnable()) {
-                evidenceViewModel.getSanityRunnable().haltMediaPlayer();
-                evidenceViewModel.getSanityRunnable().dereferenceViews();
+                evidenceViewModel.sanityRunnable.haltMediaPlayer();
+                evidenceViewModel.sanityRunnable.dereferenceViews();
             }
         }
 

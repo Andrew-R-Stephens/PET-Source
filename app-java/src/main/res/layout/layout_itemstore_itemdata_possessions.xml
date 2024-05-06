@@ -191,7 +191,7 @@
                     android:tint="?attr/codex_2"
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textview_unlocklevel"
+                    app:layout_constraintEnd_toStartOf="@+id/textview_drawchance"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

@@ -74,7 +74,7 @@ public class GhostOrderData {
         // Order placeholder array based on scores
         for (int i = 0; i < newOrder.length - 1; ) {
 
-            GhostList ghostList = evidenceViewModel.getInvestigationData().getGhostList();
+            GhostList ghostList = evidenceViewModel.investigationData.getGhostList();
 
             int ratingA = ghostList.getAt(newOrder[i]).getEvidenceScore();
             int ratingB = ghostList.getAt(newOrder[i + 1]).getEvidenceScore();

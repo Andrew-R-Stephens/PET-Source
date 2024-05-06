@@ -141,7 +141,6 @@ public class PossessionsFragment extends ItemStoreFragment {
                         R.layout.item_itemstore_itemgroup));
 
         itemStorePossessionsGroup.build(R.drawable.equipment_possession_item, group.getNameData(), group.getItemImages(), false);
-        //itemStorePossessionsGroup.build(group.getNameData(), group.getItemImages(), ItemStoreType.Companion.getPossession());
 
         itemStorePossessionsGroup.setVisibility(View.INVISIBLE);
         itemStorePossessionsGroup.setAlpha(0);

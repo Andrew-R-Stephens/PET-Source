@@ -94,8 +94,6 @@ public class GhostList extends InvestigationList {
 
         this.popupWindow = pw;
 
-        if(getContext() == null) { return; }
-
         int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
 
         this.setWeightSum(newGhostOrder.length);
@@ -114,8 +112,6 @@ public class GhostList extends InvestigationList {
                     GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
                     ghostPopupWindow.setPopupWindow(popupWindow);
                     ghostPopupWindow.build(evidenceViewModel, popupData, j, adRequest);
-                    //popupWindow = ghostPopupWindow.getPopupWindow();
-
                 }
             };
 

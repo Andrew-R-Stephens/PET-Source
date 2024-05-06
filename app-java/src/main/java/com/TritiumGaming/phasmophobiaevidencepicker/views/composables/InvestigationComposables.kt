@@ -1,9 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
 import android.util.Log
-import android.util.TypedValue
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,13 +18,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +29,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,10 +46,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
-import com.google.android.play.integrity.internal.i
-import com.google.common.collect.Multimaps.index
-import kotlinx.coroutines.flow.MutableStateFlow
-import java.util.Arrays
 
 @Composable
 fun Test() {
@@ -238,14 +228,12 @@ fun EvidenceRulingView(
 @Preview
 fun RulingGroup(
     modifier: Modifier = Modifier,
-    evidenceViewModel: EvidenceViewModel = viewModel(),
+    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
     state: Int = 1,
     onClick: () -> Unit = {}
 ) {
-    var selectedIndex by rememberSaveable {
-        mutableIntStateOf(evidenceViewModel.radioButtonsChecked?.get(groupIndex) ?: state)
-    }
+    val radioButtonState by evidenceViewModel.radioButtonsChecked.collectAsState()
 
     Row(
         modifier = modifier
@@ -258,10 +246,8 @@ fun RulingGroup(
                     evidenceViewModel = evidenceViewModel,
                     groupIndex = groupIndex,
                     rulingType = SelectionState(index),
-                    rulingState = index == selectedIndex,
+                    rulingState = index == radioButtonState[groupIndex],
                     onSelection = {
-                        selectedIndex =
-                            evidenceViewModel.radioButtonsChecked?.get(groupIndex) ?: state
                         onClick()
                     }
                 )
@@ -269,20 +255,19 @@ fun RulingGroup(
         }
 
     }
-
-    Text(text = "${evidenceViewModel.radioButtonsChecked?.get(groupIndex)}", color = Color.Red)
-
 }
 
 @Composable
 @Preview
 fun RulingSelector(
-    evidenceViewModel: EvidenceViewModel = viewModel(),
+    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
     rulingType: SelectionState = Neutral,
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
+    val radioButtons = evidenceViewModel.radioButtonsChecked.collectAsState()
+
     val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
     val positiveColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.positiveSelColor))
@@ -298,12 +283,11 @@ fun RulingSelector(
             .padding(2.dp),
         onClick = {
             evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            evidenceViewModel.investigationData.evidenceList.list[groupIndex].ruling =
-                Evidence.Ruling.entries
-                    .toTypedArray()[evidenceViewModel.getRadioButtonsChecked()[groupIndex]]
-            evidenceViewModel.ghostOrderData.updateOrder()
+            evidenceViewModel.investigationData?.evidenceList?.list?.get(groupIndex)?.ruling =
+                Evidence.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
+            evidenceViewModel.ghostOrderData?.updateOrder()
 
-            Log.d("Updated", evidenceViewModel.ghostOrderData.currOrder.contentToString())
+            Log.d("Updated", evidenceViewModel.ghostOrderData?.currOrder.contentToString())
 
             onSelection()
         },

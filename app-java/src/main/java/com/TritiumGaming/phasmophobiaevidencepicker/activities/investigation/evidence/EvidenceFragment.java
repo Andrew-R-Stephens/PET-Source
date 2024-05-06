@@ -47,7 +47,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
-    protected AppCompatImageView toggleSanityButton;
+    protected AppCompatImageView toggleCollapseButton;
     protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercentTextView;
 
@@ -136,7 +136,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         //ghostContainer.requestDisallowInterceptTouchEvent(true);
 
-        toggleSanityButton = view.findViewById(R.id.button_toggleSanity);
+        toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
 
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
@@ -150,9 +150,9 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
-        if(toggleSanityButton != null) {
-            toggleSanityButton.setOnClickListener(v -> {
-                if(evidenceViewModel.isCollapsed()) {
+        if(toggleCollapseButton != null) {
+            toggleCollapseButton.setOnClickListener(v -> {
+                if(evidenceViewModel.isDrawerCollapsed) {
                     sanityTrackingConstraintLayout.animate()
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
@@ -166,8 +166,8 @@ public class EvidenceFragment extends InvestigationFragment {
                                     super.onAnimationEnd(animation);
 
                                     sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-                                    toggleSanityButton.setImageLevel(2);
-                                    evidenceViewModel.setCollapsed(false);
+                                    toggleCollapseButton.setImageLevel(2);
+                                    evidenceViewModel.isDrawerCollapsed = false;
                                 }
                             })
                             .start();
@@ -185,8 +185,8 @@ public class EvidenceFragment extends InvestigationFragment {
                                     super.onAnimationStart(animation);
 
                                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                                    toggleSanityButton.setImageLevel(1);
-                                    evidenceViewModel.setCollapsed(true);
+                                    toggleCollapseButton.setImageLevel(1);
+                                    evidenceViewModel.isDrawerCollapsed = true;
                                 }
                             })
                             .start();
@@ -216,12 +216,12 @@ public class EvidenceFragment extends InvestigationFragment {
     }
 
     private void initCollapsible() {
-        if(evidenceViewModel.isCollapsed()) {
+        if(evidenceViewModel.isDrawerCollapsed) {
             sanityTrackingConstraintLayout.setVisibility(View.GONE);
-            toggleSanityButton.setImageLevel(1);
+            toggleCollapseButton.setImageLevel(1);
         } else {
             sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-            toggleSanityButton.setImageLevel(2);
+            toggleCollapseButton.setImageLevel(2);
         }
     }
 
@@ -239,7 +239,6 @@ public class EvidenceFragment extends InvestigationFragment {
             phaseTimerCountdownView.destroyTimer();
         }
     }
-
 
     public void requestInvalidateComponents() {
 

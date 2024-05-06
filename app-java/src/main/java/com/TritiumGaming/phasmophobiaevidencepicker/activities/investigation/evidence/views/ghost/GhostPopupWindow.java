@@ -100,18 +100,18 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         @ColorInt int fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
 
-        for (int i = 0; i < evidenceViewModel.getInvestigationData().getGhostList()
+        for (int i = 0; i < evidenceViewModel.investigationData.getGhostList()
                 .getAt(groupIndex)
                 .getEvidenceArray().length; i++) {
 
             AppCompatImageView evidenceIcon =
                     (AppCompatImageView) linearLayout_iconRow.getChildAt(i);
 
-            evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData().getGhostList()
+            evidenceIcon.setImageResource(evidenceViewModel.investigationData.getGhostList()
                     .getAt(groupIndex).getEvidence()[i].getIcon());
         }
 
-        label_name.setText(evidenceViewModel.getInvestigationData().getGhostList()
+        label_name.setText(evidenceViewModel.investigationData.getGhostList()
                 .getAt(groupIndex).getName());
 
         //initialize info content scroller

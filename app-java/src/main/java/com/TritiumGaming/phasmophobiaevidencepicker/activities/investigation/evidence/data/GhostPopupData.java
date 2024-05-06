@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class GhostPopupData {
 
     private String ghostName;
-    private @StringRes int[] infos, strengths, weaknesses, huntDatas;
+    private @StringRes int[] infos, strengths, weaknesses, huntData;
 
     public GhostPopupData(@NotNull Context context) {
 
@@ -45,9 +44,9 @@ public class GhostPopupData {
         }
         weaknesseTypedArray.recycle(); //cleanup
 
-        huntDatas = new int[huntDataTypedArray.length()];
-        for (int j = 0; j < huntDatas.length; j++) {
-            huntDatas[j] = huntDataTypedArray.getResourceId(j, 0);
+        huntData = new int[huntDataTypedArray.length()];
+        for (int j = 0; j < huntData.length; j++) {
+            huntData[j] = huntDataTypedArray.getResourceId(j, 0);
         }
         huntDataTypedArray.recycle(); //cleanup
 
@@ -68,7 +67,7 @@ public class GhostPopupData {
     }
 
     public String getHuntData(@NonNull Context c, int i) {
-        return c.getString(huntDatas[i]);
+        return c.getString(huntData[i]);
     }
 
     public String getStrength(@NonNull Context c, int i) {
@@ -84,7 +83,7 @@ public class GhostPopupData {
     }
 
     public @StringRes int getHuntData(int i) {
-        return huntDatas[i];
+        return huntData[i];
     }
 
     public @StringRes int getStrength(int i) {
