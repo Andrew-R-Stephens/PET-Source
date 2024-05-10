@@ -1,17 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners
 
-public abstract class OnFirestoreProcessListener {
+abstract class OnFirestoreProcessListener {
+    open fun onFailure() { }
 
-    public void onFailure() {
+    open fun onSuccess() { }
 
-    }
-
-    public void onSuccess() {
-
-    }
-
-    public void onComplete() {
-
-    }
-
+    open fun onComplete() { }
 }

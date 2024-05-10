@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
@@ -157,81 +158,12 @@
                 android:text="@string/titlescreen_button"
                 android:textAllCaps="true"
                 app:layout_constraintHeight_min="48dp"
-                app:layout_constraintBottom_toTopOf="@+id/button_start_mult"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".75" />
-
-            <!--
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/button_start_solo"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/button_filledsq"
-                android:contentDescription="@string/app_name"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:text="@string/titlescreen_button"
-                android:textAllCaps="true"
-                app:layout_constraintBottom_toTopOf="@+id/button_start_mult"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25"
-                app:layout_constraintWidth_percent=".75" />
-                -->
-
-            <!--
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/button_start_solo"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/icon_square_filled"
-                android:contentDescription="@string/app_name"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:text="@string/titlescreen_button"
-                android:textAllCaps="true"
-                app:layout_constraintBottom_toTopOf="@+id/button_start_mult"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25"
-                app:layout_constraintWidth_percent=".75" />
-                -->
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/button_start_mult"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/icon_square_filled"
-                android:contentDescription="@string/app_name"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:gravity="center"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="@string/app_name"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_start_solo"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".4"
-                app:layout_constraintStart_toStartOf="@+id/button_start_solo"
-                app:layout_constraintTop_toBottomOf="@+id/button_start_solo" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".75" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

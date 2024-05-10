@@ -19,7 +19,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/investigation_navgraph_solo"
+            app:navGraph="@navigation/investigation_navgraph"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

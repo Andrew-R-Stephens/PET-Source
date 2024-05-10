@@ -11,20 +11,19 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIco
 import com.google.android.material.card.MaterialCardView
 
 class AccountIconView : MaterialCardView {
-    constructor(context: Context) : super(context) {
-        init(context, null)
+    constructor(context: Context) :
+            super(context) {
+        this.init(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context, null)
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) {
+        this.init(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init(context, null)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
+        this.init(context, null)
     }
 
     fun init(context: Context, attrs: AttributeSet?) {
@@ -37,15 +36,6 @@ class AccountIconView : MaterialCardView {
             )
             a.recycle()
         }
-    }
-
-    private fun setAccountInitials(initials: Int) {
-        setAccountInitials(context.getString(initials))
-    }
-
-    private fun setAccountInitials(initials: String) {
-        val outlineTextView = findViewById<OutlineTextView>(R.id.label_username_initials)
-        outlineTextView?.text = initials
     }
 
     private fun setDefaults() {
@@ -65,4 +55,14 @@ class AccountIconView : MaterialCardView {
 
         setAccountInitials(displayInitials?:"")
     }
+
+    private fun setAccountInitials(initials: Int) {
+        setAccountInitials(context.getString(initials))
+    }
+
+    private fun setAccountInitials(initials: String) {
+        val outlineTextView = findViewById<OutlineTextView>(R.id.label_username_initials)
+        outlineTextView?.text = initials
+    }
+
 }

@@ -1,21 +1,17 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.listeners;
+package com.TritiumGaming.phasmophobiaevidencepicker.listeners
 
-import android.view.View;
+import android.view.View
 
-import java.util.ArrayList;
+class CompositeListener : View.OnClickListener {
+    private val registeredListeners = ArrayList<View.OnClickListener>()
 
-public class CompositeListener implements View.OnClickListener {
-
-    private final ArrayList<View.OnClickListener> registeredListeners = new ArrayList<>();
-
-    public void registerListener (View.OnClickListener listener) {
-        registeredListeners.add(listener);
+    fun registerListener(listener: View.OnClickListener) {
+        registeredListeners.add(listener)
     }
 
-    @Override
-    public void onClick(View view) {
-        for(View.OnClickListener listener:registeredListeners) {
-            listener.onClick(view);
+    override fun onClick(view: View) {
+        for (listener in registeredListeners) {
+            listener.onClick(view)
         }
     }
 }

@@ -1,97 +1,103 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.views
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.util.AttributeSet;
-import android.util.TypedValue;
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.util.AttributeSet
+import android.util.TypedValue
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
+class OutlineTextView : AppCompatTextView {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+    private val OUTLINE_WIDTH_DEFAULT: Float = 0f
+    private var isDrawing: Boolean = false
+    @ColorInt private var outlineColor: Int = 0
+    private var outlineWidth: Float = 0f
 
-public class OutlineTextView extends AppCompatTextView {
-
-    private final float defaultOutlineWidth = 0f;
-    private boolean isDrawing = false;
-    private int outlineColor = 0;
-    private float outlineWidth = 0f;
-
-    public OutlineTextView(@NonNull Context context) {
-        super(context);
-
-        init(context, null);
+    constructor(context: Context) : super(context) {
+        init(null)
     }
 
-    public OutlineTextView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init(attrs)
     }
 
-    public OutlineTextView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        init(attrs)
     }
 
-    public void init(@NonNull Context c, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    fun init(attrs: AttributeSet?) {
+        setDefaults()
+
         if (attrs != null) {
-            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.OutlineTextView);
-            outlineColor = a.getColor(R.styleable.OutlineTextView_outlineColor, getCurrentTextColor());
-            outlineWidth = a.getDimension(R.styleable.OutlineTextView_outlineWidth, defaultOutlineWidth);
-            a.recycle();
-        } else {
-            outlineColor = getCurrentTextColor();
-            outlineWidth = defaultOutlineWidth;
+            val a = context.obtainStyledAttributes(attrs, R.styleable.OutlineTextView)
+            outlineColor = a.getColor(
+                R.styleable.OutlineTextView_outlineColor, currentTextColor
+            )
+            outlineWidth = a.getDimension(
+                R.styleable.OutlineTextView_outlineWidth, OUTLINE_WIDTH_DEFAULT
+            )
+            a.recycle()
         }
 
-        setOutlineWidth(TypedValue.COMPLEX_UNIT_PX, outlineWidth);
-        setOutlineColor(outlineColor);
+        setOutlineWidth(TypedValue.COMPLEX_UNIT_PX, outlineWidth)
+        setOutlineColor(outlineColor)
     }
 
-    public void setOutlineColor(int color) {
-        outlineColor = color;
+    private fun setDefaults() {
+        outlineColor = currentTextColor
+        outlineWidth = OUTLINE_WIDTH_DEFAULT
     }
 
-    public void setOutlineWidth(int unit, float width) {
+    fun setOutlineColor(color: Int) {
+        outlineColor = color
+    }
+
+    fun setOutlineWidth(unit: Int, width: Float) {
         outlineWidth = TypedValue.applyDimension(
-                unit, width, getContext().getResources().getDisplayMetrics());
+            unit, width, context.resources.displayMetrics
+        )
     }
 
-    @Override
-    public void invalidate() {
+    override fun invalidate() {
         // prevent onDraw.setTextColor force redraw
-        if (isDrawing) return;
+        if (isDrawing) return
 
-        super.invalidate();
-    }
-    @Override
-    public void onDraw(Canvas canvas) {
-        Paint paint = getPaint();
-        if(paint == null) {
-            return;
-        }
-
-        isDrawing = true;
-
-        paint.setStyle(Paint.Style.FILL);
-        super.onDraw(canvas);
-
-        int currentTextColor = getCurrentTextColor();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(outlineWidth);
-        setTextColor(outlineColor);
-        super.onDraw(canvas);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(0);
-        setTextColor(currentTextColor);
-        super.onDraw(canvas);
-
-        isDrawing = false;
+        super.invalidate()
     }
 
+    public override fun onDraw(canvas: Canvas) {
+        val paint = paint ?: return
+
+        isDrawing = true
+
+        paint.style = Paint.Style.FILL
+        super.onDraw(canvas)
+
+        @ColorInt val currentTextColor = currentTextColor
+        drawTextOutline(paint)
+        super.onDraw(canvas)
+        drawTextForeground(paint, currentTextColor)
+        super.onDraw(canvas)
+
+        isDrawing = false
+    }
+
+    private fun drawTextOutline(paint: Paint) {
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = outlineWidth
+        setTextColor(outlineColor)
+    }
+
+    private fun drawTextForeground(paint: Paint, @ColorInt textColor: Int) {
+        paint.style = Paint.Style.FILL
+        paint.strokeWidth = 0f
+        setTextColor(textColor)
+    }
 }

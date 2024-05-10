@@ -41,15 +41,15 @@ public class NewsletterMessageData {
     }
 
     private boolean hasDate() {
-        return getDate() != null && !getDate().equals("");
+        return getDate() != null && !getDate().isEmpty();
     }
 
     private boolean hasDescription() {
-        return getDescription() != null && !getDescription().equals("");
+        return getDescription() != null && !getDescription().isEmpty();
     }
 
     private boolean hasTitle() {
-        return getTitle() != null && !getTitle().equals("");
+        return getTitle() != null && !getTitle().isEmpty();
     }
 
 

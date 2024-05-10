@@ -73,7 +73,7 @@ public class InteractiveMapData {
         ZOOM_MIN = (float)w / (float)imgW;
         Log.d("Zoom", w + " " + h + " "  + ZOOM_MIN);
 
-        if ((this.zoomLevel += zoom * ZOOM_SENSE) < ZOOM_MIN) {
+        if ((this.zoomLevel += (float) (zoom * ZOOM_SENSE)) < ZOOM_MIN) {
             this.zoomLevel = ZOOM_MIN;
         }
         else if (zoomLevel > ZOOM_MAX) {
@@ -92,8 +92,8 @@ public class InteractiveMapData {
 
         float PAN_SENSE = 1.5f;
 
-        this.panX += -addX * PAN_SENSE;
-        this.panY += -addY * PAN_SENSE;
+        this.panX += (float) (-addX * PAN_SENSE);
+        this.panY += (float) (-addY * PAN_SENSE);
 
         updateMatrix();
 

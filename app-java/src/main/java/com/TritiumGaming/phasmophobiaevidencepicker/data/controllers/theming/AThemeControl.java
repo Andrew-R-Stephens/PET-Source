@@ -135,11 +135,7 @@ public abstract class AThemeControl {
     /**
      * @return
      */
-    public int getCurrentName() throws Exception {
-        CustomTheme theme = getCurrentTheme();
-        if(theme == null) {
-            throw new Exception("No theme set.");
-        }
+    public int getCurrentName() {
         return getCurrentTheme().getName();
     }
 

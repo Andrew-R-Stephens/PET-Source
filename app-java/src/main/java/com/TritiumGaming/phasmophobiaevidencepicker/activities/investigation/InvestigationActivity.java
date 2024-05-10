@@ -42,7 +42,7 @@ public class InvestigationActivity extends PETActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_investigation_solo);
+        setContentView(R.layout.activity_investigation);
     }
 
     @NonNull

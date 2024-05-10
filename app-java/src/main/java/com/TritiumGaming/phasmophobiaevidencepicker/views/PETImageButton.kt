@@ -1,73 +1,65 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.views
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-public class PETImageButton extends AppCompatImageButton {
-
-    public PETImageButton(@NonNull Context context) {
-        super(context);
-
-        init(context, null);
+class PETImageButton : AppCompatImageButton {
+    constructor(context: Context) :
+            super(context) {
+        init(context, null)
     }
 
-    public PETImageButton(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) {
+        init(context, attrs)
     }
 
-    public PETImageButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
+        init(context, attrs)
     }
 
-    public void init(@NonNull Context c, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-
-        setDefaults();
+    fun init(c: Context, attrs: AttributeSet?) {
+        setDefaults()
 
         if (attrs != null) {
-            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.PETImageButton);
+            val attrArray = c.obtainStyledAttributes(attrs, R.styleable.PETImageButton)
 
             setImageResource(
-                    a.getResourceId(
-                            R.styleable.PETImageButton_PETImageButtonBackground,
-                            R.drawable.icon_button_designs));
+                attrArray.getResourceId(
+                    R.styleable.PETImageButton_PETImageButtonBackground,
+                    R.drawable.icon_button_designs
+                )
+            )
 
             setImageLevel(
-                    a.getInt(
-                            R.styleable.PETImageButton_PETImageButtonType, 0));
+                attrArray.getInt(R.styleable.PETImageButton_PETImageButtonType, 0)
+            )
 
-            a.recycle();
+            attrArray.recycle()
         }
-
-
     }
 
-    private void setDefaults() {
-        setLayoutParams(new LinearLayout.LayoutParams(48, 48));
-        setBackgroundColor(getResources().getColor(R.color.transparent));
-        setScaleType(ScaleType.FIT_CENTER);
+    private fun setDefaults() {
+        layoutParams = LinearLayout.LayoutParams(48, 48)
 
-        setPaddingDefaults();
-        setAdjustViewBounds(true);
+        setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
+        scaleType = ScaleType.FIT_CENTER
+
+        setPaddingDefaults()
+        adjustViewBounds = true
     }
 
-    private void setPaddingDefaults() {
+    private fun setPaddingDefaults() {
         setPadding(
-                getPaddingLeft() == 0 ? 8 : getPaddingLeft(),
-                getPaddingTop() == 0 ? 8 : getPaddingTop(),
-                getPaddingRight() == 0 ? 8 : getPaddingRight(),
-                getPaddingBottom() == 0 ? 8 : getPaddingBottom());
+            if (paddingLeft == 0) 8 else paddingLeft,
+            if (paddingTop == 0) 8 else paddingTop,
+            if (paddingRight == 0) 8 else paddingRight,
+            if (paddingBottom == 0) 8 else paddingBottom
+        )
     }
-
 }

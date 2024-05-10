@@ -32,7 +32,7 @@ public class InteractiveMapControlData {
         float ZOOM_SENSE = 2f;//1.5f;
         float MIN = .8f, MAX = 4f;
 
-        if ((this.zoomLevel += addZoom * ZOOM_SENSE) < MIN) {
+        if ((this.zoomLevel += (float) (addZoom * ZOOM_SENSE)) < MIN) {
             this.zoomLevel = MIN;
         }
         else if (zoomLevel > MAX) {
@@ -51,8 +51,8 @@ public class InteractiveMapControlData {
 
         float PAN_SENSE = 1.5f;
 
-        this.panX += -addX * PAN_SENSE;
-        this.panY += -addY * PAN_SENSE;
+        this.panX += (float) (-addX * PAN_SENSE);
+        this.panY += (float) (-addY * PAN_SENSE);
 
         updateMatrix();
 

@@ -73,7 +73,7 @@ public class PoiModel {
     }
 
     public boolean hasName() {
-        return !this.name.equals("");
+        return !this.name.isEmpty();
     }
 
     public boolean hasId() {

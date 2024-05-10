@@ -143,10 +143,10 @@ public class WaveformView extends View {
 
         canvas.drawRect(frameRect, bgPaint);
 
-        for (int y = 0; y < frameRect.height(); y += (frameRect.height() * ySpace)) {
+        for (int y = 0; y < frameRect.height(); y += (int) (frameRect.height() * ySpace)) {
             canvas.drawLine(0, y, frameRect.width(), y, gridPaint);
         }
-        for (int x = 0; x < frameRect.width(); x += (frameRect.width() * xSpace)) {
+        for (int x = 0; x < frameRect.width(); x += (int) (frameRect.width() * xSpace)) {
             canvas.drawLine(x, 0, x, frameRect.height(), gridPaint);
         }
 

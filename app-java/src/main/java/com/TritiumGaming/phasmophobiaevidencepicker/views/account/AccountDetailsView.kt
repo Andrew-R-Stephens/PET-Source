@@ -1,80 +1,64 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.account;
+package com.TritiumGaming.phasmophobiaevidencepicker.views.account
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
+import com.google.firebase.auth.FirebaseUser
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.google.firebase.auth.FirebaseUser;
-
-public class AccountDetailsView extends ConstraintLayout {
-
-    public AccountDetailsView(@NonNull Context context) {
-        super(context);
-
-        init(getContext());
+class AccountDetailsView : ConstraintLayout {
+    constructor(context: Context) : super(context) {
+        init(getContext())
     }
 
-    public AccountDetailsView(@NonNull Context context,
-                              @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(getContext());
+    constructor(
+        context: Context,
+        attrs: AttributeSet?
+    ) : super(context, attrs) {
+        init(getContext())
     }
 
-    public AccountDetailsView(@NonNull Context context,
-                              @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs,
-                              int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(getContext());
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int
+    ) : super(context, attrs, defStyleAttr) {
+        init(getContext())
     }
 
-    public AccountDetailsView(@NonNull Context context,
-                              @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs,
-                              int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-
-        init(getContext());
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int, defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init(getContext())
     }
 
-    public void init(Context context) {
-        inflate(context, R.layout.layout_account_details_2, this);
+    fun init(context: Context?) {
+        inflate(context, R.layout.layout_account_details_2, this)
 
-        FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
+        val user = FirestoreUser.getCurrentFirebaseUser()
 
-        try {
-            setUsernameInitials(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        setContainerVisibility(user);
-
+        //try {
+            setUsernameInitials(user)
+        /*} catch (e: Exception) {
+            e.printStackTrace()
+        }*/
+        setContainerVisibility(user)
     }
 
-    private void setContainerVisibility(@Nullable FirebaseUser user) {
-        if(user == null) {
-            setVisibility(GONE);
-        } else {
-            setVisibility(VISIBLE);
-        }
+    private fun setContainerVisibility(user: FirebaseUser?) {
+        visibility = if (user == null) { GONE } else { VISIBLE }
     }
 
-    private void setUsernameInitials(@Nullable FirebaseUser user)
-            throws Exception {
+    @Throws(Exception::class)
+    private fun setUsernameInitials(user: FirebaseUser?) {
+        /*if (user == null) {
+            throw FirestoreUser.NullFirebaseUserException()
+        }*/
 
-        if(user == null) {
-            throw new FirestoreUser.NullFirebaseUserException();
-        }
-
-        AccountIconView accountIcon = findViewById(R.id.account_icon);
-        if(accountIcon != null) {
-            accountIcon.createAccountInitials(user.getDisplayName());
-        }
+        val accountIcon = findViewById<AccountIconView>(R.id.account_icon)
+        accountIcon?.createAccountInitials(user?.displayName)
     }
-
 }

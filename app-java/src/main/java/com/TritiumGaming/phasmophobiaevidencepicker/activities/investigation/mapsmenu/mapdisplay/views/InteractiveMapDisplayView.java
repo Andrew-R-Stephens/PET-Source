@@ -47,6 +47,8 @@ public class InteractiveMapDisplayView extends View {
     private RoomModel selectedRoomModel;
     private MapPointRunnable clickRunnable;
 
+    private Polygon polygon = new Polygon();
+
     /**
      * InteractiveMapDisplayView parameterized constructor
      *
@@ -87,11 +89,9 @@ public class InteractiveMapDisplayView extends View {
      */
     public void setMapImages(@NonNull Activity a) {
 
-        if (controllerData != null && controllerData.getBitmapFactoryOptions() != null) {
+        if (controllerData != null) {
 
             ArrayList<ArrayList<Integer>> mapFloorLayers = mapData.getAllFloorLayers();
-            if(mapFloorLayers == null)
-                return;
 
             for (int i = 0; i < mapFloorLayers.size(); i++) {
                 mapImages.add(null);
@@ -107,7 +107,9 @@ public class InteractiveMapDisplayView extends View {
                 //
                 ArrayList<Integer> floor = mapFloorLayers.get(index);
                 for (int j = 0; j < floor.size(); j++) {
-                    bitmapUtils.setResources(floor);
+                    if(bitmapUtils != null) {
+                        bitmapUtils.setResources(floor);
+                    }
                     while (bitmapUtils.hasNextBitmap()) {
                         mapImages.set(
                                 index,
@@ -115,7 +117,9 @@ public class InteractiveMapDisplayView extends View {
                         a.runOnUiThread(this::invalidate);
                     }
                 }
-                bitmapUtils.clearResources();
+                if(bitmapUtils != null) {
+                    bitmapUtils.clearResources();
+                }
 
                 a.runOnUiThread(this::invalidate);
             }
@@ -154,7 +158,7 @@ public class InteractiveMapDisplayView extends View {
             }
 
             if(selectedRoomModel != null) {
-                Polygon polygon = new Polygon();
+                polygon.reset();
                 for(PointF p: selectedRoomModel.getRoomArea().getPoints()) {
                     polygon.addPoint((int)(p.x * controllerData.getZoomLevel()), (int)(p.y * controllerData.getZoomLevel()));
                 }
@@ -166,13 +170,11 @@ public class InteractiveMapDisplayView extends View {
             frameRect = new Rect(1, 1, getWidth() - 1, getHeight() - 1);
         }
 
-        if (paint != null) {
-            paint.setColorFilter(null);
-            paint.setColor(Color.WHITE);
-            paint.setStyle(Paint.Style.STROKE);
-            if (frameRect != null) {
-                canvas.drawRect(frameRect, paint);
-            }
+        paint.setColorFilter(null);
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.STROKE);
+        if (frameRect != null) {
+            canvas.drawRect(frameRect, paint);
         }
     }
 

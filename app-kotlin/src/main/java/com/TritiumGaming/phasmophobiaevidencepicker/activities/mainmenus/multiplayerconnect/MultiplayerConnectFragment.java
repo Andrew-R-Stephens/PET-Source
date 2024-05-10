@@ -38,13 +38,6 @@ public class MultiplayerConnectFragment extends Fragment {
 
         AppCompatTextView createLobby = view.findViewById(R.id.lobbyconnect_createlobby);
         AppCompatTextView joinLobby = view.findViewById(R.id.lobbyconnect_joinlobby);
-
-        createLobby.setOnClickListener(v -> Navigation.findNavController(v).
-                navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multHost));
-
-        joinLobby.setOnClickListener(v -> Navigation.findNavController(v).
-                navigate(R.id.action_lobbyConnectFragment_to_evidenceFragment_multClient));
-
     }
 
 
