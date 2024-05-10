@@ -29,6 +29,7 @@ public class EvidenceList {
     }
 
     public static int getCount() {
+        if(evidenceList == null) return 0;
         return evidenceList.size();
     }
 

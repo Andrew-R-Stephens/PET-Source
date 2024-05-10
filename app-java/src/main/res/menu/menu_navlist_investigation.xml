@@ -14,15 +14,15 @@
                 <item
                     android:id="@+id/evidenceFragment"
                     android:title="@string/investigation_section_title_evidence"
-                    android:icon="@drawable/icon_nav_evidence_selector" />
+                    android:icon="@drawable/icon_nav_evidence" />
                 <item
                     android:id="@+id/objectivesFragment"
                     android:title="@string/general_tasks_button"
-                    android:icon="@drawable/icon_nav_tasks_selector"/>
+                    android:icon="@drawable/icon_nav_tasks" />
                 <item
                     android:id="@+id/mapMenuFragment"
                     android:title="@string/general_maps_button"
-                    android:icon="@drawable/icon_nav_mapmenu2_selector"/>
+                    android:icon="@drawable/icon_nav_mapmenu2" />
             </menu>
         </item>
     </group>
@@ -33,25 +33,11 @@
         <item android:title="@string/general_navigation_tools">
             <menu>
                 <item
-                android:id="@+id/action_global_codexFragment"
+                    android:id="@+id/action_global_codexFragment"
+                    android:title="@string/general_codex_button"
+                    android:icon="@drawable/icon_nav_codex" />
+            </menu>
+        </item>
+    </group>
 
-                android:title="@string/general_codex_button"
-                android:icon="@drawable/icon_nav_codex_selector" />
-            </menu>
-        </item>
-    </group>
-    <!--
-    <group
-        android:checkableBehavior="none"
-        android:menuCategory="system">
-        <item android:title="@string/general_navigation_system">
-            <menu>
-                <item
-                android:id="@+id/action_settings"
-                android:title="@string/general_navigation_settings"
-                android:icon="@drawable/icon_gear" />
-            </menu>
-        </item>
-    </group>
--->
 </menu>

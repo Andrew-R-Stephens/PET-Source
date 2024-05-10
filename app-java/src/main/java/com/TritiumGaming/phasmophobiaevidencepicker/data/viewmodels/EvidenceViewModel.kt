@@ -11,14 +11,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceList
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.forEach
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
 
 class EvidenceViewModel : ViewModel() {
     private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
@@ -74,7 +70,8 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initDifficultyCarouselData(context: Context) {
-        difficultyCarouselData = difficultyCarouselData ?: DifficultyCarouselData(context, this)
+        difficultyCarouselData =
+            difficultyCarouselData ?: DifficultyCarouselData(context, this)
     }
 
     fun hasDifficultyCarouselData(): Boolean {
@@ -119,7 +116,7 @@ class EvidenceViewModel : ViewModel() {
         return pile[index]
     }
 
-    fun updateRejectionPile() {
+    private fun updateRejectionPile() {
         rejectionPile = BooleanArray(GhostList.getCount())
         for (i in rejectionPile!!.indices) {
             rejectionPile!![i] = investigationData!!.ghostList.getAt(i).isForcefullyRejected
@@ -127,23 +124,21 @@ class EvidenceViewModel : ViewModel() {
     }
 
     fun getRejectionPile(): BooleanArray? {
-        if (rejectionPile == null) {
-            updateRejectionPile()
-        }
+        rejectionPile ?: updateRejectionPile()
         return rejectionPile
     }
 
     fun getRejectedStatus(index: Int): Boolean {
         val pile = getRejectionPile()
         return (
-                if (index >= 0 && index < pile!!.size)
-                    false
-                else getRejectionPile()?.get(index) ?: false
-                )
+            if (index >= 0 && index < pile!!.size) false
+            else pile?.get(index) ?: false
+        )
     }
 
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
-        if (phaseTimerData!!.timeRemaining <= lowerBounds && sanityData!!.getSanityActual() < higherBounds
+        if (phaseTimerData!!.timeRemaining <=
+            lowerBounds && sanityData!!.getSanityActual() < higherBounds
         ) {
             sanityData!!.setProgressManually(newValue.toLong())
         }
@@ -158,4 +153,5 @@ class EvidenceViewModel : ViewModel() {
         sanityData?.reset()
         mapCarouselData?.mapCurrentIndex = 0
     }
+
 }

@@ -151,15 +151,13 @@ public class BitmapUtils {
     @Nullable
     public Bitmap compileBitmaps(@NonNull Context context) {
 
-        if(resources == null || filters == null) {
+        if(resources == null) {
              return null;
         }
 
         Bitmap bitmap = null;
-        //@DrawableRes int resource : resources
 
         for (int i = 0; i < resources.size(); i++) {
-            //bitmap = createBitmap(context, bitmap, resource);
             int drawableRes = resources.get(i);
             PorterDuff.Mode filter = filters.get(i);
 
@@ -189,16 +187,14 @@ public class BitmapUtils {
     /**
      * @param c
      * @param baseLayer
-     * @param id
+     * @param drawableResId
      * @return
      */
-    /*
-    private Bitmap createBitmap(Context c, Bitmap baseLayer, int id) {
+    private Bitmap createBitmap(@NonNull Context c, Bitmap baseLayer, int drawableResId, PorterDuff.Mode mode) {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(c.getResources(), id, options);
 
         // Raw height and width of image with respect to starting sampleSize
         final int height = options.outHeight, width = options.outWidth;
@@ -210,81 +206,24 @@ public class BitmapUtils {
         }
         options.inJustDecodeBounds = false;
 
-        Bitmap bitmapToAdd = BitmapFactory.decodeResource(c.getResources(), id, options);
-        if(bitmapToAdd == null) {
-            bitmapToAdd = getBitmapFromVector(c, id, options);
-        }
-
-        return addLayer(baseLayer, bitmapToAdd);
-    }
-    */
-
-    /**
-     * @param c
-     * @param baseLayer
-     * @param id
-     * @return
-     */
-    private Bitmap createBitmap(@NonNull Context c, @NonNull Bitmap baseLayer, int id, PorterDuff.Mode mode) {
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 1;
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(c.getResources(), id, options);
-
-        // Raw height and width of image with respect to starting sampleSize
-        final int height = options.outHeight, width = options.outWidth;
-        //Get biggest image dimension between both width and height
-        int highestDim = Math.max(height, width);
-        double dimScale = (double) maxTextureSize / (double) highestDim * options.inDensity;
-        if (dimScale < 1) {
-            options.inSampleSize += (int) Math.ceil(Math.abs(dimScale));
-        }
-        options.inJustDecodeBounds = false;
-
-        Bitmap bitmapToAdd = BitmapFactory.decodeResource(c.getResources(), id, options);
+        Bitmap bitmapToAdd = BitmapFactory.decodeResource(c.getResources(), drawableResId, options);
         if(bitmapToAdd == null) {
             //Temp Options
             BitmapFactory.Options optionsTemp = new BitmapFactory.Options();
             optionsTemp.inSampleSize = 1;
             optionsTemp.inJustDecodeBounds = true;
-            optionsTemp.outWidth = baseLayer.getWidth();
-            optionsTemp.outHeight = baseLayer.getHeight();
+            if(baseLayer != null) {
+                optionsTemp.outWidth = baseLayer.getWidth();
+                optionsTemp.outHeight = baseLayer.getHeight();
+            }
             optionsTemp.inSampleSize = options.inSampleSize;
             optionsTemp.inJustDecodeBounds = false;
 
-            bitmapToAdd = getBitmapFromVector(c, id, optionsTemp);
+            bitmapToAdd = getBitmapFromVector(c, drawableResId, optionsTemp);
         }
 
         return addLayer(baseLayer, bitmapToAdd, mode);
     }
-
-    /**
-     * @param baseLayer
-     * @param topLayer
-     * @return
-     * @throws OutOfMemoryError
-     */
-    /*
-    private Bitmap addLayer(Bitmap baseLayer, Bitmap topLayer) throws OutOfMemoryError {
-        if (baseLayer == null && BitmapUtils.bitmapExists(topLayer)) {
-            baseLayer = Bitmap.createBitmap(
-                    topLayer.getWidth(),
-                    topLayer.getHeight(),
-                    topLayer.getConfig());
-        }
-        if (baseLayer != null && !baseLayer.isRecycled()) {
-            Canvas canvas = new Canvas(baseLayer);
-            if (BitmapUtils.bitmapExists(topLayer)) {
-                canvas.drawBitmap(topLayer, new Matrix(), null);
-                topLayer.recycle();
-            }
-        }
-        System.gc();
-
-        return baseLayer;
-    }
-    */
 
     /**
      * @param baseLayer

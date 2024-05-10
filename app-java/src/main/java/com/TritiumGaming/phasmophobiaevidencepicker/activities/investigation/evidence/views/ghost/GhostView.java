@@ -24,6 +24,7 @@ import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Ghost;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 public abstract class GhostView extends ConstraintLayout {
@@ -62,15 +63,9 @@ public abstract class GhostView extends ConstraintLayout {
                         ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
         setLayoutParams(params);
 
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true);
-        neutralSelColor = typedValue.data;
-        theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true);
-        negativeSelColor = typedValue.data;
-        theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true);
-        positiveSelColor = typedValue.data;
-
+        neutralSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.neutralSelColor);
+        negativeSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.negativeSelColor);
+        positiveSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.positiveSelColor);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -113,10 +108,8 @@ public abstract class GhostView extends ConstraintLayout {
         setAlpha(0);
         setId(groupIndex);
 
-
-        GestureDetectorCompat swipeListener = new GestureDetectorCompat(getContext(),
-                new GhostSwipeListener(groupIndex)
-        );
+        GestureDetector swipeListener =
+                new GestureDetector(getContext(), new GhostSwipeListener(groupIndex));
 
         nameView.setOnTouchListener((v, motionEvent) -> {
             swipeListener.onTouchEvent(motionEvent);
@@ -130,7 +123,8 @@ public abstract class GhostView extends ConstraintLayout {
             if(linearLayout_iconRow != null) {
                 for (int l = 0; l < ghostData.getEvidence().length; l++) {
 
-                    AppCompatImageView evidenceIcon = linearLayout_iconRow.getChildAt(l).findViewById(R.id.evidence_icon);
+                    AppCompatImageView evidenceIcon =
+                            linearLayout_iconRow.getChildAt(l).findViewById(R.id.evidence_icon);
 
                     switch (ghostData.getEvidence()[l].getRuling()) {
                         case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
@@ -201,8 +195,7 @@ public abstract class GhostView extends ConstraintLayout {
 
         private final int index;
 
-        public GhostSwipeListener(
-                int index) {
+        public GhostSwipeListener(int index) {
             super();
 
             this.index = index;

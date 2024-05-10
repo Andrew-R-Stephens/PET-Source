@@ -26,6 +26,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
 
@@ -51,16 +52,8 @@ public class AppInfoFragment extends MainMenuFragment {
                 getResources().obtainTypedArray(R.array.aboutinfo_specialthanks_list);
 
         // INITIALIZE FONT EMPHASIS COLOR
-        TypedValue typedValue = new TypedValue();
-        @ColorInt
-        int color = getResources().getColor(R.color.white);
-        try {
-            Resources.Theme theme = requireContext().getTheme();
-            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-            color = typedValue.data;
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        @ColorInt int color =
+                ColorUtils.getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis);
 
         // INITIALIZE VIEWS
         PETImageButton closeButton = view.findViewById(R.id.button_topnav_left);

@@ -12,7 +12,7 @@
         android:id="@+id/constraintLayout38"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/codex_2"
+        android:background="?attr/codex3_navHeaderBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
             android:padding="4dp"
             android:text="@string/general_codex_button"
             android:textAllCaps="true"
-            android:textColor="?attr/codex_5"
+            android:textColor="?attr/codex5_navHeaderText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight="40dp"
@@ -66,14 +66,14 @@
             android:layout_columnWeight="2"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_shop"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_equipment"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
@@ -85,14 +85,14 @@
             android:layout_columnWeight="1"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_possessions"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/store_title_cursedpossessions"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
@@ -105,14 +105,14 @@
             android:layout_columnWeight="1"
             android:alpha=".5"
             android:padding="8dp"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_more"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
@@ -125,81 +125,15 @@
             android:layout_columnWeight="2"
             android:alpha=".5"
             android:padding="8dp"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_more"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
-
-        <!--
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
-            android:id="@+id/grid_codexmenu_option2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:label_text="Other"
-            app:background_image="@drawable/thumbnail_shop"
-            android:layout_rowSpan="1"
-            android:layout_columnSpan="1"
-            android:layout_columnWeight="1"/>
-
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.fragments.investigation.utilities.codex.views.CodexGridCard
-            android:id="@+id/grid_codexmenu_option3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:label_text="Extra"
-            app:background_image="@drawable/thumbnail_shop"
-            android:layout_rowSpan="1"
-            android:layout_columnSpan="2"
-            android:layout_columnWeight="1" />
-        -->
-
-        <!--
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/listitem_circled"
-                android:visibility="gone">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:adjustViewBounds="true"
-                    android:cropToPadding="true"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintEnd_toStartOf="@+id/item2"
-                    app:layout_constraintHeight_max="48dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_evidencecodex" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/item2"
-                    style="?attr/quaternaryFont_Regular"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:text="Evidence"
-                    android:textColor="?attr/bodyFontColor"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            -->
 
     </GridLayout>
 
@@ -207,7 +141,7 @@
         android:id="@+id/constraintLayout35"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/codex_1"
+        android:background="?attr/codex1_gh0stBackground"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -235,7 +169,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
-        android:background="?attr/codex_1"
+        android:background="?attr/codex1_adViewBackground"
         app:adSize="BANNER"
         app:adUnitId="@string/ad_banner_1"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -120,7 +120,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         View.OnClickListener difficultyListener = v -> {
             evidenceViewModel.getGhostOrderData().updateOrder();
-            ghostList.requestInvalidateGhostContainer();
+            ghostList.requestInvalidateGhostContainer(
+                    globalPreferencesViewModel.canReorderGhostViews());
 
             ScrollView parentScroller = ghostSection.findViewById(R.id.list);
             if(parentScroller != null) {

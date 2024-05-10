@@ -4,9 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard"
-    tools:showIn="@layout/fragment_utilities_codex"
     android:theme="@style/PET.MaterialCardView"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="4dp">
@@ -15,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="80dp"
-        android:background="@drawable/evidence_item_layer_grid">
+        android:background="@drawable/itemstore_grid">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_item"
@@ -35,7 +34,7 @@
             android:id="@+id/icon_arrow"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:background="?attr/codex_2"
+            android:background="?attr/codex3_cardBorder"
             android:paddingTop="4dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_arrow_topright"
-                android:tint="?attr/codex_1"
+                android:tint="?attr/codex1_cardArrow"
                 android:tintMode="multiply"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

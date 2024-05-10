@@ -37,6 +37,7 @@
         <!-- include the menu created in the menu folder -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/layout_navigation_drawer_view"
+            android:theme="@style/NavigationDrawerStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

@@ -93,15 +93,67 @@
     <attr name="theme_coreColor_7" format="reference|color" />
     <attr name="theme_coreColor_8" format="reference|color" />
 
-    <attr name="codex_1" format="reference|color" />
-    <attr name="codex_2" format="reference|color" />
-    <attr name="codex_3" format="reference|color" />
-    <attr name="codex_4" format="reference|color" />
-    <attr name="codex_5" format="reference|color" />
-    <attr name="codex_grid_background_tint" format="reference|color" />
-
     <attr name="buttonColor" format="reference|color" />
     <attr name="colorOnButton" format="reference|color" />
+
+    <!--
+        Codex
+    -->
+
+    <attr name="codex1" format="reference|color" />
+    <attr name="codex2" format="reference|color" />
+    <attr name="codex3" format="reference|color" />
+    <attr name="codex4" format="reference|color" />
+    <attr name="codex5" format="reference|color" />
+
+    <attr name="codex2_headerBackground" format="reference|color" />
+
+    <attr name="codex1_itemBackground" format="reference|color" />
+    <attr name="codex2_itemBorder" format="reference|color" />
+    <attr name="codex3_itemBorder" format="reference|color" />
+    <attr name="codex2_tierNormal" format="reference|color" />
+    <attr name="codex4_tierAlt" format="reference|color" />
+    <attr name="codex3_tierBackground" format="reference|color" />
+
+    <attr name="codex3_groupHeaderText" format="reference|color" />
+
+    <attr name="codex3_throbber" format="reference|color" />
+
+    <attr name="codex1_gh0stBackground" format="reference|color" />
+    <attr name="codex3_gh0stTextNormal" format="reference|color" />
+    <attr name="codex4_gh0stTextAlt" format="reference|color" />
+    <attr name="codex1_adViewBackground" format="reference|color" />
+
+    <attr name="codex1_cardArrow" format="reference|color" />
+    <attr name="codex3_cardBorder" format="reference|color" />
+
+    <attr name="codex3_navHeaderBackground" format="reference|color" />
+    <attr name="codex5_navHeaderText" format="reference|color" />
+    <attr name="codex2_navBackIcon" format="reference|color" />
+
+    <attr name="codex3_popupHeaderText" format="reference|color" />
+    <attr name="codex3_popupCloseBackground" format="reference|color" />
+    <attr name="codex2_popupCloseIcon" format="reference|color" />
+    <attr name="codex3_popupAttrIcons" format="reference|color" />
+    <attr name="codex3_popupAttrText" format="reference|color" />
+
+    <attr name="codex3_other" format="reference|color" />
+
+    <attr name="codex5_sel" format="reference|color" />
+    <attr name="codex4_unsel" format="reference|color" />
+
+    <attr name="codex4_border" format="reference|color" />
+    <attr name="codex4_background" format="reference|color" />
+
+    <attr name="codex6_gridBackground" format="reference|color" />
+    <attr name="codex7_gridStroke" format="reference|color" />
+
+    <!-- Unused -->
+    <attr name="codex3_buttonBackground" format="reference|color" />
+    <attr name="codex5_header" format="reference|color" />
+    <!-- -->
+
+
     <!--
         Fonts
     -->

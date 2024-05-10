@@ -46,13 +46,8 @@ public class ThemeSingleCardView extends MaterialCardView {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        int strokeColor = R.color.white;
-        if (context != null) {
-            Resources.Theme theme = context.getTheme();
-            TypedValue typedValue = new TypedValue();
-            theme.resolveAttribute(R.attr.backgroundColorOnBackground, typedValue, true);
-            strokeColor = typedValue.data;
-        }
+        int strokeColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.backgroundColorOnBackground);
 
         setRadius(16);
 

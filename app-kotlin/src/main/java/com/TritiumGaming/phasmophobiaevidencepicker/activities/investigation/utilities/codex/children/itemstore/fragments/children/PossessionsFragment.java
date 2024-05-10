@@ -7,7 +7,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.FrameLayout;
 import android.widget.GridLayout;
 
 import androidx.annotation.DrawableRes;
@@ -15,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.compose.ui.platform.ComposeView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -24,21 +21,98 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.possessions.ItemStorePossessionItemData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.possessions.ItemStorePossnsGroupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.EquipmentDataView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreDataView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStorePaginator;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.PossessionDataView;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreComposablesKt;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
 
 public class PossessionsFragment extends ItemStoreFragment {
 
-    @SuppressLint({"ResourceType"})
+    @SuppressLint("ResourceType")
     protected void buildStoreData() {
-        itemStoreViewModel.initPossessionData(requireContext());
-        itemStoreViewModel.setCurrentStore(itemStoreViewModel.getPossessionData());
+
+        TypedArray typed_shop_list = getResources().obtainTypedArray(R.array.shop_cursedpossessions_array);
+        //scrollViewPaginator.setRowCount(typed_shop_list.length());
+
+        for (int i = 0; i < typed_shop_list.length(); i++) {
+            @StringRes int possessionName;
+            @DrawableRes int possessionIcon;
+
+            ItemStorePossnsGroupData groupData = new ItemStorePossnsGroupData();
+
+            TypedArray typed_shop =
+                    getResources().obtainTypedArray(typed_shop_list.getResourceId(i, 0));
+
+            possessionName = typed_shop.getResourceId(0, 0);
+            possessionIcon = typed_shop.getResourceId(1, 0);
+
+            groupData.setNameData(possessionName);
+            groupData.setPaginationIcon(possessionIcon);
+
+            TypedArray typed_possession_image =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(2, 0));
+            for (int j = 0; j < typed_possession_image.length(); j++) {
+                groupData.addItem(new ItemStorePossessionItemData());
+                @DrawableRes int value = typed_possession_image.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setImageData(value);
+
+                //tierImages.add(value);
+                groupData.getItemDataAt(j).setImageData(value);
+            }
+            typed_possession_image.recycle();
+
+            TypedArray typed_equipment_flavortext =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(3, 0));
+            for (int j = 0; j < typed_equipment_flavortext.length(); j++) {
+                @StringRes int value = typed_equipment_flavortext.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setFlavorData(value);
+            }
+            typed_equipment_flavortext.recycle();
+
+            TypedArray typed_equipment_infotext =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(4, 0));
+            for (int j = 0; j < typed_equipment_infotext.length(); j++) {
+                @StringRes int value = typed_equipment_infotext.getResourceId(j, 0);
+                groupData.getItemDataAt(j).setInfoData(value);
+            }
+            typed_equipment_infotext.recycle();
+
+            TypedArray typed_possessions_attributes =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(5, 0));
+            for (int j = 0; j < typed_possessions_attributes.length(); j++) {
+                @StringRes int value = typed_possessions_attributes.getResourceId(j, 0);
+                ((ItemStorePossessionItemData)groupData.getItemDataAt(j)).addAttribute(value);
+            }
+            typed_possessions_attributes.recycle();
+
+            TypedArray typed_possessions_sanitydrain =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(6, 0));
+            for (int j = 0; j < typed_possessions_sanitydrain.length(); j++) {
+                @StringRes int value = typed_possessions_sanitydrain.getResourceId(j, 0);
+                ((ItemStorePossessionItemData)groupData.getItemDataAt(j)).setSanityDrainData(value);
+            }
+            typed_possessions_sanitydrain.recycle();
+
+            TypedArray typed_possessions_drawchance =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(7, 0));
+            for (int j = 0; j < typed_possessions_drawchance.length(); j++) {
+                @StringRes int value = typed_possessions_drawchance.getResourceId(j, 0);
+                ((ItemStorePossessionItemData)groupData.getItemDataAt(j)).setDrawChance(value);
+            }
+            typed_possessions_drawchance.recycle();
+
+            TypedArray typed_possessions_altnames =
+                    getResources().obtainTypedArray(typed_shop.getResourceId(8, 0));
+            for (int j = 0; j < typed_possessions_altnames.length(); j++) {
+                @StringRes int value = typed_possessions_altnames.getResourceId(j, 0);
+                ((ItemStorePossessionItemData)groupData.getItemDataAt(j)).setAltName(value);
+            }
+            typed_possessions_altnames.recycle();
+
+            typed_shop.recycle();
+
+            storeData.addGroup(groupData);
+        }
+        typed_shop_list.recycle();
+
     }
 
     protected void setPageTitle(@NonNull AppCompatTextView titleView) {
@@ -46,35 +120,111 @@ public class PossessionsFragment extends ItemStoreFragment {
     }
 
     protected void setDataViewLayout(@NonNull View view) {
-        FrameLayout parent = view.findViewById(R.id.item_safehouse_itemstore_itemData);
-        dataView = new PossessionDataView(requireContext());
-        parent.addView(new PossessionDataView(requireContext()));
+        ViewStub dv = view.findViewById(R.id.item_safehouse_itemstore_itemData);
+        dv.setLayoutResource(R.layout.layout_itemstore_itemdata_possessions);
+        dataView = dv.inflate();
+        dataView.setVisibility(View.INVISIBLE);
     }
 
     protected void createGroup(
             @NonNull LinearLayoutCompat parent,
             @NonNull ItemStoreGroupData group
     ) {
-        try {
-            ItemStoreGroup itemStoreEquipmentGroup =
-                    new ItemStoreGroup(requireContext(), R.layout.item_itemstore_itemgroup);
+        ItemStoreGroupList itemStoreGroupList = new ItemStoreGroupList(requireContext());
+        itemStoreGroupList.build(R.drawable.equipment_possession_item, group);
+        parent.addView(itemStoreGroupList);
+    }
 
-            itemStoreEquipmentGroup.build(
-                    group.getNameData(), group.getItemImages(),
-                    ItemStoreType.Companion.getPossession());
+    @SuppressLint("ResourceType")
+    protected void buildGroupViews(@NonNull LinearLayoutCompat parent, @NonNull GridLayout scrollViewPaginator) {
 
-            itemStoreEquipmentGroup.setVisibility(View.INVISIBLE);
-            itemStoreEquipmentGroup.setAlpha(0);
-            parent.addView(itemStoreEquipmentGroup);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        scrollViewPaginator.setRowCount(storeData.getGroups().size());
+
+        for (ItemStoreGroupData group: storeData.getGroups()) {
+
+            try {
+                requireActivity().runOnUiThread(() -> {
+                    addPaginatorIcon(scrollViewPaginator, group.getPaginationIcon());
+                    createGroup(parent, group);
+                });
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    @Override
-    public void softReset() { }
+    protected void buildDataPopupView(@NonNull View dataView, int groupIndex, int itemIndex) {
+
+        ItemStorePossnsGroupData groupData = (ItemStorePossnsGroupData) storeData.getGroupAt(groupIndex);
+        ItemStorePossessionItemData itemData = (ItemStorePossessionItemData) groupData.getItemDataAt(itemIndex);
+
+        AppCompatTextView itemNameView = dataView.findViewById(R.id.safehouse_shop_tool_label);
+        AppCompatTextView flavortextView = dataView.findViewById(R.id.textview_itemshop_flavor);
+        AppCompatTextView infotextView = dataView.findViewById(R.id.textview_itemshop_info);
+        AppCompatTextView sanitydraintextView = dataView.findViewById(R.id.textview_sanitydrain);
+        AppCompatTextView drawchancetextView = dataView.findViewById(R.id.textview_drawchance);
+        AppCompatTextView altnametextView = dataView.findViewById(R.id.textview_itemshop_altname);
+        AppCompatTextView attrtextView = dataView.findViewById(R.id.textview_itemshop_attributes);
+        ItemStoreItemView itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);
+
+        itemNameView.setText(getString(groupData.getNameData()));
+        flavortextView.setText(Html.fromHtml(getString(itemData.getFlavorData())));
+        infotextView.setText(Html.fromHtml(getString(itemData.getInfoData())));
+        try {
+            sanitydraintextView.setText(Html.fromHtml(getString(itemData.getSanityDrainData())));
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            drawchancetextView.setText(Html.fromHtml(getString(itemData.getDrawChance())));
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            altnametextView.setVisibility(View.VISIBLE);
+            altnametextView.setText(Html.fromHtml(getString(itemData.getAltName())));
+        } catch (Resources.NotFoundException e) {
+            altnametextView.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
+
+        try {
+            String attrData = itemData.getAllAttributesAsFormattedHTML(requireContext());
+            if(!attrData.isEmpty()) {
+                attrtextView.setVisibility(View.GONE);
+            } else {
+                attrtextView.setVisibility(View.VISIBLE);
+
+                if(getContext() != null) {
+                    attrtextView.setText(attrData);
+                }
+            }
+
+        } catch (Resources.NotFoundException e) {
+            attrtextView.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
+
+        if(getContext() != null) {
+            attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(getContext())));
+        }
+
+        LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
+        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(
+                getResources(), itemData.getImageData(), getContext().getTheme()));
+        layerDrawable.setLevel(0);
+        itemImageView.invalidate();
+    }
 
     @Override
-    protected void saveStates() { }
+    public void softReset() {
+
+    }
+
+    @Override
+    protected void saveStates() {
+
+    }
 
 }

@@ -24,6 +24,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 /**
  * ObjectivesFragment class
@@ -84,17 +85,10 @@ public class MissionsFragment extends InvestigationFragment {
         button_everyone = view.findViewById(R.id.button_everyone);
 
         // COLORS
-        @ColorInt int color_unselectedItem = Color.LTGRAY, color_selectedItem = Color.RED;
-        TypedValue typedValue = new TypedValue();
-        try {
-            Resources.Theme theme = requireContext().getTheme();
-            theme.resolveAttribute(R.attr.unselectedColor, typedValue, true);
-            color_unselectedItem = typedValue.data;
-            theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
-            color_selectedItem = typedValue.data;
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        @ColorInt int color_unselectedItem =
+                ColorUtils.getColorFromAttribute(requireContext(), R.attr.unselectedColor);
+        @ColorInt int color_selectedItem =
+                ColorUtils.getColorFromAttribute(requireContext(), R.attr.selectedColor);
 
         try {
             requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),

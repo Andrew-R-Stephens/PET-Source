@@ -9,14 +9,14 @@
             app:state_selected="false">
             <shape>
               <solid
-                  android:color="?attr/codex_2" />
+                  android:color="?attr/codex3_tierBackground" />
             </shape>
           </item>
           <item
               app:state_selected="true" >
             <shape>
               <solid
-                  android:color="?attr/codex_4" />
+                  android:color="?attr/codex4_border" />
             </shape>
           </item>
         </selector>

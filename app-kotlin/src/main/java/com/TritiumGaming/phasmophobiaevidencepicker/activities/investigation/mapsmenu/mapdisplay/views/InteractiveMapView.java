@@ -40,6 +40,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
@@ -74,16 +75,11 @@ public class InteractiveMapView extends View {
     private final Paint paint;
 
     @NonNull
-    private final PorterDuffColorFilter poiColorFilter;//, selectedBorderColorFilter, selectedFillColorFilter;
-    @ColorInt int
-            mapBorderColor = Color.WHITE,
-            poiColor = Color.WHITE,
-            selectedBorderColor = Color.WHITE, //Color.argb(150, 255, 0, 0),
-            selectedFillColor = Color.WHITE; //Color.argb(25, 255, 255, 0);
+    private final PorterDuffColorFilter poiColorFilter;
+    @ColorInt int mapBorderColor, poiColor, selectedBorderColor, selectedFillColor;
 
     @Nullable
     private RoomModel selectedRoomModel;
-    private MapPointRunnable clickRunnable;
 
     private SparseArray<PointF> mActivePointers;
 
@@ -91,15 +87,12 @@ public class InteractiveMapView extends View {
     @Nullable
     private Point panOrigin;
 
-    private GestureDetectorCompat mDetector;
+    private GestureDetector mDetector;
 
     private final float pulseAlpha = 1f;
 
     /**
      * InteractiveMapControlView parameterized constructor
-     *
-     * @param context
-     * @param attrs
      */
     public InteractiveMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -110,22 +103,10 @@ public class InteractiveMapView extends View {
         paint.setStyle(Paint.Style.STROKE);
 
         // COLORS
-        TypedValue typedValue = new TypedValue();
-        if (getContext() != null && getContext().getTheme() != null) {
-            Resources.Theme theme = getContext().getTheme();
-
-            theme.resolveAttribute(R.attr.textColorBody, typedValue, true);
-            mapBorderColor = typedValue.data;
-
-            theme.resolveAttribute(R.attr.mapPoiFillColor, typedValue, true);
-            poiColor = typedValue.data;
-
-            theme.resolveAttribute(R.attr.mapRoomBorderColor, typedValue, true);
-            selectedBorderColor = typedValue.data;
-
-            theme.resolveAttribute(R.attr.mapRoomFillColor, typedValue, true);
-            selectedFillColor = typedValue.data;
-        }
+        mapBorderColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBody);
+        poiColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapPoiFillColor);
+        selectedBorderColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapRoomBorderColor);
+        selectedFillColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapRoomFillColor);
 
         poiColorFilter = new PorterDuffColorFilter(
                 poiColor, PorterDuff.Mode.MULTIPLY);
@@ -136,7 +117,7 @@ public class InteractiveMapView extends View {
 
         interactiveMapData = new InteractiveMapData();
         mActivePointers = new SparseArray<>();
-        mDetector = new GestureDetectorCompat(getContext(), new GestureTap());
+        mDetector = new GestureDetector(getContext(), new GestureTap());
 
         this.roomSpinner = roomSpinner;
 
@@ -153,10 +134,10 @@ public class InteractiveMapView extends View {
             }
         };
         roomSpinner.setOnItemSelectedListener(poiSpinnerListener);
-        if(mapMenuViewModel != null &&
-                mapMenuViewModel.getCurrentMapModel() != null &&
+        if(mapMenuViewModel.getCurrentMapModel() != null &&
                 mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
-            roomSpinner.populateAdapter(mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+            roomSpinner.populateAdapter(
+                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
         }
     }
 
@@ -319,11 +300,9 @@ public class InteractiveMapView extends View {
             bitmapUtils = new BitmapUtils();
         }
 
-        if (interactiveMapData != null && interactiveMapData.getBitmapFactoryOptions() != null) {
+        if (interactiveMapData != null) {
 
             ArrayList<ArrayList<Integer>> mapFloorLayers = mapData.getAllFloorLayers();
-            if(mapFloorLayers == null)
-                return;
 
             for (int i = 0; i < mapFloorLayers.size(); i++) {
                 mapImages.add(null);
@@ -374,7 +353,9 @@ public class InteractiveMapView extends View {
 
         @DrawableRes ArrayList<Integer> resources = new ArrayList<>();
         for (int i = 0; i < typedArray.length(); i++) {
-            resources.add(typedArray.getResourceId(i, 0));
+            Integer resourceId = typedArray.getResourceId(i, 0);
+            Log.d("ResourceId", resourceId + "");
+            resources.add(resourceId);
         }
 
         for(int i = 0; i < resources.size(); i++) {
@@ -487,13 +468,11 @@ public class InteractiveMapView extends View {
             frameRect.bottom = getHeight() -1;
         }
 
-        if (paint != null) {
-            paint.setColorFilter(null);
-            paint.setColor(mapBorderColor);
-            paint.setStyle(Paint.Style.STROKE);
-            if (frameRect != null) {
-                canvas.drawRect(frameRect, paint);
-            }
+        paint.setColorFilter(null);
+        paint.setColor(mapBorderColor);
+        paint.setStyle(Paint.Style.STROKE);
+        if (frameRect != null) {
+            canvas.drawRect(frameRect, paint);
         }
     }
 

@@ -2,19 +2,9 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-        android:color="?attr/codex_1" />
+        android:color="?attr/codex1_itemBackground" />
     <stroke
-        android:color="?attr/codex_2"
+        android:color="?attr/codex3_itemBorder"
         android:width="2dp"
         />
 </shape>
-<!--
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid
-        android:color="#161C1C" />
-    <stroke
-        android:color="#99AEB3"
-        android:width="2dp"
-        />
-</shape>-->

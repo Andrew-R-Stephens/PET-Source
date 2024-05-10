@@ -32,12 +32,13 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
     private ColorThemeControl colorThemeControl;
 
     // Generic settings
-    private int huntWarningFlashTimeout = -1;
+    private int huntWarningFlashTimeout = -1; // Investigation behavior
     private boolean
             isAlwaysOn = false,
-            isHuntAudioAllowed = true,
+            isHuntAudioAllowed = true, // Investigation behavior
             networkPreference = true,
-            isLeftHandSupportEnabled = false;
+            enableLeftHandSupport= false, // Investigation behavior
+            reorderGhostViews = true; // Investigation behavior
 
     // Title screen increments
     private boolean canShowIntroduction = true;
@@ -64,8 +65,10 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         setHuntWarningAudioAllowed(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isHuntAudioWarningAllowed), getIsHuntAudioAllowed()));
         setHuntWarningFlashTimeout(sharedPref.getInt(context.getResources().getString(R.string.preference_huntWarningFlashTimeout), getHuntWarningFlashTimeout()));
 
-        setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), getIsLeftHandSupportEnabled()));
+        setLeftHandSupportEnabled(sharedPref.getBoolean(context.getResources().getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled()));
         setCanShowIntroduction(sharedPref.getBoolean(context.getResources().getString(R.string.tutorialTracking_canShowIntroduction), getCanShowIntroduction()));
+
+        setReorderGhostViews(sharedPref.getBoolean(context.getResources().getString(R.string.preference_enableReorderGhostViews), canReorderGhostViews()));
 
         reviewRequestData = new ReviewTrackingData(
                 sharedPref.getBoolean(context.getResources().getString(R.string.reviewtracking_canRequestReview), false),
@@ -95,11 +98,11 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
     }
 
     public void setLeftHandSupportEnabled(boolean isLeftHandSupportEnabled) {
-        this.isLeftHandSupportEnabled = isLeftHandSupportEnabled;
+        this.enableLeftHandSupport = isLeftHandSupportEnabled;
     }
 
-    public boolean getIsLeftHandSupportEnabled() {
-        return isLeftHandSupportEnabled;
+    public boolean isLeftHandSupportEnabled() {
+        return enableLeftHandSupport;
     }
 
     public void setNetworkPreference(boolean preference) {
@@ -227,9 +230,6 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         return isHuntAudioAllowed;
     }
 
-    /**
-     * @return
-     */
     public boolean isHuntWarningAudioAllowed() {
         return isHuntAudioAllowed;
     }
@@ -252,16 +252,6 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         return huntWarningFlashTimeout;
     }
 
-    /**
-     * getColorSpace method
-     *
-     * @return ColorSpace
-     */
-    /*
-    public int getColorTheme() {
-        return colorThemeControl.getSavedIndex();
-    }
-    */
     public String getColorThemeID() {
         return colorThemeControl.getID();
     }
@@ -269,16 +259,6 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         return colorThemeControl.getCurrentTheme();
     }
 
-    /**
-     * getFontType method
-     *
-     * @return fontType
-     */
-    /*
-    public int getFontTheme() {
-        return fontThemeControl.getSavedIndex();
-    }
-    */
     public String getFontThemeID() {
         return fontThemeControl.getID();
     }
@@ -304,6 +284,14 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
 
     public boolean canShowIntroduction() {
         return canShowIntroduction && reviewRequestData.getTimesOpened() <= 1;
+    }
+
+    public void setReorderGhostViews(boolean canReorder) {
+        reorderGhostViews = canReorder;
+    }
+
+    public boolean canReorderGhostViews() {
+        return reorderGhostViews;
     }
 
     /**
@@ -504,7 +492,27 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         if(editor == null && (editor = getEditor(c)) == null) { return; }
 
         editor.putBoolean(c.getResources().getString(R.string.preference_isLeftHandSupportEnabled),
-                getIsLeftHandSupportEnabled());
+                isLeftHandSupportEnabled());
+
+        if(localApply) {
+            editor.apply();
+        }
+    }
+
+    /**
+     *
+     * @param c
+     * @param editor
+     * @param localApply
+     */
+    private void saveReorderGhostViews(
+            @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
+        if(editor == null && (editor = getEditor(c)) == null) { return; }
+
+        editor.putBoolean(
+                c.getResources().getString(R.string.preference_enableReorderGhostViews),
+                canReorderGhostViews()
+        );
 
         if(localApply) {
             editor.apply();
@@ -546,6 +554,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         saveColorSpace(context, editor, false);
         saveFontType(context, editor, false);
         saveIsLeftHandSupportEnabled(context, editor, false);
+        saveReorderGhostViews(context, editor, false);
         saveCanRequestReview(context, editor, false);
         saveTimesOpened(context, editor, false);
         saveAppTimeAlive(context, editor, false);
@@ -564,7 +573,7 @@ public class GlobalPreferencesViewModel extends SharedViewModel {
         settings.put("warning_timeout", String.valueOf(getHuntWarningFlashTimeout()));
         settings.put("color_theme", getColorThemeID());
         settings.put("font_type", getFontThemeID());
-        settings.put("left_support", String.valueOf(getIsLeftHandSupportEnabled()));
+        settings.put("left_support", String.valueOf(isLeftHandSupportEnabled()));
         settings.put("can_show_intro", String.valueOf(getCanShowIntroduction()));
         if(getReviewRequestData() != null) {
             settings.put("review_request", String.valueOf(getReviewRequestData().canRequestReview()));

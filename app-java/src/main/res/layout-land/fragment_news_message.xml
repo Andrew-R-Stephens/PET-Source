@@ -21,6 +21,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:PETImageButtonType="back"
+            android:tint="?attr/textColorBody"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout76"
             app:layout_constraintStart_toStartOf="parent"

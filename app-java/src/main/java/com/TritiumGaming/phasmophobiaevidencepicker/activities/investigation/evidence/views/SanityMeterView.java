@@ -107,17 +107,10 @@ public class SanityMeterView extends View {
 
         buildImages();
 
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.textColorPrimary, typedValue, true);
-        themeColor = Color.WHITE;
-        theme.resolveAttribute(R.attr.selectedColor, typedValue, true);
-        sanityTint = typedValue.data;
-
-        theme.resolveAttribute(R.attr.sanityColorStart, typedValue, true);
-        sanityStart = typedValue.data;
-        theme.resolveAttribute(R.attr.sanityColorEnd, typedValue, true);
-        sanityEnd = typedValue.data;
+        themeColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
+        sanityTint = ColorUtils.getColorFromAttribute(getContext(), R.attr.selectedColor);
+        sanityStart = ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityColorStart);
+        sanityEnd = ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityColorEnd);
 
         setDefaults();
     }

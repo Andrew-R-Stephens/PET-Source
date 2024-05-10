@@ -1,6 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
-import android.util.TypedValue
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,8 +17,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,8 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,11 +39,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Ghost
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.TextCase
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
 
 @Composable
-@Preview
 fun Test() {
     val evidenceViewModel : EvidenceViewModel = viewModel {
         EvidenceViewModel()
@@ -56,7 +59,6 @@ fun Test() {
 }
 
 @Composable
-@Preview
 fun InvestigationView(
     evidenceViewModel: EvidenceViewModel? = viewModel()
 ) {
@@ -79,7 +81,6 @@ fun InvestigationView(
 }
 
 @Composable
-@Preview
 fun GhostList(
     evidenceViewModel: EvidenceViewModel? = viewModel(),
     maxFontSize: TextUnit = 96.sp
@@ -114,7 +115,6 @@ fun GhostList(
 }
 
 @Composable
-@Preview
 fun GhostView(
     ghostType: Ghost? = Ghost(),
     maxFontSize: TextUnit = 48.sp,
@@ -145,7 +145,6 @@ fun GhostView(
 }
 
 @Composable
-@Preview
 fun GhostEvidenceGroup(
     evidenceGroup: Array<Evidence>? = arrayOf(Evidence(), Evidence(), Evidence())
 ) {
@@ -172,7 +171,6 @@ fun GhostEvidenceGroup(
 }
 
 @Composable
-@Preview
 fun EvidenceRulingList(
     evidenceViewModel: EvidenceViewModel? = viewModel()
 ) {
@@ -195,7 +193,6 @@ fun EvidenceRulingList(
 }
 
 @Composable
-@Preview
 fun EvidenceRulingView(
     evidenceType: Evidence = Evidence()
 ) {
@@ -217,6 +214,7 @@ fun EvidenceRulingView(
         }
 
         RulingGroup(
+            evidenceViewModel = EvidenceViewModel(),
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.CenterHorizontally)
@@ -229,72 +227,70 @@ fun EvidenceRulingView(
 @Preview
 fun RulingGroup(
     modifier: Modifier = Modifier,
-    evidenceViewModel: EvidenceViewModel = viewModel(),
+    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
-    state: Int = 1
+    onClick: () -> Unit = {}
 ) {
-    var selectedIndex = remember {
-        mutableStateListOf(evidenceViewModel.radioButtonsChecked[groupIndex])
-    }
+    val radioButtonState by evidenceViewModel.radioButtonsChecked.collectAsState()
 
     Row(
-        modifier = Modifier
+        modifier = modifier
+            //.defaultMinSize(Dp.Unspecified, 48.dp)
             .fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        for(i in 0 .. 2) {
+        Evidence.Ruling.entries.forEachIndexed { index, _ ->
             RulingSelector(
                 evidenceViewModel = evidenceViewModel,
                 groupIndex = groupIndex,
-                rulingType = i,
-                rulingState  = i == 1
+                rulingType = SelectionState(index),
+                rulingState = index == radioButtonState[groupIndex],
+                onSelection = {
+                    onClick()
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f)
             )
         }
 
     }
-
 }
 
 @Composable
 @Preview
 fun RulingSelector(
-    evidenceViewModel: EvidenceViewModel = viewModel(),
+    modifier: Modifier = Modifier,
+    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
-    rulingType: Int = 1,
+    rulingType: SelectionState = Neutral,
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
-    val context = LocalContext.current;
-    val typedValue = TypedValue()
-    context.theme.resolveAttribute(R.attr.negativeSelColor, typedValue, true)
-    val negativeColor = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
-    context.theme.resolveAttribute(R.attr.neutralSelColor, typedValue, true)
-    val neutralColor = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
-    context.theme.resolveAttribute(R.attr.positiveSelColor, typedValue, true)
-    val positiveColor = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
+    val radioButtons = evidenceViewModel.radioButtonsChecked.collectAsState()
 
-    val rulingDrawable = when(rulingType) {
-        0 -> Pair(R.drawable.icon_selector_neg_unsel, negativeColor)
-        2 -> Pair(R.drawable.icon_selector_pos_unsel, positiveColor)
-        else -> Pair(R.drawable.icon_selector_inc_unsel, neutralColor)
+    val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
+    val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
+    val positiveColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.positiveSelColor))
+
+    val rulingDrawable =
+        when(rulingType) {
+            Negative -> Pair(R.drawable.icon_selector_neg_unsel, negativeColor)
+            Positive -> Pair(R.drawable.icon_selector_pos_unsel, positiveColor)
+            else -> Pair(R.drawable.icon_selector_inc_unsel, neutralColor)
     }
 
     IconButton(
-        modifier = Modifier
-            .padding(2.dp)
-            .size(48.dp)
-            .sizeIn(),
+        modifier = modifier,
         onClick = {
-            evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType)
-            evidenceViewModel.investigationData.evidenceList.list[groupIndex].ruling =
-                Evidence.Ruling.entries.toTypedArray()[
-                    evidenceViewModel.getRadioButtonsChecked()[groupIndex]
-                ]
+            evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
+            evidenceViewModel.investigationData?.evidenceList?.list?.get(groupIndex)?.ruling =
+                Evidence.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
+            evidenceViewModel.ghostOrderData?.updateOrder()
 
-            evidenceViewModel.ghostOrderData.updateOrder()
+            Log.d("Updated", evidenceViewModel.ghostOrderData?.currOrder.contentToString())
+
+            onSelection()
         },
         content = {
             Image(
@@ -302,7 +298,10 @@ fun RulingSelector(
                 contentDescription = "Ruling Drawable",
                 colorFilter = ColorFilter.tint(
                     if (rulingState) rulingDrawable.second
-                    else neutralColor)
+                    else neutralColor
+                ),
+                modifier = Modifier
+                    .fillMaxSize(.8f)
             )
 
             if (rulingState) {
@@ -314,4 +313,31 @@ fun RulingSelector(
             }
         }
     )
+}
+
+@JvmInline
+value class SelectionState(val value: Int) {
+
+    companion object {
+        val Negative = SelectionState(0)
+        val Neutral = SelectionState(1)
+        val Positive = SelectionState(2)
+
+        fun values(): List<SelectionState> = listOf(Negative, Neutral, Positive)
+    }
+}
+
+fun setRulingGroup(
+    composeView: ComposeView?,
+    evidenceViewModel: EvidenceViewModel = EvidenceViewModel(),
+    groupIndex: Int = 0,
+    onChange: () -> Unit = {}
+) {
+    composeView?.setContent {
+        RulingGroup(
+            evidenceViewModel = evidenceViewModel,
+            groupIndex = groupIndex,
+            onClick = onChange
+        )
+    }
 }

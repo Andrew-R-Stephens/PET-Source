@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SwitchCompat
+            android:theme="@style/SwitchTheme"
             android:id="@+id/switch_toggle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -25,7 +26,6 @@
             android:gravity="start|center_vertical"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:theme="@style/SwitchTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

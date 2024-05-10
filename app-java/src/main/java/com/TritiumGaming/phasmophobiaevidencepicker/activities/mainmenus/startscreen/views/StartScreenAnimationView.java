@@ -98,7 +98,7 @@ public class StartScreenAnimationView extends View {
 
         //Set writing resources
         TypedArray bookwritingArray =
-                getResources().obtainTypedArray(R.array.anim_bookwriting_images);
+                getResources().obtainTypedArray(R.array.anim_titlescreen_images);
         writingResIds = new ArrayList<>();
         for (int i = 0; i < bookwritingArray.length(); i++) {
             writingResIds.add(bookwritingArray.getResourceId(i, 0));

@@ -42,7 +42,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
     private boolean showEmail = false, loadThemes = true;
 
     private SettingsToggleItem toggle_isAlwaysOn, toggle_network,
-            toggle_huntwarningaudio, toggle_leftHandMode;
+            toggle_huntwarningaudio, toggle_reorderGhostViews, toggle_leftHandMode;
 
     @Nullable
     @Override
@@ -84,6 +84,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         toggle_isAlwaysOn = view.findViewById(R.id.toggle_alwaysOn);
         toggle_network = view.findViewById(R.id.toggle_network);
         toggle_leftHandMode = view.findViewById(R.id.toggle_leftHandMode);
+        toggle_reorderGhostViews = view.findViewById(R.id.toggle_reorderGhostViews);
         toggle_huntwarningaudio = view.findViewById(R.id.toggle_huntwarningaudio);
 
         SeekBar seekBar_huntwarningTimeout =
@@ -98,6 +99,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                 view.findViewById(R.id.colorblindmode_leftbutton);
         final AppCompatImageView btn_colorTheme_right =
                 view.findViewById(R.id.colorblindmode_rightbutton);
+
         final AppCompatImageView btn_fontStyle_left =
                 view.findViewById(R.id.font_leftbutton);
         final AppCompatImageView btn_fontStyle_right =
@@ -153,13 +155,19 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Allow Left Hand Mode
             if(toggle_leftHandMode != null) {
                 toggle_leftHandMode.setChecked(
-                        globalPreferencesViewModel.getIsLeftHandSupportEnabled());
+                        globalPreferencesViewModel.isLeftHandSupportEnabled());
             }
             // Allow Hunt Warning Audio
             if(toggle_huntwarningaudio != null) {
                 toggle_huntwarningaudio.setChecked(
                         globalPreferencesViewModel.getIsHuntAudioAllowed());
             }
+            // Allow Reorder Ghost Views
+            if(toggle_reorderGhostViews != null) {
+                toggle_reorderGhostViews.setChecked(
+                        globalPreferencesViewModel.canReorderGhostViews());
+            }
+
             // COLORBLIND DATA
             if(text_colorTheme_selectedname != null) {
                 ColorThemeControl colorThemesData =
@@ -276,6 +284,15 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                 if (globalPreferencesViewModel != null) {
                     globalPreferencesViewModel.setHuntWarningAudioAllowed(
                             toggle_huntwarningaudio.isChecked());
+                }
+            });
+        }
+        // Allow Ghost View Reordering
+        if(toggle_reorderGhostViews != null) {
+            toggle_reorderGhostViews.setSwitchClickListener(v -> {
+                if (globalPreferencesViewModel != null) {
+                    globalPreferencesViewModel.setReorderGhostViews(
+                            toggle_reorderGhostViews.isChecked());
                 }
             });
         }

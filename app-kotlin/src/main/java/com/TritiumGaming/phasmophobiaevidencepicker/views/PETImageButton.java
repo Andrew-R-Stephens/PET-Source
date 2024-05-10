@@ -38,7 +38,6 @@ public class PETImageButton extends AppCompatImageButton {
         if (attrs != null) {
             TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.PETImageButton);
 
-
             setImageResource(
                     a.getResourceId(
                             R.styleable.PETImageButton_PETImageButtonBackground,

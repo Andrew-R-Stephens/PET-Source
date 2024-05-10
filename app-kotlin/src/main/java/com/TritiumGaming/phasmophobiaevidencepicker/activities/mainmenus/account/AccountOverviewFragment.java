@@ -27,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
@@ -103,12 +104,10 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         SpannableString email_displayed =
                 new SpannableString(accountEmail);
 
-        TypedValue typedValue = new TypedValue();
         SpannableString finalEmail_obfuscated = null;
         try {
-            Resources.Theme theme = requireContext().getTheme();
-            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-            @ColorInt int obfuscationColor = typedValue.data;
+            @ColorInt int obfuscationColor =
+                    ColorUtils.getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis);
             SpannableString email_obfuscated = email_displayed;
             if (accountEmail != null) {
                 email_obfuscated = FormatterUtils.obfuscateEmailSpannable(

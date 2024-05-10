@@ -30,6 +30,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorLayer;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 /*
  * MapViewerFragment class
@@ -145,7 +146,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 String mapNameStr = tempData.getMapName();
                 if(mapMenuViewModel.getCurrentMapModel() != null) {
                     String name = mapMenuViewModel.getCurrentMapModel().mapName;
-                    mapNameStr = name.length() > 0 ? name: mapNameStr;
+                    mapNameStr = !name.isEmpty() ? name: mapNameStr;
                 }
                 mapName.setText(mapNameStr);
                 mapName.setSelected(true);
@@ -436,8 +437,7 @@ public class MapViewerFragment extends InvestigationFragment {
                     setPadding(2, 8, 2, 8);
                 }
 
-
-                setColorFilter(Color.WHITE);
+                setColorFilter(ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBody));
             }
 
             /**

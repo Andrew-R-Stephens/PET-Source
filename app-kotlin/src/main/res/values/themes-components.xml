@@ -35,7 +35,7 @@
 
     <style name="PET.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="enforceMaterialTheme">false</item>
-        <item name="android:checkable">false</item>
+        <item name="android:checkable">true</item>
         <!--<item name="android:background">@color/transparent</item>-->
         <item name="itemIconTint">?attr/navigationFooterIcon</item>
         <item name="itemTextAppearanceInactive">?attr/navigationFooterIcon</item>
@@ -82,6 +82,8 @@
         <item name="itemMinHeight">@null</item>
         <item name="menuGravity">center</item>
         <item name="android:fitsSystemWindows">true</item>
+
+        <!--<item name="background">?attr/backgroundColor</item>-->
     </style>
 
     <style name="PET.MaterialCardView" parent="Widget.MaterialComponents.CardView">
@@ -120,7 +122,9 @@
         <item name="android:listPreferredItemPaddingRight">8dp</item>
         <item name="listPreferredItemPaddingRight">8dp</item>
 
-        <item name="background">?attr/backgroundColor</item>
+        <item name="android:background">?attr/backgroundColor</item>
+        <item name="itemTextColor">?attr/textColorBody</item>
+        <item name="iconTint">?attr/textColorBody</item>
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat">

@@ -3,6 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.LayoutTransition;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -12,19 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
 
-public class InvestigationList extends LinearLayout {
+public abstract class InvestigationList extends LinearLayout {
 
-    protected @LayoutRes int layoutRes = R.layout.item_evidence_tool_section_list;
-
+    protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected EvidenceViewModel evidenceViewModel;
+
+    protected InvestigationPopupData popupData;
 
     protected PopupWindow popupWindow;
     protected ProgressBar progressBar;
@@ -60,7 +63,11 @@ public class InvestigationList extends LinearLayout {
         setOrientation(VERTICAL);
     }
 
-    protected void init(EvidenceViewModel evidenceViewModel, PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
+    protected void init(
+            GlobalPreferencesViewModel globalPreferencesViewModel,
+            EvidenceViewModel evidenceViewModel,
+            PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
+        this.globalPreferencesViewModel = globalPreferencesViewModel;
         this.evidenceViewModel = evidenceViewModel;
         this.adRequest = adRequest;
 
@@ -70,6 +77,18 @@ public class InvestigationList extends LinearLayout {
     public void init(PopupWindow popupWindow, ProgressBar progressBar) {
         this.popupWindow = popupWindow;
         this.progressBar = progressBar;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void createViews() {
+        Activity activity = (Activity) getContext();
+        if(activity != null) {
+            activity.runOnUiThread(() -> {
+                buildViews();
+
+                post(() -> haltProgressAnimation(progressBar));
+            });
+        }
     }
 
     protected void haltProgressAnimation(@NonNull ProgressBar progressBar) {
@@ -83,8 +102,10 @@ public class InvestigationList extends LinearLayout {
                 }).start();
     }
 
-    public @LayoutRes int getLayoutRes() {
-        return layoutRes;
+    protected void createPopupWindow(PopupWindow popupWindow, InvestigationPopupData popupData) {
+        this.popupData = popupData;
+        this.popupWindow = popupWindow;
     }
 
+    protected abstract void buildViews();
 }

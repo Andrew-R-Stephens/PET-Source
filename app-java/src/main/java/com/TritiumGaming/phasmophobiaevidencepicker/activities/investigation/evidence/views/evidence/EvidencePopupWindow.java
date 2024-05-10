@@ -9,7 +9,6 @@ import android.os.Build;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ScrollView;
@@ -106,7 +105,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             layout_overview.setVisibility(View.VISIBLE);
             layout_tiers.setVisibility(View.GONE);
 
-            animation_fullscreen.setImageResource(evidenceRecord.getAnimation(getContext(), 0));
+            animation_fullscreen.setImageResource(evidenceRecord.getAnimation(0));
         });
         select_tiers.setOnClickListener(selectView -> {
             select_overview.setImageLevel(0);
@@ -120,7 +119,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             select_tier_3.setImageLevel(0);
             generateEvidenceTierView(1, animation_fullscreen,
                     evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(getContext(), 1),
+                    evidenceRecord.getAnimation(1),
                     evidenceRecord.getUnlockLevel(getContext(), 0),
                     fontEmphasisColor);
         });
@@ -135,7 +134,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
             generateEvidenceTierView(1, animation_fullscreen,
                     evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(getContext(), 1),
+                    evidenceRecord.getAnimation(1),
                     evidenceRecord.getUnlockLevel(getContext(), 0),
                     fontEmphasisColor);
         });
@@ -146,7 +145,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
             generateEvidenceTierView(2, animation_fullscreen,
                     evidenceRecord.getDescription(getContext(), 2),
-                    evidenceRecord.getAnimation(getContext(), 2),
+                    evidenceRecord.getAnimation(2),
                     evidenceRecord.getUnlockLevel(getContext(), 1),
                     fontEmphasisColor);
         });
@@ -157,7 +156,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
             generateEvidenceTierView(3, animation_fullscreen,
                     evidenceRecord.getDescription(getContext(), 3),
-                    evidenceRecord.getAnimation(getContext(), 3),
+                    evidenceRecord.getAnimation(3),
                     evidenceRecord.getUnlockLevel(getContext(), 2),
                     fontEmphasisColor);
         });
@@ -188,8 +187,8 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
         try {
             typedArray = getContext().getResources().
                     obtainTypedArray(R.array.equipment_animation_array);
-            animation.setImageResource(evidenceRecord.getAnimation(getContext(), 0));
-            animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceRecord.index(), 0));
+            animation.setImageResource(evidenceRecord.getAnimation(0));
+            animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceRecord.index, 0));
             typedArray.recycle();
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();

@@ -101,13 +101,13 @@
 
         <item name="splashTextColor">@color/orange_M150</item>
 
-        <item name="codex_1">#232C2C</item>
+        <item name="codex1">#232C2C</item>
         <!--<item name="codex_2">#B2B1B1</item>-->
-        <item name="codex_2">@color/orange_M150</item>
-        <item name="codex_3">#252423</item>
-        <item name="codex_4">@color/orange_M150</item>
-        <item name="codex_5">#252423</item>
-        <item name="codex_grid_background_tint">#40232C2C</item>
+        <item name="codex3">@color/orange_M150</item>
+        <item name="codex2">#252423</item>
+        <item name="codex4">@color/orange_M150</item>
+        <item name="codex5">#252423</item>
+        <item name="codex6_gridBackground">#40232C2C</item>
 
         <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
         <item name="theme_title">@string/settings_colormode_prestige_recruit</item>
@@ -191,12 +191,12 @@
 
         <item name="splashTextColor">@color/purple_M75</item>
 
-        <item name="codex_1">#390721</item>
-        <item name="codex_2">@color/white_M300</item>
-        <item name="codex_3">#200413</item>
-        <item name="codex_4">@color/purple_M75</item>
-        <item name="codex_5">#3C3237</item>
-        <item name="codex_grid_background_tint">#40390721</item>
+        <item name="codex1">#390721</item>
+        <item name="codex3">@color/white_M300</item>
+        <item name="codex2">#200413</item>
+        <item name="codex4">@color/purple_M75</item>
+        <item name="codex5">#3C3237</item>
+        <item name="codex6_gridBackground">#40390721</item>
 
         <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
         <item name="theme_title">@string/settings_colormode_prestige_investigator</item>
@@ -314,13 +314,13 @@
         <item name="splashTextColor">@color/orange_M10</item>
 
         <!--<item name="codex_1">#3E2A17</item>-->
-        <item name="codex_1">#150F08</item>
+        <item name="codex1">#150F08</item>
         <!--<item name="codex_2">#CDC0B2</item>-->
-        <item name="codex_2">@color/orange_M10</item>
-        <item name="codex_3">#332312</item>
-        <item name="codex_4">@color/orange_M10</item>
-        <item name="codex_5">#3A3631</item>
-        <item name="codex_grid_background_tint">#403E2A17</item>
+        <item name="codex3">@color/orange_M10</item>
+        <item name="codex2">#332312</item>
+        <item name="codex4">@color/orange_M10</item>
+        <item name="codex5">#3A3631</item>
+        <item name="codex6_gridBackground">#403E2A17</item>
 
         <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
         <item name="theme_title">@string/settings_colormode_prestige_privateinvestigator</item>
@@ -386,7 +386,7 @@
         <item name="light_off">#2E332F</item>
         <item name="switchColorOn">@color/green_M25</item>
         <item name="buttonFilterOnPrimary">@color/white_M20</item>
-        <item name="strikethroughColor">@color/white_M300</item>
+        <item name="strikethroughColor">@color/white_M600</item>
         <item name="circleColor">@color/green_M25</item>
         <item name="selectedColor">@color/green_M25</item>
         <item name="selectedColor2">@color/green_M525</item>
@@ -405,13 +405,13 @@
 
         <item name="splashTextColor">@color/green_M25</item>
 
-        <item name="codex_1">#1E221F</item>
+        <item name="codex1">#1E221F</item>
         <!--<item name="codex_2">#97B3A7</item>-->
-        <item name="codex_2">#B0E3CE</item>
-        <item name="codex_3">@color/green_M825</item>
-        <item name="codex_4">@color/green_M25</item>
-        <item name="codex_5">@color/white_M850</item>
-        <item name="codex_grid_background_tint">#401E221F</item>
+        <item name="codex3">#B0E3CE</item>
+        <item name="codex2">@color/green_M825</item>
+        <item name="codex4">@color/green_M25</item>
+        <item name="codex5">@color/white_M850</item>
+        <item name="codex6_gridBackground">#401E221F</item>
 
         <item name="theme_badge">@drawable/theme_badge_4_detective</item>
         <item name="theme_title">@string/settings_colormode_prestige_detective</item>
@@ -422,71 +422,6 @@
         <item name="backgroundColor_mapviewOverlay">#BF0F100F</item>
 
        <item name="inboxNotification">@color/green_M25</item>
-
-        <!--
-        <item name="a">@color/white_M20</item>
-        <item name="b">@color/white_M750</item>
-        <item name="c">@color/white_M850</item>
-        <item name="d">@color/purple_M75</item>
-        <item name="e">@color/purple_M400</item>
-        <item name="f">@color/green_M25</item>
-        <item name="g">@color/green_M525</item>
-        <item name="h">@color/green_M825</item>
-        <item name="i">@color/green_M875</item>
-        <item name="j">@color/green_M950</item>
-        <item name="k">@color/black</item>
-
-        <item name="android:colorBackground">@color/green_M950</item>
-        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
-        <item name="android:navigationBarColor">@color/green_M950</item>
-        <item name="foregroundColor">@color/white_M20</item>
-        <item name="middlegroundColor">@color/white_M400</item>
-        <item name="backgroundColor" >@color/green_M950</item>
-        <item name="backgroundColorOnBackground" >@color/black_M50</item>
-        <item name="statusBarColor" >?attr/backgroundColor</item>
-        <item name="navigationBarColor" >?attr/backgroundColor</item>
-        <item name="windowBackgroundColor">@color/green_M950</item>
-        <item name="windowStrokeColor">@color/white_M20</item>
-        <item name="colorPrimary">@color/green_M950</item>
-        <item name="colorPrimaryVariant">@color/green_M950</item>
-        <item name="colorOnPrimary">@color/green_M950</item>
-        <item name="colorSecondary">@color/green_M950</item>
-        <item name="colorSecondaryVariant">@color/green_M950</item>
-        <item name="colorOnSecondary">@color/green_M950</item>
-
-        <item name="textColorPrimary">@color/purple_M75</item>
-        <item name="textColorSecondary">@color/green_M25</item>
-        <item name="textColorTertiary">@color/green_M525</item>
-        <item name="textColorBody">@color/white_M20</item>
-        <item name="textColorBodyEmphasis">@color/green_M525</item>
-        <item name="light_active">@color/green_M25</item>
-        <item name="light_inactive">@color/green_M525</item>
-        <item name="light_off">@color/green_M825</item>
-        <item name="switchColor">@color/purple_M75</item>
-        <item name="filterColorOnPrimary">@color/purple_M75</item>
-        <item name="strikethroughColor">?attr/negativeSelColor</item>
-        <item name="circleColor">?attr/positiveSelColor</item>
-        <item name="selectedColor">@color/green_M25</item>
-        <item name="selectedColor2">?attr/light_inactive</item>
-        <item name="unselectedColor">@color/white_M600</item>
-        <item name="positiveSelColor">@color/purple_M75</item>
-        <item name="neutralSelColor">@color/white_M300</item>
-        <item name="negativeSelColor">@color/green_M525</item>
-        <item name="mapPoiFillColor">@color/purple_M400_A75</item>
-        <item name="mapRoomBorderColor">@color/green_M525</item>
-        <item name="mapRoomFillColor">@color/purple_M400_A10</item>
-
-        <item name="progressBarColorStart">@color/white_M20</item>
-        <item name="progressBarColorEnd">@color/purple_M75</item>
-        <item name="sanityColorStart">@color/white_M20</item>
-        <item name="sanityColorEnd">@color/purple_M75</item>
-
-        <item name="codex_1">#1E221F</item>
-        <item name="codex_2">#97B3A7</item>
-        <item name="codex_3">@color/green_M825</item>
-        <item name="codex_4">@color/green_M25</item>
-        <item name="codex_5">@color/white_M850</item>
-        -->
 
     </style>
 
@@ -565,12 +500,12 @@
         <item name="splashTextColor">@color/red_M375</item>
 
         <!--<item name="codex_1">#3E1312</item>-->
-        <item name="codex_1">#200605</item>
-        <item name="codex_2">#E4DEDE</item>
-        <item name="codex_3">#120202</item>
-        <item name="codex_4">@color/white</item>
-        <item name="codex_5">#575050</item>
-        <item name="codex_grid_background_tint">#403E1312</item>
+        <item name="codex1">#200605</item>
+        <item name="codex3">#E4DEDE</item>
+        <item name="codex2">#120202</item>
+        <item name="codex4">@color/white</item>
+        <item name="codex5">#575050</item>
+        <item name="codex6_gridBackground">#403E1312</item>
 
         <item name="theme_badge">@drawable/theme_badge_5_technician</item>
         <item name="theme_title">@string/settings_colormode_prestige_technician</item>
@@ -659,12 +594,12 @@
 
         <item name="splashTextColor">@color/green_M150</item>
 
-        <item name="codex_1">#070C05</item>
-        <item name="codex_2">#D9ECAF</item>
-        <item name="codex_3">#24291F</item>
-        <item name="codex_4">@color/green_M150</item>
-        <item name="codex_5">#545B4D</item>
-        <item name="codex_grid_background_tint">#40070C05</item>
+        <item name="codex1">#070C05</item>
+        <item name="codex3">#D9ECAF</item>
+        <item name="codex2">#24291F</item>
+        <item name="codex4">@color/green_M150</item>
+        <item name="codex5">#545B4D</item>
+        <item name="codex6_gridBackground">#40070C05</item>
 
         <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
         <item name="theme_title">@string/settings_colormode_prestige_specialist</item>
@@ -750,12 +685,12 @@
 
         <item name="splashTextColor">#2667CD</item>
 
-        <item name="codex_1">#1C1917</item>
-        <item name="codex_2">#EDE5E7</item>
-        <item name="codex_3">#255BAF</item>
-        <item name="codex_4">#7BCD26</item>
-        <item name="codex_5">#101E01</item>
-        <item name="codex_grid_background_tint">#40201B19</item>
+        <item name="codex1">#1C1917</item>
+        <item name="codex3">#EDE5E7</item>
+        <item name="codex2">#255BAF</item>
+        <item name="codex4">#7BCD26</item>
+        <item name="codex5">#101E01</item>
+        <item name="codex6_gridBackground">#40201B19</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
         <item name="theme_title">@string/settings_colormode_prestige_analyst</item>
@@ -842,12 +777,12 @@
 
         <item name="splashTextColor">@color/blue_M90</item>
 
-        <item name="codex_1">#101515</item>
-        <item name="codex_2">#B7CFCC</item>
-        <item name="codex_3">#202A29</item>
-        <item name="codex_4">@color/blue_M90</item>
-        <item name="codex_5">#5E7E7B</item>
-        <item name="codex_grid_background_tint">#40101515</item>
+        <item name="codex1">#101515</item>
+        <item name="codex3">#B7CFCC</item>
+        <item name="codex2">#202A29</item>
+        <item name="codex4">@color/blue_M90</item>
+        <item name="codex5">#5E7E7B</item>
+        <item name="codex6_gridBackground">#40101515</item>
 
         <item name="theme_badge">@drawable/theme_badge_8_agent</item>
         <item name="theme_title">@string/settings_colormode_prestige_agent</item>
@@ -933,12 +868,12 @@
 
         <item name="splashTextColor">@color/purple_M150</item>
 
-        <item name="codex_1">#130B29</item>
-        <item name="codex_2">#C5BCCD</item>
-        <item name="codex_3">#370C37</item>
-        <item name="codex_4">@color/purple_M150</item>
-        <item name="codex_5">#53425E</item>
-        <item name="codex_grid_background_tint">#40130B29</item>
+        <item name="codex1">#130B29</item>
+        <item name="codex3">#C5BCCD</item>
+        <item name="codex2">#370C37</item>
+        <item name="codex4">@color/purple_M150</item>
+        <item name="codex5">#53425E</item>
+        <item name="codex6_gridBackground">#40130B29</item>
 
         <item name="theme_badge">@drawable/theme_badge_9_operator</item>
         <item name="theme_title">@string/settings_colormode_prestige_operator</item>
@@ -1023,12 +958,12 @@
 
         <item name="splashTextColor">@color/orange_M05</item>
 
-        <item name="codex_1">#232323</item>
-        <item name="codex_2">#FFF9F0</item>
-        <item name="codex_3">#130B00</item>
-        <item name="codex_4">@color/orange_M05</item>
-        <item name="codex_5">#3C3B3B</item>
-        <item name="codex_grid_background_tint">#40232323</item>
+        <item name="codex1">#232323</item>
+        <item name="codex3">#FFF9F0</item>
+        <item name="codex2">#130B00</item>
+        <item name="codex4">@color/orange_M05</item>
+        <item name="codex5">#3C3B3B</item>
+        <item name="codex6_gridBackground">#40232323</item>
 
         <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
         <item name="theme_title">@string/settings_colormode_prestige_commissioner</item>
@@ -1117,12 +1052,12 @@
 
         <item name="splashTextColor">@color/green_M550</item>
 
-        <item name="codex_1">#203E36</item>
-        <item name="codex_2">#F8E8BD</item>
-        <item name="codex_3">#09231D</item>
-        <item name="codex_4">@color/orange_M75</item>
-        <item name="codex_5">#2D3332</item>
-        <item name="codex_grid_background_tint">#40203E36</item>
+        <item name="codex1">#203E36</item>
+        <item name="codex3">#F8E8BD</item>
+        <item name="codex2">#09231D</item>
+        <item name="codex4">@color/orange_M75</item>
+        <item name="codex5">#2D3332</item>
+        <item name="codex6_gridBackground">#40203E36</item>
 
         <item name="theme_badge">@drawable/theme_badge_easter</item>
         <item name="theme_title">@string/settings_colormode_event_easter</item>
@@ -1208,12 +1143,12 @@
 
         <item name="splashTextColor">#EC700D</item>
 
-        <item name="codex_1">#1B0A00</item>
-        <item name="codex_2">#D7CCC3</item>
-        <item name="codex_3">#130700</item>
-        <item name="codex_4">#EC700D</item>
-        <item name="codex_5">#373737</item>
-        <item name="codex_grid_background_tint">#401B0A00</item>
+        <item name="codex1">#1B0A00</item>
+        <item name="codex3">#D7CCC3</item>
+        <item name="codex2">#130700</item>
+        <item name="codex4">#EC700D</item>
+        <item name="codex5">#373737</item>
+        <item name="codex6_gridBackground">#401B0A00</item>
 
         <item name="theme_badge">@drawable/theme_badge_halloween23</item>
         <item name="theme_title">@string/settings_colormode_event_halloween</item>
@@ -1300,12 +1235,12 @@
 
         <item name="splashTextColor">@color/blue_M125</item>
 
-        <item name="codex_1">#293750</item>
-        <item name="codex_2">#F3E8DE</item>
-        <item name="codex_3">@color/blue_M750</item>
-        <item name="codex_4">@color/orange_M50</item>
-        <item name="codex_5">#2A2E45</item>
-        <item name="codex_grid_background_tint">#40293750</item>
+        <item name="codex1">#293750</item>
+        <item name="codex3">#F3E8DE</item>
+        <item name="codex2">@color/blue_M750</item>
+        <item name="codex4">@color/orange_M50</item>
+        <item name="codex5">#2A2E45</item>
+        <item name="codex6_gridBackground">#40293750</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday22</item>
         <item name="theme_title">@string/settings_colormode_event_holiday22</item>
@@ -1402,12 +1337,12 @@
 
         <item name="splashTextColor">#447CDE</item>
 
-        <item name="codex_1">#2A487E</item>
-        <item name="codex_2">#ECDDC5</item>
-        <item name="codex_3">#447CDE</item>
-        <item name="codex_4">#E9AD4C</item>
-        <item name="codex_5">#344663</item>
-        <item name="codex_grid_background_tint">#402A487E</item>
+        <item name="codex1">#2A487E</item>
+        <item name="codex3">#ECDDC5</item>
+        <item name="codex2">#447CDE</item>
+        <item name="codex4">#E9AD4C</item>
+        <item name="codex5">#344663</item>
+        <item name="codex6_gridBackground">#402A487E</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday23</item>
         <item name="theme_title">@string/settings_colormode_event_holiday23</item>
@@ -1495,12 +1430,12 @@
 
         <item name="splashTextColor">@color/blue_M75</item>
 
-        <item name="codex_1">#1D2023</item>
-        <item name="codex_2">#AAB3F3</item>
-        <item name="codex_3">#131517</item>
-        <item name="codex_4">@color/blue_M75</item>
-        <item name="codex_5">#2C3032</item>
-        <item name="codex_grid_background_tint">#401D2023</item>
+        <item name="codex1">#1D2023</item>
+        <item name="codex3">#AAB3F3</item>
+        <item name="codex2">#131517</item>
+        <item name="codex4">@color/blue_M75</item>
+        <item name="codex5">#2C3032</item>
+        <item name="codex6_gridBackground">#401D2023</item>
 
         <item name="theme_badge">@drawable/theme_badge_discord</item>
         <item name="theme_title">@string/settings_colormode_community_discord</item>
@@ -1585,12 +1520,12 @@
 
         <item name="splashTextColor">@color/red_M225</item>
 
-        <item name="codex_1">#510E1B</item>
-        <item name="codex_2">#99AEB3</item>
-        <item name="codex_3">#3C0A14</item>
-        <item name="codex_4">@color/red_M225</item>
-        <item name="codex_5">#1E1013</item>
-        <item name="codex_grid_background_tint">#40510E1B</item>
+        <item name="codex1">#510E1B</item>
+        <item name="codex3">#99AEB3</item>
+        <item name="codex2">#3C0A14</item>
+        <item name="codex4">@color/red_M225</item>
+        <item name="codex5">#1E1013</item>
+        <item name="codex6_gridBackground">#40510E1B</item>
 
         <item name="theme_badge">@drawable/theme_badge_cc</item>
         <item name="theme_title">@string/settings_colormode_community_contentcreator</item>
@@ -1675,13 +1610,13 @@
 
         <item name="splashTextColor">@color/yellow_M25</item>
 
-        <item name="codex_1">#535353</item>
+        <item name="codex1">#535353</item>
         <!--<item name="codex_2">#AFA98C</item>-->
-        <item name="codex_2">@color/yellow_M25</item>
-        <item name="codex_3">#333333</item>
-        <item name="codex_4">@color/yellow_M25</item>
-        <item name="codex_5">#332E09</item>
-        <item name="codex_grid_background_tint">#40535353</item>
+        <item name="codex3">@color/yellow_M25</item>
+        <item name="codex2">#333333</item>
+        <item name="codex4">@color/yellow_M25</item>
+        <item name="codex5">#332E09</item>
+        <item name="codex6_gridBackground">#40535353</item>
 
         <item name="theme_badge">@drawable/theme_badge_dev</item>
         <item name="theme_title">@string/settings_colormode_community_developer</item>
@@ -1767,12 +1702,12 @@
 
         <item name="splashTextColor">@color/red_M150</item>
 
-        <item name="codex_1">#33292B</item>
-        <item name="codex_2">#E1C9CC</item>
-        <item name="codex_3">#492126</item>
-        <item name="codex_4">@color/red_M150</item>
-        <item name="codex_5">@color/purple_M850</item>
-        <item name="codex_grid_background_tint">#4033292B</item>
+        <item name="codex1">#33292B</item>
+        <item name="codex3">#E1C9CC</item>
+        <item name="codex2">#492126</item>
+        <item name="codex4">@color/red_M150</item>
+        <item name="codex5">@color/purple_M850</item>
+        <item name="codex6_gridBackground">#4033292B</item>
 
         <item name="theme_badge">@drawable/theme_badge_translator</item>
         <item name="theme_title">@string/settings_colormode_community_translator</item>
@@ -1860,12 +1795,12 @@
 
         <item name="splashTextColor">@color/orange_M250</item>
 
-        <item name="codex_1">@color/blue_M850</item>
-        <item name="codex_2">#BFB5A6</item>
-        <item name="codex_3">#0A151C</item>
-        <item name="codex_4">@color/orange_M250</item>
-        <item name="codex_5">#090A0B</item>
-        <item name="codex_grid_background_tint">#40161C1C</item>
+        <item name="codex1">@color/blue_M850</item>
+        <item name="codex3">#BFB5A6</item>
+        <item name="codex2">#0A151C</item>
+        <item name="codex4">@color/orange_M250</item>
+        <item name="codex5">#090A0B</item>
+        <item name="codex6_gridBackground">#40161C1C</item>
 
         <item name="theme_badge">@drawable/theme_badge_winner</item>
         <item name="theme_title">@string/settings_colormode_community_winner</item>
@@ -1951,12 +1886,12 @@
 
         <item name="splashTextColor">#AA7FFD</item>
 
-        <item name="codex_1">#0A0C0C</item>
-        <item name="codex_2">#E3D6F7</item>
-        <item name="codex_3">#1E1235</item>
-        <item name="codex_4">#AA7FFD</item>
-        <item name="codex_5">@color/blue_M850</item>
-        <item name="codex_grid_background_tint">#400A0C0C</item>
+        <item name="codex1">#0A0C0C</item>
+        <item name="codex3">#E3D6F7</item>
+        <item name="codex2">#1E1235</item>
+        <item name="codex4">#AA7FFD</item>
+        <item name="codex5">@color/blue_M850</item>
+        <item name="codex6_gridBackground">#400A0C0C</item>
 
         <item name="theme_badge">@drawable/theme_badge_artist</item>
         <item name="theme_title">@string/settings_colormode_community_artist</item>
@@ -1989,11 +1924,11 @@
         <item name="colorSecondaryVariant">@color/white_M100</item>
         <item name="colorOnSecondary">@color/white_M100</item>
 
-        <item name="navigationFooterIcon">?attr/unselectedColor</item>
-        <item name="navigationFooterIconAlt">@color/white_M200</item>
+        <item name="navigationFooterIcon">@color/white_M500</item>
+        <item name="navigationFooterIconAlt">@color/red_M300</item>
 
         <!-- Theme Core -->
-        <item name="theme_colorPrimary">@color/white</item>
+        <item name="theme_colorPrimary">@color/black</item>
         <item name="theme_coreColor_1">@color/white</item>
         <item name="theme_coreColor_2">@color/white</item>
         <item name="theme_coreColor_3">@color/white_M100</item>
@@ -2025,7 +1960,9 @@
         <item name="progressBarColorStart">@color/white_M100</item>
         <item name="progressBarColorEnd">@color/black_M50</item>
 
-        <item name="switchColorOn">@color/black_M50</item>
+        <item name="switchColorOn">@color/red_M100</item>
+        <item name="switchColorOff">@color/white_M500</item>
+
         <item name="inboxNotification">@color/red_M100</item>
 
         <item name="selectedColor">@color/red_M100</item>
@@ -2046,12 +1983,12 @@
         <item name="buttonFilterOnPrimary">@color/white_M100</item>
 
         <!-- Codex Colors -->
-        <item name="codex_1">@color/black_A75</item>
-        <item name="codex_2">@color/white_M100</item>
-        <item name="codex_3">@color/black_M50</item>
-        <item name="codex_4">@color/red_M100</item>
-        <item name="codex_5">@color/black_A75</item>
-        <item name="codex_grid_background_tint">@color/white_M100</item>
+        <item name="codex1">@color/black_A75</item>
+        <item name="codex3">@color/white_M100</item>
+        <item name="codex2">@color/black_M50</item>
+        <item name="codex4">@color/red_M100</item>
+        <item name="codex5">@color/black_A75</item>
+        <item name="codex6_gridBackground">@color/white_M100</item>
 
         <item name="buttonColor">?attr/light_inactive</item>
         <item name="colorOnButton">?attr/textColorBody</item>
@@ -2136,13 +2073,13 @@
 
         <item name="splashTextColor">#447CDE</item>
 
-        <item name="codex_1">#001021</item>
-        <item name="codex_2">#B7CBDC</item>
-        <item name="codex_3">#001021</item>
-        <item name="codex_4">#FFD608</item>
-        <item name="codex_5">#A3A3A3</item>
+        <item name="codex1">#001021</item>
+        <item name="codex3">#B7CBDC</item>
+        <item name="codex2">#001021</item>
+        <item name="codex4">#FFD608</item>
+        <item name="codex5">#A3A3A3</item>
 
-        <item name="codex_grid_background_tint">#40001021</item>
+        <item name="codex6_gridBackground">#40001021</item>
 
         <item name="theme_badge">@drawable/app_icon_sm</item>
         <item name="theme_title">@string/settings_skin_strategemHero</item>

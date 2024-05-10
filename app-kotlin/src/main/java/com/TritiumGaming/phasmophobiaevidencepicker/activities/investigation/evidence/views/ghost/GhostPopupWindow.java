@@ -4,12 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ScrollView;
@@ -26,6 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
@@ -65,8 +64,6 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
                       @NonNull GhostPopupData ghostPopupData,
                       int groupIndex, AdRequest adRequest) {
 
-        if(getContext() == null) { return; }
-
         LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
 
         ConstraintLayout scrollCons_swapping =
@@ -98,25 +95,21 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         };
 
         // THEME
-        Resources.Theme theme = getContext().getTheme();
-        TypedValue typedValue = new TypedValue();
-        theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-        @ColorInt int fontEmphasisColor = typedValue.data;
+        @ColorInt int fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
 
-        for (int i = 0; i < evidenceViewModel.getInvestigationData().getGhostList()
+        for (int i = 0; i < evidenceViewModel.investigationData.getGhostList()
                 .getAt(groupIndex)
                 .getEvidenceArray().length; i++) {
 
             AppCompatImageView evidenceIcon =
                     (AppCompatImageView) linearLayout_iconRow.getChildAt(i);
 
-            evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData().getGhostList()
+            evidenceIcon.setImageResource(evidenceViewModel.investigationData.getGhostList()
                     .getAt(groupIndex).getEvidence()[i].getIcon());
-
         }
 
-        label_name.setText(evidenceViewModel.getInvestigationData().getGhostList()
+        label_name.setText(evidenceViewModel.investigationData.getGhostList()
                 .getAt(groupIndex).getName());
 
         //initialize info content scroller

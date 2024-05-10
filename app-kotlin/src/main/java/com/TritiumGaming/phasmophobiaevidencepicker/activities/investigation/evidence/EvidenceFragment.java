@@ -47,7 +47,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
-    protected AppCompatImageView toggleSanityButton;
+    protected AppCompatImageView toggleCollapseButton;
     protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercentTextView;
 
@@ -101,7 +101,7 @@ public class EvidenceFragment extends InvestigationFragment {
         column_right.findViewById(R.id.scrollview)
                 .setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
-        if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
+        if(!globalPreferencesViewModel.isLeftHandSupportEnabled()) {
             ghostSection = (InvestigationSection) column_left.getChildAt(0);
             evidenceSection = (InvestigationSection) column_right.getChildAt(0);
         } else {
@@ -115,14 +115,16 @@ public class EvidenceFragment extends InvestigationFragment {
         ScrollView ghost_scrollview = ghostSection.findViewById(R.id.scrollview);
         ScrollView evidence_scrollview = evidenceSection.findViewById(R.id.scrollview);
 
-        ghostList = new GhostList(getContext());
-        evidenceList = new EvidenceList(getContext());
+        ghostList = new GhostList(requireContext());
+        evidenceList = new EvidenceList(requireContext());
 
-        ghostList.init(evidenceViewModel, popupWindow,
-                ghostSection.findViewById(R.id.progressbar),
+        ghostList.init(
+                globalPreferencesViewModel, evidenceViewModel,
+                popupWindow, ghostSection.findViewById(R.id.progressbar),
                 adRequest);
-        evidenceList.init(evidenceViewModel, popupWindow,
-                evidenceSection.findViewById(R.id.progressbar),
+        evidenceList.init(
+                globalPreferencesViewModel, evidenceViewModel,
+                popupWindow, evidenceSection.findViewById(R.id.progressbar),
                 adRequest, ghostList);
 
         ViewStub list_ghosts = ghostSection.findViewById(R.id.list);
@@ -136,7 +138,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         //ghostContainer.requestDisallowInterceptTouchEvent(true);
 
-        toggleSanityButton = view.findViewById(R.id.button_toggleSanity);
+        toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
 
         // TIMER VIEW
         phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
@@ -150,9 +152,9 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
-        if(toggleSanityButton != null) {
-            toggleSanityButton.setOnClickListener(v -> {
-                if(evidenceViewModel.isCollapsed()) {
+        if(toggleCollapseButton != null) {
+            toggleCollapseButton.setOnClickListener(v -> {
+                if(evidenceViewModel.isDrawerCollapsed) {
                     sanityTrackingConstraintLayout.animate()
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
@@ -166,8 +168,8 @@ public class EvidenceFragment extends InvestigationFragment {
                                     super.onAnimationEnd(animation);
 
                                     sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-                                    toggleSanityButton.setImageLevel(2);
-                                    evidenceViewModel.setCollapsed(false);
+                                    toggleCollapseButton.setImageLevel(2);
+                                    evidenceViewModel.isDrawerCollapsed = false;
                                 }
                             })
                             .start();
@@ -185,8 +187,8 @@ public class EvidenceFragment extends InvestigationFragment {
                                     super.onAnimationStart(animation);
 
                                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                                    toggleSanityButton.setImageLevel(1);
-                                    evidenceViewModel.setCollapsed(true);
+                                    toggleCollapseButton.setImageLevel(1);
+                                    evidenceViewModel.isDrawerCollapsed = true;
                                 }
                             })
                             .start();
@@ -210,18 +212,20 @@ public class EvidenceFragment extends InvestigationFragment {
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        new Thread(() -> ghostList.createGhostViews(popupWindow)).start();
-        new Thread(() -> evidenceList.createEvidenceViews(popupWindow)).start();
+        ghostList.createPopupWindow(popupWindow);
+        evidenceList.createPopupWindow(popupWindow);
+        new Thread(() -> ghostList.createViews()).start();
+        new Thread(() -> evidenceList.createViews()).start();
 
     }
 
     private void initCollapsible() {
-        if(evidenceViewModel.isCollapsed()) {
+        if(evidenceViewModel.isDrawerCollapsed) {
             sanityTrackingConstraintLayout.setVisibility(View.GONE);
-            toggleSanityButton.setImageLevel(1);
+            toggleCollapseButton.setImageLevel(1);
         } else {
             sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-            toggleSanityButton.setImageLevel(2);
+            toggleCollapseButton.setImageLevel(2);
         }
     }
 
@@ -240,7 +244,6 @@ public class EvidenceFragment extends InvestigationFragment {
         }
     }
 
-
     public void requestInvalidateComponents() {
 
         if(evidenceViewModel != null) {
@@ -248,7 +251,7 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         if(evidenceList != null) {
-            evidenceList.forceResetEvidenceContainer();
+            //evidenceList.forceResetEvidenceContainer();
         }
 
         if(ghostList != null) {

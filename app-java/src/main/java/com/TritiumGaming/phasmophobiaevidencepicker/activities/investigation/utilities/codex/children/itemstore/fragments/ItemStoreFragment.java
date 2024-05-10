@@ -4,13 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +29,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.ItemStoreData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroup;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 public abstract class ItemStoreFragment extends InvestigationFragment {
 
@@ -44,7 +43,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
     protected ViewTreeObserver.OnScrollChangedListener viewTreeObserverListener;
 
     @Nullable
-    protected ItemStoreItem itemSelected = null;
+    protected ItemStoreItemView itemSelected = null;
 
     protected View dataView;
 
@@ -68,14 +67,8 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        if(getContext() == null || getContext().getResources() == null) { return; }
-
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
-        unselColor = typedValue.data;
-        theme.resolveAttribute(R.attr.codex_5, typedValue, true);
-        selColor = typedValue.data;
+        unselColor = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex4_unsel);
+        selColor = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex5_sel);
 
         AppCompatTextView titleView = view.findViewById(R.id.label_pagetitle);
         ViewGroup itemStore = view.findViewById(R.id.item_safehouse_itemstore);
@@ -131,12 +124,12 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
                         LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
                         for(int i = 0; i < list.getChildCount(); i++) {
                             int groupIndex = i;
-                            ItemStoreGroup group = (ItemStoreGroup) list.getChildAt(i);
+                            ItemStoreGroupList group = (ItemStoreGroupList) list.getChildAt(i);
                             group.setVisibility(View.INVISIBLE);
                             group.setAlpha(0);
                             for(int j = 0; j < group.getItems().length; j++) {
 
-                                ItemStoreItem item = group.getItems()[j];
+                                ItemStoreItemView item = group.getItems()[j];
                                 int itemIndex = j;
 
                                 item.setOnClickListener((itemView) -> {
@@ -393,7 +386,7 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         }
     }
 
-    protected void doScrollItemStoreScrollView(@NonNull GridLayout scrollViewPaginator, int paginatorChildCount) {
+    protected void doScrollItemStoreScrollView(@NonNull GridLayout paginatorGrid, int paginatorChildCount) {
 
         boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
@@ -408,11 +401,11 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
         Log.d("Scroll",  paginatorChildCount + " " + markIndex);
 
         for(int j = 0; j < paginatorChildCount; j++) {
-            ImageView icon = scrollViewPaginator.getChildAt(j)
+            ImageView icon = paginatorGrid.getChildAt(j)
                     .findViewById(R.id.image_equipmentIcon);
             setIconFilter(icon, selColor, 1f);
         }
-        ImageView icon = scrollViewPaginator.getChildAt(markIndex)
+        ImageView icon = paginatorGrid.getChildAt(markIndex)
                 .findViewById(R.id.image_equipmentIcon);
         setIconFilter(icon, unselColor, 1f);
     }
@@ -429,18 +422,15 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
 
 
     public void stylizeLogo(@NonNull AppCompatTextView label_ghostOS) {
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = requireContext().getTheme();
-        theme.resolveAttribute(R.attr.codex_2, typedValue, true);
-        int color1 = typedValue.data;
-        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
-        int color2 = typedValue.data;
+        int color1 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex3_gh0stTextNormal);
+        int color2 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex4_gh0stTextAlt);
         String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
         String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
 
         label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)
                 .replaceAll("#99AEB3", color1Hex)
-                .replaceAll("#FFB43D", color2Hex)));
+                .replaceAll("#FFB43D", color2Hex)
+        ));
     }
 
     @Override

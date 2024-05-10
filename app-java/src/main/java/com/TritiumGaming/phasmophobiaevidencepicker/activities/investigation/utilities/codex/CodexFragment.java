@@ -1,10 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 public class CodexFragment extends InvestigationFragment {
 
@@ -51,12 +50,8 @@ public class CodexFragment extends InvestigationFragment {
     }
 
     public void stylizeLogo(@NonNull AppCompatTextView label_ghostOS) {
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = requireContext().getTheme();
-        theme.resolveAttribute(R.attr.codex_2, typedValue, true);
-        int color1 = typedValue.data;
-        theme.resolveAttribute(R.attr.codex_4, typedValue, true);
-        int color2 = typedValue.data;
+        int color1 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex3_gh0stTextNormal);
+        int color2 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex4_gh0stTextAlt);
         String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
         String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
 

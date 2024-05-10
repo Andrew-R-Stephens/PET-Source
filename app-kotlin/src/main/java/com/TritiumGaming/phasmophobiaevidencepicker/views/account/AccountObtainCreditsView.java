@@ -80,10 +80,8 @@ public class AccountObtainCreditsView extends ConstraintLayout {
         AppCompatTextView label_description = findViewById(R.id.label_ads_description);
         if(label_description == null) { return; }
 
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.textColorPrimary, typedValue, true);
-        @ColorInt int color = typedValue.data;
+        @ColorInt int color =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
 
         String descriptionQuantity = getResources().getQuantityString(
                 R.plurals.marketplace_description_watch_ad,

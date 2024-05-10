@@ -11,7 +11,7 @@
         android:id="@+id/constraintLayout38"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/codex_2"
+        android:background="?attr/codex3_navHeaderBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +25,7 @@
             android:padding="4dp"
             android:text="@string/general_codex_button"
             android:textAllCaps="true"
-            android:textColor="?attr/codex_5"
+            android:textColor="?attr/codex5_navHeaderText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight="40dp"
@@ -65,14 +65,14 @@
             android:layout_columnWeight="2"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_shop"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_equipment"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
@@ -84,14 +84,14 @@
             android:layout_columnWeight="1"
             android:padding="8dp"
             app:background_image="@drawable/thumbnail_possessions"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/store_title_cursedpossessions"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
@@ -103,14 +103,14 @@
             android:layout_columnWeight="1"
             android:alpha=".5"
             android:padding="8dp"
-            app:cardBackgroundColor="?attr/codex_2"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
             app:cardElevation="15dp"
             app:cardPreventCornerOverlap="true"
             app:label_text="@string/codex_section_more"
             app:layout_constraintHeight_min="48dp"
             app:layout_constraintWidth_min="48dp"
-            app:rippleColor="?attr/codex_2"
-            app:strokeColor="?attr/codex_2"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
             app:strokeWidth="2dp" />
 
         <!--
@@ -185,7 +185,7 @@
         android:id="@+id/constraintLayout35"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/codex_1"
+        android:background="?attr/codex1_gh0stBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -101,7 +101,7 @@ public class EvidenceFragment extends InvestigationFragment {
         column_right.findViewById(R.id.scrollview)
                 .setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
-        if(!globalPreferencesViewModel.getIsLeftHandSupportEnabled()) {
+        if(!globalPreferencesViewModel.isLeftHandSupportEnabled()) {
             ghostSection = (InvestigationSection) column_left.getChildAt(0);
             evidenceSection = (InvestigationSection) column_right.getChildAt(0);
         } else {
@@ -118,11 +118,13 @@ public class EvidenceFragment extends InvestigationFragment {
         ghostList = new GhostList(requireContext());
         evidenceList = new EvidenceList(requireContext());
 
-        ghostList.init(evidenceViewModel, popupWindow,
-                ghostSection.findViewById(R.id.progressbar),
+        ghostList.init(
+                globalPreferencesViewModel, evidenceViewModel,
+                popupWindow, ghostSection.findViewById(R.id.progressbar),
                 adRequest);
-        evidenceList.init(evidenceViewModel, popupWindow,
-                evidenceSection.findViewById(R.id.progressbar),
+        evidenceList.init(
+                globalPreferencesViewModel, evidenceViewModel,
+                popupWindow, evidenceSection.findViewById(R.id.progressbar),
                 adRequest, ghostList);
 
         ViewStub list_ghosts = ghostSection.findViewById(R.id.list);
@@ -210,8 +212,10 @@ public class EvidenceFragment extends InvestigationFragment {
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        new Thread(() -> ghostList.createGhostViews(popupWindow)).start();
-        new Thread(() -> evidenceList.createEvidenceViews(popupWindow)).start();
+        ghostList.createPopupWindow(popupWindow);
+        evidenceList.createPopupWindow(popupWindow);
+        new Thread(() -> ghostList.createViews()).start();
+        new Thread(() -> evidenceList.createViews()).start();
 
     }
 

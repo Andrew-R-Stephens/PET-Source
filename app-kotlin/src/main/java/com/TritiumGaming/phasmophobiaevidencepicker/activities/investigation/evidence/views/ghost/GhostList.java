@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,11 +13,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostPopupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationList;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
 
 public class GhostList extends InvestigationList {
-
-    private GhostPopupData popupData;
 
     public GhostList(Context context) {
         super(context);
@@ -36,33 +34,28 @@ public class GhostList extends InvestigationList {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public void init(EvidenceViewModel evidenceViewModel, PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
-        super.init(evidenceViewModel, popupWindow, progressBar, adRequest);
+    public void init(GlobalPreferencesViewModel globalPreferencesViewModel,
+                     EvidenceViewModel evidenceViewModel,
+                     PopupWindow popupWindow,
+                     ProgressBar progressBar, AdRequest adRequest) {
+        super.init(globalPreferencesViewModel, evidenceViewModel,
+                popupWindow, progressBar, adRequest);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    public void createGhostViews(PopupWindow popupWindow) {
-
-        popupData = new GhostPopupData(getContext());
-
-        Activity activity = (Activity) getContext();
-        if(activity != null) {
-            activity.runOnUiThread(() -> {
-                buildGhostViews(popupWindow);
-
-                post(() -> haltProgressAnimation(progressBar));
-            });
-        }
-
+    @SuppressLint("ResourceType")
+    public void createPopupWindow(PopupWindow popupWindow) {
+        super.createPopupWindow(popupWindow, new GhostPopupData(getContext()));
     }
 
-    public void requestInvalidateGhostContainer() {
-        if(evidenceViewModel.getGhostOrderData().hasChanges()) {
+
+    public void requestInvalidateGhostContainer(boolean canReorder) {
+        if(evidenceViewModel.getGhostOrderData().hasChanges() && canReorder) {
             reorderGhostViews();
         } else {
             updateGhostViews();
         }
     }
+
     public void forceResetGhostContainer() {
         reorderGhostViews();
     }
@@ -80,7 +73,6 @@ public class GhostList extends InvestigationList {
             this.addView(childView);
 
         }
-
     }
 
     private void updateGhostViews() {
@@ -90,12 +82,8 @@ public class GhostList extends InvestigationList {
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private void buildGhostViews(PopupWindow pw) {
-
-        this.popupWindow = pw;
-
-        if(getContext() == null) { return; }
+    @Override
+    protected void buildViews() {
 
         int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
 
@@ -114,9 +102,7 @@ public class GhostList extends InvestigationList {
 
                     GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
                     ghostPopupWindow.setPopupWindow(popupWindow);
-                    ghostPopupWindow.build(evidenceViewModel, popupData, j, adRequest);
-                    //popupWindow = ghostPopupWindow.getPopupWindow();
-
+                    ghostPopupWindow.build(evidenceViewModel, (GhostPopupData) popupData, j, adRequest);
                 }
             };
 

@@ -10,10 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode
@@ -110,11 +106,11 @@ fun EquipmentTierItem(
                                 true -> Modifier
                                     .border(
                                         2.dp,
-                                        Color(getColorFromAttribute(context, R.attr.codex_4)))
+                                        Color(getColorFromAttribute(context, R.attr.codex4_border)))
                                 false -> Modifier
                                     .border(
                                         2.dp,
-                                        Color(getColorFromAttribute(context, R.attr.codex_2)))
+                                        Color(getColorFromAttribute(context, R.attr.codex3_itemBorder)))
                             }
                         )
 
@@ -170,11 +166,11 @@ fun PossessionItem(
                     true -> Modifier
                         .border(
                             2.dp,
-                            Color(getColorFromAttribute(context, R.attr.codex_4)))
+                            Color(getColorFromAttribute(context, R.attr.codex4_border)))
                     false -> Modifier
                         .border(
                             2.dp,
-                            Color(getColorFromAttribute(context, R.attr.codex_2)))
+                            Color(getColorFromAttribute(context, R.attr.codex3_itemBorder)))
                 }
             )
             .size(200.dp)
@@ -202,7 +198,7 @@ fun GridPattern() {
             .aspectRatio(1f)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.evidence_item_layer_grid),
+            painter = painterResource(id = R.drawable.itemstore_grid),
             contentDescription = "Tier Image",
             modifier = Modifier
                 .fillMaxSize()
@@ -235,23 +231,22 @@ fun PossessionImage(
 }
 
 @Composable
-@Preview
 fun TierEmblemPlain(
     tierLevel: TierLevel = Two
 ) {
     Box(
         modifier = Modifier
-            .padding(2.dp)
+            .size(200.dp)
+            .padding(8.dp)
     ) {
         TierEmblem(
             tierLevel = tierLevel,
-            tintColor = Color(getColorFromAttribute(LocalContext.current, R.attr.codex_4))
+            tintColor = Color(getColorFromAttribute(LocalContext.current, R.attr.codex4_tierAlt))
         )
     }
 }
 
 @Composable
-@Preview
 fun TierEmblemBordered(
     tierLevel: TierLevel = One,
     selected: Boolean = false
@@ -263,22 +258,21 @@ fun TierEmblemBordered(
                 Modifier
                     .background(
                         if (selected) {
-                            Color(getColorFromAttribute(LocalContext.current, R.attr.codex_4))
+                            Color(getColorFromAttribute(LocalContext.current, R.attr.codex4_background))
                         } else {
-                            Color(getColorFromAttribute(LocalContext.current, R.attr.codex_2))
+                            Color(getColorFromAttribute(LocalContext.current, R.attr.codex3_tierBackground))
                         }
                     )
+                    .padding(8.dp)
             )
-            .padding(2.dp)
     ) {
         val tintColor =
-            Color(getColorFromAttribute(LocalContext.current, R.attr.codex_3))
+            Color(getColorFromAttribute(LocalContext.current, R.attr.codex2_tierNormal))
 
         TierEmblem(
             tierLevel = tierLevel,
             tintColor = tintColor
         )
-
     }
 }
 

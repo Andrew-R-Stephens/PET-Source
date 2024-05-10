@@ -66,6 +66,7 @@
 
         <item name="switchColorOn">@color/red_M300</item>
         <item name="switchColorOff">@color/white_M200</item>
+
         <item name="inboxNotification">@color/red_M300</item>
 
         <item name="selectedColor">@color/red</item>
@@ -86,12 +87,48 @@
         <item name="buttonFilterOnPrimary">@color/white</item>
 
         <!-- Codex Colors -->
-        <item name="codex_1">#161C1C</item>
-        <item name="codex_2">#99AEB3</item>
-        <item name="codex_3">#151B1B</item>
-        <item name="codex_4">#FFB43D</item>
-        <item name="codex_5">#2D3635</item>
-        <item name="codex_grid_background_tint">#40161C1C</item>
+        <item name="codex1">#161C1C</item>
+        <item name="codex1_itemBackground">?attr/codex1</item>
+        <item name="codex1_gh0stBackground">?attr/codex1</item>
+        <item name="codex1_adViewBackground">?attr/codex1</item>
+        <item name="codex1_cardArrow">?attr/codex1</item>
+
+        <item name="codex2">#151B1B</item>
+        <item name="codex2_headerBackground">?attr/codex2</item>
+        <item name="codex2_tierNormal">?attr/codex2</item>
+        <item name="codex2_navBackIcon">?attr/codex2</item>
+        <item name="codex2_popupCloseIcon">?attr/codex2</item>
+        <item name="codex2_itemBorder">?attr/codex2</item>
+
+        <item name="codex3">#99AEB3</item>
+        <item name="codex3_itemBorder">?attr/codex3</item>
+        <item name="codex3_tierBackground">?attr/codex3</item>
+        <item name="codex3_navHeaderBackground">?attr/codex3</item>
+        <item name="codex3_throbber">?attr/codex3</item>
+        <item name="codex3_other">?attr/codex3</item>
+        <item name="codex3_cardBorder">?attr/codex3</item>
+        <item name="codex3_groupHeaderText">?attr/codex3</item>
+        <item name="codex3_popupHeaderText">?attr/codex3</item>
+        <item name="codex3_popupCloseBackground">?attr/codex3</item>
+        <item name="codex3_buttonBackground">?attr/codex3</item>
+        <item name="codex3_popupAttrIcons">?attr/codex3</item>
+        <item name="codex3_popupAttrText">?attr/codex3</item>
+        <item name="codex3_gh0stTextNormal">?attr/codex3</item>
+
+        <item name="codex4">#FFB43D</item>
+        <item name="codex4_border">?attr/codex4</item>
+        <item name="codex4_tierAlt">?attr/codex4</item>
+        <item name="codex4_background">?attr/codex4</item>
+        <item name="codex4_gh0stTextAlt">?attr/codex4</item>
+        <item name="codex4_unsel">?attr/codex4</item>
+
+        <item name="codex5">#2D3635</item>
+        <item name="codex5_header">?attr/codex5</item>
+        <item name="codex5_sel">?attr/codex5</item>
+        <item name="codex5_navHeaderText">?attr/codex5</item>
+
+        <item name="codex6_gridBackground">#40161C1C</item>
+        <item name="codex7_gridStroke">#40FFFFFF</item>
 
         <item name="buttonColor">?attr/light_inactive</item>
         <item name="colorOnButton">?attr/textColorBody</item>

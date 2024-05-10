@@ -18,26 +18,36 @@ public class POISpinner extends AppCompatSpinner {
 
     public POISpinner(@NonNull Context context) {
         super(context);
+        init();
     }
 
     public POISpinner(@NonNull Context context, int mode) {
         super(context, mode);
+        init();
     }
 
     public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
     public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int mode) {
         super(context, attrs, defStyleAttr, mode);
+        init();
     }
 
     public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int mode, Resources.Theme popupTheme) {
         super(context, attrs, defStyleAttr, mode, popupTheme);
+        init();
+    }
+
+    private void init() {
+        // --
     }
 
     public void populateAdapter(@Nullable MapMenuViewModel mapMenuViewModel) {

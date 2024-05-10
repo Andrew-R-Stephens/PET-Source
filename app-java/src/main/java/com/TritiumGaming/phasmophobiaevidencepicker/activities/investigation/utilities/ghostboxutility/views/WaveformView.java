@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 /**
  * WaveformView class
@@ -92,14 +93,9 @@ public class WaveformView extends View {
                 color_grid = Color.argb(50, 150, 0, 0),
                 color_bg = Color.argb(50, 200, 0, 0),
                 color_waveform = Color.RED;
-        TypedValue typedValue = new TypedValue();
-        if (getContext() != null && getContext().getTheme() != null) {
-            Resources.Theme theme = getContext().getTheme();
-            theme.resolveAttribute(R.attr.textColorPrimary, typedValue, true);
-            color_waveform = typedValue.data;
-            theme.resolveAttribute(R.attr.textColorSecondary, typedValue, true);
-            color_frame = typedValue.data;
-        }
+
+        color_waveform = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
+        color_frame = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorSecondary);
 
         waveformPaint.setStrokeWidth(5f);
         waveformPaint.setStyle(Paint.Style.STROKE);

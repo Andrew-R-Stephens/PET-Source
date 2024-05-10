@@ -21,16 +21,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout27"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".075"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_cancelbutton"
+                android:id="@+id/listener_cancel"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/label_languagesTitle"
                 app:layout_constraintEnd_toStartOf="@+id/label_languagesTitle"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -39,15 +40,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                     android:id="@+id/imageView2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    android:tint="?attr/textColorBody"
+                    app:PETImageButtonType="cancel"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/language_cancel_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_neg_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_cancel_label"
@@ -79,14 +84,14 @@
                 android:maxLines="1"
                 android:text="@string/titlescreen_languages_label"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_confirmbutton"
+                app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/constraintlayout_cancelbutton"
+                app:layout_constraintStart_toEndOf="@+id/listener_cancel"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".4" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintlayout_confirmbutton"
+                android:id="@+id/listener_confirm"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/label_languagesTitle"
@@ -96,15 +101,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                     android:id="@+id/imageView3"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="4dp"
+                    android:tint="?attr/textColorBody"
+                    app:PETImageButtonType="confirm"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/language_confirm_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_pos_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/language_confirm_label"

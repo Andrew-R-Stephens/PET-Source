@@ -11,7 +11,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 public class EvidenceRadioButton extends AppCompatImageView {
 
-
     public EvidenceRadioButton(@NonNull Context context) {
         super(context);
         init();
@@ -28,7 +27,7 @@ public class EvidenceRadioButton extends AppCompatImageView {
     }
 
     public void init() {
-        setImageResource(R.drawable.investigation_evidence_selector);
+        //setImageResource(R.drawable.investigation_evidence_selector);
     }
 
     public void setState(boolean isSelected) {

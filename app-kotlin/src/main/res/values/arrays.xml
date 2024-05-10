@@ -31,7 +31,7 @@
     </string-array>
 
     <!-- Book Writing Images -->
-    <integer-array name= "anim_bookwriting_images">
+    <integer-array name= "anim_titlescreen_images">
         <item>@drawable/anim_voodoodoll</item>
         <item>@drawable/anim_ouijaboard</item>
         <item>@drawable/anim_writing_1</item>

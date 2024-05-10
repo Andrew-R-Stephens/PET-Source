@@ -11,7 +11,7 @@
         </item>
 
         <item
-            android:drawable="@drawable/evidence_item_layer_grid"/>
+            android:drawable="@drawable/itemstore_grid"/>
 
         <item
             android:id="@+id/ic_type"
@@ -29,7 +29,7 @@
                     <shape>
                         <stroke
                             android:width="2dp"
-                            android:color="?attr/codex_2"/>
+                            android:color="?attr/codex3_itemBorder"/>
                     </shape>
                 </item>
                 <item
@@ -37,7 +37,7 @@
                     <shape>
                         <stroke
                             android:width="2dp"
-                            android:color="?attr/codex_4"/>
+                            android:color="?attr/codex4_border"/>
                     </shape>
                 </item>
             </selector>

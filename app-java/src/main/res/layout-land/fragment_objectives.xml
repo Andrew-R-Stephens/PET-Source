@@ -9,7 +9,10 @@
         android:id="@+id/constraintLayout64"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout61"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +22,7 @@
             android:id="@+id/label_objectivesTitle"
             style="?attr/primaryFont_Regular_Auto"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36sp"
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/objectives_title_optional_objectives"
@@ -33,7 +36,7 @@
             android:id="@+id/constraintLayout_objectivePool"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +45,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +61,7 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/objectives_title_optional_objective_1"
                     android:textAllCaps="false"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout13"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +70,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout13"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +79,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence1_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -88,7 +91,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_1"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_min="48dp"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="DuplicateSpeakableTextCheck" />
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
@@ -101,10 +104,10 @@
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence1_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence1_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence1_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +116,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout_controls"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +132,7 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/objectives_title_optional_objective_2"
                     android:textAllCaps="false"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout23"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +141,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout23"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +150,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence2_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -159,7 +162,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_min="48dp" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_2"
@@ -171,10 +174,10 @@
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence2_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence2_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence2_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -183,7 +186,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_controls"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -198,7 +201,7 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/objectives_title_optional_objective_3"
                     android:textAllCaps="false"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout33"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +210,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout33"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +219,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence3_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -228,7 +231,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_3"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_min="48dp" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner
                         android:id="@+id/objectives_item_3"
@@ -240,24 +243,27 @@
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence3_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence3_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence3_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout61"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout64"
@@ -268,17 +274,21 @@
             android:id="@+id/label_debriefTitle"
             style="?attr/primaryFont_Regular_Auto"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:gravity="center"
             android:text="@string/objectives_title_investigation_debrief"
             android:textColor="?attr/textColorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout10"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -326,7 +336,7 @@
                     android:textColorHighlight="#808F8F8F"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_min="20sp"
+                    app:layout_constraintHeight_min="48dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_ghostName"
                     app:textInputLayoutFocusedRectEnabled="false" />

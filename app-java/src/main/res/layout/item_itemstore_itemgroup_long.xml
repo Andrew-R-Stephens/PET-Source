@@ -27,7 +27,7 @@
         android:layout_marginBottom="-1dp"
         android:background="@drawable/equipment_name_border"
         android:text="@string/equipment_info_name_dots"
-        android:textColor="?attr/codex_2"/>
+        android:textColor="?attr/codex3_groupHeaderText"/>
 
         <HorizontalScrollView
             android:id="@+id/itemGroup"

@@ -27,7 +27,7 @@
         android:singleLine="true"
         android:text="@string/equipment_info_name_dots"
         android:textAllCaps="true"
-        android:textColor="?attr/codex_2"
+        android:textColor="?attr/codex3_groupHeaderText"
         android:textSize="18sp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat

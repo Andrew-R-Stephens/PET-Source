@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:id="@+id/label_objectivesTitle"
                 style="?attr/primaryFont_Regular_Auto"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="36dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/objectives_title_optional_objectives"
@@ -40,35 +41,25 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout15"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_debriefTitle"
+            style="?attr/primaryFont_Regular_Auto"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/objectives_title_investigation_debrief"
+            android:textColor="?attr/textColorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".075"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_objectivePool">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_debriefTitle"
-                style="?attr/primaryFont_Regular_Auto"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:text="@string/objectives_title_investigation_debrief"
-                android:textColor="?attr/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_objectivePool" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_objectivePool"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
+            app:layout_constraintBottom_toTopOf="@+id/label_debriefTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".35"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,12 +88,13 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/label_objectivetitle1"
-                        style="?attr/primaryFont_Regular_Auto"
+                        style="?attr/primaryFont_Regular_Manual"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="start|center_vertical"
                         android:text="@string/objectives_title_optional_objective_1"
                         android:textAllCaps="false"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +116,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence1_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -142,16 +134,18 @@
                         android:id="@+id/objectives_item_1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:backgroundTint="#FFFFFF"
                         android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="?attr/textColorBody"
+                        android:popupBackground="?attr/backgroundColorOnBackground"
+                        android:backgroundTint="?attr/textColorBody"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence1_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence1_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence1_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -182,7 +176,8 @@
                         android:id="@+id/label_objectivetitle2"
                         style="?attr/primaryFont_Regular_Auto"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
                         android:gravity="start|center_vertical"
                         android:text="@string/objectives_title_optional_objective_2"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -206,7 +201,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence2_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -223,16 +218,18 @@
                         android:id="@+id/objectives_item_2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:backgroundTint="#FFFFFF"
                         android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="?attr/textColorBody"
+                        android:popupBackground="?attr/backgroundColorOnBackground"
+                        android:backgroundTint="?attr/textColorBody"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence2_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence2_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence2_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -262,7 +259,8 @@
                         android:id="@+id/label_objectivetitle3"
                         style="?attr/primaryFont_Regular_Auto"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
                         android:gravity="start|center_vertical"
                         android:text="@string/objectives_title_optional_objective_3"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -287,7 +285,7 @@
                     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton
                         android:id="@+id/evidence3_button_completed"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
+                        android:layout_height="48dp"
                         android:adjustViewBounds="true"
                         android:background="@null"
                         android:contentDescription="@string/app_name"
@@ -296,7 +294,6 @@
                         android:tint="#FFFFFF"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".85"
                         app:layout_constraintStart_toEndOf="@+id/objectives_item_3"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -304,16 +301,18 @@
                         android:id="@+id/objectives_item_3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:backgroundTint="#FFFFFF"
                         android:contentDescription="@string/app_name"
                         android:dropDownWidth="wrap_content"
                         android:overlapAnchor="false"
                         android:scrollbars="vertical"
                         android:spinnerMode="dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="?attr/textColorBody"
+                        android:popupBackground="?attr/backgroundColorOnBackground"
+                        android:backgroundTint="?attr/textColorBody"
+                        app:layout_constraintBottom_toBottomOf="@+id/evidence3_button_completed"
                         app:layout_constraintEnd_toStartOf="@+id/evidence3_button_completed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/evidence3_button_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -329,7 +328,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".12"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
+            app:layout_constraintTop_toBottomOf="@+id/label_debriefTitle">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_ghostName"
@@ -362,6 +361,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/icon_square"
+                    android:backgroundTint="?attr/textColorBody"
                     android:gravity="center"
                     android:hint="@string/objectives_ghostname_note"
                     android:imeOptions="actionDone"
@@ -387,6 +387,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".2"
+            app:layout_constraintWidth_percent=".8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
@@ -405,15 +406,19 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_alone"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1"
                 android:background="@color/transparent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_response_alone"
                 app:layout_constraintBottom_toTopOf="@+id/label_alone"
                 app:layout_constraintEnd_toStartOf="@+id/button_everyone"
+                app:layout_constraintHeight_max="64dp"
                 app:layout_constraintHeight_percent=".5"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
@@ -422,8 +427,11 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_everyone"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                app:layout_constraintDimensionRatio="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:adjustViewBounds="true"
                 android:background="@color/transparent"
                 android:contentDescription="@string/app_name"
@@ -436,15 +444,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_alone"
-                style="?attr/primaryFont_Regular_AutoSqueeze"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="?attr/primaryFont_Regular_Manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/objectives_title_response_alone"
+                android:textSize="18sp"
+                app:layout_constraintWidth_default="percent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button_alone"
-                app:layout_constraintHeight_percent=".15"
-                app:layout_constrainedWidth="true"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/button_alone"
                 app:layout_constraintTop_toBottomOf="@+id/button_alone" />
@@ -452,15 +461,17 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_everyone"
                 style="?attr/primaryFont_Regular_AutoSqueeze"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/objectives_title_response_everyone"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="@+id/label_alone"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button_everyone"
                 app:layout_constraintStart_toStartOf="@+id/button_everyone"
-                app:layout_constraintTop_toTopOf="@+id/label_alone" />
+                app:layout_constraintTop_toBottomOf="@+id/button_everyone"
+                app:layout_constraintWidth_default="percent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/blocking_group"
@@ -472,8 +483,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/button_alone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/button_alone"
-                app:layout_constraintWidth_percent=".8">
+                app:layout_constraintTop_toTopOf="@+id/button_alone">
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

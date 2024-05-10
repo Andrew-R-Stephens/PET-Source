@@ -1,9 +1,9 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/text1"
     style="?attr/quaternaryFont_Regular_Auto"
     android:textAlignment="inherit"
-    android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="48sp"
     android:ellipsize="marquee"
@@ -11,8 +11,4 @@
     android:padding="8dp"
     android:maxLines="2"
     android:overlapAnchor="false"
-    android:textColor="?attr/textColorBody"
-    app:autoSizeTextType="uniform"
-    app:autoSizeMinTextSize="14sp"
-    app:autoSizeMaxTextSize="20sp"
-    app:autoSizeStepGranularity="1sp"/>
+    android:textColor="?attr/textColorBody"/>

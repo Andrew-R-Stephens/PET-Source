@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -230,28 +229,29 @@ fun RulingGroup(
     modifier: Modifier = Modifier,
     evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
-    state: Int = 1,
     onClick: () -> Unit = {}
 ) {
     val radioButtonState by evidenceViewModel.radioButtonsChecked.collectAsState()
 
     Row(
         modifier = modifier
+            //.defaultMinSize(Dp.Unspecified, 48.dp)
             .fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Evidence.Ruling.entries.forEachIndexed { index, _ ->
-            Box {
-                RulingSelector(
-                    evidenceViewModel = evidenceViewModel,
-                    groupIndex = groupIndex,
-                    rulingType = SelectionState(index),
-                    rulingState = index == radioButtonState[groupIndex],
-                    onSelection = {
-                        onClick()
-                    }
-                )
-            }
+            RulingSelector(
+                evidenceViewModel = evidenceViewModel,
+                groupIndex = groupIndex,
+                rulingType = SelectionState(index),
+                rulingState = index == radioButtonState[groupIndex],
+                onSelection = {
+                    onClick()
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f)
+            )
         }
 
     }
@@ -260,6 +260,7 @@ fun RulingGroup(
 @Composable
 @Preview
 fun RulingSelector(
+    modifier: Modifier = Modifier,
     evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
     groupIndex: Int = 0,
     rulingType: SelectionState = Neutral,
@@ -272,15 +273,15 @@ fun RulingSelector(
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
     val positiveColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.positiveSelColor))
 
-    val rulingDrawable = when(rulingType) {
-        Negative -> Pair(R.drawable.icon_selector_neg_unsel, negativeColor)
-        Positive -> Pair(R.drawable.icon_selector_pos_unsel, positiveColor)
-        else -> Pair(R.drawable.icon_selector_inc_unsel, neutralColor)
+    val rulingDrawable =
+        when(rulingType) {
+            Negative -> Pair(R.drawable.icon_selector_neg_unsel, negativeColor)
+            Positive -> Pair(R.drawable.icon_selector_pos_unsel, positiveColor)
+            else -> Pair(R.drawable.icon_selector_inc_unsel, neutralColor)
     }
 
     IconButton(
-        modifier = Modifier
-            .padding(2.dp),
+        modifier = modifier,
         onClick = {
             evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
             evidenceViewModel.investigationData?.evidenceList?.list?.get(groupIndex)?.ruling =
@@ -298,7 +299,9 @@ fun RulingSelector(
                 colorFilter = ColorFilter.tint(
                     if (rulingState) rulingDrawable.second
                     else neutralColor
-                )
+                ),
+                modifier = Modifier
+                    .fillMaxSize(.8f)
             )
 
             if (rulingState) {

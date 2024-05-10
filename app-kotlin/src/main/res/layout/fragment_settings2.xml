@@ -50,17 +50,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                     android:id="@+id/imageView2"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
+                    android:tint="?attr/textColorBody"
+                    app:PETImageButtonType="cancel"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_neg_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_cancel_label"
@@ -89,17 +91,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
                     android:id="@+id/imageView3"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:adjustViewBounds="true"
                     android:padding="4dp"
+                    app:PETImageButtonType="confirm"
+                    android:tint="?attr/textColorBody"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_pos_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_confirm_label"
@@ -240,6 +244,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enablehuntaudioqueue" />
+
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
+                    android:id="@+id/toggle_reorderGhostViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enableGhostReorder" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

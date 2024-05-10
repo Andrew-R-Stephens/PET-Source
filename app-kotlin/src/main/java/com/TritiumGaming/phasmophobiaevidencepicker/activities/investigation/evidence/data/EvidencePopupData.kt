@@ -1,124 +1,107 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
+import android.content.Context
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntegerRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+class EvidencePopupData(context: Context) : InvestigationPopupData() {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+    private val evidenceViewDatas = mutableListOf<EvidencePopupRecord>()
 
-public class EvidencePopupData {
+    val count: Int
+        get() = evidenceViewDatas.size
 
-    private EvidencePopupRecord[] evidenceViewDatas;
+    init {
+        val resources = context.resources
 
-    public EvidencePopupData(@Nullable Context context) {
+        val keyEvidenceName = 0
+        val keyDescriptions = 1
+        val keyAnimationResources = 2
+        val keyEvidenceCost = 3
+        val keyUnlockLevels = 4
 
-        if(context == null) { return; }
-        Resources resources = context.getResources();
-        if(resources == null) { return; }
+        val evidenceTypes = resources.obtainTypedArray(R.array.equipment_tiers_arrays)
+        for (i in 0 until evidenceTypes.length()) {
+            val evidenceType =
+                resources.obtainTypedArray(evidenceTypes.getResourceId(i, 0))
 
-        TypedArray evidenceTypes =
-                resources.obtainTypedArray(R.array.equipment_tiers_arrays);
+            @StringRes val evidenceName = evidenceType.getResourceId(keyEvidenceName, 0)
+            @StringRes val descriptions = intArrayFromTypedArray(resources, evidenceType, keyDescriptions)
+            @DrawableRes val animationResources = intArrayFromTypedArray(resources, evidenceType, keyAnimationResources)
+            @IntegerRes val evidenceCost = evidenceType.getResourceId(keyEvidenceCost, 0)
+            @IntegerRes val unlockLevels = intArrayFromTypedArray(resources, evidenceType, keyUnlockLevels)
 
-        evidenceViewDatas = new EvidencePopupRecord[evidenceTypes.length()];
+            evidenceType.recycle()
 
-        for(int i = 0; i < evidenceViewDatas.length; i++) {
+            val evidenceViewData = EvidencePopupRecord(
+                i, evidenceName, evidenceCost, unlockLevels, descriptions, animationResources)
 
-            @StringRes int evidenceName;
-            @StringRes int[] descriptions = new int[4];
-            @DrawableRes int[] animations = new int[4];
-            @IntegerRes int[] unlock_level = new int[3];
-            @IntegerRes int evidenceCost;
-
-            TypedArray evidenceType =
-                    resources.obtainTypedArray(evidenceTypes.getResourceId(i, 0));
-            //Log.d("EvType", evidenceType.toString() + "\n" + evidenceType.getString(0));
-
-            evidenceName = evidenceType.getResourceId(0, 0);
-            evidenceCost = evidenceType.getResourceId(3, 0);
-
-            @SuppressLint("ResourceType")
-            TypedArray evidenceDescription =
-                    resources.obtainTypedArray(evidenceType.getResourceId(1, 0));
-            for (int j = 0; j < evidenceDescription.length(); j++) {
-                descriptions[j] = evidenceDescription.getResourceId(j, 0);
-                //Log.d("EvDescription", getString(descriptions[j]) + "");
-            }
-            evidenceDescription.recycle(); //cleanup
-
-            @SuppressLint("ResourceType")
-            TypedArray evidenceAnimations =
-                    resources.obtainTypedArray(evidenceType.getResourceId(2, 0));
-            for (int j = 0; j < evidenceAnimations.length(); j++) {
-                animations[j] = evidenceAnimations.getResourceId(j, 0);
-                //Log.d("EvDAnimation", animations[j] + "");
-            }
-            evidenceAnimations.recycle(); //cleanup
-
-            @SuppressLint("ResourceType")
-            TypedArray evidenceLevels =
-                    resources.obtainTypedArray(evidenceType.getResourceId(4, 0));
-            for (int j = 0; j < evidenceLevels.length(); j++) {
-                unlock_level[j] = evidenceLevels.getResourceId(j, 0);
-                //Log.d("EvDALevels", unlock_level[j] + "");
-            }
-            evidenceLevels.recycle(); //cleanup
-            evidenceType.recycle();
-
-            EvidencePopupRecord evidenceViewData = new EvidencePopupRecord(
-                    i, evidenceName,
-                    evidenceCost, unlock_level,
-                    descriptions, animations);
-
-            evidenceViewDatas[i] = evidenceViewData;
+            evidenceViewDatas.add(evidenceViewData)
         }
-        evidenceTypes.recycle();
 
+        evidenceTypes.recycle()
     }
 
-    public int getCount() {
-        return evidenceViewDatas == null ? 0 : evidenceViewDatas.length;
+    fun getEvidencePopupRecordAt(index: Int): EvidencePopupRecord {
+        return evidenceViewDatas[index]
     }
 
-    @Nullable
-    public EvidencePopupRecord getEvidencePopupRecordAt(int index) {
-        if(evidenceViewDatas == null) { return null; }
+    @JvmRecord
+    data class EvidencePopupRecord(
+        @JvmField val index: Int,
+        @StringRes val name: Int,
+        @IntegerRes val cost: Int,
+        @IntegerRes val unlock_level: IntArray,
+        @StringRes val descriptions: IntArray,
+        @DrawableRes val animations: IntArray
+    ) {
+        fun getName(c: Context): String {
+            return c.getString(name)
+        }
 
-        return evidenceViewDatas[index];
+        fun getCost(c: Context): String {
+            return c.resources.getInteger(cost).toString()
+        }
+
+        @DrawableRes
+        fun getAnimation(i: Int): Int {
+            return animations[i]
+        }
+
+        fun getDescription(c: Context, i: Int): String {
+            return c.getString(descriptions[i])
+        }
+
+        fun getUnlockLevel(c: Context, i: Int): String {
+            return c.resources.getInteger(unlock_level[i]).toString()
+        }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as EvidencePopupRecord
+
+            if (index != other.index) return false
+            if (name != other.name) return false
+            if (cost != other.cost) return false
+            if (!unlock_level.contentEquals(other.unlock_level)) return false
+            if (!descriptions.contentEquals(other.descriptions)) return false
+            if (!animations.contentEquals(other.animations)) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = index
+            result = 31 * result + name
+            result = 31 * result + cost
+            result = 31 * result + unlock_level.contentHashCode()
+            result = 31 * result + descriptions.contentHashCode()
+            result = 31 * result + animations.contentHashCode()
+            return result
+        }
     }
-
-    public record EvidencePopupRecord(
-            int index, @StringRes int name,
-            @IntegerRes int cost, @IntegerRes int[] unlock_level,
-            @StringRes int[] descriptions, @DrawableRes int[] animations) {
-
-        public String getName(@NonNull Context c) {
-            return c.getString(name);
-        }
-
-        @NonNull
-        public String getCost(@NonNull Context c) {
-            return String.valueOf(c.getResources().getInteger(cost));
-        }
-
-        public @DrawableRes int getAnimation(Context c, int i) {
-            return animations[i];
-        }
-
-        public String getDescription(@NonNull Context c, int i) {
-            return c.getString(descriptions[i]);
-        }
-
-        @NonNull
-        public String getUnlockLevel(@NonNull Context c, int i) {
-            return String.valueOf(c.getResources().getInteger(unlock_level[i]));
-        }
-    }
-
 }

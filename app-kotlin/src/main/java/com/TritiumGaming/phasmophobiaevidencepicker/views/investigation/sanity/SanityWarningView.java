@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 /**
  * WarnTextView class
@@ -56,14 +57,9 @@ public class SanityWarningView extends AppCompatTextView {
     }
 
     private void init() {
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getContext().getTheme();
-        theme.resolveAttribute(R.attr.light_active, typedValue, true);
-        color_active = typedValue.data;
-        theme.resolveAttribute(R.attr.light_inactive, typedValue, true);
-        color_inactive = typedValue.data;
-        theme.resolveAttribute(R.attr.light_off, typedValue, true);
-        color_off = typedValue.data;
+        color_active = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_active);
+        color_inactive = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_inactive);
+        color_off = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_off);
 
         setDefaults();
     }

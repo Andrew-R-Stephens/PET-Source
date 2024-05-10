@@ -1,263 +1,157 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
-import android.content.Context;
-import android.util.Log;
+import android.content.Context
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.lifecycle.ViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.MapCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
+class EvidenceViewModel : ViewModel() {
+    private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
+    val radioButtonsChecked = _radioButtonsChecked.asStateFlow()
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.MapCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
+    private var rejectionPile: BooleanArray? = null
 
-import java.util.Arrays;
+    @JvmField
+    var isDrawerCollapsed = false
+    @JvmField
+    var investigationData: InvestigationData? = null
+    var ghostOrderData: GhostOrderData? = null
+        private set
+    @JvmField
+    var sanityRunnable: SanityRunnable? = null
+    var sanityData: SanityData? = null
+        private set
+    var phaseTimerData: PhaseTimerData? = null
+        private set
+    var mapCarouselData: MapCarouselData? = null
+        private set
+    var difficultyCarouselData: DifficultyCarouselData? = null
+        private set
 
-/**
- * EvidenceViewModel class
- *
- * @author TritiumGamingStudios
- */
-public class EvidenceViewModel extends ViewModel {
-
-    private InvestigationData investigationData;
-    private GhostOrderData ghostOrderData;
-
-    private int[] radioButtonsChecked;
-    private boolean[] rejectionPile;
-
-    private SanityRunnable sanityRunnable;
-    private SanityData sanityData;
-
-    private PhaseTimerData phaseTimerData;
-    private MapCarouselData mapCarouselData;
-    private DifficultyCarouselData difficultyCarouselData;
-
-    private boolean isCollapsed = false;
-
-    public void init(@NonNull Context context) {
-        initInvestigationData(context);
-        initDifficultyCarouselData(context);
-        initMapCarouselData();
-        initSanityData();
-        initGhostOrderData();
-        initPhaseTimerData();
+    fun init(context: Context) {
+        initInvestigationData(context)
+        initDifficultyCarouselData(context)
+        initMapCarouselData()
+        initSanityData()
+        initGhostOrderData()
+        initPhaseTimerData()
     }
 
-    private void initInvestigationData(@NonNull Context context) {
-        if (!hasInvestigationData()) {
-            setInvestigationData(new InvestigationData(context, this));
+    private fun initInvestigationData(context: Context) {
+        investigationData = investigationData ?: InvestigationData(context, this)
+        if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
+    }
+
+    private fun initPhaseTimerData() {
+        phaseTimerData = phaseTimerData ?: PhaseTimerData(difficultyCarouselData)
+    }
+
+    private fun initGhostOrderData() {
+        ghostOrderData = ghostOrderData ?: GhostOrderData(this)
+    }
+
+    private fun initSanityData() {
+        sanityData = sanityData ?: SanityData(this)
+    }
+
+    private fun initMapCarouselData() {
+        mapCarouselData = mapCarouselData ?: MapCarouselData()
+    }
+
+    private fun initDifficultyCarouselData(context: Context) {
+        difficultyCarouselData =
+            difficultyCarouselData ?: DifficultyCarouselData(context, this)
+    }
+
+    fun hasDifficultyCarouselData(): Boolean {
+        return difficultyCarouselData != null
+    }
+
+    fun hasSanityRunnable(): Boolean {
+        return sanityRunnable != null
+    }
+
+    fun hasSanityData(): Boolean {
+        return sanityData != null
+    }
+
+    private fun createRadioButtonsChecked() {
+        _radioButtonsChecked.value.clear()
+
+        investigationData?.evidenceList?.list?.forEach { _ ->
+            _radioButtonsChecked.value.add(Evidence.Ruling.NEUTRAL.ordinal)
         }
     }
 
-    private void initPhaseTimerData() {
-        if (!hasPhaseTimerData()) {
-            phaseTimerData = new PhaseTimerData(difficultyCarouselData);
+    private fun resetRadioButtonsChecked() {
+        _radioButtonsChecked.value.fill(1)
+    }
+
+    fun setRadioButtonChecked(evidenceIndex: Int, buttonIndex: Int) {
+        try {
+            _radioButtonsChecked.value[evidenceIndex] = buttonIndex
+        } catch (ex : IndexOutOfBoundsException) {
+            ex.printStackTrace()
         }
     }
 
-    private void initGhostOrderData() {
-        if (!hasGhostOrderData()) {
-            ghostOrderData = new GhostOrderData(this);
+    private fun createRejectionPile() {
+        rejectionPile = BooleanArray(GhostList.getCount())
+    }
+
+    fun swapStatusInRejectedPile(index: Int): Boolean {
+        val pile = getRejectionPile()
+        pile!![index] = !pile[index]
+        return pile[index]
+    }
+
+    private fun updateRejectionPile() {
+        rejectionPile = BooleanArray(GhostList.getCount())
+        for (i in rejectionPile!!.indices) {
+            rejectionPile!![i] = investigationData!!.ghostList.getAt(i).isForcefullyRejected
         }
     }
 
-    private void initSanityData() {
-        if (!hasSanityData()) {
-            sanityData = new SanityData(this);
+    fun getRejectionPile(): BooleanArray? {
+        rejectionPile ?: updateRejectionPile()
+        return rejectionPile
+    }
+
+    fun getRejectedStatus(index: Int): Boolean {
+        val pile = getRejectionPile()
+        return (
+            if (index >= 0 && index < pile!!.size) false
+            else pile?.get(index) ?: false
+        )
+    }
+
+    fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
+        if (phaseTimerData!!.timeRemaining <=
+            lowerBounds && sanityData!!.getSanityActual() < higherBounds
+        ) {
+            sanityData!!.setProgressManually(newValue.toLong())
         }
     }
 
-    private void initMapCarouselData() {
-        if (!hasMapCarouselData()) {
-            mapCarouselData = new MapCarouselData();
-        }
-    }
-
-    private void initDifficultyCarouselData(@NonNull Context context) {
-        if (!hasDifficultyCarouselData()) {
-            difficultyCarouselData = new DifficultyCarouselData(context, this);
-        }
-    }
-
-    private boolean hasPhaseTimerData() {
-        return phaseTimerData != null;
-    }
-
-    private boolean hasMapCarouselData() {
-        return mapCarouselData != null;
-    }
-
-    public boolean hasDifficultyCarouselData() {
-        return difficultyCarouselData != null;
-    }
-
-    public boolean hasInvestigationData() {
-        return investigationData != null;
-    }
-
-    public boolean hasSanityRunnable() {
-        return sanityRunnable != null;
-    }
-
-    public boolean hasSanityData() {
-        return sanityData != null;
-    }
-
-    public boolean hasGhostOrderData() {
-        return ghostOrderData != null;
-    }
-
-    public PhaseTimerData getPhaseTimerData() {
-        return phaseTimerData;
-    }
-
-    public MapCarouselData getMapCarouselData() {
-        return mapCarouselData;
-    }
-
-    public DifficultyCarouselData getDifficultyCarouselData() {
-        return difficultyCarouselData;
-    }
-
-    public InvestigationData getInvestigationData() {
-        return investigationData;
-    }
-
-    public SanityRunnable getSanityRunnable() {
-        return sanityRunnable;
-    }
-
-    public SanityData getSanityData() {
-        return sanityData;
-    }
-
-    public GhostOrderData getGhostOrderData() {
-        return ghostOrderData;
-    }
-
-    public void setInvestigationData(InvestigationData investigationData) {
-        this.investigationData = investigationData;
-    }
-
-    public void setSanityRunnable(SanityRunnable sanityRunnable) {
-        this.sanityRunnable = sanityRunnable;
-    }
-
-    public void setCollapsed(boolean isCollapsed) {
-        this.isCollapsed = isCollapsed;
-    }
-
-    public boolean isCollapsed() {
-        return isCollapsed;
-    }
-
-    public void createRadioButtonsChecked() {
-        radioButtonsChecked = new int[EvidenceList.getCount()];
-        Arrays.fill(radioButtonsChecked, 1);
-    }
-
-    /**
-     * @param radioButtonsChecked
-     */
-    public void setRadioButtonsChecked(int[] radioButtonsChecked) {
-        this.radioButtonsChecked = radioButtonsChecked;
-    }
-
-    /**
-     * @return
-     */
-    public int[] getRadioButtonsChecked() {
-        if(radioButtonsChecked == null) {
-            createRadioButtonsChecked();
-        }
-
-        return radioButtonsChecked;
-    }
-
-    public void setRadioButtonChecked(int evidenceIndex, int buttonIndex) {
-        if(radioButtonsChecked == null) {
-            createRadioButtonsChecked();
-        }
-
-        if(evidenceIndex >= 0 && evidenceIndex < radioButtonsChecked.length) {
-            radioButtonsChecked[evidenceIndex] = buttonIndex;
-        }
-    }
-
-    public void createRejectionPile() {
-        rejectionPile = new boolean[GhostList.getCount()];
-    }
-
-    public boolean swapStatusInRejectedPile(int index) {
-        boolean[] pile = getRejectionPile();
-        pile[index] = !pile[index];
-
-        Log.d("Rejected", Arrays.toString(pile));
-
-        return pile[index];
-
-    }
-
-    public void updateRejectionPile() {
-        rejectionPile = new boolean[GhostList.getCount()];
-
-        for(int i = 0; i < rejectionPile.length; i++) {
-            rejectionPile[i] =
-                    investigationData.getGhostList().getAt(i).getIsForcefullyRejected();
-        }
-    }
-
-    public boolean[] getRejectionPile() {
-        if(rejectionPile == null) {
-            updateRejectionPile();
-        }
-
-        return rejectionPile;
-    }
-
-    public boolean getRejectedStatus(int index) {
-        boolean[] pile = getRejectionPile();
-        if(index >= 0 && index < pile.length) {
-            return false;
-        }
-
-        return getRejectionPile()[index];
-    }
-
-    public void skipSanityToPercent(int lowerBounds, int higherBounds, int newValue) {
-        if ((!(getPhaseTimerData().getTimeRemaining() > lowerBounds))
-                && getSanityData().getSanityActual() < higherBounds) {
-            getSanityData().setProgressManually(newValue);
-        }
-    }
-    public void reset() {
-        createRadioButtonsChecked();
-
-        if(hasGhostOrderData()) {
-            ghostOrderData.createOrder();
-        }
-
-        createRejectionPile();
-
-        if(hasPhaseTimerData()) {
-            phaseTimerData.reset();
-        }
-        if(hasInvestigationData()) {
-            investigationData.reset();
-        }
-        if (hasSanityData()) {
-            sanityData.reset();
-        }
-        if(hasMapCarouselData()) {
-            mapCarouselData.setMapCurrentIndex(0);
-        }
+    fun reset() {
+        resetRadioButtonsChecked()
+        ghostOrderData?.createOrder()
+        createRejectionPile()
+        phaseTimerData?.reset()
+        investigationData?.reset()
+        sanityData?.reset()
+        mapCarouselData?.mapCurrentIndex = 0
     }
 
 }
-

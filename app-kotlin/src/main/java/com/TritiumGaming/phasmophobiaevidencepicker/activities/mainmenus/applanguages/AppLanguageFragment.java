@@ -41,8 +41,8 @@ public class AppLanguageFragment extends MainMenuFragment {
         super.onViewCreated(view, savedInstanceState);
 
         // INITIALIZE VIEWS
-        ConstraintLayout btn_confirmClose = view.findViewById(R.id.constraintlayout_confirmbutton);
-        ConstraintLayout btn_cancelClose = view.findViewById(R.id.constraintlayout_cancelbutton);
+        View btn_confirmClose = view.findViewById(R.id.listener_confirm);
+        View btn_cancelClose = view.findViewById(R.id.listener_cancel);
         RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
 
         // LISTENERS
@@ -127,7 +127,7 @@ public class AppLanguageFragment extends MainMenuFragment {
                             R.array.languages_abbreviation));
             Log.d("Languages", "Set language = " + mainMenuViewModel.getLanguageSelectedOriginal());
         }
-        Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (mainMenuViewModel == null ? "null" : "not null." ));
+        //Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (mainMenuViewModel == null ? "null" : "not null." ));
 
         configureLanguage();
 

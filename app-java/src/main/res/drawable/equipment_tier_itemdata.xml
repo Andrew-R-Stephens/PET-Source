@@ -10,7 +10,7 @@
         </item>
 
         <item
-            android:drawable="@drawable/evidence_item_layer_grid"
+            android:drawable="@drawable/itemstore_grid"
             android:top="0dp"
             android:bottom="0dp"
             android:left="0dp"
@@ -40,7 +40,7 @@
             <shape>
                 <stroke
                     android:width="1dp"
-                    android:color="?attr/codex_3"/>
+                    android:color="?attr/codex2_itemBorder"/>
             </shape>
         </item>
 

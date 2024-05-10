@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
-import android.util.Log
 import android.util.TypedValue
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,38 +15,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 
 @Composable
 @Preview
 fun AccountIcon() {
 
-    val context = LocalContext.current;
-    val typedValue = TypedValue()
-    /*context.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
-    val imageResId = typedValue.resourceId*/
-    context.theme.resolveAttribute(R.attr.theme_colorPrimary, typedValue, true)
-    val colorResId = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
-    Log.d("CustomImageColor", "$colorResId");
-
-    context.theme.resolveAttribute(R.attr.backgroundColorOnBackground, typedValue, true)
-    val backgroundColorResId = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
-
-    context.theme.resolveAttribute(R.attr.textColorBody, typedValue, true)
-    val personTint = if (typedValue.resourceId != 0)
-        colorResource(id = typedValue.resourceId) else Color(typedValue.data)
+    val borderColor =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
+    val backgroundColorResId =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.backgroundColorOnBackground))
+    val personTint =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody))
 
     val size = 48.dp
     val borderWidth = 4.dp / 200.dp * size
-    val borderColor = colorResId
 
     Box(
         modifier = Modifier
@@ -69,7 +57,8 @@ fun AccountIcon() {
                     .padding(4.dp)
             )
         } else {
-            context.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
+            val typedValue = TypedValue()
+            LocalContext.current.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
             val imageResId = typedValue.resourceId
 
             Image(
