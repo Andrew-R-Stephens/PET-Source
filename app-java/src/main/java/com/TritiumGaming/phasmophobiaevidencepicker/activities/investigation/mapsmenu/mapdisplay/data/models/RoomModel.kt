@@ -1,61 +1,37 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
-import android.util.Log;
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper
 
-import androidx.annotation.NonNull;
+class RoomModel(
+    @JvmField var id: Int,
+    var name: String,
+    points: WorldMapWrapper.WorldMap.Floor.Room.RoomPoints?
+) {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
+    @JvmField
+    val roomArea: RoomArea = RoomArea()
 
-public class RoomModel {
-
-    private int id = -1;
-    private String name = "";
-
-    private final RoomArea roomArea = new RoomArea();
-
-    @NonNull
-    public RoomArea getRoomArea() {
-        return roomArea;
+    init {
+        roomArea.setPoints(points)
     }
 
-    public RoomModel(int id, String name, WorldMapWrapper.WorldMap.Floor.Room.RoomPoints points) {
-        setId(id);
-        setName(name);
+    /*
+    constructor(room: WorldMapWrapper.WorldMap.Floor.Room) {
+        id = room.room_iD
+        name = room.room_name
 
-        roomArea.setPoints(points);
+        roomArea.setPoints(room.room_points)
+    }
+    */
+
+    override fun toString(): String {
+        return "\n\t\t[Room ID: $id] [Room Name: $name] [Room points: $roomArea]"
     }
 
-    public RoomModel(@NonNull WorldMapWrapper.WorldMap.Floor.Room room) {
-        setId(room.room_iD);
-        setName(room.room_name);
-
-        roomArea.setPoints(room.room_points);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "\n\t\t[Room ID: " + id + "] [Room Name: " + name + "] [Room points: " + roomArea + "]";
-    }
-
-    public synchronized void print() {
-        Log.d("Maps", id + " " + name);
-        roomArea.print();
+    @Synchronized
+    fun print() {
+        Log.d("Maps", "$id $name")
+        roomArea.print()
     }
 }

@@ -1,142 +1,117 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity;
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.Gravity;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import android.content.Context
+import android.util.AttributeSet
+import android.view.Gravity
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
 
 /**
  * WarnTextView class
  *
  * @author TritiumGamingStudios
  */
-public class SanityWarningView extends AppCompatTextView {
+class SanityWarningView : AppCompatTextView {
+    private var state = false
+    private var flashOn = false
 
-    private boolean state = false;
-    private boolean flashOn = false;
+    private val OFF = 0
+    private val INACTIVE = 1
+    private val ACTIVE = 2
 
-    private final int OFF = 0, INACTIVE = 1, ACTIVE = 2;
+    @ColorInt private var color_active = 0
+    @ColorInt private var color_inactive = 0
+    @ColorInt private var color_off = 0
 
-    private @ColorInt
-    int color_active, color_inactive, color_off;
-
-    /**
-     * @param context
-     */
-    public SanityWarningView(@NonNull Context context) {
-        super(context);
-        init();
+    constructor(context: Context) :
+            super(context) {
+        init()
     }
 
-    /**
-     * @param context
-     * @param attrs
-     */
-    public SanityWarningView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) {
+        init()
     }
 
-    /**
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     */
-    public SanityWarningView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
+        init()
     }
 
-    private void init() {
-        color_active = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_active);
-        color_inactive = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_inactive);
-        color_off = ColorUtils.getColorFromAttribute(getContext(), R.attr.light_off);
+    private fun init() {
+        color_active = getColorFromAttribute(context, R.attr.light_active)
+        color_inactive = getColorFromAttribute(context, R.attr.light_inactive)
+        color_off = getColorFromAttribute(context, R.attr.light_off)
 
-        setDefaults();
+        setDefaults()
     }
 
-    private void setDefaults() {
-        setBackgroundResource(R.drawable.rect_border);
-        getBackground().setLevel(0);
+    private fun setDefaults() {
+        setBackgroundResource(R.drawable.rect_border)
+        background.setLevel(0)
 
-        setGravity(Gravity.CENTER);
-        setMaxLines(1);
-        setPaddingDefaults();
+        gravity = Gravity.CENTER
+        maxLines = 1
+        setPaddingDefaults()
     }
 
-    public void toggleFlash(boolean canFlash) {
-        int c;
+    fun toggleFlash(canFlash: Boolean) {
+        @ColorInt val color: Int
 
         if (this.state) {
-            if (canFlash && (flashOn = !flashOn)) {
-                c = color_active;
-            }
-            else {
-                c = color_inactive;
-            }
-        } else {
-            c = color_off;
-        }
 
-        setTextColor(c);
+            if (canFlash && (!flashOn.also { flashOn = it })) { color = color_active }
+            else { color = color_inactive }
+
+        } else { color = color_off }
+
+        setTextColor(color)
     }
 
 
-    public void setState(boolean state) {
-        this.state = state;
+    fun setState(state: Boolean) {
+        this.state = state
 
         if (this.state) {
-            getBackground().setLevel(ACTIVE);
+            background.setLevel(ACTIVE)
 
-            if (flashOn) {
-                setTextColor(color_active);
-            }
-            else {
-                setTextColor(color_inactive);
-            }
+            if (flashOn) { setTextColor(color_active) }
+            else { setTextColor(color_inactive) }
+
         } else {
-            getBackground().setLevel(OFF);
-            setTextColor(color_off);
+            background.setLevel(OFF)
+            setTextColor(color_off)
         }
     }
 
-    public void setState(boolean state, boolean flashOn) {
-        this.state = state;
-        this.flashOn = flashOn;
+    fun setState(state: Boolean, flashOn: Boolean) {
+        this.state = state
+        this.flashOn = flashOn
 
         if (this.state) {
-            getBackground().setLevel(ACTIVE);
-            if (this.flashOn) {
-                setTextColor(color_active);
-            }
-            else {
-                setTextColor(color_inactive);
-            }
+            background.setLevel(ACTIVE)
+
+            if (this.flashOn) { setTextColor(color_active) }
+            else { setTextColor(color_inactive) }
+
         } else {
-            getBackground().setLevel(OFF);
-            setTextColor(color_off);
+            background.setLevel(OFF)
+            setTextColor(color_off)
         }
     }
 
-    public void reset() {
-        setState(false);
+    fun reset() {
+        setState(false)
     }
 
-    private void setPaddingDefaults() {
+    private fun setPaddingDefaults() {
         setPadding(
-                getPaddingLeft() == 0 ? 4 : getPaddingLeft(),
-                getPaddingTop() == 0 ? 4 : getPaddingTop(),
-                getPaddingRight() == 0 ? 4 : getPaddingRight(),
-                getPaddingBottom() == 0 ? 4 : getPaddingBottom());
+            if (paddingLeft == 0) 4 else paddingLeft,
+            if (paddingTop == 0) 4 else paddingTop,
+            if (paddingRight == 0) 4 else paddingRight,
+            if (paddingBottom == 0) 4 else paddingBottom
+        )
     }
-
 }

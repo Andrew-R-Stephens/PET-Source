@@ -98,9 +98,9 @@ public abstract class MainMenuFragment extends PETFragment {
             MobileAds.initialize(requireActivity(), initializationStatus -> {
             });
             if (!mainMenuViewModel.hasAdRequest()) {
-                mainMenuViewModel.setAdRequest(new AdRequest.Builder().build());
+                mainMenuViewModel.adRequest = new AdRequest.Builder().build();
             }
-            adView.loadAd(mainMenuViewModel.getAdRequest());
+            adView.loadAd(mainMenuViewModel.adRequest);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

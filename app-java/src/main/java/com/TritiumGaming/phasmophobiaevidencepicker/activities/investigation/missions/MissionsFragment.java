@@ -121,7 +121,7 @@ public class MissionsFragment extends InvestigationFragment {
         };
 
         MissionsData.Objective[] tempObjectives =
-                objectivesViewModel.getObjectivesSpinnerObjectives();
+                objectivesViewModel.objectivesSpinnerObjectives;
         boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
         if (objectiveSpinner != null) {
             for (int i = 0; i < objectiveSpinner.length; i++) {
@@ -146,7 +146,7 @@ public class MissionsFragment extends InvestigationFragment {
         }
 
         // GHOST NAME
-        String ghostName = objectivesViewModel.getGhostName();
+        String ghostName = objectivesViewModel.ghostName;
         if (name_input != null && ghostName != null) {
             name_input.setText(ghostName);
         }
@@ -154,7 +154,7 @@ public class MissionsFragment extends InvestigationFragment {
         // RESPONDS TO
         final int selC = color_selectedItem, unselC = color_unselectedItem;
         if(evidenceViewModel.getDifficultyCarouselData().isResponseTypeKnown()) {
-            if (objectivesViewModel.getResponseState()) {
+            if (objectivesViewModel.responseState) {
                 button_alone.setColorFilter(selC);
                 button_everyone.setColorFilter(unselC);
             } else {
@@ -162,13 +162,13 @@ public class MissionsFragment extends InvestigationFragment {
                 button_everyone.setColorFilter(selC);
             }
             button_alone.setOnClickListener(v -> {
-                        objectivesViewModel.setResponseState(true);
+                        objectivesViewModel.responseState = true;
                         button_alone.setColorFilter(selC);
                         button_everyone.setColorFilter(unselC);
                     }
             );
             button_everyone.setOnClickListener(v -> {
-                        objectivesViewModel.setResponseState(false);
+                        objectivesViewModel.responseState = false;
                         button_everyone.setColorFilter(selC);
                         button_alone.setColorFilter(unselC);
                     }
@@ -286,8 +286,8 @@ public class MissionsFragment extends InvestigationFragment {
     public void saveStates() {
         if (objectivesViewModel != null) {
             objectivesViewModel.setObjectiveCompletion(findObjectiveCompletion());
-            objectivesViewModel.setObjectivesSpinnerObjectives(findObjectiveSpinnerObjectives());
-            objectivesViewModel.setGhostName(name_input.getText().toString());
+            objectivesViewModel.objectivesSpinnerObjectives = findObjectiveSpinnerObjectives();
+            objectivesViewModel.ghostName = name_input.getText().toString();
         }
     }
 

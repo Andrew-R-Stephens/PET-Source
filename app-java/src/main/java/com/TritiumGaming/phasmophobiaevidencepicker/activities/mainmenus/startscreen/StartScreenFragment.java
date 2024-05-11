@@ -212,9 +212,9 @@ public class StartScreenFragment extends MainMenuFragment {
 
         if (mainMenuViewModel != null) {
             if (!mainMenuViewModel.hasAdRequest()) {
-                mainMenuViewModel.setAdRequest(new AdRequest.Builder().build());
+                mainMenuViewModel.adRequest = new AdRequest.Builder().build();
             }
-            mAdView.loadAd(mainMenuViewModel.getAdRequest());
+            mAdView.loadAd(mainMenuViewModel.adRequest);
         }
     }
 
@@ -563,7 +563,7 @@ public class StartScreenFragment extends MainMenuFragment {
 
         // DESTROY AD-REQUEST
         if (mainMenuViewModel != null) {
-            mainMenuViewModel.setAdRequest(null);
+            mainMenuViewModel.adRequest = null;
         }
         super.onDestroy();
     }

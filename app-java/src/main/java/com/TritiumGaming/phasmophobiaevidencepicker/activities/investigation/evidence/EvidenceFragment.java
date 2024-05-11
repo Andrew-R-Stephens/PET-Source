@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -31,6 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
 
 /**
@@ -58,7 +60,8 @@ public class EvidenceFragment extends InvestigationFragment {
     protected PhaseTimerControlView playPauseButton;
     protected MapCarouselView mapTrackControl;
     protected SanitySeekBarView sanitySeekBarView;
-    protected SanityMeterView sanityMeterView;
+    //protected SanityMeterView sanityMeterView;
+    protected ComposeView sanityMeterView;
     protected SanityWarningView sanityWarningTextView;
 
 
@@ -145,6 +148,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         // SANITY METER VIEWS
         sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
+        //sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
         sanityWarningTextView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
@@ -206,7 +210,8 @@ public class EvidenceFragment extends InvestigationFragment {
             sanitySeekBarView.resetProgress();
         }
 
-        sanityMeterView.init(evidenceViewModel.getSanityData());
+        //sanityMeterView.init(evidenceViewModel.getSanityData());
+        SanityMeterKt.setSanityMeterView(sanityMeterView, evidenceViewModel);
 
         popupWindow = new PopupWindow(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -292,9 +297,11 @@ public class EvidenceFragment extends InvestigationFragment {
     @Override
     public void onDestroyView() {
 
+        /*
         if (sanityMeterView != null) {
             sanityMeterView.recycleBitmaps();
         }
+        */
 
         if(popupWindow != null) {
             popupWindow.dismiss();
@@ -310,9 +317,11 @@ public class EvidenceFragment extends InvestigationFragment {
     @Override
     public void onResume() {
 
+        /*
         if (!sanityMeterView.hasBuiltImages()) {
             sanityMeterView.buildImages();
         }
+        */
 
         super.onResume();
     }

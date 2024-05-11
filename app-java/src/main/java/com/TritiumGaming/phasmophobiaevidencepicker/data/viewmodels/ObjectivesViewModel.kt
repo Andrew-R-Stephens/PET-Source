@@ -1,79 +1,34 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData;
+import androidx.lifecycle.ViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData
 
 /**
  * ObjectivesViewModel class
  *
  * @author TritiumGamingStudios
  */
-public class ObjectivesViewModel extends ViewModel {
+class ObjectivesViewModel : ViewModel() {
 
-    @Nullable
-    private MissionsData.Objective[] objectivesSpinnerObjectives = null;
-    @Nullable
-    private boolean[] isObjectiveCompleted = null;
+    /* Chosen spinner objectives */
+    @JvmField
+    var objectivesSpinnerObjectives: Array<MissionsData.Objective>? = null
 
-    @Nullable
-    private String ghostName = null;
+    /* Objective Completed Buttons */
+    var objectiveCompletion: BooleanArray? = null
 
-    private boolean responseState = false; // alone , group
+    /* Ghost name */
+    @JvmField
+    var ghostName: String? = null
 
-    /*
-     * Chosen spinner objectives
-     */
-    public void setObjectivesSpinnerObjectives(MissionsData.Objective[] objectiveSpinnerObjectives) {
-        this.objectivesSpinnerObjectives = objectiveSpinnerObjectives;
+    /* Response */
+    @JvmField
+    var responseState: Boolean = false // alone , group
+
+    fun reset() {
+        objectivesSpinnerObjectives = null
+        objectiveCompletion = null
+        ghostName = null
+        responseState = false
     }
-
-    public MissionsData.Objective[] getObjectivesSpinnerObjectives() {
-        return objectivesSpinnerObjectives;
-    }
-
-    /*
-     * Ghost name
-     */
-    public void setGhostName(String ghostName) {
-        this.ghostName = ghostName;
-    }
-
-    public String getGhostName() {
-        return ghostName;
-    }
-
-    /*
-     * Response
-     */
-    public void setResponseState(boolean responseState) {
-        this.responseState = responseState;
-    }
-
-    public boolean getResponseState() {
-        return responseState;
-    }
-
-    /*
-     * Objective Completed Buttons
-     */
-    public void setObjectiveCompletion(boolean[] isObjectiveCompleted) {
-        this.isObjectiveCompleted = isObjectiveCompleted;
-    }
-
-    public boolean[] getObjectiveCompletion() {
-        return isObjectiveCompleted;
-    }
-
-    /*
-     * Reset
-     */
-    public void reset() {
-        objectivesSpinnerObjectives = null;
-        isObjectiveCompleted = null;
-        ghostName = null;
-        responseState = false;
-    }
-
 }

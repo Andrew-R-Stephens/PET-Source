@@ -40,11 +40,18 @@
 
     <attr name="navigationFooterIcon" format="reference|color" />
     <attr name="navigationFooterIconAlt" format="reference|color" />
-    <attr name="sanityColorStart" format="reference|color" />
-    <attr name="sanityColorEnd" format="reference|color" />
+
+    <attr name="sanityPieStartColor" format="reference|color" />
+    <attr name="sanityPieEndColor" format="reference|color" />
+    <attr name="sanityHeadBrainColor" format="reference|color" />
+    <attr name="sanityHeadSkullColor" format="reference|color" />
+    <attr name="sanityBorderColor" format="reference|color" />
 
     <attr name="progressBarColorStart" format="reference|color" />
     <attr name="progressBarColorEnd" format="reference|color" />
+    <attr name="progressBarColorThumbGradientStart" format="reference|color" />
+    <attr name="progressBarColorThumbGradientEnd" format="reference|color" />
+    <attr name="progressBarColorThumbOutline" format="reference|color" />
 
     <attr name="selectedColor" format="reference|color" />
     <attr name="selectedColor2" format="reference|color" />

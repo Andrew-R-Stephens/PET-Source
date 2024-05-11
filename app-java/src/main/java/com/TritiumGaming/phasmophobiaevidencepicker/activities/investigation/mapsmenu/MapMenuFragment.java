@@ -25,6 +25,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileIO;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileReader;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
+import com.google.common.primitives.Ints;
 
 import java.io.IOException;
 
@@ -79,8 +80,8 @@ public class MapMenuFragment extends InvestigationFragment {
 
         GridView gridView = view.findViewById(R.id.grid_maps);
         CustomAdapter customAdapter = new CustomAdapter(
-                mapMenuViewModel.getMapNames(),
-                mapMenuViewModel.getMapThumbnails());
+                mapMenuViewModel.getMapNames().toArray(new String[0]),
+                Ints.toArray(mapMenuViewModel.getMapThumbnails()));
         gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener((parent, itemView, position, id) -> {
             System.gc();
@@ -90,7 +91,7 @@ public class MapMenuFragment extends InvestigationFragment {
 
             MapModel mapModel = mapListModel.getMapById(position);
             if(mapModel != null) {
-                mapMenuViewModel.setCurrentMapModel(mapModel);
+                mapMenuViewModel.currentMapModel = mapModel;
             }
 
             navigateToBasicMapView(itemView);

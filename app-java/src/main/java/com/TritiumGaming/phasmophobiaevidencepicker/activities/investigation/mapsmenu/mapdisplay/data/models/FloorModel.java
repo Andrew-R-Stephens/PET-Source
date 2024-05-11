@@ -26,7 +26,7 @@ public class FloorModel {
         floorImage = floor.image_file;
         floorId = floor.floor_id;
         floorName = floor.floor_name;
-        floorLayer = FloorLayer.values()[floor.floor_number];
+        floorLayer = FloorLayer.getEntries().get(floor.floor_number);
 
         for(WorldMapWrapper.WorldMap.Floor.Room r: floor.floor_rooms) {
             floorRooms.add(new RoomModel(r.room_iD, r.room_name, r.room_points));
@@ -64,7 +64,7 @@ public class FloorModel {
 
     @Nullable
     public RoomModel getLastRoom() {
-        if(floorRooms.size() == 0) {
+        if(floorRooms.isEmpty()) {
             return null;
         }
         return floorRooms.get(floorRooms.size()-1);
@@ -73,7 +73,7 @@ public class FloorModel {
     @Nullable
     public RoomModel getRoomById(int id) {
         for(RoomModel room: floorRooms) {
-            if(room.getId() == id)
+            if(room.id == id)
                 return room;
         }
 
@@ -83,7 +83,7 @@ public class FloorModel {
     public int getRoomIndexById(int id) {
         int i = 0;
         for(; i < floorRooms.size(); i++) {
-            if(floorRooms.get(i).getId() == id)
+            if(floorRooms.get(i).id == id)
                 return i;
         }
         return ++i;

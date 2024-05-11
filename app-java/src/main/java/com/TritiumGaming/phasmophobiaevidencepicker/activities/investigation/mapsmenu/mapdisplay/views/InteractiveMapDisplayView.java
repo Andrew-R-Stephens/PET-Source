@@ -159,7 +159,7 @@ public class InteractiveMapDisplayView extends View {
 
             if(selectedRoomModel != null) {
                 polygon.reset();
-                for(PointF p: selectedRoomModel.getRoomArea().getPoints()) {
+                for(PointF p: selectedRoomModel.roomArea.getPoints()) {
                     polygon.addPoint((int)(p.x * controllerData.getZoomLevel()), (int)(p.y * controllerData.getZoomLevel()));
                 }
             }
@@ -187,7 +187,7 @@ public class InteractiveMapDisplayView extends View {
             for(RoomModel room: rooms) {
 
                 Polygon shape = new Polygon();
-                for(PointF p: room.getRoomArea().getPoints()) {
+                for(PointF p: room.roomArea.getPoints()) {
                     shape.addPoint((int)(p.x * getWidth()) , (int)(p.y * getHeight()));
                 }
                 if(shape.contains(new Point2D.Float((int)controllerData.getPressedPointX(), (int)controllerData.getPressedPointY()))) {

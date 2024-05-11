@@ -1,86 +1,68 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
-import android.graphics.PointF;
-import android.util.Log;
+import android.graphics.PointF
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class RoomArea {
+    var points = mutableListOf<PointF>()
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
-
-import java.util.ArrayList;
-
-public class RoomArea {
-
-    @NonNull
-    private ArrayList<PointF> points = new ArrayList<>();
-
-    public RoomArea() { }
-
-    public void setPoints(@NonNull ArrayList<PointF> tempPoints) {
-        for(PointF tempPoint: tempPoints) {
-            addPoint(new PointF(tempPoint.x, tempPoint.y));
+    fun setPoints(tempPoints: ArrayList<PointF>) {
+        for (tempPoint in tempPoints) {
+            points.add(
+                PointF(tempPoint.x, tempPoint.y)
+            )
         }
     }
 
-    public void setPoints(@Nullable WorldMapWrapper.WorldMap.Floor.Room.RoomPoints tempPoints) {
-        if(tempPoints == null || tempPoints.points == null) return;
-        for(WorldMapWrapper.WorldMap.Floor.Room.RoomPoints.RoomPoint tempPoint: tempPoints.points) {
-            addPoint(new PointF(tempPoint.x, tempPoint.y));
+    fun setPoints(tempPoints: WorldMapWrapper.WorldMap.Floor.Room.RoomPoints?) {
+        tempPoints?.points?.forEach() {
+            points.add(
+                PointF(it.x, it.y)
+            )
         }
     }
 
-    @NonNull
-    public PointF getCenter() {
-        float x = 0f;
-        float y = 0f;
-        int pointCount = points.size();
-        for (int i = 0;i < pointCount - 1;i++){
-            final PointF point = points.get(i);
-            x += point.x;
-            y += point.y;
+    val center: PointF
+        get() {
+            var x = 0f
+            var y = 0f
+            val pointCount = points.size
+            for (i in 0 until pointCount - 1) {
+                val point = points[i]
+                x += point.x
+                y += point.y
+            }
+
+            x /= pointCount
+            y /= pointCount
+
+            return PointF(x, y)
         }
 
-        x = x/pointCount;
-        y = y/pointCount;
-
-        return new PointF(x, y);
+    fun reset() {
+        points = ArrayList()
     }
 
-    public void reset() {
-        points = new ArrayList<>();
-    }
+    val lastPoint: PointF
+        get() {
+            points.isEmpty()
 
-    public void addPoint(PointF point) {
-        points.add(point);
-    }
-
-    public ArrayList<PointF> getPoints() {
-        return points;
-    }
-
-    @Nullable
-    public PointF getLastPoint() {
-        if(points.size() == 0) {
-            return null;
+            return points[points.size - 1]
         }
 
-        return points.get(points.size()-1);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        for(PointF p: points) {
-            s.append("\n\t\t[Point: x").append(p.x).append(" y").append(p.y).append("]");
+    override fun toString(): String {
+        val s = StringBuilder()
+        for (p in points) {
+            s.append("\n\t\t[Point: x").append(p.x).append(" y").append(p.y).append("]")
         }
-        return "[Points:" + s + "\t]";
+        return "[Points:$s\t]"
     }
 
-    public synchronized void print() {
-        for(PointF p: points) {
-            Log.d("Maps", "[Point: x" + p.x + " y" + p.y + "]");
+    @Synchronized
+    fun print() {
+        for (p in points) {
+            Log.d("Maps", "[Point: x" + p.x + " y" + p.y + "]")
         }
     }
 }

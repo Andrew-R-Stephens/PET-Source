@@ -78,19 +78,17 @@ public class MapViewerFragment extends InvestigationFragment {
         poiSpinner = view.findViewById(R.id.spinner_poiname);
         layerName = view.findViewById(R.id.textview_floorname);
 
-        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
+        if(mapMenuViewModel != null && mapMenuViewModel.currentMapModel != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
-            FloorModel currentFloor = mapMenuViewModel.getCurrentMapModel().getFloor(floor);
-            if(currentFloor != null) {
-                FloorLayer newLayer = currentFloor.getFloorLayer();
-                if (newLayer != null) {
-                    mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
-                }
+            FloorModel currentFloor = mapMenuViewModel.currentMapModel.getFloor(floor);
+            FloorLayer newLayer = currentFloor.getFloorLayer();
+            if (newLayer != null) {
+                mapMenuViewModel.currentMapModel.setCurrentLayer(newLayer);
             }
         }
 
         button_nextLayer.setOnClickListener(v -> {
-            if (mapMenuViewModel != null && mapMenuViewModel.hasMapData()) {
+            if (mapMenuViewModel != null) {
 
                 int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
                 if (++layerIndex >= mapMenuViewModel.getCurrentMapData().getFloorCount()) {
@@ -104,7 +102,7 @@ public class MapViewerFragment extends InvestigationFragment {
         });
 
         button_prevLayer.setOnClickListener(v -> {
-            if (mapMenuViewModel != null && mapMenuViewModel.hasMapData()) {
+            if (mapMenuViewModel != null) {
                 int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
                 if (--layerIndex < 0) {
                     layerIndex = mapMenuViewModel.getCurrentMapData().getFloorCount() - 1;
@@ -144,8 +142,8 @@ public class MapViewerFragment extends InvestigationFragment {
                 }
 
                 String mapNameStr = tempData.getMapName();
-                if(mapMenuViewModel.getCurrentMapModel() != null) {
-                    String name = mapMenuViewModel.getCurrentMapModel().mapName;
+                if(mapMenuViewModel.currentMapModel != null) {
+                    String name = mapMenuViewModel.currentMapModel.mapName;
                     mapNameStr = !name.isEmpty() ? name: mapNameStr;
                 }
                 mapName.setText(mapNameStr);
@@ -171,14 +169,14 @@ public class MapViewerFragment extends InvestigationFragment {
             if(imageDisplay != null) {
                 imageDisplay.resetRoomSelection();
             }
-            if(mapMenuViewModel.getCurrentMapModel() != null &&
-                    mapMenuViewModel.getCurrentMapModel().getFloor(index) != null) {
+            if(mapMenuViewModel.currentMapModel != null &&
+                    mapMenuViewModel.currentMapModel.getFloor(index) != null) {
                 FloorLayer layer =
-                        mapMenuViewModel.getCurrentMapModel().getFloor(index).getFloorLayer();
-                mapMenuViewModel.getCurrentMapModel().setCurrentLayer(layer);
-                if(mapMenuViewModel.getCurrentMapModel() != null &&
-                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
-                    Log.d("Maps", mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
+                        mapMenuViewModel.currentMapModel.getFloor(index).getFloorLayer();
+                mapMenuViewModel.currentMapModel.setCurrentLayer(layer);
+                if(mapMenuViewModel.currentMapModel != null &&
+                        mapMenuViewModel.currentMapModel.getCurrentFloor() != null) {
+                    Log.d("Maps", mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorName() + " ");
                 }
             }
         }
@@ -225,8 +223,8 @@ public class MapViewerFragment extends InvestigationFragment {
     public void startThreads() {
         stopThreads();
 
-        if (mapMenuViewModel.getImageDisplayThread() == null) {
-            mapMenuViewModel.setImageDisplayThread(new Thread(() -> {
+        if (mapMenuViewModel.imageDisplayThread == null) {
+            mapMenuViewModel.imageDisplayThread = new Thread(() -> {
                 if (imageDisplay != null) {
                     try {
                         imageDisplay.setMapImages(requireActivity());
@@ -235,8 +233,8 @@ public class MapViewerFragment extends InvestigationFragment {
                         e.printStackTrace();
                     }
                 }
-            }));
-            mapMenuViewModel.getImageDisplayThread().start();
+            });
+            mapMenuViewModel.imageDisplayThread.start();
         }
     }
 
@@ -245,9 +243,9 @@ public class MapViewerFragment extends InvestigationFragment {
      * stopThreads
      */
     public void stopThreads() {
-        if (mapMenuViewModel.getImageDisplayThread() != null) {
-            mapMenuViewModel.getImageDisplayThread().interrupt();
-            mapMenuViewModel.setImageDisplayThread(null);
+        if (mapMenuViewModel.imageDisplayThread != null) {
+            mapMenuViewModel.imageDisplayThread.interrupt();
+            mapMenuViewModel.imageDisplayThread = null;
         }
     }
 

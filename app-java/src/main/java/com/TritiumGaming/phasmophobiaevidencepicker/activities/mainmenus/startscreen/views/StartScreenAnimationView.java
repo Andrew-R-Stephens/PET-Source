@@ -94,7 +94,7 @@ public class StartScreenAnimationView extends View {
         this.titleScreenViewModel = titleScreenViewModel;
         this.bitmapUtils = bitmapUtils;
 
-        AnimatedGraphicData data = this.titleScreenViewModel.getAnimationData();
+        AnimatedGraphicData data = this.titleScreenViewModel.animationData;
 
         //Set writing resources
         TypedArray bookwritingArray =
@@ -130,7 +130,7 @@ public class StartScreenAnimationView extends View {
      *
      */
     public void buildImages() {
-        AnimatedGraphicData data = titleScreenViewModel.getAnimationData();
+        AnimatedGraphicData data = titleScreenViewModel.animationData;
 
         bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
                 compileBitmaps(getContext());
@@ -161,7 +161,7 @@ public class StartScreenAnimationView extends View {
             screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
             screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        AnimatedGraphicData animationData = titleScreenViewModel.getAnimationData();
+        AnimatedGraphicData animationData = titleScreenViewModel.animationData;
 
         for (AbstractAnimatedGraphic g : animationData.getCurrentPool()) {
             if(g != null) {
@@ -263,7 +263,7 @@ public class StartScreenAnimationView extends View {
             screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
             screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        AnimatedGraphicData animationData = titleScreenViewModel.getAnimationData();
+        AnimatedGraphicData animationData = titleScreenViewModel.animationData;
         animationData.tick();
 
         int maxQueue = 3;
@@ -433,7 +433,7 @@ public class StartScreenAnimationView extends View {
         paint.setStyle(Paint.Style.FILL);
 
         try {
-            for (AbstractAnimatedGraphic a : titleScreenViewModel.getAnimationData().getCurrentPool()) {
+            for (AbstractAnimatedGraphic a : titleScreenViewModel.animationData.getCurrentPool()) {
                 if (a != null) {
                     paint.setColorFilter(a.getFilter());
                     try {

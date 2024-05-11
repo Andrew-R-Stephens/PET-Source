@@ -13,8 +13,8 @@
         <item name="light_active">@color/white</item>
         <item name="light_inactive">@color/white_M400</item>
 
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/white_M500</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/white_M500</item>
 
         <item name="progressBarColorStart">@color/white_M500</item>
         <item name="progressBarColorEnd">@color/white_M300</item>
@@ -56,8 +56,8 @@
         <item name="textColorBody">@color/white</item>
         <item name="textColorBodyEmphasis">@color/blue_M175</item>
 
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/yellow</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/yellow</item>
 
         <item name="progressBarColorStart">@color/yellow_M500</item>
         <item name="progressBarColorEnd">@color/yellow_M300</item>
@@ -102,8 +102,8 @@
         <item name="textColorBody">@color/white</item>
         <item name="textColorBodyEmphasis">@color/blue_M175</item>
 
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/yellow</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/yellow</item>
 
         <item name="progressBarColorStart">@color/yellow_M500</item>
         <item name="progressBarColorEnd">@color/yellow_M300</item>
@@ -141,8 +141,8 @@
 
     <style name="Tritanomaly" parent="Colorblind.Base">
 
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/red</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/red</item>
 
         <item name="progressBarColorStart">@color/red_M500</item>
         <item name="progressBarColorEnd">@color/red_M300</item>

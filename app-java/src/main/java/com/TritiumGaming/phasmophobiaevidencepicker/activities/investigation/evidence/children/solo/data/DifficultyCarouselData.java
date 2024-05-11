@@ -94,7 +94,7 @@ public class DifficultyCarouselData {
             setDifficultyIndex(difficultyIndex);
 
             if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.getSanityData().setCanWarn(true);
+                evidenceViewModel.getSanityData().setWarningAudioAllowed(true);
             }
 
             return true;
@@ -113,7 +113,7 @@ public class DifficultyCarouselData {
             setDifficultyIndex(state);
 
             if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.getSanityData().setCanWarn(true);
+                evidenceViewModel.getSanityData().setWarningAudioAllowed(true);
             }
 
             return true;

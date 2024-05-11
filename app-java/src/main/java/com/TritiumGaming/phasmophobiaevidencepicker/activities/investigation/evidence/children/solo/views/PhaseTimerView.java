@@ -81,23 +81,23 @@ public class PhaseTimerView {
         destroyTimer();
 
         if(isFresh) {
-            if(!sanityData.isNewCycle() && !sanityData.isPaused()) {
+            if(!sanityData.isNewCycle() && !sanityData.isPaused) {
                 Log.d("SettingTimeRemaining",
                         phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
-                                " " + (sanityData.getStartTime() - System.currentTimeMillis()));
+                                " " + (sanityData.startTime - System.currentTimeMillis()));
                 phaseTimerData.setTimeRemaining(
                         phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
-                                (sanityData.getStartTime() - System.currentTimeMillis())
+                                (sanityData.startTime - System.currentTimeMillis())
                 );
             } else {
                 Log.d("SettingTimeRemaining", "Not new Cycle, Not Paused " +
                         phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
-                        " " + (sanityData.getStartTime() - System.currentTimeMillis()));
+                        " " + (sanityData.startTime - System.currentTimeMillis()));
             }
         } else {
             Log.d("SettingTimeRemaining", "Not Fresh " +
                     phaseTimerData.getDifficultyCarouselData().getCurrentDifficultyTime() +
-                            " " + (sanityData.getStartTime() - System.currentTimeMillis()));
+                            " " + (sanityData.startTime - System.currentTimeMillis()));
             phaseTimerData.setTimeRemaining(millisInFuture);
         }
 
@@ -180,7 +180,7 @@ public class PhaseTimerView {
         timer = null;
         Log.d("Timer",
                 String.valueOf(phaseTimerData.getTimeRemaining() -
-                        (sanityData.getStartTime() - System.currentTimeMillis())));
+                        (sanityData.startTime - System.currentTimeMillis())));
     }
 
     public void reset() {

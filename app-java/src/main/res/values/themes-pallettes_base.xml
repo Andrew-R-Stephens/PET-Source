@@ -58,11 +58,17 @@
         <item name="light_inactive">@color/red_A40</item>
         <item name="light_off">@color/white_M600</item>
 
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/red</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/red</item>
+        <item name="sanityHeadBrainColor">?attr/theme_colorPrimary</item>
+        <item name="sanityHeadSkullColor">@color/black</item>
+        <item name="sanityBorderColor">@color/white</item>
 
         <item name="progressBarColorStart">@color/red_M350</item>
         <item name="progressBarColorEnd">@color/red_M350</item>
+        <item name="progressBarColorThumbGradientStart">@color/white</item>
+        <item name="progressBarColorThumbGradientEnd">@color/black</item>
+        <item name="progressBarColorThumbOutline">#CCCCCC</item>
 
         <item name="switchColorOn">@color/red_M300</item>
         <item name="switchColorOff">@color/white_M200</item>

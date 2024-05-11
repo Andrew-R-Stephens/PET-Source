@@ -1,47 +1,42 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity;
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-public class SanityWarningLayout extends ConstraintLayout {
-
-    public SanityWarningLayout(@NonNull Context context) {
-        super(context);
-
-        init(context, null);
+class SanityWarningLayout : ConstraintLayout {
+    constructor(context: Context) : super(context) {
+        init(context, null)
     }
 
-    public SanityWarningLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init(context, attrs)
     }
 
-    public SanityWarningLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        init(context, attrs)
     }
 
-    public SanityWarningLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-
-        init(context, attrs);
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init(context, attrs)
     }
 
-    public void init(@NonNull Context c, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        inflate(c, R.layout.layout_sanity_warnings, this);
+    fun init(c: Context, attrs: AttributeSet?) {
+        inflate(c, R.layout.layout_sanity_warnings, this)
 
-        setDefaults();
+        setDefaults()
     }
 
-    private void setDefaults() {
+    private fun setDefaults() {
     }
-
 }

@@ -96,8 +96,8 @@
 
         <item name="progressBarColorStart">@color/orange_M500</item>
         <item name="progressBarColorEnd">@color/orange_M300</item>
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/orange_M150</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/orange_M150</item>
 
         <item name="splashTextColor">@color/orange_M150</item>
 
@@ -186,8 +186,8 @@
 
         <item name="progressBarColorStart">@color/white_M10</item>
         <item name="progressBarColorEnd">@color/purple_M75</item>
-        <item name="sanityColorStart">@color/white_M10</item>
-        <item name="sanityColorEnd">@color/purple_M75</item>
+        <item name="sanityPieStartColor">@color/white_M10</item>
+        <item name="sanityPieEndColor">@color/purple_M75</item>
 
         <item name="splashTextColor">@color/purple_M75</item>
 
@@ -308,8 +308,8 @@
 
         <item name="progressBarColorStart">@color/orange_M85</item>
         <item name="progressBarColorEnd">@color/orange_M10</item>
-        <item name="sanityColorStart">@color/orange_M85</item>
-        <item name="sanityColorEnd">@color/orange_M10</item>
+        <item name="sanityPieStartColor">@color/orange_M85</item>
+        <item name="sanityPieEndColor">@color/orange_M10</item>
 
         <item name="splashTextColor">@color/orange_M10</item>
 
@@ -400,8 +400,8 @@
 
         <item name="progressBarColorStart">@color/white_M20</item>
         <item name="progressBarColorEnd">@color/green_M25</item>
-        <item name="sanityColorStart">@color/white_M20</item>
-        <item name="sanityColorEnd">@color/green_M25</item>
+        <item name="sanityPieStartColor">@color/white_M20</item>
+        <item name="sanityPieEndColor">@color/green_M25</item>
 
         <item name="splashTextColor">@color/green_M25</item>
 
@@ -494,8 +494,8 @@
 
         <item name="progressBarColorStart">#E0E0E0</item>
         <item name="progressBarColorEnd">@color/red_M375</item>
-        <item name="sanityColorStart">#E0E0E0</item>
-        <item name="sanityColorEnd">@color/red_M375</item>
+        <item name="sanityPieStartColor">#E0E0E0</item>
+        <item name="sanityPieEndColor">@color/red_M375</item>
 
         <item name="splashTextColor">@color/red_M375</item>
 
@@ -589,8 +589,8 @@
 
         <item name="progressBarColorStart">#80994D</item>
         <item name="progressBarColorEnd">@color/green_M150</item>
-        <item name="sanityColorStart">#E7E8E7</item>
-        <item name="sanityColorEnd">@color/green_M150</item>
+        <item name="sanityPieStartColor">#E7E8E7</item>
+        <item name="sanityPieEndColor">@color/green_M150</item>
 
         <item name="splashTextColor">@color/green_M150</item>
 
@@ -680,8 +680,8 @@
 
         <item name="progressBarColorStart">#A7968C</item>
         <item name="progressBarColorEnd">#2667CD</item>
-        <item name="sanityColorStart">#A7968C</item>
-        <item name="sanityColorEnd">#2667CD</item>
+        <item name="sanityPieStartColor">#A7968C</item>
+        <item name="sanityPieEndColor">#2667CD</item>
 
         <item name="splashTextColor">#2667CD</item>
 
@@ -772,8 +772,8 @@
 
         <item name="progressBarColorStart">@color/white</item>
         <item name="progressBarColorEnd">@color/blue_M90</item>
-        <item name="sanityColorStart">@color/white</item>
-        <item name="sanityColorEnd">@color/blue_M90</item>
+        <item name="sanityPieStartColor">@color/white</item>
+        <item name="sanityPieEndColor">@color/blue_M90</item>
 
         <item name="splashTextColor">@color/blue_M90</item>
 
@@ -863,8 +863,8 @@
 
         <item name="progressBarColorStart">@color/purple_M500</item>
         <item name="progressBarColorEnd">@color/blue_M150</item>
-        <item name="sanityColorStart">#F9F8FA</item>
-        <item name="sanityColorEnd">@color/purple_M150</item>
+        <item name="sanityPieStartColor">#F9F8FA</item>
+        <item name="sanityPieEndColor">@color/purple_M150</item>
 
         <item name="splashTextColor">@color/purple_M150</item>
 
@@ -953,8 +953,8 @@
 
         <item name="progressBarColorStart">#F8EFD9</item>
         <item name="progressBarColorEnd">@color/orange_M05</item>
-        <item name="sanityColorStart">#F8EFD9</item>
-        <item name="sanityColorEnd">@color/orange_M05</item>
+        <item name="sanityPieStartColor">#F8EFD9</item>
+        <item name="sanityPieEndColor">@color/orange_M05</item>
 
         <item name="splashTextColor">@color/orange_M05</item>
 
@@ -1047,8 +1047,8 @@
 
         <item name="progressBarColorStart">#E1EBE5</item>
         <item name="progressBarColorEnd">@color/orange_M75</item>
-        <item name="sanityColorStart">#E1EBE5</item>
-        <item name="sanityColorEnd">@color/orange_M75</item>
+        <item name="sanityPieStartColor">#E1EBE5</item>
+        <item name="sanityPieEndColor">@color/orange_M75</item>
 
         <item name="splashTextColor">@color/green_M550</item>
 
@@ -1138,8 +1138,8 @@
 
         <item name="progressBarColorStart">#D7CCC3</item>
         <item name="progressBarColorEnd">#EC700D</item>
-        <item name="sanityColorStart">#D7CCC3</item>
-        <item name="sanityColorEnd">#EC700D</item>
+        <item name="sanityPieStartColor">#D7CCC3</item>
+        <item name="sanityPieEndColor">#EC700D</item>
 
         <item name="splashTextColor">#EC700D</item>
 
@@ -1230,8 +1230,8 @@
 
         <item name="progressBarColorStart">#FEFEFE</item>
         <item name="progressBarColorEnd">@color/orange_M50</item>
-        <item name="sanityColorStart">#FEFEFE</item>
-        <item name="sanityColorEnd">@color/orange_M50</item>
+        <item name="sanityPieStartColor">#FEFEFE</item>
+        <item name="sanityPieEndColor">@color/orange_M50</item>
 
         <item name="splashTextColor">@color/blue_M125</item>
 
@@ -1332,8 +1332,8 @@
 
         <item name="progressBarColorStart">#FEFEFE</item>
         <item name="progressBarColorEnd">#E9AD4C</item>
-        <item name="sanityColorStart">#FEFEFE</item>
-        <item name="sanityColorEnd">#E9AD4C</item>
+        <item name="sanityPieStartColor">#FEFEFE</item>
+        <item name="sanityPieEndColor">#E9AD4C</item>
 
         <item name="splashTextColor">#447CDE</item>
 
@@ -1425,8 +1425,8 @@
 
         <item name="progressBarColorStart">#F3F3F7</item>
         <item name="progressBarColorEnd">@color/blue_M75</item>
-        <item name="sanityColorStart">#F3F3F7</item>
-        <item name="sanityColorEnd">@color/blue_M75</item>
+        <item name="sanityPieStartColor">#F3F3F7</item>
+        <item name="sanityPieEndColor">@color/blue_M75</item>
 
         <item name="splashTextColor">@color/blue_M75</item>
 
@@ -1515,8 +1515,8 @@
 
         <item name="progressBarColorStart">#CACACA</item>
         <item name="progressBarColorEnd">@color/red_M225</item>
-        <item name="sanityColorStart">#CACACA</item>
-        <item name="sanityColorEnd">@color/red_M225</item>
+        <item name="sanityPieStartColor">#CACACA</item>
+        <item name="sanityPieEndColor">@color/red_M225</item>
 
         <item name="splashTextColor">@color/red_M225</item>
 
@@ -1605,8 +1605,8 @@
 
         <item name="progressBarColorStart">#E2E2DF</item>
         <item name="progressBarColorEnd">@color/yellow_M25</item>
-        <item name="sanityColorStart">#E2E2DF</item>
-        <item name="sanityColorEnd">@color/yellow_M25</item>
+        <item name="sanityPieStartColor">#E2E2DF</item>
+        <item name="sanityPieEndColor">@color/yellow_M25</item>
 
         <item name="splashTextColor">@color/yellow_M25</item>
 
@@ -1697,8 +1697,8 @@
 
         <item name="progressBarColorStart">#FCFAFB</item>
         <item name="progressBarColorEnd">@color/red_M150</item>
-        <item name="sanityColorStart">#FCFAFB</item>
-        <item name="sanityColorEnd">@color/red_M150</item>
+        <item name="sanityPieStartColor">#FCFAFB</item>
+        <item name="sanityPieEndColor">@color/red_M150</item>
 
         <item name="splashTextColor">@color/red_M150</item>
 
@@ -1790,8 +1790,8 @@
 
         <item name="progressBarColorStart">#ECDFCD</item>
         <item name="progressBarColorEnd">@color/orange_M250</item>
-        <item name="sanityColorStart">#ECDFCD</item>
-        <item name="sanityColorEnd">@color/orange_M250</item>
+        <item name="sanityPieStartColor">#ECDFCD</item>
+        <item name="sanityPieEndColor">@color/orange_M250</item>
 
         <item name="splashTextColor">@color/orange_M250</item>
 
@@ -1881,8 +1881,8 @@
 
         <item name="progressBarColorStart">#E3D6F7</item>
         <item name="progressBarColorEnd">#AA7FFD</item>
-        <item name="sanityColorStart">#E3D6F7</item>
-        <item name="sanityColorEnd">@color/purple_M550</item>
+        <item name="sanityPieStartColor">#E3D6F7</item>
+        <item name="sanityPieEndColor">@color/purple_M550</item>
 
         <item name="splashTextColor">#AA7FFD</item>
 
@@ -1954,11 +1954,14 @@
         <item name="light_inactive">@color/black_M50</item>
         <item name="light_off">@color/white_M500</item>
 
-        <item name="sanityColorStart">@color/white_M100</item>
-        <item name="sanityColorEnd">@color/black_M50</item>
+        <item name="sanityPieStartColor">@color/white_M100</item>
+        <item name="sanityPieEndColor">@color/red_M300</item>
 
-        <item name="progressBarColorStart">@color/white_M100</item>
+        <item name="progressBarColorStart">@color/black_M50</item>
         <item name="progressBarColorEnd">@color/black_M50</item>
+        <item name="sanityHeadBrainColor">?attr/theme_colorPrimary</item>
+        <item name="sanityHeadSkullColor">@color/black</item>
+        <item name="sanityBorderColor">@color/black</item>
 
         <item name="switchColorOn">@color/red_M100</item>
         <item name="switchColorOff">@color/white_M500</item>
@@ -2068,8 +2071,8 @@
 
         <item name="progressBarColorStart">#B7CBDC</item>
         <item name="progressBarColorEnd">#DE2C38</item>
-        <item name="sanityColorStart">#B7CBDC</item>
-        <item name="sanityColorEnd">#DE2C38</item>
+        <item name="sanityPieStartColor">#B7CBDC</item>
+        <item name="sanityPieEndColor">#DE2C38</item>
 
         <item name="splashTextColor">#447CDE</item>
 

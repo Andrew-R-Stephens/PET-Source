@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,7 +13,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -25,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.VectorUtils;
 
 /**
  * SanityMeterView class
@@ -39,8 +38,9 @@ public class SanityMeterView extends View {
     private final Paint paint = new Paint();
 
     private @ColorInt int
-            sanityStart = Color.GREEN/*R.attr.sanityColorStart*/;
-    private @ColorInt int sanityEnd = Color.BLUE/*R.attr.sanityColorEnd*/;
+            sanityPieStartColor, sanityPieEndColor,
+            sanityHeadBrainColor, sanityHeadSkullColor,
+            sanityBorderColor;
 
     private final RectF containerRect = new RectF();
     private final Rect sanityRect = new Rect();
@@ -48,12 +48,10 @@ public class SanityMeterView extends View {
     @ColorInt
     int themeColor = 0, sanityTint = 0;
     @Nullable
-    private ColorFilter filter = null;
+    private ColorFilter filter;
 
     @Nullable
-    private Bitmap sanityImg_bottom = null;
-    @Nullable
-    private Bitmap sanityImg_top = null;
+    private Bitmap sanityImg_skull, sanityImg_brain, sanityImg_border;
 
     /**
      * @param context
@@ -100,19 +98,30 @@ public class SanityMeterView extends View {
         this.sanityData = sanityData;
 
         filter = new PorterDuffColorFilter(
-                ContextCompat.getColor(
-                        getContext(),
-                        R.color.white),
+                ContextCompat.getColor(getContext(), R.color.white),
                 PorterDuff.Mode.MULTIPLY);
 
         buildImages();
-
-        themeColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
-        sanityTint = ColorUtils.getColorFromAttribute(getContext(), R.attr.selectedColor);
-        sanityStart = ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityColorStart);
-        sanityEnd = ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityColorEnd);
+        buildColors();
 
         setDefaults();
+    }
+
+    private void buildColors() {
+        themeColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
+        sanityTint =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.selectedColor);
+        sanityPieStartColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityPieStartColor);
+        sanityPieEndColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityPieEndColor);
+        sanityHeadBrainColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityHeadBrainColor);
+        sanityHeadSkullColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityHeadSkullColor);
+        sanityBorderColor =
+                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityBorderColor);
     }
 
     private void setDefaults() {
@@ -123,15 +132,19 @@ public class SanityMeterView extends View {
      *
      */
     public void buildImages() {
-        sanityImg_bottom = createBitmap(sanityImg_bottom, R.drawable.icon_sanityhead_bottom);
-        sanityImg_top = createBitmap(sanityImg_top, R.drawable.icon_sanityhead_top);
+        /*sanityImg_skull = createBitmap(sanityImg_skull, R.drawable.icon_sanityhead_skull);
+        sanityImg_brain = createBitmap(sanityImg_brain, R.drawable.icon_sanityhead_brain);
+        sanityImg_border = createBitmap(sanityImg_skull, R.drawable.icon_sanityhead_border);*/
+        sanityImg_skull = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_skull);
+        sanityImg_brain = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_brain);
+        sanityImg_border = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_border);
     }
 
     /**
      * @return
      */
     public boolean hasBuiltImages() {
-        return sanityImg_bottom != null && sanityImg_top != null;
+        return sanityImg_skull != null && sanityImg_brain != null;
     }
 
     /**
@@ -192,7 +205,7 @@ public class SanityMeterView extends View {
      */
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
-        float padding = 5;
+        float padding = 4;
         float h = getHeight(), w = getWidth();
         if (getWidth() <= getHeight()) {
             h *= (float) getWidth() / (float) getHeight();
@@ -210,26 +223,17 @@ public class SanityMeterView extends View {
         paint.setAntiAlias(true);
 
         paint.setStrokeWidth(1f);
-        paint.setColor(Color.argb(0, 255, 255, 255));
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.transparent));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawOval(containerRect, paint);
 
         float insanityDegree;
         if (sanityData != null) {
             insanityDegree = sanityData.getInsanityDegree();
-            /*paint.setColor(
-                    Color.rgb((255),
-                            (int) (255 * sanityData.getInsanityPercent()),
-                            (int) (255 * sanityData.getInsanityPercent())));*/
-            paint.setColor(
-                    Color.rgb(
-                            (int) (255 * sanityData.getInsanityPercent()),
-                            (int) (255 * sanityData.getInsanityPercent()),
-                            (int) (255 * sanityData.getInsanityPercent())
-                    ));
 
             @ColorInt int sanityColor =
-                    ColorUtils.interpolate(sanityStart, sanityEnd, sanityData.getInsanityPercent());
+                    ColorUtils.interpolate(sanityPieStartColor, sanityPieEndColor,
+                            sanityData.getInsanityPercent().getValue());
             //createFilterColor(sanityColor);
             paint.setColor(sanityColor);
             //paint.setColorFilter(filter);
@@ -243,38 +247,35 @@ public class SanityMeterView extends View {
             paint.setStyle(Paint.Style.STROKE);
             canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
 
-            /*createFilterColor(
-                    Color.red(themeColor),
-                    (int) (Color.green(themeColor) * sanityData.getInsanityPercent()),
-                    (int) (Color.blue(themeColor) * sanityData.getInsanityPercent()));*/
         }
 
         if (sanityRect != null) {
-            if (sanityImg_bottom != null) {
-                //paint.setColorFilter(filter);
-                paint.setColorFilter(null);
 
-                sanityRect.set(0, 0,
-                        sanityImg_bottom.getWidth(),
-                        sanityImg_bottom.getHeight());
-                canvas.drawBitmap(sanityImg_bottom, sanityRect, containerRect, paint);
-                //paint.setColorFilter(null);
-            }
-            if (sanityImg_top != null) {
-                sanityRect.set(0, 0,
-                        sanityImg_top.getWidth(),
-                        sanityImg_top.getHeight());
-                canvas.drawBitmap(sanityImg_top, sanityRect, containerRect, paint);
-            }
+            sanityRect.set((int)padding, (int)padding,
+                    sanityImg_skull.getWidth() - (int)padding,
+                    sanityImg_skull.getHeight() - (int)padding);
+
+            paint.setColorFilter(null);
+            paint.setColor(sanityHeadSkullColor);
+            canvas.drawBitmap(sanityImg_skull, sanityRect, containerRect, paint);
+
+            paint.setColorFilter(null);
+            paint.setColor(sanityHeadBrainColor);
+            canvas.drawBitmap(sanityImg_brain, sanityRect, containerRect, paint);
+
+
+            paint.setColorFilter(null);
+            paint.setColor(sanityBorderColor);
+            canvas.drawBitmap(sanityImg_border, sanityRect, containerRect, paint);
+
         }
 
-        paint.setColor(Color.WHITE);
+        paint.setColor(sanityBorderColor);
         paint.setStrokeWidth(5f);
         paint.setStyle(Paint.Style.STROKE);
 
-        if (containerRect != null) {
-            canvas.drawOval(containerRect, paint);
-        }
+        canvas.drawOval(containerRect, paint);
+
         super.onDraw(canvas);
     }
 
@@ -282,15 +283,15 @@ public class SanityMeterView extends View {
      *
      */
     public void recycleBitmaps() {
-        boolean scheduleGarbageCollect = (sanityImg_top != null || sanityImg_bottom != null);
+        boolean scheduleGarbageCollect = (sanityImg_brain != null || sanityImg_skull != null);
 
-        if (sanityImg_top != null) {
-            sanityImg_top.recycle();
-            sanityImg_top = null;
+        if (sanityImg_brain != null) {
+            sanityImg_brain.recycle();
+            sanityImg_brain = null;
         }
-        if (sanityImg_bottom != null) {
-            sanityImg_bottom.recycle();
-            sanityImg_bottom = null;
+        if (sanityImg_skull != null) {
+            sanityImg_skull.recycle();
+            sanityImg_skull = null;
         }
 
         if (scheduleGarbageCollect) {

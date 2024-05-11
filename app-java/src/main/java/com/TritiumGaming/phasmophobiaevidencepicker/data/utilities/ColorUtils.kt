@@ -5,7 +5,9 @@ import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
+import androidx.compose.ui.res.colorResource
 import androidx.core.graphics.ColorUtils
+import org.jetbrains.annotations.NotNull
 
 object ColorUtils {
 
@@ -60,7 +62,7 @@ object ColorUtils {
     }
 
     @JvmStatic
-    fun getColorFromAttribute(context: Context, attribute: Int) : Int {
+    fun getColorFromAttribute(@NotNull context: Context, attribute: Int) : Int {
         val typedValue = TypedValue()
         context.theme.resolveAttribute(attribute, typedValue, true)
         return (

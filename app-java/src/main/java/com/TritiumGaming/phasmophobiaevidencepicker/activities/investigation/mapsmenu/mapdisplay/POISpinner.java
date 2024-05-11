@@ -51,13 +51,13 @@ public class POISpinner extends AppCompatSpinner {
     }
 
     public void populateAdapter(@Nullable MapMenuViewModel mapMenuViewModel) {
-        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null &&
-                mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+        if(mapMenuViewModel != null && mapMenuViewModel.currentMapModel != null &&
+                mapMenuViewModel.currentMapModel.getCurrentFloor() != null) {
             // Creating adapter for spinner
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
                     getContext(),
                     R.layout.poi_spinner_item,
-                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+                    mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorRoomNames());
 
             // Drop down layout style - list view with radio button
             dataAdapter.setDropDownViewResource(R.layout.poi_spinner);

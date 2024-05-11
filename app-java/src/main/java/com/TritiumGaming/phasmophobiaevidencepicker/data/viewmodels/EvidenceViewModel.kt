@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class EvidenceViewModel : ViewModel() {
+
     private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
     val radioButtonsChecked = _radioButtonsChecked.asStateFlow()
 
@@ -137,8 +138,9 @@ class EvidenceViewModel : ViewModel() {
     }
 
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
-        if (phaseTimerData!!.timeRemaining <=
-            lowerBounds && sanityData!!.getSanityActual() < higherBounds
+        if (
+            phaseTimerData!!.timeRemaining <=
+            lowerBounds && sanityData!!.sanityActual < higherBounds
         ) {
             sanityData!!.setProgressManually(newValue.toLong())
         }
