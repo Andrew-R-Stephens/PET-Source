@@ -439,7 +439,7 @@
                 app:layout_constraintTop_toTopOf="@+id/evidence_sanitymeter_title"
                 app:layout_constraintWidth_percent=".4" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView
                 android:id="@+id/evidence_sanitymeter_seekbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -122,10 +122,10 @@ public class Ghost {
         }
 
         boolean isNightmare =
-                investigationData.getEvidenceViewModel()
+                investigationData.evidenceViewModel
                         .getDifficultyCarouselData().isDifficulty(3);
         boolean isInsanity =
-                investigationData.getEvidenceViewModel()
+                investigationData.evidenceViewModel
                         .getDifficultyCarouselData().isDifficulty(4);
 
         int maxPosScore = isInsanity ? 1 : isNightmare ? 2 : 3;

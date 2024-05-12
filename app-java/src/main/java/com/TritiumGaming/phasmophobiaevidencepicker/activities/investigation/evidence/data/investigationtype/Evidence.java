@@ -43,16 +43,10 @@ public class Evidence {
         return icon;
     }
 
-    /**
-     * @param ruling
-     */
     public void setRuling(Ruling ruling) {
         this.ruling = ruling;
     }
 
-    /**
-     * @return
-     */
     public Ruling getRuling() {
         return ruling;
     }
@@ -61,9 +55,6 @@ public class Evidence {
         return ruling == r;
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public String toString() {
         return ruling.name();

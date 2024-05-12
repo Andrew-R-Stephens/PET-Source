@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.MapCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.DifficultyCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.MapCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData

@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.media.MediaPlayer
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView

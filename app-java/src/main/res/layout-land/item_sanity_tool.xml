@@ -503,7 +503,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/evidence_sanitymeter_title" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView
+            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView
                 android:id="@+id/evidence_sanitymeter_seekbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

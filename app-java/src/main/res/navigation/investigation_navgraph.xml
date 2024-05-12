@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/evidenceFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.EvidenceSoloFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.EvidenceSoloFragment"
         android:label="EvidenceFragment">
         <action
             android:id="@+id/action_evidence_to_objectives"

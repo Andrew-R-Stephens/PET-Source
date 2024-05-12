@@ -185,7 +185,8 @@ public class StartScreenFragment extends MainMenuFragment {
         bitmapUtils.setResource(R.drawable.app_icon_sm);
 
         try {
-            icon_appIcon.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
+            icon_appIcon.setImageBitmap(
+                    bitmapUtils.compileBitmaps(requireContext()));
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
@@ -212,9 +213,9 @@ public class StartScreenFragment extends MainMenuFragment {
 
         if (mainMenuViewModel != null) {
             if (!mainMenuViewModel.hasAdRequest()) {
-                mainMenuViewModel.adRequest = new AdRequest.Builder().build();
+                mainMenuViewModel.setAdRequest(new AdRequest.Builder().build());
             }
-            mAdView.loadAd(mainMenuViewModel.adRequest);
+            mAdView.loadAd(mainMenuViewModel.getAdRequest());
         }
     }
 
@@ -563,7 +564,7 @@ public class StartScreenFragment extends MainMenuFragment {
 
         // DESTROY AD-REQUEST
         if (mainMenuViewModel != null) {
-            mainMenuViewModel.adRequest = null;
+            mainMenuViewModel.setAdRequest(null);
         }
         super.onDestroy();
     }

@@ -11,17 +11,11 @@ import com.google.android.gms.ads.AdRequest
  */
 class MainMenuViewModel : ViewModel() {
 
-    @JvmField
     val animationData: StartScreenAnimationViewData = StartScreenAnimationViewData()
-
-    @JvmField
-    var adRequest: AdRequest? = null
-
-    @JvmField
     var canRefreshFragment = true
-
-    @JvmField
     var languageSelectedOriginal: Int = -1
+
+    var adRequest: AdRequest? = null
 
     fun hasAdRequest(): Boolean {
         return adRequest != null

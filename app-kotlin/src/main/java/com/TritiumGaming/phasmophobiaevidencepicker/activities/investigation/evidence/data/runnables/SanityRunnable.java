@@ -5,8 +5,8 @@ import android.media.MediaPlayer;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;

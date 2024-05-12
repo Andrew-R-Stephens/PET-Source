@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.DifficultyCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.MapCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.data.PhaseTimerData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.DifficultyCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.MapCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData
@@ -55,19 +55,23 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initPhaseTimerData() {
-        phaseTimerData = phaseTimerData ?: PhaseTimerData(difficultyCarouselData)
+        phaseTimerData =
+            phaseTimerData ?: difficultyCarouselData?.let { PhaseTimerData(it) }
     }
 
     private fun initGhostOrderData() {
-        ghostOrderData = ghostOrderData ?: GhostOrderData(this)
+        ghostOrderData =
+            ghostOrderData ?: GhostOrderData(this)
     }
 
     private fun initSanityData() {
-        sanityData = sanityData ?: SanityData(this)
+        sanityData =
+            sanityData ?: SanityData(this)
     }
 
     private fun initMapCarouselData() {
-        mapCarouselData = mapCarouselData ?: MapCarouselData()
+        mapCarouselData =
+            mapCarouselData ?: MapCarouselData()
     }
 
     private fun initDifficultyCarouselData(context: Context) {

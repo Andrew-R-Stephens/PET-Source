@@ -22,11 +22,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.DifficultyCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.MapCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.PhaseTimerControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.PhaseTimerView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.children.solo.views.SanitySeekBarView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.DifficultyCarouselView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanityMeterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostList;

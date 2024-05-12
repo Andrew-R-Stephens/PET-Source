@@ -47,7 +47,7 @@ public class AppLanguageFragment extends MainMenuFragment {
 
         // LISTENERS
         btn_confirmClose.setOnClickListener(v -> {
-            mainMenuViewModel.languageSelectedOriginal = -1;
+            mainMenuViewModel.setLanguageSelectedOriginal(-1);
             try {
                 Navigation.findNavController(v).popBackStack();
             } catch (IllegalStateException e) {
@@ -69,8 +69,8 @@ public class AppLanguageFragment extends MainMenuFragment {
                     new ArrayList<>(Arrays.asList(
                             requireContext().getResources().getStringArray(
                                     R.array.languages_abbreviation))));
-            if (mainMenuViewModel.languageSelectedOriginal == -1) {
-                mainMenuViewModel.languageSelectedOriginal = selected;
+            if (mainMenuViewModel.getLanguageSelectedOriginal() == -1) {
+                mainMenuViewModel.setLanguageSelectedOriginal(selected);
             }
         } catch (IllegalStateException e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class AppLanguageFragment extends MainMenuFragment {
                                     position,
                                     AppLanguageFragment.this.getResources().getStringArray(
                                             R.array.languages_abbreviation));
-                            mainMenuViewModel.canRefreshFragment = true;
+                            mainMenuViewModel.setCanRefreshFragment(true);
                         }
                         AppLanguageFragment.this.configureLanguage();
                         AppLanguageFragment.this.refreshFragment();
@@ -122,10 +122,10 @@ public class AppLanguageFragment extends MainMenuFragment {
     private void handleDiscardChanges() {
         if (globalPreferencesViewModel != null && mainMenuViewModel != null) {
             globalPreferencesViewModel.setLanguage(
-                    mainMenuViewModel.languageSelectedOriginal,
+                    mainMenuViewModel.getLanguageSelectedOriginal(),
                     getResources().getStringArray(
                             R.array.languages_abbreviation));
-            Log.d("Languages", "Set language = " + mainMenuViewModel.languageSelectedOriginal);
+            Log.d("Languages", "Set language = " + mainMenuViewModel.getLanguageSelectedOriginal());
         }
         //Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (mainMenuViewModel == null ? "null" : "not null." ));
 
@@ -156,9 +156,9 @@ public class AppLanguageFragment extends MainMenuFragment {
      * refreshFragment
      */
     public void refreshFragment() {
-        if (mainMenuViewModel != null && mainMenuViewModel.canRefreshFragment) {
+        if (mainMenuViewModel != null && mainMenuViewModel.getCanRefreshFragment()) {
             super.refreshFragment();
-            mainMenuViewModel.canRefreshFragment = false;
+            mainMenuViewModel.setCanRefreshFragment(false);
         }
     }
 
