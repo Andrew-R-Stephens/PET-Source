@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class AnimatedGraphicQueue {
 
     private final int maxSize;
-    private int tick, timeout, maxTimeout;
+    private int tick, timeout;
+    private final int maxTimeout;
 
     @NonNull
     private final ArrayList<Integer> queue = new ArrayList<>();
@@ -20,9 +21,9 @@ public class AnimatedGraphicQueue {
     public AnimatedGraphicQueue(int maxSize, int maxTimeout) {
         this.maxSize = maxSize;
 
-        setMaxTimeout(maxTimeout);
+        this.maxTimeout = maxTimeout;
         setTimeout(this.maxTimeout);
-        setTick((int) (timeout * .75));
+        tick = (int) (timeout * .75);
     }
 
     public void setTick(int tick) {
@@ -37,13 +38,9 @@ public class AnimatedGraphicQueue {
         boolean canDequeue = (tick >= timeout);
         if (canDequeue) {
             tick = 0;
-            setTimeout(maxTimeout);
+            setTimeout(this.maxTimeout);
         }
         return canDequeue;
-    }
-
-    public void setMaxTimeout(int maxTimeout) {
-        this.maxTimeout = maxTimeout;
     }
 
     public void setTimeout(int timeout) {

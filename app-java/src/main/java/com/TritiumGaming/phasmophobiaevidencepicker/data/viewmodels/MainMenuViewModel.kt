@@ -11,17 +11,14 @@ import com.google.android.gms.ads.AdRequest
  */
 class MainMenuViewModel : ViewModel() {
 
-    /** @return animationData */
     @JvmField
-    val animationData: StartScreenAnimationViewData =
-        StartScreenAnimationViewData()
+    val animationData: StartScreenAnimationViewData = StartScreenAnimationViewData()
 
     @JvmField
     var adRequest: AdRequest? = null
 
     @JvmField
     var canRefreshFragment = true
-
 
     @JvmField
     var languageSelectedOriginal: Int = -1
