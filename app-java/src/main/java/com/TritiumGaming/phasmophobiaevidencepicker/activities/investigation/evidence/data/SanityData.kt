@@ -216,7 +216,7 @@ class SanityData(
     }
 
     /**
-     * Reduces player sanity level each tick. Sanity cannot drop below 50% if the clock still has
+     * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
      * time remaining.
      */
     fun tick() {

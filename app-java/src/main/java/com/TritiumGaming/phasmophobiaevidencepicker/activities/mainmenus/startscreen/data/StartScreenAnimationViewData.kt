@@ -17,9 +17,25 @@ class StartScreenAnimationViewData {
     var selectedWriting: Int = -1
     var selectedHand: Int = -1
 
-    @JvmField
     var rotWriting: Float = 0f
     var rotHand: Float = 0f
+
+    val lastFromAllPool: AnimatedGraphic
+        get() = allPool[allPool.size - 1]
+
+    val allPoolSize: Int
+        get() = allPool.size
+
+    val currentPoolSize: Int
+        get() = currentPool.size
+
+    @get:Throws(IndexOutOfBoundsException::class)
+    val lastFromCurrentPool: AnimatedGraphic?
+        get() {
+            if (currentPool.isEmpty()) { return null }
+
+            return currentPool[currentPool.size - 1]
+        }
 
     fun addToAllPool(animatedItem: AnimatedGraphic) {
         allPool.add(animatedItem)
@@ -33,12 +49,6 @@ class StartScreenAnimationViewData {
         return allPool[i]
     }
 
-    val lastFromAllPool: AnimatedGraphic
-        get() = allPool[allPool.size - 1]
-
-    val allPoolSize: Int
-        get() = allPool.size
-
     fun addToCurrentPool(animatedItem: AnimatedGraphic) {
         currentPool.add(animatedItem)
     }
@@ -47,32 +57,16 @@ class StartScreenAnimationViewData {
         return currentPool[i]
     }
 
-    @get:Throws(IndexOutOfBoundsException::class)
-    val lastFromCurrentPool: AnimatedGraphic?
-        get() {
-            if (currentPool.size == 0) {
-                return null
-            }
-            val index = currentPool.size - 1
-
-            return currentPool[index]
-        }
-
-    fun removeFromCurrentPool(
-        animated: AnimatedGraphic
-    ) {
+    fun removeFromCurrentPool(animated: AnimatedGraphic) {
         currentPool.remove(animated)
     }
-
-    val currentPoolSize: Int
-        get() = currentPool.size
 
     fun hasQueue(): Boolean {
         return true
     }
 
-    fun tick() {
-        queue.tick()
+    fun doTick() {
+        queue.doTick()
     }
 
     fun hasData(): Boolean {

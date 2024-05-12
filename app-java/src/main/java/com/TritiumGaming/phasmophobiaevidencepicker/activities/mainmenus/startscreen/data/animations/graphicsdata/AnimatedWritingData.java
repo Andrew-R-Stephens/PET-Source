@@ -58,7 +58,7 @@ public class AnimatedWritingData extends AnimatedGraphic {
                 (int) ((Math.random() *
                         (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)));
 
-        animationData.rotWriting = rotation;
+        animationData.setRotWriting(rotation);
     }
 
     @Override

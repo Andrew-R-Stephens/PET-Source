@@ -30,7 +30,7 @@ public class AnimatedGraphicQueue {
         this.tick = tick;
     }
 
-    public void tick() {
+    public void doTick() {
         tick++;
     }
 
@@ -67,7 +67,6 @@ public class AnimatedGraphicQueue {
     }
 
     public void enqueue(int index, int num) {
-
         if (queue.size() < maxSize) {
             queue.add(index, num);
         }
@@ -78,21 +77,15 @@ public class AnimatedGraphicQueue {
     }
 
     public int dequeue() {
-
         if (queue.isEmpty()) {
             refill();
         }
-
         return queue.remove(0);
-    }
-
-    public int getQueueLength() {
-        return queue.size();
     }
 
     @NonNull
     public String toString() {
-        StringBuilder s = new StringBuilder("Queue List (" + getQueueLength() + ") [");
+        StringBuilder s = new StringBuilder("Queue List (" + queue.size() + ") [");
         for (int i = 0; i < queue.size(); i++) {
             s.append(queue.get(i)).append(" ");
         }

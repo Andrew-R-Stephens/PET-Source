@@ -230,7 +230,7 @@ class StartScreenAnimationView : View {
         val screenH = Resources.getSystem().displayMetrics.heightPixels
 
         val animationData = mainMenuViewModel!!.animationData
-        animationData.tick()
+        animationData.doTick()
 
         val maxQueue = 3
         if ((animationData.hasQueue() && animationData.queue.canDequeue()) &&
@@ -663,7 +663,11 @@ class StartScreenAnimationView : View {
                         wait = 1
                     }
 
-                    sleep(wait)
+                    try {
+                        sleep(wait)
+                    } catch (ex: InterruptedException) {
+                        ex.printStackTrace()
+                    }
                 }
 
                 private fun update() {
@@ -702,23 +706,23 @@ class StartScreenAnimationView : View {
                 var TARGET_FPS = 24.0
                 val MAX_FPS = 60.0
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                    (context.display != null)
+                ) {
+                    TARGET_FPS = context.display!!.refreshRate.toDouble()
+                    if (TARGET_FPS > MAX_FPS) {
+                        TARGET_FPS = MAX_FPS
+                    }
+                }
+
+                val OPTIMAL_TIME = (1000000000 / TARGET_FPS).toLong()
+                var wait = ((OPTIMAL_TIME - updateTime) / 1000000.0).toLong()
+
+                if (wait < 0) {
+                    wait = 1
+                }
+
                 try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-                        (context.display != null)
-                    ) {
-                        TARGET_FPS = context.display!!.refreshRate.toDouble()
-                        if (TARGET_FPS > MAX_FPS) {
-                            TARGET_FPS = MAX_FPS
-                        }
-                    }
-
-                    val OPTIMAL_TIME = (1000000000 / TARGET_FPS).toLong()
-                    var wait = ((OPTIMAL_TIME - updateTime) / 1000000.0).toLong()
-
-                    if (wait < 0) {
-                        wait = 1
-                    }
-
                     sleep(wait)
                 } catch (e: IllegalStateException) {
                     e.printStackTrace()
