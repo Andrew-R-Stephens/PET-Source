@@ -129,7 +129,7 @@ public abstract class PETFragment extends Fragment {
 
         try {
             return (NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference()));
+                    globalPreferencesViewModel.networkPreference));
         } catch (IllegalStateException e) {
             e.printStackTrace();
             return false;

@@ -145,12 +145,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Always On Mode
             if(toggle_isAlwaysOn != null) {
                 toggle_isAlwaysOn.setChecked(
-                        globalPreferencesViewModel.getIsAlwaysOn());
+                        globalPreferencesViewModel.isAlwaysOn);
             }
             // Allow Mobile Data
             if(toggle_network != null) {
                 toggle_network.setChecked(
-                        globalPreferencesViewModel.getNetworkPreference());
+                        globalPreferencesViewModel.networkPreference);
             }
             // Allow Left Hand Mode
             if(toggle_leftHandMode != null) {
@@ -160,12 +160,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Allow Hunt Warning Audio
             if(toggle_huntwarningaudio != null) {
                 toggle_huntwarningaudio.setChecked(
-                        globalPreferencesViewModel.getIsHuntAudioAllowed());
+                        globalPreferencesViewModel.isHuntWarningAudioAllowed());
             }
             // Allow Reorder Ghost Views
             if(toggle_reorderGhostViews != null) {
                 toggle_reorderGhostViews.setChecked(
-                        globalPreferencesViewModel.canReorderGhostViews());
+                        globalPreferencesViewModel.getReorderGhostViews());
             }
 
             // COLORBLIND DATA
@@ -191,11 +191,11 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Hunt warning timeout setting
             if (seekBar_huntwarningTimeout != null) {
                 seekBar_huntwarningTimeout.setMax(300001);
-                if (globalPreferencesViewModel.getHuntWarningFlashTimeout() < 0) {
+                if (globalPreferencesViewModel.huntWarningFlashTimeout < 0) {
                     seekBar_huntwarningTimeout.setProgress(seekBar_huntwarningTimeout.getMax());
                 } else {
                     seekBar_huntwarningTimeout.setProgress(
-                            globalPreferencesViewModel.getHuntWarningFlashTimeout());
+                            globalPreferencesViewModel.huntWarningFlashTimeout);
                 }
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
                         new SeekBar.OnSeekBarChangeListener() {
@@ -205,7 +205,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
                                 if (fromUser) {
 
-                                    globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
+                                    globalPreferencesViewModel.huntWarningFlashTimeout = progress;
 
                                     double progressMax = 300000 /
                                             (double) seekBar_huntwarningTimeout.getMax();
@@ -255,8 +255,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         if(toggle_isAlwaysOn != null) {
             toggle_isAlwaysOn.setSwitchClickListener(v -> {
                 if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setIsAlwaysOn(
-                            toggle_isAlwaysOn.isChecked());
+                    globalPreferencesViewModel.isAlwaysOn = toggle_isAlwaysOn.isChecked();
                 }
             });
         }
@@ -264,8 +263,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         if(toggle_network != null) {
             toggle_network.setSwitchClickListener(v -> {
                 if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setNetworkPreference(
-                            toggle_network.isChecked());
+                    globalPreferencesViewModel.networkPreference = toggle_network.isChecked();
                 }
             });
         }
@@ -617,7 +615,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                 activity.changeTheme(
                         globalPreferencesViewModel.getColorTheme(),
                         globalPreferencesViewModel.getFontTheme());
-                if (globalPreferencesViewModel.getIsAlwaysOn()) {
+                if (globalPreferencesViewModel.isAlwaysOn) {
                     activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 }
                 activity.recreate();
@@ -655,7 +653,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         themeControl.setSelectedIndex(0);
         themeControl.setSavedIndex(0);
 
-        globalPreferencesViewModel.saveColorSpace(getContext());
+        globalPreferencesViewModel.saveColorSpace(requireContext());
 
         demoColorStyle(themeControl);
     }

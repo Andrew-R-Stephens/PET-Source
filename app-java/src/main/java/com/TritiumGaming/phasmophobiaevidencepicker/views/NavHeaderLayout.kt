@@ -1,34 +1,30 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views
 
 import android.content.Context
+import android.content.res.Resources.NotFoundException
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class NavHeaderLayout : ConstraintLayout {
-    constructor(context: Context) : super(context) {
+    constructor(context: Context) :
+            super(context) {
         init(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) {
         init(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
         init(context, attrs)
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) {
         init(context, attrs)
     }
 
@@ -51,9 +47,21 @@ class NavHeaderLayout : ConstraintLayout {
 
             a.recycle()
 
-            setCenterTitle(c.getString(centerTitleResId))
-            setLeftTitle(c.getString(leftTitleResId))
-            setRightTitle(c.getString(rightTitleResId))
+            try {
+                setCenterTitle(c.getString(centerTitleResId))
+            } catch (ex: NotFoundException) {
+                ex.printStackTrace()
+            }
+            try {
+                setLeftTitle(c.getString(leftTitleResId))
+            } catch (ex: NotFoundException) {
+                ex.printStackTrace()
+            }
+            try {
+                setRightTitle(c.getString(rightTitleResId))
+            } catch (ex: NotFoundException) {
+                ex.printStackTrace()
+            }
 
             setButtonLeft(buttonTypeLeft)
             setButtonRight(buttonTypeRight)

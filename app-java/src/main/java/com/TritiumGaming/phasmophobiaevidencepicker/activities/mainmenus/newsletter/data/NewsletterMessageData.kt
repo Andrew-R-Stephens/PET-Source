@@ -1,56 +1,34 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils
 
-public class NewsletterMessageData {
+class NewsletterMessageData(title: String?, description: String?, date: String?) {
+    @JvmField
+    var title: String? = null
+    @JvmField
+    var description: String? = null
+    @JvmField
+    var date: String? = null
 
-    private String title, description, date;
-
-    public NewsletterMessageData(String title, String description, String date) {
-        setTitle(FontUtils.removeXMLImgSrcTags(title));
-        setDescription(FontUtils.removeXMLImgSrcTags(description));
-        setDate(FontUtils.removeXMLPubDateClockTime(FontUtils.removeXMLPubDateClockTime(date)));
+    init {
+        this.title = FontUtils.removeXMLImgSrcTags(title)
+        this.description = FontUtils.removeXMLImgSrcTags(description)
+        this.date = FontUtils.removeXMLPubDateClockTime(FontUtils.removeXMLPubDateClockTime(date))
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    fun hasContent(): Boolean {
+        return hasTitle() || hasDescription() || hasDate()
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    private fun hasDate(): Boolean {
+        return date != null && !date!!.isEmpty()
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    private fun hasDescription(): Boolean {
+        return description != null && !description!!.isEmpty()
     }
 
-    public String getTitle() {
-        return title;
+    private fun hasTitle(): Boolean {
+        return title != null && !title!!.isEmpty()
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public boolean hasContent() {
-        return hasTitle() || hasDescription() || hasDate();
-    }
-
-    private boolean hasDate() {
-        return getDate() != null && !getDate().isEmpty();
-    }
-
-    private boolean hasDescription() {
-        return getDescription() != null && !getDescription().isEmpty();
-    }
-
-    private boolean hasTitle() {
-        return getTitle() != null && !getTitle().isEmpty();
-    }
-
-
 }

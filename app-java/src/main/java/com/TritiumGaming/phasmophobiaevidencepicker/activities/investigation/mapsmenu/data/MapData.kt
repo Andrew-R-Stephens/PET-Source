@@ -1,134 +1,42 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
+import androidx.annotation.DrawableRes
 
-import java.util.ArrayList;
+class MapData {
+    var mapName: String = "Unknown"
 
-/**
- * MapData class
- *
- * @author TritiumGamingStudios
- */
-public class MapData {
+    @DrawableRes var thumbnailImage: Int = 0
+        @DrawableRes get
 
-    private String mapName = "Unknown";
-    private @DrawableRes int thumbnailImage;
+    private var defaultFloorIndex = 0
+    var currentFloor: Int = 0
+    val floorNames = mutableListOf<Int>()
+    val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
 
-    private int defaultFloorIndex = 0;
-    private int currentFloorIndex = 0;
-    private final ArrayList<Integer> floorNames = new ArrayList<>();
-    private final ArrayList<ArrayList<Integer>> floorLayers = new ArrayList<>();
+    val floorCount: Int
+        get() = floorNames.size
 
-    /**
-     * setMapName
-     *
-     * @param mapName
-     */
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
+    var defaultFloor: Int
+        get() = defaultFloorIndex
+        set(index) {
+            this.defaultFloorIndex = index
+            this.currentFloor = this.defaultFloorIndex
+        }
 
-    /**
-     * @return
-     */
-    public String getMapName() {
-        return mapName;
-    }
+    val floorName: Int
+        get() = floorNames[currentFloor]
 
-    /**
-     * @return
-     */
-    public int getFloorCount() {
-        return floorNames.size();
-    }
+    val allCurrentFloorLayers: ArrayList<Int>
+        get() = allFloorLayers[currentFloor]
 
-    /**
-     * setDefaultFloor
-     *
-     * @param index
-     */
-    public void setDefaultFloor(int index) {
-        this.currentFloorIndex = this.defaultFloorIndex = index;
-    }
-
-    /**
-     * @return
-     */
-    public int getDefaultFloor() {
-        return defaultFloorIndex;
-    }
-
-    /**
-     * @param index
-     */
-    public void setCurrentFloor(int index) {
-        this.currentFloorIndex = index;
-    }
-
-    /**
-     * @return
-     */
-    public int getCurrentFloor() {
-        return currentFloorIndex;
-    }
-
-    /**
-     * @param id
-     */
-    public void addFloorName(int id) {
-        floorNames.add(id);
-    }
-
-    /**
-     * @return
-     */
-    public int getFloorName() {
-        return floorNames.get(currentFloorIndex);
-    }
-
-    /**
-     * @param floorIndex
-     * @param layer
-     */
-    public void addFloorLayer(int floorIndex, int layer) {
-        if (floorLayers.size() == 0 || floorIndex >= floorLayers.size()) {
-            ArrayList<Integer> temp = new ArrayList<>();
-            temp.add(layer);
-            floorLayers.add(temp);
+    fun addFloorLayer(floorIndex: Int, layer: Int) {
+        if (allFloorLayers.isEmpty() || floorIndex >= allFloorLayers.size) {
+            val temp = ArrayList<Int>()
+            temp.add(layer)
+            allFloorLayers.add(temp)
         } else {
-            floorLayers.get(floorIndex).add(layer);
+            allFloorLayers[floorIndex].add(layer)
         }
     }
 
-    /**
-     * @return
-     */
-    public ArrayList<Integer> getAllCurrentFloorLayers() {
-        return floorLayers.get(currentFloorIndex);
-    }
-
-    /**
-     * @return
-     */
-    @NonNull
-    public ArrayList<ArrayList<Integer>> getAllFloorLayers() {
-        return floorLayers;
-    }
-
-    /**
-     *
-     * @param thumbnailResId
-     */
-    public void setThumbnail(@DrawableRes int thumbnailResId) {
-        thumbnailImage = thumbnailResId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public @DrawableRes int getThumbnailImage() {
-        return thumbnailImage;
-    }
 }

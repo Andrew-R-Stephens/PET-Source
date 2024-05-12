@@ -21,60 +21,14 @@ class MapMenuViewModel : ViewModel() {
     var mapsData: MutableList<MapData> = mutableListOf()
         private set
 
-    private var currentMapIndex: Int = 0
+    var currentMapIndex: Int = 0
+        set(currentMapPos) {
+            if (currentMapPos < mapsData.size) {
+                field = currentMapPos
+            }
+        }
     @JvmField
     var currentMapModel: MapModel? = null
-
-    fun init(context: Context) {
-        if (mapsData.isEmpty()) buildMapData(context)
-    }
-
-    @SuppressLint("ResourceType")
-    fun buildMapData(context: Context) {
-        val resources: Resources = context.resources
-        val allMapsTypedArray =
-            resources.obtainTypedArray(R.array.maps_resources_array)
-
-        val tempMapsData: MutableList<MapData> = mutableListOf()
-        for (i in 0 until allMapsTypedArray.length()) {
-            val tempMapData = MapData()
-
-            val mapTypedArray =
-                resources.obtainTypedArray(allMapsTypedArray.getResourceId(i, 0))
-
-            //Set map name
-            tempMapData.mapName = mapTypedArray.getString(0)
-
-            //Set map layer names
-            val mapLayerNamesIDs =
-                resources.obtainTypedArray(mapTypedArray.getResourceId(4, 0))
-            for (j in 0 until mapLayerNamesIDs.length()) {
-                tempMapData.addFloorName(mapLayerNamesIDs.getResourceId(j, 0))
-            }
-            mapLayerNamesIDs.recycle() //cleanup
-
-            //Set map default layer
-            tempMapData.defaultFloor = mapTypedArray.getInt(5, 0)
-
-            //Set map thumbnail resource id
-            tempMapData.setThumbnail(mapTypedArray.getResourceId(7, 0))
-
-            //Set map layer primary images
-            val mapImages =
-                resources.obtainTypedArray(mapTypedArray.getResourceId(8, 0))
-            for (j in 0 until mapImages.length()) {
-                tempMapData.addFloorLayer(j, mapImages.getResourceId(j, 0))
-            }
-            mapImages.recycle() //cleanup
-
-            mapTypedArray.recycle()
-
-            tempMapsData.add(tempMapData) // add to temp maps array
-        }
-        allMapsTypedArray.recycle()
-
-        this.mapsData = tempMapsData // finaly set maps temp array into maps array
-    }
 
     val mapNames: MutableList<String>
         get() {
@@ -87,8 +41,7 @@ class MapMenuViewModel : ViewModel() {
         }
 
     val mapThumbnails: MutableList<Int>
-        @DrawableRes
-        get() {
+        @DrawableRes get() {
             @DrawableRes val mapThumbnails = mutableListOf<Int>()
             mapsData.forEachIndexed { index, it ->
                 mapThumbnails.add(index, it.thumbnailImage)
@@ -96,23 +49,70 @@ class MapMenuViewModel : ViewModel() {
             return mapThumbnails
         }
 
-    val mapDataLength: Int
+    val currentMapData: MapData
         get() {
-            return mapsData.size
+            return mapsData[currentMapIndex]
         }
+
+    fun init(context: Context) {
+        if (mapsData.isEmpty()) buildMapData(context)
+    }
+
+    @SuppressLint("ResourceType")
+    fun buildMapData(context: Context) {
+        val resources: Resources = context.resources
+        val allMapsTypedArray =
+            resources.obtainTypedArray(R.array.maps_resources_array)
+
+        val tempMapsData: MutableList<MapData> = mutableListOf()
+        for (mapIndex in 0 until allMapsTypedArray.length()) {
+
+            val tempMapData = MapData()
+
+            val nameKey = 0
+            val layerNamesKey = 4
+            val defaultLayerKey = 5
+            val thumbnailKey = 7
+            val layerImagesKey = 8
+
+            val mapTypedArray =
+                resources.obtainTypedArray(allMapsTypedArray.getResourceId(mapIndex, 0))
+
+            //Set map name
+            tempMapData.mapName = mapTypedArray.getString(nameKey) ?: tempMapData.mapName
+
+            //Set map layer names
+            val mapLayerNamesIDs =
+                resources.obtainTypedArray(mapTypedArray.getResourceId(layerNamesKey, 0))
+            for (j in 0 until mapLayerNamesIDs.length()) {
+                tempMapData.floorNames.add(j, mapLayerNamesIDs.getResourceId(j, 0))
+            }
+            mapLayerNamesIDs.recycle() //cleanup
+
+            //Set map default layer
+            tempMapData.defaultFloor = mapTypedArray.getInt(defaultLayerKey, 0)
+
+            //Set map thumbnail resource id
+            tempMapData.thumbnailImage = mapTypedArray.getResourceId(thumbnailKey, 0)
+
+            //Set map layer primary images
+            val mapImages =
+                resources.obtainTypedArray(mapTypedArray.getResourceId(layerImagesKey, 0))
+            for (j in 0 until mapImages.length()) {
+                tempMapData.addFloorLayer(j, mapImages.getResourceId(j, 0))
+            }
+            mapImages.recycle() //cleanup
+            mapTypedArray.recycle()
+
+            tempMapsData.add(tempMapData) // add to temp maps array
+        }
+        allMapsTypedArray.recycle()
+
+        this.mapsData = tempMapsData // finaly set maps temp array into maps array
+    }
 
     fun hasCurrentMapData(): Boolean {
         return currentMapIndex < mapsData.size
     }
 
-    fun setCurrentMapData(currentMapPos: Int) {
-        if (currentMapPos < mapsData.size) {
-            this.currentMapIndex = currentMapPos
-        }
-    }
-
-    val currentMapData: MapData
-        get() {
-            return mapsData[currentMapIndex]
-        }
 }

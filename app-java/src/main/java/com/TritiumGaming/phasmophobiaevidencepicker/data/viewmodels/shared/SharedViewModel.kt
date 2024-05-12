@@ -1,37 +1,31 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModel
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.lifecycle.ViewModel;
+/** @noinspection SameParameterValue
+ */
+abstract class SharedViewModel : ViewModel() {
+    @StringRes
+    protected var fileName: Int = 0
 
-/** @noinspection SameParameterValue*/
-public abstract class SharedViewModel extends ViewModel {
+    abstract fun init(context: Context): Boolean
 
-    protected @StringRes int fileName;
-
-    public abstract boolean init(@NonNull Context context);
-
-    protected SharedPreferences getSharedPreferences(@NonNull Context context) {
-        String fileTitle = context.getResources().getString(fileName);
+    protected fun getSharedPreferences(context: Context): SharedPreferences {
+        val fileTitle = context.resources.getString(fileName)
 
         return context.getSharedPreferences(
-                fileTitle,
-                Context.MODE_PRIVATE);
+            fileTitle,
+            Context.MODE_PRIVATE
+        )
     }
 
-    protected @Nullable SharedPreferences.Editor getEditor(@NonNull Context context)
-            throws NullPointerException
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences(context);
-        if(sharedPreferences == null) {
-            throw new NullPointerException("SharedPreferences object was null.");
-        }
+    protected fun getEditor(context: Context): SharedPreferences.Editor {
+        val sharedPreferences = getSharedPreferences(context)
 
-        return sharedPreferences.edit();
+        return sharedPreferences.edit()
     }
 
     /**
@@ -39,8 +33,7 @@ public abstract class SharedViewModel extends ViewModel {
      *
      * @param context The Activity context.
      */
-    public abstract void saveToFile(@NonNull Context context);
+    abstract fun saveToFile(context: Context)
 
-    public abstract void setFileName();
-
+    abstract fun setFileName()
 }

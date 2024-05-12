@@ -4,7 +4,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -135,20 +134,19 @@ public class MapViewerFragment extends InvestigationFragment {
             }
 
             MapData tempData = mapMenuViewModel.getCurrentMapData();
-            if (tempData != null) {
-                selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
-                for (int i = 0; i < selectorGroup.getSize(); i++) {
-                    selectorLayout.addView(selectorGroup.getSelectors()[i]);
-                }
 
-                String mapNameStr = tempData.getMapName();
-                if(mapMenuViewModel.currentMapModel != null) {
-                    String name = mapMenuViewModel.currentMapModel.mapName;
-                    mapNameStr = !name.isEmpty() ? name: mapNameStr;
-                }
-                mapName.setText(mapNameStr);
-                mapName.setSelected(true);
+            selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
+            for (int i = 0; i < selectorGroup.getSize(); i++) {
+                selectorLayout.addView(selectorGroup.getSelectors()[i]);
             }
+
+            String mapNameStr = tempData.getMapName();
+            if(mapMenuViewModel.currentMapModel != null) {
+                String name = mapMenuViewModel.currentMapModel.mapName;
+                mapNameStr = !name.isEmpty() ? name: mapNameStr;
+            }
+            mapName.setText(mapNameStr);
+            mapName.setSelected(true);
         }
 
         startThreads();
@@ -162,22 +160,18 @@ public class MapViewerFragment extends InvestigationFragment {
     }
 
     public void setMapLayer(int index) {
-        MapData d;
-        if ((d = mapMenuViewModel.getCurrentMapData()) != null) {
-            d.setCurrentFloor(index);
+        MapData mapData = mapMenuViewModel.getCurrentMapData();
+        mapData.setCurrentFloor(index);
 
-            if(imageDisplay != null) {
-                imageDisplay.resetRoomSelection();
-            }
-            if(mapMenuViewModel.currentMapModel != null &&
-                    mapMenuViewModel.currentMapModel.getFloor(index) != null) {
-                FloorLayer layer =
-                        mapMenuViewModel.currentMapModel.getFloor(index).getFloorLayer();
-                mapMenuViewModel.currentMapModel.setCurrentLayer(layer);
-                if(mapMenuViewModel.currentMapModel != null &&
-                        mapMenuViewModel.currentMapModel.getCurrentFloor() != null) {
-                    Log.d("Maps", mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorName() + " ");
-                }
+        if(imageDisplay != null) {
+            imageDisplay.resetRoomSelection();
+        }
+        if(mapMenuViewModel.currentMapModel != null) {
+            mapMenuViewModel.currentMapModel.getFloor(index);
+            mapMenuViewModel.currentMapModel.setCurrentLayer(
+                    mapMenuViewModel.currentMapModel.getFloor(index).getFloorLayer());
+            if (mapMenuViewModel.currentMapModel != null) {
+                Log.d("Maps", mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorName() + " ");
             }
         }
     }

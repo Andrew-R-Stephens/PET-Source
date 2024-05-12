@@ -1,133 +1,98 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data
 
-import android.util.Log;
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class NewsletterMessagesData {
+    var ready: Boolean = false
+    var requiresNotify: Boolean = false
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
+    private var lastReadDate = "NA"
+    private var mostRecentDateFound = "NA"
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+    var inboxType: NewsletterViewModel.InboxType? = null
+    val messages: ArrayList<NewsletterMessageData> = ArrayList()
 
-public class NewsletterMessagesData {
+    fun add(msg: NewsletterMessageData) {
+        setMostRecentDate(msg.date)
 
-    private boolean isReady = false;
-
-    private String lastReadDate = "NA";
-    @NonNull
-    private String mostRecentDateFound = "NA";
-
-    boolean requiresNotify;
-
-    private NewsletterViewModel.InboxType type;
-    private final ArrayList<NewsletterMessageData> messages = new ArrayList<>();
-
-    public void setInboxType(NewsletterViewModel.InboxType type) {
-        this.type = type;
+        messages.add(msg)
     }
 
-    public NewsletterViewModel.InboxType getInboxType() {
-        return type;
-    }
-
-    public void add(@NonNull NewsletterMessageData msg) {
-        setMostRecentDate(msg.getDate());
-
-        messages.add(msg);
-    }
-
-    @NonNull
-    public ArrayList<NewsletterMessageData> getMessages() {
-        return messages;
-    }
-
-    public void setLastReadDate(@Nullable String date) {
-
+    fun setLastReadDate(date: String?) {
         if (date == null) {
-            Log.d("Message Center", "Date is null");
-            return;
+            Log.d("Message Center", "Date is null")
+            return
         }
 
-        SimpleDateFormat parser =
-                new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
-        SimpleDateFormat simpleFormatter =
-                new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+        val parser =
+            SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
+        val simpleFormatter =
+            SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
 
-        String output = "NA";
+        var output = "NA"
         try {
-            Date formattedDate = parser.parse(date);
-            if(formattedDate != null) {
-                output = simpleFormatter.format(formattedDate);
+            val formattedDate = parser.parse(date)
+            if (formattedDate != null) {
+                output = simpleFormatter.format(formattedDate)
             }
-        } catch (ParseException e) {
-            output = date;
+        } catch (e: ParseException) {
+            output = date
         }
 
-        lastReadDate = output;
+        lastReadDate = output
     }
 
-    public void setMostRecentDate(@Nullable String date) {
-
+    fun setMostRecentDate(date: String?) {
         if (date == null) {
-            return;
+            return
         }
 
-        if(messages.isEmpty()) {
+        if (messages.isEmpty()) {
+            val parser =
+                SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
+            val simpleFormatter =
+                SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
 
-            SimpleDateFormat parser =
-                    new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
-            SimpleDateFormat simpleFormatter =
-                    new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-
-            String output = "";
+            var output = ""
             try {
-                Date parsedDate = parser.parse(date);
-                if(parsedDate != null) {
-                    output = simpleFormatter.format(parsedDate);
+                val parsedDate = parser.parse(date)
+                if (parsedDate != null) {
+                    output = simpleFormatter.format(parsedDate)
                 }
-            } catch (ParseException e) {
-                e.printStackTrace();
+            } catch (e: ParseException) {
+                e.printStackTrace()
             }
 
-            mostRecentDateFound = output;
-
+            mostRecentDateFound = output
         }
     }
 
-    public boolean compareDates() {
-        return requiresNotify = !mostRecentDateFound.equalsIgnoreCase(lastReadDate);
+    fun compareDates(): Boolean {
+        return !mostRecentDateFound.equals(lastReadDate, ignoreCase = true)
+            .also { requiresNotify = it }
     }
 
-    public String getLastReadDate() {
-        return lastReadDate;
+    fun getLastReadDate(): String {
+        return lastReadDate
     }
 
-    public void updateLastReadDate() {
-        lastReadDate = mostRecentDateFound;
+    fun updateLastReadDate() {
+        lastReadDate = mostRecentDateFound
 
-        compareDates();
+        compareDates()
     }
 
-    public void setIsReady(boolean isReady) {
-        this.isReady = isReady;
-    }
+    override fun toString(): String {
+        val t = StringBuilder()
 
-    public boolean isReady() {
-        return isReady;
-    }
-
-    @NonNull
-    public String toString() {
-        StringBuilder t = new StringBuilder();
-
-        for (NewsletterMessageData m : messages) {
-            t.append("\n[").append(m.getTitle()).append(" ").append(m.getDate()).append(" ").append(m.getDescription()).append("]");
+        for (m in messages) {
+            t.append("\n[").append(m.title).append(" ").append(m.date).append(" ")
+                .append(m.description).append("]")
         }
-        return t.toString();
+        return t.toString()
     }
-
 }

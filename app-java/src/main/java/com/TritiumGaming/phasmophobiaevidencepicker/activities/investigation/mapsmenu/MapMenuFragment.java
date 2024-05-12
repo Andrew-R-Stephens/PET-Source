@@ -76,7 +76,7 @@ public class MapMenuFragment extends InvestigationFragment {
         // BACKGROUND IMAGE
         BitmapUtils bitmapUtils = new BitmapUtils();
         bitmapUtils.setResource(R.drawable.icon_map_sm);
-        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(getContext()));
+        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
 
         GridView gridView = view.findViewById(R.id.grid_maps);
         CustomAdapter customAdapter = new CustomAdapter(
@@ -86,7 +86,7 @@ public class MapMenuFragment extends InvestigationFragment {
         gridView.setOnItemClickListener((parent, itemView, position, id) -> {
             System.gc();
             if (mapMenuViewModel != null) {
-                mapMenuViewModel.setCurrentMapData(position);
+                mapMenuViewModel.setCurrentMapIndex(position);
             }
 
             MapModel mapModel = mapListModel.getMapById(position);

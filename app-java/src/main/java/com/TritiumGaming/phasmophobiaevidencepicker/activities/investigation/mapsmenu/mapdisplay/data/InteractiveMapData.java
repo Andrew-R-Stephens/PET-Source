@@ -20,9 +20,7 @@ public class InteractiveMapData {
     private float zoomLevel = 1f;
     private float panX = 1f, panY = 1f;
 
-    /** @noinspection CanBeFinal*/
     private final Matrix matrix = new Matrix();
-    /** @noinspection CanBeFinal*/
     private final BitmapFactory.Options options = new BitmapFactory.Options();
 
     private int imgW, imgH;
@@ -84,10 +82,6 @@ public class InteractiveMapData {
 
     }
 
-    /**
-     * @param addX
-     * @param addY
-     */
     public void incrementPan(double addX, double addY) {
 
         float PAN_SENSE = 1.5f;
@@ -108,10 +102,6 @@ public class InteractiveMapData {
 
     }
 
-    /**
-     * @param w
-     * @param h
-     */
     public void setDisplaySize(int w, int h) {
         this.w = w;
         this.h = h;
@@ -121,33 +111,21 @@ public class InteractiveMapData {
         selectedPoint = point;
     }
 
-    /**
-     *
-     */
     public void updateMatrix() {
         setAutoInSampleSize(w, h);
         options.inJustDecodeBounds = false;
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public BitmapFactory.Options getBitmapFactoryOptions() {
         return options;
     }
 
-    /**
-     * @param imgW
-     * @param imgH
-     * @param viewW
-     * @param viewH
-     */
-    public void postCenterTranslateMatrix(float imgW, float imgH, float viewW, float viewH) {
+    public void postCenterTranslateMatrix(float imgW, float imgH, float viewportW, float viewportH) {
 
         if (canSetDefaultZoomLevel) {
-            float zoomW = viewW / imgW;
-            float zoomH = viewH / imgH;
+            float zoomW = viewportW / imgW;
+            float zoomH = viewportH / imgH;
             zoomLevel = Math.min(zoomW, zoomH);
 
             canSetDefaultZoomLevel = false;
@@ -155,8 +133,8 @@ public class InteractiveMapData {
 
         matrix.setScale(zoomLevel, zoomLevel);
         matrix.postTranslate(
-                (viewW / 2f) - (imgW / 2f * zoomLevel) + (panX * zoomLevel),
-                (viewH / 2f) - (imgH / 2f * zoomLevel) + (panY * zoomLevel));
+                (viewportW / 2f) - (imgW / 2f * zoomLevel) + (panX * zoomLevel),
+                (viewportH / 2f) - (imgH / 2f * zoomLevel) + (panY * zoomLevel));
 
         float[] vals = new float[9];
         matrix.getValues(vals);
@@ -165,60 +143,47 @@ public class InteractiveMapData {
 
         //RIGHT
         float BOUNDS_PADDING = .2f;
-        if ((distance = ((vals[2]) + (imgW * zoomLevel))) < viewW * BOUNDS_PADDING) {
-            panX -= distance - (viewW * BOUNDS_PADDING);
+        if ((distance = ((vals[2]) + (imgW * zoomLevel))) < viewportW * BOUNDS_PADDING) {
+            panX -= distance - (viewportW * BOUNDS_PADDING);
         }
         //LEFT
-        if ((vals[2]) > viewW - (viewW * BOUNDS_PADDING)) {
-            panX += ((viewW) - (vals[2])) - (viewW * BOUNDS_PADDING);
+        if ((vals[2]) > viewportW - (viewportW * BOUNDS_PADDING)) {
+            panX += ((viewportW) - (vals[2])) - (viewportW * BOUNDS_PADDING);
         }
         //BOTTOM
-        if ((distance = ((vals[5]) + (imgH * zoomLevel))) < viewH * BOUNDS_PADDING) {
-            panY -= distance - (viewH * BOUNDS_PADDING);
+        if ((distance = ((vals[5]) + (imgH * zoomLevel))) < viewportH * BOUNDS_PADDING) {
+            panY -= distance - (viewportH * BOUNDS_PADDING);
         }
         //TOP
-        if ((vals[5]) > viewH - (viewH * BOUNDS_PADDING)) {
-            panY += ((viewH) - (vals[5])) - (viewH * BOUNDS_PADDING);
+        if ((vals[5]) > viewportH - (viewportH * BOUNDS_PADDING)) {
+            panY += ((viewportH) - (vals[5])) - (viewportH * BOUNDS_PADDING);
         }
 
     }
 
-    /**
-     * @param imgW
-     * @param imgH
-     * @param viewW
-     * @param viewH
-     */
-    public void postTranslateOriginMatrix(float imgW, float imgH, float viewW, float viewH) {
+    public void postTranslateOriginMatrix(float imgW, float imgH, float viewportW, float viewportH) {
 
         float[] values = new float[9];
         matrix.getValues(values);
 
         float scale = 1;
-        if(viewW < viewH) {
-            scale = values[Matrix.MSCALE_X] * (viewH * .1f) / viewW;
-            scale = Math.max(scale, 75 / viewH);
+        if(viewportW < viewportH) {
+            scale = values[Matrix.MSCALE_X] * (viewportH * .1f) / viewportW;
+            scale = Math.max(scale, 75 / viewportH);
         }
-        if(viewH < viewW) {
-            scale = values[Matrix.MSCALE_Y] * (viewH * .1f) / viewW;
-            scale = Math.max(scale, 75 / viewH);
+        if(viewportH < viewportW) {
+            scale = values[Matrix.MSCALE_Y] * (viewportH * .1f) / viewportW;
+            scale = Math.max(scale, 75 / viewportH);
         }
         matrix.setScale(scale, scale);
         matrix.postTranslate(panX - (imgW * scale * .5f), panY - (imgH * scale * .5f));
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public Matrix getMatrix() {
         return matrix;
     }
 
-    /**
-     * @param reqWidth
-     * @param reqHeight
-     */
     public void setAutoInSampleSize(int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;

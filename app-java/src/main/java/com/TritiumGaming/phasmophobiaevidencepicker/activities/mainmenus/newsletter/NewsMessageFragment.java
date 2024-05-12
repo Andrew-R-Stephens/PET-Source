@@ -55,9 +55,9 @@ public class NewsMessageFragment extends MainMenuFragment {
         // SET CONTENT
         NewsletterMessageData message = newsLetterViewModel.getCurrentMessage();
         if (message != null) {
-            label_title.setText(Html.fromHtml(message.getTitle()));
-            label_date.setText(Html.fromHtml(message.getDate()));
-            label_content.setText(Html.fromHtml(message.getDescription()));
+            label_title.setText(Html.fromHtml(message.title));
+            label_date.setText(Html.fromHtml(message.date));
+            label_content.setText(Html.fromHtml(message.description));
         } else {
             label_title.setText(Html.fromHtml("Data unavailable"));
             label_date.setText(Html.fromHtml("Data unavailable"));

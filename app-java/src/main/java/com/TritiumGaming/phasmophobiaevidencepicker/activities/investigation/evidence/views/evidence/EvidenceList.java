@@ -76,7 +76,7 @@ public class EvidenceList extends InvestigationList {
                 @Override
                 public void requestInvalidateGhostContainer() {
                     ghostList.requestInvalidateGhostContainer(
-                            globalPreferencesViewModel.canReorderGhostViews());
+                            globalPreferencesViewModel.getReorderGhostViews());
                 }
 
             };

@@ -1,320 +1,300 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
-import android.util.Log;
+import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
+import androidx.annotation.DrawableRes
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils
+import org.xmlpull.v1.XmlPullParserException
+import org.xmlpull.v1.XmlPullParserFactory
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class NewsletterViewModel : SharedViewModel() {
+    private var requiresNotify = false
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils;
+    var currentInboxType: InboxType = InboxType.GENERAL
+    private var currentMessageID = 0
+    private var inboxMessageList: ArrayList<NewsletterMessagesData?>? = null
 
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.util.ArrayList;
-
-/**
- * TODO
- */
-public class NewsletterViewModel extends SharedViewModel {
-
-    private boolean requiresNotify = false;
-
-    private InboxType type = InboxType.GENERAL;
-    private int currentMessageID = 0;
-    private ArrayList<NewsletterMessagesData> inboxMessageList;
-
-    @Override
-    public void setFileName() {
-        fileName = R.string.preferences_newsletterFile_name;
+    override fun setFileName() {
+        fileName = R.string.preferences_newsletterFile_name
     }
 
-    public boolean init(@NonNull Context context) {
+    override fun init(context: Context): Boolean {
+        setFileName()
 
-        setFileName();
+        val sharedPref = getSharedPreferences(context)
 
-        SharedPreferences sharedPref = getSharedPreferences(context);
-
-        NewsletterMessagesData inbox;
-        if((inbox = getInbox(InboxType.GENERAL)) != null) {
-            setLastReadDate(InboxType.GENERAL,
-                    sharedPref.getString(
-                            context.getString(R.string.preference_newsletter_lastreaddate_general),
-                            inbox.getLastReadDate()));
+        var inbox: NewsletterMessagesData? = getInbox(InboxType.GENERAL)
+        if(inbox != null) {
+            setLastReadDate(
+                InboxType.GENERAL,
+                sharedPref.getString(
+                    context.getString(R.string.preference_newsletter_lastreaddate_general),
+                    inbox.getLastReadDate()
+                )
+            )
         }
 
-        if((inbox = getInbox(InboxType.PET)) != null) {
-            setLastReadDate(InboxType.PET,
-                    sharedPref.getString(
-                            context.getString(R.string.preference_newsletter_lastreaddate_pet),
-                            inbox.getLastReadDate()));
+        inbox = getInbox(InboxType.PET)
+        if (inbox != null) {
+            setLastReadDate(
+                InboxType.PET,
+                sharedPref.getString(
+                    context.getString(R.string.preference_newsletter_lastreaddate_pet),
+                    inbox.getLastReadDate()
+                )
+            )
         }
 
-        if((inbox = getInbox(InboxType.PHASMOPHOBIA)) != null) {
-            setLastReadDate(InboxType.PHASMOPHOBIA,
-                    sharedPref.getString(
-                            context.getString(R.string.preference_newsletter_lastreaddate_phas),
-                            inbox.getLastReadDate()));
+        inbox = getInbox(InboxType.PHASMOPHOBIA)
+        if (inbox != null) {
+            setLastReadDate(
+                InboxType.PHASMOPHOBIA,
+                sharedPref.getString(
+                    context.getString(R.string.preference_newsletter_lastreaddate_phas),
+                    inbox.getLastReadDate()
+                )
+            )
         }
 
-        saveToFile(context);
+        saveToFile(context)
 
-        return true;
-
+        return true
     }
 
-    public void registerInboxes(@NonNull Context context) {
+    fun registerInboxes(context: Context) {
         try {
-            new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getString(R.string.preference_phasmophobia_changelog_link),
-                    NewsletterViewModel.InboxType.PHASMOPHOBIA, this);
+            RSSParserUtils(
+                XmlPullParserFactory.newInstance(),
+                context.getString(R.string.preference_phasmophobia_changelog_link),
+                InboxType.PHASMOPHOBIA, this
+            )
 
-            new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getString(R.string.preference_general_news_link),
-                    NewsletterViewModel.InboxType.GENERAL, this);
+            RSSParserUtils(
+                XmlPullParserFactory.newInstance(),
+                context.getString(R.string.preference_general_news_link),
+                InboxType.GENERAL, this
+            )
 
-            new RSSParserUtils(XmlPullParserFactory.newInstance(),
-                    context.getString(R.string.preference_pet_changelog_link),
-                    NewsletterViewModel.InboxType.PET, this);
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
+            RSSParserUtils(
+                XmlPullParserFactory.newInstance(),
+                context.getString(R.string.preference_pet_changelog_link),
+                InboxType.PET, this
+            )
+        } catch (e: XmlPullParserException) {
+            e.printStackTrace()
         }
     }
 
-    /*
-    public static SharedPreferences getSharedPreferences(@NonNull Context context) {
-        return context.getSharedPreferences(
-                context.getString(fileName),
-                Context.MODE_PRIVATE);
-    }
-
-    public static SharedPreferences.Editor getEditor(@NonNull Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getString(fileName),
-                Context.MODE_PRIVATE);
-        return sharedPref.edit();
-    }
-    */
-
-    public boolean isUpToDate() {
-        if(inboxMessageList == null) {
-            return false;
-        }
-
-        boolean isUpToDate = true;
-        for(NewsletterMessagesData inbox : inboxMessageList) {
-            if (!inbox.isReady()) {
-                isUpToDate = false;
-                break;
+    val isUpToDate: Boolean
+        get() {
+            if (inboxMessageList == null) {
+                return false
             }
 
+            var isUpToDate = true
+            for (inbox in inboxMessageList!!) {
+                if (!inbox!!.ready) {
+                    isUpToDate = false
+                    break
+                }
+            }
+            return isUpToDate
         }
-        return isUpToDate;
-    }
 
-    public void addInbox(@NonNull NewsletterMessagesData inbox, InboxType type) {
+    fun addInbox(inbox: NewsletterMessagesData, type: InboxType?) {
         if (inboxMessageList == null) {
-            inboxMessageList = new ArrayList<>(10);
+            inboxMessageList = ArrayList(10)
         }
 
         try {
-            inbox.compareDates();
-            inbox.setIsReady(true);
-            inbox.setInboxType(type);
+            inbox.compareDates()
+            inbox.ready = true
+            inbox.inboxType = type
 
-            inboxMessageList.add(inbox);
-        } catch (NullPointerException | ArrayIndexOutOfBoundsException ex) {
-            ex.printStackTrace();
+            inboxMessageList!!.add(inbox)
+        } catch (ex: NullPointerException) {
+            ex.printStackTrace()
+        } catch (ex: ArrayIndexOutOfBoundsException) {
+            ex.printStackTrace()
         }
     }
 
-    public void setCurrentInboxType(InboxType type) {
-        this.type = type;
+    val currentInbox: NewsletterMessagesData?
+        get() {
+            if (inboxMessageList == null) {
+                return null
+            }
+
+            for (i in inboxMessageList!!.indices) {
+                if (inboxMessageList!![i] != null &&
+                    inboxMessageList!![i]!!.inboxType == currentInboxType
+                ) {
+                    return inboxMessageList!![i]
+                }
+            }
+
+            return null
+        }
+
+    fun getInboxType(pos: Int): InboxType {
+        return InboxType.entries[pos]
     }
 
-    public InboxType getCurrentInboxType() {
-        return type;
-    }
-
-    @Nullable
-    public NewsletterMessagesData getCurrentInbox() {
+    fun getInbox(inboxType: InboxType): NewsletterMessagesData? {
         if (inboxMessageList == null) {
-            return null;
+            return null
         }
 
-        for (int i = 0; i < inboxMessageList.size(); i++) {
-            if (inboxMessageList.get(i) != null &&
-                    inboxMessageList.get(i).getInboxType() == type) {
-                return inboxMessageList.get(i);
+        val list = arrayOfNulls<NewsletterMessagesData>(
+            inboxMessageList!!.size
+        )
+        inboxMessageList!!.toArray(list)
+
+        for (i in list.indices) {
+            if (list[i]!!.inboxType == inboxType) {
+                return inboxMessageList!![i]
             }
         }
 
-        return null;
+        return null
     }
 
-    public InboxType getInboxType(int pos) {
-        return InboxType.values()[pos];
+    fun setCurrentMessageId(position: Int) {
+        currentMessageID = position
     }
 
-    @Nullable
-    public NewsletterMessagesData getInbox(InboxType inboxType) {
-        if(inboxMessageList == null) {
-            return null;
-        }
-
-        NewsletterMessagesData[] list = new NewsletterMessagesData[inboxMessageList.size()];
-        inboxMessageList.toArray(list);
-
-        for(int i = 0; i < list.length; i++) {
-            if(list[i].getInboxType() == inboxType) {
-                return inboxMessageList.get(i);
+    val currentMessage: NewsletterMessageData?
+        get() {
+            if (currentInbox == null) {
+                return null
             }
+            return currentInbox!!.messages[currentMessageID]
         }
 
-        return null;
-    }
-
-    public void setCurrentMessageId(int position) {
-        currentMessageID = position;
-    }
-
-    @Nullable
-    public NewsletterMessageData getCurrentMessage() {
-        if(getCurrentInbox() == null || getCurrentInbox().getMessages() == null) {
-            return null;
-        }
-        return getCurrentInbox().getMessages().get(currentMessageID);
-    }
-
-    public void setLastReadDate(InboxType inboxType, String date) {
-        if(getInbox(inboxType) == null) {
-            return;
+    fun setLastReadDate(inboxType: InboxType, date: String?) {
+        if (getInbox(inboxType) == null) {
+            return
         }
 
-        getInbox(inboxType).setLastReadDate(date);
+        getInbox(inboxType)!!.setLastReadDate(date)
     }
 
-    public String getLastReadDate(InboxType inboxType) {
-        if(getInbox(inboxType) == null) {
-            return "NA";
+    fun getLastReadDate(inboxType: InboxType): String {
+        if (getInbox(inboxType) == null) {
+            return "NA"
         }
 
-        return getInbox(inboxType).getLastReadDate();
+        return getInbox(inboxType)!!.getLastReadDate()
     }
 
-    public void compareAllInboxDates() {
+    fun compareAllInboxDates() {
+        val general = (getInbox(InboxType.GENERAL) != null &&
+                getInbox(InboxType.GENERAL)!!.compareDates())
+        val pet = (getInbox(InboxType.PET) != null &&
+                getInbox(InboxType.PET)!!.compareDates())
+        val phasmophobia = (getInbox(InboxType.PHASMOPHOBIA) != null &&
+                getInbox(InboxType.PHASMOPHOBIA)!!.compareDates())
 
-        boolean general = (getInbox(InboxType.GENERAL) != null &&
-                getInbox(InboxType.GENERAL).compareDates());
-        boolean pet = (getInbox(InboxType.PET) != null &&
-                getInbox(InboxType.PET).compareDates());
-        boolean phasmophobia = (getInbox(InboxType.PHASMOPHOBIA) != null &&
-                getInbox(InboxType.PHASMOPHOBIA).compareDates());
-
-        requiresNotify = general || pet || phasmophobia;
+        requiresNotify = general || pet || phasmophobia
     }
 
-    public boolean requiresNotify() {
-        return requiresNotify;
+    fun requiresNotify(): Boolean {
+        return requiresNotify
     }
 
-    /** @noinspection SameParameterValue*/
-    private void saveLastReadDate(
-            @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply,
-            @NonNull InboxType inboxType) {
-        if(editor == null && (editor = getEditor(c)) == null) { return; }
-
-        String target = "";
-        switch (inboxType) {
-            case PET -> target =
-                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_pet);
-            case PHASMOPHOBIA -> target =
-                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_phas);
-            case GENERAL -> target =
-                    c.getResources().getString(R.string.preference_newsletter_lastreaddate_general);
+    /** @noinspection SameParameterValue
+     */
+    private fun saveLastReadDate(
+        c: Context, editor: SharedPreferences.Editor?, localApply: Boolean,
+        inboxType: InboxType
+    ) {
+        var editor = editor
+        if (editor == null && (getEditor(c).also { editor = it }) == null) {
+            return
         }
 
-        editor.putString(
-                target,
-                getLastReadDate(inboxType));
+        var target = ""
+        target = when (inboxType) {
+            InboxType.PET -> c.resources.getString(
+                R.string.preference_newsletter_lastreaddate_pet
+            )
+            InboxType.PHASMOPHOBIA -> c.resources.getString(
+                R.string.preference_newsletter_lastreaddate_phas
+            )
+            InboxType.GENERAL -> c.resources.getString(
+                R.string.preference_newsletter_lastreaddate_general
+            )
+        }
+        editor!!.putString(
+            target,
+            getLastReadDate(inboxType)
+        )
 
         if (localApply) {
-            editor.apply();
+            editor!!.apply()
         }
     }
 
     /**
      * saveToFile method
      */
-    public void saveToFile(@NonNull Context context) {
+    override fun saveToFile(context: Context) {
+        val editor = getEditor(context)
 
-        SharedPreferences.Editor editor = getEditor(context);
+        saveLastReadDate(context, editor, false, InboxType.GENERAL)
+        saveLastReadDate(context, editor, false, InboxType.PHASMOPHOBIA)
+        saveLastReadDate(context, editor, false, InboxType.PET)
 
-        saveLastReadDate(context, editor, false, InboxType.GENERAL);
-        saveLastReadDate(context, editor, false, InboxType.PHASMOPHOBIA);
-        saveLastReadDate(context, editor, false, InboxType.PET);
+        editor!!.apply()
 
-        editor.apply();
-
-        Log.d("MessageCenter", "Saving all inboxes...");
+        Log.d("MessageCenter", "Saving all inboxes...")
     }
 
     /**
      * saveToFile method
      */
-    public void saveToFile(@NonNull Context context, @NonNull InboxType inboxType) {
+    fun saveToFile(context: Context, inboxType: InboxType) {
+        val editor = getEditor(context)
 
-        SharedPreferences.Editor editor = getEditor(context);
+        saveLastReadDate(context, editor, false, inboxType)
 
-        saveLastReadDate(context, editor, false, inboxType);
+        editor!!.apply()
 
-        editor.apply();
-
-        Log.d("MessageCenter", "Saving [" + inboxType.name() + "]...");
+        Log.d("MessageCenter", "Saving [" + inboxType.name + "]...")
     }
 
-    public enum InboxType {
+    enum class InboxType(val id: Int) {
         GENERAL(0), PET(1), PHASMOPHOBIA(2);
 
-        final int id;
+        fun getName(context: Context): String {
+            val name =
+                context.resources.getStringArray(R.array.messagecenter_inboxtitles)
 
-        InboxType(int id) {
-            this.id = id;
+            return name[id]
         }
 
-        public String getName(@NonNull Context context) {
-            String[] name =
-                    context.getResources().getStringArray(R.array.messagecenter_inboxtitles);
+        fun getIcon(context: Context): Int {
+            val typed_inbox_icons =
+                context.resources.obtainTypedArray(R.array.messagecenter_inboxicons)
 
-            return name[id];
-        }
+            @DrawableRes val icon = typed_inbox_icons.getResourceId(id, 0)
+            typed_inbox_icons.recycle()
 
-        public int getIcon(@NonNull Context context) {
-            TypedArray typed_inbox_icons = context.getResources().obtainTypedArray(R.array.messagecenter_inboxicons);
-
-            @DrawableRes int icon = typed_inbox_icons.getResourceId(id, 0);
-            typed_inbox_icons.recycle();
-
-            return icon;
+            return icon
         }
     }
 
-    @NonNull
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+    override fun toString(): String {
+        val stringBuilder = StringBuilder()
 
-        for(NewsletterMessagesData data: inboxMessageList) {
-            stringBuilder.append(data).append("\n");
+        for (data in inboxMessageList!!) {
+            stringBuilder.append(data).append("\n")
         }
 
-        return stringBuilder.toString();
+        return stringBuilder.toString()
     }
-
 }

@@ -60,7 +60,7 @@ public class MessagesAdapterView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_messageTitle;
-        textView.setText(messages.get(position).getTitle());
+        textView.setText(messages.get(position).title);
     }
 
     @Override

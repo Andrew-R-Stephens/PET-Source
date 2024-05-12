@@ -1,5 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data
 
 //TODO: Migrate TitlescreenAnimationView data to this class
-public class MessagesAdapterData {
-}
+class MessagesAdapterData

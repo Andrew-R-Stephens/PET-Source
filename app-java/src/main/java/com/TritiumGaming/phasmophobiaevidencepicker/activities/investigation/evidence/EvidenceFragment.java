@@ -94,7 +94,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         if(evidenceViewModel.getSanityData() != null) {
             evidenceViewModel.getSanityData()
-                    .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
+                    .setFlashTimeoutMax(globalPreferencesViewModel.huntWarningFlashTimeout);
         }
 
         // GHOST / EVIDENCE CONTAINERS

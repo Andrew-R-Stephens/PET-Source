@@ -1,61 +1,56 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
+import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+/** @noinspection SameParameterValue
+ */
+class OnboardingViewModel : SharedViewModel() {
+    @JvmField
+    var canShowIntroduction: Boolean = true
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-import java.util.HashMap;
-
-/** @noinspection SameParameterValue*/
-public class OnboardingViewModel extends SharedViewModel {
-
-    private boolean canShowIntroduction = true;
-
-    @Override
-    public void setFileName() {
-        fileName = R.string.preferences_onboardingFile_name;
+    override fun setFileName() {
+        fileName = R.string.preferences_onboardingFile_name
     }
 
-    public boolean init(@NonNull Context context) {
+    override fun init(context: Context): Boolean {
+        setFileName()
 
-        setFileName();
+        val sharedPref = getSharedPreferences(context)
 
-        SharedPreferences sharedPref = getSharedPreferences(context);
+        canShowIntroduction = sharedPref.getBoolean(
+            context.resources.getString(R.string.onboarding_canShow_intro),
+            canShowIntroduction
+        )
 
-        setCanShowIntroduction(sharedPref.getBoolean(context.getResources().getString(R.string.onboarding_canShow_intro), getCanShowIntroduction()));
+        saveToFile(context)
 
-        saveToFile(context);
-
-        return true;
+        return true
     }
 
-    public void setCanShowIntroduction(boolean canShowIntroduction) {
-        this.canShowIntroduction = canShowIntroduction;
-    }
-
-    public boolean getCanShowIntroduction() {
-        return canShowIntroduction;
-    }
     /**
      *
      * @param c
      * @param editor
      * @param localApply
      */
-    public void saveCanShowIntroduction(
-            @NonNull Context c, @Nullable SharedPreferences.Editor editor, boolean localApply) {
-        if(editor == null && (editor = getEditor(c)) == null) { return; }
+    fun saveCanShowIntroduction(
+        c: Context, editor: SharedPreferences.Editor?, localApply: Boolean
+    ) {
+        var editor = editor
+        if (editor == null && (getEditor(c).also { editor = it }) == null) {
+            return
+        }
 
-        editor.putBoolean(c.getResources().getString(R.string.tutorialTracking_canShowIntroduction),
-                getCanShowIntroduction());
+        editor!!.putBoolean(
+            c.resources.getString(R.string.tutorialTracking_canShowIntroduction),
+            canShowIntroduction
+        )
 
-        if(localApply) {
-            editor.apply();
+        if (localApply) {
+            editor!!.apply()
         }
     }
 
@@ -64,40 +59,45 @@ public class OnboardingViewModel extends SharedViewModel {
      *
      * @param context The Activity context.
      */
-    public void saveToFile(@NonNull Context context) {
+    override fun saveToFile(context: Context) {
+        val editor = getEditor(context)
 
-        SharedPreferences.Editor editor = getEditor(context);
+        saveCanShowIntroduction(context, editor, false)
 
-        saveCanShowIntroduction(context, editor, false);
-
-        editor.apply();
+        editor!!.apply()
     }
 
-    @NonNull
-    public HashMap<String, String> getDataAsList() {
-        HashMap<String, String> settings = new HashMap<>();
-        settings.put("can_show_intro", String.valueOf(getCanShowIntroduction()));
+    val dataAsList: HashMap<String, String>
+        get() {
+            val settings = HashMap<String, String>()
+            settings["can_show_intro"] = canShowIntroduction.toString()
 
-        return settings;
-    }
+            return settings
+        }
 
     /**
      *
      * @param context
      */
-    public void printFromFile(@NonNull Context context) {
-        SharedPreferences sharedPref = getSharedPreferences(context);
+    fun printFromFile(context: Context) {
+        val sharedPref = getSharedPreferences(context)
 
-        Log.d("OnboardingPrefs",
-                "Can Show Introduction: " + sharedPref.getBoolean(context.getResources().getString(R.string.tutorialTracking_canShowIntroduction), false));
+        Log.d(
+            "OnboardingPrefs",
+            "Can Show Introduction: " + sharedPref.getBoolean(
+                context.resources.getString(R.string.tutorialTracking_canShowIntroduction),
+                false
+            )
+        )
     }
 
     /**
      *
      */
-    public void printFromVariables() {
-        Log.d("GlobalPreferencesVars",
-                "; Can Show Introduction: " + getCanShowIntroduction());
+    fun printFromVariables() {
+        Log.d(
+            "GlobalPreferencesVars",
+            "; Can Show Introduction: " + canShowIntroduction
+        )
     }
-
 }
