@@ -1,139 +1,81 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphicQueue;
-
-import java.util.ArrayList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphicQueue
 
 /**
  * AnimationData class
  *
  * @author TritiumGamingStudios
  */
-public class StartScreenAnimationViewData {
+class StartScreenAnimationViewData {
+    var queue: AnimatedGraphicQueue = AnimatedGraphicQueue(10, 500)
 
-    private AnimatedGraphicQueue queue =
-            new AnimatedGraphicQueue(10, 500);
+    val allPool: ArrayList<AnimatedGraphic> = ArrayList()
+    val currentPool: ArrayList<AnimatedGraphic> = ArrayList()
 
-    private final ArrayList<AnimatedGraphic>
-            allPool = new ArrayList<>(),
-            currentPool = new ArrayList<>();
+    var selectedWriting: Int = -1
+    var selectedHand: Int = -1
 
-    private int selectedWriting = -1;
-    private int selectedHand = -1;
+    @JvmField
+    var rotWriting: Float = 0f
+    var rotHand: Float = 0f
 
-    private float rotWriting, rotHand;
-
-    public void addToAllPool(AnimatedGraphic animatedItem) {
-        allPool.add(animatedItem);
+    fun addToAllPool(animatedItem: AnimatedGraphic) {
+        allPool.add(animatedItem)
     }
 
-    public void setToAllPool(int pos, AnimatedGraphic animated) {
-        allPool.set(pos, animated);
+    fun setToAllPool(pos: Int, animated: AnimatedGraphic) {
+        allPool[pos] = animated
     }
 
-    @NonNull
-    public ArrayList<AnimatedGraphic> getAllPool() {
-        return allPool;
+    fun getFromAllPool(i: Int): AnimatedGraphic {
+        return allPool[i]
     }
 
-    public AnimatedGraphic getFromAllPool(int i) {
-        return allPool.get(i);
+    val lastFromAllPool: AnimatedGraphic
+        get() = allPool[allPool.size - 1]
+
+    val allPoolSize: Int
+        get() = allPool.size
+
+    fun addToCurrentPool(animatedItem: AnimatedGraphic) {
+        currentPool.add(animatedItem)
     }
 
-    public AnimatedGraphic getLastFromAllPool() {
-        return allPool.get(allPool.size() - 1);
+    fun getFromCurrentPool(i: Int): AnimatedGraphic {
+        return currentPool[i]
     }
 
-    public int getAllPoolSize() {
-        return allPool.size();
-    }
+    @get:Throws(IndexOutOfBoundsException::class)
+    val lastFromCurrentPool: AnimatedGraphic?
+        get() {
+            if (currentPool.size == 0) {
+                return null
+            }
+            val index = currentPool.size - 1
 
-    public void addToCurrentPool(AnimatedGraphic animatedItem) {
-        currentPool.add(animatedItem);
-    }
-
-    public AnimatedGraphic getFromCurrentPool(int i) {
-        return currentPool.get(i);
-    }
-
-    @Nullable
-    public AnimatedGraphic getLastFromCurrentPool() throws IndexOutOfBoundsException {
-        if (currentPool.size() == 0) {
-            return null;
+            return currentPool[index]
         }
-        int index = currentPool.size() - 1;
 
-        return currentPool.get(index);
+    fun removeFromCurrentPool(
+        animated: AnimatedGraphic
+    ) {
+        currentPool.remove(animated)
     }
 
-    public void removeFromCurrentPool(
-            AnimatedGraphic animated) {
-        currentPool.remove(animated);
+    val currentPoolSize: Int
+        get() = currentPool.size
+
+    fun hasQueue(): Boolean {
+        return true
     }
 
-    @NonNull
-    public ArrayList<AnimatedGraphic> getCurrentPool() {
-        return currentPool;
+    fun tick() {
+        queue.tick()
     }
 
-    public int getCurrentPoolSize() {
-        return currentPool.size();
+    fun hasData(): Boolean {
+        return allPool.isNotEmpty()
     }
-
-    public void setQueue(AnimatedGraphicQueue animationQueue) {
-        this.queue = animationQueue;
-    }
-
-    public boolean hasQueue() {
-        return queue != null;
-    }
-
-    public AnimatedGraphicQueue getQueue() {
-        return queue;
-    }
-
-    public void tick() {
-        queue.tick();
-    }
-
-    public void setSelectedWriting(int selectedWriting) {
-        this.selectedWriting = selectedWriting;
-    }
-
-    public int getSelectedWriting() {
-        return selectedWriting;
-    }
-
-    public void setSelectedHand(int selectedHand) {
-        this.selectedHand = selectedHand;
-    }
-
-    public int getSelectedHand() {
-        return selectedHand;
-    }
-
-    public void setRotWriting(float rot) {
-        this.rotWriting = rot;
-    }
-
-    public float getRotWriting() {
-        return rotWriting;
-    }
-
-    public void setRotHand(float rot) {
-        this.rotHand = rot;
-    }
-
-    public float getRotHand() {
-        return rotHand;
-    }
-
-    public boolean hasData() {
-        return !allPool.isEmpty() && hasQueue();
-    }
-
 }

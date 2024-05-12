@@ -422,23 +422,17 @@ class StartScreenAnimationView : View {
 
         try {
             for (a in mainMenuViewModel!!.animationData.currentPool) {
-                if (a != null) {
-                    paint.setColorFilter(a.filter)
-                    try {
-                        if (a is AnimatedMirrorData) {
-                            a.draw(canvas, paint, bitmap_mirror)
-                        } else if (a is AnimatedWritingData) {
-                            a.draw(canvas, paint, bitmap_writingRot)
-                        } else if (a is AnimatedHandData) {
-                            a.draw(canvas, paint, bitmap_handRot)
-                        } else if (a is AnimatedOrbData) {
-                            a.draw(canvas, paint, bitmap_orb)
-                        } else if (a is AnimatedFrostData) {
-                            a.draw(canvas, paint, bitmap_frost)
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
+                paint.setColorFilter(a.filter)
+                try {
+                    when(a) {
+                        is AnimatedMirrorData -> a.draw(canvas, paint, bitmap_mirror)
+                        is AnimatedWritingData -> a.draw(canvas, paint, bitmap_writingRot)
+                        is AnimatedHandData -> a.draw(canvas, paint, bitmap_handRot)
+                        is AnimatedOrbData -> a.draw(canvas, paint, bitmap_orb)
+                        is AnimatedFrostData -> a.draw(canvas, paint, bitmap_frost)
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         } catch (ex: ConcurrentModificationException) {
