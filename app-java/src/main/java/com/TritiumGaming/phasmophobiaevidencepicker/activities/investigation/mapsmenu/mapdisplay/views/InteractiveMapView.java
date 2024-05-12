@@ -324,7 +324,11 @@ public class InteractiveMapView extends View {
                     while (bitmapUtils != null && bitmapUtils.hasNextBitmap()) {
                         mapImages.set(
                                 index,
-                                bitmapUtils.compileNextBitmap(getContext(), mapImages.get(index)));
+                                bitmapUtils.compileNextBitmap(
+                                        getContext(),
+                                        mapImages.get(index)
+                                )
+                        );
                         a.runOnUiThread(this::invalidate);
                     }
                 }

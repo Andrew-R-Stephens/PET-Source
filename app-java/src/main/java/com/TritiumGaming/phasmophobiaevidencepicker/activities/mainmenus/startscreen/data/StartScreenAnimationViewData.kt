@@ -50,7 +50,11 @@ class StartScreenAnimationViewData {
     }
 
     fun addToCurrentPool(animatedItem: AnimatedGraphic) {
-        currentPool.add(animatedItem)
+        try {
+            currentPool.add(animatedItem)
+        } catch (ex: ArrayIndexOutOfBoundsException) {
+            ex.printStackTrace()
+        }
     }
 
     fun getFromCurrentPool(i: Int): AnimatedGraphic {
@@ -58,7 +62,11 @@ class StartScreenAnimationViewData {
     }
 
     fun removeFromCurrentPool(animated: AnimatedGraphic) {
-        currentPool.remove(animated)
+        try {
+            currentPool.remove(animated)
+        } catch (ex: ArrayIndexOutOfBoundsException) {
+            ex.printStackTrace()
+        }
     }
 
     fun hasQueue(): Boolean {
