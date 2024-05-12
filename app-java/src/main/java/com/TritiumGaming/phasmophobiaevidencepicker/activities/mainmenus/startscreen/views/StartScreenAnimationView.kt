@@ -54,11 +54,9 @@ class StartScreenAnimationView : View {
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    )
+    constructor(
+        context: Context?, attrs: AttributeSet?, defStyleAttr: Int
+    ) : super(context, attrs, defStyleAttr)
 
     /**
      * @param mainMenuViewModel The TitleScreenViewModel which contains necessary Animation data
@@ -253,6 +251,92 @@ class StartScreenAnimationView : View {
             if (aTemp != null) {
                 val lastAnimInList = animationData.lastFromCurrentPool
                 if (lastAnimInList != null) {
+                    when(lastAnimInList) {
+                        is AnimatedOrbData -> {
+                            if (BitmapUtils.bitmapExists(bitmap_orb)) {
+                                animationData.setToAllPool(
+                                    index, AnimatedOrbData(
+                                        screenW,
+                                        screenH
+                                    )
+                                )
+                            }
+                        }
+                        is AnimatedHandData -> {
+                            if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                                var bitmapW = 0
+                                var bitmapH = 0
+                                try {
+                                    bitmapW = bitmap_hand!!.width
+                                    bitmapH = bitmap_hand!!.height
+                                } catch (e: NullPointerException) {
+                                    e.printStackTrace()
+                                }
+
+                                animationData.setToAllPool(
+                                    index, AnimatedHandData(
+                                        screenW,
+                                        screenH,
+                                        bitmapW,
+                                        bitmapH
+                                    )
+                                )
+
+                                bitmap_handRot =
+                                    (animationData.lastFromCurrentPool as AnimatedHandData?)!!.rotateBitmap(
+                                        bitmap_hand!!
+                                    )
+                            }
+                        }
+                        is AnimatedWritingData -> {
+                            if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                                var bitmapW = 0
+                                var bitmapH = 0
+                                try {
+                                    bitmapW = bitmap_writing!!.width
+                                    bitmapH = bitmap_writing!!.height
+                                } catch (e: NullPointerException) {
+                                    e.printStackTrace()
+                                }
+
+                                animationData.setToAllPool(
+                                    index, AnimatedWritingData(
+                                        screenW,
+                                        screenH,
+                                        bitmapW,
+                                        bitmapH,
+                                        animationData
+                                    )
+                                )
+
+                                bitmap_writingRot =
+                                    (animationData.lastFromCurrentPool as AnimatedWritingData?)!!.rotateBitmap(
+                                        bitmap_writing!!
+                                    )
+                            }
+                        }
+                        is AnimatedFrostData -> {
+                            if (BitmapUtils.bitmapExists(bitmap_frost)) {
+                                animationData.setToAllPool(
+                                    index, AnimatedFrostData(
+                                        screenW,
+                                        screenH
+                                    )
+                                )
+                            }
+                        }
+                        is AnimatedMirrorData -> {
+                            if (BitmapUtils.bitmapExists(bitmap_mirror)) {
+                                animationData.setToAllPool(
+                                    index, AnimatedMirrorData(
+                                        screenW,
+                                        screenH
+                                    )
+                                )
+                            }
+                        }
+                    }
+                    /*
                     if (lastAnimInList is AnimatedOrbData) {
                         if (BitmapUtils.bitmapExists(bitmap_orb)) {
                             animationData.setToAllPool(
@@ -331,7 +415,7 @@ class StartScreenAnimationView : View {
                                 )
                             )
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -349,7 +433,47 @@ class StartScreenAnimationView : View {
                  * Try the next Animated
                  */
                 if (!currentAnim.isAlive) {
-                    if (currentAnim is AnimatedHandData) {
+                    when(currentAnim) {
+                        is AnimatedHandData -> {
+                            animationData.selectedHand = (Math.random() * handResIds.size).toInt()
+
+                            BitmapUtils.destroyBitmap(
+                                bitmap_hand!!
+                            )
+                            BitmapUtils.destroyBitmap(
+                                bitmap_handRot!!
+                            )
+
+                            bitmapUtils!!.setResource(
+                                handResIds[animationData.selectedHand]
+                            )
+                            bitmap_hand = bitmapUtils!!.compileBitmaps(context)
+
+                            if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                                bitmap_handRot = currentAnim.rotateBitmap(bitmap_hand)
+                            }
+                        }
+                        is AnimatedWritingData -> {
+                            animationData.selectedWriting = (Math.random() * writingResIds.size).toInt()
+
+                            BitmapUtils.destroyBitmap(
+                                bitmap_writing!!
+                            )
+                            BitmapUtils.destroyBitmap(
+                                bitmap_writingRot!!
+                            )
+
+                            bitmapUtils!!.setResource(
+                                writingResIds[animationData.selectedWriting]
+                            )
+                            bitmap_writing = bitmapUtils!!.compileBitmaps(context)
+
+                            if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                                bitmap_writingRot = currentAnim.rotateBitmap(bitmap_writing)
+                            }
+                        }
+                    }
+                    /*if (currentAnim is AnimatedHandData) {
                         animationData.selectedHand = (Math.random() * handResIds.size).toInt()
 
                         BitmapUtils.destroyBitmap(
@@ -368,13 +492,6 @@ class StartScreenAnimationView : View {
                             bitmap_handRot = currentAnim.rotateBitmap(bitmap_hand)
                         }
 
-                        /*
-                        AnimatedHandData data = ((AnimatedHandData) currentAnim);
-                        BitmapUtils.destroyBitmap(bitmap_handRot);
-                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
-                            bitmap_handRot = data.rotateBitmap(bitmap_hand);
-                        }
-                        */
                     } else if (currentAnim is AnimatedWritingData) {
                         animationData.selectedWriting = (Math.random() * writingResIds.size).toInt()
 
@@ -393,7 +510,7 @@ class StartScreenAnimationView : View {
                         if (BitmapUtils.bitmapExists(bitmap_writing)) {
                             bitmap_writingRot = currentAnim.rotateBitmap(bitmap_writing)
                         }
-                    }
+                    }*/
                     try {
                         animationData.removeFromCurrentPool(currentAnim)
                         i--
