@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphicQueue;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedFrostData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedGraphicData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.StartScreenAnimationViewData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedHandData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedMirrorData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedOrbData;
@@ -37,7 +37,7 @@ import java.util.ConcurrentModificationException;
  */
 public class StartScreenAnimationView extends View {
 
-    private MainMenuViewModel titleScreenViewModel;
+    private MainMenuViewModel mainMenuViewModel;
 
     private BitmapUtils bitmapUtils;
 
@@ -47,39 +47,25 @@ public class StartScreenAnimationView extends View {
     private boolean canAnimate = true;
 
     @NonNull
-    private ArrayList<Integer> writingResIds = new ArrayList<>();
-    @NonNull
-    private ArrayList<Integer> handResIds = new ArrayList<>();
+    private ArrayList<Integer>
+            writingResIds = new ArrayList<>(),
+            handResIds = new ArrayList<>();
 
     private final Paint paint = new Paint();
     @Nullable
     private Bitmap bitmap_orb, bitmap_hand, bitmap_writing, bitmap_frost, bitmap_mirror,
             bitmap_handRot, bitmap_writingRot;
 
-    /**
-     * @param context The parent Context
-     */
     public StartScreenAnimationView(Context context) {
         super(context);
     }
 
-    /**
-     * @param context The parent Context
-     * @param attrs The attributes given on init
-     */
     public StartScreenAnimationView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    /**
-     * @param context The parent Context
-     * @param attrs The attributes given on init
-     * @param defStyleAttr The style attributes given on init
-     */
     public StartScreenAnimationView(
-            Context context,
-            @Nullable AttributeSet attrs,
-            int defStyleAttr) {
+            Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -91,10 +77,10 @@ public class StartScreenAnimationView extends View {
             MainMenuViewModel titleScreenViewModel,
             BitmapUtils bitmapUtils) {
 
-        this.titleScreenViewModel = titleScreenViewModel;
+        this.mainMenuViewModel = titleScreenViewModel;
         this.bitmapUtils = bitmapUtils;
 
-        AnimatedGraphicData data = this.titleScreenViewModel.animationData;
+        StartScreenAnimationViewData data = this.mainMenuViewModel.animationData;
 
         //Set writing resources
         TypedArray bookwritingArray =
@@ -126,11 +112,8 @@ public class StartScreenAnimationView extends View {
         buildData();
     }
 
-    /**
-     *
-     */
     public void buildImages() {
-        AnimatedGraphicData data = titleScreenViewModel.animationData;
+        StartScreenAnimationViewData data = mainMenuViewModel.animationData;
 
         bitmap_orb = bitmapUtils.setResource(R.drawable.anim_ghostorb).
                 compileBitmaps(getContext());
@@ -150,27 +133,24 @@ public class StartScreenAnimationView extends View {
 
     }
 
-    /**
-     *
-     */
     public void buildData() {
 
-        if (titleScreenViewModel == null) { return; }
+        if (mainMenuViewModel == null) { return; }
 
         int
             screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
             screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        AnimatedGraphicData animationData = titleScreenViewModel.animationData;
+        StartScreenAnimationViewData animationData = mainMenuViewModel.animationData;
 
-        for (AbstractAnimatedGraphic g : animationData.getCurrentPool()) {
+        for (AnimatedGraphic g : animationData.getCurrentPool()) {
             if(g != null) {
                 g.initDims(screenW, screenH);
             }
         }
 
         if (animationData.hasData()) {
-            for (AbstractAnimatedGraphic animated : animationData.getAllPool()) {
+            for (AnimatedGraphic animated : animationData.getAllPool()) {
                 if (animated instanceof AnimatedHandData a) {
                     try {
                         bitmap_handRot = a.rotateBitmap(bitmap_hand);
@@ -251,19 +231,16 @@ public class StartScreenAnimationView extends View {
                 new AnimatedGraphicQueue(animationData.getAllPoolSize(), 750));
     }
 
-    /**
-     *
-     */
     public void tick() {
 
-        if (titleScreenViewModel == null)
+        if (mainMenuViewModel == null)
             return;
 
         int
             screenW = Resources.getSystem().getDisplayMetrics().widthPixels,
             screenH = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        AnimatedGraphicData animationData = titleScreenViewModel.animationData;
+        StartScreenAnimationViewData animationData = mainMenuViewModel.animationData;
         animationData.tick();
 
         int maxQueue = 3;
@@ -273,7 +250,7 @@ public class StartScreenAnimationView extends View {
             AnimatedGraphicQueue animationQueue = animationData.getQueue();
 
             int index = 0;
-            AbstractAnimatedGraphic aTemp = null;
+            AnimatedGraphic aTemp = null;
             try {
                 index = animationQueue.dequeue();
                 aTemp = animationData.getFromAllPool(index);
@@ -283,7 +260,7 @@ public class StartScreenAnimationView extends View {
                 e.printStackTrace();
             }
             if (aTemp != null) {
-                AbstractAnimatedGraphic lastAnimInList = animationData.getLastFromCurrentPool();
+                AnimatedGraphic lastAnimInList = animationData.getLastFromCurrentPool();
                 if (lastAnimInList != null) {
 
                     if (lastAnimInList instanceof AnimatedOrbData) {
@@ -357,7 +334,7 @@ public class StartScreenAnimationView extends View {
         }
 
         for (int i = 0; i < animationData.getCurrentPoolSize(); i++) {
-            AbstractAnimatedGraphic currentAnim = animationData.getFromCurrentPool(i);
+            AnimatedGraphic currentAnim = animationData.getFromCurrentPool(i);
             if (currentAnim != null) {
                 currentAnim.tick();
 
@@ -424,7 +401,7 @@ public class StartScreenAnimationView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        if (titleScreenViewModel == null) {
+        if (mainMenuViewModel == null) {
             return;
         }
 
@@ -433,7 +410,7 @@ public class StartScreenAnimationView extends View {
         paint.setStyle(Paint.Style.FILL);
 
         try {
-            for (AbstractAnimatedGraphic a : titleScreenViewModel.animationData.getCurrentPool()) {
+            for (AnimatedGraphic a : mainMenuViewModel.animationData.getCurrentPool()) {
                 if (a != null) {
                     paint.setColorFilter(a.getFilter());
                     try {

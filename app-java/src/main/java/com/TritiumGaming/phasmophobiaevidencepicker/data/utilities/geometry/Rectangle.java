@@ -360,11 +360,11 @@ public class Rectangle extends Rectangle2D
         long ty2 = this.height;
         if ((tx2 | ty2) < 0) {
             // This rectangle has negative dimensions...
-            // If r has non-negative dimensions then it is the answer.
-            // If r is non-existent (has a negative dimension), then both
+            // If rect has non-negative dimensions then it is the answer.
+            // If rect is non-existent (has a negative dimension), then both
             // are non-existent and we can return any non-existent rectangle
-            // as an answer.  Thus, returning r meets that criterion.
-            // Either way, r is our answer.
+            // as an answer.  Thus, returning rect meets that criterion.
+            // Either way, rect is our answer.
             return new Rectangle(r);
         }
         long rx2 = r.width;

@@ -16,9 +16,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
  *
  * @author TritiumGamingStudios
  */
-public abstract class AbstractAnimatedGraphic {
+public abstract class AnimatedGraphic {
 
-    protected final Rect r = new Rect();
+    protected final Rect rect = new Rect();
 
     protected int SCREENW, SCREENH;
     protected int MAX_ALPHA = 200,
@@ -33,32 +33,19 @@ public abstract class AbstractAnimatedGraphic {
     protected float rotation = 1;
     protected boolean isAlive = true;
 
-    /**
-     * @param screenW
-     * @param screenH
-     */
-    public AbstractAnimatedGraphic(int screenW, int screenH) {
+    public AnimatedGraphic(int screenW, int screenH) {
         setScreenW(screenW);
         setScreenH(screenH);
     }
 
-    /**
-     * @param screenW
-     */
     public void setScreenW(int screenW) {
         SCREENW = screenW;
     }
 
-    /**
-     * @param screenH
-     */
     public void setScreenH(int screenH) {
         SCREENH = screenH;
     }
 
-    /**
-     * @param scale
-     */
     public void setScale(double scale) {
         this.scale = scale;
     }
@@ -71,9 +58,6 @@ public abstract class AbstractAnimatedGraphic {
         height = h;
     }
 
-    /**
-     * @param rot
-     */
     public void setRotation(float rot) {
         rotation = rot;
     }
@@ -83,24 +67,15 @@ public abstract class AbstractAnimatedGraphic {
         return original;
     }
 
-    /**
-     * @return
-     */
     public boolean isAlive() {
         return isAlive;
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public Rect getRect() {
-        return r;
+        return rect;
     }
 
-    /**
-     *
-     */
     public void setAlpha() {
         double alphaMult = (double) currentTick / (double) MAX_TICK / fadeTick * MAX_ALPHA;
         alpha = (int) alphaMult;
@@ -112,38 +87,12 @@ public abstract class AbstractAnimatedGraphic {
         }
     }
 
-    /**
-     * @return
-     */
     public abstract PorterDuffColorFilter getFilter();
 
-    /**
-     * @param canvas
-     * @param paint
-     * @param bitmap
-     */
     public void draw(@Nullable Canvas canvas, Paint paint, Bitmap bitmap) {
         if (BitmapUtils.bitmapExists(bitmap) && canvas != null) {
             canvas.drawBitmap(
                     bitmap, null, getRect(), paint);
-        }
-    }
-
-    /**
-     * @param canvas
-     * @param paint
-     * @param bitmap1
-     * @param bitmap2
-     */
-    public void draw(@Nullable Canvas canvas, Paint paint, Bitmap bitmap1, Bitmap bitmap2) {
-
-        if (BitmapUtils.bitmapExists(bitmap1) && canvas != null) {
-
-            canvas.drawBitmap(
-                    bitmap1, null, getRect(), paint);
-
-            canvas.drawBitmap(
-                    bitmap2, null, getRect(), paint);
         }
     }
 

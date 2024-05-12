@@ -6,19 +6,15 @@ import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 
 /**
  * FrostscreenData class
  *
  * @author TritiumGamingStudios
  */
-public class AnimatedMirrorData extends AbstractAnimatedGraphic {
+public class AnimatedMirrorData extends AnimatedGraphic {
 
-    /**
-     * @param screenW
-     * @param screenH
-     */
     public AnimatedMirrorData(int screenW, int screenH) {
         super(screenW, screenH);
 
@@ -46,16 +42,10 @@ public class AnimatedMirrorData extends AbstractAnimatedGraphic {
         setHeight(SCREENH);
     }
 
-    /**
-     * @param tickMax
-     */
     public void setTickMax(int tickMax) {
         this.MAX_TICK = tickMax;
     }
 
-    /**
-     *
-     */
     public void setX() {
         this.x = 0;
         if (getScaledWidth() > SCREENW) {
@@ -63,9 +53,6 @@ public class AnimatedMirrorData extends AbstractAnimatedGraphic {
         }
     }
 
-    /**
-     *
-     */
     public void setY() {
         this.y = 0;
         if (getScaledHeight() > SCREENH) {
@@ -73,30 +60,18 @@ public class AnimatedMirrorData extends AbstractAnimatedGraphic {
         }
     }
 
-    /**
-     * @return
-     */
     public double getScaledWidth() {
         return scale * width;
     }
 
-    /**
-     * @return
-     */
     public double getScaledHeight() {
         return scale * height;
     }
 
-    /**
-     *
-     */
     public void setRect() {
-        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
+        rect.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
-    /**
-     *
-     */
     public void tick() {
         setRect();
         if (currentTick >= 0) {
@@ -111,9 +86,6 @@ public class AnimatedMirrorData extends AbstractAnimatedGraphic {
         setAlpha();
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public PorterDuffColorFilter getFilter() {
         return new PorterDuffColorFilter(

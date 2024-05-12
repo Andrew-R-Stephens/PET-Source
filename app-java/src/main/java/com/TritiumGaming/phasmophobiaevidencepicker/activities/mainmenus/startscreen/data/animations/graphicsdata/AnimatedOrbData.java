@@ -6,14 +6,14 @@ import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 
 /**
  * GhostOrbData class
  *
  * @author TritiumGamingStudios
  */
-public class AnimatedOrbData extends AbstractAnimatedGraphic {
+public class AnimatedOrbData extends AnimatedGraphic {
 
     private final int SIZE = 30;
     private int ANIM_TICK_MAX = 250, DEST_TICK_MAX = 500;
@@ -151,7 +151,7 @@ public class AnimatedOrbData extends AbstractAnimatedGraphic {
             setDest();
         }
 
-        r.set((int) x, (int) y, (int) (x + SIZE), (int) (y + SIZE));
+        rect.set((int) x, (int) y, (int) (x + SIZE), (int) (y + SIZE));
 
         setAlpha();
     }

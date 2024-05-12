@@ -9,7 +9,7 @@ import android.graphics.PorterDuffColorFilter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 
 /**
@@ -17,7 +17,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
  *
  * @author TritiumGamingStudios
  */
-public class AnimatedHandData extends AbstractAnimatedGraphic {
+public class AnimatedHandData extends AnimatedGraphic {
 
     private final int bitmapW, bitmapH;
 
@@ -128,7 +128,7 @@ public class AnimatedHandData extends AbstractAnimatedGraphic {
      *
      */
     public void setRect() {
-        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
+        rect.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**

@@ -8,14 +8,14 @@ import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 
 /**
  * FrostscreenData class
  *
  * @author TritiumGamingStudios
  */
-public class AnimatedFrostData extends AbstractAnimatedGraphic {
+public class AnimatedFrostData extends AnimatedGraphic {
     /**
      * @param screenW -
      * @param screenH -
@@ -89,7 +89,7 @@ public class AnimatedFrostData extends AbstractAnimatedGraphic {
      *
      */
     public void setRect() {
-        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
+        rect.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**

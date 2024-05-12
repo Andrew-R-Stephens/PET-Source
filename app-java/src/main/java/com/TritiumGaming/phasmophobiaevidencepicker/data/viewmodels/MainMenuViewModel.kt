@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedGraphicData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.StartScreenAnimationViewData
 import com.google.android.gms.ads.AdRequest
 
 /**
@@ -13,7 +13,8 @@ class MainMenuViewModel : ViewModel() {
 
     /** @return animationData */
     @JvmField
-    val animationData: AnimatedGraphicData = AnimatedGraphicData()
+    val animationData: StartScreenAnimationViewData =
+        StartScreenAnimationViewData()
 
     @JvmField
     var adRequest: AdRequest? = null

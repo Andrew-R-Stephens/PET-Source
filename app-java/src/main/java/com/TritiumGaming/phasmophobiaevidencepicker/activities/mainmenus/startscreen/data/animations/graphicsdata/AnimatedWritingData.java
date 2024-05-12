@@ -9,14 +9,15 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AbstractAnimatedGraphic;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.StartScreenAnimationViewData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic;
 
 /**
  * GhostWritingData class
  *
  * @author TritiumGamingStudios
  */
-public class AnimatedWritingData extends AbstractAnimatedGraphic {
+public class AnimatedWritingData extends AnimatedGraphic {
 
     private final int bitmapW, bitmapH;
 
@@ -32,7 +33,7 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
             int screenH,
             int bitmapW,
             int bitmapH,
-            @NonNull AnimatedGraphicData animationData) {
+            @NonNull StartScreenAnimationViewData animationData) {
         super(screenW, screenH);
 
         this.bitmapW = bitmapW;
@@ -145,7 +146,7 @@ public class AnimatedWritingData extends AbstractAnimatedGraphic {
      *
      */
     public void setRect() {
-        r.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
+        rect.set((int) x, (int) y, (int) (x + getScaledWidth()), (int) (y + getScaledHeight()));
     }
 
     /**
