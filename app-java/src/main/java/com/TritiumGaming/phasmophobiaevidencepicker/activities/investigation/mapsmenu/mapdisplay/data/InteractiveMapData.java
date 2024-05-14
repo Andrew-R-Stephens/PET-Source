@@ -61,9 +61,6 @@ public class InteractiveMapData {
         this.ZOOM_MAX = otherData.ZOOM_MAX;
     }
 
-    /**
-     * @param zoom
-     */
     public void updateZoomLevel(double zoom) {
 
         float ZOOM_SENSE = 2f;//1.5f;

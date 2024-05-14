@@ -47,8 +47,6 @@ class MapModel {
             return mapFloors[0]
         }
 
-    /** @noinspection UnusedReturnValue
-     */
     fun setCurrentLayer(layer: FloorLayer): FloorLayer? {
         if (hasFloorAtLayer(layer)) {
             this.currentLayer = layer

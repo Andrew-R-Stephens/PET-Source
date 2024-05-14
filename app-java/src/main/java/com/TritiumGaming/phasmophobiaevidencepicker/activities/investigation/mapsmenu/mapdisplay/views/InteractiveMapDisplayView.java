@@ -49,12 +49,6 @@ public class InteractiveMapDisplayView extends View {
 
     private Polygon polygon = new Polygon();
 
-    /**
-     * InteractiveMapDisplayView parameterized constructor
-     *
-     * @param context
-     * @param attrs
-     */
     public InteractiveMapDisplayView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -64,29 +58,14 @@ public class InteractiveMapDisplayView extends View {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    /**
-     * init method
-     *
-     * @param controllerData
-     */
     public void init(InteractiveMapControlData controllerData) {
         this.controllerData = controllerData;
     }
 
-    /**
-     * setMapData method
-     *
-     * @param mapData
-     */
     public void setMapData(MapData mapData) {
         this.mapData = mapData;
     }
 
-    /**
-     * setMapImages method
-     *
-     * @param a
-     */
     public void setMapImages(@NonNull Activity a) {
 
         if (controllerData != null) {
@@ -133,11 +112,6 @@ public class InteractiveMapDisplayView extends View {
         this.floorModel = floorModel;
     }
 
-    /**
-     * onDraw method
-     *
-     * @param canvas
-     */
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 

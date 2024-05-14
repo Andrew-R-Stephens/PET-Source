@@ -38,22 +38,10 @@ public class InteractiveMapControlView extends View {
 
     private GestureDetectorCompat mDetector;
 
-    /**
-     * InteractiveMapControlView parameterized constructor
-     *
-     * @param context
-     * @param attrs
-     */
     public InteractiveMapControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    /**
-     * init method
-     *
-     * @param controllerData
-     * @param recipient
-     */
     public void init(InteractiveMapControlData controllerData, View recipient) {
         this.controllerData = controllerData;
         this.recipient = recipient;
@@ -81,12 +69,6 @@ public class InteractiveMapControlView extends View {
         }
     }
 
-    /**
-     * onTouchEvent listener
-     *
-     * @param event
-     * @return
-     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
@@ -157,9 +139,6 @@ public class InteractiveMapControlView extends View {
         return true;
     }
 
-    /**
-     * doZoomAction method
-     */
     public void doZoomAction() {
 
         PointF p1 = mActivePointers.get(0);
@@ -186,9 +165,6 @@ public class InteractiveMapControlView extends View {
         }
     }
 
-    /**
-     * doPanAction method
-     */
     public void doPanAction() {
 
         PointF p = mActivePointers.get(0);

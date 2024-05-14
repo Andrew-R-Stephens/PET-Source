@@ -24,9 +24,6 @@ public class InteractiveMapControlData {
 
     private float pressedX, pressedY;
 
-    /**
-     * @param addZoom
-     */
     public void incrementZoomLevel(double addZoom) {
 
         float ZOOM_SENSE = 2f;//1.5f;
@@ -43,10 +40,6 @@ public class InteractiveMapControlData {
 
     }
 
-    /**
-     * @param addX
-     * @param addY
-     */
     public void incrementPan(double addX, double addY) {
 
         float PAN_SENSE = 1.5f;
@@ -58,10 +51,6 @@ public class InteractiveMapControlData {
 
     }
 
-    /**
-     * @param w
-     * @param h
-     */
     public void setDisplaySize(int w, int h) {
         this.w = w;
         this.h = h;
@@ -72,28 +61,16 @@ public class InteractiveMapControlData {
         this.pressedY = y;
     }
 
-    /**
-     *
-     */
     public void updateMatrix() {
         setAutoInSampleSize(w, h);
         options.inJustDecodeBounds = false;
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public BitmapFactory.Options getBitmapFactoryOptions() {
         return options;
     }
 
-    /**
-     * @param imgW
-     * @param imgH
-     * @param viewW
-     * @param viewH
-     */
     public void postTranslateMatrix(float imgW, float imgH, float viewW, float viewH) {
 
         if (canSetDefaultZoomLevel) {
@@ -134,18 +111,11 @@ public class InteractiveMapControlData {
 
     }
 
-    /**
-     * @return
-     */
     @NonNull
     public Matrix getMatrix() {
         return matrix;
     }
 
-    /**
-     * @param reqWidth
-     * @param reqHeight
-     */
     public void setAutoInSampleSize(int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;

@@ -16,15 +16,6 @@ class RoomModel(
         roomArea.setPoints(points)
     }
 
-    /*
-    constructor(room: WorldMapWrapper.WorldMap.Floor.Room) {
-        id = room.room_iD
-        name = room.room_name
-
-        roomArea.setPoints(room.room_points)
-    }
-    */
-
     override fun toString(): String {
         return "\n\t\t[Room ID: $id] [Room Name: $name] [Room points: $roomArea]"
     }
