@@ -133,7 +133,7 @@ public class LanguageControl {
         if(theme == null) {
             throw new Exception("No theme set.");
         }
-        return getCurrentTheme().getName();
+        return getCurrentTheme().name;
     }
 
     public String getID() {

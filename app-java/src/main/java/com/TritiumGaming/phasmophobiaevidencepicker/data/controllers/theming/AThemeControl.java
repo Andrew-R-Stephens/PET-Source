@@ -60,9 +60,6 @@ public abstract class AThemeControl {
         this.savedIndex = savedIndex;
     }
 
-    /**
-     * @param selectedIndex
-     */
     public void setSelectedIndex(int selectedIndex) {
         if(selectedIndex < 0 || selectedIndex >= themes.size()) {
             selectedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
@@ -71,9 +68,6 @@ public abstract class AThemeControl {
         this.selectedIndex = selectedIndex;
     }
 
-    /**
-     * @return
-     */
     public int getSavedIndex() {
         return savedIndex;
     }
@@ -82,23 +76,14 @@ public abstract class AThemeControl {
         selectedIndex = savedIndex;
     }
 
-    /**
-     * @return
-     */
     public int getSelectedIndex() {
         return selectedIndex;
     }
 
-    /**
-     * @param dir
-     */
     public void iterateSelection(int dir) {
         iterateSelection(dir, selectedIndex);
     }
 
-    /**
-     * @param dir
-     */
     public void iterateSelection(int dir, int start) {
 
         selectedIndex += dir;
@@ -132,11 +117,8 @@ public abstract class AThemeControl {
         return theme;
     }
 
-    /**
-     * @return
-     */
     public int getCurrentName() {
-        return getCurrentTheme().getName();
+        return getCurrentTheme().name;
     }
 
     public String getID() {

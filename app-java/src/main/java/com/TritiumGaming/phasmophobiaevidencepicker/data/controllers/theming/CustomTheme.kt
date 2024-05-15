@@ -1,82 +1,62 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import androidx.annotation.StyleRes;
+import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+class CustomTheme @JvmOverloads constructor(
+    val iD: String?,
 
-public class CustomTheme {
+    @JvmField
+    @field:StringRes @get:StringRes val name: Int,
 
-    public enum Availability {
+    @field:StyleRes @get:StyleRes val style: Int,
+    isUnlocked: Boolean = false
+) {
+
+    enum class Availability {
         LOCKED, UNLOCKED_DEFAULT, UNLOCKED_PURCHASE
     }
 
-    private final @StringRes int name;
-    private final String hashID;
-    private final @StyleRes int styleId;
-    private Availability unlockedState; // start LOCKED
+    var unlockedState: Availability = Availability.LOCKED
+        private set
 
-    public CustomTheme(String id, int name, int styleId) {
-        this(id, name, styleId, false);
+    init {
+        this.unlockedState = if (isUnlocked) Availability.UNLOCKED_DEFAULT else Availability.LOCKED
     }
 
-    public CustomTheme(String id, int name, int styleId, boolean isUnlocked) {
-        this.hashID = id;
-        this.name = name;
-        this.styleId = styleId;
-        this.unlockedState = isUnlocked ? Availability.UNLOCKED_DEFAULT : Availability.LOCKED;
+    val isUnlocked: Boolean
+        get() = unlockedState != Availability.LOCKED
+
+    fun setUnlocked(state: Availability) {
+        if (unlockedState == Availability.UNLOCKED_DEFAULT) {
+            return
+        }
+        this.unlockedState = state
     }
 
-    public @StringRes int getName() {
-        return name;
-    }
-
-    public String getID() {
-        return hashID;
-    }
-
-    public @StyleRes int getStyle() {
-        return styleId;
-    }
-
-    public boolean isUnlocked() {
-        return unlockedState != Availability.LOCKED;
-    }
-
-    public void setUnlocked(Availability state) {
-        if(unlockedState == Availability.UNLOCKED_DEFAULT) { return; }
-
-        this.unlockedState = state;
-    }
-
-    public void revertUnlockStatus() {
-        if(unlockedState == Availability.UNLOCKED_PURCHASE) {
-            unlockedState = Availability.LOCKED;
+    fun revertUnlockStatus() {
+        if (unlockedState == Availability.UNLOCKED_PURCHASE) {
+            unlockedState = Availability.LOCKED
         }
     }
 
-    public Availability getUnlockedState() {
-        return unlockedState;
-    }
-
-    @NonNull
-    public static CustomTheme getDefaultTheme() {
-        return new CustomTheme(
-                "CzjtxSbXRwIpX8SYR0ttngAND",
-                R.string.settings_colorblindnessmode_defaultName,
-                R.style.Theme_PhasmophobiaEvidenceTool);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "CustomTheme{" +
                 "name=" + name +
-                ", hashID='" + hashID + '\'' +
-                ", styleId=" + styleId +
+                ", hashID='" + iD + '\'' +
+                ", styleId=" + style +
                 ", unlockedState=" + unlockedState +
-                '}';
+                '}'
     }
 
+    companion object {
+        @JvmStatic
+        val defaultTheme: CustomTheme
+            get() = CustomTheme(
+                "CzjtxSbXRwIpX8SYR0ttngAND",
+                R.string.settings_colorblindnessmode_defaultName,
+                R.style.Theme_PhasmophobiaEvidenceTool
+            )
+    }
 }

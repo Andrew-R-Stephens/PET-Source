@@ -50,7 +50,6 @@ class ColorThemeControl(context: Context?) : AThemeControl(context) {
                         idRes, nameRes, styleRes,
                         isUnlocked
                     )
-
                     themes.add(tempTheme)
                 }
             }
