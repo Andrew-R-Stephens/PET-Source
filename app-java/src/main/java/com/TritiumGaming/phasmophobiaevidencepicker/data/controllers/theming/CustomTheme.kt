@@ -4,26 +4,23 @@ import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-class CustomTheme @JvmOverloads constructor(
+class CustomTheme
+
+@JvmOverloads
+constructor(
     val iD: String?,
-
-    @JvmField
-    @field:StringRes @get:StringRes val name: Int,
-
-    @field:StyleRes @get:StyleRes val style: Int,
-    isUnlocked: Boolean = false
+    @StringRes val name: Int,
+    @StyleRes val style: Int,
+    unlocked: Boolean = false
 ) {
 
     enum class Availability {
         LOCKED, UNLOCKED_DEFAULT, UNLOCKED_PURCHASE
     }
 
-    var unlockedState: Availability = Availability.LOCKED
-        private set
-
-    init {
-        this.unlockedState = if (isUnlocked) Availability.UNLOCKED_DEFAULT else Availability.LOCKED
-    }
+    var unlockedState: Availability =
+        if (unlocked) Availability.UNLOCKED_DEFAULT
+        else Availability.LOCKED
 
     val isUnlocked: Boolean
         get() = unlockedState != Availability.LOCKED

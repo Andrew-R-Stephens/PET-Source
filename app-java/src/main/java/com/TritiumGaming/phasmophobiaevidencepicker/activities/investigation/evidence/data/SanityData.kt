@@ -1,7 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -60,7 +58,13 @@ class SanityData(
     private val dropRate_setup = doubleArrayOf(.09, .05, .03)
     private val dropRate_normal = doubleArrayOf(.12, .08, .05)
 
-    private var warningAudioAllowed = true
+    var warningAudioAllowed = true
+        get() {
+            val temp = (evidenceViewModel?.sanityData?.insanityPercent?.value ?: 0f) < .7
+
+            return field && temp
+        }
+
 
     /** @return If the countdown timer is paused. */
     @JvmField
@@ -180,20 +184,6 @@ class SanityData(
     }
 
     /**
-     * @param canWarn - If the Hunt Warning audio may execute
-     */
-    fun setWarningAudioAllowed(canWarn: Boolean) {
-        this.warningAudioAllowed = canWarn
-    }
-
-    /** @return if the Hunt Warning audio will execute */
-    fun isWarningAudioAllowed(): Boolean {
-        val temp = (evidenceViewModel?.sanityData?.insanityPercent?.value ?: 0f) < .7
-
-        return warningAudioAllowed && temp
-    }
-
-    /**
      * Allow the Warning indicator to flash either off or on if:
      * The player's sanity is less than 70%
      * either if the Flash Timeout is infinite
@@ -264,7 +254,7 @@ class SanityData(
     fun reset() {
         resetStartTime()
         resetFlashTimeoutStart()
-        setWarningAudioAllowed(true)
+        warningAudioAllowed = true
         tick()
         val sanityQuarter = 25f
         val sanityEmpty = 0L

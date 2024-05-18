@@ -12,6 +12,9 @@ class PhaseTimerData(
     @JvmField
     var timeRemaining: Long = TIME_DEFAULT
 
+    val isSetupPhase: Boolean
+        get() = timeRemaining > TIME_MIN
+
     init {
         reset()
     }
@@ -19,9 +22,6 @@ class PhaseTimerData(
     fun hasTimeRemaining(): Boolean {
         return timeRemaining < TIME_MIN
     }
-
-    val isSetupPhase: Boolean
-        get() = timeRemaining > TIME_MIN
 
     fun reset() {
         isPaused = true

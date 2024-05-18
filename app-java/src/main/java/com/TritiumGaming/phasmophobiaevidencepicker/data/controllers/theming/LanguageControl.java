@@ -53,9 +53,6 @@ public class LanguageControl {
         this.savedIndex = savedIndex;
     }
 
-    /**
-     * @param selectedIndex
-     */
     public void setSelectedIndex(int selectedIndex) {
         if(selectedIndex < 0 || selectedIndex >= themes.size()) {
             selectedIndex = getIndexOfID(CustomTheme.getDefaultTheme().getID());
@@ -64,9 +61,6 @@ public class LanguageControl {
         this.selectedIndex = selectedIndex;
     }
 
-    /**
-     * @return
-     */
     public int getSavedIndex() {
         return savedIndex;
     }
@@ -75,23 +69,14 @@ public class LanguageControl {
         selectedIndex = savedIndex;
     }
 
-    /**
-     * @return
-     */
     public int getSelectedIndex() {
         return selectedIndex;
     }
 
-    /**
-     * @param dir
-     */
     public void iterateSelection(int dir) {
         iterateSelection(dir, selectedIndex);
     }
 
-    /**
-     * @param dir
-     */
     public void iterateSelection(int dir, int start) {
 
         selectedIndex += dir;
@@ -123,21 +108,6 @@ public class LanguageControl {
         }
 
         return theme;
-    }
-
-    /**
-     * @return
-     */
-    public int getCurrentName() throws Exception {
-        CustomTheme theme = getCurrentTheme();
-        if(theme == null) {
-            throw new Exception("No theme set.");
-        }
-        return getCurrentTheme().name;
-    }
-
-    public String getID() {
-        return getCurrentTheme().getID();
     }
 
     @NonNull

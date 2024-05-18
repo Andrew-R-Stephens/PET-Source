@@ -429,16 +429,6 @@ class StartScreenAnimationView : View {
      *
      */
     fun recycleBitmaps() {
-        /*
-        BitmapUtils.destroyBitmap(bitmap_orb)
-        BitmapUtils.destroyBitmap(bitmap_frost)
-        BitmapUtils.destroyBitmap(bitmap_hand)
-        BitmapUtils.destroyBitmap(bitmap_writing)
-        BitmapUtils.destroyBitmap(bitmap_mirror)
-        BitmapUtils.destroyBitmap(bitmap_handRot)
-        BitmapUtils.destroyBitmap(bitmap_writingRot)
-        */
-
         bitmap_orb = null
         bitmap_frost = null
         bitmap_hand = null
@@ -507,7 +497,7 @@ class StartScreenAnimationView : View {
                         }
                     }
                     //TARGET_FPS = 200;
-                    val OPTIMAL_TIME = (1000000000 / /*TARGET_FPS*/ 300.0).toLong()
+                    val OPTIMAL_TIME = (1000000000 / fpsTarget /*300.0*/).toLong()
                     var wait = ((OPTIMAL_TIME - updateTime) / 1000000.0).toLong()
 
                     if (wait < 0) {

@@ -22,17 +22,13 @@ class SanityRunnable (
     private var audio_huntWarn: MediaPlayer?
 ) : Runnable {
 
-    private var wait: Long = 0
-    private var flashTick = 0
-
     /**
-     * Set the time that the parent Thread will wait between local run() calls.
+     * The time that the parent Thread will wait between local run() calls.
      * Used to properly time the Flash Warning in the local run() method.
-     * @param wait
      */
-    fun setWait(wait: Long) {
-        this.wait = wait
-    }
+    var wait: Long = 0
+    private var flashTick: Double = 0.0
+    private var flashDuration: Double = 1000L / 2.0
 
     /**
      * Updates both the Sanity Image, the Sanity Percent,
@@ -47,30 +43,46 @@ class SanityRunnable (
         }
 
         if (!sanityData.isPaused) {
-            val phaseTimerData = evidenceViewModel.phaseTimerData
-            if (phaseTimerData?.isPaused == false) {
+
+            val phaseTimerData = evidenceViewModel.phaseTimerData ?: return
+
+            if (!phaseTimerData.isPaused) {
 
                 sanityData.tick()
 
+                // Populate the sanity percent text view with a value
                 sanityMeterTextView?.text = sanityData.toPercentString()
+                // Setup Warn is steady ON if setup phase activity is true
                 setupPhaseTextView?.setState(phaseTimerData.isSetupPhase, true)
+                // Action Warn is steady ON if setup phase activity is false
                 actionPhaseTextView?.setState(!phaseTimerData.isSetupPhase, true)
 
-                if (globalPreferencesViewModel.isHuntWarningAudioAllowed
-                    && !phaseTimerData.isSetupPhase && sanityData.isWarningAudioAllowed()) {
+                // Hunt Audio is ACTIVE if setup phase activity is false
+                if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
+                    !phaseTimerData.isSetupPhase && sanityData.warningAudioAllowed) {
                     audio_huntWarn?.start()
-                    sanityData.setWarningAudioAllowed(false)
+                    sanityData.warningAudioAllowed = false
                 }
 
                 if ((sanityData.insanityPercent.value < .7) &&
                     (!phaseTimerData.isSetupPhase && sanityData.canFlashWarning())) {
-                    if ((wait * (++flashTick).toDouble()) > 1000L / 2.0) {
-                        huntWarningTextView?.toggleFlash(true)
-                        flashTick = 0
-                    } else { huntWarningTextView?.setState(true) }
-                } else { huntWarningTextView?.setState(false) }
+                    if ((wait * (++flashTick)) > flashDuration) {
+                        println("Toggleable $wait $flashTick $flashDuration")
+                        huntWarningTextView?.toggleTextState(true)
+                        flashTick = 0.0
+                    } else {
+                        println("Not Toggleable $wait $flashTick $flashDuration")
+                        huntWarningTextView?.setState(true) }
+                } else {
+                    huntWarningTextView?.setState(false)
+                }
 
                 if (!sanityData.isPaused) { sanitySeekBarView?.updateProgress() }
+
+            } else {
+                if(phaseTimerData.isSetupPhase) {
+                    huntWarningTextView?.setState(true)
+                }
             }
         }
     }

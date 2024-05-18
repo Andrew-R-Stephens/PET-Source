@@ -4,97 +4,94 @@
     <style name="Whiteboard" parent="Skin">
         <item name="android:windowLightStatusBar">true</item>
 
-        <item name="android:colorBackground">@color/black_M50</item>
+        <item name="android:colorBackground">#383839</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
-        <item name="android:navigationBarColor">@color/white_M100</item>
-        <item name="foregroundColor">@color/white_M100</item>
-        <item name="middlegroundColor">@color/white_M100</item>
-        <item name="backgroundColor" >@color/white_M100</item>
-        <item name="backgroundColorOnBackground" >@color/white_M100</item>
+        <item name="android:navigationBarColor">@color/white_M50</item>
+        <item name="foregroundColor">@color/white_M50</item>
+        <item name="middlegroundColor">@color/white_M50</item>
+        <item name="backgroundColor" >@color/white_M50</item>
+        <item name="backgroundColorOnBackground" >@color/white_M50</item>
         <item name="statusBarColor" >?attr/backgroundColor</item>
         <item name="navigationBarColor" >?attr/backgroundColor</item>
-        <item name="windowBackgroundColor">@color/white_M100</item>
-        <item name="windowStrokeColor">@color/black_M50</item>
-        <item name="colorPrimary">@color/white_M100</item>
-        <item name="colorPrimaryVariant">@color/white_M100</item>
-        <item name="colorOnPrimary">@color/white_M100</item>
-        <item name="colorSecondary">@color/white_M100</item>
-        <item name="colorSecondaryVariant">@color/white_M100</item>
-        <item name="colorOnSecondary">@color/white_M100</item>
+        <item name="windowBackgroundColor">@color/white_M50</item>
+        <item name="windowStrokeColor">#383839</item>
+        <item name="colorPrimary">@color/white_M50</item>
+        <item name="colorPrimaryVariant">@color/white_M50</item>
+        <item name="colorOnPrimary">@color/white_M50</item>
+        <item name="colorSecondary">@color/white_M50</item>
+        <item name="colorSecondaryVariant">@color/white_M50</item>
+        <item name="colorOnSecondary">@color/white_M50</item>
 
         <item name="navigationFooterIcon">@color/white_M500</item>
         <item name="navigationFooterIconAlt">@color/red_M300</item>
 
         <!-- Theme Core -->
         <item name="theme_colorPrimary">@color/black</item>
-        <item name="theme_coreColor_1">@color/white</item>
-        <item name="theme_coreColor_2">@color/white</item>
-        <item name="theme_coreColor_3">@color/white_M100</item>
-        <item name="theme_coreColor_4">@color/white_M500</item>
-        <item name="theme_coreColor_5">@color/red_M100</item>
-        <item name="theme_coreColor_6">@color/red_M300</item>
-        <item name="theme_coreColor_7">@color/black_M50</item>
-        <item name="theme_coreColor_8">@color/black</item>
+        <item name="theme_coreColor_1">@color/black</item>
+        <item name="theme_coreColor_2">#383839</item>
+        <item name="theme_coreColor_3">@color/white_M500</item>
+        <item name="theme_coreColor_4">#afb7be</item>
+        <item name="theme_coreColor_5">@color/white_M50</item>
+        <item name="theme_coreColor_6">#f55656</item>
+        <item name="theme_coreColor_7">#1cb981</item>
+        <item name="theme_coreColor_8">#394494</item>
 
         <!-- Theme Attributes -->
-        <item name="backgroundColor_mapviewOverlay">@color/white_M100</item>
+        <item name="backgroundColor_mapviewOverlay">#afb7be</item>
 
-        <item name="splashTextColor">@color/black_M50</item>
+        <item name="splashTextColor">#383839</item>
 
-        <item name="textColorPrimary">@color/black_M50</item>
-        <item name="textColorSecondary">@color/black_M50</item>
-        <item name="textColorTertiary">@color/black_M50</item>
+        <item name="textColorPrimary">#383839</item>
+        <item name="textColorSecondary">#383839</item>
+        <item name="textColorTertiary">#383839</item>
 
-        <item name="textColorBody">@color/black_M50</item>
-        <item name="textColorBodyEmphasis">@color/red_M100</item>
+        <item name="textColorBody">#383839</item>
+        <item name="textColorBodyEmphasis">#394494</item>
 
-        <item name="light_active">@color/black_M50</item>
-        <item name="light_inactive">@color/black_M50</item>
-        <item name="light_off">@color/white_M500</item>
+        <item name="light_active">#f55656</item>
+        <item name="light_inactive">#afb7be</item>
+        <item name="light_off">#383839</item>
 
-        <item name="sanityPieStartColor">@color/white_M100</item>
-        <item name="sanityPieEndColor">@color/red_M300</item>
+        <item name="sanityPieStartColor">#afb7be</item>
+        <item name="sanityPieEndColor">#f55656</item>
+
+        <item name="progressBarColorStart">#383839</item>
+        <item name="progressBarColorEnd">#383839</item>
         <item name="sanityHeadBrainColor">?attr/theme_colorPrimary</item>
-        <item name="sanityHeadSkullColor">@color/black</item>
+        <item name="sanityHeadSkullColor">#383839</item>
         <item name="sanityBorderColor">@color/black</item>
 
-        <item name="progressBarColorStart">@color/black_M50</item>
-        <item name="progressBarColorEnd">@color/black_M50</item>
-        <item name="progressBarColorThumbGradientStart">@color/white_M100</item>
-        <item name="progressBarColorThumbGradientEnd">@color/black_M50</item>
-        <item name="progressBarColorThumbOutline">@color/black_M50</item>
+        <item name="switchColorOn">#f55656</item>
+        <item name="switchColorOff">#afb7be</item>
 
-        <item name="switchColorOn">@color/red_M100</item>
-        <item name="switchColorOff">@color/white_M500</item>
+        <item name="inboxNotification">#f55656</item>
 
-        <item name="inboxNotification">@color/red_M100</item>
+        <item name="selectedColor">#f55656</item>
+        <item name="selectedColor2">#394494</item>
+        <item name="unselectedColor">#383839</item>
 
-        <item name="selectedColor">@color/red_M100</item>
-        <item name="selectedColor2">@color/red_M100</item>
-        <item name="unselectedColor">@color/white_M500</item>
+        <item name="strikethroughColor">#f55656</item>
+        <item name="circleColor">#1cb981</item>
 
-        <item name="strikethroughColor">@color/red_M300</item>
-        <item name="circleColor">@color/black_M50</item>
+        <item name="positiveSelColor">#1cb981</item>
+        <item name="neutralSelColor">#383839</item>
+        <item name="negativeSelColor">#f55656</item>
 
-        <item name="positiveSelColor">@color/red_M100</item>
-        <item name="neutralSelColor">@color/black_M50</item>
-        <item name="negativeSelColor">@color/white_M500</item>
+        <item name="mapPoiFillColor">#BFF55656</item>
+        <item name="mapRoomBorderColor">#941cb981</item>
+        <item name="mapRoomFillColor">#1A1cb981</item>
 
-        <item name="mapPoiFillColor">@color/red_M300_A75</item>
-        <item name="mapRoomBorderColor">@color/red_M300_A58</item>
-        <item name="mapRoomFillColor">@color/red_A75</item>
-
-        <item name="buttonFilterOnPrimary">@color/white_M100</item>
+        <item name="buttonFilterOnPrimary">#383839</item>
 
         <!-- Codex Colors -->
-        <item name="codex1">@color/black_A75</item>
-        <item name="codex3">@color/white_M100</item>
-        <item name="codex2">@color/black_M50</item>
-        <item name="codex4">@color/red_M100</item>
-        <item name="codex5">@color/black_A75</item>
-        <item name="codex6_gridBackground">@color/white_M100</item>
+        <item name="codex1">#383839</item>
+        <item name="codex3">#afb7be</item>
+        <item name="codex2">#383839</item>
+        <item name="codex4">#f55656</item>
+        <item name="codex5">#383839</item>
+        <item name="codex6_gridBackground">#40AFB7BE</item>
 
-        <item name="buttonColor">?attr/light_inactive</item>
-        <item name="colorOnButton">?attr/textColorBody</item>
+        <item name="buttonColor">#f55656</item>
+        <item name="colorOnButton">#afb7be</item>
     </style>
 </resources>

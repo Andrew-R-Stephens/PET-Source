@@ -7,6 +7,7 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
+import com.google.android.play.integrity.internal.f
 
 /**
  * WarnTextView class
@@ -57,12 +58,16 @@ class SanityWarningView : AppCompatTextView {
         setPaddingDefaults()
     }
 
-    fun toggleFlash(canFlash: Boolean) {
+    fun toggleTextState(canFlash: Boolean) {
+
         @ColorInt val color: Int
 
         if (this.state) {
 
-            if (canFlash && (!flashOn.also { flashOn = it })) { color = color_active }
+            flashOn = !flashOn
+            if (canFlash && flashOn) {
+                color = color_active
+            }
             else { color = color_inactive }
 
         } else { color = color_off }
@@ -87,19 +92,8 @@ class SanityWarningView : AppCompatTextView {
     }
 
     fun setState(state: Boolean, flashOn: Boolean) {
-        this.state = state
         this.flashOn = flashOn
-
-        if (this.state) {
-            background.setLevel(ACTIVE)
-
-            if (this.flashOn) { setTextColor(color_active) }
-            else { setTextColor(color_inactive) }
-
-        } else {
-            background.setLevel(OFF)
-            setTextColor(color_off)
-        }
+        setState(state)
     }
 
     fun reset() {

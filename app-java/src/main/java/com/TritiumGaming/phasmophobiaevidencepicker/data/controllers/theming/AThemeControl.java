@@ -118,7 +118,7 @@ public abstract class AThemeControl {
     }
 
     public int getCurrentName() {
-        return getCurrentTheme().name;
+        return getCurrentTheme().getName();
     }
 
     public String getID() {

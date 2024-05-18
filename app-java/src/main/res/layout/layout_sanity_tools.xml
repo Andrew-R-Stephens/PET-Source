@@ -106,31 +106,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--
-        <include
-            android:id="@+id/sanity_carousels"
-            layout="@layout/layout_sanity_carousels_ui"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".5"
-            app:layout_constraintBottom_toTopOf="@id/sanity_meters"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <include
-            android:id="@+id/sanity_meters"
-            layout="@layout/layout_sanity_meters_ui"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            app:layout_constraintHeight_percent=".5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sanity_carousels" />
-        -->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </merge>

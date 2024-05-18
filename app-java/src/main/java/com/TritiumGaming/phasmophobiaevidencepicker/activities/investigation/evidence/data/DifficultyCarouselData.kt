@@ -54,24 +54,16 @@ class DifficultyCarouselData(context: Context, evidenceViewModel: EvidenceViewMo
 
     val currentDifficultyTime: Long
         get() {
-            if (times == null) {
-                return 0L
-            }
-
             return times[difficultyIndex]
         }
 
     val currentDifficultyName: String?
         get() {
-            if (titles == null) {
-                return "NA"
-            }
-
             return titles[difficultyIndex]
         }
 
     fun decrementDifficulty(): Boolean {
-        if (evidenceViewModel != null && titles != null) {
+        if (evidenceViewModel != null) {
             var difficultyIndex = difficultyIndex - 1
             if (difficultyIndex < 0) {
                 difficultyIndex = titles.size - 1
@@ -79,7 +71,7 @@ class DifficultyCarouselData(context: Context, evidenceViewModel: EvidenceViewMo
             this.difficultyIndex = difficultyIndex
 
             if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.sanityData!!.setWarningAudioAllowed(true)
+                evidenceViewModel.sanityData!!.warningAudioAllowed = true
             }
 
             return true
@@ -89,7 +81,7 @@ class DifficultyCarouselData(context: Context, evidenceViewModel: EvidenceViewMo
     }
 
     fun incrementDifficulty(): Boolean {
-        if (evidenceViewModel != null && titles != null) {
+        if (evidenceViewModel != null) {
             var state = difficultyIndex + 1
             if (state >= titles.size) {
                 state = 0
@@ -97,7 +89,7 @@ class DifficultyCarouselData(context: Context, evidenceViewModel: EvidenceViewMo
             difficultyIndex = state
 
             if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.sanityData!!.setWarningAudioAllowed(true)
+                evidenceViewModel.sanityData!!.warningAudioAllowed = true
             }
 
             return true
