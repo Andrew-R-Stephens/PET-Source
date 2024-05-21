@@ -40,25 +40,26 @@ multidex = "1.0.3"
 navigation-fragment-ktx = "2.7.7"
 perf-plugin = "1.4.2"
 play-services-ads = "23.0.0"
-play-services-auth = "20.5.0" #Only update when ready to do major refactor ("21.0.0" "20.7.0")
+play-services-auth = "20.5.0" # Only update when ready to do major refactor ("21.0.0" "20.7.0")
 composeUi = "1.6.6"
 user-messaging-platform = "2.2.0"
 work-runtime = "2.9.0"
+realmDb-kotlin = "1.16.0"
+kotlin-coroutines = "1.7.0"
 
 agp = "8.2.2"
 kotlin = "1.9.20"
-compose = "1.5.4"
-compose-compiler = "1.5.4"
-compose-material3 = "1.1.2"
-androidx-activityCompose = "1.8.0"
-
-plugin-android-application = "8.2.2"
-plugin-android-library = "8.2.2"
-plugin-google-services = "4.4.1"
-plugin-firebase-crashlytics = "2.9.9"
-plugin-firebase-perf = "1.4.2"
-plugin-kotlin-android = "1.9.20"
-animationGraphicsAndroid = "1.6.6"
+# compose = "1.5.4"
+# compose-compiler = "1.5.4"
+# compose-material3 = "1.1.2"
+# androidx-activityCompose = "1.8.0"
+# plugin-android-application = "8.2.2"
+# plugin-android-library = "8.2.2"
+# plugin-google-services = "4.4.1"
+# plugin-firebase-crashlytics = "2.9.9"
+# plugin-firebase-perf = "1.4.2"
+# plugin-kotlin-android = "1.9.20"
+# animationGraphicsAndroid = "1.6.6"
 
 [libraries]
 android-billing-core = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
@@ -72,7 +73,7 @@ android-toolsBuild-gradle = { group = "com.android.tools.build", name = "gradle"
 android-ump-core = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "user-messaging-platform" }
 androidx-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 androidx-appcompat-core = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-compose-animation = { group = "androidx.compose.animation", name = "animation-graphics-android", version.ref = "compose-animation" }
+# androidx-compose-animation = { group = "androidx.compose.animation", name = "animation-graphics-android", version.ref = "compose-animation" }
 androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "compose-bom"}
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3WindowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
@@ -124,18 +125,20 @@ googleGms-services = { group = "com.google.gms", name = "google-services", versi
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin-stdlib" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin-stdlib" }
+kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+realmDb-kotlin-libraryCore = { group = "io.realm.kotlin", name = "library-base", version.ref = "realmDb-kotlin"}
+realmDb-kotlin-librarySync = { group = "io.realm.kotlin", name = "library-sync", version.ref = "realmDb-kotlin" }
 
 [plugins]
-#plugin-android-application = { id = "com.android.application", version = "8.2.2"}#, version.ref = "plugin-android-application" }
-#plugin-android-library = { id = "com.android.library", version = "8.2.2" }#, version.ref = "plugin-android-library"}
-#plugin-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1" }#, version.ref = "plugin-kotlin-android" }
-#plugin-googleGms-services = { id = "com.google.gms.google-services", version = "4.4.1" }#, version.ref = "plugin-google-services" }
-#plugin-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "2.9.9" }#, version.ref = "plugin-firebase-crashlytics" }
-#plugin-firebase-perf = { id = "com.google.firebase.firebase-perf", version = "1.4.2" }#, version.ref = "plugin-firebase-perf" }
-
-
+# plugin-android-application = { id = "com.android.application", version = "8.2.2"}#, version.ref = "plugin-android-application" }
+# plugin-android-library = { id = "com.android.library", version = "8.2.2" }#, version.ref = "plugin-android-library"}
+# plugin-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1" }#, version.ref = "plugin-kotlin-android" }
+# plugin-googleGms-services = { id = "com.google.gms.google-services", version = "4.4.1" }#, version.ref = "plugin-google-services" }
+# plugin-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "2.9.9" }#, version.ref = "plugin-firebase-crashlytics" }
+# plugin-firebase-perf = { id = "com.google.firebase.firebase-perf", version = "1.4.2" }#, version.ref = "plugin-firebase-perf" }
 plugin-android-application = { id = "com.android.application", version.ref = "agp" }
 plugin-android-library = { id = "com.android.library", version.ref = "agp" }
 plugin-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+# kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+plugin-realmDb-kotlin = { id = "io.realm.kotlin", version.ref = "realmDb-kotlin"}

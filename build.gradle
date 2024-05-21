@@ -29,13 +29,11 @@ buildscript {
 }
 
 plugins {
-    //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.plugin.android.application).apply(false)
     alias(libs.plugins.plugin.android.library).apply(false)
     alias(libs.plugins.plugin.kotlin.android).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
-    //id 'com.google.gms.google-services' version '4.4.1' apply false
-    //id "org.jetbrains.kotlin.jvm" version "2.0.0-RC1"
+    alias(libs.plugins.plugin.realmDb.kotlin).apply(false)
 }
 
 allprojects {
@@ -44,12 +42,6 @@ allprojects {
         mavenCentral()
     }
 }
-
-/*
-tasks.register('clean', Delete) {
-    delete rootProject.buildDir
-}
-*/
 
 /*
  * https://stackoverflow.com/questions/43140059/add-toolsreplace-androidvalue-to-meta-data-element-at-androidmanifest

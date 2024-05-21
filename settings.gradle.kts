@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PhasmophobiaEvidencePicker"
 include(":app-java")
-include(":app-kotlin")
