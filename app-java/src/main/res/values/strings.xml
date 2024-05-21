@@ -301,4 +301,9 @@
         ]]>
     </string>
 
+    <!--
+        File names
+    -->
+    <string name="mapsJson" translatable="false">maps.json</string>
+
 </resources>

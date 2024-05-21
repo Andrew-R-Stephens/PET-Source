@@ -56,19 +56,11 @@ public class MapMenuFragment extends InvestigationFragment {
 
         Log.d("Maps", "starting");
         try {
-            MapFileIO mapFileIO = new MapFileIO();
-            MapFileReader reader = mapFileIO.reader;
-            try {
-                AssetManager assets = requireActivity().getAssets();
-                mapFileIO.readFile(assets.open("maps.json"), reader);
-                mapListModel = new MapListModel(reader.mapsWrapper);
-                mapListModel.orderRooms();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            readMapsDataFromFile();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+
 
         // INITIALIZE VIEWS
         AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
@@ -97,6 +89,32 @@ public class MapMenuFragment extends InvestigationFragment {
             navigateToBasicMapView(itemView);
         });
 
+    }
+
+    private boolean readMapsDataFromFile() throws IOException {
+        MapFileIO mapFileIO = new MapFileIO();
+        MapFileReader reader = mapFileIO.reader;
+
+        AssetManager assets;
+        try {
+            assets = requireActivity().getAssets();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        try {
+            if (!mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader))
+                return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        mapListModel = new MapListModel(reader.mapsWrapper);
+        mapListModel.orderRooms();
+
+        return true;
     }
 
     private void navigateToBasicMapView(@NonNull View view) {
