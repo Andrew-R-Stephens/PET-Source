@@ -4,11 +4,12 @@ import android.content.Context
 import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import org.jetbrains.annotations.NotNull
 
-class DifficultyCarouselData(context: Context, evidenceViewModel: EvidenceViewModel) {
-    @JvmField
-    val evidenceViewModel: EvidenceViewModel? =
-        evidenceViewModel
+class DifficultyCarouselData(
+    context: @NotNull Context,
+    @JvmField val evidenceViewModel: EvidenceViewModel
+) {
 
     private var titles = arrayOfNulls<String>(0)
     private var times = LongArray(0)

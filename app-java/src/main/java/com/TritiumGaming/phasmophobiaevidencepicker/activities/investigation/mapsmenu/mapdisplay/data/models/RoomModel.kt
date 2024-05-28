@@ -1,12 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
 
 class RoomModel(
     @JvmField var id: Int,
     var name: String,
-    points: WorldMapWrapper.WorldMap.Floor.Room.RoomPoints?
+    points: MapDesBlueprint.WorldMap.Floor.Room.RoomPoints?
 ) {
 
     @JvmField

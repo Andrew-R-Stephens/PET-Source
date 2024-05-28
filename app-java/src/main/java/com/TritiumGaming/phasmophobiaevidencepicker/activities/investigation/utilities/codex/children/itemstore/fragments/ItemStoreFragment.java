@@ -27,6 +27,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.CodexFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.ItemStoreData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupList;
@@ -35,7 +36,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
-public abstract class ItemStoreFragment extends InvestigationFragment {
+public abstract class ItemStoreFragment extends CodexFragment {
 
     protected final ItemStoreData storeData = new ItemStoreData();
 
@@ -418,19 +419,6 @@ public abstract class ItemStoreFragment extends InvestigationFragment {
     /** @noinspection SameParameterValue*/
     private static void setIconFilter(@NonNull ImageView icon, String colorString, float alpha) {
         setIconFilter(icon, Color.parseColor(colorString), alpha);
-    }
-
-
-    public void stylizeLogo(@NonNull AppCompatTextView label_ghostOS) {
-        int color1 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex3_gh0stTextNormal);
-        int color2 = ColorUtils.getColorFromAttribute(requireContext(), R.attr.codex4_gh0stTextAlt);
-        String color1Hex = String.format("#%06X", (0xFFFFFF & color1));
-        String color2Hex = String.format("#%06X", (0xFFFFFF & color2));
-
-        label_ghostOS.setText(Html.fromHtml(getString(R.string.codex_label_gh_ost)
-                .replaceAll("#99AEB3", color1Hex)
-                .replaceAll("#FFB43D", color2Hex)
-        ));
     }
 
     @Override

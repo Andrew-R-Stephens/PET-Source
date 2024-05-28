@@ -125,8 +125,7 @@ public class InteractiveMapView extends View {
         AdapterView.OnItemSelectedListener poiSpinnerListener = new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedRoomModel =
-                        mapMenuViewModel.currentMapModel.getCurrentFloor().
-                                getFloorRooms().get(position);
+                        mapMenuViewModel.currentMapModel.getCurrentFloor().floorRooms.get(position);
 
                 invalidate();
             }
@@ -440,11 +439,11 @@ public class InteractiveMapView extends View {
             paint.setColorFilter(poiColorFilter);
 
             if(mapMenuViewModel != null && mapMenuViewModel.currentMapModel != null) {
-                for (PoiModel poi : mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorPOIs()) {
-                    float x = (panX) + poi.getPoint().x * scaleX;
-                    float y = (panY) + poi.getPoint().y * scaleY;
+                for (PoiModel poi : mapMenuViewModel.currentMapModel.getCurrentFloor().floorPOIs) {
+                    float x = (panX) + poi.point.x * scaleX;
+                    float y = (panY) + poi.point.y * scaleY;
 
-                    Bitmap b = poiImages.get(poi.getType());
+                    Bitmap b = poiImages.get(poi.type);
                     if (BitmapUtils.bitmapExists(b)) {
                         interactivePoiData.deepCopy(interactiveMapData);
                         interactivePoiData.setPan(
@@ -509,7 +508,7 @@ public class InteractiveMapView extends View {
             if(mapMenuViewModel != null &&
                     mapMenuViewModel.currentMapModel != null) {
 
-                ArrayList<RoomModel> rooms = mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorRooms();
+                ArrayList<RoomModel> rooms = mapMenuViewModel.currentMapModel.getCurrentFloor().floorRooms;
                 for (RoomModel room : rooms) {
 
                     Polygon shape = new Polygon();

@@ -10,7 +10,7 @@
         android:label="equipmentStoreFragment" />
     <fragment
         android:id="@+id/codexFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.CodexFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.codexmenu.CodexMenuFragment"
         android:label="CodexFragment">
         <action
             android:id="@+id/action_codexFragment_to_equipmentStoreFragment"

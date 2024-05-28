@@ -27,12 +27,17 @@ class MapMenuViewModel : ViewModel() {
                 field = currentMapPos
             }
         }
+
+    val currentMapData: MapData
+        get() {
+            return mapsData[currentMapIndex]
+        }
+
     @JvmField
     var currentMapModel: MapModel? = null
 
     val mapNames: MutableList<String>
         get() {
-            mapsData
             val mapNames = mutableListOf<String>()
             mapsData.forEachIndexed { index, it ->
                 mapNames.add(index, it.mapName)
@@ -47,11 +52,6 @@ class MapMenuViewModel : ViewModel() {
                 mapThumbnails.add(index, it.thumbnailImage)
             }
             return mapThumbnails
-        }
-
-    val currentMapData: MapData
-        get() {
-            return mapsData[currentMapIndex]
         }
 
     fun init(context: Context) {

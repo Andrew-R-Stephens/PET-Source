@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -27,7 +27,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.google.common.primitives.Ints;
 
-import java.io.IOException;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * MapMenuFragment class
@@ -54,13 +54,11 @@ public class MapMenuFragment extends InvestigationFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d("Maps", "starting");
         try {
-            readMapsDataFromFile();
-        } catch (IOException e) {
+            mapListModel = readMapsDataFromFile();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         // INITIALIZE VIEWS
         AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
@@ -71,71 +69,75 @@ public class MapMenuFragment extends InvestigationFragment {
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
 
         GridView gridView = view.findViewById(R.id.grid_maps);
-        CustomAdapter customAdapter = new CustomAdapter(
-                mapMenuViewModel.getMapNames().toArray(new String[0]),
-                Ints.toArray(mapMenuViewModel.getMapThumbnails()));
-        gridView.setAdapter(customAdapter);
-        gridView.setOnItemClickListener((parent, itemView, position, id) -> {
-            System.gc();
-            if (mapMenuViewModel != null) {
-                mapMenuViewModel.setCurrentMapIndex(position);
-            }
+        /*CustomAdapter customAdapter = new CustomAdapter(
+                mapMenuViewModel.getShortenedMapNames().toArray(new String[0]),
+                Ints.toArray(mapMenuViewModel.getMapThumbnails()));*/
 
-            MapModel mapModel = mapListModel.getMapById(position);
-            if(mapModel != null) {
-                mapMenuViewModel.currentMapModel = mapModel;
-            }
+        if(mapListModel == null) {
+            Toast.makeText(requireContext(),
+                    "Error loading map data file!", Toast.LENGTH_LONG).show();
+        } else {
+            GridViewAdapter gridViewAdapter = new GridViewAdapter(
+                    mapListModel.getShortenedMapNames().toArray(new String[0]),
+                    Ints.toArray(mapMenuViewModel.getMapThumbnails()));
+            gridView.setAdapter(gridViewAdapter);
+            gridView.setOnItemClickListener((parent, itemView, position, id) -> {
+                if (mapListModel == null) {
+                    return;
+                }
 
-            navigateToBasicMapView(itemView);
-        });
+                System.gc();
+                if (mapMenuViewModel != null) {
+                    mapMenuViewModel.setCurrentMapIndex(position);
+                }
+
+                MapModel mapModel = mapListModel.getMapById(position);
+                if (mapModel != null) {
+                    mapMenuViewModel.currentMapModel = mapModel;
+                }
+
+                navigateToBasicMapView(itemView);
+            });
+        }
 
     }
 
-    private boolean readMapsDataFromFile() throws IOException {
+    @Nullable
+    private MapListModel readMapsDataFromFile() throws Exception {
+        AssetManager assets = requireActivity().getAssets();
         MapFileIO mapFileIO = new MapFileIO();
         MapFileReader reader = mapFileIO.reader;
 
-        AssetManager assets;
-        try {
-            assets = requireActivity().getAssets();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return false;
-        }
+        mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader);
 
-        try {
-            if (!mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader))
-                return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        if(reader.worldMapDeserializer == null) {
+            throw new Exception("Loading maps failed. There is a null mapsWrapper.");
         }
-
-        mapListModel = new MapListModel(reader.mapsWrapper);
+        mapListModel = new MapListModel(reader.worldMapDeserializer);
         mapListModel.orderRooms();
 
-        return true;
+        return mapListModel;
     }
 
     private void navigateToBasicMapView(@NonNull View view) {
-        Navigation.findNavController(view).navigate(R.id.action_mapMenuFragment_to_mapViewerFragment);
+        Navigation.findNavController(view)
+                .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment);
     }
 
-    public class CustomAdapter extends BaseAdapter {
+    public class GridViewAdapter extends BaseAdapter {
 
-        private String[] mapNames;
-        private @DrawableRes int[] images;
-        private LayoutInflater layoutInflater;
+        private String[] mapNames = new String[0];
+        private @DrawableRes int[] images = new int[0];
+        private final LayoutInflater layoutInflater;
 
-        public CustomAdapter(String[] mapNames, @DrawableRes int[] images) {
-            if(getContext() == null) {
-                return;
-            }
+        public GridViewAdapter(String[] mapNames, @DrawableRes int[] images) {
+            layoutInflater =
+                    (LayoutInflater) requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            if(mapNames.length != images.length) return;
             this.mapNames = mapNames;
             this.images = images;
 
-            layoutInflater =
-                    (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
@@ -165,7 +167,7 @@ public class MapMenuFragment extends InvestigationFragment {
             AppCompatTextView textView = newView.findViewById(R.id.label_mapName);
             AppCompatImageView imageView = newView.findViewById(R.id.image_map);
 
-            textView.setText(mapNames[i].split(" ")[0]);
+            textView.setText(mapNames[i]);
             imageView.setImageResource(images[i]);
 
             return newView;

@@ -24,19 +24,15 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
  */
 public class InteractiveMapControlView extends View {
 
-    @Nullable
-    private InteractiveMapControlData controllerData = null;
+    @Nullable private InteractiveMapControlData controllerData;
 
-    private SparseArray<PointF> mActivePointers;
+    @Nullable private SparseArray<PointF> mActivePointers;
 
     private double pinchDistance = 0;
-    @Nullable
-    private Point panOrigin = null;
+    @Nullable private Point panOrigin;
+    @Nullable private View recipient;
 
-    @Nullable
-    private View recipient = null;
-
-    private GestureDetectorCompat mDetector;
+    private GestureDetector mDetector;
 
     public InteractiveMapControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,7 +44,7 @@ public class InteractiveMapControlView extends View {
 
         mActivePointers = new SparseArray<>();
 
-        mDetector = new GestureDetectorCompat(getContext(), new GestureTap());
+        mDetector = new GestureDetector(getContext(), new GestureTap());
     }
 
     class GestureTap extends GestureDetector.SimpleOnGestureListener {

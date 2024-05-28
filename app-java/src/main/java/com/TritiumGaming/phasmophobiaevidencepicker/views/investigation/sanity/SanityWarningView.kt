@@ -51,7 +51,9 @@ class SanityWarningView : AppCompatTextView {
 
     private fun setDefaults() {
         setBackgroundResource(R.drawable.rect_border)
-        background.setLevel(0)
+
+        background.setLevel(OFF)
+        setTextColor(color_off)
 
         gravity = Gravity.CENTER
         maxLines = 1
@@ -59,12 +61,11 @@ class SanityWarningView : AppCompatTextView {
     }
 
     fun toggleTextState(canFlash: Boolean) {
-
         @ColorInt val color: Int
 
         if (this.state) {
-
             flashOn = !flashOn
+
             if (canFlash && flashOn) {
                 color = color_active
             }

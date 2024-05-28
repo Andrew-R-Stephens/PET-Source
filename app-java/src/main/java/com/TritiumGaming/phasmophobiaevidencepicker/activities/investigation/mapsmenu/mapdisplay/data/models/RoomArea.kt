@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 
 import android.graphics.PointF
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
 
 class RoomArea {
     var points = mutableListOf<PointF>()
@@ -15,7 +15,7 @@ class RoomArea {
         }
     }
 
-    fun setPoints(tempPoints: WorldMapWrapper.WorldMap.Floor.Room.RoomPoints?) {
+    fun setPoints(tempPoints: MapDesBlueprint.WorldMap.Floor.Room.RoomPoints?) {
         tempPoints?.points?.forEach() {
             points.add(
                 PointF(it.x, it.y)

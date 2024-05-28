@@ -1,126 +1,101 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
-import android.os.Build;
-import android.util.Log;
+import android.os.Build
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint.WorldMap.Floor
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class FloorModel {
+    var floorId: Int = 0
+    var floorName: String? = null
+        private set
+    private var floorImage: String? = null
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
+    @JvmField
+    var floorLayer: FloorLayer
 
-import java.util.ArrayList;
-import java.util.Comparator;
+    @JvmField
+    val floorRooms: ArrayList<RoomModel> = ArrayList()
+    @JvmField
+    val floorPOIs: ArrayList<PoiModel> = ArrayList()
 
-public class FloorModel {
+    constructor(floor: Floor) {
+        floorImage = floor.image_file
+        floorId = floor.floor_id
+        floorName = floor.floor_name
+        floorLayer = FloorLayer.entries[floor.floor_number]
 
-    public int floorId;
-    private String floorName;
-    private String floorImage;
-
-    private FloorLayer floorLayer;
-
-    private final ArrayList<RoomModel> floorRooms = new ArrayList<>();
-    private final ArrayList<PoiModel> floorPOIs = new ArrayList<>();
-
-    public FloorModel(@NonNull WorldMapWrapper.WorldMap.Floor floor) {
-        floorImage = floor.image_file;
-        floorId = floor.floor_id;
-        floorName = floor.floor_name;
-        floorLayer = FloorLayer.getEntries().get(floor.floor_number);
-
-        for(WorldMapWrapper.WorldMap.Floor.Room r: floor.floor_rooms) {
-            floorRooms.add(new RoomModel(r.room_iD, r.room_name, r.room_points));
+        for (r in floor.floor_rooms) {
+            floorRooms.add(RoomModel(r.room_iD, r.room_name, r.room_points))
         }
-        for(WorldMapWrapper.WorldMap.Floor.POI p: floor.floor_pois) {
-            floorPOIs.add(new PoiModel(p.poi_iD, p.poi_name, p.poi_type, p.x, p.y));
+        for (p in floor.floor_pois) {
+            floorPOIs.add(PoiModel(p.poi_iD, p.poi_name, p.poi_type, p.x, p.y))
         }
     }
 
-    public FloorModel(FloorLayer layer) {
-        this.floorLayer = layer;
+    constructor(layer: FloorLayer) {
+        this.floorLayer = layer
     }
 
-    public void setFloorLayer(FloorLayer layer) {
-        this.floorLayer = layer;
-    }
-
-    @NonNull
-    public ArrayList<RoomModel> getFloorRooms() {
-        return floorRooms;
-    }
-
-    @NonNull
-    public ArrayList<String> getFloorRoomNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for(RoomModel r: getFloorRooms()) {
-            names.add(r.getName());
-        }
-        return names;
-    }
-
-    public String getFloorName() {
-        return floorName;
-    }
-
-    @Nullable
-    public RoomModel getLastRoom() {
-        if(floorRooms.isEmpty()) {
-            return null;
-        }
-        return floorRooms.get(floorRooms.size()-1);
-    }
-
-    @Nullable
-    public RoomModel getRoomById(int id) {
-        for(RoomModel room: floorRooms) {
-            if(room.id == id)
-                return room;
+    val floorRoomNames: ArrayList<String>
+        get() {
+            val names = ArrayList<String>()
+            for (r in floorRooms) {
+                names.add(r.name)
+            }
+            return names
         }
 
-        return null;
-    }
-
-    public int getRoomIndexById(int id) {
-        int i = 0;
-        for(; i < floorRooms.size(); i++) {
-            if(floorRooms.get(i).id == id)
-                return i;
-        }
-        return ++i;
-    }
-
-    public FloorLayer getFloorLayer() {
-        return floorLayer;
-    }
-
-    @NonNull
-    public ArrayList<PoiModel> getFloorPOIs() {
-        return floorPOIs;
-    }
-
-    @NonNull
-    public String toString() {
-        return "\n\t[Floor ID: " + floorId + "] [Floor Name: " + floorName + "] [ Assigned Layer: " + floorLayer + " ] [Image File: "  + floorImage + "] Rooms:"  + floorRooms + "\n";
-    }
-
-    public synchronized void print() {
-        Log.d("Maps", "[Floor ID: " + floorId + "] [Floor Name: " + floorName + "] [ Assigned Layer: " + floorLayer + " ] [Image File: "  + floorImage + "]");
-        for(RoomModel r: floorRooms) {
-            r.print();
+    val lastRoom: RoomModel?
+        get() {
+            if (floorRooms.isEmpty()) {
+                return null
+            }
+            return floorRooms[floorRooms.size - 1]
         }
 
-        for(PoiModel p: floorPOIs) {
-            p.print();
+    fun getRoomById(id: Int): RoomModel? {
+        for (room in floorRooms) {
+            if (room.id == id) return room
+        }
+
+        return null
+    }
+
+    fun getRoomIndexById(id: Int): Int {
+        var i = 0
+        while (i < floorRooms.size) {
+            if (floorRooms[i].id == id) return i
+            i++
+        }
+        return ++i
+    }
+
+    override fun toString(): String {
+        return "\n\t[Floor ID: $floorId] [Floor Name: $floorName] [ Assigned Layer: $floorLayer ] [Image File: $floorImage] Rooms:$floorRooms\n"
+    }
+
+    @Synchronized
+    fun print() {
+        Log.d(
+            "Maps",
+            "[Floor ID: $floorId] [Floor Name: $floorName] [ Assigned Layer: $floorLayer ] [Image File: $floorImage]"
+        )
+        for (r in floorRooms) {
+            r.print()
+        }
+
+        for (p in floorPOIs) {
+            p.print()
         }
     }
 
-    public void orderRooms() {
+    fun orderRooms() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            floorRooms.sort(Comparator.comparing(RoomModel::getName));
+            floorRooms.sortWith(Comparator.comparing(RoomModel::name))
         }
     }
 
-    public void addRoomModels(@NonNull ArrayList<RoomModel> roomModels) {
-        this.floorRooms.addAll(roomModels);
+    fun addRoomModels(roomModels: ArrayList<RoomModel>) {
+        floorRooms.addAll(roomModels)
     }
 }

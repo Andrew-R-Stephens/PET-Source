@@ -15,13 +15,6 @@ import kotlin.math.min
 class SanityData(
     private val evidenceViewModel: EvidenceViewModel?
 ) {
-    /*
-    val insanityPercent: Float
-        get() = (getInsanityActual() * .01).toFloat() *//** the sanity level missing, in percent.**//*
-
-    val insanityDegree: Float
-        get() = (insanityPercent * 360f) *//** the sanity level missing, in degrees.**//*
-    */
 
     private val _insanityPercent = MutableStateFlow(0f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()

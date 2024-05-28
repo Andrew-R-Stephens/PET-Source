@@ -157,7 +157,7 @@ public class InteractiveMapDisplayView extends View {
         @Override
         public void run() {
 
-            ArrayList<RoomModel> rooms = floorModel.getFloorRooms();
+            ArrayList<RoomModel> rooms = floorModel.floorRooms;
             for(RoomModel room: rooms) {
 
                 Polygon shape = new Polygon();

@@ -1,6 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
-public enum PoiType {
+enum class PoiType {
     FUSE_BOX,
     CAR_KEY, CABIN_KEY, BONE,
     MUSIC_BOX, HAUNTED_MIRROR, OUIJA_BOARD, SUMMONING_CIRCLE,

@@ -1,3 +1,4 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
@@ -11,13 +12,10 @@ plugins {
     id("io.realm.kotlin")
 }
 
-def playcoreDir = file("G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk")
-
 android {
     namespace = "com.TritiumGaming.phasmophobiaevidencepicker"
 
     compileSdk = 34
-    ndkVersion = ndkVersion
 
     buildToolsVersion = "34.0.0"
 
@@ -35,70 +33,73 @@ android {
         jvmToolchain(17)
     }
     /* ---------------- */
-
-
+    
     bundle {
         language {
             enableSplit = false
         }
     }
 
+    val playCoreDirectory = "G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk"
+
     defaultConfig {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
-        minSdkVersion 21
-        targetSdkVersion 34
+        minSdk = 21
+        targetSdk = 34
         versionCode = 91
         versionName = "8.2.2.1"
 
+        @Suppress("UnstableApiUsage")
         externalNativeBuild {
             cmake {
-                // Define the PLAYCORE_LOCATION directive.
-                arguments "-DANDROID_STL=c++_static", "-DPLAYCORE_LOCATION=$playcoreDir"
+                arguments ("-DANDROID_STL=c++_static", "-DPLAYCORE_LOCATION=$playCoreDirectory")
             }
         }
         ndk {
-            // Skip deprecated ABIs. Only required when using NDK 16 or earlier.
-            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
 
-        multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
         debug {
-            shrinkResources false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles (getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
-            proguardFile "$playcoreDir/proguard/common.pgcfg"
-            proguardFile "$playcoreDir/proguard/per-feature-proguard-files"
+            proguardFile ("$playCoreDirectory/proguard/common.pgcfg")
+            proguardFile ("$playCoreDirectory/proguard/per-feature-proguard-files")
         }
-        release {
-            shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+
+            proguardFiles (getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
-            proguardFile "$playcoreDir/proguard/common.pgcfg"
-            proguardFile "$playcoreDir/proguard/per-feature-proguard-files"
+            proguardFile ("$playCoreDirectory/proguard/common.pgcfg")
+            proguardFile ("$playCoreDirectory/proguard/per-feature-proguard-files")
         }
     }
 
     compileOptions {
-        sourceCompatibility "17"
-        targetCompatibility "17"
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     lint {
-        disable 'RestrictedApi'
+        disable.add("RestrictedApi")
     }
 
     sourceSets {
-        main.kotlin.srcDirs += 'src/main/kotlin'
-        main.java.srcDirs += 'src/main/java'
+        getByName("main") {
+            java.srcDir("src/main/java")
+            java.srcDir("src/main/kotlin")
+        }
     }
 }
 
@@ -138,7 +139,7 @@ dependencies {
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
     implementation (libs.firebase.auth)
-    implementation platform(libs.firebase.bom)
+    implementation (platform(libs.firebase.bom))
     // GOOGLE FIREBASE FIRESTORE
     implementation (libs.firebase.firestore)
     // GOOGLE BILLING API
@@ -193,9 +194,9 @@ dependencies {
         ---- START----
         ANDROID COMPOSE
     */
-    implementation platform(libs.androidx.compose.bom)
+    implementation (platform(libs.androidx.compose.bom))
     //implementation (libs.androidx.compose.animation)
-    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation (platform(libs.androidx.compose.bom))
     androidTestImplementation (libs.androidx.composeUi.testJunit4)
     debugImplementation (libs.androidx.composeUi.testManifest)
 

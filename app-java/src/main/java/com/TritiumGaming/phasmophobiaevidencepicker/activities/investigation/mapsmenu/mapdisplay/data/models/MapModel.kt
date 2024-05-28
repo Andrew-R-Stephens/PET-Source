@@ -1,41 +1,22 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
 
 class MapModel {
     @JvmField
     var mapId: Int
     @JvmField
-    var mapName: String?
+    var mapName: String = ""
+    @JvmField
+    var mapNameShort: String = ""
     @JvmField
     var mapDimensions: MapDimension
-    @JvmField
-    var currentLayer: FloorLayer? = FloorLayer.entries[0]
+
+    var currentLayer: FloorLayer = FloorLayer.entries[0]
 
     @JvmField
     var mapFloors: ArrayList<FloorModel> = ArrayList()
-
-    constructor() {
-        mapId = 0
-        mapName = "undefined"
-        mapDimensions = MapDimension(0, 0)
-        for (layer in FloorLayer.entries) mapFloors.add(FloorModel(layer))
-    }
-
-    constructor(worldMap: WorldMapWrapper.WorldMap) {
-        mapId = worldMap.map_id
-        mapName = worldMap.map_name
-        mapDimensions = MapDimension(worldMap.map_dimensions.w, worldMap.map_dimensions.h)
-        for (f in worldMap.map_floors) {
-            mapFloors.add(
-                FloorModel(f!!)
-            )
-        }
-        currentLayer =
-            if (mapFloors.isNotEmpty()) { mapFloors[0].floorLayer }
-            else null
-    }
 
     val currentFloor: FloorModel
         get() {
@@ -47,29 +28,37 @@ class MapModel {
             return mapFloors[0]
         }
 
-    fun setCurrentLayer(layer: FloorLayer): FloorLayer? {
-        if (hasFloorAtLayer(layer)) {
-            this.currentLayer = layer
-        }
-
-        return currentLayer
+    constructor() {
+        mapId = 0
+        mapName = "undefined"
+        mapNameShort = "undefined"
+        mapDimensions = MapDimension(0, 0)
+        for (layer in FloorLayer.entries) mapFloors.add(FloorModel(layer))
     }
 
-    private fun hasFloorAtLayer(layer: FloorLayer): Boolean {
-        for (floorModel in mapFloors) {
-            if (floorModel.floorLayer == layer) {
-                return true
-            }
+    constructor(worldMap: MapDesBlueprint.WorldMap) {
+        mapId = worldMap.map_id
+        mapName = worldMap.map_name
+        mapNameShort = worldMap.map_name_short
+        mapDimensions = MapDimension(worldMap.map_dimensions.w, worldMap.map_dimensions.h)
+        for (f in worldMap.map_floors) {
+            mapFloors.add(
+                FloorModel(f!!)
+            )
         }
-        return false
-    }
-
-    override fun toString(): String {
-        return "\n[Map ID: $mapId] [Map Name: $mapName] [Dimensions: $mapDimensions] [Layer: $currentLayer] \nFloor Data:$mapFloors\n"
+        currentLayer =
+            if (mapFloors.isNotEmpty()) { mapFloors[0].floorLayer }
+            else FloorLayer.FIRST_FLOOR
     }
 
     fun getFloor(index: Int): FloorModel {
         return mapFloors[index]
+    }
+
+    fun orderRooms() {
+        for (f in mapFloors) {
+            f.orderRooms()
+        }
     }
 
     @Synchronized
@@ -81,9 +70,8 @@ class MapModel {
         }
     }
 
-    fun orderRooms() {
-        for (f in mapFloors) {
-            f.orderRooms()
-        }
+    override fun toString(): String {
+        return "\n[Map ID: $mapId] [Map Name: $mapName] [Dimensions: $mapDimensions] [Layer: $currentLayer] \nFloor Data:$mapFloors\n"
     }
+
 }

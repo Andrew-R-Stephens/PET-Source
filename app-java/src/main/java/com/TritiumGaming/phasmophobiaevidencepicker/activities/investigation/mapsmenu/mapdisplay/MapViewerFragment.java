@@ -80,7 +80,7 @@ public class MapViewerFragment extends InvestigationFragment {
         if(mapMenuViewModel != null && mapMenuViewModel.currentMapModel != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
             FloorModel currentFloor = mapMenuViewModel.currentMapModel.getFloor(floor);
-            FloorLayer newLayer = currentFloor.getFloorLayer();
+            FloorLayer newLayer = currentFloor.floorLayer;
             if (newLayer != null) {
                 mapMenuViewModel.currentMapModel.setCurrentLayer(newLayer);
             }
@@ -169,7 +169,7 @@ public class MapViewerFragment extends InvestigationFragment {
         if(mapMenuViewModel.currentMapModel != null) {
             mapMenuViewModel.currentMapModel.getFloor(index);
             mapMenuViewModel.currentMapModel.setCurrentLayer(
-                    mapMenuViewModel.currentMapModel.getFloor(index).getFloorLayer());
+                    mapMenuViewModel.currentMapModel.getFloor(index).floorLayer);
             if (mapMenuViewModel.currentMapModel != null) {
                 Log.d("Maps", mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorName() + " ");
             }

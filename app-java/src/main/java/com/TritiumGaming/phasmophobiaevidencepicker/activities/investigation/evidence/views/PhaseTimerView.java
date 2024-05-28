@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
 import java.text.DecimalFormat;
 
@@ -29,17 +30,11 @@ public class PhaseTimerView {
     @Nullable
     private AppCompatTextView timerTextView;
 
-    /**
-     * SetupPhaseTimer parameterized constructor
-     *
-     * @param recipientView -
-     */
-    public PhaseTimerView(SanityData sanityData,
-                          PhaseTimerData phaseTimerData,
+    public PhaseTimerView(EvidenceViewModel evidenceViewModel,
                           AppCompatTextView recipientView) {
 
-        this.sanityData = sanityData;
-        this.phaseTimerData = phaseTimerData;
+        this.sanityData = evidenceViewModel.getSanityData();
+        this.phaseTimerData = evidenceViewModel.getPhaseTimerData();
 
         setTimerTextView(recipientView);
 

@@ -101,12 +101,11 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         /* TIMER CONTROL */
         phaseTimerCountdownView = new PhaseTimerView(
-                evidenceViewModel.getSanityData(),
-                evidenceViewModel.getPhaseTimerData(),
-                phaseTimerTextView);
+                evidenceViewModel,
+                view.findViewById(R.id.evidence_timer_text));
 
         playPauseButton = new PhaseTimerControlView(
-                evidenceViewModel.getPhaseTimerData(),
+                evidenceViewModel,
                 phaseTimerCountdownView,
                 timer_play_pause,
                 R.drawable.icon_control_play,

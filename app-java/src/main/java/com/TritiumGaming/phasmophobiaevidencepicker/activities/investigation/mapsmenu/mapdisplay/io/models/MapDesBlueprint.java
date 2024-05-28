@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Keep
-public class WorldMapWrapper {
+public class MapDesBlueprint {
 
     @SerializedName("maps")
     public final ArrayList<Map<String, WorldMap>> maps = new ArrayList<>();
@@ -23,6 +23,8 @@ public class WorldMapWrapper {
         public int map_id;
         @SerializedName("map_name")
         public String map_name;
+        @SerializedName("map_name_short")
+        public String map_name_short;
         @SerializedName("map_floors")
         public final ArrayList<Floor> map_floors = new ArrayList<>();
         @SerializedName("map_dimensions")

@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.WorldMapWrapper;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -18,10 +18,10 @@ import java.util.Map;
 
 public class MapFileReader {
 
-    public WorldMapWrapper mapsWrapper;
+    public MapDesBlueprint worldMapDeserializer;
 
-    public MapFileReader(WorldMapWrapper mapsWrapper) {
-        this.mapsWrapper = mapsWrapper;
+    public MapFileReader(MapDesBlueprint mapsWrapper) {
+        this.worldMapDeserializer = mapsWrapper;
     }
 
     public boolean loadFile(@Nullable InputStream inputStream) {
@@ -31,9 +31,11 @@ public class MapFileReader {
         if(inputStream == null) {
             return false;
         }
-        JsonReader fileReader = gson.newJsonReader(new BufferedReader(new InputStreamReader(inputStream)));
-        Type type = new TypeToken<WorldMapWrapper>(){}.getType();
-        mapsWrapper = gson.fromJson(fileReader, type);
+        JsonReader fileReader = gson.newJsonReader(
+                new BufferedReader(
+                        new InputStreamReader(inputStream)));
+        Type type = new TypeToken<MapDesBlueprint>(){}.getType();
+        worldMapDeserializer = gson.fromJson(fileReader, type);
 
         try {
             fileReader.close();
@@ -48,7 +50,7 @@ public class MapFileReader {
     public String toString() {
         StringBuilder data = new StringBuilder();
 
-        for(Map<String, WorldMapWrapper.WorldMap> m: this.mapsWrapper.maps) {
+        for(Map<String, MapDesBlueprint.WorldMap> m: this.worldMapDeserializer.maps) {
             data.append(m.get("map_data"));
         }
 

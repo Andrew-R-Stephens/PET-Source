@@ -50,7 +50,6 @@ public class EvidenceFragment extends InvestigationFragment {
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
     protected AppCompatImageView toggleCollapseButton;
-    protected AppCompatTextView phaseTimerTextView;
     protected AppCompatTextView sanityPercentTextView;
 
     protected CompositeListener compositeListenerPrev, compositeListenerNext;
@@ -64,14 +63,6 @@ public class EvidenceFragment extends InvestigationFragment {
     protected ComposeView sanityMeterView;
     protected SanityWarningView sanityWarningTextView;
 
-
-    /**
-     * EvidenceFragment constructor
-     * <p>
-     * TODO
-     *
-     * @param layout -
-     */
     public EvidenceFragment(int layout) {
         super(layout);
     }
@@ -143,8 +134,6 @@ public class EvidenceFragment extends InvestigationFragment {
 
         toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
 
-        // TIMER VIEW
-        phaseTimerTextView = view.findViewById(R.id.evidence_timer_text);
 
         // SANITY METER VIEWS
         sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
