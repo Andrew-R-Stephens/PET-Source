@@ -1,10 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry
 
-public class IllegalPathStateException extends RuntimeException {
-
-    private static final long serialVersionUID = -5158084205220481094L;
-
-    public IllegalPathStateException(String s) {
-        super(s);
+class IllegalPathStateException(s: String?) : RuntimeException(s) {
+    companion object {
+        private const val serialVersionUID = -5158084205220481094L
     }
 }

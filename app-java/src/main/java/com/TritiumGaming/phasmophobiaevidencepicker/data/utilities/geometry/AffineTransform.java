@@ -2727,13 +2727,13 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      *
      * @return a new {@code AffineTransform} object representing the
      * inverse transformation.
-     * @throws NoninvertibleTransformException if the matrix cannot be inverted.
+     * @throws NonInvertibleTransformException if the matrix cannot be inverted.
      * @see #getDeterminant
      * @since 1.2
      */
     @NonNull
     public AffineTransform createInverse()
-            throws NoninvertibleTransformException {
+            throws NonInvertibleTransformException {
         double det;
         switch (state) {
             default:
@@ -2743,7 +2743,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
             case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
                 det = m00 * m11 - m01 * m10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 return new AffineTransform(m11 / det, -m10 / det,
@@ -2756,7 +2756,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
             case (APPLY_SHEAR | APPLY_SCALE):
                 det = m00 * m11 - m01 * m10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 return new AffineTransform(m11 / det, -m10 / det,
@@ -2765,7 +2765,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                         (APPLY_SHEAR | APPLY_SCALE));
             case (APPLY_SHEAR | APPLY_TRANSLATE):
                 if (m01 == 0.0 || m10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 return new AffineTransform(0.0, 1.0 / m01,
                         1.0 / m10, 0.0,
@@ -2773,7 +2773,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                         (APPLY_SHEAR | APPLY_TRANSLATE));
             case (APPLY_SHEAR):
                 if (m01 == 0.0 || m10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 return new AffineTransform(0.0, 1.0 / m01,
                         1.0 / m10, 0.0,
@@ -2781,7 +2781,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                         (APPLY_SHEAR));
             case (APPLY_SCALE | APPLY_TRANSLATE):
                 if (m00 == 0.0 || m11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 return new AffineTransform(1.0 / m00, 0.0,
                         0.0, 1.0 / m11,
@@ -2789,7 +2789,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                         (APPLY_SCALE | APPLY_TRANSLATE));
             case (APPLY_SCALE):
                 if (m00 == 0.0 || m11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 return new AffineTransform(1.0 / m00, 0.0,
                         0.0, 1.0 / m11,
@@ -2822,12 +2822,12 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * transform has no inverse, in which case an exception will be
      * thrown if the {@code invert} method is called.
      *
-     * @throws NoninvertibleTransformException if the matrix cannot be inverted.
+     * @throws NonInvertibleTransformException if the matrix cannot be inverted.
      * @see #getDeterminant
      * @since 1.6
      */
     public void invert()
-            throws NoninvertibleTransformException {
+            throws NonInvertibleTransformException {
         double M00, M01, M02;
         double M10, M11, M12;
         double det;
@@ -2845,7 +2845,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M12 = m12;
                 det = M00 * M11 - M01 * M10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 m00 = M11 / det;
@@ -2862,7 +2862,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M11 = m11;
                 det = M00 * M11 - M01 * M10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 m00 = M11 / det;
@@ -2878,7 +2878,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M10 = m10;
                 M12 = m12;
                 if (M01 == 0.0 || M10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 // m00 = 0.0;
                 m10 = 1.0 / M01;
@@ -2891,7 +2891,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M01 = m01;
                 M10 = m10;
                 if (M01 == 0.0 || M10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 // m00 = 0.0;
                 m10 = 1.0 / M01;
@@ -2906,7 +2906,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M11 = m11;
                 M12 = m12;
                 if (M00 == 0.0 || M11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 m00 = 1.0 / M00;
                 // m10 = 0.0;
@@ -2919,7 +2919,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M00 = m00;
                 M11 = m11;
                 if (M00 == 0.0 || M11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 m00 = 1.0 / M00;
                 // m10 = 0.0;
@@ -3587,14 +3587,14 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param ptDst the resulting transformed point
      * @return {@code ptDst}, which contains the result of the
      * inverse transform.
-     * @throws NoninvertibleTransformException if the matrix cannot be
+     * @throws NonInvertibleTransformException if the matrix cannot be
      *                                         inverted.
      * @since 1.2
      */
     @NonNull
     @SuppressWarnings("fallthrough")
     public Point2D inverseTransform(Point2D ptSrc, @Nullable Point2D ptDst)
-            throws NoninvertibleTransformException {
+            throws NonInvertibleTransformException {
         if (ptDst == null) {
             if (ptSrc instanceof Point2D.Double) {
                 ptDst = new Point2D.Double();
@@ -3616,7 +3616,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
             case (APPLY_SHEAR | APPLY_SCALE):
                 double det = m00 * m11 - m01 * m10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 ptDst.setLocation((x * m11 - y * m01) / det,
@@ -3628,7 +3628,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 /* NOBREAK */
             case (APPLY_SHEAR):
                 if (m01 == 0.0 || m10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 ptDst.setLocation(y / m10, x / m01);
                 return ptDst;
@@ -3638,7 +3638,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 /* NOBREAK */
             case (APPLY_SCALE):
                 if (m00 == 0.0 || m11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 ptDst.setLocation(x / m00, y / m11);
                 return ptDst;
@@ -3674,14 +3674,14 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
      * @param dstOff the offset to the location of the first
      *               transformed point that is stored in the destination array
      * @param numPts the number of point objects to be transformed
-     * @throws NoninvertibleTransformException if the matrix cannot be
+     * @throws NonInvertibleTransformException if the matrix cannot be
      *                                         inverted.
      * @since 1.2
      */
     public void inverseTransform(@NonNull double[] srcPts, int srcOff,
                                  @NonNull double[] dstPts, int dstOff,
                                  int numPts)
-            throws NoninvertibleTransformException {
+            throws NonInvertibleTransformException {
         double M00, M01, M02, M10, M11, M12;    // For caching
         double det;
         if (dstPts == srcPts &&
@@ -3712,7 +3712,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M12 = m12;
                 det = M00 * M11 - M01 * M10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 while (--numPts >= 0) {
@@ -3729,7 +3729,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M11 = m11;
                 det = M00 * M11 - M01 * M10;
                 if (Math.abs(det) <= Double.MIN_VALUE) {
-                    throw new NoninvertibleTransformException("Determinant is " +
+                    throw new NonInvertibleTransformException("Determinant is " +
                             det);
                 }
                 while (--numPts >= 0) {
@@ -3745,7 +3745,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M10 = m10;
                 M12 = m12;
                 if (M01 == 0.0 || M10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 while (--numPts >= 0) {
                     double x = srcPts[srcOff++] - M02;
@@ -3757,7 +3757,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M01 = m01;
                 M10 = m10;
                 if (M01 == 0.0 || M10 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 while (--numPts >= 0) {
                     double x = srcPts[srcOff++];
@@ -3771,7 +3771,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M11 = m11;
                 M12 = m12;
                 if (M00 == 0.0 || M11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 while (--numPts >= 0) {
                     dstPts[dstOff++] = (srcPts[srcOff++] - M02) / M00;
@@ -3782,7 +3782,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
                 M00 = m00;
                 M11 = m11;
                 if (M00 == 0.0 || M11 == 0.0) {
-                    throw new NoninvertibleTransformException("Determinant is 0");
+                    throw new NonInvertibleTransformException("Determinant is 0");
                 }
                 while (--numPts >= 0) {
                     dstPts[dstOff++] = srcPts[srcOff++] / M00;

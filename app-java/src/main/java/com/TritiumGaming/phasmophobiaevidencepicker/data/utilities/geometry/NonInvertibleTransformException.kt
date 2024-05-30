@@ -1,10 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry
 
-public class NoninvertibleTransformException extends java.lang.Exception {
-
-    private static final long serialVersionUID = 6137225240503990466L;
-
-    public NoninvertibleTransformException(String s) {
-        super(s);
+class NonInvertibleTransformException(s: String?) : Exception(s) {
+    companion object {
+        private const val serialVersionUID = 6137225240503990466L
     }
 }
