@@ -98,7 +98,7 @@ public abstract class PETActivity extends AppCompatActivity {
         //set colorSpace
         changeTheme(globalPreferencesViewModel.getColorTheme(), globalPreferencesViewModel.getFontTheme());
 
-        if (globalPreferencesViewModel.isAlwaysOn) {
+        if (globalPreferencesViewModel.isAlwaysOn()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }

@@ -145,12 +145,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Always On Mode
             if(toggle_isAlwaysOn != null) {
                 toggle_isAlwaysOn.setChecked(
-                        globalPreferencesViewModel.isAlwaysOn);
+                        globalPreferencesViewModel.isAlwaysOn());
             }
             // Allow Mobile Data
             if(toggle_network != null) {
                 toggle_network.setChecked(
-                        globalPreferencesViewModel.networkPreference);
+                        globalPreferencesViewModel.getNetworkPreference());
             }
             // Allow Left Hand Mode
             if(toggle_leftHandMode != null) {
@@ -191,11 +191,11 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Hunt warning timeout setting
             if (seekBar_huntwarningTimeout != null) {
                 seekBar_huntwarningTimeout.setMax(300001);
-                if (globalPreferencesViewModel.huntWarningFlashTimeout < 0) {
+                if (globalPreferencesViewModel.getHuntWarningFlashTimeout() < 0) {
                     seekBar_huntwarningTimeout.setProgress(seekBar_huntwarningTimeout.getMax());
                 } else {
                     seekBar_huntwarningTimeout.setProgress(
-                            globalPreferencesViewModel.huntWarningFlashTimeout);
+                            globalPreferencesViewModel.getHuntWarningFlashTimeout());
                 }
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
                         new SeekBar.OnSeekBarChangeListener() {
@@ -205,7 +205,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
                                 if (fromUser) {
 
-                                    globalPreferencesViewModel.huntWarningFlashTimeout = progress;
+                                    globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
 
                                     double progressMax = 300000 /
                                             (double) seekBar_huntwarningTimeout.getMax();
@@ -255,7 +255,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         if(toggle_isAlwaysOn != null) {
             toggle_isAlwaysOn.setSwitchClickListener(v -> {
                 if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.isAlwaysOn = toggle_isAlwaysOn.isChecked();
+                    globalPreferencesViewModel.setAlwaysOn(toggle_isAlwaysOn.isChecked());
                 }
             });
         }
@@ -263,7 +263,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         if(toggle_network != null) {
             toggle_network.setSwitchClickListener(v -> {
                 if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.networkPreference = toggle_network.isChecked();
+                    globalPreferencesViewModel.setNetworkPreference(toggle_network.isChecked());
                 }
             });
         }
@@ -615,7 +615,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                 activity.changeTheme(
                         globalPreferencesViewModel.getColorTheme(),
                         globalPreferencesViewModel.getFontTheme());
-                if (globalPreferencesViewModel.isAlwaysOn) {
+                if (globalPreferencesViewModel.isAlwaysOn()) {
                     activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 }
                 activity.recreate();

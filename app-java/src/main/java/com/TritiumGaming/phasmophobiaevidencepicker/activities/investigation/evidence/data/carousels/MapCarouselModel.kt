@@ -1,7 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels
 
-class MapCarouselData {
-    @JvmRecord
+class MapCarouselModel {
     data class MapSizeData(val name: String, val size: Int)
 
     private var mapSizeData: Array<MapSizeData?>? = null

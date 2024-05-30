@@ -113,7 +113,7 @@ public class MainMenuActivity extends PETActivity {
     }
 
     public void requestOnboardingActivity() {
-        if (onboardingViewModel != null && onboardingViewModel.canShowIntroduction) {
+        if (onboardingViewModel != null && onboardingViewModel.getShowIntroduction()) {
             Log.d("Onboarding", "Starting Activity");
             startActivity(new Intent(this, OnboardingActivity.class));
         }

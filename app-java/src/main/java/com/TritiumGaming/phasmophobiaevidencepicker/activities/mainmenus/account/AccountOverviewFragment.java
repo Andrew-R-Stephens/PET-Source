@@ -230,7 +230,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.networkPreference)) {
+                    globalPreferencesViewModel.getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
 

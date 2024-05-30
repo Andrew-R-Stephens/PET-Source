@@ -22,7 +22,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostPopupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.GhostPopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
@@ -61,7 +61,7 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
     }
 
     public void build(@NonNull EvidenceViewModel evidenceViewModel,
-                      @NonNull GhostPopupData ghostPopupData,
+                      @NonNull GhostPopupModel ghostPopupData,
                       int groupIndex, AdRequest adRequest) {
 
         LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
@@ -98,18 +98,18 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         @ColorInt int fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
 
-        for (int i = 0; i < evidenceViewModel.investigationData.ghostList
+        for (int i = 0; i < evidenceViewModel.getInvestigationData().ghostList
                 .getAt(groupIndex)
                 .getEvidenceArray().length; i++) {
 
             AppCompatImageView evidenceIcon =
                     (AppCompatImageView) linearLayout_iconRow.getChildAt(i);
 
-            evidenceIcon.setImageResource(evidenceViewModel.investigationData.ghostList
+            evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData().ghostList
                     .getAt(groupIndex).getEvidence()[i].getIcon());
         }
 
-        label_name.setText(evidenceViewModel.investigationData.ghostList
+        label_name.setText(evidenceViewModel.getInvestigationData().ghostList
                 .getAt(groupIndex).getName());
 
         //initialize info content scroller

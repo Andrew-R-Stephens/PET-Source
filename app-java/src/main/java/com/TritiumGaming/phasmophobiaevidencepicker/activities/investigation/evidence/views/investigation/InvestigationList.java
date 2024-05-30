@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationPopupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.InvestigationPopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
@@ -27,7 +27,7 @@ public abstract class InvestigationList extends LinearLayout {
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected EvidenceViewModel evidenceViewModel;
 
-    protected InvestigationPopupData popupData;
+    protected InvestigationPopupModel popupData;
 
     protected PopupWindow popupWindow;
     protected ProgressBar progressBar;
@@ -102,7 +102,7 @@ public abstract class InvestigationList extends LinearLayout {
                 }).start();
     }
 
-    protected void createPopupWindow(PopupWindow popupWindow, InvestigationPopupData popupData) {
+    protected void createPopupWindow(PopupWindow popupWindow, InvestigationPopupModel popupData) {
         this.popupData = popupData;
         this.popupWindow = popupWindow;
     }

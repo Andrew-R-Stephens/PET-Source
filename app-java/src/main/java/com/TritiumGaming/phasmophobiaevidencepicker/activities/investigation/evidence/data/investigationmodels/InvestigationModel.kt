@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels
 
 import android.content.Context
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceList
@@ -10,9 +10,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
  *
  * @author TritiumGamingStudios
  */
-class InvestigationData(
+class InvestigationModel(
     context: Context,
-    @JvmField val evidenceViewModel: EvidenceViewModel
+    val evidenceViewModel: EvidenceViewModel
 ) {
     init {
         Companion.evidenceList.init(context)

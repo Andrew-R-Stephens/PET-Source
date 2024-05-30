@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups
 
 import android.content.Context
 import androidx.annotation.DrawableRes
@@ -6,7 +6,7 @@ import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-class EvidencePopupData(context: Context) : InvestigationPopupData() {
+class EvidencePopupModel(context: Context) : InvestigationPopupModel() {
 
     private val evidenceViewDatas = mutableListOf<EvidencePopupRecord>()
 

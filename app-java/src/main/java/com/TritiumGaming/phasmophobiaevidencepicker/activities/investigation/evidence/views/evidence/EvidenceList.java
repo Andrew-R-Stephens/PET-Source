@@ -2,14 +2,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.EvidencePopupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.EvidencePopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostList;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationList;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
@@ -48,15 +47,15 @@ public class EvidenceList extends InvestigationList {
 
     @SuppressLint("ResourceType")
     public void createPopupWindow(PopupWindow popupWindow) {
-        super.createPopupWindow(popupWindow, new EvidencePopupData(getContext()));
+        super.createPopupWindow(popupWindow, new EvidencePopupModel(getContext()));
     }
 
     @Override
     protected void buildViews() {
-        for(int i = 0; i < ((EvidencePopupData)popupData).getCount(); i++) {
+        for(int i = 0; i < ((EvidencePopupModel)popupData).getCount(); i++) {
 
-            EvidencePopupData.EvidencePopupRecord popupRecord =
-                    ((EvidencePopupData)popupData).getEvidencePopupRecordAt(i);
+            EvidencePopupModel.EvidencePopupRecord popupRecord =
+                    ((EvidencePopupModel)popupData).getEvidencePopupRecordAt(i);
 
             EvidenceView evidenceView = new EvidenceView(getContext()) {
 

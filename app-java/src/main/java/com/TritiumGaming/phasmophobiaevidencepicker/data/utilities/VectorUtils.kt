@@ -11,8 +11,7 @@ import org.jetbrains.annotations.NotNull
 
 object VectorUtils {
 
-    @JvmStatic
-    fun toBitmap(@NotNull context: Context, @DrawableRes drawableId: Int) : Bitmap? {
+    fun toBitmap(context: Context, @DrawableRes drawableId: Int) : Bitmap? {
         return AppCompatResources.getDrawable(context, drawableId)?.toBitmap()
     }
 

@@ -93,7 +93,7 @@ public class MapMenuFragment extends InvestigationFragment {
 
                 MapModel mapModel = mapListModel.getMapById(position);
                 if (mapModel != null) {
-                    mapMenuViewModel.currentMapModel = mapModel;
+                    mapMenuViewModel.setCurrentMapModel(mapModel);
                 }
 
                 navigateToBasicMapView(itemView);

@@ -1,120 +1,109 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.SeekBar;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.SeekBar
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatSeekBar;
-import androidx.appcompat.widget.AppCompatTextView;
+class SanitySeekBarView : AppCompatSeekBar {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
+    private var sanityData: SanityModel? = null
+    private var sanityPercentTextView: AppCompatTextView? = null
 
-public class SanitySeekBarView extends AppCompatSeekBar {
+    constructor(context: Context) : super(context)
 
-    private SanityData sanityData;
-    private AppCompatTextView sanityPercentTextView;
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
-    public SanitySeekBarView(@NonNull Context context) {
-        super(context);
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
-    public SanitySeekBarView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+    fun init(sanityData: SanityModel, sanityPercentTextView: AppCompatTextView?) {
+        this.sanityData = sanityData
+        this.sanityPercentTextView = sanityPercentTextView
 
-    public SanitySeekBarView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+        progress = sanityData.sanityActual.toInt()
 
-    public void init(@NonNull SanityData sanityData, @Nullable AppCompatTextView sanityPercentTextView){
-        this.sanityData = sanityData;
-        this.sanityPercentTextView = sanityPercentTextView;
-
-        setProgress((int)sanityData.getSanityActual());
-
-        setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-
-                    sanityData.setProgressManually(progress);
-                    sanityData.tick();
+                    sanityData.setProgressManually(progress.toLong())
+                    sanityData.tick()
 
                     /*sanityPercentTextView.setText(sanityData.toPercentString());*/
-                    if(sanityPercentTextView != null) {
-                        sanityPercentTextView.setText(formatSanityPercent());
+                    if (sanityPercentTextView != null) {
+                        sanityPercentTextView.text = formatSanityPercent()
                         //sanityPercentTextView.invalidate();
                     }
-
                 }
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
             }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
-        });
+        })
 
-        if(sanityPercentTextView != null) {
-            sanityPercentTextView.setText(formatSanityPercent());
+        if (sanityPercentTextView != null) {
+            sanityPercentTextView.text = formatSanityPercent()
         }
     }
 
-    @NonNull
     @SuppressLint("DefaultLocale")
-    public String formatSanityPercent() {
+    fun formatSanityPercent(): String {
+        val nbsp = "\u00A0"
 
-        String nbsp = "\u00A0";
+        var percentStr = sanityData!!.toPercentString()
+        percentStr = percentStr.replace(nbsp, "").trim { it <= ' ' }
 
-        String percentStr = sanityData.toPercentString();
-        percentStr = percentStr.replace(nbsp, "").trim();
-
-        int percentNum = 100;
+        var percentNum = 100
         try {
-            percentNum = Integer.parseInt(percentStr);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
+            percentNum = percentStr.toInt()
+        } catch (e: NumberFormatException) {
+            e.printStackTrace()
         }
 
-        String input = String.format("%3d", percentNum);
+        val input = String.format("%3d", percentNum)
 
-        StringBuilder output = new StringBuilder();
-        int i = 0;
-        for(; i < input.length(); i++) {
-            if(input.charAt(i) != '0') { break; }
-            output.append(nbsp);
+        val output = StringBuilder()
+        var i = 0
+        while (i < input.length) {
+            if (input[i] != '0') {
+                break
+            }
+            output.append(nbsp)
+            i++
         }
-        for(; i < input.length(); i++) {
-            output.append(input.charAt(i));
+        while (i < input.length) {
+            output.append(input[i])
+            i++
         }
-        output.append("%");
+        output.append("%")
 
-        return output.toString();
+        return output.toString()
     }
 
-    public void updateProgress() {
-        setProgress((int) sanityData.getSanityActual());
-        if(sanityPercentTextView != null) {
-            sanityPercentTextView.setText(formatSanityPercent());
+    fun updateProgress() {
+        progress = sanityData!!.sanityActual.toInt()
+        if (sanityPercentTextView != null) {
+            sanityPercentTextView!!.text = formatSanityPercent()
         }
-        invalidate();
+        invalidate()
     }
 
-    public void resetProgress() {
-        setProgress(0);
-        if(sanityPercentTextView != null) {
-            sanityPercentTextView.setText(formatSanityPercent());
+    fun resetProgress() {
+        progress = 0
+        if (sanityPercentTextView != null) {
+            sanityPercentTextView!!.text = formatSanityPercent()
         }
-        invalidate();
-    }
-
-    /*
+        invalidate()
+    } /*
     @Override
     public void invalidate() {
         super.invalidate();

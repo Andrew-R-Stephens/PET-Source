@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel
 /** @noinspection SameParameterValue
  */
 abstract class SharedViewModel : ViewModel() {
-    @StringRes
-    protected var fileName: Int = 0
+
+    @StringRes protected var fileName: Int = 0
 
     abstract fun init(context: Context): Boolean
 
@@ -28,11 +28,6 @@ abstract class SharedViewModel : ViewModel() {
         return sharedPreferences.edit()
     }
 
-    /**
-     * saveToFile method
-     *
-     * @param context The Activity context.
-     */
     abstract fun saveToFile(context: Context)
 
     abstract fun setFileName()

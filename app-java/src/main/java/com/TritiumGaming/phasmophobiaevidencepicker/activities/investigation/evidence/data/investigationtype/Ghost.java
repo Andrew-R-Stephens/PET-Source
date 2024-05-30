@@ -2,13 +2,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import androidx.annotation.NonNull;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.InvestigationModel;
 
 import java.util.ArrayList;
 
 public class Ghost {
 
-    private InvestigationData investigationData;
+    private InvestigationModel investigationData;
 
     private int id = -1;
     private String name = "NA";
@@ -22,7 +22,7 @@ public class Ghost {
         setId(0);
     }
 
-    public Ghost(InvestigationData investigationData, int id) {
+    public Ghost(InvestigationModel investigationData, int id) {
         this.investigationData = investigationData;
 
         setId(id);
@@ -49,7 +49,7 @@ public class Ghost {
     }
 
     public void addEvidence(@NonNull String evidence) {
-        for (Evidence e : InvestigationData.evidenceList.getList()) {
+        for (Evidence e : InvestigationModel.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addEvidence(e);
                 break;
@@ -62,7 +62,7 @@ public class Ghost {
     }
 
     public void addNightmareEvidence(@NonNull String evidence) {
-        for (Evidence e : InvestigationData.evidenceList.getList()) {
+        for (Evidence e : InvestigationModel.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addNightmareEvidence(e);
                 break;
@@ -122,17 +122,17 @@ public class Ghost {
         }
 
         boolean isNightmare =
-                investigationData.evidenceViewModel
+                investigationData.getEvidenceViewModel()
                         .getDifficultyCarouselData().isDifficulty(3);
         boolean isInsanity =
-                investigationData.evidenceViewModel
+                investigationData.getEvidenceViewModel()
                         .getDifficultyCarouselData().isDifficulty(4);
 
         int maxPosScore = isInsanity ? 1 : isNightmare ? 2 : 3;
 
         int posScore = 0, negScore = 0;
 
-        for (Evidence e : InvestigationData.evidenceList.getList()) {
+        for (Evidence e : InvestigationModel.evidenceList.getList()) {
             boolean isContained = false;
             for (Evidence eThis : thisGhostEvidence) {
                 if (e == eThis) {

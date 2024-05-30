@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.InvestigationModel;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class GhostList {
     public static ArrayList<Ghost> ghostList = null;
 
     public void init(
-            @NonNull Context c, @NonNull InvestigationData investigationData) {
+            @NonNull Context c, @NonNull InvestigationModel investigationData) {
         ghostList = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.ghost_names);
 

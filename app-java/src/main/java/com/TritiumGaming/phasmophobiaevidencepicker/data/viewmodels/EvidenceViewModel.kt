@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.DifficultyCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.MapCarouselData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.InvestigationData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.GhostOrderModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
@@ -21,24 +21,23 @@ class EvidenceViewModel : ViewModel() {
     private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
     val radioButtonsChecked = _radioButtonsChecked.asStateFlow()
 
+    var investigationData: InvestigationModel? = null
+    var ghostOrderData: GhostOrderModel? = null
+        private set
+    var sanityData: SanityModel? = null
+        private set
+    var phaseTimerData: PhaseTimerModel? = null
+        private set
+    var mapCarouselData: MapCarouselModel? = null
+        private set
+    var difficultyCarouselData: DifficultyCarouselModel? = null
+        private set
+
+    var sanityRunnable: SanityRunnable? = null
+
     private var rejectionPile: BooleanArray? = null
 
-    @JvmField
     var isDrawerCollapsed = false
-    @JvmField
-    var investigationData: InvestigationData? = null
-    var ghostOrderData: GhostOrderData? = null
-        private set
-    @JvmField
-    var sanityRunnable: SanityRunnable? = null
-    var sanityData: SanityData? = null
-        private set
-    var phaseTimerData: PhaseTimerData? = null
-        private set
-    var mapCarouselData: MapCarouselData? = null
-        private set
-    var difficultyCarouselData: DifficultyCarouselData? = null
-        private set
 
     fun init(context: Context) {
         initInvestigationData(context)
@@ -50,33 +49,33 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initInvestigationData(context: Context) {
-        investigationData = investigationData ?: InvestigationData(context, this)
+        investigationData = investigationData ?: InvestigationModel(context, this)
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
     private fun initPhaseTimerData() {
         phaseTimerData =
-            phaseTimerData ?: difficultyCarouselData?.let { PhaseTimerData(it) }
+            phaseTimerData ?: difficultyCarouselData?.let { PhaseTimerModel(it) }
     }
 
     private fun initGhostOrderData() {
         ghostOrderData =
-            ghostOrderData ?: GhostOrderData(this)
+            ghostOrderData ?: GhostOrderModel(this)
     }
 
     private fun initSanityData() {
         sanityData =
-            sanityData ?: SanityData(this)
+            sanityData ?: SanityModel(this)
     }
 
     private fun initMapCarouselData() {
         mapCarouselData =
-            mapCarouselData ?: MapCarouselData()
+            mapCarouselData ?: MapCarouselModel()
     }
 
     private fun initDifficultyCarouselData(context: Context) {
         difficultyCarouselData =
-            difficultyCarouselData ?: DifficultyCarouselData(context, this)
+            difficultyCarouselData ?: DifficultyCarouselModel(context, this)
     }
 
     fun hasDifficultyCarouselData(): Boolean {

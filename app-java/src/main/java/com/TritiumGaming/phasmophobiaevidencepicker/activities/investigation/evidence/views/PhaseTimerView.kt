@@ -1,49 +1,39 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import android.os.CountDownTimer;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-
-import java.text.DecimalFormat;
+import android.os.CountDownTimer
+import android.util.Log
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils.millisToTime
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import java.text.DecimalFormat
 
 /**
  * SetupPhaseTimer class
  *
  * @author TritiumGamingStudios
  */
-public class PhaseTimerView {
+class PhaseTimerView(
+    evidenceViewModel: EvidenceViewModel,
+    recipientView: AppCompatTextView?
+) {
+    private val sanityData = evidenceViewModel.sanityData
+    private val phaseTimerData = evidenceViewModel.phaseTimerData
 
-    private final SanityData sanityData;
-    private final PhaseTimerData phaseTimerData;
+    private var timer: CountDownTimer? = null
+    private var stateControl: PhaseTimerControlView? = null
+    private var timerTextView: AppCompatTextView? = null
 
-    @Nullable
-    private CountDownTimer timer;
-    @Nullable
-    private PhaseTimerControlView stateControl;
-    @Nullable
-    private AppCompatTextView timerTextView;
+    init {
+        setTimerTextView(recipientView)
 
-    public PhaseTimerView(EvidenceViewModel evidenceViewModel,
-                          AppCompatTextView recipientView) {
+        createTimer(
+            true,
+            phaseTimerData!!.timeRemaining,
+            1000L
+        )
 
-        this.sanityData = evidenceViewModel.getSanityData();
-        this.phaseTimerData = evidenceViewModel.getPhaseTimerData();
-
-        setTimerTextView(recipientView);
-
-        createTimer(true,
-                phaseTimerData.timeRemaining,
-                1000L);
-
-        if(!phaseTimerData.isPaused) {
-            timer.start();
+        if (!phaseTimerData.isPaused) {
+            timer!!.start()
         }
     }
 
@@ -52,8 +42,8 @@ public class PhaseTimerView {
      *
      * @param stateControl -
      */
-    public void setTimerControls(PhaseTimerControlView stateControl) {
-        this.stateControl = stateControl;
+    fun setTimerControls(stateControl: PhaseTimerControlView?) {
+        this.stateControl = stateControl
     }
 
     /**
@@ -61,8 +51,8 @@ public class PhaseTimerView {
      *
      * @param timerTextView -
      */
-    public void setTimerTextView(@Nullable AppCompatTextView timerTextView) {
-        this.timerTextView = timerTextView;
+    fun setTimerTextView(timerTextView: AppCompatTextView?) {
+        this.timerTextView = timerTextView
     }
 
     /**
@@ -71,116 +61,119 @@ public class PhaseTimerView {
      * @param millisInFuture -
      * @param countDownInterval -
      */
-    public void createTimer(boolean isFresh, long millisInFuture, long countDownInterval) {
+    fun createTimer(isFresh: Boolean, millisInFuture: Long, countDownInterval: Long) {
+        destroyTimer()
 
-        destroyTimer();
-
-        if(isFresh) {
-            if(!sanityData.isNewCycle() && !sanityData.isPaused) {
-                Log.d("SettingTimeRemaining",
-                        phaseTimerData.difficultyCarouselData.getCurrentDifficultyTime() +
-                                " " + (sanityData.startTime - System.currentTimeMillis()));
-                phaseTimerData.timeRemaining = phaseTimerData.difficultyCarouselData.getCurrentDifficultyTime() +
-                        (sanityData.startTime - System.currentTimeMillis());
+        if (isFresh) {
+            if (!sanityData!!.isNewCycle && !sanityData.isPaused) {
+                Log.d(
+                    "SettingTimeRemaining",
+                    phaseTimerData!!.difficultyCarouselData.currentDifficultyTime.toString() +
+                            " " + (sanityData.startTime - System.currentTimeMillis())
+                )
+                phaseTimerData.timeRemaining =
+                    phaseTimerData.difficultyCarouselData.currentDifficultyTime +
+                            (sanityData.startTime - System.currentTimeMillis())
             } else {
-                Log.d("SettingTimeRemaining", "Not new Cycle, Not Paused " +
-                        phaseTimerData.difficultyCarouselData.getCurrentDifficultyTime() +
-                        " " + (sanityData.startTime - System.currentTimeMillis()));
+                Log.d(
+                    "SettingTimeRemaining", "Not new Cycle, Not Paused " +
+                            phaseTimerData!!.difficultyCarouselData.currentDifficultyTime +
+                            " " + (sanityData.startTime - System.currentTimeMillis())
+                )
             }
         } else {
-            Log.d("SettingTimeRemaining", "Not Fresh " +
-                    phaseTimerData.difficultyCarouselData.getCurrentDifficultyTime() +
-                            " " + (sanityData.startTime - System.currentTimeMillis()));
-            phaseTimerData.timeRemaining = millisInFuture;
+            Log.d(
+                "SettingTimeRemaining", "Not Fresh " +
+                        phaseTimerData!!.difficultyCarouselData.currentDifficultyTime +
+                        " " + (sanityData!!.startTime - System.currentTimeMillis())
+            )
+            phaseTimerData.timeRemaining = millisInFuture
         }
 
-        timer = new CountDownTimer(millisInFuture, countDownInterval) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
+        timer = object : CountDownTimer(millisInFuture, countDownInterval) {
+            override fun onTick(millisUntilFinished: Long) {
                 if (!phaseTimerData.isPaused && millisUntilFinished > -1L) {
-                    phaseTimerData.timeRemaining = millisUntilFinished;
-                    updateText();
+                    phaseTimerData.timeRemaining = millisUntilFinished
+                    updateText()
                 }
             }
 
-            @Override
-            public void onFinish() {
+            override fun onFinish() {
                 if (stateControl != null) {
-                    stateControl.checkPaused();
+                    stateControl!!.checkPaused()
                 }
-                phaseTimerData.timeRemaining = 0L;
-                updateText();
+                phaseTimerData.timeRemaining = 0L
+                updateText()
             }
-        };
+        }
 
-        updateText();
-
+        updateText()
     }
 
     /**
      * pause method
      */
-    public void pause() {
-        if (!phaseTimerData.isPaused) {
-            phaseTimerData.isPaused = true;
-            destroyTimer();
+    fun pause() {
+        if (!phaseTimerData!!.isPaused) {
+            phaseTimerData.isPaused = true
+            destroyTimer()
         }
     }
 
     /**
      * unPause method
      */
-    public void play() {
-
-        if (phaseTimerData.isPaused) {
-            if (sanityData != null) {
-                sanityData.setProgressManually();
-            }
-            phaseTimerData.isPaused = false;
-            createTimer(false, phaseTimerData.timeRemaining, 1000L);
+    fun play() {
+        if (phaseTimerData!!.isPaused) {
+            sanityData?.setProgressManually()
+            phaseTimerData.isPaused = false
+            createTimer(false, phaseTimerData.timeRemaining, 1000L)
             if (timer != null) {
-                Log.d("Timer", "Playing!");
-                timer.start();
+                Log.d("Timer", "Playing!")
+                timer!!.start()
             }
         }
-
     }
 
     /**
      * setText method
      */
-    public void updateText() {
-        String text = String.format(
-                "%s:%s",
-                new DecimalFormat("0").format(0),
-                new DecimalFormat("00").format(0));
+    fun updateText() {
+        var text = String.format(
+            "%s:%s",
+            DecimalFormat("0").format(0),
+            DecimalFormat("00").format(0)
+        )
 
-        if (phaseTimerData.timeRemaining > 0L) {
-            long breakdown = phaseTimerData.timeRemaining / 1000L;
-            text = FormatterUtils.millisToTime("%s:%s", breakdown);
+        if (phaseTimerData!!.timeRemaining > 0L) {
+            val breakdown = phaseTimerData.timeRemaining / 1000L
+            text = millisToTime("%s:%s", breakdown)
         }
 
         if (timerTextView != null) {
-            timerTextView.setText(text);
+            timerTextView!!.text = text
         }
     }
 
-    public void destroyTimer() {
-        if(timer != null) {
-            timer.cancel();
+    fun destroyTimer() {
+        if (timer != null) {
+            timer!!.cancel()
         }
-        timer = null;
-        Log.d("Timer",
-                String.valueOf(phaseTimerData.timeRemaining -
-                        (sanityData.startTime - System.currentTimeMillis())));
+        timer = null
+        Log.d(
+            "Timer",
+            (phaseTimerData!!.timeRemaining -
+                    (sanityData!!.startTime - System.currentTimeMillis())).toString()
+        )
     }
 
-    public void reset() {
-        createTimer(true,
-                phaseTimerData.timeRemaining,
-                1000L);
+    fun reset() {
+        createTimer(
+            true,
+            phaseTimerData!!.timeRemaining,
+            1000L
+        )
 
-        updateText();
+        updateText()
     }
 }

@@ -44,7 +44,9 @@ class SanityRunnable (
 
         if (!sanityData.isPaused) {
 
-            val phaseTimerData = evidenceViewModel.phaseTimerData ?: return
+            if(evidenceViewModel.phaseTimerData == null) return
+
+            val phaseTimerData = evidenceViewModel.phaseTimerData
 
             /*
             if (!phaseTimerData.isPaused) {
@@ -55,19 +57,19 @@ class SanityRunnable (
                 // Populate the sanity percent text view with a value
                 sanityMeterTextView?.text = sanityData.toPercentString()
                 // Setup Warn is steady ON if setup phase activity is true
-                setupPhaseTextView?.setState(phaseTimerData.isSetupPhase, true)
+                setupPhaseTextView?.setState((phaseTimerData?.isSetupPhase == true), true)
                 // Action Warn is steady ON if setup phase activity is false
-                actionPhaseTextView?.setState(!phaseTimerData.isSetupPhase, true)
+                actionPhaseTextView?.setState((phaseTimerData?.isSetupPhase == false), true)
 
                 // Hunt Audio is ACTIVE if setup phase activity is false
                 if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
-                    !phaseTimerData.isSetupPhase && sanityData.warningAudioAllowed) {
+                    (phaseTimerData?.isSetupPhase == false) && sanityData.warningAudioAllowed) {
                     audio_huntWarn?.start()
                     sanityData.warningAudioAllowed = false
                 }
 
                 if ((sanityData.insanityPercent.value < .7) &&
-                    (!phaseTimerData.isSetupPhase && sanityData.canFlashWarning())) {
+                    ((phaseTimerData?.isSetupPhase == false) && sanityData.canFlashWarning())) {
                     if ((wait * (++flashTick)) > flashDuration) {
                         println("Toggleable $wait $flashTick $flashDuration")
                         huntWarningTextView?.toggleTextState(true)

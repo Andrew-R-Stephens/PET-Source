@@ -1,302 +1,265 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.AttributeSet;
-import android.view.View;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.VectorUtils;
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.Rect
+import android.graphics.RectF
+import android.util.AttributeSet
+import android.view.View
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.interpolate
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.VectorUtils.toBitmap
 
 /**
  * SanityMeterView class
  *
  * @author TritiumGamingStudios
  */
-public class SanityMeterView extends View {
+class SanityMeterView : View {
+    private var sanityData: SanityModel? = null
 
-    @Nullable
-    private SanityData sanityData = null;
-
-    private final Paint paint = new Paint();
-
-    private @ColorInt int
-            sanityPieStartColor, sanityPieEndColor,
-            sanityHeadBrainColor, sanityHeadSkullColor,
-            sanityBorderColor;
-
-    private final RectF containerRect = new RectF();
-    private final Rect sanityRect = new Rect();
+    private val paint = Paint()
 
     @ColorInt
-    int themeColor = 0, sanityTint = 0;
-    @Nullable
-    private ColorFilter filter;
+    private var sanityPieStartColor = 0
 
-    @Nullable
-    private Bitmap sanityImg_skull, sanityImg_brain, sanityImg_border;
+    @ColorInt
+    private var sanityPieEndColor = 0
 
-    /**
-     * @param context
-     */
-    public SanityMeterView(Context context) {
-        super(context);
+    @ColorInt
+    private var sanityHeadBrainColor = 0
+
+    @ColorInt
+    private var sanityHeadSkullColor = 0
+
+    @ColorInt
+    private var sanityBorderColor = 0
+
+    private val containerRect: RectF? = RectF()
+    private val sanityRect: Rect? = Rect()
+
+    @ColorInt
+    var themeColor: Int = 0
+
+    @ColorInt
+    var sanityTint: Int = 0
+    private var filter: ColorFilter? = null
+
+    private var sanityImg_skull: Bitmap? = null
+    private var sanityImg_brain: Bitmap? = null
+    private var sanityImg_border: Bitmap? = null
+
+    constructor(context: Context?) : super(context)
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int
+    ) : super(context, attrs, defStyleAttr)
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
+
+    fun init(sanityData: SanityModel?) {
+        this.sanityData = sanityData
+
+        filter = PorterDuffColorFilter(
+            ContextCompat.getColor(context, R.color.white),
+            PorterDuff.Mode.MULTIPLY
+        )
+
+        buildImages()
+        buildColors()
+
+        setDefaults()
     }
 
-    /**
-     * @param context
-     * @param attrs
-     */
-    public SanityMeterView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    /**
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     */
-    public SanityMeterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    /**
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     * @param defStyleRes
-     */
-    public SanityMeterView(
-            Context context,
-            @Nullable AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    /**
-     * @param sanityData
-     */
-    public void init(SanityData sanityData) {
-        this.sanityData = sanityData;
-
-        filter = new PorterDuffColorFilter(
-                ContextCompat.getColor(getContext(), R.color.white),
-                PorterDuff.Mode.MULTIPLY);
-
-        buildImages();
-        buildColors();
-
-        setDefaults();
-    }
-
-    private void buildColors() {
+    private fun buildColors() {
         themeColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
+            getColorFromAttribute(
+                context, R.attr.textColorPrimary
+            )
         sanityTint =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.selectedColor);
+            getColorFromAttribute(
+                context, R.attr.selectedColor
+            )
         sanityPieStartColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityPieStartColor);
+            getColorFromAttribute(
+                context, R.attr.sanityPieStartColor
+            )
         sanityPieEndColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityPieEndColor);
+            getColorFromAttribute(
+                context, R.attr.sanityPieEndColor
+            )
         sanityHeadBrainColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityHeadBrainColor);
+            getColorFromAttribute(
+                context, R.attr.sanityHeadBrainColor
+            )
         sanityHeadSkullColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityHeadSkullColor);
+            getColorFromAttribute(
+                context, R.attr.sanityHeadSkullColor
+            )
         sanityBorderColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.sanityBorderColor);
+            getColorFromAttribute(
+                context, R.attr.sanityBorderColor
+            )
     }
 
-    private void setDefaults() {
-        setBackgroundColor(getResources().getColor(R.color.transparent));
+    private fun setDefaults() {
+        setBackgroundColor(resources.getColor(R.color.transparent))
     }
 
-    /**
-     *
-     */
-    public void buildImages() {
-        /*sanityImg_skull = createBitmap(sanityImg_skull, R.drawable.icon_sanityhead_skull);
-        sanityImg_brain = createBitmap(sanityImg_brain, R.drawable.icon_sanityhead_brain);
-        sanityImg_border = createBitmap(sanityImg_skull, R.drawable.icon_sanityhead_border);*/
-        sanityImg_skull = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_skull);
-        sanityImg_brain = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_brain);
-        sanityImg_border = VectorUtils.toBitmap(getContext(), R.drawable.icon_sanityhead_border);
+    fun buildImages() {
+        sanityImg_skull = toBitmap(context, R.drawable.icon_sanityhead_skull)
+        sanityImg_brain = toBitmap(context, R.drawable.icon_sanityhead_brain)
+        sanityImg_border = toBitmap(context, R.drawable.icon_sanityhead_border)
     }
 
-    /**
-     * @return
-     */
-    public boolean hasBuiltImages() {
-        return sanityImg_skull != null && sanityImg_brain != null;
+    fun hasBuiltImages(): Boolean {
+        return sanityImg_skull != null && sanityImg_brain != null
     }
 
-    /**
-     * @param toBitmap
-     * @param id
-     * @return
-     */
-    public Bitmap createBitmap(Bitmap toBitmap, int id) {
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inSampleSize = 2;
-        o.inJustDecodeBounds = false;
+    fun createBitmap(toBitmap: Bitmap?, id: Int): Bitmap? {
+        val o = BitmapFactory.Options()
+        o.inSampleSize = 2
+        o.inJustDecodeBounds = false
 
-        return addLayer(toBitmap, BitmapFactory.decodeResource(getContext().getResources(),
-                id, o));
+        return addLayer(
+            toBitmap, BitmapFactory.decodeResource(
+                context.resources,
+                id, o
+            )
+        )
     }
 
-    /**
-     * @param baseLayer
-     * @param topLayer
-     * @return
-     */
-    @Nullable
-    private Bitmap addLayer(@Nullable Bitmap baseLayer, @Nullable Bitmap topLayer) {
+    private fun addLayer(baseLayer: Bitmap?, topLayer: Bitmap?): Bitmap? {
+        var baseLayer = baseLayer
         if (baseLayer == null && topLayer != null) {
             baseLayer = Bitmap.createBitmap(
-                    topLayer.getWidth(),
-                    topLayer.getHeight(),
-                    topLayer.getConfig());
+                topLayer.width,
+                topLayer.height,
+                topLayer.config
+            )
         }
         if (baseLayer != null) {
-            Canvas canvas = new Canvas(baseLayer);
+            val canvas = Canvas(baseLayer)
 
             if (topLayer != null) {
-                canvas.drawBitmap(topLayer, new Matrix(), null);
-                topLayer.recycle();
+                canvas.drawBitmap(topLayer, Matrix(), null)
+                topLayer.recycle()
             }
         }
-        System.gc();
+        System.gc()
 
-        return baseLayer;
+        return baseLayer
     }
 
-    /**
-     * @param r
-     * @param g
-     * @param b
-     */
-    public void createFilterColor(int r, int g, int b) {
-        filter = new PorterDuffColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY);
+    fun createFilterColor(r: Int, g: Int, b: Int) {
+        filter = PorterDuffColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
     }
 
-    public void createFilterColor(@ColorInt int color) {
-        filter = new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY);
+    fun createFilterColor(@ColorInt color: Int) {
+        filter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
     }
 
-    /**
-     * @param canvas
-     */
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-        float padding = 4;
-        float h = getHeight(), w = getWidth();
-        if (getWidth() <= getHeight()) {
-            h *= (float) getWidth() / (float) getHeight();
+    override fun onDraw(canvas: Canvas) {
+        val padding = 4f
+        var h = height.toFloat()
+        var w = width.toFloat()
+        if (width <= height) {
+            h *= width.toFloat() / height.toFloat()
+        } else {
+            w *= height.toFloat() / width.toFloat()
         }
-        else {
-            w *= (float) getHeight() / (float) getWidth();
-        }
-        if (containerRect != null) {
-            containerRect.set((float) ((getWidth() * .5) - (w * .5) + padding),
-                    (float) ((getHeight() * .5) - (h * .5) + padding),
-                    (float) (w + ((getWidth() * .5) - (w * .5)) - padding),
-                    (float) (h + ((getHeight() * .5) - (h * .5))) - padding);
-        }
+        containerRect?.set(
+            ((width * .5) - (w * .5) + padding).toFloat(),
+            ((height * .5) - (h * .5) + padding).toFloat(),
+            (w + ((width * .5) - (w * .5)) - padding).toFloat(),
+            (h + ((height * .5) - (h * .5))).toFloat() - padding
+        )
 
-        paint.setAntiAlias(true);
+        paint.isAntiAlias = true
 
-        paint.setStrokeWidth(1f);
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.transparent));
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawOval(containerRect, paint);
+        paint.strokeWidth = 1f
+        paint.color = ContextCompat.getColor(context, R.color.transparent)
+        paint.style = Paint.Style.FILL
+        canvas.drawOval(containerRect!!, paint)
 
-        float insanityDegree;
+        val insanityDegree: Float
         if (sanityData != null) {
-            insanityDegree = sanityData.getInsanityDegree();
+            insanityDegree = sanityData!!.insanityDegree
 
-            @ColorInt int sanityColor =
-                    ColorUtils.interpolate(sanityPieStartColor, sanityPieEndColor,
-                            sanityData.getInsanityPercent().getValue());
+            @ColorInt val sanityColor =
+                interpolate(
+                    sanityPieStartColor, sanityPieEndColor,
+                    sanityData!!.insanityPercent.value
+                )
             //createFilterColor(sanityColor);
-            paint.setColor(sanityColor);
+            paint.color = sanityColor
+
             //paint.setColorFilter(filter);
-
             if (sanityData != null) {
-                canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
+                canvas.drawArc(containerRect, 270f, insanityDegree, true, paint)
             }
-            paint.setColorFilter(null);
-            paint.setStrokeWidth(5f);
-            paint.setColor(Color.BLACK);
-            paint.setStyle(Paint.Style.STROKE);
-            canvas.drawArc(containerRect, 270, insanityDegree, true, paint);
-
+            paint.setColorFilter(null)
+            paint.strokeWidth = 5f
+            paint.color = Color.BLACK
+            paint.style = Paint.Style.STROKE
+            canvas.drawArc(containerRect, 270f, insanityDegree, true, paint)
         }
 
         if (sanityRect != null) {
+            sanityRect[padding.toInt(), padding.toInt(), sanityImg_skull!!.width - padding.toInt()] =
+                sanityImg_skull!!.height - padding.toInt()
 
-            sanityRect.set((int)padding, (int)padding,
-                    sanityImg_skull.getWidth() - (int)padding,
-                    sanityImg_skull.getHeight() - (int)padding);
+            paint.setColorFilter(null)
+            paint.color = sanityHeadSkullColor
+            canvas.drawBitmap(sanityImg_skull!!, sanityRect, containerRect, paint)
 
-            paint.setColorFilter(null);
-            paint.setColor(sanityHeadSkullColor);
-            canvas.drawBitmap(sanityImg_skull, sanityRect, containerRect, paint);
-
-            paint.setColorFilter(null);
-            paint.setColor(sanityHeadBrainColor);
-            canvas.drawBitmap(sanityImg_brain, sanityRect, containerRect, paint);
+            paint.setColorFilter(null)
+            paint.color = sanityHeadBrainColor
+            canvas.drawBitmap(sanityImg_brain!!, sanityRect, containerRect, paint)
 
 
-            paint.setColorFilter(null);
-            paint.setColor(sanityBorderColor);
-            canvas.drawBitmap(sanityImg_border, sanityRect, containerRect, paint);
-
+            paint.setColorFilter(null)
+            paint.color = sanityBorderColor
+            canvas.drawBitmap(sanityImg_border!!, sanityRect, containerRect, paint)
         }
 
-        paint.setColor(sanityBorderColor);
-        paint.setStrokeWidth(5f);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.color = sanityBorderColor
+        paint.strokeWidth = 5f
+        paint.style = Paint.Style.STROKE
 
-        canvas.drawOval(containerRect, paint);
+        canvas.drawOval(containerRect, paint)
 
-        super.onDraw(canvas);
+        super.onDraw(canvas)
     }
 
-    /**
-     *
-     */
-    public void recycleBitmaps() {
-        boolean scheduleGarbageCollect = (sanityImg_brain != null || sanityImg_skull != null);
+    fun recycleBitmaps() {
+        val scheduleGarbageCollect = (sanityImg_brain != null || sanityImg_skull != null)
 
         if (sanityImg_brain != null) {
-            sanityImg_brain.recycle();
-            sanityImg_brain = null;
+            sanityImg_brain!!.recycle()
+            sanityImg_brain = null
         }
         if (sanityImg_skull != null) {
-            sanityImg_skull.recycle();
-            sanityImg_skull = null;
+            sanityImg_skull!!.recycle()
+            sanityImg_skull = null
         }
 
         if (scheduleGarbageCollect) {
-            System.gc();
+            System.gc()
         }
     }
-
 }

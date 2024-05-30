@@ -85,7 +85,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         if(evidenceViewModel.getSanityData() != null) {
             evidenceViewModel.getSanityData()
-                    .setFlashTimeoutMax(globalPreferencesViewModel.huntWarningFlashTimeout);
+                    .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
         }
 
         // GHOST / EVIDENCE CONTAINERS
@@ -147,7 +147,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
         if(toggleCollapseButton != null) {
             toggleCollapseButton.setOnClickListener(v -> {
-                if(evidenceViewModel.isDrawerCollapsed) {
+                if(evidenceViewModel.isDrawerCollapsed()) {
                     sanityTrackingConstraintLayout.animate()
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
@@ -162,7 +162,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
                                     sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
                                     toggleCollapseButton.setImageLevel(2);
-                                    evidenceViewModel.isDrawerCollapsed = false;
+                                    evidenceViewModel.setDrawerCollapsed(false);
                                 }
                             })
                             .start();
@@ -181,7 +181,7 @@ public class EvidenceFragment extends InvestigationFragment {
 
                                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
                                     toggleCollapseButton.setImageLevel(1);
-                                    evidenceViewModel.isDrawerCollapsed = true;
+                                    evidenceViewModel.setDrawerCollapsed(true);
                                 }
                             })
                             .start();
@@ -214,7 +214,7 @@ public class EvidenceFragment extends InvestigationFragment {
     }
 
     private void initCollapsible() {
-        if(evidenceViewModel.isDrawerCollapsed) {
+        if(evidenceViewModel.isDrawerCollapsed()) {
             sanityTrackingConstraintLayout.setVisibility(View.GONE);
             toggleCollapseButton.setImageLevel(1);
         } else {

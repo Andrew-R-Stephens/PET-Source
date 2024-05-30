@@ -23,7 +23,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.EvidencePopupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.EvidencePopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
@@ -63,7 +63,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
     }
 
     public void build(EvidenceViewModel evidenceViewModel,
-                      @NonNull EvidencePopupData.EvidencePopupRecord evidenceRecord,
+                      @NonNull EvidencePopupModel.EvidencePopupRecord evidenceRecord,
                       AdRequest adRequest) {
 
         // THEME

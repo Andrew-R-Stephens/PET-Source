@@ -12,7 +12,7 @@ import kotlin.math.min
  *
  * @author TritiumGamingStudios
  */
-class SanityData(
+class SanityModel(
     private val evidenceViewModel: EvidenceViewModel?
 ) {
 
@@ -38,7 +38,6 @@ class SanityData(
      * @param startTime - The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time.
      */
-    @JvmField
     var startTime: Long = -1L
 
     val isNewCycle: Boolean
@@ -60,7 +59,6 @@ class SanityData(
 
 
     /** @return If the countdown timer is paused. */
-    @JvmField
     var isPaused: Boolean = false
 
     private var flashTimeoutMax: Long = -1

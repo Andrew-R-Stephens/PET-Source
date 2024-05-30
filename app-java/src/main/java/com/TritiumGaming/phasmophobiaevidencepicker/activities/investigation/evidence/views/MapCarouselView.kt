@@ -1,23 +1,22 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.MapCarouselData;
+import android.view.View
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel
 
 /**
  * MapSelectControl class
  *
  * @author TritiumGamingStudios
  */
-public class MapCarouselView {
-
-    private final MapCarouselData mapCarouselData;
-
-    @Nullable
-    private AppCompatTextView mapNameView = null;
+class MapCarouselView(
+    private val mapCarouselData: MapCarouselModel?,
+    prev: AppCompatImageButton,
+    next: AppCompatImageButton,
+    mapNameView: AppCompatTextView
+) {
+    private var mapNameView: AppCompatTextView? = null
 
     /**
      * MapSelectControl parameterized constructor
@@ -26,17 +25,10 @@ public class MapCarouselView {
      * @param next
      * @param mapNameView
      */
-    public MapCarouselView(
-            MapCarouselData mapsCarouselData,
-            @NonNull AppCompatImageButton prev,
-            @NonNull AppCompatImageButton next,
-            AppCompatTextView mapNameView) {
-
-        this.mapCarouselData = mapsCarouselData;
-
-        setDifficultyDisplay(mapNameView);
-        setPrev(prev);
-        setNext(next);
+    init {
+        setDifficultyDisplay(mapNameView)
+        setPrev(prev)
+        setNext(next)
     }
 
     /**
@@ -44,18 +36,16 @@ public class MapCarouselView {
      *
      * @param prev
      */
-    private void setPrev(@NonNull AppCompatImageButton prev) {
-        prev.setOnClickListener(v -> {
-
+    private fun setPrev(prev: AppCompatImageButton) {
+        prev.setOnClickListener { v: View? ->
             if (mapCarouselData != null) {
-                int i = mapCarouselData.getMapCurrentIndex() - 1;
+                var i = mapCarouselData.mapCurrentIndex - 1
                 if (i < 0) {
-                    i = mapCarouselData.getMapCount() - 1;
+                    i = mapCarouselData.mapCount - 1
                 }
-                setCurrentMapIndex(i);
+                setCurrentMapIndex(i)
             }
-
-        });
+        }
     }
 
     /**
@@ -63,21 +53,23 @@ public class MapCarouselView {
      *
      * @param next
      */
-    private void setNext(@NonNull AppCompatImageButton next) {
-        next.setOnClickListener(v -> {
+    private fun setNext(next: AppCompatImageButton) {
+        next.setOnClickListener { v: View? ->
             if (mapCarouselData != null) {
-                int i = mapCarouselData.getMapCurrentIndex() + 1;
-                if (i >= mapCarouselData.getMapCount()) {
-                    i = 0;
+                var i = mapCarouselData.mapCurrentIndex + 1
+                if (i >= mapCarouselData.mapCount) {
+                    i = 0
                 }
-                setCurrentMapIndex(i);
+                setCurrentMapIndex(i)
             }
-        });
+        }
     }
 
-    private void setCurrentMapIndex(int i) {
-        mapCarouselData.setMapCurrentIndex(i);
-        mapNameView.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
+    private fun setCurrentMapIndex(i: Int) {
+        mapCarouselData!!.mapCurrentIndex = i
+        mapNameView!!.text =
+            mapCarouselData.mapCurrentName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()[0]
     }
 
     /**
@@ -85,9 +77,8 @@ public class MapCarouselView {
      *
      * @param display
      */
-    private void setDifficultyDisplay(AppCompatTextView display) {
-        this.mapNameView = display;
+    private fun setDifficultyDisplay(display: AppCompatTextView) {
+        this.mapNameView = display
     }
-
 }
 

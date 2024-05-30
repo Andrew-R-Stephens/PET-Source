@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups
 
 import android.content.Context
 import androidx.annotation.StringRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-class GhostPopupData(context: Context) : InvestigationPopupData() {
+class GhostPopupModel(context: Context) : InvestigationPopupModel() {
 
     @StringRes private val infos: IntArray
     @StringRes private val strengths: IntArray

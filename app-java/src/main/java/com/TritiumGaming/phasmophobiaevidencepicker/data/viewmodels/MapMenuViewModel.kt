@@ -15,7 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
  * @author TritiumGamingStudios
  */
 class MapMenuViewModel : ViewModel() {
-    @JvmField
+
     var imageDisplayThread: Thread? = null
 
     var mapsData: MutableList<MapData> = mutableListOf()
@@ -33,7 +33,6 @@ class MapMenuViewModel : ViewModel() {
             return mapsData[currentMapIndex]
         }
 
-    @JvmField
     var currentMapModel: MapModel? = null
 
     val mapNames: MutableList<String>

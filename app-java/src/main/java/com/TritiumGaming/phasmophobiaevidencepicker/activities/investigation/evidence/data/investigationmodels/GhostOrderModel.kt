@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 
-class GhostOrderData(
+class GhostOrderModel(
     private val evidenceViewModel: EvidenceViewModel
 ) {
 
@@ -27,7 +27,7 @@ class GhostOrderData(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createPrevOrder() {
-        prevOrder = IntArray(InvestigationData.ghostList.list.size)
+        prevOrder = IntArray(InvestigationModel.ghostList.list.size)
 
         for (i in prevOrder!!.indices) {
             prevOrder!![i] = i
@@ -39,7 +39,7 @@ class GhostOrderData(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createCurrOrder() {
-        currOrder = IntArray(InvestigationData.ghostList.list.size)
+        currOrder = IntArray(InvestigationModel.ghostList.list.size)
 
         for (i in currOrder!!.indices) {
             currOrder!![i] = i
@@ -47,7 +47,7 @@ class GhostOrderData(
     }
 
     fun updateOrder() {
-        val newOrder = IntArray(InvestigationData.ghostList.list.size)
+        val newOrder = IntArray(InvestigationModel.ghostList.list.size)
 
         // Replace previous with current
         if (currOrder == null) {
@@ -66,7 +66,7 @@ class GhostOrderData(
         // Order placeholder array based on scores
         var i = 0
         while (i < newOrder.size - 1) {
-            val ghostList = InvestigationData.ghostList
+            val ghostList = InvestigationModel.ghostList
 
             val ratingA = ghostList.getAt(newOrder[i]).evidenceScore
             val ratingB = ghostList.getAt(newOrder[i + 1]).evidenceScore

@@ -125,7 +125,7 @@ public class InteractiveMapView extends View {
         AdapterView.OnItemSelectedListener poiSpinnerListener = new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedRoomModel =
-                        mapMenuViewModel.currentMapModel.getCurrentFloor().floorRooms.get(position);
+                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorRooms.get(position);
 
                 invalidate();
             }
@@ -134,9 +134,9 @@ public class InteractiveMapView extends View {
             }
         };
         roomSpinner.setOnItemSelectedListener(poiSpinnerListener);
-        if(mapMenuViewModel.currentMapModel != null) {
+        if(mapMenuViewModel.getCurrentMapModel() != null) {
             roomSpinner.populateAdapter(
-                    mapMenuViewModel.currentMapModel.getCurrentFloor().getFloorRoomNames());
+                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
         }
     }
 
@@ -438,8 +438,8 @@ public class InteractiveMapView extends View {
             paint.setColor(poiColor);
             paint.setColorFilter(poiColorFilter);
 
-            if(mapMenuViewModel != null && mapMenuViewModel.currentMapModel != null) {
-                for (PoiModel poi : mapMenuViewModel.currentMapModel.getCurrentFloor().floorPOIs) {
+            if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
+                for (PoiModel poi : mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorPOIs) {
                     float x = (panX) + poi.point.x * scaleX;
                     float y = (panY) + poi.point.y * scaleY;
 
@@ -489,7 +489,7 @@ public class InteractiveMapView extends View {
         public void run() {
 
             if(interactiveMapData.getSelectedPoint() == null) { return; }
-            if(mapMenuViewModel == null || mapMenuViewModel.currentMapModel == null) {
+            if(mapMenuViewModel == null || mapMenuViewModel.getCurrentMapModel() == null) {
                 return;
             }
 
@@ -506,9 +506,9 @@ public class InteractiveMapView extends View {
             Log.d("Tap", "Input Conversion: " + touchX + " " + touchY);
 
             if(mapMenuViewModel != null &&
-                    mapMenuViewModel.currentMapModel != null) {
+                    mapMenuViewModel.getCurrentMapModel() != null) {
 
-                ArrayList<RoomModel> rooms = mapMenuViewModel.currentMapModel.getCurrentFloor().floorRooms;
+                ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorRooms;
                 for (RoomModel room : rooms) {
 
                     Polygon shape = new Polygon();

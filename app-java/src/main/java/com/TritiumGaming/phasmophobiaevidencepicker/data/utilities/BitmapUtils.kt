@@ -24,11 +24,12 @@ import kotlin.math.max
  * @author TritiumGamingStudios
  */
 class BitmapUtils {
+    var resources: ArrayList<Int> = ArrayList()
     private var currentLayer = -1
 
+    private var filters: ArrayList<PorterDuff.Mode?> = ArrayList()
+
     private var maxTextureSize = 0
-    var resources: ArrayList<Int> = ArrayList()
-    var filters: ArrayList<PorterDuff.Mode?> = ArrayList()
 
     init {
         setMaxTextureSize()
@@ -41,7 +42,7 @@ class BitmapUtils {
         return this
     }
 
-    fun addResource(@DrawableRes resource: Int): BitmapUtils {
+    private fun addResource(@DrawableRes resource: Int): BitmapUtils {
         resources.add(resource)
         filters.add(null)
 

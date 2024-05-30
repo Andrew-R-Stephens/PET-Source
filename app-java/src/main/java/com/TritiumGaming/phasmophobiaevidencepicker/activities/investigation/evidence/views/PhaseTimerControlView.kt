@@ -1,107 +1,104 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageButton;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerData;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import android.view.View
+import androidx.appcompat.widget.AppCompatImageButton
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 
 /**
  * TimerPlayControl class
  *
  * @author TritiumGamingStudios
  */
-public class PhaseTimerControlView {
+class PhaseTimerControlView {
+    private val phaseTimerData: PhaseTimerModel?
 
-    private final PhaseTimerData phaseTimerData;
+    private var timer: PhaseTimerView? = null
+    private var view: AppCompatImageButton? = null
 
-    private PhaseTimerView timer;
-    private AppCompatImageButton view;
+    private var icon_play = 0
+    private var icon_pause = 0
 
-    private int icon_play = 0, icon_pause = 0;
+    constructor(
+        evidenceViewModel: EvidenceViewModel,
+        timer: PhaseTimerView?,
+        play_pause_view: AppCompatImageButton,
+        icon_play: Int,
+        icon_pause: Int
+    ) {
+        this.phaseTimerData = evidenceViewModel.phaseTimerData
 
-    public PhaseTimerControlView(
-            EvidenceViewModel evidenceViewModel,
-            PhaseTimerView timer,
-            @NonNull AppCompatImageButton play_pause_view,
-            int icon_play,
-            int icon_pause) {
-        this.phaseTimerData = evidenceViewModel.getPhaseTimerData();
+        setTimer(timer)
+        setTextView(play_pause_view)
 
-        setTimer(timer);
-        setTextView(play_pause_view);
+        setPlayBackgroundResource(icon_play)
+        setPauseBackgroundResource(icon_pause)
 
-        setPlayBackgroundResource(icon_play);
-        setPauseBackgroundResource(icon_pause);
+        play_pause_view.setOnClickListener { v: View? -> toggle() }
 
-        play_pause_view.setOnClickListener(v -> toggle());
-
-        checkPaused();
+        checkPaused()
     }
 
-    public PhaseTimerControlView(
-            PhaseTimerData phaseTimerData,
-            PhaseTimerView timer,
-            @NonNull AppCompatImageButton play_pause_view,
-            int icon_play,
-            int icon_pause) {
-        this.phaseTimerData = phaseTimerData;
+    constructor(
+        phaseTimerData: PhaseTimerModel?,
+        timer: PhaseTimerView?,
+        play_pause_view: AppCompatImageButton,
+        icon_play: Int,
+        icon_pause: Int
+    ) {
+        this.phaseTimerData = phaseTimerData
 
-        setTimer(timer);
-        setTextView(play_pause_view);
+        setTimer(timer)
+        setTextView(play_pause_view)
 
-        setPlayBackgroundResource(icon_play);
-        setPauseBackgroundResource(icon_pause);
+        setPlayBackgroundResource(icon_play)
+        setPauseBackgroundResource(icon_pause)
 
-        play_pause_view.setOnClickListener(v -> toggle());
+        play_pause_view.setOnClickListener { v: View? -> toggle() }
 
-        checkPaused();
+        checkPaused()
     }
 
-    private void setTextView(AppCompatImageButton view) {
-        this.view = view;
+    private fun setTextView(view: AppCompatImageButton) {
+        this.view = view
     }
 
-    public void setTimer(PhaseTimerView timer) {
-        this.timer = timer;
+    fun setTimer(timer: PhaseTimerView?) {
+        this.timer = timer
     }
 
-    private void setPlayBackgroundResource(int icon_play) {
-        this.icon_play = icon_play;
+    private fun setPlayBackgroundResource(icon_play: Int) {
+        this.icon_play = icon_play
     }
 
-    private void setPauseBackgroundResource(int icon_pause) {
-        this.icon_pause = icon_pause;
+    private fun setPauseBackgroundResource(icon_pause: Int) {
+        this.icon_pause = icon_pause
     }
 
-    public void checkPaused() {
-        if (timer != null && phaseTimerData.isPaused) {
-            view.setImageResource(icon_play);
+    fun checkPaused() {
+        if (timer != null && phaseTimerData!!.isPaused) {
+            view!!.setImageResource(icon_play)
         } else {
-            play();
+            play()
         }
     }
 
-    public void pause() {
-        view.setImageResource(icon_play);
-        timer.pause();
+    fun pause() {
+        view!!.setImageResource(icon_play)
+        timer!!.pause()
     }
 
-    public void play() {
-        view.setImageResource(icon_pause);
-        timer.play();
+    fun play() {
+        view!!.setImageResource(icon_pause)
+        timer!!.play()
     }
 
-    public void toggle() {
-        if (phaseTimerData.isPaused)
-            play();
-        else
-            pause();
+    fun toggle() {
+        if (phaseTimerData!!.isPaused) play()
+        else pause()
     }
 
-    public void reset() {
-        pause();
+    fun reset() {
+        pause()
     }
-
-
 }

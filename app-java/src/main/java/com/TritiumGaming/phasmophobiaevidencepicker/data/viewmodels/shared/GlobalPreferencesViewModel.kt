@@ -29,14 +29,11 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     var languageName: String = Locale.getDefault().language
 
     // Generic settings
-    @JvmField
     var huntWarningFlashTimeout: Int = -1 // Investigation behavior
 
-    @JvmField
     var isAlwaysOn: Boolean = false
     var isHuntWarningAudioAllowed: Boolean = true // Investigation behavior
 
-    @JvmField
     var networkPreference: Boolean = true
     var isLeftHandSupportEnabled: Boolean = false // Investigation behavior
     var reorderGhostViews = true // Investigation behavior

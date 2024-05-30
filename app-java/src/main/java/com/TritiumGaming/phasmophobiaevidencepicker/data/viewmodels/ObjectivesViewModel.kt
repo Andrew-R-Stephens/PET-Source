@@ -11,18 +11,15 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mis
 class ObjectivesViewModel : ViewModel() {
 
     /* Chosen spinner objectives */
-    @JvmField
     var objectivesSpinnerObjectives: Array<MissionsData.Objective>? = null
 
     /* Objective Completed Buttons */
     var objectiveCompletion: BooleanArray? = null
 
     /* Ghost name */
-    @JvmField
     var ghostName: String? = null
 
     /* Response */
-    @JvmField
     var responseState: Boolean = false // alone , group
 
     fun reset() {

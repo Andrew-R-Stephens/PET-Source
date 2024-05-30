@@ -1,74 +1,68 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.DifficultyCarouselData;
-import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
+import android.view.View
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
 
 /**
  * DifficultySelectControl class
  *
  * @author TritiumGamingStudios
  */
-public class DifficultyCarouselView {
+class DifficultyCarouselView {
+    private var difficultyCarouselData: DifficultyCarouselModel? = null
 
-    private DifficultyCarouselData difficultyCarouselData;
+    private var timerView: PhaseTimerView? = null
+    private var timerControlView: PhaseTimerControlView? = null
+    private var difficultyNameView: AppCompatTextView? = null
+    private var sanityProgressBar: SanitySeekBarView? = null
+    private var warnTextView_warn: SanityWarningView? = null
+    private var warnTextView_setup: SanityWarningView? = null
+    private var warnTextView_action: SanityWarningView? = null
 
-    private PhaseTimerView timerView;
-    private PhaseTimerControlView timerControlView;
-    private AppCompatTextView difficultyNameView;
-    private SanitySeekBarView sanityProgressBar;
-    private SanityWarningView warnTextView_warn, warnTextView_setup, warnTextView_action;
-
-    private CompositeListener compositeListenerPrev, compositeListenerNext;
+    private var compositeListenerPrev: CompositeListener? = null
+    private var compositeListenerNext: CompositeListener? = null
 
 
     /**
      * DifficultySelectControl parameterized constructor
      */
-    public void init(
-            DifficultyCarouselData difficultyCarouselData,
-            PhaseTimerView timerView,
-            PhaseTimerControlView timerControlView,
-            @NonNull AppCompatImageButton prevButton,
-            @NonNull AppCompatImageButton nextButton,
-            AppCompatTextView difficultyNameView,
-            SanityWarningView warnTextView_warn,
-            SanityWarningView warnTextView_setup,
-            SanityWarningView warnTextView_action,
-            SanitySeekBarView sanityProgressBar) {
+    fun init(
+        difficultyCarouselData: DifficultyCarouselModel?,
+        timerView: PhaseTimerView?,
+        timerControlView: PhaseTimerControlView?,
+        prevButton: AppCompatImageButton,
+        nextButton: AppCompatImageButton,
+        difficultyNameView: AppCompatTextView?,
+        warnTextView_warn: SanityWarningView?,
+        warnTextView_setup: SanityWarningView?,
+        warnTextView_action: SanityWarningView?,
+        sanityProgressBar: SanitySeekBarView?
+    ) {
+        this.difficultyCarouselData = difficultyCarouselData
 
-        this.difficultyCarouselData = difficultyCarouselData;
+        this.timerControlView = timerControlView
+        this.difficultyNameView = difficultyNameView
+        this.timerView = timerView
+        this.sanityProgressBar = sanityProgressBar
+        this.warnTextView_warn = warnTextView_warn
+        this.warnTextView_setup = warnTextView_setup
+        this.warnTextView_action = warnTextView_action
 
-        this.timerControlView = timerControlView;
-        this.difficultyNameView = difficultyNameView;
-        this.timerView = timerView;
-        this.sanityProgressBar = sanityProgressBar;
-        this.warnTextView_warn = warnTextView_warn;
-        this.warnTextView_setup = warnTextView_setup;
-        this.warnTextView_action = warnTextView_action;
-
-        setPrev(prevButton);
-        setNext(nextButton);
-
+        setPrev(prevButton)
+        setNext(nextButton)
     }
 
-    /**
-     * setPrev method
-     *
-     * @param prev -
-     */
-    private void setPrev(@NonNull AppCompatImageButton prev) {
-        prev.setOnClickListener(v -> {
-
-            if (difficultyCarouselData.decrementDifficulty()) {
-                updateRelatedComponents();
-                compositeListenerPrev.onClick(v);
+    private fun setPrev(prev: AppCompatImageButton) {
+        prev.setOnClickListener { v: View? ->
+            if (difficultyCarouselData!!.decrementDifficulty()) {
+                updateRelatedComponents()
+                compositeListenerPrev!!.onClick(v!!)
             }
-        });
+        }
     }
 
     /**
@@ -76,72 +70,67 @@ public class DifficultyCarouselView {
      *
      * @param next
      */
-    private void setNext(@NonNull AppCompatImageButton next) {
-        next.setOnClickListener(v -> {
-
-            if (difficultyCarouselData.incrementDifficulty()) {
-                updateRelatedComponents();
-                compositeListenerNext.onClick(v);
+    private fun setNext(next: AppCompatImageButton) {
+        next.setOnClickListener { v: View? ->
+            if (difficultyCarouselData!!.incrementDifficulty()) {
+                updateRelatedComponents()
+                compositeListenerNext!!.onClick(v!!)
             }
-        });
+        }
     }
 
-    private void updateRelatedComponents() {
-        difficultyCarouselData.resetSanityData();
-        if(difficultyCarouselData.getDifficultyIndex() == 4) {
-            difficultyCarouselData.evidenceViewModel.getSanityData().setInsanityActual(25f);
+    private fun updateRelatedComponents() {
+        difficultyCarouselData!!.resetSanityData()
+        if (difficultyCarouselData!!.difficultyIndex == 4) {
+            difficultyCarouselData!!.evidenceViewModel.sanityData!!.setInsanityActual(25f)
         }
-        sanityProgressBar.updateProgress();
-        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
-        timerControlView.pause();
-        createTimerView();
+        sanityProgressBar!!.updateProgress()
+        difficultyNameView!!.text = difficultyCarouselData!!.currentDifficultyName
+        timerControlView!!.pause()
+        createTimerView()
 
-        warnTextView_warn.reset();
-        warnTextView_setup.reset();
-        warnTextView_action.reset();
+        warnTextView_warn!!.reset()
+        warnTextView_setup!!.reset()
+        warnTextView_action!!.reset()
     }
 
     /**
      * createTimer method
      */
-    private void createTimerView() {
-        timerView.createTimer(false, difficultyCarouselData.getCurrentDifficultyTime(), 1000L);
+    private fun createTimerView() {
+        timerView!!.createTimer(false, difficultyCarouselData!!.currentDifficultyTime, 1000L)
     }
 
-    /**
-     * getState method
-     *
-     * @return index of difficulty array
-     */
-    public int getIndex() {
-        return difficultyCarouselData.getDifficultyIndex();
-    }
+    var index: Int
+        /**
+         * getState method
+         *
+         * @return index of difficulty array
+         */
+        get() = difficultyCarouselData!!.difficultyIndex
+        /**
+         * setState method
+         *
+         * @param state -
+         */
+        set(state) {
+            difficultyCarouselData!!.difficultyIndex = state
+            difficultyNameView!!.text = difficultyCarouselData!!.currentDifficultyName
+        }
 
-    /**
-     * setState method
-     *
-     * @param state -
-     */
-    public void setIndex(int state) {
-        difficultyCarouselData.setDifficultyIndex(state);
-        difficultyNameView.setText(difficultyCarouselData.getCurrentDifficultyName());
-    }
-
-    public void registerListener(
-            CompositeListener compositeListenerPrev,
-            CompositeListener compositeListenerNext
+    fun registerListener(
+        compositeListenerPrev: CompositeListener?,
+        compositeListenerNext: CompositeListener?
     ) {
-
-        this.compositeListenerPrev = compositeListenerPrev;
-        this.compositeListenerNext = compositeListenerNext;
+        this.compositeListenerPrev = compositeListenerPrev
+        this.compositeListenerNext = compositeListenerNext
     }
 
     /**
      * reset method
      */
-    public void reset() {
-        setIndex(0);
-        createTimerView();
+    fun reset() {
+        index = 0
+        createTimerView()
     }
-
 }

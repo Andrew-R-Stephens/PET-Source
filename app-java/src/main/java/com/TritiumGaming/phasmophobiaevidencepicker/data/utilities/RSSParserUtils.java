@@ -110,10 +110,6 @@ public class RSSParserUtils {
                 }
                 in.close();
 
-                /*
-                messageList.compareDates();
-                messageList.setIsReady(true);
-                */
                 newsLetterViewModel.addInbox(messageList, inboxType);
 
             } catch (XmlPullParserException | IOException e) {

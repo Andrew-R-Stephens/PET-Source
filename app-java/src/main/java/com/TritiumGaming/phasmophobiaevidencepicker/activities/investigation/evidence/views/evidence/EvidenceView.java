@@ -64,7 +64,7 @@ public abstract class EvidenceView extends ConstraintLayout {
     public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex, LinearLayout list_ghosts) {
 
         AppCompatTextView name = findViewById(R.id.label_name);
-        name.setText(evidenceViewModel.investigationData.evidenceList
+        name.setText(evidenceViewModel.getInvestigationData().evidenceList
                 .getList().get(groupIndex).getName());
 
         ComposeView radioGroupComposable = findViewById(R.id.radioGroup);

@@ -1,15 +1,15 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
-class PhaseTimerData(
-    @JvmField
-    val difficultyCarouselData: DifficultyCarouselData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
+
+class PhaseTimerModel(
+    val difficultyCarouselData: DifficultyCarouselModel
 ) {
-    @JvmField
     var isPaused: Boolean = true
 
     private val TIME_DEFAULT = -1L
     private val TIME_MIN = 0L
-    @JvmField
+
     var timeRemaining: Long = TIME_DEFAULT
 
     val isSetupPhase: Boolean

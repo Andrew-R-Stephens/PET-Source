@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups
 
 import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.annotation.StringRes
 
-open class InvestigationPopupData {
+open class InvestigationPopupModel {
 
     protected fun intArrayFromTypedArray(
         resources: Resources,

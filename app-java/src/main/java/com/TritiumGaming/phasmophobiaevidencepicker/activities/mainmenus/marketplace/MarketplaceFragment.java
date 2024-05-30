@@ -390,7 +390,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.networkPreference)) {
+                    globalPreferencesViewModel.getNetworkPreference())) {
 
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
@@ -470,7 +470,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.networkPreference)) {
+                    globalPreferencesViewModel.getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
                 processCompleteListener.onFailure();
@@ -895,7 +895,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if (!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.networkPreference)) {
+                    globalPreferencesViewModel.getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
 
@@ -1034,7 +1034,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
             try {
                 if(NetworkUtils.isNetworkAvailable(requireContext(),
-                        globalPreferencesViewModel.networkPreference)) {
+                        globalPreferencesViewModel.getNetworkPreference())) {
                     loadRewardedAd(this::showRewardedAd);
                 } else {
                         Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)

@@ -72,7 +72,7 @@ public abstract class GhostView extends ConstraintLayout {
     public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex) {
 
         this.evidenceViewModel = evidenceViewModel;
-        this.ghostData = evidenceViewModel.investigationData.ghostList.getAt(groupIndex);
+        this.ghostData = evidenceViewModel.getInvestigationData().ghostList.getAt(groupIndex);
 
         AppCompatTextView nameView = findViewById(R.id.label_name);
         LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
@@ -209,7 +209,7 @@ public abstract class GhostView extends ConstraintLayout {
 
             evidenceViewModel.getGhostOrderData().updateOrder();
 
-            redrawGhostRejectionStatus(evidenceViewModel.investigationData.ghostList.getAt(index), index, true);
+            redrawGhostRejectionStatus(evidenceViewModel.getInvestigationData().ghostList.getAt(index), index, true);
 
             Bundle params = new Bundle();
             params.putString("event_type", "ghost_swiped");

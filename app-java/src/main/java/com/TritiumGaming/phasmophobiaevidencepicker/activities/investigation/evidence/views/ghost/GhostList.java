@@ -9,8 +9,8 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostOrderData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.GhostPopupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.GhostOrderModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.GhostPopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationList;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
@@ -44,7 +44,7 @@ public class GhostList extends InvestigationList {
 
     @SuppressLint("ResourceType")
     public void createPopupWindow(PopupWindow popupWindow) {
-        super.createPopupWindow(popupWindow, new GhostPopupData(getContext()));
+        super.createPopupWindow(popupWindow, new GhostPopupModel(getContext()));
     }
 
 
@@ -62,7 +62,7 @@ public class GhostList extends InvestigationList {
 
     protected void reorderGhostViews() {
 
-        GhostOrderData ghostOrderData = evidenceViewModel.getGhostOrderData();
+        GhostOrderModel ghostOrderData = evidenceViewModel.getGhostOrderData();
         int[] currOrder = ghostOrderData.getCurrOrder();
 
         for (int j : currOrder) {
@@ -102,7 +102,7 @@ public class GhostList extends InvestigationList {
 
                     GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
                     ghostPopupWindow.setPopupWindow(popupWindow);
-                    ghostPopupWindow.build(evidenceViewModel, (GhostPopupData) popupData, j, adRequest);
+                    ghostPopupWindow.build(evidenceViewModel, (GhostPopupModel) popupData, j, adRequest);
                 }
             };
 

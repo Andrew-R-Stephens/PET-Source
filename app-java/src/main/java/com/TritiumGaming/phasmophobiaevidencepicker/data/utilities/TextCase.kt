@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities
 
 import java.util.Locale
 
-@kotlin.jvm.JvmInline
+@JvmInline
 value class TextCase internal constructor(internal val value: Int) {
 
     override fun toString(): String {
@@ -17,33 +17,20 @@ value class TextCase internal constructor(internal val value: Int) {
     }
 
     companion object {
-        /** Align the text on the left edge of the container. */
         val Uppercase = TextCase(1)
-
-        /** Align the text on the right edge of the container. */
         val Lowercase = TextCase(2)
-
-        /** Align the text in the center of the container. */
         val CamelCase = TextCase(3)
-
-        /** Align the text in the center of the container. */
         val FirstCharacter = TextCase(4)
-        /**
-         * Return a list containing all possible values of TextAlign.
-         */
+
         fun values(): List<TextCase> = listOf(Uppercase, Lowercase, CamelCase, FirstCharacter, Unspecified)
 
-        /**
-         * This represents an unset value, a usual replacement for "null" when a primitive value
-         * is desired.
-         */
         val Unspecified = TextCase(Int.MIN_VALUE)
 
         fun convertCase(text: String, textCase: TextCase): String {
             return when (textCase) {
-                TextCase.Uppercase -> text.uppercase()
-                TextCase.Lowercase -> text.lowercase()
-                TextCase.CamelCase -> {
+                Uppercase -> text.uppercase()
+                Lowercase -> text.lowercase()
+                CamelCase -> {
                     val words = text.split(" ")
                     val builder = StringBuilder()
                     for (i in words.indices) {
@@ -61,8 +48,8 @@ value class TextCase internal constructor(internal val value: Int) {
                     return builder.toString()
                 }
 
-                TextCase.FirstCharacter -> text.getOrNull(0)?.uppercase() ?: text
-                TextCase.Unspecified -> text
+                FirstCharacter -> text.getOrNull(0)?.uppercase() ?: text
+                Unspecified -> text
                 else -> {
                     text
                 }

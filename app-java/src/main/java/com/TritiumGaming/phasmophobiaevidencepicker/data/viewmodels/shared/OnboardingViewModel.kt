@@ -8,8 +8,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 /** @noinspection SameParameterValue
  */
 class OnboardingViewModel : SharedViewModel() {
-    @JvmField
-    var canShowIntroduction: Boolean = true
+
+    var showIntroduction: Boolean = true
 
     override fun setFileName() {
         fileName = R.string.preferences_onboardingFile_name
@@ -20,9 +20,9 @@ class OnboardingViewModel : SharedViewModel() {
 
         val sharedPref = getSharedPreferences(context)
 
-        canShowIntroduction = sharedPref.getBoolean(
+        showIntroduction = sharedPref.getBoolean(
             context.resources.getString(R.string.onboarding_canShow_intro),
-            canShowIntroduction
+            showIntroduction
         )
 
         saveToFile(context)
@@ -30,12 +30,6 @@ class OnboardingViewModel : SharedViewModel() {
         return true
     }
 
-    /**
-     *
-     * @param c
-     * @param editor
-     * @param localApply
-     */
     fun saveCanShowIntroduction(
         c: Context, editor: SharedPreferences.Editor?, localApply: Boolean
     ) {
@@ -46,7 +40,7 @@ class OnboardingViewModel : SharedViewModel() {
 
         editor!!.putBoolean(
             c.resources.getString(R.string.tutorialTracking_canShowIntroduction),
-            canShowIntroduction
+            showIntroduction
         )
 
         if (localApply) {
@@ -70,7 +64,7 @@ class OnboardingViewModel : SharedViewModel() {
     val dataAsList: HashMap<String, String>
         get() {
             val settings = HashMap<String, String>()
-            settings["can_show_intro"] = canShowIntroduction.toString()
+            settings["can_show_intro"] = showIntroduction.toString()
 
             return settings
         }
@@ -97,7 +91,7 @@ class OnboardingViewModel : SharedViewModel() {
     fun printFromVariables() {
         Log.d(
             "GlobalPreferencesVars",
-            "; Can Show Introduction: " + canShowIntroduction
+            "; Can Show Introduction: " + showIntroduction
         )
     }
 }
