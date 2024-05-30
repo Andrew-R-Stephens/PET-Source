@@ -1,5 +1,3 @@
-
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import java.util.NoSuchElementException;

@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 
@@ -39,9 +38,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
  * determining if a shape contains or intersects a rectangle or if a
  * shape contains a point.
  *
- * @see PathIterator
- *
  * @author Jim Graham
+ * @see PathIterator
  * @since 1.2
  */
 public interface Shape {
@@ -75,17 +73,18 @@ public interface Shape {
      * method of the {@code bounds}. Specifically:
      * </p>
      * <p>
-     *  {@code shape.contains(x,y)} requires {@code bounds.contains(x,y)}
+     * {@code shape.contains(x,y)} requires {@code bounds.contains(x,y)}
      * </p>
      * <p>
      * If a {@code point} is not inside the {@code shape}, then it might
      * still be contained in the {@code bounds} object:
      * </p>
      * <p>
-     *  {@code bounds.contains(x,y)} does not imply {@code shape.contains(x,y)}
+     * {@code bounds.contains(x,y)} does not imply {@code shape.contains(x,y)}
      * </p>
+     *
      * @return an integer {@code Rectangle} that completely encloses
-     *                 the {@code Shape}.
+     * the {@code Shape}.
      * @see #getBounds2D
      * @since 1.2
      */
@@ -121,17 +120,18 @@ public interface Shape {
      * {@code bounds}. Specifically:
      * </p>
      * <p>
-     *  {@code shape.contains(p)} requires {@code bounds.contains(p)}
+     * {@code shape.contains(p)} requires {@code bounds.contains(p)}
      * </p>
      * <p>
      * If a {@code point} is not inside the {@code shape}, then it might
      * still be contained in the {@code bounds} object:
      * </p>
      * <p>
-     *  {@code bounds.contains(p)} does not imply {@code shape.contains(p)}
+     * {@code bounds.contains(p)} does not imply {@code shape.contains(p)}
      * </p>
+     *
      * @return an instance of {@code Rectangle2D} that is a
-     *                 high-precision bounding box of the {@code Shape}.
+     * high-precision bounding box of the {@code Shape}.
      * @see #getBounds
      * @since 1.2
      */
@@ -142,11 +142,12 @@ public interface Shape {
      * {@code Shape}, as described by the
      * <a href="{@docRoot}/java.desktop/java/awt/Shape.html#def_insideness">
      * definition of insideness</a>.
+     *
      * @param x the specified X coordinate to be tested
      * @param y the specified Y coordinate to be tested
      * @return {@code true} if the specified coordinates are inside
-     *         the {@code Shape} boundary; {@code false}
-     *         otherwise.
+     * the {@code Shape} boundary; {@code false}
+     * otherwise.
      * @since 1.2
      */
     boolean contains(double x, double y);
@@ -156,10 +157,11 @@ public interface Shape {
      * of the {@code Shape}, as described by the
      * <a href="{@docRoot}/java.desktop/java/awt/Shape.html#def_insideness">
      * definition of insideness</a>.
+     *
      * @param p the specified {@code Point2D} to be tested
      * @return {@code true} if the specified {@code Point2D} is
-     *          inside the boundary of the {@code Shape};
-     *          {@code false} otherwise.
+     * inside the boundary of the {@code Shape};
+     * {@code false} otherwise.
      * @since 1.2
      */
     boolean contains(Point2D p);
@@ -196,10 +198,9 @@ public interface Shape {
      * @param w the width of the specified rectangular area
      * @param h the height of the specified rectangular area
      * @return {@code true} if the interior of the {@code Shape} and
-     *          the interior of the rectangular area intersect, or are
-     *          both highly likely to intersect and intersection calculations
-     *          would be too expensive to perform; {@code false} otherwise.
-     *
+     * the interior of the rectangular area intersect, or are
+     * both highly likely to intersect and intersection calculations
+     * would be too expensive to perform; {@code false} otherwise.
      * @since 1.2
      */
     boolean intersects(double x, double y, double w, double h);
@@ -227,10 +228,10 @@ public interface Shape {
      *
      * @param r the specified {@code Rectangle2D}
      * @return {@code true} if the interior of the {@code Shape} and
-     *          the interior of the specified {@code Rectangle2D}
-     *          intersect, or are both highly likely to intersect and intersection
-     *          calculations would be too expensive to perform; {@code false}
-     *          otherwise.
+     * the interior of the specified {@code Rectangle2D}
+     * intersect, or are both highly likely to intersect and intersection
+     * calculations would be too expensive to perform; {@code false}
+     * otherwise.
      * @see #intersects(double, double, double, double)
      * @since 1.2
      */
@@ -268,13 +269,12 @@ public interface Shape {
      * @param w the width of the specified rectangular area
      * @param h the height of the specified rectangular area
      * @return {@code true} if the interior of the {@code Shape}
-     *          entirely contains the specified rectangular area;
-     *          {@code false} otherwise or, if the {@code Shape}
-     *          contains the rectangular area and the
-     *          {@code intersects} method returns {@code true}
-     *          and the containment calculations would be too expensive to
-     *          perform.
-     *
+     * entirely contains the specified rectangular area;
+     * {@code false} otherwise or, if the {@code Shape}
+     * contains the rectangular area and the
+     * {@code intersects} method returns {@code true}
+     * and the containment calculations would be too expensive to
+     * perform.
      * @see #intersects
      * @since 1.2
      */
@@ -303,12 +303,12 @@ public interface Shape {
      *
      * @param r The specified {@code Rectangle2D}
      * @return {@code true} if the interior of the {@code Shape}
-     *          entirely contains the {@code Rectangle2D};
-     *          {@code false} otherwise or, if the {@code Shape}
-     *          contains the {@code Rectangle2D} and the
-     *          {@code intersects} method returns {@code true}
-     *          and the containment calculations would be too expensive to
-     *          perform.
+     * entirely contains the {@code Rectangle2D};
+     * {@code false} otherwise or, if the {@code Shape}
+     * contains the {@code Rectangle2D} and the
+     * {@code intersects} method returns {@code true}
+     * and the containment calculations would be too expensive to
+     * perform.
      * @see #contains(double, double, double, double)
      * @since 1.2
      */
@@ -332,10 +332,10 @@ public interface Shape {
      * object's geometry during such iterations.
      *
      * @param at an optional {@code AffineTransform} to be applied to the
-     *          coordinates as they are returned in the iteration, or
-     *          {@code null} if untransformed coordinates are desired
+     *           coordinates as they are returned in the iteration, or
+     *           {@code null} if untransformed coordinates are desired
      * @return a new {@code PathIterator} object, which independently
-     *          traverses the geometry of the {@code Shape}.
+     * traverses the geometry of the {@code Shape}.
      * @since 1.2
      */
     PathIterator getPathIterator(AffineTransform at);
@@ -371,14 +371,14 @@ public interface Shape {
      * that are in process from any changes that might occur to the original
      * object's geometry during such iterations.
      *
-     * @param at an optional {@code AffineTransform} to be applied to the
-     *          coordinates as they are returned in the iteration, or
-     *          {@code null} if untransformed coordinates are desired
+     * @param at       an optional {@code AffineTransform} to be applied to the
+     *                 coordinates as they are returned in the iteration, or
+     *                 {@code null} if untransformed coordinates are desired
      * @param flatness the maximum distance that the line segments used to
-     *          approximate the curved segments are allowed to deviate
-     *          from any point on the original curve
+     *                 approximate the curved segments are allowed to deviate
+     *                 from any point on the original curve
      * @return a new {@code PathIterator} that independently traverses
-     *         a flattened view of the geometry of the  {@code Shape}.
+     * a flattened view of the geometry of the  {@code Shape}.
      * @since 1.2
      */
     PathIterator getPathIterator(AffineTransform at, double flatness);

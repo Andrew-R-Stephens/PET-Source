@@ -1,5 +1,3 @@
-
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import android.os.Build;
@@ -16,7 +14,7 @@ import androidx.annotation.RequiresApi;
  * The actual storage representation of the sizes is left to
  * the subclass.
  *
- * @author      Jim Graham
+ * @author Jim Graham
  * @since 1.2
  */
 public abstract class Dimension2D implements Cloneable {
@@ -37,6 +35,7 @@ public abstract class Dimension2D implements Cloneable {
     /**
      * Returns the width of this {@code Dimension} in double
      * precision.
+     *
      * @return the width of this {@code Dimension}.
      * @since 1.2
      */
@@ -45,6 +44,7 @@ public abstract class Dimension2D implements Cloneable {
     /**
      * Returns the height of this {@code Dimension} in double
      * precision.
+     *
      * @return the height of this {@code Dimension}.
      * @since 1.2
      */
@@ -54,10 +54,11 @@ public abstract class Dimension2D implements Cloneable {
      * Sets the size of this {@code Dimension} object to the
      * specified width and height.
      * This method is included for completeness, to parallel the
+     *
      * @param width  the new width for the {@code Dimension}
-     * object
-     * @param height  the new height for the {@code Dimension}
-     * object
+     *               object
+     * @param height the new height for the {@code Dimension}
+     *               object
      * @since 1.2
      */
     public abstract void setSize(double width, double height);
@@ -67,8 +68,9 @@ public abstract class Dimension2D implements Cloneable {
      * match the specified size.
      * This method is included for completeness, to parallel the
      * {@code getSize} method of {@code Component}.
-     * @param d  the new size for the {@code Dimension2D}
-     * object
+     *
+     * @param d the new size for the {@code Dimension2D}
+     *          object
      * @since 1.2
      */
     public void setSize(@NonNull Dimension2D d) {
@@ -78,10 +80,10 @@ public abstract class Dimension2D implements Cloneable {
     /**
      * Creates a new object of the same class as this object.
      *
-     * @return     a clone of this instance.
-     * @exception  OutOfMemoryError            if there is not enough memory.
-     * @see        java.lang.Cloneable
-     * @since      1.2
+     * @return a clone of this instance.
+     * @throws OutOfMemoryError if there is not enough memory.
+     * @see java.lang.Cloneable
+     * @since 1.2
      */
     @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)

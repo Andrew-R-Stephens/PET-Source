@@ -45,9 +45,8 @@ public class InteractiveMapDisplayView extends View {
     private final Paint paint;
 
     private RoomModel selectedRoomModel;
-    private MapPointRunnable clickRunnable;
 
-    private Polygon polygon = new Polygon();
+    private final Polygon polygon = new Polygon();
 
     public InteractiveMapDisplayView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -62,6 +61,7 @@ public class InteractiveMapDisplayView extends View {
         this.controllerData = controllerData;
     }
 
+    /*
     public void setMapData(MapData mapData) {
         this.mapData = mapData;
     }
@@ -111,6 +111,7 @@ public class InteractiveMapDisplayView extends View {
     public void setFloorModel(FloorModel floorModel) {
         this.floorModel = floorModel;
     }
+    */
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
@@ -152,6 +153,7 @@ public class InteractiveMapDisplayView extends View {
         }
     }
 
+    /*
     public class MapPointRunnable implements Runnable {
 
         @Override
@@ -172,10 +174,9 @@ public class InteractiveMapDisplayView extends View {
             }
         }
     }
+    */
 
-    /**
-     * recycleBitmaps method
-     */
+    /*
     public void recycleBitmaps() {
 
         if (mapImages != null)
@@ -187,5 +188,6 @@ public class InteractiveMapDisplayView extends View {
 
         System.gc();
     }
+    */
 
 }

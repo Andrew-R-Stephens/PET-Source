@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
@@ -13,8 +12,7 @@ final class Order1 extends Curve {
 
     public Order1(double x0, double y0,
                   double x1, double y1,
-                  int direction)
-    {
+                  int direction) {
         super(direction);
         this.x0 = x0;
         this.y0 = y0;
@@ -104,23 +102,23 @@ final class Order1 extends Curve {
 
     public double dXforT(double t, int deriv) {
         switch (deriv) {
-        case 0:
-            return x0 + t * (x1 - x0);
-        case 1:
-            return (x1 - x0);
-        default:
-            return 0;
+            case 0:
+                return x0 + t * (x1 - x0);
+            case 1:
+                return (x1 - x0);
+            default:
+                return 0;
         }
     }
 
     public double dYforT(double t, int deriv) {
         switch (deriv) {
-        case 0:
-            return y0 + t * (y1 - y0);
-        case 1:
-            return (y1 - y0);
-        default:
-            return 0;
+            case 0:
+                return y0 + t * (y1 - y0);
+            case 1:
+                return (y1 - y0);
+            default:
+                return 0;
         }
     }
 
@@ -191,7 +189,9 @@ final class Order1 extends Curve {
         return new Order1(x0, y0, x1, y1, -direction);
     }
 
-    /** @noinspection PatternVariableCanBeUsed*/
+    /**
+     * @noinspection PatternVariableCanBeUsed
+     */
     public int compareTo(Curve other, @NonNull double[] yrange) {
         if (!(other instanceof Order1)) {
             return super.compareTo(other, yrange);
@@ -202,7 +202,7 @@ final class Order1 extends Curve {
         }
         yrange[1] = Math.min(Math.min(yrange[1], y1), c1.y1);
         if (yrange[1] <= yrange[0]) {
-            throw new InternalError("backstepping from "+yrange[0]+" to "+yrange[1]);
+            throw new InternalError("backstepping from " + yrange[0] + " to " + yrange[1]);
         }
         if (xmax <= c1.xmin) {
             return (xmin == c1.xmax) ? 0 : -1;
@@ -250,8 +250,8 @@ final class Order1 extends Curve {
         double y;
         if (denom != 0) {
             double num = ((x0 - c1.x0) * dya * dyb
-                          - y0 * dxa * dyb
-                          + c1.y0 * dxb * dya);
+                    - y0 * dxa * dyb
+                    + c1.y0 * dxb * dya);
             y = num / denom;
             if (y <= yrange[0]) {
                 // intersection is above us

@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
@@ -15,13 +14,14 @@ import java.io.Serializable;
  * The actual storage representation of the coordinates is left to
  * the subclass.
  *
- * @author      Jim Graham
+ * @author Jim Graham
  * @since 1.2
  */
 public abstract class Rectangle2D extends RectangularShape {
     /**
      * The bitmask that indicates that a point lies to the left of
      * this {@code Rectangle2D}.
+     *
      * @since 1.2
      */
     public static final int OUT_LEFT = 1;
@@ -29,6 +29,7 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * The bitmask that indicates that a point lies above
      * this {@code Rectangle2D}.
+     *
      * @since 1.2
      */
     public static final int OUT_TOP = 2;
@@ -36,6 +37,7 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * The bitmask that indicates that a point lies to the right of
      * this {@code Rectangle2D}.
+     *
      * @since 1.2
      */
     public static final int OUT_RIGHT = 4;
@@ -43,6 +45,7 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * The bitmask that indicates that a point lies below
      * this {@code Rectangle2D}.
+     *
      * @since 1.2
      */
     public static final int OUT_BOTTOM = 8;
@@ -50,40 +53,46 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * The {@code Float} class defines a rectangle specified in float
      * coordinates.
+     *
      * @since 1.2
      */
     public static class Float extends Rectangle2D implements Serializable {
         /**
          * The X coordinate of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public float x;
 
         /**
          * The Y coordinate of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public float y;
 
         /**
          * The width of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public float width;
 
         /**
          * The height of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public float height;
 
         /**
          * Constructs a new {@code Rectangle2D}, initialized to
          * location (0.0,&nbsp;0.0) and size (0.0,&nbsp;0.0).
+         *
          * @since 1.2
          */
         public Float() {
@@ -102,13 +111,14 @@ public abstract class Rectangle2D extends RectangularShape {
          * @param h the height of the newly constructed
          *          {@code Rectangle2D}
          * @since 1.2
-        */
+         */
         public Float(float x, float y, float w, float h) {
             setRect(x, y, w, h);
         }
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getX() {
@@ -117,6 +127,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getY() {
@@ -125,6 +136,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getWidth() {
@@ -133,6 +145,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getHeight() {
@@ -141,6 +154,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public boolean isEmpty() {
@@ -168,6 +182,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public void setRect(double x, double y, double w, double h) {
@@ -179,6 +194,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public void setRect(@NonNull Rectangle2D r) {
@@ -190,6 +206,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public int outcode(double x, double y) {
@@ -223,6 +240,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -232,6 +250,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -248,6 +267,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -265,6 +285,7 @@ public abstract class Rectangle2D extends RectangularShape {
         /**
          * Returns the {@code String} representation of this
          * {@code Rectangle2D}.
+         *
          * @return a {@code String} representing this
          * {@code Rectangle2D}.
          * @since 1.2
@@ -272,10 +293,10 @@ public abstract class Rectangle2D extends RectangularShape {
         @NonNull
         public String toString() {
             return getClass().getName()
-                + "[x=" + x +
-                ",y=" + y +
-                ",w=" + width +
-                ",h=" + height + "]";
+                    + "[x=" + x +
+                    ",y=" + y +
+                    ",w=" + width +
+                    ",h=" + height + "]";
         }
 
         /**
@@ -287,40 +308,46 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * The {@code Double} class defines a rectangle specified in
      * double coordinates.
+     *
      * @since 1.2
      */
     public static class Double extends Rectangle2D implements Serializable {
         /**
          * The X coordinate of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public double x;
 
         /**
          * The Y coordinate of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public double y;
 
         /**
          * The width of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public double width;
 
         /**
          * The height of this {@code Rectangle2D}.
-         * @since 1.2
+         *
          * @serial
+         * @since 1.2
          */
         public double height;
 
         /**
          * Constructs a new {@code Rectangle2D}, initialized to
          * location (0,&nbsp;0) and size (0,&nbsp;0).
+         *
          * @since 1.2
          */
         public Double() {
@@ -346,6 +373,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getX() {
@@ -354,6 +382,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getY() {
@@ -362,6 +391,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getWidth() {
@@ -370,6 +400,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public double getHeight() {
@@ -378,6 +409,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public boolean isEmpty() {
@@ -386,6 +418,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public void setRect(double x, double y, double w, double h) {
@@ -397,6 +430,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public void setRect(@NonNull Rectangle2D r) {
@@ -408,6 +442,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         public int outcode(double x, double y) {
@@ -431,6 +466,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -440,6 +476,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -451,6 +488,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
         /**
          * {@inheritDoc}
+         *
          * @since 1.2
          */
         @NonNull
@@ -463,6 +501,7 @@ public abstract class Rectangle2D extends RectangularShape {
         /**
          * Returns the {@code String} representation of this
          * {@code Rectangle2D}.
+         *
          * @return a {@code String} representing this
          * {@code Rectangle2D}.
          * @since 1.2
@@ -470,10 +509,10 @@ public abstract class Rectangle2D extends RectangularShape {
         @NonNull
         public String toString() {
             return getClass().getName()
-                + "[x=" + x +
-                ",y=" + y +
-                ",w=" + width +
-                ",h=" + height + "]";
+                    + "[x=" + x +
+                    ",y=" + y +
+                    ",w=" + width +
+                    ",h=" + height + "]";
         }
 
         /**
@@ -514,6 +553,7 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * Sets this {@code Rectangle2D} to be the same as the specified
      * {@code Rectangle2D}.
+     *
      * @param r the specified {@code Rectangle2D}
      * @since 1.2
      */
@@ -569,8 +609,9 @@ public abstract class Rectangle2D extends RectangularShape {
     /**
      * Tests if the specified line segment intersects the interior of this
      * {@code Rectangle2D}.
+     *
      * @param l the specified {@link Line2D} to test for intersection
-     * with the interior of this {@code Rectangle2D}
+     *          with the interior of this {@code Rectangle2D}
      * @return {@code true} if the specified {@code Line2D}
      * intersects the interior of this {@code Rectangle2D};
      * {@code false} otherwise.
@@ -587,6 +628,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * indicating, for each side of this {@code Rectangle2D},
      * whether or not the specified coordinates are on the same side
      * of the edge as the rest of this {@code Rectangle2D}.
+     *
      * @param x the specified X coordinate
      * @param y the specified Y coordinate
      * @return the logical OR of all appropriate out codes.
@@ -605,6 +647,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * indicating, for each side of this {@code Rectangle2D},
      * whether or not the specified {@code Point2D} is on the same
      * side of the edge as the rest of this {@code Rectangle2D}.
+     *
      * @param p the specified {@code Point2D}
      * @return the logical OR of all appropriate out codes.
      * @see #OUT_LEFT
@@ -635,6 +678,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     @NonNull
@@ -644,6 +688,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public boolean contains(double x, double y) {
@@ -657,6 +702,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public boolean intersects(double x, double y, double w, double h) {
@@ -673,6 +719,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public boolean contains(double x, double y, double w, double h) {
@@ -691,11 +738,12 @@ public abstract class Rectangle2D extends RectangularShape {
      * Returns a new {@code Rectangle2D} object representing the
      * intersection of this {@code Rectangle2D} with the specified
      * {@code Rectangle2D}.
+     *
      * @param r the {@code Rectangle2D} to be intersected with
-     * this {@code Rectangle2D}
+     *          this {@code Rectangle2D}
      * @return the largest {@code Rectangle2D} contained in both
-     *          the specified {@code Rectangle2D} and in this
-     *          {@code Rectangle2D}.
+     * the specified {@code Rectangle2D} and in this
+     * {@code Rectangle2D}.
      * @since 1.2
      */
     public abstract Rectangle2D createIntersection(Rectangle2D r);
@@ -707,13 +755,14 @@ public abstract class Rectangle2D extends RectangularShape {
      * can also be the destination to avoid creating a third Rectangle2D
      * object, but in this case the original points of this source
      * rectangle will be overwritten by this method.
+     *
      * @param src1 the first of a pair of {@code Rectangle2D}
-     * objects to be intersected with each other
+     *             objects to be intersected with each other
      * @param src2 the second of a pair of {@code Rectangle2D}
-     * objects to be intersected with each other
+     *             objects to be intersected with each other
      * @param dest the {@code Rectangle2D} that holds the
-     * results of the intersection of {@code src1} and
-     * {@code src2}
+     *             results of the intersection of {@code src1} and
+     *             {@code src2}
      * @since 1.2
      */
     public static void intersect(@NonNull Rectangle2D src1,
@@ -723,15 +772,16 @@ public abstract class Rectangle2D extends RectangularShape {
         double y1 = Math.max(src1.getMinY(), src2.getMinY());
         double x2 = Math.min(src1.getMaxX(), src2.getMaxX());
         double y2 = Math.min(src1.getMaxY(), src2.getMaxY());
-        dest.setFrame(x1, y1, x2-x1, y2-y1);
+        dest.setFrame(x1, y1, x2 - x1, y2 - y1);
     }
 
     /**
      * Returns a new {@code Rectangle2D} object representing the
      * union of this {@code Rectangle2D} with the specified
      * {@code Rectangle2D}.
+     *
      * @param r the {@code Rectangle2D} to be combined with
-     * this {@code Rectangle2D}
+     *          this {@code Rectangle2D}
      * @return the smallest {@code Rectangle2D} containing both
      * the specified {@code Rectangle2D} and this
      * {@code Rectangle2D}.
@@ -746,13 +796,14 @@ public abstract class Rectangle2D extends RectangularShape {
      * can also be the destination to avoid creating a third Rectangle2D
      * object, but in this case the original points of this source
      * rectangle will be overwritten by this method.
+     *
      * @param src1 the first of a pair of {@code Rectangle2D}
-     * objects to be combined with each other
+     *             objects to be combined with each other
      * @param src2 the second of a pair of {@code Rectangle2D}
-     * objects to be combined with each other
+     *             objects to be combined with each other
      * @param dest the {@code Rectangle2D} that holds the
-     * results of the union of {@code src1} and
-     * {@code src2}
+     *             results of the union of {@code src1} and
+     *             {@code src2}
      * @since 1.2
      */
     public static void union(@NonNull Rectangle2D src1,
@@ -780,6 +831,7 @@ public abstract class Rectangle2D extends RectangularShape {
      * edges of a rectangle. Therefore, if the added point falls on
      * the right or bottom edge of the enlarged rectangle,
      * {@code contains} returns {@code false} for that point.
+     *
      * @param newx the X coordinate of the new point
      * @param newy the Y coordinate of the new point
      * @since 1.2
@@ -806,8 +858,9 @@ public abstract class Rectangle2D extends RectangularShape {
      * or bottom edges of a rectangle. Therefore, if the added point falls
      * on the right or bottom edge of the enlarged rectangle,
      * {@code contains} returns {@code false} for that point.
-     * @param     pt the new {@code Point2D} to add to this
-     * {@code Rectangle2D}.
+     *
+     * @param pt the new {@code Point2D} to add to this
+     *           {@code Rectangle2D}.
      * @since 1.2
      */
     public void add(@NonNull Point2D pt) {
@@ -818,8 +871,9 @@ public abstract class Rectangle2D extends RectangularShape {
      * Adds a {@code Rectangle2D} object to this
      * {@code Rectangle2D}.  The resulting {@code Rectangle2D}
      * is the union of the two {@code Rectangle2D} objects.
+     *
      * @param r the {@code Rectangle2D} to add to this
-     * {@code Rectangle2D}.
+     *          {@code Rectangle2D}.
      * @since 1.2
      */
     public void add(@NonNull Rectangle2D r) {
@@ -838,12 +892,13 @@ public abstract class Rectangle2D extends RectangularShape {
      * modifications to the geometry of this {@code Rectangle2D}
      * object do not affect any iterations of that geometry that
      * are already in process.
+     *
      * @param at an optional {@code AffineTransform} to be applied to
-     * the coordinates as they are returned in the iteration, or
-     * {@code null} if untransformed coordinates are desired
-     * @return    the {@code PathIterator} object that returns the
-     *          geometry of the outline of this
-     *          {@code Rectangle2D}, one segment at a time.
+     *           the coordinates as they are returned in the iteration, or
+     *           {@code null} if untransformed coordinates are desired
+     * @return the {@code PathIterator} object that returns the
+     * geometry of the outline of this
+     * {@code Rectangle2D}, one segment at a time.
      * @since 1.2
      */
     @NonNull
@@ -860,16 +915,17 @@ public abstract class Rectangle2D extends RectangularShape {
      * modifications to the geometry of this {@code Rectangle2D}
      * object do not affect any iterations of that geometry that
      * are already in process.
-     * @param at an optional {@code AffineTransform} to be applied to
-     * the coordinates as they are returned in the iteration, or
-     * {@code null} if untransformed coordinates are desired
+     *
+     * @param at       an optional {@code AffineTransform} to be applied to
+     *                 the coordinates as they are returned in the iteration, or
+     *                 {@code null} if untransformed coordinates are desired
      * @param flatness the maximum distance that the line segments used to
-     * approximate the curved segments are allowed to deviate from any
-     * point on the original curve.  Since rectangles are already flat,
-     * the {@code flatness} parameter is ignored.
-     * @return    the {@code PathIterator} object that returns the
-     *          geometry of the outline of this
-     *          {@code Rectangle2D}, one segment at a time.
+     *                 approximate the curved segments are allowed to deviate from any
+     *                 point on the original curve.  Since rectangles are already flat,
+     *                 the {@code flatness} parameter is ignored.
+     * @return the {@code PathIterator} object that returns the
+     * geometry of the outline of this
+     * {@code Rectangle2D}, one segment at a time.
      * @since 1.2
      */
     @NonNull
@@ -879,6 +935,7 @@ public abstract class Rectangle2D extends RectangularShape {
 
     /**
      * Returns the hashcode for this {@code Rectangle2D}.
+     *
      * @return the hashcode for this {@code Rectangle2D}.
      * @since 1.2
      */
@@ -896,11 +953,12 @@ public abstract class Rectangle2D extends RectangularShape {
      * {@code Object} is equal to this {@code Rectangle2D}
      * if it is an instance of {@code Rectangle2D} and if its
      * location and size are the same as this {@code Rectangle2D}.
+     *
      * @param obj an {@code Object} to be compared with this
-     * {@code Rectangle2D}.
-     * @return     {@code true} if {@code obj} is an instance
-     *                     of {@code Rectangle2D} and has
-     *                     the same values; {@code false} otherwise.
+     *            {@code Rectangle2D}.
+     * @return {@code true} if {@code obj} is an instance
+     * of {@code Rectangle2D} and has
+     * the same values; {@code false} otherwise.
      * @since 1.2
      */
     public boolean equals(Object obj) {

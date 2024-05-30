@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
@@ -7,8 +6,8 @@ import androidx.annotation.NonNull;
  * A point representing a location in {@code (x,y)} coordinate space,
  * specified in integer precision.
  *
- * @author      Sami Shaio
- * @since       1.0
+ * @author Sami Shaio
+ * @since 1.0
  */
 public class Point extends Point2D implements java.io.Serializable {
     /**
@@ -41,7 +40,8 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point at the origin
      * (0,&nbsp;0) of the coordinate space.
-     * @since       1.1
+     *
+     * @since 1.1
      */
     public Point() {
         this(0, 0);
@@ -50,8 +50,9 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point with the same location as
      * the specified {@code Point} object.
-     * @param       p a point
-     * @since       1.1
+     *
+     * @param p a point
+     * @since 1.1
      */
     public Point(@NonNull Point p) {
         this(p.x, p.y);
@@ -60,6 +61,7 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point at the specified
      * {@code (x,y)} location in the coordinate space.
+     *
      * @param x the X coordinate of the newly constructed {@code Point}
      * @param y the Y coordinate of the newly constructed {@code Point}
      * @since 1.0
@@ -71,6 +73,7 @@ public class Point extends Point2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public double getX() {
@@ -79,6 +82,7 @@ public class Point extends Point2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public double getY() {
@@ -89,8 +93,9 @@ public class Point extends Point2D implements java.io.Serializable {
      * Returns the location of this point.
      * This method is included for completeness, to parallel the
      * {@code getLocation} method of {@code Component}.
-     * @return      a copy of this point, at the same location
-     * @since       1.1
+     *
+     * @return a copy of this point, at the same location
+     * @since 1.1
      */
     @NonNull
     public Point getLocation() {
@@ -101,8 +106,9 @@ public class Point extends Point2D implements java.io.Serializable {
      * Sets the location of the point to the specified location.
      * This method is included for completeness, to parallel the
      * {@code setLocation} method of {@code Component}.
-     * @param       p  a point, the new location for this point
-     * @since       1.1
+     *
+     * @param p a point, the new location for this point
+     * @since 1.1
      */
     public void setLocation(@NonNull Point p) {
         setLocation(p.x, p.y);
@@ -114,9 +120,10 @@ public class Point extends Point2D implements java.io.Serializable {
      * This method is included for completeness, to parallel the
      * {@code setLocation} method of {@code Component}.
      * Its behavior is identical with <code>move(int,&nbsp;int)</code>.
-     * @param       x the X coordinate of the new location
-     * @param       y the Y coordinate of the new location
-     * @since       1.1
+     *
+     * @param x the X coordinate of the new location
+     * @param y the Y coordinate of the new location
+     * @since 1.1
      */
     public void setLocation(int x, int y) {
         move(x, y);
@@ -135,16 +142,17 @@ public class Point extends Point2D implements java.io.Serializable {
      * @see #getLocation
      */
     public void setLocation(double x, double y) {
-        this.x = (int) Math.floor(x+0.5);
-        this.y = (int) Math.floor(y+0.5);
+        this.x = (int) Math.floor(x + 0.5);
+        this.y = (int) Math.floor(y + 0.5);
     }
 
     /**
      * Moves this point to the specified location in the
      * {@code (x,y)} coordinate plane. This method
      * is identical with <code>setLocation(int,&nbsp;int)</code>.
-     * @param       x the X coordinate of the new location
-     * @param       y the Y coordinate of the new location
+     *
+     * @param x the X coordinate of the new location
+     * @param y the Y coordinate of the new location
      */
     public void move(int x, int y) {
         this.x = x;
@@ -157,10 +165,10 @@ public class Point extends Point2D implements java.io.Serializable {
      * along the {@code y} axis so that it now represents the point
      * {@code (x+dx,y+dy)}.
      *
-     * @param       dx   the distance to move this point
-     *                            along the X axis
-     * @param       dy    the distance to move this point
-     *                            along the Y axis
+     * @param dx the distance to move this point
+     *           along the X axis
+     * @param dy the distance to move this point
+     *           along the Y axis
      */
     public void translate(int dx, int dy) {
         this.x += dx;
@@ -172,10 +180,11 @@ public class Point extends Point2D implements java.io.Serializable {
      * {@code Point2D} are equal if the values of their
      * {@code x} and {@code y} member fields, representing
      * their position in the coordinate space, are the same.
+     *
      * @param obj an object to be compared with this {@code Point2D}
      * @return {@code true} if the object to be compared is
-     *         an instance of {@code Point2D} and has
-     *         the same values; {@code false} otherwise.
+     * an instance of {@code Point2D} and has
+     * the same values; {@code false} otherwise.
      */
     public boolean equals(Object obj) {
         if (obj instanceof Point pt) {
@@ -191,7 +200,7 @@ public class Point extends Point2D implements java.io.Serializable {
      * and format of the returned string may vary between implementations.
      * The returned string may be empty but may not be {@code null}.
      *
-     * @return  a string representation of this point
+     * @return a string representation of this point
      */
     @NonNull
     public String toString() {

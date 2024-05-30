@@ -45,10 +45,10 @@ import androidx.annotation.NonNull;
  * negative, the behavior of some methods defined by other objects is
  * undefined.
  *
- * @author      Sami Shaio
- * @author      Arthur van Hoff
- * @since       1.0
+ * @author Sami Shaio
+ * @author Arthur van Hoff
  * @noinspection ALL
+ * @since 1.0
  */
 public class Dimension extends Dimension2D implements java.io.Serializable {
 
@@ -75,7 +75,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
     /**
      * Use serialVersionUID from JDK 1.1 for interoperability.
      */
-     private static final long serialVersionUID = 4723952579491349524L;
+    private static final long serialVersionUID = 4723952579491349524L;
 
 
     /**
@@ -90,9 +90,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * Creates an instance of {@code Dimension} whose width
      * and height are the same as for the specified dimension.
      *
-     * @param    d   the specified dimension for the
-     *               {@code width} and
-     *               {@code height} values
+     * @param d the specified dimension for the
+     *          {@code width} and
+     *          {@code height} values
      */
     public Dimension(@NonNull Dimension d) {
         this(d.width, d.height);
@@ -102,7 +102,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * Constructs a {@code Dimension} and initializes
      * it to the specified width and specified height.
      *
-     * @param width the specified width
+     * @param width  the specified width
      * @param height the specified height
      */
     public Dimension(int width, int height) {
@@ -112,6 +112,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public double getWidth() {
@@ -120,6 +121,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
+     *
      * @since 1.2
      */
     public double getHeight() {
@@ -147,9 +149,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * This method is included for completeness, to parallel the
      * {@code getSize} method defined by {@code Component}.
      *
-     * @return   the size of this dimension, a new instance of
-     *           {@code Dimension} with the same width and height
-     * @since    1.1
+     * @return the size of this dimension, a new instance of
+     * {@code Dimension} with the same width and height
+     * @since 1.1
      */
     @NonNull
     public Dimension getSize() {
@@ -160,8 +162,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * Sets the size of this {@code Dimension} object to the specified size.
      * This method is included for completeness, to parallel the
      * {@code setSize} method defined by {@code Component}.
-     * @param    d  the new size for this {@code Dimension} object
-     * @since    1.1
+     *
+     * @param d the new size for this {@code Dimension} object
+     * @since 1.1
      */
     public void setSize(@NonNull Dimension d) {
         setSize(d.width, d.height);
@@ -173,9 +176,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * This method is included for completeness, to parallel the
      * {@code setSize} method defined by {@code Component}.
      *
-     * @param    width   the new width for this {@code Dimension} object
-     * @param    height  the new height for this {@code Dimension} object
-     * @since    1.1
+     * @param width  the new width for this {@code Dimension} object
+     * @param height the new height for this {@code Dimension} object
+     * @since 1.1
      */
     public void setSize(int width, int height) {
         this.width = width;
@@ -187,7 +190,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      */
     public boolean equals(Object obj) {
         if (obj instanceof Dimension) {
-            Dimension d = (Dimension)obj;
+            Dimension d = (Dimension) obj;
             return (width == d.width) && (height == d.height);
         }
         return false;
@@ -196,11 +199,11 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
     /**
      * Returns the hash code for this {@code Dimension}.
      *
-     * @return    a hash code for this {@code Dimension}
+     * @return a hash code for this {@code Dimension}
      */
     public int hashCode() {
         int sum = width + height;
-        return sum * (sum + 1)/2 + width;
+        return sum * (sum + 1) / 2 + width;
     }
 
     /**
@@ -211,8 +214,8 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
      * string may vary between implementations. The returned string may be
      * empty but may not be {@code null}.
      *
-     * @return  a string representation of this {@code Dimension}
-     *          object
+     * @return a string representation of this {@code Dimension}
+     * object
      */
     @NonNull
     public String toString() {

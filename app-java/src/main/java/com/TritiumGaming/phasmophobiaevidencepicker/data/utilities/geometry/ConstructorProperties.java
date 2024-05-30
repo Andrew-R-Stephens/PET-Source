@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
@@ -9,7 +8,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 
-@Documented @Target(CONSTRUCTOR) @Retention(RUNTIME)
+@Documented
+@Target(CONSTRUCTOR)
+@Retention(RUNTIME)
 public @interface ConstructorProperties {
 
     String[] value();

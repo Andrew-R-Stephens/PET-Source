@@ -27,7 +27,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
 
-/** @noinspection CanBeFinal, CanBeFinal */
+/**
+ * @noinspection CanBeFinal, CanBeFinal
+ */
 final class Order0 extends Curve {
     private final double x;
     private final double y;

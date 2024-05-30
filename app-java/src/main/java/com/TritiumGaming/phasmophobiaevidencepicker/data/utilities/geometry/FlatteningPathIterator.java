@@ -1,4 +1,3 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
@@ -6,49 +5,50 @@ import androidx.annotation.NonNull;
 import java.util.NoSuchElementException;
 
 public class FlatteningPathIterator implements PathIterator {
+
     static final int GROW_SIZE = 24;    // Multiple of cubic & quad curve size
 
     PathIterator src;                   // The source iterator
 
     double squareflat;                  // Square of the flatness parameter
-                                        // for testing against squared lengths
+    // for testing against squared lengths
 
     int limit;                          // Maximum number of recursion levels
 
     @NonNull
     double[] hold = new double[14];     // The cache of interpolated coords
-                                        // Note that this must be long enough
-                                        // to store a full cubic segment and
-                                        // a relative cubic segment to avoid
-                                        // aliasing when copying the coords
-                                        // of a curve to the end of the array.
-                                        // This is also serendipitously equal
-                                        // to the size of a full quad segment
-                                        // and 2 relative quad segments.
+    // Note that this must be long enough
+    // to store a full cubic segment and
+    // a relative cubic segment to avoid
+    // aliasing when copying the coords
+    // of a curve to the end of the array.
+    // This is also serendipitously equal
+    // to the size of a full quad segment
+    // and 2 relative quad segments.
 
     double curx, cury;                  // The ending x,y of the last segment
 
     double movx, movy;                  // The x,y of the last move segment
 
     int holdType;                       // The type of the curve being held
-                                        // for interpolation
+    // for interpolation
 
     int holdEnd;                        // The index of the last curve segment
-                                        // being held for interpolation
+    // being held for interpolation
 
     int holdIndex;                      // The index of the curve segment
-                                        // that was last interpolated.  This
-                                        // is the curve segment ready to be
-                                        // returned in the next call to
-                                        // currentSegment().
+    // that was last interpolated.  This
+    // is the curve segment ready to be
+    // returned in the next call to
+    // currentSegment().
 
     int[] levels;                       // The recursion level at which
-                                        // each curve being held in storage
-                                        // was generated.
+    // each curve being held in storage
+    // was generated.
 
     int levelIndex;                     // The index of the entry in the
-                                        // levels array of the curve segment
-                                        // at the holdIndex
+    // levels array of the curve segment
+    // at the holdIndex
 
     boolean done;                       // True when iteration is done
 
@@ -98,8 +98,8 @@ public class FlatteningPathIterator implements PathIterator {
             int newsize = hold.length + GROW_SIZE;
             double[] newhold = new double[newsize];
             System.arraycopy(hold, holdIndex,
-                             newhold, holdIndex + GROW_SIZE,
-                             have);
+                    newhold, holdIndex + GROW_SIZE,
+                    have);
             hold = newhold;
             holdIndex += GROW_SIZE;
             holdEnd += GROW_SIZE;
@@ -127,115 +127,115 @@ public class FlatteningPathIterator implements PathIterator {
         }
 
         switch (holdType) {
-        case SEG_MOVETO:
-        case SEG_LINETO:
-            curx = hold[0];
-            cury = hold[1];
-            if (holdType == SEG_MOVETO) {
-                movx = curx;
-                movy = cury;
-            }
-            holdIndex = 0;
-            holdEnd = 0;
-            break;
-        case SEG_CLOSE:
-            curx = movx;
-            cury = movy;
-            holdIndex = 0;
-            holdEnd = 0;
-            break;
-        case SEG_QUADTO:
-            if (holdIndex >= holdEnd) {
-                // Move the coordinates to the end of the array.
-                holdIndex = hold.length - 6;
-                holdEnd = hold.length - 2;
-                hold[holdIndex] = curx;
-                hold[holdIndex + 1] = cury;
-                hold[holdIndex + 2] = hold[0];
-                hold[holdIndex + 3] = hold[1];
-                hold[holdIndex + 4] = curx = hold[2];
-                hold[holdIndex + 5] = cury = hold[3];
-            }
-
-            level = levels[levelIndex];
-            while (level < limit) {
-                if (QuadCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
-                    break;
+            case SEG_MOVETO:
+            case SEG_LINETO:
+                curx = hold[0];
+                cury = hold[1];
+                if (holdType == SEG_MOVETO) {
+                    movx = curx;
+                    movy = cury;
+                }
+                holdIndex = 0;
+                holdEnd = 0;
+                break;
+            case SEG_CLOSE:
+                curx = movx;
+                cury = movy;
+                holdIndex = 0;
+                holdEnd = 0;
+                break;
+            case SEG_QUADTO:
+                if (holdIndex >= holdEnd) {
+                    // Move the coordinates to the end of the array.
+                    holdIndex = hold.length - 6;
+                    holdEnd = hold.length - 2;
+                    hold[holdIndex] = curx;
+                    hold[holdIndex + 1] = cury;
+                    hold[holdIndex + 2] = hold[0];
+                    hold[holdIndex + 3] = hold[1];
+                    hold[holdIndex + 4] = curx = hold[2];
+                    hold[holdIndex + 5] = cury = hold[3];
                 }
 
-                ensureHoldCapacity(4);
-                QuadCurve2D.subdivide(hold, holdIndex,
-                                      hold, holdIndex - 4,
-                                      hold, holdIndex);
-                holdIndex -= 4;
+                level = levels[levelIndex];
+                while (level < limit) {
+                    if (QuadCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
+                        break;
+                    }
 
-                // Now that we have subdivided, we have constructed
-                // two curves of one depth lower than the original
-                // curve.  One of those curves is in the place of
-                // the former curve and one of them is in the next
-                // set of held coordinate slots.  We now set both
-                // curves level values to the next higher level.
-                level++;
-                levels[levelIndex] = level;
-                levelIndex++;
-                levels[levelIndex] = level;
-            }
+                    ensureHoldCapacity(4);
+                    QuadCurve2D.subdivide(hold, holdIndex,
+                            hold, holdIndex - 4,
+                            hold, holdIndex);
+                    holdIndex -= 4;
 
-            // This curve segment is flat enough, or it is too deep
-            // in recursion levels to try to flatten any more.  The
-            // two coordinates at holdIndex+4 and holdIndex+5 now
-            // contain the endpoint of the curve which can be the
-            // endpoint of an approximating line segment.
-            holdIndex += 4;
-            levelIndex--;
-            break;
-        case SEG_CUBICTO:
-            if (holdIndex >= holdEnd) {
-                // Move the coordinates to the end of the array.
-                holdIndex = hold.length - 8;
-                holdEnd = hold.length - 2;
-                hold[holdIndex] = curx;
-                hold[holdIndex + 1] = cury;
-                hold[holdIndex + 2] = hold[0];
-                hold[holdIndex + 3] = hold[1];
-                hold[holdIndex + 4] = hold[2];
-                hold[holdIndex + 5] = hold[3];
-                hold[holdIndex + 6] = curx = hold[4];
-                hold[holdIndex + 7] = cury = hold[5];
-            }
-
-            level = levels[levelIndex];
-            while (level < limit) {
-                if (CubicCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
-                    break;
+                    // Now that we have subdivided, we have constructed
+                    // two curves of one depth lower than the original
+                    // curve.  One of those curves is in the place of
+                    // the former curve and one of them is in the next
+                    // set of held coordinate slots.  We now set both
+                    // curves level values to the next higher level.
+                    level++;
+                    levels[levelIndex] = level;
+                    levelIndex++;
+                    levels[levelIndex] = level;
                 }
 
-                ensureHoldCapacity(6);
-                CubicCurve2D.subdivide(hold, holdIndex,
-                                       hold, holdIndex - 6,
-                                       hold, holdIndex);
-                holdIndex -= 6;
+                // This curve segment is flat enough, or it is too deep
+                // in recursion levels to try to flatten any more.  The
+                // two coordinates at holdIndex+4 and holdIndex+5 now
+                // contain the endpoint of the curve which can be the
+                // endpoint of an approximating line segment.
+                holdIndex += 4;
+                levelIndex--;
+                break;
+            case SEG_CUBICTO:
+                if (holdIndex >= holdEnd) {
+                    // Move the coordinates to the end of the array.
+                    holdIndex = hold.length - 8;
+                    holdEnd = hold.length - 2;
+                    hold[holdIndex] = curx;
+                    hold[holdIndex + 1] = cury;
+                    hold[holdIndex + 2] = hold[0];
+                    hold[holdIndex + 3] = hold[1];
+                    hold[holdIndex + 4] = hold[2];
+                    hold[holdIndex + 5] = hold[3];
+                    hold[holdIndex + 6] = curx = hold[4];
+                    hold[holdIndex + 7] = cury = hold[5];
+                }
 
-                // Now that we have subdivided, we have constructed
-                // two curves of one depth lower than the original
-                // curve.  One of those curves is in the place of
-                // the former curve and one of them is in the next
-                // set of held coordinate slots.  We now set both
-                // curves level values to the next higher level.
-                level++;
-                levels[levelIndex] = level;
-                levelIndex++;
-                levels[levelIndex] = level;
-            }
+                level = levels[levelIndex];
+                while (level < limit) {
+                    if (CubicCurve2D.getFlatnessSq(hold, holdIndex) < squareflat) {
+                        break;
+                    }
 
-            // This curve segment is flat enough, or it is too deep
-            // in recursion levels to try to flatten any more.  The
-            // two coordinates at holdIndex+6 and holdIndex+7 now
-            // contain the endpoint of the curve which can be the
-            // endpoint of an approximating line segment.
-            holdIndex += 6;
-            levelIndex--;
-            break;
+                    ensureHoldCapacity(6);
+                    CubicCurve2D.subdivide(hold, holdIndex,
+                            hold, holdIndex - 6,
+                            hold, holdIndex);
+                    holdIndex -= 6;
+
+                    // Now that we have subdivided, we have constructed
+                    // two curves of one depth lower than the original
+                    // curve.  One of those curves is in the place of
+                    // the former curve and one of them is in the next
+                    // set of held coordinate slots.  We now set both
+                    // curves level values to the next higher level.
+                    level++;
+                    levels[levelIndex] = level;
+                    levelIndex++;
+                    levels[levelIndex] = level;
+                }
+
+                // This curve segment is flat enough, or it is too deep
+                // in recursion levels to try to flatten any more.  The
+                // two coordinates at holdIndex+6 and holdIndex+7 now
+                // contain the endpoint of the curve which can be the
+                // endpoint of an approximating line segment.
+                holdIndex += 6;
+                levelIndex--;
+                break;
         }
     }
 

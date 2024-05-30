@@ -1,21 +1,16 @@
-
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
 import androidx.annotation.NonNull;
 
 public class Rectangle extends Rectangle2D
-    implements Shape, java.io.Serializable
-{
+        implements Shape, java.io.Serializable {
 
     public int x;
-
     public int y;
-
     public int width;
-
     public int height;
 
-     private static final long serialVersionUID = -4345857070255674764L;
+    private static final long serialVersionUID = -4345857070255674764L;
 
     public Rectangle() {
         this(0, 0, 0, 0);
@@ -97,7 +92,7 @@ public class Rectangle extends Rectangle2D
             neww = -1;
         } else {
             newx = clip(x, false);
-            if (width >= 0) width += x-newx;
+            if (width >= 0) width += x - newx;
             neww = clip(width, width >= 0);
         }
 
@@ -107,12 +102,13 @@ public class Rectangle extends Rectangle2D
             newh = -1;
         } else {
             newy = clip(y, false);
-            if (height >= 0) height += y-newy;
+            if (height >= 0) height += y - newy;
             newh = clip(height, height >= 0);
         }
 
         reshape(newx, newy, neww, newh);
     }
+
     // Return best integer representation for v, clipped to integer
     // range and floor-ed or ceiling-ed, depending on the boolean.
     private static int clip(double v, boolean doceil) {
@@ -336,10 +332,14 @@ public class Rectangle extends Rectangle2D
         int ty1 = this.y;
         int rx1 = r.x;
         int ry1 = r.y;
-        long tx2 = tx1; tx2 += this.width;
-        long ty2 = ty1; ty2 += this.height;
-        long rx2 = rx1; rx2 += r.width;
-        long ry2 = ry1; ry2 += r.height;
+        long tx2 = tx1;
+        tx2 += this.width;
+        long ty2 = ty1;
+        ty2 += this.height;
+        long rx2 = rx1;
+        rx2 += r.width;
+        long ry2 = ry1;
+        ry2 += r.height;
         if (tx1 < rx1) tx1 = rx1;
         if (ty1 < ry1) ty1 = ry1;
         if (tx2 > rx2) tx2 = rx2;
