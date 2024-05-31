@@ -26,7 +26,7 @@ public class InteractiveMapData {
     private int imgW, imgH;
     private int w, h;
 
-    private Point2D.Float selectedPoint;
+    private Point2D.Point2DFloat selectedPoint;
 
     private float ZOOM_MIN = .8f, ZOOM_MAX = 4f;
 
@@ -53,8 +53,8 @@ public class InteractiveMapData {
         this.h = otherData.h;
 
         if(otherData.getSelectedPoint() != null) {
-            Point2D.Float selPoint = otherData.getSelectedPoint();
-            this.selectedPoint = new Point2D.Float(selPoint.x, selPoint.y);
+            Point2D.Point2DFloat selPoint = otherData.getSelectedPoint();
+            this.selectedPoint = new Point2D.Point2DFloat((float)selPoint.getX(), (float)selPoint.getY());
         }
 
         this.ZOOM_MIN = otherData.ZOOM_MIN;
@@ -104,7 +104,7 @@ public class InteractiveMapData {
         this.h = h;
     }
 
-    public void setPressedPoint(Point2D.Float point) {
+    public void setPressedPoint(Point2D.Point2DFloat point) {
         selectedPoint = point;
     }
 
@@ -199,7 +199,7 @@ public class InteractiveMapData {
         options.inSampleSize = inSampleSize;
     }
 
-    public Point2D.Float getSelectedPoint() {
+    public Point2D.Point2DFloat getSelectedPoint() {
         return selectedPoint;
     }
 

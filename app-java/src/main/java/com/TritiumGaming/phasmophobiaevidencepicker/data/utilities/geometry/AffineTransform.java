@@ -2969,10 +2969,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
     @NonNull
     public Point2D transform(Point2D ptSrc, @Nullable Point2D ptDst) {
         if (ptDst == null) {
-            if (ptSrc instanceof Point2D.Double) {
-                ptDst = new Point2D.Double();
+            if (ptSrc instanceof Point2D.Point2DDouble) {
+                ptDst = new Point2D.Point2DDouble();
             } else {
-                ptDst = new Point2D.Float();
+                ptDst = new Point2D.Point2DFloat();
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -3056,10 +3056,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
             double y = src.getY();
             Point2D dst = ptDst[dstOff++];
             if (dst == null) {
-                if (src instanceof Point2D.Double) {
-                    dst = new Point2D.Double();
+                if (src instanceof Point2D.Point2DDouble) {
+                    dst = new Point2D.Point2DDouble();
                 } else {
-                    dst = new Point2D.Float();
+                    dst = new Point2D.Point2DFloat();
                 }
                 ptDst[dstOff - 1] = dst;
             }
@@ -3596,10 +3596,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
     public Point2D inverseTransform(Point2D ptSrc, @Nullable Point2D ptDst)
             throws NonInvertibleTransformException {
         if (ptDst == null) {
-            if (ptSrc instanceof Point2D.Double) {
-                ptDst = new Point2D.Double();
+            if (ptSrc instanceof Point2D.Point2DDouble) {
+                ptDst = new Point2D.Point2DDouble();
             } else {
-                ptDst = new Point2D.Float();
+                ptDst = new Point2D.Point2DFloat();
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -3836,10 +3836,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
     @NonNull
     public Point2D deltaTransform(Point2D ptSrc, @Nullable Point2D ptDst) {
         if (ptDst == null) {
-            if (ptSrc instanceof Point2D.Double) {
-                ptDst = new Point2D.Double();
+            if (ptSrc instanceof Point2D.Point2DDouble) {
+                ptDst = new Point2D.Point2DDouble();
             } else {
-                ptDst = new Point2D.Float();
+                ptDst = new Point2D.Point2DFloat();
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -3985,7 +3985,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
         if (pSrc == null) {
             return null;
         }
-        return new Path2D.Double(pSrc, this);
+        return new Path2D.Path2DDouble(pSrc, this);
     }
 
     // Round values to sane precision for printing

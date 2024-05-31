@@ -13,22 +13,12 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * The X coordinate of this {@code Point}.
      * If no X coordinate is set it will default to 0.
-     *
-     * @serial
-     * @see #getLocation()
-     * @see #move(int, int)
-     * @since 1.0
      */
     public int x;
 
     /**
      * The Y coordinate of this {@code Point}.
      * If no Y coordinate is set it will default to 0.
-     *
-     * @serial
-     * @see #getLocation()
-     * @see #move(int, int)
-     * @since 1.0
      */
     public int y;
 
@@ -40,8 +30,6 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point at the origin
      * (0,&nbsp;0) of the coordinate space.
-     *
-     * @since 1.1
      */
     public Point() {
         this(0, 0);
@@ -50,9 +38,6 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point with the same location as
      * the specified {@code Point} object.
-     *
-     * @param p a point
-     * @since 1.1
      */
     public Point(@NonNull Point p) {
         this(p.x, p.y);
@@ -61,10 +46,6 @@ public class Point extends Point2D implements java.io.Serializable {
     /**
      * Constructs and initializes a point at the specified
      * {@code (x,y)} location in the coordinate space.
-     *
-     * @param x the X coordinate of the newly constructed {@code Point}
-     * @param y the Y coordinate of the newly constructed {@code Point}
-     * @since 1.0
      */
     public Point(int x, int y) {
         this.x = x;
@@ -73,8 +54,6 @@ public class Point extends Point2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
-     *
-     * @since 1.2
      */
     public double getX() {
         return x;
@@ -82,8 +61,6 @@ public class Point extends Point2D implements java.io.Serializable {
 
     /**
      * {@inheritDoc}
-     *
-     * @since 1.2
      */
     public double getY() {
         return y;

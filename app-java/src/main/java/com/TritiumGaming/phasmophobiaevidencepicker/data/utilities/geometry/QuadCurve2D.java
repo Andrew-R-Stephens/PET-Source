@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public abstract class QuadCurve2D implements Shape, Cloneable {
 
-    public static class Float extends QuadCurve2D implements Serializable {
+    public static class QuadCurve2DFloat extends QuadCurve2D implements Serializable {
 
         public float x1;
         public float y1;
@@ -22,12 +22,12 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         public float x2;
         public float y2;
 
-        public Float() {
+        public QuadCurve2DFloat() {
         }
 
-        public Float(float x1, float y1,
-                     float ctrlx, float ctrly,
-                     float x2, float y2) {
+        public QuadCurve2DFloat(float x1, float y1,
+                                float ctrlx, float ctrly,
+                                float x2, float y2) {
             setCurve(x1, y1, ctrlx, ctrly, x2, y2);
         }
 
@@ -42,7 +42,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Float(x1, y1);
+            return new Point2D.Point2DFloat(x1, y1);
         }
 
 
@@ -58,7 +58,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getCtrlPt() {
-            return new Point2D.Float(ctrlx, ctrly);
+            return new Point2D.Point2DFloat(ctrlx, ctrly);
         }
 
 
@@ -74,7 +74,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Float(x2, y2);
+            return new Point2D.Point2DFloat(x2, y2);
         }
 
 
@@ -108,7 +108,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
             float top = Math.min(Math.min(y1, y2), ctrly);
             float right = Math.max(Math.max(x1, x2), ctrlx);
             float bottom = Math.max(Math.max(y1, y2), ctrly);
-            return new Rectangle2D.Float(left, top,
+            return new Rectangle2D.Rectangle2DFloat(left, top,
                     right - left, bottom - top);
         }
 
@@ -117,7 +117,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
     }
 
 
-    public static class Double extends QuadCurve2D implements Serializable {
+    public static class QuadCurve2DDouble extends QuadCurve2D implements Serializable {
 
         public double x1;
         public double y1;
@@ -126,12 +126,12 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
         public double x2;
         public double y2;
 
-        public Double() {
+        public QuadCurve2DDouble() {
         }
 
-        public Double(double x1, double y1,
-                      double ctrlx, double ctrly,
-                      double x2, double y2) {
+        public QuadCurve2DDouble(double x1, double y1,
+                                 double ctrlx, double ctrly,
+                                 double x2, double y2) {
             setCurve(x1, y1, ctrlx, ctrly, x2, y2);
         }
 
@@ -145,7 +145,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Double(x1, y1);
+            return new Point2D.Point2DDouble(x1, y1);
         }
 
         public double getCtrlX() {
@@ -158,7 +158,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getCtrlPt() {
-            return new Point2D.Double(ctrlx, ctrly);
+            return new Point2D.Point2DDouble(ctrlx, ctrly);
         }
 
         public double getX2() {
@@ -171,7 +171,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
 
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Double(x2, y2);
+            return new Point2D.Point2DDouble(x2, y2);
         }
 
         public void setCurve(double x1, double y1,
@@ -191,7 +191,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
             double top = Math.min(Math.min(y1, y2), ctrly);
             double right = Math.max(Math.max(x1, x2), ctrlx);
             double bottom = Math.max(Math.max(y1, y2), ctrly);
-            return new Rectangle2D.Double(left, top,
+            return new Rectangle2D.Rectangle2DDouble(left, top,
                     right - left, bottom - top);
         }
 

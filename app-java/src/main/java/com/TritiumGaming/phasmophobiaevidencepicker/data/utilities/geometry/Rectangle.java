@@ -32,7 +32,7 @@ public class Rectangle extends Rectangle2D
     }
 
     public Rectangle(@NonNull Point p, @NonNull Dimension d) {
-        this(p.x, p.y, d.width, d.height);
+        this(p.x, p.y, (int)d.getWidth(), (int)d.getHeight());
     }
 
     public Rectangle(@NonNull Point p) {
@@ -40,7 +40,7 @@ public class Rectangle extends Rectangle2D
     }
 
     public Rectangle(@NonNull Dimension d) {
-        this(0, 0, d.width, d.height);
+        this(0, 0, (int)d.getWidth(), (int)d.getHeight());
     }
 
     public double getX() {
@@ -221,7 +221,7 @@ public class Rectangle extends Rectangle2D
     }
 
     public void setSize(@NonNull Dimension d) {
-        setSize(d.width, d.height);
+        setSize((int)d.getWidth(), (int)d.getHeight());
     }
 
     public void setSize(int width, int height) {
@@ -544,7 +544,7 @@ public class Rectangle extends Rectangle2D
         if (r instanceof Rectangle) {
             return intersection((Rectangle) r);
         }
-        Rectangle2D dest = new Rectangle2D.Double();
+        Rectangle2D dest = new Rectangle2DDouble();
         intersect(this, r, dest);
         return dest;
     }
@@ -553,7 +553,7 @@ public class Rectangle extends Rectangle2D
         if (r instanceof Rectangle) {
             return union((Rectangle) r);
         }
-        Rectangle2D dest = new Rectangle2D.Double();
+        Rectangle2D dest = new Rectangle2DDouble();
         union(this, r, dest);
         return dest;
     }

@@ -150,7 +150,7 @@ public class InteractiveMapView extends View {
         @Override
         public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
 
-            interactiveMapData.setPressedPoint(new Point2D.Float(e.getX(), e.getY()));
+            interactiveMapData.setPressedPoint(new Point2D.Point2DFloat(e.getX(), e.getY()));
             handleClickRunnable();
 
             return true;
@@ -496,8 +496,8 @@ public class InteractiveMapView extends View {
             float panY = matrix[Matrix.MTRANS_Y];
 
 
-            float touchX = interactiveMapData.getSelectedPoint().x;
-            float touchY = interactiveMapData.getSelectedPoint().y;
+            float touchX = (float)interactiveMapData.getSelectedPoint().getX();
+            float touchY = (float)interactiveMapData.getSelectedPoint().getY();
 
             Log.d("Tap", "Input Conversion: " + touchX + " " + touchY);
 
@@ -514,7 +514,7 @@ public class InteractiveMapView extends View {
                         shape.addPoint(x, y);
                     }
 
-                    if (shape.contains(new Point2D.Float(touchX, touchY))) {
+                    if (shape.contains(new Point2D.Point2DFloat(touchX, touchY))) {
                         Log.d("Tap", "setting temp room");
 
                         if (room != selectedRoomModel) {

@@ -17,7 +17,8 @@ import java.io.Serializable;
  * @author Jim Graham
  * @since 1.2
  */
-public abstract class Rectangle2D extends RectangularShape {
+public abstract class Rectangle2D
+        extends RectangularShape {
     /**
      * The bitmask that indicates that a point lies to the left of
      * this {@code Rectangle2D}.
@@ -56,46 +57,32 @@ public abstract class Rectangle2D extends RectangularShape {
      *
      * @since 1.2
      */
-    public static class Float extends Rectangle2D implements Serializable {
+    public static class Rectangle2DFloat extends Rectangle2D implements Serializable {
         /**
          * The X coordinate of this {@code Rectangle2D}.
-         *
-         * @serial
-         * @since 1.2
          */
         public float x;
 
         /**
          * The Y coordinate of this {@code Rectangle2D}.
-         *
-         * @serial
-         * @since 1.2
          */
         public float y;
 
         /**
          * The width of this {@code Rectangle2D}.
-         *
-         * @serial
-         * @since 1.2
          */
         public float width;
 
         /**
          * The height of this {@code Rectangle2D}.
-         *
-         * @serial
-         * @since 1.2
          */
         public float height;
 
         /**
          * Constructs a new {@code Rectangle2D}, initialized to
          * location (0.0,&nbsp;0.0) and size (0.0,&nbsp;0.0).
-         *
-         * @since 1.2
          */
-        public Float() {
+        public Rectangle2DFloat() {
         }
 
         /**
@@ -110,53 +97,25 @@ public abstract class Rectangle2D extends RectangularShape {
          *          {@code Rectangle2D}
          * @param h the height of the newly constructed
          *          {@code Rectangle2D}
-         * @since 1.2
          */
-        public Float(float x, float y, float w, float h) {
+        public Rectangle2DFloat(float x, float y, float w, float h) {
             setRect(x, y, w, h);
         }
 
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.2
-         */
         public double getX() {
             return (double) x;
         }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.2
-         */
         public double getY() {
             return (double) y;
         }
 
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.2
-         */
         public double getWidth() {
             return (double) width;
         }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.2
-         */
         public double getHeight() {
             return (double) height;
         }
 
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.2
-         */
         public boolean isEmpty() {
             return (width <= 0.0f) || (height <= 0.0f);
         }
@@ -245,7 +204,7 @@ public abstract class Rectangle2D extends RectangularShape {
          */
         @NonNull
         public Rectangle2D getBounds2D() {
-            return new Float(x, y, width, height);
+            return new Rectangle2DFloat(x, y, width, height);
         }
 
         /**
@@ -256,10 +215,10 @@ public abstract class Rectangle2D extends RectangularShape {
         @NonNull
         public Rectangle2D createIntersection(Rectangle2D r) {
             Rectangle2D dest;
-            if (r instanceof Float) {
-                dest = new Rectangle2D.Float();
+            if (r instanceof Rectangle2DFloat) {
+                dest = new Rectangle2DFloat();
             } else {
-                dest = new Rectangle2D.Double();
+                dest = new Rectangle2DDouble();
             }
             Rectangle2D.intersect(this, r, dest);
             return dest;
@@ -273,10 +232,10 @@ public abstract class Rectangle2D extends RectangularShape {
         @NonNull
         public Rectangle2D createUnion(Rectangle2D r) {
             Rectangle2D dest;
-            if (r instanceof Float) {
-                dest = new Rectangle2D.Float();
+            if (r instanceof Rectangle2DFloat) {
+                dest = new Rectangle2DFloat();
             } else {
-                dest = new Rectangle2D.Double();
+                dest = new Rectangle2DDouble();
             }
             Rectangle2D.union(this, r, dest);
             return dest;
@@ -311,7 +270,7 @@ public abstract class Rectangle2D extends RectangularShape {
      *
      * @since 1.2
      */
-    public static class Double extends Rectangle2D implements Serializable {
+    public static class Rectangle2DDouble extends Rectangle2D implements Serializable {
         /**
          * The X coordinate of this {@code Rectangle2D}.
          *
@@ -350,7 +309,7 @@ public abstract class Rectangle2D extends RectangularShape {
          *
          * @since 1.2
          */
-        public Double() {
+        public Rectangle2DDouble() {
         }
 
         /**
@@ -367,7 +326,7 @@ public abstract class Rectangle2D extends RectangularShape {
          *          {@code Rectangle2D}
          * @since 1.2
          */
-        public Double(double x, double y, double w, double h) {
+        public Rectangle2DDouble(double x, double y, double w, double h) {
             setRect(x, y, w, h);
         }
 
@@ -471,7 +430,7 @@ public abstract class Rectangle2D extends RectangularShape {
          */
         @NonNull
         public Rectangle2D getBounds2D() {
-            return new Double(x, y, width, height);
+            return new Rectangle2DDouble(x, y, width, height);
         }
 
         /**
@@ -481,7 +440,7 @@ public abstract class Rectangle2D extends RectangularShape {
          */
         @NonNull
         public Rectangle2D createIntersection(@NonNull Rectangle2D r) {
-            Rectangle2D dest = new Rectangle2D.Double();
+            Rectangle2D dest = new Rectangle2DDouble();
             Rectangle2D.intersect(this, r, dest);
             return dest;
         }
@@ -493,7 +452,7 @@ public abstract class Rectangle2D extends RectangularShape {
          */
         @NonNull
         public Rectangle2D createUnion(@NonNull Rectangle2D r) {
-            Rectangle2D dest = new Rectangle2D.Double();
+            Rectangle2D dest = new Rectangle2DDouble();
             Rectangle2D.union(this, r, dest);
             return dest;
         }
@@ -528,8 +487,8 @@ public abstract class Rectangle2D extends RectangularShape {
      * the information necessary to satisfy the various accessor
      * methods below.
      *
-     * @see Float
-     * @see Double
+     * @see Rectangle2DFloat
+     * @see Rectangle2DDouble
      * @see Rectangle
      * @since 1.2
      */
@@ -692,8 +651,8 @@ public abstract class Rectangle2D extends RectangularShape {
      * @since 1.2
      */
     public boolean contains(double x, double y) {
-        double x0 = getX();
-        double y0 = getY();
+        double x0 = x;
+        double y0 = y;
         return (x >= x0 &&
                 y >= y0 &&
                 x < x0 + getWidth() &&
@@ -709,8 +668,8 @@ public abstract class Rectangle2D extends RectangularShape {
         if (isEmpty() || w <= 0 || h <= 0) {
             return false;
         }
-        double x0 = getX();
-        double y0 = getY();
+        double x0 = x;
+        double y0 = y;
         return (x + w > x0 &&
                 y + h > y0 &&
                 x < x0 + getWidth() &&
@@ -726,8 +685,8 @@ public abstract class Rectangle2D extends RectangularShape {
         if (isEmpty() || w <= 0 || h <= 0) {
             return false;
         }
-        double x0 = getX();
-        double y0 = getY();
+        double x0 = x;
+        double y0 = y;
         return (x >= x0 &&
                 y >= y0 &&
                 (x + w) <= x0 + getWidth() &&

@@ -51,7 +51,7 @@ public abstract class Line2D implements Shape, Cloneable {
      *
      * @since 1.2
      */
-    public static class Float extends Line2D implements Serializable {
+    public static class Line2DFloat extends Line2D implements Serializable {
         /**
          * The X coordinate of the start point of the line segment.
          *
@@ -89,7 +89,7 @@ public abstract class Line2D implements Shape, Cloneable {
          *
          * @since 1.2
          */
-        public Float() {
+        public Line2DFloat() {
         }
 
         /**
@@ -101,7 +101,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param y2 the Y coordinate of the end point
          * @since 1.2
          */
-        public Float(float x1, float y1, float x2, float y2) {
+        public Line2DFloat(float x1, float y1, float x2, float y2) {
             setLine(x1, y1, x2, y2);
         }
 
@@ -113,7 +113,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param p2 the end {@code Point2D} of this line segment
          * @since 1.2
          */
-        public Float(@NonNull Point2D p1, @NonNull Point2D p2) {
+        public Line2DFloat(@NonNull Point2D p1, @NonNull Point2D p2) {
             setLine(p1, p2);
         }
 
@@ -142,7 +142,7 @@ public abstract class Line2D implements Shape, Cloneable {
          */
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Float(x1, y1);
+            return new Point2D.Point2DFloat(x1, y1);
         }
 
         /**
@@ -170,7 +170,7 @@ public abstract class Line2D implements Shape, Cloneable {
          */
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Float(x2, y2);
+            return new Point2D.Point2DFloat(x2, y2);
         }
 
         /**
@@ -224,7 +224,7 @@ public abstract class Line2D implements Shape, Cloneable {
                 y = y2;
                 h = y1 - y2;
             }
-            return new Rectangle2D.Float(x, y, w, h);
+            return new Rectangle2D.Rectangle2DFloat(x, y, w, h);
         }
 
         /**
@@ -238,7 +238,7 @@ public abstract class Line2D implements Shape, Cloneable {
      *
      * @since 1.2
      */
-    public static class Double extends Line2D implements Serializable {
+    public static class Line2DDouble extends Line2D implements Serializable {
         /**
          * The X coordinate of the start point of the line segment.
          *
@@ -276,7 +276,7 @@ public abstract class Line2D implements Shape, Cloneable {
          *
          * @since 1.2
          */
-        public Double() {
+        public Line2DDouble() {
         }
 
         /**
@@ -289,7 +289,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param y2 the Y coordinate of the end point
          * @since 1.2
          */
-        public Double(double x1, double y1, double x2, double y2) {
+        public Line2DDouble(double x1, double y1, double x2, double y2) {
             setLine(x1, y1, x2, y2);
         }
 
@@ -301,7 +301,7 @@ public abstract class Line2D implements Shape, Cloneable {
          * @param p2 the end {@code Point2D} of this line segment
          * @since 1.2
          */
-        public Double(@NonNull Point2D p1, @NonNull Point2D p2) {
+        public Line2DDouble(@NonNull Point2D p1, @NonNull Point2D p2) {
             setLine(p1, p2);
         }
 
@@ -330,7 +330,7 @@ public abstract class Line2D implements Shape, Cloneable {
          */
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Double(x1, y1);
+            return new Point2D.Point2DDouble(x1, y1);
         }
 
         /**
@@ -358,7 +358,7 @@ public abstract class Line2D implements Shape, Cloneable {
          */
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Double(x2, y2);
+            return new Point2D.Point2DDouble(x2, y2);
         }
 
         /**
@@ -395,7 +395,7 @@ public abstract class Line2D implements Shape, Cloneable {
                 y = y2;
                 h = y1 - y2;
             }
-            return new Rectangle2D.Double(x, y, w, h);
+            return new Rectangle2D.Rectangle2DDouble(x, y, w, h);
         }
 
         /**
@@ -411,8 +411,8 @@ public abstract class Line2D implements Shape, Cloneable {
      * the information necessary to satisfy the various accessory
      * methods below.
      *
-     * @see Float
-     * @see Double
+     * @see Line2DFloat
+     * @see Line2DDouble
      * @since 1.2
      */
     protected Line2D() {
@@ -1066,7 +1066,7 @@ public abstract class Line2D implements Shape, Cloneable {
      * @since 1.2
      */
     public boolean intersects(double x, double y, double w, double h) {
-        return intersects(new Rectangle2D.Double(x, y, w, h));
+        return intersects(new Rectangle2D.Rectangle2DDouble(x, y, w, h));
     }
 
     /**

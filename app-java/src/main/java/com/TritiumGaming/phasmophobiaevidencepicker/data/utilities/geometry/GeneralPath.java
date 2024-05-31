@@ -1,6 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
 
-public final class GeneralPath extends Path2D.Float {
+public final class GeneralPath extends Path2D.Path2DFloat {
 
     public GeneralPath() {
         super(WIND_NON_ZERO, INIT_SIZE);
@@ -25,11 +25,11 @@ public final class GeneralPath extends Path2D.Float {
                 int numCoords) {
         // used to construct from native
 
-        this.windingRule = windingRule;
+        setWindingRule(windingRule);
         this.pointTypes = pointTypes;
-        this.numTypes = numTypes;
-        this.floatCoords = pointCoords;
-        this.numCoords = numCoords;
+        setNumTypes(numTypes);
+        setFloatCoords(pointCoords);
+        setNumCoords(numCoords);
     }
 
     private static final long serialVersionUID = -8327096662768731142L;

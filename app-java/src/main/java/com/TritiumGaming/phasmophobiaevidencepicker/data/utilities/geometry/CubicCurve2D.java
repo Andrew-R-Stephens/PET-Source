@@ -15,108 +15,78 @@ import java.util.Arrays;
 
 public abstract class CubicCurve2D implements Shape, Cloneable {
 
-
-    public static class Float extends CubicCurve2D implements Serializable {
+    public static class CubicCurveFloat extends CubicCurve2D implements Serializable {
 
         public float x1;
-
-
         public float y1;
-
-
         public float ctrlx1;
-
-
         public float ctrly1;
-
-
         public float ctrlx2;
-
-
         public float ctrly2;
-
-
         public float x2;
-
-
         public float y2;
 
-
-        public Float() {
+        public CubicCurveFloat() {
         }
 
-
-        public Float(float x1, float y1,
-                     float ctrlx1, float ctrly1,
-                     float ctrlx2, float ctrly2,
-                     float x2, float y2) {
+        public CubicCurveFloat(float x1, float y1,
+                               float ctrlx1, float ctrly1,
+                               float ctrlx2, float ctrly2,
+                               float x2, float y2) {
             setCurve(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2);
         }
-
 
         public double getX1() {
             return (double) x1;
         }
 
-
         public double getY1() {
             return (double) y1;
         }
 
-
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Float(x1, y1);
+            return new Point2D.Point2DFloat(x1, y1);
         }
-
 
         public double getCtrlX1() {
             return (double) ctrlx1;
         }
 
-
         public double getCtrlY1() {
             return (double) ctrly1;
         }
 
-
         @NonNull
         public Point2D getCtrlP1() {
-            return new Point2D.Float(ctrlx1, ctrly1);
+            return new Point2D.Point2DFloat(ctrlx1, ctrly1);
         }
-
 
         public double getCtrlX2() {
             return (double) ctrlx2;
         }
 
-
         public double getCtrlY2() {
             return (double) ctrly2;
         }
 
-
         @NonNull
         public Point2D getCtrlP2() {
-            return new Point2D.Float(ctrlx2, ctrly2);
+            return new Point2D.Point2DFloat(ctrlx2, ctrly2);
         }
-
 
         public double getX2() {
             return (double) x2;
         }
 
-
         public double getY2() {
             return (double) y2;
         }
 
-
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Float(x2, y2);
+            return new Point2D.Point2DFloat(x2, y2);
         }
-
 
         public void setCurve(double x1, double y1,
                              double ctrlx1, double ctrly1,
@@ -132,7 +102,6 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
             this.y2 = (float) y2;
         }
 
-
         public void setCurve(float x1, float y1,
                              float ctrlx1, float ctrly1,
                              float ctrlx2, float ctrly2,
@@ -147,7 +116,6 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
             this.y2 = y2;
         }
 
-
         @NonNull
         public Rectangle2D getBounds2D() {
             float left = Math.min(Math.min(x1, x2),
@@ -158,116 +126,85 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                     Math.max(ctrlx1, ctrlx2));
             float bottom = Math.max(Math.max(y1, y2),
                     Math.max(ctrly1, ctrly2));
-            return new Rectangle2D.Float(left, top,
+            return new Rectangle2D.Rectangle2DFloat(left, top,
                     right - left, bottom - top);
         }
-
 
         private static final long serialVersionUID = -1272015596714244385L;
     }
 
-
-    public static class Double extends CubicCurve2D implements Serializable {
+    public static class CubicCurve2DDouble extends CubicCurve2D implements Serializable {
 
         public double x1;
-
-
         public double y1;
-
-
         public double ctrlx1;
-
-
         public double ctrly1;
-
-
         public double ctrlx2;
-
-
         public double ctrly2;
-
-
         public double x2;
-
-
         public double y2;
 
-
-        public Double() {
+        public CubicCurve2DDouble() {
         }
 
-
-        public Double(double x1, double y1,
-                      double ctrlx1, double ctrly1,
-                      double ctrlx2, double ctrly2,
-                      double x2, double y2) {
+        public CubicCurve2DDouble(double x1, double y1,
+                                  double ctrlx1, double ctrly1,
+                                  double ctrlx2, double ctrly2,
+                                  double x2, double y2) {
             setCurve(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2);
         }
-
 
         public double getX1() {
             return x1;
         }
 
-
         public double getY1() {
             return y1;
         }
 
-
         @NonNull
         public Point2D getP1() {
-            return new Point2D.Double(x1, y1);
+            return new Point2D.Point2DDouble(x1, y1);
         }
-
 
         public double getCtrlX1() {
             return ctrlx1;
         }
 
-
         public double getCtrlY1() {
             return ctrly1;
         }
 
-
         @NonNull
         public Point2D getCtrlP1() {
-            return new Point2D.Double(ctrlx1, ctrly1);
+            return new Point2D.Point2DDouble(ctrlx1, ctrly1);
         }
-
 
         public double getCtrlX2() {
             return ctrlx2;
         }
 
-
         public double getCtrlY2() {
             return ctrly2;
         }
 
-
         @NonNull
         public Point2D getCtrlP2() {
-            return new Point2D.Double(ctrlx2, ctrly2);
+            return new Point2D.Point2DDouble(ctrlx2, ctrly2);
         }
-
 
         public double getX2() {
             return x2;
         }
 
-
         public double getY2() {
             return y2;
         }
 
-
         @NonNull
         public Point2D getP2() {
-            return new Point2D.Double(x2, y2);
+            return new Point2D.Point2DDouble(x2, y2);
         }
-
 
         public void setCurve(double x1, double y1,
                              double ctrlx1, double ctrly1,
@@ -283,7 +220,6 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
             this.y2 = y2;
         }
 
-
         @NonNull
         public Rectangle2D getBounds2D() {
             double left = Math.min(Math.min(x1, x2),
@@ -294,60 +230,44 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                     Math.max(ctrlx1, ctrlx2));
             double bottom = Math.max(Math.max(y1, y2),
                     Math.max(ctrly1, ctrly2));
-            return new Rectangle2D.Double(left, top,
+            return new Rectangle2D.Rectangle2DDouble(left, top,
                     right - left, bottom - top);
         }
-
 
         private static final long serialVersionUID = -4202960122839707295L;
     }
 
-
     protected CubicCurve2D() {
     }
 
-
     public abstract double getX1();
-
 
     public abstract double getY1();
 
-
     public abstract Point2D getP1();
-
 
     public abstract double getCtrlX1();
 
-
     public abstract double getCtrlY1();
-
 
     public abstract Point2D getCtrlP1();
 
-
     public abstract double getCtrlX2();
-
 
     public abstract double getCtrlY2();
 
-
     public abstract Point2D getCtrlP2();
-
 
     public abstract double getX2();
 
-
     public abstract double getY2();
 
-
     public abstract Point2D getP2();
-
 
     public abstract void setCurve(double x1, double y1,
                                   double ctrlx1, double ctrly1,
                                   double ctrlx2, double ctrly2,
                                   double x2, double y2);
-
 
     public void setCurve(@NonNull double[] coords, int offset) {
         setCurve(coords[offset], coords[offset + 1],
@@ -356,12 +276,10 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                 coords[offset + 6], coords[offset + 7]);
     }
 
-
     public void setCurve(@NonNull Point2D p1, @NonNull Point2D cp1, @NonNull Point2D cp2, @NonNull Point2D p2) {
         setCurve(p1.getX(), p1.getY(), cp1.getX(), cp1.getY(),
                 cp2.getX(), cp2.getY(), p2.getX(), p2.getY());
     }
-
 
     public void setCurve(@NonNull Point2D[] pts, int offset) {
         setCurve(pts[offset].getX(), pts[offset].getY(),
@@ -370,12 +288,10 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                 pts[offset + 3].getX(), pts[offset + 3].getY());
     }
 
-
     public void setCurve(@NonNull CubicCurve2D c) {
         setCurve(c.getX1(), c.getY1(), c.getCtrlX1(), c.getCtrlY1(),
                 c.getCtrlX2(), c.getCtrlY2(), c.getX2(), c.getY2());
     }
-
 
     public static double getFlatnessSq(double x1, double y1,
                                        double ctrlx1, double ctrly1,
@@ -386,7 +302,6 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 
     }
 
-
     public static double getFlatness(double x1, double y1,
                                      double ctrlx1, double ctrly1,
                                      double ctrlx2, double ctrly2,
@@ -395,14 +310,12 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                 ctrlx2, ctrly2, x2, y2));
     }
 
-
     public static double getFlatnessSq(@NonNull double[] coords, int offset) {
         return getFlatnessSq(coords[offset], coords[offset + 1],
                 coords[offset + 2], coords[offset + 3],
                 coords[offset + 4], coords[offset + 5],
                 coords[offset + 6], coords[offset + 7]);
     }
-
 
     public static double getFlatness(@NonNull double[] coords, int offset) {
         return getFlatness(coords[offset], coords[offset + 1],
@@ -411,23 +324,19 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                 coords[offset + 6], coords[offset + 7]);
     }
 
-
     public double getFlatnessSq() {
         return getFlatnessSq(getX1(), getY1(), getCtrlX1(), getCtrlY1(),
                 getCtrlX2(), getCtrlY2(), getX2(), getY2());
     }
-
 
     public double getFlatness() {
         return getFlatness(getX1(), getY1(), getCtrlX1(), getCtrlY1(),
                 getCtrlX2(), getCtrlY2(), getX2(), getY2());
     }
 
-
     public void subdivide(CubicCurve2D left, CubicCurve2D right) {
         subdivide(this, left, right);
     }
-
 
     public static void subdivide(@NonNull CubicCurve2D src,
                                  @Nullable CubicCurve2D left,
@@ -461,7 +370,6 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
                     ctrlx2, ctrly2, x2, y2);
         }
     }
-
 
     public static void subdivide(@NonNull double[] src, int srcoff,
                                  @Nullable double[] left, int leftoff,
@@ -512,11 +420,9 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
         }
     }
 
-
     public static int solveCubic(@NonNull double[] eqn) {
         return solveCubic(eqn, eqn);
     }
-
 
     public static int solveCubic(@NonNull double[] eqn, @NonNull double[] res) {
         // From Graphics Gems:
