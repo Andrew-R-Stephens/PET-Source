@@ -1,14 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry
 
-import android.os.Build;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 /**
- * The {@code Dimension2D} class is to encapsulate a width
+ * The `Dimension2D` class is to encapsulate a width
  * and a height dimension.
- * <p>
+ *
+ *
  * This class is only the abstract superclass for all objects that
  * store a 2D dimension.
  * The actual storage representation of the sizes is left to
@@ -17,64 +16,62 @@ import androidx.annotation.RequiresApi;
  * @author Jim Graham
  * @since 1.2
  */
-public abstract class Dimension2D implements Cloneable {
-
+abstract class Dimension2D
+/**
+ * This is an abstract class that cannot be instantiated directly.
+ * Type-specific implementation subclasses are available for
+ * instantiation and provide a number of formats for storing
+ * the information necessary to satisfy the various accessor
+ * methods below.
+ *
+ * @see Dimension
+ *
+ * @since 1.2
+ */
+protected constructor() : Cloneable {
     /**
-     * This is an abstract class that cannot be instantiated directly.
-     * Type-specific implementation subclasses are available for
-     * instantiation and provide a number of formats for storing
-     * the information necessary to satisfy the various accessor
-     * methods below.
-     *
-     * @see Dimension
-     * @since 1.2
-     */
-    protected Dimension2D() {
-    }
-
-    /**
-     * Returns the width of this {@code Dimension} in double
+     * Returns the width of this `Dimension` in double
      * precision.
      *
-     * @return the width of this {@code Dimension}.
+     * @return the width of this `Dimension`.
      * @since 1.2
      */
-    public abstract double getWidth();
+    abstract val width: Double
 
     /**
-     * Returns the height of this {@code Dimension} in double
+     * Returns the height of this `Dimension` in double
      * precision.
      *
-     * @return the height of this {@code Dimension}.
+     * @return the height of this `Dimension`.
      * @since 1.2
      */
-    public abstract double getHeight();
+    abstract val height: Double
 
     /**
-     * Sets the size of this {@code Dimension} object to the
+     * Sets the size of this `Dimension` object to the
      * specified width and height.
      * This method is included for completeness, to parallel the
      *
-     * @param width  the new width for the {@code Dimension}
-     *               object
-     * @param height the new height for the {@code Dimension}
-     *               object
+     * @param width  the new width for the `Dimension`
+     * object
+     * @param height the new height for the `Dimension`
+     * object
      * @since 1.2
      */
-    public abstract void setSize(double width, double height);
+    abstract fun setSize(width: Double, height: Double)
 
     /**
-     * Sets the size of this {@code Dimension2D} object to
+     * Sets the size of this `Dimension2D` object to
      * match the specified size.
      * This method is included for completeness, to parallel the
-     * {@code getSize} method of {@code Component}.
+     * `getSize` method of `Component`.
      *
-     * @param d the new size for the {@code Dimension2D}
-     *          object
+     * @param d the new size for the `Dimension2D`
+     * object
      * @since 1.2
      */
-    public void setSize(@NonNull Dimension2D d) {
-        setSize(d.getWidth(), d.getHeight());
+    fun setSize(d: Dimension2D) {
+        setSize(d.width, d.height)
     }
 
     /**
@@ -83,16 +80,16 @@ public abstract class Dimension2D implements Cloneable {
      * @return a clone of this instance.
      * @throws OutOfMemoryError if there is not enough memory.
      * @see java.lang.Cloneable
+     *
      * @since 1.2
      */
-    @NonNull
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Object clone() {
+    public override fun clone(): Any {
         try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
+            return super.clone()
+        } catch (e: CloneNotSupportedException) {
             // this shouldn't happen, since we are Cloneable
-            throw new InternalError(e);
+            throw InternalError(e)
         }
     }
 }
