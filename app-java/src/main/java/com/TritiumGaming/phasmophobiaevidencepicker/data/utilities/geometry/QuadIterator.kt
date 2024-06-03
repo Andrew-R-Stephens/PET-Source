@@ -1,15 +1,15 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry
 
-internal class QuadIterator(var quad: QuadCurve2D, var affine: AffineTransform?) : PathIterator {
+internal class QuadIterator(
+    var quad: QuadCurve2D,
+    var affine: AffineTransform?
+) : PathIterator {
     var index: Int = 0
 
-    override fun getWindingRule(): Int {
-        return PathIterator.WIND_NON_ZERO
-    }
-
-    override fun isDone(): Boolean {
-        return (index > 1)
-    }
+    override val windingRule: Int
+        get() = PathIterator.WIND_NON_ZERO
+    override val isDone: Boolean
+        get() = (index > 1)
 
     override fun next() {
         index++

@@ -17,13 +17,10 @@ internal class RectIterator(
         }
     }
 
-    override fun getWindingRule(): Int {
-        return PathIterator.WIND_NON_ZERO
-    }
-
-    override fun isDone(): Boolean {
-        return index > 5
-    }
+    override val windingRule: Int
+        get() = PathIterator.WIND_NON_ZERO
+    override val isDone: Boolean
+        get() = index > 5
 
     override fun next() {
         index++

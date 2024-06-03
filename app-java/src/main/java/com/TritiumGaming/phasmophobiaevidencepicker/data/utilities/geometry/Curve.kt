@@ -8,7 +8,10 @@ import kotlin.math.min
 /**
  * @noinspection CanBeFinal
  */
-abstract class Curve(@JvmField var direction: Int) {
+abstract class Curve(
+    var direction: Int
+) {
+
     fun getWithDirection(direction: Int): Curve {
         return (if (this.direction == direction) this else reversedCurve!!)
     }
@@ -38,23 +41,18 @@ abstract class Curve(@JvmField var direction: Int) {
     abstract val order: Int
 
     abstract val xTop: Double
-
     abstract val yTop: Double
 
     abstract val xBot: Double
-
     abstract val yBot: Double
 
     abstract val xMin: Double
-
     abstract val xMax: Double
 
     abstract val x0: Double
-
     abstract val y0: Double
 
     abstract val x1: Double
-
     abstract val y1: Double
 
     abstract fun XforY(y: Double): Double

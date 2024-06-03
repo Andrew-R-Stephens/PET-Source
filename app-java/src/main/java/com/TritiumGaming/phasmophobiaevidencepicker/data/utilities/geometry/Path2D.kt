@@ -57,6 +57,38 @@ import kotlin.math.max
  */
 abstract class Path2D : Shape, Cloneable {
 
+    override val bounds: Rectangle
+        get() = bounds2D.bounds
+
+    @get:Synchronized
+    val currentPoint: Point2D?
+        /**
+         * Returns the coordinates most recently added to the end of the path
+         * as a [Point2D] object.
+         *
+         * @return a `Point2D` object containing the ending coordinates of
+         * the path or `null` if there are no points in the path.
+         * @since 1.6
+         */
+        get() {
+            var index = numCoords
+            if (numTypes < 1 || index < 1) {
+                return null
+            }
+            if (pointTypes[numTypes - 1] == SEG_CLOSE) {
+                loop@ for (i in numTypes - 2 downTo 1) {
+                    when (pointTypes[i]) {
+                        SEG_MOVETO -> break@loop
+                        SEG_LINETO -> index -= 2
+                        SEG_QUADTO -> index -= 4
+                        SEG_CUBICTO -> index -= 6
+                        SEG_CLOSE -> {}
+                    }
+                }
+            }
+            return getPoint(index - 2)
+        }
+
     @Transient lateinit var pointTypes: ByteArray
 
     @Transient var numTypes: Int = 0
@@ -106,19 +138,19 @@ abstract class Path2D : Shape, Cloneable {
 
     abstract fun cloneCoordsDouble(at: AffineTransform?): DoubleArray
 
-    abstract fun append(x: kotlin.Float, y: kotlin.Float)
+    abstract fun append(x: Float, y: Float)
 
-    abstract fun append(x: kotlin.Double, y: kotlin.Double)
+    abstract fun append(x: Double, y: Double)
 
     abstract fun getPoint(coordindex: Int): Point2D
 
     abstract fun needRoom(needMove: Boolean, newCoords: Int)
 
-    abstract fun pointCrossings(px: kotlin.Double, py: kotlin.Double): Int
+    abstract fun pointCrossings(px: Double, py: Double): Int
 
     abstract fun rectCrossings(
-        rxmin: kotlin.Double, rymin: kotlin.Double,
-        rxmax: kotlin.Double, rymax: kotlin.Double
+        rxmin: Double, rymin: Double,
+        rxmax: Double, rymax: Double
     ): Int
 
     /**
@@ -172,8 +204,10 @@ abstract class Path2D : Shape, Cloneable {
          *
          * @since 1.6
          */
-        @JvmOverloads
-        constructor(rule: Int = WIND_NON_ZERO, initialCapacity: Int = INIT_SIZE) : super(
+        constructor(
+            rule: Int = WIND_NON_ZERO,
+            initialCapacity: Int = INIT_SIZE
+        ) : super(
             rule,
             initialCapacity
         ) {
@@ -203,7 +237,6 @@ abstract class Path2D : Shape, Cloneable {
          * @throws NullPointerException if `s` is `null`
          * @since 1.6
          */
-        @JvmOverloads
         constructor(s: Shape, at: AffineTransform? = null) {
             if (s is Path2D) {
                 windingRule = s.windingRule
@@ -231,6 +264,42 @@ abstract class Path2D : Shape, Cloneable {
             }
         }
 
+        override val bounds: Rectangle
+            get() = TODO("Not yet implemented")
+        override val bounds2D: Rectangle2D
+            get() {
+                var x1: Float
+                var y1: Float
+                var x2: Float
+                var y2: Float
+                var i = numCoords
+                if (i > 0) {
+                    y2 = floatCoords[--i]
+                    y1 = y2
+                    x2 = floatCoords[--i]
+                    x1 = x2
+                    while (i > 0) {
+                        val y = floatCoords[--i]
+                        val x = floatCoords[--i]
+                        if (x < x1) x1 = x
+                        if (y < y1) y1 = y
+                        if (x > x2) x2 = x
+                        if (y > y2) y2 = y
+                    }
+                } else {
+                    y2 = 0.0f
+                    x2 = y2
+                    y1 = x2
+                    x1 = y1
+                }
+                return Rectangle2D.Rectangle2DFloat(
+                    x1,
+                    y1,
+                    x2 - x1,
+                    y2 - y1
+                )
+            }
+
         override fun cloneCoordsFloat(at: AffineTransform?): FloatArray {
             // trim arrays:
             val ret: FloatArray
@@ -256,12 +325,12 @@ abstract class Path2D : Shape, Cloneable {
             return ret
         }
 
-        override fun append(x: kotlin.Float, y: kotlin.Float) {
+        override fun append(x: Float, y: Float) {
             floatCoords[numCoords++] = x
             floatCoords[numCoords++] = y
         }
 
-        override fun append(x: kotlin.Double, y: kotlin.Double) {
+        override fun append(x: Double, y: Double) {
             floatCoords[numCoords++] = x.toFloat()
             floatCoords[numCoords++] = y.toFloat()
         }
@@ -294,7 +363,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        override fun moveTo(x: kotlin.Double, y: kotlin.Double) {
+        override fun moveTo(x: Double, y: Double) {
             if (numTypes > 0 && pointTypes[numTypes - 1] == SEG_MOVETO) {
                 floatCoords[numCoords - 2] = x.toFloat()
                 floatCoords[numCoords - 1] = y.toFloat()
@@ -322,7 +391,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        fun moveTo(x: kotlin.Float, y: kotlin.Float) {
+        fun moveTo(x: Float, y: Float) {
             if (numTypes > 0 && pointTypes[numTypes - 1] == SEG_MOVETO) {
                 floatCoords[numCoords - 2] = x
                 floatCoords[numCoords - 1] = y
@@ -340,7 +409,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        override fun lineTo(x: kotlin.Double, y: kotlin.Double) {
+        override fun lineTo(x: Double, y: Double) {
             needRoom(true, 2)
             pointTypes[numTypes++] = SEG_LINETO
             floatCoords[numCoords++] = x.toFloat()
@@ -364,7 +433,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        fun lineTo(x: kotlin.Float, y: kotlin.Float) {
+        fun lineTo(x: Float, y: Float) {
             needRoom(true, 2)
             pointTypes[numTypes++] = SEG_LINETO
             floatCoords[numCoords++] = x
@@ -378,8 +447,8 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         override fun quadTo(
-            x1: kotlin.Double, y1: kotlin.Double,
-            x2: kotlin.Double, y2: kotlin.Double
+            x1: Double, y1: Double,
+            x2: Double, y2: Double
         ) {
             needRoom(true, 4)
             pointTypes[numTypes++] = SEG_QUADTO
@@ -412,8 +481,8 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         fun quadTo(
-            x1: kotlin.Float, y1: kotlin.Float,
-            x2: kotlin.Float, y2: kotlin.Float
+            x1: Float, y1: Float,
+            x2: Float, y2: Float
         ) {
             needRoom(true, 4)
             pointTypes[numTypes++] = SEG_QUADTO
@@ -430,9 +499,9 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         override fun curveTo(
-            x1: kotlin.Double, y1: kotlin.Double,
-            x2: kotlin.Double, y2: kotlin.Double,
-            x3: kotlin.Double, y3: kotlin.Double
+            x1: Double, y1: Double,
+            x2: Double, y2: Double,
+            x3: Double, y3: Double
         ) {
             needRoom(true, 6)
             pointTypes[numTypes++] = SEG_CUBICTO
@@ -469,9 +538,9 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         fun curveTo(
-            x1: kotlin.Float, y1: kotlin.Float,
-            x2: kotlin.Float, y2: kotlin.Float,
-            x3: kotlin.Float, y3: kotlin.Float
+            x1: Float, y1: Float,
+            x2: Float, y2: Float,
+            x3: Float, y3: Float
         ) {
             needRoom(true, 6)
             pointTypes[numTypes++] = SEG_CUBICTO
@@ -483,16 +552,16 @@ abstract class Path2D : Shape, Cloneable {
             floatCoords[numCoords++] = y3
         }
 
-        override fun pointCrossings(px: kotlin.Double, py: kotlin.Double): Int {
+        override fun pointCrossings(px: Double, py: Double): Int {
             if (numTypes == 0) {
                 return 0
             }
-            var movx: kotlin.Double
-            var movy: kotlin.Double
-            var curx: kotlin.Double
-            var cury: kotlin.Double
-            var endx: kotlin.Double
-            var endy: kotlin.Double
+            var movx: Double
+            var movy: Double
+            var curx: Double
+            var cury: Double
+            var endx: Double
+            var endy: Double
             val coords = floatCoords
             movx = coords[0].toDouble()
             curx = movx
@@ -591,19 +660,19 @@ abstract class Path2D : Shape, Cloneable {
         }
 
         override fun rectCrossings(
-            rxmin: kotlin.Double, rymin: kotlin.Double,
-            rxmax: kotlin.Double, rymax: kotlin.Double
+            rxmin: Double, rymin: Double,
+            rxmax: Double, rymax: Double
         ): Int {
             if (numTypes == 0) {
                 return 0
             }
             val coords = floatCoords
-            var curx: kotlin.Double
-            var cury: kotlin.Double
-            var movx: kotlin.Double
-            var movy: kotlin.Double
-            var endx: kotlin.Double
-            var endy: kotlin.Double
+            var curx: Double
+            var cury: Double
+            var movx: Double
+            var movy: Double
+            var endx: Double
+            var endy: Double
             movx = coords[0].toDouble()
             curx = movx
             movy = coords[1].toDouble()
@@ -770,45 +839,6 @@ abstract class Path2D : Shape, Cloneable {
          */
         override fun transform(at: AffineTransform) {
             at.transform(floatCoords, 0, floatCoords, 0, numCoords / 2)
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.6
-         */
-        @Synchronized
-        override fun getBounds2D(): Rectangle2D {
-            var x1: kotlin.Float
-            var y1: kotlin.Float
-            var x2: kotlin.Float
-            var y2: kotlin.Float
-            var i = numCoords
-            if (i > 0) {
-                y2 = floatCoords[--i]
-                y1 = y2
-                x2 = floatCoords[--i]
-                x1 = x2
-                while (i > 0) {
-                    val y = floatCoords[--i]
-                    val x = floatCoords[--i]
-                    if (x < x1) x1 = x
-                    if (y < y1) y1 = y
-                    if (x > x2) x2 = x
-                    if (y > y2) y2 = y
-                }
-            } else {
-                y2 = 0.0f
-                x2 = y2
-                y1 = x2
-                x1 = y1
-            }
-            return Rectangle2D.Rectangle2DFloat(
-                x1,
-                y1,
-                x2 - x1,
-                y2 - y1
-            )
         }
 
         /**
@@ -1018,7 +1048,11 @@ abstract class Path2D : Shape, Cloneable {
             super.readObject(s, false)
         }
 
-        internal class CopyIterator(p2df: Path2DFloat) : Iterator(p2df) {
+        internal class CopyIterator(
+            p2df: Path2DFloat,
+            override val windingRule: Int = 0,
+            override var isDone: Boolean = false
+        ) : Iterator(p2df) {
             var floatCoords: FloatArray = p2df.floatCoords
 
             override fun currentSegment(coords: FloatArray): Int {
@@ -1045,7 +1079,12 @@ abstract class Path2D : Shape, Cloneable {
             }
         }
 
-        internal class TxIterator(p2df: Path2DFloat, var affine: AffineTransform) : Iterator(p2df) {
+        internal class TxIterator(
+            p2df: Path2DFloat,
+            var affine: AffineTransform,
+            override val windingRule: Int = 0,
+            override var isDone: Boolean = false
+        ) : Iterator(p2df) {
             var floatCoords: FloatArray = p2df.floatCoords
 
             override fun currentSegment(coords: FloatArray): Int {
@@ -1200,7 +1239,6 @@ abstract class Path2D : Shape, Cloneable {
          * @throws NullPointerException if `s` is `null`
          * @since 1.6
          */
-        @JvmOverloads
         constructor(s: Shape, at: AffineTransform? = null) {
             if (s is Path2D) {
                 windingRule = s.windingRule
@@ -1253,12 +1291,12 @@ abstract class Path2D : Shape, Cloneable {
             return ret
         }
 
-        override fun append(x: kotlin.Float, y: kotlin.Float) {
+        override fun append(x: Float, y: Float) {
             doubleCoords[numCoords++] = x.toDouble()
             doubleCoords[numCoords++] = y.toDouble()
         }
 
-        override fun append(x: kotlin.Double, y: kotlin.Double) {
+        override fun append(x: Double, y: Double) {
             doubleCoords[numCoords++] = x
             doubleCoords[numCoords++] = y
         }
@@ -1291,7 +1329,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        override fun moveTo(x: kotlin.Double, y: kotlin.Double) {
+        override fun moveTo(x: Double, y: Double) {
             if (numTypes > 0 && pointTypes[numTypes - 1] == SEG_MOVETO) {
                 doubleCoords[numCoords - 2] = x
                 doubleCoords[numCoords - 1] = y
@@ -1309,7 +1347,7 @@ abstract class Path2D : Shape, Cloneable {
          * @since 1.6
          */
         @Synchronized
-        override fun lineTo(x: kotlin.Double, y: kotlin.Double) {
+        override fun lineTo(x: Double, y: Double) {
             needRoom(true, 2)
             pointTypes[numTypes++] = SEG_LINETO
             doubleCoords[numCoords++] = x
@@ -1323,8 +1361,8 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         override fun quadTo(
-            x1: kotlin.Double, y1: kotlin.Double,
-            x2: kotlin.Double, y2: kotlin.Double
+            x1: Double, y1: Double,
+            x2: Double, y2: Double
         ) {
             needRoom(true, 4)
             pointTypes[numTypes++] = SEG_QUADTO
@@ -1341,9 +1379,9 @@ abstract class Path2D : Shape, Cloneable {
          */
         @Synchronized
         override fun curveTo(
-            x1: kotlin.Double, y1: kotlin.Double,
-            x2: kotlin.Double, y2: kotlin.Double,
-            x3: kotlin.Double, y3: kotlin.Double
+            x1: Double, y1: Double,
+            x2: Double, y2: Double,
+            x3: Double, y3: Double
         ) {
             needRoom(true, 6)
             pointTypes[numTypes++] = SEG_CUBICTO
@@ -1355,16 +1393,16 @@ abstract class Path2D : Shape, Cloneable {
             doubleCoords[numCoords++] = y3
         }
 
-        override fun pointCrossings(px: kotlin.Double, py: kotlin.Double): Int {
+        override fun pointCrossings(px: Double, py: Double): Int {
             if (numTypes == 0) {
                 return 0
             }
-            var movx: kotlin.Double
-            var movy: kotlin.Double
-            var curx: kotlin.Double
-            var cury: kotlin.Double
-            var endx: kotlin.Double
-            var endy: kotlin.Double
+            var movx: Double
+            var movy: Double
+            var curx: Double
+            var cury: Double
+            var endx: Double
+            var endy: Double
             val coords = doubleCoords
             movx = coords[0]
             curx = movx
@@ -1461,19 +1499,19 @@ abstract class Path2D : Shape, Cloneable {
         }
 
         override fun rectCrossings(
-            rxmin: kotlin.Double, rymin: kotlin.Double,
-            rxmax: kotlin.Double, rymax: kotlin.Double
+            rxmin: Double, rymin: Double,
+            rxmax: Double, rymax: Double
         ): Int {
             if (numTypes == 0) {
                 return 0
             }
             val coords = doubleCoords
-            var curx: kotlin.Double
-            var cury: kotlin.Double
-            var movx: kotlin.Double
-            var movy: kotlin.Double
-            var endx: kotlin.Double
-            var endy: kotlin.Double
+            var curx: Double
+            var cury: Double
+            var movx: Double
+            var movy: Double
+            var endx: Double
+            var endy: Double
             movx = coords[0]
             curx = movx
             movy = coords[1]
@@ -1643,44 +1681,39 @@ abstract class Path2D : Shape, Cloneable {
             at.transform(doubleCoords, 0, doubleCoords, 0, numCoords / 2)
         }
 
-        /**
-         * {@inheritDoc}
-         *
-         * @since 1.6
-         */
-        @Synchronized
-        override fun getBounds2D(): Rectangle2D {
-            var x1: kotlin.Double
-            var y1: kotlin.Double
-            var x2: kotlin.Double
-            var y2: kotlin.Double
-            var i = numCoords
-            if (i > 0) {
-                y2 = doubleCoords[--i]
-                y1 = y2
-                x2 = doubleCoords[--i]
-                x1 = x2
-                while (i > 0) {
-                    val y = doubleCoords[--i]
-                    val x = doubleCoords[--i]
-                    if (x < x1) x1 = x
-                    if (y < y1) y1 = y
-                    if (x > x2) x2 = x
-                    if (y > y2) y2 = y
+        override val bounds2D: Rectangle2D
+        @Synchronized get() {
+                var x1: Double
+                var y1: Double
+                var x2: Double
+                var y2: Double
+                var i = numCoords
+                if (i > 0) {
+                    y2 = doubleCoords[--i]
+                    y1 = y2
+                    x2 = doubleCoords[--i]
+                    x1 = x2
+                    while (i > 0) {
+                        val y = doubleCoords[--i]
+                        val x = doubleCoords[--i]
+                        if (x < x1) x1 = x
+                        if (y < y1) y1 = y
+                        if (x > x2) x2 = x
+                        if (y > y2) y2 = y
+                    }
+                } else {
+                    y2 = 0.0
+                    x2 = y2
+                    y1 = x2
+                    x1 = y1
                 }
-            } else {
-                y2 = 0.0
-                x2 = y2
-                y1 = x2
-                x1 = y1
+                return Rectangle2D.Rectangle2DDouble(
+                    x1,
+                    y1,
+                    x2 - x1,
+                    y2 - y1
+                )
             }
-            return Rectangle2D.Rectangle2DDouble(
-                x1,
-                y1,
-                x2 - x1,
-                y2 - y1
-            )
-        }
 
         /**
          * {@inheritDoc}
@@ -1886,7 +1919,11 @@ abstract class Path2D : Shape, Cloneable {
             super.readObject(s, true)
         }
 
-        internal class CopyIterator(p2dd: Path2DDouble) : Iterator(p2dd) {
+        internal class CopyIterator(
+            p2dd: Path2DDouble,
+            override val windingRule: Int = 0,
+            override var isDone: Boolean = false
+        ) : Iterator(p2dd) {
             var doubleCoords: DoubleArray = p2dd.doubleCoords
 
             override fun currentSegment(coords: FloatArray): Int {
@@ -1913,7 +1950,12 @@ abstract class Path2D : Shape, Cloneable {
             }
         }
 
-        internal class TxIterator(p2dd: Path2DDouble, var affine: AffineTransform) : Iterator(p2dd) {
+        internal class TxIterator(
+            p2dd: Path2DDouble,
+            var affine: AffineTransform,
+            override val windingRule: Int = 0,
+            override var isDone: Boolean = false
+        ) : Iterator(p2dd) {
             var doubleCoords: DoubleArray = p2dd.doubleCoords
 
             override fun currentSegment(coords: FloatArray): Int {
@@ -1994,7 +2036,7 @@ abstract class Path2D : Shape, Cloneable {
      * @param y the specified Y coordinate
      * @since 1.6
      */
-    abstract fun moveTo(x: kotlin.Double, y: kotlin.Double)
+    abstract fun moveTo(x: Double, y: Double)
 
     /**
      * Adds a point to the path by drawing a straight line from the
@@ -2005,7 +2047,7 @@ abstract class Path2D : Shape, Cloneable {
      * @param y the specified Y coordinate
      * @since 1.6
      */
-    abstract fun lineTo(x: kotlin.Double, y: kotlin.Double)
+    abstract fun lineTo(x: Double, y: Double)
 
     /**
      * Adds a curved segment, defined by two new points, to the path by
@@ -2022,8 +2064,8 @@ abstract class Path2D : Shape, Cloneable {
      * @since 1.6
      */
     abstract fun quadTo(
-        x1: kotlin.Double, y1: kotlin.Double,
-        x2: kotlin.Double, y2: kotlin.Double
+        x1: Double, y1: Double,
+        x2: Double, y2: Double
     )
 
     /**
@@ -2043,9 +2085,9 @@ abstract class Path2D : Shape, Cloneable {
      * @since 1.6
      */
     abstract fun curveTo(
-        x1: kotlin.Double, y1: kotlin.Double,
-        x2: kotlin.Double, y2: kotlin.Double,
-        x3: kotlin.Double, y3: kotlin.Double
+        x1: Double, y1: Double,
+        x2: Double, y2: Double,
+        x3: Double, y3: Double
     )
 
     /**
@@ -2086,7 +2128,7 @@ abstract class Path2D : Shape, Cloneable {
      * @since 1.6
      */
     fun append(s: Shape, connect: Boolean) {
-        append(s.getPathIterator(null), connect)
+        append(s.getPathIterator(AffineTransform()), connect)
     }
 
     /**
@@ -2114,36 +2156,6 @@ abstract class Path2D : Shape, Cloneable {
      */
     abstract fun append(pi: PathIterator, connect: Boolean)
 
-
-
-    @get:Synchronized
-    val currentPoint: Point2D?
-        /**
-         * Returns the coordinates most recently added to the end of the path
-         * as a [Point2D] object.
-         *
-         * @return a `Point2D` object containing the ending coordinates of
-         * the path or `null` if there are no points in the path.
-         * @since 1.6
-         */
-        get() {
-            var index = numCoords
-            if (numTypes < 1 || index < 1) {
-                return null
-            }
-            if (pointTypes[numTypes - 1] == SEG_CLOSE) {
-                loop@ for (i in numTypes - 2 downTo 1) {
-                    when (pointTypes[i]) {
-                        SEG_MOVETO -> break@loop
-                        SEG_LINETO -> index -= 2
-                        SEG_QUADTO -> index -= 4
-                        SEG_CUBICTO -> index -= 6
-                        SEG_CLOSE -> {}
-                    }
-                }
-            }
-            return getPoint(index - 2)
-        }
 
     /**
      * Resets the path to empty.  The append position is set back to the
@@ -2204,16 +2216,7 @@ abstract class Path2D : Shape, Cloneable {
      *
      * @since 1.6
      */
-    override fun getBounds(): Rectangle {
-        return bounds2D.bounds
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @since 1.6
-     */
-    override fun contains(x: kotlin.Double, y: kotlin.Double): Boolean {
+    override fun contains(x: Double, y: Double): Boolean {
         if (x * 0.0 + y * 0.0 == 0.0) {
             /* N * 0.0 is 0.0 only if N is finite.
              * Here we know that both x and y are finite.
@@ -2263,10 +2266,10 @@ abstract class Path2D : Shape, Cloneable {
      * @since 1.6
      */
     override fun contains(
-        x: kotlin.Double,
-        y: kotlin.Double,
-        w: kotlin.Double,
-        h: kotlin.Double
+        x: Double,
+        y: Double,
+        w: Double,
+        h: Double
     ): Boolean {
         if (java.lang.Double.isNaN(x + w) || java.lang.Double.isNaN(y + h)) {
             /* [xy]+[wh] is NaN if any of those values are NaN,
@@ -2332,10 +2335,10 @@ abstract class Path2D : Shape, Cloneable {
      * @since 1.6
      */
     override fun intersects(
-        x: kotlin.Double,
-        y: kotlin.Double,
-        w: kotlin.Double,
-        h: kotlin.Double
+        x: Double,
+        y: Double,
+        w: Double,
+        h: Double
     ): Boolean {
         if (java.lang.Double.isNaN(x + w) || java.lang.Double.isNaN(y + h)) {
             /* [xy]+[wh] is NaN if any of those values are NaN,
@@ -2394,7 +2397,7 @@ abstract class Path2D : Shape, Cloneable {
      */
     override fun getPathIterator(
         at: AffineTransform,
-        flatness: kotlin.Double
+        flatness: Double
     ): PathIterator {
         return FlatteningPathIterator(getPathIterator(at), flatness)
     }
@@ -2623,17 +2626,16 @@ abstract class Path2D : Shape, Cloneable {
         }
     }
 
-    internal abstract class Iterator(var path: Path2D) : PathIterator {
+    internal abstract class Iterator(
+        var path: Path2D
+    ) : PathIterator {
         var typeIdx: Int = 0
         var pointIdx: Int = 0
 
-        override fun getWindingRule(): Int {
-            return path.windingRule
-        }
+        override val windingRule
+            get() = path.windingRule
 
-        override fun isDone(): Boolean {
-            return (typeIdx >= path.numTypes)
-        }
+        override var isDone = (typeIdx >= path.numTypes)
 
         override fun next() {
             val type = path.pointTypes[typeIdx++].toInt()
@@ -2646,24 +2648,14 @@ abstract class Path2D : Shape, Cloneable {
     }
 
     companion object {
-        /**
-         * An even-odd winding rule for determining the interior of
+        /** An even-odd winding rule for determining the interior of
          * a path.
-         *
-         * @see PathIterator.WIND_EVEN_ODD
-         *
-         * @since 1.6
-         */
+         * @see PathIterator.WIND_EVEN_ODD */
         const val WIND_EVEN_ODD: Int = PathIterator.WIND_EVEN_ODD
 
-        /**
-         * A non-zero winding rule for determining the interior of a
+        /** A non-zero winding rule for determining the interior of a
          * path.
-         *
-         * @see PathIterator.WIND_NON_ZERO
-         *
-         * @since 1.6
-         */
+         * @see PathIterator.WIND_NON_ZERO */
         const val WIND_NON_ZERO: Int = PathIterator.WIND_NON_ZERO
 
         // For code simplicity, copy these constants to our namespace
@@ -2732,7 +2724,7 @@ abstract class Path2D : Shape, Cloneable {
          * specified `PathIterator`; `false` otherwise
          * @since 1.6
          */
-        fun contains(pi: PathIterator, x: kotlin.Double, y: kotlin.Double): Boolean {
+        fun contains(pi: PathIterator, x: Double, y: Double): Boolean {
             if (x * 0.0 + y * 0.0 == 0.0) {
                 /* N * 0.0 is 0.0 only if N is finite.
              * Here we know that both x and y are finite.
@@ -2804,7 +2796,7 @@ abstract class Path2D : Shape, Cloneable {
          */
         fun contains(
             pi: PathIterator,
-            x: kotlin.Double, y: kotlin.Double, w: kotlin.Double, h: kotlin.Double
+            x: Double, y: Double, w: Double, h: Double
         ): Boolean {
             if (java.lang.Double.isNaN(x + w) || java.lang.Double.isNaN(y + h)) {
                 /* [xy]+[wh] is NaN if any of those values are NaN,
@@ -2896,7 +2888,7 @@ abstract class Path2D : Shape, Cloneable {
          */
         fun intersects(
             pi: PathIterator,
-            x: kotlin.Double, y: kotlin.Double, w: kotlin.Double, h: kotlin.Double
+            x: Double, y: Double, w: Double, h: Double
         ): Boolean {
             if (java.lang.Double.isNaN(x + w) || java.lang.Double.isNaN(y + h)) {
                 /* [xy]+[wh] is NaN if any of those values are NaN,

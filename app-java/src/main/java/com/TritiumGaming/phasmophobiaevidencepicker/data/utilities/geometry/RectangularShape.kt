@@ -301,15 +301,6 @@ abstract class RectangularShape protected constructor() : Shape, Cloneable {
      *
      * @since 1.2
      */
-    override fun intersects(r: Rectangle2D): Boolean {
-        return intersects(r.x, r.y, r.width, r.height)
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @since 1.2
-     */
     override fun contains(r: Rectangle2D): Boolean {
         return contains(r.x, r.y, r.width, r.height)
     }
@@ -319,23 +310,31 @@ abstract class RectangularShape protected constructor() : Shape, Cloneable {
      *
      * @since 1.2
      */
-    override fun getBounds(): Rectangle {
-        val width = width
-        val height = height
-        if (width < 0 || height < 0) {
-            return Rectangle()
-        }
-        val x = x
-        val y = y
-        val x1 = floor(x)
-        val y1 = floor(y)
-        val x2 = ceil(x + width)
-        val y2 = ceil(y + height)
-        return Rectangle(
-            x1.toInt(), y1.toInt(),
-            (x2 - x1).toInt(), (y2 - y1).toInt()
-        )
+    override fun intersects(r: Rectangle2D): Boolean {
+        return intersects(r.x, r.y, r.width, r.height)
     }
+
+    override val bounds: Rectangle
+        get() {
+            val width = width
+            val height = height
+            if (width < 0 || height < 0) {
+                return Rectangle()
+            }
+            val x = x
+            val y = y
+            val x1 = floor(x)
+            val y1 = floor(y)
+            val x2 = ceil(x + width)
+            val y2 = ceil(y + height)
+            return Rectangle(
+                x1.toInt().toDouble(), y1.toInt().toDouble(),
+                (x2 - x1).toInt().toDouble(), (y2 - y1).toInt().toDouble()
+            )
+        }
+
+    override val bounds2D: Rectangle2D
+        get() = Rectangle2D.Rectangle2DDouble(0.0, 0.0, 0.0, 0.0)
 
     /**
      * Returns an iterator object that iterates along the
