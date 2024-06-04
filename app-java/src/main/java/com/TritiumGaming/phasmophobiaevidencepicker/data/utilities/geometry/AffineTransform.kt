@@ -130,8 +130,7 @@ import kotlin.math.sqrt
  * @since 1.2
  */
 class AffineTransform : Cloneable, Serializable {
-    /**
-     * Returns the `m00` element of the 3x3 affine transformation matrix.
+    /** Returns the `m00` element of the 3x3 affine transformation matrix.
      * This matrix factor determines how input X coordinates will affect output
      * X coordinates and is one element of the scale of the transform.
      * To measure the full amount by which X coordinates are stretched or
@@ -140,56 +139,30 @@ class AffineTransform : Cloneable, Serializable {
      * Point2D p = new Point2D.Double(1, 0);
      * p = tx.deltaTransform(p, p);
      * double scaleX = p.distance(0, 0);
-    </pre> *
-     *
+    </pre>
      * @return a double value that is `m00` element of the
      * 3x3 affine transformation matrix.
-     * @see .getMatrix
-     *
-     * @since 1.2
-     */
-    /**
-     * The X coordinate scaling element of the 3x3
-     * affine transformation matrix.
-     *
-     * @serial
-     */
+     * @see .getMatrix */
+    /** The X coordinate scaling element of the 3x3
+     * affine transformation matrix. */
     var scaleX: Double
 
-    /**
-     * Returns the Y coordinate shearing element (m10) of the 3x3
+    /** Returns the Y coordinate shearing element (m10) of the 3x3
      * affine transformation matrix.
-     *
      * @return a double value that is the Y coordinate of the shearing
      * element of the affine transformation matrix.
-     * @see .getMatrix
-     *
-     * @since 1.2
-     */
-    /**
-     * The Y coordinate shearing element of the 3x3
-     * affine transformation matrix.
-     *
-     * @serial
-     */
+     * @see .getMatrix */
+    /** The Y coordinate shearing element of the 3x3
+     * affine transformation matrix. */
     var shearY: Double = 0.0
 
-    /**
-     * Returns the X coordinate shearing element (m01) of the 3x3
+    /** Returns the X coordinate shearing element (m01) of the 3x3
      * affine transformation matrix.
-     *
      * @return a double value that is the X coordinate of the shearing
      * element of the affine transformation matrix.
-     * @see .getMatrix
-     *
-     * @since 1.2
-     */
-    /**
-     * The X coordinate shearing element of the 3x3
-     * affine transformation matrix.
-     *
-     * @serial
-     */
+     * @see .getMatrix */
+    /** The X coordinate shearing element of the 3x3
+     * affine transformation matrix. */
     var shearX: Double = 0.0
 
     /**
@@ -269,29 +242,17 @@ class AffineTransform : Cloneable, Serializable {
     @Transient
     var state: Int = 0
 
-    /**
-     * This field caches the current transformation type of the matrix.
-     *
+    /** This field caches the current transformation type of the matrix.
      * @see .TYPE_IDENTITY
-     *
      * @see .TYPE_TRANSLATION
-     *
      * @see .TYPE_UNIFORM_SCALE
-     *
      * @see .TYPE_GENERAL_SCALE
-     *
      * @see .TYPE_FLIP
-     *
      * @see .TYPE_QUADRANT_ROTATION
-     *
      * @see .TYPE_GENERAL_ROTATION
-     *
      * @see .TYPE_GENERAL_TRANSFORM
-     *
      * @see .TYPE_UNKNOWN
-     *
-     * @see .getType
-     */
+     * @see .getType */
     @Transient
     private var type = 0
 
@@ -311,12 +272,8 @@ class AffineTransform : Cloneable, Serializable {
         this.type = TYPE_UNKNOWN
     }
 
-    /**
-     * Constructs a new `AffineTransform` representing the
-     * Identity transformation.
-     *
-     * @since 1.2
-     */
+    /** Constructs a new `AffineTransform` representing the
+     * Identity transformation. */
     constructor() {
         scaleY = 1.0
         scaleX = scaleY
@@ -325,13 +282,9 @@ class AffineTransform : Cloneable, Serializable {
         // type = TYPE_IDENTITY;                /* Not needed. */
     }
 
-    /**
-     * Constructs a new `AffineTransform` that is a copy of
+    /** Constructs a new `AffineTransform` that is a copy of
      * the specified `AffineTransform` object.
-     *
-     * @param Tx the `AffineTransform` object to copy
-     * @since 1.2
-     */
+     * @param Tx the `AffineTransform` object to copy */
     constructor(Tx: AffineTransform) {
         this.scaleX = Tx.scaleX
         this.shearY = Tx.shearY
@@ -343,19 +296,15 @@ class AffineTransform : Cloneable, Serializable {
         this.type = Tx.type
     }
 
-    /**
-     * Constructs a new `AffineTransform` from 6 floating point
+    /** Constructs a new `AffineTransform` from 6 floating point
      * values representing the 6 specifiable entries of the 3x3
      * transformation matrix.
-     *
      * @param m00 the X coordinate scaling element of the 3x3 matrix
      * @param m10 the Y coordinate shearing element of the 3x3 matrix
      * @param m01 the X coordinate shearing element of the 3x3 matrix
      * @param m11 the Y coordinate scaling element of the 3x3 matrix
      * @param m02 the X coordinate translation element of the 3x3 matrix
-     * @param m12 the Y coordinate translation element of the 3x3 matrix
-     * @since 1.2
-     */
+     * @param m12 the Y coordinate translation element of the 3x3 matrix */
     constructor(
         m00: Float, m10: Float,
         m01: Float, m11: Float,
@@ -370,20 +319,16 @@ class AffineTransform : Cloneable, Serializable {
         updateState()
     }
 
-    /**
-     * Constructs a new `AffineTransform` from an array of
+    /** Constructs a new `AffineTransform` from an array of
      * floating point values representing either the 4 non-translation
      * entries or the 6 specifiable entries of the 3x3 transformation
      * matrix.  The values are retrieved from the array as
      * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;[m02&nbsp;m12]}.
-     *
      * @param flatmatrix the float array containing the values to be set
      * in the new `AffineTransform` object. The length of the
      * array is assumed to be at least 4. If the length of the array is
      * less than 6, only the first 4 values are taken. If the length of
-     * the array is greater than 6, the first 6 values are taken.
-     * @since 1.2
-     */
+     * the array is greater than 6, the first 6 values are taken. */
     constructor(flatmatrix: FloatArray) {
         scaleX = flatmatrix[0].toDouble()
         shearY = flatmatrix[1].toDouble()
@@ -396,19 +341,15 @@ class AffineTransform : Cloneable, Serializable {
         updateState()
     }
 
-    /**
-     * Constructs a new `AffineTransform` from 6 double
+    /** Constructs a new `AffineTransform` from 6 double
      * precision values representing the 6 specifiable entries of the 3x3
      * transformation matrix.
-     *
      * @param m00 the X coordinate scaling element of the 3x3 matrix
      * @param m10 the Y coordinate shearing element of the 3x3 matrix
      * @param m01 the X coordinate shearing element of the 3x3 matrix
      * @param m11 the Y coordinate scaling element of the 3x3 matrix
      * @param m02 the X coordinate translation element of the 3x3 matrix
-     * @param m12 the Y coordinate translation element of the 3x3 matrix
-     * @since 1.2
-     */
+     * @param m12 the Y coordinate translation element of the 3x3 matrix */
     constructor(
         m00: Double, m10: Double,
         m01: Double, m11: Double,
@@ -423,20 +364,16 @@ class AffineTransform : Cloneable, Serializable {
         updateState()
     }
 
-    /**
-     * Constructs a new `AffineTransform` from an array of
+    /** Constructs a new `AffineTransform` from an array of
      * double precision values representing either the 4 non-translation
      * entries or the 6 specifiable entries of the 3x3 transformation
      * matrix. The values are retrieved from the array as
      * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;[m02&nbsp;m12]}.
-     *
      * @param flatmatrix the double array containing the values to be set
      * in the new `AffineTransform` object. The length of the
      * array is assumed to be at least 4. If the length of the array is
      * less than 6, only the first 4 values are taken. If the length of
-     * the array is greater than 6, the first 6 values are taken.
-     * @since 1.2
-     */
+     * the array is greater than 6, the first 6 values are taken. */
     constructor(flatmatrix: DoubleArray) {
         scaleX = flatmatrix[0]
         shearY = flatmatrix[1]
@@ -449,38 +386,21 @@ class AffineTransform : Cloneable, Serializable {
         updateState()
     }
 
-    /**
-     * Retrieves the flag bits describing the conversion properties of
-     * this transform.
+    /** Retrieves the flag bits describing the conversion properties of this transform.
      * The return value is either one of the constants TYPE_IDENTITY
-     * or TYPE_GENERAL_TRANSFORM, or a combination of the
-     * appropriate flag bits.
-     * A valid combination of flag bits is an exclusive OR operation
-     * that can combine
-     * the TYPE_TRANSLATION flag bit
-     * in addition to either of the
-     * TYPE_UNIFORM_SCALE or TYPE_GENERAL_SCALE flag bits
-     * as well as either of the
+     * or TYPE_GENERAL_TRANSFORM, or a combination of the appropriate flag bits.
+     * A valid combination of flag bits is an exclusive OR operation that can combine
+     * the TYPE_TRANSLATION flag bit in addition to either of the
+     * TYPE_UNIFORM_SCALE or TYPE_GENERAL_SCALE flag bits as well as either of the
      * TYPE_QUADRANT_ROTATION or TYPE_GENERAL_ROTATION flag bits.
-     *
-     * @return the OR combination of any of the indicated flags that
-     * apply to this transform
+     * @return the OR combination of any of the indicated flags that apply to this transform
      * @see .TYPE_IDENTITY
-     *
      * @see .TYPE_TRANSLATION
-     *
      * @see .TYPE_UNIFORM_SCALE
-     *
      * @see .TYPE_GENERAL_SCALE
-     *
      * @see .TYPE_QUADRANT_ROTATION
-     *
      * @see .TYPE_GENERAL_ROTATION
-     *
-     * @see .TYPE_GENERAL_TRANSFORM
-     *
-     * @since 1.2
-     */
+     * @see .TYPE_GENERAL_TRANSFORM */
     fun getType(): Int {
         if (type == TYPE_UNKNOWN) {
             calculateType()
@@ -488,12 +408,8 @@ class AffineTransform : Cloneable, Serializable {
         return type
     }
 
-    /**
-     * This is the utility function to calculate the flag bits when
-     * they have not been cached.
-     *
-     * @see .getType
-     */
+    /** This is the utility function to calculate the flag bits when
+     * they have not been cached. */
     private fun calculateType() {
         var ret = TYPE_IDENTITY
         val sgn0: Boolean

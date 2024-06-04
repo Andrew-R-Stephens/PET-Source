@@ -9,7 +9,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 /**
  * Evidence enums
  */
-public class Evidence {
+public class EvidenceModel {
 
     @Nullable
     private String name = null;
@@ -21,7 +21,7 @@ public class Evidence {
         NEGATIVE, NEUTRAL, POSITIVE
     }
 
-    public Evidence() {
+    public EvidenceModel() {
         setName("Null");
         setIcon(R.drawable.icon_ev_dots);
     }

@@ -1,8 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels
 
 import android.content.Context
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceList
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 
 /**
@@ -19,10 +19,10 @@ class InvestigationModel(
         Companion.ghostList.init(context, this)
     }
 
-    val ghostList: GhostList
+    val ghostList: GhostListModel
         get() = Companion.ghostList
 
-    val evidenceList: EvidenceList
+    val evidenceList: EvidenceListModel
         get() = Companion.evidenceList
 
     /**
@@ -35,8 +35,10 @@ class InvestigationModel(
 
     companion object {
         @JvmField
-        var ghostList: GhostList = GhostList()
+        var ghostList: GhostListModel =
+            GhostListModel()
         @JvmField
-        var evidenceList: EvidenceList = EvidenceList()
+        var evidenceList: EvidenceListModel =
+            EvidenceListModel()
     }
 }

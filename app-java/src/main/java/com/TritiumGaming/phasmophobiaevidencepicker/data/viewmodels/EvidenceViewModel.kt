@@ -10,8 +10,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.GhostOrderModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostList
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -94,7 +94,7 @@ class EvidenceViewModel : ViewModel() {
         _radioButtonsChecked.value.clear()
 
         investigationData?.evidenceList?.list?.forEach { _ ->
-            _radioButtonsChecked.value.add(Evidence.Ruling.NEUTRAL.ordinal)
+            _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
     }
 
@@ -111,7 +111,7 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun createRejectionPile() {
-        rejectionPile = BooleanArray(GhostList.getCount())
+        rejectionPile = BooleanArray(GhostListModel.getCount())
     }
 
     fun swapStatusInRejectedPile(index: Int): Boolean {
@@ -121,7 +121,7 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun updateRejectionPile() {
-        rejectionPile = BooleanArray(GhostList.getCount())
+        rejectionPile = BooleanArray(GhostListModel.getCount())
         for (i in rejectionPile!!.indices) {
             rejectionPile!![i] = investigationData!!.ghostList.getAt(i).isForcefullyRejected
         }

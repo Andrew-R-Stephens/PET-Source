@@ -1,56 +1,51 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesFactory
+import com.google.gson.JsonSyntaxException
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesFactory;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint;
-import com.google.gson.JsonSyntaxException;
+class MapListModel(worldMapDeserializer: MapDesBlueprint) {
+    var mapModels: ArrayList<MapModel> = ArrayList()
 
-import java.util.ArrayList;
-
-public class MapListModel {
-
-    public ArrayList<MapModel> mapModels = new ArrayList<>();
-
-    public MapListModel(@NonNull MapDesBlueprint worldMapDeserializer) {
+    init {
         try {
-            MapDesFactory.parseMinified(worldMapDeserializer, mapModels);
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-            MapDesFactory.parseUnMinified(worldMapDeserializer, mapModels);
+            MapDesFactory.parseMinified(worldMapDeserializer, mapModels)
+        } catch (e: JsonSyntaxException) {
+            e.printStackTrace()
+            MapDesFactory.parseUnMinified(worldMapDeserializer, mapModels)
         }
     }
 
-    public ArrayList<String> getShortenedMapNames() {
-        ArrayList<String> names = new ArrayList<>(mapModels.size());
-        for(MapModel mapModel: mapModels) {
-            names.add(mapModel.mapNameShort);
+    val shortenedMapNames: ArrayList<String>
+        get() {
+            val names = ArrayList<String>(mapModels.size)
+            for (mapModel in mapModels) {
+                names.add(mapModel.mapNameShort)
+            }
+
+            return names
         }
 
-        return names;
-    }
-
-    @Nullable
-    public MapModel getMapById(int id) {
-        for(MapModel m: mapModels) {
-            if(m.mapId == id) {
-                return m;
+    fun getMapById(id: Int): MapModel? {
+        for (m in mapModels) {
+            if (m.mapId == id) {
+                return m
             }
         }
 
-        return null;
+        return null
     }
 
-    public synchronized void print() {
-        for (MapModel m : mapModels) {
-            m.print();
+    @Synchronized
+    fun print() {
+        for (m in mapModels) {
+            m.print()
         }
     }
 
-    public void orderRooms() {
-        for(MapModel m: mapModels) {
-            m.orderRooms();
+    fun orderRooms() {
+        for (m in mapModels) {
+            m.orderRooms()
         }
     }
 }

@@ -4,10 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,10 +18,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GestureDetectorCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Ghost;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 
@@ -31,7 +28,7 @@ public abstract class GhostView extends ConstraintLayout {
 
     private EvidenceViewModel evidenceViewModel;
 
-    private Ghost ghostData;
+    private GhostModel ghostData;
 
     private @IntegerRes int neutralSelColor, negativeSelColor, positiveSelColor;
 
@@ -170,7 +167,7 @@ public abstract class GhostView extends ConstraintLayout {
 
     }
 
-    private void redrawGhostRejectionStatus(@NonNull Ghost ghost, int index, boolean animate) {
+    private void redrawGhostRejectionStatus(@NonNull GhostModel ghost, int index, boolean animate) {
 
         int score = ghost.getEvidenceScore();
         AppCompatImageView statusIcon = findViewById(R.id.icon_status);

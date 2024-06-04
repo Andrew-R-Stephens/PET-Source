@@ -6,7 +6,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 
 import java.util.ArrayList;
 
-public class Ghost {
+public class GhostModel {
 
     private InvestigationModel investigationData;
 
@@ -15,14 +15,14 @@ public class Ghost {
 
     private boolean isForcefullyRejected = false;
 
-    private final ArrayList<Evidence> thisGhostEvidence = new ArrayList<>();
-    private final ArrayList<Evidence> thisGhostRequiredEvidence = new ArrayList<>();
+    private final ArrayList<EvidenceModel> thisGhostEvidence = new ArrayList<>();
+    private final ArrayList<EvidenceModel> thisGhostRequiredEvidence = new ArrayList<>();
 
-    public Ghost() {
+    public GhostModel() {
         setId(0);
     }
 
-    public Ghost(InvestigationModel investigationData, int id) {
+    public GhostModel(InvestigationModel investigationData, int id) {
         this.investigationData = investigationData;
 
         setId(id);
@@ -44,12 +44,12 @@ public class Ghost {
         return name;
     }
 
-    public void addEvidence(Evidence e) {
+    public void addEvidence(EvidenceModel e) {
         thisGhostEvidence.add(e);
     }
 
     public void addEvidence(@NonNull String evidence) {
-        for (Evidence e : InvestigationModel.evidenceList.getList()) {
+        for (EvidenceModel e : InvestigationModel.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addEvidence(e);
                 break;
@@ -57,12 +57,12 @@ public class Ghost {
         }
     }
 
-    public void addNightmareEvidence(Evidence e) {
+    public void addNightmareEvidence(EvidenceModel e) {
         thisGhostRequiredEvidence.add(e);
     }
 
     public void addNightmareEvidence(@NonNull String evidence) {
-        for (Evidence e : InvestigationModel.evidenceList.getList()) {
+        for (EvidenceModel e : InvestigationModel.evidenceList.getList()) {
             if (evidence.equals(e.getName())) {
                 addNightmareEvidence(e);
                 break;
@@ -71,14 +71,14 @@ public class Ghost {
     }
 
     @NonNull
-    public Evidence[] getEvidence() {
-        Evidence[] t = new Evidence[thisGhostEvidence.size()];
+    public EvidenceModel[] getEvidence() {
+        EvidenceModel[] t = new EvidenceModel[thisGhostEvidence.size()];
         return thisGhostEvidence.toArray(t);
     }
 
     @NonNull
-    public Evidence[] getEvidenceArray() {
-        Evidence[] newEvidence = new Evidence[thisGhostEvidence.size()];
+    public EvidenceModel[] getEvidenceArray() {
+        EvidenceModel[] newEvidence = new EvidenceModel[thisGhostEvidence.size()];
         for (int i = 0; i < newEvidence.length; i++) {
             newEvidence[i] = thisGhostEvidence.get(i);
         }
@@ -86,8 +86,8 @@ public class Ghost {
     }
 
     @NonNull
-    public Evidence[] getRequiredEvidenceArray() {
-        Evidence[] newEvidence = new Evidence[thisGhostRequiredEvidence.size()];
+    public EvidenceModel[] getRequiredEvidenceArray() {
+        EvidenceModel[] newEvidence = new EvidenceModel[thisGhostRequiredEvidence.size()];
         for (int i = 0; i < newEvidence.length; i++) {
             newEvidence[i] = thisGhostRequiredEvidence.get(i);
         }
@@ -132,23 +132,23 @@ public class Ghost {
 
         int posScore = 0, negScore = 0;
 
-        for (Evidence e : InvestigationModel.evidenceList.getList()) {
+        for (EvidenceModel e : InvestigationModel.evidenceList.getList()) {
             boolean isContained = false;
-            for (Evidence eThis : thisGhostEvidence) {
+            for (EvidenceModel eThis : thisGhostEvidence) {
                 if (e == eThis) {
                     isContained = true;
                     break;
                 }
             }
             if (!isContained) {
-                if (e.getRuling() == Evidence.Ruling.POSITIVE) {
+                if (e.getRuling() == EvidenceModel.Ruling.POSITIVE) {
                     return -5;
                 }
             }
         }
 
         for(int i = 0; i < thisGhostEvidence.size(); i++) {
-            Evidence e = thisGhostEvidence.get(i);
+            EvidenceModel e = thisGhostEvidence.get(i);
             switch (e.getRuling()) {
                 case POSITIVE -> {
                     if (i < 3) {
@@ -167,8 +167,8 @@ public class Ghost {
             }
         }
 
-        for(Evidence e : thisGhostRequiredEvidence) {
-            if (e.getRuling() == Evidence.Ruling.NEGATIVE) {
+        for(EvidenceModel e : thisGhostRequiredEvidence) {
+            if (e.getRuling() == EvidenceModel.Ruling.NEGATIVE) {
                 //if (isNightmare || isInsanity)
                     return -8;
             }
@@ -184,8 +184,8 @@ public class Ghost {
         }
 
         if(posScore == maxPosScore-(3-thisGhostEvidence.size()))
-            for(Evidence e : thisGhostRequiredEvidence) {
-                if (e.getRuling() != Evidence.Ruling.POSITIVE) {
+            for(EvidenceModel e : thisGhostRequiredEvidence) {
+                if (e.getRuling() != EvidenceModel.Ruling.POSITIVE) {
                     return -10;
                 }
             }
@@ -198,13 +198,13 @@ public class Ghost {
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(name).append(": ");
-        for(Evidence e: thisGhostEvidence) {
+        for(EvidenceModel e: thisGhostEvidence) {
             s.append(e.getName()).append(", ");
         }
         if(!thisGhostRequiredEvidence.isEmpty()) {
             s.append(" / ");
         }
-        for (Evidence e : thisGhostRequiredEvidence) {
+        for (EvidenceModel e : thisGhostRequiredEvidence) {
             s.append(e.getName()).append(", ");
         }
 

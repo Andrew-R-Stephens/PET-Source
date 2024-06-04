@@ -207,8 +207,7 @@ class Polygon : Shape, Serializable {
         }
     }
 
-    /**
-     * Appends the specified coordinates to this `Polygon`. If an operation that calculates the
+    /** Appends the specified coordinates to this `Polygon`. If an operation that calculates the
      * bounding box of this `Polygon` has already been performed, such as `getBounds` or `contains`,
      * then this method updates the bounding box.
      * @param x the specified X coordinate

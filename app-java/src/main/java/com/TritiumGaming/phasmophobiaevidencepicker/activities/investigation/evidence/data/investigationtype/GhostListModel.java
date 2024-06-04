@@ -11,10 +11,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 
 import java.util.ArrayList;
 
-public class GhostList {
+public class GhostListModel {
 
     @Nullable
-    public static ArrayList<Ghost> ghostList = null;
+    public static ArrayList<GhostModel> ghostList = null;
 
     public void init(
             @NonNull Context c, @NonNull InvestigationModel investigationData) {
@@ -26,7 +26,7 @@ public class GhostList {
         TypedArray typedArrayRequiredEvidence =
                 c.getResources().obtainTypedArray(R.array.ghost_requiredevidence_arrays);
         for (int i = 0; i < ghostNames.length; i++) {
-            Ghost ghost = new Ghost(investigationData, i);
+            GhostModel ghost = new GhostModel(investigationData, i);
             ghost.setName(ghostNames[i]);
 
             // Set Normal Evidence
@@ -56,12 +56,12 @@ public class GhostList {
         return ghostList.size();
     }
 
-    public Ghost getAt(int index) {
+    public GhostModel getAt(int index) {
         if(ghostList == null) { return null; }
         return ghostList.get(index);
     }
 
-    public ArrayList<Ghost> getList() {
+    public ArrayList<GhostModel> getList() {
         return ghostList;
     }
 
@@ -70,10 +70,10 @@ public class GhostList {
      */
     public void reset() {
 
-        ArrayList<Ghost> ghostList = getList();
+        ArrayList<GhostModel> ghostList = getList();
         if(ghostList == null) { return; }
 
-        for (Ghost g : ghostList) {
+        for (GhostModel g : ghostList) {
             g.setIsForcefullyRejected(false);
         }
     }

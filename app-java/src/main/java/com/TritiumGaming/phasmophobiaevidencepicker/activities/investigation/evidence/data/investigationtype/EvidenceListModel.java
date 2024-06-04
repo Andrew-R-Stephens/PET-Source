@@ -10,17 +10,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
 import java.util.ArrayList;
 
-public class EvidenceList {
+public class EvidenceListModel {
 
     @Nullable
-    public static ArrayList<Evidence> evidenceList = null;
+    public static ArrayList<EvidenceModel> evidenceList = null;
 
     public void init(@NonNull Context c) {
         evidenceList = new ArrayList<>();
         String[] evidenceNames = c.getResources().getStringArray(R.array.evidence_type_names);
         TypedArray typedArray = c.getResources().obtainTypedArray(R.array.evidence_icon_array);
         for (int i = 0; i < evidenceNames.length; i++) {
-            Evidence evidence = new Evidence();
+            EvidenceModel evidence = new EvidenceModel();
             evidence.setName(evidenceNames[i]);
             evidence.setIcon(typedArray.getResourceId(i, 0));
             evidenceList.add(evidence);
@@ -33,7 +33,7 @@ public class EvidenceList {
         return evidenceList.size();
     }
 
-    public ArrayList<Evidence> getList() {
+    public ArrayList<EvidenceModel> getList() {
         return evidenceList;
     }
 
@@ -42,7 +42,7 @@ public class EvidenceList {
      */
     public void reset() {
         for (int i = 0; i < evidenceList.size(); i++) {
-            evidenceList.get(i).setRuling(Evidence.Ruling.NEUTRAL);
+            evidenceList.get(i).setRuling(EvidenceModel.Ruling.NEUTRAL);
         }
     }
 }

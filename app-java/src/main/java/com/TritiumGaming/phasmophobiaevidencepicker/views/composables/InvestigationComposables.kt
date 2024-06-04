@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Evidence
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.Ghost
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.TextCase
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
@@ -105,7 +105,7 @@ fun GhostList(
              resizedTextSize = it
         }
 
-        ghostTypes?.forEach { ghostType: Ghost? ->
+        ghostTypes?.forEach { ghostType: GhostModel? ->
             GhostView(
                 ghostType = ghostType,
                 onUpdateTitle = { it:TextUnit -> resizeText(it) }
@@ -116,7 +116,7 @@ fun GhostList(
 
 @Composable
 fun GhostView(
-    ghostType: Ghost? = Ghost(),
+    ghostType: GhostModel? = GhostModel(),
     maxFontSize: TextUnit = 48.sp,
     onUpdateTitle: (TextUnit) -> Unit = {}
 ) {
@@ -146,7 +146,11 @@ fun GhostView(
 
 @Composable
 fun GhostEvidenceGroup(
-    evidenceGroup: Array<Evidence>? = arrayOf(Evidence(), Evidence(), Evidence())
+    evidenceGroup: Array<EvidenceModel>? = arrayOf(
+        EvidenceModel(),
+        EvidenceModel(),
+        EvidenceModel()
+    )
 ) {
     val evidenceTypes = remember { evidenceGroup }
 
@@ -185,7 +189,7 @@ fun EvidenceRulingList(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center
     ) {
-        evidenceTypes?.forEach { evidenceType: Evidence ->
+        evidenceTypes?.forEach { evidenceType: EvidenceModel ->
             EvidenceRulingView(evidenceType)
         }
     }
@@ -194,7 +198,7 @@ fun EvidenceRulingList(
 
 @Composable
 fun EvidenceRulingView(
-    evidenceType: Evidence = Evidence()
+    evidenceType: EvidenceModel = EvidenceModel()
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(2.dp)
@@ -239,7 +243,7 @@ fun RulingGroup(
             .fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Evidence.Ruling.entries.forEachIndexed { index, _ ->
+        EvidenceModel.Ruling.entries.forEachIndexed { index, _ ->
             RulingSelector(
                 evidenceViewModel = evidenceViewModel,
                 groupIndex = groupIndex,
@@ -285,7 +289,7 @@ fun RulingSelector(
         onClick = {
             evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
             evidenceViewModel.investigationData?.evidenceList?.list?.get(groupIndex)?.ruling =
-                Evidence.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
+                EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
             evidenceViewModel.ghostOrderData?.updateOrder()
 
             Log.d("Updated", evidenceViewModel.ghostOrderData?.currOrder.contentToString())
