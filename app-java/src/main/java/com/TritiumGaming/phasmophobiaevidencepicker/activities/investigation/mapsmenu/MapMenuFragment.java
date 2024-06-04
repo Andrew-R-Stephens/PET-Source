@@ -106,7 +106,7 @@ public class MapMenuFragment extends InvestigationFragment {
     private MapListModel readMapsDataFromFile() throws Exception {
         AssetManager assets = requireActivity().getAssets();
         MapFileIO mapFileIO = new MapFileIO();
-        MapFileReader reader = mapFileIO.reader;
+        MapFileReader reader = mapFileIO.getReader();
 
         mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader);
 

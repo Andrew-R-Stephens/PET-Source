@@ -14,29 +14,29 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 
-public class SettingsToggleItem extends ConstraintLayout {
+public class SettingsToggleItemView extends ConstraintLayout {
 
     private int switchId;
 
-    public SettingsToggleItem(@NonNull Context context) {
+    public SettingsToggleItemView(@NonNull Context context) {
         super(context);
 
         init(getContext(), null);
     }
 
-    public SettingsToggleItem(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
 
         init(getContext(), attrs);
     }
 
-    public SettingsToggleItem(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
+    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         init(getContext(), attrs);
     }
 
-    public SettingsToggleItem(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
         init(getContext(), attrs);

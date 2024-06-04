@@ -13,32 +13,32 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupModel;
 
-public class ItemStoreGroupList extends LinearLayoutCompat {
+public class ItemStoreGroupListView extends LinearLayoutCompat {
 
     public static final int UNSPECIFIED_LAYOUT = -1;
 
-    public ItemStoreGroupList(@NonNull Context context) {
+    public ItemStoreGroupListView(@NonNull Context context) {
         super(context);
         //initView(UNSPECIFIED_LAYOUT);
     }
 
-    public ItemStoreGroupList(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
         //initView(UNSPECIFIED_LAYOUT);
     }
 
-    public ItemStoreGroupList(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
+    public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //initView(UNSPECIFIED_LAYOUT);
     }
 
-    public void build(@DrawableRes int containerSrc, ItemStoreGroupData group) {
+    public void build(@DrawableRes int containerSrc, ItemStoreGroupModel group) {
         build(containerSrc, group, false);
     }
 
-    public void build(@DrawableRes int containerSrc, ItemStoreGroupData group, boolean hasTier) {
+    public void build(@DrawableRes int containerSrc, ItemStoreGroupModel group, boolean hasTier) {
         initView(group.getSize() > 3 ?
                 R.layout.item_itemstore_itemgroup_long :
                 R.layout.item_itemstore_itemgroup);
@@ -67,7 +67,7 @@ public class ItemStoreGroupList extends LinearLayoutCompat {
         }
 
         AppCompatTextView textView_name = this.findViewById(R.id.safehouse_shop_tool_label);
-        String title = getResources().getString(group.getNameData());
+        String title = getResources().getString(group.nameData);
         textView_name.setText(title);
         textView_name.setSelected(true);
 

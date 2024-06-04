@@ -41,7 +41,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
     private boolean showEmail = false, loadThemes = true;
 
-    private SettingsToggleItem toggle_isAlwaysOn, toggle_network,
+    private SettingsToggleItemView toggle_isAlwaysOn, toggle_network,
             toggle_huntwarningaudio, toggle_reorderGhostViews, toggle_leftHandMode;
 
     @Nullable
@@ -299,7 +299,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         btn_colorTheme_left.setOnClickListener(v -> {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
-            themeControl.iterateSelection(-1);
+            themeControl.iterateSelectedIndex(-1);
             if(text_colorTheme_selectedname != null) {
                 try {
                     text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
@@ -313,7 +313,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         btn_colorTheme_right.setOnClickListener(v -> {
             ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
 
-            themeControl.iterateSelection(1);
+            themeControl.iterateSelectedIndex(1);
             if(text_colorTheme_selectedname != null) {
                 try {
                     text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
@@ -328,7 +328,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         btn_fontStyle_left.setOnClickListener(v -> {
             FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
-            themeControl.iterateSelection(-1);
+            themeControl.iterateSelectedIndex(-1);
             if(text_fontStyle_selectedname != null) {
                 try {
                     text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
@@ -343,7 +343,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         btn_fontStyle_right.setOnClickListener(v -> {
             FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
 
-            themeControl.iterateSelection(1);
+            themeControl.iterateSelectedIndex(1);
             if(text_fontStyle_selectedname != null) {
                 try {
                     text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
@@ -537,8 +537,8 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
     */
 
     private void revertDemoChanges() {
-        globalPreferencesViewModel.getColorThemeControl().revertSelection();
-        globalPreferencesViewModel.getFontThemeControl().revertSelection();
+        globalPreferencesViewModel.getColorThemeControl().revertToSavedIndex();
+        globalPreferencesViewModel.getFontThemeControl().revertToSavedIndex();
 
         try {
             ((PETActivity) requireActivity()).changeTheme(
@@ -601,8 +601,8 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
     public void saveStates() {
 
         if (globalPreferencesViewModel != null) {
-            globalPreferencesViewModel.getFontThemeControl().setSavedIndex();
-            globalPreferencesViewModel.getColorThemeControl().setSavedIndex();
+            globalPreferencesViewModel.getFontThemeControl().saveSelectedIndex();
+            globalPreferencesViewModel.getColorThemeControl().saveSelectedIndex();
 
             try {
                 globalPreferencesViewModel.saveToFile(requireContext());
@@ -649,9 +649,9 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         themeControl.revertAllUnlockedStatuses();
 
-        themeControl.iterateSelection(0);
+        themeControl.iterateSelectedIndex(0);
         themeControl.setSelectedIndex(0);
-        themeControl.setSavedIndex(0);
+        themeControl.saveSelectedIndex(0);
 
         globalPreferencesViewModel.saveColorSpace(requireContext());
 

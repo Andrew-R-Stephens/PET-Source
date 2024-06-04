@@ -13,7 +13,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.Cus
  *
  * @author TritiumGamingStudios
  */
-class FontThemeControl(context: Context?) : AThemeControl(context) {
+class FontThemeControl(context: Context) : AThemeControl(context) {
 
     init { defaultStyle = R.style.Fonts_Base }
 

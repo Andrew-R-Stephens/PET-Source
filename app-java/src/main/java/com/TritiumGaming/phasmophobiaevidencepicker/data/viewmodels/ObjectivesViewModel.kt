@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsListModel
 
 /**
  * ObjectivesViewModel class
@@ -11,7 +11,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mis
 class ObjectivesViewModel : ViewModel() {
 
     /* Chosen spinner objectives */
-    var objectivesSpinnerObjectives: Array<MissionsData.Objective>? = null
+    var objectivesSpinnerObjectives: Array<MissionsListModel.Objective>? = null
 
     /* Objective Completed Buttons */
     var objectiveCompletion: BooleanArray? = null

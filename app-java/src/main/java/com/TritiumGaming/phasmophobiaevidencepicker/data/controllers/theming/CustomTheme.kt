@@ -48,7 +48,6 @@ constructor(
     }
 
     companion object {
-        @JvmStatic
         val defaultTheme: CustomTheme
             get() = CustomTheme(
                 "CzjtxSbXRwIpX8SYR0ttngAND",

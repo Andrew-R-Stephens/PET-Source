@@ -2,16 +2,16 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.
 
 import androidx.annotation.NonNull;
 
-public abstract class MarketplaceItem {
+public abstract class MarketplaceItemModel {
 
     protected String uuid;
     protected String name;
     protected long buyCredits;
 
-    public MarketplaceItem() {
+    public MarketplaceItemModel() {
     }
 
-    public MarketplaceItem(long buyCredits, String name) {
+    public MarketplaceItemModel(long buyCredits, String name) {
         setBuyCredits(buyCredits);
         setName(name);
     }

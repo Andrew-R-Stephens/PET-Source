@@ -42,12 +42,12 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     var canShowIntroduction: Boolean = true
 
     val colorThemeID: String
-        get() = colorThemeControl.id
+        get() = colorThemeControl.iD
     val colorTheme: CustomTheme
         get() = colorThemeControl.currentTheme
 
     val fontThemeID: String
-        get() = fontThemeControl.id
+        get() = fontThemeControl.iD
     val fontTheme: CustomTheme
         get() = fontThemeControl.currentTheme
 
@@ -89,13 +89,13 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         )
 
         fontThemeControl = FontThemeControl(context)
-        fontThemeControl.init(
-            sharedPref.getString(context.resources.getString(R.string.preference_savedFont), fontThemeID)
+        fontThemeControl.init(sharedPref.getString(
+                context.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
         )
 
         colorThemeControl = ColorThemeControl(context)
-        colorThemeControl.init(
-            sharedPref.getString(context.resources.getString(R.string.preference_savedTheme), colorThemeID)
+        colorThemeControl.init(sharedPref.getString(
+                context.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
         )
 
         saveToFile(context)

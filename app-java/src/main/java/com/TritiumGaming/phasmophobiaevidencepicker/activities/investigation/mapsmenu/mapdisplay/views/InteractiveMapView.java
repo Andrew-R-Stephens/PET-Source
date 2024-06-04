@@ -32,7 +32,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
@@ -55,8 +55,8 @@ public class InteractiveMapView extends View {
 
     private MapMenuViewModel mapMenuViewModel;
 
-    private InteractiveMapData interactiveMapData;
-    private final InteractiveMapData interactivePoiData = new InteractiveMapData();
+    private InteractiveMapModel interactiveMapData;
+    private final InteractiveMapModel interactivePoiData = new InteractiveMapModel();
 
     private POISpinner roomSpinner;
 
@@ -112,7 +112,7 @@ public class InteractiveMapView extends View {
     public void init(@NonNull MapMenuViewModel mapMenuViewModel, @NonNull POISpinner roomSpinner) {
         this.mapMenuViewModel = mapMenuViewModel;
 
-        interactiveMapData = new InteractiveMapData();
+        interactiveMapData = new InteractiveMapModel();
         mActivePointers = new SparseArray<>();
         mDetector = new GestureDetector(getContext(), new GestureTap());
 

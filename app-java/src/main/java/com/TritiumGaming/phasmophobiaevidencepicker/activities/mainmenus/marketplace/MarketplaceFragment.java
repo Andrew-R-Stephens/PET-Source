@@ -36,8 +36,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketp
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundle;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundleModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
@@ -513,9 +513,9 @@ public class MarketplaceFragment extends MainMenuFragment {
                     Log.d("Firestore", "Theme document snapshot DNE.");
                 } else {
                     String uuid = documentSnapshot.getReference().getId();
-                    MarketSingleTheme marketSingleTheme = null;
+                    MarketSingleThemeModel marketSingleTheme = null;
                     try {
-                        marketSingleTheme = documentSnapshot.toObject(MarketSingleTheme.class);
+                        marketSingleTheme = documentSnapshot.toObject(MarketSingleThemeModel.class);
                     } catch (Exception e) {
                         Log.d("Firestore", "Error CREATING PETTheme!");
                         e.printStackTrace();
@@ -525,7 +525,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                                 globalPreferencesViewModel.getColorThemeControl()
                                         .getThemeByUUID(uuid);
 
-                        marketSingleTheme = new MarketSingleTheme(uuid, marketSingleTheme, customTheme);
+                        marketSingleTheme = new MarketSingleThemeModel(uuid, marketSingleTheme, customTheme);
 
                         ThemeSingleCardView marketplaceItem;
                         try {
@@ -604,9 +604,9 @@ public class MarketplaceFragment extends MainMenuFragment {
                         }
                     }
 
-                    MarketThemeBundle bundle = null;
+                    MarketThemeBundleModel bundle = null;
                     try {
-                        bundle = documentSnapshot.toObject(MarketThemeBundle.class);
+                        bundle = documentSnapshot.toObject(MarketThemeBundleModel.class);
                     } catch (Exception e) {
                         Log.d("Firestore", "Error CREATING PETTheme!");
                         e.printStackTrace();
@@ -618,7 +618,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                             customThemes.add(globalPreferencesViewModel.getColorThemeControl()
                                     .getThemeByUUID(themeID));
                         }
-                        bundle = new MarketThemeBundle(docId, bundle, customThemes);
+                        bundle = new MarketThemeBundleModel(docId, bundle, customThemes);
                         if(!bundle.isUnlocked()) {
                             ThemeBundleCardView marketplaceItem =
                                     buildMarketplaceBundleThemeView(
@@ -654,7 +654,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
     @Nullable
     private ThemeBundleCardView buildMarketplaceBundleThemeView(
-            @NonNull MarketplaceListLayout list, @NonNull MarketThemeBundle bundleThemes) {
+            @NonNull MarketplaceListLayout list, @NonNull MarketThemeBundleModel bundleThemes) {
 
         ThemeBundleCardView marketplaceBundleView;
         try {
@@ -753,7 +753,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
     @NonNull
     private ThemeSingleCardView buildMarketplaceSingleThemeView(
-            @NonNull MarketplaceListLayout list, @NonNull MarketSingleTheme marketSingleTheme)
+            @NonNull MarketplaceListLayout list, @NonNull MarketSingleThemeModel marketSingleTheme)
     throws IllegalStateException {
 
         ThemeSingleCardView marketplaceItemView =

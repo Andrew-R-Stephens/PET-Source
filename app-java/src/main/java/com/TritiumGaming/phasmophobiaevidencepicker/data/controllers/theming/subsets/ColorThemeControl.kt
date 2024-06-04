@@ -13,7 +13,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.Cus
  *
  * @author TritiumGamingStudios
  */
-class ColorThemeControl(context: Context?) : AThemeControl(context) {
+class ColorThemeControl(context: Context) : AThemeControl(context) {
 
     init { defaultStyle = R.style.NonColorblind_Base }
 

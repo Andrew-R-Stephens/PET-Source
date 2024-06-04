@@ -25,7 +25,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItemModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
@@ -416,8 +416,8 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
 
         for (ProductDetails productDetails : productDetailsList) {
 
-            MarketplaceMtxItem mtxItem =
-                    new MarketplaceMtxItem(productDetails);
+            MarketplaceMtxItemModel mtxItem =
+                    new MarketplaceMtxItemModel(productDetails);
             Log.d("Billing", "Adding " + mtxItem);
 
             try {
@@ -439,14 +439,14 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
     }
 
     @NonNull
-    private BillableItemView buildMarketplaceMtxView(MarketplaceMtxItem mtxItem) {
+    private BillableItemView buildMarketplaceMtxView(MarketplaceMtxItemModel mtxItem) {
         BillableItemView marketplaceMtxView =
             new BillableItemView(requireContext(), null);
 
         marketplaceMtxView.setBillableItem(mtxItem);
         marketplaceMtxView.setBuyButtonListener(v -> {
 
-            MarketplaceMtxItem item = marketplaceMtxView.getBillableItem();
+            MarketplaceMtxItemModel item = marketplaceMtxView.getBillableItem();
             if(item == null) { return; }
             ProductDetails productDetail =
                     item.getProductDetails();

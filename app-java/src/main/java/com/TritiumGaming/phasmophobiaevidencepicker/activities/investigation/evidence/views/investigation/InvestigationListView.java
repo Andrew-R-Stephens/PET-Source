@@ -22,7 +22,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
 
-public abstract class InvestigationList extends LinearLayout {
+public abstract class InvestigationListView extends LinearLayout {
 
     protected GlobalPreferencesViewModel globalPreferencesViewModel;
     protected EvidenceViewModel evidenceViewModel;
@@ -34,22 +34,22 @@ public abstract class InvestigationList extends LinearLayout {
 
     protected AdRequest adRequest;
 
-    public InvestigationList(Context context) {
+    public InvestigationListView(Context context) {
         super(context);
         initView();
     }
 
-    public InvestigationList(Context context, @Nullable AttributeSet attrs) {
+    public InvestigationListView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
 
-    public InvestigationList(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public InvestigationListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
 
-    public InvestigationList(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public InvestigationListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initView();
     }
