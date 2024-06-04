@@ -55,9 +55,13 @@ public abstract class GhostView extends ConstraintLayout {
     public void initView() {
         inflate(getContext(), R.layout.item_investigation_ghost, this);
 
+        setDefaults();
+    }
+
+    private void setDefaults() {
         LinearLayoutCompat.LayoutParams params =
                 new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
+                        LayoutParams.WRAP_CONTENT, 1f);
         setLayoutParams(params);
 
         neutralSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.neutralSelColor);
