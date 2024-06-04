@@ -30,7 +30,7 @@ class InteractiveMapControlModel {
         private set
 
     fun incrementZoomLevel(addZoom: Double) {
-        val zoomSense = 2f //1.5f;
+        val zoomSense = 2f //1.5f; TODO needs to have a value consistent with dpi
         val min = .8f
         val max = 4f
 
