@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsListModel;
 
 import java.util.ArrayList;
 
@@ -26,9 +26,9 @@ import java.util.ArrayList;
 public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner {
 
     @Nullable
-    private MissionsData data = null;
+    private MissionsListModel data = null;
     @Nullable
-    private MissionsData.Objective currentObjective = null;
+    private MissionsListModel.Objective currentObjective = null;
 
     @Nullable
     private MissionsCompletedButton checkButton = null;
@@ -68,7 +68,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     public MissionsSpinner(
             @NonNull Context context,
             @Nullable AttributeSet attrs,
-            MissionsData data) {
+            MissionsListModel data) {
         super(context, attrs);
         init();
     }
@@ -132,9 +132,9 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
      *
      */
     public void updateAdapter() {
-        ArrayList<MissionsData.Objective> obtainedObjectives =
+        ArrayList<MissionsListModel.Objective> obtainedObjectives =
                 data.getObjectivesOfSelectedState(false);
-        ArrayAdapter<MissionsData.Objective> adapter =
+        ArrayAdapter<MissionsListModel.Objective> adapter =
                 new ArrayAdapter<>(super.getContext(), R.layout.popup_spinner, obtainedObjectives);
         setAdapter(adapter);
     }
@@ -149,7 +149,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
                 if (currentObjective != null) {
                     currentObjective.setSelected(false);
                 }
-                currentObjective = (MissionsData.Objective) parent.getItemAtPosition(position);
+                currentObjective = (MissionsListModel.Objective) parent.getItemAtPosition(position);
                 currentObjective.setSelected(true);
                 currentObjective.setPosition(position);
             }
@@ -164,7 +164,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     /**
      * @param data
      */
-    public void setData(MissionsData data) {
+    public void setData(MissionsListModel data) {
         this.data = data;
     }
 
@@ -202,14 +202,14 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     /**
      * @return
      */
-    public MissionsData.Objective getSelectedObjective() {
+    public MissionsListModel.Objective getSelectedObjective() {
         return currentObjective;
     }
 
     /**
      * @param currentObjective
      */
-    public void setCurrentObjective(@NonNull MissionsData.Objective currentObjective) {
+    public void setCurrentObjective(@NonNull MissionsListModel.Objective currentObjective) {
         this.currentObjective = data.getCopyOfObjective(currentObjective);
 
         if (this.currentObjective != null) {

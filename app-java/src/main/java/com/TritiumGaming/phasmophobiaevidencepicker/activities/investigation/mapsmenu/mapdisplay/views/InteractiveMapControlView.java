@@ -13,9 +13,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GestureDetectorCompat;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlModel;
 
 /**
  * InteractiveMapControlView class
@@ -24,7 +23,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
  */
 public class InteractiveMapControlView extends View {
 
-    @Nullable private InteractiveMapControlData controllerData;
+    @Nullable private InteractiveMapControlModel controllerData;
 
     @Nullable private SparseArray<PointF> mActivePointers;
 
@@ -38,7 +37,7 @@ public class InteractiveMapControlView extends View {
         super(context, attrs);
     }
 
-    public void init(InteractiveMapControlData controllerData, View recipient) {
+    public void init(InteractiveMapControlModel controllerData, View recipient) {
         this.controllerData = controllerData;
         this.recipient = recipient;
 

@@ -41,7 +41,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
     private boolean showEmail = false, loadThemes = true;
 
-    private SettingsToggleItem toggle_isAlwaysOn, toggle_network,
+    private SettingsToggleItemView toggle_isAlwaysOn, toggle_network,
             toggle_huntwarningaudio, toggle_reorderGhostViews, toggle_leftHandMode;
 
     @Nullable

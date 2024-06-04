@@ -27,9 +27,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanityMeterView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceListView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
@@ -44,8 +43,8 @@ public class EvidenceFragment extends InvestigationFragment {
 
     protected InvestigationSection ghostSection, evidenceSection;
 
-    protected GhostList ghostList;
-    protected EvidenceList evidenceList;
+    protected GhostListView ghostList;
+    protected EvidenceListView evidenceList;
 
     protected ConstraintLayout sanityTrackingConstraintLayout;
 
@@ -109,8 +108,8 @@ public class EvidenceFragment extends InvestigationFragment {
         ScrollView ghost_scrollview = ghostSection.findViewById(R.id.scrollview);
         ScrollView evidence_scrollview = evidenceSection.findViewById(R.id.scrollview);
 
-        ghostList = new GhostList(requireContext());
-        evidenceList = new EvidenceList(requireContext());
+        ghostList = new GhostListView(requireContext());
+        evidenceList = new EvidenceListView(requireContext());
 
         ghostList.init(
                 globalPreferencesViewModel, evidenceViewModel,

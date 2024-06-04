@@ -29,7 +29,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.data.GhostBoxUtilityData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.data.GhostBoxUtilityModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 
@@ -41,7 +41,8 @@ import java.util.Locale;
  *
  * @author TritiumGamingStudios
  */
-public class GhostBoxFragment extends InvestigationFragment implements Visualizer.OnDataCaptureListener {
+public class GhostBoxFragment extends InvestigationFragment
+        implements Visualizer.OnDataCaptureListener {
 
     private PermissionsViewModel permissionsViewModel;
 
@@ -52,9 +53,6 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
     @Nullable
     private Visualizer visualizer = null;
 
-    /**
-     *
-     */
     public GhostBoxFragment() {
         super(R.layout.fragment_utilities_ghostbox);
     }
@@ -79,13 +77,6 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
         AppCompatTextView title = view.findViewById(R.id.textView_title);
         AppCompatImageView prev = view.findViewById(R.id.button_prev);
 
-        /*
-        AppCompatTextView label_reset = view.findViewById(R.id.label_resetAll);
-        AppCompatImageView image_reset = view.findViewById(R.id.icon_resetAll);
-        View listener_reset = view.findViewById(R.id.listener_resetAll);
-        View listener_goto_left = view.findViewById(R.id.listener_goto_left);
-        View listener_goto_right = view.findViewById(R.id.listener_goto_right);
-        */
         LinearLayout scrollview_list1 = view.findViewById(R.id.linearlayout_scrollview_list1);
         LinearLayout scrollview_list2 = view.findViewById(R.id.linearlayout_scrollview_list2);
         LinearLayout scrollview_list3 = view.findViewById(R.id.linearlayout_scrollview_list3);
@@ -98,16 +89,6 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
 
         prev.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
-
-        /*
-        listener_goto_left.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
-        );
-
-        label_reset.setEnabled(false);
-        image_reset.setEnabled(false);
-        listener_reset.setEnabled(false);
-        listener_goto_right.setEnabled(false);
-        */
 
         if (getContext() != null) {
             setScrollListEntries(
@@ -161,7 +142,7 @@ public class GhostBoxFragment extends InvestigationFragment implements Visualize
             e.printStackTrace();
             return;
         }
-        GhostBoxUtilityData toolGhostSpeakData = new GhostBoxUtilityData();
+        GhostBoxUtilityModel toolGhostSpeakData = new GhostBoxUtilityModel();
 
         int[] spiritBoxEntries = toolGhostSpeakData.getEntries(context, arrayRes);
         for (int e : spiritBoxEntries) {

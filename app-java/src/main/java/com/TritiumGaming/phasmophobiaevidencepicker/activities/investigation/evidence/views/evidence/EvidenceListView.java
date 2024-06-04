@@ -9,36 +9,36 @@ import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.EvidencePopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostList;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
 
-public class EvidenceList extends InvestigationList {
+public class EvidenceListView extends InvestigationListView {
 
-    private GhostList ghostList;
+    private GhostListView ghostList;
 
-    public EvidenceList(Context context) {
+    public EvidenceListView(Context context) {
         super(context);
     }
 
-    public EvidenceList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public EvidenceList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
+    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public EvidenceList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     public void init(GlobalPreferencesViewModel globalPreferencesViewModel,
                      EvidenceViewModel evidenceViewModel,
                      PopupWindow popupWindow,
-                     ProgressBar progressBar, AdRequest adRequest, GhostList ghostList) {
+                     ProgressBar progressBar, AdRequest adRequest, GhostListView ghostList) {
         super.init(globalPreferencesViewModel, evidenceViewModel,
                 popupWindow, progressBar, adRequest);
 

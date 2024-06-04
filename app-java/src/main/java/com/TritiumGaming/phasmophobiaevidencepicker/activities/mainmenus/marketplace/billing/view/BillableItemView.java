@@ -1,9 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,12 +12,12 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.billable.MarketplaceMtxItemModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class BillableItemView extends MaterialCardView {
 
-    private MarketplaceMtxItem billableItem;
+    private MarketplaceMtxItemModel billableItem;
 
     public BillableItemView(@NonNull Context context) {
         this(context, null);
@@ -62,7 +60,7 @@ public class BillableItemView extends MaterialCardView {
         setClipToPadding(false);
     }
 
-    public void setBillableItem(MarketplaceMtxItem billableItem) {
+    public void setBillableItem(MarketplaceMtxItemModel billableItem) {
         this.billableItem = billableItem;
 
         update();
@@ -143,7 +141,7 @@ public class BillableItemView extends MaterialCardView {
         }
     }
 
-    public MarketplaceMtxItem getBillableItem() {
+    public MarketplaceMtxItemModel getBillableItem() {
         return billableItem;
     }
 }

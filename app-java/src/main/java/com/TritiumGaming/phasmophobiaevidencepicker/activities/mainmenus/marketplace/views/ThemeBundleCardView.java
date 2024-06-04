@@ -1,9 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +14,13 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundle;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundleModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class ThemeBundleCardView extends MaterialCardView {
 
     @Nullable
-    private MarketThemeBundle bundle = null;
+    private MarketThemeBundleModel bundle = null;
 
     public ThemeBundleCardView(@NonNull Context context) {
         super(context, null);
@@ -71,7 +69,7 @@ public class ThemeBundleCardView extends MaterialCardView {
         return bundle.getDiscountedBuyCredits();
     }
 
-    public void setBundle(@Nullable MarketThemeBundle bundle) {
+    public void setBundle(@Nullable MarketThemeBundleModel bundle) {
         this.bundle = bundle;
 
         if(bundle == null) {

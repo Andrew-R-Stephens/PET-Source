@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,11 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class InteractiveMapDisplayView extends View {
     @Nullable
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private InteractiveMapControlData controllerData;
+    private InteractiveMapControlModel controllerData;
 
     private MapData mapData;
     private final ArrayList<Bitmap> mapImages = new ArrayList<>();
@@ -57,7 +55,7 @@ public class InteractiveMapDisplayView extends View {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    public void init(InteractiveMapControlData controllerData) {
+    public void init(InteractiveMapControlModel controllerData) {
         this.controllerData = controllerData;
     }
 

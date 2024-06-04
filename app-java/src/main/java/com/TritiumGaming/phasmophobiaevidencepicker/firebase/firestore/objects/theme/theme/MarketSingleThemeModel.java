@@ -3,11 +3,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.
 import androidx.annotation.NonNull;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.MarketplaceItem;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.MarketplaceItemModel;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MarketSingleTheme extends MarketplaceItem {
+public class MarketSingleThemeModel extends MarketplaceItemModel {
 
     /*
 
@@ -66,16 +66,16 @@ public class MarketSingleTheme extends MarketplaceItem {
     private String group;
     private CustomTheme theme;
 
-    public MarketSingleTheme() {
+    public MarketSingleThemeModel() {
     }
 
-    public MarketSingleTheme(long buyCredits, String group, String name) {
+    public MarketSingleThemeModel(long buyCredits, String group, String name) {
         setBuyCredits(buyCredits);
         setGroup(group);
         setName(name);
     }
 
-    public MarketSingleTheme(String uuid, @NotNull MarketSingleTheme marketTheme, CustomTheme theme) {
+    public MarketSingleThemeModel(String uuid, @NotNull MarketSingleThemeModel marketTheme, CustomTheme theme) {
         setUUID(uuid);
         setTheme(theme);
         setBuyCredits(marketTheme.getBuyCredits());

@@ -1,9 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,13 +12,13 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleThemeModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class ThemeSingleCardView extends MaterialCardView {
 
     @Nullable
-    private MarketSingleTheme theme = null;
+    private MarketSingleThemeModel theme = null;
 
     public ThemeSingleCardView(@NonNull Context context) {
         super(context, null);
@@ -86,7 +84,7 @@ public class ThemeSingleCardView extends MaterialCardView {
         return theme.getBuyCredits();
     }
 
-    public void setTheme(MarketSingleTheme theme) {
+    public void setTheme(MarketSingleThemeModel theme) {
         this.theme = theme;
 
         setPurchasable();

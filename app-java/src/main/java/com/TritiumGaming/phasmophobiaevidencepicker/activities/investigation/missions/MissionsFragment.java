@@ -1,10 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +18,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsListModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
@@ -36,7 +33,7 @@ public class MissionsFragment extends InvestigationFragment {
     //private EvidenceViewModel evidenceViewModel;
     //private ObjectivesViewModel objectivesViewModel;
 
-    private MissionsData data;
+    private MissionsListModel data;
 
     private MissionsSpinner[] objectiveSpinner;
     private EditText name_input;
@@ -68,7 +65,7 @@ public class MissionsFragment extends InvestigationFragment {
         super.init();
 
         try {
-            data = new MissionsData(requireContext());
+            data = new MissionsListModel(requireContext());
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
@@ -120,7 +117,7 @@ public class MissionsFragment extends InvestigationFragment {
                 view.findViewById(R.id.objectives_item_3)
         };
 
-        MissionsData.Objective[] tempObjectives =
+        MissionsListModel.Objective[] tempObjectives =
                 objectivesViewModel.getObjectivesSpinnerObjectives();
         boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
         if (objectiveSpinner != null) {
@@ -255,9 +252,9 @@ public class MissionsFragment extends InvestigationFragment {
      * @return array of Objectives contained within a spinner
      */
     @NonNull
-    private MissionsData.Objective[] findObjectiveSpinnerObjectives() {
+    private MissionsListModel.Objective[] findObjectiveSpinnerObjectives() {
 
-        MissionsData.Objective[] temp = new MissionsData.Objective[objectiveSpinner.length];
+        MissionsListModel.Objective[] temp = new MissionsListModel.Objective[objectiveSpinner.length];
         for (int i = 0; i < objectiveSpinner.length; i++) {
             temp[i] = objectiveSpinner[i].getSelectedObjective();
         }

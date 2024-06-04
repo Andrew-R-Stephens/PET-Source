@@ -7,7 +7,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +25,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.CodexFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.ItemStoreData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.ItemStoreListModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView;
@@ -38,7 +36,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 
 public abstract class ItemStoreFragment extends CodexFragment {
 
-    protected final ItemStoreData storeData = new ItemStoreData();
+    protected final ItemStoreListModel storeData = new ItemStoreListModel();
 
     protected FrameLayout scrollView;
     protected ViewTreeObserver.OnScrollChangedListener viewTreeObserverListener;
@@ -125,7 +123,7 @@ public abstract class ItemStoreFragment extends CodexFragment {
                         LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
                         for(int i = 0; i < list.getChildCount(); i++) {
                             int groupIndex = i;
-                            ItemStoreGroupList group = (ItemStoreGroupList) list.getChildAt(i);
+                            ItemStoreGroupListView group = (ItemStoreGroupListView) list.getChildAt(i);
                             group.setVisibility(View.INVISIBLE);
                             group.setAlpha(0);
                             for(int j = 0; j < group.getItems().length; j++) {
@@ -269,7 +267,7 @@ public abstract class ItemStoreFragment extends CodexFragment {
 
     protected abstract void createGroup(
             LinearLayoutCompat parent,
-            ItemStoreGroupData group
+            ItemStoreGroupModel group
     );
 
     @SuppressLint("ResourceType")

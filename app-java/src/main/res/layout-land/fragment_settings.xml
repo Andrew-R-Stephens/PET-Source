@@ -351,13 +351,13 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_alwaysOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_screenalwayson" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_network"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -375,13 +375,13 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_leftHandMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enableLeftHandSupport" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItem
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_huntwarningaudio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

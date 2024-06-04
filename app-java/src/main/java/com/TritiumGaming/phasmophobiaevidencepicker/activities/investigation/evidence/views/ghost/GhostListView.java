@@ -11,26 +11,26 @@ import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.GhostOrderModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.GhostPopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;
 
-public class GhostList extends InvestigationList {
+public class GhostListView extends InvestigationListView {
 
-    public GhostList(Context context) {
+    public GhostListView(Context context) {
         super(context);
     }
 
-    public GhostList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public GhostListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public GhostList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
+    public GhostListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public GhostList(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public GhostListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

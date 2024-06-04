@@ -5,11 +5,11 @@ import androidx.annotation.Nullable;
 
 import com.android.billingclient.api.ProductDetails;
 
-public class MarketplaceMtxItem {
+public class MarketplaceMtxItemModel {
 
     private final ProductDetails productDetails;
 
-    public MarketplaceMtxItem(ProductDetails productDetails) {
+    public MarketplaceMtxItemModel(ProductDetails productDetails) {
         this.productDetails = productDetails;
     }
 

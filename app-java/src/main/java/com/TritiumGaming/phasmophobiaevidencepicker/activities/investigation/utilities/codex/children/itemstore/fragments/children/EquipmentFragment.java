@@ -17,11 +17,11 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentGroupData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentItemData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentItemModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupList;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
 
 public class EquipmentFragment extends ItemStoreFragment {
@@ -39,7 +39,7 @@ public class EquipmentFragment extends ItemStoreFragment {
             @DrawableRes int equipmentIcon;
             //@DrawableRes ArrayList<Integer> tierImages = new ArrayList<>();
 
-            ItemStoreEquipmentGroupData groupData = new ItemStoreEquipmentGroupData();
+            ItemStoreEquipmentGroupModel groupData = new ItemStoreEquipmentGroupModel();
 
             TypedArray typed_shop =
                     getContext().getResources().obtainTypedArray(typed_shop_list.getResourceId(i, 0));
@@ -48,20 +48,20 @@ public class EquipmentFragment extends ItemStoreFragment {
             equipmentIcon = typed_shop.getResourceId(1, 0);
             buyCostData = typed_shop.getResourceId(6, 0);
 
-            groupData.setNameData(equipmentName);
+            groupData.nameData = equipmentName;
             groupData.setPaginationIcon(equipmentIcon);
-            groupData.setBuyCostData(buyCostData);
+            groupData.buyCostData = buyCostData;
 
             TypedArray typed_equipment_image =
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(2, 0));
             for (int j = 0; j < typed_equipment_image.length(); j++) {
-                ItemStoreEquipmentItemData itemData = new ItemStoreEquipmentItemData();
+                ItemStoreEquipmentItemModel itemData = new ItemStoreEquipmentItemModel();
                 groupData.addItem(itemData);
                 @DrawableRes int value = typed_equipment_image.getResourceId(j, 0);
-                groupData.getItemDataAt(j).setImageData(value);
+                groupData.getItemDataAt(j).imageData = value;
 
                 //tierImages.add(value);
-                groupData.getItemDataAt(j).setImageData(value);
+                groupData.getItemDataAt(j).imageData = value;
             }
             typed_equipment_image.recycle();
 
@@ -69,7 +69,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(3, 0));
             for (int j = 0; j < typed_equipment_flavortext.length(); j++) {
                 @StringRes int value = typed_equipment_flavortext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).setFlavorData(value);
+                groupData.getItemDataAt(j).flavorData = value;
             }
             typed_equipment_flavortext.recycle();
 
@@ -77,7 +77,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(4, 0));
             for (int j = 0; j < typed_equipment_infotext.length(); j++) {
                 @StringRes int value = typed_equipment_infotext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).setInfoData(value);
+                groupData.getItemDataAt(j).infoData = value;
             }
             typed_equipment_infotext.recycle();
 
@@ -91,7 +91,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                         getContext().getResources().obtainTypedArray(typed_equipment_attributes_positive.getResourceId(0, 0));
                 for (int l = 0; l < typed_equipment_attributes_positive_list.length(); l++) {
                     @StringRes int value = typed_equipment_attributes_positive_list.getResourceId(l, 0);
-                    ((ItemStoreEquipmentItemData)groupData.getItemDataAt(j)).addPositiveAttribute(value);
+                    ((ItemStoreEquipmentItemModel)groupData.getItemDataAt(j)).addPositiveAttribute(value);
                 }
                 typed_equipment_attributes_positive_list.recycle();
                 typed_equipment_attributes_positive.recycle();
@@ -102,7 +102,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                         getContext().getResources().obtainTypedArray(typed_equipment_attributes_negative.getResourceId(1, 0));
                 for (int l = 0; l < typed_equipment_attributes_negative_list.length(); l++) {
                     @StringRes int value = typed_equipment_attributes_negative_list.getResourceId(l, 0);
-                    ((ItemStoreEquipmentItemData)groupData.getItemDataAt(j)).addNegativeAttribute(value);
+                    ((ItemStoreEquipmentItemModel)groupData.getItemDataAt(j)).addNegativeAttribute(value);
                 }
                 typed_equipment_attributes_negative_list.recycle();
                 typed_equipment_attributes_negative.recycle();
@@ -113,7 +113,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(7, 0));
             for (int j = 0; j < typed_equipment_upgradelevel.length(); j++) {
                 @IntegerRes int value = typed_equipment_upgradelevel.getResourceId(j, 0);
-                ((ItemStoreEquipmentItemData)groupData.getItemDataAt(j)).setUpgradeLevel(value);
+                ((ItemStoreEquipmentItemModel)groupData.getItemDataAt(j)).setUpgradeLevel(value);
             }
             typed_equipment_upgradelevel.recycle();
 
@@ -121,7 +121,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(8, 0));
             for (int j = 0; j < typed_equipment_upgradecost.length(); j++) {
                 @IntegerRes int value = typed_equipment_upgradecost.getResourceId(j, 0);
-                ((ItemStoreEquipmentItemData)groupData.getItemDataAt(j)).setUpgradeCostData(value);
+                ((ItemStoreEquipmentItemModel)groupData.getItemDataAt(j)).upgradeCostData = value;
             }
             typed_equipment_upgradecost.recycle();
 
@@ -146,9 +146,9 @@ public class EquipmentFragment extends ItemStoreFragment {
 
     protected void createGroup(
             @NonNull LinearLayoutCompat parent,
-            @NonNull ItemStoreGroupData group
+            @NonNull ItemStoreGroupModel group
     ) {
-        ItemStoreGroupList itemStoreGroup = new ItemStoreGroupList(requireContext());
+        ItemStoreGroupListView itemStoreGroup = new ItemStoreGroupListView(requireContext());
         itemStoreGroup.build(R.drawable.equipment_tier_item, group, true);
         itemStoreGroup.setVisibility(View.INVISIBLE);
         itemStoreGroup.setAlpha(0);
@@ -161,7 +161,7 @@ public class EquipmentFragment extends ItemStoreFragment {
 
         scrollViewPaginator.setRowCount(storeData.getGroups().size());
 
-        for (ItemStoreGroupData group: storeData.getGroups()) {
+        for (ItemStoreGroupModel group: storeData.getGroups()) {
 
             try {
                 requireActivity().runOnUiThread(() -> {
@@ -177,8 +177,8 @@ public class EquipmentFragment extends ItemStoreFragment {
 
     protected void buildDataPopupView(@NonNull View dataView, int groupIndex, int itemIndex) {
 
-        ItemStoreEquipmentGroupData groupData = (ItemStoreEquipmentGroupData) storeData.getGroupAt(groupIndex);
-        ItemStoreEquipmentItemData itemData = (ItemStoreEquipmentItemData)groupData.getItemDataAt(itemIndex);
+        ItemStoreEquipmentGroupModel groupData = (ItemStoreEquipmentGroupModel) storeData.getGroupAt(groupIndex);
+        ItemStoreEquipmentItemModel itemData = (ItemStoreEquipmentItemModel)groupData.getItemDataAt(itemIndex);
 
         AppCompatTextView itemNameView = dataView.findViewById(R.id.safehouse_shop_tool_label);
         AppCompatTextView flavortextView = dataView.findViewById(R.id.textview_itemshop_flavor);
@@ -191,9 +191,9 @@ public class EquipmentFragment extends ItemStoreFragment {
         ItemStoreItemView itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);//.findViewById(R.id.tier_item);
 
         StringBuilder buyCost = new StringBuilder("$");
-        buyCost.append(getResources().getInteger(groupData.getBuyCostData()));
+        buyCost.append(getResources().getInteger(groupData.buyCostData));
 
-        int upcst = getResources().getInteger(itemData.getUpgradeCostData());
+        int upcst = getResources().getInteger(itemData.upgradeCostData);
         StringBuilder upgradeCost = new StringBuilder();
         if(upcst > 0) {
             upgradeCost.append("$").append(upcst);
@@ -205,22 +205,20 @@ public class EquipmentFragment extends ItemStoreFragment {
         StringBuilder upgradeLevel = new StringBuilder();
         upgradeLevel.append((uplvl > 0) ? uplvl : "-");
 
-        itemNameView.setText(getString(groupData.getNameData()));
-        flavortextView.setText(Html.fromHtml(getString(itemData.getFlavorData())));
-        infotextView.setText(Html.fromHtml(getString(itemData.getInfoData())));
+        itemNameView.setText(getString(groupData.nameData));
+        flavortextView.setText(Html.fromHtml(getString(itemData.flavorData)));
+        infotextView.setText(Html.fromHtml(getString(itemData.infoData)));
         buycostView.setText(buyCost);
         upgradeCostView.setText(upgradeCost);
         upgradeLevelView.setText(upgradeLevel);
-        if(getContext() != null) {
-            attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(getContext())));
-        }
+        attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(requireContext())));
         /*ItemStoreComposablesKt.setEquipmentSimple(
                 itemImageView,
                 itemData.getImageData(),
                 itemIndex+1
         );*/
         LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
-        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), getContext().getTheme()));
+        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.imageData, getContext().getTheme()));
         layerDrawable.setLevel(itemIndex+1);
 
         itemImageView.invalidate();
