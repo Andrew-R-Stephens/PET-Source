@@ -39,14 +39,14 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     var reorderGhostViews = true // Investigation behavior
 
     // Title screen increments
-    var canShowIntroduction: Boolean = true
+    private var canShowIntroduction: Boolean = true
 
-    val colorThemeID: String
+    private val colorThemeID: String
         get() = colorThemeControl.iD
     val colorTheme: CustomTheme
         get() = colorThemeControl.currentTheme
 
-    val fontThemeID: String
+    private val fontThemeID: String
         get() = fontThemeControl.iD
     val fontTheme: CustomTheme
         get() = fontThemeControl.currentTheme

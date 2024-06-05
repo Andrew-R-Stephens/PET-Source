@@ -9,25 +9,19 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class PETImageButton : AppCompatImageButton {
     constructor(context: Context) :
-            super(context) {
-        init(context, null)
-    }
+            super(context) { init(null) }
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) {
-        init(context, attrs)
-    }
+            super(context, attrs) { init(attrs) }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) {
-        init(context, attrs)
-    }
+            super(context, attrs, defStyleAttr) { init(attrs) }
 
-    fun init(c: Context, attrs: AttributeSet?) {
+    fun init(attrs: AttributeSet?) {
         setDefaults()
 
         if (attrs != null) {
-            val attrArray = c.obtainStyledAttributes(attrs, R.styleable.PETImageButton)
+            val attrArray = context.obtainStyledAttributes(attrs, R.styleable.PETImageButton)
 
             setImageResource(
                 attrArray.getResourceId(

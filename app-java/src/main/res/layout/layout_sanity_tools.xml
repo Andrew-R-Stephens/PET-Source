@@ -95,7 +95,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningLayout
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningLayout
                 android:id="@+id/sanityWarningLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

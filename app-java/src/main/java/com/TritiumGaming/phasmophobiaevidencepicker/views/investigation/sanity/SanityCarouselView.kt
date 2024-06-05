@@ -7,26 +7,19 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class SanityCarouselView : ConstraintLayout {
-    constructor(context: Context) : super(context) {
-        init(context, null)
-    }
+    constructor(context: Context) :
+            super(context) { init(null) }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context, attrs)
-    }
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { init(attrs) }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr
-    ) {
-        init(context, attrs)
-    }
+            super(context, attrs, defStyleAttr) { init(attrs) }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) {
-        init(context, attrs)
-    }
+            super(context, attrs, defStyleAttr, defStyleRes) { init(attrs) }
 
-    fun init(context: Context, attrs: AttributeSet?) {
+    fun init(attrs: AttributeSet?) {
         inflate(context, R.layout.layout_sanity_carousel, this)
 
         if (attrs != null) {

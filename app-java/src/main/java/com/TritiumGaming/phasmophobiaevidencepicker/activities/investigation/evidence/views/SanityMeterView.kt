@@ -32,23 +32,16 @@ class SanityMeterView : View {
 
     private val paint = Paint()
 
-    @ColorInt
-    private var sanityPieStartColor = 0
+    @ColorInt private var sanityPieStartColor = 0
+    @ColorInt private var sanityPieEndColor = 0
 
-    @ColorInt
-    private var sanityPieEndColor = 0
+    @ColorInt private var sanityHeadBrainColor = 0
+    @ColorInt private var sanityHeadSkullColor = 0
 
-    @ColorInt
-    private var sanityHeadBrainColor = 0
+    @ColorInt private var sanityBorderColor = 0
 
-    @ColorInt
-    private var sanityHeadSkullColor = 0
-
-    @ColorInt
-    private var sanityBorderColor = 0
-
-    private val containerRect: RectF? = RectF()
-    private val sanityRect: Rect? = Rect()
+    private val containerRect: RectF = RectF()
+    private val sanityRect: Rect = Rect()
 
     @ColorInt
     var themeColor: Int = 0
@@ -61,15 +54,17 @@ class SanityMeterView : View {
     private var sanityImg_brain: Bitmap? = null
     private var sanityImg_border: Bitmap? = null
 
-    constructor(context: Context?) : super(context)
+    constructor(context: Context?) :
+            super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?) :
+            super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int
-    ) : super(context, attrs, defStyleAttr)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes)
 
     fun init(sanityData: SanityModel?) {
         this.sanityData = sanityData
@@ -219,23 +214,21 @@ class SanityMeterView : View {
             canvas.drawArc(containerRect, 270f, insanityDegree, true, paint)
         }
 
-        if (sanityRect != null) {
-            sanityRect[padding.toInt(), padding.toInt(), sanityImg_skull!!.width - padding.toInt()] =
-                sanityImg_skull!!.height - padding.toInt()
+        sanityRect[padding.toInt(), padding.toInt(), sanityImg_skull!!.width - padding.toInt()] =
+            sanityImg_skull!!.height - padding.toInt()
 
-            paint.setColorFilter(null)
-            paint.color = sanityHeadSkullColor
-            canvas.drawBitmap(sanityImg_skull!!, sanityRect, containerRect, paint)
+        paint.setColorFilter(null)
+        paint.color = sanityHeadSkullColor
+        canvas.drawBitmap(sanityImg_skull!!, sanityRect, containerRect, paint)
 
-            paint.setColorFilter(null)
-            paint.color = sanityHeadBrainColor
-            canvas.drawBitmap(sanityImg_brain!!, sanityRect, containerRect, paint)
+        paint.setColorFilter(null)
+        paint.color = sanityHeadBrainColor
+        canvas.drawBitmap(sanityImg_brain!!, sanityRect, containerRect, paint)
 
 
-            paint.setColorFilter(null)
-            paint.color = sanityBorderColor
-            canvas.drawBitmap(sanityImg_border!!, sanityRect, containerRect, paint)
-        }
+        paint.setColorFilter(null)
+        paint.color = sanityBorderColor
+        canvas.drawBitmap(sanityImg_border!!, sanityRect, containerRect, paint)
 
         paint.color = sanityBorderColor
         paint.strokeWidth = 5f

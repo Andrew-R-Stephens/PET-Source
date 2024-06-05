@@ -24,28 +24,20 @@ class PhaseTimerLayout : ConstraintLayout {
 
     var phaseTimerTextView: AppCompatTextView? = null // TIMER VIEW
 
-    constructor(context: Context) : super(context) {
-        initView(context, null)
-    }
+    constructor(context: Context) :
+            super(context) { initView(null) }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initView(context, attrs)
-    }
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView(attrs) }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr
-    ) {
-        initView(context, attrs)
-    }
+            super(context, attrs, defStyleAttr) { initView(attrs) }
 
-    constructor(
-        context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int,
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initView(context, attrs)
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
 
-    protected fun initView(c: Context, attrs: AttributeSet?) {
-        inflate(c, R.layout.layout_phasetimer, this)
+    protected fun initView(attrs: AttributeSet?) {
+        inflate(context, R.layout.layout_phasetimer, this)
 
         phaseTimerTextView = findViewById(R.id.evidence_timer_text);
 

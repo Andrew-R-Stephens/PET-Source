@@ -2,10 +2,10 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.media.MediaPlayer
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView
 
 /**
  * Contains references to all Views for Sanity-specific UI and updates them via Runnable.

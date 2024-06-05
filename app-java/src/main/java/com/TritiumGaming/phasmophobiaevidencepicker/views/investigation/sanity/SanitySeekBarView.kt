@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity
 
 import android.annotation.SuppressLint
 import android.content.Context

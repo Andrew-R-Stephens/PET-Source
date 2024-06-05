@@ -24,7 +24,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView;
 
 /**
  * EvidenceSoloFragment class
@@ -36,7 +36,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     @Nullable
     private Thread sanityThread; //Thread that updates the sanity levels
 
-    private SanityWarningView sanityPhaseView_setup, sanityPhaseView_action;
+    private SanityWarningView sanityWarnSetupView, sanityWarnActionView;
 
     /**
      * EvidenceSoloFragment default constructor
@@ -83,8 +83,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         AppCompatImageButton difficulty_next = difficultyCarouselView.findViewById(R.id.carousel_next);
 
         AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
-        sanityPhaseView_setup = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
-        sanityPhaseView_action = view.findViewById(R.id.evidence_sanitymeter_phase_action);
+        sanityWarnSetupView = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
+        sanityWarnActionView = view.findViewById(R.id.evidence_sanitymeter_phase_action);
 
         /* LISTENERS */
         timer_skip.setOnClickListener(v -> {
@@ -93,8 +93,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         });
 
         button_reset.setOnClickListener(v -> {
-            /*LayerDrawable drawable = (LayerDrawable) button_reset.getDrawable();
-            drawable.getDrawable(R.id.arrow);*/
+            // TODO animate reset arrow
             reset();
         });
 
@@ -141,7 +140,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 difficulty_prev,
                 difficulty_next,
                 difficulty_name,
-                sanityWarningTextView, sanityPhaseView_action, sanityPhaseView_setup,
+                sanityWarnHuntView, sanityWarnActionView, sanityWarnSetupView,
                 sanitySeekBarView
         );
 
@@ -177,8 +176,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void requestInvalidateComponents() {
         super.requestInvalidateComponents();
 
-        sanityPhaseView_setup.reset();
-        sanityPhaseView_action.reset();
+        sanityWarnSetupView.reset();
+        sanityWarnActionView.reset();
     }
 
     /**
@@ -196,9 +195,9 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                             globalPreferencesViewModel,
                             sanityPercentTextView,
                             sanitySeekBarView,
-                            sanityPhaseView_setup,
-                            sanityPhaseView_action,
-                            sanityWarningTextView,
+                                sanityWarnSetupView,
+                                sanityWarnActionView,
+                                sanityWarnHuntView,
                             getHuntWarningAudio(appLang)
                         )
                 );

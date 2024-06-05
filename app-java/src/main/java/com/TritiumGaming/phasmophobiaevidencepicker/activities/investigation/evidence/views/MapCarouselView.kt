@@ -37,7 +37,7 @@ class MapCarouselView(
      * @param prev
      */
     private fun setPrev(prev: AppCompatImageButton) {
-        prev.setOnClickListener { v: View? ->
+        prev.setOnClickListener {
             if (mapCarouselData != null) {
                 var i = mapCarouselData.mapCurrentIndex - 1
                 if (i < 0) {
@@ -54,7 +54,7 @@ class MapCarouselView(
      * @param next
      */
     private fun setNext(next: AppCompatImageButton) {
-        next.setOnClickListener { v: View? ->
+        next.setOnClickListener {
             if (mapCarouselData != null) {
                 var i = mapCarouselData.mapCurrentIndex + 1
                 if (i >= mapCarouselData.mapCount) {
@@ -66,10 +66,10 @@ class MapCarouselView(
     }
 
     private fun setCurrentMapIndex(i: Int) {
-        mapCarouselData!!.mapCurrentIndex = i
-        mapNameView!!.text =
-            mapCarouselData.mapCurrentName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }
-                .toTypedArray()[0]
+        mapCarouselData?.mapCurrentIndex = i
+        mapNameView?.text =
+            mapCarouselData?.mapCurrentName?.split(" ".toRegex())?.dropLastWhile { it.isEmpty() }
+                ?.toTypedArray()?.get(0)
     }
 
     /**

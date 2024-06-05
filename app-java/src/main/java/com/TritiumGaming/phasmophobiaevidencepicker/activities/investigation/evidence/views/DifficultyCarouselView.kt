@@ -5,7 +5,8 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView
 
 /**
  * DifficultySelectControl class

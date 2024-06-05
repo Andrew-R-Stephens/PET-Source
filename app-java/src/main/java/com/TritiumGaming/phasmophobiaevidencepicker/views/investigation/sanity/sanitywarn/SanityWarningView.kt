@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,24 +7,26 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
-import com.google.android.play.integrity.internal.f
 
 /**
  * WarnTextView class
  *
  * @author TritiumGamingStudios
  */
-class SanityWarningView : AppCompatTextView {
+open class SanityWarningView : AppCompatTextView {
+
+    private companion object SanityState {
+        const val OFF = 0
+        const val INACTIVE = 1
+        const val ACTIVE = 2
+    }
+
     private var state = false
     private var flashOn = false
 
-    private val OFF = 0
-    private val INACTIVE = 1
-    private val ACTIVE = 2
-
-    @ColorInt private var color_active = 0
-    @ColorInt private var color_inactive = 0
-    @ColorInt private var color_off = 0
+    @ColorInt private var colorActive = 0
+    @ColorInt private var colorInactive = 0
+    @ColorInt private var colorOff = 0
 
     constructor(context: Context) :
             super(context) {
@@ -42,9 +44,9 @@ class SanityWarningView : AppCompatTextView {
     }
 
     private fun init() {
-        color_active = getColorFromAttribute(context, R.attr.light_active)
-        color_inactive = getColorFromAttribute(context, R.attr.light_inactive)
-        color_off = getColorFromAttribute(context, R.attr.light_off)
+        colorActive = getColorFromAttribute(context, R.attr.light_active)
+        colorInactive = getColorFromAttribute(context, R.attr.light_inactive)
+        colorOff = getColorFromAttribute(context, R.attr.light_off)
 
         setDefaults()
     }
@@ -53,7 +55,7 @@ class SanityWarningView : AppCompatTextView {
         setBackgroundResource(R.drawable.rect_border)
 
         background.setLevel(OFF)
-        setTextColor(color_off)
+        setTextColor(colorOff)
 
         gravity = Gravity.CENTER
         maxLines = 1
@@ -66,12 +68,10 @@ class SanityWarningView : AppCompatTextView {
         if (this.state) {
             flashOn = !flashOn
 
-            if (canFlash && flashOn) {
-                color = color_active
-            }
-            else { color = color_inactive }
+            color = if (canFlash && flashOn) { colorActive }
+                else { colorInactive }
 
-        } else { color = color_off }
+        } else { color = colorOff }
 
         setTextColor(color)
     }
@@ -83,12 +83,12 @@ class SanityWarningView : AppCompatTextView {
         if (this.state) {
             background.setLevel(ACTIVE)
 
-            if (flashOn) { setTextColor(color_active) }
-            else { setTextColor(color_inactive) }
+            if (flashOn) { setTextColor(colorActive) }
+            else { setTextColor(colorInactive) }
 
         } else {
             background.setLevel(OFF)
-            setTextColor(color_off)
+            setTextColor(colorOff)
         }
     }
 

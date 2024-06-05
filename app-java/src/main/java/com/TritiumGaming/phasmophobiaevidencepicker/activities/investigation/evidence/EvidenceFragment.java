@@ -26,13 +26,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.SanitySeekBarView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarnHuntView;
 
 /**
  * EvidenceFragment class
@@ -60,7 +60,7 @@ public class EvidenceFragment extends InvestigationFragment {
     protected SanitySeekBarView sanitySeekBarView;
     //protected SanityMeterView sanityMeterView;
     protected ComposeView sanityMeterView;
-    protected SanityWarningView sanityWarningTextView;
+    protected SanityWarnHuntView sanityWarnHuntView;
 
     public EvidenceFragment(int layout) {
         super(layout);
@@ -139,7 +139,7 @@ public class EvidenceFragment extends InvestigationFragment {
         //sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
-        sanityWarningTextView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
+        sanityWarnHuntView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
@@ -198,7 +198,6 @@ public class EvidenceFragment extends InvestigationFragment {
             sanitySeekBarView.resetProgress();
         }
 
-        //sanityMeterView.init(evidenceViewModel.getSanityData());
         SanityMeterKt.setSanityMeterView(sanityMeterView, evidenceViewModel);
 
         popupWindow = new PopupWindow(
@@ -243,10 +242,6 @@ public class EvidenceFragment extends InvestigationFragment {
             evidenceViewModel.getGhostOrderData().updateOrder();
         }
 
-        if(evidenceList != null) {
-            //evidenceList.forceResetEvidenceContainer();
-        }
-
         if(ghostList != null) {
             ghostList.forceResetGhostContainer();
         }
@@ -262,8 +257,8 @@ public class EvidenceFragment extends InvestigationFragment {
             phaseTimerCountdownView.reset();
         }
 
-        if(sanityWarningTextView != null) {
-            sanityWarningTextView.reset();
+        if(sanityWarnHuntView != null) {
+            sanityWarnHuntView.reset();
         }
 
     }
@@ -285,12 +280,6 @@ public class EvidenceFragment extends InvestigationFragment {
     @Override
     public void onDestroyView() {
 
-        /*
-        if (sanityMeterView != null) {
-            sanityMeterView.recycleBitmaps();
-        }
-        */
-
         if(popupWindow != null) {
             popupWindow.dismiss();
             popupWindow = null;
@@ -304,12 +293,6 @@ public class EvidenceFragment extends InvestigationFragment {
      */
     @Override
     public void onResume() {
-
-        /*
-        if (!sanityMeterView.hasBuiltImages()) {
-            sanityMeterView.buildImages();
-        }
-        */
 
         super.onResume();
     }

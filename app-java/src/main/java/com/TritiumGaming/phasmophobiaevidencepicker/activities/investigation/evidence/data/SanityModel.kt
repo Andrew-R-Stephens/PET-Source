@@ -16,10 +16,20 @@ class SanityModel(
     private val evidenceViewModel: EvidenceViewModel?
 ) {
 
+    private companion object SanityConstants {
+        const val MAX_SANITY = 100f
+        const val MIN_SANITY = 0f
+
+        val DIFFICULTY_RATE = floatArrayOf(1.0f, 1.5f, 2.0f)
+
+        val DROP_RATE_SETUP = floatArrayOf(.09f, .05f, .03f)
+        val DROP_RATE_NORMAL = floatArrayOf(.12f, .08f, .05f)
+    }
+
     private val _insanityPercent = MutableStateFlow(1f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()
 
-    private fun setInsanityPercent() {
+    private fun updateInsanityPercent() {
         _insanityPercent.value = (getInsanityActual() * .01).toFloat()
     }
 
@@ -43,12 +53,6 @@ class SanityModel(
     val isNewCycle: Boolean
         get() = startTime == -1L
 
-    private val maxSanity = 100f
-
-    private val difficultyRate: DoubleArray = doubleArrayOf(1.0, 1.5, 2.0)
-
-    private val dropRate_setup = doubleArrayOf(.09, .05, .03)
-    private val dropRate_normal = doubleArrayOf(.12, .08, .05)
 
     var warningAudioAllowed = true
         get() {
@@ -69,45 +73,39 @@ class SanityModel(
      * Defaults if the selected index is out of range of available indexes.
      * @return 1 - default. 0-2 Depending on Map Size.
      */
-    fun getDifficultyRate(): Double {
+    private fun getDifficultyRate(): Float {
         val diffIndex =
-            evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: return 1.0
+            evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: return 1f
 
-        if (diffIndex >= 0 && diffIndex < difficultyRate.size) {
-            return difficultyRate[diffIndex]
+        if (diffIndex >= 0 && diffIndex < DIFFICULTY_RATE.size) {
+            return DIFFICULTY_RATE[diffIndex]
         }
 
-        return 1.0
+        return 1f
     }
 
-    val dropRate: Double
-        /**
-         * Returns the drop rate multiplier.
-         * Based on current map size (Small, Medium, Large) and the stage of the investigation (Setup
-         * vs Hunt)
-         * Defaults if the selected index is out of range of available indexes.
-         * @return 1.0 - default.
-         */
+    private val dropRate: Float
+        /** Returns the drop rate multiplier.
+         * Based on current map size (Small, Medium, Large) and the stage of the investigation
+         * (Setup vs Hunt)
+         * Defaults if the selected index is out of range of available indexes. */
         get() {
-
-            val currMapSize = evidenceViewModel?.mapCarouselData?.mapCurrentSize ?: return 1.0
-
-            if ((evidenceViewModel.phaseTimerData?.timeRemaining ?: return 1.0) <= 0L) {
+            val currMapSize = evidenceViewModel?.mapCarouselData?.mapCurrentSize ?: return 1f
+            if ((evidenceViewModel.phaseTimerData?.timeRemaining ?: return 1f) <= 0L) {
                 return getNormalDrainRate(currMapSize)
             }
-
             return getSanityDrainRate(currMapSize)
         }
 
-    fun getNormalDrainRate(mapSize: Int): Double {
-        return dropRate_normal[mapSize]
+    private fun getNormalDrainRate(mapSize: Int): Float {
+        return DROP_RATE_NORMAL[mapSize]
     }
 
-    fun getSanityDrainRate(mapSize: Int): Double {
-        return dropRate_setup[mapSize]
+    private fun getSanityDrainRate(mapSize: Int): Float {
+        return DROP_RATE_SETUP[mapSize]
     }
 
-    fun resetStartTime() {
+    private fun resetStartTime() {
         startTime = -1
     }
 
@@ -115,17 +113,12 @@ class SanityModel(
         startTime = System.currentTimeMillis()
     }
 
-    fun setFlashTimeoutMax(flashTimeoutMax: Int) {
-        this.flashTimeoutMax = flashTimeoutMax.toLong()
+    fun setFlashTimeoutMax(flashTimeoutMax: Long) {
+        this.flashTimeoutMax = flashTimeoutMax
     }
 
-    /** @param timeout - The moment when the Warning began to flash. */
-    fun setFlashTimeoutStart(timeout: Long) {
-        flashTimeoutStart = timeout
-    }
-
-    fun resetFlashTimeoutStart() {
-        setFlashTimeoutStart(-1)
+    private fun resetFlashTimeoutStart() {
+        flashTimeoutStart = -1
     }
 
     /** @param insanityActual - The decimal form of the sanity level. */
@@ -138,14 +131,11 @@ class SanityModel(
      * The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual.
      */
-    fun getInsanityActual(): Long {
-        val insanityActualTemp = (maxSanity - insanityActual).toInt().toLong()
+    private fun getInsanityActual(): Long {
+        val insanityActualTemp = (MAX_SANITY - insanityActual).toInt().toFloat()
 
-        val maxSanity = 100L
-        val minSanity = 0L
         return max(
-            min(insanityActualTemp.toDouble(), maxSanity.toDouble()),
-            minSanity.toDouble()
+            min(insanityActualTemp, MAX_SANITY), MIN_SANITY
         ).toLong()
     }
 
@@ -167,9 +157,10 @@ class SanityModel(
      * sanity, difficulty and map size.
      */
     fun setProgressManually(progressOverride: Long) {
+        val multiplier = .001f
         val newStartTime =
             (System.currentTimeMillis() +
-                    (maxSanity - progressOverride / getDifficultyRate() / dropRate / .001))
+                    (MAX_SANITY - progressOverride / getDifficultyRate() / dropRate / multiplier))
         startTime = newStartTime.toLong()
         resetFlashTimeoutStart()
     }
@@ -190,7 +181,7 @@ class SanityModel(
         }
 
         if (temp && flashTimeoutStart == -1L) {
-            setFlashTimeoutStart(System.currentTimeMillis())
+            flashTimeoutStart = System.currentTimeMillis()
         }
 
         return (System.currentTimeMillis() - flashTimeoutStart) < flashTimeoutMax
@@ -216,7 +207,7 @@ class SanityModel(
             (((System.currentTimeMillis() -
                     (startTime)) * multiplier * this.dropRate) * getDifficultyRate()).toFloat()
         )
-        setInsanityPercent()
+        updateInsanityPercent()
 
         /*
         If the Countdown timer still has time, and the player's sanity is less than or
@@ -236,7 +227,8 @@ class SanityModel(
         val percentageFormat = NumberFormat.getPercentInstance()
         percentageFormat.minimumFractionDigits = 0
 
-        return percentageFormat.format(insanityPercent.value.toDouble()).replace("%", "")
+        return percentageFormat.format(
+            insanityPercent.value.toDouble()).replace("%", "")
     }
 
     /**
