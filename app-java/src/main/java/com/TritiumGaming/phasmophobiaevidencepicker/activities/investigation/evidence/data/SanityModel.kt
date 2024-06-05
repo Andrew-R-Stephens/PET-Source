@@ -16,7 +16,7 @@ class SanityModel(
     private val evidenceViewModel: EvidenceViewModel?
 ) {
 
-    private val _insanityPercent = MutableStateFlow(0f) /** the sanity level missing, in percent.**/
+    private val _insanityPercent = MutableStateFlow(1f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()
 
     private fun setInsanityPercent() {

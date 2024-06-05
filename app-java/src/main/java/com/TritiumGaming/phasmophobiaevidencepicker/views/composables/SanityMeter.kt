@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -88,7 +89,7 @@ fun SanityImageLayer(
     @DrawableRes image: Int = R.drawable.icon_sanityhead_brain,
     @ColorInt startColor: Int = (Color.Yellow).toArgb(),
     @ColorInt endColor: Int = (Color.Red).toArgb(),
-    interpolation: Float = .6f
+    interpolation: Float = 1f
 ) {
     Image(
         painter = painterResource(id = image),
@@ -112,7 +113,7 @@ fun SanityPie(
     modifier: Modifier = Modifier,
     @ColorInt startColor: Int = R.color.white,
     @ColorInt endColor: Int = Color(R.color.red).toArgb(),
-    interpolation: Float = .9f
+    interpolation: Float = 1f
 ) {
     Box(
         modifier = modifier

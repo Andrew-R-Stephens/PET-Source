@@ -48,9 +48,7 @@ class SanityRunnable (
 
             val phaseTimerData = evidenceViewModel.phaseTimerData
 
-            /*
-            if (!phaseTimerData.isPaused) {
-            */
+            if (phaseTimerData?.isPaused == false) {
 
                 sanityData.tick()
 
@@ -83,13 +81,11 @@ class SanityRunnable (
 
                 if (!sanityData.isPaused) { sanitySeekBarView?.updateProgress() }
 
-            /*
             } else {
-                if(phaseTimerData.isSetupPhase) {
+                if(phaseTimerData?.isSetupPhase == true) {
                     huntWarningTextView?.setState(true)
                 }
             }
-            */
         }
     }
 
