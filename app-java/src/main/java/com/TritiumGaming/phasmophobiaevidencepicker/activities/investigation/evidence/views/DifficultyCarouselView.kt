@@ -83,7 +83,7 @@ class DifficultyCarouselView {
     private fun updateRelatedComponents() {
         difficultyCarouselData!!.resetSanityData()
         if (difficultyCarouselData!!.difficultyIndex == 4) {
-            difficultyCarouselData!!.evidenceViewModel.sanityData!!.setInsanityActual(25f)
+            difficultyCarouselData!!.evidenceViewModel.sanityData!!.insanityActual = 25f
         }
         sanityProgressBar!!.updateProgress()
         difficultyNameView!!.text = difficultyCarouselData!!.currentDifficultyName
