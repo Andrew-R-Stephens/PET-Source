@@ -65,7 +65,7 @@ class PhaseTimerView(
         destroyTimer()
 
         if (isFresh) {
-            if (!sanityData!!.isNewCycle && !sanityData.isPaused) {
+            if (!sanityData!!.isNewCycle && !sanityData.paused.value) {
                 Log.d(
                     "SettingTimeRemaining",
                     phaseTimerData!!.difficultyCarouselData.currentDifficultyTime.toString() +

@@ -28,21 +28,20 @@ class SanityModel(
         val DROP_RATE_NORMAL = floatArrayOf(.12f, .08f, .05f)
     }
 
-    var insanityActual = 0f
+    var insanityActual: Float = 0f
         set(value) {
             field = min(value, MAX_SANITY)
         }
 
     private val _insanityPercent = MutableStateFlow(1f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()
-
     private fun updateInsanityPercent() {
-        _insanityPercent.value = (getInsanityActual() * .01f)
+        _insanityPercent.value = (insanityActual * .01f)
     }
 
     /** the sanity level missing, in degrees.**/
     val insanityDegree: Float
-        get() = (insanityPercent.value * 360f)
+        get() = insanityPercent.value * 360f
 
     /** @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.*/
     val sanityActual: Long
@@ -51,7 +50,7 @@ class SanityModel(
             return max(min(insanityActualTemp.toFloat(), MAX_SANITY), MIN_SANITY).toLong()
         }
 
-    /** @param startTime - The Sanity Drain starting time, whenever the play button is activated.
+    /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     var startTime: Long = -1L
 
@@ -62,12 +61,15 @@ class SanityModel(
     /** */
     var warningAudioAllowed = true
         get() {
-            val temp = insanityPercent.value < SAFE_MIN_BOUNDS
-            return field && temp
+            return field && (insanityPercent.value < SAFE_MIN_BOUNDS)
         }
 
     /** @return If the countdown timer is paused. */
-    var isPaused: Boolean = false
+    private val _paused = MutableStateFlow(false)
+    val paused = _paused.asStateFlow()
+    fun updatePaused(value: Boolean) {
+        _paused.value = value
+    }
 
     /** */
     var flashTimeoutMax: Long = -1
@@ -76,14 +78,15 @@ class SanityModel(
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
-    private fun getDifficultyRate(): Float {
-        val diffIndex =
-            evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: return 1f
-        if (diffIndex >= 0 && diffIndex < DIFFICULTY_RATE.size) {
-            return DIFFICULTY_RATE[diffIndex]
+    private val currentDifficultyRate: Float
+        get() {
+            val diffIndex =
+                evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: return 1f
+            if (diffIndex >= 0 && diffIndex < DIFFICULTY_RATE.size) {
+                return DIFFICULTY_RATE[diffIndex]
+            }
+            return 1f
         }
-        return 1f
-    }
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
@@ -118,11 +121,6 @@ class SanityModel(
         flashTimeoutStart = -1
     }
 
-    /** @param insanityActual - The decimal form of the sanity level. */
-    /*fun setInsanityActual(insanityActual: Float) {
-        this.insanityActual = min(insanityActual, MAX_SANITY)
-    }*/
-
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
     private fun getInsanityActual(): Long {
@@ -137,7 +135,6 @@ class SanityModel(
      * Used upon fragment re-entry, continuing with preexisting data. */
     fun setProgressManually() {
         setProgressManually(insanityActual.toLong())
-        //resetFlashTimeoutStart()
     }
 
     /** @param progressOverride specify the progress 0 - 100
@@ -147,7 +144,7 @@ class SanityModel(
     fun setProgressManually(progressOverride: Long) {
         val multiplier = .001f
         val newStartTime = (System.currentTimeMillis() +
-                (MAX_SANITY - progressOverride / getDifficultyRate() / dropRate / multiplier))
+                (MAX_SANITY - progressOverride / currentDifficultyRate / dropRate / multiplier))
         startTime = newStartTime.toLong()
         resetFlashTimeoutStart()
     }
@@ -189,7 +186,7 @@ class SanityModel(
 
         insanityActual = (
             (((System.currentTimeMillis() -
-                    (startTime)) * multiplier * this.dropRate) * getDifficultyRate()).toFloat()
+                    (startTime)) * multiplier * dropRate) * currentDifficultyRate).toFloat()
         )
         updateInsanityPercent()
 

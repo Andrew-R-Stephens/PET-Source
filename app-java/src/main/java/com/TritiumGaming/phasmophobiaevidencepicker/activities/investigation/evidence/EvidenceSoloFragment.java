@@ -23,7 +23,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityCarouselView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.SanityCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView;
 
 /**
@@ -208,7 +208,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             if (sanityThread == null) {
 
                 if (evidenceViewModel.hasSanityData()) {
-                    evidenceViewModel.getSanityData().setPaused(false);
+                    evidenceViewModel.getSanityData().updatePaused(false);
                 }
 
                 if (evidenceViewModel.hasSanityRunnable()) {
@@ -216,7 +216,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                     sanityThread = new Thread() {
                         public void run() {
                             while (evidenceViewModel != null && evidenceViewModel.hasSanityData()
-                                    && !evidenceViewModel.getSanityData().isPaused()) {
+                                    && !evidenceViewModel.getSanityData().getPaused().getValue()) {
                                 try {
                                     update();
                                     tick();
@@ -264,7 +264,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         if (evidenceViewModel != null) {
 
             if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.getSanityData().setPaused(true);
+                evidenceViewModel.getSanityData().updatePaused(true);
             }
 
             SanityRunnable sanityRunnable = evidenceViewModel.getSanityRunnable();

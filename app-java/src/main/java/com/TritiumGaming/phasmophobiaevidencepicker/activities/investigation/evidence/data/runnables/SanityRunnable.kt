@@ -42,7 +42,7 @@ class SanityRunnable (
             sanityData.initStartTime()
         }
 
-        if (!sanityData.isPaused) {
+        if (!sanityData.paused.value) {
 
             if(evidenceViewModel.phaseTimerData == null) return
 
@@ -79,7 +79,7 @@ class SanityRunnable (
                     huntWarningTextView?.setState(false)
                 }
 
-                if (!sanityData.isPaused) { sanitySeekBarView?.updateProgress() }
+                if (!sanityData.paused.value) { sanitySeekBarView?.updateProgress() }
 
             } else {
                 if(phaseTimerData?.isSetupPhase == true) {
