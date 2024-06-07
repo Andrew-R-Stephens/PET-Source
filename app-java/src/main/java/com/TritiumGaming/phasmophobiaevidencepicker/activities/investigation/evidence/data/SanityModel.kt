@@ -16,7 +16,7 @@ class SanityModel(
     private val evidenceViewModel: EvidenceViewModel?
 ) {
 
-    private companion object SanityConstants {
+    companion object SanityConstants {
         const val MAX_SANITY = 100f
         const val MIN_SANITY = 0f
 
@@ -199,6 +199,8 @@ class SanityModel(
         ) {
             setProgressManually(sanityHalf)
         }
+
+        evidenceViewModel?.phaseTimerData?.updateCurrentPhase()
     }
 
     /** */

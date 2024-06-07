@@ -55,7 +55,7 @@ class EvidenceViewModel : ViewModel() {
 
     private fun initPhaseTimerData() {
         phaseTimerData =
-            phaseTimerData ?: difficultyCarouselData?.let { PhaseTimerModel(it) }
+            phaseTimerData ?: PhaseTimerModel(this)
     }
 
     private fun initGhostOrderData() {

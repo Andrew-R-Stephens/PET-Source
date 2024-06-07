@@ -5,15 +5,21 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 
 /**
  * WarnTextView class
  *
  * @author TritiumGamingStudios
  */
-open class SanityWarningView : AppCompatTextView {
+abstract class SanityWarningView : AppCompatTextView {
+
+    lateinit var evidenceViewModel: EvidenceViewModel
 
     private companion object SanityState {
         const val OFF = 0
@@ -30,20 +36,20 @@ open class SanityWarningView : AppCompatTextView {
 
     constructor(context: Context) :
             super(context) {
-        init()
+        initView()
     }
 
     constructor(context: Context, attrs: AttributeSet?) :
             super(context, attrs) {
-        init()
+        initView()
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr) {
-        init()
+        initView()
     }
 
-    private fun init() {
+    private fun initView() {
         colorActive = getColorFromAttribute(context, R.attr.light_active)
         colorInactive = getColorFromAttribute(context, R.attr.light_inactive)
         colorOff = getColorFromAttribute(context, R.attr.light_off)
@@ -53,14 +59,22 @@ open class SanityWarningView : AppCompatTextView {
 
     private fun setDefaults() {
         setBackgroundResource(R.drawable.rect_border)
-
         background.setLevel(OFF)
+
         setTextColor(colorOff)
 
         gravity = Gravity.CENTER
         maxLines = 1
         setPaddingDefaults()
     }
+
+    fun init(evidenceViewModel: EvidenceViewModel) {
+        this.evidenceViewModel = evidenceViewModel
+
+        initObservables()
+    }
+
+    abstract fun initObservables()
 
     fun toggleTextState(canFlash: Boolean) {
         @ColorInt val color: Int

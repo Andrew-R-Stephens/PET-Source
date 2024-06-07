@@ -16,7 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.s
 class DifficultyCarouselView {
     private var difficultyCarouselData: DifficultyCarouselModel? = null
 
-    private var timerView: PhaseTimerView? = null
+    private var timerView: PhaseTimerModel? = null
     private var timerControlView: PhaseTimerControlView? = null
     private var difficultyNameView: AppCompatTextView? = null
     private var sanityProgressBar: SanitySeekBarView? = null
@@ -33,7 +33,7 @@ class DifficultyCarouselView {
      */
     fun init(
         difficultyCarouselData: DifficultyCarouselModel?,
-        timerView: PhaseTimerView?,
+        timerView: PhaseTimerModel?,
         timerControlView: PhaseTimerControlView?,
         prevButton: AppCompatImageButton,
         nextButton: AppCompatImageButton,

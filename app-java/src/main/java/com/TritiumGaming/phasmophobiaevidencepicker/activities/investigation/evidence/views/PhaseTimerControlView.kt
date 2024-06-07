@@ -13,7 +13,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceView
 class PhaseTimerControlView {
     private val phaseTimerData: PhaseTimerModel?
 
-    private var timer: PhaseTimerView? = null
+    private var timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel? = null
     private var view: AppCompatImageButton? = null
 
     private var icon_play = 0
@@ -21,7 +21,7 @@ class PhaseTimerControlView {
 
     constructor(
         evidenceViewModel: EvidenceViewModel,
-        timer: PhaseTimerView?,
+        timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?,
         play_pause_view: AppCompatImageButton,
         icon_play: Int,
         icon_pause: Int
@@ -41,7 +41,7 @@ class PhaseTimerControlView {
 
     constructor(
         phaseTimerData: PhaseTimerModel?,
-        timer: PhaseTimerView?,
+        timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?,
         play_pause_view: AppCompatImageButton,
         icon_play: Int,
         icon_pause: Int
@@ -63,7 +63,7 @@ class PhaseTimerControlView {
         this.view = view
     }
 
-    fun setTimer(timer: PhaseTimerView?) {
+    fun setTimer(timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?) {
         this.timer = timer
     }
 

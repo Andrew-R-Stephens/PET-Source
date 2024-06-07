@@ -1,30 +1,51 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class PhaseTimerModel(
-    val difficultyCarouselData: DifficultyCarouselModel
+    val evidenceViewModel: EvidenceViewModel
 ) {
+    enum class Phase {
+        SETUP, ACTION, HUNT
+    }
+
     var isPaused: Boolean = true
 
-    private val TIME_DEFAULT = -1L
-    private val TIME_MIN = 0L
+    private val timeDefault = -1L
+    private val timeMin = 0L
 
-    var timeRemaining: Long = TIME_DEFAULT
+    var timeRemaining: Long = timeDefault
 
     val isSetupPhase: Boolean
-        get() = timeRemaining > TIME_MIN
+        get() = timeRemaining > timeMin
+
+
+    /** @return If the countdown timer is paused. */
+    private val _currentPhase: MutableStateFlow<Phase> = MutableStateFlow(Phase.SETUP)
+    val currentPhase = _currentPhase.asStateFlow()
+    fun updateCurrentPhase() {
+        _currentPhase.value =
+            if (timeRemaining > timeMin) { Phase.SETUP }
+            else {
+                if((evidenceViewModel.sanityData?.insanityPercent?.value ?: 0f) <
+                    SanityModel.SAFE_MIN_BOUNDS) { Phase.HUNT }
+                else { Phase.ACTION }
+            }
+    }
 
     init {
         reset()
     }
 
     fun hasTimeRemaining(): Boolean {
-        return timeRemaining < TIME_MIN
+        return timeRemaining < timeMin
     }
 
     fun reset() {
         isPaused = true
-        timeRemaining = difficultyCarouselData.currentDifficultyTime
+        timeRemaining = evidenceViewModel.difficultyCarouselData?.currentDifficultyTime ?: 0L
     }
 }

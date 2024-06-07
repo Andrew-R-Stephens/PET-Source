@@ -25,14 +25,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarnHuntView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts.SanityWarnHuntView;
 
 /**
  * EvidenceFragment class
@@ -54,7 +54,7 @@ public class EvidenceFragment extends InvestigationFragment {
     protected CompositeListener compositeListenerPrev, compositeListenerNext;
 
     protected DifficultyCarouselView difficultyCarouselView;
-    protected PhaseTimerView phaseTimerCountdownView;
+    protected PhaseTimerModel phaseTimerCountdownView;
     protected PhaseTimerControlView playPauseButton;
     protected MapCarouselView mapTrackControl;
     protected SanitySeekBarView sanitySeekBarView;
@@ -193,7 +193,7 @@ public class EvidenceFragment extends InvestigationFragment {
         // SANITY
         if (sanitySeekBarView != null) {
             sanitySeekBarView.init(
-                    evidenceViewModel.getSanityData(),
+                    evidenceViewModel,
                     sanityPercentTextView);
             sanitySeekBarView.resetProgress();
         }

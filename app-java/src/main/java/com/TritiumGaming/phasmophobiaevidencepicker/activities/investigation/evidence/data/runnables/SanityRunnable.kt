@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.media.MediaPlayer
 import androidx.appcompat.widget.AppCompatTextView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
@@ -66,7 +67,7 @@ class SanityRunnable (
                     sanityData.warningAudioAllowed = false
                 }
 
-                if ((sanityData.insanityPercent.value < .7) &&
+                if ((sanityData.insanityPercent.value < SanityModel.SAFE_MIN_BOUNDS) &&
                     ((phaseTimerData?.isSetupPhase == false) && sanityData.canFlashWarning())) {
                     if ((wait * (++flashTick)) > flashDuration) {
                         println("Toggleable $wait $flashTick $flashDuration")

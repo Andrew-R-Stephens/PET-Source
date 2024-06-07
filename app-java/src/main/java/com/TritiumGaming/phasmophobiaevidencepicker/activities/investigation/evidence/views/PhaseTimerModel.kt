@@ -12,8 +12,8 @@ import java.text.DecimalFormat
  *
  * @author TritiumGamingStudios
  */
-class PhaseTimerView(
-    evidenceViewModel: EvidenceViewModel,
+class PhaseTimerModel (
+    val evidenceViewModel: EvidenceViewModel,
     recipientView: AppCompatTextView?
 ) {
     private val sanityData = evidenceViewModel.sanityData
@@ -51,7 +51,7 @@ class PhaseTimerView(
      *
      * @param timerTextView -
      */
-    fun setTimerTextView(timerTextView: AppCompatTextView?) {
+    private fun setTimerTextView(timerTextView: AppCompatTextView?) {
         this.timerTextView = timerTextView
     }
 
@@ -68,31 +68,31 @@ class PhaseTimerView(
             if (!sanityData!!.isNewCycle && !sanityData.paused.value) {
                 Log.d(
                     "SettingTimeRemaining",
-                    phaseTimerData!!.difficultyCarouselData.currentDifficultyTime.toString() +
+                    evidenceViewModel.difficultyCarouselData?.currentDifficultyTime.toString() +
                             " " + (sanityData.startTime - System.currentTimeMillis())
                 )
-                phaseTimerData.timeRemaining =
-                    phaseTimerData.difficultyCarouselData.currentDifficultyTime +
+                phaseTimerData?.timeRemaining =
+                    (evidenceViewModel.difficultyCarouselData?.currentDifficultyTime ?: 0) +
                             (sanityData.startTime - System.currentTimeMillis())
             } else {
                 Log.d(
                     "SettingTimeRemaining", "Not new Cycle, Not Paused " +
-                            phaseTimerData!!.difficultyCarouselData.currentDifficultyTime +
+                            evidenceViewModel.difficultyCarouselData?.currentDifficultyTime +
                             " " + (sanityData.startTime - System.currentTimeMillis())
                 )
             }
         } else {
             Log.d(
                 "SettingTimeRemaining", "Not Fresh " +
-                        phaseTimerData!!.difficultyCarouselData.currentDifficultyTime +
+                        evidenceViewModel.difficultyCarouselData?.currentDifficultyTime +
                         " " + (sanityData!!.startTime - System.currentTimeMillis())
             )
-            phaseTimerData.timeRemaining = millisInFuture
+            phaseTimerData?.timeRemaining = millisInFuture
         }
 
         timer = object : CountDownTimer(millisInFuture, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
-                if (!phaseTimerData.isPaused && millisUntilFinished > -1L) {
+                if ((phaseTimerData?.isPaused == false) && millisUntilFinished > -1L) {
                     phaseTimerData.timeRemaining = millisUntilFinished
                     updateText()
                 }
@@ -102,7 +102,7 @@ class PhaseTimerView(
                 if (stateControl != null) {
                     stateControl!!.checkPaused()
                 }
-                phaseTimerData.timeRemaining = 0L
+                phaseTimerData?.timeRemaining = 0L
                 updateText()
             }
         }

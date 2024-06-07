@@ -7,16 +7,14 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
 
 class PhaseTimerLayout : ConstraintLayout {
 
-    private var phaseTimerData: PhaseTimerModel? = null
+    private var phaseTimerData: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel? = null
 
-    private var timer: PhaseTimerView? = null
+    private var timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel? = null
     private var playToggleButton: AppCompatImageButton? = null
 
     @DrawableRes private var icon_play = 0
@@ -51,7 +49,7 @@ class PhaseTimerLayout : ConstraintLayout {
 
     fun init(
         evidenceViewModel: EvidenceViewModel,
-        timer: PhaseTimerView?,
+        timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?,
     ) {
         this.phaseTimerData = evidenceViewModel.phaseTimerData
 
@@ -74,7 +72,7 @@ class PhaseTimerLayout : ConstraintLayout {
         view.setOnClickListener { toggle() }
     }
 
-    fun setTimer(timer: PhaseTimerView?) {
+    fun setTimer(timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?) {
         this.timer = timer
     }
 

@@ -7,10 +7,11 @@ import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 
 class SanitySeekBarView : AppCompatSeekBar {
 
-    private var sanityData: SanityModel? = null
+    private lateinit var evidenceViewModel: EvidenceViewModel
     private var sanityPercentTextView: AppCompatTextView? = null
 
     constructor(context: Context) : super(context)
@@ -23,17 +24,17 @@ class SanitySeekBarView : AppCompatSeekBar {
         defStyleAttr
     )
 
-    fun init(sanityData: SanityModel, sanityPercentTextView: AppCompatTextView?) {
-        this.sanityData = sanityData
+    fun init(evidenceViewModel: EvidenceViewModel, sanityPercentTextView: AppCompatTextView?) {
+        this.evidenceViewModel = evidenceViewModel
         this.sanityPercentTextView = sanityPercentTextView
 
-        progress = sanityData.sanityActual.toInt()
+        progress = evidenceViewModel.sanityData?.sanityActual?.toInt() ?: 0
 
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    sanityData.setProgressManually(progress.toLong())
-                    sanityData.tick()
+                    evidenceViewModel.sanityData?.setProgressManually(progress.toLong())
+                    evidenceViewModel.sanityData?.tick()
 
                     /*sanityPercentTextView.setText(sanityData.toPercentString());*/
                     if (sanityPercentTextView != null) {
@@ -59,7 +60,7 @@ class SanitySeekBarView : AppCompatSeekBar {
     fun formatSanityPercent(): String {
         val nbsp = "\u00A0"
 
-        var percentStr = sanityData!!.toPercentString()
+        var percentStr = evidenceViewModel.sanityData?.toPercentString() ?: "NA"
         percentStr = percentStr.replace(nbsp, "").trim { it <= ' ' }
 
         var percentNum = 100
@@ -90,7 +91,7 @@ class SanitySeekBarView : AppCompatSeekBar {
     }
 
     fun updateProgress() {
-        progress = sanityData!!.sanityActual.toInt()
+        progress = evidenceViewModel.sanityData?.sanityActual?.toInt() ?: 0
         if (sanityPercentTextView != null) {
             sanityPercentTextView!!.text = formatSanityPercent()
         }

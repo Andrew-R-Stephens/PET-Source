@@ -20,7 +20,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.DifficultyCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerView;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.SanityCarouselView;
@@ -72,12 +72,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
 
-        SanityCarouselView mapCarouselView = view.findViewById(R.id.mapCarouselView);
+        SanityCarouselView mapCarouselView = view.findViewById(R.id.mapCarouselLayout);
         AppCompatTextView map_name = mapCarouselView.findViewById(R.id.carousel_name);
         AppCompatImageButton map_prev = mapCarouselView.findViewById(R.id.carousel_prev);
         AppCompatImageButton map_next = mapCarouselView.findViewById(R.id.carousel_next);
 
-        SanityCarouselView difficultyCarouselView = view.findViewById(R.id.difficultyCarouselView);
+        SanityCarouselView difficultyCarouselView = view.findViewById(R.id.difficultyCarouselLayout);
         AppCompatTextView difficulty_name = difficultyCarouselView.findViewById(R.id.carousel_name);
         AppCompatImageButton difficulty_prev = difficultyCarouselView.findViewById(R.id.carousel_prev);
         AppCompatImageButton difficulty_next = difficultyCarouselView.findViewById(R.id.carousel_next);
@@ -98,7 +98,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         });
 
         /* TIMER CONTROL */
-        phaseTimerCountdownView = new PhaseTimerView(
+        phaseTimerCountdownView = new PhaseTimerModel(
                 evidenceViewModel,
                 view.findViewById(R.id.evidence_timer_text));
 
@@ -151,10 +151,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         .getDifficultyIndex());
 
         /* SANITY METER */
-        /*
-        sanityMeterView.init(
-                evidenceViewModel.getSanityData());
-        */
+        /*sanityMeterView.init(
+                evidenceViewModel);*/
 
         enableUIThread();
     }
