@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer
 
 import android.os.CountDownTimer
 import android.util.Log
@@ -12,20 +12,17 @@ import java.text.DecimalFormat
  *
  * @author TritiumGamingStudios
  */
-class PhaseTimerModel (
-    val evidenceViewModel: EvidenceViewModel,
-    recipientView: AppCompatTextView?
+class TimerModel (
+    val evidenceViewModel: EvidenceViewModel
 ) {
     private val sanityData = evidenceViewModel.sanityData
     private val phaseTimerData = evidenceViewModel.phaseTimerData
 
     private var timer: CountDownTimer? = null
-    private var stateControl: PhaseTimerControlView? = null
+    //private var stateControl: PhaseTimerControlView? = null
     private var timerTextView: AppCompatTextView? = null
 
     init {
-        setTimerTextView(recipientView)
-
         createTimer(
             true,
             phaseTimerData!!.timeRemaining,
@@ -35,15 +32,6 @@ class PhaseTimerModel (
         if (!phaseTimerData.isPaused) {
             timer!!.start()
         }
-    }
-
-    /**
-     * setTimerControls method
-     *
-     * @param stateControl -
-     */
-    fun setTimerControls(stateControl: PhaseTimerControlView?) {
-        this.stateControl = stateControl
     }
 
     /**
@@ -99,9 +87,9 @@ class PhaseTimerModel (
             }
 
             override fun onFinish() {
-                if (stateControl != null) {
+                /*if (stateControl != null) {
                     stateControl!!.checkPaused()
-                }
+                }*/
                 phaseTimerData?.timeRemaining = 0L
                 updateText()
             }

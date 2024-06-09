@@ -71,7 +71,7 @@ public class EvidenceFragment extends InvestigationFragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_evidence_solo, container, false);
+        return inflater.inflate(R.layout.fragment_evidence, container, false);
     }
 
     @SuppressLint("ClickableViewAccessibility")

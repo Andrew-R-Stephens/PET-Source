@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller
 
 import android.content.Context
 import android.graphics.Bitmap

@@ -4,7 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SanitySeekBarView : AppCompatSeekBar {
 
@@ -19,6 +23,8 @@ class SanitySeekBarView : AppCompatSeekBar {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
 
+    lateinit var externalListener: OnSanityBarProgressChangedListener
+
     fun init(evidenceViewModel: EvidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel
 
@@ -30,7 +36,6 @@ class SanitySeekBarView : AppCompatSeekBar {
                     evidenceViewModel.sanityData?.setProgressManually(progress.toLong())
                     evidenceViewModel.sanityData?.tick()
 
-                    /*sanityPercentTextView.setText(sanityData.toPercentString());*/
                     onProgressChangedListener?.onChange()
                 }
             }
@@ -41,6 +46,8 @@ class SanitySeekBarView : AppCompatSeekBar {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
+
+        initObservables()
     }
 
     fun updateProgress() {
@@ -56,9 +63,16 @@ class SanitySeekBarView : AppCompatSeekBar {
     }
 
     var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
-
     abstract class OnSanityBarProgressChangedListener {
         abstract fun onChange()
         abstract fun onReset()
+    }
+
+    private fun initObservables() {
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            evidenceViewModel.sanityData?.insanityPercent?.collectLatest {
+                updateProgress()
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer
 
 import android.content.Context
 import android.util.AttributeSet
@@ -12,11 +12,11 @@ class PhaseTimerLayout : ConstraintLayout {
 
     private lateinit var evidenceViewModel: EvidenceViewModel
 
-    private var timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel? = null
+    private var timer: TimerModel? = null
+
     private lateinit var playToggleButton: PETImageButton
     private lateinit var skipButton: PETImageButton
-
-    var phaseTimerTextView: AppCompatTextView? = null // TIMER VIEW
+    private var phaseTimerTextView: AppCompatTextView? = null // TIMER VIEW
 
     constructor(context: Context) :
             super(context) { initView(null) }
@@ -61,7 +61,7 @@ class PhaseTimerLayout : ConstraintLayout {
         checkPaused()
     }
 
-    private fun setTimer(timer: com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel?) {
+    private fun setTimer(timer: TimerModel?) {
         this.timer = timer
     }
 

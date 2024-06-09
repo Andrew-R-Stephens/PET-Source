@@ -32,7 +32,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
      * EvidenceSoloFragment default constructor
      */
     public EvidenceSoloFragment() {
-        super(R.layout.fragment_evidence_solo);
+        super(R.layout.fragment_evidence);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

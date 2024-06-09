@@ -5,17 +5,17 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.DifficultyCarouselLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.MapCarouselLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.PhaseTimerLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.SanityTrackerView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.carousel.DifficultyCarouselLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.carousel.MapCarouselLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer.PhaseTimerLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller.SanityTrackerLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout
 
 class SanityToolsLayout : ConstraintLayout {
 
     private lateinit var sanityWarningLayout: SanityWarningLayout
     private lateinit var phaseTimerLayout: PhaseTimerLayout
-    private lateinit var sanityTrackerView: SanityTrackerView
+    private lateinit var sanityTrackerView: SanityTrackerLayout
 
     private lateinit var mapCarouselLayout: MapCarouselLayout
     private lateinit var difficultyCarouselLayout: DifficultyCarouselLayout

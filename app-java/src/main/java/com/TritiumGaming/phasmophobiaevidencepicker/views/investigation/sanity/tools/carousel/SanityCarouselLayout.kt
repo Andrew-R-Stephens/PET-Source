@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.carousel
 
 import android.content.Context
 import android.util.AttributeSet
@@ -60,6 +60,8 @@ abstract class SanityCarouselLayout : ConstraintLayout {
         setRightListener()
 
         initObservables()
+
+        setName(evidenceViewModel.mapCarouselData?.mapCurrentName?.value)
     }
 
     fun setTitle(title: Int) {

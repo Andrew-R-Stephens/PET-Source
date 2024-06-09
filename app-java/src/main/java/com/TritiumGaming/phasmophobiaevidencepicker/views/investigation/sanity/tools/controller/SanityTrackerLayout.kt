@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,13 +8,13 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller.SanitySeekBarView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class SanityTrackerView : ConstraintLayout {
+class SanityTrackerLayout : ConstraintLayout {
 
-    private lateinit var c: SanitySeekBarView
+    private var evidenceViewModel: EvidenceViewModel? = null
+
     private lateinit var sanitySeekBarView: SanitySeekBarView
     private lateinit var sanityPercentTextView: AppCompatTextView
 
@@ -39,11 +39,26 @@ class SanityTrackerView : ConstraintLayout {
         setDefaults()
     }
 
-    private fun setDefaults() { }
+    private fun setDefaults() {
+    }
 
     fun init(evidenceViewModel: EvidenceViewModel) {
+        this.evidenceViewModel = evidenceViewModel
+
         sanitySeekBarView.init(evidenceViewModel)
         sanitySeekBarView.resetProgress()
+        sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
+
+        sanitySeekBarView.onProgressChangedListener = object :
+            SanitySeekBarView.OnSanityBarProgressChangedListener() {
+            override fun onChange() {
+                sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
+            }
+
+            override fun onReset() {
+                TODO("Not yet implemented")
+            }
+        }
 
         initObservables(evidenceViewModel)
     }
@@ -51,7 +66,6 @@ class SanityTrackerView : ConstraintLayout {
     private fun initObservables(evidenceViewModel: EvidenceViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.sanityData?.insanityPercent?.collectLatest {
-                sanitySeekBarView.updateProgress()
                 sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
             }
         }

@@ -6,7 +6,7 @@
     android:id="@+id/constraint_sanityContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/fragment_evidence_solo"
+    tools:showIn="@layout/fragment_evidence"
     tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout">
 
     <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.SanityTrackerView

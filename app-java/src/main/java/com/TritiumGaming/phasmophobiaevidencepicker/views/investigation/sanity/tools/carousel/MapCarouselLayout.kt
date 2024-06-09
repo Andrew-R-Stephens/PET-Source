@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.carousel
 
 import android.content.Context
 import android.util.AttributeSet

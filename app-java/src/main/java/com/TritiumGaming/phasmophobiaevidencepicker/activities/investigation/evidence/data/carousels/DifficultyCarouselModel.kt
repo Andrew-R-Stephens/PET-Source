@@ -36,7 +36,7 @@ class DifficultyCarouselModel(
     private val _currentDifficultyName: MutableStateFlow<String> = MutableStateFlow("?")
     val currentDifficultyName = _currentDifficultyName.asStateFlow()
     private fun updateCurrentDifficultyName() {
-        _currentDifficultyName.value = titles.get(difficultyIndex) ?: "???"
+        _currentDifficultyName.value = titles.getOrNull(difficultyIndex) ?: "???"
     }
 
     val responseTypeKnown: Boolean
@@ -58,6 +58,8 @@ class DifficultyCarouselModel(
         } catch (e: Resources.NotFoundException) {
             e.printStackTrace()
         }
+
+        updateCurrentDifficultyName()
     }
 
     private fun setTimes(times: Array<String>) {

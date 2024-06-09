@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class MapCarouselModel {
-    data class MapSizeData(val name: String, val size: Int)
 
+    data class MapSizeData(val name: String, val size: Int)
     private var mapSizeData: Array<MapSizeData?>? = null
 
     var mapCurrentIndex: Int = 0
@@ -40,14 +40,13 @@ class MapCarouselModel {
                 )
             }
         }
+
+        updateMapCarouselName()
     }
 
-    val mapCount: Int
+    private val mapCount: Int
         get() {
-            if (mapSizeData == null) {
-                return 0
-            }
-            return mapSizeData!!.size
+            return mapSizeData?.size ?: 0
         }
 
     /*
@@ -56,6 +55,7 @@ class MapCarouselModel {
             return mapSizeData?.get(mapCurrentIndex)?.name ?: "???"
         }
     */
+
     private val _mapCurrentName: MutableStateFlow<String> = MutableStateFlow("???")
     val mapCurrentName = _mapCurrentName.asStateFlow()
     private fun updateMapCarouselName() {

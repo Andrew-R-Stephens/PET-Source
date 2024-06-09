@@ -11,9 +11,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.t
 
 class SanityWarningLayout : ConstraintLayout {
 
-    lateinit var sanityWarnSetupView: SanityWarnSetupView
-    lateinit var sanityWarnActionView: SanityWarnActionView
-    lateinit var sanityWarnHuntView: SanityWarnHuntView
+    private lateinit var sanityWarnSetupView: SanityWarnSetupView
+    private lateinit var sanityWarnActionView: SanityWarnActionView
+    private lateinit var sanityWarnHuntView: SanityWarnHuntView
 
     constructor(context: Context) :
             super(context) { initView(null) }
