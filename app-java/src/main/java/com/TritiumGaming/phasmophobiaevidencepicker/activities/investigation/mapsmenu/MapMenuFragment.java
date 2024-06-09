@@ -27,8 +27,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
 import com.google.common.primitives.Ints;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * MapMenuFragment class
  *

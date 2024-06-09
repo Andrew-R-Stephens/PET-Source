@@ -5,13 +5,20 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.DifficultyCarouselLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.MapCarouselLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.PhaseTimerLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.SanityTrackerView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout
 
 class SanityToolsLayout : ConstraintLayout {
 
-    lateinit var sanityWarningLayout: SanityWarningLayout
-    lateinit var phaseTimerLayout: PhaseTimerLayout
-    lateinit var sanityTrackerView: SanityTrackerView
+    private lateinit var sanityWarningLayout: SanityWarningLayout
+    private lateinit var phaseTimerLayout: PhaseTimerLayout
+    private lateinit var sanityTrackerView: SanityTrackerView
+
+    private lateinit var mapCarouselLayout: MapCarouselLayout
+    private lateinit var difficultyCarouselLayout: DifficultyCarouselLayout
 
     constructor(context: Context) :
             super(context) { initView(null) }
@@ -28,6 +35,13 @@ class SanityToolsLayout : ConstraintLayout {
     private fun initView(attrs: AttributeSet?) {
         inflate(context, R.layout.layout_sanity_tools, this)
 
+        sanityWarningLayout = findViewById(R.id.sanityWarningLayout)
+        phaseTimerLayout = findViewById(R.id.phaseTimerLayout)
+        sanityTrackerView = findViewById(R.id.sanityTrackerView)
+
+        mapCarouselLayout = findViewById(R.id.mapCarouselLayout)
+        difficultyCarouselLayout = findViewById(R.id.difficultyCarouselLayout)
+
         setDefaults()
     }
 
@@ -36,7 +50,10 @@ class SanityToolsLayout : ConstraintLayout {
 
     fun init(evidenceViewModel: EvidenceViewModel) {
         sanityWarningLayout.init(evidenceViewModel)
-        phaseTimerLayout.init(evidenceViewModel, null)
+        phaseTimerLayout.init(evidenceViewModel)
         sanityTrackerView.init(evidenceViewModel)
+
+        mapCarouselLayout.init(evidenceViewModel)
+        difficultyCarouselLayout.init(evidenceViewModel)
     }
 }

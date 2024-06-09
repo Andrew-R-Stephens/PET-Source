@@ -22,17 +22,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.DifficultyCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts.SanityWarnHuntView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout;
 
 /**
  * EvidenceFragment class
@@ -53,14 +48,17 @@ public class EvidenceFragment extends InvestigationFragment {
 
     protected CompositeListener compositeListenerPrev, compositeListenerNext;
 
-    protected DifficultyCarouselView difficultyCarouselView;
-    protected PhaseTimerModel phaseTimerCountdownView;
-    protected PhaseTimerControlView playPauseButton;
-    protected MapCarouselView mapTrackControl;
-    protected SanitySeekBarView sanitySeekBarView;
-    //protected SanityMeterView sanityMeterView;
+    protected SanityToolsLayout sanityToolsLayout;
     protected ComposeView sanityMeterView;
-    protected SanityWarnHuntView sanityWarnHuntView;
+
+    /*
+    @Deprecated protected DifficultyCarouseModel difficultyCarouselView;
+    @Deprecated protected PhaseTimerModel phaseTimerCountdownView;
+    @Deprecated protected PhaseTimerControlView playPauseButton;
+    @Deprecated protected MapCarouselModel mapTrackControl;
+    @Deprecated protected SanitySeekBarView sanitySeekBarView;
+    @Deprecated protected SanityWarnHuntView sanityWarnHuntView;
+    */
 
     public EvidenceFragment(int layout) {
         super(layout);
@@ -81,6 +79,9 @@ public class EvidenceFragment extends InvestigationFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool);
+        sanityToolsLayout.init(evidenceViewModel);
 
         if(evidenceViewModel.getSanityData() != null) {
             evidenceViewModel.getSanityData()
@@ -136,10 +137,9 @@ public class EvidenceFragment extends InvestigationFragment {
 
         // SANITY METER VIEWS
         sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
-        //sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
         sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
-        sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
-        sanityWarnHuntView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
+        //sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
+        //sanityWarnHuntView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
@@ -191,12 +191,14 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         // SANITY
+        /*
         if (sanitySeekBarView != null) {
             sanitySeekBarView.init(
                     evidenceViewModel,
                     sanityPercentTextView);
             sanitySeekBarView.resetProgress();
         }
+        */
 
         SanityMeterKt.setSanityMeterView(sanityMeterView, evidenceViewModel);
 
@@ -227,13 +229,17 @@ public class EvidenceFragment extends InvestigationFragment {
             evidenceViewModel.reset();
         }
 
+        /*
         if (sanitySeekBarView != null) {
             sanitySeekBarView.updateProgress();
         }
+        */
 
+        /*
         if(phaseTimerCountdownView != null) {
             phaseTimerCountdownView.destroyTimer();
         }
+        */
     }
 
     public void requestInvalidateComponents() {
@@ -247,19 +253,25 @@ public class EvidenceFragment extends InvestigationFragment {
         }
 
         // SANITY
+        /*
         if (sanitySeekBarView != null) {
             sanitySeekBarView.resetProgress();
         }
+        */
 
+        /*
         if(evidenceViewModel != null &&
                 evidenceViewModel.getPhaseTimerData() != null) {
             playPauseButton.pause();
             phaseTimerCountdownView.reset();
         }
+        */
 
+        /*
         if(sanityWarnHuntView != null) {
             sanityWarnHuntView.reset();
         }
+        */
 
     }
 
@@ -269,7 +281,7 @@ public class EvidenceFragment extends InvestigationFragment {
     @Override
     public void onPause() {
 
-        phaseTimerCountdownView.destroyTimer();
+        //phaseTimerCountdownView.destroyTimer();
 
         super.onPause();
     }

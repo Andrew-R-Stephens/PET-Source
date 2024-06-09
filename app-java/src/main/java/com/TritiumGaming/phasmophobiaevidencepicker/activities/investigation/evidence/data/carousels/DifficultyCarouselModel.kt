@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class DifficultyCarouselModel(
     context: Context,
@@ -17,17 +19,25 @@ class DifficultyCarouselModel(
     private var titles = arrayOfNulls<String>(0)
     private var times = LongArray(0)
 
+    private val difficultyCount: Int
+        get() = titles.size
+
     var difficultyIndex: Int = Difficulty.AMATEUR.ordinal
+        set(value) {
+            field = value
+            updateCurrentDifficultyName()
+        }
 
     val currentDifficultyTime: Long
         get() {
             return times[difficultyIndex]
         }
 
-    val currentDifficultyName: String?
-        get() {
-            return titles[difficultyIndex]
-        }
+    private val _currentDifficultyName: MutableStateFlow<String> = MutableStateFlow("?")
+    val currentDifficultyName = _currentDifficultyName.asStateFlow()
+    private fun updateCurrentDifficultyName() {
+        _currentDifficultyName.value = titles.get(difficultyIndex) ?: "???"
+    }
 
     val responseTypeKnown: Boolean
         get() = difficultyIndex < 2
@@ -61,36 +71,33 @@ class DifficultyCarouselModel(
         this.times = difficultyTimes
     }
 
-    fun decrementDifficulty(): Boolean {
-        var difficultyIndex = difficultyIndex - 1
-        if (difficultyIndex < 0) {
-            difficultyIndex = titles.size - 1
+
+    fun incrementIndex() {
+        var i = difficultyIndex + 1
+        if (i >= difficultyCount) {
+            i = 0
         }
-        this.difficultyIndex = difficultyIndex
+        difficultyIndex = i
 
         if (evidenceViewModel.hasSanityData()) {
-            evidenceViewModel.sanityData!!.warningAudioAllowed = true
+            evidenceViewModel.sanityData?.warningAudioAllowed = true
         }
-
-        return true
     }
 
-    fun incrementDifficulty(): Boolean {
-        var state = difficultyIndex + 1
-        if (state >= titles.size) {
-            state = 0
+    fun decrementIndex() {
+        var i = difficultyIndex - 1
+        if (i < 0) {
+            i = difficultyCount - 1
         }
-        difficultyIndex = state
+        difficultyIndex = i
 
         if (evidenceViewModel.hasSanityData()) {
-            evidenceViewModel.sanityData!!.warningAudioAllowed = true
+            evidenceViewModel.sanityData?.warningAudioAllowed = true
         }
-
-        return true
     }
 
     fun resetSanityData() {
-        evidenceViewModel.sanityData!!.reset()
+        evidenceViewModel.sanityData?.reset()
     }
 
     fun isDifficulty(difficultyIndex: Int): Boolean {

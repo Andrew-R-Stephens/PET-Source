@@ -36,24 +36,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.SanityCarouselView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.MapCarouselLayout
                     android:id="@+id/mapCarouselLayout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:SanityCarouselViewTitle="@string/investigation_timer_maplabel"
-                    app:SanityCarouselViewName="None"
+                    app:SanityCarouselLayoutTitle="@string/investigation_timer_maplabel"
+                    app:SanityCarouselLayoutName="None"
                     app:layout_constraintBottom_toTopOf="@+id/difficultyCarouselLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.SanityCarouselView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.DifficultyCarouselLayout
                     android:id="@+id/difficultyCarouselLayout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:SanityCarouselViewTitle="@string/investigation_timer_difficulty_label"
-                    app:SanityCarouselViewName="None"
+                    app:SanityCarouselLayoutTitle="@string/investigation_timer_difficulty_label"
+                    app:SanityCarouselLayoutName="None"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.PhaseTimerLayout
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.PhaseTimerLayout
                 android:id="@+id/phaseTimerLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -83,7 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityTrackerView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.SanityTrackerView
                 android:id="@+id/sanityTrackerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -95,7 +95,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningLayout
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout
                 android:id="@+id/sanityWarningLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/imageView2"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/imageView3"
                     android:layout_width="48dp"
                     android:layout_height="48dp"

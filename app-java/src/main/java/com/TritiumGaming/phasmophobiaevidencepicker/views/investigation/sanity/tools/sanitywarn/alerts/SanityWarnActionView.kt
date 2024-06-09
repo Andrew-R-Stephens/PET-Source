@@ -1,15 +1,15 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.alerts
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.SanityWarningView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class SanityWarnHuntView : SanityWarningView {
+class SanityWarnActionView : SanityWarningView {
 
     constructor(context: Context) : super(context)
 
@@ -20,7 +20,7 @@ class SanityWarnHuntView : SanityWarningView {
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.phaseTimerData?.currentPhase?.collectLatest {
-                setState(it == PhaseTimerModel.Phase.HUNT)
+                setState(it == PhaseTimerModel.Phase.ACTION)
             }
         }
     }

@@ -1,7 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry
 
-import java.lang.annotation.Native
-
 interface PathIterator {
     val windingRule: Int
     val isDone: Boolean

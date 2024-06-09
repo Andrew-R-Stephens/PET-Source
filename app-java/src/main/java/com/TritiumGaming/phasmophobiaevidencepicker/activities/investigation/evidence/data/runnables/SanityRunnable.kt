@@ -1,12 +1,8 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables
 
 import android.media.MediaPlayer
-import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView
 
 /**
  * Contains references to all Views for Sanity-specific UI and updates them via Runnable.
@@ -15,11 +11,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.s
 class SanityRunnable (
     private val evidenceViewModel: EvidenceViewModel?,
     private val globalPreferencesViewModel: GlobalPreferencesViewModel,
-    private var sanityMeterTextView: AppCompatTextView?,
-    private var sanitySeekBarView: SanitySeekBarView?,
-    private var setupPhaseTextView: SanityWarningView?,
-    private var actionPhaseTextView: SanityWarningView?,
-    private var huntWarningTextView: SanityWarningView?,
+    //private var sanityMeterTextView: AppCompatTextView?,
+    //private var sanitySeekBarView: SanitySeekBarView?,
+    //private var setupPhaseTextView: SanityWarningView?,
+    //private var actionPhaseTextView: SanityWarningView?,
+    //private var huntWarningTextView: SanityWarningView?,
     private var audio_huntWarn: MediaPlayer?
 ) : Runnable {
 
@@ -49,6 +45,7 @@ class SanityRunnable (
 
             val phaseTimerData = evidenceViewModel.phaseTimerData
 
+            /*
             if (phaseTimerData?.isPaused == false) {
 
                 sanityData.tick()
@@ -80,23 +77,28 @@ class SanityRunnable (
                     huntWarningTextView?.setState(false)
                 }
 
-                if (!sanityData.paused.value) { sanitySeekBarView?.updateProgress() }
+                //if (!sanityData.paused.value) { sanitySeekBarView?.updateProgress() }
 
             } else {
                 if(phaseTimerData?.isSetupPhase == true) {
                     huntWarningTextView?.setState(true)
                 }
             }
+            */
+
+            if (phaseTimerData?.isPaused == false) {
+                sanityData.tick()
+                // Hunt Audio is ACTIVE if setup phase activity is false
+                if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
+                    (phaseTimerData?.isSetupPhase == false) && sanityData.warningAudioAllowed) {
+                    audio_huntWarn?.start()
+                    sanityData.warningAudioAllowed = false
+                }
+            }
         }
     }
 
     fun dereferenceViews() {
-        sanitySeekBarView = null
-        sanityMeterTextView = null
-        setupPhaseTextView = null
-        actionPhaseTextView = null
-        huntWarningTextView = null
-
         audio_huntWarn = null
     }
 

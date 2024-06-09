@@ -9,7 +9,7 @@
     tools:showIn="@layout/fragment_evidence_solo"
     tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityTrackerView
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.SanityTrackerView
         android:id="@+id/sanityTrackerView"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -1,13 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts.SanityWarnActionView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts.SanityWarnHuntView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.alerts.SanityWarnSetupView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnActionView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnHuntView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnSetupView
 
 class SanityWarningLayout : ConstraintLayout {
 

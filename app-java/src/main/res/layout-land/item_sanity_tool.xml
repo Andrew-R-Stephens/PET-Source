@@ -284,7 +284,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityWarningView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.investigation.sanity.SanityWarningView
                 android:id="@+id/evidence_sanitymeter_phase_action"
                 style="?attr/tertiaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"

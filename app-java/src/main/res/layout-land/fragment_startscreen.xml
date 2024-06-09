@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/app_icon_sm" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
                 android:id="@+id/label_titledescription"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

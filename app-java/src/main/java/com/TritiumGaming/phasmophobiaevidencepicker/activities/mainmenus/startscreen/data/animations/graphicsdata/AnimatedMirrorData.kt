@@ -3,9 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.starts
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import androidx.compose.ui.text.font.FontVariation.width
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic
-import com.google.common.math.Quantiles.scale
 
 /**
  * FrostscreenData class

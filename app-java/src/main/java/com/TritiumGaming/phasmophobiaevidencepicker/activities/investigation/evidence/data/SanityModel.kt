@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
+import android.annotation.SuppressLint
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -203,13 +204,46 @@ class SanityModel(
         evidenceViewModel?.phaseTimerData?.updateCurrentPhase()
     }
 
-    /** */
+    @SuppressLint("DefaultLocale")
     fun toPercentString(): String {
         val percentageFormat = NumberFormat.getPercentInstance()
         percentageFormat.minimumFractionDigits = 0
 
-        return percentageFormat.format(
-            insanityPercent.value.toDouble()).replace("%", "")
+        val formattedPercent =
+            percentageFormat.format(insanityPercent.value.toDouble())
+                .replace("%", "")
+
+        val nbsp = "\u00A0"
+
+        var percentStr = formattedPercent
+        percentStr = percentStr.replace(nbsp, "").trim { it <= ' ' }
+
+        var percentNum = 100
+        try {
+            percentNum = percentStr.toInt()
+        } catch (e: NumberFormatException) {
+            e.printStackTrace()
+        }
+
+        val input = String.format("%3d", percentNum)
+
+        val output = StringBuilder()
+        var i = 0
+        while (i < input.length) {
+            if (input[i] != '0') {
+                break
+            }
+            output.append(nbsp)
+            i++
+        }
+        while (i < input.length) {
+            output.append(input[i])
+            i++
+        }
+        output.append("%")
+
+        return output.toString()
+
     }
 
     /** Defaults all persistent data. */

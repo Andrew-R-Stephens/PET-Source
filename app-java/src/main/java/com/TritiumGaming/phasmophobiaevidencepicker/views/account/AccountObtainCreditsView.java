@@ -2,10 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.account;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.text.Html;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;

@@ -54,7 +54,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
             android:id="@+id/label_itemName"
             style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"

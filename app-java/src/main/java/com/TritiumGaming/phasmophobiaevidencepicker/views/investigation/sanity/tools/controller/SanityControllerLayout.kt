@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-class SanityControllerView : ConstraintLayout {
+class SanityControllerLayout : ConstraintLayout {
     constructor(context: Context) :
             super(context) { init(null) }
 

@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 
 /**
  * TitleScreenFragment class

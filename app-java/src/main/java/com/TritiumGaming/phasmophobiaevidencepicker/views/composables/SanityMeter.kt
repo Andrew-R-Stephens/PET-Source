@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

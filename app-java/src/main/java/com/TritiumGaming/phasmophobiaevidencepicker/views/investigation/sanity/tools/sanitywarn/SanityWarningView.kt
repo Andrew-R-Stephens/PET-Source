@@ -1,16 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 
 /**
  * WarnTextView class

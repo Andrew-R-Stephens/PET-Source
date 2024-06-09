@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views
+package com.TritiumGaming.phasmophobiaevidencepicker.views.global
 
 import android.content.Context
 import android.content.res.Resources.NotFoundException

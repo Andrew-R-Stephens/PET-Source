@@ -1,19 +1,21 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views
+package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanitySeekBarView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller.SanitySeekBarView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.sanitywarn.SanityWarningView
 
 /**
  * DifficultySelectControl class
  *
  * @author TritiumGamingStudios
  */
-class DifficultyCarouselView {
+class DifficultyCarouseModel {
     private var difficultyCarouselData: DifficultyCarouselModel? = null
 
     private var timerView: PhaseTimerModel? = null
@@ -59,10 +61,12 @@ class DifficultyCarouselView {
 
     private fun setPrev(prev: AppCompatImageButton) {
         prev.setOnClickListener { v: View? ->
+            /*
             if (difficultyCarouselData!!.decrementDifficulty()) {
                 updateRelatedComponents()
                 compositeListenerPrev!!.onClick(v!!)
             }
+            */
         }
     }
 
@@ -73,10 +77,12 @@ class DifficultyCarouselView {
      */
     private fun setNext(next: AppCompatImageButton) {
         next.setOnClickListener { v: View? ->
+            /*
             if (difficultyCarouselData!!.incrementDifficulty()) {
                 updateRelatedComponents()
                 compositeListenerNext!!.onClick(v!!)
             }
+            */
         }
     }
 
@@ -85,14 +91,14 @@ class DifficultyCarouselView {
         if (difficultyCarouselData!!.difficultyIndex == 4) {
             difficultyCarouselData!!.evidenceViewModel.sanityData!!.insanityActual = 25f
         }
-        sanityProgressBar!!.updateProgress()
-        difficultyNameView!!.text = difficultyCarouselData!!.currentDifficultyName
-        timerControlView!!.pause()
+        sanityProgressBar?.updateProgress()
+        difficultyNameView?.text = difficultyCarouselData?.currentDifficultyName?.value
+        timerControlView?.pause()
         createTimerView()
 
-        warnTextView_warn!!.reset()
-        warnTextView_setup!!.reset()
-        warnTextView_action!!.reset()
+        warnTextView_warn?.reset()
+        warnTextView_setup?.reset()
+        warnTextView_action?.reset()
     }
 
     /**
@@ -115,8 +121,8 @@ class DifficultyCarouselView {
          * @param state -
          */
         set(state) {
-            difficultyCarouselData!!.difficultyIndex = state
-            difficultyNameView!!.text = difficultyCarouselData!!.currentDifficultyName
+            difficultyCarouselData?.difficultyIndex = state
+            difficultyNameView?.text = difficultyCarouselData?.currentDifficultyName?.value
         }
 
     fun registerListener(

@@ -10,21 +10,13 @@ import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.DifficultyCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.MapCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerControlView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.PhaseTimerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.carousel.SanityCarouselView;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.sanitywarn.SanityWarningView;
 
 /**
  * EvidenceSoloFragment class
@@ -35,8 +27,6 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
     @Nullable
     private Thread sanityThread; //Thread that updates the sanity levels
-
-    private SanityWarningView sanityWarnSetupView, sanityWarnActionView;
 
     /**
      * EvidenceSoloFragment default constructor
@@ -69,28 +59,38 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         }
 
         /* INITIALIZE VIEWS */
+        /*
         AppCompatImageButton timer_play_pause = view.findViewById(R.id.timer_play_pause);
         AppCompatImageButton timer_skip = view.findViewById(R.id.timer_skip);
+        */
 
-        SanityCarouselView mapCarouselView = view.findViewById(R.id.mapCarouselLayout);
+        /*
+        SanityCarouselLayout mapCarouselView = view.findViewById(R.id.mapCarouselLayout);
         AppCompatTextView map_name = mapCarouselView.findViewById(R.id.carousel_name);
         AppCompatImageButton map_prev = mapCarouselView.findViewById(R.id.carousel_prev);
         AppCompatImageButton map_next = mapCarouselView.findViewById(R.id.carousel_next);
+        */
 
-        SanityCarouselView difficultyCarouselView = view.findViewById(R.id.difficultyCarouselLayout);
+        /*
+        SanityCarouselLayout difficultyCarouselView = view.findViewById(R.id.difficultyCarouselLayout);
         AppCompatTextView difficulty_name = difficultyCarouselView.findViewById(R.id.carousel_name);
         AppCompatImageButton difficulty_prev = difficultyCarouselView.findViewById(R.id.carousel_prev);
         AppCompatImageButton difficulty_next = difficultyCarouselView.findViewById(R.id.carousel_next);
+        */
 
         AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
+        /*
         sanityWarnSetupView = view.findViewById(R.id.evidence_sanitymeter_phase_setup);
         sanityWarnActionView = view.findViewById(R.id.evidence_sanitymeter_phase_action);
+        */
 
         /* LISTENERS */
+        /*
         timer_skip.setOnClickListener(v -> {
             phaseTimerCountdownView.createTimer(false, 0L, 1000L);
             evidenceViewModel.skipSanityToPercent(0, 50, 50);
         });
+        */
 
         button_reset.setOnClickListener(v -> {
             // TODO animate reset arrow
@@ -98,22 +98,28 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         });
 
         /* TIMER CONTROL */
+        /*
         phaseTimerCountdownView = new PhaseTimerModel(
                 evidenceViewModel,
                 view.findViewById(R.id.evidence_timer_text));
+        */
 
+        /*
         playPauseButton = new PhaseTimerControlView(
                 evidenceViewModel,
                 phaseTimerCountdownView,
                 timer_play_pause,
                 R.drawable.icon_control_play,
                 R.drawable.icon_control_pause);
+        */
 
         /* MAP SELECTION */
-        mapTrackControl = new MapCarouselView(
-            mapCarouselData,
+        /*
+        mapTrackControl = new MapCarouselLayout(
+            evidenceViewModel.getMapCarouselData(),
             map_prev, map_next, map_name);
-        map_name.setText(mapCarouselData.getMapCurrentName().split(" ")[0]);
+        map_name.setText(mapCarouselData.getMapCurrentName().getValue().split(" ")[0]);
+        */
 
         View.OnClickListener difficultyListener = v -> {
             evidenceViewModel.getGhostOrderData().updateOrder();
@@ -129,11 +135,13 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         compositeListenerNext = new CompositeListener();
         compositeListenerPrev.registerListener(difficultyListener);
         compositeListenerNext.registerListener(difficultyListener);
-        this.difficultyCarouselView = new DifficultyCarouselView();
+        /*
+        this.difficultyCarouselView = new DifficultyCarouseModel();
         this.difficultyCarouselView.registerListener(compositeListenerPrev, compositeListenerNext);
+        */
 
         /* DIFFICULTY SELECTION */
-        this.difficultyCarouselView.init(
+        /*this.difficultyCarouselView.init(
                 evidenceViewModel.getDifficultyCarouselData(),
                 phaseTimerCountdownView,
                 playPauseButton,
@@ -142,13 +150,17 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                 difficulty_name,
                 sanityWarnHuntView, sanityWarnActionView, sanityWarnSetupView,
                 sanitySeekBarView
-        );
+        );*/
 
+        /*
         phaseTimerCountdownView.setTimerControls(playPauseButton);
+        */
 
+        /*
         this.difficultyCarouselView.setIndex(
                 evidenceViewModel.getDifficultyCarouselData()
                         .getDifficultyIndex());
+        */
 
         /* SANITY METER */
         /*sanityMeterView.init(
@@ -174,8 +186,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void requestInvalidateComponents() {
         super.requestInvalidateComponents();
 
+        /*
         sanityWarnSetupView.reset();
         sanityWarnActionView.reset();
+        */
     }
 
     /**
@@ -191,11 +205,11 @@ public class EvidenceSoloFragment extends EvidenceFragment {
                         new SanityRunnable(
                             evidenceViewModel,
                             globalPreferencesViewModel,
-                            sanityPercentTextView,
+                            /*sanityPercentTextView,
                             sanitySeekBarView,
-                                sanityWarnSetupView,
-                                sanityWarnActionView,
-                                sanityWarnHuntView,
+                            sanityWarnSetupView,
+                            sanityWarnActionView,
+                            sanityWarnHuntView,*/
                             getHuntWarningAudio(appLang)
                         )
                 );

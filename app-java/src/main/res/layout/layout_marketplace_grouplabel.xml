@@ -18,7 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
                 android:id="@+id/label"
                 style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="match_parent"

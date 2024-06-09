@@ -3,14 +3,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.annotation.NonNull
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.ReviewTrackingData
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
-import com.google.android.play.integrity.internal.c
-import org.jetbrains.annotations.NotNull
 import java.util.Locale
 
 class GlobalPreferencesViewModel : SharedViewModel() {

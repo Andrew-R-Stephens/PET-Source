@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import androidx.core.view.ViewCompat.setRotation
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils
 

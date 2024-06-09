@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.PETImageButton;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 
 public class AppInfoFragment extends MainMenuFragment {
 

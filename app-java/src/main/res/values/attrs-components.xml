@@ -41,9 +41,9 @@
         <attr name="PETImageButtonBackground" format="reference|color" />
     </declare-styleable>
 
-    <declare-styleable name="SanityCarouselView">
-        <attr name="SanityCarouselViewTitle" format="reference|string" />
-        <attr name="SanityCarouselViewName" format="reference|string" />
+    <declare-styleable name="SanityCarouselLayout">
+        <attr name="SanityCarouselLayoutTitle" format="reference|string" />
+        <attr name="SanityCarouselLayoutName" format="reference|string" />
     </declare-styleable>
 
     <!--

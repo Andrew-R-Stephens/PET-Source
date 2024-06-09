@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".2" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
                 style="?attr/primaryFont_Bold_Manual"
                 android:id="@+id/label_mtx_content"
                 android:layout_width="0dp"

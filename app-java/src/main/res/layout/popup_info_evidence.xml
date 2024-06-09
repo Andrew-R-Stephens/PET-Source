@@ -7,7 +7,7 @@
     android:background="?attr/backgroundColor"
     android:gravity="center">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.NavHeaderLayout
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         />
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.OutlineTextView
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
         android:id="@+id/label_username_initials"
         style="?attr/primaryFont_Regular_AutoSqueeze"
         android:layout_width="match_parent"
