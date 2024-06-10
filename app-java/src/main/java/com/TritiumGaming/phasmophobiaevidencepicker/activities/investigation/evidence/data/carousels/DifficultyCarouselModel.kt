@@ -17,6 +17,10 @@ class DifficultyCarouselModel(
     }
 
     private var titles = arrayOfNulls<String>(0)
+        set(value) {
+            field = value
+            updateCurrentDifficultyName()
+        }
     private var times = LongArray(0)
 
     private val difficultyCount: Int

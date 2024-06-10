@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer.PhaseTimerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel
@@ -24,10 +24,13 @@ class EvidenceViewModel : ViewModel() {
     var investigationData: InvestigationModel? = null
     var ghostOrderData: GhostOrderModel? = null
         private set
+
     var sanityData: SanityModel? = null
         private set
-    var phaseTimerData: PhaseTimerModel? = null
+
+    var timerModel: PhaseTimerModel? = null
         private set
+
     var mapCarouselData: MapCarouselModel? = null
         private set
     var difficultyCarouselData: DifficultyCarouselModel? = null
@@ -41,11 +44,14 @@ class EvidenceViewModel : ViewModel() {
 
     fun init(context: Context) {
         initInvestigationData(context)
-        initDifficultyCarouselData(context)
-        initMapCarouselData()
-        initSanityData()
         initGhostOrderData()
-        initPhaseTimerData()
+
+        initMapCarouselModel()
+        initDifficultyCarouselModel(context)
+
+        initTimerModel()
+
+        initSanityModel()
     }
 
     private fun initInvestigationData(context: Context) {
@@ -53,9 +59,9 @@ class EvidenceViewModel : ViewModel() {
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
-    private fun initPhaseTimerData() {
-        phaseTimerData =
-            phaseTimerData ?: PhaseTimerModel(this)
+    private fun initTimerModel() {
+        timerModel =
+            timerModel ?: PhaseTimerModel(this)
     }
 
     private fun initGhostOrderData() {
@@ -63,23 +69,19 @@ class EvidenceViewModel : ViewModel() {
             ghostOrderData ?: GhostOrderModel(this)
     }
 
-    private fun initSanityData() {
+    private fun initSanityModel() {
         sanityData =
             sanityData ?: SanityModel(this)
     }
 
-    private fun initMapCarouselData() {
+    private fun initMapCarouselModel() {
         mapCarouselData =
             mapCarouselData ?: MapCarouselModel()
     }
 
-    private fun initDifficultyCarouselData(context: Context) {
+    private fun initDifficultyCarouselModel(context: Context) {
         difficultyCarouselData =
             difficultyCarouselData ?: DifficultyCarouselModel(context, this)
-    }
-
-    fun hasDifficultyCarouselData(): Boolean {
-        return difficultyCarouselData != null
     }
 
     fun hasSanityRunnable(): Boolean {
@@ -142,7 +144,7 @@ class EvidenceViewModel : ViewModel() {
 
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
         if (
-            phaseTimerData!!.timeRemaining <=
+            timerModel!!.timeRemaining <=
             lowerBounds && sanityData!!.sanityActual < higherBounds
         ) {
             sanityData!!.setProgressManually(newValue.toLong())
@@ -153,7 +155,7 @@ class EvidenceViewModel : ViewModel() {
         resetRadioButtonsChecked()
         ghostOrderData?.createOrder()
         createRejectionPile()
-        phaseTimerData?.reset()
+        timerModel?.reset()
         investigationData?.reset()
         sanityData?.reset()
         mapCarouselData?.mapCurrentIndex = 0

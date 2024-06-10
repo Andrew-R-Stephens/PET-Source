@@ -11,11 +11,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.Globa
 class SanityRunnable (
     private val evidenceViewModel: EvidenceViewModel?,
     private val globalPreferencesViewModel: GlobalPreferencesViewModel,
-    //private var sanityMeterTextView: AppCompatTextView?,
-    //private var sanitySeekBarView: SanitySeekBarView?,
-    //private var setupPhaseTextView: SanityWarningView?,
-    //private var actionPhaseTextView: SanityWarningView?,
-    //private var huntWarningTextView: SanityWarningView?,
     private var audio_huntWarn: MediaPlayer?
 ) : Runnable {
 
@@ -41,9 +36,9 @@ class SanityRunnable (
 
         if (!sanityData.paused.value) {
 
-            if(evidenceViewModel.phaseTimerData == null) return
+            if(evidenceViewModel.timerModel == null) return
 
-            val phaseTimerData = evidenceViewModel.phaseTimerData
+            val phaseTimerData = evidenceViewModel.timerModel
 
             /*
             if (phaseTimerData?.isPaused == false) {
@@ -86,14 +81,15 @@ class SanityRunnable (
             }
             */
 
-            if (phaseTimerData?.isPaused == false) {
+            if (phaseTimerData?.paused?.value == false) {
                 sanityData.tick()
                 // Hunt Audio is ACTIVE if setup phase activity is false
-                if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
-                    (phaseTimerData?.isSetupPhase == false) && sanityData.warningAudioAllowed) {
+                /*if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
+                    (phaseTimerData.currentPhase.value != PhaseTimerModel.Phase.SETUP) &&
+                    sanityData.warningAudioAllowed) {
                     audio_huntWarn?.start()
                     sanityData.warningAudioAllowed = false
-                }
+                }*/
             }
         }
     }

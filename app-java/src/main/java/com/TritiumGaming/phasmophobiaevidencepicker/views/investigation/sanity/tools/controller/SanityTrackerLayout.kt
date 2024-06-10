@@ -3,11 +3,14 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setSanityMeterView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -17,6 +20,7 @@ class SanityTrackerLayout : ConstraintLayout {
 
     private lateinit var sanitySeekBarView: SanitySeekBarView
     private lateinit var sanityPercentTextView: AppCompatTextView
+    private lateinit var sanityMeterView: ComposeView
 
     constructor(context: Context) :
             super(context) { initView(null) }
@@ -35,6 +39,7 @@ class SanityTrackerLayout : ConstraintLayout {
 
         sanitySeekBarView = findViewById(R.id.evidence_sanitymeter_seekbar)
         sanityPercentTextView = findViewById(R.id.evidence_sanitymeter_percentage)
+        sanityMeterView = findViewById(R.id.evidence_sanitymeter_progressbar)
 
         setDefaults()
     }
@@ -44,6 +49,10 @@ class SanityTrackerLayout : ConstraintLayout {
 
     fun init(evidenceViewModel: EvidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel
+
+        sanityMeterView.apply {
+            setContent { SanityMeterView(evidenceViewModel) }
+        }
 
         sanitySeekBarView.init(evidenceViewModel)
         sanitySeekBarView.resetProgress()

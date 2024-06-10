@@ -305,7 +305,7 @@
         app:layout_constraintStart_toEndOf="@+id/constraintLayout16"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout16">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.controller.SanityMeterView
+        <androidx.compose.ui.platform.ComposeView
             android:id="@+id/evidence_sanitymeter_progressbar"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -190,18 +190,6 @@ public class EvidenceFragment extends InvestigationFragment {
             initCollapsible();
         }
 
-        // SANITY
-        /*
-        if (sanitySeekBarView != null) {
-            sanitySeekBarView.init(
-                    evidenceViewModel,
-                    sanityPercentTextView);
-            sanitySeekBarView.resetProgress();
-        }
-        */
-
-        SanityMeterKt.setSanityMeterView(sanityMeterView, evidenceViewModel);
-
         popupWindow = new PopupWindow(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);

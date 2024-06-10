@@ -60,8 +60,6 @@ abstract class SanityCarouselLayout : ConstraintLayout {
         setRightListener()
 
         initObservables()
-
-        setName(evidenceViewModel.mapCarouselData?.mapCurrentName?.value)
     }
 
     fun setTitle(title: Int) {

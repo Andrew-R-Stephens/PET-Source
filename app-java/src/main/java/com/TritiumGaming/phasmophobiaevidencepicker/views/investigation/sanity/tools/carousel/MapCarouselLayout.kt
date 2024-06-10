@@ -39,12 +39,14 @@ class MapCarouselLayout : SanityCarouselLayout {
                 Log.d("Carousel", "Incrementing Map")
             }
         }
+
+        setName(evidenceViewModel.mapCarouselData?.mapCurrentName?.value)
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.mapCarouselData?.mapCurrentName?.collectLatest {
-                setName(it)
+                setName(it.split(" ")[0])
             }
         }
     }

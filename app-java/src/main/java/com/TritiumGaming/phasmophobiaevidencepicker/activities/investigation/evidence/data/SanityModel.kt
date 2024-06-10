@@ -29,7 +29,7 @@ class SanityModel(
         val DROP_RATE_NORMAL = floatArrayOf(.12f, .08f, .05f)
     }
 
-    var insanityActual: Float = 0f
+    private var insanityActual: Float = 0f
         set(value) {
             field = min(value, MAX_SANITY)
         }
@@ -96,7 +96,7 @@ class SanityModel(
     private val dropRate: Float
         get() {
             val currMapSize = evidenceViewModel?.mapCarouselData?.mapCurrentSize ?: return 1f
-            if ((evidenceViewModel.phaseTimerData?.timeRemaining ?: return 1f) <= 0L) {
+            if ((evidenceViewModel.timerModel?.timeRemaining ?: return 1f) <= 0L) {
                 return getNormalDrainRate(currMapSize)
             }
             return getSanityDrainRate(currMapSize)
@@ -196,12 +196,12 @@ class SanityModel(
         equal to halfway gone, set the remaining sanity to half.
         */
         if (insanityPercent.value <= percentHalf &&
-            evidenceViewModel?.phaseTimerData?.hasTimeRemaining() == true
+            evidenceViewModel?.timerModel?.hasTimeRemaining() == true
         ) {
             setProgressManually(sanityHalf)
         }
 
-        evidenceViewModel?.phaseTimerData?.updateCurrentPhase()
+        evidenceViewModel?.timerModel?.updateCurrentPhase()
     }
 
     @SuppressLint("DefaultLocale")

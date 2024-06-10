@@ -38,6 +38,8 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 print("Incrementing Diff")
             }
         }
+
+        setName(evidenceViewModel.difficultyCarouselData?.currentDifficultyName?.value)
     }
 
     override fun initObservables() {
