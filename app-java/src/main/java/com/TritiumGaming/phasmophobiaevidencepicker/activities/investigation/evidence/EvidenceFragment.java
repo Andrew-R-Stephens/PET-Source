@@ -45,19 +45,7 @@ public class EvidenceFragment extends InvestigationFragment {
     protected AppCompatImageView toggleCollapseButton;
     protected AppCompatTextView sanityPercentTextView;
 
-    protected CompositeListener compositeListenerPrev, compositeListenerNext;
-
     protected SanityToolsLayout sanityToolsLayout;
-    protected ComposeView sanityMeterView;
-
-    /*
-    @Deprecated protected DifficultyCarouseModel difficultyCarouselView;
-    @Deprecated protected PhaseTimerModel phaseTimerCountdownView;
-    @Deprecated protected PhaseTimerControlView playPauseButton;
-    @Deprecated protected MapCarouselModel mapTrackControl;
-    @Deprecated protected SanitySeekBarView sanitySeekBarView;
-    @Deprecated protected SanityWarnHuntView sanityWarnHuntView;
-    */
 
     public EvidenceFragment(int layout) {
         super(layout);
@@ -129,16 +117,11 @@ public class EvidenceFragment extends InvestigationFragment {
         evidence_scrollview.removeView(list_evidence);
         evidence_scrollview.addView(evidenceList);
 
-        //ghostContainer.requestDisallowInterceptTouchEvent(true);
-
         toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
 
 
         // SANITY METER VIEWS
         sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
-        sanityMeterView = view.findViewById(R.id.evidence_sanitymeter_progressbar);
-        //sanitySeekBarView = view.findViewById(R.id.evidence_sanitymeter_seekbar);
-        //sanityWarnHuntView = view.findViewById(R.id.evidence_sanitymeter_huntwarning);
 
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);

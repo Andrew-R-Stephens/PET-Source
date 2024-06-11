@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -55,18 +56,20 @@ class SanityTrackerLayout : ConstraintLayout {
 
         sanitySeekBarView.init(evidenceViewModel)
 
-        //sanitySeekBarView.resetProgress()
-        evidenceViewModel.sanityModel
         sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
 
         sanitySeekBarView.onProgressChangedListener = object :
             SanitySeekBarView.OnSanityBarProgressChangedListener() {
             override fun onChange() {
+                Log.d("onChange", "${evidenceViewModel.sanityModel?.toPercentString()}")
                 sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
-
             override fun onReset() {
                 TODO("Not yet implemented")
+            }
+            override fun onInvalidate() {
+                Log.d("onInvalidate", "${evidenceViewModel.sanityModel?.toPercentString()}")
+                //sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
         }
 

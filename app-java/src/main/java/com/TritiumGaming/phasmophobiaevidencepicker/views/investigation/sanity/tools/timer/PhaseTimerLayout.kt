@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
@@ -23,8 +24,8 @@ class PhaseTimerLayout : ConstraintLayout {
    private companion object TimerStates {
        val states: HashMap<Boolean, Int> = HashMap()
        init {
-           states[true] = 0
-           states[false] = 1
+           states[false] = 0
+           states[true] = 1
        }
    }
 
@@ -59,7 +60,7 @@ class PhaseTimerLayout : ConstraintLayout {
         this.evidenceViewModel = evidenceViewModel
 
         playToggleButton.setOnClickListener {
-            evidenceViewModel.timerModel?.toggle()
+            evidenceViewModel.timerModel?.toggleTimer()
         }
 
         skipButton.setOnClickListener {
@@ -67,7 +68,7 @@ class PhaseTimerLayout : ConstraintLayout {
             //evidenceViewModel.skipSanityToPercent(0, 50, 50)
         }
 
-        phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayText
+        phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
         setPlayButtonIcon()
 
         initObservables()
@@ -77,6 +78,18 @@ class PhaseTimerLayout : ConstraintLayout {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.timerModel?.paused?.collectLatest {
                 setPlayButtonIcon()
+            }
+        }
+
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            evidenceViewModel.timerModel?.timeRemaining?.collectLatest {
+                phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
+            }
+        }
+
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            evidenceViewModel.difficultyCarouselData?.difficultyIndex?.collectLatest {
+                phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
             }
         }
     }

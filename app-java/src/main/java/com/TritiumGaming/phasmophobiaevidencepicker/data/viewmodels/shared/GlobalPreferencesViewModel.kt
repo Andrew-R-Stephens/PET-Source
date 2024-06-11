@@ -60,9 +60,8 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         networkPreference =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
         languageName =
-            sharedPref.getString(
-                context.resources.getString(R.string.preference_language), languageName
-            ) ?: Locale.getDefault().language
+            sharedPref.getString(context.resources.getString(R.string.preference_language), languageName) ?:
+            Locale.getDefault().language
         isAlwaysOn =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
         isHuntWarningAudioAllowed =
@@ -77,7 +76,6 @@ class GlobalPreferencesViewModel : SharedViewModel() {
 
         reorderGhostViews =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
-
 
         reviewRequestData = ReviewTrackingData(
             sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
@@ -145,7 +143,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     }
 
     fun canShowIntroduction(): Boolean {
-        return canShowIntroduction && reviewRequestData!!.timesOpened <= 1
+        return canShowIntroduction && reviewRequestData.timesOpened <= 1
     }
 
     private fun saveNetworkPreference(

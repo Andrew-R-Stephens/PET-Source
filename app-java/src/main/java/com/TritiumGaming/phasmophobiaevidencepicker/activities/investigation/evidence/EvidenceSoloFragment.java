@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence;
 
 import android.annotation.SuppressLint;
-import android.content.res.TypedArray;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
 
 /**
@@ -90,7 +88,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
             if (sanityThread == null) {
 
                 if (evidenceViewModel.hasTimerModel()) {
-                    evidenceViewModel.getTimerModel().play();
+                    evidenceViewModel.getTimerModel().playTimer();
                 }
 
                 if (evidenceViewModel.hasSanityRunnable()) {
@@ -146,7 +144,7 @@ public class EvidenceSoloFragment extends EvidenceFragment {
         if (evidenceViewModel != null) {
 
             if (evidenceViewModel.hasTimerModel()) {
-                evidenceViewModel.getTimerModel().pause();
+                evidenceViewModel.getTimerModel().pauseTimer();
             }
 
             SanityRunnable sanityRunnable = evidenceViewModel.getSanityRunnable();

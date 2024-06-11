@@ -33,6 +33,7 @@ class ColorThemeControl(context: Context) : AThemeControl(context) {
                 context.resources.obtainTypedArray(themeArray.getResourceId(1, 0))
             val themeStyleArray =
                 context.resources.obtainTypedArray(themeArray.getResourceId(2, 0))
+
             val isUnlocked =
                 context.resources.getBoolean(themeArray.getResourceId(3, 0))
 

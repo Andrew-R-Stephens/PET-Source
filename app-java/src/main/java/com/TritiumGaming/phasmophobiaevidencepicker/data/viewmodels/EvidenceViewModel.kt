@@ -147,11 +147,10 @@ class EvidenceViewModel : ViewModel() {
     }
 
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
-        if (
-            timerModel!!.timeRemaining <=
-            lowerBounds && sanityModel!!.sanityActual < higherBounds
-        ) {
-            sanityModel!!.setProgressManually(newValue.toLong())
+        if ((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds &&
+            (sanityModel?.sanityActual ?: 0L) < higherBounds) {
+
+            sanityModel?.setProgressManually(newValue.toLong())
         }
     }
 

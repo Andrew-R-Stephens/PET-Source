@@ -14,6 +14,12 @@ class SanitySeekBarView : AppCompatSeekBar {
 
     private lateinit var evidenceViewModel: EvidenceViewModel
 
+    var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
+    abstract class OnSanityBarProgressChangedListener {
+        abstract fun onChange()
+        abstract fun onReset()
+        abstract fun onInvalidate()
+    }
     constructor(context: Context) :
             super(context)
 
@@ -26,7 +32,7 @@ class SanitySeekBarView : AppCompatSeekBar {
     fun init(evidenceViewModel: EvidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel
 
-        progress = evidenceViewModel.sanityModel?.sanityActual?.toInt() ?: 0
+        progress = evidenceViewModel.sanityModel?.insanityPercent?.value?.toInt() ?: 0
 
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -46,31 +52,23 @@ class SanitySeekBarView : AppCompatSeekBar {
         })
 
         initObservables()
-    }
 
-    fun updateProgress() {
-        progress = evidenceViewModel.sanityModel?.sanityActual?.toInt() ?: 0
-        onProgressChangedListener?.onChange()
         invalidate()
     }
 
-    fun resetProgress() {
-        progress = 0
-        onProgressChangedListener?.onReset()
-        invalidate()
-    }
-
-    var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
-    abstract class OnSanityBarProgressChangedListener {
-        abstract fun onChange()
-        abstract fun onReset()
-    }
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.sanityModel?.insanityPercent?.collectLatest {
-                updateProgress()
+                progress = 100 - (it*100).toInt()
+                onProgressChangedListener?.onChange()
+                invalidate()
             }
         }
+    }
+
+    override fun invalidate() {
+        super.invalidate()
+        //onProgressChangedListener?.onInvalidate()
     }
 }
