@@ -8,10 +8,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class EvidencePopupModel(context: Context) : InvestigationPopupModel() {
 
-    private val evidenceViewDatas = mutableListOf<EvidencePopupRecord>()
+    private val evidenceViewDataList = mutableListOf<EvidencePopupRecord>()
 
     val count: Int
-        get() = evidenceViewDatas.size
+        get() = evidenceViewDataList.size
 
     init {
         val resources = context.resources
@@ -38,14 +38,14 @@ class EvidencePopupModel(context: Context) : InvestigationPopupModel() {
             val evidenceViewData = EvidencePopupRecord(
                 i, evidenceName, evidenceCost, unlockLevels, descriptions, animationResources)
 
-            evidenceViewDatas.add(evidenceViewData)
+            evidenceViewDataList.add(evidenceViewData)
         }
 
         evidenceTypes.recycle()
     }
 
     fun getEvidencePopupRecordAt(index: Int): EvidencePopupRecord {
-        return evidenceViewDatas[index]
+        return evidenceViewDataList[index]
     }
 
     @JvmRecord
@@ -66,15 +66,15 @@ class EvidencePopupModel(context: Context) : InvestigationPopupModel() {
         }
 
         @DrawableRes
-        fun getAnimation(i: Int): Int {
+        fun getAnimationAt(i: Int): Int {
             return animations[i]
         }
 
-        fun getDescription(c: Context, i: Int): String {
+        fun getDescriptionAt(c: Context, i: Int): String {
             return c.getString(descriptions[i])
         }
 
-        fun getUnlockLevel(c: Context, i: Int): String {
+        fun getUnlockLevelAt(c: Context, i: Int): String {
             return c.resources.getInteger(unlock_level[i]).toString()
         }
 

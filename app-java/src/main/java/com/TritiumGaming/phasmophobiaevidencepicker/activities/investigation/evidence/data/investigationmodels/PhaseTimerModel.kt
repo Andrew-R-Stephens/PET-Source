@@ -1,6 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels
 
 import android.os.CountDownTimer
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FormatterUtils.millisToTime
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
@@ -25,11 +26,17 @@ class PhaseTimerModel(
     val currentPhase = _currentPhase.asStateFlow()
     fun updateCurrentPhase() {
         _currentPhase.value =
-            if (timeRemaining.value > TIME_MIN) { Phase.SETUP }
+            if (timeRemaining.value > TIME_MIN) {
+                Phase.SETUP
+            }
             else {
                 if((evidenceViewModel.sanityModel?.insanityPercent?.value ?: 0f) <
-                    SanityModel.SAFE_MIN_BOUNDS) { Phase.HUNT }
-                else { Phase.ACTION }
+                    SanityModel.SAFE_MIN_BOUNDS) {
+                    Phase.HUNT
+                }
+                else {
+                    Phase.ACTION
+                }
             }
     }
 
@@ -66,7 +73,7 @@ class PhaseTimerModel(
         if(paused.value) playTimer()
         else pauseTimer()
     }
-    private fun resetTimer() {
+    fun resetTimer() {
         pauseTimer()
         resetStartTime()
         setLiveTimer()
@@ -75,6 +82,10 @@ class PhaseTimerModel(
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     var startTime: Long = -1L
+        set(value) {
+            field = value
+            Log.d("StartTime", "$field")
+        }
 
     /** */
     val isNewCycle: Boolean

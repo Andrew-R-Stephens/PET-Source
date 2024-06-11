@@ -1,137 +1,114 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence
 
-import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable;
+import android.annotation.SuppressLint
+import android.media.MediaPlayer
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
 
 /**
  * EvidenceSoloFragment class
  *
  * @author TritiumGamingStudios
  */
-public class EvidenceSoloFragment extends EvidenceFragment {
+class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
 
-    @Nullable
-    private Thread sanityThread; //Thread that updates the sanity levels
-
-    /**
-     * EvidenceSoloFragment default constructor
-     */
-    public EvidenceSoloFragment() {
-        super(R.layout.fragment_evidence);
-    }
+    private var sanityThread: Thread? = null //Thread that updates the sanity levels
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        super.onViewCreated(view, savedInstanceState);
+        val buttonReset = view.findViewById<AppCompatImageView>(R.id.button_reset)
 
-        AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
-
-        button_reset.setOnClickListener(v -> {
+        buttonReset.setOnClickListener {
             // TODO animate reset arrow
-            reset();
-        });
+            reset()
+        }
 
-        enableUIThread();
+        enableUIThread()
     }
 
     /**
      * reset method
      */
-    public void reset() {
-        disableUIThread();
+    fun reset() {
+        disableUIThread()
 
-        super.softReset();
+        super.softReset()
 
-        requestInvalidateComponents();
+        requestInvalidateComponents()
 
-        enableUIThread();
+        enableUIThread()
     }
 
-    @Override
-    public void requestInvalidateComponents() {
-        super.requestInvalidateComponents();
+    override fun requestInvalidateComponents() {
+        super.requestInvalidateComponents()
     }
 
     /**
      * enableUIThread method
      */
-    public void enableUIThread() {
-
-        if (evidenceViewModel != null && evidenceViewModel.getSanityRunnable() == null) {
-
+    private fun enableUIThread() {
+        if (evidenceViewModel?.sanityRunnable == null) {
             try {
-                String appLang = ((InvestigationActivity) requireActivity()).getAppLanguage();
-                evidenceViewModel.setSanityRunnable(
-                        new SanityRunnable(
-                            evidenceViewModel,
-                            globalPreferencesViewModel,
-                            getHuntWarningAudio(appLang)
-                        )
-                );
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
+                val appLang = (requireActivity() as InvestigationActivity).appLanguage
+                evidenceViewModel.sanityRunnable = SanityRunnable(
+                    evidenceViewModel,
+                    globalPreferencesViewModel,
+                    getHuntWarningAudio(appLang)
+                )
+                evidenceViewModel.sanityRunnable
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
 
             if (sanityThread == null) {
-
-                if (evidenceViewModel.hasTimerModel()) {
-                    evidenceViewModel.getTimerModel().playTimer();
-                }
-
                 if (evidenceViewModel.hasSanityRunnable()) {
-
-                    sanityThread = new Thread() {
-                        public void run() {
-                            while (evidenceViewModel != null && evidenceViewModel.hasSanityModel()
-                                    && !evidenceViewModel.getTimerModel().getPaused().getValue()) {
+                    sanityThread = object : Thread() {
+                        override fun run() {
+                            while (evidenceViewModel.timerModel?.paused?.value == false) {
                                 try {
-                                    update();
-                                    tick();
-                                } catch (InterruptedException e) {
+                                    update()
+                                    tick()
+                                } catch (e: InterruptedException) {
                                     Log.e("EvidenceFragment",
-                                            "(SanityThread) InterruptedException error " +
-                                                    "handled.");
+                                        "(SanityThread) InterruptedException error handled.")
                                 }
                             }
                         }
 
-                        private void tick() throws InterruptedException {
-                            long now = System.nanoTime();
-                            long updateTime = System.nanoTime() - now;
-                            int TARGET_FPS = 30;
-                            long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-                            long wait = (OPTIMAL_TIME - updateTime) / 1000000;
+                        @Throws(InterruptedException::class)
+                        private fun tick() {
+                            val now = System.nanoTime()
+                            val updateTime = System.nanoTime() - now
+                            val fpsTarget = 30
+                            val timeOptimal = (1000000000 / fpsTarget).toLong()
 
-                            if (wait < 0) {
-                                wait = 1;
-                            }
-                            evidenceViewModel.getSanityRunnable().setWait(wait);
-                            Thread.sleep(wait);
+                            var wait = (timeOptimal - updateTime) / 1000000
+                            if (wait < 0) { wait = 1 }
+
+                            if (evidenceViewModel != null && evidenceViewModel.hasSanityRunnable())
+                                evidenceViewModel.sanityRunnable?.wait = wait
+
+                            sleep(wait)
                         }
 
-                        private void update() {
+                        private fun update() {
                             try {
                                 requireActivity().runOnUiThread(
-                                        evidenceViewModel.getSanityRunnable());
-                            } catch (IllegalStateException e) {
-                                e.printStackTrace();
+                                    evidenceViewModel.sanityRunnable
+                                )
+                            } catch (e: IllegalStateException) {
+                                e.printStackTrace()
                             }
                         }
-                    };
-                    sanityThread.start();
+                    }
+                    sanityThread?.start()
                 }
             }
         }
@@ -140,71 +117,55 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     /**
      * disableUIThread method
      */
-    public void disableUIThread() {
-        if (evidenceViewModel != null) {
+    private fun disableUIThread() {
+            val sanityRunnable = evidenceViewModel?.sanityRunnable ?: return
 
-            if (evidenceViewModel.hasTimerModel()) {
-                evidenceViewModel.getTimerModel().pauseTimer();
-            }
+            sanityThread?.interrupt()
 
-            SanityRunnable sanityRunnable = evidenceViewModel.getSanityRunnable();
+            sanityRunnable.haltMediaPlayer()
+            sanityRunnable.dereferenceViews()
+            evidenceViewModel.sanityRunnable = null
 
-            if (sanityThread != null) {
-                sanityThread.interrupt();
-
-                if (sanityRunnable != null) {
-                    sanityRunnable.haltMediaPlayer();
-                    sanityRunnable.dereferenceViews();
-                    evidenceViewModel.setSanityRunnable(null);
-                }
-
-                sanityThread = null;
-            }
-
-        }
-
+            sanityThread = null
     }
 
-    public MediaPlayer getHuntWarningAudio(@NonNull String appLang) {
-        MediaPlayer p = null;
+    private fun getHuntWarningAudio(appLang: String): MediaPlayer? {
+        var p: MediaPlayer? = null
         try {
-            p = switch (appLang) {
-                case "es" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_es);
-                case "fr" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_fr);
-                case "de" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_de);
-                default -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en);
-            };
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            p = when (appLang) {
+                "es" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_es)
+                "fr" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_fr)
+                "de" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_de)
+                else -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en)
+            }
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
-        return p;
+        return p
     }
 
     /**
      * onPause method
      */
-    @Override
-    public void onPause() {
-        disableUIThread();
+    override fun onPause() {
+        disableUIThread()
 
         if (evidenceViewModel != null && evidenceViewModel.hasSanityModel() &&
-            evidenceViewModel.hasSanityRunnable()) {
-            evidenceViewModel.getSanityRunnable().haltMediaPlayer();
-            evidenceViewModel.getSanityRunnable().dereferenceViews();
+            evidenceViewModel.hasSanityRunnable()
+        ) {
+            evidenceViewModel.sanityRunnable!!.haltMediaPlayer()
+            evidenceViewModel.sanityRunnable!!.dereferenceViews()
         }
 
-        super.onPause();
+        super.onPause()
     }
 
     /**
      * onResume method
      */
-    @Override
-    public void onResume() {
+    override fun onResume() {
+        enableUIThread()
 
-        enableUIThread();
-
-        super.onResume();
+        super.onResume()
     }
-
 }

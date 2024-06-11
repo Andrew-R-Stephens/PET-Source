@@ -6,10 +6,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class GhostPopupModel(context: Context) : InvestigationPopupModel() {
 
-    @StringRes private val infos: IntArray
-    @StringRes private val strengths: IntArray
-    @StringRes private val weaknesses: IntArray
-    @StringRes private val huntData: IntArray
+    @StringRes private val infoArray: IntArray
+    @StringRes private val strengthArray: IntArray
+    @StringRes private val weaknessArray: IntArray
+    @StringRes private val huntDataArray: IntArray
 
     init {
         val resources = context.resources
@@ -19,54 +19,54 @@ class GhostPopupModel(context: Context) : InvestigationPopupModel() {
         val weaknessesTypedArray = resources.obtainTypedArray(R.array.ghost_weaknesses_array)
         val huntDataTypedArray = resources.obtainTypedArray(R.array.ghost_huntdata_array)
 
-        infos = intArrayFromTypedArray(resources, infoTypedArray)
-        strengths = intArrayFromTypedArray(resources, strengthsTypedArray)
-        weaknesses = intArrayFromTypedArray(resources, weaknessesTypedArray)
-        huntData = intArrayFromTypedArray(resources, huntDataTypedArray)
+        infoArray = intArrayFromTypedArray(resources, infoTypedArray)
+        strengthArray = intArrayFromTypedArray(resources, strengthsTypedArray)
+        weaknessArray = intArrayFromTypedArray(resources, weaknessesTypedArray)
+        huntDataArray = intArrayFromTypedArray(resources, huntDataTypedArray)
     }
 
-    fun getCycleDetails(c: Context, i: Int): Array<String?> {
-        val cycleDetails = arrayOfNulls<String>(3)
-        cycleDetails[0] = getInfo(c, i)
-        cycleDetails[1] = getStrength(c, i)
-        cycleDetails[2] = getWeakness(c, i)
+    fun getCycleDetails(c: Context, i: Int): MutableList<String> {
+        val cycleDetails = mutableListOf<String>()
+        cycleDetails.add(0, getInfo(c, i))
+        cycleDetails.add(1, getStrength(c, i))
+        cycleDetails.add(2, getWeakness(c, i))
 
         return cycleDetails
     }
 
     private fun getWeakness(c: Context, i: Int): String {
-        return c.getString(weaknesses[i])
+        return c.getString(weaknessArray[i])
     }
 
     fun getHuntData(c: Context, i: Int): String {
-        return c.getString(huntData[i])
+        return c.getString(huntDataArray[i])
     }
 
     private fun getStrength(c: Context, i: Int): String {
-        return c.getString(strengths[i])
+        return c.getString(strengthArray[i])
     }
 
     private fun getInfo(c: Context, i: Int): String {
-        return c.getString(infos[i])
+        return c.getString(infoArray[i])
     }
 
     @StringRes
     fun getWeakness(i: Int): Int {
-        return weaknesses[i]
+        return weaknessArray[i]
     }
 
     @StringRes
     fun getHuntData(i: Int): Int {
-        return huntData[i]
+        return huntDataArray[i]
     }
 
     @StringRes
     fun getStrength(i: Int): Int {
-        return strengths[i]
+        return strengthArray[i]
     }
 
     @StringRes
     fun getInfo(i: Int): Int {
-        return infos[i]
+        return infoArray[i]
     }
 }

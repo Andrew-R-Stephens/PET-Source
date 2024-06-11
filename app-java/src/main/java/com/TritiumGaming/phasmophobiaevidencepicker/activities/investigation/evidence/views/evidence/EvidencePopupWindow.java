@@ -105,7 +105,7 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             layout_overview.setVisibility(View.VISIBLE);
             layout_tiers.setVisibility(View.GONE);
 
-            animation_fullscreen.setImageResource(evidenceRecord.getAnimation(0));
+            animation_fullscreen.setImageResource(evidenceRecord.getAnimationAt(0));
         });
         select_tiers.setOnClickListener(selectView -> {
             select_overview.setImageLevel(0);
@@ -118,9 +118,9 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             select_tier_2.setImageLevel(0);
             select_tier_3.setImageLevel(0);
             generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(1),
-                    evidenceRecord.getUnlockLevel(getContext(), 0),
+                    evidenceRecord.getDescriptionAt(getContext(), 1),
+                    evidenceRecord.getAnimationAt(1),
+                    evidenceRecord.getUnlockLevelAt(getContext(), 0),
                     fontEmphasisColor);
         });
 
@@ -133,9 +133,9 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             select_tier_3.setImageLevel(0);
 
             generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 1),
-                    evidenceRecord.getAnimation(1),
-                    evidenceRecord.getUnlockLevel(getContext(), 0),
+                    evidenceRecord.getDescriptionAt(getContext(), 1),
+                    evidenceRecord.getAnimationAt(1),
+                    evidenceRecord.getUnlockLevelAt(getContext(), 0),
                     fontEmphasisColor);
         });
         select_tier_2.setOnClickListener(selectView -> {
@@ -144,9 +144,9 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             select_tier_3.setImageLevel(0);
 
             generateEvidenceTierView(2, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 2),
-                    evidenceRecord.getAnimation(2),
-                    evidenceRecord.getUnlockLevel(getContext(), 1),
+                    evidenceRecord.getDescriptionAt(getContext(), 2),
+                    evidenceRecord.getAnimationAt(2),
+                    evidenceRecord.getUnlockLevelAt(getContext(), 1),
                     fontEmphasisColor);
         });
         select_tier_3.setOnClickListener(selectView -> {
@@ -155,9 +155,9 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
             select_tier_2.setImageLevel(0);
 
             generateEvidenceTierView(3, animation_fullscreen,
-                    evidenceRecord.getDescription(getContext(), 3),
-                    evidenceRecord.getAnimation(3),
-                    evidenceRecord.getUnlockLevel(getContext(), 2),
+                    evidenceRecord.getDescriptionAt(getContext(), 3),
+                    evidenceRecord.getAnimationAt(3),
+                    evidenceRecord.getUnlockLevelAt(getContext(), 2),
                     fontEmphasisColor);
         });
 
@@ -180,14 +180,14 @@ public class EvidencePopupWindow extends InvestigationPopupWindow {
 
         label.setText(evidenceRecord.getName(getContext()));
         info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                evidenceRecord.getDescription(getContext(), 0),
+                evidenceRecord.getDescriptionAt(getContext(), 0),
                 "#ff6161", String.valueOf(fontEmphasisColor))));
 
         TypedArray typedArray;
         try {
             typedArray = getContext().getResources().
                     obtainTypedArray(R.array.equipment_animation_array);
-            animation.setImageResource(evidenceRecord.getAnimation(0));
+            animation.setImageResource(evidenceRecord.getAnimationAt(0));
             animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceRecord.index, 0));
             typedArray.recycle();
         } catch (Resources.NotFoundException e) {

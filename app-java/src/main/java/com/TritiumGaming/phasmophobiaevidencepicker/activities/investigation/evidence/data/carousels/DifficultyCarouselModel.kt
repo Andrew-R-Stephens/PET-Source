@@ -34,6 +34,7 @@ class DifficultyCarouselModel(
         _difficultyIndex.value = index
         updateCurrentDifficultyName()
         evidenceViewModel.timerModel?.setTimeRemaining(currentDifficultyTime)
+        evidenceViewModel.timerModel?.resetTimer()
     }
 
     val currentDifficultyTime: Long

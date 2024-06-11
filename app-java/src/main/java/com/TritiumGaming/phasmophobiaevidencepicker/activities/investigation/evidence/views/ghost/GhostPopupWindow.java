@@ -32,6 +32,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GhostPopupWindow extends InvestigationPopupWindow {
 
     private int detailIndex = 0;
@@ -115,7 +118,8 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
         //initialize info content scroller
         bodyCons.setVisibility(View.INVISIBLE);
 
-        String[] cycleDetails = ghostPopupData.getCycleDetails(getContext(), groupIndex);
+        List<String> tempList = (ghostPopupData.getCycleDetails(getContext(), groupIndex));
+        String[] cycleDetails = tempList.toArray(new String[0]);
 
         title.setText(titles[detailIndex]);
         data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(

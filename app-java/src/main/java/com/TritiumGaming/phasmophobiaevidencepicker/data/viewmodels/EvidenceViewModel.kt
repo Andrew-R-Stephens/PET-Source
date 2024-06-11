@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.PhaseTimerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel
@@ -146,6 +146,7 @@ class EvidenceViewModel : ViewModel() {
         )
     }
 
+    /*
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
         if ((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds &&
             (sanityModel?.sanityActual ?: 0L) < higherBounds) {
@@ -153,6 +154,7 @@ class EvidenceViewModel : ViewModel() {
             sanityModel?.setProgressManually(newValue.toLong())
         }
     }
+    */
 
     fun reset() {
         resetRadioButtonsChecked()

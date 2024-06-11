@@ -89,8 +89,15 @@ class SanityRunnable (
                     audio_huntWarn?.start()
                     sanityData.warningAudioAllowed = false
                 }*/
+                huntWarningAudioListener?.play()
             }
         }
+    }
+
+    var huntWarningAudioListener: HuntWarningAudioListener? = null
+    abstract class HuntWarningAudioListener() {
+        abstract fun play()
+        abstract fun stop()
     }
 
     fun dereferenceViews() {

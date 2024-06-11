@@ -32,31 +32,34 @@ class SanityModel(
     private val currentMaxSanity: Float
         get() {
             return (
-                if((evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: 0) == 4) 75f
-                else MAX_SANITY )
+                if((evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: 0) == 4)
+                    75f * .001f
+                else MAX_SANITY * .001f )
         }
 
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
     private var insanityActual: Float = 0f
         set(value) {
-            field = max(min(currentMaxSanity, value), MIN_SANITY)
+            field = max(min(MAX_SANITY, value), MIN_SANITY)
             updateInsanityPercent()
         }
 
     private val _insanityPercent = MutableStateFlow(0f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()
     private fun updateInsanityPercent() {
-        _insanityPercent.value = ((currentMaxSanity - insanityActual) * .01f)
+        _insanityPercent.value = ((MAX_SANITY - insanityActual) * .01f)
         evidenceViewModel?.timerModel?.updateCurrentPhase()
     }
 
     /** @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.*/
+    /*
     val sanityActual: Long
         get() {
             val insanityActualTemp = insanityActual.toInt().toLong()
-            return max(min(currentMaxSanity, insanityActualTemp.toFloat()), MIN_SANITY).toLong()
+            return max(min(MAX_SANITY, insanityActualTemp.toFloat()), MIN_SANITY).toLong()
         }
+    */
 
     /** */
     var warningAudioAllowed = true
@@ -112,8 +115,9 @@ class SanityModel(
      * sanity, difficulty and map size. */
     fun setProgressManually(progressOverride: Long) {
         val multiplier = .001f
+        val rateModifier = currentDifficultyRate / dropRate / multiplier
         val newStartTime = (System.currentTimeMillis() +
-                (currentMaxSanity - progressOverride / currentDifficultyRate / dropRate / multiplier))
+                ((MAX_SANITY - progressOverride) / rateModifier))
         evidenceViewModel?.timerModel?.startTime = newStartTime.toLong()
         resetFlashTimeoutStart()
     }
@@ -221,6 +225,7 @@ class SanityModel(
     fun reset() {
         resetFlashTimeoutStart()
         warningAudioAllowed = true
+        insanityActual = currentMaxSanity
         tick()
     }
 }

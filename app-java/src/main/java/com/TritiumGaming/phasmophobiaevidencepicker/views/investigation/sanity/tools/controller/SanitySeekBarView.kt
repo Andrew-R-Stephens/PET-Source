@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.lifecycle.findViewTreeLifecycleOwner
@@ -20,6 +21,7 @@ class SanitySeekBarView : AppCompatSeekBar {
         abstract fun onReset()
         abstract fun onInvalidate()
     }
+
     constructor(context: Context) :
             super(context)
 
@@ -32,8 +34,6 @@ class SanitySeekBarView : AppCompatSeekBar {
     fun init(evidenceViewModel: EvidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel
 
-        progress = evidenceViewModel.sanityModel?.insanityPercent?.value?.toInt() ?: 0
-
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
@@ -41,6 +41,8 @@ class SanitySeekBarView : AppCompatSeekBar {
                     evidenceViewModel.sanityModel?.tick()
 
                     onProgressChangedListener?.onChange()
+
+                    invalidate()
                 }
             }
 
@@ -60,15 +62,12 @@ class SanitySeekBarView : AppCompatSeekBar {
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.sanityModel?.insanityPercent?.collectLatest {
-                progress = 100 - (it*100).toInt()
+                Log.d("InsanityPercent", "$it")
+                progress = 100 - (it).toInt()
                 onProgressChangedListener?.onChange()
                 invalidate()
             }
         }
     }
 
-    override fun invalidate() {
-        super.invalidate()
-        //onProgressChangedListener?.onInvalidate()
-    }
 }
