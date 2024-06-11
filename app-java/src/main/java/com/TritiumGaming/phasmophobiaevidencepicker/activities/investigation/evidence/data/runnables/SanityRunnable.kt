@@ -28,17 +28,16 @@ class SanityRunnable (
      */
     override fun run() {
 
-        val sanityData = evidenceViewModel?.sanityData ?: return
+        val sanityModel = evidenceViewModel?.sanityModel ?: return
+        val phaseTimerModel = evidenceViewModel?.timerModel ?: return
 
-        if (sanityData.isNewCycle) {
-            sanityData.initStartTime()
+        if (sanityModel.isNewCycle) {
+            sanityModel.initStartTime()
         }
 
-        if (!sanityData.paused.value) {
+        if (!phaseTimerModel.paused.value) {
 
             if(evidenceViewModel.timerModel == null) return
-
-            val phaseTimerData = evidenceViewModel.timerModel
 
             /*
             if (phaseTimerData?.isPaused == false) {
@@ -81,8 +80,8 @@ class SanityRunnable (
             }
             */
 
-            if (phaseTimerData?.paused?.value == false) {
-                sanityData.tick()
+            if (phaseTimerModel.paused.value) {
+                sanityModel.tick()
                 // Hunt Audio is ACTIVE if setup phase activity is false
                 /*if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
                     (phaseTimerData.currentPhase.value != PhaseTimerModel.Phase.SETUP) &&

@@ -1,6 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,13 +32,13 @@ class SanityModel(
 
     private var insanityActual: Float = 0f
         set(value) {
-            field = min(value, MAX_SANITY)
+            field = max(min(value, MAX_SANITY), MIN_SANITY)
         }
 
-    private val _insanityPercent = MutableStateFlow(1f) /** the sanity level missing, in percent.**/
+    private val _insanityPercent = MutableStateFlow(0f) /** the sanity level missing, in percent.**/
     val insanityPercent = _insanityPercent.asStateFlow()
     private fun updateInsanityPercent() {
-        _insanityPercent.value = (insanityActual * .01f)
+        _insanityPercent.value = ((MAX_SANITY - insanityActual) * .01f)
     }
 
     /** the sanity level missing, in degrees.**/
@@ -64,13 +65,6 @@ class SanityModel(
         get() {
             return field && (insanityPercent.value < SAFE_MIN_BOUNDS)
         }
-
-    /** @return If the countdown timer is paused. */
-    private val _paused = MutableStateFlow(false)
-    val paused = _paused.asStateFlow()
-    fun updatePaused(value: Boolean) {
-        _paused.value = value
-    }
 
     /** */
     var flashTimeoutMax: Long = -1

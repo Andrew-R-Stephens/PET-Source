@@ -26,7 +26,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterKt;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout;
 
 /**
@@ -83,8 +82,8 @@ public class EvidenceFragment extends InvestigationFragment {
         sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool);
         sanityToolsLayout.init(evidenceViewModel);
 
-        if(evidenceViewModel.getSanityData() != null) {
-            evidenceViewModel.getSanityData()
+        if(evidenceViewModel.getSanityModel() != null) {
+            evidenceViewModel.getSanityModel()
                     .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
         }
 

@@ -85,7 +85,7 @@ public abstract class InvestigationFragment extends PETFragment {
     private void initMapMenuViewModel() {
         if (mapMenuViewModel == null) {
             mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-            mapMenuViewModel.init(getContext());
+            mapMenuViewModel.init(requireContext());
         }
     }
 
@@ -100,7 +100,7 @@ public abstract class InvestigationFragment extends PETFragment {
         if (evidenceViewModel == null) {
             evidenceViewModel =
                     new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
-            evidenceViewModel.init(getContext());
+            evidenceViewModel.init(requireContext());
         }
     }
 

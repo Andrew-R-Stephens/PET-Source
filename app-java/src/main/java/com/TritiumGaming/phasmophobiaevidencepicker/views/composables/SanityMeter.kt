@@ -33,7 +33,7 @@ fun SanityMeterView(
     evidenceViewModel: EvidenceViewModel = EvidenceViewModel(),
     modifier: Modifier = Modifier
 ) {
-    val insanityPercent = evidenceViewModel.sanityData?.insanityPercent?.collectAsState()
+    val insanityPercent = evidenceViewModel.sanityModel?.insanityPercent?.collectAsState()
 
     Box(
         modifier = modifier

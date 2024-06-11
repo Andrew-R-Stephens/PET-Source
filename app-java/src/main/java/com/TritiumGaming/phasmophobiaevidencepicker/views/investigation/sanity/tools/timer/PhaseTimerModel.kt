@@ -27,7 +27,7 @@ class PhaseTimerModel(
         _currentPhase.value =
             if (timeRemaining > TIME_MIN) { Phase.SETUP }
             else {
-                if((evidenceViewModel.sanityData?.insanityPercent?.value ?: 0f) <
+                if((evidenceViewModel.sanityModel?.insanityPercent?.value ?: 0f) <
                     SanityModel.SAFE_MIN_BOUNDS) { Phase.HUNT }
                 else { Phase.ACTION }
             }
@@ -44,14 +44,14 @@ class PhaseTimerModel(
 
     private val _paused = MutableStateFlow(true)
     val paused = _paused.asStateFlow()
-    private fun pause() {
+    fun pause() {
         _paused.value = true
     }
-    private fun play() {
+    fun play() {
         _paused.value = false
     }
     fun toggle() {
-        if(paused.value) play() else pause()
+        _paused.value = !_paused.value
     }
 
     val displayText: String
@@ -63,7 +63,7 @@ class PhaseTimerModel(
     init {
         reset()
     }
-    
+
     fun hasTimeRemaining(): Boolean {
         return timeRemaining < TIME_MIN
     }

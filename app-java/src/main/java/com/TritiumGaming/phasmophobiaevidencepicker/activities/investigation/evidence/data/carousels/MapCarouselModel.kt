@@ -1,13 +1,20 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels
 
+import android.content.Context
+import android.content.res.TypedArray
 import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class MapCarouselModel {
+class MapCarouselModel(
+    context: Context,
+    val evidenceViewModel: EvidenceViewModel
+) {
 
-    data class MapSizeData(val name: String, val size: Int)
-    private var mapSizeData: Array<MapSizeData?>? = null
+    data class MapSizeData(val name: String = "NA", val size: Int)
+    private var mapSizeData = mutableListOf<MapSizeData>()
 
     var mapCurrentIndex: Int = 0
         set(value) {
@@ -31,13 +38,10 @@ class MapCarouselModel {
         mapCurrentIndex = i
     }
 
-    fun setMapSizeData(allNames: Array<String>, allSizes: IntArray) {
+    private fun setMapSizeData(allNames: MutableList<String>, allSizes: IntArray) {
         if (allNames.size == allSizes.size) {
-            mapSizeData = arrayOfNulls(allSizes.size)
             for (i in allNames.indices) {
-                mapSizeData!![i] = MapSizeData(
-                    allNames[i], allSizes[i]
-                )
+                mapSizeData.add(i, MapSizeData(allNames[i], allSizes[i]))
             }
         }
 
@@ -49,29 +53,32 @@ class MapCarouselModel {
             return mapSizeData?.size ?: 0
         }
 
-    /*
-    val mapCurrentName: String
-        get() {
-            return mapSizeData?.get(mapCurrentIndex)?.name ?: "???"
-        }
-    */
-
     private val _mapCurrentName: MutableStateFlow<String> = MutableStateFlow("???")
     val mapCurrentName = _mapCurrentName.asStateFlow()
     private fun updateMapCarouselName() {
-        _mapCurrentName.value = mapSizeData?.get(mapCurrentIndex)?.name ?: "???"
+        _mapCurrentName.value = mapSizeData.get(mapCurrentIndex)?.name ?: "???"
         Log.d("MapCarouselModel", "Map name updated to ${_mapCurrentName.value}")
     }
 
     val mapCurrentSize: Int
         get() {
-            if (mapSizeData != null) {
-                return mapSizeData!![mapCurrentIndex]!!.size
-            }
-            return 1
+            return mapSizeData[mapCurrentIndex].size
         }
 
-    fun hasMapSizeData(): Boolean {
-        return mapSizeData == null
+    init {
+        val typedArray: TypedArray =
+            context.resources.obtainTypedArray(R.array.maps_resources_array)
+        val names = mutableListOf<String>()
+        val sizes = IntArray(typedArray.length())
+        for (i in 0 until typedArray.length()) {
+            val mapTypedArray: TypedArray =
+                context.resources.obtainTypedArray(typedArray.getResourceId(i, 0))
+            names.add(i, mapTypedArray.getString(0) ?: "")
+            val sizeLayer = 6
+            sizes[i] = mapTypedArray.getInt(sizeLayer, 0)
+            mapTypedArray.recycle()
+        }
+        typedArray.recycle()
+        setMapSizeData(names, sizes)
     }
 }

@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setSanityMeterView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -55,13 +54,15 @@ class SanityTrackerLayout : ConstraintLayout {
         }
 
         sanitySeekBarView.init(evidenceViewModel)
-        sanitySeekBarView.resetProgress()
-        sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
+
+        //sanitySeekBarView.resetProgress()
+        evidenceViewModel.sanityModel
+        sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
 
         sanitySeekBarView.onProgressChangedListener = object :
             SanitySeekBarView.OnSanityBarProgressChangedListener() {
             override fun onChange() {
-                sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
+                sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
 
             override fun onReset() {
@@ -74,8 +75,8 @@ class SanityTrackerLayout : ConstraintLayout {
 
     private fun initObservables(evidenceViewModel: EvidenceViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.sanityData?.insanityPercent?.collectLatest {
-                sanityPercentTextView.text = evidenceViewModel.sanityData?.toPercentString()
+            evidenceViewModel.sanityModel?.insanityPercent?.collectLatest {
+                sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
         }
     }

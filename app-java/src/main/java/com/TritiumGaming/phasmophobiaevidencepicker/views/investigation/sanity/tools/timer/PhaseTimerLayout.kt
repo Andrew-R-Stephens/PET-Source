@@ -20,6 +20,14 @@ class PhaseTimerLayout : ConstraintLayout {
     private lateinit var skipButton: PETImageButton
     private var phaseTimerTextView: AppCompatTextView? = null // TIMER VIEW
 
+   private companion object TimerStates {
+       val states: HashMap<Boolean, Int> = HashMap()
+       init {
+           states[true] = 0
+           states[false] = 1
+       }
+   }
+
     constructor(context: Context) :
             super(context) { initView(null) }
 
@@ -37,6 +45,7 @@ class PhaseTimerLayout : ConstraintLayout {
 
         playToggleButton = findViewById(R.id.timer_play_pause)
         phaseTimerTextView = findViewById(R.id.evidence_timer_text)
+        skipButton = findViewById(R.id.timer_skip)
 
         setDefaults()
     }
@@ -49,31 +58,31 @@ class PhaseTimerLayout : ConstraintLayout {
     ) {
         this.evidenceViewModel = evidenceViewModel
 
-        playToggleButton.setImageResource(R.drawable.icon_control_toggleplay)
-        skipButton = findViewById(R.id.timer_skip)
-
-        playToggleButton.isEnabled = (evidenceViewModel.timerModel?.paused?.value == true)
         playToggleButton.setOnClickListener {
             evidenceViewModel.timerModel?.toggle()
         }
 
-        /* LISTENERS */
         skipButton.setOnClickListener {
             //phaseTimerCountdownView.createTimer(false, 0L, 1000L)
             //evidenceViewModel.skipSanityToPercent(0, 50, 50)
         }
 
-        initObservables()
-
         phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayText
+        setPlayButtonIcon()
+
+        initObservables()
     }
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.timerModel?.paused?.collectLatest {
-                playToggleButton.isEnabled = it
+                setPlayButtonIcon()
             }
         }
     }
 
+    private fun setPlayButtonIcon() {
+        playToggleButton.drawable.level =
+            states[evidenceViewModel.timerModel?.paused?.value == true] ?: 0
+    }
 }

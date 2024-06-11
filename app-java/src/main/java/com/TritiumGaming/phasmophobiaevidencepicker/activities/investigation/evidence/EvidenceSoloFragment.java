@@ -39,46 +39,12 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        MapCarouselModel mapCarouselData = evidenceViewModel.getMapCarouselData();
-        if (mapCarouselData.hasMapSizeData()) {
-            TypedArray typedArray = getResources().obtainTypedArray(R.array.maps_resources_array);
-            String[] names = new String[typedArray.length()];
-            int[] sizes = new int[typedArray.length()];
-            for (int i = 0; i < typedArray.length(); i++) {
-                TypedArray mapTypedArray =
-                        getResources().obtainTypedArray(typedArray.getResourceId(i, 0));
-                names[i] = mapTypedArray.getString(0);
-                int sizeLayer = 6;
-                sizes[i] = mapTypedArray.getInt(sizeLayer, 0);
-                mapTypedArray.recycle();
-            }
-            typedArray.recycle();
-            mapCarouselData.setMapSizeData(names, sizes);
-        }
-
         AppCompatImageView button_reset = view.findViewById(R.id.button_reset);
 
         button_reset.setOnClickListener(v -> {
             // TODO animate reset arrow
             reset();
         });
-
-        /*
-        View.OnClickListener difficultyListener = v -> {
-            evidenceViewModel.getGhostOrderData().updateOrder();
-            ghostList.requestInvalidateGhostContainer(
-                    globalPreferencesViewModel.getReorderGhostViews());
-
-            ScrollView parentScroller = ghostSection.findViewById(R.id.list);
-            if(parentScroller != null) {
-                parentScroller.smoothScrollTo(0, 0);
-            }
-        };
-        compositeListenerPrev = new CompositeListener();
-        compositeListenerNext = new CompositeListener();
-        compositeListenerPrev.registerListener(difficultyListener);
-        compositeListenerNext.registerListener(difficultyListener);
-        */
 
         enableUIThread();
     }
@@ -123,16 +89,16 @@ public class EvidenceSoloFragment extends EvidenceFragment {
 
             if (sanityThread == null) {
 
-                if (evidenceViewModel.hasSanityData()) {
-                    evidenceViewModel.getSanityData().updatePaused(false);
+                if (evidenceViewModel.hasTimerModel()) {
+                    evidenceViewModel.getTimerModel().play();
                 }
 
                 if (evidenceViewModel.hasSanityRunnable()) {
 
                     sanityThread = new Thread() {
                         public void run() {
-                            while (evidenceViewModel != null && evidenceViewModel.hasSanityData()
-                                    && !evidenceViewModel.getSanityData().getPaused().getValue()) {
+                            while (evidenceViewModel != null && evidenceViewModel.hasSanityModel()
+                                    && !evidenceViewModel.getTimerModel().getPaused().getValue()) {
                                 try {
                                     update();
                                     tick();
@@ -179,8 +145,8 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void disableUIThread() {
         if (evidenceViewModel != null) {
 
-            if (evidenceViewModel.hasSanityData()) {
-                evidenceViewModel.getSanityData().updatePaused(true);
+            if (evidenceViewModel.hasTimerModel()) {
+                evidenceViewModel.getTimerModel().pause();
             }
 
             SanityRunnable sanityRunnable = evidenceViewModel.getSanityRunnable();
@@ -223,12 +189,10 @@ public class EvidenceSoloFragment extends EvidenceFragment {
     public void onPause() {
         disableUIThread();
 
-        if (evidenceViewModel != null && evidenceViewModel.getSanityData() != null) {
-
-            if (evidenceViewModel.hasSanityRunnable()) {
-                evidenceViewModel.getSanityRunnable().haltMediaPlayer();
-                evidenceViewModel.getSanityRunnable().dereferenceViews();
-            }
+        if (evidenceViewModel != null && evidenceViewModel.hasSanityModel() &&
+            evidenceViewModel.hasSanityRunnable()) {
+            evidenceViewModel.getSanityRunnable().haltMediaPlayer();
+            evidenceViewModel.getSanityRunnable().dereferenceViews();
         }
 
         super.onPause();

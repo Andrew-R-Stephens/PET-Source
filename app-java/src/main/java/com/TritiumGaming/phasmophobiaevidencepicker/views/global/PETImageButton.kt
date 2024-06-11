@@ -23,16 +23,18 @@ class PETImageButton : AppCompatImageButton {
         if (attrs != null) {
             val attrArray = context.obtainStyledAttributes(attrs, R.styleable.PETImageButton)
 
-            setImageResource(
-                attrArray.getResourceId(
-                    R.styleable.PETImageButton_PETImageButtonBackground,
-                    R.drawable.icon_button_designs
+            if(drawable == null) {
+                setImageResource(
+                    attrArray.getResourceId(
+                        R.styleable.PETImageButton_PETImageButtonBackground,
+                        R.drawable.icon_button_designs
+                    )
                 )
-            )
 
-            setImageLevel(
-                attrArray.getInt(R.styleable.PETImageButton_PETImageButtonType, 0)
-            )
+                setImageLevel(
+                    attrArray.getInt(R.styleable.PETImageButton_PETImageButtonType, 0)
+                )
+            }
 
             attrArray.recycle()
         }

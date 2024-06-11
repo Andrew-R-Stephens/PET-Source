@@ -85,8 +85,8 @@ class DifficultyCarouselModel(
         }
         difficultyIndex = i
 
-        if (evidenceViewModel.hasSanityData()) {
-            evidenceViewModel.sanityData?.warningAudioAllowed = true
+        if (evidenceViewModel.hasSanityModel()) {
+            evidenceViewModel.sanityModel?.warningAudioAllowed = true
         }
     }
 
@@ -97,13 +97,13 @@ class DifficultyCarouselModel(
         }
         difficultyIndex = i
 
-        if (evidenceViewModel.hasSanityData()) {
-            evidenceViewModel.sanityData?.warningAudioAllowed = true
+        if (evidenceViewModel.hasSanityModel()) {
+            evidenceViewModel.sanityModel?.warningAudioAllowed = true
         }
     }
 
     fun resetSanityData() {
-        evidenceViewModel.sanityData?.reset()
+        evidenceViewModel.sanityModel?.reset()
     }
 
     fun isDifficulty(difficultyIndex: Int): Boolean {

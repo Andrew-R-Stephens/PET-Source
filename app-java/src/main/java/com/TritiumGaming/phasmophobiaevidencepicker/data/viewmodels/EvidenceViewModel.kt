@@ -25,7 +25,7 @@ class EvidenceViewModel : ViewModel() {
     var ghostOrderData: GhostOrderModel? = null
         private set
 
-    var sanityData: SanityModel? = null
+    var sanityModel: SanityModel? = null
         private set
 
     var timerModel: PhaseTimerModel? = null
@@ -46,7 +46,7 @@ class EvidenceViewModel : ViewModel() {
         initInvestigationData(context)
         initGhostOrderData()
 
-        initMapCarouselModel()
+        initMapCarouselModel(context)
         initDifficultyCarouselModel(context)
 
         initTimerModel()
@@ -70,13 +70,13 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initSanityModel() {
-        sanityData =
-            sanityData ?: SanityModel(this)
+        sanityModel =
+            sanityModel ?: SanityModel(this)
     }
 
-    private fun initMapCarouselModel() {
+    private fun initMapCarouselModel(context: Context) {
         mapCarouselData =
-            mapCarouselData ?: MapCarouselModel()
+            mapCarouselData ?: MapCarouselModel(context, this)
     }
 
     private fun initDifficultyCarouselModel(context: Context) {
@@ -88,8 +88,12 @@ class EvidenceViewModel : ViewModel() {
         return sanityRunnable != null
     }
 
-    fun hasSanityData(): Boolean {
-        return sanityData != null
+    fun hasSanityModel(): Boolean {
+        return sanityModel != null
+    }
+
+    fun hasTimerModel(): Boolean {
+        return timerModel != null
     }
 
     private fun createRadioButtonsChecked() {
@@ -145,9 +149,9 @@ class EvidenceViewModel : ViewModel() {
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
         if (
             timerModel!!.timeRemaining <=
-            lowerBounds && sanityData!!.sanityActual < higherBounds
+            lowerBounds && sanityModel!!.sanityActual < higherBounds
         ) {
-            sanityData!!.setProgressManually(newValue.toLong())
+            sanityModel!!.setProgressManually(newValue.toLong())
         }
     }
 
@@ -157,7 +161,7 @@ class EvidenceViewModel : ViewModel() {
         createRejectionPile()
         timerModel?.reset()
         investigationData?.reset()
-        sanityData?.reset()
+        sanityModel?.reset()
         mapCarouselData?.mapCurrentIndex = 0
     }
 

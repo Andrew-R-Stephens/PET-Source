@@ -23,18 +23,16 @@ class SanitySeekBarView : AppCompatSeekBar {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
 
-    lateinit var externalListener: OnSanityBarProgressChangedListener
-
     fun init(evidenceViewModel: EvidenceViewModel) {
         this.evidenceViewModel = evidenceViewModel
 
-        progress = evidenceViewModel.sanityData?.sanityActual?.toInt() ?: 0
+        progress = evidenceViewModel.sanityModel?.sanityActual?.toInt() ?: 0
 
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    evidenceViewModel.sanityData?.setProgressManually(progress.toLong())
-                    evidenceViewModel.sanityData?.tick()
+                    evidenceViewModel.sanityModel?.setProgressManually(progress.toLong())
+                    evidenceViewModel.sanityModel?.tick()
 
                     onProgressChangedListener?.onChange()
                 }
@@ -51,7 +49,7 @@ class SanitySeekBarView : AppCompatSeekBar {
     }
 
     fun updateProgress() {
-        progress = evidenceViewModel.sanityData?.sanityActual?.toInt() ?: 0
+        progress = evidenceViewModel.sanityModel?.sanityActual?.toInt() ?: 0
         onProgressChangedListener?.onChange()
         invalidate()
     }
@@ -70,7 +68,7 @@ class SanitySeekBarView : AppCompatSeekBar {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.sanityData?.insanityPercent?.collectLatest {
+            evidenceViewModel.sanityModel?.insanityPercent?.collectLatest {
                 updateProgress()
             }
         }

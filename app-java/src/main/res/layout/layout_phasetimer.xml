@@ -78,6 +78,7 @@
                 android:padding="8dp"
                 android:scaleType="fitCenter"
                 android:tint="?attr/textColorBody"
+                android:src="@drawable/icon_control_toggleplay"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/timer_skip"
                 app:layout_constraintHeight_max="48dp"
