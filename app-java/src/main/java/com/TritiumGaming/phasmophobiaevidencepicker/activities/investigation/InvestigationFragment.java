@@ -105,10 +105,10 @@ public abstract class InvestigationFragment extends PETFragment {
     }
 
     /**
-     * softReset
+     * reset
      * Resets component data without completely rebuilding the Fragment
      */
-    public abstract void softReset();
+    public abstract void reset();
 
     protected void initAd(@Nullable AdView mAdView) {
         if(mAdView == null) {

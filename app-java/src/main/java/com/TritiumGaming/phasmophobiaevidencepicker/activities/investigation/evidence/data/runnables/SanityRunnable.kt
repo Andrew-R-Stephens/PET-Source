@@ -10,8 +10,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.Globa
  */
 class SanityRunnable (
     private val evidenceViewModel: EvidenceViewModel?,
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel,
-    private var audio_huntWarn: MediaPlayer?
+    private val globalPreferencesViewModel: GlobalPreferencesViewModel
 ) : Runnable {
 
     /**
@@ -31,15 +30,17 @@ class SanityRunnable (
         val sanityModel = evidenceViewModel?.sanityModel ?: return
         val timerModel = evidenceViewModel.timerModel ?: return
 
+        /*
         if (timerModel.isNewCycle) {
             timerModel.initStartTime()
         }
+        */
 
         if (!timerModel.paused.value) {
 
+            /*
             if(evidenceViewModel.timerModel == null) return
 
-            /*
             if (phaseTimerData?.isPaused == false) {
 
                 sanityData.tick()
@@ -80,8 +81,8 @@ class SanityRunnable (
             }
             */
 
-            if (timerModel.paused.value) {
-                sanityModel.tick()
+            if (!timerModel.paused.value) {
+                //sanityModel.tick()
                 // Hunt Audio is ACTIVE if setup phase activity is false
                 /*if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
                     (phaseTimerData.currentPhase.value != PhaseTimerModel.Phase.SETUP) &&
@@ -95,19 +96,10 @@ class SanityRunnable (
     }
 
     var huntWarningAudioListener: HuntWarningAudioListener? = null
-    abstract class HuntWarningAudioListener() {
+    abstract class HuntWarningAudioListener {
+        var mediaPlayer: MediaPlayer? = null
+        abstract fun init()
         abstract fun play()
         abstract fun stop()
-    }
-
-    fun dereferenceViews() {
-        audio_huntWarn = null
-    }
-
-    /** Releases the audio stream of Hunt Warning audio. */
-    fun haltMediaPlayer() {
-        audio_huntWarn?.stop()
-        audio_huntWarn?.release()
-        audio_huntWarn = null
     }
 }

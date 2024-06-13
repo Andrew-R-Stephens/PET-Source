@@ -2,8 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.content.Context
 import android.content.res.Resources
-import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,9 +32,10 @@ class DifficultyCarouselModel(
     var difficultyIndex = _difficultyIndex.asStateFlow()
     private fun updateDifficultyIndex(index: Int) {
         _difficultyIndex.value = index
-        updateCurrentDifficultyName()
         evidenceViewModel.timerModel?.setTimeRemaining(currentDifficultyTime)
         evidenceViewModel.timerModel?.resetTimer()
+
+        updateCurrentDifficultyName()
     }
 
     val currentDifficultyTime: Long
@@ -91,7 +92,7 @@ class DifficultyCarouselModel(
         updateDifficultyIndex(i)
 
         if (evidenceViewModel.hasSanityModel()) {
-            evidenceViewModel.sanityModel?.warningAudioAllowed = true
+            evidenceViewModel.sanityModel?.warnTriggered = false
         }
     }
 
@@ -103,7 +104,7 @@ class DifficultyCarouselModel(
         updateDifficultyIndex(i)
 
         if (evidenceViewModel.hasSanityModel()) {
-            evidenceViewModel.sanityModel?.warningAudioAllowed = true
+            evidenceViewModel.sanityModel?.warnTriggered = false
         }
     }
 
@@ -114,4 +115,18 @@ class DifficultyCarouselModel(
     fun isDifficulty(difficultyIndex: Int): Boolean {
         return this.difficultyIndex.value == difficultyIndex
     }
+
+
+    /** Defaults if the selected index is out of range of available indexes.
+     * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
+    val currentDifficultyRate: Float
+        get() {
+            val diffIndex =
+                evidenceViewModel.difficultyCarouselData?.difficultyIndex?.value ?: return 1f
+            if (diffIndex >= 0 && diffIndex < SanityModel.DIFFICULTY_MODIFIER.size) {
+                return SanityModel.DIFFICULTY_MODIFIER[diffIndex]
+            }
+            return 1f
+        }
+
 }

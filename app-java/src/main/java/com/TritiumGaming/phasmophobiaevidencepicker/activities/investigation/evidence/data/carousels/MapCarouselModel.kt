@@ -14,6 +14,7 @@ class MapCarouselModel(
 ) {
 
     data class MapSizeData(val name: String = "NA", val size: Int)
+
     private var mapSizeData = mutableListOf<MapSizeData>()
 
     var mapCurrentIndex: Int = 0
@@ -50,13 +51,13 @@ class MapCarouselModel(
 
     private val mapCount: Int
         get() {
-            return mapSizeData?.size ?: 0
+            return mapSizeData.size
         }
 
     private val _mapCurrentName: MutableStateFlow<String> = MutableStateFlow("???")
     val mapCurrentName = _mapCurrentName.asStateFlow()
     private fun updateMapCarouselName() {
-        _mapCurrentName.value = mapSizeData.get(mapCurrentIndex)?.name ?: "???"
+        _mapCurrentName.value = mapSizeData.get(mapCurrentIndex).name
         Log.d("MapCarouselModel", "Map name updated to ${_mapCurrentName.value}")
     }
 

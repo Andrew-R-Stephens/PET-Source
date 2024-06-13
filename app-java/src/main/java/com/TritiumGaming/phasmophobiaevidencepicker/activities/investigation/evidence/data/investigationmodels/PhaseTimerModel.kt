@@ -30,7 +30,7 @@ class PhaseTimerModel(
                 Phase.SETUP
             }
             else {
-                if((evidenceViewModel.sanityModel?.insanityPercent?.value ?: 0f) <
+                if((evidenceViewModel.sanityModel?.sanityLevel?.value ?: 0f) <
                     SanityModel.SAFE_MIN_BOUNDS) {
                     Phase.HUNT
                 }
@@ -59,11 +59,11 @@ class PhaseTimerModel(
 
     private val _paused = MutableStateFlow(true)
     val paused = _paused.asStateFlow()
-    fun pauseTimer() {
+    private fun pauseTimer() {
         _paused.value = true
         liveTimer?.cancel()
     }
-    fun playTimer() {
+    private fun playTimer() {
         _paused.value = false
 
         setLiveTimer()
@@ -84,12 +84,17 @@ class PhaseTimerModel(
     var startTime: Long = -1L
         set(value) {
             field = value
-            Log.d("StartTime", "$field")
+            Log.d("StartTime", "Setting $field")
         }
 
     /** */
-    val isNewCycle: Boolean
-        get() = startTime == -1L
+    val isNewCycle: Boolean = (startTime == -1L)
+
+    val displayTime: String
+        get() {
+            val breakdown = timeRemaining.value / 1000L
+            return millisToTime("%s:%s", breakdown)
+        }
 
     private fun resetStartTime() {
         startTime = -1
@@ -98,12 +103,6 @@ class PhaseTimerModel(
     fun initStartTime() {
         startTime = System.currentTimeMillis()
     }
-
-    val displayTime: String
-        get() {
-            val breakdown = timeRemaining.value / 1000L
-            return millisToTime("%s:%s", breakdown)
-        }
 
     init {
         reset()

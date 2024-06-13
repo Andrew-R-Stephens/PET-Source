@@ -350,7 +350,7 @@ public class GhostBoxFragment extends InvestigationFragment
     }
 
     @Override
-    public void softReset() { }
+    public void reset() { }
 
     /**
      *

@@ -55,30 +55,22 @@ class SanityTrackerLayout : ConstraintLayout {
         }
 
         sanitySeekBarView.init(evidenceViewModel)
-
-        sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
-
         sanitySeekBarView.onProgressChangedListener = object :
             SanitySeekBarView.OnSanityBarProgressChangedListener() {
             override fun onChange() {
                 Log.d("onChange", "${evidenceViewModel.sanityModel?.toPercentString()}")
                 sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
-            override fun onReset() {
-                TODO("Not yet implemented")
-            }
-            override fun onInvalidate() {
-                Log.d("onInvalidate", "${evidenceViewModel.sanityModel?.toPercentString()}")
-                //sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
-            }
         }
+        sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
+
 
         initObservables(evidenceViewModel)
     }
 
     private fun initObservables(evidenceViewModel: EvidenceViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.sanityModel?.insanityPercent?.collectLatest {
+            evidenceViewModel.sanityModel?.sanityLevel?.collectLatest {
                 sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
             }
         }

@@ -40,10 +40,8 @@ public class EvidenceFragment extends InvestigationFragment {
     protected GhostListView ghostList;
     protected EvidenceListView evidenceList;
 
-    protected ConstraintLayout sanityTrackingConstraintLayout;
-
     protected AppCompatImageView toggleCollapseButton;
-    protected AppCompatTextView sanityPercentTextView;
+    protected ConstraintLayout sanityTrackingConstraintLayout;
 
     protected SanityToolsLayout sanityToolsLayout;
 
@@ -119,10 +117,6 @@ public class EvidenceFragment extends InvestigationFragment {
 
         toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
 
-
-        // SANITY METER VIEWS
-        sanityPercentTextView = view.findViewById(R.id.evidence_sanitymeter_percentage);
-
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
 
@@ -194,22 +188,14 @@ public class EvidenceFragment extends InvestigationFragment {
     }
 
     @Override
-    public void softReset() {
+    public void reset() {
         if (evidenceViewModel != null) {
             evidenceViewModel.reset();
         }
 
-        /*
-        if (sanitySeekBarView != null) {
-            sanitySeekBarView.updateProgress();
-        }
-        */
+        // TODO Force progress bar update
 
-        /*
-        if(phaseTimerCountdownView != null) {
-            phaseTimerCountdownView.destroyTimer();
-        }
-        */
+        // TODO Reset and Pause PhaseTimer
     }
 
     public void requestInvalidateComponents() {
@@ -222,38 +208,10 @@ public class EvidenceFragment extends InvestigationFragment {
             ghostList.forceResetGhostContainer();
         }
 
-        // SANITY
-        /*
-        if (sanitySeekBarView != null) {
-            sanitySeekBarView.resetProgress();
-        }
-        */
+        // TODO Force progress bar update (aka reset)
 
-        /*
-        if(evidenceViewModel != null &&
-                evidenceViewModel.getPhaseTimerData() != null) {
-            playPauseButton.pause();
-            phaseTimerCountdownView.reset();
-        }
-        */
 
-        /*
-        if(sanityWarnHuntView != null) {
-            sanityWarnHuntView.reset();
-        }
-        */
-
-    }
-
-    /**
-     * onPause
-     */
-    @Override
-    public void onPause() {
-
-        //phaseTimerCountdownView.destroyTimer();
-
-        super.onPause();
+        // TODO Reset Play/Pause button (to 'Play' state)\
     }
 
     /**

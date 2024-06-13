@@ -260,7 +260,7 @@ public abstract class ItemStoreFragment extends CodexFragment {
     }
 
     @Override
-    public abstract void softReset();
+    public abstract void reset();
 
     @SuppressLint("ResourceType")
     protected abstract void buildStoreData();

@@ -47,7 +47,7 @@ public class CodexMenuFragment extends CodexFragment {
     }
 
     @Override
-    public void softReset() {
+    public void reset() {
 
     }
 

@@ -1,8 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.text.NumberFormat
 import kotlin.math.max
@@ -23,48 +25,47 @@ class SanityModel(
 
         const val SAFE_MIN_BOUNDS = .7f
 
-        val DIFFICULTY_RATE = floatArrayOf(1.0f, 1.5f, 2.0f)
+        val DIFFICULTY_MODIFIER = floatArrayOf(1.0f, 1.5f, 2.0f)
 
-        val DROP_RATE_SETUP = floatArrayOf(.09f, .05f, .03f)
-        val DROP_RATE_NORMAL = floatArrayOf(.12f, .08f, .05f)
+        val DROP_MODIFIER_NORMAL = floatArrayOf(.12f, .08f, .05f)
+        val DROP_MODIFIER_SETUP = floatArrayOf(.09f, .05f, .03f)
     }
 
     private val currentMaxSanity: Float
         get() {
-            return (
-                if((evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: 0) == 4)
-                    75f * .001f
-                else MAX_SANITY * .001f )
+            val value = (
+                if((evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: 0) == 4) 75f
+                else MAX_SANITY )
+            Log.d("CurrentMaxSanity", "$value")
+            return value
         }
 
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
-    private var insanityActual: Float = 0f
+    private var insanityLevel: Float = 0f
         set(value) {
             field = max(min(MAX_SANITY, value), MIN_SANITY)
-            updateInsanityPercent()
+            Log.d("InsanityLevel", "$insanityLevel")
+            updateSanityLevel()
         }
 
-    private val _insanityPercent = MutableStateFlow(0f) /** the sanity level missing, in percent.**/
-    val insanityPercent = _insanityPercent.asStateFlow()
-    private fun updateInsanityPercent() {
-        _insanityPercent.value = ((MAX_SANITY - insanityActual) * .01f)
+    /** the sanity level missing, in percent.**/
+    private val _sanityLevel = MutableStateFlow(currentMaxSanity - insanityLevel)
+    val sanityLevel: StateFlow<Float> = _sanityLevel.asStateFlow()
+    private fun updateSanityLevel() {
+        val level = (MAX_SANITY - insanityLevel)
+        _sanityLevel.value = max(min(MAX_SANITY, level), MIN_SANITY)
+
         evidenceViewModel?.timerModel?.updateCurrentPhase()
+
+        Log.d("SanityLevel", "${sanityLevel.value}")
+
     }
 
-    /** @return The Sanity level between 0 and 100. Levels outside those extremes are constrained.*/
-    /*
-    val sanityActual: Long
-        get() {
-            val insanityActualTemp = insanityActual.toInt().toLong()
-            return max(min(MAX_SANITY, insanityActualTemp.toFloat()), MIN_SANITY).toLong()
-        }
-    */
-
     /** */
-    var warningAudioAllowed = true
+    var warnTriggered = false
         get() {
-            return field && (insanityPercent.value < SAFE_MIN_BOUNDS)
+            return field && (sanityLevel.value < SAFE_MIN_BOUNDS)
         }
 
     /** */
@@ -74,12 +75,12 @@ class SanityModel(
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
-    private val currentDifficultyRate: Float
+    private val currentDifficultyModifier: Float
         get() {
             val diffIndex =
                 evidenceViewModel?.difficultyCarouselData?.difficultyIndex?.value ?: return 1f
-            if (diffIndex >= 0 && diffIndex < DIFFICULTY_RATE.size) {
-                return DIFFICULTY_RATE[diffIndex]
+            if (diffIndex >= 0 && diffIndex < DIFFICULTY_MODIFIER.size) {
+                return DIFFICULTY_MODIFIER[diffIndex]
             }
             return 1f
         }
@@ -88,7 +89,7 @@ class SanityModel(
      * (Setup vs Hunt)
      * Defaults if the selected index is out of range of available indexes.
      * @returns the drop rate multiplier. */
-    private val dropRate: Float
+    private val currentMapSizeModifier: Float
         get() {
             val currMapSize = evidenceViewModel?.mapCarouselData?.mapCurrentSize ?: return 1f
             if ((evidenceViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
@@ -98,27 +99,51 @@ class SanityModel(
         }
 
     private fun getNormalDrainRate(mapSize: Int): Float {
-        return DROP_RATE_NORMAL[mapSize]
+        return DROP_MODIFIER_NORMAL[mapSize]
     }
 
     private fun getSanityDrainRate(mapSize: Int): Float {
-        return DROP_RATE_SETUP[mapSize]
+        return DROP_MODIFIER_SETUP[mapSize]
     }
 
     private fun resetFlashTimeoutStart() {
         flashTimeoutStart = -1
     }
 
-    /** @param progressOverride specify the progress 0 - 100
+    private val drainModifier: Float
+        get() {
+            val difficultyModifier =
+                evidenceViewModel?.difficultyCarouselData?.currentDifficultyRate ?: 1f
+            val mapModifier = difficultyModifier / currentMapSizeModifier
+            val modifier = difficultyModifier * mapModifier
+
+            return modifier
+        }
+
+    /** @param progress specify the progress 0 - 100
      * Resets the Warning Indicator to start flashing again, if necessary
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
-    fun setProgressManually(progressOverride: Long) {
+    fun setStartTimeFromProgress(progress: Int) {
+        val progressOverride =
+            MAX_SANITY - max(MIN_SANITY.toInt(), min(MAX_SANITY.toInt(), progress)).toFloat()
         val multiplier = .001f
-        val rateModifier = currentDifficultyRate / dropRate / multiplier
-        val newStartTime = (System.currentTimeMillis() +
-                ((MAX_SANITY - progressOverride) / rateModifier))
-        evidenceViewModel?.timerModel?.startTime = newStartTime.toLong()
+
+        val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
+        val oldStartTime = evidenceViewModel?.timerModel?.startTime
+        val newStartTime = (System.currentTimeMillis() + timeAddition)
+
+        Log.d("RateModifier",
+                    "ProgressOverride: $progressOverride" +
+                    " TimeAddition: $timeAddition" +
+                    "[ StartTime: $oldStartTime -> $newStartTime ]" +
+                    " DifficultyRate: $currentDifficultyModifier " +
+                    " MapRate: $currentMapSizeModifier" +
+                    " Modifier: $drainModifier")
+
+        evidenceViewModel?.timerModel?.startTime = newStartTime
+        evidenceViewModel?.sanityModel?.tick()
+
         resetFlashTimeoutStart()
     }
 
@@ -128,7 +153,7 @@ class SanityModel(
      * or if there is no time remaining on the countdown timer.
      * @return if the Warning indicator can flash */
     fun canFlashWarning(): Boolean {
-        val temp = insanityPercent.value < SAFE_MIN_BOUNDS
+        val temp = sanityLevel.value < SAFE_MIN_BOUNDS
 
         if (temp && flashTimeoutMax == -1L) {
             return true
@@ -146,35 +171,38 @@ class SanityModel(
      * time remaining.
      */
     fun tick() {
-        val multiplier = .001
-        val percentHalf = .5f
-        val sanityHalf = 50L
+        val multiplier = .001f
+        val sanityHalf = 50
 
         /*
         Multiplier which drops the rate to appropriate levels
         Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
         investigation phase.
         */
-        val startTime = (
-                if (evidenceViewModel?.timerModel?.startTime == -1L) System.currentTimeMillis()
-                else evidenceViewModel?.timerModel?.startTime
-        ) ?: -1L
+        /*val startTime = (
+                if (evidenceViewModel?.timerModel?.isNewCycle == true) System.currentTimeMillis()
+                else evidenceViewModel?.timerModel?.startTime ?: -1L
+        )*/
+        val startTime = evidenceViewModel?.timerModel?.startTime ?: 0L
 
-        insanityActual = (
-            (((System.currentTimeMillis() -
-                    (startTime)) * multiplier * dropRate) * currentDifficultyRate).toFloat()
+        val drainMultiplier = drainModifier * multiplier
+        val timeDifference = startTime - System.currentTimeMillis()
+        Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
+        _sanityLevel.value = (
+            timeDifference * drainMultiplier
         )
-        //updateInsanityPercent()
 
         /*
         If the Countdown timer still has time, and the player's sanity is less than or
         equal to halfway gone, set the remaining sanity to half.
         */
-        if (insanityPercent.value <= percentHalf &&
+        /*
+        if (sanityLevel.value <= sanityHalf &&
             evidenceViewModel?.timerModel?.hasTimeRemaining() == true
         ) {
-            setProgressManually(sanityHalf)
+            setStartTimeFromProgress(sanityHalf)
         }
+        */
 
         //evidenceViewModel?.timerModel?.updateCurrentPhase()
     }
@@ -183,10 +211,10 @@ class SanityModel(
     fun toPercentString(): String {
         val percentageFormat = NumberFormat.getPercentInstance()
         percentageFormat.minimumFractionDigits = 0
+        val percent = sanityLevel.value * .01f
 
         val formattedPercent =
-            percentageFormat.format(insanityPercent.value.toDouble())
-                .replace("%", "")
+            percentageFormat.format(percent).replace("%", "")
 
         val nbsp = "\u00A0"
 
@@ -221,11 +249,16 @@ class SanityModel(
 
     }
 
+    init {
+        insanityLevel = 0f
+    }
+
     /** Defaults all persistent data. */
     fun reset() {
         resetFlashTimeoutStart()
-        warningAudioAllowed = true
-        insanityActual = currentMaxSanity
+        warnTriggered = false
+        //insanityLevel = currentMaxSanity
+        insanityLevel = 0f
         tick()
     }
 }

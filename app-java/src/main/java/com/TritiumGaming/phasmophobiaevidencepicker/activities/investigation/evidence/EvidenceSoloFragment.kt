@@ -36,18 +36,14 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     /**
      * reset method
      */
-    fun reset() {
+    override fun reset() {
         disableUIThread()
 
-        super.softReset()
+        super.reset()
 
         requestInvalidateComponents()
 
         enableUIThread()
-    }
-
-    override fun requestInvalidateComponents() {
-        super.requestInvalidateComponents()
     }
 
     /**
@@ -57,12 +53,22 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
         if (evidenceViewModel?.sanityRunnable == null) {
             try {
                 val appLang = (requireActivity() as InvestigationActivity).appLanguage
-                evidenceViewModel.sanityRunnable = SanityRunnable(
-                    evidenceViewModel,
-                    globalPreferencesViewModel,
-                    getHuntWarningAudio(appLang)
-                )
-                evidenceViewModel.sanityRunnable
+                val runnable = SanityRunnable(evidenceViewModel, globalPreferencesViewModel)
+                runnable.huntWarningAudioListener =
+                    object : SanityRunnable.HuntWarningAudioListener() {
+                        override fun init() {
+                            mediaPlayer = getHuntWarningAudio(appLang)
+                        }
+                        override fun play() {
+                            mediaPlayer?.start()
+                        }
+
+                        override fun stop() {
+                            mediaPlayer?.release()
+                        }
+                    }
+                evidenceViewModel.sanityRunnable = runnable
+
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
@@ -118,12 +124,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
      * disableUIThread method
      */
     private fun disableUIThread() {
-            val sanityRunnable = evidenceViewModel?.sanityRunnable ?: return
-
             sanityThread?.interrupt()
 
-            sanityRunnable.haltMediaPlayer()
-            sanityRunnable.dereferenceViews()
+            evidenceViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
             evidenceViewModel.sanityRunnable = null
 
             sanityThread = null
@@ -150,12 +153,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onPause() {
         disableUIThread()
 
-        if (evidenceViewModel != null && evidenceViewModel.hasSanityModel() &&
-            evidenceViewModel.hasSanityRunnable()
-        ) {
-            evidenceViewModel.sanityRunnable!!.haltMediaPlayer()
-            evidenceViewModel.sanityRunnable!!.dereferenceViews()
-        }
+        evidenceViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
 
         super.onPause()
     }

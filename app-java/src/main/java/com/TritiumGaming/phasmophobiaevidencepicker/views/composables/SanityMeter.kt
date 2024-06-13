@@ -33,7 +33,8 @@ fun SanityMeterView(
     evidenceViewModel: EvidenceViewModel = EvidenceViewModel(),
     modifier: Modifier = Modifier
 ) {
-    val insanityPercent = evidenceViewModel.sanityModel?.insanityPercent?.collectAsState()
+    val sanityLevel = evidenceViewModel.sanityModel?.sanityLevel?.collectAsState()
+    val sanityPercent = (sanityLevel?.value ?: 1f) * .01f
 
     Box(
         modifier = modifier
@@ -50,7 +51,7 @@ fun SanityMeterView(
         SanityPie(
             startColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityPieStartColor),
             endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityPieEndColor),
-            interpolation = insanityPercent?.value ?: 0f
+            interpolation = sanityPercent
         )
 
         Box(
@@ -63,19 +64,19 @@ fun SanityMeterView(
                 image = R.drawable.icon_sanityhead_skull,
                 startColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityHeadSkullColor),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityHeadSkullColor),
-                interpolation = insanityPercent?.value ?: 0f
+                interpolation = sanityPercent
             )
             SanityImageLayer(
                 image = R.drawable.icon_sanityhead_brain,
                 startColor = (Color.Gray).toArgb(),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityPieEndColor),
-                interpolation = insanityPercent?.value ?: 0f
+                interpolation = sanityPercent
             )
             SanityImageLayer(
                 image = R.drawable.icon_sanityhead_border,
                 startColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityBorderColor),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityBorderColor),
-                interpolation = insanityPercent?.value ?: 0f
+                interpolation = sanityPercent
             )
         }
 

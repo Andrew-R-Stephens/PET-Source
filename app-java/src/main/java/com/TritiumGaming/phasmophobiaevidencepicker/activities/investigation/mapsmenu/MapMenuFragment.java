@@ -183,7 +183,7 @@ public class MapMenuFragment extends InvestigationFragment {
     }
 
     @Override
-    public void softReset() {
+    public void reset() {
 
     }
 

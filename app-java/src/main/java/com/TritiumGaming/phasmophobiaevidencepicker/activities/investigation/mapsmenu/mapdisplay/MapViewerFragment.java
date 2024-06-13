@@ -205,7 +205,7 @@ public class MapViewerFragment extends InvestigationFragment {
     }
 
     @Override
-    public void softReset() {
+    public void reset() {
 
     }
 

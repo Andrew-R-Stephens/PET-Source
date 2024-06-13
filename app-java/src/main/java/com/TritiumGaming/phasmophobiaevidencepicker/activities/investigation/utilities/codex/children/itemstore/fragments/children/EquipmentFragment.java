@@ -226,7 +226,7 @@ public class EquipmentFragment extends ItemStoreFragment {
     }
 
     @Override
-    public void softReset() {
+    public void reset() {
 
     }
 
