@@ -23,7 +23,7 @@ class SanityModel(
         const val MIN_SANITY = 0f
         const val MAX_SANITY = 100f
 
-        const val SAFE_MIN_BOUNDS = .7f
+        const val SAFE_MIN_BOUNDS = 70f
 
         val DIFFICULTY_MODIFIER = floatArrayOf(1.0f, 1.5f, 2.0f)
 
@@ -34,7 +34,7 @@ class SanityModel(
     private val currentMaxSanity: Float
         get() {
             val value = (
-                if((evidenceViewModel?.difficultyCarouselData?.difficultyIndex ?: 0) == 4) 75f
+                if((evidenceViewModel?.difficultyCarouselData?.currentIndex ?: 0) == 4) 75f
                 else MAX_SANITY )
             Log.d("CurrentMaxSanity", "$value")
             return value
@@ -78,7 +78,7 @@ class SanityModel(
     private val currentDifficultyModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel?.difficultyCarouselData?.difficultyIndex?.value ?: return 1f
+                evidenceViewModel?.difficultyCarouselData?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < DIFFICULTY_MODIFIER.size) {
                 return DIFFICULTY_MODIFIER[diffIndex]
             }
@@ -91,7 +91,7 @@ class SanityModel(
      * @returns the drop rate multiplier. */
     private val currentMapSizeModifier: Float
         get() {
-            val currMapSize = evidenceViewModel?.mapCarouselData?.mapCurrentSize ?: return 1f
+            val currMapSize = evidenceViewModel?.mapCarouselData?.currentMapSize ?: return 1f
             if ((evidenceViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
                 return getNormalDrainRate(currMapSize)
             }
@@ -113,7 +113,7 @@ class SanityModel(
     private val drainModifier: Float
         get() {
             val difficultyModifier =
-                evidenceViewModel?.difficultyCarouselData?.currentDifficultyRate ?: 1f
+                evidenceViewModel?.difficultyCarouselData?.currentModifier ?: 1f
             val mapModifier = difficultyModifier / currentMapSizeModifier
             val modifier = difficultyModifier * mapModifier
 
@@ -187,7 +187,7 @@ class SanityModel(
 
         val drainMultiplier = drainModifier * multiplier
         val timeDifference = startTime - System.currentTimeMillis()
-        Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
+        //Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
         _sanityLevel.value = (
             timeDifference * drainMultiplier
         )

@@ -39,13 +39,16 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
             }
         }
 
-        setName(evidenceViewModel.difficultyCarouselData?.currentDifficultyName?.value)
+        setName(evidenceViewModel.difficultyCarouselData?.currentName)
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselData?.currentDifficultyName?.collectLatest {
-                setName(it)
+            evidenceViewModel.difficultyCarouselData?.currentIndex?.collectLatest {
+                setName(
+                    evidenceViewModel.difficultyCarouselData?.currentName
+                        ?.split(" ")?.get(0)
+                )
             }
         }
     }

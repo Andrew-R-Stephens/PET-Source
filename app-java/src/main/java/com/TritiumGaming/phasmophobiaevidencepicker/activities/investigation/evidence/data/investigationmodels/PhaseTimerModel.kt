@@ -16,7 +16,7 @@ class PhaseTimerModel(
         SETUP, ACTION, HUNT
     }
 
-    companion object TimerConstraints {
+    companion object TimerConstraint {
         const val TIME_MIN = 0L
         const val TIME_DEFAULT = -1L
         const val TIME_SECOND = 1000L
@@ -26,17 +26,11 @@ class PhaseTimerModel(
     val currentPhase = _currentPhase.asStateFlow()
     fun updateCurrentPhase() {
         _currentPhase.value =
-            if (timeRemaining.value > TIME_MIN) {
-                Phase.SETUP
-            }
+            if (timeRemaining.value > TIME_MIN) { Phase.SETUP }
             else {
                 if((evidenceViewModel.sanityModel?.sanityLevel?.value ?: 0f) <
-                    SanityModel.SAFE_MIN_BOUNDS) {
-                    Phase.HUNT
-                }
-                else {
-                    Phase.ACTION
-                }
+                    SanityModel.SAFE_MIN_BOUNDS) { Phase.HUNT }
+                else { Phase.ACTION }
             }
     }
 
@@ -50,7 +44,6 @@ class PhaseTimerModel(
     private fun setLiveTimer(millisInFuture: Long = timeRemaining.value,
                              countDownInterval: Long = TIME_SECOND,
                              paused: Boolean = true) {
-
         liveTimer = object: CountDownTimer(millisInFuture, countDownInterval) {
             override fun onTick(millis: Long) { _timeRemaining.value = millis }
             override fun onFinish() { /* TODO not needed */ }
@@ -65,7 +58,6 @@ class PhaseTimerModel(
     }
     private fun playTimer() {
         _paused.value = false
-
         setLiveTimer()
         liveTimer?.start()
     }
@@ -115,7 +107,7 @@ class PhaseTimerModel(
     fun reset() {
         resetTimer()
         _timeRemaining.value =
-            evidenceViewModel.difficultyCarouselData?.currentDifficultyTime ?: 0L
+            evidenceViewModel.difficultyCarouselData?.currentTime ?: 0L
         resetStartTime()
     }
 

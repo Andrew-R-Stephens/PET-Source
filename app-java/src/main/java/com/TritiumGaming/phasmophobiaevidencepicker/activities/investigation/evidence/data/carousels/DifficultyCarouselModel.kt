@@ -13,120 +13,94 @@ class DifficultyCarouselModel(
     val evidenceViewModel: EvidenceViewModel
 ) {
 
+    data class DifficultyData(val name: String = "NA", val time: Long)
+
     enum class Difficulty {
         AMATEUR, INTERMEDIATE, PROFESSIONAL, NIGHTMARE, INSANITY
     }
 
-    private var titles = arrayOfNulls<String>(0)
-        set(value) {
-            field = value
-            updateCurrentDifficultyName()
-        }
-    private var times = LongArray(0)
+    private var itemList = mutableListOf<DifficultyData>()
+    private val itemCount: Int
+        get() = itemList.size
 
-    private val difficultyCount: Int
-        get() = titles.size
-
-    private val _difficultyIndex: MutableStateFlow<Int> =
+    /* Index */
+    private val _currentIndex: MutableStateFlow<Int> =
         MutableStateFlow(Difficulty.AMATEUR.ordinal)
-    var difficultyIndex = _difficultyIndex.asStateFlow()
-    private fun updateDifficultyIndex(index: Int) {
-        _difficultyIndex.value = index
-        evidenceViewModel.timerModel?.setTimeRemaining(currentDifficultyTime)
+    val currentIndex = _currentIndex.asStateFlow()
+    private fun updateIndex(index: Int) {
+        _currentIndex.value = index
+        evidenceViewModel.timerModel?.setTimeRemaining(currentTime)
         evidenceViewModel.timerModel?.resetTimer()
-
-        updateCurrentDifficultyName()
     }
+    fun incrementIndex() {
+        var i = currentIndex.value + 1
+        if (i >= itemCount) { i = 0 }
 
-    val currentDifficultyTime: Long
-        get() {
-            return times[difficultyIndex.value]
-        }
-
-    private val _currentDifficultyName: MutableStateFlow<String> = MutableStateFlow("?")
-    val currentDifficultyName = _currentDifficultyName.asStateFlow()
-    private fun updateCurrentDifficultyName() {
-        _currentDifficultyName.value = titles.getOrNull(difficultyIndex.value) ?: "???"
+        updateIndex(i)
+        evidenceViewModel.sanityModel?.warnTriggered = false
     }
+    fun decrementIndex() {
+        var i = currentIndex.value - 1
+        if (i < 0) { i = itemCount - 1 }
+
+        updateIndex(i)
+        evidenceViewModel.sanityModel?.warnTriggered = false
+    }
+    /* -- */
+
+    val currentName: String
+        get() = itemList[currentIndex.value].name
+
+    val currentTime: Long
+        get() = itemList[currentIndex.value].time
 
     val responseTypeKnown: Boolean
-        get() = difficultyIndex.value < 2
-
-    init {
-        try {
-            val difficultyNames = context.resources
-                .getStringArray(R.array.evidence_timer_difficulty_names_array)
-            titles = difficultyNames
-        } catch (e: Resources.NotFoundException) {
-            e.printStackTrace()
-        }
-
-        try {
-            val difficultyTimes = context.resources
-                .getStringArray(R.array.evidence_timer_difficulty_times_array)
-            setTimes(difficultyTimes)
-        } catch (e: Resources.NotFoundException) {
-            e.printStackTrace()
-        }
-
-        updateCurrentDifficultyName()
-    }
-
-    private fun setTimes(times: Array<String>) {
-        val temp = LongArray(times.size)
-        for (i in times.indices) temp[i] = times[i].toLong()
-
-        setTimes(temp)
-    }
-
-    private fun setTimes(difficultyTimes: LongArray) {
-        this.times = difficultyTimes
-    }
-
-
-    fun incrementIndex() {
-        var i = difficultyIndex.value + 1
-        if (i >= difficultyCount) {
-            i = 0
-        }
-        updateDifficultyIndex(i)
-
-        if (evidenceViewModel.hasSanityModel()) {
-            evidenceViewModel.sanityModel?.warnTriggered = false
-        }
-    }
-
-    fun decrementIndex() {
-        var i = difficultyIndex.value - 1
-        if (i < 0) {
-            i = difficultyCount - 1
-        }
-        updateDifficultyIndex(i)
-
-        if (evidenceViewModel.hasSanityModel()) {
-            evidenceViewModel.sanityModel?.warnTriggered = false
-        }
-    }
-
-    fun resetSanityData() {
-        evidenceViewModel.sanityModel?.reset()
-    }
+        get() = currentIndex.value < 2
 
     fun isDifficulty(difficultyIndex: Int): Boolean {
-        return this.difficultyIndex.value == difficultyIndex
+        return this.currentIndex.value == difficultyIndex
     }
-
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
-    val currentDifficultyRate: Float
+    val currentModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel.difficultyCarouselData?.difficultyIndex?.value ?: return 1f
+                evidenceViewModel.difficultyCarouselData?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < SanityModel.DIFFICULTY_MODIFIER.size) {
                 return SanityModel.DIFFICULTY_MODIFIER[diffIndex]
             }
             return 1f
         }
 
+    init {
+        var namesList: MutableList<String> = mutableListOf()
+        try {
+            namesList = context.resources
+                .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
+        } catch (e: Resources.NotFoundException) {
+            e.printStackTrace()
+        }
+
+        val timesList: MutableList<Long> = mutableListOf()
+        try {
+            val timesListOut = context.resources
+                .getStringArray(R.array.evidence_timer_difficulty_times_array)
+            timesListOut.forEachIndexed { index, it ->
+                timesList.add(index, it.toLong())
+            }
+        } catch (e: Resources.NotFoundException) {
+            e.printStackTrace()
+        }
+
+        setList(namesList, timesList)
+    }
+
+    private fun setList(allNames: MutableList<String>, allTimes: MutableList<Long>) {
+        if (allNames.size == allTimes.size) {
+            for (i in allNames.indices) {
+                itemList.add(i, DifficultyData(allNames[i], allTimes[i]))
+            }
+        }
+    }
 }

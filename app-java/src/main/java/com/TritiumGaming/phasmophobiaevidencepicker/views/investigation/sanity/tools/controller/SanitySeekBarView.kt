@@ -53,7 +53,7 @@ class SanitySeekBarView : AppCompatSeekBar {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             evidenceViewModel.sanityModel?.sanityLevel?.collectLatest {
                 Log.d("SanityLevel", "$it")
-                val newProgress = (it/*100 - it*/).toInt()
+                val newProgress = (100 - it).toInt()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     setProgress(newProgress, true)
                 } else {

@@ -163,7 +163,7 @@ class EvidenceViewModel : ViewModel() {
         timerModel?.reset()
         investigationData?.reset()
         sanityModel?.reset()
-        mapCarouselData?.mapCurrentIndex = 0
+        mapCarouselData?.updateIndex(0)
     }
 
 }

@@ -40,13 +40,16 @@ class MapCarouselLayout : SanityCarouselLayout {
             }
         }
 
-        setName(evidenceViewModel.mapCarouselData?.mapCurrentName?.value)
+        setName(evidenceViewModel.mapCarouselData?.currentName)
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.mapCarouselData?.mapCurrentName?.collectLatest {
-                setName(it.split(" ")[0])
+            evidenceViewModel.mapCarouselData?.currentIndex?.collectLatest {
+                setName(
+                    evidenceViewModel.mapCarouselData?.currentName
+                        ?.split(" ")?.get(0)
+                )
             }
         }
     }

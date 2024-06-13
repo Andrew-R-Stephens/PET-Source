@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
@@ -88,7 +87,7 @@ class PhaseTimerLayout : ConstraintLayout {
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselData?.difficultyIndex?.collectLatest {
+            evidenceViewModel.difficultyCarouselData?.currentIndex?.collectLatest {
                 phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
             }
         }
