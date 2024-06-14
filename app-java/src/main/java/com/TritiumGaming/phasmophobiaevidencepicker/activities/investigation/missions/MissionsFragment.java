@@ -21,7 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.data.MissionsListModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
 
 /**
  * ObjectivesFragment class

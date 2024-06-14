@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.DifficultyCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.carousels.MapCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.GhostOrderModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.carousels.MapCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.GhostOrderModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.evidence.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.ghost.GhostListModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -163,7 +163,6 @@ class EvidenceViewModel : ViewModel() {
         timerModel?.reset()
         investigationData?.reset()
         sanityModel?.reset()
-        mapCarouselData?.updateIndex(0)
     }
 
 }

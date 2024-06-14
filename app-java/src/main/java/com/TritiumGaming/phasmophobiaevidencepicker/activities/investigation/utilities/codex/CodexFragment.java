@@ -7,7 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
 
 public abstract class CodexFragment extends InvestigationFragment {
 

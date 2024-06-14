@@ -34,7 +34,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketp
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeBundleCardView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeSingleCardView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundleModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleThemeModel;

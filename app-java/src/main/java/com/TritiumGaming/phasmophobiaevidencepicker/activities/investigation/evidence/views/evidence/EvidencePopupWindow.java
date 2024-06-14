@@ -23,10 +23,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.popups.EvidencePopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationpopups.EvidencePopupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;

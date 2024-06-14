@@ -11,9 +11,9 @@ class MapModel {
     @JvmField
     var mapNameShort: String = ""
     @JvmField
-    var mapDimensions: MapDimension
+    var mapDimensions: MapDimensionModel
 
-    var currentLayer: FloorLayer = FloorLayer.entries[0]
+    var currentLayer: FloorLayerType = FloorLayerType.entries[0]
 
     @JvmField
     var mapFloors: ArrayList<FloorModel> = ArrayList()
@@ -32,15 +32,15 @@ class MapModel {
         mapId = 0
         mapName = "undefined"
         mapNameShort = "undefined"
-        mapDimensions = MapDimension(0, 0)
-        for (layer in FloorLayer.entries) mapFloors.add(FloorModel(layer))
+        mapDimensions = MapDimensionModel(0, 0)
+        for (layer in FloorLayerType.entries) mapFloors.add(FloorModel(layer))
     }
 
     constructor(worldMap: MapDesBlueprint.WorldMap) {
         mapId = worldMap.map_id
         mapName = worldMap.map_name
         mapNameShort = worldMap.map_name_short
-        mapDimensions = MapDimension(worldMap.map_dimensions.w, worldMap.map_dimensions.h)
+        mapDimensions = MapDimensionModel(worldMap.map_dimensions.w, worldMap.map_dimensions.h)
         for (f in worldMap.map_floors) {
             mapFloors.add(
                 FloorModel(f!!)
@@ -48,7 +48,7 @@ class MapModel {
         }
         currentLayer =
             if (mapFloors.isNotEmpty()) { mapFloors[0].floorLayer }
-            else FloorLayer.FIRST_FLOOR
+            else FloorLayerType.FIRST_FLOOR
     }
 
     fun getFloor(index: Int): FloorModel {

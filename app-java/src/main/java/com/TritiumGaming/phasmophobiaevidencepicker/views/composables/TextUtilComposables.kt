@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.TextCase
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.TextCase
 
 @Composable
 @Preview

@@ -7,7 +7,7 @@ import androidx.annotation.DrawableRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.RSSParserUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.RSSParserUtils
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 

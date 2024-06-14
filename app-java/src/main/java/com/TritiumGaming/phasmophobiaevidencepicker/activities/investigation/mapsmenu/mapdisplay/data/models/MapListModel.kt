@@ -5,7 +5,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.google.gson.JsonSyntaxException
 
 class MapListModel(worldMapDeserializer: MapDesBlueprint) {
-    var mapModels: ArrayList<MapModel> = ArrayList()
+    private var mapModels: ArrayList<MapModel> = ArrayList()
 
     init {
         try {

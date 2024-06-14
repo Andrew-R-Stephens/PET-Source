@@ -16,8 +16,6 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.compose.ui.platform.ComposeView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
@@ -25,14 +23,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.evidence.EvidenceListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSection;
-import com.TritiumGaming.phasmophobiaevidencepicker.listeners.CompositeListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.SanityToolsLayout;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout;
 
-/**
- * EvidenceFragment class
- *
- * @author TritiumGamingStudios
- */
 public class EvidenceFragment extends InvestigationFragment {
 
     protected InvestigationSection ghostSection, evidenceSection;
@@ -128,6 +120,7 @@ public class EvidenceFragment extends InvestigationFragment {
                                 @Override
                                 public void onAnimationStart(Animator animation) {
                                     super.onAnimationStart(animation);
+
                                     sanityTrackingConstraintLayout.setVisibility(View.GONE);
                                 }
 
@@ -214,9 +207,6 @@ public class EvidenceFragment extends InvestigationFragment {
         // TODO Reset Play/Pause button (to 'Play' state)\
     }
 
-    /**
-     * onDestroyView
-     */
     @Override
     public void onDestroyView() {
 
@@ -228,9 +218,6 @@ public class EvidenceFragment extends InvestigationFragment {
         super.onDestroyView();
     }
 
-    /**
-     * onResume
-     */
     @Override
     public void onResume() {
 

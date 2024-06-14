@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.investigation.sanity.tools.timer.PhaseTimerLayout">
+    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.timer.PhaseTimerLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/setup_title_wrapper"

@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 import androidx.annotation.NonNull;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapDimension;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapDimensionModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +38,7 @@ public class MapDesFactory {
             String dimensionJSON = getJSON(map.get("map_dimensions"));
             Type mappedDimensionType = new TypeToken<Map<String, MapDesBlueprint.WorldMap.WorldDimensions>>() {}.getType();
             Map<String, MapDesBlueprint.WorldMap.WorldDimensions> mappedDimension = new Gson().fromJson(dimensionJSON, mappedDimensionType);
-            MapDimension mapDimension = new MapDimension(
+            MapDimensionModel mapDimension = new MapDimensionModel(
                     getInt(mappedDimension.get("w")),
                     getInt(mappedDimension.get("h"))
             );

@@ -17,8 +17,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.geometry.Polygon;
 
 import java.util.ArrayList;
 

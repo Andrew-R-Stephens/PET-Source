@@ -142,9 +142,9 @@
 
             <h4>I wish for sanity.</h4>
             <a>
-                ~ Averages the team sanity to 50%<br>
+                ~ Averages the team sanity to 50\%<br>
                 - Sets the ghosts favorite room to a new, random room<br>
-                - Increases sanity drain by +50% of the current rate for the entire group.<br>
+                - Increases sanity drain by +50\% of the current rate for the entire group.<br>
                 - Note: This wish will override Goryo\'s weakness. Meaning that despite the Goryo not being able to change rooms on it\'s own, it CAN if sanity wish is used.
             </a>
 
@@ -154,13 +154,13 @@
                 + Ghost cannot hunt, roam, or do abilities while locked in its room.<br>
                 - Locks all doors to the room that the player who made the wish is currently in for 1 minute.<br>
                 - The ghost will unlock all doors after 1 minute, and start a hunt.<br>
-                ~ 25% chance for the doors to unlock AFTER the grace period.
+                ~ 25\% chance for the doors to unlock AFTER the grace period.
             </a>
 
             <h4>I wish for life. / I wish to revive my friend.</h4>
             <a>
                 + Revives a dead player.<br>
-                - 50% chance to kill the player who uses the wish.
+                - 50\% chance to kill the player who uses the wish.
             </a>
 
             <h4>I wish to be safe</h4>
@@ -189,8 +189,8 @@
             <h4>I wish for [weather].</h4>
             <a>
                 + If the weather is not to your liking, you may wish to change it to Rain (x2), Snow, Clear, Fog, or Sunrise.<br>
-                - Reduces Sanity by 25% for the person who makes the wish.<br>
-                ~ Note: Wishing for rain will give you a 50% chance to get either light or heavy rain.
+                - Reduces Sanity by 25\% for the person who makes the wish.<br>
+                ~ Note: Wishing for rain will give you a 50\% chance to get either light or heavy rain.
             </a>
 
             <h4>I wish for Anything.</h4>
@@ -279,7 +279,7 @@
     </string>
     <string name="shop_cursedpossessions_tarotcards_data_info_fortune" translatable="false">
         <![CDATA[
-            <a>Gain 25% sanity [Green Burn], Lose 25% sanity [Red Burn]</a>
+            <a>Gain 25\% sanity [Green Burn], Lose 25\% sanity [Red Burn]</a>
         ]]>
     </string>
     <string name="shop_cursedpossessions_tarotcards_data_info_hermit" translatable="false">
@@ -311,7 +311,7 @@
         <![CDATA[
             <p>Pricking the voodoo doll forces an interaction!</p>
             <p>You can prick the voodoo doll up to 10 times. Each prick has a chance to prick the heart, which will start a cursed hunt.</p>
-            <p>Reducing your sanity to 0% by using the Doll will activate all pins and start a cursed hunt.</p>
+            <p>Reducing your sanity to 0\% by using the Doll will activate all pins and start a cursed hunt.</p>
         ]]>
     </string>
 

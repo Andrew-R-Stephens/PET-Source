@@ -5,13 +5,13 @@ import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint.WorldMap.Floor
 
 class FloorModel {
-    var floorId: Int = 0
+    private var floorId: Int = 0
     var floorName: String? = null
         private set
     private var floorImage: String? = null
 
     @JvmField
-    var floorLayer: FloorLayer
+    var floorLayer: FloorLayerType
 
     @JvmField
     val floorRooms: ArrayList<RoomModel> = ArrayList()
@@ -22,7 +22,7 @@ class FloorModel {
         floorImage = floor.image_file
         floorId = floor.floor_id
         floorName = floor.floor_name
-        floorLayer = FloorLayer.entries[floor.floor_number]
+        floorLayer = FloorLayerType.entries[floor.floor_number]
 
         for (r in floor.floor_rooms) {
             floorRooms.add(RoomModel(r.room_iD, r.room_name, r.room_points))
@@ -32,7 +32,7 @@ class FloorModel {
         }
     }
 
-    constructor(layer: FloorLayer) {
+    constructor(layer: FloorLayerType) {
         this.floorLayer = layer
     }
 

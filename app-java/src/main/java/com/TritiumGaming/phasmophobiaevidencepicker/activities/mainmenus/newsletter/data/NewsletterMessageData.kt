@@ -1,6 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.FontUtils
 
 class NewsletterMessageData(title: String?, description: String?, date: String?) {
     @JvmField

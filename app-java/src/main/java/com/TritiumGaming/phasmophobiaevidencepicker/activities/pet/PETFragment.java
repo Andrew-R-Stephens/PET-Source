@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.NetworkUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
 

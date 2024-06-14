@@ -26,10 +26,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorLayer;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorLayerType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
 
 /*
  * MapViewerFragment class
@@ -80,7 +80,7 @@ public class MapViewerFragment extends InvestigationFragment {
         if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
             FloorModel currentFloor = mapMenuViewModel.getCurrentMapModel().getFloor(floor);
-            FloorLayer newLayer = currentFloor.floorLayer;
+            FloorLayerType newLayer = currentFloor.floorLayer;
             if (newLayer != null) {
                 mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
             }

@@ -10,7 +10,7 @@ class RoomModel(
 ) {
 
     @JvmField
-    val roomArea: RoomArea = RoomArea()
+    val roomArea: RoomAreaModel = RoomAreaModel()
 
     init {
         roomArea.setPoints(points)

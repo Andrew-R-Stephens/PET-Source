@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Bordered
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Plain
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.One

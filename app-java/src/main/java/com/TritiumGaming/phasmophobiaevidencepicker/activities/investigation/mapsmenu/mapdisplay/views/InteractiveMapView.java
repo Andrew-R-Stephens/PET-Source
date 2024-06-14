@@ -36,10 +36,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Point2D;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.geometry.Polygon;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.geometry.Point2D;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 
 import java.util.ArrayList;

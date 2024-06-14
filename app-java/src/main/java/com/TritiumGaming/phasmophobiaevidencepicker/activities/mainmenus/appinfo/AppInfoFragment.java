@@ -24,8 +24,8 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.FontUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.FontUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 
 public class AppInfoFragment extends MainMenuFragment {

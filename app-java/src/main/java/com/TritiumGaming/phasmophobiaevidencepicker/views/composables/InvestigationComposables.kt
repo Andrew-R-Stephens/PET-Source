@@ -37,10 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.investigationtype.GhostModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.ColorUtils
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.TextCase
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.evidence.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.ghost.GhostModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.TextCase
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral

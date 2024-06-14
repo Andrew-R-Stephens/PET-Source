@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.data.runnables.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables.SanityRunnable
 
 /**
  * EvidenceSoloFragment class

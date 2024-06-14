@@ -6,7 +6,7 @@ import android.graphics.Matrix
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utilities.BitmapUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils
 
 /**
  * HandprintData class
