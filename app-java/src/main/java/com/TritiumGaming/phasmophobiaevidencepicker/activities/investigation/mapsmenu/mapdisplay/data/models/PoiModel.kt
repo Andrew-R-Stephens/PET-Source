@@ -6,9 +6,7 @@ import android.util.Log
 class PoiModel {
     var id: Int = -1
     var name: String = ""
-    @JvmField
     var type: PoiType = PoiType.entries[0]
-    @JvmField
     var point: PointF? = null
 
     constructor() {
@@ -35,7 +33,7 @@ class PoiModel {
     }
 
 
-    fun setType(type: Int) {
+    private fun setType(type: Int) {
         this.type = PoiType.entries[type]
     }
 

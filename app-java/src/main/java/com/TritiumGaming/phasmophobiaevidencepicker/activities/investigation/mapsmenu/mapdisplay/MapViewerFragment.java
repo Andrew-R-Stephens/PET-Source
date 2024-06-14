@@ -25,13 +25,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorLayerType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 
-/*
+/**
  * MapViewerFragment class
  *
  * @author TritiumGamingStudios
@@ -68,9 +68,7 @@ public class MapViewerFragment extends InvestigationFragment {
         AppCompatImageButton button_prevLayer = view.findViewById(R.id.controller_prevLayerButton);
 
         AppCompatImageView button_back = view.findViewById(R.id.button_back);
-
         AppCompatTextView mapName = view.findViewById(R.id.textview_title);
-
         ConstraintLayout button_help = view.findViewById(R.id.listener_help);
 
         imageDisplay = view.findViewById(R.id.interactiveMapView);
@@ -80,37 +78,20 @@ public class MapViewerFragment extends InvestigationFragment {
         if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
             int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
             FloorModel currentFloor = mapMenuViewModel.getCurrentMapModel().getFloor(floor);
-            FloorLayerType newLayer = currentFloor.floorLayer;
-            if (newLayer != null) {
-                mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
-            }
+            FloorLayerType newLayer = currentFloor.getFloorLayer();
+            mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
         }
 
         button_nextLayer.setOnClickListener(v -> {
-            if (mapMenuViewModel != null) {
-
-                int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
-                if (++layerIndex >= mapMenuViewModel.getCurrentMapData().getFloorCount()) {
-                    layerIndex = 0;
-                }
-
-                setMapLayer(layerIndex);
-
-                updateComponents();
-            }
+            mapMenuViewModel.incrementFloorIndex();
+            setMapLayer(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
+            updateComponents();
         });
 
         button_prevLayer.setOnClickListener(v -> {
-            if (mapMenuViewModel != null) {
-                int layerIndex = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
-                if (--layerIndex < 0) {
-                    layerIndex = mapMenuViewModel.getCurrentMapData().getFloorCount() - 1;
-                }
-
-                setMapLayer(layerIndex);
-
-                updateComponents();
-            }
+            mapMenuViewModel.decrementFloorIndex();
+            setMapLayer(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
+            updateComponents();
         });
 
         button_help.setOnClickListener(helpButtonView -> {
@@ -133,7 +114,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 imageDisplay.setMapData(mapMenuViewModel.getCurrentMapData());
             }
 
-            MapData tempData = mapMenuViewModel.getCurrentMapData();
+            MapViewerModel tempData = mapMenuViewModel.getCurrentMapData();
 
             selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
             for (int i = 0; i < selectorGroup.getSize(); i++) {
@@ -142,7 +123,7 @@ public class MapViewerFragment extends InvestigationFragment {
 
             String mapNameStr = tempData.getMapName();
             if(mapMenuViewModel.getCurrentMapModel() != null) {
-                String name = mapMenuViewModel.getCurrentMapModel().mapName;
+                String name = mapMenuViewModel.getCurrentMapModel().getMapName();
                 mapNameStr = !name.isEmpty() ? name: mapNameStr;
             }
             mapName.setText(mapNameStr);
@@ -160,8 +141,8 @@ public class MapViewerFragment extends InvestigationFragment {
     }
 
     public void setMapLayer(int index) {
-        MapData mapData = mapMenuViewModel.getCurrentMapData();
-        mapData.setCurrentFloor(index);
+        /*MapViewerModel mapData = mapMenuViewModel.getCurrentMapData();
+        mapData.setCurrentFloor(index);*/
 
         if(imageDisplay != null) {
             imageDisplay.resetRoomSelection();
@@ -169,7 +150,7 @@ public class MapViewerFragment extends InvestigationFragment {
         if(mapMenuViewModel.getCurrentMapModel() != null) {
             mapMenuViewModel.getCurrentMapModel().getFloor(index);
             mapMenuViewModel.getCurrentMapModel().setCurrentLayer(
-                    mapMenuViewModel.getCurrentMapModel().getFloor(index).floorLayer);
+                    mapMenuViewModel.getCurrentMapModel().getFloor(index).getFloorLayer());
             if (mapMenuViewModel.getCurrentMapModel() != null) {
                 Log.d("Maps", mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
             }
@@ -278,12 +259,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
     }
 
-    /**
-     *
-     * onPause
-     * <p>
-     * Destroys all threads and releases resource memory
-     */
+    /** Destroys all threads and releases resource memory */
     @Override
     public void onPause() {
         stopThreads();
@@ -291,12 +267,7 @@ public class MapViewerFragment extends InvestigationFragment {
         super.onPause();
     }
 
-    /**
-     *
-     * onDestroy
-     * <p>
-     * Destroys all threads and releases resource memory
-     */
+    /** Destroys all threads and releases resource memory */
     @Override
     public void onDestroy() {
         stopThreads();
@@ -304,10 +275,7 @@ public class MapViewerFragment extends InvestigationFragment {
         super.onDestroy();
     }
 
-    /**
-     *
-     * Forces garbage collection on low memory
-     */
+    /** Forces garbage collection on low memory */
     @Override
     public void onLowMemory() {
         System.gc();
@@ -315,41 +283,24 @@ public class MapViewerFragment extends InvestigationFragment {
         super.onLowMemory();
     }
 
-    /**
-     *
-     * LayerSelectorGroup class
-     * <p>
-     * The group of selectors which act to cycle between image layers
-     */
+    /** The group of selectors which act to cycle between image layers */
     private class MapLayerSelectorGroup {
 
         @NonNull
         private final MapLayerSelector[] selectors;
 
-        /**
-         *
-         * LayerSelectorGroup constructor
-         *
-         * @param count - the total number of Selectors, based on map layers
-         */
+        /** @param count - the total number of Selectors, based on map layers */
         public MapLayerSelectorGroup(int count) {
             selectors = new MapLayerSelector[count];
             for (int i = 0; i < selectors.length; i++) {
-                selectors[i] = new MapLayerSelector(getContext());
+                selectors[i] = new MapLayerSelector(requireContext());
             }
-            if (mapMenuViewModel != null && mapMenuViewModel.getCurrentMapData() != null) {
+            if (mapMenuViewModel != null) {
                 setSelected(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
             }
         }
 
-        /**
-         *
-         * setSelected
-         * <p>
-         * Selects a specific Selector
-         *
-         * @param index - the index of Selector
-         */
+        /** @param index - the index of Selector */
         public void setSelected(int index) {
             deSelectAll();
 
@@ -358,12 +309,7 @@ public class MapViewerFragment extends InvestigationFragment {
             }
         }
 
-        /**
-         *
-         * deSelectAll
-         * <p>
-         * Deselects all Selectors
-         */
+        /** Deselects all Selectors */
         public void deSelectAll() {
             for (MapLayerSelector selector : selectors) {
                 if (selector != null) {
@@ -372,36 +318,17 @@ public class MapViewerFragment extends InvestigationFragment {
             }
         }
 
-        /**
-         *
-         * getSelectors
-         *
-         * @return Selector array
-         */
+        /** @return Selector array */
         public MapLayerSelector[] getSelectors() {
             return selectors;
         }
 
-        /**
-         *
-         * getSize
-         *
-         * @return number of Selectors
-         */
+        /** @return number of Selectors */
         public int getSize() {
-            if (selectors == null) {
-                return 0;
-            }
-
             return selectors.length;
         }
 
-        /**
-         *
-         * Selector class
-         * <p>
-         * A Selector which represents the current layer of the selected map
-         */
+        /** A Selector which represents the current layer of the selected map */
         private class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
 
             private final int[] selectorImages = new int[]{
@@ -409,10 +336,7 @@ public class MapViewerFragment extends InvestigationFragment {
                     R.drawable.icon_selector_sel};
             private boolean isSelected = false;
 
-            /**
-             *
-             * Selector constructor
-             */
+            /** Selector constructor */
             public MapLayerSelector(@NonNull Context context) {
                 super(context);
 
@@ -432,25 +356,14 @@ public class MapViewerFragment extends InvestigationFragment {
                 setColorFilter(ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBody));
             }
 
-            /**
-             *
-             * setSelected
-             *
-             * @param isSelected - the state of the Selector
-             *                   Sets the Selector as selected
-             */
+            /** @param isSelected - the state of the Selector Sets the Selector as selected */
             public void setSelected(boolean isSelected) {
                 this.isSelected = isSelected;
 
                 updateImage();
             }
 
-            /**
-             *
-             * updateImage
-             * <p>
-             * Updates the Selector icon to reflect its current selection state
-             */
+            /** Updates the Selector icon to reflect its current selection state */
             private void updateImage() {
                 if (selectorImages != null && selectorImages.length == 2) {
                     if (!isSelected) {
@@ -461,12 +374,7 @@ public class MapViewerFragment extends InvestigationFragment {
                 }
             }
 
-            /**
-             *
-             * isSelected
-             *
-             * @return whether or not the Selector is selected
-             */
+            /** @return whether or not the Selector is selected */
             public boolean isSelected() {
                 return isSelected;
             }

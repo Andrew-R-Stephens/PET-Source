@@ -30,7 +30,7 @@ import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
@@ -63,7 +63,7 @@ public class InteractiveMapView extends View {
     @Nullable
     private BitmapUtils bitmapUtils = new BitmapUtils();
 
-    private MapData mapData;
+    private MapViewerModel mapData;
     private final ArrayList<Bitmap> mapImages = new ArrayList<>();
     private final HashMap<PoiType, Bitmap> poiImages = new HashMap<>();
 
@@ -121,7 +121,7 @@ public class InteractiveMapView extends View {
         AdapterView.OnItemSelectedListener poiSpinnerListener = new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedRoomModel =
-                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorRooms.get(position);
+                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms().get(position);
 
                 invalidate();
             }
@@ -280,7 +280,7 @@ public class InteractiveMapView extends View {
      *
      * @param mapData
      */
-    public void setMapData(MapData mapData) {
+    public void setMapData(MapViewerModel mapData) {
         this.mapData = mapData;
     }
 
@@ -402,7 +402,7 @@ public class InteractiveMapView extends View {
             paint.setStrokeWidth(3);
             wallpath.reset();
             if(selectedRoomModel != null) {
-                List<PointF> points = selectedRoomModel.roomArea.getPoints();
+                List<PointF> points = selectedRoomModel.getRoomArea().getPoints();
                 PointF firstPoint = points.get(0);
                 wallpath.moveTo(
                         (panX) + (firstPoint.x * scaleX),
@@ -435,11 +435,11 @@ public class InteractiveMapView extends View {
             paint.setColorFilter(poiColorFilter);
 
             if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
-                for (PoiModel poi : mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorPOIs) {
-                    float x = (panX) + poi.point.x * scaleX;
-                    float y = (panY) + poi.point.y * scaleY;
+                for (PoiModel poi : mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorPOIs()) {
+                    float x = (panX) + poi.getPoint().x * scaleX;
+                    float y = (panY) + poi.getPoint().y * scaleY;
 
-                    Bitmap b = poiImages.get(poi.type);
+                    Bitmap b = poiImages.get(poi.getType());
                     if (BitmapUtils.bitmapExists(b)) {
                         interactivePoiData.deepCopy(interactiveMapData);
                         interactivePoiData.setPan(
@@ -504,11 +504,11 @@ public class InteractiveMapView extends View {
             if(mapMenuViewModel != null &&
                     mapMenuViewModel.getCurrentMapModel() != null) {
 
-                ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().floorRooms;
+                ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms();
                 for (RoomModel room : rooms) {
 
                     Polygon shape = new Polygon();
-                    for (PointF p : room.roomArea.getPoints()) {
+                    for (PointF p : room.getRoomArea().getPoints()) {
                         int x = (int) ((p.x * scaleX) + (panX));
                         int y = (int) ((p.y * scaleY) + (panY));
                         shape.addPoint(x, y);

@@ -10,12 +10,9 @@ class FloorModel {
         private set
     private var floorImage: String? = null
 
-    @JvmField
     var floorLayer: FloorLayerType
 
-    @JvmField
     val floorRooms: ArrayList<RoomModel> = ArrayList()
-    @JvmField
     val floorPOIs: ArrayList<PoiModel> = ArrayList()
 
     constructor(floor: Floor) {

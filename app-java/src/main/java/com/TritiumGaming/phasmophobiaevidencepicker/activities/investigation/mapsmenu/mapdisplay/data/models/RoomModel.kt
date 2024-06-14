@@ -4,12 +4,11 @@ import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
 
 class RoomModel(
-    @JvmField var id: Int,
+    var id: Int,
     var name: String,
     points: MapDesBlueprint.WorldMap.Floor.Room.RoomPoints?
 ) {
 
-    @JvmField
     val roomArea: RoomAreaModel = RoomAreaModel()
 
     init {

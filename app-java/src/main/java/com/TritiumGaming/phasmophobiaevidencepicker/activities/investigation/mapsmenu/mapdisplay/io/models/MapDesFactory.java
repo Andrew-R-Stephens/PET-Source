@@ -142,11 +142,11 @@ public class MapDesFactory {
 
             // Finalize MapModel
             MapModel model = new MapModel();
-            model.mapId = (int) Double.parseDouble(String.valueOf(map.get("map_id")));
-            model.mapName = (String) map.get("map_name");
-            model.mapNameShort = (String) map.get("map_name_short");
-            model.mapDimensions = mapDimension;
-            model.mapFloors = mapFloors;
+            model.setMapId((int) Double.parseDouble(String.valueOf(map.get("map_id"))));
+            model.setMapName((String) map.get("map_name"));
+            model.setMapNameShort((String) map.get("map_name_short"));
+            model.setMapDimensions(mapDimension);
+            model.setMapFloors(mapFloors);
 
             mapModels.add(model);
 

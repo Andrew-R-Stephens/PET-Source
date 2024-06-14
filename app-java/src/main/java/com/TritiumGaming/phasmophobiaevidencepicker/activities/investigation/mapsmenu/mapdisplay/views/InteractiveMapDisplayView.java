@@ -13,7 +13,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapControlModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.FloorModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
@@ -29,14 +29,10 @@ import java.util.ArrayList;
  */
 public class InteractiveMapDisplayView extends View {
 
-    @Nullable
-    private BitmapUtils bitmapUtils = new BitmapUtils();
-
     private InteractiveMapControlModel controllerData;
 
-    private MapData mapData;
+    private MapViewerModel mapData;
     private final ArrayList<Bitmap> mapImages = new ArrayList<>();
-    private FloorModel floorModel;
 
     private Rect frameRect;
     @NonNull
@@ -59,58 +55,6 @@ public class InteractiveMapDisplayView extends View {
         this.controllerData = controllerData;
     }
 
-    /*
-    public void setMapData(MapData mapData) {
-        this.mapData = mapData;
-    }
-
-    public void setMapImages(@NonNull Activity a) {
-
-        if (controllerData != null) {
-
-            ArrayList<ArrayList<Integer>> mapFloorLayers = mapData.getAllFloorLayers();
-
-            for (int i = 0; i < mapFloorLayers.size(); i++) {
-                mapImages.add(null);
-            }
-
-            for (int i = 0; i < mapFloorLayers.size(); i++) {
-                int index = i + mapData.getDefaultFloor();
-                if (mapFloorLayers.size() <= index) {
-                    index = 0;
-                }
-
-                // IMAGE LOADING ----
-                //
-                ArrayList<Integer> floor = mapFloorLayers.get(index);
-                for (int j = 0; j < floor.size(); j++) {
-                    if(bitmapUtils != null) {
-                        bitmapUtils.setResources(floor);
-                    }
-                    while (bitmapUtils.hasNextBitmap()) {
-                        mapImages.set(
-                                index,
-                                bitmapUtils.compileNextBitmap(getContext(), mapImages.get(index)));
-                        a.runOnUiThread(this::invalidate);
-                    }
-                }
-                if(bitmapUtils != null) {
-                    bitmapUtils.clearResources();
-                }
-
-                a.runOnUiThread(this::invalidate);
-            }
-            a.runOnUiThread(this::invalidate);
-        }
-
-        bitmapUtils = null;
-    }
-
-    public void setFloorModel(FloorModel floorModel) {
-        this.floorModel = floorModel;
-    }
-    */
-
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 
@@ -132,7 +76,7 @@ public class InteractiveMapDisplayView extends View {
 
             if(selectedRoomModel != null) {
                 polygon.reset();
-                for(PointF p: selectedRoomModel.roomArea.getPoints()) {
+                for(PointF p: selectedRoomModel.getRoomArea().getPoints()) {
                     polygon.addPoint((int)(p.x * controllerData.getZoomLevel()), (int)(p.y * controllerData.getZoomLevel()));
                 }
             }
@@ -150,42 +94,5 @@ public class InteractiveMapDisplayView extends View {
             canvas.drawRect(frameRect, paint);
         }
     }
-
-    /*
-    public class MapPointRunnable implements Runnable {
-
-        @Override
-        public void run() {
-
-            ArrayList<RoomModel> rooms = floorModel.floorRooms;
-            for(RoomModel room: rooms) {
-
-                Polygon shape = new Polygon();
-                for(PointF p: room.roomArea.getPoints()) {
-                    shape.addPoint((int)(p.x * getWidth()) , (int)(p.y * getHeight()));
-                }
-                if(shape.contains(new Point2D.Float((int)controllerData.getPressedPointX(), (int)controllerData.getPressedPointY()))) {
-                    System.out.println("setting temp room");
-                    selectedRoomModel = room;
-                    selectedRoomModel.print();
-                }
-            }
-        }
-    }
-    */
-
-    /*
-    public void recycleBitmaps() {
-
-        if (mapImages != null)
-            for (Bitmap b : mapImages) {
-                if (BitmapUtils.bitmapExists(b)) {
-                    b.recycle();
-                }
-            }
-
-        System.gc();
-    }
-    */
 
 }

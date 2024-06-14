@@ -6,7 +6,7 @@ import android.content.res.Resources
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel
 
 /**
@@ -18,8 +18,7 @@ class MapMenuViewModel : ViewModel() {
 
     var imageDisplayThread: Thread? = null
 
-    var mapsData: MutableList<MapData> = mutableListOf()
-        private set
+    private var mapsData: MutableList<MapViewerModel> = mutableListOf()
 
     var currentMapIndex: Int = 0
         set(currentMapPos) {
@@ -27,14 +26,28 @@ class MapMenuViewModel : ViewModel() {
                 field = currentMapPos
             }
         }
-
-    val currentMapData: MapData
+    val currentMapData: MapViewerModel
         get() {
             return mapsData[currentMapIndex]
         }
+    fun incrementFloorIndex() {
+        var layerIndex: Int = currentMapData.currentFloor
+        if (++layerIndex >= currentMapData.floorCount) {
+            layerIndex = 0
+        }
+        currentMapData.currentFloor = layerIndex
+    }
+    fun decrementFloorIndex() {
+        var layerIndex: Int = currentMapData.currentFloor
+        if (--layerIndex < 0) {
+            layerIndex = currentMapData.floorCount -1
+        }
+        currentMapData.currentFloor = layerIndex
+    }
 
     var currentMapModel: MapModel? = null
 
+    /*
     val mapNames: MutableList<String>
         get() {
             val mapNames = mutableListOf<String>()
@@ -43,6 +56,7 @@ class MapMenuViewModel : ViewModel() {
             }
             return mapNames
         }
+    */
 
     val mapThumbnails: MutableList<Int>
         @DrawableRes get() {
@@ -63,10 +77,10 @@ class MapMenuViewModel : ViewModel() {
         val allMapsTypedArray =
             resources.obtainTypedArray(R.array.maps_resources_array)
 
-        val tempMapsData: MutableList<MapData> = mutableListOf()
+        val tempMapsData: MutableList<MapViewerModel> = mutableListOf()
         for (mapIndex in 0 until allMapsTypedArray.length()) {
 
-            val tempMapData = MapData()
+            val tempMapData = MapViewerModel()
 
             val nameKey = 0
             val layerNamesKey = 4
@@ -113,5 +127,6 @@ class MapMenuViewModel : ViewModel() {
     fun hasCurrentMapData(): Boolean {
         return currentMapIndex < mapsData.size
     }
+
 
 }

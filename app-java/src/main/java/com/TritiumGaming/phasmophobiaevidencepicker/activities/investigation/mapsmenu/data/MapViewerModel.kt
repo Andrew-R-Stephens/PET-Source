@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 
 import androidx.annotation.DrawableRes
 
-class MapData {
+class MapViewerModel {
     var mapName: String = "Unknown"
 
     @DrawableRes var thumbnailImage: Int = 0

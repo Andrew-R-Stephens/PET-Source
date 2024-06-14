@@ -4,18 +4,13 @@ import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.models.MapDesBlueprint
 
 class MapModel {
-    @JvmField
     var mapId: Int
-    @JvmField
     var mapName: String = ""
-    @JvmField
     var mapNameShort: String = ""
-    @JvmField
     var mapDimensions: MapDimensionModel
 
     var currentLayer: FloorLayerType = FloorLayerType.entries[0]
 
-    @JvmField
     var mapFloors: ArrayList<FloorModel> = ArrayList()
 
     val currentFloor: FloorModel
