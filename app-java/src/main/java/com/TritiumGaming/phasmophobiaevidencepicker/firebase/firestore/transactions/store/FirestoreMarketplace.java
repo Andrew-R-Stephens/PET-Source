@@ -11,7 +11,7 @@ public class FirestoreMarketplace {
             COLLECTION_STORE = "Store";
 
     @NonNull
-    public static CollectionReference getStoreCollection() throws Exception {
+    public static CollectionReference getStoreCollection() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         return db.collection(COLLECTION_STORE);

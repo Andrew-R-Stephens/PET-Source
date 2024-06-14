@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 
 /**
  * WaveformView class

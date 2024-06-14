@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.AThemeControl
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
 
 /**
  * ColorSpaceData class
@@ -44,7 +44,7 @@ class FontThemeControl(context: Context) : AThemeControl(context) {
                     @StringRes val nameRes = themeNamesArray.getResourceId(k, 0)
                     @StyleRes val styleRes = themeStyleArray.getResourceId(k, 0)
 
-                    val tempTheme = CustomTheme(idRes, nameRes, styleRes, true)
+                    val tempTheme = ThemeModel(idRes, nameRes, styleRes, true)
 
                     themes.add(tempTheme)
                 }

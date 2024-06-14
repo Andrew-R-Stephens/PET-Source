@@ -36,11 +36,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiType;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.geometry.Point2D;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.geometry.Polygon;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Polygon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -150,7 +150,7 @@ public class InteractiveMapView extends View {
         @Override
         public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
 
-            interactiveMapData.setPressedPoint(new Point2D.Point2DFloat(e.getX(), e.getY()));
+            interactiveMapData.setPressedPoint(new Point2DFloat(e.getX(), e.getY()));
             handleClickRunnable();
 
             return true;
@@ -514,7 +514,7 @@ public class InteractiveMapView extends View {
                         shape.addPoint(x, y);
                     }
 
-                    if (shape.contains(new Point2D.Point2DFloat(touchX, touchY))) {
+                    if (shape.contains(new Point2DFloat(touchX, touchY))) {
                         Log.d("Tap", "setting temp room");
 
                         if (room != selectedRoomModel) {

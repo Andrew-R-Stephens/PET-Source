@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class ThemeBundleImageView extends MaterialCardView {
 
-    private CustomTheme theme;
+    private ThemeModel theme;
 
     public ThemeBundleImageView(@NonNull Context context) {
         super(context, null);
@@ -46,7 +46,7 @@ public class ThemeBundleImageView extends MaterialCardView {
         setSelected(true);
     }
 
-    public void setTheme(CustomTheme theme) {
+    public void setTheme(ThemeModel theme) {
         this.theme = theme;
 
         setObtainedIconVisibility();

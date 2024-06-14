@@ -24,7 +24,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.map
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileIO;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileReader;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
 import com.google.common.primitives.Ints;
 
 /**

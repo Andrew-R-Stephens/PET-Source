@@ -14,14 +14,16 @@ public class FirestoreMerchandiseBundle {
     private static final String COLLECTION_BUNDLES = "Bundles";
 
     @NonNull
-    public static CollectionReference getBundlesCollection() throws Exception {
+    public static CollectionReference getBundlesCollection() {
         return FirestoreMerchandise.getMerchandiseDocument().collection(COLLECTION_BUNDLES);
     }
 
     @NonNull
     public static Task<QuerySnapshot> getBundleWhere(
-            @Nullable String filterField, @Nullable String value, @Nullable String orderField, @Nullable Query.Direction order)
-            throws Exception {
+            @Nullable String filterField,
+            @Nullable String value,
+            @Nullable String orderField,
+            @Nullable Query.Direction order) {
 
         Query query = FirestoreMerchandiseBundle.getBundlesCollection();
         if(filterField != null && value != null) {

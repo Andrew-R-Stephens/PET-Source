@@ -33,16 +33,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeBundleCardView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeSingleCardView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.NetworkUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.listeners.OnFirestoreProcessListener;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.bundle.MarketThemeBundleModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.firestore.theme.bundle.MarketThemeBundleModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.firestore.theme.theme.MarketSingleThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transaction.FirestoreUnlockHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -269,9 +269,9 @@ public class MarketplaceFragment extends MainMenuFragment {
                             DocumentReference documentReference = documentSnapshot.getReference();
 
                             String uuid = documentReference.getId();
-                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            ThemeModel customTheme = globalPreferencesViewModel.getColorThemeControl()
                                     .getThemeByUUID(uuid);
-                            customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                            customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
                         }
 
                         populateBundledThemes();
@@ -296,9 +296,9 @@ public class MarketplaceFragment extends MainMenuFragment {
                         DocumentReference documentReference = documentSnapshot.getReference();
 
                         String uuid = documentReference.getId();
-                        CustomTheme customTheme =
+                        ThemeModel customTheme =
                                 globalPreferencesViewModel.getColorThemeControl().getThemeByUUID(uuid);
-                        customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                        customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
                     }
 
                     revalidateMarketplaceBundles();
@@ -521,7 +521,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                         e.printStackTrace();
                     }
                     if (marketSingleTheme != null) {
-                        CustomTheme customTheme =
+                        ThemeModel customTheme =
                                 globalPreferencesViewModel.getColorThemeControl()
                                         .getThemeByUUID(uuid);
 
@@ -613,7 +613,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                     }
 
                     if (bundle != null) {
-                        ArrayList<CustomTheme> customThemes = new ArrayList<>();
+                        ArrayList<ThemeModel> customThemes = new ArrayList<>();
                         for(String themeID: themeIDs) {
                             customThemes.add(globalPreferencesViewModel.getColorThemeControl()
                                     .getThemeByUUID(themeID));
@@ -673,7 +673,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                 @Override
                 public void onSuccess() {
                     ArrayList<String> uuids = new ArrayList<>();
-                    for(CustomTheme t: bundleThemes.getThemes()) {
+                    for(ThemeModel t: bundleThemes.getThemes()) {
                         uuids.add(t.getID());
                     }
 

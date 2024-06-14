@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.ReviewTrackingData
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.reviews.ReviewTrackingModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
 import java.util.Locale
@@ -13,7 +13,7 @@ import java.util.Locale
 class GlobalPreferencesViewModel : SharedViewModel() {
 
     // Review Tracker
-    lateinit var reviewRequestData: ReviewTrackingData
+    lateinit var reviewRequestData: ReviewTrackingModel
         private set
 
     // Persistent Styles
@@ -40,12 +40,12 @@ class GlobalPreferencesViewModel : SharedViewModel() {
 
     private val colorThemeID: String
         get() = colorThemeControl.iD
-    val colorTheme: CustomTheme
+    val colorTheme: ThemeModel
         get() = colorThemeControl.currentTheme
 
     private val fontThemeID: String
         get() = fontThemeControl.iD
-    val fontTheme: CustomTheme
+    val fontTheme: ThemeModel
         get() = fontThemeControl.currentTheme
 
     override fun setFileName() {
@@ -77,7 +77,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         reorderGhostViews =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
 
-        reviewRequestData = ReviewTrackingData(
+        reviewRequestData = ReviewTrackingModel(
             sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
             sharedPref.getLong(context.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
             sharedPref.getInt(context.resources.getString(R.string.reviewtracking_appTimesOpened), 0)

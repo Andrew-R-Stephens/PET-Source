@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.objects.theme.theme.MarketSingleThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.firestore.theme.theme.MarketSingleThemeModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class ThemeSingleCardView extends MaterialCardView {

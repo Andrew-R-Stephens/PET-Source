@@ -5,9 +5,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import androidx.annotation.DrawableRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.RSSParserUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 
@@ -16,7 +16,7 @@ class NewsletterViewModel : SharedViewModel() {
 
     var currentInboxType: InboxType = InboxType.GENERAL
     private var currentMessageID = 0
-    private var inboxMessageList: ArrayList<NewsletterMessagesData?>? = null
+    private var inboxMessageList: ArrayList<NewsletterMessageListModel?>? = null
 
     override fun setFileName() {
         fileName = R.string.preferences_newsletterFile_name
@@ -27,13 +27,13 @@ class NewsletterViewModel : SharedViewModel() {
 
         val sharedPref = getSharedPreferences(context)
 
-        var inbox: NewsletterMessagesData? = getInbox(InboxType.GENERAL)
+        var inbox: NewsletterMessageListModel? = getInbox(InboxType.GENERAL)
         if(inbox != null) {
             setLastReadDate(
                 InboxType.GENERAL,
                 sharedPref.getString(
                     context.getString(R.string.preference_newsletter_lastreaddate_general),
-                    inbox.getLastReadDate()
+                    inbox.lastReadDate
                 )
             )
         }
@@ -44,7 +44,7 @@ class NewsletterViewModel : SharedViewModel() {
                 InboxType.PET,
                 sharedPref.getString(
                     context.getString(R.string.preference_newsletter_lastreaddate_pet),
-                    inbox.getLastReadDate()
+                    inbox.lastReadDate
                 )
             )
         }
@@ -55,7 +55,7 @@ class NewsletterViewModel : SharedViewModel() {
                 InboxType.PHASMOPHOBIA,
                 sharedPref.getString(
                     context.getString(R.string.preference_newsletter_lastreaddate_phas),
-                    inbox.getLastReadDate()
+                    inbox.lastReadDate
                 )
             )
         }
@@ -105,7 +105,7 @@ class NewsletterViewModel : SharedViewModel() {
             return isUpToDate
         }
 
-    fun addInbox(inbox: NewsletterMessagesData, type: InboxType?) {
+    fun addInbox(inbox: NewsletterMessageListModel, type: InboxType?) {
         if (inboxMessageList == null) {
             inboxMessageList = ArrayList(10)
         }
@@ -123,7 +123,7 @@ class NewsletterViewModel : SharedViewModel() {
         }
     }
 
-    val currentInbox: NewsletterMessagesData?
+    val currentInbox: NewsletterMessageListModel?
         get() {
             if (inboxMessageList == null) {
                 return null
@@ -144,12 +144,12 @@ class NewsletterViewModel : SharedViewModel() {
         return InboxType.entries[pos]
     }
 
-    fun getInbox(inboxType: InboxType): NewsletterMessagesData? {
+    fun getInbox(inboxType: InboxType): NewsletterMessageListModel? {
         if (inboxMessageList == null) {
             return null
         }
 
-        val list = arrayOfNulls<NewsletterMessagesData>(
+        val list = arrayOfNulls<NewsletterMessageListModel>(
             inboxMessageList!!.size
         )
         inboxMessageList!!.toArray(list)
@@ -167,7 +167,7 @@ class NewsletterViewModel : SharedViewModel() {
         currentMessageID = position
     }
 
-    val currentMessage: NewsletterMessageData?
+    val currentMessage: NewsletterMessageModel?
         get() {
             if (currentInbox == null) {
                 return null
@@ -176,19 +176,11 @@ class NewsletterViewModel : SharedViewModel() {
         }
 
     fun setLastReadDate(inboxType: InboxType, date: String?) {
-        if (getInbox(inboxType) == null) {
-            return
-        }
-
-        getInbox(inboxType)!!.setLastReadDate(date)
+        getInbox(inboxType)!!.lastReadDate = date ?: "NA"
     }
 
     fun getLastReadDate(inboxType: InboxType): String {
-        if (getInbox(inboxType) == null) {
-            return "NA"
-        }
-
-        return getInbox(inboxType)!!.getLastReadDate()
+        return getInbox(inboxType)?.lastReadDate ?: "NA"
     }
 
     fun compareAllInboxDates() {

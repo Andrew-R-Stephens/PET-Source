@@ -14,16 +14,17 @@ public class FirestoreMicrotransactionBillables {
     private static final String COLLECTION_BILLABLES = "Billables";
 
     @NonNull
-    public static CollectionReference getBillablesCollection() throws Exception {
-        return FirestoreMicrotransactions.getMicrotransactionsDocument()
+    public static CollectionReference getBillablesCollection() {
+        return FirestoreMicrotransactions.getMicroTransactionsDocument()
                 .collection(COLLECTION_BILLABLES);
     }
 
 
     @NonNull
     public static Task<QuerySnapshot> getBillablesWhere(
-            @NonNull String filterField, String value, @Nullable String orderField, @Nullable Query.Direction order)
-            throws Exception {
+            @NonNull String filterField, String value,
+            @Nullable String orderField,
+            @Nullable Query.Direction order) {
 
         Query query = FirestoreMicrotransactionBillables.getBillablesCollection()
                 .whereEqualTo(filterField, value);

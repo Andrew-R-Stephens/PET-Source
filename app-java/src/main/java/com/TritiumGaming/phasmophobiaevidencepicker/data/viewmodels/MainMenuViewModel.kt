@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.StartScreenAnimationViewData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.AnimationViewModel
 import com.google.android.gms.ads.AdRequest
 
 /**
@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdRequest
  */
 class MainMenuViewModel : ViewModel() {
 
-    val animationData: StartScreenAnimationViewData = StartScreenAnimationViewData()
+    val animationData: AnimationViewModel = AnimationViewModel()
     var canRefreshFragment = true
     var languageSelectedOriginal: Int = -1
 

@@ -14,14 +14,15 @@ public class FirestoreMerchandiseThemes {
     private static final String COLLECTION_THEMES = "Themes";
 
     @NonNull
-    public static CollectionReference getThemeCollection() throws Exception {
+    public static CollectionReference getThemeCollection() {
         return FirestoreMerchandise.getMerchandiseDocument().collection(COLLECTION_THEMES);
     }
 
     @NonNull
     public static Task<QuerySnapshot> getThemesWhere(
-            @NonNull String filterField, String value, @Nullable String orderField, @Nullable Query.Direction order)
-            throws Exception {
+            @NonNull String filterField, String value,
+            @Nullable String orderField,
+            @Nullable Query.Direction order) {
 
         Query query = FirestoreMerchandiseThemes.getThemeCollection()
                 .whereEqualTo(filterField, value);

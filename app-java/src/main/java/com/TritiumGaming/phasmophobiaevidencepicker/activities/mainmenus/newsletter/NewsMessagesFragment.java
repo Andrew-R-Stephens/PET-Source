@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageListModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.MessagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 
@@ -57,7 +57,7 @@ public class NewsMessagesFragment extends MainMenuFragment {
             e.printStackTrace();
         }
 
-        NewsletterMessagesData inbox =
+        NewsletterMessageListModel inbox =
                 newsLetterViewModel.getInbox(newsLetterViewModel.getCurrentInboxType());
         if(inbox != null) {
             inbox.updateLastReadDate();

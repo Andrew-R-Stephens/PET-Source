@@ -10,8 +10,8 @@ import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationListView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.GhostOrderModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationpopups.GhostPopupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.GhostOrderModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.popups.GhostPopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;

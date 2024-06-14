@@ -1,9 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.StyleRes
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme.Companion.defaultTheme
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel.Companion.defaultTheme
 
 /**
  * ColorSpaceData class
@@ -14,9 +14,9 @@ abstract class AThemeControl(context: Context) {
     @StyleRes
     protected var defaultStyle: Int = 0
 
-    protected var themes: ArrayList<CustomTheme> = ArrayList()
+    protected var themes: ArrayList<ThemeModel> = ArrayList()
 
-    var savedIndex: Int = 0
+    private var savedIndex: Int = 0
     var selectedIndex: Int = 0
         set(value) {
             var tempIndex = value
@@ -27,7 +27,7 @@ abstract class AThemeControl(context: Context) {
             field = tempIndex
         }
 
-    val currentTheme: CustomTheme
+    val currentTheme: ThemeModel
         get() {
             if (selectedIndex >= themes.size || selectedIndex < 0) {
                 return defaultTheme
@@ -44,22 +44,23 @@ abstract class AThemeControl(context: Context) {
     val iD: String
         get() = currentTheme.iD ?: defaultTheme.iD ?: ""
 
+    protected abstract fun build(context: Context)
+
     init {
         build(context)
     }
 
+    /*
     fun init() {
         saveSelectedIndex(getIndexOfID(defaultTheme.iD))
         selectedIndex = savedIndex
     }
+    */
 
     fun init(savedID: String) {
-        saveSelectedIndex(getIndexOfID(savedID))
+        saveIndex(getIndexOfID(savedID))
         selectedIndex  = savedIndex
     }
-
-    @SuppressLint("Recycle, ResourceType")
-    protected abstract fun build(context: Context)
 
     private fun getIndexOfID(savedID: String?): Int {
         for (i in themes.indices) {
@@ -75,8 +76,8 @@ abstract class AThemeControl(context: Context) {
         this.savedIndex = selectedIndex
     }
 
-    fun saveSelectedIndex(savedIndex: Int) {
-        var savedIndex = savedIndex
+    fun saveIndex(index: Int) {
+        var savedIndex = index
         if (savedIndex < 0 || savedIndex >= themes.size) {
             savedIndex = getIndexOfID(defaultTheme.iD)
         }
@@ -105,7 +106,7 @@ abstract class AThemeControl(context: Context) {
         }
     }
 
-    fun getThemeAtIndex(index: Int): CustomTheme {
+    fun getThemeAtIndex(index: Int): ThemeModel {
         if (index >= themes.size || selectedIndex < 0) {
             return defaultTheme
         }
@@ -115,7 +116,7 @@ abstract class AThemeControl(context: Context) {
         return theme
     }
 
-    fun getThemeByUUID(uuid: String): CustomTheme {
+    fun getThemeByUUID(uuid: String): ThemeModel {
         for (customTheme in themes) {
             if (customTheme.iD == uuid) {
                 return customTheme

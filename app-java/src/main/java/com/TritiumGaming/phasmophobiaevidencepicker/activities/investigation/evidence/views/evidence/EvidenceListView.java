@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost.GhostListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationListView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationpopups.EvidencePopupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.popups.EvidencePopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.google.android.gms.ads.AdRequest;

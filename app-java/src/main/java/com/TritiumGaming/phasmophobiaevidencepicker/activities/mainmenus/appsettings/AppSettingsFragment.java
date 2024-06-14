@@ -22,13 +22,13 @@ import androidx.navigation.Navigation;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.FormatterUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.GoogleMobileAdsConsentManager;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transaction.FirestoreUnlockHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestoreUnlockHistory;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -508,10 +508,10 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                             DocumentReference documentReference = documentSnapshot.getReference();
 
                             String uuid = documentReference.getId();
-                            CustomTheme customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            ThemeModel customTheme = globalPreferencesViewModel.getColorThemeControl()
                                     .getThemeByUUID(uuid);
 
-                            customTheme.setUnlocked(CustomTheme.Availability.UNLOCKED_PURCHASE);
+                            customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
                         }
                     })
                     .addOnFailureListener(e -> {
@@ -651,7 +651,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         themeControl.iterateSelectedIndex(0);
         themeControl.setSelectedIndex(0);
-        themeControl.saveSelectedIndex(0);
+        themeControl.saveIndex(0);
 
         globalPreferencesViewModel.saveColorSpace(requireContext());
 

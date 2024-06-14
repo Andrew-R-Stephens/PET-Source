@@ -5,14 +5,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables.SanityRunnable
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.carousels.DifficultyCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.carousels.MapCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.GhostOrderModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.evidence.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationtype.ghost.GhostListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.carousels.MapCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.GhostOrderModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.sanity.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

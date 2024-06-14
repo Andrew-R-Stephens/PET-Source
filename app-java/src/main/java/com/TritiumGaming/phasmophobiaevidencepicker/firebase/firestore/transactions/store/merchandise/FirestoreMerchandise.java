@@ -11,7 +11,7 @@ public class FirestoreMerchandise {
             DOCUMENT_MERCHANDISE = "Merchandise";
 
     @NonNull
-    public static DocumentReference getMerchandiseDocument() throws Exception {
+    public static DocumentReference getMerchandiseDocument() {
         return FirestoreMarketplace.getStoreCollection().document(DOCUMENT_MERCHANDISE);
     }
 

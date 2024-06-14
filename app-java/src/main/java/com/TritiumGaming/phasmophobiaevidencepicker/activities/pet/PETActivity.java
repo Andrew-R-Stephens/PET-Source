@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.CustomTheme;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
 import com.firebase.ui.auth.AuthUI;
@@ -110,7 +110,7 @@ public abstract class PETActivity extends AppCompatActivity {
      *
      * @param colorSpace to be set
      */
-    public void changeTheme(@Nullable CustomTheme colorSpace, @Nullable CustomTheme fontType) {
+    public void changeTheme(@Nullable ThemeModel colorSpace, @Nullable ThemeModel fontType) {
 
         if(fontType != null) {
             int styleId = fontType.getStyle();

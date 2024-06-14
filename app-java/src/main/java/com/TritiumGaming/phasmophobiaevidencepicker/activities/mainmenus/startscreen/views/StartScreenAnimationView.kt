@@ -10,16 +10,16 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphic
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedGraphicQueue
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedFrostData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedHandData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedMirrorData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedOrbData
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedWritingData
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AAnimatedModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedQueueModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedFrostModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedHandModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedMirrorModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedOrbModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedWritingModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 
 /**
  * TitleScreenAnimationView class
@@ -31,10 +31,10 @@ class StartScreenAnimationView : View {
 
     private var bitmapUtils: BitmapUtils? = null
 
-    private var thread_initAnima: Thread? = null
-    private var thread_tickAnim: Thread? = null
-    private var thread_renderAnim: Thread? = null
-    private var thread_initReady: Thread? = null
+    private var threadInitAnim: Thread? = null
+    private var threadTickAnim: Thread? = null
+    private var threadRenderAnim: Thread? = null
+    private var threadInitReady: Thread? = null
 
     private var canAnimate = true
 
@@ -43,13 +43,13 @@ class StartScreenAnimationView : View {
 
     private val paint = Paint()
 
-    private var bitmap_orb: Bitmap? = null
-    private var bitmap_hand: Bitmap? = null
-    private var bitmap_writing: Bitmap? = null
-    private var bitmap_frost: Bitmap? = null
-    private var bitmap_mirror: Bitmap? = null
-    private var bitmap_handRot: Bitmap? = null
-    private var bitmap_writingRot: Bitmap? = null
+    private var bitmapOrb: Bitmap? = null
+    private var bitmapHand: Bitmap? = null
+    private var bitmapWriting: Bitmap? = null
+    private var bitmapFrost: Bitmap? = null
+    private var bitmapMirror: Bitmap? = null
+    private var bitmapHandRot: Bitmap? = null
+    private var bitmapWritingRot: Bitmap? = null
 
     constructor(context: Context?) :
             super(context)
@@ -105,18 +105,18 @@ class StartScreenAnimationView : View {
 
         val data = mainMenuViewModel?.animationData ?: return
 
-        bitmap_orb = bitmapUtils!!.setResource(R.drawable.anim_ghostorb).compileBitmaps(context)
+        bitmapOrb = bitmapUtils!!.setResource(R.drawable.anim_ghostorb).compileBitmaps(context)
 
-        bitmap_frost = bitmapUtils!!.setResource(R.drawable.anim_frost).compileBitmaps(context)
+        bitmapFrost = bitmapUtils!!.setResource(R.drawable.anim_frost).compileBitmaps(context)
 
-        bitmap_hand = bitmapUtils!!.setResource(
+        bitmapHand = bitmapUtils!!.setResource(
             handResIds[data.selectedHand]
         ).compileBitmaps(context)
-        bitmap_writing = bitmapUtils!!.setResource(
+        bitmapWriting = bitmapUtils!!.setResource(
             writingResIds[data.selectedWriting]
         ).compileBitmaps(context)
 
-        bitmap_mirror = bitmapUtils!!.setResource(R.drawable.anim_mirror_crack)
+        bitmapMirror = bitmapUtils!!.setResource(R.drawable.anim_mirror_crack)
             .addResource(R.drawable.anim_mirror_gradient, PorterDuff.Mode.MULTIPLY)
             .addResource(R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
             .compileBitmaps(context)
@@ -133,20 +133,20 @@ class StartScreenAnimationView : View {
         val animationData = mainMenuViewModel!!.animationData
 
         for (g in animationData.currentPool) {
-            g?.initDims(screenW, screenH)
+            g.initDims(screenW, screenH)
         }
 
         if (animationData.hasData()) {
             for (animated in animationData.allPool) {
-                if (animated is AnimatedHandData) {
+                if (animated is AnimatedHandModel) {
                     try {
-                        bitmap_handRot = animated.rotateBitmap(bitmap_hand)
+                        bitmapHandRot = animated.rotateBitmap(bitmapHand)
                     } catch (e: IllegalStateException) {
                         e.printStackTrace()
                     }
-                } else if (animated is AnimatedWritingData) {
+                } else if (animated is AnimatedWritingModel) {
                     try {
-                        bitmap_writingRot = animated.rotateBitmap(bitmap_writing)
+                        bitmapWritingRot = animated.rotateBitmap(bitmapWriting)
                     } catch (e: IllegalStateException) {
                         e.printStackTrace()
                     }
@@ -163,22 +163,22 @@ class StartScreenAnimationView : View {
 
         //Add orbs
         for (i in 0 until ORB_COUNT) {
-            if (BitmapUtils.bitmapExists(bitmap_orb)) {
-                val data = AnimatedOrbData(screenW, screenH)
+            if (BitmapUtils.bitmapExists(bitmapOrb)) {
+                val data = AnimatedOrbModel(screenW, screenH)
                 animationData.addToAllPool(data)
             }
         }
         //Add hands
         for (i in 0 until HAND_COUNT) {
-            if (BitmapUtils.bitmapExists(bitmap_hand)) {
-                val bW = bitmap_hand?.width ?: 0
-                val bH = bitmap_hand?.height ?: 0
-                val data = AnimatedHandData(
+            if (BitmapUtils.bitmapExists(bitmapHand)) {
+                val bW = bitmapHand?.width ?: 0
+                val bH = bitmapHand?.height ?: 0
+                val data = AnimatedHandModel(
                     screenW, screenH, bW, bH
                 )
                 animationData.addToAllPool(data)
                 try {
-                    bitmap_handRot = data.rotateBitmap(bitmap_hand!!)
+                    bitmapHandRot = data.rotateBitmap(bitmapHand!!)
                 } catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
@@ -187,15 +187,15 @@ class StartScreenAnimationView : View {
 
         //Add writing
         for (i in 0 until WRITING_COUNT) {
-            if (BitmapUtils.bitmapExists(bitmap_writing)) {
-                val bW = bitmap_writing?.width ?: 0
-                val bH = bitmap_writing?.height ?: 0
-                val data = AnimatedWritingData(
+            if (BitmapUtils.bitmapExists(bitmapWriting)) {
+                val bW = bitmapWriting?.width ?: 0
+                val bH = bitmapWriting?.height ?: 0
+                val data = AnimatedWritingModel(
                     screenW, screenH, bW, bH, animationData
                 )
                 animationData.addToAllPool(data)
                 try {
-                    bitmap_writingRot = data.rotateBitmap(bitmap_writing!!)
+                    bitmapWritingRot = data.rotateBitmap(bitmapWriting!!)
                 } catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
@@ -204,22 +204,22 @@ class StartScreenAnimationView : View {
 
         //Add Frost
         for (i in 0 until FROST_COUNT) {
-            if (BitmapUtils.bitmapExists(bitmap_frost)) {
-                val data = AnimatedFrostData(screenW, screenH)
+            if (BitmapUtils.bitmapExists(bitmapFrost)) {
+                val data = AnimatedFrostModel(screenW, screenH)
                 animationData.addToAllPool(data)
             }
         }
 
         //Add Mirror
         for (i in 0 until MIRROR_COUNT) {
-            if (BitmapUtils.bitmapExists(bitmap_mirror)) {
-                val data = AnimatedMirrorData(screenW, screenH)
+            if (BitmapUtils.bitmapExists(bitmapMirror)) {
+                val data = AnimatedMirrorModel(screenW, screenH)
                 animationData.addToAllPool(data)
             }
         }
 
         //Create Queue
-        animationData.queue = AnimatedGraphicQueue(animationData.allPoolSize, 750)
+        animationData.queue = AnimatedQueueModel(animationData.allPoolSize, 750)
     }
 
     fun tick() {
@@ -228,17 +228,17 @@ class StartScreenAnimationView : View {
         val screenW = Resources.getSystem().displayMetrics.widthPixels
         val screenH = Resources.getSystem().displayMetrics.heightPixels
 
-        val animationData = mainMenuViewModel!!.animationData
-        animationData.doTick()
+        val animationData = mainMenuViewModel?.animationData
+        animationData?.doTick()
 
         val maxQueue = 3
-        if ((animationData.hasQueue() && animationData.queue.canDequeue()) &&
+        if ((animationData?.queue?.canDequeue() == true) &&
             (animationData.currentPoolSize < maxQueue)) {
 
             val animationQueue = animationData.queue
 
             var index = 0
-            var aTemp: AnimatedGraphic? = null
+            var aTemp: AAnimatedModel? = null
             try {
                 index = animationQueue.dequeue()
                 aTemp = animationData.getFromAllPool(index)
@@ -253,77 +253,77 @@ class StartScreenAnimationView : View {
             val lastAnimInList = animationData.lastFromCurrentPool
             if (lastAnimInList != null) {
                 when(lastAnimInList) {
-                    is AnimatedOrbData -> {
-                        if (BitmapUtils.bitmapExists(bitmap_orb)) {
+                    is AnimatedOrbModel -> {
+                        if (BitmapUtils.bitmapExists(bitmapOrb)) {
                             animationData.setToAllPool(
-                                index, AnimatedOrbData(
+                                index, AnimatedOrbModel(
                                     screenW, screenH
                                 )
                             )
                         }
                     }
-                    is AnimatedHandData -> {
-                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
+                    is AnimatedHandModel -> {
+                        if (BitmapUtils.bitmapExists(bitmapHand)) {
                             var bitmapW = 0
                             var bitmapH = 0
                             try {
-                                bitmapW = bitmap_hand?.width ?: 0
-                                bitmapH = bitmap_hand?.height ?: 0
+                                bitmapW = bitmapHand?.width ?: 0
+                                bitmapH = bitmapHand?.height ?: 0
                             } catch (e: NullPointerException) {
                                 e.printStackTrace()
                             }
 
                             animationData.setToAllPool(
-                                index, AnimatedHandData(
+                                index, AnimatedHandModel(
                                     screenW, screenH,
                                     bitmapW, bitmapH
                                 )
                             )
 
-                            bitmap_handRot =
-                                (animationData.lastFromCurrentPool as AnimatedHandData?)!!.rotateBitmap(
-                                    bitmap_hand!!
+                            bitmapHandRot =
+                                (animationData.lastFromCurrentPool as AnimatedHandModel?)!!.rotateBitmap(
+                                    bitmapHand!!
                                 )
                         }
                     }
-                    is AnimatedWritingData -> {
-                        if (BitmapUtils.bitmapExists(bitmap_writing)) {
+                    is AnimatedWritingModel -> {
+                        if (BitmapUtils.bitmapExists(bitmapWriting)) {
                             var bitmapW = 0
                             var bitmapH = 0
                             try {
-                                bitmapW = bitmap_writing?.width ?: 0
-                                bitmapH = bitmap_writing?.height ?: 0
+                                bitmapW = bitmapWriting?.width ?: 0
+                                bitmapH = bitmapWriting?.height ?: 0
                             } catch (e: NullPointerException) {
                                 e.printStackTrace()
                             }
 
                             animationData.setToAllPool(
-                                index, AnimatedWritingData(
+                                index, AnimatedWritingModel(
                                     screenW, screenH,
                                     bitmapW, bitmapH,
                                     animationData
                                 )
                             )
 
-                            bitmap_writingRot =
-                                (animationData.lastFromCurrentPool as AnimatedWritingData?)!!.rotateBitmap(
-                                    bitmap_writing!!
+                            bitmapWritingRot =
+                                (animationData.lastFromCurrentPool as AnimatedWritingModel?)!!.rotateBitmap(
+                                    bitmapWriting!!
                                 )
                         }
                     }
-                    is AnimatedFrostData -> {
-                        if (BitmapUtils.bitmapExists(bitmap_frost)) {
+                    is AnimatedFrostModel -> {
+                        if (BitmapUtils.bitmapExists(bitmapFrost)) {
                             animationData.setToAllPool(
-                                index, AnimatedFrostData(
+                                index, AnimatedFrostModel(
                                     screenW, screenH
                                 )
                             )
                         }
                     }
-                    is AnimatedMirrorData -> {
-                        if (BitmapUtils.bitmapExists(bitmap_mirror)) {
+                    is AnimatedMirrorModel -> {
+                        if (BitmapUtils.bitmapExists(bitmapMirror)) {
                             animationData.setToAllPool(
-                                index, AnimatedMirrorData(
+                                index, AnimatedMirrorModel(
                                     screenW, screenH
                                 )
                             )
@@ -334,50 +334,44 @@ class StartScreenAnimationView : View {
         }
 
         var i = 0
-        while (i < animationData.currentPoolSize) {
+        while (i < (animationData?.currentPoolSize ?: 0)) {
 
-            val currentAnim = animationData.getFromCurrentPool(i)
-            currentAnim.doTick()
+            val currentAnim = animationData?.getFromCurrentPool(i)
+            currentAnim?.doTick()
 
             /*
              * If the chosen AnimatedGraphic is not alive, then remove it from the list
              * If removed, replace it with a modified item of the same type
              * Then try the next AnimatedGraphic
              */
-            if (!currentAnim.isAlive) {
+            if ((currentAnim?.isAlive) == false) {
                 when(currentAnim) {
-                    is AnimatedHandData -> {
+                    is AnimatedHandModel -> {
                         animationData.selectedHand = (Math.random() * handResIds.size).toInt()
 
-                        // BitmapUtils.destroyBitmap(bitmap_hand)
-                        // BitmapUtils.destroyBitmap(bitmap_handRot)
-                        bitmap_hand = null
-                        bitmap_handRot = null
+                        bitmapHand = null
+                        bitmapHandRot = null
 
-                        bitmapUtils!!.setResource(
-                            handResIds[animationData.selectedHand]
-                        )
-                        bitmap_hand = bitmapUtils!!.compileBitmaps(context)
+                        bitmapUtils?.setResource(handResIds[animationData.selectedHand])
+                        bitmapHand = bitmapUtils?.compileBitmaps(context)
 
-                        if (BitmapUtils.bitmapExists(bitmap_hand)) {
-                            bitmap_handRot = currentAnim.rotateBitmap(bitmap_hand) }
+                        if (BitmapUtils.bitmapExists(bitmapHand)) {
+                            bitmapHandRot = currentAnim.rotateBitmap(bitmapHand) }
                     }
-                    is AnimatedWritingData -> {
+                    is AnimatedWritingModel -> {
                         animationData.selectedWriting =
                             (Math.random() * writingResIds.size).toInt()
 
-                        // BitmapUtils.destroyBitmap(bitmap_writing)
-                        // BitmapUtils.destroyBitmap(bitmap_writingRot)
-                        bitmap_writing = null
-                        bitmap_writingRot = null
+                        bitmapWriting = null
+                        bitmapWritingRot = null
 
-                        bitmapUtils!!.setResource(
+                        bitmapUtils?.setResource(
                             writingResIds[animationData.selectedWriting]
                         )
-                        bitmap_writing = bitmapUtils!!.compileBitmaps(context)
+                        bitmapWriting = bitmapUtils?.compileBitmaps(context)
 
-                        if (BitmapUtils.bitmapExists(bitmap_writing)) {
-                            bitmap_writingRot = currentAnim.rotateBitmap(bitmap_writing)
+                        if (BitmapUtils.bitmapExists(bitmapWriting)) {
+                            bitmapWritingRot = currentAnim.rotateBitmap(bitmapWriting)
                         }
                     }
                 }
@@ -409,11 +403,11 @@ class StartScreenAnimationView : View {
                 paint.setColorFilter(a.filter)
                 try {
                     when(a) {
-                        is AnimatedMirrorData -> a.draw(canvas, paint, bitmap_mirror)
-                        is AnimatedWritingData -> a.draw(canvas, paint, bitmap_writingRot)
-                        is AnimatedHandData -> a.draw(canvas, paint, bitmap_handRot)
-                        is AnimatedOrbData -> a.draw(canvas, paint, bitmap_orb)
-                        is AnimatedFrostData -> a.draw(canvas, paint, bitmap_frost)
+                        is AnimatedMirrorModel -> a.draw(canvas, paint, bitmapMirror)
+                        is AnimatedWritingModel -> a.draw(canvas, paint, bitmapWritingRot)
+                        is AnimatedHandModel -> a.draw(canvas, paint, bitmapHandRot)
+                        is AnimatedOrbModel -> a.draw(canvas, paint, bitmapOrb)
+                        is AnimatedFrostModel -> a.draw(canvas, paint, bitmapFrost)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -429,13 +423,13 @@ class StartScreenAnimationView : View {
      *
      */
     fun recycleBitmaps() {
-        bitmap_orb = null
-        bitmap_frost = null
-        bitmap_hand = null
-        bitmap_writing = null
-        bitmap_mirror = null
-        bitmap_handRot = null
-        bitmap_writingRot = null
+        bitmapOrb = null
+        bitmapFrost = null
+        bitmapHand = null
+        bitmapWriting = null
+        bitmapMirror = null
+        bitmapHandRot = null
+        bitmapWritingRot = null
 
         System.gc()
     }
@@ -444,17 +438,17 @@ class StartScreenAnimationView : View {
     fun startAnimInitThreads(
         titleScreenViewModel: MainMenuViewModel?, bitmapUtils: BitmapUtils
     ) {
-        if (thread_initAnima == null) {
-            thread_initAnima = object : Thread() {
+        if (threadInitAnim == null) {
+            threadInitAnim = object : Thread() {
                 override fun run() {
                     init(titleScreenViewModel, bitmapUtils)
                 }
             }
-            thread_initAnima?.start()
+            threadInitAnim?.start()
         }
 
-        if (thread_initReady == null) {
-            thread_initReady = Thread {
+        if (threadInitReady == null) {
+            threadInitReady = Thread {
                 while (!canAnimate) {
                     try {
                         Thread.sleep(100)
@@ -465,14 +459,14 @@ class StartScreenAnimationView : View {
                 startAnimThreads()
             }
 
-            thread_initReady!!.start()
+            threadInitReady!!.start()
         }
     }
 
     private fun startAnimTickThread() {
-        if (thread_tickAnim == null) {
+        if (threadTickAnim == null) {
             canAnimate = true
-            thread_tickAnim = object : Thread() {
+            threadTickAnim = object : Thread() {
                 override fun run() {
                     while (canAnimate) {
                         update()
@@ -519,16 +513,16 @@ class StartScreenAnimationView : View {
                     }
                 }
             }
-            thread_tickAnim?.start()
+            threadTickAnim?.start()
         }
     }
 
     private fun startAnimDrawThread() {
-        if (thread_renderAnim != null) {
+        if (threadRenderAnim != null) {
             return
         }
 
-        thread_renderAnim = object : Thread() {
+        threadRenderAnim = object : Thread() {
             override fun run() {
                 while (canAnimate) {
                     invalidate()
@@ -579,7 +573,7 @@ class StartScreenAnimationView : View {
                 }
             }
         }
-        thread_renderAnim?.start()
+        threadRenderAnim?.start()
     }
 
     fun startAnimThreads() {
@@ -588,27 +582,27 @@ class StartScreenAnimationView : View {
     }
 
     fun stopAnimInitThreads() {
-        if (thread_initAnima != null) {
-            thread_initAnima!!.interrupt()
-            thread_initAnima = null
+        if (threadInitAnim != null) {
+            threadInitAnim!!.interrupt()
+            threadInitAnim = null
         }
-        if (thread_initReady != null) {
-            thread_initReady!!.interrupt()
-            thread_initReady = null
+        if (threadInitReady != null) {
+            threadInitReady!!.interrupt()
+            threadInitReady = null
         }
     }
 
     fun stopAnimTickThread() {
-        if (thread_tickAnim != null) {
-            thread_tickAnim!!.interrupt()
-            thread_tickAnim = null
+        if (threadTickAnim != null) {
+            threadTickAnim!!.interrupt()
+            threadTickAnim = null
         }
     }
 
     fun stopAnimDrawThread() {
-        if (thread_renderAnim != null) {
-            thread_renderAnim!!.interrupt()
-            thread_renderAnim = null
+        if (threadRenderAnim != null) {
+            threadRenderAnim!!.interrupt()
+            threadRenderAnim = null
         }
     }
 

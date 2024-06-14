@@ -11,7 +11,7 @@ public class FirestoreMicrotransactions {
             DOCUMENT_MICROTRANSACTIONS = "Microtransactions";
 
     @NonNull
-    public static DocumentReference getMicrotransactionsDocument() throws Exception {
+    public static DocumentReference getMicroTransactionsDocument() {
         return FirestoreMarketplace.getStoreCollection()
                 .document(DOCUMENT_MICROTRANSACTIONS);
     }

@@ -10,18 +10,18 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageModel;
 
 import java.util.ArrayList;
 
 public class MessagesAdapterView
         extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
 
-    private final ArrayList<NewsletterMessageData> messages;
+    private final ArrayList<NewsletterMessageModel> messages;
     private final OnMessageListener onMessageListener;
 
     public MessagesAdapterView(
-            ArrayList<NewsletterMessageData> messages,
+            ArrayList<NewsletterMessageModel> messages,
             OnMessageListener onMessageListener) {
         this.messages = messages;
         this.onMessageListener = onMessageListener;
@@ -60,7 +60,7 @@ public class MessagesAdapterView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_messageTitle;
-        textView.setText(messages.get(position).title);
+        textView.setText(messages.get(position).getTitle());
     }
 
     @Override

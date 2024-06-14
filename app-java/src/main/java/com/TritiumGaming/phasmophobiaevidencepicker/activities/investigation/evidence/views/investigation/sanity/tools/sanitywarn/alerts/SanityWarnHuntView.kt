@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationmodels.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.sanity.PhaseTimerModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

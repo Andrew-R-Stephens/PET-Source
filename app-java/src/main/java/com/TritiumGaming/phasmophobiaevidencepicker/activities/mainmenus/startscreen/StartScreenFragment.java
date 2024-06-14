@@ -28,7 +28,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.utils.BitmapUtils;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AnimsKt;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt;

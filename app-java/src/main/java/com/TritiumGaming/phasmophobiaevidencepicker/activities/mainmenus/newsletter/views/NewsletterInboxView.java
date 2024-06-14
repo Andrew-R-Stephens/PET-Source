@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessagesData;
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageListModel;
 
 public class NewsletterInboxView extends ConstraintLayout {
 
@@ -73,7 +73,7 @@ public class NewsletterInboxView extends ConstraintLayout {
         }
     }
 
-    public void initNotify(@NonNull Context context, @Nullable NewsletterMessagesData inboxData) {
+    public void initNotify(@NonNull Context context, @Nullable NewsletterMessageListModel inboxData) {
         AppCompatImageView notifyView = findViewById(R.id.notifyIcon);
 
         Animation animation = AnimationUtils.loadAnimation(context, R.anim.notifyblink);
