@@ -6,8 +6,8 @@ import android.content.res.Resources
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel
 
 /**
  * MapMenuViewModel class

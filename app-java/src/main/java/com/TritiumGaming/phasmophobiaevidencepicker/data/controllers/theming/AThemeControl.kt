@@ -2,14 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming
 
 import android.content.Context
 import androidx.annotation.StyleRes
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel.Companion.defaultTheme
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 
-/**
- * ColorSpaceData class
- *
- * @author TritiumGamingStudios
- */
 abstract class AThemeControl(context: Context) {
     @StyleRes
     protected var defaultStyle: Int = 0
@@ -21,7 +15,7 @@ abstract class AThemeControl(context: Context) {
         set(value) {
             var tempIndex = value
             if (tempIndex < 0 || tempIndex >= themes.size) {
-                tempIndex = getIndexOfID(defaultTheme.iD)
+                tempIndex = getIndexOfID(ThemeModel.defaultTheme.iD)
             }
 
             field = tempIndex
@@ -30,7 +24,7 @@ abstract class AThemeControl(context: Context) {
     val currentTheme: ThemeModel
         get() {
             if (selectedIndex >= themes.size || selectedIndex < 0) {
-                return defaultTheme
+                return ThemeModel.defaultTheme
             }
 
             val theme = themes[selectedIndex]
@@ -42,20 +36,13 @@ abstract class AThemeControl(context: Context) {
         get() = currentTheme.name
 
     val iD: String
-        get() = currentTheme.iD ?: defaultTheme.iD ?: ""
+        get() = currentTheme.iD ?: ThemeModel.defaultTheme.iD ?: ""
 
     protected abstract fun build(context: Context)
 
     init {
         build(context)
     }
-
-    /*
-    fun init() {
-        saveSelectedIndex(getIndexOfID(defaultTheme.iD))
-        selectedIndex = savedIndex
-    }
-    */
 
     fun init(savedID: String) {
         saveIndex(getIndexOfID(savedID))
@@ -79,7 +66,7 @@ abstract class AThemeControl(context: Context) {
     fun saveIndex(index: Int) {
         var savedIndex = index
         if (savedIndex < 0 || savedIndex >= themes.size) {
-            savedIndex = getIndexOfID(defaultTheme.iD)
+            savedIndex = getIndexOfID(ThemeModel.defaultTheme.iD)
         }
 
         this.savedIndex = savedIndex
@@ -108,7 +95,7 @@ abstract class AThemeControl(context: Context) {
 
     fun getThemeAtIndex(index: Int): ThemeModel {
         if (index >= themes.size || selectedIndex < 0) {
-            return defaultTheme
+            return ThemeModel.defaultTheme
         }
 
         val theme = themes[index]
@@ -122,7 +109,7 @@ abstract class AThemeControl(context: Context) {
                 return customTheme
             }
         }
-        return defaultTheme
+        return ThemeModel.defaultTheme
     }
 
     fun revertAllUnlockedStatuses() {

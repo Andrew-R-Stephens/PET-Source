@@ -51,8 +51,7 @@ public class POISpinner extends AppCompatSpinner {
     }
 
     public void populateAdapter(@Nullable MapMenuViewModel mapMenuViewModel) {
-        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null &&
-                mapMenuViewModel.getCurrentMapModel().getCurrentFloor() != null) {
+        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
             // Creating adapter for spinner
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
                     getContext(),

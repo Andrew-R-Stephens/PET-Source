@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidencia</string>
@@ -1021,7 +1021,7 @@
     <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony ha vuelto con una cámara de última generación, modificada exclusivamente para cazadores de fantasmas. También sería una excelente cámara de cine.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Una radio FM/AM antigua. Es pequeño y compacto, pero el altavoz no es de la mejor calidad.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>El Spirit Box P-SB7T está diseñado exclusivamente para conversaciones con lo desconocido. La pantalla retroiluminada facilita las investigaciones en la oscuridad.</a>]]></string>
-    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>El SB11-Z es un Spirit Box mucho más grande, capaz de escanear dos canales de frecuencia al mismo tiempo.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3" tools:ignore="Typos"><![CDATA[<a>El SB11-Z es un Spirit Box mucho más grande, capaz de escanear dos canales de frecuencia al mismo tiempo.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Un termómetro de pared antiguo que normalmente se utiliza para medir la temperatura ambiente durante todo el año colgándolo de la pared. ¡Funciona perfectamente cuando lo llevas contigo!</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Este termómetro infrarrojo, normalmente utilizado por profesionales médicos para lecturas rápidas de temperatura, es ideal para lecturas rápidas en caso de apuro. Parece dar lecturas ligeramente inexactas, aunque tal vez sea simplemente antiguo.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Más moderno, más técnico y más preciso. No hay nada mejor que eso.</a>]]></string>

@@ -13,8 +13,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AccountObtainCreditsView extends ConstraintLayout {

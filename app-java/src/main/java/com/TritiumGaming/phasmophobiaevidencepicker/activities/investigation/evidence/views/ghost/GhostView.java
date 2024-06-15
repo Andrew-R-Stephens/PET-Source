@@ -20,9 +20,9 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigation.investigationmodels.investigationtype.ghost.GhostModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 
 public abstract class GhostView extends ConstraintLayout {
 

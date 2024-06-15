@@ -17,9 +17,9 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.ItemStoreGroupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentGroupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.data.itemdata.equipment.ItemStoreEquipmentItemModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentItemModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;

@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.reviews.ReviewTrackingModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.reviews.ReviewTrackingModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import java.util.Locale
 
 class GlobalPreferencesViewModel : SharedViewModel() {

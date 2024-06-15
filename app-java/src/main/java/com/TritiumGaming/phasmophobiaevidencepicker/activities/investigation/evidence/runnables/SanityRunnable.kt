@@ -82,15 +82,9 @@ class SanityRunnable (
             */
 
             if (!timerModel.paused.value) {
-                //sanityModel.tick()
-                // Hunt Audio is ACTIVE if setup phase activity is false
-                /*if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
-                    (phaseTimerData.currentPhase.value != PhaseTimerModel.Phase.SETUP) &&
-                    sanityData.warningAudioAllowed) {
-                    audio_huntWarn?.start()
-                    sanityData.warningAudioAllowed = false
-                }*/
-                huntWarningAudioListener?.play()
+                if (globalPreferencesViewModel.isHuntWarningAudioAllowed) {
+                    huntWarningAudioListener?.play()
+                }
             }
         }
     }

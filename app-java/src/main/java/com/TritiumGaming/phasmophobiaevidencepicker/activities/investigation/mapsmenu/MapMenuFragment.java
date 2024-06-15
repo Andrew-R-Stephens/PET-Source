@@ -20,10 +20,10 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapListModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.MapModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileIO;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.io.MapFileReader;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileIO;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileReader;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapListModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
 import com.google.common.primitives.Ints;
 

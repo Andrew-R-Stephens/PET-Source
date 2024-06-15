@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="2000dp"
-    android:height="2000dp"
+    android:width="200dp"
+    android:height="200dp"
     android:name="notificationIcon"
     android:viewportWidth="750"
     android:viewportHeight="750">

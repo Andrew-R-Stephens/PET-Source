@@ -10,15 +10,15 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AAnimatedModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.AnimatedQueueModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedFrostModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedHandModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedMirrorModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedOrbModel
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.data.animations.graphicsdata.AnimatedWritingModel
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.AAnimatedModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.AnimatedQueueModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.graphicsdata.AnimatedFrostModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.graphicsdata.AnimatedHandModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.graphicsdata.AnimatedMirrorModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.graphicsdata.AnimatedOrbModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.graphicsdata.AnimatedWritingModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 
 /**

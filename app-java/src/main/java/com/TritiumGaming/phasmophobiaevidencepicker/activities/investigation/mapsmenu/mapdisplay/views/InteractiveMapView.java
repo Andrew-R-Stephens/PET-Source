@@ -30,13 +30,13 @@ import androidx.annotation.Nullable;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.data.MapViewerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.InteractiveMapModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.PoiType;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.data.models.RoomModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.maps.mapviewer.InteractiveMapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.RoomModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat;
@@ -143,7 +143,7 @@ public class InteractiveMapView extends View {
 
     class GestureTap extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onDoubleTap(MotionEvent e) {
+        public boolean onDoubleTap(@NonNull MotionEvent e) {
             return true;
         }
 
@@ -157,12 +157,6 @@ public class InteractiveMapView extends View {
         }
     }
 
-    /**
-     * onTouchEvent listener
-     *
-     * @param event
-     * @return
-     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
@@ -224,9 +218,6 @@ public class InteractiveMapView extends View {
         return true;
     }
 
-    /**
-     * doZoomAction method
-     */
     public void doZoomAction() {
 
         PointF p1 = mActivePointers.get(0);
@@ -253,9 +244,6 @@ public class InteractiveMapView extends View {
         }
     }
 
-    /**
-     * doPanAction method
-     */
     public void doPanAction() {
 
         PointF p = mActivePointers.get(0);
@@ -275,20 +263,10 @@ public class InteractiveMapView extends View {
 
     }
 
-    /**
-     * setMapData method
-     *
-     * @param mapData
-     */
     public void setMapData(MapViewerModel mapData) {
         this.mapData = mapData;
     }
 
-    /**
-     * setMapImages method
-     *
-     * @param a
-     */
     public void setMapImages(@NonNull Activity a) {
 
         if(bitmapUtils == null) {
@@ -339,11 +317,6 @@ public class InteractiveMapView extends View {
         bitmapUtils = null;
     }
 
-    /**
-     * setPoiImages method
-     *
-     * @param a
-     */
     public void setPoiImages(@NonNull Activity a) {
         if(getContext() == null) { return; }
 
@@ -369,11 +342,6 @@ public class InteractiveMapView extends View {
         bitmapUtils = null;
     }
 
-    /**
-     * onDraw method
-     *
-     * @param canvas
-     */
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 
@@ -534,21 +502,6 @@ public class InteractiveMapView extends View {
                 invalidate();
             }
         }
-    }
-
-    /**
-     * recycleBitmaps method
-     */
-    public void recycleBitmaps() {
-
-        if (mapImages != null)
-            for (Bitmap b : mapImages) {
-                if (BitmapUtils.bitmapExists(b)) {
-                    b.recycle();
-                }
-            }
-
-        System.gc();
     }
 
 }

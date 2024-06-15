@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Page Details -->
 
@@ -487,7 +487,7 @@
     <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony está de volta com uma câmera de última geração, modificada exclusivamente para caçadores de fantasmas. Também seria uma ótima câmera de cinema.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Um antigo rádio FM/AM. É pequeno e compacto, mas o alto-falante não é da melhor qualidade.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>A Spirit Box P-SB7T foi criada exclusivamente para conversas com o desconhecido. A tela retroiluminada ajuda nas investigações no escuro.</a>]]></string>
-    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>O SB11-Z é uma Spirit Box muito maior, capaz de varrer dois canais de frequência ao mesmo tempo.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3" tools:ignore="Typos"><![CDATA[<a>O SB11-Z é uma Spirit Box muito maior, capaz de varrer dois canais de frequência ao mesmo tempo.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Um termômetro de parede antigo, normalmente usado para medir a temperatura ambiente durante todo o ano, pendurado na parede. Ele também funciona perfeitamente quando você o carrega!</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Normalmente usado por profissionais médicos para leituras rápidas de temperatura, este termômetro infravermelho é ótimo para leituras rápidas e rápidas. Parece fornecer leituras um pouco imprecisas, embora talvez seja apenas antigo.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Mais moderno, mais técnico e mais preciso. Você simplesmente não consegue vencer.</a>]]></string>

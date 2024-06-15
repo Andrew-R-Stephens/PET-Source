@@ -92,7 +92,7 @@ internal class Order3(
         YforT1 = YforT2
     }
 
-    /*
+    /**
      * Solve the cubic whose coefficients are in the a,b,c,d fields and
      * return the first root in the range [0, 1].
      * The cubic solved is represented by the equation:

@@ -60,7 +60,10 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                             mediaPlayer = getHuntWarningAudio(appLang)
                         }
                         override fun play() {
-                            mediaPlayer?.start()
+                            if(globalPreferencesViewModel.isHuntWarningAudioAllowed) {
+                                mediaPlayer?.start()
+                                evidenceViewModel.sanityModel?.warnTriggered = true
+                            }
                         }
 
                         override fun stop() {

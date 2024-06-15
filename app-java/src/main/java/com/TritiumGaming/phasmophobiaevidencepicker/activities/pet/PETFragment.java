@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 public abstract class PETFragment extends Fragment {

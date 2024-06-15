@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><resources>
+<?xml version="1.0" encoding="UTF-8"?><resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Page Details -->
 
@@ -482,7 +482,7 @@
     <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony è tornato con una fotocamera all\'avanguardia, modificata esclusivamente per i cacciatori di fantasmi. Sarebbe anche un\'ottima cinepresa.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Una vecchia radio FM/AM. È piccolo e compatto, ma l\'altoparlante non è della migliore qualità.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>La Spirit Box P-SB7T è progettata esclusivamente per le conversazioni con l\'ignoto. Lo schermo retroilluminato aiuta le indagini al buio.</a>]]></string>
-    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>L\'SB11-Z è uno Spirit Box molto più grande, in grado di scansionare due canali di frequenza contemporaneamente.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3" tools:ignore="Typos"><![CDATA[<a>L\'SB11-Z è uno Spirit Box molto più grande, in grado di scansionare due canali di frequenza contemporaneamente.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Un termometro da parete vintage, normalmente utilizzato per misurare la temperatura della stanza tutto l\'anno appendendolo al muro. Funziona perfettamente anche quando lo porti in giro!</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Normalmente utilizzato dai professionisti del settore medico per letture rapide della temperatura, questo termometro a infrarossi è ottimo per letture rapide in un batter d\'occhio. Sembra fornire letture leggermente imprecise, anche se forse è solo vecchio.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Più moderno, più tecnico e più accurato. Non c\'è niente di meglio di questo.</a>]]></string>

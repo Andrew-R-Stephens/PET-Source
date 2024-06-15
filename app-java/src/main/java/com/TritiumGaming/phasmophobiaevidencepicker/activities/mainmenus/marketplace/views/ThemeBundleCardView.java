@@ -12,9 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketThemeBundleModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.firestore.theme.bundle.MarketThemeBundleModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class ThemeBundleCardView extends MaterialCardView {

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.data.NewsletterMessageListModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.MessagesAdapterView;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 

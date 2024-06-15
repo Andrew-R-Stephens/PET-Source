@@ -6,13 +6,8 @@ import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.AThemeControl
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 
-/**
- * ColorSpaceData class
- *
- * @author TritiumGamingStudios
- */
 class ColorThemeControl(context: Context) : AThemeControl(context) {
 
     init { defaultStyle = R.style.NonColorblind_Base }

@@ -29,7 +29,7 @@ import androidx.navigation.Navigation;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.data.GhostBoxUtilityModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.ghostbox.GhostBoxUtilityModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
 

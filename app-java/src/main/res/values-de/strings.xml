@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="investigation_section_title_ghosts">Geister</string>
     <string name="investigation_section_title_evidence">Beweis</string>
@@ -1012,7 +1012,7 @@
     <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony ist mit einer hochmodernen Kamera zurück, die speziell für Geisterjäger modifiziert wurde. Es wäre auch eine tolle Filmkamera.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Ein altes FM/AM-Radio. Es ist klein und kompakt, aber der Lautsprecher ist nicht die beste Qualität.</a>]]></string>
     <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>Die P-SB7T Spirit Box wurde ausschließlich für Gespräche mit Unbekannten entwickelt. Der hintergrundbeleuchtete Bildschirm erleichtert Untersuchungen im Dunkeln.</a>]]></string>
-    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>Der SB11-Z ist eine viel größere Spirit Box, die zwei Frequenzkanäle gleichzeitig scannen kann.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3" tools:ignore="Typos"><![CDATA[<a>Der SB11-Z ist eine viel größere Spirit Box, die zwei Frequenzkanäle gleichzeitig scannen kann.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Ein Vintage-Wandthermometer, das normalerweise das ganze Jahr über zum Messen der Raumtemperatur verwendet wird, indem man es an die Wand hängt. Auch beim Tragen funktioniert es einwandfrei!</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Dieses Infrarot-Thermometer wird normalerweise von Medizinern für schnelle Temperaturmessungen verwendet und eignet sich hervorragend für schnelle Messungen im Notfall. Es scheint etwas ungenaue Messwerte zu liefern, obwohl es vielleicht einfach nur alt ist.</a>]]></string>
     <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Moderner, technischer und genauer. Es ist einfach unschlagbar.</a>]]></string>

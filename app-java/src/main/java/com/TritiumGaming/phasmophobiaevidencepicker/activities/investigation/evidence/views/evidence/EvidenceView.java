@@ -21,8 +21,8 @@ import androidx.compose.ui.platform.ComposeView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationComposablesKt;
 
 public abstract class EvidenceView extends ConstraintLayout {
