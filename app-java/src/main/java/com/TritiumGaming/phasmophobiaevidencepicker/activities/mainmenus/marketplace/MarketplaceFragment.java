@@ -504,9 +504,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         }
 
         query.addOnSuccessListener(snapshot -> {
-            if(listener != null) {
-                listener.onSuccess();
-            }
+            listener.onSuccess();
 
             for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
                 if (!documentSnapshot.exists()) {
@@ -546,14 +544,10 @@ public class MarketplaceFragment extends MainMenuFragment {
             }
 
         }).addOnFailureListener(e -> {
-            if (listener != null) {
-                listener.onFailure();
-            }
-        })
+            listener.onFailure();
+                })
         .addOnCompleteListener(task -> {
-            if(listener != null) {
-                listener.onComplete();
-            }
+            listener.onComplete();
 
             if(list.getChildCount() <= 1) {
                 list.setVisibility(GONE);
@@ -580,9 +574,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         }
 
         query.addOnSuccessListener(snapshot -> {
-            if(listener != null) {
-                listener.onSuccess();
-            }
+            listener.onSuccess();
 
             for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
                 if (!documentSnapshot.exists()) {
@@ -636,19 +628,14 @@ public class MarketplaceFragment extends MainMenuFragment {
             }
 
         }).addOnFailureListener(e -> {
-            if (listener != null) {
-                listener.onFailure();
-            }
-        })
+            listener.onFailure();
+                })
         .addOnCompleteListener(task -> {
             if(list.getChildCount() <= 1) {
                 list.setVisibility(GONE);
             }
 
-            if(listener != null) {
-                listener.onComplete();
-            }
-
+            listener.onComplete();
         });
     }
 
@@ -947,9 +934,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
                 // Generate a Firestore document for the User with default data if needed
                 try {
-                    FirestoreUser.buildUserDocument().get().addOnCompleteListener(task1 -> {
-                        initAccountCreditListener();
-                    });
+                    FirestoreUser.buildUserDocument().get().addOnCompleteListener(task1 -> initAccountCreditListener());
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -985,7 +970,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
                 new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
                     @Override
-                    public void onAdLoaded(RewardedAd ad) {
+                    public void onAdLoaded(@NonNull RewardedAd ad) {
                         Log.d("RewardedAd", "Ad was loaded.");
                         rewardedAd = ad;
                         ServerSideVerificationOptions options = new ServerSideVerificationOptions

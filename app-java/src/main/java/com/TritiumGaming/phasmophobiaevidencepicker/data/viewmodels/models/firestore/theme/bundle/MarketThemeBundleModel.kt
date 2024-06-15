@@ -1,89 +1,73 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Availability
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
+class MarketThemeBundleModel(
+    uuid: String?,
+    theme: MarketThemeBundleModel,
+    themes: List<ThemeModel>
+) : MarketplaceItemModel(theme.buyCredits, theme.name) {
+    var themes: ArrayList<ThemeModel>? = null
+        private set
+    private var unlockedState: Availability = Availability.LOCKED
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class MarketThemeBundleModel extends MarketplaceItemModel {
-
-    @Nullable
-    private ArrayList<ThemeModel> themes = null;
-    @NonNull
-    private ThemeModel.Availability unlockedState = ThemeModel.Availability.LOCKED;
-
-    public MarketThemeBundleModel(String uuid,
-                                  @NotNull MarketThemeBundleModel theme,
-                                  @NonNull List<ThemeModel> themes) {
-        super(theme.getBuyCredits(), theme.getName());
-
-        setUUID(uuid);
-        addThemes(themes);
-        setUnlockedState();
+    init {
+        setUUID(uuid)
+        addThemes(themes)
+        setUnlockedState()
     }
 
-    public void addThemes(@NonNull List<ThemeModel> themes) {
-        this.themes = new ArrayList<>();
-        this.themes.addAll(themes);
+    private fun addThemes(themes: List<ThemeModel>) {
+        this.themes = ArrayList()
+        this.themes!!.addAll(themes)
     }
 
-    public ArrayList<ThemeModel> getThemes() {
-        return themes;
-    }
+    val isUnlocked: Boolean
+        get() = unlockedState != Availability.LOCKED
 
-    public ThemeModel.Availability getUnlockedState() {
-        return unlockedState;
-    }
+    val discountedBuyCredits: Long
+        get() {
+            val lockedThemeCount = lockedItemCount
 
-    public boolean isUnlocked() {
-        return unlockedState != ThemeModel.Availability.LOCKED;
-    }
-
-    public long getDiscountedBuyCredits() {
-        int lockedThemeCount = getLockedItemCount();
-
-        if(lockedThemeCount == 0) {
-            return 0;
-        }
-
-        double ratio = lockedThemeCount / (double)themes.size();
-
-        return (long)(getBuyCredits() * ratio);
-    }
-
-    public int getLockedItemCount() {
-        int lockedThemeCount = themes.size();
-
-        for(ThemeModel customTheme: themes) {
-            if(customTheme.isUnlocked()) {
-                lockedThemeCount--;
+            if (lockedThemeCount == 0) {
+                return 0
             }
-        }
-        return lockedThemeCount;
-    }
 
-    public void setUnlockedState() {
-        if(themes == null) { return; }
+            val ratio = lockedThemeCount / themes!!.size.toDouble()
 
-        if(getLockedItemCount() <= 1) {
-            unlockedState = ThemeModel.Availability.UNLOCKED_PURCHASE;
-        }
-    }
-
-    @NonNull
-    public String toString() {
-        StringBuilder themeOut = new StringBuilder();
-        for(ThemeModel t: themes) {
-            themeOut.append(t);
+            return (buyCredits * ratio).toLong()
         }
 
-        return super.toString() + " " + getBuyCredits() + " " + themeOut + " " + getUnlockedState();
+    val lockedItemCount: Int
+        get() {
+            var lockedThemeCount = themes!!.size
+
+            for (customTheme in themes!!) {
+                if (customTheme.isUnlocked) {
+                    lockedThemeCount--
+                }
+            }
+            return lockedThemeCount
+        }
+
+    private fun setUnlockedState() {
+        if (themes == null) {
+            return
+        }
+
+        if (lockedItemCount <= 1) {
+            unlockedState = Availability.UNLOCKED_PURCHASE
+        }
     }
 
+    override fun toString(): String {
+        val themeOut = StringBuilder()
+        for (t in themes!!) {
+            themeOut.append(t)
+        }
+
+        return super.toString() + " " + buyCredits + " " + themeOut + " " + unlockedState
+    }
 }

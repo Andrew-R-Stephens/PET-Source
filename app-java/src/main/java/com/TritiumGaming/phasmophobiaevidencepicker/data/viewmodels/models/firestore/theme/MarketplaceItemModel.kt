@@ -1,48 +1,26 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme
 
-import androidx.annotation.NonNull;
+abstract class MarketplaceItemModel {
+    var uuid: String? = null
+        protected set
+    var name: String? = null
+        protected set
+    var buyCredits: Long = 0
+        protected set
 
-public abstract class MarketplaceItemModel {
+    constructor()
 
-    protected String uuid;
-    protected String name;
-    protected long buyCredits;
-
-    public MarketplaceItemModel() {
+    constructor(buyCredits: Long, name: String?) {
+        this.buyCredits = buyCredits
+        this.name = name
     }
 
-    public MarketplaceItemModel(long buyCredits, String name) {
-        setBuyCredits(buyCredits);
-        setName(name);
+    protected fun setUUID(uuid: String?) {
+        this.uuid = uuid
     }
 
-    protected void setName(String name) {
-        this.name = name;
-    }
-
-    protected void setBuyCredits(long buyCredits) {
-        this.buyCredits = buyCredits;
-    }
-
-    protected void setUUID(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public long getBuyCredits() {
-        return buyCredits;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @NonNull
-    public String toString() {
-        return getUuid() + " " + getName() + " " + getBuyCredits();
+    override fun toString(): String {
+        return "$uuid $name $buyCredits"
     }
 }
 

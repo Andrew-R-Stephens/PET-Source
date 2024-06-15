@@ -1,61 +1,34 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.ProductDetails.OneTimePurchaseOfferDetails
 
-import com.android.billingclient.api.ProductDetails;
+class MarketplaceMtxItemModel(val productDetails: ProductDetails) {
+    private val productID: String
+        get() = productDetails.productId
 
-public class MarketplaceMtxItemModel {
+    val name: String
+        get() = productDetails.name
 
-    private final ProductDetails productDetails;
+    val description: String
+        get() = productDetails.description
 
-    public MarketplaceMtxItemModel(ProductDetails productDetails) {
-        this.productDetails = productDetails;
-    }
+    private val purchaseDetails: OneTimePurchaseOfferDetails?
+        get() = productDetails.oneTimePurchaseOfferDetails
 
-    @NonNull
-    public String getProductID() {
-        return productDetails.getProductId();
-    }
+    val purchaseAmount: String
+        get() {
+            val details = purchaseDetails ?: return "ERROR"
 
-    @NonNull
-    public String getName() {
-        return productDetails.getName();
-    }
-
-    @NonNull
-    public String getDescription() {
-        return productDetails.getDescription();
-    }
-
-    public ProductDetails getProductDetails() {
-        return productDetails;
-    }
-
-    @Nullable
-    private ProductDetails.OneTimePurchaseOfferDetails getPurchaseDetails() {
-        return getProductDetails().getOneTimePurchaseOfferDetails();
-    }
-
-    @NonNull
-    public String getPurchaseAmount() {
-        ProductDetails.OneTimePurchaseOfferDetails details = getPurchaseDetails();
-        if(details == null) {
-            return "ERROR";
+            return details.formattedPrice
         }
 
-        return details.getFormattedPrice();
-    }
+    private val currencyCode: String
+        get() = purchaseDetails!!.priceCurrencyCode
 
-    @NonNull
-    public String getCurrencyCode() {
-        return getPurchaseDetails().getPriceCurrencyCode();
-    }
-
-    @NonNull
-    public String toString() {
-        return getProductID() + " " + getName() + " " + getPurchaseDetails() +
-                " " + getPurchaseAmount() + " " + getCurrencyCode();
+    override fun toString(): String {
+        return productID + " " + name + " " + purchaseDetails +
+                " " + purchaseAmount + " " + currencyCode
     }
 }
 

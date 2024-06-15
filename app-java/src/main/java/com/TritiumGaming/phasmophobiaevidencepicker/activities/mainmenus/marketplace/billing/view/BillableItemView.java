@@ -83,8 +83,7 @@ public class BillableItemView extends MaterialCardView {
             return;
         }
 
-        label_title.setText(
-                billableItem.getName());
+        label_title.setText(billableItem.getName());
     }
 
     public void setTitle() {
@@ -93,8 +92,10 @@ public class BillableItemView extends MaterialCardView {
             return;
         }
 
-        if(billableItem == null || billableItem.getName() == null) {
+        if(billableItem == null) {
             return;
+        } else {
+            billableItem.getName();
         }
 
         label_montaryValue.setText(
@@ -107,8 +108,10 @@ public class BillableItemView extends MaterialCardView {
             return;
         }
 
-        if(billableItem == null || billableItem.getDescription() == null) {
+        if(billableItem == null) {
             return;
+        } else {
+            billableItem.getDescription();
         }
 
         label_montaryValue.setText(
@@ -121,16 +124,14 @@ public class BillableItemView extends MaterialCardView {
             return;
         }
 
-        if(billableItem == null || billableItem.getPurchaseAmount() == null) {
+        if(billableItem == null) {
             return;
+        } else {
+            billableItem.getPurchaseAmount();
         }
 
         label_montaryValue.setText(
                 billableItem.getPurchaseAmount());
-    }
-
-    public void validate() {
-        setCreditCost();
     }
 
     public void setBuyButtonListener(OnClickListener buyButtonListener) {

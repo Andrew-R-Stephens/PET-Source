@@ -204,10 +204,7 @@ class NewsletterViewModel : SharedViewModel() {
         c: Context, editor: SharedPreferences.Editor?, localApply: Boolean,
         inboxType: InboxType
     ) {
-        var editor = editor
-        if (editor == null && (getEditor(c).also { editor = it }) == null) {
-            return
-        }
+        val editor = editor
 
         var target = ""
         target = when (inboxType) {
@@ -227,7 +224,7 @@ class NewsletterViewModel : SharedViewModel() {
         )
 
         if (localApply) {
-            editor!!.apply()
+            editor.apply()
         }
     }
 
@@ -241,7 +238,7 @@ class NewsletterViewModel : SharedViewModel() {
         saveLastReadDate(context, editor, false, InboxType.PHASMOPHOBIA)
         saveLastReadDate(context, editor, false, InboxType.PET)
 
-        editor!!.apply()
+        editor.apply()
 
         Log.d("MessageCenter", "Saving all inboxes...")
     }
@@ -254,7 +251,7 @@ class NewsletterViewModel : SharedViewModel() {
 
         saveLastReadDate(context, editor, false, inboxType)
 
-        editor!!.apply()
+        editor.apply()
 
         Log.d("MessageCenter", "Saving [" + inboxType.name + "]...")
     }

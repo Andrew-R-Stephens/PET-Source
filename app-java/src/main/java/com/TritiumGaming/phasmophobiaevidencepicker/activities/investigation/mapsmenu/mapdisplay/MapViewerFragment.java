@@ -94,13 +94,9 @@ public class MapViewerFragment extends InvestigationFragment {
             updateComponents();
         });
 
-        button_help.setOnClickListener(helpButtonView -> {
-            showHelpPopup();
-        });
+        button_help.setOnClickListener(helpButtonView -> showHelpPopup());
 
-        button_back.setOnClickListener(v -> {
-            handleBackAction();
-        });
+        button_back.setOnClickListener(v -> handleBackAction());
 
         if (mapMenuViewModel != null) {
             Log.d("MapName", mapMenuViewModel.getCurrentMapData().getMapName());
@@ -329,7 +325,7 @@ public class MapViewerFragment extends InvestigationFragment {
         }
 
         /** A Selector which represents the current layer of the selected map */
-        private class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
+        private static class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
 
             private final int[] selectorImages = new int[]{
                     R.drawable.icon_selector_unsel,

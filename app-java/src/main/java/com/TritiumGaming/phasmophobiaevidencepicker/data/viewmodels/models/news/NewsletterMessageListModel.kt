@@ -56,7 +56,7 @@ class NewsletterMessageListModel {
     val messages: ArrayList<NewsletterMessageModel> = ArrayList()
 
     fun add(msg: NewsletterMessageModel) {
-        mostRecentDateFound = msg.date ?: ""
+        mostRecentDateFound = msg.date
 
         messages.add(msg)
     }

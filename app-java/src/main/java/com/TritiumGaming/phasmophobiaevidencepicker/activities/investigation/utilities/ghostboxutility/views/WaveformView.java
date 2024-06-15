@@ -87,10 +87,10 @@ public class WaveformView extends View {
     public void init() {
         mBytes = null;
 
-        @ColorInt int color_frame = Color.WHITE,
+        @ColorInt int color_frame,
                 color_grid = Color.argb(50, 150, 0, 0),
                 color_bg = Color.argb(50, 200, 0, 0),
-                color_waveform = Color.RED;
+                color_waveform;
 
         color_waveform = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
         color_frame = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorSecondary);

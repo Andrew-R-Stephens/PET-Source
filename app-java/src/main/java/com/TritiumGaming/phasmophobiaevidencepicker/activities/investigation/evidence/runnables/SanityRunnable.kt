@@ -18,8 +18,8 @@ class SanityRunnable (
      * Used to properly time the Flash Warning in the local run() method.
      */
     var wait: Long = 0
-    private var flashTick: Double = 0.0
-    private var flashDuration: Double = 1000L / 2.0
+    // private var flashTick: Double = 0.0
+    // private var flashDuration: Double = 1000L / 2.0
 
     /**
      * Updates both the Sanity Image, the Sanity Percent,
@@ -27,8 +27,8 @@ class SanityRunnable (
      */
     override fun run() {
 
-        val sanityModel = evidenceViewModel?.sanityModel ?: return
-        val timerModel = evidenceViewModel.timerModel ?: return
+        // val sanityModel = evidenceViewModel?.sanityModel ?: return
+        val timerModel = evidenceViewModel?.timerModel ?: return
 
         /*
         if (timerModel.isNewCycle) {

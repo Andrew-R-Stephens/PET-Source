@@ -1,65 +1,43 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme
 
-import androidx.annotation.NonNull;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Companion.defaultTheme
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel;
+class MarketSingleThemeModel : MarketplaceItemModel {
+    var group: String? = null
 
-import org.jetbrains.annotations.NotNull;
+    private var theme: ThemeModel? = null
 
-public class MarketSingleThemeModel extends MarketplaceItemModel {
+    val isUnlocked: Boolean
+        get() = theme!!.isUnlocked
 
-    private String group;
-    private ThemeModel theme;
+    val style: Int
+        get() {
+            if (theme != null) {
+                return theme!!.style
+            }
 
-    public MarketSingleThemeModel() {
-    }
-
-    public MarketSingleThemeModel(long buyCredits, String group, String name) {
-        setBuyCredits(buyCredits);
-        setGroup(group);
-        setName(name);
-    }
-
-    public MarketSingleThemeModel(String uuid, @NotNull MarketSingleThemeModel marketTheme, ThemeModel theme) {
-        setUUID(uuid);
-        setTheme(theme);
-        setBuyCredits(marketTheme.getBuyCredits());
-        setGroup(marketTheme.getGroup());
-        setName(marketTheme.getName());
-    }
-
-    protected void setGroup(String group) {
-        this.group = group;
-    }
-
-    protected void setTheme(ThemeModel theme) {
-        this.theme = theme;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    private ThemeModel getTheme() {
-        return theme;
-    }
-
-    public boolean isUnlocked() {
-        return theme.isUnlocked();
-    }
-
-    public int getStyle() {
-        if(theme != null) {
-            return theme.getStyle();
+            return defaultTheme.style
         }
 
-        return ThemeModel.Companion.getDefaultTheme().getStyle();
+    constructor()
+
+    constructor(buyCredits: Long, group: String?, name: String?) {
+        this.buyCredits = buyCredits
+        this.group = group
+        this.name = name
     }
 
-    @NonNull
-    public String toString() {
-        return super.toString() + " " + getBuyCredits() + " " + getGroup() + " " + getTheme();
+    constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?) {
+        setUUID(uuid)
+        this.theme = theme
+        this.buyCredits = marketTheme.buyCredits
+        this.group = marketTheme.group
+        this.name = marketTheme.name
     }
 
+    override fun toString(): String {
+        return super.toString() + " " + buyCredits + " " + group + " " + theme
+    }
 }

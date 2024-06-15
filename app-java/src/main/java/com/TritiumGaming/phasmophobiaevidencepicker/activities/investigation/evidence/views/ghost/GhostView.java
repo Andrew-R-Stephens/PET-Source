@@ -203,7 +203,7 @@ public abstract class GhostView extends ConstraintLayout {
         }
 
         @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
+        public boolean onFling(MotionEvent event1, @NonNull MotionEvent event2,
                                float velocityX, float velocityY) {
 
             boolean status = !evidenceViewModel.swapStatusInRejectedPile(index);

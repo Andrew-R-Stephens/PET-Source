@@ -96,84 +96,82 @@ public abstract class ItemStoreFragment extends CodexFragment {
             }
 
             try {
-                requireActivity().runOnUiThread(() -> {
-                    scrollView.post(() -> {
-                        boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+                requireActivity().runOnUiThread(() -> scrollView.post(() -> {
+                    boolean isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
-                        boolean isScrollable;
-                        if(isPortrait) {
-                            isScrollable = scrollView.getHeight() < scrollView.getChildAt(0).getHeight() + scrollView.getPaddingTop() + scrollView.getPaddingBottom();
-                        } else {
-                            isScrollable = scrollView.getWidth() < scrollView.getChildAt(0).getWidth() + scrollView.getPaddingStart() + scrollView.getPaddingEnd();
-                        }
+                    boolean isScrollable;
+                    if(isPortrait) {
+                        isScrollable = scrollView.getHeight() < scrollView.getChildAt(0).getHeight() + scrollView.getPaddingTop() + scrollView.getPaddingBottom();
+                    } else {
+                        isScrollable = scrollView.getWidth() < scrollView.getChildAt(0).getWidth() + scrollView.getPaddingStart() + scrollView.getPaddingEnd();
+                    }
 
-                        int paginatorChildCount = isPortrait ?
-                                scrollViewPaginator.getRowCount() :
-                                scrollViewPaginator.getColumnCount();
+                    int paginatorChildCount = isPortrait ?
+                            scrollViewPaginator.getRowCount() :
+                            scrollViewPaginator.getColumnCount();
 
-                        initScrollViewListeners(scrollViewPaginator, paginatorChildCount);
-                        doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
+                    initScrollViewListeners(scrollViewPaginator, paginatorChildCount);
+                    doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
 
-                        if(isScrollable) {
-                            scrollViewPaginator.setVisibility(View.VISIBLE);
-                        } else {
-                            scrollViewPaginator.setVisibility(View.GONE);
-                        }
+                    if(isScrollable) {
+                        scrollViewPaginator.setVisibility(View.VISIBLE);
+                    } else {
+                        scrollViewPaginator.setVisibility(View.GONE);
+                    }
 
-                        LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
-                        for(int i = 0; i < list.getChildCount(); i++) {
-                            int groupIndex = i;
-                            ItemStoreGroupListView group = (ItemStoreGroupListView) list.getChildAt(i);
-                            group.setVisibility(View.INVISIBLE);
-                            group.setAlpha(0);
-                            for(int j = 0; j < group.getItems().length; j++) {
+                    LinearLayoutCompat list = (LinearLayoutCompat) (scrollView.getChildAt(0));
+                    for(int i = 0; i < list.getChildCount(); i++) {
+                        int groupIndex = i;
+                        ItemStoreGroupListView group = (ItemStoreGroupListView) list.getChildAt(i);
+                        group.setVisibility(View.INVISIBLE);
+                        group.setAlpha(0);
+                        for(int j = 0; j < group.getItems().length; j++) {
 
-                                ItemStoreItemView item = group.getItems()[j];
-                                int itemIndex = j;
+                            ItemStoreItemView item = group.getItems()[j];
+                            int itemIndex = j;
 
-                                item.setOnClickListener((itemView) -> {
-                                    boolean newState = !item.isSelected();
+                            item.setOnClickListener((itemView) -> {
+                                boolean newState = !item.isSelected();
 
-                                    if(itemSelected != null) {
-                                        itemSelected.setSelected(false);
-                                    }
+                                if(itemSelected != null) {
+                                    itemSelected.setSelected(false);
+                                }
 
-                                    itemSelected = item;
-                                    itemSelected.setSelected(newState);
+                                itemSelected = item;
+                                itemSelected.setSelected(newState);
 
-                                    buildDataPopupView(dataView, groupIndex, itemIndex);
+                                buildDataPopupView(dataView, groupIndex, itemIndex);
 
-                                    if (newState) {
-                                        openItemDataView(dataView);
-                                    } else {
-                                        closeItemDataView(dataView);
-                                    }
-                                });
-                            }
-
-                            group.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressBar.animate().alpha(0).setDuration(250).setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            progressBar.setVisibility(View.GONE);
-                                            super.onAnimationEnd(animation);
-                                        }
-                                    }).start();
-                                    group.animate()
-                                            .setListener(new AnimatorListenerAdapter() {
-                                                @Override
-                                                public void onAnimationStart(Animator animation) {
-                                                    super.onAnimationStart(animation);
-                                                    group.setVisibility(View.VISIBLE);
-                                                }}
-                                            ).alpha(1).setStartDelay((long)(50f * groupIndex)).setDuration(200);
+                                if (newState) {
+                                    openItemDataView(dataView);
+                                } else {
+                                    closeItemDataView(dataView);
                                 }
                             });
                         }
-                    });
-                });
+
+                        group.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.animate().alpha(0).setDuration(250).setListener(new AnimatorListenerAdapter() {
+                                    @Override
+                                    public void onAnimationEnd(Animator animation) {
+                                        progressBar.setVisibility(View.GONE);
+                                        super.onAnimationEnd(animation);
+                                    }
+                                }).start();
+                                group.animate()
+                                        .setListener(new AnimatorListenerAdapter() {
+                                            @Override
+                                            public void onAnimationStart(Animator animation) {
+                                                super.onAnimationStart(animation);
+                                                group.setVisibility(View.VISIBLE);
+                                            }}
+                                        ).alpha(1).setStartDelay((long)(50f * groupIndex)).setDuration(200);
+                            }
+                        });
+                    }
+                }));
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             }
@@ -187,9 +185,7 @@ public abstract class ItemStoreFragment extends CodexFragment {
             }
         });
 
-        back_button.setOnClickListener(v -> {
-            handleBackAction(dataView);
-        });
+        back_button.setOnClickListener(v -> handleBackAction(dataView));
 
         try {
             requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
@@ -249,9 +245,7 @@ public abstract class ItemStoreFragment extends CodexFragment {
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scrollView.setOnScrollChangeListener((view1, i, i1, i2, i3) -> {
-                doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);
-            });
+            scrollView.setOnScrollChangeListener((view1, i, i1, i2, i3) -> doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount));
         } else {
             viewTreeObserverListener = () ->
                     doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount);

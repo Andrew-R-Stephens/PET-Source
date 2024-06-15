@@ -351,7 +351,7 @@ public class InteractiveMapView extends View {
             interactiveMapData.updateMatrix();
             if (mapImages != null && mapData != null && mapData.getCurrentFloor() < mapImages.size()) {
                 Bitmap b = mapImages.get(mapData.getCurrentFloor());
-                if (BitmapUtils.bitmapExists(b)) {
+                if (BitmapUtils.Companion.bitmapExists(b)) {
                     interactiveMapData.setImageSize(b.getWidth(), b.getHeight());
                     interactiveMapData.postCenterTranslateMatrix(
                             b.getWidth(),
@@ -408,7 +408,7 @@ public class InteractiveMapView extends View {
                     float y = (panY) + poi.getPoint().y * scaleY;
 
                     Bitmap b = poiImages.get(poi.getType());
-                    if (BitmapUtils.bitmapExists(b)) {
+                    if (BitmapUtils.Companion.bitmapExists(b)) {
                         interactivePoiData.deepCopy(interactiveMapData);
                         interactivePoiData.setPan(
                                 x,

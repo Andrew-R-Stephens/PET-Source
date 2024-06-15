@@ -395,9 +395,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
             .addOnFailureListener(e -> {
                 Log.d("Billing", "Microtransaction query failed!");
                 e.printStackTrace();
-            }).addOnCompleteListener(task -> {
-                stopProgressBarLoop();
-            });
+            }).addOnCompleteListener(task -> stopProgressBarLoop());
     }
 
     private void stopProgressBarLoop() {
@@ -448,8 +446,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
 
             MarketplaceMtxItemModel item = marketplaceMtxView.getBillableItem();
             if(item == null) { return; }
-            ProductDetails productDetail =
-                    item.getProductDetails();
+            ProductDetails productDetail = item.getProductDetails();
 
             ImmutableList<BillingFlowParams.ProductDetailsParams> productDetailsParamsList =
                     ImmutableList.of(

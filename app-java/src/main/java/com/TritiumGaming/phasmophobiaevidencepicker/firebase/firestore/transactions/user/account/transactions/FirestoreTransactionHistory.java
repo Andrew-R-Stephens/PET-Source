@@ -21,25 +21,23 @@ public class FirestoreTransactionHistory {
 
         getTransactionHistoryDocument()
             .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                documentSnapshot.getReference().set(emptyMap, SetOptions.merge())
-                        .addOnSuccessListener(unused ->
-                                Log.d("Firestore",
-                                        DOCUMENT_TRANSACTION_HISTORY +
-                                                " successfully INITIALIZED!")
-                        )
-                        .addOnFailureListener(e -> {
+            .addOnSuccessListener(documentSnapshot -> documentSnapshot.getReference().set(emptyMap, SetOptions.merge())
+                    .addOnSuccessListener(unused ->
                             Log.d("Firestore",
                                     DOCUMENT_TRANSACTION_HISTORY +
-                                            " failed INITIALIZATION");
-                            e.printStackTrace();
-                        })
-                        .addOnCompleteListener(task ->
-                                Log.d("Firestore",
-                                        DOCUMENT_TRANSACTION_HISTORY +
-                                                " INITIALIZATION process complete!")
-                        );
-            })
+                                            " successfully INITIALIZED!")
+                    )
+                    .addOnFailureListener(e -> {
+                        Log.d("Firestore",
+                                DOCUMENT_TRANSACTION_HISTORY +
+                                        " failed INITIALIZATION");
+                        e.printStackTrace();
+                    })
+                    .addOnCompleteListener(task ->
+                            Log.d("Firestore",
+                                    DOCUMENT_TRANSACTION_HISTORY +
+                                            " INITIALIZATION process complete!")
+                    ))
             .addOnFailureListener(Throwable::printStackTrace);
 
     }

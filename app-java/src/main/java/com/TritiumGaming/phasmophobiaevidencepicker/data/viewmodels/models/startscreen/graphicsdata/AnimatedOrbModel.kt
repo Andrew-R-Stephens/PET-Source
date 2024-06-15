@@ -93,18 +93,18 @@ class AnimatedOrbModel(
         velX += (slopeX * mult * speed)
         velY += (slopeY * mult * speed)
 
-        val VEL_MAX = Math.PI.toFloat() / 2f
-        val VEL_MIN = -1 * VEL_MAX
-        if (velX > VEL_MAX) {
-            velX = VEL_MAX
-        } else if (velX < VEL_MIN) {
-            velX = VEL_MIN
+        val maxVel = Math.PI.toFloat() / 2f
+        val minVel = -1 * maxVel
+        if (velX > maxVel) {
+            velX = maxVel
+        } else if (velX < minVel) {
+            velX = minVel
         }
 
-        if (velY > VEL_MAX) {
-            velY = VEL_MAX
-        } else if (velY < VEL_MIN) {
-            velY = VEL_MIN
+        if (velY > maxVel) {
+            velY = maxVel
+        } else if (velY < minVel) {
+            velY = minVel
         }
 
         x += velX.toDouble()

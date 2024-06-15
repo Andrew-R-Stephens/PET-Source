@@ -179,9 +179,9 @@ public abstract class PETActivity extends AppCompatActivity {
                     }
                 }).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-
+                        Log.d("AuthUI", "Silent Anonymous login successful");
                     } else {
-                        //TODO
+                        Log.d("AuthUI", "Silent Anonymous login failed!");
                     }
                 });
     }
@@ -214,21 +214,19 @@ public abstract class PETActivity extends AppCompatActivity {
         consentInformation.requestConsentInfoUpdate(
                 this,
                 params,
-                () -> {
-                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                            this,
-                            loadAndShowError -> {
-                                if (loadAndShowError != null) {
-                                    // Consent gathering failed.
-                                    Log.w("ConsentManagerV2", String.format("%s: %s",
-                                            loadAndShowError.getErrorCode(),
-                                            loadAndShowError.getMessage()));
-                                }
-
-                                // Consent has been gathered.
+                () -> UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                        this,
+                        loadAndShowError -> {
+                            if (loadAndShowError != null) {
+                                // Consent gathering failed.
+                                Log.w("ConsentManagerV2", String.format("%s: %s",
+                                        loadAndShowError.getErrorCode(),
+                                        loadAndShowError.getMessage()));
                             }
-                    );
-                },
+
+                            // Consent has been gathered.
+                        }
+                ),
                 requestConsentError -> {
                     // Consent gathering failed.
                     Log.w("ConsentManagerV2", String.format("%s: %s",

@@ -128,6 +128,12 @@ import kotlin.math.sqrt
  * @noinspection PatternVariableCanBeUsed
  * @since 1.2
  */
+@Suppress("ConstPropertyName", "ConstPropertyName", "ConstPropertyName", "ConstPropertyName",
+    "ConstPropertyName", "ConstPropertyName", "ConstPropertyName", "ConstPropertyName",
+    "ConstPropertyName", "ConstPropertyName", "ConstPropertyName", "ConstPropertyName",
+    "ConstPropertyName", "ConstPropertyName", "ConstPropertyName", "ConstPropertyName",
+    "ConstPropertyName"
+)
 class AffineTransform : Cloneable, Serializable {
     /** Returns the `m00` element of the 3x3 affine transformation matrix.
      * This matrix factor determines how input X coordinates will affect output

@@ -16,14 +16,14 @@ class NewsletterMessageModel(title: String, description: String, date: String) {
     }
 
     private fun hasDate(): Boolean {
-        return date.isNotEmpty() ?: false
+        return date.isNotEmpty()
     }
 
     private fun hasDescription(): Boolean {
-        return description.isNotEmpty() ?: false
+        return description.isNotEmpty()
     }
 
     private fun hasTitle(): Boolean {
-        return title.isNotEmpty() ?: false
+        return title.isNotEmpty()
     }
 }

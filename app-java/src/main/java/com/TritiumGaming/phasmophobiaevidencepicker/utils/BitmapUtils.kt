@@ -11,6 +11,8 @@ import android.graphics.PorterDuffXfermode
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.bitmapExists
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.getBitmapFromVector
 import javax.microedition.khronos.egl.EGL10
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.egl.EGLContext
@@ -24,6 +26,7 @@ import kotlin.math.max
  * @author TritiumGamingStudios
  */
 class BitmapUtils {
+
     var resources: ArrayList<Int> = ArrayList()
     private var currentLayer = -1
 
@@ -64,7 +67,6 @@ class BitmapUtils {
 
     private fun setMaxTextureSize() {
         // Safe minimum default size
-        val IMAGE_MAX_BITMAP_DIMENSION = 2048
 
         // Get EGL Display
         val egl = EGLContext.getEGL() as EGL10
@@ -208,7 +210,8 @@ class BitmapUtils {
     }
 
     companion object {
-        @JvmStatic
+        const val IMAGE_MAX_BITMAP_DIMENSION = 2048
+
         fun bitmapExists(b: Bitmap?): Boolean {
             return b != null && !(b.isRecycled)
         }

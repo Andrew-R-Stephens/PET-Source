@@ -164,7 +164,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     /**
      * @param data
      */
-    public void setData(MissionsListModel data) {
+    public void setData(@Nullable MissionsListModel data) {
         this.data = data;
     }
 
@@ -195,7 +195,7 @@ public class MissionsSpinner extends androidx.appcompat.widget.AppCompatSpinner 
     /**
      * @param checkButton
      */
-    public void setCheckButton(MissionsCompletedButton checkButton) {
+    public void setCheckButton(@Nullable MissionsCompletedButton checkButton) {
         this.checkButton = checkButton;
     }
 

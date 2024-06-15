@@ -33,10 +33,7 @@ class OnboardingViewModel : SharedViewModel() {
     fun saveCanShowIntroduction(
         c: Context, editor: SharedPreferences.Editor?, localApply: Boolean
     ) {
-        var editor = editor
-        if (editor == null && (getEditor(c).also { editor = it }) == null) {
-            return
-        }
+        val editor = editor
 
         editor!!.putBoolean(
             c.resources.getString(R.string.tutorialTracking_canShowIntroduction),
@@ -44,7 +41,7 @@ class OnboardingViewModel : SharedViewModel() {
         )
 
         if (localApply) {
-            editor!!.apply()
+            editor.apply()
         }
     }
 
@@ -58,7 +55,7 @@ class OnboardingViewModel : SharedViewModel() {
 
         saveCanShowIntroduction(context, editor, false)
 
-        editor!!.apply()
+        editor.apply()
     }
 
     val dataAsList: HashMap<String, String>
