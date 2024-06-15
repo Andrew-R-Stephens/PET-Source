@@ -31,7 +31,7 @@ import androidx.annotation.Nullable;
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.maps.mapviewer.InteractiveMapModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.InteractiveMapModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType;

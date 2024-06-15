@@ -17,9 +17,9 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentGroupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentItemModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentItemModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
@@ -48,9 +48,9 @@ public class EquipmentFragment extends ItemStoreFragment {
             equipmentIcon = typed_shop.getResourceId(1, 0);
             buyCostData = typed_shop.getResourceId(6, 0);
 
-            groupData.nameData = equipmentName;
+            groupData.setNameData(equipmentName);
             groupData.setPaginationIcon(equipmentIcon);
-            groupData.buyCostData = buyCostData;
+            groupData.setBuyCostData(buyCostData);
 
             TypedArray typed_equipment_image =
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(2, 0));
@@ -58,10 +58,10 @@ public class EquipmentFragment extends ItemStoreFragment {
                 ItemStoreEquipmentItemModel itemData = new ItemStoreEquipmentItemModel();
                 groupData.addItem(itemData);
                 @DrawableRes int value = typed_equipment_image.getResourceId(j, 0);
-                groupData.getItemDataAt(j).imageData = value;
+                groupData.getItemDataAt(j).setImageData(value);
 
                 //tierImages.add(value);
-                groupData.getItemDataAt(j).imageData = value;
+                groupData.getItemDataAt(j).setImageData(value);
             }
             typed_equipment_image.recycle();
 
@@ -69,7 +69,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(3, 0));
             for (int j = 0; j < typed_equipment_flavortext.length(); j++) {
                 @StringRes int value = typed_equipment_flavortext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).flavorData = value;
+                groupData.getItemDataAt(j).setFlavorData(value);
             }
             typed_equipment_flavortext.recycle();
 
@@ -77,7 +77,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(4, 0));
             for (int j = 0; j < typed_equipment_infotext.length(); j++) {
                 @StringRes int value = typed_equipment_infotext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).infoData = value;
+                groupData.getItemDataAt(j).setInfoData(value);
             }
             typed_equipment_infotext.recycle();
 
@@ -121,7 +121,7 @@ public class EquipmentFragment extends ItemStoreFragment {
                     getContext().getResources().obtainTypedArray(typed_shop.getResourceId(8, 0));
             for (int j = 0; j < typed_equipment_upgradecost.length(); j++) {
                 @IntegerRes int value = typed_equipment_upgradecost.getResourceId(j, 0);
-                ((ItemStoreEquipmentItemModel)groupData.getItemDataAt(j)).upgradeCostData = value;
+                ((ItemStoreEquipmentItemModel) groupData.getItemDataAt(j)).setUpgradeCostData(value);
             }
             typed_equipment_upgradecost.recycle();
 
@@ -191,9 +191,9 @@ public class EquipmentFragment extends ItemStoreFragment {
         ItemStoreItemView itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);//.findViewById(R.id.tier_item);
 
         StringBuilder buyCost = new StringBuilder("$");
-        buyCost.append(getResources().getInteger(groupData.buyCostData));
+        buyCost.append(getResources().getInteger(groupData.getBuyCostData()));
 
-        int upcst = getResources().getInteger(itemData.upgradeCostData);
+        int upcst = getResources().getInteger(itemData.getUpgradeCostData());
         StringBuilder upgradeCost = new StringBuilder();
         if(upcst > 0) {
             upgradeCost.append("$").append(upcst);
@@ -205,20 +205,16 @@ public class EquipmentFragment extends ItemStoreFragment {
         StringBuilder upgradeLevel = new StringBuilder();
         upgradeLevel.append((uplvl > 0) ? uplvl : "-");
 
-        itemNameView.setText(getString(groupData.nameData));
-        flavortextView.setText(Html.fromHtml(getString(itemData.flavorData)));
-        infotextView.setText(Html.fromHtml(getString(itemData.infoData)));
+        itemNameView.setText(getString(groupData.getNameData()));
+        flavortextView.setText(Html.fromHtml(getString(itemData.getFlavorData())));
+        infotextView.setText(Html.fromHtml(getString(itemData.getInfoData())));
         buycostView.setText(buyCost);
         upgradeCostView.setText(upgradeCost);
         upgradeLevelView.setText(upgradeLevel);
         attrtextView.setText(Html.fromHtml(itemData.getAllAttributesAsFormattedHTML(requireContext())));
-        /*ItemStoreComposablesKt.setEquipmentSimple(
-                itemImageView,
-                itemData.getImageData(),
-                itemIndex+1
-        );*/
+
         LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
-        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.imageData, getContext().getTheme()));
+        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(getResources(), itemData.getImageData(), getContext().getTheme()));
         layerDrawable.setLevel(itemIndex+1);
 
         itemImageView.invalidate();

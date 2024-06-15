@@ -1,5 +1,0 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.possessions
-
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreGroupModel
-
-class ItemStorePossnsGroupModel : ItemStoreGroupModel()

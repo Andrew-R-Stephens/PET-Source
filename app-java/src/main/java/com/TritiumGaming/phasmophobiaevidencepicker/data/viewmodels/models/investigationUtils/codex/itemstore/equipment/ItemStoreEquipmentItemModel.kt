@@ -1,27 +1,23 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.equipment
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.equipment
 
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreItemModel
 
 class ItemStoreEquipmentItemModel : ItemStoreItemModel() {
-    @JvmField
-    @get:IntegerRes
+
     @IntegerRes
     var upgradeCostData: Int = 0
 
-    @get:IntegerRes
     @IntegerRes
     var upgradeLevelData: Int = 0
         private set
 
-    @get:StringRes
     @StringRes
     val positiveAttributes: ArrayList<Int> = ArrayList()
 
-    @get:StringRes
     @StringRes
     val negativeAttributes: ArrayList<Int> = ArrayList()
 

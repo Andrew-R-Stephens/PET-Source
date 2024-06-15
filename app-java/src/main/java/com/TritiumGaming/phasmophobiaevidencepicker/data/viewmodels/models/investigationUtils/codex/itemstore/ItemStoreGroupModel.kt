@@ -1,11 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 abstract class ItemStoreGroupModel {
-    @JvmField
-    @get:StringRes
+
     @StringRes
     var nameData: Int = 0
     private val itemData = ArrayList<ItemStoreItemModel>()

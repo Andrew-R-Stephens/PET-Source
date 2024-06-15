@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.models.maps.mapviewer
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer
 
 import android.graphics.BitmapFactory
 import android.graphics.Matrix

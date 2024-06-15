@@ -17,9 +17,9 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.possessions.ItemStorePossessionItemModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.possessions.ItemStorePossnsGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.possessions.ItemStorePossessionItemModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.possessions.ItemStorePossnsGroupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView;
@@ -44,7 +44,7 @@ public class PossessionsFragment extends ItemStoreFragment {
             possessionName = typed_shop.getResourceId(0, 0);
             possessionIcon = typed_shop.getResourceId(1, 0);
 
-            groupData.nameData = possessionName;
+            groupData.setNameData(possessionName);
             groupData.setPaginationIcon(possessionIcon);
 
             TypedArray typed_possession_image =
@@ -52,10 +52,10 @@ public class PossessionsFragment extends ItemStoreFragment {
             for (int j = 0; j < typed_possession_image.length(); j++) {
                 groupData.addItem(new ItemStorePossessionItemModel());
                 @DrawableRes int value = typed_possession_image.getResourceId(j, 0);
-                groupData.getItemDataAt(j).imageData = value;
+                groupData.getItemDataAt(j).setImageData(value);
 
                 //tierImages.add(value);
-                groupData.getItemDataAt(j).imageData = value;
+                groupData.getItemDataAt(j).setImageData(value);
             }
             typed_possession_image.recycle();
 
@@ -63,7 +63,7 @@ public class PossessionsFragment extends ItemStoreFragment {
                     getResources().obtainTypedArray(typed_shop.getResourceId(3, 0));
             for (int j = 0; j < typed_equipment_flavortext.length(); j++) {
                 @StringRes int value = typed_equipment_flavortext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).flavorData = value;
+                groupData.getItemDataAt(j).setFlavorData(value);
             }
             typed_equipment_flavortext.recycle();
 
@@ -71,7 +71,7 @@ public class PossessionsFragment extends ItemStoreFragment {
                     getResources().obtainTypedArray(typed_shop.getResourceId(4, 0));
             for (int j = 0; j < typed_equipment_infotext.length(); j++) {
                 @StringRes int value = typed_equipment_infotext.getResourceId(j, 0);
-                groupData.getItemDataAt(j).infoData = value;
+                groupData.getItemDataAt(j).setInfoData(value);
             }
             typed_equipment_infotext.recycle();
 
@@ -167,9 +167,9 @@ public class PossessionsFragment extends ItemStoreFragment {
         AppCompatTextView attrtextView = dataView.findViewById(R.id.textview_itemshop_attributes);
         ItemStoreItemView itemImageView = dataView.findViewById(R.id.itemStoreEquipmentItemData);
 
-        itemNameView.setText(getString(groupData.nameData));
-        flavortextView.setText(Html.fromHtml(getString(itemData.flavorData)));
-        infotextView.setText(Html.fromHtml(getString(itemData.infoData)));
+        itemNameView.setText(getString(groupData.getNameData()));
+        flavortextView.setText(Html.fromHtml(getString(itemData.getFlavorData())));
+        infotextView.setText(Html.fromHtml(getString(itemData.getInfoData())));
         try {
             sanitydraintextView.setText(Html.fromHtml(getString(itemData.getSanityDrainData())));
         } catch (Resources.NotFoundException e) {
@@ -212,7 +212,7 @@ public class PossessionsFragment extends ItemStoreFragment {
 
         LayerDrawable layerDrawable = (LayerDrawable) (itemImageView.getDrawable());
         layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(
-                getResources(), itemData.imageData, getContext().getTheme()));
+                getResources(), itemData.getImageData(), getContext().getTheme()));
         layerDrawable.setLevel(0);
         itemImageView.invalidate();
     }

@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
 
 public class ItemStoreGroupListView extends LinearLayoutCompat {
 
@@ -21,17 +21,14 @@ public class ItemStoreGroupListView extends LinearLayoutCompat {
 
     public ItemStoreGroupListView(@NonNull Context context) {
         super(context);
-        //initView(UNSPECIFIED_LAYOUT);
     }
 
     public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
-        //initView(UNSPECIFIED_LAYOUT);
     }
 
     public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        //initView(UNSPECIFIED_LAYOUT);
     }
 
     public void build(@DrawableRes int containerSrc, ItemStoreGroupModel group) {
@@ -67,7 +64,7 @@ public class ItemStoreGroupListView extends LinearLayoutCompat {
         }
 
         AppCompatTextView textView_name = this.findViewById(R.id.safehouse_shop_tool_label);
-        String title = getResources().getString(group.nameData);
+        String title = getResources().getString(group.getNameData());
         textView_name.setText(title);
         textView_name.setSelected(true);
 
