@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.ghost;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,14 +15,12 @@ import android.widget.ScrollView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationPopupWindow;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
@@ -77,8 +75,8 @@ public class GhostPopupWindow extends InvestigationPopupWindow {
 
         PETImageButton closeButton = findViewById(R.id.button_right);
         ConstraintLayout bodyCons = findViewById(R.id.layout_contentbody);
-        AppCompatImageButton left = findViewById(R.id.title_left);
-        AppCompatImageButton right = findViewById(R.id.title_right);
+        PETImageButton left = findViewById(R.id.title_left);
+        PETImageButton right = findViewById(R.id.title_right);
         AppCompatTextView title = findViewById(R.id.label_infoTitle);
 
         ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
