@@ -1,312 +1,327 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.os.Build;
-import android.text.Html;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ScrollView;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.content.Context
+import android.content.res.Resources
+import android.content.res.TypedArray
+import android.os.Build
+import android.text.Html
+import android.util.AttributeSet
+import android.util.Log
+import android.view.DragEvent
+import android.view.Gravity
+import android.view.View
+import android.widget.ScrollView
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel.EvidencePopupRecord
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
+import pl.droidsonroids.gif.GifImageView
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+class EvidencePopupWindow : InvestigationPopupWindow {
+    private val detailIndex = 0
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+    constructor(context: Context) :
+            super(context) { initView() }
 
-import pl.droidsonroids.gif.GifImageView;
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView() }
 
-public class EvidencePopupWindow extends InvestigationPopupWindow {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView() }
 
-    private final int detailIndex = 0;
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
 
-    public EvidencePopupWindow(@NonNull Context context) {
-        super(context);
-        initView();
+    override fun initView() {
+        super.initView(R.layout.popup_info_evidence)
     }
 
-    public EvidencePopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView();
-    }
-
-    public EvidencePopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
-
-    public EvidencePopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
-
-    public void initView() {
-        super.initView(R.layout.popup_info_evidence);
-    }
-
-    public void build(EvidenceViewModel evidenceViewModel,
-                      @NonNull EvidencePopupModel.EvidencePopupRecord evidenceRecord,
-                      AdRequest adRequest) {
-
+    fun build(
+        evidenceViewModel: EvidenceViewModel?,
+        evidenceRecord: EvidencePopupRecord,
+        adRequest: AdRequest?
+    ) {
         // THEME
-        @ColorInt int fontEmphasisColor =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
 
-        AppCompatImageButton closeButton = findViewById(R.id.button_right);
-        AppCompatTextView label = findViewById(R.id.textView_title);
+        var adRequest = adRequest
+        @ColorInt val fontEmphasisColor =
+            getColorFromAttribute(context, R.attr.textColorBodyEmphasis)
 
-        AppCompatTextView info = findViewById(R.id.label_info);
+        val closeButton = findViewById<AppCompatImageButton>(R.id.button_right)
+        val label = findViewById<AppCompatTextView>(R.id.textView_title)
 
-        AppCompatImageView select_overview = findViewById(R.id.textView_overview_image);
-        AppCompatImageView select_tiers = findViewById(R.id.textView_tiers_image);
+        val info = findViewById<AppCompatTextView>(R.id.label_info)
 
-        AppCompatImageView select_tier_1 = findViewById(R.id.textView_tiers_1_image);
-        AppCompatImageView select_tier_2 = findViewById(R.id.textView_tiers_2_image);
-        AppCompatImageView select_tier_3 = findViewById(R.id.textView_tiers_3_image);
+        val select_overview = findViewById<AppCompatImageView>(R.id.textView_overview_image)
+        val select_tiers = findViewById<AppCompatImageView>(R.id.textView_tiers_image)
 
-        ScrollView scroller = findViewById(R.id.scrollView);
-        View indicator = findViewById(R.id.scrollview_indicator);
-        GifImageView animation = findViewById(R.id.animation_evidence);
-        GifImageView animation_fullscreen = findViewById(R.id.animation_evidence_fullscreen);
+        val select_tier_1 = findViewById<AppCompatImageView>(R.id.textView_tiers_1_image)
+        val select_tier_2 = findViewById<AppCompatImageView>(R.id.textView_tiers_2_image)
+        val select_tier_3 = findViewById<AppCompatImageView>(R.id.textView_tiers_3_image)
 
-        ConstraintLayout layout_overview = findViewById(R.id.constraintLayout_evidence_overview);
-        ConstraintLayout layout_tiers = findViewById(R.id.constraintLayout_evidence_tiers);
-        AppCompatTextView label_cost = findViewById(R.id.label_cost);
+        val scroller = findViewById<ScrollView>(R.id.scrollView)
+        val indicator = findViewById<View>(R.id.scrollview_indicator)
+        val animation = findViewById<GifImageView>(R.id.animation_evidence)
+        val animation_fullscreen = findViewById<GifImageView>(R.id.animation_evidence_fullscreen)
+
+        val layout_overview =
+            findViewById<ConstraintLayout>(R.id.constraintLayout_evidence_overview)
+        val layout_tiers = findViewById<ConstraintLayout>(R.id.constraintLayout_evidence_tiers)
+        val label_cost = findViewById<AppCompatTextView>(R.id.label_cost)
 
         // Init
-        label_cost.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                getContext().getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(getContext()),
-                "#ff6161", String.valueOf(fontEmphasisColor))));
+        label_cost.text = Html.fromHtml(
+            replaceHTMLFontColor(
+                context.getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(
+                    context
+                ),
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
 
         //MAIN STATES
-        select_overview.setImageLevel(1);
-        select_overview.setOnClickListener(selectView -> {
-            select_overview.setImageLevel(1);
-            select_tiers.setImageLevel(0);
+        select_overview.setImageLevel(1)
+        select_overview.setOnClickListener {
+            select_overview.setImageLevel(1)
+            select_tiers.setImageLevel(0)
 
-            layout_overview.setVisibility(View.VISIBLE);
-            layout_tiers.setVisibility(View.GONE);
+            layout_overview.visibility = VISIBLE
+            layout_tiers.visibility = GONE
+            animation_fullscreen.setImageResource(evidenceRecord.getAnimationAt(0))
+        }
+        select_tiers.setOnClickListener {
+            select_overview.setImageLevel(0)
+            select_tiers.setImageLevel(1)
 
-            animation_fullscreen.setImageResource(evidenceRecord.getAnimationAt(0));
-        });
-        select_tiers.setOnClickListener(selectView -> {
-            select_overview.setImageLevel(0);
-            select_tiers.setImageLevel(1);
+            layout_tiers.visibility = VISIBLE
+            layout_overview.visibility = GONE
 
-            layout_tiers.setVisibility(View.VISIBLE);
-            layout_overview.setVisibility(View.GONE);
-
-            select_tier_1.setImageLevel(1);
-            select_tier_2.setImageLevel(0);
-            select_tier_3.setImageLevel(0);
-            generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescriptionAt(getContext(), 1),
-                    evidenceRecord.getAnimationAt(1),
-                    evidenceRecord.getUnlockLevelAt(getContext(), 0),
-                    fontEmphasisColor);
-        });
+            select_tier_1.setImageLevel(1)
+            select_tier_2.setImageLevel(0)
+            select_tier_3.setImageLevel(0)
+            generateEvidenceTierView(
+                1, animation_fullscreen,
+                evidenceRecord.getDescriptionAt(context, 1),
+                evidenceRecord.getAnimationAt(1),
+                evidenceRecord.getUnlockLevelAt(context, 0),
+                fontEmphasisColor
+            )
+        }
 
         //TIER STATES
+        select_tier_1.setImageLevel(1)
+        select_tier_1.setOnClickListener {
+            select_tier_1.setImageLevel(1)
+            select_tier_2.setImageLevel(0)
+            select_tier_3.setImageLevel(0)
+            generateEvidenceTierView(
+                1, animation_fullscreen,
+                evidenceRecord.getDescriptionAt(context, 1),
+                evidenceRecord.getAnimationAt(1),
+                evidenceRecord.getUnlockLevelAt(context, 0),
+                fontEmphasisColor
+            )
+        }
+        select_tier_2.setOnClickListener {
+            select_tier_2.setImageLevel(1)
+            select_tier_1.setImageLevel(0)
+            select_tier_3.setImageLevel(0)
+            generateEvidenceTierView(
+                2, animation_fullscreen,
+                evidenceRecord.getDescriptionAt(context, 2),
+                evidenceRecord.getAnimationAt(2),
+                evidenceRecord.getUnlockLevelAt(context, 1),
+                fontEmphasisColor
+            )
+        }
+        select_tier_3.setOnClickListener {
+            select_tier_3.setImageLevel(1)
+            select_tier_1.setImageLevel(0)
+            select_tier_2.setImageLevel(0)
+            generateEvidenceTierView(
+                3, animation_fullscreen,
+                evidenceRecord.getDescriptionAt(context, 3),
+                evidenceRecord.getAnimationAt(3),
+                evidenceRecord.getUnlockLevelAt(context, 2),
+                fontEmphasisColor
+            )
+        }
 
-        select_tier_1.setImageLevel(1);
-        select_tier_1.setOnClickListener(selectView -> {
-            select_tier_1.setImageLevel(1);
-            select_tier_2.setImageLevel(0);
-            select_tier_3.setImageLevel(0);
-
-            generateEvidenceTierView(1, animation_fullscreen,
-                    evidenceRecord.getDescriptionAt(getContext(), 1),
-                    evidenceRecord.getAnimationAt(1),
-                    evidenceRecord.getUnlockLevelAt(getContext(), 0),
-                    fontEmphasisColor);
-        });
-        select_tier_2.setOnClickListener(selectView -> {
-            select_tier_2.setImageLevel(1);
-            select_tier_1.setImageLevel(0);
-            select_tier_3.setImageLevel(0);
-
-            generateEvidenceTierView(2, animation_fullscreen,
-                    evidenceRecord.getDescriptionAt(getContext(), 2),
-                    evidenceRecord.getAnimationAt(2),
-                    evidenceRecord.getUnlockLevelAt(getContext(), 1),
-                    fontEmphasisColor);
-        });
-        select_tier_3.setOnClickListener(selectView -> {
-            select_tier_3.setImageLevel(1);
-            select_tier_1.setImageLevel(0);
-            select_tier_2.setImageLevel(0);
-
-            generateEvidenceTierView(3, animation_fullscreen,
-                    evidenceRecord.getDescriptionAt(getContext(), 3),
-                    evidenceRecord.getAnimationAt(3),
-                    evidenceRecord.getUnlockLevelAt(getContext(), 2),
-                    fontEmphasisColor);
-        });
-
-        animation.setOnClickListener(v -> {
-            if(animation_fullscreen.getVisibility() != View.VISIBLE) {
-                animation_fullscreen.setVisibility(View.VISIBLE);
+        animation.setOnClickListener {
+            if (animation_fullscreen.visibility != VISIBLE) {
+                animation_fullscreen.visibility = VISIBLE
             }
-        });
-        animation_fullscreen.setOnClickListener(v -> {
-            if(v.getVisibility() == View.VISIBLE) {
-                v.setVisibility(View.GONE);
+        }
+        animation_fullscreen.setOnClickListener { v: View ->
+            if (v.visibility == VISIBLE) {
+                v.visibility = GONE
             }
-        });
+        }
 
         fadeOutIndicatorAnimation(
-                null,
-                null,
-                scroller,
-                indicator);
+            null,
+            null,
+            scroller,
+            indicator
+        )
 
-        label.setText(evidenceRecord.getName(getContext()));
-        info.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                evidenceRecord.getDescriptionAt(getContext(), 0),
-                "#ff6161", String.valueOf(fontEmphasisColor))));
+        label.text = evidenceRecord.getName(context)
+        info.text = Html.fromHtml(
+            replaceHTMLFontColor(
+                evidenceRecord.getDescriptionAt(context, 0),
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
 
-        TypedArray typedArray;
+        val typedArray: TypedArray
         try {
-            typedArray = getContext().getResources().
-                    obtainTypedArray(R.array.equipment_animation_array);
-            animation.setImageResource(evidenceRecord.getAnimationAt(0));
-            animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceRecord.index, 0));
-            typedArray.recycle();
-        } catch (Resources.NotFoundException e) {
-            e.printStackTrace();
+            typedArray = context.resources.obtainTypedArray(R.array.equipment_animation_array)
+            animation.setImageResource(evidenceRecord.getAnimationAt(0))
+            animation_fullscreen.setImageResource(typedArray.getResourceId(evidenceRecord.index, 0))
+            typedArray.recycle()
+        } catch (e: Resources.NotFoundException) {
+            e.printStackTrace()
         }
 
         //----
+        closeButton.setOnClickListener { popupWindow?.dismiss() }
 
-        closeButton.setOnClickListener(v1 -> popupWindow.dismiss());
+        popupWindow!!.showAtLocation(rootView, Gravity.CENTER_VERTICAL, 0, 0)
 
-        popupWindow.showAtLocation(getRootView(), Gravity.CENTER_VERTICAL, 0, 0);
-
-        MobileAds.initialize(getContext(), initializationStatus -> { });
-        AdView mAdView = findViewById(R.id.adView);
-        adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        MobileAds.initialize(context) { }
+        val mAdView = findViewById<AdView>(R.id.adView)
+        adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
-    public void generateEvidenceTierView(int tierIndex, @NonNull GifImageView animation_fullscreen,
-                                         String description, @DrawableRes int animation,
-                                         String level, @ColorInt int fontEmphasisColor) {
+    private fun generateEvidenceTierView(
+        tierIndex: Int, animation_fullscreen: GifImageView,
+        description: String?, @DrawableRes animation: Int,
+        level: String, @ColorInt fontEmphasisColor: Int
+    ) {
+        val scrollView = findViewById<ConstraintLayout>(R.id.scrollview_tiers)
+        val title = findViewById<AppCompatTextView>(R.id.label_tier)
+        val animationView = findViewById<GifImageView>(R.id.animation_tier)
 
-        ConstraintLayout scrollView = findViewById(R.id.scrollview_tiers);
-        AppCompatTextView title = findViewById(R.id.label_tier);
-        GifImageView animationView = findViewById(R.id.animation_tier);
+        val details = scrollView.findViewById<AppCompatTextView>(R.id.info_tier)
+        val levelView = findViewById<AppCompatTextView>(R.id.label_level)
 
-        AppCompatTextView details = scrollView.findViewById(R.id.info_tier);
-        AppCompatTextView levelView = findViewById(R.id.label_level);
-
-        details.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+        details.text = Html.fromHtml(
+            replaceHTMLFontColor(
                 description,
-                "#ff6161", String.valueOf(fontEmphasisColor))));
-        levelView.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                getContext().getString(R.string.evidence_requirement_level_title) + " " + level,
-                "#ff6161", String.valueOf(fontEmphasisColor))));
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
+        levelView.text = Html.fromHtml(
+            replaceHTMLFontColor(
+                context.getString(R.string.evidence_requirement_level_title) + " " + level,
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
 
-        animationView.setImageResource(animation);
-        animation_fullscreen.setImageResource(animation);
+        animationView.setImageResource(animation)
+        animation_fullscreen.setImageResource(animation)
 
-        TypedArray typedArray =
-                getResources().obtainTypedArray(R.array.equipment_tiers);
-        title.setText(typedArray.getString(tierIndex-1));
-        typedArray.recycle();
+        val typedArray =
+            resources.obtainTypedArray(R.array.equipment_tiers)
+        title.text = typedArray.getString(tierIndex - 1)
+        typedArray.recycle()
 
 
-        animationView.setOnClickListener(v -> {
-            if(animation_fullscreen.getVisibility() != View.VISIBLE) {
-                animation_fullscreen.setVisibility(View.VISIBLE);
+        animationView.setOnClickListener {
+            if (animation_fullscreen.visibility != VISIBLE) {
+                animation_fullscreen.visibility = VISIBLE
             }
-        });
-        animation_fullscreen.setOnClickListener(v -> {
-            if(v.getVisibility() == View.VISIBLE) {
-                v.setVisibility(View.GONE);
+        }
+        animation_fullscreen.setOnClickListener { v: View ->
+            if (v.visibility == VISIBLE) {
+                v.visibility = GONE
             }
-        });
-
+        }
     }
 
-    public void fadeOutIndicatorAnimation(@Nullable ConstraintLayout bodyCons, @Nullable ConstraintLayout container, @NonNull ScrollView scroller, @NonNull View indicator) {
-        scroller.post(() -> {
+    /*
+    fun fadeOutIndicatorAnimation(
+        bodyCons: ConstraintLayout?,
+        container: ConstraintLayout?,
+        scroller: ScrollView,
+        indicator: View
+    ) {
+        scroller.post {
             if (!scroller.canScrollVertically(1)) {
-                indicator.setVisibility(View.INVISIBLE);
-                indicatorFadeAnimation(indicator, 0);
+                indicator.visibility = INVISIBLE
+                indicatorFadeAnimation(indicator, 0)
             } else {
-                if(container != null) {
-                    if(container.getLayoutParams() instanceof LayoutParams lParams) {
-
-                        Log.d("Scroller", "Should constrain");
-                        lParams.constrainedHeight = true;
-                        container.setLayoutParams(lParams);
-                        container.invalidate();
+                if (container != null) {
+                    if (container.layoutParams is LayoutParams) {
+                        val lParams = container.layoutParams as LayoutParams
+                        Log.d("Scroller", "Should constrain")
+                        lParams.constrainedHeight = true
+                        container.layoutParams = lParams
+                        container.invalidate()
 
                         if (!scroller.canScrollVertically(1)) {
-                            indicator.setVisibility(View.INVISIBLE);
+                            indicator.visibility = INVISIBLE
 
-                            indicatorFadeAnimation(indicator, 0);
+                            indicatorFadeAnimation(indicator, 0)
                         } else {
-                            indicator.setVisibility(View.VISIBLE);
-                            indicator.setAlpha(1f);
+                            indicator.visibility = VISIBLE
+                            indicator.alpha = 1f
                         }
                     }
                 }
             }
-
-            if(bodyCons != null) {
+            if (bodyCons != null) {
                 //initialize info content scroller
-                bodyCons.setVisibility(View.VISIBLE);
+                bodyCons.visibility = VISIBLE
             }
-        });
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scroller.setOnScrollChangeListener((v13, scrollX, scrollY, oldScrollX,
-                                                oldScrollY) -> {
+            scroller.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
                 if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(indicator, getResources().getInteger(
-                            android.R.integer.config_longAnimTime));
+                    indicatorFadeAnimation(
+                        indicator, resources.getInteger(
+                            android.R.integer.config_longAnimTime
+                        )
+                    )
                 }
-            });
+            }
         } else {
-            scroller.setOnDragListener((v12, event) -> {
+            scroller.setOnDragListener { _: View?, _: DragEvent? ->
                 if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(indicator, getResources().getInteger(
-                            android.R.integer.config_longAnimTime));
+                    indicatorFadeAnimation(
+                        indicator, resources.getInteger(
+                            android.R.integer.config_longAnimTime
+                        )
+                    )
                 }
-                return true;
-            });
+                true
+            }
         }
     }
 
-    private void indicatorFadeAnimation(@NonNull View indicator, int time) {
-
+    private fun indicatorFadeAnimation(indicator: View, time: Int) {
         indicator.animate()
-                .alpha(0f)
-                .setDuration(time)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        indicator.setVisibility(View.INVISIBLE);
-                    }
-                });
-    }
-
+            .alpha(0f)
+            .setDuration(time.toLong())
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    indicator.visibility = INVISIBLE
+                }
+            })
+    }*/
 }

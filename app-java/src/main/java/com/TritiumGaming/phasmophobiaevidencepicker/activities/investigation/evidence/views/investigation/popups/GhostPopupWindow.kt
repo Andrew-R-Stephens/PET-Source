@@ -1,255 +1,270 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Build;
-import android.text.Html;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ScrollView;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.content.Context
+import android.content.res.Configuration
+import android.os.Build
+import android.text.Html
+import android.util.AttributeSet
+import android.util.Log
+import android.view.DragEvent
+import android.view.Gravity
+import android.view.View
+import android.widget.ScrollView
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
+import kotlin.math.min
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.constraintlayout.widget.ConstraintLayout;
+class GhostPopupWindow : InvestigationPopupWindow {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+    private var detailIndex = 0
 
-import java.util.List;
+    constructor(context: Context) :
+            super(context) { initView() }
 
-public class GhostPopupWindow extends InvestigationPopupWindow {
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView() }
 
-    private int detailIndex = 0;
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView() }
 
-    public GhostPopupWindow(@NonNull Context context) {
-        super(context);
-        initView();
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+
+    override fun initView() {
+        super.initView(R.layout.popup_info_ghost)
     }
 
-    public GhostPopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView();
-    }
+    fun build(
+        evidenceViewModel: EvidenceViewModel,
+        ghostPopupData: GhostPopupModel,
+        groupIndex: Int, adRequest: AdRequest?
+    ) {
+        var adRequest = adRequest
+        val linearLayout_iconRow = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
-    public GhostPopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
+        val scrollCons_swapping =
+            findViewById<ConstraintLayout>(R.id.scrollView_swapping)
+        val scrollCons_huntdata =
+            findViewById<ConstraintLayout>(R.id.scrollView_huntdata)
+        val label_name =
+            findViewById<AppCompatTextView>(R.id.textView_title)
 
-    public GhostPopupWindow(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
+        val closeButton = findViewById<PETImageButton>(R.id.button_right)
+        val bodyCons = findViewById<ConstraintLayout>(R.id.layout_contentbody)
+        val left = findViewById<PETImageButton>(R.id.title_left)
+        val right = findViewById<PETImageButton>(R.id.title_right)
+        val title = findViewById<AppCompatTextView>(R.id.label_infoTitle)
 
-    public void initView() {
-        super.initView(R.layout.popup_info_ghost);
-    }
+        val scroller_swapping = scrollCons_swapping.findViewById<ScrollView>(R.id.scrollView)
+        val indicator_swapping = scrollCons_swapping.findViewById<View>(R.id.scrollview_indicator)
+        val data_swapping = scroller_swapping.findViewById<AppCompatTextView>(R.id.label_info)
 
-    public void build(@NonNull EvidenceViewModel evidenceViewModel,
-                      @NonNull GhostPopupModel ghostPopupData,
-                      int groupIndex, AdRequest adRequest) {
-
-        LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
-
-        ConstraintLayout scrollCons_swapping =
-                findViewById(R.id.scrollView_swapping);
-        ConstraintLayout scrollCons_huntdata =
-                findViewById(R.id.scrollView_huntdata);
-        AppCompatTextView label_name =
-                findViewById(R.id.textView_title);
-
-        PETImageButton closeButton = findViewById(R.id.button_right);
-        ConstraintLayout bodyCons = findViewById(R.id.layout_contentbody);
-        PETImageButton left = findViewById(R.id.title_left);
-        PETImageButton right = findViewById(R.id.title_right);
-        AppCompatTextView title = findViewById(R.id.label_infoTitle);
-
-        ScrollView scroller_swapping = scrollCons_swapping.findViewById(R.id.scrollView);
-        View indicator_swapping = scrollCons_swapping.findViewById(R.id.scrollview_indicator);
-        AppCompatTextView data_swapping = scroller_swapping.findViewById(R.id.label_info);
-
-        ScrollView scroller_huntdata = scrollCons_huntdata.findViewById(R.id.scrollView);
-        View indicator_huntdata = scrollCons_huntdata.findViewById(R.id.scrollview_indicator);
-        AppCompatTextView data_huntdata = scroller_huntdata.findViewById(R.id.label_info);
+        val scroller_huntdata = scrollCons_huntdata.findViewById<ScrollView>(R.id.scrollView)
+        val indicator_huntdata = scrollCons_huntdata.findViewById<View>(R.id.scrollview_indicator)
+        val data_huntdata = scroller_huntdata.findViewById<AppCompatTextView>(R.id.label_info)
 
 
-        String[] titles = new String[] {
-                getResources().getString(R.string.popup_ghost_info),
-                getResources().getString(R.string.popup_ghost_strength),
-                getResources().getString(R.string.popup_ghost_weakness)
-        };
+        val titles = arrayOf(
+            resources.getString(R.string.popup_ghost_info),
+            resources.getString(R.string.popup_ghost_strength),
+            resources.getString(R.string.popup_ghost_weakness)
+        )
 
         // THEME
-        @ColorInt int fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
+        @ColorInt val fontEmphasisColor = getColorFromAttribute(
+            context, R.attr.textColorBodyEmphasis
+        )
 
 
-        for (int i = 0; i < evidenceViewModel.getInvestigationData().getGhostList()
-                .getAt(groupIndex)
-                .getEvidenceArray().length; i++) {
+        for (i in evidenceViewModel.investigationData!!.ghostList
+            .getAt(groupIndex)
+            .evidenceArray.indices) {
+            val evidenceIcon =
+                linearLayout_iconRow.getChildAt(i) as AppCompatImageView
 
-            AppCompatImageView evidenceIcon =
-                    (AppCompatImageView) linearLayout_iconRow.getChildAt(i);
-
-            evidenceIcon.setImageResource(evidenceViewModel.getInvestigationData().getGhostList()
-                    .getAt(groupIndex).getEvidence()[i].getIcon());
+            evidenceIcon.setImageResource(
+                evidenceViewModel.investigationData!!.ghostList
+                    .getAt(groupIndex).evidence[i].icon
+            )
         }
 
-        label_name.setText(evidenceViewModel.getInvestigationData().getGhostList()
-                .getAt(groupIndex).getName());
+        label_name.text = evidenceViewModel.investigationData!!.ghostList
+            .getAt(groupIndex).name
 
         //initialize info content scroller
-        bodyCons.setVisibility(View.INVISIBLE);
+        bodyCons.visibility = INVISIBLE
 
-        List<String> tempList = (ghostPopupData.getCycleDetails(getContext(), groupIndex));
-        String[] cycleDetails = tempList.toArray(new String[0]);
+        val tempList: List<String> = (ghostPopupData.getCycleDetails(
+            context, groupIndex
+        ))
+        val cycleDetails = tempList.toTypedArray<String>()
 
-        title.setText(titles[detailIndex]);
-        data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+        title.text = titles[detailIndex]
+        data_swapping.text = Html.fromHtml(
+            replaceHTMLFontColor(
                 cycleDetails[detailIndex],
-                "#ff6161", String.valueOf(fontEmphasisColor))));
-        data_huntdata.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                getContext().getString(ghostPopupData.getHuntData(groupIndex)),
-                "#ff6161", String.valueOf(fontEmphasisColor))));
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
+        data_huntdata.text = Html.fromHtml(
+            replaceHTMLFontColor(
+                context.getString(ghostPopupData.getHuntData(groupIndex)),
+                "#ff6161", fontEmphasisColor.toString()
+            )
+        )
 
-        int orientation = getResources().getConfiguration().orientation;
+        val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            scrollCons_huntdata.post(() ->
-            {
-                scrollCons_huntdata.setMaxHeight((int) (bodyCons.getHeight() * .4f));
-
+            scrollCons_huntdata.post {
+                scrollCons_huntdata.maxHeight = (bodyCons.height * .4f).toInt()
                 fadeOutIndicatorAnimation(
-                        scrollCons_huntdata,
-                        scrollCons_huntdata,
-                        scroller_huntdata,
-                        indicator_huntdata);
-            });
+                    scrollCons_huntdata,
+                    scrollCons_huntdata,
+                    scroller_huntdata,
+                    indicator_huntdata
+                )
+            }
         }
 
-        left.setOnClickListener(view -> {
-            detailIndex = Math.min(((detailIndex -1) % cycleDetails.length) & (cycleDetails.length), cycleDetails.length-1);
-
-            title.setText(titles[detailIndex]);
-            data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
+        left.setOnClickListener {
+            detailIndex = min(
+                (((detailIndex - 1) % cycleDetails.size) and (cycleDetails.size)).toDouble(),
+                (cycleDetails.size - 1).toDouble()
+            )
+                .toInt()
+            title.text = titles[detailIndex]
+            data_swapping.text = Html.fromHtml(
+                replaceHTMLFontColor(
                     cycleDetails[detailIndex],
-                    "#ff6161", String.valueOf(fontEmphasisColor))));
-
+                    "#ff6161", fontEmphasisColor.toString()
+                )
+            )
             fadeOutIndicatorAnimation(
-                    bodyCons,
-                    scrollCons_swapping,
-                    scroller_swapping,
-                    indicator_swapping);
-
-        });
-
-        right.setOnClickListener(view -> {
-            detailIndex = (detailIndex +1)% cycleDetails.length;
-
-            title.setText(titles[detailIndex]);
-            data_swapping.setText(Html.fromHtml(FontUtils.replaceHTMLFontColor(
-                    cycleDetails[detailIndex],
-                    "#ff6161", String.valueOf(fontEmphasisColor))));
-
-            fadeOutIndicatorAnimation(
-                    bodyCons,
-                    scrollCons_swapping,
-                    scroller_swapping,
-                    indicator_swapping);
-
-        });
-
-        fadeOutIndicatorAnimation(
                 bodyCons,
                 scrollCons_swapping,
                 scroller_swapping,
-                indicator_swapping);
+                indicator_swapping
+            )
+        }
 
-        closeButton.setOnClickListener(v1 -> popupWindow.dismiss());
+        right.setOnClickListener {
+            detailIndex = (detailIndex + 1) % cycleDetails.size
+            title.text = titles[detailIndex]
+            data_swapping.text = Html.fromHtml(
+                replaceHTMLFontColor(
+                    cycleDetails[detailIndex],
+                    "#ff6161", fontEmphasisColor.toString()
+                )
+            )
+            fadeOutIndicatorAnimation(
+                bodyCons,
+                scrollCons_swapping,
+                scroller_swapping,
+                indicator_swapping
+            )
+        }
 
-        popupWindow.showAtLocation(getRootView(), Gravity.CENTER_VERTICAL, 0, 0);
+        fadeOutIndicatorAnimation(
+            bodyCons,
+            scrollCons_swapping,
+            scroller_swapping,
+            indicator_swapping
+        )
 
-        MobileAds.initialize(getContext(), initializationStatus -> { });
-        AdView mAdView = findViewById(R.id.adView);
-        adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        closeButton.setOnClickListener { popupWindow!!.dismiss() }
+
+        popupWindow!!.showAtLocation(rootView, Gravity.CENTER_VERTICAL, 0, 0)
+
+        MobileAds.initialize(context) { }
+        val mAdView = findViewById<AdView>(R.id.adView)
+        adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
-    public void fadeOutIndicatorAnimation(@Nullable ConstraintLayout bodyCons, @Nullable ConstraintLayout container, @NonNull ScrollView scroller, @NonNull View indicator) {
-        scroller.post(() -> {
+    /*
+    fun fadeOutIndicatorAnimation(
+        bodyCons: ConstraintLayout?,
+        container: ConstraintLayout?,
+        scroller: ScrollView,
+        indicator: View
+    ) {
+        scroller.post {
             if (!scroller.canScrollVertically(1)) {
-                indicator.setVisibility(View.INVISIBLE);
-                indicatorFadeAnimation(indicator, 0);
+                indicator.visibility = INVISIBLE
+                indicatorFadeAnimation(indicator, 0)
             } else {
-                if(container != null) {
-                    if(container.getLayoutParams() instanceof ConstraintLayout.LayoutParams lParams) {
-
-                        Log.d("Scroller", "Should constrain");
-                        lParams.constrainedHeight = true;
-                        container.setLayoutParams(lParams);
-                        container.invalidate();
+                if (container != null) {
+                    if (container.layoutParams is LayoutParams) {
+                        val lParams = container.layoutParams as LayoutParams
+                        Log.d("Scroller", "Should constrain")
+                        lParams.constrainedHeight = true
+                        container.layoutParams = lParams
+                        container.invalidate()
 
                         if (!scroller.canScrollVertically(1)) {
-                            indicator.setVisibility(View.INVISIBLE);
+                            indicator.visibility = INVISIBLE
 
-                            indicatorFadeAnimation(indicator, 0);
+                            indicatorFadeAnimation(indicator, 0)
                         } else {
-                            indicator.setVisibility(View.VISIBLE);
-                            indicator.setAlpha(1f);
+                            indicator.visibility = VISIBLE
+                            indicator.alpha = 1f
                         }
                     }
                 }
             }
-
-            if(bodyCons != null) {
+            if (bodyCons != null) {
                 //initialize info content scroller
-                bodyCons.setVisibility(View.VISIBLE);
+                bodyCons.visibility = VISIBLE
             }
-        });
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scroller.setOnScrollChangeListener((v13, scrollX, scrollY, oldScrollX,
-                                                oldScrollY) -> {
+            scroller.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
                 if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(indicator, getResources().getInteger(
-                            android.R.integer.config_longAnimTime));
+                    indicatorFadeAnimation(
+                        indicator, resources.getInteger(
+                            android.R.integer.config_longAnimTime
+                        )
+                    )
                 }
-            });
+            }
         } else {
-            scroller.setOnDragListener((v12, event) -> {
+            scroller.setOnDragListener { _: View?, _: DragEvent? ->
                 if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(indicator, getResources().getInteger(
-                            android.R.integer.config_longAnimTime));
+                    indicatorFadeAnimation(
+                        indicator, resources.getInteger(
+                            android.R.integer.config_longAnimTime
+                        )
+                    )
                 }
-                return true;
-            });
+                true
+            }
         }
     }
 
-    private void indicatorFadeAnimation(@NonNull View indicator, int time) {
-
+    fun indicatorFadeAnimation(indicator: View, time: Int) {
         indicator.animate()
-                .alpha(0f)
-                .setDuration(time)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        indicator.setVisibility(View.INVISIBLE);
-                    }
-                });
-    }
-
+            .alpha(0f)
+            .setDuration(time.toLong())
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    indicator.visibility = INVISIBLE
+                }
+            })
+    }*/
 }
