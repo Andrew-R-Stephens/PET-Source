@@ -1,42 +1,30 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.TextView;
+import android.content.Context
+import android.util.AttributeSet
+import android.view.View
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+class InvestigationSection : ConstraintLayout {
+    constructor(context: Context) :
+            super(context) { initView() }
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView() }
 
-public class InvestigationSection extends ConstraintLayout {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView() }
 
-    public InvestigationSection(@NonNull Context context) {
-        super(context);
-        initView();
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+
+    private fun initView() {
+        inflate(context, R.layout.item_evidence_tool_section, this)
     }
 
-    public InvestigationSection(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView();
-    }
-
-    public InvestigationSection(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
-
-    public InvestigationSection(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
-
-    private void initView() {
-        inflate(getContext(), R.layout.item_evidence_tool_section, this);
-    }
-
-    public void setLabel(String label) {
-        ((TextView)findViewById(R.id.label_container)).setText(label);
+    fun setLabel(label: String?) {
+        (findViewById<View>(R.id.label_container) as TextView).text = label
     }
 }

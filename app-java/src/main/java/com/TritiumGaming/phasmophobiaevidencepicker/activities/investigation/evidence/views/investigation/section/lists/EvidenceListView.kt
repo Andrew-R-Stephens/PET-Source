@@ -1,88 +1,79 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.PopupWindow;
-import android.widget.ProgressBar;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.PopupWindow
+import android.widget.ProgressBar
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.EvidencePopupWindow
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
+import com.google.android.gms.ads.AdRequest
 
-import androidx.annotation.Nullable;
+class EvidenceListView : InvestigationListView {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.EvidencePopupWindow;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
-import com.google.android.gms.ads.AdRequest;
+    private var ghostList: GhostListView? = null
 
-public class EvidenceListView extends InvestigationListView {
+    constructor(context: Context?) :
+            super(context)
 
-    private GhostListView ghostList;
+    constructor(context: Context?, attrs: AttributeSet?) :
+            super(context, attrs)
 
-    public EvidenceListView(Context context) {
-        super(context);
-    }
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr)
 
-    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+    fun init(
+        globalPreferencesViewModel: GlobalPreferencesViewModel?,
+        evidenceViewModel: EvidenceViewModel?,
+        popupWindow: PopupWindow?,
+        progressBar: ProgressBar?, adRequest: AdRequest?, ghostList: GhostListView?
+    ) {
+        super.init(
+            globalPreferencesViewModel, evidenceViewModel,
+            popupWindow, progressBar, adRequest
+        )
 
-    public EvidenceListView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    public void init(GlobalPreferencesViewModel globalPreferencesViewModel,
-                     EvidenceViewModel evidenceViewModel,
-                     PopupWindow popupWindow,
-                     ProgressBar progressBar, AdRequest adRequest, GhostListView ghostList) {
-        super.init(globalPreferencesViewModel, evidenceViewModel,
-                popupWindow, progressBar, adRequest);
-
-        this.ghostList = ghostList;
+        this.ghostList = ghostList
     }
 
     @SuppressLint("ResourceType")
-    public void createPopupWindow(PopupWindow popupWindow) {
-        super.createPopupWindow(popupWindow, new EvidencePopupModel(getContext()));
+    fun createPopupWindow(popupWindow: PopupWindow?) {
+        super.createPopupWindow(popupWindow, EvidencePopupModel(context))
     }
 
-    @Override
-    protected void buildViews() {
-        for(int i = 0; i < ((EvidencePopupModel)getPopupData()).getCount(); i++) {
+    override fun buildViews() {
+        for (i in 0 until (popupData as EvidencePopupModel).count) {
+            val popupRecord =
+                (popupData as EvidencePopupModel).getEvidencePopupRecordAt(i)
 
-            EvidencePopupModel.EvidencePopupRecord popupRecord =
-                    ((EvidencePopupModel)getPopupData()).getEvidencePopupRecordAt(i);
-
-            EvidenceView evidenceView = new EvidenceView(getContext()) {
-
-                @Override
-                public void createPopup() {
-
-                    if (getPopupWindow() != null) {
-                        getPopupWindow().dismiss();
+            val evidenceView: EvidenceView = object : EvidenceView(context) {
+                override fun createPopup() {
+                    if (popupWindow != null) {
+                        popupWindow!!.dismiss()
                     }
 
-                    EvidencePopupWindow evidencePopupWindow =
-                            new EvidencePopupWindow(getContext());
-                    evidencePopupWindow.setPopupWindow(getPopupWindow());
-                    evidencePopupWindow.build(getEvidenceViewModel(), popupRecord, getAdRequest());
+                    val evidencePopupWindow =
+                        EvidencePopupWindow(context)
+                    evidencePopupWindow.popupWindow = popupWindow
+                    evidencePopupWindow.build(evidenceViewModel, popupRecord, adRequest)
                 }
 
-                @Override
-                public void requestInvalidateGhostContainer() {
-                    ghostList.requestInvalidateGhostContainer(
-                            getGlobalPreferencesViewModel().getReorderGhostViews());
+                override fun requestInvalidateGhostContainer() {
+                    ghostList!!.requestInvalidateGhostContainer(
+                        globalPreferencesViewModel!!.reorderGhostViews
+                    )
                 }
+            }
 
-            };
+            evidenceView.build(evidenceViewModel!!, i, ghostList!!)
 
-            evidenceView.build(getEvidenceViewModel(), i, ghostList);
-
-            this.addView(evidenceView);
+            this.addView(evidenceView)
         }
     }
 }
