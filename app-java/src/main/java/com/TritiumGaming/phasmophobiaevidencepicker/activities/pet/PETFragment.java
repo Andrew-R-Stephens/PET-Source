@@ -52,9 +52,6 @@ public abstract class PETFragment extends Fragment {
         }
     }
 
-    /**
-     * saveStates method
-     */
     protected void saveGlobalPreferencesViewModel() {
         if (globalPreferencesViewModel != null) {
             try {
@@ -65,9 +62,6 @@ public abstract class PETFragment extends Fragment {
         }
     }
 
-    /**
-     * refreshFragment
-     */
     protected void refreshFragment() {
 
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();

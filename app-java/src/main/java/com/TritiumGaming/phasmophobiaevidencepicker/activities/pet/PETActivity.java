@@ -46,7 +46,6 @@ public abstract class PETActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //createConsentInformation();
         initFirebaseAnalytics();
 
         initViewModels();
@@ -124,11 +123,7 @@ public abstract class PETActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * setLanguage method
-     *
-     * @param language The desired new language
-     */
+    /** @param language The desired new language */
     public boolean setLanguage(@NonNull String language) {
         boolean isChanged = false;
 
@@ -146,18 +141,11 @@ public abstract class PETActivity extends AppCompatActivity {
         return isChanged;
     }
 
-    /**
-     * getAppLanguage method
-     *
-     * @return the abbreviation of the chosen language that's saved to file
-     */
+    /** @return the abbreviation of the chosen language that's saved to file */
     public String getAppLanguage() {
         return globalPreferencesViewModel.getLanguageName();
     }
 
-    /**
-     *
-     */
     public void automaticSignInAccount() {
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             Log.d("AutoLogin", "User not null!");
@@ -252,103 +240,5 @@ public abstract class PETActivity extends AppCompatActivity {
         // TODO: Request an ad.
         // InterstitialAd.load(...);
     }
-
-    /*
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            result -> {
-                try {
-                    onSignInAccountResult(result);
-                } catch (RuntimeException e) {
-                    String message = "Login Error: " + e.getMessage();
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
-                }
-            }
-    );
-    */
-
-    /*
-    public void manualSignInAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Log.d("ManuLogin", "User null!");
-            return;
-        }
-        Log.d("ManuLogin", "Continuing to sign-in.");
-
-        List<AuthUI.IdpConfig> providers = List.of(
-                new AuthUI.IdpConfig.GoogleBuilder().build());
-
-        // Create and launch sign-in intent
-        Intent signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .setIsSmartLockEnabled(false)
-                .setTosAndPrivacyPolicyUrls(
-                        getString(R.string.preference_termsofservice_link),
-                        getString(R.string.preference_privacypolicy_link))
-                .build();
-
-        signInLauncher.launch(signInIntent);
-
-    }
-    */
-
-    /*
-    private void onSignInAccountResult(FirebaseAuthUIAuthenticationResult result) {
-        IdpResponse response = result.getIdpResponse();
-        if (result.getResultCode() == RESULT_OK) {
-            // Successfully signed in
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if(user != null) {
-                String message = "Welcome " + user.getDisplayName();
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                toast.show();
-            }
-        } else {
-            FirebaseUiException error = response.getError();
-            String message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
-            Toast toast = Toast.makeText(this,
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
-        }
-    }
-    */
-
-    /*
-    public void signOutAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            return;
-        }
-
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(task -> {
-
-                    String message = "User signed out";
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
-                });
-    }
-
-    public void deleteAccount() {
-        AuthUI.getInstance()
-                .delete(this)
-                .addOnCompleteListener(task -> {
-                    String message = "Successfully removed account.";
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
-                });
-    }
-    */
 
 }

@@ -1,62 +1,34 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import androidx.annotation.DrawableRes
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 /**
  * Evidence enums
  */
-public class EvidenceModel {
+class EvidenceModel {
 
-    @Nullable
-    private String name = null;
-    private @DrawableRes int icon;
+    var name: String? = null
 
-    private Ruling ruling = Ruling.NEUTRAL;
+    @DrawableRes var icon: Int = 0
+        @DrawableRes get
 
-    public enum Ruling {
+    var ruling: Ruling = Ruling.NEUTRAL
+
+    enum class Ruling {
         NEGATIVE, NEUTRAL, POSITIVE
     }
 
-    public EvidenceModel() {
-        setName("Null");
-        setIcon(R.drawable.icon_ev_dots);
+    init {
+        name = "Null"
+        icon = R.drawable.icon_ev_dots
     }
 
-    public void setName(@Nullable String name) {
-        this.name = name;
+    fun isRuling(r: Ruling): Boolean {
+        return ruling == r
     }
 
-    @Nullable
-    public String getName() {
-        return name;
-    }
-
-    public void setIcon(@DrawableRes int icon) {
-        this.icon = icon;
-    }
-
-    public @DrawableRes int getIcon() {
-        return icon;
-    }
-
-    public void setRuling(Ruling ruling) {
-        this.ruling = ruling;
-    }
-
-    public Ruling getRuling() {
-        return ruling;
-    }
-
-    public boolean isRuling(Ruling r) {
-        return ruling == r;
-    }
-
-    @NonNull
-    public String toString() {
-        return ruling.name();
+    override fun toString(): String {
+        return ruling.name
     }
 }

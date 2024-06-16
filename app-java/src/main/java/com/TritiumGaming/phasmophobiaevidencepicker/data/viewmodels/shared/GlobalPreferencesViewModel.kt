@@ -12,6 +12,10 @@ import java.util.Locale
 
 class GlobalPreferencesViewModel : SharedViewModel() {
 
+    companion object Language {
+        const val DEFAULT_LANGUAGE = "en"
+    }
+
     // Review Tracker
     lateinit var reviewRequestData: ReviewTrackingModel
         private set
@@ -110,7 +114,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
 
 
     /**
-     * Gets the language saved to GlobalPreferences.
+     * Gets the language saved to GlobalPreferences file.
      * Defaults to return 'en' if there is no previously saved preference.
      *
      * @return The language specified in the Preferences data, or otherwise English
@@ -118,7 +122,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     fun getLanguage(context: Context): String {
         val lang = context.getSharedPreferences(
             context.resources.getString(fileName), Context.MODE_PRIVATE
-        ).getString("chosenLanguage", "en")
+        ).getString("chosenLanguage", DEFAULT_LANGUAGE)
 
         Log.d("Current Chosen Language", lang!!)
 
@@ -154,9 +158,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             networkPreference
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveChosenLanguage(
@@ -167,9 +169,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             languageName
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveAlwaysOnState(
@@ -180,9 +180,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             isAlwaysOn
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveHuntWarningAudioAllowed(
@@ -193,9 +191,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             isHuntWarningAudioAllowed
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveHuntWarningFlashTimeout(
@@ -206,9 +202,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             huntWarningFlashTimeout
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     fun saveColorSpace(c: Context) {
@@ -223,9 +217,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             colorThemeID
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveFontType(
@@ -246,9 +238,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             reviewRequestData.timeActive
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveTimesOpened(
@@ -259,9 +249,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             reviewRequestData.timesOpened
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveCanRequestReview(
@@ -272,9 +260,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             reviewRequestData.wasRequested
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveIsLeftHandSupportEnabled(
@@ -285,9 +271,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             isLeftHandSupportEnabled
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     private fun saveReorderGhostViews(
@@ -298,12 +282,10 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             reorderGhostViews
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
-    fun saveCanShowIntroduction(
+    private fun saveCanShowIntroduction(
         context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
     ) {
         editor.putBoolean(
@@ -311,9 +293,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             canShowIntroduction
         )
 
-        if (localApply) {
-            editor.apply()
-        }
+        if (localApply) { editor.apply() }
     }
 
     override fun saveToFile(context: Context) {
@@ -363,47 +343,41 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             "NetworkPreference: " + sharedPref.getBoolean(
                 context.resources.getString(R.string.preference_network),
                 networkPreference
-            ) +
-                    "; Language: " + sharedPref.getString(
+            ) + "; Language: " + sharedPref.getString(
                 context.resources.getString(R.string.preference_language),
                 languageName
-            ) +
-                    "; Always On: " + sharedPref.getBoolean(
+            ) + "; Always On: " + sharedPref.getBoolean(
                 context.resources.getString(R.string.preference_isAlwaysOn),
                 isAlwaysOn
-            ) +
-                    "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(
+            ) + "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(
                 context.resources.getString(
                     R.string.preference_isHuntAudioWarningAllowed
                 ), isHuntWarningAudioAllowed
-            ) +
-                    "; Hunt Warning Flash Timeout: " + sharedPref.getInt(
+            ) + "; Hunt Warning Flash Timeout: " + sharedPref.getInt(
                 context.resources.getString(
                     R.string.preference_huntWarningFlashTimeout
                 ), huntWarningFlashTimeout
-            ) +
-                    "; Color Space: " + sharedPref.getString(
+            ) + "; Color Space: " + sharedPref.getString(
                 context.resources.getString(R.string.preference_savedTheme),
                 colorThemeID
-            ) +
-                    "; ReviewRequestData: [" +
+            ) + "; ReviewRequestData: [" +
                     "Time Alive: " + sharedPref.getLong(
-                context.resources.getString(R.string.reviewtracking_appTimeAlive),
-                0
-            ) +
+                        context.resources.getString(R.string.reviewtracking_appTimeAlive),
+                        0
+                    ) +
                     "; Times Opened: " + sharedPref.getInt(
-                context.resources.getString(R.string.reviewtracking_appTimesOpened),
-                0
-            ) +
+                        context.resources.getString(R.string.reviewtracking_appTimesOpened),
+                        0
+                    ) +
                     "; Can Request Review: " + sharedPref.getBoolean(
-                context.resources.getString(R.string.reviewtracking_canRequestReview),
-                false
-            ) + "]" +
+                        context.resources.getString(R.string.reviewtracking_canRequestReview),
+                        false
+                    ) + "]" +
                     "; Can Show Introduction: " + sharedPref.getBoolean(
-                context.resources.getString(
-                    R.string.tutorialTracking_canShowIntroduction
-                ), false
-            )
+                        context.resources.getString(
+                            R.string.tutorialTracking_canShowIntroduction
+                        ), false
+                    )
         )
     }
 

@@ -98,14 +98,12 @@ public abstract class FirebaseFragment extends PETFragment {
      */
     private void onSignInResultAccount(@NonNull FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
+
+        // Successfully signed in
         if (result.getResultCode() == RESULT_OK) {
-            // Successfully signed in
             FirebaseUser user;
-            try {
-                user = FirestoreUser.Companion.getCurrentFirebaseUser();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            try { user = FirestoreUser.Companion.getCurrentFirebaseUser(); }
+            catch (Exception e) { throw new RuntimeException(e); }
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
                 Toast toast = Toast.makeText(requireActivity(),
@@ -114,7 +112,6 @@ public abstract class FirebaseFragment extends PETFragment {
                 toast.show();
 
                 onSignInAccountSuccess();
-
             }
         } else {
 
