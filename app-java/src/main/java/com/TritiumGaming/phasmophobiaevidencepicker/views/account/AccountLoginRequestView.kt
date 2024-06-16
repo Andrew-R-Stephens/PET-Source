@@ -35,7 +35,7 @@ class AccountLoginRequestView : ConstraintLayout {
 
         var user: FirebaseUser? = null
         try {
-            user = FirestoreUser.getCurrentFirebaseUser()
+            user = FirestoreUser.currentFirebaseUser
         } catch (e: Exception) {
             e.printStackTrace()
         }

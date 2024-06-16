@@ -39,7 +39,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.fires
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
@@ -915,7 +915,7 @@ public class MarketplaceFragment extends MainMenuFragment {
             // Successfully signed in
             FirebaseUser user = null;
             try {
-                user = FirestoreUser.getCurrentFirebaseUser();
+                user = FirestoreUser.Companion.getCurrentFirebaseUser();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -934,7 +934,8 @@ public class MarketplaceFragment extends MainMenuFragment {
 
                 // Generate a Firestore document for the User with default data if needed
                 try {
-                    FirestoreUser.buildUserDocument().get().addOnCompleteListener(task1 -> initAccountCreditListener());
+                    FirestoreUser.Companion.buildUserDocument().get()
+                            .addOnCompleteListener(task1 -> initAccountCreditListener());
 
                 } catch (Exception e) {
                     e.printStackTrace();

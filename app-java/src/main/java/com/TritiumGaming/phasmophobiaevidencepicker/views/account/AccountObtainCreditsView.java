@@ -54,7 +54,7 @@ public class AccountObtainCreditsView extends ConstraintLayout {
 
         FirebaseUser user = null;
         try {
-            user = FirestoreUser.getCurrentFirebaseUser();
+            user = FirestoreUser.Companion.getCurrentFirebaseUser();
         } catch (Exception e) {
             e.printStackTrace();
         }

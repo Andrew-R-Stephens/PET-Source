@@ -1,113 +1,93 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user
 
-import android.util.Log;
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import org.jetbrains.annotations.TestOnly
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class FirestoreUser {
+    companion object {
+        private const val COLLECTION_USERS = "Users"
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
+        val currentFirebaseUser: FirebaseUser?
+            get() = FirebaseAuth.getInstance().currentUser
 
-import java.util.HashMap;
+        val userDocument: DocumentReference
+            @Throws(Exception::class) get() {
+                if (currentFirebaseUser == null) { throw NullFirebaseUserException() }
 
-public class FirestoreUser {
+                val db = FirebaseFirestore.getInstance()
+                val userCollection = db.collection(COLLECTION_USERS)
+                return userCollection.document(currentFirebaseUser!!.uid)
+            }
 
-    private static final String COLLECTION_USERS = "Users";
+        @Throws(Exception::class)
+        fun buildUserDocument(): DocumentReference {
+            val currentUserDoc = userDocument
 
-    @Nullable
-    public static FirebaseUser getCurrentFirebaseUser() {
-        return FirebaseAuth.getInstance().getCurrentUser();
-    }
+            val user = currentFirebaseUser ?:
+                throw NullFirebaseUserException("Aborting creation of new User in database.")
 
-    @NonNull
-    public static DocumentReference buildUserDocument()
-            throws Exception {
-
-        DocumentReference currentUserDoc = getUserDocument();
-
-        FirebaseUser user = getCurrentFirebaseUser();
-        if(user == null) {
-            throw new NullFirebaseUserException("Aborting creation of new User in database.");
-        }
-
-        currentUserDoc.set(new HashMap<String, Object>(), SetOptions.merge())
-            .addOnSuccessListener(unused -> Log.d("Firestore", "User document " +
-                    user.getUid() + " successfully FOUND!"))
-            .addOnFailureListener(e -> {
-                Log.d("Firestore", "User document " +
-                        user.getUid() + " could NOT be GENERATED / LOCATED!");
-                e.printStackTrace();
-            })
-            .addOnCompleteListener(task -> {
-                Log.d("Firestore", "User document " +
-                        user.getUid() + " process complete.");
-
-                currentUserDoc.get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        try {
-                            FirestoreAccount.init();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+            currentUserDoc.set(HashMap<String, Any>(), SetOptions.merge())
+                .addOnSuccessListener {
+                    Log.d("Firestore",
+                        "User document ${ user.uid } successfully FOUND!")
+                }
+                .addOnFailureListener { e: Exception ->
+                    Log.d("Firestore",
+                        "User document ${ user.uid } could NOT be GENERATED / LOCATED!")
+                    e.printStackTrace()
+                }
+                .addOnCompleteListener {
+                    Log.d("Firestore",
+                        "User document ${ user.uid } process complete.")
+                    currentUserDoc.get().addOnSuccessListener { docSnap: DocumentSnapshot ->
+                        if (docSnap.exists()) {
+                            try { FirestoreAccount.init() }
+                            catch (e: Exception) { e.printStackTrace() }
+                            Log.d("Firestore",
+                                "User document ${ user.uid } successfully INITIALIZED!")
                         }
-
-                        Log.d("Firestore", "User document " +
-                                user.getUid() + " successfully INITIALIZED!");
                     }
-                });
-            });
+                }
 
-        return currentUserDoc;
-    }
-
-    @NonNull
-    public static DocumentReference getUserDocument()
-            throws Exception {
-
-        if(getCurrentFirebaseUser() == null) {
-            throw new NullFirebaseUserException();
+            return currentUserDoc
         }
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        @TestOnly
+        fun getCurrentFirebaseUserDisplayNameInitials(displayName: String?): String {
+            val displayInitials = StringBuilder()
+            if (displayName != null) {
+                val names =
+                    displayName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        CollectionReference userCollection = db.collection(COLLECTION_USERS);
-        return userCollection.document(getCurrentFirebaseUser().getUid());
-
-    }
-
-    public static String getCurrentFirebaseUserDisplayNameInitials(String displayName) {
-
-        StringBuilder displayInitials = new StringBuilder();
-        if (displayName != null) {
-            String[] names = displayName.split(" ");
-
-            for (String name : names) {
-                String trimmedName = name.trim();
-                if (!trimmedName.isEmpty()) {
-                    char initial = trimmedName.charAt(0);
-                    displayInitials.append(initial);
-                    if (displayInitials.length() >= 2) {
-                        break;
+                for (name in names) {
+                    val trimmedName = name.trim { it <= ' ' }
+                    if (trimmedName.isNotEmpty()) {
+                        val initial = trimmedName[0]
+                        displayInitials.append(initial)
+                        if (displayInitials.length >= 2) { break }
                     }
                 }
             }
+            return displayInitials.toString()
         }
-        return displayInitials.toString();
+
     }
 
-    public static class NullFirebaseUserException extends Exception {
-        private static final String ERROR_MESSAGE = "FirebaseUser is null.";
-        public NullFirebaseUserException() {
-            super(ERROR_MESSAGE);
-        }
+    class NullFirebaseUserException : Exception {
+        constructor() : super(ERROR_MESSAGE)
 
-        public NullFirebaseUserException(String extendedMessage) {
-            super(ERROR_MESSAGE + " " + extendedMessage);
+        constructor(extendedMessage: String) : super("$ERROR_MESSAGE $extendedMessage")
+
+        companion object {
+            private const val ERROR_MESSAGE = "FirebaseUser is null."
         }
     }
-
 }

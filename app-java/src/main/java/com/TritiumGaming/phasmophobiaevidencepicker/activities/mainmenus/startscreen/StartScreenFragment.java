@@ -110,7 +110,6 @@ public class StartScreenFragment extends MainMenuFragment {
         PETMenusKt.setIconDropdownMenu(
                 button_info,
                 new AccountIconView(requireContext()),
-                /*newsIcon,*/
                 R.navigation.titlescreen_navgraph,
                 new Object[]{
                         R.drawable.ic_person

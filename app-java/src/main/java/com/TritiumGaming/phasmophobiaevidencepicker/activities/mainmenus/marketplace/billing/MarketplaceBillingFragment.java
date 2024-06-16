@@ -27,7 +27,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketp
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketplaceMtxItemModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccountCredit;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestorePurchaseHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.android.billingclient.api.BillingClient;
@@ -107,7 +107,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
     private void initAccountView() {
         FirebaseUser firebaseUser = null;
         try {
-            firebaseUser = FirestoreUser.getCurrentFirebaseUser();
+            firebaseUser = FirestoreUser.Companion.getCurrentFirebaseUser();
         } catch (Exception e) {
             e.printStackTrace();
         }

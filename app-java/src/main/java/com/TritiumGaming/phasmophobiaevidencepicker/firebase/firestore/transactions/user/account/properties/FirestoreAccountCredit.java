@@ -1,10 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -49,17 +50,11 @@ public class FirestoreAccountCredit {
 
     }
 
-    /*
-    private static CollectionReference getAccountCollection()
-            throws Exception {
-        return FirestoreUser.getUserDocument().collection(COLLECTION_ACCOUNT);
-    }
-    */
-
     @NonNull
     public static DocumentReference getCreditsDocument()
             throws Exception {
-        return FirestoreAccount.getAccountCollection()
+        return FirestoreAccount.Companion
+                .getAccountCollection()
                 .document(DOCUMENT_CREDITS);
     }
 

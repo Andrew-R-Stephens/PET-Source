@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.getCurrentFirebaseUserDisplayNameInitials
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.getCurrentFirebaseUserDisplayNameInitials
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIcon
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
 import com.google.android.material.card.MaterialCardView
@@ -46,7 +46,7 @@ class AccountIconView : MaterialCardView {
         val profileIcon = findViewById<ComposeView>(R.id.profile_icon)
         profileIcon.setContent { AccountIcon() }
 
-        val user = FirestoreUser.getCurrentFirebaseUser()
+        val user = FirestoreUser.currentFirebaseUser
         createAccountInitials(user?.displayName)
     }
 

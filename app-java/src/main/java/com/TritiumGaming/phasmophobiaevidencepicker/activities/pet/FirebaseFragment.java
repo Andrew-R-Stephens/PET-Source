@@ -102,7 +102,7 @@ public abstract class FirebaseFragment extends PETFragment {
             // Successfully signed in
             FirebaseUser user;
             try {
-                user = FirestoreUser.getCurrentFirebaseUser();
+                user = FirestoreUser.Companion.getCurrentFirebaseUser();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

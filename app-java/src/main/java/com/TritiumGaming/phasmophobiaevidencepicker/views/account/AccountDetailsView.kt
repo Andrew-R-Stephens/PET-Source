@@ -38,7 +38,7 @@ class AccountDetailsView : ConstraintLayout {
     fun init(context: Context?) {
         inflate(context, R.layout.layout_account_details_2, this)
 
-        val user = FirestoreUser.getCurrentFirebaseUser()
+        val user = FirestoreUser.currentFirebaseUser
 
         //try {
             setUsernameInitials(user)

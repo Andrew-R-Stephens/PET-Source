@@ -1,25 +1,22 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account
 
-import androidx.annotation.NonNull;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.userDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.FirestoreTransactionHistory
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.google.firebase.firestore.CollectionReference
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.FirestoreTransactionHistory;
-import com.google.firebase.firestore.CollectionReference;
+class FirestoreAccount {
+    companion object {
+        private const val COLLECTION_ACCOUNT: String = "Account"
 
-public class FirestoreAccount {
+        @Throws(Exception::class)
+        fun init() {
+            FirestoreAccountCredit.init()
+            FirestoreTransactionHistory.init()
+        }
 
-    public final static String COLLECTION_ACCOUNT = "Account";
-
-    public static void init()
-            throws Exception {
-        FirestoreAccountCredit.init();
-        FirestoreTransactionHistory.init();
+        val accountCollection: CollectionReference
+            @Throws(Exception::class)
+            get() = userDocument.collection(COLLECTION_ACCOUNT)
     }
-
-    @NonNull
-    public static CollectionReference getAccountCollection()
-            throws Exception {
-        return FirestoreUser.getUserDocument().collection(COLLECTION_ACCOUNT);
-    }
-
 }

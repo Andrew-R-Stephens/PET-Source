@@ -260,7 +260,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirestoreUser.getCurrentFirebaseUser();
+            FirebaseUser user = FirestoreUser.Companion.getCurrentFirebaseUser();
 
             if(user != null) {
                 String message = "Welcome " + user.getDisplayName();
@@ -273,7 +273,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
                 // Generate a Firestore document for the User with default data if needed
                 try {
-                    FirestoreUser.buildUserDocument();
+                    FirestoreUser.Companion.buildUserDocument();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

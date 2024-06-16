@@ -47,7 +47,7 @@ fun AccountIcon() {
         val contentScale = ContentScale.Inside
         val contentDescription = "Outer Box"
 
-        if (FirestoreUser.getCurrentFirebaseUser() == null) {
+        if (FirestoreUser.currentFirebaseUser == null) {
             Image(
                 painter = painterResource(id = R.drawable.ic_person),
                 colorFilter = ColorFilter.tint(personTint),

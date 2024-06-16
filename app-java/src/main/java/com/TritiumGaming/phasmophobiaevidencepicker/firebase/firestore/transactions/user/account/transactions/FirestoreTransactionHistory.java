@@ -46,7 +46,7 @@ public class FirestoreTransactionHistory {
     public static DocumentReference getTransactionHistoryDocument()
             throws Exception {
 
-        return FirestoreAccount.getAccountCollection()
+        return FirestoreAccount.Companion.getAccountCollection()
                 .document(DOCUMENT_TRANSACTION_HISTORY);
     }
 

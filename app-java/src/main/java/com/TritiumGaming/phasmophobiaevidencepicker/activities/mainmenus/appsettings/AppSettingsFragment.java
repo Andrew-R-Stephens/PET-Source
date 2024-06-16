@@ -635,7 +635,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         // Generate a Firestore document for the User with default data if needed
         try {
-            FirestoreUser.buildUserDocument();
+            FirestoreUser.Companion.buildUserDocument();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
