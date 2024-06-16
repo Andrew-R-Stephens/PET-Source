@@ -1,233 +1,208 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.ghost;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.ghost
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Bundle
+import android.util.AttributeSet
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
+import android.view.View
+import android.widget.LinearLayout
+import androidx.annotation.IntegerRes
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
-import androidx.annotation.IntegerRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.constraintlayout.widget.ConstraintLayout;
+abstract class GhostView : ConstraintLayout {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
+    private var evidenceViewModel: EvidenceViewModel? = null
 
-public abstract class GhostView extends ConstraintLayout {
+    private var ghostData: GhostModel? = null
 
-    private EvidenceViewModel evidenceViewModel;
+    @IntegerRes private var neutralSelColor = 0
+    @IntegerRes private var negativeSelColor = 0
+    @IntegerRes private var positiveSelColor = 0
 
-    private GhostModel ghostData;
+    constructor(context: Context) :
+            super(context) { initView() }
 
-    private @IntegerRes int neutralSelColor, negativeSelColor, positiveSelColor;
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView() }
 
-    public GhostView(@NonNull Context context) {
-        super(context);
-        initView();
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView() }
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+
+    fun initView() {
+        inflate(context, R.layout.item_investigation_ghost, this)
+
+        setDefaults()
     }
 
-    public GhostView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView();
-    }
+    private fun setDefaults() {
+        layoutParams =
+            LinearLayoutCompat.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT, 1f
+            )
 
-    public GhostView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
-
-    public GhostView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
-
-    public void initView() {
-        inflate(getContext(), R.layout.item_investigation_ghost, this);
-
-        setDefaults();
-    }
-
-    private void setDefaults() {
-        LinearLayoutCompat.LayoutParams params =
-                new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LayoutParams.WRAP_CONTENT, 1f);
-        setLayoutParams(params);
-
-        neutralSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.neutralSelColor);
-        negativeSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.negativeSelColor);
-        positiveSelColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.positiveSelColor);
+        neutralSelColor = getColorFromAttribute(context, R.attr.neutralSelColor)
+        negativeSelColor = getColorFromAttribute(context, R.attr.negativeSelColor)
+        positiveSelColor = getColorFromAttribute(context, R.attr.positiveSelColor)
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex) {
+    fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int) {
+        this.evidenceViewModel = evidenceViewModel
+        this.ghostData = evidenceViewModel.investigationData?.ghostList?.getAt(groupIndex)
 
-        this.evidenceViewModel = evidenceViewModel;
-        this.ghostData = evidenceViewModel.getInvestigationData().getGhostList().getAt(groupIndex);
+        val nameView = findViewById<AppCompatTextView>(R.id.label_name)
+        val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
-        AppCompatTextView nameView = findViewById(R.id.label_name);
-        LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
+        nameView.text = ghostData?.name
 
-        String ghostName = ghostData.getName();
-        nameView.setText(ghostName);
+        ghostData?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
 
-        redrawGhostRejectionStatus(ghostData, groupIndex, false);
+        if (iconRowLayout != null) {
+            var k = 0
+            while (k < (ghostData?.getEvidence()?.size ?: 0)) {
+                val currentEvidence = ghostData?.getEvidence()?.get(k) ?: return
 
-        if(linearLayout_iconRow != null) {
+                val evidenceIcon =
+                    iconRowLayout.getChildAt(k) as AppCompatImageView
 
-            int k = 0;
-            for (; k < ghostData.getEvidence().length; k++) {
+                evidenceIcon.setImageResource(currentEvidence.icon)
 
-                AppCompatImageView evidenceIcon =
-                        (AppCompatImageView) linearLayout_iconRow.getChildAt(k);
-                evidenceIcon.setImageResource(ghostData.getEvidence()[k].getIcon());
-
-                switch (ghostData.getEvidence()[k].getRuling()) {
-                    case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
-                    case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
-                    case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
+                when (currentEvidence.ruling) {
+                    Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
+                    Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
+                    Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
                 }
-
+                k++
             }
 
-            for(; k < linearLayout_iconRow.getChildCount(); k ++) {
-                linearLayout_iconRow.getChildAt(k).setVisibility(View.GONE);
+            while (k < iconRowLayout.childCount) {
+                iconRowLayout.getChildAt(k).visibility = GONE
+                k++
             }
         }
 
-        setVisibility(View.INVISIBLE);
-        setAlpha(0);
-        setId(groupIndex);
+        visibility = INVISIBLE
+        alpha = 0f
+        id = groupIndex
 
-        GestureDetector swipeListener =
-                new GestureDetector(getContext(), new GhostSwipeListener(groupIndex));
+        val swipeListener =
+            GestureDetector(context, GhostSwipeListener(groupIndex))
 
-        nameView.setOnTouchListener((v, motionEvent) -> {
-            swipeListener.onTouchEvent(motionEvent);
-            return true;
-        });
+        nameView.setOnTouchListener { v: View?, motionEvent: MotionEvent? ->
+            swipeListener.onTouchEvent(
+                motionEvent!!
+            )
+            true
+        }
 
-        addOnLayoutChangeListener((thisGhostView, i, i1, i2, i3, i4, i5, i6, i7) -> {
+        addOnLayoutChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int,
+                                    _: Int, _: Int, _: Int, _: Int ->
+            ghostData?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
+            if (iconRowLayout != null) {
+                ghostData?.getEvidence()?.forEachIndexed { index, evidenceModel ->
+                    val evidenceIcon = iconRowLayout.getChildAt(index)
+                        .findViewById<AppCompatImageView>(R.id.evidence_icon)
 
-            redrawGhostRejectionStatus(ghostData, groupIndex, false);
-
-            if(linearLayout_iconRow != null) {
-                for (int l = 0; l < ghostData.getEvidence().length; l++) {
-
-                    AppCompatImageView evidenceIcon =
-                            linearLayout_iconRow.getChildAt(l).findViewById(R.id.evidence_icon);
-
-                    switch (ghostData.getEvidence()[l].getRuling()) {
-                        case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
-                        case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
-                        case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
+                    when (evidenceModel.ruling) {
+                        Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
+                        Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
+                        Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
                     }
                 }
             }
-        });
+        }
 
-        post(new Runnable() {
-            @Override
-            public void run() {
-                animate()
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationStart(Animator animation) {
-                                super.onAnimationStart(animation);
-                                setVisibility(View.VISIBLE);
-                            }}
-                        ).alpha(1).setStartDelay((long)(10f * groupIndex)).setDuration(100);
-            }
-        });
+        post {
+            animate()
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationStart(animation: Animator) {
+                        super.onAnimationStart(animation)
+                        visibility = VISIBLE
+                    }
+                }
+                ).alpha(1f).setStartDelay((10f * groupIndex).toLong()).setDuration(100)
+        }
     }
 
-    public void forceUpdateComponents() {
-        LinearLayoutCompat linearLayout_iconRow = findViewById(R.id.icon_container);
-        if(linearLayout_iconRow == null) { return; }
+    fun forceUpdateComponents() {
+        val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
-        for (int k = 0; k < ghostData.getEvidence().length; k++) {
+        for (k in ghostData!!.evidence.indices) {
+            val evidenceIcon =
+                iconRowLayout.getChildAt(k) as AppCompatImageView
 
-            AppCompatImageView evidenceIcon =
-                    (AppCompatImageView) linearLayout_iconRow.getChildAt(k);
-
-            switch (ghostData.getEvidence()[k].getRuling()) {
-                case POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor);
-                case NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor);
-                case NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor);
+            when (ghostData!!.evidence[k].ruling) {
+                Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
+                Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
+                Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
             }
         }
 
-        redrawGhostRejectionStatus(ghostData, ghostData.getId(), true);
-
+        redrawGhostRejectionStatus(ghostData!!, ghostData!!.id, true)
     }
 
-    private void redrawGhostRejectionStatus(@NonNull GhostModel ghost, int index, boolean animate) {
+    private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
+        val score = ghost.evidenceScore
+        val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        int score = ghost.getEvidenceScore();
-        AppCompatImageView statusIcon = findViewById(R.id.icon_status);
-
-        boolean rejectionStatus = evidenceViewModel.getRejectionPile()[index];
+        val rejectionStatus = evidenceViewModel?.getRejectionPile()?.get(index) ?: return
         if (rejectionStatus) {
-            statusIcon.setImageLevel(1);
-
+            statusIcon.setImageLevel(1)
         } else if (score <= -5) {
-            statusIcon.setImageLevel(2+ (int) (Math.random() * 3));
-
+            statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
         } else if (score == 3) {
-            statusIcon.setImageLevel(5);
-
+            statusIcon.setImageLevel(5)
         } else {
-            statusIcon.setImageLevel(0);
+            statusIcon.setImageLevel(0)
         }
-
     }
 
-    public class GhostSwipeListener extends GestureDetector.SimpleOnGestureListener {
+    inner class GhostSwipeListener(private val index: Int) : SimpleOnGestureListener() {
+        override fun onFling(
+            event1: MotionEvent?, event2: MotionEvent,
+            velocityX: Float, velocityY: Float
+        ): Boolean {
+            val status = evidenceViewModel?.swapStatusInRejectedPile(index) == false
 
-        private final int index;
+            evidenceViewModel?.ghostOrderData?.updateOrder()
 
-        public GhostSwipeListener(int index) {
-            super();
+            evidenceViewModel?.investigationData?.ghostList?.getAt(index)?.let {
+                redrawGhostRejectionStatus(
+                    it, index, true
+                )
+            }
 
-            this.index = index;
-        }
+            val params = Bundle()
+            params.putString("event_type", "ghost_swiped")
+            params.putString("event_details", if (status) "ghost_impartial" else "ghost_rejected")
 
-        @Override
-        public boolean onFling(MotionEvent event1, @NonNull MotionEvent event2,
-                               float velocityX, float velocityY) {
-
-            boolean status = !evidenceViewModel.swapStatusInRejectedPile(index);
-
-            evidenceViewModel.getGhostOrderData().updateOrder();
-
-            redrawGhostRejectionStatus(evidenceViewModel.getInvestigationData().getGhostList().getAt(index), index, true);
-
-            Bundle params = new Bundle();
-            params.putString("event_type", "ghost_swiped");
-            params.putString("event_details", status ? "ghost_impartial" : "ghost_rejected");
             //analytics.logEvent("event_investigation", params);
-
-            return true;
+            return true
         }
 
-        @Override
-        public boolean onSingleTapUp(@NonNull MotionEvent e) {
-            createPopup();
+        override fun onSingleTapUp(e: MotionEvent): Boolean {
+            createPopup()
 
-            return super.onSingleTapConfirmed(e);
+            return super.onSingleTapConfirmed(e)
         }
-
     }
 
-    public abstract void createPopup();
+    abstract fun createPopup()
 }

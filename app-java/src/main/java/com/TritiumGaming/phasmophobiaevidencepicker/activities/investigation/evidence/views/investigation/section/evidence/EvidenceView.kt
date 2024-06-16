@@ -1,130 +1,113 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
+import android.content.Context
+import android.util.AttributeSet
+import android.util.Log
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.ScrollView
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.ui.platform.ComposeView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setRulingGroup
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.compose.ui.platform.ComposeView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+abstract class EvidenceView : ConstraintLayout {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationComposablesKt;
+    @ColorInt
+    var fontEmphasisColor: Int = 0
 
-public abstract class EvidenceView extends ConstraintLayout {
+    constructor(context: Context) :
+            super(context) { initView(context) }
 
-    @ColorInt int fontEmphasisColor = 0;
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { initView(context) }
 
-    public EvidenceView(@NonNull Context context) {
-        super(context);
-        initView(context);
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView(context) }
 
-    public EvidenceView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView(context);
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView(context) }
 
-    public EvidenceView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
-    }
+    fun initView(context: Context) {
+        inflate(context, R.layout.item_investigation_evidence, this)
 
-    public EvidenceView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView(context);
-    }
+        val params =
+            LinearLayoutCompat.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT, 1f
+            )
+        layoutParams = params
 
-    public void initView(@NonNull Context context) {
-        inflate(context, R.layout.item_investigation_evidence, this);
-
-        LinearLayoutCompat.LayoutParams params =
-                new LinearLayoutCompat.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT, 1f);
-        setLayoutParams(params);
-
-        fontEmphasisColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis);
+        fontEmphasisColor = getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis)
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void build(@NonNull EvidenceViewModel evidenceViewModel, int groupIndex, LinearLayout list_ghosts) {
+    fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int, ghostList: LinearLayout) {
+        val name = findViewById<AppCompatTextView>(R.id.label_name)
+        name.text = evidenceViewModel.investigationData!!.evidenceList
+            .list[groupIndex].name
 
-        AppCompatTextView name = findViewById(R.id.label_name);
-        name.setText(evidenceViewModel.getInvestigationData().getEvidenceList()
-                .getList().get(groupIndex).getName());
+        val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
+        setRulingGroup(radioGroupComposable, evidenceViewModel, groupIndex) {
+            onSelectEvidenceIcon(ghostList)
+        }
 
-        ComposeView radioGroupComposable = findViewById(R.id.radioGroup);
-        InvestigationComposablesKt.setRulingGroup(
-                radioGroupComposable, evidenceViewModel, groupIndex,
-                () -> {
-                    onSelectEvidenceIcon(list_ghosts);
-                    return null;
-                }
-        );
-
-        setVisibility(View.INVISIBLE);
-        setAlpha(0);
+        visibility = INVISIBLE
+        alpha = 0f
 
         animate()
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                        setVisibility(View.VISIBLE);
-                    }}
-                )
-                .alpha(1)
-                .setStartDelay((long)(10f * groupIndex))
-                .setDuration(100);
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator) {
+                    super.onAnimationStart(animation)
+                    visibility = VISIBLE
+                }
+            }
+            )
+            .alpha(1f)
+            .setStartDelay((10f * groupIndex).toLong())
+            .setDuration(100)
 
-        EvidenceNameGesture evidenceNameGesture = new EvidenceNameGesture();
-        GestureDetector nameDetector =
-                new GestureDetector(getContext(), evidenceNameGesture);
-        name.setOnTouchListener((v, motionEvent) -> nameDetector.onTouchEvent(motionEvent));
-
-    }
-
-    private void onSelectEvidenceIcon(@NonNull LinearLayout ghostContainer) {
-
-        requestInvalidateGhostContainer();
-
-        ScrollView parentScroller = ((ScrollView) ghostContainer.getParent());
-        if(parentScroller != null) {
-            parentScroller.smoothScrollTo(0, 0);
+        val evidenceNameGesture = EvidenceNameGesture()
+        val nameDetector =
+            GestureDetector(context, evidenceNameGesture)
+        name.setOnTouchListener { _: View?, motionEvent: MotionEvent? ->
+            nameDetector.onTouchEvent(
+                motionEvent!!
+            )
         }
     }
 
-    public class EvidenceNameGesture extends GestureDetector.SimpleOnGestureListener {
+    private fun onSelectEvidenceIcon(ghostContainer: LinearLayout) {
+        requestInvalidateGhostContainer()
 
-        @Override
-        public boolean onDown(@NonNull MotionEvent e) {
-            Log.i("onDown :", String.valueOf(e.getAction()));
-            return true;
+        val parentScroller = (ghostContainer.parent as ScrollView)
+        parentScroller.smoothScrollTo(0, 0)
+    }
+
+    inner class EvidenceNameGesture : SimpleOnGestureListener() {
+        override fun onDown(e: MotionEvent): Boolean {
+            Log.i("onDown :", e.action.toString())
+            return true
         }
 
-        @Override
-        public boolean onSingleTapUp(@NonNull MotionEvent e) {
-            createPopup();
-            return true;
+        override fun onSingleTapUp(e: MotionEvent): Boolean {
+            createPopup()
+            return true
         }
     }
 
-    public abstract void createPopup();
+    abstract fun createPopup()
 
-    public abstract void requestInvalidateGhostContainer();
-
+    abstract fun requestInvalidateGhostContainer()
 }
