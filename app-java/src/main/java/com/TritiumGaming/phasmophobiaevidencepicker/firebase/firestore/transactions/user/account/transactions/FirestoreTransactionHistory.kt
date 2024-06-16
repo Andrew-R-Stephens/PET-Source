@@ -1,53 +1,55 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions
 
-import android.util.Log;
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount.Companion.accountCollection
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.SetOptions
 
-import androidx.annotation.NonNull;
+class FirestoreTransactionHistory {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.SetOptions;
+    companion object {
+        private const val DOCUMENT_TRANSACTION_HISTORY = "TransactionHistory"
 
-import java.util.HashMap;
-import java.util.Map;
+        @get:Throws(Exception::class)
+        val transactionHistoryDocument: DocumentReference
+            get() = accountCollection
+                .document(DOCUMENT_TRANSACTION_HISTORY)
 
-public class FirestoreTransactionHistory {
+        @Throws(Exception::class)
+        fun init() {
+            val emptyMap: Map<Any, Any> = HashMap()
 
-    private final static String DOCUMENT_TRANSACTION_HISTORY = "TransactionHistory";
-
-    public static void init() throws Exception {
-
-        Map<Object, Object> emptyMap = new HashMap<>();
-
-        getTransactionHistoryDocument()
-            .get()
-            .addOnSuccessListener(documentSnapshot -> documentSnapshot.getReference().set(emptyMap, SetOptions.merge())
-                    .addOnSuccessListener(unused ->
-                            Log.d("Firestore",
-                                    DOCUMENT_TRANSACTION_HISTORY +
-                                            " successfully INITIALIZED!")
-                    )
-                    .addOnFailureListener(e -> {
-                        Log.d("Firestore",
+            transactionHistoryDocument
+                .get()
+                .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
+                    documentSnapshot.reference.set(emptyMap, SetOptions.merge())
+                        .addOnSuccessListener { unused: Void? ->
+                            Log.d(
+                                "Firestore",
                                 DOCUMENT_TRANSACTION_HISTORY +
-                                        " failed INITIALIZATION");
-                        e.printStackTrace();
-                    })
-                    .addOnCompleteListener(task ->
-                            Log.d("Firestore",
-                                    DOCUMENT_TRANSACTION_HISTORY +
-                                            " INITIALIZATION process complete!")
-                    ))
-            .addOnFailureListener(Throwable::printStackTrace);
+                                        " successfully INITIALIZED!"
+                            )
+                        }
+                        .addOnFailureListener { e: Exception ->
+                            Log.d(
+                                "Firestore",
+                                DOCUMENT_TRANSACTION_HISTORY +
+                                        " failed INITIALIZATION"
+                            )
+                            e.printStackTrace()
+                        }
+                        .addOnCompleteListener { task: Task<Void?>? ->
+                            Log.d(
+                                "Firestore",
+                                DOCUMENT_TRANSACTION_HISTORY +
+                                        " INITIALIZATION process complete!"
+                            )
+                        }
+                }
+                .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
+        }
 
     }
-
-    @NonNull
-    public static DocumentReference getTransactionHistoryDocument()
-            throws Exception {
-
-        return FirestoreAccount.Companion.getAccountCollection()
-                .document(DOCUMENT_TRANSACTION_HISTORY);
-    }
-
 }

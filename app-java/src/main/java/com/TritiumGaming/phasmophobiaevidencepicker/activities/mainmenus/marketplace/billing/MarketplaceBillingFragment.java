@@ -28,7 +28,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.fires
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestorePurchaseHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
@@ -116,7 +116,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
 
     private void initAccountCreditListener() {
         try {
-            DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
+            DocumentReference creditDoc = FirestoreAccountCredit.Companion.getCreditsDocument();
             creditDoc.get()
                     .addOnCompleteListener(task -> {
                         Long credits_read = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
@@ -243,7 +243,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
 
                 CollectionReference billablesCollection = null;
                 try {
-                    billablesCollection = FirestoreMicrotransactionBillables.getBillablesCollection();
+                    billablesCollection = FirestoreMicrotransactionBillables.Companion.getBillableCollection();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -271,8 +271,8 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
                                             switch (reward_item) {
                                                 case "credit" -> {
                                                     try {
-                                                        FirestoreAccountCredit.addCredits(reward_amount, null);
-                                                        FirestorePurchaseHistory.addPurchaseDocument(
+                                                        FirestoreAccountCredit.Companion.addCredits(reward_amount, null);
+                                                        FirestorePurchaseHistory.Companion.addPurchaseDocument(
                                                                 documentSnapshot.getReference(),
                                                                 purchase.getOrderId(), new OnFirestoreProcessListener() {
                                                                     @Override
@@ -319,7 +319,7 @@ public class MarketplaceBillingFragment extends MainMenuFragment {
 
         Task<QuerySnapshot> billablesQuery = null;
         try {
-            billablesQuery = FirestoreMicrotransactionBillables.getBillablesWhere(
+            billablesQuery = FirestoreMicrotransactionBillables.Companion.getBillablesWhere(
                     "type", "credits", "tier", Query.Direction.ASCENDING);
         } catch (Exception e) {
             e.printStackTrace();

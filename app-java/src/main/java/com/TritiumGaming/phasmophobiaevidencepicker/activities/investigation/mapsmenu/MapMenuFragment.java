@@ -67,9 +67,6 @@ public class MapMenuFragment extends InvestigationFragment {
         backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
 
         GridView gridView = view.findViewById(R.id.grid_maps);
-        /*CustomAdapter customAdapter = new CustomAdapter(
-                mapMenuViewModel.getShortenedMapNames().toArray(new String[0]),
-                Ints.toArray(mapMenuViewModel.getMapThumbnails()));*/
 
         if(mapListModel == null) {
             Toast.makeText(requireContext(),
@@ -108,10 +105,8 @@ public class MapMenuFragment extends InvestigationFragment {
 
         mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader);
 
-        if(reader.worldMapDeserializer == null) {
-            throw new Exception("Loading maps failed. There is a null mapsWrapper.");
-        }
-        mapListModel = new MapListModel(reader.worldMapDeserializer);
+        reader.getWorldMapDeserializer();
+        mapListModel = new MapListModel(reader.getWorldMapDeserializer());
         mapListModel.orderRooms();
 
         return mapListModel;

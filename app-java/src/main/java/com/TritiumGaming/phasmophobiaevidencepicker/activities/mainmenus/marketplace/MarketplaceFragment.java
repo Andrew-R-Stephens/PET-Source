@@ -40,7 +40,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestoreUnlockHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView;
@@ -225,7 +225,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
     private void initAccountCreditListener() {
         try {
-            DocumentReference creditDoc = FirestoreAccountCredit.getCreditsDocument();
+            DocumentReference creditDoc = FirestoreAccountCredit.Companion.getCreditsDocument();
             creditDoc.get()
                     .addOnSuccessListener(task -> {
                         Long credits_read = task.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
@@ -255,7 +255,7 @@ public class MarketplaceFragment extends MainMenuFragment {
         CollectionReference unlockHistoryCollection = null;
         try {
             unlockHistoryCollection =
-                    FirestoreUnlockHistory.getUnlockHistoryCollection();
+                    FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -493,7 +493,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         Task<QuerySnapshot> query = null;
         try {
-            query = FirestoreMerchandiseThemes.getThemesWhere(field, value, orderField, order);
+            query = FirestoreMerchandiseThemes.Companion.getThemesWhere(field, value, orderField, order);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -563,7 +563,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         Task<QuerySnapshot> query = null;
         try {
-            query = FirestoreMerchandiseBundle.getBundleWhere(field, value, orderField, order);
+            query = FirestoreMerchandiseBundle.Companion.getBundleWhere(field, value, orderField, order);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -665,7 +665,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                     }
 
                     try {
-                        FirestoreUnlockHistory.addUnlockedDocuments(
+                        FirestoreUnlockHistory.Companion.addUnlockedDocuments(
                                 uuids,
                                 "Theme Bundle",
                                 new OnFirestoreProcessListener() {
@@ -723,7 +723,7 @@ public class MarketplaceFragment extends MainMenuFragment {
             };
 
             try {
-                FirestoreAccountCredit.removeCredits(
+                FirestoreAccountCredit.Companion.removeCredits(
                         marketplaceBundleView.getCreditCost(),
                         buyButtonCallback);
 
@@ -789,7 +789,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                         };
 
                         try {
-                            FirestoreUnlockHistory.addUnlockDocument(
+                            FirestoreUnlockHistory.Companion.addUnlockDocument(
                                     String.valueOf(marketSingleTheme.getUuid()),
                                     "Single Theme",
                                     purchaseListener);
@@ -824,7 +824,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                 };
 
                 try {
-                    FirestoreAccountCredit.removeCredits(
+                    FirestoreAccountCredit.Companion.removeCredits(
                             marketplaceItemView.getCreditCost(),
                             buyButtonCallback);
 
@@ -1007,7 +1007,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                 int rewardAmount = rewardItem.getAmount();
 
                 try {
-                    FirestoreAccountCredit.addCredits(rewardAmount);
+                    FirestoreAccountCredit.Companion.addCredits(rewardAmount);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -26,7 +26,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.transactiontypes.FirestoreUnlockHistory;
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
@@ -157,7 +157,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         CollectionReference unlockHistoryCollection = null;
         try {
             unlockHistoryCollection =
-                    FirestoreUnlockHistory.getUnlockHistoryCollection();
+                    FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
         } catch (Exception e) {
             e.printStackTrace();
         }

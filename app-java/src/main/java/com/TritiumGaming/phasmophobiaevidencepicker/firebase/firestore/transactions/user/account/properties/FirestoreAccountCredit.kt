@@ -1,137 +1,111 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties;
+package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties
 
-import android.util.Log;
+import android.util.Log
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount.Companion.accountCollection
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class FirestoreAccountCredit {
+    companion object {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount;
-import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.SetOptions;
+        private const val DOCUMENT_CREDITS: String = "Credits"
 
-import java.util.HashMap;
-import java.util.Map;
+        private const val FIELD_CREDITS_SPENT: String = "spentCredits"
+        const val FIELD_CREDITS_EARNED: String = "earnedCredits"
 
-public class FirestoreAccountCredit {
+        val creditsDocument: DocumentReference
+            @Throws(Exception::class)
+            get() = accountCollection
+                .document(DOCUMENT_CREDITS)
 
-    public final static String
-            DOCUMENT_CREDITS = "Credits",
-            FIELD_CREDITS_EARNED = "earnedCredits",
-            FIELD_CREDITS_SPENT = "spentCredits";
+        @Throws(Exception::class)
+        fun init() {
+            val creditsMap: MutableMap<Any, Any> = HashMap()
 
-    public static void init() throws Exception {
-
-        Map<Object, Object> creditsMap = new HashMap<>();
-
-        getCreditsDocument()
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-
-                if (documentSnapshot.get(FIELD_CREDITS_EARNED) == null) {
-                    creditsMap.put(FIELD_CREDITS_EARNED, 0);
+            creditsDocument
+                .get()
+                .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
+                    if (documentSnapshot[FIELD_CREDITS_EARNED] == null) {
+                        creditsMap[FIELD_CREDITS_EARNED] = 0
+                    }
+                    if (documentSnapshot[FIELD_CREDITS_SPENT] == null) {
+                        creditsMap[FIELD_CREDITS_SPENT] = 0
+                    }
+                    documentSnapshot.reference.set(creditsMap, SetOptions.merge())
+                        .addOnSuccessListener { unused: Void? ->
+                            Log.d(
+                                "Firestore",
+                                "User Credits successfully INITIALIZED!"
+                            )
+                        }
+                        .addOnFailureListener { e: Exception ->
+                            Log.d("Firestore", "User Credits failed INITIALIZATION")
+                            e.printStackTrace()
+                        }
+                        .addOnCompleteListener { task: Task<Void?>? ->
+                            Log.d(
+                                "Firestore",
+                                "User Credits INITIALIZATION process complete!"
+                            )
+                        }
                 }
-                if (documentSnapshot.get(FIELD_CREDITS_SPENT) == null) {
-                    creditsMap.put(FIELD_CREDITS_SPENT, 0);
+                .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
+        }
+
+        @JvmOverloads
+        @Throws(Exception::class)
+        fun addCredits(creditAmount: Long, callback: OnFirestoreProcessListener? = null) {
+            val creditDocument = creditsDocument
+
+            val data: MutableMap<String, Any> = HashMap()
+            data[FIELD_CREDITS_EARNED] = FieldValue.increment(creditAmount)
+
+            creditDocument.update(data)
+                .addOnSuccessListener { unused: Void? ->
+                    callback?.onSuccess()
                 }
+                .addOnFailureListener { e: Exception? ->
+                    callback?.onFailure()
+                }
+                .addOnCompleteListener { task: Task<Void?>? ->
+                    callback?.onComplete()
+                }
+        }
 
-                documentSnapshot.getReference().set(creditsMap, SetOptions.merge())
-                        .addOnSuccessListener(unused ->
-                                Log.d("Firestore", "User Credits successfully INITIALIZED!"))
-                        .addOnFailureListener(e -> {
-                            Log.d("Firestore", "User Credits failed INITIALIZATION");
-                            e.printStackTrace();
-                        })
-                        .addOnCompleteListener(task ->
-                                Log.d("Firestore", "User Credits INITIALIZATION process complete!"));
-            })
-            .addOnFailureListener(Throwable::printStackTrace);
+        @JvmOverloads
+        @Throws(Exception::class)
+        fun removeCredits(creditAmount: Long, callback: OnFirestoreProcessListener? = null) {
+            val creditDocument = creditsDocument
 
-    }
+            creditDocument.get().addOnCompleteListener { task: Task<DocumentSnapshot> ->
+                val storedCredits = task.result.get(FIELD_CREDITS_EARNED, Long::class.java)
+                if (storedCredits != null && storedCredits < creditAmount) {
+                    callback?.onFailure()
 
-    @NonNull
-    public static DocumentReference getCreditsDocument()
-            throws Exception {
-        return FirestoreAccount.Companion
-                .getAccountCollection()
-                .document(DOCUMENT_CREDITS);
-    }
-
-    public static void addCredits(long creditAmount) throws Exception {
-        addCredits(creditAmount, null);
-    }
-
-    public static void addCredits(long creditAmount, @Nullable OnFirestoreProcessListener callback) throws Exception {
-        DocumentReference creditDocument = getCreditsDocument();
-
-        Map<String, Object> data = new HashMap<>();
-        data.put(FIELD_CREDITS_EARNED, FieldValue.increment(creditAmount));
-
-        creditDocument.update(data)
-                .addOnSuccessListener(unused -> {
-                    if (callback != null) {
-                        callback.onSuccess();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    if (callback != null) {
-                        callback.onFailure();
-                    }
-                })
-                .addOnCompleteListener(task -> {
-                    if (callback != null) {
-                        callback.onComplete();
-                    }
-                });
-    }
-
-    public static void removeCredits(long creditAmount) throws Exception {
-        removeCredits(creditAmount, null);
-    }
-
-    public static void removeCredits(long creditAmount, @Nullable OnFirestoreProcessListener callback)
-            throws Exception {
-        DocumentReference creditDocument = getCreditsDocument();
-
-        creditDocument.get().addOnCompleteListener(task -> {
-
-            Long storedCredits = task.getResult().get(FIELD_CREDITS_EARNED, Long.class);
-            if(storedCredits != null && storedCredits < creditAmount) {
-                if(callback != null) {
-                    callback.onFailure();
+                    return@addOnCompleteListener
                 }
 
-                return;
+                val data: MutableMap<String, Any> = HashMap()
+                data[FIELD_CREDITS_EARNED] = FieldValue.increment(-creditAmount)
+                data[FIELD_CREDITS_SPENT] = FieldValue.increment(creditAmount)
+
+                task.result.reference.update(data)
+                    .addOnSuccessListener { result: Void? ->
+                        callback?.onSuccess()
+                    }
+                    .addOnFailureListener { error: Exception ->
+                        callback?.onFailure()
+                        error.printStackTrace()
+                    }
+                    .addOnCompleteListener { result: Task<Void?>? ->
+                        callback?.onComplete()
+                    }
+                callback?.onComplete()
             }
-
-            Map<String, Object> data = new HashMap<>();
-            data.put(FIELD_CREDITS_EARNED, FieldValue.increment(-creditAmount));
-            data.put(FIELD_CREDITS_SPENT, FieldValue.increment(creditAmount));
-
-            task.getResult().getReference().update(data)
-                    .addOnSuccessListener(result -> {
-                        if (callback != null) {
-                            callback.onSuccess();
-                        }
-                    })
-                    .addOnFailureListener(error -> {
-                        if (callback != null) {
-                            callback.onFailure();
-                        }
-                        error.printStackTrace();
-                    })
-                    .addOnCompleteListener(result -> {
-                        if (callback != null) {
-                            callback.onComplete();
-                        }
-                    });
-
-            if(callback != null) {
-                callback.onComplete();
-            }
-        });
-
+        }
     }
-
 }
