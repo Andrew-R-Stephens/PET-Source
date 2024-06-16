@@ -144,11 +144,12 @@ abstract class GhostView : ConstraintLayout {
     fun forceUpdateComponents() {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
-        for (k in ghostData!!.evidence.indices) {
+        ghostData?.evidence?.forEachIndexed { index, _ ->
             val evidenceIcon =
-                iconRowLayout.getChildAt(k) as AppCompatImageView
+                iconRowLayout.getChildAt(index) as AppCompatImageView
 
-            when (ghostData!!.evidence[k].ruling) {
+            val ruling = ghostData?.evidence?.get(index)?.ruling ?: return
+            when (ruling) {
                 Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
                 Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
                 Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
@@ -163,14 +164,14 @@ abstract class GhostView : ConstraintLayout {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
         val rejectionStatus = evidenceViewModel?.getRejectionPile()?.get(index) ?: return
-        if (rejectionStatus) {
-            statusIcon.setImageLevel(1)
-        } else if (score <= -5) {
-            statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
-        } else if (score == 3) {
-            statusIcon.setImageLevel(5)
-        } else {
-            statusIcon.setImageLevel(0)
+
+        if (rejectionStatus) { statusIcon.setImageLevel(1) }
+        else {
+            when {
+                score <= -5 -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
+                score == 3 -> statusIcon.setImageLevel(5)
+                else -> statusIcon.setImageLevel(0)
+            }
         }
     }
 
@@ -184,16 +185,16 @@ abstract class GhostView : ConstraintLayout {
             evidenceViewModel?.ghostOrderData?.updateOrder()
 
             evidenceViewModel?.investigationData?.ghostList?.getAt(index)?.let {
-                redrawGhostRejectionStatus(
-                    it, index, true
-                )
+                redrawGhostRejectionStatus(it, index, true)
             }
 
+            /*
             val params = Bundle()
             params.putString("event_type", "ghost_swiped")
             params.putString("event_details", if (status) "ghost_impartial" else "ghost_rejected")
 
-            //analytics.logEvent("event_investigation", params);
+            analytics.logEvent("event_investigation", params);
+            */
             return true
         }
 
