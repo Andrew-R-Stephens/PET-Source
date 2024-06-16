@@ -1,189 +1,172 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewStub;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewStub
+import android.widget.FrameLayout
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
+import android.widget.ScrollView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.InvestigationSection
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
+    protected var ghostSection: InvestigationSection? = null
+    protected var evidenceSection: InvestigationSection? = null
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.InvestigationSection;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout;
+    protected var ghostList: GhostListView? = null
+    protected var evidenceList: EvidenceListView? = null
 
-public class EvidenceFragment extends InvestigationFragment {
+    protected var toggleCollapseButton: AppCompatImageView? = null
+    protected var sanityTrackingConstraintLayout: ConstraintLayout? = null
 
-    protected InvestigationSection ghostSection, evidenceSection;
+    protected var sanityToolsLayout: SanityToolsLayout? = null
 
-    protected GhostListView ghostList;
-    protected EvidenceListView evidenceList;
-
-    protected AppCompatImageView toggleCollapseButton;
-    protected ConstraintLayout sanityTrackingConstraintLayout;
-
-    protected SanityToolsLayout sanityToolsLayout;
-
-    public EvidenceFragment(int layout) {
-        super(layout);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_evidence, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_evidence, container, false)
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        super.onViewCreated(view, savedInstanceState);
+        sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool)
+        sanityToolsLayout?.init(evidenceViewModel)
 
-        sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool);
-        sanityToolsLayout.init(evidenceViewModel);
-
-        if(evidenceViewModel.getSanityModel() != null) {
-            evidenceViewModel.getSanityModel()
-                    .setFlashTimeoutMax(globalPreferencesViewModel.getHuntWarningFlashTimeout());
-        }
+        evidenceViewModel.sanityModel?.flashTimeoutMax = 
+            globalPreferencesViewModel.huntWarningFlashTimeout.toLong()
 
         // GHOST / EVIDENCE CONTAINERS
-        FrameLayout
-                column_left = view.findViewById(R.id.column_left),
-                column_right = view.findViewById(R.id.column_right);
-        column_right.findViewById(R.id.scrollview)
-                .setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+        val columnLeft = view.findViewById<FrameLayout>(R.id.column_left)
+        val columnRight = view.findViewById<FrameLayout>(R.id.column_right)
+        columnRight.findViewById<View>(R.id.scrollview).verticalScrollbarPosition =
+            View.SCROLLBAR_POSITION_RIGHT
 
-        if(!globalPreferencesViewModel.isLeftHandSupportEnabled()) {
-            ghostSection = (InvestigationSection) column_left.getChildAt(0);
-            evidenceSection = (InvestigationSection) column_right.getChildAt(0);
+        if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
+            ghostSection = columnLeft.getChildAt(0) as InvestigationSection
+            evidenceSection = columnRight.getChildAt(0) as InvestigationSection
         } else {
-            evidenceSection = (InvestigationSection) column_left.getChildAt(0);
-            ghostSection = (InvestigationSection) column_right.getChildAt(0);
+            evidenceSection = columnLeft.getChildAt(0) as InvestigationSection
+            ghostSection = columnRight.getChildAt(0) as InvestigationSection
         }
 
-        ghostSection.setLabel(getString(R.string.investigation_section_title_ghosts));
-        evidenceSection.setLabel(getString(R.string.investigation_section_title_evidence));
+        ghostSection?.setLabel(getString(R.string.investigation_section_title_ghosts))
+        evidenceSection?.setLabel(getString(R.string.investigation_section_title_evidence))
 
-        ScrollView ghost_scrollview = ghostSection.findViewById(R.id.scrollview);
-        ScrollView evidence_scrollview = evidenceSection.findViewById(R.id.scrollview);
+        val ghostScrollview = ghostSection?.findViewById<ScrollView>(R.id.scrollview)
+        val evidenceScrollview = evidenceSection?.findViewById<ScrollView>(R.id.scrollview)
 
-        ghostList = new GhostListView(requireContext());
-        evidenceList = new EvidenceListView(requireContext());
+        ghostList = GhostListView(requireContext())
+        evidenceList = EvidenceListView(requireContext())
 
-        ghostList.init(
-                globalPreferencesViewModel, evidenceViewModel,
-                popupWindow, ghostSection.findViewById(R.id.progressbar),
-                adRequest);
-        evidenceList.init(
-                globalPreferencesViewModel, evidenceViewModel,
-                popupWindow, evidenceSection.findViewById(R.id.progressbar),
-                adRequest, ghostList);
+        ghostList?.init(
+            globalPreferencesViewModel, evidenceViewModel,
+            popupWindow, ghostSection?.findViewById(R.id.progressbar),
+            adRequest
+        )
+        evidenceList?.init(
+            globalPreferencesViewModel, evidenceViewModel,
+            popupWindow, evidenceSection?.findViewById(R.id.progressbar),
+            adRequest, ghostList
+        )
 
-        ViewStub list_ghosts = ghostSection.findViewById(R.id.list);
-        ViewStub list_evidence = evidenceSection.findViewById(R.id.list);
+        val listGhosts = ghostSection?.findViewById<ViewStub>(R.id.list)
+        val listEvidence = evidenceSection?.findViewById<ViewStub>(R.id.list)
 
-        ghost_scrollview.removeView(list_ghosts);
-        ghost_scrollview.addView(ghostList);
+        ghostScrollview?.removeView(listGhosts)
+        ghostScrollview?.addView(ghostList)
 
-        evidence_scrollview.removeView(list_evidence);
-        evidence_scrollview.addView(evidenceList);
+        evidenceScrollview?.removeView(listEvidence)
+        evidenceScrollview?.addView(evidenceList)
 
-        toggleCollapseButton = view.findViewById(R.id.button_toggleSanity);
+        toggleCollapseButton = view.findViewById(R.id.button_toggleSanity)
 
         // SANITY COLLAPSIBLE
-        sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking);
+        sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking)
 
-        if(toggleCollapseButton != null) {
-            toggleCollapseButton.setOnClickListener(v -> {
-                if(evidenceViewModel.isDrawerCollapsed()) {
-                    sanityTrackingConstraintLayout.animate()
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationStart(Animator animation) {
-                                    super.onAnimationStart(animation);
+        if (toggleCollapseButton != null) {
+            toggleCollapseButton?.setOnClickListener {
+                if (evidenceViewModel.isDrawerCollapsed) {
+                    sanityTrackingConstraintLayout?.animate()
+                        ?.setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationStart(animation: Animator) {
+                                super.onAnimationStart(animation)
 
-                                    sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                                }
+                                sanityTrackingConstraintLayout?.visibility = View.GONE
+                            }
 
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    super.onAnimationEnd(animation);
+                            override fun onAnimationEnd(animation: Animator) {
+                                super.onAnimationEnd(animation)
 
-                                    sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-                                    toggleCollapseButton.setImageLevel(2);
-                                    evidenceViewModel.setDrawerCollapsed(false);
-                                }
-                            })
-                            .start();
+                                sanityTrackingConstraintLayout?.visibility = View.VISIBLE
+                                toggleCollapseButton?.setImageLevel(2)
+                                evidenceViewModel.isDrawerCollapsed = false
+                            }
+                        })
+                        ?.start()
                 } else {
-                    sanityTrackingConstraintLayout.animate()
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationStart(Animator animation) {
-                                    super.onAnimationStart(animation);
+                    sanityTrackingConstraintLayout?.animate()
+                        ?.setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationStart(animation: Animator) {
+                                super.onAnimationStart(animation)
 
-                                    sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-                                }
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    super.onAnimationStart(animation);
+                                sanityTrackingConstraintLayout?.visibility = View.VISIBLE
+                            }
 
-                                    sanityTrackingConstraintLayout.setVisibility(View.GONE);
-                                    toggleCollapseButton.setImageLevel(1);
-                                    evidenceViewModel.setDrawerCollapsed(true);
-                                }
-                            })
-                            .start();
+                            override fun onAnimationEnd(animation: Animator) {
+                                super.onAnimationStart(animation)
+
+                                sanityTrackingConstraintLayout?.visibility = View.GONE
+                                toggleCollapseButton?.setImageLevel(1)
+                                evidenceViewModel.isDrawerCollapsed = true
+                            }
+                        })
+                        ?.start()
                 }
-            });
+            }
 
-            initCollapsible();
+            initCollapsible()
         }
 
-        popupWindow = new PopupWindow(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT);
+        popupWindow = PopupWindow(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
 
-        ghostList.createPopupWindow(popupWindow);
-        evidenceList.createPopupWindow(popupWindow);
-        new Thread(() -> ghostList.createViews()).start();
-        new Thread(() -> evidenceList.createViews()).start();
-
+        ghostList?.createPopupWindow(popupWindow)
+        evidenceList?.createPopupWindow(popupWindow)
+        Thread { ghostList?.createViews() }.start()
+        Thread { evidenceList?.createViews() }.start()
     }
 
-    private void initCollapsible() {
-        if(evidenceViewModel.isDrawerCollapsed()) {
-            sanityTrackingConstraintLayout.setVisibility(View.GONE);
-            toggleCollapseButton.setImageLevel(1);
+    private fun initCollapsible() {
+        if (evidenceViewModel.isDrawerCollapsed) {
+            sanityTrackingConstraintLayout?.visibility = View.GONE
+            toggleCollapseButton?.setImageLevel(1)
         } else {
-            sanityTrackingConstraintLayout.setVisibility(View.VISIBLE);
-            toggleCollapseButton.setImageLevel(2);
+            sanityTrackingConstraintLayout?.visibility = View.VISIBLE
+            toggleCollapseButton?.setImageLevel(2)
         }
     }
 
-    @Override
-    public void reset() {
+    override fun reset() {
         if (evidenceViewModel != null) {
-            evidenceViewModel.reset();
+            evidenceViewModel.reset()
         }
 
         // TODO Force progress bar update
@@ -191,15 +174,15 @@ public class EvidenceFragment extends InvestigationFragment {
         // TODO Reset and Pause PhaseTimer
     }
 
-    public void requestInvalidateComponents() {
-
-        if(evidenceViewModel != null) {
-            evidenceViewModel.getGhostOrderData().updateOrder();
+    fun requestInvalidateComponents() {
+        if (evidenceViewModel != null) {
+            evidenceViewModel.ghostOrderData?.updateOrder()
         }
 
-        if(ghostList != null) {
-            ghostList.forceResetGhostContainer();
+        if (ghostList != null) {
+            ghostList?.forceResetGhostContainer()
         }
+
 
         // TODO Force progress bar update (aka reset)
 
@@ -207,26 +190,19 @@ public class EvidenceFragment extends InvestigationFragment {
         // TODO Reset Play/Pause button (to 'Play' state)\
     }
 
-    @Override
-    public void onDestroyView() {
-
-        if(popupWindow != null) {
-            popupWindow.dismiss();
-            popupWindow = null;
+    override fun onDestroyView() {
+        if (popupWindow != null) {
+            popupWindow?.dismiss()
+            popupWindow = null
         }
 
-        super.onDestroyView();
+        super.onDestroyView()
     }
 
-    @Override
-    public void onResume() {
-
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
     }
 
-    @Override
-    protected void saveStates() {
-
+    override fun saveStates() {
     }
-
 }

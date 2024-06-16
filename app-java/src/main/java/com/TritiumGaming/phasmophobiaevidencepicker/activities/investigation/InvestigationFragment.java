@@ -38,13 +38,6 @@ public abstract class InvestigationFragment extends PETFragment {
         super();
     }
 
-    /**
-     * EvidenceFragment constructor
-     * <p>
-     * TODO
-     *
-     * @param layout -
-     */
     public InvestigationFragment(int layout) {
         super(layout);
     }
