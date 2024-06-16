@@ -50,7 +50,7 @@ public class GhostListView extends InvestigationListView {
 
 
     public void requestInvalidateGhostContainer(boolean canReorder) {
-        if(evidenceViewModel.getGhostOrderData().hasChanges() && canReorder) {
+        if(getEvidenceViewModel().getGhostOrderData().hasChanges() && canReorder) {
             reorderGhostViews();
         } else {
             updateGhostViews();
@@ -63,7 +63,7 @@ public class GhostListView extends InvestigationListView {
 
     protected void reorderGhostViews() {
 
-        GhostOrderModel ghostOrderData = evidenceViewModel.getGhostOrderData();
+        GhostOrderModel ghostOrderData = getEvidenceViewModel().getGhostOrderData();
         int[] currOrder = ghostOrderData.getCurrOrder();
 
         for (int j : currOrder) {
@@ -86,7 +86,7 @@ public class GhostListView extends InvestigationListView {
     @Override
     protected void buildViews() {
 
-        int[] newGhostOrder = evidenceViewModel.getGhostOrderData().getCurrOrder();
+        int[] newGhostOrder = getEvidenceViewModel().getGhostOrderData().getCurrOrder();
 
         this.setWeightSum(newGhostOrder.length);
 
@@ -97,17 +97,17 @@ public class GhostListView extends InvestigationListView {
                 @Override
                 public void createPopup() {
 
-                    if (popupWindow != null) {
-                        popupWindow.dismiss();
+                    if (getPopupWindow() != null) {
+                        getPopupWindow().dismiss();
                     }
 
                     GhostPopupWindow ghostPopupWindow = new GhostPopupWindow(getContext());
-                    ghostPopupWindow.setPopupWindow(popupWindow);
-                    ghostPopupWindow.build(evidenceViewModel, (GhostPopupModel) popupData, j, adRequest);
+                    ghostPopupWindow.setPopupWindow(getPopupWindow());
+                    ghostPopupWindow.build(getEvidenceViewModel(), (GhostPopupModel) getPopupData(), j, getAdRequest());
                 }
             };
 
-            ghostView.build(evidenceViewModel, j);
+            ghostView.build(getEvidenceViewModel(), j);
 
             this.addView(ghostView);
 

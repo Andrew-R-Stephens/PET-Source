@@ -1,111 +1,102 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.LayoutTransition;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.ProgressBar;
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.LayoutTransition
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.util.AttributeSet
+import android.view.Gravity
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.ProgressBar
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.InvestigationPopupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
+import com.google.android.gms.ads.AdRequest
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+abstract class InvestigationListView : LinearLayout {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.InvestigationPopupModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
-import com.google.android.gms.ads.AdRequest;
+    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
+    protected var evidenceViewModel: EvidenceViewModel? = null
 
-public abstract class InvestigationListView extends LinearLayout {
+    protected var popupData: InvestigationPopupModel? = null
 
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
-    protected EvidenceViewModel evidenceViewModel;
+    protected var popupWindow: PopupWindow? = null
+    protected var progressBar: ProgressBar? = null
 
-    protected InvestigationPopupModel popupData;
+    protected var adRequest: AdRequest? = null
 
-    protected PopupWindow popupWindow;
-    protected ProgressBar progressBar;
+    constructor(context: Context?) :
+            super(context) { initView() }
 
-    protected AdRequest adRequest;
+    constructor(context: Context?, attrs: AttributeSet?) :
+            super(context, attrs) { initView() }
 
-    public InvestigationListView(Context context) {
-        super(context);
-        initView();
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { initView() }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+
+    fun initView() {
+        layoutParams = LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            1f
+        )
+        setHorizontalGravity(Gravity.CENTER_HORIZONTAL)
+        layoutTransition = LayoutTransition()
+        clipToPadding = false
+        gravity = Gravity.CENTER
+        orientation = VERTICAL
     }
 
-    public InvestigationListView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initView();
+    protected open fun init(
+        globalPreferencesViewModel: GlobalPreferencesViewModel?,
+        evidenceViewModel: EvidenceViewModel?,
+        popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?
+    ) {
+        this.globalPreferencesViewModel = globalPreferencesViewModel
+        this.evidenceViewModel = evidenceViewModel
+        this.adRequest = adRequest
+
+        init(popupWindow, progressBar)
     }
 
-    public InvestigationListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
-
-    public InvestigationListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
-
-    public void initView() {
-        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-        setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
-        setLayoutTransition(new LayoutTransition());
-        setClipToPadding(false);
-        setGravity(Gravity.CENTER);
-        setOrientation(VERTICAL);
-    }
-
-    protected void init(
-            GlobalPreferencesViewModel globalPreferencesViewModel,
-            EvidenceViewModel evidenceViewModel,
-            PopupWindow popupWindow, ProgressBar progressBar, AdRequest adRequest) {
-        this.globalPreferencesViewModel = globalPreferencesViewModel;
-        this.evidenceViewModel = evidenceViewModel;
-        this.adRequest = adRequest;
-
-        init(popupWindow, progressBar);
-    }
-
-    public void init(PopupWindow popupWindow, ProgressBar progressBar) {
-        this.popupWindow = popupWindow;
-        this.progressBar = progressBar;
+    fun init(popupWindow: PopupWindow?, progressBar: ProgressBar?) {
+        this.popupWindow = popupWindow
+        this.progressBar = progressBar
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void createViews() {
-        Activity activity = (Activity) getContext();
-        if(activity != null) {
-            activity.runOnUiThread(() -> {
-                buildViews();
-
-                post(() -> haltProgressAnimation(progressBar));
-            });
+    fun createViews() {
+        val activity = context as Activity
+        activity.runOnUiThread {
+            buildViews()
+            post { haltProgressAnimation(progressBar!!) }
         }
     }
 
-    protected void haltProgressAnimation(@NonNull ProgressBar progressBar) {
-        progressBar.animate().alpha(0).setDuration(250).setListener(
-                new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        progressBar.setVisibility(View.GONE);
-                        super.onAnimationEnd(animation);
-                    }
-                }).start();
+    protected fun haltProgressAnimation(progressBar: ProgressBar) {
+        progressBar.animate().alpha(0f).setDuration(250).setListener(
+            object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    progressBar.visibility = GONE
+                    super.onAnimationEnd(animation)
+                }
+            }).start()
     }
 
-    protected void createPopupWindow(PopupWindow popupWindow, InvestigationPopupModel popupData) {
-        this.popupData = popupData;
-        this.popupWindow = popupWindow;
+    protected fun createPopupWindow(
+        popupWindow: PopupWindow?,
+        popupData: InvestigationPopupModel?
+    ) {
+        this.popupData = popupData
+        this.popupWindow = popupWindow
     }
 
-    protected abstract void buildViews();
+    protected abstract fun buildViews()
 }

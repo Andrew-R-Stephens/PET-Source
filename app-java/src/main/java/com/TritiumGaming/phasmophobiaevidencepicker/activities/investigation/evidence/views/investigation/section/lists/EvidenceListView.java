@@ -52,35 +52,35 @@ public class EvidenceListView extends InvestigationListView {
 
     @Override
     protected void buildViews() {
-        for(int i = 0; i < ((EvidencePopupModel)popupData).getCount(); i++) {
+        for(int i = 0; i < ((EvidencePopupModel)getPopupData()).getCount(); i++) {
 
             EvidencePopupModel.EvidencePopupRecord popupRecord =
-                    ((EvidencePopupModel)popupData).getEvidencePopupRecordAt(i);
+                    ((EvidencePopupModel)getPopupData()).getEvidencePopupRecordAt(i);
 
             EvidenceView evidenceView = new EvidenceView(getContext()) {
 
                 @Override
                 public void createPopup() {
 
-                    if (popupWindow != null) {
-                        popupWindow.dismiss();
+                    if (getPopupWindow() != null) {
+                        getPopupWindow().dismiss();
                     }
 
                     EvidencePopupWindow evidencePopupWindow =
                             new EvidencePopupWindow(getContext());
-                    evidencePopupWindow.setPopupWindow(popupWindow);
-                    evidencePopupWindow.build(evidenceViewModel, popupRecord, adRequest);
+                    evidencePopupWindow.setPopupWindow(getPopupWindow());
+                    evidencePopupWindow.build(getEvidenceViewModel(), popupRecord, getAdRequest());
                 }
 
                 @Override
                 public void requestInvalidateGhostContainer() {
                     ghostList.requestInvalidateGhostContainer(
-                            globalPreferencesViewModel.getReorderGhostViews());
+                            getGlobalPreferencesViewModel().getReorderGhostViews());
                 }
 
             };
 
-            evidenceView.build(evidenceViewModel, i, ghostList);
+            evidenceView.build(getEvidenceViewModel(), i, ghostList);
 
             this.addView(evidenceView);
         }
