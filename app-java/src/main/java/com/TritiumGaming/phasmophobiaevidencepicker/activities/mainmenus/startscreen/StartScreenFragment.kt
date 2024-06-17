@@ -1,20 +1,15 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen
 
-import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupWindow
 import android.widget.RelativeLayout
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
@@ -24,6 +19,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.Inv
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
@@ -46,8 +43,8 @@ class StartScreenFragment : MainMenuFragment() {
 
     private val bitmapUtils = BitmapUtils()
 
-    private var canRunMessageCenter = true
-    private var threadMessageCenter: Thread? = null
+    private var canLoadNewsletter = true
+    private var newsletterThread: Thread? = null
 
     private var buttonMsgInbox: ComposeView? = null
     private var newsIcon: ComposeView? = null
@@ -186,17 +183,14 @@ class StartScreenFragment : MainMenuFragment() {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_marketplaceFragment)
     }
 
-    /** gotoAppInfoFragment method */
     private fun gotoAppInfoFragment(v: View) {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_appInfoFragment)
     }
 
-    /** gotoAppSettingsFragment method */
     private fun gotoAppSettingsFragment(v: View) {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_appSettingsFragment)
     }
 
-    /** gotoLanguagesFragment method */
     private fun gotoLanguagesFragment(v: View) {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
     }
@@ -214,9 +208,6 @@ class StartScreenFragment : MainMenuFragment() {
         }
     }
 
-    /**
-     * doReviewRequest method
-     */
     @Throws(SendIntentException::class)
     fun doReviewRequest() {
         if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
@@ -240,134 +231,40 @@ class StartScreenFragment : MainMenuFragment() {
         }
     }
 
-    /**
-     * showReviewPopup method
-     */
     private fun showReviewPopup(parentView: View) {
         //DESTROY PREVIOUS POPUP
         popupWindow?.dismiss()
+        popupWindow = ReviewPopupWindow( parentView,
+            RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        (popupWindow as ReviewPopupWindow).reviewPopupWindowListener =
+            object: ReviewPopupWindow.ReviewPopupListener() {
+                override fun onCreate() {
+                    Log.d("ReviewRequest","SUCCESSFUL")
 
-        //INFLATE LAYOUT
-        val inflater: LayoutInflater = requireView().context
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        @SuppressLint("InflateParams") val customView =
-            inflater.inflate(R.layout.popup_requestreview, null)
-
-        // INITIALIZE POPUPWINDOW
-        popupWindow = PopupWindow(
-            customView,
-            RelativeLayout.LayoutParams.MATCH_PARENT,
-            RelativeLayout.LayoutParams.MATCH_PARENT
-        )
-        popupWindow?.isOutsideTouchable = false
-
-        val acceptButton = customView.findViewById<AppCompatButton>(R.id.label_accept)
-        val declineButton = customView.findViewById<AppCompatButton>(R.id.label_decline)
-
-        // LISTENERS
-        acceptButton.setOnClickListener {
-            popupWindow?.dismiss()
-            popupWindow = null
-            startReviewLauncher()
-        }
-
-        declineButton.setOnClickListener {
-            val params = Bundle()
-            params.putString("event_type", "user_action")
-            params.putString("event_details", "request_rejected")
-            analytics.logEvent("event_review_manager", params)
-
-            popupWindow?.dismiss()
-            popupWindow = null
-        }
-
-        // FINALIZE
-        popupWindow?.animationStyle = androidx.navigation.ui.R.anim.nav_default_enter_anim
-
-        val success = parentView.post {
-            popupWindow?.showAtLocation(customView, Gravity.CENTER_VERTICAL, 0, 0)
-        }
-
-        Log.d("ReviewRequest", (if (success) "SUCCESSFUL" else "UNSUCCESSFUL"))
-
-        val params = Bundle()
-        params.putString("event_type", "review_requested")
-        params.putString(
-            "event_details",
-            "request_" + (if (success) "successful" else "unsuccessful")
-        )
-        analytics.logEvent("event_review_manager", params)
-    }
-
-    private fun startReviewLauncher() {
-        //THIS IS FOR THE IN-APP REVIEW
-        try {
-            val manager =
-                ReviewManagerFactory.create(requireContext())
-
-            val request = manager.requestReviewFlow()
-            request.addOnCompleteListener { requestTask: Task<ReviewInfo?> ->
-                if (requestTask.isSuccessful) {
-                    Log.e("ReviewManager", "Task Successful")
-                    // We can get the ReviewInfo object
-                    val reviewInfo = requestTask.result
-
-                    try {
-                        val flow = manager.launchReviewFlow(requireActivity(), reviewInfo)
-                        flow.addOnCompleteListener { flowTask: Task<Void?>? -> }
-                    } catch (e: IllegalStateException) {
-                        e.printStackTrace()
-                    }
-
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.setData(
-                        Uri.parse(
-                            resources.getString
-                                (R.string.review_storelink_website)
-                        )
-                    )
-                    intent.setPackage("com.android.vending")
-
-                    try {
-                        requireContext().startActivity(intent)
-                        Log.e(
-                            "ReviewManager",
-                            "SUCCEEDED intent navigation to the App Store."
-                        )
-                    } catch (e: IllegalStateException) {
-                        Log.e(
-                            "ReviewManager",
-                            "FAILED intent navigation to the App Store."
-                        )
-                        e.printStackTrace()
-
-                        val params = Bundle()
-                        params.putString("event_type", "review_navigation")
-                        params.putString("event_details", "navigation_failed")
-                        analytics.logEvent("event_review_manager", params)
-                    } catch (e: ActivityNotFoundException) {
-                        Log.e(
-                            "ReviewManager",
-                            "FAILED intent navigation to the App Store."
-                        )
-                        e.printStackTrace()
-
-                        val params = Bundle()
-                        params.putString("event_type", "review_navigation")
-                        params.putString("event_details", "navigation_failed")
-                        analytics.logEvent("event_review_manager", params)
-                    }
-                } else {
-                    Log.e("ReviewManager", "Task Failed")
-                    requestTask.exception?.printStackTrace()
+                    val params = Bundle()
+                    params.putString("event_type", "review_requested")
+                    params.putString("event_details", "request_ successful")
+                    analytics.logEvent("event_review_manager", params)
+                }
+                override fun onDestroy() {
+                    popupWindow?.dismiss()
+                    popupWindow = null
+                }
+                override fun onAccept() {
+                    ReviewLauncher.launch(requireActivity(), analytics)
+                    this.onDestroy()
+                }
+                override fun onDecline() {
+                    val params = Bundle()
+                    params.putString("event_type", "user_action")
+                    params.putString("event_details", "request_rejected")
+                    analytics.logEvent("event_review_manager", params)
+                    this.onDestroy()
                 }
             }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
     }
 
-    private fun doMessageCenterNotification() {
+    private fun doNewsletterNotification() {
         Log.d("MessageCenter", "Starting animation")
         try {
             buttonMsgInbox?.setContent { NewsAlert(true) }
@@ -375,13 +272,25 @@ class StartScreenFragment : MainMenuFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    private fun startLoadMessageCenterThread() {
-        threadMessageCenter = Thread {
+    private fun startInitNewsletterThread() {
+        if (checkInternetConnection()) {
+            startLoadNewsletterThread()
+        } else {
+            Log.d("MessageCenter", "Could not connect to the internet.")
+            newsLetterViewModel.compareAllInboxDates()
+            if (newsLetterViewModel.requiresNotify()) {
+                doNewsletterNotification()
+            }
+        }
+    }
+
+    private fun startLoadNewsletterThread() {
+        newsletterThread = Thread {
             Log.d("MessageCenter", "Attempting to load inboxes...")
             val maxCycles = 3
             var currentCycle = 0
 
-            while (canRunMessageCenter &&
+            while (canLoadNewsletter &&
                 (!newsLetterViewModel.isUpToDate && (currentCycle < maxCycles))
             ) {
                 Log.d("MessageCenter", "Attempting to load inboxes...")
@@ -389,11 +298,9 @@ class StartScreenFragment : MainMenuFragment() {
                 loadMessageCenter()
 
                 if (!newsLetterViewModel.isUpToDate) {
-                    Log.d(
-                        "MessageCenter",
+                    Log.d("MessageCenter",
                         "[Attempt " + currentCycle + "/" + maxCycles + "] " +
-                                "Inboxes are not up to date yet! Retrying...\n"
-                    )
+                                "Inboxes are not up to date yet! Retrying...\n")
                     try {
                         Thread.sleep(1000)
                     } catch (e: InterruptedException) {
@@ -413,28 +320,16 @@ class StartScreenFragment : MainMenuFragment() {
                 }
                 newsLetterViewModel.compareAllInboxDates()
                 if (newsLetterViewModel.requiresNotify()) {
-                    requireActivity().runOnUiThread { this.doMessageCenterNotification() }
+                    requireActivity().runOnUiThread { this.doNewsletterNotification() }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
-        threadMessageCenter?.start()
+        newsletterThread?.start()
     }
 
-    private fun startInitMessageCenterThread() {
-        if (checkInternetConnection()) {
-            startLoadMessageCenterThread()
-        } else {
-            Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel.compareAllInboxDates()
-            if (newsLetterViewModel.requiresNotify()) {
-                doMessageCenterNotification()
-            }
-        }
-    }
-
-    private fun stopLoadMessageCenterThread() {
-        threadMessageCenter?.interrupt()
-        threadMessageCenter = null
+    private fun stopLoadNewsletterThread() {
+        newsletterThread?.interrupt()
+        newsletterThread = null
     }
 
     /** onPause method */
@@ -449,9 +344,9 @@ class StartScreenFragment : MainMenuFragment() {
             animationView.canAnimateBackground(false)
         }
 
-        stopLoadMessageCenterThread()
+        stopLoadNewsletterThread()
         if (newsLetterViewModel.isUpToDate) {
-            canRunMessageCenter = false
+            canLoadNewsletter = false
             Log.d("MessageCenter", "IS up to date")
         } else { Log.d("MessageCenter", "IS NOT up to date") }
 
@@ -469,7 +364,7 @@ class StartScreenFragment : MainMenuFragment() {
             animationView.startAnimThreads()
         }
 
-        startInitMessageCenterThread()
+        startInitNewsletterThread()
 
         super.onResume()
     }
