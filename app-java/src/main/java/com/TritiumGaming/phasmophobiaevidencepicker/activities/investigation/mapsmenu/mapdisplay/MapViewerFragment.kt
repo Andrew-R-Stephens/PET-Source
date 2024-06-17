@@ -1,382 +1,304 @@
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
 
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.FloorLayerType;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.FloorModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Configuration
+import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**
  * MapViewerFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MapViewerFragment extends InvestigationFragment {
+class MapViewerFragment : InvestigationFragment() {
+    private var imageDisplay: InteractiveMapView? = null
 
-    private InteractiveMapView imageDisplay;
+    private var selectorGroup: MapLayerSelectorGroup? = null
+    private var layerName: AppCompatTextView? = null
+    private var poiSpinner: POISpinner? = null
 
-    private MapLayerSelectorGroup selectorGroup;
-    private AppCompatTextView layerName;
-    private POISpinner poiSpinner;
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_mapview, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_mapview, container, false)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        super.onViewCreated(view, savedInstanceState);
+        super.init()
 
-        super.init();
+        val selectorLayout = view.findViewById<LinearLayout>(R.id.linearlayout_floorindicators)
 
-        LinearLayout selectorLayout = view.findViewById(R.id.linearlayout_floorindicators);
+        val buttonLayerNext =
+            view.findViewById<AppCompatImageButton>(R.id.controller_nextLayerButton)
+        val buttonLayerPrev =
+            view.findViewById<AppCompatImageButton>(R.id.controller_prevLayerButton)
 
-        AppCompatImageButton button_nextLayer = view.findViewById(R.id.controller_nextLayerButton);
-        AppCompatImageButton button_prevLayer = view.findViewById(R.id.controller_prevLayerButton);
+        val buttonBack = view.findViewById<AppCompatImageView>(R.id.button_back)
+        val mapName = view.findViewById<AppCompatTextView>(R.id.textview_title)
+        val buttonHelp = view.findViewById<ConstraintLayout>(R.id.listener_help)
 
-        AppCompatImageView button_back = view.findViewById(R.id.button_back);
-        AppCompatTextView mapName = view.findViewById(R.id.textview_title);
-        ConstraintLayout button_help = view.findViewById(R.id.listener_help);
+        imageDisplay = view.findViewById(R.id.interactiveMapView)
+        poiSpinner = view.findViewById(R.id.spinner_poiname)
+        layerName = view.findViewById(R.id.textview_floorname)
 
-        imageDisplay = view.findViewById(R.id.interactiveMapView);
-        poiSpinner = view.findViewById(R.id.spinner_poiname);
-        layerName = view.findViewById(R.id.textview_floorname);
-
-        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
-            int floor = mapMenuViewModel.getCurrentMapData().getCurrentFloor();
-            FloorModel currentFloor = mapMenuViewModel.getCurrentMapModel().getFloor(floor);
-            FloorLayerType newLayer = currentFloor.getFloorLayer();
-            mapMenuViewModel.getCurrentMapModel().setCurrentLayer(newLayer);
+        val floor = mapMenuViewModel.currentMapData.currentFloor
+        mapMenuViewModel.currentMapModel?.let { currentMap ->
+            currentMap.currentLayer = currentMap.getFloor(floor).floorLayer
         }
 
-        button_nextLayer.setOnClickListener(v -> {
-            mapMenuViewModel.incrementFloorIndex();
-            setMapLayer(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
-            updateComponents();
-        });
+        buttonLayerNext.setOnClickListener {
+            mapMenuViewModel.incrementFloorIndex()
+            setMapLayer(mapMenuViewModel.currentMapData.currentFloor)
+            updateComponents()
+        }
 
-        button_prevLayer.setOnClickListener(v -> {
-            mapMenuViewModel.decrementFloorIndex();
-            setMapLayer(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
-            updateComponents();
-        });
+        buttonLayerPrev.setOnClickListener {
+            mapMenuViewModel.decrementFloorIndex()
+            setMapLayer(mapMenuViewModel.currentMapData.currentFloor)
+            updateComponents()
+        }
 
-        button_help.setOnClickListener(helpButtonView -> showHelpPopup());
+        buttonHelp.setOnClickListener { showHelpPopup() }
+        buttonBack.setOnClickListener { handleBackAction() }
 
-        button_back.setOnClickListener(v -> handleBackAction());
+        Log.d("MapName", mapMenuViewModel.currentMapData.mapName)
+        mapName.text = mapMenuViewModel.currentMapData.mapName
 
-        if (mapMenuViewModel != null) {
-            Log.d("MapName", mapMenuViewModel.getCurrentMapData().getMapName());
-            mapName.setText(mapMenuViewModel.getCurrentMapData().getMapName());
+        poiSpinner?.let { spinner ->
+            imageDisplay?.let { mapView ->
+                mapView.init(mapMenuViewModel, spinner)
+                mapView.setMapData(mapMenuViewModel.currentMapData)
+            }
+        }
 
-            if(imageDisplay != null) {
-                if (poiSpinner != null) {
-                    imageDisplay.init(mapMenuViewModel, poiSpinner);
+        val tempData = mapMenuViewModel.currentMapData
+
+        selectorGroup = MapLayerSelectorGroup(tempData.floorCount)
+        for (i in 0 until (selectorGroup?.size ?: 0)) {
+            selectorLayout.addView(selectorGroup?.selectors?.get(i))
+        }
+
+        var mapNameStr: String? = tempData.mapName
+        val name = mapMenuViewModel.currentMapModel?.mapName
+        mapNameStr = if (name?.isNotEmpty() == true) name else mapNameStr
+
+        mapName.text = mapNameStr
+        mapName.isSelected = true
+
+        startThreads()
+        updateComponents() // Spinner click listener
+
+        initAd(view.findViewById(R.id.adView))
+    }
+
+    private fun handleBackAction() {
+        backPressedHandler()
+    }
+
+    private fun setMapLayer(index: Int) {
+        imageDisplay?.resetRoomSelection()
+
+        mapMenuViewModel.currentMapModel?.let { currentMap ->
+            val floor = currentMap.getFloor(index)
+            currentMap.currentLayer = floor.floorLayer
+            Log.d("Maps", currentMap.currentFloor.floorName + " ")
+        }
+
+    }
+
+
+    private fun showHelpPopup() {
+
+        popupWindow?.dismiss()
+
+        val popupInflater =
+            view?.context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView = popupInflater.inflate(R.layout.popup_info_maphelp, null)
+        val closeButton = popupView.findViewById<ImageButton>(R.id.button_topnav_left)
+
+        popupWindow = PopupWindow(
+            popupView,
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
+
+        popupWindow?.let { popupWindow ->
+            closeButton.setOnClickListener { popupWindow.dismiss() }
+            popupWindow.showAtLocation(view, Gravity.CENTER_VERTICAL, 0, 0)
+        }
+    }
+
+    override fun reset() {
+    }
+
+    /** Starts a Thread which loads images into the InteractiveMapDisplayView */
+    private fun startThreads() {
+        stopThreads()
+
+        if (mapMenuViewModel.imageDisplayThread == null) {
+            mapMenuViewModel.imageDisplayThread = Thread {
+                try {
+                    imageDisplay?.setMapImages(requireActivity())
+                    imageDisplay?.setPoiImages(requireActivity())
+                } catch (e: IllegalStateException) {
+                    e.printStackTrace()
                 }
-
-                imageDisplay.setMapData(mapMenuViewModel.getCurrentMapData());
             }
-
-            MapViewerModel tempData = mapMenuViewModel.getCurrentMapData();
-
-            selectorGroup = new MapLayerSelectorGroup(tempData.getFloorCount());
-            for (int i = 0; i < selectorGroup.getSize(); i++) {
-                selectorLayout.addView(selectorGroup.getSelectors()[i]);
-            }
-
-            String mapNameStr = tempData.getMapName();
-            if(mapMenuViewModel.getCurrentMapModel() != null) {
-                String name = mapMenuViewModel.getCurrentMapModel().getMapName();
-                mapNameStr = !name.isEmpty() ? name: mapNameStr;
-            }
-            mapName.setText(mapNameStr);
-            mapName.setSelected(true);
-        }
-
-        startThreads();
-        updateComponents();// Spinner click listener
-
-        initAd(view.findViewById(R.id.adView));
-    }
-
-    public void handleBackAction() {
-        backPressedHandler();
-    }
-
-    public void setMapLayer(int index) {
-        /*MapViewerModel mapData = mapMenuViewModel.getCurrentMapData();
-        mapData.setCurrentFloor(index);*/
-
-        if(imageDisplay != null) {
-            imageDisplay.resetRoomSelection();
-        }
-        if(mapMenuViewModel.getCurrentMapModel() != null) {
-            mapMenuViewModel.getCurrentMapModel().getFloor(index);
-            mapMenuViewModel.getCurrentMapModel().setCurrentLayer(
-                    mapMenuViewModel.getCurrentMapModel().getFloor(index).getFloorLayer());
-            if (mapMenuViewModel.getCurrentMapModel() != null) {
-                Log.d("Maps", mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorName() + " ");
-            }
+            mapMenuViewModel.imageDisplayThread?.start()
         }
     }
 
-
-    private void showHelpPopup() {
-
-        if(getView() == null || getView().getContext() == null) {
-            return;
-        }
-
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        }
-
-        LayoutInflater popupInflater =
-                (LayoutInflater) getView().getContext().getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE);
-        View popupView = popupInflater.inflate(R.layout.popup_info_maphelp, null);
-        ImageButton closeButton = popupView.findViewById(R.id.button_topnav_left);
-
-        popupWindow = new PopupWindow(
-                popupView,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-        );
-
-        closeButton.setOnClickListener(closeButtonView -> popupWindow.dismiss());
-
-        popupWindow.showAtLocation(getView(), Gravity.CENTER_VERTICAL, 0, 0);
+    private fun stopThreads() {
+        mapMenuViewModel.imageDisplayThread?.interrupt()
+        mapMenuViewModel.imageDisplayThread = null
     }
 
-    @Override
-    public void reset() {
+    private fun updateComponents() {
+        mapMenuViewModel.currentMapData.let {
+            selectorGroup?.setSelected(it.currentFloor)
 
-    }
-
-    /**
-     * startThreads
-     * <p>
-     * Starts a Thread which loads images into the InteractiveMapDisplayView
-     */
-    public void startThreads() {
-        stopThreads();
-
-        if (mapMenuViewModel.getImageDisplayThread() == null) {
-            mapMenuViewModel.setImageDisplayThread(new Thread(() -> {
-                if (imageDisplay != null) {
-                    try {
-                        imageDisplay.setMapImages(requireActivity());
-                        imageDisplay.setPoiImages(requireActivity());
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }));
-            mapMenuViewModel.getImageDisplayThread().start();
+            layerName?.text = resources.getString(it.floorName)
+            imageDisplay?.invalidate()
+            poiSpinner?.populateAdapter(mapMenuViewModel)
         }
     }
 
-    /**
-     *
-     * stopThreads
-     */
-    public void stopThreads() {
-        if (mapMenuViewModel.getImageDisplayThread() != null) {
-            mapMenuViewModel.getImageDisplayThread().interrupt();
-            mapMenuViewModel.setImageDisplayThread(null);
-        }
+    /** Saves states of the MapViewer to the MapViewModel */
+    public override fun saveStates() {
+        mapMenuViewModel.currentMapData.defaultFloor =
+            mapMenuViewModel.currentMapData.currentFloor
     }
 
-    /**
-     *
-     * updateComponents
-     */
-    public void updateComponents() {
-        if (mapMenuViewModel != null && mapMenuViewModel.hasCurrentMapData()) {
-            if (selectorGroup != null) {
-                selectorGroup.setSelected(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
-            }
-            if (layerName != null) {
-                layerName.setText(getResources().getString(
-                        mapMenuViewModel.getCurrentMapData().getFloorName()));
-            }
-            if (imageDisplay != null) {
-                imageDisplay.invalidate();
-            }
-            if(poiSpinner != null) {
-                poiSpinner.populateAdapter(mapMenuViewModel);
-            }
-        }
+    /** Destroys all threads and releases resource memory  */
+    override fun onPause() {
+        stopThreads()
+
+        super.onPause()
     }
 
-    /**
-     *
-     * saveStates
-     * <p>
-     * Saves states of the MapViewer to the MapViewModel
-     */
-    public void saveStates() {
-        if (mapMenuViewModel != null && mapMenuViewModel.hasCurrentMapData()) {
-            mapMenuViewModel.getCurrentMapData().setDefaultFloor(
-                    mapMenuViewModel.getCurrentMapData().getCurrentFloor());
-        }
+    /** Destroys all threads and releases resource memory  */
+    override fun onDestroy() {
+        stopThreads()
+
+        super.onDestroy()
     }
 
-    /** Destroys all threads and releases resource memory */
-    @Override
-    public void onPause() {
-        stopThreads();
+    /** Forces garbage collection on low memory  */
+    override fun onLowMemory() {
+        System.gc()
 
-        super.onPause();
+        super.onLowMemory()
     }
 
-    /** Destroys all threads and releases resource memory */
-    @Override
-    public void onDestroy() {
-        stopThreads();
-
-        super.onDestroy();
-    }
-
-    /** Forces garbage collection on low memory */
-    @Override
-    public void onLowMemory() {
-        System.gc();
-
-        super.onLowMemory();
-    }
-
-    /** The group of selectors which act to cycle between image layers */
-    private class MapLayerSelectorGroup {
-
-        @NonNull
-        private final MapLayerSelector[] selectors;
+    /** The group of selectors which act to cycle between image layers  */
+    private inner class MapLayerSelectorGroup(count: Int) {
+        /** @return Selector array */
+        val selectors: Array<MapLayerSelector?> = arrayOfNulls(count)
 
         /** @param count - the total number of Selectors, based on map layers */
-        public MapLayerSelectorGroup(int count) {
-            selectors = new MapLayerSelector[count];
-            for (int i = 0; i < selectors.length; i++) {
-                selectors[i] = new MapLayerSelector(requireContext());
+        init {
+            for (i in selectors.indices) {
+                selectors[i] = MapLayerSelector(requireContext())
             }
             if (mapMenuViewModel != null) {
-                setSelected(mapMenuViewModel.getCurrentMapData().getCurrentFloor());
+                setSelected(mapMenuViewModel.currentMapData.currentFloor)
             }
         }
 
         /** @param index - the index of Selector */
-        public void setSelected(int index) {
-            deSelectAll();
+        fun setSelected(index: Int) {
+            deSelectAll()
 
             if (selectors[index] != null) {
-                selectors[index].setSelected(true);
+                selectors[index]!!.isSelected = true
             }
         }
 
         /** Deselects all Selectors */
-        public void deSelectAll() {
-            for (MapLayerSelector selector : selectors) {
+        fun deSelectAll() {
+            for (selector in selectors) {
                 if (selector != null) {
-                    selector.setSelected(false);
+                    selector.isSelected = false
                 }
             }
         }
 
-        /** @return Selector array */
-        public MapLayerSelector[] getSelectors() {
-            return selectors;
-        }
-
-        /** @return number of Selectors */
-        public int getSize() {
-            return selectors.length;
-        }
+        val size: Int
+            /** @return number of Selectors */
+            get() = selectors.size
 
         /** A Selector which represents the current layer of the selected map */
-        private static class MapLayerSelector extends androidx.appcompat.widget.AppCompatImageView {
-
-            private final int[] selectorImages = new int[]{
-                    R.drawable.icon_selector_unsel,
-                    R.drawable.icon_selector_sel};
-            private boolean isSelected = false;
+        private inner class MapLayerSelector(context: Context) : AppCompatImageView(context) {
+            private val selectorImages: IntArray? = intArrayOf(
+                R.drawable.icon_selector_unsel,
+                R.drawable.icon_selector_sel
+            )
+            private var isSelected = false
 
             /** Selector constructor */
-            public MapLayerSelector(@NonNull Context context) {
-                super(context);
+            init {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 1f
+                )
+                scaleType = ScaleType.FIT_CENTER
+                adjustViewBounds = true
 
-                setLayoutParams(new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-                setScaleType(ImageView.ScaleType.FIT_CENTER);
-                setAdjustViewBounds(true);
-
-                int orientation = getResources().getConfiguration().orientation;
+                val orientation = resources.configuration.orientation
                 if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    setPadding(5, 2, 5, 2);
+                    setPadding(5, 2, 5, 2)
                 } else {
-                    setPadding(2, 8, 2, 8);
+                    setPadding(2, 8, 2, 8)
                 }
 
-                setColorFilter(ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBody));
+                setColorFilter(getColorFromAttribute(getContext(), R.attr.textColorBody))
             }
 
             /** @param isSelected - the state of the Selector Sets the Selector as selected */
-            public void setSelected(boolean isSelected) {
-                this.isSelected = isSelected;
+            override fun setSelected(isSelected: Boolean) {
+                this.isSelected = isSelected
 
-                updateImage();
+                updateImage()
             }
 
-            /** Updates the Selector icon to reflect its current selection state */
-            private void updateImage() {
-                if (selectorImages != null && selectorImages.length == 2) {
+            /** Updates the Selector icon to reflect its current selection state  */
+            private fun updateImage() {
+                if (selectorImages != null && selectorImages.size == 2) {
                     if (!isSelected) {
-                        setImageResource(selectorImages[0]);
+                        setImageResource(selectorImages[0])
                     } else {
-                        setImageResource(selectorImages[1]);
+                        setImageResource(selectorImages[1])
                     }
                 }
             }
 
             /** @return whether or not the Selector is selected */
-            public boolean isSelected() {
-                return isSelected;
+            override fun isSelected(): Boolean {
+                return isSelected
             }
         }
     }
-
-
 }
 
