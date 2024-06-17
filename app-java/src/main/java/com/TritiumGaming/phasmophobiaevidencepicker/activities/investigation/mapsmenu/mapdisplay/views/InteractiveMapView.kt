@@ -51,14 +51,14 @@ import kotlin.math.sqrt
 class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private var mapMenuViewModel: MapMenuViewModel? = null
 
-    private var interactiveMapData: InteractiveMapModel? = null
-    private val interactivePoiData = InteractiveMapModel()
+    private var interactiveMapModel: InteractiveMapModel? = null
+    private val interactivePoiModel = InteractiveMapModel()
 
     private var roomSpinner: POISpinner? = null
 
     private var bitmapUtils: BitmapUtils? = BitmapUtils()
 
-    private var mapData: MapViewerModel? = null
+    private var mapViewerModel: MapViewerModel? = null
     private val mapImages: ArrayList<Bitmap?> = ArrayList()
     private val poiImages = HashMap<PoiType, Bitmap?>()
 
@@ -113,7 +113,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
     fun init(mapMenuViewModel: MapMenuViewModel, roomSpinner: POISpinner) {
         this.mapMenuViewModel = mapMenuViewModel
 
-        interactiveMapData = InteractiveMapModel()
+        interactiveMapModel = InteractiveMapModel()
         mActivePointers = SparseArray()
         mDetector = GestureDetector(context, GestureTap())
 
@@ -144,7 +144,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
     }
 
     fun resetRoomSelection() {
-        interactiveMapData?.setPressedPoint(null)
+        interactiveMapModel?.setPressedPoint(null)
         selectedRoomModel = null
     }
 
@@ -154,7 +154,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         }
 
         override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-            interactiveMapData?.setPressedPoint(Point2DFloat(e.x, e.y))
+            interactiveMapModel?.setPressedPoint(Point2DFloat(e.x, e.y))
             handleClickRunnable()
 
             return true
@@ -177,45 +177,37 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 val f = PointF()
                 f.x = event.getX(pointerIndex)
                 f.y = event.getY(pointerIndex)
-                if (mActivePointers != null) {
-                    mActivePointers!!.put(pointerId, f)
-                }
+                mActivePointers?.put(pointerId, f)
             }
 
             MotionEvent.ACTION_MOVE -> {
                 val size = event.pointerCount
                 var i = 0
                 while (i < size) {
-                    if (mActivePointers != null) {
-                        val point = mActivePointers!![event.getPointerId(i)]
-                        if (point != null) {
-                            point.x = event.getX(i)
-                            point.y = event.getY(i)
-                        }
+                    mActivePointers?.let { mActivePointers ->
+                        val point = mActivePointers[event.getPointerId(i)]
+                        point?.x = event.getX(i)
+                        point?.y = event.getY(i)
                     }
                     i++
                 }
 
-                if (event.pointerCount == 1) {
-                    doPanAction()
-                } else if (event.pointerCount == 2) {
-                    doZoomAction()
-                } else {
-                    acceptedAction = false
+                when(event.pointerCount) {
+                    1 -> doPanAction()
+                    2 -> doZoomAction()
+                    else -> acceptedAction = false
                 }
             }
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
-                if (mActivePointers != null) {
-                    mActivePointers!!.remove(pointerId)
-                }
+                mActivePointers?.remove(pointerId)
 
                 pinchDistance = 0f
                 panOrigin = null
             }
         }
         if (acceptedAction) {
-            interactiveMapData!!.setDisplaySize(width, height)
+            interactiveMapModel?.setDisplaySize(width, height)
             invalidate()
         }
 
@@ -239,9 +231,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                     zoomDir = -1
                 }
 
-                if (interactiveMapData != null) {
-                    interactiveMapData!!.updateZoomLevel(zoomSense * zoomDir)
-                }
+                interactiveMapModel?.updateZoomLevel(zoomSense * zoomDir)
             }
         }
     }
@@ -249,22 +239,19 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
     private fun doPanAction() {
         val p = mActivePointers!![0]
 
-        if (p != null && panOrigin != null) {
-            val dX = (panOrigin!!.x - p.x).toDouble()
-            val dY = (panOrigin!!.y - p.y).toDouble()
+        p?.let { point ->
+            panOrigin?.let { panOrigin ->
+                val dX = (panOrigin.x - point.x).toDouble()
+                val dY = (panOrigin.y - point.y).toDouble()
 
-            if (interactiveMapData != null) {
-                interactiveMapData!!.incrementPan(dX, dY)
+                interactiveMapModel?.incrementPan(dX, dY)
             }
-        }
-
-        if (p != null) {
-            panOrigin = Point(p.x.toInt(), p.y.toInt())
+            panOrigin = Point(point.x.toInt(), point.y.toInt())
         }
     }
 
     fun setMapData(mapData: MapViewerModel?) {
-        this.mapData = mapData
+        this.mapViewerModel = mapData
     }
 
     fun setMapImages(a: Activity) {
@@ -272,15 +259,15 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
             bitmapUtils = BitmapUtils()
         }
 
-        if (interactiveMapData != null) {
-            val mapFloorLayers = mapData!!.allFloorLayers
+        mapViewerModel?.let { mapData ->
+            val mapFloorLayers = mapData.allFloorLayers
 
             for (i in mapFloorLayers.indices) {
-                mapImages!!.add(null)
+                mapImages.add(null)
             }
 
             for (i in mapFloorLayers.indices) {
-                var index = i + mapData!!.defaultFloor
+                var index = i + mapData.defaultFloor
                 if (mapFloorLayers.size <= index) {
                     index = 0
                 }
@@ -289,34 +276,24 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 //
                 val floor = mapFloorLayers[index]
                 for (j in floor.indices) {
-                    if (bitmapUtils != null) {
-                        bitmapUtils!!.resources = floor
-                    }
-                    while (bitmapUtils != null && bitmapUtils!!.hasNextBitmap()) {
-                        mapImages!![index] = bitmapUtils!!.compileNextBitmap(
-                            context,
-                            mapImages[index]
-                        )
+                    bitmapUtils?.resources = floor
+
+                    while (bitmapUtils?.hasNextBitmap() == true) {
+                        mapImages[index] = bitmapUtils?.compileNextBitmap(
+                            context, mapImages[index])
                         a.runOnUiThread { this.invalidate() }
                     }
                 }
-                if (bitmapUtils != null) {
-                    bitmapUtils!!.clearResources()
-                }
+                bitmapUtils?.clearResources()
 
                 a.runOnUiThread { this.invalidate() }
             }
-            a.runOnUiThread { this.invalidate() }
         }
 
         bitmapUtils = null
     }
 
     fun setPoiImages(a: Activity) {
-        if (context == null) {
-            return
-        }
-
         val typedArray =
             a.resources.obtainTypedArray(R.array.poi_resources_array)
 
@@ -344,31 +321,37 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        if (interactiveMapData != null) {
-            interactiveMapData!!.updateMatrix()
-            if (mapImages != null && mapData != null && mapData!!.currentFloor < mapImages.size) {
-                val b = mapImages[mapData!!.currentFloor]
-                if (bitmapExists(b)) {
-                    interactiveMapData!!.setImageSize(b!!.width, b.height)
-                    interactiveMapData!!.postCenterTranslateMatrix(
-                        b.width.toFloat(),
-                        b.height.toFloat(),
-                        width.toFloat(),
-                        height.toFloat()
-                    )
-                    canvas.drawBitmap(b, interactiveMapData!!.matrix, paint)
+        interactiveMapModel?.let { interactiveMapData ->
+            interactiveMapData.updateMatrix()
+
+            mapViewerModel?.let { mapViewerModel ->
+                if (mapViewerModel.currentFloor < mapImages.size) {
+                    val b = mapImages[mapViewerModel.currentFloor]
+                    if (bitmapExists(b)) {
+                        b?.let {
+                            interactiveMapData.setImageSize(b.width, b.height)
+                            interactiveMapData.postCenterTranslateMatrix(
+                                b.width.toFloat(),
+                                b.height.toFloat(),
+                                width.toFloat(),
+                                height.toFloat()
+                            )
+                            canvas.drawBitmap(b, interactiveMapData.matrix, paint)
+                        }
+                    }
                 }
             }
 
-            val scaleX = interactiveMapData!!.matrixValues[Matrix.MSCALE_X]
-            val scaleY = interactiveMapData!!.matrixValues[Matrix.MSCALE_Y]
-            val panX = interactiveMapData!!.matrixValues[Matrix.MTRANS_X]
-            val panY = interactiveMapData!!.matrixValues[Matrix.MTRANS_Y]
+            val scaleX = interactiveMapData.matrixValues[Matrix.MSCALE_X]
+            val scaleY = interactiveMapData.matrixValues[Matrix.MSCALE_Y]
+            val panX = interactiveMapData.matrixValues[Matrix.MTRANS_X]
+            val panY = interactiveMapData.matrixValues[Matrix.MTRANS_Y]
 
             paint.strokeWidth = 3f
             wallpath.reset()
-            if (selectedRoomModel != null) {
-                val points: List<PointF> = selectedRoomModel!!.roomArea.points
+
+            selectedRoomModel?.let { selectedRoomModel ->
+                val points: List<PointF> = selectedRoomModel.roomArea.points
                 val firstPoint = points[0]
                 wallpath.moveTo(
                     (panX) + (firstPoint.x * scaleX),
@@ -401,25 +384,27 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
             paint.color = poiColor
             paint.setColorFilter(poiColorFilter)
 
-            if (mapMenuViewModel != null && mapMenuViewModel!!.currentMapModel != null) {
-                for (poi in mapMenuViewModel!!.currentMapModel!!.currentFloor.floorPOIs) {
-                    val x = (panX) + poi.point!!.x * scaleX
-                    val y = (panY) + poi.point!!.y * scaleY
+            mapMenuViewModel?.currentMapModel?.let { currentMapModel ->
+                for (poi in currentMapModel.currentFloor.floorPOIs) {
+                    var x = panX
+                    var y = panY
+                    poi.point?.let { point ->
+                        x = (panX) + point.x * scaleX
+                        y = (panY) + point.y * scaleY
+                    }
 
                     val b = poiImages[poi.type]
                     if (bitmapExists(b)) {
-                        interactivePoiData.deepCopy(interactiveMapData!!)
-                        interactivePoiData.setPan(
-                            x,
-                            y
-                        )
-                        interactivePoiData.postTranslateOriginMatrix(
-                            b!!.width.toFloat(),
-                            b.height.toFloat(),
-                            width.toFloat(),
-                            height.toFloat()
-                        )
-                        canvas.drawBitmap(b, interactivePoiData.matrix, paint)
+                        b?.let {
+                            interactivePoiModel.deepCopy(interactiveMapData)
+                            interactivePoiModel.setPan(x, y)
+                            interactivePoiModel.postTranslateOriginMatrix(
+                                b.width.toFloat(), b.height.toFloat(),
+                                width.toFloat(), height.toFloat()
+                            )
+                            canvas.drawBitmap(b, interactivePoiModel.matrix, paint)
+                        }
+
                     }
                 }
             }
@@ -430,14 +415,14 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         if (frameRect == null) {
             frameRect = Rect(1, 1, width - 1, height - 1)
         } else {
-            frameRect!!.bottom = height - 1
+            frameRect?.bottom = height - 1
         }
 
         paint.setColorFilter(null)
         paint.color = mapBorderColor
         paint.style = Paint.Style.STROKE
-        if (frameRect != null) {
-            canvas.drawRect(frameRect!!, paint)
+        frameRect?.let { frameRect ->
+            canvas.drawRect(frameRect, paint)
         }
     }
 
@@ -447,29 +432,32 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
 
     inner class MapPointRunnable : Runnable {
         override fun run() {
-            if (interactiveMapData!!.selectedPoint == null) {
-                return
-            }
-            if (mapMenuViewModel == null || mapMenuViewModel!!.currentMapModel == null) {
-                return
-            }
 
-            val matrix = interactiveMapData!!.matrixValues
-            val scaleX = matrix[Matrix.MSCALE_X]
-            val scaleY = matrix[Matrix.MSCALE_Y]
-            val panX = matrix[Matrix.MTRANS_X]
-            val panY = matrix[Matrix.MTRANS_Y]
+            var matrix: FloatArray
+            var scaleX = 1f
+            var scaleY = 1f
+            var panX = 0f
+            var panY = 0f
+            var touchX = 0f
+            var touchY = 0f
 
+            interactiveMapModel?.let { interactiveMapModel ->
+                matrix = interactiveMapModel.matrixValues
+                scaleX = matrix[Matrix.MSCALE_X]
+                scaleY = matrix[Matrix.MSCALE_Y]
+                panX = matrix[Matrix.MTRANS_X]
+                panY = matrix[Matrix.MTRANS_Y]
 
-            val touchX = interactiveMapData!!.selectedPoint!!.x.toFloat()
-            val touchY = interactiveMapData!!.selectedPoint!!.y.toFloat()
+                interactiveMapModel.selectedPoint?.let { selectedPoint ->
+                    touchX = selectedPoint.x.toFloat()
+                    touchY = selectedPoint.y.toFloat()
+                } ?: return
+            } ?: return
 
             Log.d("Tap", "Input Conversion: $touchX $touchY")
 
-            if (mapMenuViewModel != null &&
-                mapMenuViewModel!!.currentMapModel != null
-            ) {
-                val rooms = mapMenuViewModel!!.currentMapModel!!.currentFloor.floorRooms
+            mapMenuViewModel?.currentMapModel?.let { currentMapModel ->
+                val rooms = currentMapModel.currentFloor.floorRooms
                 for (room in rooms) {
                     val shape = Polygon()
                     for (p in room.roomArea.points) {
@@ -488,7 +476,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                             resetRoomSelection()
                         }
 
-                        roomSpinner!!.setSelection(rooms.indexOf(room))
+                        roomSpinner?.setSelection(rooms.indexOf(room))
 
                         invalidate()
                         return
