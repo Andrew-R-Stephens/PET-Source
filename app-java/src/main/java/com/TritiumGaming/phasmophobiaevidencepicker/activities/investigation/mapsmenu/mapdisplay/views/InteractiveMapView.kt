@@ -1,507 +1,504 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Point;
-import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.AdapterView;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.InteractiveMapModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.RoomModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Polygon;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Point
+import android.graphics.PointF
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.Rect
+import android.util.AttributeSet
+import android.util.Log
+import android.util.SparseArray
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
+import android.view.View
+import android.widget.AdapterView
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.RoomModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.InteractiveMapModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.bitmapExists
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Polygon
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 /**
  * InteractiveMapControlView class
  *
  * @author TritiumGamingStudios
  */
-public class InteractiveMapView extends View {
+class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+    private var mapMenuViewModel: MapMenuViewModel? = null
 
-    private MapMenuViewModel mapMenuViewModel;
+    private var interactiveMapData: InteractiveMapModel? = null
+    private val interactivePoiData = InteractiveMapModel()
 
-    private InteractiveMapModel interactiveMapData;
-    private final InteractiveMapModel interactivePoiData = new InteractiveMapModel();
+    private var roomSpinner: POISpinner? = null
 
-    private POISpinner roomSpinner;
+    private var bitmapUtils: BitmapUtils? = BitmapUtils()
 
-    @Nullable
-    private BitmapUtils bitmapUtils = new BitmapUtils();
+    private var mapData: MapViewerModel? = null
+    private val mapImages: ArrayList<Bitmap?> = ArrayList()
+    private val poiImages = HashMap<PoiType, Bitmap?>()
 
-    private MapViewerModel mapData;
-    private final ArrayList<Bitmap> mapImages = new ArrayList<>();
-    private final HashMap<PoiType, Bitmap> poiImages = new HashMap<>();
+    private val wallpath = Path()
+    private var frameRect: Rect? = null
+    private val paint = Paint()
 
-    private final Path wallpath = new Path();
-    private Rect frameRect;
-    @NonNull
-    private final Paint paint;
+    private val poiColorFilter: PorterDuffColorFilter
 
-    @NonNull private final PorterDuffColorFilter poiColorFilter;
-    @ColorInt int mapBorderColor, poiColor, selectedBorderColor, selectedFillColor;
+    @ColorInt
+    var mapBorderColor: Int
 
-    @Nullable
-    private RoomModel selectedRoomModel;
+    @ColorInt
+    var poiColor: Int
 
-    private SparseArray<PointF> mActivePointers;
+    @ColorInt
+    var selectedBorderColor: Int
 
-    private double pinchDistance = 0;
-    @Nullable
-    private Point panOrigin;
+    @ColorInt
+    var selectedFillColor: Int
 
-    private GestureDetector mDetector;
+    private var selectedRoomModel: RoomModel? = null
 
-    private final float pulseAlpha = 1f;
+    private var mActivePointers: SparseArray<PointF>? = null
+
+    private var pinchDistance = 0f
+    private var panOrigin: Point? = null
+
+    private var mDetector: GestureDetector? = null
+
+    private val pulseAlpha = 1f
 
     /**
      * InteractiveMapControlView parameterized constructor
      */
-    public InteractiveMapView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-
-        paint = new Paint();
-        paint.setColor(Color.LTGRAY);
-        paint.setStrokeWidth(5);
-        paint.setStyle(Paint.Style.STROKE);
+    init {
+        paint.color = Color.LTGRAY
+        paint.strokeWidth = 5f
+        paint.style = Paint.Style.STROKE
 
         // COLORS
-        mapBorderColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorBody);
-        poiColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapPoiFillColor);
-        selectedBorderColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapRoomBorderColor);
-        selectedFillColor = ColorUtils.getColorFromAttribute(getContext(), R.attr.mapRoomFillColor);
+        mapBorderColor = getColorFromAttribute(getContext(), R.attr.textColorBody)
+        poiColor = getColorFromAttribute(getContext(), R.attr.mapPoiFillColor)
+        selectedBorderColor = getColorFromAttribute(getContext(), R.attr.mapRoomBorderColor)
+        selectedFillColor = getColorFromAttribute(getContext(), R.attr.mapRoomFillColor)
 
-        poiColorFilter = new PorterDuffColorFilter(
-                poiColor, PorterDuff.Mode.MULTIPLY);
+        poiColorFilter = PorterDuffColorFilter(
+            poiColor, PorterDuff.Mode.MULTIPLY
+        )
     }
 
-    public void init(@NonNull MapMenuViewModel mapMenuViewModel, @NonNull POISpinner roomSpinner) {
-        this.mapMenuViewModel = mapMenuViewModel;
+    fun init(mapMenuViewModel: MapMenuViewModel, roomSpinner: POISpinner) {
+        this.mapMenuViewModel = mapMenuViewModel
 
-        interactiveMapData = new InteractiveMapModel();
-        mActivePointers = new SparseArray<>();
-        mDetector = new GestureDetector(getContext(), new GestureTap());
+        interactiveMapData = InteractiveMapModel()
+        mActivePointers = SparseArray()
+        mDetector = GestureDetector(context, GestureTap())
 
-        this.roomSpinner = roomSpinner;
+        this.roomSpinner = roomSpinner
 
-        AdapterView.OnItemSelectedListener poiSpinnerListener = new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedRoomModel =
-                        mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms().get(position);
+        val poiSpinnerListener: AdapterView.OnItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedRoomModel =
+                        mapMenuViewModel.currentMapModel!!.currentFloor.floorRooms[position]
 
-                invalidate();
+                    invalidate()
+                }
+
+                override fun onNothingSelected(arg0: AdapterView<*>?) {
+                    // TODO Auto-generated method stub
+                }
             }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        };
-        roomSpinner.setOnItemSelectedListener(poiSpinnerListener);
-        if(mapMenuViewModel.getCurrentMapModel() != null) {
+        roomSpinner.onItemSelectedListener = poiSpinnerListener
+        if (mapMenuViewModel.currentMapModel != null) {
             roomSpinner.populateAdapter(
-                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+                mapMenuViewModel.currentMapModel!!.currentFloor.floorRoomNames
+            )
         }
     }
 
-    public void resetRoomSelection() {
-        interactiveMapData.setPressedPoint(null);
-        selectedRoomModel = null;
+    fun resetRoomSelection() {
+        interactiveMapData!!.setPressedPoint(null)
+        selectedRoomModel = null
     }
 
-    class GestureTap extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onDoubleTap(@NonNull MotionEvent e) {
-            return true;
+    internal inner class GestureTap : SimpleOnGestureListener() {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+            return true
         }
 
-        @Override
-        public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
+        override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+            interactiveMapData!!.setPressedPoint(Point2DFloat(e.x, e.y))
+            handleClickRunnable()
 
-            interactiveMapData.setPressedPoint(new Point2DFloat(e.getX(), e.getY()));
-            handleClickRunnable();
-
-            return true;
+            return true
         }
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-
-        if (this.mDetector.onTouchEvent(event)) {
-            return true;
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (mDetector!!.onTouchEvent(event)) {
+            return true
         }
 
-        int pointerIndex = event.getActionIndex();
-        int pointerId = event.getPointerId(pointerIndex);
-        int maskedAction = event.getActionMasked();
-        boolean acceptedAction = true;
+        val pointerIndex = event.actionIndex
+        val pointerId = event.getPointerId(pointerIndex)
+        val maskedAction = event.actionMasked
+        var acceptedAction = true
 
-        switch (maskedAction) {
-            case MotionEvent.ACTION_DOWN, MotionEvent.ACTION_POINTER_DOWN -> {
-                PointF f = new PointF();
-                f.x = event.getX(pointerIndex);
-                f.y = event.getY(pointerIndex);
+        when (maskedAction) {
+            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_POINTER_DOWN -> {
+                val f = PointF()
+                f.x = event.getX(pointerIndex)
+                f.y = event.getY(pointerIndex)
                 if (mActivePointers != null) {
-                    mActivePointers.put(pointerId, f);
+                    mActivePointers!!.put(pointerId, f)
                 }
             }
-            case MotionEvent.ACTION_MOVE -> {
 
-                for (int size = event.getPointerCount(), i = 0; i < size; i++) {
+            MotionEvent.ACTION_MOVE -> {
+                val size = event.pointerCount
+                var i = 0
+                while (i < size) {
                     if (mActivePointers != null) {
-                        PointF point = mActivePointers.get(event.getPointerId(i));
+                        val point = mActivePointers!![event.getPointerId(i)]
                         if (point != null) {
-                            point.x = event.getX(i);
-                            point.y = event.getY(i);
+                            point.x = event.getX(i)
+                            point.y = event.getY(i)
                         }
                     }
+                    i++
                 }
 
-                if (event.getPointerCount() == 1) {
-                    doPanAction();
-                } else if (event.getPointerCount() == 2) {
-                    doZoomAction();
+                if (event.pointerCount == 1) {
+                    doPanAction()
+                } else if (event.pointerCount == 2) {
+                    doZoomAction()
                 } else {
-                    acceptedAction = false;
+                    acceptedAction = false
                 }
-
             }
-            case MotionEvent.ACTION_UP, MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
+
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
                 if (mActivePointers != null) {
-                    mActivePointers.remove(pointerId);
+                    mActivePointers!!.remove(pointerId)
                 }
 
-                pinchDistance = 0;
-                panOrigin = null;
+                pinchDistance = 0f
+                panOrigin = null
             }
         }
-
         if (acceptedAction) {
-            interactiveMapData.setDisplaySize(getWidth(), getHeight());
-            invalidate();
+            interactiveMapData!!.setDisplaySize(width, height)
+            invalidate()
         }
 
-        return true;
+        return true
     }
 
-    public void doZoomAction() {
-
-        PointF p1 = mActivePointers.get(0);
-        PointF p2 = mActivePointers.get(1);
+    fun doZoomAction() {
+        val p1 = mActivePointers!![0]
+        val p2 = mActivePointers!![1]
 
         if (p1 != null && p2 != null) {
+            val distance = sqrt((p2.x - p1.x).pow(2f) + (p2.y - p1.y).pow(2f))
+            val delta = distance - pinchDistance
 
-            double distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
-            double delta = distance - pinchDistance;
+            pinchDistance = distance
 
-            pinchDistance = distance;
-
-            if (Math.abs(delta) > 2) {
-                double zoomSense = .02;
-                int zoomDir = 1;
+            if (abs(delta) > 2) {
+                val zoomSense = .02
+                var zoomDir = 1
                 if (delta < 0) {
-                    zoomDir = -1;
+                    zoomDir = -1
                 }
 
                 if (interactiveMapData != null) {
-                    interactiveMapData.updateZoomLevel(zoomSense * zoomDir);
+                    interactiveMapData!!.updateZoomLevel(zoomSense * zoomDir)
                 }
             }
         }
     }
 
-    public void doPanAction() {
-
-        PointF p = mActivePointers.get(0);
+    fun doPanAction() {
+        val p = mActivePointers!![0]
 
         if (p != null && panOrigin != null) {
-            double dX = panOrigin.x - p.x;
-            double dY = panOrigin.y - p.y;
+            val dX = (panOrigin!!.x - p.x).toDouble()
+            val dY = (panOrigin!!.y - p.y).toDouble()
 
             if (interactiveMapData != null) {
-                interactiveMapData.incrementPan(dX, dY);
+                interactiveMapData!!.incrementPan(dX, dY)
             }
         }
 
         if (p != null) {
-            panOrigin = new Point((int) p.x, (int) p.y);
+            panOrigin = Point(p.x.toInt(), p.y.toInt())
         }
-
     }
 
-    public void setMapData(MapViewerModel mapData) {
-        this.mapData = mapData;
+    fun setMapData(mapData: MapViewerModel?) {
+        this.mapData = mapData
     }
 
-    public void setMapImages(@NonNull Activity a) {
-
-        if(bitmapUtils == null) {
-            bitmapUtils = new BitmapUtils();
+    fun setMapImages(a: Activity) {
+        if (bitmapUtils == null) {
+            bitmapUtils = BitmapUtils()
         }
 
         if (interactiveMapData != null) {
+            val mapFloorLayers = mapData!!.allFloorLayers
 
-            ArrayList<ArrayList<Integer>> mapFloorLayers = mapData.getAllFloorLayers();
-
-            for (int i = 0; i < mapFloorLayers.size(); i++) {
-                mapImages.add(null);
+            for (i in mapFloorLayers.indices) {
+                mapImages!!.add(null)
             }
 
-            for (int i = 0; i < mapFloorLayers.size(); i++) {
-                int index = i + mapData.getDefaultFloor();
-                if (mapFloorLayers.size() <= index) {
-                    index = 0;
+            for (i in mapFloorLayers.indices) {
+                var index = i + mapData!!.defaultFloor
+                if (mapFloorLayers.size <= index) {
+                    index = 0
                 }
 
                 // IMAGE LOADING ----
                 //
-                ArrayList<Integer> floor = mapFloorLayers.get(index);
-                for (int j = 0; j < floor.size(); j++) {
-                    if(bitmapUtils != null) {
-                        bitmapUtils.setResources(floor);
+                val floor = mapFloorLayers[index]
+                for (j in floor.indices) {
+                    if (bitmapUtils != null) {
+                        bitmapUtils!!.resources = floor
                     }
-                    while (bitmapUtils != null && bitmapUtils.hasNextBitmap()) {
-                        mapImages.set(
-                                index,
-                                bitmapUtils.compileNextBitmap(
-                                        getContext(),
-                                        mapImages.get(index)
-                                )
-                        );
-                        a.runOnUiThread(this::invalidate);
+                    while (bitmapUtils != null && bitmapUtils!!.hasNextBitmap()) {
+                        mapImages!![index] = bitmapUtils!!.compileNextBitmap(
+                            context,
+                            mapImages[index]
+                        )
+                        a.runOnUiThread { this.invalidate() }
                     }
                 }
-                if(bitmapUtils != null) {
-                    bitmapUtils.clearResources();
+                if (bitmapUtils != null) {
+                    bitmapUtils!!.clearResources()
                 }
 
-                a.runOnUiThread(this::invalidate);
+                a.runOnUiThread { this.invalidate() }
             }
-            a.runOnUiThread(this::invalidate);
+            a.runOnUiThread { this.invalidate() }
         }
 
-        bitmapUtils = null;
+        bitmapUtils = null
     }
 
-    public void setPoiImages(@NonNull Activity a) {
-        if(getContext() == null) { return; }
-
-        TypedArray typedArray =
-                a.getResources().obtainTypedArray(R.array.poi_resources_array);
-
-        @DrawableRes ArrayList<Integer> resources = new ArrayList<>();
-        for (int i = 0; i < typedArray.length(); i++) {
-            Integer resourceId = typedArray.getResourceId(i, 0);
-            Log.d("ResourceId", resourceId + "");
-            resources.add(resourceId);
+    fun setPoiImages(a: Activity) {
+        if (context == null) {
+            return
         }
 
-        for(int i = 0; i < resources.size(); i++) {
-            Bitmap b = new BitmapUtils().setResource(resources.get(i)).compileBitmaps(getContext());
-            poiImages.put(PoiType.values()[i], b);
+        val typedArray =
+            a.resources.obtainTypedArray(R.array.poi_resources_array)
+
+        @DrawableRes val resources = ArrayList<Int>()
+        for (i in 0 until typedArray.length()) {
+            val resourceId = typedArray.getResourceId(i, 0)
+            Log.d("ResourceId", resourceId.toString() + "")
+            resources.add(resourceId)
         }
 
-        typedArray.recycle();
+        for (i in resources.indices) {
+            val b = BitmapUtils().setResource(
+                resources[i]
+            ).compileBitmaps(context)
+            poiImages[PoiType.entries[i]] = b
+        }
 
-        a.runOnUiThread(this::invalidate);
+        typedArray.recycle()
 
-        bitmapUtils = null;
+        a.runOnUiThread { this.invalidate() }
+
+        bitmapUtils = null
     }
 
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-
-        super.onDraw(canvas);
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
 
         if (interactiveMapData != null) {
-            interactiveMapData.updateMatrix();
-            if (mapImages != null && mapData != null && mapData.getCurrentFloor() < mapImages.size()) {
-                Bitmap b = mapImages.get(mapData.getCurrentFloor());
-                if (BitmapUtils.Companion.bitmapExists(b)) {
-                    interactiveMapData.setImageSize(b.getWidth(), b.getHeight());
-                    interactiveMapData.postCenterTranslateMatrix(
-                            b.getWidth(),
-                            b.getHeight(),
-                            getWidth(),
-                            getHeight());
-                    canvas.drawBitmap(b, interactiveMapData.getMatrix(), paint);
+            interactiveMapData!!.updateMatrix()
+            if (mapImages != null && mapData != null && mapData!!.currentFloor < mapImages.size) {
+                val b = mapImages[mapData!!.currentFloor]
+                if (bitmapExists(b)) {
+                    interactiveMapData!!.setImageSize(b!!.width, b.height)
+                    interactiveMapData!!.postCenterTranslateMatrix(
+                        b.width.toFloat(),
+                        b.height.toFloat(),
+                        width.toFloat(),
+                        height.toFloat()
+                    )
+                    canvas.drawBitmap(b, interactiveMapData!!.matrix, paint)
                 }
             }
 
-            float scaleX = interactiveMapData.getMatrixValues()[Matrix.MSCALE_X];
-            float scaleY = interactiveMapData.getMatrixValues()[Matrix.MSCALE_Y];
-            float panX = interactiveMapData.getMatrixValues()[Matrix.MTRANS_X];
-            float panY = interactiveMapData.getMatrixValues()[Matrix.MTRANS_Y];
+            val scaleX = interactiveMapData!!.matrixValues[Matrix.MSCALE_X]
+            val scaleY = interactiveMapData!!.matrixValues[Matrix.MSCALE_Y]
+            val panX = interactiveMapData!!.matrixValues[Matrix.MTRANS_X]
+            val panY = interactiveMapData!!.matrixValues[Matrix.MTRANS_Y]
 
-            paint.setStrokeWidth(3);
-            wallpath.reset();
-            if(selectedRoomModel != null) {
-                List<PointF> points = selectedRoomModel.getRoomArea().getPoints();
-                PointF firstPoint = points.get(0);
+            paint.strokeWidth = 3f
+            wallpath.reset()
+            if (selectedRoomModel != null) {
+                val points: List<PointF> = selectedRoomModel!!.roomArea.points
+                val firstPoint = points[0]
                 wallpath.moveTo(
-                        (panX) + (firstPoint.x * scaleX),
-                        (panY) + (firstPoint.y * scaleY)
-                ); // used for first point
-                for (int i = 1; i < points.size(); i++) {
+                    (panX) + (firstPoint.x * scaleX),
+                    (panY) + (firstPoint.y * scaleY)
+                ) // used for first point
+                for (i in 1 until points.size) {
                     wallpath.lineTo(
-                            (panX) + points.get(i).x * scaleX,
-                            (panY) + points.get(i).y * scaleY);
+                        (panX) + points[i].x * scaleX,
+                        (panY) + points[i].y * scaleY
+                    )
                 }
                 wallpath.lineTo(
-                        (panX) + (firstPoint.x * scaleX),
-                        (panY) + (firstPoint.y * scaleY)
-                );
+                    (panX) + (firstPoint.x * scaleX),
+                    (panY) + (firstPoint.y * scaleY)
+                )
 
-                paint.setColor(selectedFillColor);
-                paint.setStyle(Paint.Style.FILL);
-                canvas.drawPath(wallpath, paint);
+                paint.color = selectedFillColor
+                paint.style = Paint.Style.FILL
+                canvas.drawPath(wallpath, paint)
 
-                paint.setColor(selectedBorderColor);
-                paint.setStyle(Paint.Style.STROKE);
-                canvas.drawPath(wallpath, paint);
+                paint.color = selectedBorderColor
+                paint.style = Paint.Style.STROKE
+                canvas.drawPath(wallpath, paint)
             }
 
-            float fontSize = (scaleX / getWidth()) * 24;
-            paint.setTextSize(Math.min(36, Math.max(12, fontSize)));
+            val fontSize = (scaleX / width) * 24
+            paint.textSize = min(36.0, max(12.0, fontSize.toDouble())).toFloat()
 
-            paint.setAntiAlias(true);
-            paint.setColor(poiColor);
-            paint.setColorFilter(poiColorFilter);
+            paint.isAntiAlias = true
+            paint.color = poiColor
+            paint.setColorFilter(poiColorFilter)
 
-            if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
-                for (PoiModel poi : mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorPOIs()) {
-                    float x = (panX) + poi.getPoint().x * scaleX;
-                    float y = (panY) + poi.getPoint().y * scaleY;
+            if (mapMenuViewModel != null && mapMenuViewModel!!.currentMapModel != null) {
+                for (poi in mapMenuViewModel!!.currentMapModel!!.currentFloor.floorPOIs) {
+                    val x = (panX) + poi.point!!.x * scaleX
+                    val y = (panY) + poi.point!!.y * scaleY
 
-                    Bitmap b = poiImages.get(poi.getType());
-                    if (BitmapUtils.Companion.bitmapExists(b)) {
-                        interactivePoiData.deepCopy(interactiveMapData);
+                    val b = poiImages[poi.type]
+                    if (bitmapExists(b)) {
+                        interactivePoiData.deepCopy(interactiveMapData!!)
                         interactivePoiData.setPan(
-                                x,
-                                y
-                        );
+                            x,
+                            y
+                        )
                         interactivePoiData.postTranslateOriginMatrix(
-                                b.getWidth(),
-                                b.getHeight(),
-                                getWidth(),
-                                getHeight()
-                        );
-                        canvas.drawBitmap(b, interactivePoiData.getMatrix(), paint);
+                            b!!.width.toFloat(),
+                            b.height.toFloat(),
+                            width.toFloat(),
+                            height.toFloat()
+                        )
+                        canvas.drawBitmap(b, interactivePoiData.matrix, paint)
                     }
-
                 }
             }
 
-            paint.setAntiAlias(false);
+            paint.isAntiAlias = false
         }
 
         if (frameRect == null) {
-            frameRect = new Rect(1, 1, getWidth() - 1, getHeight() - 1);
+            frameRect = Rect(1, 1, width - 1, height - 1)
         } else {
-            frameRect.bottom = getHeight() -1;
+            frameRect!!.bottom = height - 1
         }
 
-        paint.setColorFilter(null);
-        paint.setColor(mapBorderColor);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setColorFilter(null)
+        paint.color = mapBorderColor
+        paint.style = Paint.Style.STROKE
         if (frameRect != null) {
-            canvas.drawRect(frameRect, paint);
+            canvas.drawRect(frameRect!!, paint)
         }
     }
 
-    public void handleClickRunnable() {
-        ((InvestigationActivity)getContext()).runOnUiThread(new MapPointRunnable());
+    fun handleClickRunnable() {
+        (context as InvestigationActivity).runOnUiThread(MapPointRunnable())
     }
 
-    public class MapPointRunnable implements Runnable {
-
-        @Override
-        public void run() {
-
-            if(interactiveMapData.getSelectedPoint() == null) { return; }
-            if(mapMenuViewModel == null || mapMenuViewModel.getCurrentMapModel() == null) {
-                return;
+    inner class MapPointRunnable : Runnable {
+        override fun run() {
+            if (interactiveMapData!!.selectedPoint == null) {
+                return
+            }
+            if (mapMenuViewModel == null || mapMenuViewModel!!.currentMapModel == null) {
+                return
             }
 
-            float[] matrix = interactiveMapData.getMatrixValues();
-            float scaleX = matrix[Matrix.MSCALE_X];
-            float scaleY = matrix[Matrix.MSCALE_Y];
-            float panX = matrix[Matrix.MTRANS_X];
-            float panY = matrix[Matrix.MTRANS_Y];
+            val matrix = interactiveMapData!!.matrixValues
+            val scaleX = matrix[Matrix.MSCALE_X]
+            val scaleY = matrix[Matrix.MSCALE_Y]
+            val panX = matrix[Matrix.MTRANS_X]
+            val panY = matrix[Matrix.MTRANS_Y]
 
 
-            float touchX = (float)interactiveMapData.getSelectedPoint().getX();
-            float touchY = (float)interactiveMapData.getSelectedPoint().getY();
+            val touchX = interactiveMapData!!.selectedPoint!!.x.toFloat()
+            val touchY = interactiveMapData!!.selectedPoint!!.y.toFloat()
 
-            Log.d("Tap", "Input Conversion: " + touchX + " " + touchY);
+            Log.d("Tap", "Input Conversion: $touchX $touchY")
 
-            if(mapMenuViewModel != null &&
-                    mapMenuViewModel.getCurrentMapModel() != null) {
-
-                ArrayList<RoomModel> rooms = mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRooms();
-                for (RoomModel room : rooms) {
-
-                    Polygon shape = new Polygon();
-                    for (PointF p : room.getRoomArea().getPoints()) {
-                        int x = (int) ((p.x * scaleX) + (panX));
-                        int y = (int) ((p.y * scaleY) + (panY));
-                        shape.addPoint(x, y);
+            if (mapMenuViewModel != null &&
+                mapMenuViewModel!!.currentMapModel != null
+            ) {
+                val rooms = mapMenuViewModel!!.currentMapModel!!.currentFloor.floorRooms
+                for (room in rooms) {
+                    val shape = Polygon()
+                    for (p in room.roomArea.points) {
+                        val x = ((p.x * scaleX) + (panX)).toInt()
+                        val y = ((p.y * scaleY) + (panY)).toInt()
+                        shape.addPoint(x, y)
                     }
 
-                    if (shape.contains(new Point2DFloat(touchX, touchY))) {
-                        Log.d("Tap", "setting temp room");
+                    if (shape.contains(Point2DFloat(touchX, touchY))) {
+                        Log.d("Tap", "setting temp room")
 
                         if (room != selectedRoomModel) {
-                            selectedRoomModel = room;
-                            selectedRoomModel.print();
+                            selectedRoomModel = room
+                            selectedRoomModel!!.print()
                         } else {
-                            resetRoomSelection();
+                            resetRoomSelection()
                         }
 
-                        roomSpinner.setSelection(rooms.indexOf(room));
+                        roomSpinner!!.setSelection(rooms.indexOf(room))
 
-                        invalidate();
-                        return;
+                        invalidate()
+                        return
                     }
                 }
-                resetRoomSelection();
-                invalidate();
+                resetRoomSelection()
+                invalidate()
             }
         }
     }
-
 }

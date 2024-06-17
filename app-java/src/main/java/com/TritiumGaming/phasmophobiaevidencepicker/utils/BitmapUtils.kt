@@ -117,15 +117,14 @@ class BitmapUtils {
     }
 
     fun compileBitmaps(context: Context): Bitmap? {
-
         var bitmap: Bitmap? = null
-
-        for (i in resources.indices) {
-            val drawableRes = resources[i]
-            val filter = filters[i]
-
-            bitmap = createBitmap(context, bitmap, drawableRes, filter)
-        }
+        try {
+            resources.forEachIndexed { index: Int, _ ->
+                val drawableRes = resources[index]
+                val filter = filters[index]
+                bitmap = createBitmap(context, bitmap, drawableRes, filter)
+            }
+        } catch (e: IndexOutOfBoundsException) { e.printStackTrace() }
         return bitmap
     }
 

@@ -1,84 +1,61 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.AttributeSet;
-import android.widget.ArrayAdapter;
+import android.content.Context
+import android.content.res.Resources.Theme
+import android.util.AttributeSet
+import android.widget.ArrayAdapter
+import androidx.appcompat.widget.AppCompatSpinner
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatSpinner;
+class POISpinner : AppCompatSpinner {
+    constructor(context: Context) :
+            super(context) { init() }
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
+    constructor(context: Context, mode: Int) :
+            super(context, mode) { init() }
 
-import java.util.ArrayList;
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { init() }
 
-public class POISpinner extends AppCompatSpinner {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { init() }
 
-    public POISpinner(@NonNull Context context) {
-        super(context);
-        init();
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, mode: Int) :
+            super(context, attrs, defStyleAttr, mode) { init() }
 
-    public POISpinner(@NonNull Context context, int mode) {
-        super(context, mode);
-        init();
-    }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, mode: Int, popupTheme: Theme?) :
+            super(context, attrs, defStyleAttr, mode, popupTheme) { init() }
 
-    public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int mode) {
-        super(context, attrs, defStyleAttr, mode);
-        init();
-    }
-
-    public POISpinner(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int mode, Resources.Theme popupTheme) {
-        super(context, attrs, defStyleAttr, mode, popupTheme);
-        init();
-    }
-
-    private void init() {
+    private fun init() {
         // --
     }
 
-    public void populateAdapter(@Nullable MapMenuViewModel mapMenuViewModel) {
-        if(mapMenuViewModel != null && mapMenuViewModel.getCurrentMapModel() != null) {
+    fun populateAdapter(mapMenuViewModel: MapMenuViewModel?) {
+        if (mapMenuViewModel?.currentMapModel != null) {
             // Creating adapter for spinner
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
-                    getContext(),
-                    R.layout.poi_spinner_item,
-                    mapMenuViewModel.getCurrentMapModel().getCurrentFloor().getFloorRoomNames());
+            val dataAdapter = ArrayAdapter(
+                context,
+                R.layout.poi_spinner_item,
+                mapMenuViewModel.currentMapModel!!.currentFloor.floorRoomNames
+            )
 
             // Drop down layout style - list view with radio button
-            dataAdapter.setDropDownViewResource(R.layout.poi_spinner);
+            dataAdapter.setDropDownViewResource(R.layout.poi_spinner)
 
             // attaching data adapter to spinner
-            setAdapter(dataAdapter);
+            adapter = dataAdapter
         }
     }
 
-    public void populateAdapter(ArrayList<String> list) {
-
+    fun populateAdapter(list: ArrayList<String>) {
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(
-                getContext(),
-                R.layout.poi_spinner_item,
-                list);
+        val dataAdapter = ArrayAdapter(context, R.layout.poi_spinner_item, list)
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // attaching data adapter to spinner
-        setAdapter(dataAdapter);
+        adapter = dataAdapter
     }
-
 }
