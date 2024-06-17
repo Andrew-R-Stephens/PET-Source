@@ -125,7 +125,6 @@ class MapViewerFragment : InvestigationFragment() {
             currentMap.currentLayer = floor.floorLayer
             Log.d("Maps", currentMap.currentFloor.floorName + " ")
         }
-
     }
 
 
@@ -150,8 +149,7 @@ class MapViewerFragment : InvestigationFragment() {
         }
     }
 
-    override fun reset() {
-    }
+    override fun reset() { }
 
     /** Starts a Thread which loads images into the InteractiveMapDisplayView */
     private fun startThreads() {
@@ -231,17 +229,13 @@ class MapViewerFragment : InvestigationFragment() {
         fun setSelected(index: Int) {
             deSelectAll()
 
-            if (selectors[index] != null) {
-                selectors[index]!!.isSelected = true
-            }
+            selectors[index]?.isSelected = true
         }
 
         /** Deselects all Selectors */
         fun deSelectAll() {
             for (selector in selectors) {
-                if (selector != null) {
-                    selector.isSelected = false
-                }
+                selector?.isSelected = false
             }
         }
 
@@ -285,7 +279,7 @@ class MapViewerFragment : InvestigationFragment() {
 
             /** Updates the Selector icon to reflect its current selection state  */
             private fun updateImage() {
-                if (selectorImages != null && selectorImages.size == 2) {
+                if (selectorImages?.size == 2) {
                     if (!isSelected) {
                         setImageResource(selectorImages[0])
                     } else {
