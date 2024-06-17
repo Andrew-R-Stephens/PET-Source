@@ -1,190 +1,164 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.Toast;
-
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.navigation.Navigation;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileIO;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileReader;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapListModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils;
-import com.google.common.primitives.Ints;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.BaseAdapter
+import android.widget.GridView
+import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileIO
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
+import com.google.common.primitives.Ints
 
 /**
  * MapMenuFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MapMenuFragment extends InvestigationFragment {
+class MapMenuFragment : InvestigationFragment() {
+    private var mapListModel: MapListModel? = null
 
-    private MapListModel mapListModel;
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_mapmenu, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_mapmenu, container, false)
     }
 
-    @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
+    @SuppressLint("UseCompatLoadingForDrawables", "ResourceType")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         try {
-            mapListModel = readMapsDataFromFile();
-        } catch (Exception e) {
-            e.printStackTrace();
+            mapListModel = readMapsDataFromFile()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         // INITIALIZE VIEWS
-        AppCompatImageView backgroundImage = view.findViewById(R.id.imageView);
+        val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
 
         // BACKGROUND IMAGE
-        BitmapUtils bitmapUtils = new BitmapUtils();
-        bitmapUtils.setResource(R.drawable.icon_map_sm);
-        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()));
+        val bitmapUtils = BitmapUtils()
+        bitmapUtils.setResource(R.drawable.icon_map_sm)
+        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()))
 
-        GridView gridView = view.findViewById(R.id.grid_maps);
+        val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
-        if(mapListModel == null) {
-            Toast.makeText(requireContext(),
-                    "Error loading map data file!", Toast.LENGTH_LONG).show();
+        if (mapListModel == null) {
+            Toast.makeText(
+                requireContext(),
+                "Error loading map data file!", Toast.LENGTH_LONG
+            ).show()
         } else {
-            GridViewAdapter gridViewAdapter = new GridViewAdapter(
-                    mapListModel.getShortenedMapNames().toArray(new String[0]),
-                    Ints.toArray(mapMenuViewModel.getMapThumbnails()));
-            gridView.setAdapter(gridViewAdapter);
-            gridView.setOnItemClickListener((parent, itemView, position, id) -> {
-                if (mapListModel == null) {
-                    return;
-                }
+            val gridViewAdapter = GridViewAdapter(
+                mapListModel!!.shortenedMapNames.toTypedArray<String?>(),
+                Ints.toArray(mapMenuViewModel.mapThumbnails)
+            )
+            gridView.adapter = gridViewAdapter
+            gridView.onItemClickListener =
+                AdapterView.OnItemClickListener { _: AdapterView<*>?, itemView: View,
+                                                  position: Int, _: Long ->
+                    mapListModel?.let { mapListModel ->
+                        System.gc()
 
-                System.gc();
-                if (mapMenuViewModel != null) {
-                    mapMenuViewModel.setCurrentMapIndex(position);
-                }
+                        mapMenuViewModel.currentMapIndex = position
+                        mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
 
-                MapModel mapModel = mapListModel.getMapById(position);
-                if (mapModel != null) {
-                    mapMenuViewModel.setCurrentMapModel(mapModel);
+                        navigateToBasicMapView(itemView)
+                    }
                 }
-
-                navigateToBasicMapView(itemView);
-            });
         }
-
     }
 
-    @Nullable
-    private MapListModel readMapsDataFromFile() throws Exception {
-        AssetManager assets = requireActivity().getAssets();
-        MapFileIO mapFileIO = new MapFileIO();
-        MapFileReader reader = mapFileIO.getReader();
+    @Throws(Exception::class)
+    private fun readMapsDataFromFile(): MapListModel? {
+        val assets = requireActivity().assets
+        val mapFileIO = MapFileIO()
+        val reader = mapFileIO.reader
 
-        mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader);
+        mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader)
 
-        reader.getWorldMapDeserializer();
-        mapListModel = new MapListModel(reader.getWorldMapDeserializer());
-        mapListModel.orderRooms();
+        reader.worldMapDeserializer
+        mapListModel = MapListModel(reader.worldMapDeserializer)
+        mapListModel?.orderRooms()
 
-        return mapListModel;
+        return mapListModel
     }
 
-    private void navigateToBasicMapView(@NonNull View view) {
-        Navigation.findNavController(view)
-                .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment);
+    private fun navigateToBasicMapView(view: View) {
+        findNavController(view)
+            .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
     }
 
-    public class GridViewAdapter extends BaseAdapter {
+    inner class GridViewAdapter(mapNames: Array<String?>, @DrawableRes images: IntArray) :
+        BaseAdapter() {
 
-        private String[] mapNames = new String[0];
-        private @DrawableRes int[] images = new int[0];
-        private final LayoutInflater layoutInflater;
+        private var mapNames = arrayOfNulls<String>(0)
 
-        public GridViewAdapter(String[] mapNames, @DrawableRes int[] images) {
-            layoutInflater =
-                    (LayoutInflater) requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @DrawableRes private var images = IntArray(0)
+        private val layoutInflater =
+            requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-            if(mapNames.length != images.length) return;
-            this.mapNames = mapNames;
-            this.images = images;
-
-        }
-
-        @Override
-        public int getCount() {
-            return images.length;
-        }
-
-        @Nullable
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int i, @Nullable View newView, ViewGroup parent) {
-
-            if(newView == null) {
-                newView = layoutInflater.inflate(R.layout.item_mapmenu_map, parent, false);
+        init {
+            if (mapNames.size == images.size) {
+                this.mapNames = mapNames
+                this.images = images
             }
+        }
 
-            AppCompatTextView textView = newView.findViewById(R.id.label_mapName);
-            AppCompatImageView imageView = newView.findViewById(R.id.image_map);
+        override fun getCount(): Int {
+            return images.size
+        }
 
-            textView.setText(mapNames[i]);
-            imageView.setImageResource(images[i]);
+        override fun getItem(position: Int): Any? {
+            return null
+        }
 
-            return newView;
+        override fun getItemId(position: Int): Long {
+            return 0
+        }
+
+        override fun getView(i: Int, passedNewView: View?, parent: ViewGroup): View {
+            val newView: View = passedNewView?.let {
+                passedNewView
+            } ?: layoutInflater.inflate(R.layout.item_mapmenu_map, parent, false) as View
+
+
+            val textView = newView.findViewById<AppCompatTextView>(R.id.label_mapName)
+            val imageView = newView.findViewById<AppCompatImageView>(R.id.image_map)
+
+            textView?.text = mapNames[i]
+            imageView?.setImageResource(images[i])
+
+            return newView
         }
     }
 
     /**
      * Enforces garbage collection on low memory
      */
-    @Override
-    public void onLowMemory() {
-        System.gc();
+    override fun onLowMemory() {
+        System.gc()
 
-        super.onLowMemory();
+        super.onLowMemory()
     }
 
-    @Override
-    public void reset() {
-
+    override fun reset() {
     }
 
-    @Override
-    protected void saveStates() {
-
+    override fun saveStates() {
     }
-
 }

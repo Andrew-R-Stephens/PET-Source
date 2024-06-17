@@ -123,12 +123,10 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
-                    view: View,
-                    position: Int,
-                    id: Long
+                    view: View?, position: Int, id: Long
                 ) {
                     selectedRoomModel =
-                        mapMenuViewModel.currentMapModel!!.currentFloor.floorRooms[position]
+                        mapMenuViewModel.currentMapModel?.currentFloor?.floorRooms?.get(position)
 
                     invalidate()
                 }
@@ -138,15 +136,15 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 }
             }
         roomSpinner.onItemSelectedListener = poiSpinnerListener
-        if (mapMenuViewModel.currentMapModel != null) {
+        mapMenuViewModel.currentMapModel?.let { currentMap ->
             roomSpinner.populateAdapter(
-                mapMenuViewModel.currentMapModel!!.currentFloor.floorRoomNames
+                currentMap.currentFloor.floorRoomNames
             )
         }
     }
 
     fun resetRoomSelection() {
-        interactiveMapData!!.setPressedPoint(null)
+        interactiveMapData?.setPressedPoint(null)
         selectedRoomModel = null
     }
 
@@ -156,7 +154,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         }
 
         override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-            interactiveMapData!!.setPressedPoint(Point2DFloat(e.x, e.y))
+            interactiveMapData?.setPressedPoint(Point2DFloat(e.x, e.y))
             handleClickRunnable()
 
             return true
@@ -224,7 +222,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         return true
     }
 
-    fun doZoomAction() {
+    private fun doZoomAction() {
         val p1 = mActivePointers!![0]
         val p2 = mActivePointers!![1]
 
@@ -248,7 +246,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         }
     }
 
-    fun doPanAction() {
+    private fun doPanAction() {
         val p = mActivePointers!![0]
 
         if (p != null && panOrigin != null) {
