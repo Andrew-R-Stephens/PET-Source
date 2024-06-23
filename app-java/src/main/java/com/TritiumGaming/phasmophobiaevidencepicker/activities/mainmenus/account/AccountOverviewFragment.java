@@ -65,10 +65,10 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
         final AppCompatButton btn_account_login =
                 view.findViewById(R.id.settings_account_login_button);
-        final AppCompatButton btn_account_logout =
+        /*final AppCompatButton btn_account_logout =
                 view.findViewById(R.id.settings_account_logout_button);
         final AppCompatButton btn_account_delete =
-                view.findViewById(R.id.settings_account_delete_button);
+                view.findViewById(R.id.settings_account_delete_button);*/
         final ConstraintLayout btn_account_infoContainer =
                 view.findViewById(R.id.constraintLayout_accountInformation);
         final AppCompatTextView btn_account_info =
@@ -79,7 +79,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
             view.invalidate();
         });
-
+/*
         btn_account_logout.setOnClickListener(v -> {
             signOutAccount();
 
@@ -90,7 +90,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
             deleteAccount();
 
             view.invalidate();
-        });
+        });*/
 
         final String accountEmail;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -127,7 +127,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
                         finalEmail_obfuscated1 != null ? finalEmail_obfuscated1 : "?");
             }
         });
-
+/*
         if(firebaseUser == null) {
             btn_account_login.setVisibility(View.VISIBLE);
             btn_account_logout.setVisibility(View.GONE);
@@ -145,7 +145,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
             }
         }
 
-        btn_account_delete.setVisibility(View.GONE);
+        btn_account_delete.setVisibility(View.GONE);*/
     }
 
     @Override

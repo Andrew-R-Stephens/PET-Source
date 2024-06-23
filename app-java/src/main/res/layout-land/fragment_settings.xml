@@ -34,8 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:padding="8dp"
                 android:maxLines="1"
+                android:padding="8dp"
                 android:text="@string/settings_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
@@ -50,29 +50,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/imageView2"
-                    android:layout_width="0dp"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:adjustViewBounds="true"
-                    android:padding="4dp"
+                    app:PETImageButtonType="cancel"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
-                    app:layout_constraintEnd_toEndOf="@+id/settings_cancel_label"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_neg_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_cancel_label"
                     style="?attr/quaternaryFont_Regular_Manual"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:ellipsize="marquee"
                     android:gravity="center"
                     android:scaleType="fitCenter"
+                    android:singleLine="true"
                     android:text="@string/settings_cancel"
-                    android:textColor="?attr/selectedColor"
+                    android:textColor="?attr/textColorBodyEmphasis"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,29 +88,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/imageView3"
-                    android:layout_width="0dp"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:adjustViewBounds="true"
-                    android:padding="4dp"
+                    app:PETImageButtonType="confirm"
+                    android:clickable="false"
                     app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_selector_pos_unsel" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_confirm_label"
                     style="?attr/quaternaryFont_Regular_Manual"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
                     android:contentDescription="@string/app_name"
+                    android:ellipsize="marquee"
                     android:gravity="center"
                     android:scaleType="fitCenter"
+                    android:singleLine="true"
                     android:text="@string/settings_confirm"
-                    android:textColor="?attr/selectedColor"
+                    android:textColor="?attr/textColorBodyEmphasis"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -143,173 +143,42 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="8dp">
 
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_account_title"
+                    style="?attr/primaryFont_Bold_Manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="start"
+                    android:text="Account"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
+                    android:id="@+id/accountDetailsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/cardView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="?attr/backgroundColorOnBackground"
                     app:cardCornerRadius="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/scrollView6"
+                    app:layout_constraintBottom_toTopOf="@+id/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/scrollView6"
-                    app:layout_constraintVertical_bias="0.0">
+                    app:layout_constraintTop_toBottomOf="@+id/accountDetailsView">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/settings_accountsettings_title"
-                            style="?attr/primaryFont_Regular_Manual"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:gravity="start"
-                            android:text="Account Settings"
-                            android:textColor="?attr/textColorPrimary"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_accountInformation"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout_accountInformation"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:minHeight="48dp"
-                            android:paddingVertical="8dp"
-                            android:visibility="visible"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_account"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/settings_accountsettings_title">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/settings_accountsettings_label"
-                                style="?attr/primaryFont_Regular_Manual"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:background="@color/transparent"
-                                android:ellipsize="marquee"
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"
-                                android:gravity="center"
-                                android:singleLine="true"
-                                android:text="Email:"
-                                android:textColor="?attr/textColorBody"
-                                android:textSize="18sp"
-                                android:visibility="visible"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                                app:layout_constraintHorizontal_chainStyle="packed"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/settings_accountsettings_info"
-                                style="?attr/primaryFont_Regular_Manual"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:background="@color/transparent"
-                                android:ellipsize="marquee"
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"
-                                android:gravity="center"
-                                android:singleLine="true"
-                                android:text="Account:"
-                                android:textColor="?attr/textColorBody"
-                                android:textSize="18sp"
-                                android:visibility="visible"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_chainStyle="packed"
-                                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/imageView4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_marginEnd="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/settings_accountsettings_info"
-                                app:layout_constraintHorizontal_chainStyle="packed"
-                                app:layout_constraintStart_toEndOf="@+id/settings_accountsettings_label"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@android:drawable/ic_menu_view" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout_account"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_accountInformation">
-
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/settings_account_login_button"
-                                style="?attr/primaryFont_Regular_AutoSqueeze"
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:layout_marginVertical="8dp"
-                                android:background="@drawable/radiobutton_1_disabled"
-                                android:padding="4dp"
-                                android:text="Log in"
-                                android:textColor="?attr/textColorBody"
-                                android:visibility="visible"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/settings_account_logout_button"
-                                style="?attr/primaryFont_Regular_AutoSqueeze"
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:layout_marginVertical="8dp"
-                                android:background="@drawable/radiobutton_1_disabled"
-                                android:maxLines="1"
-                                android:padding="4dp"
-                                android:text="Log out"
-                                android:textColor="?attr/textColorBody"
-                                android:visibility="gone"
-                                app:layout_constraintBottom_toTopOf="@+id/settings_account_delete_button"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/settings_account_delete_button"
-                                style="?attr/primaryFont_Regular_AutoSqueeze"
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:layout_marginVertical="8dp"
-                                android:background="@drawable/radiobutton_1_disabled"
-                                android:maxLines="1"
-                                android:padding="4dp"
-                                android:text="Delete Account"
-                                android:textColor="?attr/textColorBody"
-                                android:visibility="gone"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/settings_account_logout_button" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="wrap_content"/>
 
                 </androidx.cardview.widget.CardView>
 
@@ -387,6 +256,12 @@
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enablehuntaudioqueue" />
 
+                <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                    android:id="@+id/toggle_reorderGhostViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:settings_toggle_description="@string/settings_enableGhostReorder" />
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -403,11 +278,11 @@
                             style="?attr/primaryFont_Regular_Manual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:ellipsize="marquee"
                             android:gravity="center"
+                            android:singleLine="true"
                             android:text="@string/settings_huntwarningflashtimeout"
                             android:textSize="18sp"
-                            android:ellipsize="marquee"
-                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout46"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -428,11 +303,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:background="#00FFFFFF"
-                                android:gravity="center"
                                 android:ellipsize="marquee"
+                                android:gravity="center"
                                 android:singleLine="true"
-                                android:textAlignment="center"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
+                                android:textAlignment="center"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
                                 app:layout_constraintEnd_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -445,13 +320,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:background="#00FFFFFF"
+                                android:ellipsize="marquee"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:textAlignment="center"
-                                android:text="@string/settings_huntwarningflashtimeout_never"
-                                android:textSize="16sp"
-                                android:ellipsize="marquee"
                                 android:singleLine="true"
+                                android:text="@string/settings_huntwarningflashtimeout_never"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -466,11 +341,11 @@
                                 android:layout_height="wrap_content"
                                 android:max="100"
                                 android:maxHeight="3dp"
+                                android:minHeight="48dp"
                                 android:progress="100"
                                 android:progressDrawable="@drawable/progressbar_progress"
                                 android:splitTrack="false"
                                 android:thumb="@drawable/seekbar_thumb"
-                                android:minHeight="48dp"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
@@ -632,8 +507,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="marquee"
-                                android:singleLine="true"
                                 android:gravity="center"
+                                android:singleLine="true"
                                 android:text="@string/settings_colortheme_title"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout71"
@@ -649,11 +524,11 @@
                                 android:cropToPadding="true"
                                 android:padding="4dp"
                                 android:src="?attr/theme_badge"
-                                app:layout_constraintWidth_max="48dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout71"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_max="48dp" />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/constraintLayout71"
@@ -664,18 +539,11 @@
                                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                                 app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title">
 
-                                <androidx.appcompat.widget.AppCompatImageView
+                                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                                     android:id="@+id/colorblindmode_leftbutton"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:adjustViewBounds="true"
-                                    android:contentDescription="@string/app_name"
-                                    android:minWidth="48dp"
-                                    android:minHeight="48dp"
-                                    android:padding="8dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_arrow_60_left"
-                                    android:tint="?attr/textColorBody"
+                                    app:PETImageButtonType="back"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout69"
                                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -710,18 +578,11 @@
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                <androidx.appcompat.widget.AppCompatImageView
+                                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                                     android:id="@+id/colorblindmode_rightbutton"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="48dp"
                                     android:layout_height="48dp"
-                                    android:adjustViewBounds="true"
-                                    android:contentDescription="@string/app_name"
-                                    android:minWidth="48dp"
-                                    android:minHeight="48dp"
-                                    android:padding="8dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/icon_arrow_60_right"
-                                    android:tint="?attr/textColorBody"
+                                    app:PETImageButtonType="forward"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/constraintLayout69"
@@ -751,11 +612,11 @@
                             style="?attr/primaryFont_Regular_Manual"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:ellipsize="marquee"
                             android:gravity="center"
+                            android:singleLine="true"
                             android:text="@string/settings_fontstylesettings"
                             android:textSize="16sp"
-                            android:ellipsize="marquee"
-                            android:singleLine="true"
                             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_font2"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -770,18 +631,11 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/font_title">
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                                 android:id="@+id/font_leftbutton"
-                                android:layout_width="wrap_content"
+                                android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:adjustViewBounds="true"
-                                android:contentDescription="@string/app_name"
-                                android:minWidth="48dp"
-                                android:minHeight="48dp"
-                                android:padding="8dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/icon_arrow_60_left"
-                                android:tint="?attr/textColorBody"
+                                app:PETImageButtonType="back"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout66"
                                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -818,19 +672,11 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                                 android:id="@+id/font_rightbutton"
-                                android:layout_width="wrap_content"
+                                android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:layout_marginStart="1dp"
-                                android:adjustViewBounds="true"
-                                android:contentDescription="@string/app_name"
-                                android:minWidth="48dp"
-                                android:minHeight="48dp"
-                                android:padding="8dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/icon_arrow_60_right"
-                                android:tint="?attr/textColorBody"
+                                app:PETImageButtonType="forward"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/constraintLayout66"
@@ -867,6 +713,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </LinearLayout>
 

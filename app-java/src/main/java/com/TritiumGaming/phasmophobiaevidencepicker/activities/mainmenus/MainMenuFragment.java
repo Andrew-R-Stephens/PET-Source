@@ -30,13 +30,6 @@ public abstract class MainMenuFragment extends PETFragment {
         super();
     }
 
-    /**
-     * EvidenceFragment constructor
-     * <p>
-     * TODO
-     *
-     * @param layout -
-     */
     public MainMenuFragment(int layout) {
         super(layout);
     }

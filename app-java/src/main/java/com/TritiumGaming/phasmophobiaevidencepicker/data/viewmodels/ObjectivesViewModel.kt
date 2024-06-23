@@ -1,31 +1,48 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions.MissionsListModel
 
-/**
- * ObjectivesViewModel class
- *
- * @author TritiumGamingStudios
- */
 class ObjectivesViewModel : ViewModel() {
 
-    /* Chosen spinner objectives */
-    var objectivesSpinnerObjectives: Array<MissionsListModel.Objective>? = null
+    companion object {
+        const val UNKNOWN: Response = 0
+        const val ALONE: Response = 1
+        const val GROUP: Response = 2
 
+        const val NOT_COMPLETE: MissionStatus = false
+        const val COMPLETE: MissionStatus = true
+    }
+
+    /* All possible objectives */
+    var missionsListModel: MissionsListModel? = null
     /* Objective Completed Buttons */
-    var objectiveCompletion: BooleanArray? = null
+    var spinnerCompletionStatus: BooleanArray = BooleanArray(3) { NOT_COMPLETE }
 
     /* Ghost name */
     var ghostName: String? = null
+        get() { return (field ?: "")}
 
     /* Response */
-    var responseState: Boolean = false // alone , group
+    var responseState: Response = UNKNOWN // alone , group
+
+    fun toggleCompletionStatus(spinnerIndex: Int) {
+        spinnerCompletionStatus[spinnerIndex] = !spinnerCompletionStatus[spinnerIndex]
+    }
 
     fun reset() {
-        objectivesSpinnerObjectives = null
-        objectiveCompletion = null
         ghostName = null
-        responseState = false
+        //missionsListModel?.reset()
+        spinnerCompletionStatus.all { NOT_COMPLETE }
+        responseState = UNKNOWN
     }
+
+    fun init(context: Context) {
+        missionsListModel = missionsListModel ?: MissionsListModel(context)
+    }
+
 }
+
+typealias Response = Int
+typealias MissionStatus = Boolean

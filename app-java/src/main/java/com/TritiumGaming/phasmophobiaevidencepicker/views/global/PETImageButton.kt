@@ -7,7 +7,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-class PETImageButton : AppCompatImageButton {
+open class PETImageButton : AppCompatImageButton {
     constructor(context: Context) :
             super(context) { init(null) }
 

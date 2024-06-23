@@ -56,7 +56,7 @@ class DifficultyCarouselModel(
         get() = itemList[currentIndex.value].time
 
     val responseTypeKnown: Boolean
-        get() = currentIndex.value < 2
+        get() = currentIndex.value < Difficulty.PROFESSIONAL.ordinal
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */

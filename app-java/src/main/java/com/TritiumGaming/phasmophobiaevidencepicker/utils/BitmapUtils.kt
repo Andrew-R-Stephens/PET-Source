@@ -11,8 +11,6 @@ import android.graphics.PorterDuffXfermode
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.bitmapExists
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.getBitmapFromVector
 import javax.microedition.khronos.egl.EGL10
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.egl.EGLContext
@@ -27,12 +25,13 @@ import kotlin.math.max
  */
 class BitmapUtils {
 
-    var resources: ArrayList<Int> = ArrayList()
+    data class FilteredImage(val drawableRes: Int, val filter: PorterDuff.Mode?)
+
+    val layers: ArrayList<FilteredImage> = ArrayList()
+    //var resources: ArrayList<Int> = ArrayList()
+    //private var filters: ArrayList<PorterDuff.Mode?> = ArrayList()
+
     private var currentLayer = -1
-
-    private var filters: ArrayList<PorterDuff.Mode?> = ArrayList()
-
-    private var maxTextureSize = 0
 
     init {
         setMaxTextureSize()
@@ -46,22 +45,25 @@ class BitmapUtils {
     }
 
     private fun addResource(@DrawableRes resource: Int): BitmapUtils {
-        resources.add(resource)
-        filters.add(null)
+        /*resources.add(resource)
+        filters.add(null)*/
+        layers.add(FilteredImage(resource, null))
 
         return this
     }
 
     fun addResource(@DrawableRes resource: Int, filterMode: PorterDuff.Mode?): BitmapUtils {
-        resources.add(resource)
-        filters.add(filterMode)
+        /*resources.add(resource)
+        filters.add(filterMode)*/
+        layers.add(FilteredImage(resource, filterMode))
 
         return this
     }
 
     fun clearResources() {
-        resources = ArrayList()
-        filters = ArrayList()
+        /*resources = ArrayList()
+        filters = ArrayList()*/
+        layers.clear()
         currentLayer = -1
     }
 
@@ -112,17 +114,16 @@ class BitmapUtils {
         // Release
         egl.eglTerminate(display)
 
-        maxTextureSize = max(maximumTextureSize.toDouble(), IMAGE_MAX_BITMAP_DIMENSION.toDouble())
-            .toInt()
+        MAX_TEXTURE_SIZE = max(
+            maximumTextureSize.toDouble(),
+            IMAGE_MAX_BITMAP_DIMENSION.toDouble()).toInt()
     }
 
     fun compileBitmaps(context: Context): Bitmap? {
         var bitmap: Bitmap? = null
         try {
-            resources.forEachIndexed { index: Int, _ ->
-                val drawableRes = resources[index]
-                val filter = filters[index]
-                bitmap = createBitmap(context, bitmap, drawableRes, filter)
+            layers.forEachIndexed { index: Int, layer: FilteredImage ->
+                bitmap = createBitmap(context, bitmap, layer.drawableRes, layer.filter)
             }
         } catch (e: IndexOutOfBoundsException) { e.printStackTrace() }
         return bitmap
@@ -134,11 +135,12 @@ class BitmapUtils {
      */
     fun compileNextBitmap(context: Context, previousBitmap: Bitmap?): Bitmap? {
         currentLayer++
-        return createBitmap(context, previousBitmap, resources[currentLayer], null)
+        return createBitmap(
+            context, previousBitmap, layers.get(currentLayer).drawableRes, null)
     }
 
     fun hasNextBitmap(): Boolean {
-        return currentLayer < resources.size - 1
+        return currentLayer < layers.size - 1
     }
 
     private fun createBitmap(
@@ -156,7 +158,7 @@ class BitmapUtils {
         val width = options.outWidth
         //Get biggest image dimension between both width and height
         val highestDim = max(height.toDouble(), width.toDouble()).toInt()
-        val dimScale = maxTextureSize.toDouble() / highestDim.toDouble() * options.inDensity
+        val dimScale = MAX_TEXTURE_SIZE.toDouble() / highestDim.toDouble() * options.inDensity
         if (dimScale < 1) {
             options.inSampleSize += ceil(abs(dimScale)).toInt()
         }
@@ -209,6 +211,8 @@ class BitmapUtils {
     }
 
     companion object {
+
+        var MAX_TEXTURE_SIZE = 0
         const val IMAGE_MAX_BITMAP_DIMENSION = 2048
 
         fun bitmapExists(b: Bitmap?): Boolean {

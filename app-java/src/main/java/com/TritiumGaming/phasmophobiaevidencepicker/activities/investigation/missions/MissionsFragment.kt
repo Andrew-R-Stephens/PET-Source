@@ -1,298 +1,137 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.navigation.Navigation;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions.MissionsListModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsCompletedButton;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsSpinner;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**
  * ObjectivesFragment class
  *
  * @author TritiumGamingStudios
  */
-public class MissionsFragment extends InvestigationFragment {
+class MissionsFragment : InvestigationFragment() {
 
-    //private EvidenceViewModel evidenceViewModel;
-    //private ObjectivesViewModel objectivesViewModel;
-
-    private MissionsListModel data;
-
-    private MissionsSpinner[] objectiveSpinner;
-    private EditText name_input;
-    private AppCompatImageButton button_alone, button_everyone;
-
-    /*
-    public MissionsFragment(int layout) {
-        super(layout);
-    }
-    */
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_objectives, container, false);
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_objectives, container, false)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        super.init()
 
-        super.onViewCreated(view, savedInstanceState);
-
-        super.init();
-
-        try {
-            data = new MissionsListModel(requireContext());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        // MISSIONS
+        val missionLayouts = ArrayList<MissionsItemLayout>()
+        missionLayouts.add(view.findViewById(R.id.objective1))
+        missionLayouts.add(view.findViewById(R.id.objective2))
+        missionLayouts.add(view.findViewById(R.id.objective3))
+        for (i in missionLayouts.indices) {
+            missionLayouts[i].init(objectivesViewModel, i)
         }
 
-        AppCompatTextView label_alone = view.findViewById(R.id.label_alone);
-        AppCompatTextView label_everyone = view.findViewById(R.id.label_everyone);
-
         // GHOST NAME
-        name_input = view.findViewById(R.id.textInput_ghostName);
+        val nameInput = view.findViewById<EditText>(R.id.textInput_ghostName)
+        nameInput?.let {
+            nameInput.setText(objectivesViewModel.ghostName)
+            nameInput.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int, count: Int, after: Int) { }
+                override fun onTextChanged(
+                    s: CharSequence, start: Int, before: Int, count: Int) { }
+                override fun afterTextChanged(s: Editable) {
+                    objectivesViewModel.ghostName = s.toString()
+                }
+            })
+        }
 
         // RESPONSE TYPE
-        ConstraintLayout blocking_responds = view.findViewById(R.id.blocking_group);
-        button_alone = view.findViewById(R.id.button_alone);
-        button_everyone = view.findViewById(R.id.button_everyone);
+        val buttonAlone = view.findViewById<AppCompatImageButton>(R.id.button_alone)
+        val buttonGroup = view.findViewById<AppCompatImageButton>(R.id.button_everyone)
+        val responseBlocker = view.findViewById<ConstraintLayout>(R.id.blocking_group)
 
-        // COLORS
-        @ColorInt int color_unselectedItem =
-                ColorUtils.getColorFromAttribute(requireContext(), R.attr.unselectedColor);
-        @ColorInt int color_selectedItem =
-                ColorUtils.getColorFromAttribute(requireContext(), R.attr.selectedColor);
+        val onResponseChangeListener: OnResponseChangeListener =
+            object : OnResponseChangeListener() {
+                override fun onChange() {
+                    @ColorInt val unSelColor =
+                        getColorFromAttribute(requireContext(), R.attr.unselectedColor)
+                    @ColorInt val selColor =
+                        getColorFromAttribute(requireContext(), R.attr.selectedColor)
+
+                    if (evidenceViewModel.difficultyCarouselData?.responseTypeKnown == true) {
+                        responseBlocker.visibility = View.GONE
+
+                        when (objectivesViewModel.responseState) {
+                            ObjectivesViewModel.ALONE -> {
+                                buttonAlone?.setColorFilter(selColor)
+                                buttonGroup?.setColorFilter(unSelColor)
+                            }
+
+                            ObjectivesViewModel.GROUP -> {
+                                buttonAlone?.setColorFilter(unSelColor)
+                                buttonGroup?.setColorFilter(selColor)
+                            }
+
+                            ObjectivesViewModel.UNKNOWN -> {
+                                buttonAlone?.setColorFilter(unSelColor)
+                                buttonGroup?.setColorFilter(unSelColor)
+                            }
+                        }
+                    } else {
+                        responseBlocker.visibility = View.VISIBLE
+                    }
+                }
+            }
+        buttonAlone?.setOnClickListener {
+            objectivesViewModel.responseState = ObjectivesViewModel.ALONE
+            onResponseChangeListener.onChange()
+        }
+        buttonGroup?.setOnClickListener {
+            objectivesViewModel.responseState = ObjectivesViewModel.GROUP
+            onResponseChangeListener.onChange()
+        }
+
+        onResponseChangeListener.onChange()
 
         try {
-            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                    new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            Navigation.findNavController(view).popBackStack();
-                        }
-                    });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        // OBJECTIVE BUTTONS
-        MissionsCompletedButton[] button_check_evidence = new MissionsCompletedButton[]{
-                view.findViewById(R.id.evidence1_button_completed),
-                view.findViewById(R.id.evidence2_button_completed),
-                view.findViewById(R.id.evidence3_button_completed)};
-        for (MissionsCompletedButton ocb : button_check_evidence) {
-            if (ocb != null) {
-                ocb.setColorStates(color_unselectedItem, color_selectedItem);
-            }
-        }
-
-        // OBJECTIVE SPINNERS
-        objectiveSpinner = new MissionsSpinner[]{
-                view.findViewById(R.id.objectives_item_1),
-                view.findViewById(R.id.objectives_item_2),
-                view.findViewById(R.id.objectives_item_3)
-        };
-
-        MissionsListModel.Objective[] tempObjectives =
-                objectivesViewModel.getObjectivesSpinnerObjectives();
-        boolean[] tempIsCompleted = objectivesViewModel.getObjectiveCompletion();
-        if (objectiveSpinner != null) {
-            for (int i = 0; i < objectiveSpinner.length; i++) {
-                if (objectiveSpinner[i] != null) {
-                    objectiveSpinner[i].setCheckButton(button_check_evidence[i]);
-                    objectiveSpinner[i].setStrikeout();
-                    button_check_evidence[i].setSpinner(objectiveSpinner[i]);
-                    setSpinnerData(objectiveSpinner[i]);
-
-                    if (tempObjectives != null && tempObjectives[i] != null) {
-                        objectiveSpinner[i].updateAdapter();
-                        objectiveSpinner[i].setCurrentObjective(tempObjectives[i]);
+            requireActivity().onBackPressedDispatcher.addCallback(
+                viewLifecycleOwner,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        findNavController(view).popBackStack()
                     }
-                }
-
-                if ((tempIsCompleted != null) &&
-                        (tempIsCompleted[i]) && objectiveSpinner[i] != null) {
-                    objectiveSpinner[i].setObjectiveAsCompleted();
-                }
-
-            }
-        }
-
-        // GHOST NAME
-        String ghostName = objectivesViewModel.getGhostName();
-        if (name_input != null && ghostName != null) {
-            name_input.setText(ghostName);
-        }
-
-        // RESPONDS TO
-        final int selC = color_selectedItem, unselC = color_unselectedItem;
-        if(evidenceViewModel.getDifficultyCarouselData().getResponseTypeKnown()) {
-            if (objectivesViewModel.getResponseState()) {
-                button_alone.setColorFilter(selC);
-                button_everyone.setColorFilter(unselC);
-            } else {
-                button_alone.setColorFilter(unselC);
-                button_everyone.setColorFilter(selC);
-            }
-            button_alone.setOnClickListener(v -> {
-                        objectivesViewModel.setResponseState(true);
-                        button_alone.setColorFilter(selC);
-                        button_everyone.setColorFilter(unselC);
-                    }
-            );
-            button_everyone.setOnClickListener(v -> {
-                        objectivesViewModel.setResponseState(false);
-                        button_everyone.setColorFilter(selC);
-                        button_alone.setColorFilter(unselC);
-                    }
-            );
-        } else {
-            button_alone.setColorFilter(unselC);
-            button_everyone.setColorFilter(unselC);
-            label_alone.setTextColor(unselC);
-            label_everyone.setTextColor(unselC);
-            blocking_responds.setVisibility(View.VISIBLE);
-        }
-
+                })
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    /*
-    protected void initNavListeners(View lstnr_navLeft,
-                                  View lstnr_navMedLeft,
-                                  View lstnr_navCenter,
-                                  View lstnr_navMedRight,
-                                  View lstnr_navRight,
-                                  AppCompatImageView icon_navLeft,
-                                  AppCompatImageView icon_navMedLeft,
-                                  AppCompatImageView icon_navCenter,
-                                  AppCompatImageView icon_navMedRight,
-                                  AppCompatImageView icon_navRight ) {
-        if(lstnr_navLeft != null) { }
+    public override fun saveStates() { }
 
-        if(lstnr_navMedLeft != null) { }
+    override fun reset() { }
 
-        if(lstnr_navCenter != null) {
-            ((View)lstnr_navCenter.getParent()).setVisibility(View.VISIBLE);
-            lstnr_navCenter.setOnClickListener(v -> {
-                if (objectivesViewModel != null) {
-                    objectivesViewModel.reset();
-                    objectivesViewModel = null;
-                }
-                //isAlone = false;
-                data = null;
+    override fun onPause() {
+        //saveStates()
 
-                objectiveSpinner = null;
-                if (name_input != null) {
-                    name_input.setText("");
-                }
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                if (Build.VERSION.SDK_INT >= 26) {
-                    ft.setReorderingAllowed(false);
-                }
-                ft.detach(MissionsFragment.this).commitNow();
-                ft.attach(MissionsFragment.this).commitNow();
-                    }
-            );
-        }
-
-        if(lstnr_navMedRight != null) { }
-
-        if(lstnr_navRight != null) {
-            ((View)lstnr_navRight.getParent()).setVisibility(View.VISIBLE);
-            icon_navRight.setImageResource(R.drawable.icon_evidence);
-            lstnr_navRight.setOnClickListener(v -> Navigation.findNavController(v).popBackStack()
-            );
-        }
-
-    }
-    */
-
-    @Override
-    public void reset() {
-
+        super.onPause()
     }
 
-    /**
-     * setSpinnerData method
-     *
-     * @param spinner the spinner who's data will be set
-     */
-    private void setSpinnerData(@NonNull MissionsSpinner spinner) {
-        spinner.setData(data);
-    }
-
-    /**
-     * findObjectiveSpinnerObjective method
-     *
-     * @return array of Objectives contained within a spinner
-     */
-    @NonNull
-    private MissionsListModel.Objective[] findObjectiveSpinnerObjectives() {
-
-        MissionsListModel.Objective[] temp = new MissionsListModel.Objective[objectiveSpinner.length];
-        for (int i = 0; i < objectiveSpinner.length; i++) {
-            temp[i] = objectiveSpinner[i].getSelectedObjective();
-        }
-        return temp;
-
-    }
-
-    /**
-     * findObjectiveCompletion method
-     *
-     * @return an array of completed objectives
-     */
-    private boolean[] findObjectiveCompletion() {
-
-        boolean[] temp = new boolean[objectiveSpinner.length];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = objectiveSpinner[i].isCompleted();
-        }
-        return temp;
-
-    }
-
-    /**
-     * saveStates method
-     */
-    public void saveStates() {
-        if (objectivesViewModel != null) {
-            objectivesViewModel.setObjectiveCompletion(findObjectiveCompletion());
-            objectivesViewModel.setObjectivesSpinnerObjectives(findObjectiveSpinnerObjectives());
-            objectivesViewModel.setGhostName(name_input.getText().toString());
-        }
-    }
-
-    @Override
-    public void onPause() {
-        saveStates();
-
-        super.onPause();
+    internal abstract inner class OnResponseChangeListener {
+        abstract fun onChange()
     }
 
 }

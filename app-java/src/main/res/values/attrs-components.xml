@@ -46,6 +46,10 @@
         <attr name="SanityCarouselLayoutName" format="reference|string" />
     </declare-styleable>
 
+    <declare-styleable name="MissionsItemLayout">
+        <attr name="MissionsItemLayoutTitle" format="reference|string" />
+    </declare-styleable>
+
     <!--
     <declare-styleable name="SanityCarouselView">
         <attr name="SanityCarouselViewTitle" format="reference|string" />

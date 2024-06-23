@@ -62,7 +62,6 @@ public class InvestigationActivity extends PETActivity {
     private void initMapMenuViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         mapMenuViewModel = factory.create(
                 MapMenuViewModel.class);
-        //mapMenuViewModel.init(InvestigationActivity.this);
     }
 
     private void initObjectivesViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
@@ -73,7 +72,6 @@ public class InvestigationActivity extends PETActivity {
     private void initEvidenceViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
         evidenceViewModel = factory.create(
                 EvidenceViewModel.class);
-        //evidenceViewModel.init(InvestigationActivity.this);
     }
 
     protected void initPreferences() {

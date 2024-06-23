@@ -34,10 +34,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     protected var sanityToolsLayout: SanityToolsLayout? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):
+            View? {
         return inflater.inflate(R.layout.fragment_evidence, container, false)
     }
 
@@ -165,9 +163,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     override fun reset() {
-        if (evidenceViewModel != null) {
-            evidenceViewModel.reset()
-        }
+        evidenceViewModel?.reset()
+        objectivesViewModel?.reset()
 
         // TODO Force progress bar update
 
@@ -175,13 +172,10 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     fun requestInvalidateComponents() {
-        if (evidenceViewModel != null) {
-            evidenceViewModel.ghostOrderData?.updateOrder()
-        }
 
-        if (ghostList != null) {
-            ghostList?.forceResetGhostContainer()
-        }
+        evidenceViewModel?.ghostOrderData?.updateOrder()
+
+        ghostList?.forceResetGhostContainer()
 
 
         // TODO Force progress bar update (aka reset)
@@ -197,10 +191,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         }
 
         super.onDestroyView()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun saveStates() {

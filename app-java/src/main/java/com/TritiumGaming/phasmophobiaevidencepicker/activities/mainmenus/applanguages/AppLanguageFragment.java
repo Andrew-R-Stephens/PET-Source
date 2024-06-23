@@ -49,9 +49,7 @@ public class AppLanguageFragment extends MainMenuFragment {
             mainMenuViewModel.setLanguageSelectedOriginal(-1);
             try {
                 Navigation.findNavController(v).popBackStack();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            } catch (IllegalStateException e) { e.printStackTrace(); }
         });
 
         btn_cancelClose.setOnClickListener(v -> handleDiscardChanges());
@@ -71,9 +69,7 @@ public class AppLanguageFragment extends MainMenuFragment {
             if (mainMenuViewModel.getLanguageSelectedOriginal() == -1) {
                 mainMenuViewModel.setLanguageSelectedOriginal(selected);
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        } catch (IllegalStateException e) { e.printStackTrace(); }
 
         for (int i = 0; i < languageNames.size(); i++) {
             LanguagesAdapterView adapter = new LanguagesAdapterView(
@@ -91,9 +87,7 @@ public class AppLanguageFragment extends MainMenuFragment {
             recyclerViewLanguages.setAdapter(adapter);
             try {
                 recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(requireContext()));
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            } catch (IllegalStateException e) { e.printStackTrace(); }
         }
     }
 
@@ -112,9 +106,7 @@ public class AppLanguageFragment extends MainMenuFragment {
             Toast.makeText(requireActivity(),
                     message,
                     com.google.android.material.R.integer.material_motion_duration_short_2).show();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        } catch (IllegalStateException e) { e.printStackTrace(); }
 
     }
 
@@ -132,9 +124,7 @@ public class AppLanguageFragment extends MainMenuFragment {
 
         try {
             Navigation.findNavController(requireView()).popBackStack();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+        } catch (IllegalStateException e) { e.printStackTrace(); }
     }
 
     /**
@@ -145,9 +135,7 @@ public class AppLanguageFragment extends MainMenuFragment {
             try {
                 ((MainMenuActivity) requireActivity()).setLanguage(
                         globalPreferencesViewModel.getLanguageName());
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            } catch (IllegalStateException e) { e.printStackTrace(); }
         }
     }
 
@@ -171,9 +159,7 @@ public class AppLanguageFragment extends MainMenuFragment {
         if (globalPreferencesViewModel != null) {
             try {
                 globalPreferencesViewModel.saveToFile(requireContext());
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            } catch (IllegalStateException e) { e.printStackTrace(); }
         }
     }
 

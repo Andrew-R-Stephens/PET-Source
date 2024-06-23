@@ -20,12 +20,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-
-/**
- * EvidenceFragment class
- *
- * @author TritiumGamingStudios
- */
 public abstract class InvestigationFragment extends PETFragment {
 
     protected EvidenceViewModel evidenceViewModel;
@@ -86,6 +80,7 @@ public abstract class InvestigationFragment extends PETFragment {
         if (objectivesViewModel == null) {
             objectivesViewModel =
                     new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
+            objectivesViewModel.init(requireContext());
         }
     }
 
@@ -97,10 +92,6 @@ public abstract class InvestigationFragment extends PETFragment {
         }
     }
 
-    /**
-     * reset
-     * Resets component data without completely rebuilding the Fragment
-     */
     public abstract void reset();
 
     protected void initAd(@Nullable AdView mAdView) {

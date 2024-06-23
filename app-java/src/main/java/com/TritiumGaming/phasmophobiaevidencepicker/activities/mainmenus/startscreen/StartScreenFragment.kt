@@ -1,9 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,9 +26,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setIconDro
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.tasks.Task
 import java.util.Locale
 
 /**
@@ -273,9 +268,8 @@ class StartScreenFragment : MainMenuFragment() {
     }
 
     private fun startInitNewsletterThread() {
-        if (checkInternetConnection()) {
-            startLoadNewsletterThread()
-        } else {
+        if (checkInternetConnection()) { startLoadNewsletterThread() }
+        else {
             Log.d("MessageCenter", "Could not connect to the internet.")
             newsLetterViewModel.compareAllInboxDates()
             if (newsLetterViewModel.requiresNotify()) {
@@ -287,19 +281,18 @@ class StartScreenFragment : MainMenuFragment() {
     private fun startLoadNewsletterThread() {
         newsletterThread = Thread {
             Log.d("MessageCenter", "Attempting to load inboxes...")
-            val maxCycles = 3
-            var currentCycle = 0
+            val maxRetries = 3
+            var retries = 0
 
             while (canLoadNewsletter &&
-                (!newsLetterViewModel.isUpToDate && (currentCycle < maxCycles))
-            ) {
+                (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
                 Log.d("MessageCenter", "Attempting to load inboxes...")
 
                 loadMessageCenter()
 
                 if (!newsLetterViewModel.isUpToDate) {
                     Log.d("MessageCenter",
-                        "[Attempt " + currentCycle + "/" + maxCycles + "] " +
+                        "[Attempt $retries / $maxRetries ] " +
                                 "Inboxes are not up to date yet! Retrying...\n")
                     try {
                         Thread.sleep(1000)
@@ -308,7 +301,7 @@ class StartScreenFragment : MainMenuFragment() {
                     }
                 }
 
-                currentCycle++
+                retries++
             }
 
             Log.d("MessageCenter",
@@ -330,6 +323,11 @@ class StartScreenFragment : MainMenuFragment() {
     private fun stopLoadNewsletterThread() {
         newsletterThread?.interrupt()
         newsletterThread = null
+
+        if (newsLetterViewModel.isUpToDate) {
+            canLoadNewsletter = false
+            Log.d("MessageCenter", "IS up to date") }
+        else { Log.d("MessageCenter", "IS NOT up to date") }
     }
 
     /** onPause method */
@@ -342,16 +340,11 @@ class StartScreenFragment : MainMenuFragment() {
             animationView.stopAnimThreads()
             animationView.stopAnimInitThreads()
             animationView.canAnimateBackground(false)
+            animationView.recycleBitmaps()
         }
 
         stopLoadNewsletterThread()
-        if (newsLetterViewModel.isUpToDate) {
-            canLoadNewsletter = false
-            Log.d("MessageCenter", "IS up to date")
-        } else { Log.d("MessageCenter", "IS NOT up to date") }
 
-        // RECYCLE ANIMATION VIEW
-        animationView?.recycleBitmaps()
 
         super.onPause()
     }

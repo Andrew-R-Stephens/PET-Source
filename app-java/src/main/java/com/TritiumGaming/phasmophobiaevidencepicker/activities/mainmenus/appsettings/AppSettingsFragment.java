@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
@@ -29,6 +28,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,7 +53,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         super.init();
 
-        return inflater.inflate(R.layout.fragment_settings2, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     @SuppressLint("ResourceType")
@@ -67,10 +67,10 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         final AppCompatButton btn_account_login =
                 view.findViewById(R.id.settings_account_login_button);
-        final AppCompatButton btn_account_logout =
+        /*final AppCompatButton btn_account_logout =
                 view.findViewById(R.id.settings_account_logout_button);
-        final AppCompatButton btn_account_delete =
-                view.findViewById(R.id.settings_account_delete_button);
+        final PETImageButton btn_account_delete =
+                view.findViewById(R.id.settings_account_delete_button);*/
         final ConstraintLayout btn_account_infoContainer =
                 view.findViewById(R.id.constraintLayout_accountInformation);
         final AppCompatTextView btn_account_info =
@@ -95,14 +95,14 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         final AppCompatTextView text_fontStyle_selectedname =
                 view.findViewById(R.id.font_selectedname);
 
-        final AppCompatImageView btn_colorTheme_left =
+        final PETImageButton btn_colorTheme_left =
                 view.findViewById(R.id.colorblindmode_leftbutton);
-        final AppCompatImageView btn_colorTheme_right =
+        final PETImageButton btn_colorTheme_right =
                 view.findViewById(R.id.colorblindmode_rightbutton);
 
-        final AppCompatImageView btn_fontStyle_left =
+        final PETImageButton btn_fontStyle_left =
                 view.findViewById(R.id.font_leftbutton);
-        final AppCompatImageView btn_fontStyle_right =
+        final PETImageButton btn_fontStyle_right =
                 view.findViewById(R.id.font_rightbutton);
 
         try {
@@ -118,7 +118,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                 view.invalidate();
             });
         }
-        if(btn_account_logout != null) {
+        /*if(btn_account_logout != null) {
             btn_account_logout.setOnClickListener(v -> {
                 signOutAccount();
 
@@ -131,7 +131,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
                 view.invalidate();
             });
-        }
+        }*/
 
         /*
         initAccountView(
@@ -401,10 +401,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             //getMarketplaceColorThemes();
             loadThemes = false;
         }
+/*
 
         if(btn_account_delete != null) {
             btn_account_delete.setVisibility(View.GONE);
         }
+*/
 
     }
 

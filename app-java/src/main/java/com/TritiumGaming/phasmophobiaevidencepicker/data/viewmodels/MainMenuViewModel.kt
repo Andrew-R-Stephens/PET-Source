@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdRequest
  */
 class MainMenuViewModel : ViewModel() {
 
-    val animationData: AnimationModel = AnimationModel()
+    val animationModel: AnimationModel = AnimationModel()
     var canRefreshFragment = true
     var languageSelectedOriginal: Int = -1
 

@@ -276,7 +276,9 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 //
                 val floor = mapFloorLayers[index]
                 for (j in floor.indices) {
-                    bitmapUtils?.resources = floor
+                    floor.forEach { floorItem ->
+                        bitmapUtils?.layers?.add(BitmapUtils.FilteredImage(floorItem, null))
+                    }
 
                     while (bitmapUtils?.hasNextBitmap() == true) {
                         mapImages[index] = bitmapUtils?.compileNextBitmap(

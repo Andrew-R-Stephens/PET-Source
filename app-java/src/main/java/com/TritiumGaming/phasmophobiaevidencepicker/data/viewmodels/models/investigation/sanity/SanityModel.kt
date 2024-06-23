@@ -62,7 +62,7 @@ class SanityModel(
 
     }
 
-    /** */
+    /** If the warning is within the appropriate range and condition for activation */
     var warnTriggered = false
         get() {
             return field && (sanityLevel.value < SAFE_MIN_BOUNDS)
