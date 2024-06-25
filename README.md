@@ -37,6 +37,7 @@
 <div align='center'><h2>Technologies Used</h2></div>
 <div align='center' style="display:float">
   <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Kotlin-7F52FF?logo=kotlin&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=black&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold" alt=""/>
