@@ -30,10 +30,7 @@ class MapMenuFragment : InvestigationFragment() {
     private var mapListModel: MapListModel? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_mapmenu, container, false)
     }
 
@@ -43,9 +40,7 @@ class MapMenuFragment : InvestigationFragment() {
 
         try {
             mapListModel = readMapsDataFromFile()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        } catch (e: Exception) { e.printStackTrace() }
 
         // INITIALIZE VIEWS
         val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
@@ -57,30 +52,28 @@ class MapMenuFragment : InvestigationFragment() {
 
         val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
-        if (mapListModel == null) {
-            Toast.makeText(
-                requireContext(),
-                "Error loading map data file!", Toast.LENGTH_LONG
-            ).show()
-        } else {
-            val gridViewAdapter = GridViewAdapter(
-                mapListModel!!.shortenedMapNames.toTypedArray<String?>(),
-                Ints.toArray(mapMenuViewModel.mapThumbnails)
-            )
-            gridView.adapter = gridViewAdapter
-            gridView.onItemClickListener =
-                AdapterView.OnItemClickListener { _: AdapterView<*>?, itemView: View,
-                                                  position: Int, _: Long ->
-                    mapListModel?.let { mapListModel ->
-                        System.gc()
+        mapListModel?.let { mapListModel ->
+            mapMenuViewModel?.let { mapMenuViewModel ->
+                val gridViewAdapter = GridViewAdapter(
+                    mapListModel.shortenedMapNames.toTypedArray<String?>(),
+                    Ints.toArray(mapMenuViewModel.mapThumbnails)
+                )
+                gridView.adapter = gridViewAdapter
+                gridView.onItemClickListener =
+                    AdapterView.OnItemClickListener {
+                        _: AdapterView<*>?, itemView: View, position: Int, _: Long ->
+                        mapListModel.let { mapListModel ->
+                            System.gc()
 
-                        mapMenuViewModel.currentMapIndex = position
-                        mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
+                            mapMenuViewModel.currentMapIndex = position
+                            mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
 
-                        navigateToBasicMapView(itemView)
+                            navigateToBasicMapView(itemView)
+                        }
                     }
-                }
-        }
+            }
+        } ?: Toast.makeText(requireContext(),
+            "Error loading map data file!", Toast.LENGTH_LONG).show()
     }
 
     @Throws(Exception::class)
@@ -132,10 +125,9 @@ class MapMenuFragment : InvestigationFragment() {
         }
 
         override fun getView(i: Int, passedNewView: View?, parent: ViewGroup): View {
-            val newView: View = passedNewView?.let {
-                passedNewView
-            } ?: layoutInflater.inflate(R.layout.item_mapmenu_map, parent, false) as View
-
+            val newView: View = passedNewView?.let { passedNewView }
+                ?: layoutInflater.inflate(
+                    R.layout.item_mapmenu_map, parent, false) as View
 
             val textView = newView.findViewById<AppCompatTextView>(R.id.label_mapName)
             val imageView = newView.findViewById<AppCompatImageView>(R.id.image_map)

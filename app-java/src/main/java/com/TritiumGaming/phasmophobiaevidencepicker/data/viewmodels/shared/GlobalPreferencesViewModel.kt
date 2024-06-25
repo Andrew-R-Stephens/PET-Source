@@ -328,9 +328,9 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             settings["font_type"] = fontThemeID
             settings["left_support"] = isLeftHandSupportEnabled.toString()
             settings["can_show_intro"] = canShowIntroduction.toString()
-            settings["review_request"] = reviewRequestData!!.canRequestReview().toString()
-            settings["times_opened"] = reviewRequestData!!.timesOpened.toString()
-            settings["active_time"] = reviewRequestData!!.timeActive.toString()
+            settings["review_request"] = reviewRequestData.canRequestReview().toString()
+            settings["times_opened"] = reviewRequestData.timesOpened.toString()
+            settings["active_time"] = reviewRequestData.timeActive.toString()
 
             return settings
         }

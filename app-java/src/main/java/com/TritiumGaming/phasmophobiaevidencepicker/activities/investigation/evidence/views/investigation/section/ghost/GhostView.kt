@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
@@ -22,10 +21,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
-abstract class GhostView : ConstraintLayout {
+/*abstract */class GhostView : ConstraintLayout {
 
     private var evidenceViewModel: EvidenceViewModel? = null
-
     private var ghostData: GhostModel? = null
 
     @IntegerRes private var neutralSelColor = 0
@@ -33,20 +31,19 @@ abstract class GhostView : ConstraintLayout {
     @IntegerRes private var positiveSelColor = 0
 
     constructor(context: Context) :
-            super(context) { initView() }
+            super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView() }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView() }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    fun initView() {
+    init {
         inflate(context, R.layout.item_investigation_ghost, this)
-
         setDefaults()
     }
 
@@ -65,7 +62,7 @@ abstract class GhostView : ConstraintLayout {
     @SuppressLint("ClickableViewAccessibility")
     fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int) {
         this.evidenceViewModel = evidenceViewModel
-        this.ghostData = evidenceViewModel.investigationData?.ghostList?.getAt(groupIndex)
+        this.ghostData = evidenceViewModel.investigationModel?.ghostList?.getAt(groupIndex)
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
@@ -102,13 +99,9 @@ abstract class GhostView : ConstraintLayout {
         alpha = 0f
         id = groupIndex
 
-        val swipeListener =
-            GestureDetector(context, GhostSwipeListener(groupIndex))
-
-        nameView.setOnTouchListener { v: View?, motionEvent: MotionEvent? ->
-            swipeListener.onTouchEvent(
-                motionEvent!!
-            )
+        val swipeListener = GestureDetector(context, OnSwipeListener(groupIndex))
+        nameView.setOnTouchListener { _: View?, motionEvent: MotionEvent? ->
+            motionEvent?.let { swipeListener.onTouchEvent(motionEvent) }
             true
         }
 
@@ -120,11 +113,7 @@ abstract class GhostView : ConstraintLayout {
                     val evidenceIcon = iconRowLayout.getChildAt(index)
                         .findViewById<AppCompatImageView>(R.id.evidence_icon)
 
-                    when (evidenceModel.ruling) {
-                        Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
-                        Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
-                        Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
-                    }
+                    evidenceIcon.setColorFilter(getRulingColor(evidenceModel.ruling))
                 }
             }
         }
@@ -144,66 +133,66 @@ abstract class GhostView : ConstraintLayout {
     fun forceUpdateComponents() {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
-        ghostData?.evidence?.forEachIndexed { index, _ ->
-            val evidenceIcon =
-                iconRowLayout.getChildAt(index) as AppCompatImageView
+        ghostData?.let { ghostData ->
+            ghostData.evidence.forEachIndexed { index, evidence ->
+                val evidenceIcon =
+                    iconRowLayout.getChildAt(index) as AppCompatImageView
 
-            val ruling = ghostData?.evidence?.get(index)?.ruling ?: return
-            when (ruling) {
-                Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
-                Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
-                Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
+                val ruling = evidence.ruling
+                evidenceIcon.setColorFilter(getRulingColor(ruling))
+                getRulingColor(ruling)
             }
+            redrawGhostRejectionStatus(ghostData, ghostData.id, true)
         }
+    }
 
-        redrawGhostRejectionStatus(ghostData!!, ghostData!!.id, true)
+    @IntegerRes
+    private fun getRulingColor(ruling: Ruling): Int {
+        return when (ruling) {
+            Ruling.POSITIVE -> positiveSelColor
+            Ruling.NEGATIVE -> negativeSelColor
+            Ruling.NEUTRAL -> neutralSelColor
+        }
     }
 
     private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
-        val score = ghost.evidenceScore
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        val rejectionStatus = evidenceViewModel?.getRejectionPile()?.get(index) ?: return
-
-        if (rejectionStatus) { statusIcon.setImageLevel(1) }
-        else {
-            when {
-                score <= -5 -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
-                score == 3 -> statusIcon.setImageLevel(5)
-                else -> statusIcon.setImageLevel(0)
+        evidenceViewModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
+            if (rejectionStatus) { statusIcon.setImageLevel(1) }
+            else {
+                val score = ghost.evidenceScore
+                when {
+                    score <= -5 -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
+                    score == 3 -> statusIcon.setImageLevel(5)
+                    else -> statusIcon.setImageLevel(0)
+                }
             }
         }
     }
 
-    inner class GhostSwipeListener(private val index: Int) : SimpleOnGestureListener() {
+    inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
-            event1: MotionEvent?, event2: MotionEvent,
-            velocityX: Float, velocityY: Float
+            e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float
         ): Boolean {
-            val status = evidenceViewModel?.swapStatusInRejectedPile(index) == false
-
-            evidenceViewModel?.ghostOrderData?.updateOrder()
-
-            evidenceViewModel?.investigationData?.ghostList?.getAt(index)?.let {
-                redrawGhostRejectionStatus(it, index, true)
+            evidenceViewModel?.let { evidenceViewModel ->
+                val status = !evidenceViewModel.swapStatusInRejectedPile(index)
+                evidenceViewModel.ghostOrderModel?.updateOrder()
+                evidenceViewModel.investigationModel?.ghostList?.getAt(index)?.let { ghostModel ->
+                    redrawGhostRejectionStatus(ghostModel, index, true)
+                }
             }
-
-            /*
-            val params = Bundle()
-            params.putString("event_type", "ghost_swiped")
-            params.putString("event_details", if (status) "ghost_impartial" else "ghost_rejected")
-
-            analytics.logEvent("event_investigation", params);
-            */
             return true
         }
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {
-            createPopup()
-
+            ghostViewListener?.onCreatePopup()
             return super.onSingleTapConfirmed(e)
         }
     }
 
-    abstract fun createPopup()
+    var ghostViewListener: GhostViewListener? = null
+    abstract class GhostViewListener {
+        abstract fun onCreatePopup()
+    }
 }

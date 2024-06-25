@@ -28,7 +28,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createPrevOrder() {
-        prevOrder = IntArray(evidenceViewModel.investigationData?.ghostList?.list?.size ?: 0)
+        prevOrder = IntArray(evidenceViewModel.investigationModel?.ghostList?.list?.size ?: 0)
 
         for (i in prevOrder!!.indices) {
             prevOrder!![i] = i
@@ -40,7 +40,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createCurrOrder() {
-        currOrder = IntArray(evidenceViewModel.investigationData?.ghostList?.list?.size ?: 0)
+        currOrder = IntArray(evidenceViewModel.investigationModel?.ghostList?.list?.size ?: 0)
 
         for (i in currOrder!!.indices) {
             currOrder!![i] = i
@@ -48,7 +48,7 @@ class GhostOrderModel(
     }
 
     fun updateOrder() {
-        val newOrder = IntArray(evidenceViewModel.investigationData?.ghostList?.list?.size ?: 0)
+        val newOrder = IntArray(evidenceViewModel.investigationModel?.ghostList?.list?.size ?: 0)
 
         // Replace previous with current
         if (currOrder == null) {
@@ -67,7 +67,7 @@ class GhostOrderModel(
         // Order placeholder array based on scores
         var i = 0
         while (i < newOrder.size - 1) {
-            val ghostList = evidenceViewModel.investigationData?.ghostList ?: GhostListModel()
+            val ghostList = evidenceViewModel.investigationModel?.ghostList ?: GhostListModel()
 
             val ratingA = ghostList.getAt(newOrder[i]).evidenceScore
             val ratingB = ghostList.getAt(newOrder[i + 1]).evidenceScore

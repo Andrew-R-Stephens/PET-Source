@@ -87,7 +87,7 @@ class PhaseTimerLayout : ConstraintLayout {
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselData?.currentIndex?.collectLatest {
+            evidenceViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
                 phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
             }
         }

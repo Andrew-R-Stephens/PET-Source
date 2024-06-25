@@ -1,186 +1,185 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
-import static android.app.Activity.RESULT_OK;
+import android.app.Activity
+import android.util.Log
+import android.widget.Toast
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import java.util.List
 
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.FirebaseUiException;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
-
-public abstract class FirebaseFragment extends PETFragment {
-
-    private final ActivityResultLauncher<Intent> signInLauncher =
-            registerForActivityResult(
-                    new FirebaseAuthUIActivityResultContract(),
-                    result -> {
-                        try {
-                            onSignInResultAccount(result);
-                        } catch (RuntimeException runtimeException) {
-                            String message = "Login Error: " + runtimeException.getMessage();
-                            try {
-                                Toast.makeText(requireActivity(),
-                                        message,
-                                        com.google.android.material.R.integer.material_motion_duration_short_2).show();
-                            } catch (IllegalStateException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-            );
-
-    protected FirebaseFragment() { super(); }
-
-    protected FirebaseFragment(int layout) {
-        super(layout);
+abstract class FirebaseFragment : PETFragment {
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { result: FirebaseAuthUIAuthenticationResult ->
+        try {
+            onSignInResultAccount(result)
+        } catch (runtimeException: RuntimeException) {
+            val message = "Login Error: " + runtimeException.message
+            try {
+                Toast.makeText(
+                    requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2
+                ).show()
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
     }
 
-    protected abstract void onSignInAccountSuccess();
+    protected constructor() : super()
 
-    protected abstract void onSignOutAccountSuccess();
+    protected constructor(layout: Int) : super(layout)
 
-    public void manualSignInAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Log.d("ManuLogin", "User not null!");
-            return;
+    protected abstract fun onSignInAccountSuccess()
+
+    protected abstract fun onSignOutAccountSuccess()
+
+    open fun manualSignInAccount() {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            Log.d("ManuLogin", "User not null!")
+            return
         }
-        Log.d("ManuLogin", "Continuing to sign-in.");
+        Log.d("ManuLogin", "Continuing to sign-in.")
 
         try {
-            if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
-                Toast.makeText(requireActivity(),
-                                "Internet not available.",
-                                Toast.LENGTH_SHORT)
-                        .show();
+            if (!isNetworkAvailable(
+                    requireContext(),
+                    globalPreferencesViewModel!!.networkPreference
+                )
+            ) {
+                Toast.makeText(
+                    requireActivity(),
+                    "Internet not available.",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
 
-                return;
+                return
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
 
 
-        List<AuthUI.IdpConfig> providers = List.of(
-                new AuthUI.IdpConfig.GoogleBuilder().build());
+        val providers = List.of(
+            GoogleBuilder().build()
+        )
 
         // Create and launch sign-in intent
-        Intent signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .setIsSmartLockEnabled(false)
-                .setTosAndPrivacyPolicyUrls(
-                        getString(R.string.preference_termsofservice_link),
-                        getString(R.string.preference_privacypolicy_link)
-                )
-                .build();
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .setIsSmartLockEnabled(false)
+            .setTosAndPrivacyPolicyUrls(
+                getString(R.string.preference_termsofservice_link),
+                getString(R.string.preference_privacypolicy_link)
+            )
+            .build()
 
-        signInLauncher.launch(signInIntent);
-
+        signInLauncher.launch(signInIntent)
     }
 
     /**
      *
      */
-    private void onSignInResultAccount(@NonNull FirebaseAuthUIAuthenticationResult result) {
-        IdpResponse response = result.getIdpResponse();
+    private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
 
         // Successfully signed in
-        if (result.getResultCode() == RESULT_OK) {
-            FirebaseUser user;
-            try { user = FirestoreUser.Companion.getCurrentFirebaseUser(); }
-            catch (Exception e) { throw new RuntimeException(e); }
-            if(user != null) {
-                String message = "Welcome " + user.getDisplayName();
-                Toast toast = Toast.makeText(requireActivity(),
-                        message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                toast.show();
+        if (result.resultCode == Activity.RESULT_OK) {
+            val user: FirebaseUser?
+            try {
+                user = currentFirebaseUser
+            } catch (e: Exception) {
+                throw RuntimeException(e)
+            }
+            if (user != null) {
+                val message = "Welcome " + user.displayName
+                val toast = Toast.makeText(
+                    requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2
+                )
+                toast.show()
 
-                onSignInAccountSuccess();
+                onSignInAccountSuccess()
             }
         } else {
-
-            String message = "ERROR: (Error data could not be acquired).";
-            if(response != null) {
-                FirebaseUiException error = response.getError();
-                if(error != null) {
-                    message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+            var message = "ERROR: (Error data could not be acquired)."
+            if (response != null) {
+                val error = response.error
+                if (error != null) {
+                    message = "ERROR " + error.errorCode + ": " + error.message
                 }
             }
 
-            Toast toast = Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
+            val toast = Toast.makeText(
+                requireActivity(),
+                message,
+                com.google.android.material.R.integer.material_motion_duration_short_2
+            )
+            toast.show()
         }
     }
 
     /**
      *
      */
-    public void signOutAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            return;
+    open fun signOutAccount() {
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            return
         }
 
         try {
             AuthUI.getInstance()
-                    .signOut(requireContext())
-                    .addOnCompleteListener(task -> {
-
-                        String message = "User signed out";
-                        try {
-                            Toast.makeText(requireActivity(),
-                                    message,
-                                    com.google.android.material.R.integer.material_motion_duration_short_2).show();
-                        } catch (IllegalStateException e) {
-                            e.printStackTrace();
-                        }
-
-                        onSignOutAccountSuccess();
-
-                    });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+                .signOut(requireContext())
+                .addOnCompleteListener { task: Task<Void?>? ->
+                    val message = "User signed out"
+                    try {
+                        Toast.makeText(
+                            requireActivity(),
+                            message,
+                            com.google.android.material.R.integer.material_motion_duration_short_2
+                        ).show()
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                    onSignOutAccountSuccess()
+                }
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
     }
 
     /**
      *
      */
-    public void deleteAccount() {
+    open fun deleteAccount() {
         AuthUI.getInstance()
-                .delete(requireContext())
-                .addOnCompleteListener(task -> {
-                    String message = "Successfully removed account.";
-                    try {
-                        Toast.makeText(requireActivity(),
-                                message,
-                                com.google.android.material.R.integer.material_motion_duration_short_2).show();
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-
-                    refreshFragment();
-                });
+            .delete(requireContext())
+            .addOnCompleteListener { task: Task<Void?>? ->
+                val message = "Successfully removed account."
+                try {
+                    Toast.makeText(
+                        requireActivity(),
+                        message,
+                        com.google.android.material.R.integer.material_motion_duration_short_2
+                    ).show()
+                } catch (e: IllegalStateException) {
+                    e.printStackTrace()
+                }
+                refreshFragment()
+            }
     }
 
-    @Override
-    protected abstract void saveStates();
-
+    abstract override fun saveStates()
 }

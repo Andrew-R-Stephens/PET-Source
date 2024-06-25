@@ -44,10 +44,9 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         super.onViewCreated(view, savedInstanceState)
 
         sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool)
-        sanityToolsLayout?.init(evidenceViewModel)
-
-        evidenceViewModel.sanityModel?.flashTimeoutMax = 
-            globalPreferencesViewModel.huntWarningFlashTimeout.toLong()
+        evidenceViewModel?.let { evidenceViewModel ->
+            sanityToolsLayout?.init(evidenceViewModel)
+        }
 
         // GHOST / EVIDENCE CONTAINERS
         val columnLeft = view.findViewById<FrameLayout>(R.id.column_left)
@@ -55,12 +54,17 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         columnRight.findViewById<View>(R.id.scrollview).verticalScrollbarPosition =
             View.SCROLLBAR_POSITION_RIGHT
 
-        if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
-            ghostSection = columnLeft.getChildAt(0) as InvestigationSection
-            evidenceSection = columnRight.getChildAt(0) as InvestigationSection
-        } else {
-            evidenceSection = columnLeft.getChildAt(0) as InvestigationSection
-            ghostSection = columnRight.getChildAt(0) as InvestigationSection
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            evidenceViewModel?.sanityModel?.flashTimeoutMax =
+                globalPreferencesViewModel.huntWarningFlashTimeout.toLong()
+
+            if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
+                ghostSection = columnLeft.getChildAt(0) as InvestigationSection
+                evidenceSection = columnRight.getChildAt(0) as InvestigationSection
+            } else {
+                evidenceSection = columnLeft.getChildAt(0) as InvestigationSection
+                ghostSection = columnRight.getChildAt(0) as InvestigationSection
+            }
         }
 
         ghostSection?.setLabel(getString(R.string.investigation_section_title_ghosts))
@@ -74,8 +78,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
         ghostList?.init(
             globalPreferencesViewModel, evidenceViewModel,
-            popupWindow, ghostSection?.findViewById(R.id.progressbar),
-            adRequest
+            popupWindow, ghostSection?.findViewById(R.id.progressbar), adRequest
         )
         evidenceList?.init(
             globalPreferencesViewModel, evidenceViewModel,
@@ -97,9 +100,9 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         // SANITY COLLAPSIBLE
         sanityTrackingConstraintLayout = view.findViewById(R.id.constraintLayout_sanityTracking)
 
-        if (toggleCollapseButton != null) {
-            toggleCollapseButton?.setOnClickListener {
-                if (evidenceViewModel.isDrawerCollapsed) {
+        toggleCollapseButton?.let { toggleCollapseButton ->
+            toggleCollapseButton.setOnClickListener {
+                if (evidenceViewModel?.isDrawerCollapsed == true) {
                     sanityTrackingConstraintLayout?.animate()
                         ?.setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationStart(animation: Animator) {
@@ -112,8 +115,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                                 super.onAnimationEnd(animation)
 
                                 sanityTrackingConstraintLayout?.visibility = View.VISIBLE
-                                toggleCollapseButton?.setImageLevel(2)
-                                evidenceViewModel.isDrawerCollapsed = false
+                                toggleCollapseButton.setImageLevel(2)
+                                evidenceViewModel?.isDrawerCollapsed = false
                             }
                         })
                         ?.start()
@@ -122,16 +125,14 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                         ?.setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationStart(animation: Animator) {
                                 super.onAnimationStart(animation)
-
                                 sanityTrackingConstraintLayout?.visibility = View.VISIBLE
                             }
 
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationStart(animation)
-
                                 sanityTrackingConstraintLayout?.visibility = View.GONE
-                                toggleCollapseButton?.setImageLevel(1)
-                                evidenceViewModel.isDrawerCollapsed = true
+                                toggleCollapseButton.setImageLevel(1)
+                                evidenceViewModel?.isDrawerCollapsed = true
                             }
                         })
                         ?.start()
@@ -153,7 +154,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     private fun initCollapsible() {
-        if (evidenceViewModel.isDrawerCollapsed) {
+        if (evidenceViewModel?.isDrawerCollapsed == true) {
             sanityTrackingConstraintLayout?.visibility = View.GONE
             toggleCollapseButton?.setImageLevel(1)
         } else {
@@ -167,32 +168,27 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         objectivesViewModel?.reset()
 
         // TODO Force progress bar update
-
-        // TODO Reset and Pause PhaseTimer
     }
 
     fun requestInvalidateComponents() {
 
-        evidenceViewModel?.ghostOrderData?.updateOrder()
+        evidenceViewModel?.ghostOrderModel?.updateOrder()
 
-        ghostList?.forceResetGhostContainer()
-
-
-        // TODO Force progress bar update (aka reset)
+        ghostList?.reset()
 
 
-        // TODO Reset Play/Pause button (to 'Play' state)\
+        // TODO Force progress bar reset
+
+
+        // TODO Reset Play/Pause button (to 'Play' state)
     }
 
     override fun onDestroyView() {
-        if (popupWindow != null) {
-            popupWindow?.dismiss()
-            popupWindow = null
-        }
+        popupWindow?.dismiss()
+        popupWindow = null
 
         super.onDestroyView()
     }
 
-    override fun saveStates() {
-    }
+    override fun saveStates() { }
 }

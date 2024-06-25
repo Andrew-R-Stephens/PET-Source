@@ -21,7 +21,7 @@ class MarketThemeBundleModel(
 
     private fun addThemes(themes: List<ThemeModel>) {
         this.themes = ArrayList()
-        this.themes!!.addAll(themes)
+        this.themes?.addAll(themes)
     }
 
     val isUnlocked: Boolean

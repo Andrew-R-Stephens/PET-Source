@@ -38,18 +38,16 @@ class NewsMessageFragment : MainMenuFragment() {
 
         // LISTENERS
         buttonBack.setOnClickListener { v: View? ->
-            findNavController(
-                v!!
-            ).popBackStack()
+            v?.let { findNavController(v).popBackStack() }
         }
 
         // SET CONTENT
-        val message = newsLetterViewModel.currentMessage
-        if (message != null) {
+        val message = newsLetterViewModel?.currentMessage
+        message?.let {
             labelTitle.text = Html.fromHtml(message.title)
             labelDate.text = Html.fromHtml(message.date)
             labelContent.text = Html.fromHtml(message.description)
-        } else {
+        } ?: {
             labelTitle.text = Html.fromHtml("Data unavailable")
             labelDate.text = Html.fromHtml("Data unavailable")
             labelContent.text = Html.fromHtml("Data unavailable")

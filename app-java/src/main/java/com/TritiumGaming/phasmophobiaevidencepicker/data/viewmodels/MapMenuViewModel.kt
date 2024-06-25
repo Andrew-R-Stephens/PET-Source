@@ -26,37 +26,26 @@ class MapMenuViewModel : ViewModel() {
                 field = currentMapPos
             }
         }
-    val currentMapData: MapViewerModel
+    val currentMapViewerModel: MapViewerModel
         get() {
             return mapsData[currentMapIndex]
         }
     fun incrementFloorIndex() {
-        var layerIndex: Int = currentMapData.currentFloor
-        if (++layerIndex >= currentMapData.floorCount) {
+        var layerIndex: Int = currentMapViewerModel.currentFloor
+        if (++layerIndex >= currentMapViewerModel.floorCount) {
             layerIndex = 0
         }
-        currentMapData.currentFloor = layerIndex
+        currentMapViewerModel.currentFloor = layerIndex
     }
     fun decrementFloorIndex() {
-        var layerIndex: Int = currentMapData.currentFloor
+        var layerIndex: Int = currentMapViewerModel.currentFloor
         if (--layerIndex < 0) {
-            layerIndex = currentMapData.floorCount -1
+            layerIndex = currentMapViewerModel.floorCount -1
         }
-        currentMapData.currentFloor = layerIndex
+        currentMapViewerModel.currentFloor = layerIndex
     }
 
     var currentMapModel: MapModel? = null
-
-    /*
-    val mapNames: MutableList<String>
-        get() {
-            val mapNames = mutableListOf<String>()
-            mapsData.forEachIndexed { index, it ->
-                mapNames.add(index, it.mapName)
-            }
-            return mapNames
-        }
-    */
 
     val mapThumbnails: MutableList<Int>
         @DrawableRes get() {

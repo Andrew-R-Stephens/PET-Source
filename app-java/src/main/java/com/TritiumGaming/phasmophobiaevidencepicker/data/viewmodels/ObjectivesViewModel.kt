@@ -27,19 +27,19 @@ class ObjectivesViewModel : ViewModel() {
     /* Response */
     var responseState: Response = UNKNOWN // alone , group
 
+    fun init(context: Context) {
+        missionsListModel = missionsListModel ?: MissionsListModel(context)
+    }
+
     fun toggleCompletionStatus(spinnerIndex: Int) {
         spinnerCompletionStatus[spinnerIndex] = !spinnerCompletionStatus[spinnerIndex]
     }
 
     fun reset() {
         ghostName = null
-        //missionsListModel?.reset()
+        missionsListModel?.reset()
         spinnerCompletionStatus.all { NOT_COMPLETE }
         responseState = UNKNOWN
-    }
-
-    fun init(context: Context) {
-        missionsListModel = missionsListModel ?: MissionsListModel(context)
     }
 
 }

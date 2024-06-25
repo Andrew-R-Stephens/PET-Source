@@ -78,13 +78,15 @@ abstract class AThemeControl(context: Context) {
 
     @JvmOverloads
     fun iterateSelectedIndex(dir: Int, start: Int = selectedIndex) {
-        selectedIndex += dir
+        var currentIndex = selectedIndex
+        currentIndex += dir
 
-        if (selectedIndex < 0) {
-            selectedIndex = themes.size - 1
-        } else if (selectedIndex >= themes.size) {
-            selectedIndex = 0
+        if (currentIndex < 0) {
+            currentIndex = themes.size - 1
+        } else if (currentIndex >= themes.size) {
+            currentIndex = 0
         }
+        selectedIndex = currentIndex
 
         if (!currentTheme.isUnlocked) {
             if (start != selectedIndex) {

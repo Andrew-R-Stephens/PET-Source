@@ -158,16 +158,18 @@ class StartScreenFragment : MainMenuFragment() {
     }
 
     private fun loadBannerAd(view: View) {
-        try {
-            MobileAds.initialize(requireActivity()) { }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+        try { MobileAds.initialize(requireActivity()) { } }
+        catch (e: IllegalStateException) { e.printStackTrace() }
 
         val mAdView = view.findViewById<AdView>(R.id.adView)
 
-        if (!mainMenuViewModel.hasAdRequest()) {
-            mainMenuViewModel.adRequest = AdRequest.Builder().build()
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            if (!mainMenuViewModel.hasAdRequest()) {
+                mainMenuViewModel.adRequest = AdRequest.Builder().build()
+            }
+            mainMenuViewModel.adRequest?.let { adRequest ->  mAdView.loadAd(adRequest) }
         }
-        mAdView.loadAd(mainMenuViewModel.adRequest!!)
+
     }
 
     private fun gotoMessageCenterFragment(v: View) {
@@ -191,44 +193,51 @@ class StartScreenFragment : MainMenuFragment() {
     }
 
     private fun initReviewRequest(buttonReview: AppCompatImageView) {
-        // REQUEST REVIEW LISTENER
-        if (globalPreferencesViewModel.reviewRequestData.timesOpened > 2) {
-            buttonReview.setOnClickListener {
-                try { showReviewPopup(requireView()) }
-                catch (e: IllegalStateException) { e.printStackTrace() }
-            }
-        } else {
+        val disableButton = {
             buttonReview.isEnabled = false
             buttonReview.visibility = View.INVISIBLE
         }
+
+        // REQUEST REVIEW LISTENER
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            if (globalPreferencesViewModel.reviewRequestData.timesOpened > 2) {
+                buttonReview.setOnClickListener {
+                    try { showReviewPopup(requireView()) }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
+                }
+            } else { disableButton() }
+        } ?: disableButton()
     }
 
     @Throws(SendIntentException::class)
     fun doReviewRequest() {
-        if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
-            Log.d("Review", "Review Request Accepted")
-            Thread {
-                try { Thread.sleep(1000L) }
-                catch (e: InterruptedException) { e.printStackTrace() }
-                globalPreferencesViewModel.reviewRequestData.wasRequested = true
-                try {
-                    requireActivity().runOnUiThread {
-                        try { showReviewPopup(requireView()) }
-                        catch (e: IllegalStateException) { e.printStackTrace() }
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
+                Log.d("Review", "Review Request Accepted")
+                Thread {
+                    try { Thread.sleep(1000L) }
+                    catch (e: InterruptedException) { e.printStackTrace() }
+                    globalPreferencesViewModel.reviewRequestData.wasRequested = true
+                    try {
+                        requireActivity().runOnUiThread {
+                            try { showReviewPopup(requireView()) }
+                            catch (e: IllegalStateException) { e.printStackTrace() }
+                        }
+                        globalPreferencesViewModel.saveToFile(requireContext())
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
                     }
-                    globalPreferencesViewModel.saveToFile(requireContext())
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
-                }
-            }.start()
-        } else {
-            Log.d("Review", "Review Request Denied")
+                }.start()
+            } else {
+                Log.d("Review", "Review Request Denied")
+            }
         }
     }
 
     private fun showReviewPopup(parentView: View) {
         //DESTROY PREVIOUS POPUP
         popupWindow?.dismiss()
+
         popupWindow = ReviewPopupWindow( parentView,
             RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         (popupWindow as ReviewPopupWindow).reviewPopupWindowListener =
@@ -239,7 +248,7 @@ class StartScreenFragment : MainMenuFragment() {
                     val params = Bundle()
                     params.putString("event_type", "review_requested")
                     params.putString("event_details", "request_ successful")
-                    analytics.logEvent("event_review_manager", params)
+                    analytics?.logEvent("event_review_manager", params)
                 }
                 override fun onDestroy() {
                     popupWindow?.dismiss()
@@ -253,7 +262,7 @@ class StartScreenFragment : MainMenuFragment() {
                     val params = Bundle()
                     params.putString("event_type", "user_action")
                     params.putString("event_details", "request_rejected")
-                    analytics.logEvent("event_review_manager", params)
+                    analytics?.logEvent("event_review_manager", params)
                     this.onDestroy()
                 }
             }
@@ -271,9 +280,11 @@ class StartScreenFragment : MainMenuFragment() {
         if (checkInternetConnection()) { startLoadNewsletterThread() }
         else {
             Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel.compareAllInboxDates()
-            if (newsLetterViewModel.requiresNotify()) {
-                doNewsletterNotification()
+            newsLetterViewModel?.let { newsLetterViewModel ->
+                newsLetterViewModel.compareAllInboxDates()
+                if (newsLetterViewModel.requiresNotify()) {
+                    doNewsletterNotification()
+                }
             }
         }
     }
@@ -284,38 +295,37 @@ class StartScreenFragment : MainMenuFragment() {
             val maxRetries = 3
             var retries = 0
 
-            while (canLoadNewsletter &&
-                (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
-                Log.d("MessageCenter", "Attempting to load inboxes...")
+            newsLetterViewModel?.let { newsLetterViewModel ->
+                while (canLoadNewsletter &&
+                    (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
+                    Log.d("MessageCenter", "Attempting to load inboxes...")
 
-                loadMessageCenter()
+                    loadMessageCenter()
 
-                if (!newsLetterViewModel.isUpToDate) {
-                    Log.d("MessageCenter",
-                        "[Attempt $retries / $maxRetries ] " +
-                                "Inboxes are not up to date yet! Retrying...\n")
-                    try {
-                        Thread.sleep(1000)
-                    } catch (e: InterruptedException) {
-                        e.printStackTrace()
+                    if (!newsLetterViewModel.isUpToDate) {
+                        Log.d("MessageCenter",
+                            "[Attempt $retries / $maxRetries ] " +
+                                    "Inboxes are not up to date yet! Retrying...\n")
+                        try { Thread.sleep(1000) }
+                        catch (e: InterruptedException) { e.printStackTrace() }
                     }
+                    retries++
                 }
 
-                retries++
+                Log.d("MessageCenter",
+                    "Inboxes ${if (newsLetterViewModel.isUpToDate) "are now up to date."
+                    else "could not be updated in time." } Loading completed.")
+
+                try {
+                    if (!newsLetterViewModel.init(requireContext())) {
+                        Log.e("MessageCenter", "Initialization failed.")
+                    }
+                    newsLetterViewModel.compareAllInboxDates()
+                    if (newsLetterViewModel.requiresNotify()) {
+                        requireActivity().runOnUiThread { this.doNewsletterNotification() }
+                    }
+                } catch (e: IllegalStateException) { e.printStackTrace() }
             }
-
-            Log.d("MessageCenter",
-                "Inboxes ${if (newsLetterViewModel.isUpToDate) "are now up to date." 
-                else "could not be updated in time." } Loading completed.")
-            try {
-                if (!newsLetterViewModel.init(requireContext())) {
-                    Log.e("MessageCenter", "Initialization failed.")
-                }
-                newsLetterViewModel.compareAllInboxDates()
-                if (newsLetterViewModel.requiresNotify()) {
-                    requireActivity().runOnUiThread { this.doNewsletterNotification() }
-                }
-            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
         newsletterThread?.start()
     }
@@ -324,7 +334,7 @@ class StartScreenFragment : MainMenuFragment() {
         newsletterThread?.interrupt()
         newsletterThread = null
 
-        if (newsLetterViewModel.isUpToDate) {
+        if (newsLetterViewModel?.isUpToDate == true) {
             canLoadNewsletter = false
             Log.d("MessageCenter", "IS up to date") }
         else { Log.d("MessageCenter", "IS NOT up to date") }

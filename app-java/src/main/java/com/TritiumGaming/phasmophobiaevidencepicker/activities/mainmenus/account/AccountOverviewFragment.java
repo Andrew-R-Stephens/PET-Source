@@ -172,7 +172,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
                             String uuid = documentReference.getId();
                             ThemeModel customTheme =
-                                    globalPreferencesViewModel
+                                    getGlobalPreferencesViewModel()
                                         .getColorThemeControl()
                                         .getThemeByUUID(uuid);
 
@@ -228,7 +228,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
+                    getGlobalPreferencesViewModel().getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
 

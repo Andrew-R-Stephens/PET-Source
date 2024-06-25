@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
             android:id="@+id/button_left"
@@ -27,10 +28,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_left"
             android:layout_width="0dp"
-            android:layout_height="24dp"
+            android:layout_height="36dp"
             android:maxLines="1"
             android:text="@string/settings_confirm"
             android:visibility="gone"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +50,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:padding="4dp"
+        android:textColor="?attr/textColorPrimary"
         app:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout85"
@@ -61,7 +64,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
             android:id="@+id/button_right"
@@ -76,10 +80,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_right"
             android:layout_width="0dp"
-            android:layout_height="24dp"
+            android:layout_height="36dp"
             android:maxLines="1"
             android:text="@string/settings_cancel"
             android:visibility="gone"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -63,7 +63,7 @@ class DifficultyCarouselModel(
     val currentModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel.difficultyCarouselData?.currentIndex?.value ?: return 1f
+                evidenceViewModel.difficultyCarouselModel?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < SanityModel.DIFFICULTY_MODIFIER.size) {
                 return SanityModel.DIFFICULTY_MODIFIER[diffIndex]
             }

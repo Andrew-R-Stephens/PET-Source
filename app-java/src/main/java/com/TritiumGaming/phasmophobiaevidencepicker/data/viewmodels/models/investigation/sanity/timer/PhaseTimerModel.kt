@@ -114,7 +114,7 @@ class PhaseTimerModel(
     fun reset() {
         resetTimer()
         _timeRemaining.value =
-            evidenceViewModel.difficultyCarouselData?.currentTime ?: 0L
+            evidenceViewModel.difficultyCarouselModel?.currentTime ?: 0L
         resetStartTime()
     }
 

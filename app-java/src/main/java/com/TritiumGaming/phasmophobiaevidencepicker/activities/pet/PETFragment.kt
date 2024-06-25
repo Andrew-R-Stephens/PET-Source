@@ -1,136 +1,116 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
-import android.os.Build;
-import android.widget.PopupWindow;
+import android.os.Build
+import android.widget.PopupWindow
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
+import com.google.firebase.analytics.FirebaseAnalytics
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+abstract class PETFragment : Fragment {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
-import com.google.firebase.analytics.FirebaseAnalytics;
+    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
 
-public abstract class PETFragment extends Fragment {
+    protected var analytics: FirebaseAnalytics? = null
+    protected var popupWindow: PopupWindow? = null
 
-    protected FirebaseAnalytics analytics;
+    protected constructor()
 
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
+    protected constructor(layout: Int) : super(layout)
 
-    @Nullable
-    protected PopupWindow popupWindow;
+    protected fun init() {
+        setOnBackPressed()
 
-    protected PETFragment() {
+        initViewModels()
+        initFirebaseAnalytics()
     }
 
-    protected PETFragment(int layout) {
-        super(layout);
-    }
-
-    protected void init() {
-        setOnBackPressed();
-
-        initViewModels();
-        initFirebaseAnalytics();
-    }
-
-    protected abstract void initViewModels();
-
-    protected void initGlobalPreferencesViewModel() {
+    protected fun initGlobalPreferencesViewModel() {
         if (globalPreferencesViewModel == null) {
-            try {
-                globalPreferencesViewModel =
-                        new ViewModelProvider(requireActivity()).get(GlobalPreferencesViewModel.class);
+            try { globalPreferencesViewModel =
+                    ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
+                globalPreferencesViewModel?.init(requireContext())
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+        }
+    }
 
-                globalPreferencesViewModel.init(requireContext());
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
+    private fun initFirebaseAnalytics() {
+        try { this.analytics = (requireActivity() as PETActivity).firebaseAnalytics }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    protected fun saveGlobalPreferencesViewModel() {
+        try { globalPreferencesViewModel?.saveToFile(requireContext())
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    protected open fun refreshFragment() {
+        val ft = parentFragmentManager.beginTransaction()
+        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
+        ft.detach(this@PETFragment).commitNow()
+        //ft = parentFragmentManager.beginTransaction()
+        ft.attach(this@PETFragment).commitNow()
+    }
+
+    protected fun closePopup(): Boolean {
+        popupWindow?.let { popupWindow ->
+            if (popupWindow.isShowing) {
+                popupWindow.dismiss()
+                return true
             }
         }
+
+        return false
     }
 
-    protected void saveGlobalPreferencesViewModel() {
-        if (globalPreferencesViewModel != null) {
+    protected fun checkInternetConnection(): Boolean {
+        return globalPreferencesViewModel?.let { globalPreferencesViewModel ->
             try {
-                globalPreferencesViewModel.saveToFile(requireContext());
-            } catch (IllegalStateException e){
-                e.printStackTrace();
+                return (isNetworkAvailable(
+                    requireContext(), globalPreferencesViewModel.networkPreference))
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+                return false
             }
-        }
-    }
+        } ?:  return false
 
-    protected void refreshFragment() {
-
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        if (Build.VERSION.SDK_INT >= 26) {
-            ft.setReorderingAllowed(false);
-        }
-        ft.detach(PETFragment.this).commitNow();
-        ft = getParentFragmentManager().beginTransaction();
-        ft.attach(PETFragment.this).commitNow();
-
-    }
-
-    protected void backPressedHandler() {
-        if(closePopup()) {
-            return;
-        }
+        /*
+        if (globalPreferencesViewModel == null) { return false }
 
         try {
-            Navigation.findNavController(requireView()).popBackStack();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            return (isNetworkAvailable(
+                requireContext(),
+                globalPreferencesViewModel.networkPreference))
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            return false
         }
+        */
     }
 
-    protected boolean closePopup() {
-        if(popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
-            return true;
-        }
-
-        return false;
+    protected open fun saveStates() {
+        saveGlobalPreferencesViewModel()
     }
 
-    protected void setOnBackPressed() {
+    protected open fun backPressedHandler() {
+        if (closePopup()) { return }
+
+        try { findNavController(requireView()).popBackStack() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    private fun setOnBackPressed() {
         try {
-            requireActivity().getOnBackPressedDispatcher()
-                    .addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-                        @Override
-                        public void handleOnBackPressed() {
-                            backPressedHandler();
-                        }
-                    });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
+            requireActivity().onBackPressedDispatcher
+                .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() { backPressedHandler() }
+                })
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected void initFirebaseAnalytics() {
-        try {
-            this.analytics = ((PETActivity) requireActivity()).getFirebaseAnalytics();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-    }
+    protected abstract fun initViewModels()
 
-    protected boolean checkInternetConnection() {
-        if(globalPreferencesViewModel == null) { return false; }
-
-        try {
-            return (NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference()));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    protected void saveStates() {
-        saveGlobalPreferencesViewModel();
-    }
 }

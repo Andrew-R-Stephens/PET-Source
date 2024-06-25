@@ -28,6 +28,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -62,8 +63,9 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        final View listener_confirmClose = view.findViewById(R.id.listener_confirm);
-        final View listener_cancelClose = view.findViewById(R.id.listener_cancel);
+        final NavHeaderLayout navHeaderLayout = view.findViewById(R.id.navHeaderLayout);
+        final View listener_cancelClose = navHeaderLayout.findViewById(R.id.button_left);
+        final View listener_confirmClose = navHeaderLayout.findViewById(R.id.button_right);
 
         final AppCompatButton btn_account_login =
                 view.findViewById(R.id.settings_account_login_button);
@@ -141,37 +143,37 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         // SWITCHES
         // Screen Always On
-        if(globalPreferencesViewModel != null) {
+        if(getGlobalPreferencesViewModel() != null) {
             // Always On Mode
             if(toggle_isAlwaysOn != null) {
                 toggle_isAlwaysOn.setChecked(
-                        globalPreferencesViewModel.isAlwaysOn());
+                        getGlobalPreferencesViewModel().isAlwaysOn());
             }
             // Allow Mobile Data
             if(toggle_network != null) {
                 toggle_network.setChecked(
-                        globalPreferencesViewModel.getNetworkPreference());
+                        getGlobalPreferencesViewModel().getNetworkPreference());
             }
             // Allow Left Hand Mode
             if(toggle_leftHandMode != null) {
                 toggle_leftHandMode.setChecked(
-                        globalPreferencesViewModel.isLeftHandSupportEnabled());
+                        getGlobalPreferencesViewModel().isLeftHandSupportEnabled());
             }
             // Allow Hunt Warning Audio
             if(toggle_huntwarningaudio != null) {
                 toggle_huntwarningaudio.setChecked(
-                        globalPreferencesViewModel.isHuntWarningAudioAllowed());
+                        getGlobalPreferencesViewModel().isHuntWarningAudioAllowed());
             }
             // Allow Reorder Ghost Views
             if(toggle_reorderGhostViews != null) {
                 toggle_reorderGhostViews.setChecked(
-                        globalPreferencesViewModel.getReorderGhostViews());
+                        getGlobalPreferencesViewModel().getReorderGhostViews());
             }
 
             // COLORBLIND DATA
             if(text_colorTheme_selectedname != null) {
                 ColorThemeControl colorThemesData =
-                        globalPreferencesViewModel.getColorThemeControl();
+                        getGlobalPreferencesViewModel().getColorThemeControl();
                 try {
                     text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
                 } catch (Exception e) {
@@ -181,7 +183,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // FONT-STYLE DATA
             if(text_fontStyle_selectedname != null) {
                 FontThemeControl fontThemesData =
-                        globalPreferencesViewModel.getFontThemeControl();
+                        getGlobalPreferencesViewModel().getFontThemeControl();
                 try {
                     text_fontStyle_selectedname.setText(fontThemesData.getCurrentName());
                 } catch (Exception e) {
@@ -191,11 +193,11 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             // Hunt warning timeout setting
             if (seekBar_huntwarningTimeout != null) {
                 seekBar_huntwarningTimeout.setMax(300001);
-                if (globalPreferencesViewModel.getHuntWarningFlashTimeout() < 0) {
+                if (getGlobalPreferencesViewModel().getHuntWarningFlashTimeout() < 0) {
                     seekBar_huntwarningTimeout.setProgress(seekBar_huntwarningTimeout.getMax());
                 } else {
                     seekBar_huntwarningTimeout.setProgress(
-                            globalPreferencesViewModel.getHuntWarningFlashTimeout());
+                            getGlobalPreferencesViewModel().getHuntWarningFlashTimeout());
                 }
                 seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
                         new SeekBar.OnSeekBarChangeListener() {
@@ -205,7 +207,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
                                 if (fromUser) {
 
-                                    globalPreferencesViewModel.setHuntWarningFlashTimeout(progress);
+                                    getGlobalPreferencesViewModel().setHuntWarningFlashTimeout(progress);
 
                                     double progressMax = 300000 /
                                             (double) seekBar_huntwarningTimeout.getMax();
@@ -254,24 +256,24 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         // Screen Always On
         if(toggle_isAlwaysOn != null) {
             toggle_isAlwaysOn.setSwitchClickListener(v -> {
-                if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setAlwaysOn(toggle_isAlwaysOn.isChecked());
+                if (getGlobalPreferencesViewModel() != null) {
+                    getGlobalPreferencesViewModel().setAlwaysOn(toggle_isAlwaysOn.isChecked());
                 }
             });
         }
         // Allow Mobile Data
         if(toggle_network != null) {
             toggle_network.setSwitchClickListener(v -> {
-                if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setNetworkPreference(toggle_network.isChecked());
+                if (getGlobalPreferencesViewModel() != null) {
+                    getGlobalPreferencesViewModel().setNetworkPreference(toggle_network.isChecked());
                 }
             });
         }
         // Allow Left Hand Mode
         if(toggle_leftHandMode != null) {
             toggle_leftHandMode.setSwitchClickListener(v -> {
-                if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setLeftHandSupportEnabled(
+                if (getGlobalPreferencesViewModel() != null) {
+                    getGlobalPreferencesViewModel().setLeftHandSupportEnabled(
                             toggle_leftHandMode.isChecked());
                 }
             });
@@ -279,8 +281,8 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         // Allow Hunt Warning Audio
         if(toggle_huntwarningaudio != null) {
             toggle_huntwarningaudio.setSwitchClickListener(v -> {
-                if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setHuntWarningAudioAllowed(
+                if (getGlobalPreferencesViewModel() != null) {
+                    getGlobalPreferencesViewModel().setHuntWarningAudioAllowed(
                             toggle_huntwarningaudio.isChecked());
                 }
             });
@@ -288,8 +290,8 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         // Allow Ghost View Reordering
         if(toggle_reorderGhostViews != null) {
             toggle_reorderGhostViews.setSwitchClickListener(v -> {
-                if (globalPreferencesViewModel != null) {
-                    globalPreferencesViewModel.setReorderGhostViews(
+                if (getGlobalPreferencesViewModel() != null) {
+                    getGlobalPreferencesViewModel().setReorderGhostViews(
                             toggle_reorderGhostViews.isChecked());
                 }
             });
@@ -297,7 +299,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         // COLORBLIND LISTENERS
         btn_colorTheme_left.setOnClickListener(v -> {
-            ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
+            ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
 
             themeControl.iterateSelectedIndex(-1);
             if(text_colorTheme_selectedname != null) {
@@ -311,7 +313,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         });
 
         btn_colorTheme_right.setOnClickListener(v -> {
-            ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
+            ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
 
             themeControl.iterateSelectedIndex(1);
             if(text_colorTheme_selectedname != null) {
@@ -326,7 +328,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         // FONT-STYLE LISTENERS
         btn_fontStyle_left.setOnClickListener(v -> {
-            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
+            FontThemeControl themeControl = getGlobalPreferencesViewModel().getFontThemeControl();
 
             themeControl.iterateSelectedIndex(-1);
             if(text_fontStyle_selectedname != null) {
@@ -341,7 +343,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         });
 
         btn_fontStyle_right.setOnClickListener(v -> {
-            FontThemeControl themeControl = globalPreferencesViewModel.getFontThemeControl();
+            FontThemeControl themeControl = getGlobalPreferencesViewModel().getFontThemeControl();
 
             themeControl.iterateSelectedIndex(1);
             if(text_fontStyle_selectedname != null) {
@@ -371,12 +373,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
             Bundle params = new Bundle();
             params.putString("event_type", "confirm_settings");
-            HashMap<String, String> settings = globalPreferencesViewModel.getDataAsList();
+            HashMap<String, String> settings = getGlobalPreferencesViewModel().getDataAsList();
             for (String key : settings.keySet()) {
                 String value = settings.get(key);
                 params.putString(key, value);
             }
-            analytics.logEvent("event_settings", params);
+            getAnalytics().logEvent("event_settings", params);
 
             saveStates();
 
@@ -510,7 +512,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
                             DocumentReference documentReference = documentSnapshot.getReference();
 
                             String uuid = documentReference.getId();
-                            ThemeModel customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            ThemeModel customTheme = getGlobalPreferencesViewModel().getColorThemeControl()
                                     .getThemeByUUID(uuid);
 
                             customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
@@ -539,13 +541,13 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
     */
 
     private void revertDemoChanges() {
-        globalPreferencesViewModel.getColorThemeControl().revertToSavedIndex();
-        globalPreferencesViewModel.getFontThemeControl().revertToSavedIndex();
+        getGlobalPreferencesViewModel().getColorThemeControl().revertToSavedIndex();
+        getGlobalPreferencesViewModel().getFontThemeControl().revertToSavedIndex();
 
         try {
             ((PETActivity) requireActivity()).changeTheme(
-                    globalPreferencesViewModel.getColorTheme(),
-                    globalPreferencesViewModel.getFontTheme());
+                    getGlobalPreferencesViewModel().getColorTheme(),
+                    getGlobalPreferencesViewModel().getFontTheme());
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
@@ -555,7 +557,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         try {
             ((PETActivity) requireActivity()).changeTheme(
                     colorThemeControl.getThemeAtIndex(colorThemeControl.getSelectedIndex()),
-                    globalPreferencesViewModel.getFontTheme());
+                    getGlobalPreferencesViewModel().getFontTheme());
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
@@ -565,7 +567,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
     private void demoFontStyle(@NonNull FontThemeControl fontThemeControl) {
         try {
             ((PETActivity) requireActivity()).changeTheme(
-                    globalPreferencesViewModel.getColorTheme(),
+                    getGlobalPreferencesViewModel().getColorTheme(),
                     fontThemeControl.getThemeAtIndex(fontThemeControl.getSelectedIndex()));
         } catch (IllegalStateException e) {
             e.printStackTrace();
@@ -602,12 +604,12 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
      */
     public void saveStates() {
 
-        if (globalPreferencesViewModel != null) {
-            globalPreferencesViewModel.getFontThemeControl().saveSelectedIndex();
-            globalPreferencesViewModel.getColorThemeControl().saveSelectedIndex();
+        if (getGlobalPreferencesViewModel() != null) {
+            getGlobalPreferencesViewModel().getFontThemeControl().saveSelectedIndex();
+            getGlobalPreferencesViewModel().getColorThemeControl().saveSelectedIndex();
 
             try {
-                globalPreferencesViewModel.saveToFile(requireContext());
+                getGlobalPreferencesViewModel().saveToFile(requireContext());
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             }
@@ -615,9 +617,9 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
             try {
                 PETActivity activity = ((PETActivity) requireActivity());
                 activity.changeTheme(
-                        globalPreferencesViewModel.getColorTheme(),
-                        globalPreferencesViewModel.getFontTheme());
-                if (globalPreferencesViewModel.isAlwaysOn()) {
+                        getGlobalPreferencesViewModel().getColorTheme(),
+                        getGlobalPreferencesViewModel().getFontTheme());
+                if (getGlobalPreferencesViewModel().isAlwaysOn()) {
                     activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 }
                 activity.recreate();
@@ -647,7 +649,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
     @Override
     protected void onSignOutAccountSuccess() {
-        ColorThemeControl themeControl = globalPreferencesViewModel.getColorThemeControl();
+        ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
 
         themeControl.revertAllUnlockedStatuses();
 
@@ -655,7 +657,7 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         themeControl.setSelectedIndex(0);
         themeControl.saveIndex(0);
 
-        globalPreferencesViewModel.saveColorSpace(requireContext());
+        getGlobalPreferencesViewModel().saveColorSpace(requireContext());
 
         demoColorStyle(themeControl);
     }

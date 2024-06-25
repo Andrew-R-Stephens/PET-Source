@@ -10,7 +10,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.Globa
  */
 class SanityRunnable (
     private val evidenceViewModel: EvidenceViewModel?,
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel
+    private val globalPreferencesViewModel: GlobalPreferencesViewModel?
 ) : Runnable {
 
     /**
@@ -37,6 +37,8 @@ class SanityRunnable (
         */
 
         if (!timerModel.paused.value) {
+
+            evidenceViewModel.sanityModel?.tick()
 
             /*
             if(evidenceViewModel.timerModel == null) return
@@ -82,7 +84,7 @@ class SanityRunnable (
             */
 
             if (!timerModel.paused.value) {
-                if (globalPreferencesViewModel.isHuntWarningAudioAllowed) {
+                if (globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
                     huntWarningAudioListener?.play()
                 }
             }

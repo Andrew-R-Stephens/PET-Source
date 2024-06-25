@@ -29,13 +29,10 @@ class GhostListView : InvestigationListView {
     public override fun init(
         globalPreferencesViewModel: GlobalPreferencesViewModel?,
         evidenceViewModel: EvidenceViewModel?,
-        popupWindow: PopupWindow?,
-        progressBar: ProgressBar?, adRequest: AdRequest?
+        popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?
     ) {
-        super.init(
-            globalPreferencesViewModel, evidenceViewModel,
-            popupWindow, progressBar, adRequest
-        )
+        super.init(globalPreferencesViewModel, evidenceViewModel,
+            popupWindow, progressBar, adRequest)
     }
 
     @SuppressLint("ResourceType")
@@ -43,66 +40,63 @@ class GhostListView : InvestigationListView {
         super.createPopupWindow(popupWindow, GhostPopupModel(context))
     }
 
+    override fun buildViews() {
+        val popupRecord = (popupData as GhostPopupModel)
 
-    fun requestInvalidateGhostContainer(canReorder: Boolean) {
-        if (evidenceViewModel!!.ghostOrderData!!.hasChanges() && canReorder) {
-            reorderGhostViews()
-        } else {
-            updateGhostViews()
+        evidenceViewModel?.let { evidenceViewModel ->
+            val newGhostOrder = evidenceViewModel.ghostOrderModel?.currOrder
+
+            newGhostOrder?.let {
+                this.weightSum = newGhostOrder.size.toFloat()
+
+                for (index in newGhostOrder) {
+                    val ghostView = GhostView(context)
+                    ghostView.ghostViewListener = object: GhostView.GhostViewListener() {
+                        override fun onCreatePopup() {
+                            popupWindow?.dismiss()
+
+                            val ghostPopupWindow = GhostPopupWindow(context)
+                            ghostPopupWindow.popupWindow = popupWindow
+                            ghostPopupWindow.build(evidenceViewModel, popupRecord, index, adRequest)
+                        }
+                    }
+
+                    ghostView.build(evidenceViewModel, index)
+
+                    this.addView(ghostView)
+                }
+            }
+        }
+    }
+    fun attemptInvalidate(canReorder: Boolean) {
+        if (evidenceViewModel?.ghostOrderModel?.hasChanges() == true && canReorder) {
+            reorder()
+        } else { updateChildren() }
+    }
+
+    protected fun reorder() {
+        evidenceViewModel?.let { evidenceViewModel ->
+            val ghostOrderData = evidenceViewModel.ghostOrderModel
+
+            ghostOrderData?.currOrder?.let { currOrder ->
+                for (j in currOrder) {
+                    val childView = this.findViewById<View>(j)
+                    this.removeView(childView)
+                    this.addView(childView)
+                }
+            }
         }
     }
 
-    fun forceResetGhostContainer() {
-        reorderGhostViews()
-    }
-
-    protected fun reorderGhostViews() {
-        val ghostOrderData = evidenceViewModel!!.ghostOrderData
-        val currOrder = ghostOrderData!!.currOrder
-
-        for (j in currOrder!!) {
-            val childView = this.findViewById<View>(j)
-
-            this.removeView(childView)
-            this.addView(childView)
-        }
-    }
-
-    private fun updateGhostViews() {
+    private fun updateChildren() {
         for (i in 0 until this.childCount) {
             val g = getChildAt(i) as GhostView
             g.forceUpdateComponents()
         }
     }
 
-    override fun buildViews() {
-        val newGhostOrder = evidenceViewModel!!.ghostOrderData!!.currOrder
-
-        this.weightSum = newGhostOrder!!.size.toFloat()
-
-        for (j in newGhostOrder) {
-            val ghostView: GhostView = object : GhostView(
-                context
-            ) {
-                override fun createPopup() {
-                    if (popupWindow != null) {
-                        popupWindow!!.dismiss()
-                    }
-
-                    val ghostPopupWindow = GhostPopupWindow(context)
-                    ghostPopupWindow.popupWindow = popupWindow
-                    ghostPopupWindow.build(
-                        evidenceViewModel!!,
-                        (popupData as GhostPopupModel?)!!,
-                        j,
-                        adRequest
-                    )
-                }
-            }
-
-            ghostView.build(evidenceViewModel!!, j)
-
-            this.addView(ghostView)
-        }
+    fun reset() {
+        reorder()
     }
+
 }

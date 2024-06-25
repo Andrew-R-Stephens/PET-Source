@@ -1,244 +1,219 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.ump.ConsentDebugSettings;
-import com.google.android.ump.ConsentInformation;
-import com.google.android.ump.ConsentRequestParameters;
-import com.google.android.ump.UserMessagingPlatform;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.os.Bundle
+import android.util.Log
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.tasks.Task
+import com.google.android.ump.ConsentDebugSettings
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.FormError
+import com.google.android.ump.UserMessagingPlatform
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import java.util.List
+import java.util.Locale
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * InvestigationActivity class
  *
  * @author TritiumGamingStudios
  */
-public abstract class PETActivity extends AppCompatActivity {
+abstract class PETActivity : AppCompatActivity() {
+    var firebaseAnalytics: FirebaseAnalytics? = null
+        protected set
 
-    protected FirebaseAnalytics analytics;
+    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
+    protected var permissionsViewModel: PermissionsViewModel? = null
 
-    protected GlobalPreferencesViewModel globalPreferencesViewModel;
-    protected PermissionsViewModel permissionsViewModel;
+    private var consentInformation: ConsentInformation? = null
 
-    private ConsentInformation consentInformation;
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
-    private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
+    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        initFirebaseAnalytics();
+        initFirebaseAnalytics()
 
-        initViewModels();
-        initPreferences();
+        initViewModels()
+        loadPreferences()
 
-        automaticSignInAccount();
+        automaticSignInAccount()
     }
 
-    /**
-     * <p>Initialize the FirebaseAnalytics reference.</p>
-     * <p>Set FirebaseAnalytics consent types to <a href="https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2">Consent V2</a>.</p>
-     **/
-    protected void initFirebaseAnalytics() {
-        try {
-            //Obtain FirebaseAnalytics instance
-            analytics = FirebaseAnalytics.getInstance(this);
-            Log.d("Firebase", "Obtained instance.");
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+    /** Set FirebaseAnalytics consent types to
+     * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
+    protected fun initFirebaseAnalytics() {
+        //Obtain FirebaseAnalytics instance
+        try { firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+            Log.d("Firebase", "Obtained instance.")
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
-        ViewModelProvider.AndroidViewModelFactory factory =
-                ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
+    protected open fun initViewModels(): AndroidViewModelFactory? {
+        val factory: AndroidViewModelFactory =
+            AndroidViewModelFactory.getInstance(this.application)
 
-        initGlobalPreferencesViewModel(factory);
-        initPermissionsViewModel(factory);
+        initGlobalPreferencesViewModel(factory)
+        initPermissionsViewModel(factory)
 
-        return factory;
+        return factory
     }
 
-    private void initGlobalPreferencesViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        globalPreferencesViewModel = factory.create(
-                GlobalPreferencesViewModel.class);
-        globalPreferencesViewModel = new ViewModelProvider(this).get(
-                GlobalPreferencesViewModel.class);
-        globalPreferencesViewModel.init(PETActivity.this);
+    private fun initGlobalPreferencesViewModel(factory: AndroidViewModelFactory) {
+        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel::class.java)
+        globalPreferencesViewModel =
+            ViewModelProvider(this)[GlobalPreferencesViewModel::class.java]
+        globalPreferencesViewModel?.init(this@PETActivity)
     }
 
-    private void initPermissionsViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
+    private fun initPermissionsViewModel(factory: AndroidViewModelFactory) {
         permissionsViewModel = factory.create(
-                PermissionsViewModel.class);
-        permissionsViewModel = new ViewModelProvider(this).get(
-                PermissionsViewModel.class);
+            PermissionsViewModel::class.java
+        )
+        permissionsViewModel = ViewModelProvider(this)[PermissionsViewModel::class.java]
     }
 
-    protected void initPreferences() {
+    protected open fun loadPreferences() {
         //set colorSpace
-        changeTheme(globalPreferencesViewModel.getColorTheme(), globalPreferencesViewModel.getFontTheme());
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
 
-        if (globalPreferencesViewModel.isAlwaysOn()) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            if (globalPreferencesViewModel.isAlwaysOn) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            }
         }
     }
 
-    /**
-     * changeTheme
-     * <p>
-     * Sets the Skin Theme based on User Preferences.
-     *
-     * @param colorSpace to be set
-     */
-    public void changeTheme(@Nullable ThemeModel colorSpace, @Nullable ThemeModel fontType) {
-
-        if(fontType != null) {
-            int styleId = fontType.getStyle();
-            getTheme().applyStyle(styleId, true);
+    /** Sets the Skin Theme based on User Preferences.
+     * @param colorSpace to be set */
+    fun changeTheme(colorSpace: ThemeModel?, fontType: ThemeModel?) {
+        if (fontType != null) {
+            val styleId = fontType.style
+            theme.applyStyle(styleId, true)
         }
 
-        if(colorSpace != null) {
-            int colorSpaceId = colorSpace.getStyle();
-            getTheme().applyStyle(colorSpaceId, true);
+        if (colorSpace != null) {
+            val colorSpaceId = colorSpace.style
+            theme.applyStyle(colorSpaceId, true)
         }
-
     }
 
     /** @param language The desired new language */
-    public boolean setLanguage(@NonNull String language) {
-        boolean isChanged = false;
+    fun setLanguage(language: String): Boolean {
+        var isChanged = false
 
-        Locale defaultLocale = Locale.getDefault();
-        Locale locale = new Locale(language);
-        if (!(defaultLocale.getLanguage().equalsIgnoreCase(locale.getLanguage()))) {
-            isChanged = true;
+        val defaultLocale = Locale.getDefault()
+        val locale = Locale(language)
+        if (!(defaultLocale.language.equals(locale.language, ignoreCase = true))) {
+            isChanged = true
         }
 
-        Locale.setDefault(locale);
-        Configuration config = getResources().getConfiguration();
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
 
-        return isChanged;
+        return isChanged
     }
 
-    /** @return the abbreviation of the chosen language that's saved to file */
-    public String getAppLanguage() {
-        return globalPreferencesViewModel.getLanguageName();
-    }
+    val appLanguage: String
+        /** @return the abbreviation of the chosen language that's saved to file
+         */
+        get() = globalPreferencesViewModel!!.languageName
 
-    public void automaticSignInAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Log.d("AutoLogin", "User not null!");
-            return;
+    fun automaticSignInAccount() {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            Log.d("AutoLogin", "User not null!")
+            return
         }
-        Log.d("AutoLogin", "User is null. Attempting silent log in.");
+        Log.d("AutoLogin", "User is null. Attempting silent log in.")
 
-        List<AuthUI.IdpConfig> providers = List.of(
-                new AuthUI.IdpConfig.GoogleBuilder().build());
+        val providers = List.of(
+            GoogleBuilder().build()
+        )
 
         AuthUI.getInstance()
-                .silentSignIn(this, providers)
-                .continueWithTask(task -> {
-                    if (task.isSuccessful()) {
-                        return task;
-                    } else {
-                        // Ignore any exceptions since we don't care about credential fetch errors.
-                        return FirebaseAuth.getInstance().signInAnonymously();
-                    }
-                }).addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Log.d("AuthUI", "Silent Anonymous login successful");
-                    } else {
-                        Log.d("AuthUI", "Silent Anonymous login failed!");
-                    }
-                });
+            .silentSignIn(this, providers)
+            .continueWithTask { task: Task<AuthResult?> ->
+                if (task.isSuccessful) {
+                    return@continueWithTask task
+                } else {
+                    // Ignore any exceptions since we don't care about credential fetch errors.
+                    return@continueWithTask FirebaseAuth.getInstance().signInAnonymously()
+                }
+            }
+            .addOnCompleteListener(this) { task: Task<AuthResult?> ->
+                if (task.isSuccessful) {
+                    Log.d("AuthUI", "Silent Anonymous login successful")
+                } else {
+                    Log.d("AuthUI", "Silent Anonymous login failed!")
+                }
+            }
     }
 
-    public FirebaseAnalytics getFirebaseAnalytics() {
-        return analytics;
-    }
+    val isPrivacyOptionsRequired: Boolean
+        // Show a privacy options button if required.
+        get() = (consentInformation!!.privacyOptionsRequirementStatus
+                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
 
-    // Show a privacy options button if required.
-    public boolean isPrivacyOptionsRequired() {
-        return consentInformation.getPrivacyOptionsRequirementStatus()
-                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
-    }
-
-    protected void createConsentInformation() {
-        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
-                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA)
-                .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
-                .build();
+    protected fun createConsentInformation() {
+        val debugSettings = ConsentDebugSettings.Builder(this)
+            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA)
+            .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
+            .build()
 
         // Create a ConsentRequestParameters object.
-        ConsentRequestParameters params = new ConsentRequestParameters
-                .Builder()
-                .setConsentDebugSettings(debugSettings)
-                .setTagForUnderAgeOfConsent(false)
-                .build();
+        val params = ConsentRequestParameters.Builder()
+            .setConsentDebugSettings(debugSettings)
+            .setTagForUnderAgeOfConsent(false)
+            .build()
 
 
-        consentInformation = UserMessagingPlatform.getConsentInformation(this);
-        consentInformation.requestConsentInfoUpdate(
-                this,
-                params,
-                () -> UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                        this,
-                        loadAndShowError -> {
-                            if (loadAndShowError != null) {
-                                // Consent gathering failed.
-                                Log.w("ConsentManagerV2", String.format("%s: %s",
-                                        loadAndShowError.getErrorCode(),
-                                        loadAndShowError.getMessage()));
-                            }
-
-                            // Consent has been gathered.
-                        }
-                ),
-                requestConsentError -> {
+        consentInformation = UserMessagingPlatform.getConsentInformation(this)
+        consentInformation?.let { consentInformation ->
+            consentInformation.requestConsentInfoUpdate(this, params, {
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) {
                     // Consent gathering failed.
+                    loadAndShowError: FormError? ->
+                        loadAndShowError?.let {
+                            Log.w("ConsentManagerV2", String.format("%s: %s",
+                                loadAndShowError.errorCode, loadAndShowError.message))
+                        }
+                    }
+                },
+                // Consent gathering failed.
+                { requestConsentError: FormError ->
                     Log.w("ConsentManagerV2", String.format("%s: %s",
-                            requestConsentError.getErrorCode(),
-                            requestConsentError.getMessage()));
-                });
-        // Check if you can initialize the Google Mobile Ads SDK in parallel
-        // while checking for new consent information. Consent obtained in
-        // the previous session can be used to request ads.
-        if (consentInformation.canRequestAds()) {
-            initializeMobileAdsSdk();
+                            requestConsentError.errorCode, requestConsentError.message))
+                })
+            // Check if you can initialize the Google Mobile Ads SDK in parallel
+            // while checking for new consent information. Consent obtained in
+            // the previous session can be used to request ads.
+            if (consentInformation.canRequestAds()) { initializeMobileAdsSdk() }
         }
+
     }
 
-    private void initializeMobileAdsSdk() {
-        if (isMobileAdsInitializeCalled.getAndSet(true)) {
-            return;
-        }
+    private fun initializeMobileAdsSdk() {
+        if (isMobileAdsInitializeCalled.getAndSet(true)) { return }
 
         // Initialize the Google Mobile Ads SDK.
-        MobileAds.initialize(this);
+        MobileAds.initialize(this)
 
         // TODO: Request an ad.
         // InterstitialAd.load(...);
     }
-
 }

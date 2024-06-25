@@ -27,27 +27,28 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
 
         leftListener = object : CarouselButtonListener() {
             override fun onAction() {
-                evidenceViewModel.difficultyCarouselData?.decrementIndex()
+                evidenceViewModel.difficultyCarouselModel?.decrementIndex()
                 print("Decrementing Diff")
-                evidenceViewModel.sanityModel?.tick()
+                evidenceViewModel.sanityModel?.reset()
             }
         }
 
         rightListener = object : CarouselButtonListener() {
             override fun onAction() {
-                evidenceViewModel.difficultyCarouselData?.incrementIndex()
+                evidenceViewModel.difficultyCarouselModel?.incrementIndex()
                 print("Incrementing Diff")
+                evidenceViewModel.sanityModel?.reset()
             }
         }
 
-        setName(evidenceViewModel.difficultyCarouselData?.currentName)
+        setName(evidenceViewModel.difficultyCarouselModel?.currentName)
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselData?.currentIndex?.collectLatest {
+            evidenceViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
                 setName(
-                    evidenceViewModel.difficultyCarouselData?.currentName
+                    evidenceViewModel.difficultyCarouselModel?.currentName
                         ?.split(" ")?.get(0)
                 )
             }

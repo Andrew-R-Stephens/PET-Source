@@ -30,15 +30,11 @@ class EvidenceListView : InvestigationListView {
 
     fun init(
         globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        evidenceViewModel: EvidenceViewModel?,
-        popupWindow: PopupWindow?,
+        evidenceViewModel: EvidenceViewModel?, popupWindow: PopupWindow?,
         progressBar: ProgressBar?, adRequest: AdRequest?, ghostList: GhostListView?
     ) {
         super.init(
-            globalPreferencesViewModel, evidenceViewModel,
-            popupWindow, progressBar, adRequest
-        )
-
+            globalPreferencesViewModel, evidenceViewModel, popupWindow, progressBar, adRequest)
         this.ghostList = ghostList
     }
 
@@ -52,28 +48,29 @@ class EvidenceListView : InvestigationListView {
             val popupRecord =
                 (popupData as EvidencePopupModel).getEvidencePopupRecordAt(i)
 
-            val evidenceView: EvidenceView = object : EvidenceView(context) {
-                override fun createPopup() {
-                    if (popupWindow != null) {
-                        popupWindow!!.dismiss()
+            evidenceViewModel?.let { evidenceViewModel ->
+                val evidenceView = EvidenceView(context)
+                evidenceView.evidenceViewListener = object: EvidenceView.EvidenceViewListener() {
+                    override fun onCreatePopup() {
+                        popupWindow?.dismiss()
+
+                        val evidencePopupWindow = EvidencePopupWindow(context)
+                        evidencePopupWindow.popupWindow = popupWindow
+                        evidencePopupWindow.build(evidenceViewModel, popupRecord, adRequest)
                     }
 
-                    val evidencePopupWindow =
-                        EvidencePopupWindow(context)
-                    evidencePopupWindow.popupWindow = popupWindow
-                    evidencePopupWindow.build(evidenceViewModel, popupRecord, adRequest)
+                    override fun onAttemptInvalidate() {
+                        ghostList?.attemptInvalidate(
+                            globalPreferencesViewModel?.reorderGhostViews ?: false)
+                    }
                 }
 
-                override fun requestInvalidateGhostContainer() {
-                    ghostList!!.requestInvalidateGhostContainer(
-                        globalPreferencesViewModel!!.reorderGhostViews
-                    )
+                ghostList?.let { ghostList ->
+                    evidenceView.build(evidenceViewModel, i, ghostList)
                 }
+
+                this.addView(evidenceView)
             }
-
-            evidenceView.build(evidenceViewModel!!, i, ghostList!!)
-
-            this.addView(evidenceView)
         }
     }
 }

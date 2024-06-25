@@ -199,7 +199,7 @@ class EvidencePopupWindow : InvestigationPopupWindow {
         //----
         closeButton.setOnClickListener { popupWindow?.dismiss() }
 
-        popupWindow!!.showAtLocation(rootView, Gravity.CENTER_VERTICAL, 0, 0)
+        popupWindow?.showAtLocation(rootView, Gravity.CENTER_VERTICAL, 0, 0)
 
         MobileAds.initialize(context) { }
         val mAdView = findViewById<AdView>(R.id.adView)

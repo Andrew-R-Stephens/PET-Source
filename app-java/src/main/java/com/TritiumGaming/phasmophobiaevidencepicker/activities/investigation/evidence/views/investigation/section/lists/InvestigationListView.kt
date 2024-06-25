@@ -25,23 +25,23 @@ abstract class InvestigationListView : LinearLayout {
     protected var popupData: InvestigationPopupModel? = null
 
     protected var popupWindow: PopupWindow? = null
-    protected var progressBar: ProgressBar? = null
+    private var progressBar: ProgressBar? = null
 
     protected var adRequest: AdRequest? = null
 
     constructor(context: Context?) :
-            super(context) { initView() }
+            super(context)
 
     constructor(context: Context?, attrs: AttributeSet?) :
-            super(context, attrs) { initView() }
+            super(context, attrs)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView() }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    fun initView() {
+    init {
         layoutParams = LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -73,14 +73,13 @@ abstract class InvestigationListView : LinearLayout {
 
     @SuppressLint("ClickableViewAccessibility")
     fun createViews() {
-        val activity = context as Activity
-        activity.runOnUiThread {
+        (context as Activity).runOnUiThread {
             buildViews()
-            post { haltProgressAnimation(progressBar!!) }
+            post { progressBar?.let { haltProgressAnimation(it) } }
         }
     }
 
-    protected fun haltProgressAnimation(progressBar: ProgressBar) {
+    private fun haltProgressAnimation(progressBar: ProgressBar) {
         progressBar.animate().alpha(0f).setDuration(250).setListener(
             object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {

@@ -1,113 +1,81 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
 
 /**
  * TitleScreenFragment class
  *
  * @author TritiumGamingStudios
  */
-public abstract class MainMenuFragment extends PETFragment {
+abstract class MainMenuFragment : PETFragment {
+    protected var mainMenuViewModel: MainMenuViewModel? = null
+    protected var newsLetterViewModel: NewsletterViewModel? = null
 
-    protected MainMenuViewModel mainMenuViewModel;
-    protected NewsletterViewModel newsLetterViewModel;
+    constructor() : super()
 
-    public MainMenuFragment() {
-        super();
+    constructor(layout: Int) : super(layout)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    public MainMenuFragment(int layout) {
-        super(layout);
+    override fun initViewModels() {
+        super.initGlobalPreferencesViewModel()
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    protected void initViewModels() {
-        super.initGlobalPreferencesViewModel();
-    }
-
-    protected void initMainMenuViewModel() {
+    protected fun initMainMenuViewModel() {
         if (mainMenuViewModel == null) {
-            try {
-                mainMenuViewModel =
-                        new ViewModelProvider(requireActivity()).get(MainMenuViewModel.class);
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            try { mainMenuViewModel =
+                    ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    protected void initNewsletterViewModel() {
+    protected fun initNewsletterViewModel() {
         if (newsLetterViewModel == null) {
-            try {
-                newsLetterViewModel =
-                        new ViewModelProvider(requireActivity())
-                                .get(NewsletterViewModel.class);
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
+            try { newsLetterViewModel =
+                ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    /**
-     * saveStates method
-     */
-    protected void saveNewsletterViewModel() {
-        if (newsLetterViewModel != null) {
-            try {
-                newsLetterViewModel.saveToFile(requireActivity());
-            } catch (IllegalStateException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    protected void initAdView(@NonNull AdView adView) {
-        if(mainMenuViewModel == null) { return; }
-
+    protected fun saveNewsletterViewModel() {
         try {
-            MobileAds.initialize(requireActivity(), initializationStatus -> {
-            });
-            if (!mainMenuViewModel.hasAdRequest()) {
-                mainMenuViewModel.setAdRequest(new AdRequest.Builder().build());
-            }
-            adView.loadAd(mainMenuViewModel.getAdRequest());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            newsLetterViewModel?.saveToFile(requireActivity())
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+
+    }
+
+    protected fun initAdView(adView: AdView) {
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            try {
+                MobileAds.initialize(requireActivity()) { initializationStatus: InitializationStatus? -> }
+                if (!mainMenuViewModel.hasAdRequest()) {
+                    mainMenuViewModel.adRequest = AdRequest.Builder().build()
+                }
+                mainMenuViewModel.adRequest?.let { adRequest -> adView.loadAd(adRequest) }
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    @Override
-    protected void backPressedHandler() {
-        super.backPressedHandler();
+    override fun backPressedHandler() {
+        super.backPressedHandler()
     }
 
-    @Override
-    protected void saveStates() {
-        super.saveStates();
-        saveNewsletterViewModel();
+    override fun saveStates() {
+        super.saveStates()
+        saveNewsletterViewModel()
     }
-
 }

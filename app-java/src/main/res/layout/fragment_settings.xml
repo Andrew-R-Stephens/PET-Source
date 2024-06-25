@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+<!--        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout27"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,6 +57,7 @@
                     android:layout_height="48dp"
                     app:PETImageButtonType="cancel"
                     android:clickable="false"
+                    android:tint="?attr/textColorBody"
                     app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
@@ -95,6 +96,7 @@
                     android:layout_height="48dp"
                     app:PETImageButtonType="confirm"
                     android:clickable="false"
+                    android:tint="?attr/textColorBody"
                     app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
@@ -119,20 +121,34 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+            android:id="@+id/navHeaderLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:NavHeaderLayoutButtonLeft="cancel"
+            app:NavHeaderLayoutButtonRight="confirm"
+            app:NavHeaderLayoutCenterTitle="@string/settings_title"
+            app:NavHeaderLayoutLeftTitle="@string/settings_cancel"
+            app:NavHeaderLayoutRightTitle="@string/settings_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout>
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/icon_strikethrough_1"
             android:backgroundTint="@color/white_M600"
             app:layout_constraintBottom_toTopOf="@+id/scrollView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout27" />
+            app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout" />
 
         <ScrollView
             android:id="@+id/scrollView6"
@@ -528,6 +544,7 @@
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
                                     app:PETImageButtonType="back"
+                                    android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout69"
                                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -567,6 +584,7 @@
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
                                     app:PETImageButtonType="forward"
+                                    android:tint="?attr/textColorBody"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/constraintLayout69"
@@ -620,6 +638,7 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:PETImageButtonType="back"
+                                android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout66"
                                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -661,6 +680,7 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:PETImageButtonType="forward"
+                                android:tint="?attr/textColorBody"
                                 app:layout_constraintBottom_toBottomOf="@+id/font_leftbutton"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/constraintLayout66"

@@ -182,7 +182,7 @@ fun SelectorContent(
         is Int -> SelectorContent(content)
         is View -> SelectorContent(contentView = content)
         is Composable -> SelectorContent(
-            composable = { content as Composable }
+            composable = { content }
         )
     }
 }

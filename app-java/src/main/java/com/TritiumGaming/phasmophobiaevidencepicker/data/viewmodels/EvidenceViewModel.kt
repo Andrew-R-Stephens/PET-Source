@@ -21,8 +21,8 @@ class EvidenceViewModel : ViewModel() {
     private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
     val radioButtonsChecked = _radioButtonsChecked.asStateFlow()
 
-    var investigationData: InvestigationModel? = null
-    var ghostOrderData: GhostOrderModel? = null
+    var investigationModel: InvestigationModel? = null
+    var ghostOrderModel: GhostOrderModel? = null
         private set
 
     var sanityModel: SanityModel? = null
@@ -31,9 +31,9 @@ class EvidenceViewModel : ViewModel() {
     var timerModel: PhaseTimerModel? = null
         private set
 
-    var mapCarouselData: MapCarouselModel? = null
+    var mapCarouselModel: MapCarouselModel? = null
         private set
-    var difficultyCarouselData: DifficultyCarouselModel? = null
+    var difficultyCarouselModel: DifficultyCarouselModel? = null
         private set
 
     var sanityRunnable: SanityRunnable? = null
@@ -55,7 +55,7 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initInvestigationData(context: Context) {
-        investigationData = investigationData ?: InvestigationModel(context, this)
+        investigationModel = investigationModel ?: InvestigationModel(context, this)
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
@@ -65,8 +65,8 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initGhostOrderData() {
-        ghostOrderData =
-            ghostOrderData ?: GhostOrderModel(this)
+        ghostOrderModel =
+            ghostOrderModel ?: GhostOrderModel(this)
     }
 
     private fun initSanityModel() {
@@ -75,31 +75,23 @@ class EvidenceViewModel : ViewModel() {
     }
 
     private fun initMapCarouselModel(context: Context) {
-        mapCarouselData =
-            mapCarouselData ?: MapCarouselModel(context, this)
+        mapCarouselModel =
+            mapCarouselModel ?: MapCarouselModel(context, this)
     }
 
     private fun initDifficultyCarouselModel(context: Context) {
-        difficultyCarouselData =
-            difficultyCarouselData ?: DifficultyCarouselModel(context, this)
+        difficultyCarouselModel =
+            difficultyCarouselModel ?: DifficultyCarouselModel(context, this)
     }
 
     fun hasSanityRunnable(): Boolean {
         return sanityRunnable != null
     }
 
-    fun hasSanityModel(): Boolean {
-        return sanityModel != null
-    }
-
-    fun hasTimerModel(): Boolean {
-        return timerModel != null
-    }
-
     private fun createRadioButtonsChecked() {
         _radioButtonsChecked.value.clear()
 
-        investigationData?.evidenceList?.list?.forEach { _ ->
+        investigationModel?.evidenceList?.list?.forEach { _ ->
             _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
     }
@@ -128,8 +120,11 @@ class EvidenceViewModel : ViewModel() {
 
     private fun updateRejectionPile() {
         rejectionPile = BooleanArray(GhostListModel.getCount())
-        for (i in rejectionPile!!.indices) {
-            rejectionPile!![i] = investigationData!!.ghostList.getAt(i).isForcefullyRejected
+        rejectionPile?.let { rejectionPile ->
+            for (i in rejectionPile.indices) {
+                rejectionPile[i] =
+                    investigationModel?.ghostList?.getAt(i)?.isForcefullyRejected == true
+            }
         }
     }
 
@@ -139,11 +134,10 @@ class EvidenceViewModel : ViewModel() {
     }
 
     fun getRejectedStatus(index: Int): Boolean {
-        val pile = getRejectionPile()
-        return (
-            if (index >= 0 && index < pile!!.size) false
-            else pile?.get(index) ?: false
-        )
+        getRejectionPile()?.let { pile ->
+            return !(index >= 0 && index < pile.size)
+        }
+        return false
     }
 
     /*
@@ -158,10 +152,10 @@ class EvidenceViewModel : ViewModel() {
 
     fun reset() {
         resetRadioButtonsChecked()
-        ghostOrderData?.createOrder()
+        ghostOrderModel?.createOrder()
         createRejectionPile()
         timerModel?.reset()
-        investigationData?.reset()
+        investigationModel?.reset()
         sanityModel?.reset()
     }
 

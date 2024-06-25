@@ -53,7 +53,7 @@ class AccountIconView : MaterialCardView {
     fun createAccountInitials(displayName: String?) {
         val displayInitials = getCurrentFirebaseUserDisplayNameInitials(displayName)
 
-        setAccountInitials(displayInitials?:"")
+        setAccountInitials(displayInitials)
     }
 
     private fun setAccountInitials(initials: Int) {

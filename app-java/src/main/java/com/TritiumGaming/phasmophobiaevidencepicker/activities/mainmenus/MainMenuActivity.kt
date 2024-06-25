@@ -1,154 +1,144 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
 
-import android.content.Intent;
-import android.content.IntentSender;
-import android.os.Bundle;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.OnboardingViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.UpdateAvailability;
-
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.content.Intent
+import android.content.IntentSender.SendIntentException
+import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.OnboardingViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
+import com.google.android.play.core.appupdate.AppUpdateInfo
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * TestActivity class
  *
  * @author TritiumGamingStudios
  */
-public class MainMenuActivity extends PETActivity {
+class MainMenuActivity : PETActivity() {
+    protected var onboardingViewModel: OnboardingViewModel? = null
+    protected var newsLetterViewModel: NewsletterViewModel? = null
 
-    protected OnboardingViewModel onboardingViewModel;
-    protected NewsletterViewModel newsLetterViewModel;
+    private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
+    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
-    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
-    private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
+    protected var appUpdateManager: AppUpdateManager? = null
+    protected var updateType: Int = AppUpdateType.IMMEDIATE
 
-    protected AppUpdateManager appUpdateManager;
-    protected int updateType = AppUpdateType.IMMEDIATE;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_mainmenu);
-        Log.d("MainMenuActivity", "OnCreate");
+        setContentView(R.layout.activity_mainmenu)
+        Log.d("MainMenuActivity", "OnCreate")
 
         //requestOnboardingActivity();
 
         //showConsentForm();
         //requestAdsConsentInformation(); Moved to PETActivity
-        createConsentInformation();
+        createConsentInformation()
     }
 
-    @NonNull
-    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
+    override fun initViewModels(): AndroidViewModelFactory? {
+        val factory: AndroidViewModelFactory? = super.initViewModels()
 
-        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
+        factory?.let {
+            initOnboardingViewModel(factory)
+            initNewsletterViewModel(factory)
 
-        initOnboardingViewModel(factory);
-        initNewsletterViewModel(factory);
-
-        return factory;
+        }
+        return factory
     }
 
-    private void initOnboardingViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        onboardingViewModel = factory.create(
-                OnboardingViewModel.class);
-        onboardingViewModel = new ViewModelProvider(this).get(
-                OnboardingViewModel.class);
+    private fun initOnboardingViewModel(factory: AndroidViewModelFactory) {
+        onboardingViewModel = factory.create(OnboardingViewModel::class.java)
+        onboardingViewModel = ViewModelProvider(this)[OnboardingViewModel::class.java]
     }
 
-    private void initNewsletterViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        newsLetterViewModel = factory.create(
-                NewsletterViewModel.class);
-        newsLetterViewModel = new ViewModelProvider(this).get(
-                NewsletterViewModel.class);
+    private fun initNewsletterViewModel(factory: AndroidViewModelFactory) {
+        newsLetterViewModel = factory.create(NewsletterViewModel::class.java)
+        newsLetterViewModel = ViewModelProvider(this)[NewsletterViewModel::class.java]
         //newsLetterViewModel.init(this);
     }
 
-    public boolean checkForAppUpdates() {
-        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+    fun checkForAppUpdates(): Boolean {
+        appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
 
-        AtomicBoolean hasUpdate = new AtomicBoolean(false);
+        val hasUpdate = AtomicBoolean(false)
 
-        appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
-            boolean isUpdateAvailable = info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE;
-            boolean isUpdateAllowed = updateType == AppUpdateType.IMMEDIATE;
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { info: AppUpdateInfo ->
+            val isUpdateAvailable = info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+            val isUpdateAllowed = updateType == AppUpdateType.IMMEDIATE
             if (isUpdateAvailable && isUpdateAllowed) {
                 try {
-                    appUpdateManager.startUpdateFlowForResult(info, updateType, MainMenuActivity.this, 123);
-                    hasUpdate.set(true);
-                } catch (IntentSender.SendIntentException e) {
-                    throw new RuntimeException(e);
-                }
+                    appUpdateManager?.startUpdateFlowForResult(
+                        info, updateType, this@MainMenuActivity, 123)
+                    hasUpdate.set(true)
+                } catch (e: SendIntentException) { throw RuntimeException(e) }
             }
-        });
+        }
 
-        return hasUpdate.get();
+        return hasUpdate.get()
     }
 
-    private void completePendingAppUpdates() {
-        if(appUpdateManager != null && updateType == AppUpdateType.IMMEDIATE) {
-            appUpdateManager.getAppUpdateInfo().addOnSuccessListener(info -> {
-                if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    try {
-                        appUpdateManager.startUpdateFlowForResult(info, updateType, MainMenuActivity.this, 123);
-                    } catch (IntentSender.SendIntentException e) {
-                        throw new RuntimeException(e);
+    private fun completePendingAppUpdates() {
+        appUpdateManager?.let { appUpdateManager ->
+            if (updateType == AppUpdateType.IMMEDIATE) {
+                appUpdateManager.appUpdateInfo.addOnSuccessListener { info: AppUpdateInfo ->
+                    if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                        try {
+                            appUpdateManager.startUpdateFlowForResult(
+                                info, updateType, this@MainMenuActivity, 123)
+                        } catch (e: SendIntentException) { throw RuntimeException(e) }
                     }
                 }
-            });
+            }
+        }
+
+    }
+
+    fun requestOnboardingActivity() {
+        if (onboardingViewModel != null && onboardingViewModel!!.showIntroduction) {
+            Log.d("Onboarding", "Starting Activity")
+            startActivity(Intent(this, OnboardingActivity::class.java))
         }
     }
 
-    public void requestOnboardingActivity() {
-        if (onboardingViewModel != null && onboardingViewModel.getShowIntroduction()) {
-            Log.d("Onboarding", "Starting Activity");
-            startActivity(new Intent(this, OnboardingActivity.class));
-        }
-    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 123) {
-            if(resultCode != RESULT_OK) {
-                Log.e("UpdateResult", "Update Failed!");
-            } else {
-                Log.e("UpdateResult", "Update Succeeded!");
+        if (requestCode == 123) {
+            when (resultCode) {
+                RESULT_OK -> Log.e("UpdateResult", "Update Failed!")
+                else -> Log.e("UpdateResult", "Update Succeeded!")
             }
         }
     }
 
-    public void initPreferences() {
-        super.initPreferences();
+    public override fun loadPreferences() {
+        super.loadPreferences()
 
-        globalPreferencesViewModel.incrementAppOpenCount(getApplicationContext());
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
 
-        //set language
-        if (setLanguage(globalPreferencesViewModel.getLanguage(getApplicationContext()))) {
-            recreate();
+            //set language
+            if (setLanguage(globalPreferencesViewModel.getLanguage(applicationContext))) {
+                recreate()
+            }
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
 
-        completePendingAppUpdates();
+        completePendingAppUpdates()
     }
-
 }

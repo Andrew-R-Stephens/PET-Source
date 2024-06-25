@@ -12,51 +12,47 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setRulingGroup
 
-abstract class EvidenceView : ConstraintLayout {
-
-    @ColorInt
-    var fontEmphasisColor: Int = 0
+class EvidenceView : ConstraintLayout {
 
     constructor(context: Context) :
-            super(context) { initView(context) }
+            super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(context) }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(context) }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView(context) }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    fun initView(context: Context) {
+    init {
         inflate(context, R.layout.item_investigation_evidence, this)
+        setDefaults()
+    }
 
+    private fun setDefaults() {
         val params =
             LinearLayoutCompat.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT, 1f
             )
         layoutParams = params
-
-        fontEmphasisColor = getColorFromAttribute(getContext(), R.attr.textColorBodyEmphasis)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int, ghostList: LinearLayout) {
-        val name = findViewById<AppCompatTextView>(R.id.label_name)
-        name.text = evidenceViewModel.investigationData!!.evidenceList
-            .list[groupIndex].name
+        val nameView = findViewById<AppCompatTextView>(R.id.label_name)
+        nameView.text =
+            evidenceViewModel.investigationModel?.evidenceList?.list?.get(groupIndex)?.name
 
         val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
         setRulingGroup(radioGroupComposable, evidenceViewModel, groupIndex) {
@@ -79,17 +75,15 @@ abstract class EvidenceView : ConstraintLayout {
             .setDuration(100)
 
         val evidenceNameGesture = EvidenceNameGesture()
-        val nameDetector =
-            GestureDetector(context, evidenceNameGesture)
-        name.setOnTouchListener { _: View?, motionEvent: MotionEvent? ->
-            nameDetector.onTouchEvent(
-                motionEvent!!
-            )
+        val nameDetector = GestureDetector(context, evidenceNameGesture)
+        nameView.setOnTouchListener { _: View?, motionEvent: MotionEvent? ->
+            motionEvent?.let { nameDetector.onTouchEvent(motionEvent) }
+            true
         }
     }
 
     private fun onSelectEvidenceIcon(ghostContainer: LinearLayout) {
-        requestInvalidateGhostContainer()
+        evidenceViewListener?.onAttemptInvalidate()
 
         val parentScroller = (ghostContainer.parent as ScrollView)
         parentScroller.smoothScrollTo(0, 0)
@@ -102,12 +96,14 @@ abstract class EvidenceView : ConstraintLayout {
         }
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {
-            createPopup()
+            evidenceViewListener?.onCreatePopup()
             return true
         }
     }
 
-    abstract fun createPopup()
-
-    abstract fun requestInvalidateGhostContainer()
+    var evidenceViewListener: EvidenceViewListener? = null
+    abstract class EvidenceViewListener {
+        abstract fun onCreatePopup()
+        abstract fun onAttemptInvalidate()
+    }
 }

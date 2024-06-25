@@ -1,244 +1,203 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation
 
-import android.os.Bundle;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
+import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 
 /**
  * InvestigationActivity class
  *
  * @author TritiumGamingStudios
  */
-public class InvestigationActivity extends PETActivity {
+open class InvestigationActivity : PETActivity() {
+    protected var evidenceViewModel: EvidenceViewModel? = null
+    protected var objectivesViewModel: ObjectivesViewModel? = null
+    protected var mapMenuViewModel: MapMenuViewModel? = null
 
-    protected EvidenceViewModel evidenceViewModel;
-    protected ObjectivesViewModel objectivesViewModel;
-    protected MapMenuViewModel mapMenuViewModel;
+    var drawerLayout: DrawerLayout? = null
+    var actionBarDrawerToggle: ActionBarDrawerToggle? = null
 
-    public DrawerLayout drawerLayout;
-    public ActionBarDrawerToggle actionBarDrawerToggle;
+    var navigationBarView: NavigationBarView? = null
 
-    public NavigationBarView navigationBarView;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_investigation);
+        setContentView(R.layout.activity_investigation)
     }
 
-    @NonNull
-    protected ViewModelProvider.AndroidViewModelFactory initViewModels() {
+    override fun initViewModels(): AndroidViewModelFactory? {
+        super.initViewModels()
 
-        super.initViewModels();
-
-        ViewModelProvider.AndroidViewModelFactory factory = super.initViewModels();
-
-        initEvidenceViewModel(factory);
-        initObjectivesViewModel(factory);
-        initMapMenuViewModel(factory);
-
-        return factory;
-    }
-
-    private void initMapMenuViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        mapMenuViewModel = factory.create(
-                MapMenuViewModel.class);
-    }
-
-    private void initObjectivesViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        objectivesViewModel = factory.create(
-                ObjectivesViewModel.class);
-    }
-
-    private void initEvidenceViewModel(@NonNull ViewModelProvider.AndroidViewModelFactory factory) {
-        evidenceViewModel = factory.create(
-                EvidenceViewModel.class);
-    }
-
-    protected void initPreferences() {
-        super.initPreferences();
-
-        setLanguage(getAppLanguage());
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        recreate();
-    }
-
-    public void resetViewModels() {
-        if(objectivesViewModel != null) {
-            objectivesViewModel.reset();
+        val factory: AndroidViewModelFactory? = super.initViewModels()
+        factory?.let {
+            initEvidenceViewModel(factory)
+            initObjectivesViewModel(factory)
+            initMapMenuViewModel(factory)
         }
-        if(evidenceViewModel != null) {
-            evidenceViewModel.reset();
+
+        return factory
+    }
+
+    private fun initMapMenuViewModel(factory: AndroidViewModelFactory) {
+        mapMenuViewModel = factory.create(MapMenuViewModel::class.java)
+    }
+
+    private fun initObjectivesViewModel(factory: AndroidViewModelFactory) {
+        objectivesViewModel = factory.create(ObjectivesViewModel::class.java)
+    }
+
+    private fun initEvidenceViewModel(factory: AndroidViewModelFactory) {
+        evidenceViewModel = factory.create(EvidenceViewModel::class.java)
+    }
+
+    override fun loadPreferences() {
+        super.loadPreferences()
+        setLanguage(appLanguage)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        recreate()
+    }
+
+    private fun resetViewModels() {
+        objectivesViewModel?.reset()
+        evidenceViewModel?.reset()
+    }
+
+    fun initNavigationComponents() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment?
+
+        Log.d("NavHostFragment", if (navHostFragment == null) "null" else "not null")
+
+        navHostFragment?.navController?.let { navController ->
+            val navBarView = findViewById<NavigationBarView>(R.id.item_navigation_bar)
+            Log.d("Bar", if (navBarView == null) "null" else "not null")
+            setNavigationBarBehavior(navBarView, navController)
+
+            val navDrawerView = findViewById<NavigationView>(R.id.layout_navigation_drawer_view)
+            Log.d("Drawer", if (navDrawerView == null) "null" else "not null")
+            buildNavigationDrawer(navDrawerView, navController)
         }
+
     }
 
-    public void initNavigationComponents() {
+    private fun buildNavigationDrawer(navView: NavigationView?, navController: NavController) {
+        drawerLayout = findViewById(R.id.layout_navigation_drawer)
 
-        NavHostFragment navHostFragment =
-                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
-        Log.d("NavHostFragment", navHostFragment == null ? "null" : "not null");
-        if(navHostFragment == null) { return; }
-
-        NavController navController = navHostFragment.getNavController();
-
-        NavigationBarView navBarView = findViewById(R.id.item_navigation_bar);
-        Log.d("Bar", navBarView == null ? "null" : "not null");
-        setNavigationBarBehavior(navBarView, navController);
-
-        NavigationView navDrawerView = findViewById(R.id.layout_navigation_drawer_view);
-        Log.d("Drawer", navDrawerView == null ? "null" : "not null");
-        buildNavigationDrawer(navDrawerView, navController);
-    }
-
-    private void buildNavigationDrawer(NavigationView navView, @NonNull NavController navController) {
-        drawerLayout = findViewById(R.id.layout_navigation_drawer);
-
-        if(drawerLayout == null) { return; }
-
-        actionBarDrawerToggle = new ActionBarDrawerToggle(
+        drawerLayout?.let { drawerLayout ->
+            actionBarDrawerToggle = ActionBarDrawerToggle(
                 this, drawerLayout,
                 R.string.navigation_open_state,
-                R.string.navigation_closed_state);
+                R.string.navigation_closed_state
+            )
 
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        // to make the Navigation drawer icon always appear on the action bar
-        //getActivity().getSupportFragmentManager().setDisplayHomeAsUpEnabled(true);
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        setNavigationDrawerBehavior(navView, navController);
-    }
-
-    private void setNavigationDrawerBehavior(@Nullable NavigationView navView, @NonNull NavController navController) {
-
-        if(drawerLayout != null) {
-
-            if(navView != null) {
-                NavigationUI.setupWithNavController(navView, navController);
-
-                navView.setNavigationItemSelectedListener(item -> {
-
-                    boolean success = NavigationUI.onNavDestinationSelected(item, navController);
-                    if(success) {
-                        drawerLayout.closeDrawer(GravityCompat.START);
-
-                        return true;
-                    }
-
-                    if(drawerLayout != null) {
-                        if (item.getItemId() == (R.id.action_home)) {
-                            finish();
-                        }
-                    }
-
-                    return true;
-                });
-
+            // pass the Open and Close toggle for the drawer layout listener
+            // to toggle the button
+            actionBarDrawerToggle?.let { actionBarDrawerToggle ->
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                drawerLayout.addDrawerListener(actionBarDrawerToggle)
+                actionBarDrawerToggle.syncState()
             }
+
+            // to make the Navigation drawer icon always appear on the action bar
+            //getActivity().getSupportFragmentManager().setDisplayHomeAsUpEnabled(true);
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
+
+        setNavigationDrawerBehavior(navView, navController)
     }
 
-    public void setNavigationBarBehavior(@Nullable NavigationBarView navView, @NonNull NavController navController) {
-
-        if(navView != null) {
-            this.navigationBarView = navView;
-
-            NavigationUI.setupWithNavController(navView, navController);
-
-            navView.setOnItemSelectedListener(item -> {
-
-                if(NavigationUI.onNavDestinationSelected(item, navController)) {
-                    if(drawerLayout != null) {
-
-                        drawerLayout.closeDrawer(GravityCompat.START);
+    private fun setNavigationDrawerBehavior(
+        navView: NavigationView?, navController: NavController) {
+        navView?.let {
+            setupWithNavController(navView, navController)
+            navView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
+                drawerLayout?.let { drawerLayout ->
+                    if (onNavDestinationSelected(item, navController)) {
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                        return@OnNavigationItemSelectedListener true
                     }
-
-                    return true;
-                }
-
-                if (item.getItemId() == (R.id.open_menu)) {
-                    if(drawerLayout != null) {
-                        if (drawerLayout.isOpen()) {
-                            drawerLayout.closeDrawer(GravityCompat.START);
-
-                        } else {
-                            drawerLayout.openDrawer(GravityCompat.START);
-                        }
-
+                    if (item.itemId == (R.id.action_home)) {
+                        finish()
                     }
                 }
-                return true;
+                true
+            })
+        }
+    }
 
-            });
+    fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
+        navView?.let {
+            this.navigationBarView = navView
 
-            navView.setItemIconTintList(null);
+            setupWithNavController(navView, navController)
+
+            navView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item: MenuItem ->
+                if (onNavDestinationSelected(item, navController)) {
+                    if (drawerLayout != null) {
+                        drawerLayout!!.closeDrawer(GravityCompat.START)
+                    }
+
+                    return@OnItemSelectedListener true
+                }
+                if (item.itemId == (R.id.open_menu)) {
+                    drawerLayout?.let { drawerLayout ->
+                        when (drawerLayout.isOpen) {
+                            true -> drawerLayout.closeDrawer(GravityCompat.START)
+                            false -> drawerLayout.openDrawer(GravityCompat.START)
+                        }
+                    }
+                }
+                true
+            })
+
+            navView.itemIconTintList = null
         }
     }
 
 
-    public boolean closeNavigationDrawer() {
-        if(drawerLayout != null) {
-            if (drawerLayout.isOpen()) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+    fun closeNavigationDrawer(): Boolean {
+        drawerLayout?.let { drawerLayout ->
+            if (drawerLayout.isOpen) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                return true
             }
         }
-        return false;
+        return false
     }
 
-    @Override
-    protected void onStart() {
-
-        super.onStart();
+    override fun onStart() {
+        super.onStart()
     }
 
-    /**
-     * Resets ObjectiveViewModel and EvidenceViewModel data upon Activity exit
-     */
-    @Override
-    public void onBackPressed() {
+    override fun onBackPressed() {
+        resetViewModels()
 
-        resetViewModels();
-
-        super.onBackPressed();
+        super.onBackPressed()
     }
 
-    @Override
-    public void finish() {
+    override fun finish() {
+        resetViewModels()
 
-        resetViewModels();
-
-        super.finish();
+        super.finish()
     }
-
 }

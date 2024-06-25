@@ -56,31 +56,27 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 val runnable = SanityRunnable(evidenceViewModel, globalPreferencesViewModel)
                 runnable.huntWarningAudioListener =
                     object : SanityRunnable.HuntWarningAudioListener() {
-                        override fun init() {
-                            mediaPlayer = getHuntWarningAudio(appLang)
-                        }
+                        override fun init() { mediaPlayer = getHuntWarningAudio(appLang) }
                         override fun play() {
-                            if(globalPreferencesViewModel.isHuntWarningAudioAllowed) {
+                            if(globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
                                 mediaPlayer?.start()
-                                evidenceViewModel.sanityModel?.warnTriggered = true
+                                evidenceViewModel?.sanityModel?.warnTriggered = true
                             }
                         }
-
-                        override fun stop() {
-                            mediaPlayer?.release()
-                        }
+                        override fun stop() { mediaPlayer?.release() }
                     }
-                evidenceViewModel.sanityRunnable = runnable
-
+                evidenceViewModel?.sanityRunnable = runnable
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
 
+            Log.d("SanityThread", if(sanityThread == null) "DNE" else "Exists")
             if (sanityThread == null) {
-                if (evidenceViewModel.hasSanityRunnable()) {
+                Log.d("SanityRunnable", if(evidenceViewModel?.sanityRunnable == null) "DNE" else "Exists")
+                if (evidenceViewModel?.hasSanityRunnable() == true) {
                     sanityThread = object : Thread() {
                         override fun run() {
-                            while (evidenceViewModel.timerModel?.paused?.value == false) {
+                            while (evidenceViewModel?.timerModel?.paused?.value == false) {
                                 try {
                                     update()
                                     tick()
@@ -101,17 +97,14 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                             var wait = (timeOptimal - updateTime) / 1000000
                             if (wait < 0) { wait = 1 }
 
-                            if (evidenceViewModel != null && evidenceViewModel.hasSanityRunnable())
-                                evidenceViewModel.sanityRunnable?.wait = wait
+                            evidenceViewModel?.sanityRunnable?.wait = wait
 
                             sleep(wait)
                         }
 
                         private fun update() {
                             try {
-                                requireActivity().runOnUiThread(
-                                    evidenceViewModel.sanityRunnable
-                                )
+                                requireActivity().runOnUiThread(evidenceViewModel?.sanityRunnable)
                             } catch (e: IllegalStateException) {
                                 e.printStackTrace()
                             }
@@ -127,12 +120,13 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
      * disableUIThread method
      */
     private fun disableUIThread() {
-            sanityThread?.interrupt()
+        sanityThread?.interrupt()
 
+        evidenceViewModel?.let { evidenceViewModel ->
             evidenceViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
             evidenceViewModel.sanityRunnable = null
-
-            sanityThread = null
+        }
+        sanityThread = null
     }
 
     private fun getHuntWarningAudio(appLang: String): MediaPlayer? {
@@ -156,7 +150,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onPause() {
         disableUIThread()
 
-        evidenceViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
+        evidenceViewModel?.sanityRunnable?.huntWarningAudioListener?.stop()
 
         super.onPause()
     }

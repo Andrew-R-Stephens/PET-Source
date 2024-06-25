@@ -1,139 +1,119 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+abstract class InvestigationFragment : PETFragment {
+    protected var evidenceViewModel: EvidenceViewModel? = null
+    protected var objectivesViewModel: ObjectivesViewModel? = null
+    protected var mapMenuViewModel: MapMenuViewModel? = null
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+    protected var adRequest: AdRequest? = null
 
-public abstract class InvestigationFragment extends PETFragment {
+    constructor() : super()
 
-    protected EvidenceViewModel evidenceViewModel;
-    protected ObjectivesViewModel objectivesViewModel;
-    protected MapMenuViewModel mapMenuViewModel;
+    constructor(layout: Int) : super(layout)
 
-    protected AdRequest adRequest;
-
-    public InvestigationFragment() {
-        super();
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    public InvestigationFragment(int layout) {
-        super(layout);
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
-
-        super.init();
+        super.init()
 
         try {
-            ((InvestigationActivity) requireActivity()).initNavigationComponents();
-        } catch (IllegalStateException e) {
-             e.printStackTrace();
+            (requireActivity() as InvestigationActivity).initNavigationComponents()
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
 
-        initAd(view.findViewById(R.id.adView));
+        initAd(view.findViewById(R.id.adView))
     }
 
-    protected void initViewModels() {
-        initGlobalPreferencesViewModel();
-        initEvidenceViewModel();
-        initObjectivesViewModel();
-        initMapMenuViewModel();
+    override fun initViewModels() {
+        initGlobalPreferencesViewModel()
+        initEvidenceViewModel()
+        initObjectivesViewModel()
+        initMapMenuViewModel()
     }
 
-    private void initMapMenuViewModel() {
+    private fun initMapMenuViewModel() {
         if (mapMenuViewModel == null) {
-            mapMenuViewModel = new ViewModelProvider(requireActivity()).get(MapMenuViewModel.class);
-            mapMenuViewModel.init(requireContext());
+            mapMenuViewModel =
+                ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
+            mapMenuViewModel?.init(requireContext())
         }
     }
 
-    private void initObjectivesViewModel() {
+    private fun initObjectivesViewModel() {
         if (objectivesViewModel == null) {
             objectivesViewModel =
-                    new ViewModelProvider(requireActivity()).get(ObjectivesViewModel.class);
-            objectivesViewModel.init(requireContext());
+                ViewModelProvider(requireActivity())[ObjectivesViewModel::class.java]
+            objectivesViewModel?.init(requireContext())
         }
     }
 
-    private void initEvidenceViewModel() {
+    private fun initEvidenceViewModel() {
         if (evidenceViewModel == null) {
             evidenceViewModel =
-                    new ViewModelProvider(requireActivity()).get(EvidenceViewModel.class);
-            evidenceViewModel.init(requireContext());
+                ViewModelProvider(requireActivity()).get(EvidenceViewModel::class.java)
+            evidenceViewModel?.init(requireContext())
         }
     }
 
-    public abstract void reset();
+    protected fun initAd(mAdView: AdView?) {
+        if (mAdView == null) { return }
 
-    protected void initAd(@Nullable AdView mAdView) {
-        if(mAdView == null) {
-            return;
-        }
-
-        MobileAds.initialize(requireContext(), initializationStatus -> { });
-        adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        MobileAds.initialize(requireContext()) { }
+        adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest!!)
     }
 
-    public void backPressedHandler() {
-
+    override fun backPressedHandler() {
         try {
-            if (((InvestigationActivity) requireActivity()).closeNavigationDrawer()) {
-                return;
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            if ((requireActivity() as InvestigationActivity).closeNavigationDrawer()) { return }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+
+        if (popupWindow?.isShowing == true) {
+            popupWindow?.dismiss()
+            return
         }
 
-        if(popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
-            return;
-        }
-
-        Log.d("Backstack", "Popping");
+        Log.d("Backstack", "Popping")
         try {
-            if(!Navigation.findNavController(requireView()).popBackStack()) {
-                Log.d("Backstack", "Could not Pop");
-                requireActivity().finish();
+            if (!findNavController(requireView()).popBackStack()) {
+                Log.d("Backstack", "Could not Pop")
+                requireActivity().finish()
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
     }
 
-    @Override
-    protected void saveStates(){
-        super.saveStates();
+    /*
+    override fun saveStates() {
+        super.saveStates()
     }
+    */
+
+    abstract fun reset()
 
 }
 

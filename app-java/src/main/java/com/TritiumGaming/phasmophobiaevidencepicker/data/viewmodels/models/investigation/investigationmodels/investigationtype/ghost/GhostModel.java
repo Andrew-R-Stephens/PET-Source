@@ -124,10 +124,10 @@ public class GhostModel {
 
         boolean isNightmare =
                 investigationData.getEvidenceViewModel()
-                        .getDifficultyCarouselData().isDifficulty(3);
+                        .getDifficultyCarouselModel().isDifficulty(3);
         boolean isInsanity =
                 investigationData.getEvidenceViewModel()
-                        .getDifficultyCarouselData().isDifficulty(4);
+                        .getDifficultyCarouselModel().isDifficulty(4);
 
         int maxPosScore = isInsanity ? 1 : isNightmare ? 2 : 3;
 

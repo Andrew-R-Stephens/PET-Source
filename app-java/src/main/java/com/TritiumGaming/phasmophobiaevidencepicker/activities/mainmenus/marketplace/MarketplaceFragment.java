@@ -269,7 +269,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                             DocumentReference documentReference = documentSnapshot.getReference();
 
                             String uuid = documentReference.getId();
-                            ThemeModel customTheme = globalPreferencesViewModel.getColorThemeControl()
+                            ThemeModel customTheme = getGlobalPreferencesViewModel().getColorThemeControl()
                                     .getThemeByUUID(uuid);
                             customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
                         }
@@ -297,7 +297,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
                         String uuid = documentReference.getId();
                         ThemeModel customTheme =
-                                globalPreferencesViewModel.getColorThemeControl().getThemeByUUID(uuid);
+                                getGlobalPreferencesViewModel().getColorThemeControl().getThemeByUUID(uuid);
                         customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
                     }
 
@@ -390,7 +390,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
+                    getGlobalPreferencesViewModel().getNetworkPreference())) {
 
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
@@ -470,7 +470,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
+                    getGlobalPreferencesViewModel().getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
                 processCompleteListener.onFailure();
@@ -520,7 +520,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                     }
                     if (marketSingleTheme != null) {
                         ThemeModel customTheme =
-                                globalPreferencesViewModel.getColorThemeControl()
+                                getGlobalPreferencesViewModel().getColorThemeControl()
                                         .getThemeByUUID(uuid);
 
                         marketSingleTheme = new MarketSingleThemeModel(uuid, marketSingleTheme, customTheme);
@@ -607,7 +607,7 @@ public class MarketplaceFragment extends MainMenuFragment {
                     if (bundle != null) {
                         ArrayList<ThemeModel> customThemes = new ArrayList<>();
                         for(String themeID: themeIDs) {
-                            customThemes.add(globalPreferencesViewModel.getColorThemeControl()
+                            customThemes.add(getGlobalPreferencesViewModel().getColorThemeControl()
                                     .getThemeByUUID(themeID));
                         }
                         bundle = new MarketThemeBundleModel(docId, bundle, customThemes);
@@ -882,7 +882,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         try {
             if (!NetworkUtils.isNetworkAvailable(requireContext(),
-                    globalPreferencesViewModel.getNetworkPreference())) {
+                    getGlobalPreferencesViewModel().getNetworkPreference())) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
                         .show();
 
@@ -1020,7 +1020,7 @@ public class MarketplaceFragment extends MainMenuFragment {
 
             try {
                 if(NetworkUtils.isNetworkAvailable(requireContext(),
-                        globalPreferencesViewModel.getNetworkPreference())) {
+                        getGlobalPreferencesViewModel().getNetworkPreference())) {
                     loadRewardedAd(this::showRewardedAd);
                 } else {
                         Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)

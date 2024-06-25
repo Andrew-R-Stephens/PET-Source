@@ -1,177 +1,136 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView
+import java.util.Arrays
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class AppLanguageFragment extends MainMenuFragment {
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) { // OBTAIN VIEW MODEL REFERENCE
-
-        super.init();
-
-        return inflater.inflate(R.layout.fragment_languages, container, false);
+class AppLanguageFragment : MainMenuFragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.init()
+        return inflater.inflate(R.layout.fragment_languages, container, false)
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // INITIALIZE VIEWS
-        View btn_confirmClose = view.findViewById(R.id.listener_confirm);
-        View btn_cancelClose = view.findViewById(R.id.listener_cancel);
-        RecyclerView recyclerViewLanguages = view.findViewById(R.id.recyclerview_languageslist);
+        val confirmButton = view.findViewById<View>(R.id.listener_confirm)
+        val cancelButton = view.findViewById<View>(R.id.listener_cancel)
+        val recyclerViewLanguages = view.findViewById<RecyclerView>(R.id.recyclerview_languageslist)
 
         // LISTENERS
-        btn_confirmClose.setOnClickListener(v -> {
-            mainMenuViewModel.setLanguageSelectedOriginal(-1);
-            try {
-                Navigation.findNavController(v).popBackStack();
-            } catch (IllegalStateException e) { e.printStackTrace(); }
-        });
+        confirmButton.setOnClickListener { v: View? ->
+            mainMenuViewModel?.languageSelectedOriginal = -1
+            try { v?.let { findNavController(v).popBackStack() } }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+        }
 
-        btn_cancelClose.setOnClickListener(v -> handleDiscardChanges());
+        cancelButton.setOnClickListener { handleDiscardChanges() }
 
         // DATA
-        int selected = 0;
-        ArrayList<String> languageNames = new ArrayList<>();
+        var selected = 0
+        var languageNames = ArrayList<String?>()
         try {
-            languageNames = new ArrayList<>(Arrays.asList(
-                    requireContext().getResources().getStringArray(
-                            R.array.languages_name)));
+            languageNames = ArrayList(
+                listOf(*requireContext().resources.getStringArray(R.array.languages_name)))
 
-            selected = globalPreferencesViewModel.getLanguageIndex(
-                    new ArrayList<>(Arrays.asList(
-                            requireContext().getResources().getStringArray(
-                                    R.array.languages_abbreviation))));
-            if (mainMenuViewModel.getLanguageSelectedOriginal() == -1) {
-                mainMenuViewModel.setLanguageSelectedOriginal(selected);
+            globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+                selected = globalPreferencesViewModel.getLanguageIndex(ArrayList(
+                    listOf(*requireContext().resources.getStringArray(R.array.languages_abbreviation))
+                ))
             }
-        } catch (IllegalStateException e) { e.printStackTrace(); }
+            mainMenuViewModel?.let { mainMenuViewModel ->
+                if (mainMenuViewModel.languageSelectedOriginal == -1) {
+                    mainMenuViewModel.languageSelectedOriginal = selected
+                }
+            }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
 
-        for (int i = 0; i < languageNames.size(); i++) {
-            LanguagesAdapterView adapter = new LanguagesAdapterView(
-                    languageNames, selected, position -> {
-                        if (globalPreferencesViewModel != null && mainMenuViewModel != null) {
-                            globalPreferencesViewModel.setLanguage(
-                                    position,
-                                    AppLanguageFragment.this.getResources().getStringArray(
-                                            R.array.languages_abbreviation));
-                            mainMenuViewModel.setCanRefreshFragment(true);
-                        }
-                        AppLanguageFragment.this.configureLanguage();
-                        AppLanguageFragment.this.refreshFragment();
-                    });
-            recyclerViewLanguages.setAdapter(adapter);
-            try {
-                recyclerViewLanguages.setLayoutManager(new LinearLayoutManager(requireContext()));
-            } catch (IllegalStateException e) { e.printStackTrace(); }
+        for (i in languageNames.indices) {
+            val adapter = LanguagesAdapterView(languageNames, selected) { position: Int ->
+                globalPreferencesViewModel?.setLanguage(position,
+                    this@AppLanguageFragment.resources.getStringArray(R.array.languages_abbreviation)
+                )
+                mainMenuViewModel?.canRefreshFragment = true
+
+                this@AppLanguageFragment.configureLanguage()
+                this@AppLanguageFragment.refreshFragment()
+            }
+
+            recyclerViewLanguages.adapter = adapter
+            try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    @Override
-    protected void initViewModels() {
-        super.initViewModels();
-        initMainMenuViewModel();
+    override fun initViewModels() {
+        super.initViewModels()
+        initMainMenuViewModel()
     }
 
-    @Override
-    protected void backPressedHandler() {
-        handleDiscardChanges();
+    override fun backPressedHandler() {
+        handleDiscardChanges()
 
-        String message = getString(R.string.toast_discardchanges);
-        try {
-            Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2).show();
-        } catch (IllegalStateException e) { e.printStackTrace(); }
-
+        val message = getString(R.string.toast_discardchanges)
+        try { Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2).show() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    private void handleDiscardChanges() {
-        if (globalPreferencesViewModel != null && mainMenuViewModel != null) {
-            globalPreferencesViewModel.setLanguage(
-                    mainMenuViewModel.getLanguageSelectedOriginal(),
-                    getResources().getStringArray(
-                            R.array.languages_abbreviation));
-            Log.d("Languages", "Set language = " + mainMenuViewModel.getLanguageSelectedOriginal());
+    private fun handleDiscardChanges() {
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            globalPreferencesViewModel?.setLanguage(
+                mainMenuViewModel.languageSelectedOriginal,
+                resources.getStringArray(R.array.languages_abbreviation)
+            )
+            Log.d("Languages", "Set language = " + mainMenuViewModel.languageSelectedOriginal)
         }
+
         //Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (mainMenuViewModel == null ? "null" : "not null." ));
+        configureLanguage()
 
-        configureLanguage();
-
-        try {
-            Navigation.findNavController(requireView()).popBackStack();
-        } catch (IllegalStateException e) { e.printStackTrace(); }
+        try { findNavController(requireView()).popBackStack() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    /**
-     * configureLanguage
-     */
-    public void configureLanguage() {
-        if (globalPreferencesViewModel != null) {
-            try {
-                ((MainMenuActivity) requireActivity()).setLanguage(
-                        globalPreferencesViewModel.getLanguageName());
-            } catch (IllegalStateException e) { e.printStackTrace(); }
+    fun configureLanguage() {
+        globalPreferencesViewModel?.let{ globalPreferencesViewModel ->
+            try { (requireActivity() as MainMenuActivity).setLanguage(
+                    globalPreferencesViewModel.languageName)
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    /**
-     * refreshFragment
-     */
-    public void refreshFragment() {
-        if (mainMenuViewModel != null && mainMenuViewModel.getCanRefreshFragment()) {
-            super.refreshFragment();
-            mainMenuViewModel.setCanRefreshFragment(false);
+    public override fun refreshFragment() {
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            if (mainMenuViewModel.canRefreshFragment) {
+                super.refreshFragment()
+                mainMenuViewModel.canRefreshFragment = false
+            }
         }
     }
 
-
-    /**
-     * saveStates method
-     * <p>
-     * TODO
-     */
-    public void saveStates() {
-        if (globalPreferencesViewModel != null) {
-            try {
-                globalPreferencesViewModel.saveToFile(requireContext());
-            } catch (IllegalStateException e) { e.printStackTrace(); }
+    public override fun saveStates() {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            try { globalPreferencesViewModel.saveToFile(requireContext())
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    /**
-     * onPause method
-     */
-    @Override
-    public void onPause() {
+    override fun onPause() {
         // SAVE PERSISTENT DATA
-        saveStates();
-
-        super.onPause();
+        saveStates()
+        super.onPause()
     }
-
 }

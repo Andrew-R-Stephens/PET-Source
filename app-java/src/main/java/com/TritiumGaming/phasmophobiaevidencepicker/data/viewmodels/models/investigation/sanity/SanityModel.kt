@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.annotation.SuppressLint
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +22,7 @@ class SanityModel(
 
     companion object SanityConstants {
         const val MIN_SANITY = 0f
+        const val HALF_SANITY = 50f
         const val MAX_SANITY = 100f
 
         const val SAFE_MIN_BOUNDS = 70f
@@ -34,7 +36,7 @@ class SanityModel(
     private val currentMaxSanity: Float
         get() {
             val value = (
-                if((evidenceViewModel?.difficultyCarouselData?.currentIndex ?: 0) == 4) 75f
+                if((evidenceViewModel?.difficultyCarouselModel?.currentIndex ?: 0) == 4) 75f
                 else MAX_SANITY )
             Log.d("CurrentMaxSanity", "$value")
             return value
@@ -68,17 +70,25 @@ class SanityModel(
             return field && (sanityLevel.value < SAFE_MIN_BOUNDS)
         }
 
-    /** */
+    /** The max duration set for the hunt warning to flash, in milliseconds*/
     var flashTimeoutMax: Long = -1
-    /** */
+    /** The starting flash time, in milliseconds, for the hunt warning */
     private var flashTimeoutStart: Long = -1
+
+    private fun getNormalModifier(mapSize: Int): Float {
+        return DROP_MODIFIER_NORMAL[mapSize]
+    }
+
+    private fun getSetupModifier(mapSize: Int): Float {
+        return DROP_MODIFIER_SETUP[mapSize]
+    }
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
     private val currentDifficultyModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel?.difficultyCarouselData?.currentIndex?.value ?: return 1f
+                evidenceViewModel?.difficultyCarouselModel?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < DIFFICULTY_MODIFIER.size) {
                 return DIFFICULTY_MODIFIER[diffIndex]
             }
@@ -91,34 +101,27 @@ class SanityModel(
      * @returns the drop rate multiplier. */
     private val currentMapSizeModifier: Float
         get() {
-            val currMapSize = evidenceViewModel?.mapCarouselData?.currentMapSize ?: return 1f
+            val currMapSize = evidenceViewModel?.mapCarouselModel?.currentMapSize ?: return 1f
             if ((evidenceViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
-                return getNormalDrainRate(currMapSize)
+                return getNormalModifier(currMapSize)
             }
-            return getSanityDrainRate(currMapSize)
+            return getSetupModifier(currMapSize)
         }
-
-    private fun getNormalDrainRate(mapSize: Int): Float {
-        return DROP_MODIFIER_NORMAL[mapSize]
-    }
-
-    private fun getSanityDrainRate(mapSize: Int): Float {
-        return DROP_MODIFIER_SETUP[mapSize]
-    }
-
-    private fun resetFlashTimeoutStart() {
-        flashTimeoutStart = -1
-    }
 
     private val drainModifier: Float
         get() {
             val difficultyModifier =
-                evidenceViewModel?.difficultyCarouselData?.currentModifier ?: 1f
+                evidenceViewModel?.difficultyCarouselModel?.currentModifier
+                    ?: DIFFICULTY_MODIFIER[DifficultyCarouselModel.Difficulty.AMATEUR.ordinal]
             val mapModifier = difficultyModifier / currentMapSizeModifier
             val modifier = difficultyModifier * mapModifier
 
             return modifier
         }
+
+    private fun resetFlashTimeoutStart() {
+        flashTimeoutStart = -1
+    }
 
     /** @param progress specify the progress 0 - 100
      * Resets the Warning Indicator to start flashing again, if necessary
@@ -152,27 +155,20 @@ class SanityModel(
      * either if the Flash Timeout is infinite
      * or if there is no time remaining on the countdown timer.
      * @return if the Warning indicator can flash */
-    fun canFlashWarning(): Boolean {
-        val temp = sanityLevel.value < SAFE_MIN_BOUNDS
-
-        if (temp && flashTimeoutMax == -1L) {
-            return true
+    val canFlashWarning: Boolean
+        get() {
+            val temp = sanityLevel.value < SAFE_MIN_BOUNDS
+            if (temp && flashTimeoutMax == -1L) { return true }
+            if (temp && flashTimeoutStart == -1L) { flashTimeoutStart = System.currentTimeMillis() }
+            return (System.currentTimeMillis() - flashTimeoutStart) < flashTimeoutMax
         }
-
-        if (temp && flashTimeoutStart == -1L) {
-            flashTimeoutStart = System.currentTimeMillis()
-        }
-
-        return (System.currentTimeMillis() - flashTimeoutStart) < flashTimeoutMax
-    }
 
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
      * time remaining.
      */
     fun tick() {
-        val multiplier = .001f
-        val sanityHalf = 50
+        val tickMultiplier = .001f
 
         /*
         Multiplier which drops the rate to appropriate levels
@@ -183,25 +179,28 @@ class SanityModel(
                 if (evidenceViewModel?.timerModel?.isNewCycle == true) System.currentTimeMillis()
                 else evidenceViewModel?.timerModel?.startTime ?: -1L
         )*/
-        val startTime = max(evidenceViewModel?.timerModel?.startTime ?: 0L, 0L)
 
-        val drainMultiplier = drainModifier * multiplier
-        val timeDifference = startTime - System.currentTimeMillis()
-        //Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
-        insanityLevel = MAX_SANITY - (timeDifference * drainMultiplier)
+        if((evidenceViewModel?.timerModel?.paused ?: true) == false) {
+            val startTime = max(evidenceViewModel?.timerModel?.startTime ?: 0L, 0L)
 
+            val drainMultiplier = drainModifier * tickMultiplier
+            val timeDifference = startTime - System.currentTimeMillis()
+            //Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
+            insanityLevel = MAX_SANITY - (timeDifference * drainMultiplier)
+        }
+
+        Log.d("Tick", "Ticking!")
         /*
         If the Countdown timer still has time, and the player's sanity is less than or
         equal to halfway gone, set the remaining sanity to half.
         */
         /*
-        if (sanityLevel.value <= sanityHalf &&
+        if (sanityLevel.value <= HALF_SANITY &&
             evidenceViewModel?.timerModel?.hasTimeRemaining() == true
         ) {
-            setStartTimeFromProgress(sanityHalf)
+            setStartTimeFromProgress(HALF_SANITY.toInt())
         }
         */
-
         //evidenceViewModel?.timerModel?.updateCurrentPhase()
     }
 

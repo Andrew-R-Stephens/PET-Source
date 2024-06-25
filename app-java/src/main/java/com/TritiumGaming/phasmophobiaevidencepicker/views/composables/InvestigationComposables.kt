@@ -86,7 +86,7 @@ fun GhostList(
     maxFontSize: TextUnit = 96.sp
 ) {
     val ghostTypes = remember {
-        val list = evidenceViewModel?.investigationData?.ghostList?.list
+        val list = evidenceViewModel?.investigationModel?.ghostList?.list
         list
     }
 
@@ -179,7 +179,7 @@ fun EvidenceRulingList(
     evidenceViewModel: EvidenceViewModel? = viewModel()
 ) {
     val evidenceTypes = remember {
-        val list = evidenceViewModel?.investigationData?.evidenceList?.list
+        val list = evidenceViewModel?.investigationModel?.evidenceList?.list
         list
     }
 
@@ -288,11 +288,11 @@ fun RulingSelector(
         modifier = modifier,
         onClick = {
             evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            evidenceViewModel.investigationData?.evidenceList?.list?.get(groupIndex)?.ruling =
+            evidenceViewModel.investigationModel?.evidenceList?.list?.get(groupIndex)?.ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            evidenceViewModel.ghostOrderData?.updateOrder()
+            evidenceViewModel.ghostOrderModel?.updateOrder()
 
-            Log.d("Updated", evidenceViewModel.ghostOrderData?.currOrder.contentToString())
+            Log.d("Updated", evidenceViewModel.ghostOrderModel?.currOrder.contentToString())
 
             onSelection()
         },
