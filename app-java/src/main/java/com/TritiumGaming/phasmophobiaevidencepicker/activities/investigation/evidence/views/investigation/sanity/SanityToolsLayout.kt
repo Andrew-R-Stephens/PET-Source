@@ -9,7 +9,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.controller.SanityTrackerLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.timer.PhaseTimerLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 
 class SanityToolsLayout : ConstraintLayout {
 
@@ -48,12 +48,12 @@ class SanityToolsLayout : ConstraintLayout {
     private fun setDefaults() {
     }
 
-    fun init(evidenceViewModel: EvidenceViewModel) {
-        sanityWarningLayout.init(evidenceViewModel)
-        phaseTimerLayout.init(evidenceViewModel)
-        sanityTrackerView.init(evidenceViewModel)
+    fun init(investigationViewModel: InvestigationViewModel) {
+        sanityWarningLayout.init(investigationViewModel)
+        phaseTimerLayout.init(investigationViewModel)
+        sanityTrackerView.init(investigationViewModel)
 
-        mapCarouselLayout.init(evidenceViewModel)
-        difficultyCarouselLayout.init(evidenceViewModel)
+        mapCarouselLayout.init(investigationViewModel)
+        difficultyCarouselLayout.init(investigationViewModel)
     }
 }

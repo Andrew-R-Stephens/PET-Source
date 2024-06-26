@@ -21,6 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startsc
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setIconDropdownMenu
 import com.google.android.gms.ads.AdRequest
@@ -71,42 +72,40 @@ class StartScreenFragment : MainMenuFragment() {
         buttonLanguage.setOnClickListener { v: View -> this.gotoLanguagesFragment(v) }
         buttonMsgInbox?.setOnClickListener { v: View -> this.gotoMessageCenterFragment(v) }
         buttonStart.setOnClickListener {
-            try {
-                val intent = Intent(requireActivity(), InvestigationActivity::class.java)
+            try { val intent = Intent(requireActivity(), InvestigationActivity::class.java)
                 intent.putExtra("lobby", 0)
                 startActivity(intent)
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
         newsIcon = ComposeView(requireContext())
         newsIcon?.setContent { NewsAlert(false) }
 
-        setIconDropdownMenu(
-            buttonInfo,
-            AccountIconView(requireContext()),
-            R.navigation.titlescreen_navgraph,
-            arrayOf(
-                R.drawable.ic_person
-            ),
-            arrayOf(
-                R.id.marketplaceFragment
+        buttonSettings.setContent {
+            IconDropdownMenu(
+                R.drawable.ic_menu,
+                R.navigation.titlescreen_navgraph,
+                arrayOf(
+                    R.drawable.icon_ts_gear,
+                    R.drawable.icon_ts_globe),
+                arrayOf(
+                    R.id.appSettingsFragment,
+                    R.id.appLanguageFragment)
+            ) { false }
+        }
+
+        buttonInfo.setContent {
+            IconDropdownMenu(
+                AccountIconView(requireContext()),
+                R.navigation.titlescreen_navgraph,
+                arrayOf(
+                    R.drawable.ic_person,
+                    R.drawable.ic_store),
+                arrayOf(
+                    R.id.accountOverviewFragment,
+                    R.id.marketplaceFragment)
             )
-        )
-        setIconDropdownMenu(
-            buttonSettings,
-            R.drawable.icon_ts_gear,
-            R.navigation.titlescreen_navgraph,
-            arrayOf(
-                R.drawable.icon_ts_gear,
-                R.drawable.icon_ts_globe
-            ),
-            arrayOf(
-                R.id.appSettingsFragment,
-                R.id.appLanguageFragment
-            )
-        )
+        }
 
         buttonMsgInbox?.setContent { NewsAlert(false) }
 
@@ -115,10 +114,8 @@ class StartScreenFragment : MainMenuFragment() {
 
         super.initAdView(view.findViewById(R.id.adView))
 
-        try {
-            if (!(requireActivity() as MainMenuActivity).checkForAppUpdates()) {
-                initReviewRequest(buttonReview)
-            } }
+        try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdates()) {
+                initReviewRequest(buttonReview) } }
         catch (e: IllegalStateException) { e.printStackTrace() }
 
         try { doReviewRequest() }

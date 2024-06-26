@@ -13,11 +13,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.InitializationStatus
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 abstract class MainMenuFragment : PETFragment {
     protected var mainMenuViewModel: MainMenuViewModel? = null
     protected var newsLetterViewModel: NewsletterViewModel? = null
@@ -31,47 +26,37 @@ abstract class MainMenuFragment : PETFragment {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun initViewModels() {
-        super.initGlobalPreferencesViewModel()
-    }
-
     protected fun initMainMenuViewModel() {
-        if (mainMenuViewModel == null) {
-            try { mainMenuViewModel =
-                    ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+        try { mainMenuViewModel = mainMenuViewModel ?:
+                ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     protected fun initNewsletterViewModel() {
-        if (newsLetterViewModel == null) {
-            try { newsLetterViewModel =
-                ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+        try { newsLetterViewModel = newsLetterViewModel ?:
+            ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected fun saveNewsletterViewModel() {
-        try {
-            newsLetterViewModel?.saveToFile(requireActivity())
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+    private fun saveNewsletterViewModel() {
+        try { newsLetterViewModel?.saveToFile(requireActivity()) }
+        catch (e: IllegalStateException) { e.printStackTrace() }
 
     }
 
     protected fun initAdView(adView: AdView) {
         mainMenuViewModel?.let { mainMenuViewModel ->
             try {
-                MobileAds.initialize(requireActivity()) { initializationStatus: InitializationStatus? -> }
+                MobileAds.initialize(requireActivity()) { }
                 if (!mainMenuViewModel.hasAdRequest()) {
-                    mainMenuViewModel.adRequest = AdRequest.Builder().build()
-                }
+                    mainMenuViewModel.adRequest = AdRequest.Builder().build() }
                 mainMenuViewModel.adRequest?.let { adRequest -> adView.loadAd(adRequest) }
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    override fun backPressedHandler() {
-        super.backPressedHandler()
+    override fun initViewModels() {
+        super.initGlobalPreferencesViewModel()
     }
 
     override fun saveStates() {

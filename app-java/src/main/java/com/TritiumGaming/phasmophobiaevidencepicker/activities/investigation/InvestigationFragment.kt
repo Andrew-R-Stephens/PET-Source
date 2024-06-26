@@ -9,16 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.initialization.InitializationStatus
 
 abstract class InvestigationFragment : PETFragment {
-    protected var evidenceViewModel: EvidenceViewModel? = null
+    protected var investigationViewModel: InvestigationViewModel? = null
     protected var objectivesViewModel: ObjectivesViewModel? = null
     protected var mapMenuViewModel: MapMenuViewModel? = null
 
@@ -49,7 +48,7 @@ abstract class InvestigationFragment : PETFragment {
 
     override fun initViewModels() {
         initGlobalPreferencesViewModel()
-        initEvidenceViewModel()
+        initinvestigationViewModel()
         initObjectivesViewModel()
         initMapMenuViewModel()
     }
@@ -70,11 +69,11 @@ abstract class InvestigationFragment : PETFragment {
         }
     }
 
-    private fun initEvidenceViewModel() {
-        if (evidenceViewModel == null) {
-            evidenceViewModel =
-                ViewModelProvider(requireActivity()).get(EvidenceViewModel::class.java)
-            evidenceViewModel?.init(requireContext())
+    private fun initinvestigationViewModel() {
+        if (investigationViewModel == null) {
+            investigationViewModel =
+                ViewModelProvider(requireActivity()).get(InvestigationViewModel::class.java)
+            investigationViewModel?.init(requireContext())
         }
     }
 

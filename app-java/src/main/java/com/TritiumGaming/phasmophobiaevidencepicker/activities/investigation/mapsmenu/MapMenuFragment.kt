@@ -96,14 +96,11 @@ class MapMenuFragment : InvestigationFragment() {
             .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
     }
 
-    inner class GridViewAdapter(mapNames: Array<String?>, @DrawableRes images: IntArray) :
-        BaseAdapter() {
+    inner class GridViewAdapter(mapNames: Array<String?>, @DrawableRes images: IntArray
+    ) : BaseAdapter() {
 
         private var mapNames = arrayOfNulls<String>(0)
-
         @DrawableRes private var images = IntArray(0)
-        private val layoutInflater =
-            requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         init {
             if (mapNames.size == images.size) {
@@ -112,22 +109,15 @@ class MapMenuFragment : InvestigationFragment() {
             }
         }
 
-        override fun getCount(): Int {
-            return images.size
-        }
+        override fun getCount(): Int { return images.size }
 
-        override fun getItem(position: Int): Any? {
-            return null
-        }
+        override fun getItem(position: Int): Any? { return null }
 
-        override fun getItemId(position: Int): Long {
-            return 0
-        }
+        override fun getItemId(position: Int): Long { return 0 }
 
         override fun getView(i: Int, passedNewView: View?, parent: ViewGroup): View {
             val newView: View = passedNewView?.let { passedNewView }
-                ?: layoutInflater.inflate(
-                    R.layout.item_mapmenu_map, parent, false) as View
+                ?: layoutInflater.inflate(R.layout.item_mapmenu_map, parent, false)
 
             val textView = newView.findViewById<AppCompatTextView>(R.id.label_mapName)
             val imageView = newView.findViewById<AppCompatImageView>(R.id.image_map)

@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +17,7 @@ import kotlin.math.min
  * @author TritiumGamingStudios
  */
 class SanityModel(
-    private val evidenceViewModel: EvidenceViewModel?
+    private val investigationViewModel: InvestigationViewModel?
 ) {
 
     companion object SanityConstants {
@@ -36,7 +36,7 @@ class SanityModel(
     private val currentMaxSanity: Float
         get() {
             val value = (
-                if((evidenceViewModel?.difficultyCarouselModel?.currentIndex ?: 0) == 4) 75f
+                if((investigationViewModel?.difficultyCarouselModel?.currentIndex ?: 0) == 4) 75f
                 else MAX_SANITY )
             Log.d("CurrentMaxSanity", "$value")
             return value
@@ -58,7 +58,7 @@ class SanityModel(
         val level = (MAX_SANITY - insanityLevel)
         _sanityLevel.value = max(min(MAX_SANITY, level), MIN_SANITY)
 
-        evidenceViewModel?.timerModel?.updateCurrentPhase()
+        investigationViewModel?.timerModel?.updateCurrentPhase()
         Log.d("SanityLevel", "${sanityLevel.value}")
     }
 
@@ -86,7 +86,7 @@ class SanityModel(
     private val currentDifficultyModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel?.difficultyCarouselModel?.currentIndex?.value ?: return 1f
+                investigationViewModel?.difficultyCarouselModel?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < DIFFICULTY_MODIFIER.size) {
                 return DIFFICULTY_MODIFIER[diffIndex]
             }
@@ -99,8 +99,8 @@ class SanityModel(
      * @returns the drop rate multiplier. */
     private val currentMapSizeModifier: Float
         get() {
-            val currMapSize = evidenceViewModel?.mapCarouselModel?.currentMapSize ?: return 1f
-            if ((evidenceViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
+            val currMapSize = investigationViewModel?.mapCarouselModel?.currentMapSize ?: return 1f
+            if ((investigationViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
                 return getNormalModifier(currMapSize)
             }
             return getSetupModifier(currMapSize)
@@ -109,7 +109,7 @@ class SanityModel(
     private val drainModifier: Float
         get() {
             val difficultyModifier =
-                evidenceViewModel?.difficultyCarouselModel?.currentModifier
+                investigationViewModel?.difficultyCarouselModel?.currentModifier
                     ?: DIFFICULTY_MODIFIER[DifficultyCarouselModel.Difficulty.AMATEUR.ordinal]
             val mapModifier = difficultyModifier / currentMapSizeModifier
             val modifier = difficultyModifier * mapModifier
@@ -129,7 +129,7 @@ class SanityModel(
         val multiplier = .001f
 
         val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
-        val oldStartTime = evidenceViewModel?.timerModel?.startTime
+        val oldStartTime = investigationViewModel?.timerModel?.startTime
         val newStartTime = (System.currentTimeMillis() + timeAddition)
 
         Log.d("RateModifier",
@@ -140,8 +140,8 @@ class SanityModel(
                     " MapRate: $currentMapSizeModifier" +
                     " Modifier: $drainModifier")
 
-        evidenceViewModel?.timerModel?.startTime = newStartTime
-        evidenceViewModel?.sanityModel?.tick()
+        investigationViewModel?.timerModel?.startTime = newStartTime
+        investigationViewModel?.sanityModel?.tick()
 
         resetFlashTimeoutStart()
     }
@@ -172,12 +172,12 @@ class SanityModel(
         investigation phase.
         */
         /*val startTime = (
-                if (evidenceViewModel?.timerModel?.isNewCycle == true) System.currentTimeMillis()
-                else evidenceViewModel?.timerModel?.startTime ?: -1L
+                if (investigationViewModel?.timerModel?.isNewCycle == true) System.currentTimeMillis()
+                else investigationViewModel?.timerModel?.startTime ?: -1L
         )*/
 
-        if((evidenceViewModel?.timerModel?.paused ?: true) == false) {
-            val startTime = max(evidenceViewModel?.timerModel?.startTime ?: 0L, 0L)
+        if((investigationViewModel?.timerModel?.paused ?: true) == false) {
+            val startTime = max(investigationViewModel?.timerModel?.startTime ?: 0L, 0L)
 
             val drainMultiplier = drainModifier * tickMultiplier
             val timeDifference = startTime - System.currentTimeMillis()
@@ -192,12 +192,12 @@ class SanityModel(
         */
         /*
         if (sanityLevel.value <= HALF_SANITY &&
-            evidenceViewModel?.timerModel?.hasTimeRemaining() == true
+            investigationViewModel?.timerModel?.hasTimeRemaining() == true
         ) {
             setStartTimeFromProgress(HALF_SANITY.toInt())
         }
         */
-        //evidenceViewModel?.timerModel?.updateCurrentPhase()
+        //investigationViewModel?.timerModel?.updateCurrentPhase()
     }
 
     @SuppressLint("DefaultLocale")

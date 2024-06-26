@@ -1,10 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
 
 class GhostOrderModel(
-    private val evidenceViewModel: EvidenceViewModel
+    private val ghostListModel: GhostListModel
 ) {
 
     private var prevOrder: IntArray? = null
@@ -28,7 +28,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createPrevOrder() {
-        prevOrder = IntArray(evidenceViewModel.investigationModel?.ghostListModel?.list?.size ?: 0)
+        prevOrder = IntArray(GhostListModel.count)
 
         for (i in prevOrder!!.indices) {
             prevOrder!![i] = i
@@ -40,7 +40,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createCurrOrder() {
-        currOrder = IntArray(evidenceViewModel.investigationModel?.ghostListModel?.list?.size ?: 0)
+        currOrder = IntArray(GhostListModel.count)
 
         for (i in currOrder!!.indices) {
             currOrder!![i] = i
@@ -48,7 +48,7 @@ class GhostOrderModel(
     }
 
     fun updateOrder() {
-        val newOrder = IntArray(evidenceViewModel.investigationModel?.ghostListModel?.list?.size ?: 0)
+        val newOrder = IntArray(GhostListModel.count)
 
         // Replace previous with current
         if (currOrder == null) {
@@ -57,7 +57,11 @@ class GhostOrderModel(
         if (prevOrder == null) {
             createPrevOrder()
         }
-        System.arraycopy(currOrder, 0, prevOrder, 0, currOrder?.size ?: 0)
+        //System.arraycopy(currOrder, 0, prevOrder, 0, currOrder?.size ?: 0)
+        prevOrder = IntArray(currOrder?.size ?: 0)
+        currOrder?.forEachIndexed { item, index ->
+            prevOrder?.set(index, item)
+        }
 
         // Set default numbers into placeholder array
         for (i in newOrder.indices) {
@@ -67,22 +71,18 @@ class GhostOrderModel(
         // Order placeholder array based on scores
         var i = 0
         while (i < newOrder.size - 1) {
-            val ghostList = evidenceViewModel.investigationModel?.ghostListModel ?: GhostListModel()
+            val ghostList = ghostListModel ?: GhostListModel()
 
-            val ratingA = ghostList.getAt(newOrder[i]).evidenceScore
-            val ratingB = ghostList.getAt(newOrder[i + 1]).evidenceScore
+            val ratingA = ghostList.getAt(newOrder[i])?.evidenceScore ?: 0
+            val ratingB = ghostList.getAt(newOrder[i + 1])?.evidenceScore ?: 0
 
             if (ratingA < ratingB) {
                 val t = newOrder[i + 1]
                 newOrder[i + 1] = newOrder[i]
                 newOrder[i] = t
 
-                if (i > 0) {
-                    i--
-                }
-            } else {
-                i++
-            }
+                if (i > 0) { i-- }
+            } else { i++ }
         }
 
         // Replace current with placeholders
@@ -110,5 +110,9 @@ class GhostOrderModel(
         }
 
         return false
+    }
+
+    fun reset() {
+        createOrder()
     }
 }

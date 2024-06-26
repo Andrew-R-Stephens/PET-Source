@@ -3,13 +3,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.os.CountDownTimer
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PhaseTimerModel(
-    val evidenceViewModel: EvidenceViewModel
+    val investigationViewModel: InvestigationViewModel
 ) {
 
     enum class Phase {
@@ -30,7 +30,7 @@ class PhaseTimerModel(
                 Phase.SETUP
             }
             else {
-                if((evidenceViewModel.sanityModel?.sanityLevel?.value ?: 0f) <
+                if((investigationViewModel.sanityModel?.sanityLevel?.value ?: 0f) <
                     SanityModel.SAFE_MIN_BOUNDS
                 ) {
                     Phase.HUNT
@@ -114,7 +114,7 @@ class PhaseTimerModel(
     fun reset() {
         resetTimer()
         _timeRemaining.value =
-            evidenceViewModel.difficultyCarouselModel?.currentTime ?: 0L
+            investigationViewModel.difficultyCarouselModel?.currentTime ?: 0L
         resetStartTime()
     }
 

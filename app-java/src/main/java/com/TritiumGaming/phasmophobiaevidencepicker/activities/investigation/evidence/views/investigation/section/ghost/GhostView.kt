@@ -16,15 +16,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /*abstract */class GhostView : ConstraintLayout {
 
-    private var evidenceViewModel: EvidenceViewModel? = null
-    private var ghostData: GhostModel? = null
+    private var investigationViewModel: InvestigationViewModel? = null
+    private var ghostModel: GhostModel? = null
 
     @IntegerRes private var neutralSelColor = 0
     @IntegerRes private var negativeSelColor = 0
@@ -60,21 +60,21 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int) {
-        this.evidenceViewModel = evidenceViewModel
-        this.ghostData = evidenceViewModel.investigationModel?.ghostListModel?.getAt(groupIndex)
+    fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int) {
+        this.investigationViewModel = investigationViewModel
+        this.ghostModel = investigationViewModel.investigationModel?.ghostListModel?.getAt(groupIndex)
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
-        nameView.text = ghostData?.name
+        nameView.text = ghostModel?.name
 
-        ghostData?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
+        ghostModel?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
 
         if (iconRowLayout != null) {
             var k = 0
-            while (k < (ghostData?.evidence?.size ?: 0)) {
-                val currentEvidence = ghostData?.evidence?.get(k) ?: return
+            while (k < (ghostModel?.evidence?.size ?: 0)) {
+                val currentEvidence = ghostModel?.evidence?.get(k) ?: return
 
                 val evidenceIcon =
                     iconRowLayout.getChildAt(k) as AppCompatImageView
@@ -107,9 +107,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 
         addOnLayoutChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int,
                                     _: Int, _: Int, _: Int, _: Int ->
-            ghostData?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
+            ghostModel?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
             if (iconRowLayout != null) {
-                ghostData?.evidence?.forEachIndexed { index, evidenceModel ->
+                ghostModel?.evidence?.forEachIndexed { index, evidenceModel ->
                     val evidenceIcon = iconRowLayout.getChildAt(index)
                         .findViewById<AppCompatImageView>(R.id.evidence_icon)
                     evidenceModel?.let {
@@ -134,7 +134,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     fun forceUpdateComponents() {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
-        ghostData?.let { ghostData ->
+        ghostModel?.let { ghostData ->
             ghostData.evidence.forEachIndexed { index, evidence ->
                 val evidenceIcon =
                     iconRowLayout.getChildAt(index) as AppCompatImageView
@@ -160,7 +160,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        evidenceViewModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
+        investigationViewModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
             if (rejectionStatus) { statusIcon.setImageLevel(1) }
             else {
                 val score = ghost.evidenceScore
@@ -176,10 +176,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
             e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
-            evidenceViewModel?.let { evidenceViewModel ->
-                val status = !evidenceViewModel.swapStatusInRejectedPile(index)
-                evidenceViewModel.ghostOrderModel?.updateOrder()
-                evidenceViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
+            investigationViewModel?.let { investigationViewModel ->
+                val status = !investigationViewModel.swapStatusInRejectedPile(index)
+                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
+                investigationViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
                     redrawGhostRejectionStatus(ghostModel, index, true)
                 }
             }

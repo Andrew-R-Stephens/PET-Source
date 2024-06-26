@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels
 
 import android.content.Context
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
 
@@ -12,10 +12,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
  */
 class InvestigationModel(
     context: Context,
-    val evidenceViewModel: EvidenceViewModel
+    val investigationViewModel: InvestigationViewModel?
 ) {
     val ghostListModel: GhostListModel = GhostListModel()
     val evidenceListModel: EvidenceListModel = EvidenceListModel()
+    val ghostOrderModel: GhostOrderModel = GhostOrderModel(ghostListModel)
 
     init {
         evidenceListModel.init(context)
@@ -26,6 +27,7 @@ class InvestigationModel(
     fun reset() {
         evidenceListModel.reset()
         ghostListModel.reset()
+        ghostOrderModel.reset()
     }
 
 }

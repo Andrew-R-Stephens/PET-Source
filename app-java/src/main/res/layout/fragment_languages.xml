@@ -18,8 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout27"
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -69,6 +69,7 @@
                     android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="24dp"
                     app:layout_constraintHeight_percent=".4"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,13 +131,28 @@
                     android:textColor="?attr/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="24dp"
                     app:layout_constraintHeight_percent=".4"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:tint="?attr/textColorSecondary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+            android:id="@+id/navHeaderLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:NavHeaderLayoutButtonLeft="cancel"
+            app:NavHeaderLayoutButtonRight="confirm"
+            app:NavHeaderLayoutCenterTitle="@string/titlescreen_languages_label"
+            app:NavHeaderLayoutLeftTitle="@string/settings_cancel"
+            app:NavHeaderLayoutRightTitle="@string/settings_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/popup_contentbody_constraintlayout"
@@ -149,7 +165,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout27">
+            app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_languageslist"

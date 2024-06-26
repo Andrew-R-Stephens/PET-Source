@@ -13,6 +13,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 import java.util.Arrays
 
 class AppLanguageFragment : MainMenuFragment() {
@@ -26,8 +27,10 @@ class AppLanguageFragment : MainMenuFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // INITIALIZE VIEWS
-        val confirmButton = view.findViewById<View>(R.id.listener_confirm)
-        val cancelButton = view.findViewById<View>(R.id.listener_cancel)
+        val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
+        val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_left)
+        val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_right)
+
         val recyclerViewLanguages = view.findViewById<RecyclerView>(R.id.recyclerview_languageslist)
 
         // LISTENERS
@@ -75,6 +78,29 @@ class AppLanguageFragment : MainMenuFragment() {
         }
     }
 
+    private fun handleDiscardChanges() {
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            globalPreferencesViewModel?.setLanguage(
+                mainMenuViewModel.languageSelectedOriginal,
+                resources.getStringArray(R.array.languages_abbreviation))
+            Log.d("Languages",
+                "Set language = ${mainMenuViewModel.languageSelectedOriginal}")
+        }
+
+        configureLanguage()
+
+        try { findNavController(requireView()).popBackStack() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    private fun configureLanguage() {
+        globalPreferencesViewModel?.let{ globalPreferencesViewModel ->
+            try { (requireActivity() as MainMenuActivity).setLanguage(
+                    globalPreferencesViewModel.languageName)
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+        }
+    }
+
     override fun initViewModels() {
         super.initViewModels()
         initMainMenuViewModel()
@@ -86,30 +112,6 @@ class AppLanguageFragment : MainMenuFragment() {
         val message = getString(R.string.toast_discardchanges)
         try { Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2).show() }
         catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    private fun handleDiscardChanges() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
-            globalPreferencesViewModel?.setLanguage(
-                mainMenuViewModel.languageSelectedOriginal,
-                resources.getStringArray(R.array.languages_abbreviation)
-            )
-            Log.d("Languages", "Set language = " + mainMenuViewModel.languageSelectedOriginal)
-        }
-
-        //Log.d("Languages", "GlobalPreferencesViewModel = " + (globalPreferencesViewModel == null ? "null" : "not null." ) + ", TitleScreenViewModel = " + (mainMenuViewModel == null ? "null" : "not null." ));
-        configureLanguage()
-
-        try { findNavController(requireView()).popBackStack() }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    fun configureLanguage() {
-        globalPreferencesViewModel?.let{ globalPreferencesViewModel ->
-            try { (requireActivity() as MainMenuActivity).setLanguage(
-                    globalPreferencesViewModel.languageName)
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
     }
 
     public override fun refreshFragment() {

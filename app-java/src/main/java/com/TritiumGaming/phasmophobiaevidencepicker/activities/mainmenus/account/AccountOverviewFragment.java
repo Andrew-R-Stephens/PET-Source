@@ -49,11 +49,8 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         super.init();
 
         return inflater.inflate(R.layout.fragment_account_overview, container, false);
@@ -116,6 +113,7 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
             e.printStackTrace();
         }
 
+        /*
         SpannableString finalEmail_obfuscated1 = finalEmail_obfuscated;
         btn_account_infoContainer.setOnClickListener(v -> {
             showEmail = !showEmail;
@@ -127,7 +125,9 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
                         finalEmail_obfuscated1 != null ? finalEmail_obfuscated1 : "?");
             }
         });
-/*
+        */
+
+        /*
         if(firebaseUser == null) {
             btn_account_login.setVisibility(View.VISIBLE);
             btn_account_logout.setVisibility(View.GONE);

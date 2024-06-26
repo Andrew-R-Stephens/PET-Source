@@ -50,33 +50,33 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
      * enableUIThread method
      */
     private fun enableUIThread() {
-        if (evidenceViewModel?.sanityRunnable == null) {
+        if (investigationViewModel?.sanityRunnable == null) {
             try {
                 val appLang = (requireActivity() as InvestigationActivity).appLanguage
-                val runnable = SanityRunnable(evidenceViewModel, globalPreferencesViewModel)
+                val runnable = SanityRunnable(investigationViewModel, globalPreferencesViewModel)
                 runnable.huntWarningAudioListener =
                     object : SanityRunnable.HuntWarningAudioListener() {
                         override fun init() { mediaPlayer = getHuntWarningAudio(appLang) }
                         override fun play() {
                             if(globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
                                 mediaPlayer?.start()
-                                evidenceViewModel?.sanityModel?.warnTriggered = true
+                                investigationViewModel?.sanityModel?.warnTriggered = true
                             }
                         }
                         override fun stop() { mediaPlayer?.release() }
                     }
-                evidenceViewModel?.sanityRunnable = runnable
+                investigationViewModel?.sanityRunnable = runnable
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
 
             Log.d("SanityThread", if(sanityThread == null) "DNE" else "Exists")
             if (sanityThread == null) {
-                Log.d("SanityRunnable", if(evidenceViewModel?.sanityRunnable == null) "DNE" else "Exists")
-                if (evidenceViewModel?.hasSanityRunnable() == true) {
+                Log.d("SanityRunnable", if(investigationViewModel?.sanityRunnable == null) "DNE" else "Exists")
+                if (investigationViewModel?.hasSanityRunnable() == true) {
                     sanityThread = object : Thread() {
                         override fun run() {
-                            while (evidenceViewModel?.timerModel?.paused?.value == false) {
+                            while (investigationViewModel?.timerModel?.paused?.value == false) {
                                 try {
                                     update()
                                     tick()
@@ -97,14 +97,14 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                             var wait = (timeOptimal - updateTime) / 1000000
                             if (wait < 0) { wait = 1 }
 
-                            evidenceViewModel?.sanityRunnable?.wait = wait
+                            investigationViewModel?.sanityRunnable?.wait = wait
 
                             sleep(wait)
                         }
 
                         private fun update() {
                             try {
-                                requireActivity().runOnUiThread(evidenceViewModel?.sanityRunnable)
+                                requireActivity().runOnUiThread(investigationViewModel?.sanityRunnable)
                             } catch (e: IllegalStateException) {
                                 e.printStackTrace()
                             }
@@ -122,9 +122,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     private fun disableUIThread() {
         sanityThread?.interrupt()
 
-        evidenceViewModel?.let { evidenceViewModel ->
-            evidenceViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
-            evidenceViewModel.sanityRunnable = null
+        investigationViewModel?.let { investigationViewModel ->
+            investigationViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
+            investigationViewModel.sanityRunnable = null
         }
         sanityThread = null
     }
@@ -150,7 +150,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onPause() {
         disableUIThread()
 
-        evidenceViewModel?.sanityRunnable?.huntWarningAudioListener?.stop()
+        investigationViewModel?.sanityRunnable?.huntWarningAudioListener?.stop()
 
         super.onPause()
     }

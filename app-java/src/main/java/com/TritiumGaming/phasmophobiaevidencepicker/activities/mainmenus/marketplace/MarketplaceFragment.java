@@ -24,7 +24,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
@@ -33,9 +32,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeBundleCardView;
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.ThemeSingleCardView;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketThemeBundleModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketSingleThemeModel;
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes;
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
@@ -44,6 +43,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.FirebaseUiException;
@@ -100,7 +101,9 @@ public class MarketplaceFragment extends MainMenuFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        final AppCompatImageView button_back = view.findViewById(R.id.button_back);
+        final NavHeaderLayout navHeaderLayout = view.findViewById(R.id.navHeaderLayout);
+        final PETImageButton button_back = navHeaderLayout.findViewById(R.id.button_left);
+
         final AppCompatButton btn_account_login = view.findViewById(R.id.settings_account_login_button);
         final AppCompatButton button_ad_watch = view.findViewById(R.id.button_ad_watch);
         final AppCompatButton button_buy = view.findViewById(R.id.settings_account_buy_button);
@@ -254,8 +257,7 @@ public class MarketplaceFragment extends MainMenuFragment {
     private void populateMarketplaceUnPurchasedItems() {
         CollectionReference unlockHistoryCollection = null;
         try {
-            unlockHistoryCollection =
-                    FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
+            unlockHistoryCollection = FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
         } catch (Exception e) {
             e.printStackTrace();
         }

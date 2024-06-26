@@ -37,8 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.TextCase
@@ -48,19 +49,19 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionS
 
 @Composable
 fun Test() {
-    val evidenceViewModel : EvidenceViewModel = viewModel {
-        EvidenceViewModel()
+    val investigationViewModel : InvestigationViewModel = viewModel {
+        InvestigationViewModel()
     }
-    evidenceViewModel.init(LocalContext.current)
+    investigationViewModel.init(LocalContext.current)
 
     InvestigationView(
-        evidenceViewModel = evidenceViewModel
+        investigationViewModel = investigationViewModel
     )
 }
 
 @Composable
 fun InvestigationView(
-    evidenceViewModel: EvidenceViewModel? = viewModel()
+    investigationViewModel: InvestigationViewModel? = viewModel()
 ) {
     Row(
         modifier = Modifier
@@ -70,24 +71,24 @@ fun InvestigationView(
             .fillMaxHeight()
             .fillMaxWidth(.5f)
         ){
-            GhostList(evidenceViewModel)
+            GhostList(investigationViewModel)
         }
         Box(modifier = Modifier
             .fillMaxSize()
         ){
-            EvidenceRulingList(evidenceViewModel)
+            EvidenceRulingList(investigationViewModel)
         }
     }
 }
 
 @Composable
 fun GhostList(
-    evidenceViewModel: EvidenceViewModel? = viewModel(),
+    investigationViewModel: InvestigationViewModel? = viewModel(),
     maxFontSize: TextUnit = 96.sp
 ) {
     val ghostTypes = remember {
-        val list = evidenceViewModel?.investigationModel?.ghostListModel?.list
-        list
+        //investigationViewModel?.investigationModel?.ghostListModel?.ghostList
+        GhostListModel.ghostList
     }
 
     var resizedTextSize by remember {
@@ -105,7 +106,7 @@ fun GhostList(
              resizedTextSize = it
         }
 
-        ghostTypes?.forEach { ghostType: GhostModel? ->
+        ghostTypes.forEach { ghostType: GhostModel? ->
             GhostView(
                 ghostType = ghostType,
                 onUpdateTitle = { it:TextUnit -> resizeText(it) }
@@ -178,10 +179,10 @@ fun GhostEvidenceGroup(
 
 @Composable
 fun EvidenceRulingList(
-    evidenceViewModel: EvidenceViewModel? = viewModel()
+    investigationViewModel: InvestigationViewModel? = viewModel()
 ) {
     val evidenceTypes = remember {
-        evidenceViewModel?.investigationModel?.evidenceListModel?.evidenceList
+        investigationViewModel?.investigationModel?.evidenceListModel?.evidenceList
     }
 
     Column(
@@ -219,7 +220,7 @@ fun EvidenceRulingView(
         }
 
         RulingGroup(
-            evidenceViewModel = EvidenceViewModel(),
+            investigationViewModel = InvestigationViewModel(),
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.CenterHorizontally)
@@ -232,11 +233,11 @@ fun EvidenceRulingView(
 @Preview
 fun RulingGroup(
     modifier: Modifier = Modifier,
-    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
+    investigationViewModel: InvestigationViewModel = viewModel<InvestigationViewModel>(),
     groupIndex: Int = 0,
     onClick: () -> Unit = {}
 ) {
-    val radioButtonState by evidenceViewModel.radioButtonsChecked.collectAsState()
+    val radioButtonState by investigationViewModel.radioButtonsChecked.collectAsState()
 
     Row(
         modifier = modifier
@@ -246,7 +247,7 @@ fun RulingGroup(
     ) {
         EvidenceModel.Ruling.entries.forEachIndexed { index, _ ->
             RulingSelector(
-                evidenceViewModel = evidenceViewModel,
+                investigationViewModel = investigationViewModel,
                 groupIndex = groupIndex,
                 rulingType = SelectionState(index),
                 rulingState = index == radioButtonState[groupIndex],
@@ -266,13 +267,13 @@ fun RulingGroup(
 @Preview
 fun RulingSelector(
     modifier: Modifier = Modifier,
-    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
+    investigationViewModel: InvestigationViewModel = viewModel<InvestigationViewModel>(),
     groupIndex: Int = 0,
     rulingType: SelectionState = Neutral,
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
-    val radioButtons = evidenceViewModel.radioButtonsChecked.collectAsState()
+    val radioButtons = investigationViewModel.radioButtonsChecked.collectAsState()
 
     val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
@@ -288,12 +289,15 @@ fun RulingSelector(
     IconButton(
         modifier = modifier,
         onClick = {
-            evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            evidenceViewModel.investigationModel?.evidenceListModel?.evidenceList?.get(groupIndex)?.ruling =
+            investigationViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
+            investigationViewModel.investigationModel?.evidenceListModel?.evidenceList
+                ?.get(groupIndex)?.ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            evidenceViewModel.ghostOrderModel?.updateOrder()
+            investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
 
-            Log.d("Updated", evidenceViewModel.ghostOrderModel?.currOrder.contentToString())
+            Log.d("Updated",
+                investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
+                    .contentToString())
 
             onSelection()
         },
@@ -334,13 +338,13 @@ value class SelectionState(val value: Int) {
 
 fun setRulingGroup(
     composeView: ComposeView?,
-    evidenceViewModel: EvidenceViewModel = EvidenceViewModel(),
+    investigationViewModel: InvestigationViewModel = InvestigationViewModel(),
     groupIndex: Int = 0,
     onChange: () -> Unit = {}
 ) {
     composeView?.setContent {
         RulingGroup(
-            evidenceViewModel = evidenceViewModel,
+            investigationViewModel = investigationViewModel,
             groupIndex = groupIndex,
             onClick = onChange
         )

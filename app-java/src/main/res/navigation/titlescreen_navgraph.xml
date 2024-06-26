@@ -33,6 +33,9 @@
             android:id="@+id/action_titleScreenFragment_to_onboardingActivity"
             app:destination="@id/onboardingActivity"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_titleScreenFragment_to_accountOverviewFragment"
+            app:destination="@id/accountOverviewFragment" />
     </fragment>
 
     <activity
@@ -123,4 +126,12 @@
         android:id="@+id/onboardingActivity"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity"
         android:label="OnboardingActivity" />
+    <fragment
+        android:id="@+id/accountOverviewFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account.AccountOverviewFragment"
+        android:label="AccountOverviewFragment" >
+        <action
+            android:id="@+id/action_accountOverviewFragment_to_marketplaceFragment"
+            app:destination="@id/marketplaceFragment" />
+    </fragment>
 </navigation>

@@ -7,7 +7,7 @@ import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.EvidencePopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.google.android.gms.ads.AdRequest
@@ -30,11 +30,12 @@ class EvidenceListView : InvestigationListView {
 
     fun init(
         globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        evidenceViewModel: EvidenceViewModel?, popupWindow: PopupWindow?,
-        progressBar: ProgressBar?, adRequest: AdRequest?, ghostList: GhostListView?
+        investigationViewModel: InvestigationViewModel?,
+        popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?,
+        ghostList: GhostListView?
     ) {
-        super.init(
-            globalPreferencesViewModel, evidenceViewModel, popupWindow, progressBar, adRequest)
+        super.init(globalPreferencesViewModel, investigationViewModel,
+            popupWindow, progressBar, adRequest)
         this.ghostList = ghostList
     }
 
@@ -43,12 +44,12 @@ class EvidenceListView : InvestigationListView {
         super.createPopupWindow(popupWindow, EvidencePopupModel(context))
     }
 
-    override fun buildViews() {
+    override fun build() {
         for (i in 0 until (popupData as EvidencePopupModel).count) {
             val popupRecord =
                 (popupData as EvidencePopupModel).getEvidencePopupRecordAt(i)
 
-            evidenceViewModel?.let { evidenceViewModel ->
+            investigationViewModel?.let { investigationViewModel ->
                 val evidenceView = EvidenceView(context)
                 evidenceView.evidenceViewListener = object: EvidenceView.EvidenceViewListener() {
                     override fun onCreatePopup() {
@@ -56,7 +57,7 @@ class EvidenceListView : InvestigationListView {
 
                         val evidencePopupWindow = EvidencePopupWindow(context)
                         evidencePopupWindow.popupWindow = popupWindow
-                        evidencePopupWindow.build(evidenceViewModel, popupRecord, adRequest)
+                        evidencePopupWindow.build(investigationViewModel, popupRecord, adRequest)
                     }
 
                     override fun onAttemptInvalidate() {
@@ -66,7 +67,7 @@ class EvidenceListView : InvestigationListView {
                 }
 
                 ghostList?.let { ghostList ->
-                    evidenceView.build(evidenceViewModel, i, ghostList)
+                    evidenceView.build(investigationViewModel, i, ghostList)
                 }
 
                 this.addView(evidenceView)

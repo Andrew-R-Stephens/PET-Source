@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
@@ -43,7 +43,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
         super.initView(R.layout.popup_info_ghost)
     }
 
-    fun build(evidenceViewModel: EvidenceViewModel, ghostPopupData: GhostPopupModel,
+    fun build(investigationViewModel: InvestigationViewModel, ghostPopupData: GhostPopupModel,
               groupIndex: Int, adRequest: AdRequest?
     ) {
         var adRequest = adRequest
@@ -73,19 +73,14 @@ class GhostPopupWindow : InvestigationPopupWindow {
             resources.getString(R.string.popup_ghost_weakness)
         )
 
-        evidenceViewModel.investigationModel?.let { investigationModel ->
-            for (i in investigationModel.ghostListModel
-                .getAt(groupIndex).evidenceArray.indices) {
-                val evidenceIcon =
-                    evidenceIconContainer.getChildAt(i) as AppCompatImageView
-
-                evidenceIcon.setImageResource(investigationModel.ghostListModel
-                        .getAt(groupIndex).evidence[i].icon
-                )
+        investigationViewModel.investigationModel?.ghostListModel?.let { ghostListModel ->
+            ghostListModel.getAt(groupIndex)?.let { ghostModel ->
+                for (i in ghostModel.evidenceArray.indices) {
+                    val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
+                    ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }
+                }
+                ghostNameTextView.text = ghostModel.name
             }
-
-            ghostNameTextView.text = evidenceViewModel.investigationModel!!.ghostListModel
-                .getAt(groupIndex).name
         }
         
         //initialize info content scroller
@@ -97,79 +92,49 @@ class GhostPopupWindow : InvestigationPopupWindow {
         // THEME
         @ColorInt val fontEmphasisColor =
             getColorFromAttribute(context, R.attr.textColorBodyEmphasis)
+
         title.text = titles[detailIndex]
         carouselTextView.text = Html.fromHtml(
-            replaceHTMLFontColor(
-                cycleDetails[detailIndex],
-                "#ff6161", fontEmphasisColor.toString()
-            )
-        )
+            replaceHTMLFontColor(cycleDetails[detailIndex],
+            "#ff6161", fontEmphasisColor.toString()))
         huntDataTextView.text = Html.fromHtml(
-            replaceHTMLFontColor(
-                context.getString(ghostPopupData.getHuntData(groupIndex)),
-                "#ff6161", fontEmphasisColor.toString()
-            )
-        )
+            replaceHTMLFontColor(context.getString(ghostPopupData.getHuntData(groupIndex)),
+                "#ff6161", fontEmphasisColor.toString()))
 
-        val orientation = resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             huntDataContainer.post {
                 huntDataContainer.maxHeight = (bodyCons.height * .4f).toInt()
                 fadeOutIndicatorAnimation(
-                    huntDataContainer,
-                    huntDataContainer,
-                    huntDataScrollView,
-                    huntDataIndicator
-                )
-            }
+                    huntDataContainer, huntDataContainer, huntDataScrollView, huntDataIndicator) }
         }
 
         left.setOnClickListener {
             detailIndex = min(
                 (((detailIndex - 1) % cycleDetails.size) and (cycleDetails.size)).toDouble(),
                 (cycleDetails.size - 1).toDouble()
-            )
-                .toInt()
+            ).toInt()
+
             title.text = titles[detailIndex]
-            carouselTextView.text = Html.fromHtml(
-                replaceHTMLFontColor(
-                    cycleDetails[detailIndex],
-                    "#ff6161", fontEmphasisColor.toString()
-                )
-            )
+            carouselTextView.text = Html.fromHtml(replaceHTMLFontColor(
+                    cycleDetails[detailIndex], "#ff6161", fontEmphasisColor.toString()))
+
             fadeOutIndicatorAnimation(
-                bodyCons,
-                carouselContainer,
-                carouselScrollView,
-                carouselIndicator
-            )
+                bodyCons, carouselContainer, carouselScrollView, carouselIndicator)
         }
 
         right.setOnClickListener {
             detailIndex = (detailIndex + 1) % cycleDetails.size
             title.text = titles[detailIndex]
-            carouselTextView.text = Html.fromHtml(
-                replaceHTMLFontColor(
-                    cycleDetails[detailIndex],
-                    "#ff6161", fontEmphasisColor.toString()
-                )
-            )
+            carouselTextView.text = Html.fromHtml(replaceHTMLFontColor(
+                    cycleDetails[detailIndex], "#ff6161", fontEmphasisColor.toString()))
             fadeOutIndicatorAnimation(
-                bodyCons,
-                carouselContainer,
-                carouselScrollView,
-                carouselIndicator
-            )
+                bodyCons, carouselContainer, carouselScrollView, carouselIndicator)
         }
 
         fadeOutIndicatorAnimation(
-            bodyCons,
-            carouselContainer,
-            carouselScrollView,
-            carouselIndicator
-        )
+            bodyCons, carouselContainer, carouselScrollView, carouselIndicator)
 
-        closeButton.setOnClickListener { popupWindow!!.dismiss() }
+        closeButton.setOnClickListener { popupWindow?.dismiss() }
 
         popupWindow?.showAtLocation(rootView, Gravity.CENTER_VERTICAL, 0, 0)
 

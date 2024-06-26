@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewStub
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -26,5 +27,9 @@ class InvestigationSection : ConstraintLayout {
 
     fun setLabel(label: String?) {
         (findViewById<View>(R.id.label_container) as TextView).text = label
+    }
+
+    fun getList(): ViewStub? {
+        return findViewById(R.id.list)
     }
 }

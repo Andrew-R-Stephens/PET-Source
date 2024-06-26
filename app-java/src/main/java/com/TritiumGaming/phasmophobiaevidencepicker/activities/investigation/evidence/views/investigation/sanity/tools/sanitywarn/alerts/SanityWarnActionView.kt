@@ -19,7 +19,7 @@ class SanityWarnActionView : SanityWarningView {
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.timerModel?.currentPhase?.collectLatest {
+            investigationViewModel.timerModel?.currentPhase?.collectLatest {
                 setState(it == PhaseTimerModel.Phase.ACTION)
             }
         }

@@ -73,7 +73,7 @@ class MissionsFragment : InvestigationFragment() {
                     @ColorInt val selColor =
                         getColorFromAttribute(requireContext(), R.attr.selectedColor)
 
-                    if (evidenceViewModel?.difficultyCarouselModel?.responseTypeKnown == true) {
+                    if (investigationViewModel?.difficultyCarouselModel?.responseTypeKnown == true) {
                         responseBlocker.visibility = View.GONE
 
                         when (objectivesViewModel?.responseState) {

@@ -1,16 +1,17 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.TritiumGaming.phasmophobiaevidencepicker.R;
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
 
 import java.util.ArrayList;
 
@@ -29,13 +30,15 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final AppCompatTextView label_languageTitle;
-        public final AppCompatImageView image;
+        public final PETImageButton image;
+        public final Drawable background;
         private final OnLanguageListener onLanguageListener;
 
         public ViewHolder(@NonNull View view, OnLanguageListener onLanguageListener) {
             super(view);
             label_languageTitle = itemView.findViewById(R.id.textView_languageName);
             image = itemView.findViewById(R.id.imageView_languageChoiceIcon);
+            background = itemView.findViewById(R.id.constraintLayout73).getBackground();
             view.setOnClickListener(this);
             this.onLanguageListener = onLanguageListener;
         }
@@ -59,19 +62,12 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_languageTitle;
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            textView.setAutoSizeTextTypeUniformWithConfiguration(
-                    12, 30, 1,
-                    AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        } else {
-            textView.setAutoSizeTextTypeUniformWithConfiguration(
-                    12, 30, 1, 1);
-        }*/
         textView.setText(languages.get(position));
         textView.setSelected(true);
 
         //color on item unselecting item
         holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);
+        holder.background.setLevel(mPreviousIndex == position ? 1: 0);
     }
 
     @Override

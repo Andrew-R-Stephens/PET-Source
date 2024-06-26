@@ -8,7 +8,7 @@ import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.GhostPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.ghost.GhostView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.google.android.gms.ads.AdRequest
@@ -28,10 +28,10 @@ class GhostListView : InvestigationListView {
 
     public override fun init(
         globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        evidenceViewModel: EvidenceViewModel?,
+        investigationViewModel: InvestigationViewModel?,
         popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?
     ) {
-        super.init(globalPreferencesViewModel, evidenceViewModel,
+        super.init(globalPreferencesViewModel, investigationViewModel,
             popupWindow, progressBar, adRequest)
     }
 
@@ -40,11 +40,9 @@ class GhostListView : InvestigationListView {
         super.createPopupWindow(popupWindow, GhostPopupModel(context))
     }
 
-    override fun buildViews() {
-        val popupRecord = (popupData as GhostPopupModel)
-
-        evidenceViewModel?.let { evidenceViewModel ->
-            val newGhostOrder = evidenceViewModel.ghostOrderModel?.currOrder
+    override fun build() {
+        investigationViewModel?.let { investigationViewModel ->
+            val newGhostOrder = investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
 
             newGhostOrder?.let {
                 this.weightSum = newGhostOrder.size.toFloat()
@@ -57,26 +55,27 @@ class GhostListView : InvestigationListView {
 
                             val ghostPopupWindow = GhostPopupWindow(context)
                             ghostPopupWindow.popupWindow = popupWindow
-                            ghostPopupWindow.build(evidenceViewModel, popupRecord, index, adRequest)
+                            ghostPopupWindow.build(
+                                investigationViewModel, (popupData as GhostPopupModel), index, adRequest)
                         }
                     }
 
-                    ghostView.build(evidenceViewModel, index)
+                    ghostView.build(investigationViewModel, index)
 
                     this.addView(ghostView)
                 }
             }
         }
     }
+
     fun attemptInvalidate(canReorder: Boolean) {
-        if (evidenceViewModel?.ghostOrderModel?.hasChanges() == true && canReorder) {
-            reorder()
-        } else { updateChildren() }
+        if (investigationViewModel?.investigationModel?.ghostOrderModel?.hasChanges() == true
+            && canReorder) { reorder() } else { updateChildren() }
     }
 
-    protected fun reorder() {
-        evidenceViewModel?.let { evidenceViewModel ->
-            val ghostOrderData = evidenceViewModel.ghostOrderModel
+    private fun reorder() {
+        investigationViewModel?.let { investigationViewModel ->
+            val ghostOrderData = investigationViewModel.investigationModel?.ghostOrderModel
 
             ghostOrderData?.currOrder?.let { currOrder ->
                 for (j in currOrder) {

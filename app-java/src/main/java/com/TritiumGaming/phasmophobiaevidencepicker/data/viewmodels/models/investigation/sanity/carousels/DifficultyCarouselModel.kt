@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DifficultyCarouselModel(
     context: Context,
-    val evidenceViewModel: EvidenceViewModel
+    val investigationViewModel: InvestigationViewModel
 ) {
 
     data class DifficultyData(val name: String = "NA", val time: Long)
@@ -30,22 +30,22 @@ class DifficultyCarouselModel(
     val currentIndex = _currentIndex.asStateFlow()
     private fun setIndex(index: Int) {
         _currentIndex.value = index
-        evidenceViewModel.timerModel?.setTimeRemaining(currentTime)
-        evidenceViewModel.timerModel?.resetTimer()
+        investigationViewModel.timerModel?.setTimeRemaining(currentTime)
+        investigationViewModel.timerModel?.resetTimer()
     }
     fun incrementIndex() {
         var i = currentIndex.value + 1
         if (i >= itemCount) { i = 0 }
 
         setIndex(i)
-        evidenceViewModel.sanityModel?.warnTriggered = false
+        investigationViewModel.sanityModel?.warnTriggered = false
     }
     fun decrementIndex() {
         var i = currentIndex.value - 1
         if (i < 0) { i = itemCount - 1 }
 
         setIndex(i)
-        evidenceViewModel.sanityModel?.warnTriggered = false
+        investigationViewModel.sanityModel?.warnTriggered = false
     }
     /* -- */
 
@@ -66,7 +66,7 @@ class DifficultyCarouselModel(
     val currentModifier: Float
         get() {
             val diffIndex =
-                evidenceViewModel.difficultyCarouselModel?.currentIndex?.value ?: return 1f
+                investigationViewModel.difficultyCarouselModel?.currentIndex?.value ?: return 1f
             if (diffIndex >= 0 && diffIndex < SanityModel.DIFFICULTY_MODIFIER.size) {
                 return SanityModel.DIFFICULTY_MODIFIER[diffIndex]
             }

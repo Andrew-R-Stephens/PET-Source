@@ -3,13 +3,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.content.Context
 import android.content.res.TypedArray
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class MapCarouselModel(
     context: Context,
-    val evidenceViewModel: EvidenceViewModel
+    val investigationViewModel: InvestigationViewModel
 ) {
 
     data class MapSizeData(val name: String = "NA", val size: Int)

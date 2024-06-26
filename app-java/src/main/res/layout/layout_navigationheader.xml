@@ -52,12 +52,14 @@
         android:gravity="center"
         android:padding="4dp"
         android:textColor="?attr/textColorPrimary"
-        app:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:autoSizeMaxTextSize="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout78"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout85"
+        app:layout_constraintHeight_max="48dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout78"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:textAllCaps="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout85"

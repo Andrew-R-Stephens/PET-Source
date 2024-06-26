@@ -6,7 +6,7 @@ import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**
@@ -16,7 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
  */
 abstract class SanityWarningView : AppCompatTextView {
 
-    lateinit var evidenceViewModel: EvidenceViewModel
+    lateinit var investigationViewModel: InvestigationViewModel
 
     private companion object SanityState {
         const val OFF = 0
@@ -65,8 +65,8 @@ abstract class SanityWarningView : AppCompatTextView {
         setPaddingDefaults()
     }
 
-    fun init(evidenceViewModel: EvidenceViewModel) {
-        this.evidenceViewModel = evidenceViewModel
+    fun init(investigationViewModel: InvestigationViewModel) {
+        this.investigationViewModel = investigationViewModel
 
         initObservables()
     }

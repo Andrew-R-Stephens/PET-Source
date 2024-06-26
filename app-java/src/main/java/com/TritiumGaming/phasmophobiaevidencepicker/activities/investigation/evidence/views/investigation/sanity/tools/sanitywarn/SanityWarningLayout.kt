@@ -7,7 +7,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnActionView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnHuntView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnSetupView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 
 class SanityWarningLayout : ConstraintLayout {
 
@@ -40,10 +40,10 @@ class SanityWarningLayout : ConstraintLayout {
     private fun setDefaults() {
     }
 
-    fun init(evidenceViewModel: EvidenceViewModel) {
-        sanityWarnSetupView.init(evidenceViewModel)
-        sanityWarnActionView.init(evidenceViewModel)
-        sanityWarnHuntView.init(evidenceViewModel)
+    fun init(investigationViewModel: InvestigationViewModel) {
+        sanityWarnSetupView.init(investigationViewModel)
+        sanityWarnActionView.init(investigationViewModel)
+        sanityWarnHuntView.init(investigationViewModel)
     }
 
 }

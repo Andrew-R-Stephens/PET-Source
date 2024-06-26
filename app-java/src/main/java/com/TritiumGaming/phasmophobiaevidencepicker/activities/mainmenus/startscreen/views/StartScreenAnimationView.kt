@@ -368,9 +368,8 @@ class StartScreenAnimationView : View {
 
         paint.style = Paint.Style.FILL
 
-        try {
-            mainMenuViewModel?.animationModel?.currentPool?.forEach { a ->
-                paint.setColorFilter(a.filter)
+        try { mainMenuViewModel?.animationModel?.currentPool?.forEach { a ->
+                a.filter?.let { filter -> paint.setColorFilter(filter) }
                 try {
                     when(a) {
                         is AnimatedMirrorModel -> a.draw(canvas, paint, bitmapMirror)

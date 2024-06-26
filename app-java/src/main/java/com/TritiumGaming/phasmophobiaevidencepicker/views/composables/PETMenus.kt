@@ -11,7 +11,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,14 +37,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavDeepLinkBuilder
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import org.jetbrains.annotations.TestOnly
+
+@TestOnly
+@Preview
+@Composable
+fun TestMenuIcons() {
+    IconDropdownMenu(
+        R.drawable.ic_menu,
+        R.navigation.titlescreen_navgraph,
+        arrayOf(
+            R.drawable.icon_ts_gear,
+            R.drawable.icon_ts_globe),
+        arrayOf(
+            R.id.appSettingsFragment,
+            R.id.appLanguageFragment)
+    ) { false }
+}
 
 @Composable
-@Preview
 fun IconDropdownMenu(
     primaryContent: Any = Any(),
     @NavigationRes navGraphId: Int = R.navigation.titlescreen_navgraph,
     secondaryContentArray: Array<Any> = arrayOf(),
-    @IntegerRes navigationRoutes: Array<Int> = arrayOf()
+    @IntegerRes navigationRoutes: Array<Int> = arrayOf(),
+    showExpandIcon: () -> Boolean = { true }
 ) {
     val localContext: Context = LocalContext.current
 
@@ -54,8 +73,7 @@ fun IconDropdownMenu(
     localContext.theme.resolveAttribute(
         R.attr.backgroundColorOnBackground,
         typedValue,
-        true
-    )
+        true)
     val backgroundColorOnBackground = Color(typedValue.data)
 
     Box(
@@ -71,23 +89,24 @@ fun IconDropdownMenu(
                 modifier = Modifier.size(48.dp)
             )
 
-            val  arrowImage : Int =
-                if(expanded) R.drawable.ic_expand_circle_up
-                else R.drawable.ic_expand_circle_down
+            if(showExpandIcon()) {
+                val arrowImage: Int =
+                    if (expanded) R.drawable.ic_expand_circle_up
+                    else R.drawable.ic_expand_circle_down
 
-            Box(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(backgroundColorOnBackground)
-                    .fillMaxSize(fraction = .4f)
-                    .align(Alignment.BottomEnd)
-            ) {
-                Image(
-                    painter = painterResource(id = arrowImage),
-                    contentDescription = "Arrow"
-                )
+                Box(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(backgroundColorOnBackground)
+                        .fillMaxSize(fraction = .4f)
+                        .align(Alignment.BottomEnd)
+                ) {
+                    Image(
+                        painter = painterResource(id = arrowImage),
+                        contentDescription = "Arrow"
+                    )
+                }
             }
-
         }
 
         MaterialTheme(
@@ -103,7 +122,9 @@ fun IconDropdownMenu(
         ) {
             DropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
+                modifier = Modifier
+                    .width(48.dp).padding(4.dp).align(Alignment.Center)
             ) {
                 SecondarySelectors(
                     navDeepLinkBuilder = navDeepLinkBuilder,
@@ -146,13 +167,8 @@ fun PrimarySelector(
     modifier: Modifier
 ) {
     IconButton(
-        onClick = {
-            setExpanded()
-        },
-        modifier = modifier
-    ) {
-        contentView()
-    }
+        onClick = { setExpanded() }
+    ) { contentView() }
 }
 
 @Composable
@@ -168,10 +184,8 @@ fun SecondarySelector(
                 .setDestination(navigationRoute)
                 .createPendingIntent().send()
         },
-        modifier = modifier
-    ) {
-        contentView()
-    }
+        /*modifier = modifier.padding(4.dp)*/
+    ) { contentView() }
 }
 
 @Composable

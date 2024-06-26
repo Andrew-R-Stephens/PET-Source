@@ -17,7 +17,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setRulingGroup
 
 class EvidenceView : ConstraintLayout {
@@ -49,13 +49,13 @@ class EvidenceView : ConstraintLayout {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int, ghostList: LinearLayout) {
+    fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
-        nameView?.text = evidenceViewModel.investigationModel?.evidenceListModel
+        nameView?.text = investigationViewModel.investigationModel?.evidenceListModel
             ?.evidenceList?.get(groupIndex)?.name
 
         val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
-        setRulingGroup(radioGroupComposable, evidenceViewModel, groupIndex) {
+        setRulingGroup(radioGroupComposable, investigationViewModel, groupIndex) {
             onSelectEvidenceIcon(ghostList) }
 
         visibility = INVISIBLE

@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 
 @Composable
 @Preview
@@ -59,7 +59,7 @@ fun TabPanel (
 @Preview
 fun ToggleButton(
     modifier: Modifier = Modifier,
-    evidenceViewModel: EvidenceViewModel = viewModel<EvidenceViewModel>(),
+    investigationViewModel: InvestigationViewModel = viewModel<InvestigationViewModel>(),
     state: Boolean = false
 ) {
     Image(

@@ -13,7 +13,7 @@ import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
 import com.google.android.material.navigation.NavigationBarView
@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationView
  * @author TritiumGamingStudios
  */
 open class InvestigationActivity : PETActivity() {
-    protected var evidenceViewModel: EvidenceViewModel? = null
+    protected var investigationViewModel: InvestigationViewModel? = null
     protected var objectivesViewModel: ObjectivesViewModel? = null
     protected var mapMenuViewModel: MapMenuViewModel? = null
 
@@ -45,7 +45,7 @@ open class InvestigationActivity : PETActivity() {
 
         val factory: AndroidViewModelFactory? = super.initViewModels()
         factory?.let {
-            initEvidenceViewModel(factory)
+            initinvestigationViewModel(factory)
             initObjectivesViewModel(factory)
             initMapMenuViewModel(factory)
         }
@@ -61,8 +61,8 @@ open class InvestigationActivity : PETActivity() {
         objectivesViewModel = factory.create(ObjectivesViewModel::class.java)
     }
 
-    private fun initEvidenceViewModel(factory: AndroidViewModelFactory) {
-        evidenceViewModel = factory.create(EvidenceViewModel::class.java)
+    private fun initinvestigationViewModel(factory: AndroidViewModelFactory) {
+        investigationViewModel = factory.create(InvestigationViewModel::class.java)
     }
 
     override fun loadPreferences() {
@@ -79,7 +79,7 @@ open class InvestigationActivity : PETActivity() {
 
     private fun resetViewModels() {
         objectivesViewModel?.reset()
-        evidenceViewModel?.reset()
+        investigationViewModel?.reset()
     }
 
     fun initNavigationComponents() {

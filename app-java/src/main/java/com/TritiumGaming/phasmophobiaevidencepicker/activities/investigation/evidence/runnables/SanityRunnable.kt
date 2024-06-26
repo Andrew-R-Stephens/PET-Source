@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables
 
 import android.media.MediaPlayer
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 
 /**
@@ -9,7 +9,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.Globa
  * @author TritiumGamingStudios
  */
 class SanityRunnable (
-    private val evidenceViewModel: EvidenceViewModel?,
+    private val investigationViewModel: InvestigationViewModel?,
     private val globalPreferencesViewModel: GlobalPreferencesViewModel?
 ) : Runnable {
 
@@ -27,8 +27,8 @@ class SanityRunnable (
      */
     override fun run() {
 
-        // val sanityModel = evidenceViewModel?.sanityModel ?: return
-        val timerModel = evidenceViewModel?.timerModel ?: return
+        // val sanityModel = investigationViewModel?.sanityModel ?: return
+        val timerModel = investigationViewModel?.timerModel ?: return
 
         /*
         if (timerModel.isNewCycle) {
@@ -38,10 +38,10 @@ class SanityRunnable (
 
         if (!timerModel.paused.value) {
 
-            evidenceViewModel.sanityModel?.tick()
+            investigationViewModel.sanityModel?.tick()
 
             /*
-            if(evidenceViewModel.timerModel == null) return
+            if(investigationViewModel.timerModel == null) return
 
             if (phaseTimerData?.isPaused == false) {
 

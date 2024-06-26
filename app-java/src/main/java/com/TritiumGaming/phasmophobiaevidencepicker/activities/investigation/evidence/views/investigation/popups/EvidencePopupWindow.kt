@@ -1,15 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.res.Resources
 import android.content.res.TypedArray
-import android.os.Build
 import android.text.Html
 import android.util.AttributeSet
-import android.util.Log
-import android.view.DragEvent
 import android.view.Gravity
 import android.view.View
 import android.widget.ScrollView
@@ -20,14 +15,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel.EvidencePopupRecord
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.initialization.InitializationStatus
 import pl.droidsonroids.gif.GifImageView
 
 class EvidencePopupWindow : InvestigationPopupWindow {
@@ -50,7 +44,7 @@ class EvidencePopupWindow : InvestigationPopupWindow {
     }
 
     fun build(
-        evidenceViewModel: EvidenceViewModel?,
+        investigationViewModel: InvestigationViewModel?,
         evidenceRecord: EvidencePopupRecord,
         adRequest: AdRequest?
     ) {

@@ -32,15 +32,14 @@ class AccountIconView : MaterialCardView {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.AccountIconView)
             setAccountInitials(
-                a.getResourceId(R.styleable.AccountIconView_accountInitials, 0)
-            )
+                a.getResourceId(R.styleable.AccountIconView_accountInitials, 0))
             a.recycle()
         }
     }
 
     private fun setDefaults() {
-        setMinimumWidth(48)
-        setMinimumHeight(48)
+        minimumWidth = 48
+        minimumHeight = 48
         setBackgroundColor(context.resources.getColor(R.color.transparent))
 
         val profileIcon = findViewById<ComposeView>(R.id.profile_icon)

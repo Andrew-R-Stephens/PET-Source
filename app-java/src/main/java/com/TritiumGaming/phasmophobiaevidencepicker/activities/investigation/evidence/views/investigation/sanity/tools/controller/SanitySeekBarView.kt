@@ -8,13 +8,13 @@ import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class SanitySeekBarView : AppCompatSeekBar {
 
-    private lateinit var evidenceViewModel: EvidenceViewModel
+    private lateinit var investigationViewModel: InvestigationViewModel
 
     var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
     abstract class OnSanityBarProgressChangedListener { abstract fun onChange() }
@@ -26,13 +26,13 @@ class SanitySeekBarView : AppCompatSeekBar {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
 
-    fun init(evidenceViewModel: EvidenceViewModel) {
-        this.evidenceViewModel = evidenceViewModel
+    fun init(investigationViewModel: InvestigationViewModel) {
+        this.investigationViewModel = investigationViewModel
 
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    evidenceViewModel.sanityModel?.setStartTimeFromProgress(progress)
+                    investigationViewModel.sanityModel?.setStartTimeFromProgress(progress)
 
                     onProgressChangedListener?.onChange()
                 }
@@ -50,7 +50,7 @@ class SanitySeekBarView : AppCompatSeekBar {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.sanityModel?.sanityLevel?.collectLatest {
+            investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
                 Log.d("SanityLevel", "$it")
                 val newProgress = (100 - it).toInt()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

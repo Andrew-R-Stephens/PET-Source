@@ -5,49 +5,18 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
 
-class GhostModel {
-    private var investigationData: InvestigationModel? = null
+class GhostModel(
+    val investigationData: InvestigationModel? = null,
+    var id: Int = 0
+) {
+    private var investigationModel: InvestigationModel? = null
 
-    var id: Int = -1
     var name: String = "NA"
 
     var forcefullyRejected: Boolean = false
 
     private val thisGhostEvidence = ArrayList<EvidenceModel>()
     private val thisGhostRequiredEvidence = ArrayList<EvidenceModel>()
-
-    constructor() { id = 0 }
-
-    constructor(investigationData: InvestigationModel?, id: Int) {
-        this.investigationData = investigationData
-        this.id = id
-    }
-
-    fun addEvidence(e: EvidenceModel) {
-        thisGhostEvidence.add(e)
-    }
-
-    fun addEvidence(evidence: String) {
-        for (e in investigationData!!.evidenceListModel.evidenceList) {
-            if (evidence == e.name) {
-                addEvidence(e)
-                break
-            }
-        }
-    }
-
-    fun addNightmareEvidence(e: EvidenceModel) {
-        thisGhostRequiredEvidence.add(e)
-    }
-
-    fun addNightmareEvidence(evidence: String) {
-        for (e in investigationData!!.evidenceListModel.evidenceList) {
-            if (evidence == e.name) {
-                addNightmareEvidence(e)
-                break
-            }
-        }
-    }
 
     val evidence: Array<EvidenceModel?>
         get() {
@@ -91,7 +60,7 @@ class GhostModel {
             if (forcefullyRejected) { return -5 }
 
             val currentDifficulty =
-                investigationData?.evidenceViewModel?.difficultyCarouselModel?.currentDifficulty
+                investigationModel?.investigationViewModel?.difficultyCarouselModel?.currentDifficulty
 
             val isNightmare = currentDifficulty == DifficultyCarouselModel.Difficulty.NIGHTMARE
             val isInsanity = currentDifficulty == DifficultyCarouselModel.Difficulty.INSANITY
@@ -112,7 +81,7 @@ class GhostModel {
             var posScore = 0
             var negScore = 0
 
-            investigationData?.let { investigationData ->
+            investigationModel?.let { investigationData ->
                 for (e in investigationData.evidenceListModel.evidenceList) {
                     var isContained = false
                     for (eThis in thisGhostEvidence) {
@@ -155,6 +124,45 @@ class GhostModel {
 
             return posScore
         }
+
+    //constructor() { id = 0 }
+
+    /*
+    constructor(investigationData: InvestigationModel? = null, id: Int = 0) {
+        investigationData?.let { this.investigationModel = investigationData }
+        this.id = id
+    }
+    */
+
+    init {
+        investigationData?.let { this.investigationModel = investigationData }
+    }
+
+    private fun addEvidence(e: EvidenceModel) {
+        thisGhostEvidence.add(e)
+    }
+
+    fun addEvidence(evidence: String) {
+        for (e in investigationModel!!.evidenceListModel.evidenceList) {
+            if (evidence == e.name) {
+                addEvidence(e)
+                break
+            }
+        }
+    }
+
+    private fun addNightmareEvidence(e: EvidenceModel) {
+        thisGhostRequiredEvidence.add(e)
+    }
+
+    fun addNightmareEvidence(evidence: String) {
+        for (e in investigationModel!!.evidenceListModel.evidenceList) {
+            if (evidence == e.name) {
+                addNightmareEvidence(e)
+                break
+            }
+        }
+    }
 
     override fun toString(): String {
         val s = StringBuilder(name).append(": ")

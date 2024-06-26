@@ -7,14 +7,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class PhaseTimerLayout : ConstraintLayout {
 
-    private lateinit var evidenceViewModel: EvidenceViewModel
+    private lateinit var investigationViewModel: InvestigationViewModel
 
     private lateinit var playToggleButton: PETImageButton
     private lateinit var skipButton: PETImageButton
@@ -54,20 +54,20 @@ class PhaseTimerLayout : ConstraintLayout {
     }
 
     fun init(
-        evidenceViewModel: EvidenceViewModel
+        investigationViewModel: InvestigationViewModel
     ) {
-        this.evidenceViewModel = evidenceViewModel
+        this.investigationViewModel = investigationViewModel
 
         playToggleButton.setOnClickListener {
-            evidenceViewModel.timerModel?.toggleTimer()
+            investigationViewModel.timerModel?.toggleTimer()
         }
 
         skipButton.setOnClickListener {
             //phaseTimerCountdownView.createTimer(false, 0L, 1000L)
-            //evidenceViewModel.skipSanityToPercent(0, 50, 50)
+            //investigationViewModel.skipSanityToPercent(0, 50, 50)
         }
 
-        phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
+        phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
         setPlayButtonIcon()
 
         initObservables()
@@ -75,26 +75,26 @@ class PhaseTimerLayout : ConstraintLayout {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.timerModel?.paused?.collectLatest {
+            investigationViewModel.timerModel?.paused?.collectLatest {
                 setPlayButtonIcon()
             }
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.timerModel?.timeRemaining?.collectLatest {
-                phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
+            investigationViewModel.timerModel?.timeRemaining?.collectLatest {
+                phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
             }
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
-                phaseTimerTextView?.text = evidenceViewModel.timerModel?.displayTime
+            investigationViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
+                phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
             }
         }
     }
 
     private fun setPlayButtonIcon() {
         playToggleButton.drawable.level =
-            states[evidenceViewModel.timerModel?.paused?.value == true] ?: 0
+            states[investigationViewModel.timerModel?.paused?.value == true] ?: 0
     }
 }

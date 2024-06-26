@@ -44,8 +44,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         super.onViewCreated(view, savedInstanceState)
 
         sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool)
-        evidenceViewModel?.let { evidenceViewModel ->
-            sanityToolsLayout?.init(evidenceViewModel)
+        investigationViewModel?.let { investigationViewModel ->
+            sanityToolsLayout?.init(investigationViewModel)
         }
 
         // GHOST / EVIDENCE CONTAINERS
@@ -55,7 +55,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             View.SCROLLBAR_POSITION_RIGHT
 
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            evidenceViewModel?.sanityModel?.flashTimeoutMax =
+            investigationViewModel?.sanityModel?.flashTimeoutMax =
                 globalPreferencesViewModel.huntWarningFlashTimeout.toLong()
 
             if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
@@ -76,18 +76,14 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         ghostList = GhostListView(requireContext())
         evidenceList = EvidenceListView(requireContext())
 
-        ghostList?.init(
-            globalPreferencesViewModel, evidenceViewModel,
-            popupWindow, ghostSection?.findViewById(R.id.progressbar), adRequest
-        )
-        evidenceList?.init(
-            globalPreferencesViewModel, evidenceViewModel,
+        ghostList?.init(globalPreferencesViewModel, investigationViewModel,
+            popupWindow, ghostSection?.findViewById(R.id.progressbar), adRequest)
+        evidenceList?.init(globalPreferencesViewModel, investigationViewModel,
             popupWindow, evidenceSection?.findViewById(R.id.progressbar),
-            adRequest, ghostList
-        )
+            adRequest, ghostList)
 
-        val listGhosts = ghostSection?.findViewById<ViewStub>(R.id.list)
-        val listEvidence = evidenceSection?.findViewById<ViewStub>(R.id.list)
+        val listGhosts = ghostSection?.getList()
+        val listEvidence = evidenceSection?.getList()
 
         ghostScrollview?.removeView(listGhosts)
         ghostScrollview?.addView(ghostList)
@@ -102,26 +98,23 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
         toggleCollapseButton?.let { toggleCollapseButton ->
             toggleCollapseButton.setOnClickListener {
-                if (evidenceViewModel?.isDrawerCollapsed == true) {
-                    sanityTrackingConstraintLayout?.animate()
+                when (investigationViewModel?.isDrawerCollapsed == true) {
+                    true ->
+                        sanityTrackingConstraintLayout?.animate()
                         ?.setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationStart(animation: Animator) {
                                 super.onAnimationStart(animation)
-
                                 sanityTrackingConstraintLayout?.visibility = View.GONE
                             }
-
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
-
                                 sanityTrackingConstraintLayout?.visibility = View.VISIBLE
                                 toggleCollapseButton.setImageLevel(2)
-                                evidenceViewModel?.isDrawerCollapsed = false
+                                investigationViewModel?.isDrawerCollapsed = false
                             }
-                        })
-                        ?.start()
-                } else {
-                    sanityTrackingConstraintLayout?.animate()
+                        })?.start()
+                    false -> {
+                        sanityTrackingConstraintLayout?.animate()
                         ?.setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationStart(animation: Animator) {
                                 super.onAnimationStart(animation)
@@ -132,10 +125,10 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                                 super.onAnimationStart(animation)
                                 sanityTrackingConstraintLayout?.visibility = View.GONE
                                 toggleCollapseButton.setImageLevel(1)
-                                evidenceViewModel?.isDrawerCollapsed = true
+                                investigationViewModel?.isDrawerCollapsed = true
                             }
-                        })
-                        ?.start()
+                        })?.start()
+                    }
                 }
             }
 
@@ -154,7 +147,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     private fun initCollapsible() {
-        if (evidenceViewModel?.isDrawerCollapsed == true) {
+        if (investigationViewModel?.isDrawerCollapsed == true) {
             sanityTrackingConstraintLayout?.visibility = View.GONE
             toggleCollapseButton?.setImageLevel(1)
         } else {
@@ -164,7 +157,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     override fun reset() {
-        evidenceViewModel?.reset()
+        investigationViewModel?.reset()
         objectivesViewModel?.reset()
 
         // TODO Force progress bar update
@@ -172,7 +165,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
     fun requestInvalidateComponents() {
 
-        evidenceViewModel?.ghostOrderModel?.updateOrder()
+        investigationViewModel?.investigationModel?.ghostOrderModel?.updateOrder()
 
         ghostList?.reset()
 

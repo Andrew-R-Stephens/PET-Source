@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -22,33 +22,33 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
             super(context, attrs, defStyleAttr, defStyleRes)
 
-    override fun init(evidenceViewModel: EvidenceViewModel) {
-        super.init(evidenceViewModel)
+    override fun init(investigationViewModel: InvestigationViewModel) {
+        super.init(investigationViewModel)
 
         leftListener = object : CarouselButtonListener() {
             override fun onAction() {
-                evidenceViewModel.difficultyCarouselModel?.decrementIndex()
+                investigationViewModel.difficultyCarouselModel?.decrementIndex()
                 print("Decrementing Diff")
-                evidenceViewModel.sanityModel?.reset()
+                investigationViewModel.sanityModel?.reset()
             }
         }
 
         rightListener = object : CarouselButtonListener() {
             override fun onAction() {
-                evidenceViewModel.difficultyCarouselModel?.incrementIndex()
+                investigationViewModel.difficultyCarouselModel?.incrementIndex()
                 print("Incrementing Diff")
-                evidenceViewModel.sanityModel?.reset()
+                investigationViewModel.sanityModel?.reset()
             }
         }
 
-        setName(evidenceViewModel.difficultyCarouselModel?.currentName)
+        setName(investigationViewModel.difficultyCarouselModel?.currentName)
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
+            investigationViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
                 setName(
-                    evidenceViewModel.difficultyCarouselModel?.currentName
+                    investigationViewModel.difficultyCarouselModel?.currentName
                         ?.split(" ")?.get(0)
                 )
             }

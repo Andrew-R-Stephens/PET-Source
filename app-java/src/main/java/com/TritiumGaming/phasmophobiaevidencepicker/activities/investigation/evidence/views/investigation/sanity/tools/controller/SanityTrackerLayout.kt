@@ -9,14 +9,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.EvidenceViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class SanityTrackerLayout : ConstraintLayout {
 
-    private var evidenceViewModel: EvidenceViewModel? = null
+    private var investigationViewModel: InvestigationViewModel? = null
 
     private lateinit var sanitySeekBarView: SanitySeekBarView
     private lateinit var sanityPercentTextView: AppCompatTextView
@@ -47,31 +47,31 @@ class SanityTrackerLayout : ConstraintLayout {
     private fun setDefaults() {
     }
 
-    fun init(evidenceViewModel: EvidenceViewModel) {
-        this.evidenceViewModel = evidenceViewModel
+    fun init(investigationViewModel: InvestigationViewModel) {
+        this.investigationViewModel = investigationViewModel
 
         sanityMeterView.apply {
-            setContent { SanityMeterView(evidenceViewModel) }
+            setContent { SanityMeterView(investigationViewModel) }
         }
 
-        sanitySeekBarView.init(evidenceViewModel)
+        sanitySeekBarView.init(investigationViewModel)
         sanitySeekBarView.onProgressChangedListener = object :
             SanitySeekBarView.OnSanityBarProgressChangedListener() {
             override fun onChange() {
-                Log.d("onChange", "${evidenceViewModel.sanityModel?.toPercentString()}")
-                sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
+                Log.d("onChange", "${investigationViewModel.sanityModel?.toPercentString()}")
+                sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
             }
         }
-        sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
+        sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
 
 
-        initObservables(evidenceViewModel)
+        initObservables(investigationViewModel)
     }
 
-    private fun initObservables(evidenceViewModel: EvidenceViewModel) {
+    private fun initObservables(investigationViewModel: InvestigationViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            evidenceViewModel.sanityModel?.sanityLevel?.collectLatest {
-                sanityPercentTextView.text = evidenceViewModel.sanityModel?.toPercentString()
+            investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
+                sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
             }
         }
     }
