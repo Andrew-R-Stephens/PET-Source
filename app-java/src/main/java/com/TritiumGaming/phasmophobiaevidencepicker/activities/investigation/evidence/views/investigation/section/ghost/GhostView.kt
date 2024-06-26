@@ -62,7 +62,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     @SuppressLint("ClickableViewAccessibility")
     fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int) {
         this.evidenceViewModel = evidenceViewModel
-        this.ghostData = evidenceViewModel.investigationModel?.ghostList?.getAt(groupIndex)
+        this.ghostData = evidenceViewModel.investigationModel?.ghostListModel?.getAt(groupIndex)
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
@@ -73,8 +73,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 
         if (iconRowLayout != null) {
             var k = 0
-            while (k < (ghostData?.getEvidence()?.size ?: 0)) {
-                val currentEvidence = ghostData?.getEvidence()?.get(k) ?: return
+            while (k < (ghostData?.evidence?.size ?: 0)) {
+                val currentEvidence = ghostData?.evidence?.get(k) ?: return
 
                 val evidenceIcon =
                     iconRowLayout.getChildAt(k) as AppCompatImageView
@@ -109,11 +109,12 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
                                     _: Int, _: Int, _: Int, _: Int ->
             ghostData?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
             if (iconRowLayout != null) {
-                ghostData?.getEvidence()?.forEachIndexed { index, evidenceModel ->
+                ghostData?.evidence?.forEachIndexed { index, evidenceModel ->
                     val evidenceIcon = iconRowLayout.getChildAt(index)
                         .findViewById<AppCompatImageView>(R.id.evidence_icon)
-
-                    evidenceIcon.setColorFilter(getRulingColor(evidenceModel.ruling))
+                    evidenceModel?.let {
+                        evidenceIcon.setColorFilter(getRulingColor(it.ruling))
+                    }
                 }
             }
         }
@@ -138,9 +139,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
                 val evidenceIcon =
                     iconRowLayout.getChildAt(index) as AppCompatImageView
 
-                val ruling = evidence.ruling
-                evidenceIcon.setColorFilter(getRulingColor(ruling))
-                getRulingColor(ruling)
+                evidence?.ruling?.let { ruling ->
+                    evidenceIcon.setColorFilter(getRulingColor(ruling))
+                    getRulingColor(ruling)
+                }
             }
             redrawGhostRejectionStatus(ghostData, ghostData.id, true)
         }
@@ -173,12 +175,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 
     inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
-            e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float
-        ): Boolean {
+            e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
             evidenceViewModel?.let { evidenceViewModel ->
                 val status = !evidenceViewModel.swapStatusInRejectedPile(index)
                 evidenceViewModel.ghostOrderModel?.updateOrder()
-                evidenceViewModel.investigationModel?.ghostList?.getAt(index)?.let { ghostModel ->
+                evidenceViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
                     redrawGhostRejectionStatus(ghostModel, index, true)
                 }
             }

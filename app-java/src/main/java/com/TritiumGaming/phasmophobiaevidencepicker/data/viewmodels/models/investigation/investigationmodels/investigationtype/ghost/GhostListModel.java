@@ -16,8 +16,7 @@ public class GhostListModel {
     @Nullable
     public static ArrayList<GhostModel> ghostList = null;
 
-    public void init(
-            @NonNull Context c, @NonNull InvestigationModel investigationData) {
+    public void init(@NonNull Context c, @NonNull InvestigationModel investigationData) {
         ghostList = new ArrayList<>();
         String[] ghostNames = c.getResources().getStringArray(R.array.ghost_names);
 
@@ -74,7 +73,7 @@ public class GhostListModel {
         if(ghostList == null) { return; }
 
         for (GhostModel g : ghostList) {
-            g.setIsForcefullyRejected(false);
+            g.setForcefullyRejected(false);
         }
     }
 

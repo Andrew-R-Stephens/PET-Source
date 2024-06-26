@@ -59,9 +59,7 @@ class SanityModel(
         _sanityLevel.value = max(min(MAX_SANITY, level), MIN_SANITY)
 
         evidenceViewModel?.timerModel?.updateCurrentPhase()
-
         Log.d("SanityLevel", "${sanityLevel.value}")
-
     }
 
     /** If the warning is within the appropriate range and condition for activation */
@@ -119,9 +117,7 @@ class SanityModel(
             return modifier
         }
 
-    private fun resetFlashTimeoutStart() {
-        flashTimeoutStart = -1
-    }
+    private fun resetFlashTimeoutStart() { flashTimeoutStart = -1 }
 
     /** @param progress specify the progress 0 - 100
      * Resets the Warning Indicator to start flashing again, if necessary
@@ -210,8 +206,7 @@ class SanityModel(
         percentageFormat.minimumFractionDigits = 0
         val percent = sanityLevel.value * .01f
 
-        val formattedPercent =
-            percentageFormat.format(percent).replace("%", "")
+        val formattedPercent = percentageFormat.format(percent).replace("%", "")
 
         val nbsp = "\u00A0"
 
@@ -219,20 +214,15 @@ class SanityModel(
         percentStr = percentStr.replace(nbsp, "").trim { it <= ' ' }
 
         var percentNum = 100
-        try {
-            percentNum = percentStr.toInt()
-        } catch (e: NumberFormatException) {
-            e.printStackTrace()
-        }
+        try { percentNum = percentStr.toInt() }
+        catch (e: NumberFormatException) { e.printStackTrace() }
 
         val input = String.format("%3d", percentNum)
 
         val output = StringBuilder()
         var i = 0
         while (i < input.length) {
-            if (input[i] != '0') {
-                break
-            }
+            if (input[i] != '0') { break }
             output.append(nbsp)
             i++
         }
@@ -246,9 +236,7 @@ class SanityModel(
 
     }
 
-    init {
-        insanityLevel = 0f
-    }
+    init { insanityLevel = 0f }
 
     /** Defaults all persistent data. */
     fun reset() {

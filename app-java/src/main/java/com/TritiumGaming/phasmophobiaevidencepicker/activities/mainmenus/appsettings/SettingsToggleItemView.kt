@@ -1,95 +1,78 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
+import android.content.Context
+import android.util.AttributeSet
+import android.util.Log
+import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.SwitchCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.constraintlayout.widget.ConstraintLayout;
+class SettingsToggleItemView : ConstraintLayout {
+    private var switchId = 0
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+    var isChecked: Boolean
+        get() {
+            val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
+            Log.d("GPVM", "Checking state of: " + toggleSwitch.id)
+            return toggleSwitch.isChecked
+        }
+        set(isChecked) {
+            val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
+            Log.d("GPVM", "Changing state of: " + toggleSwitch.id)
+            toggleSwitch.isChecked = isChecked
+        }
 
-public class SettingsToggleItemView extends ConstraintLayout {
-
-    private int switchId;
-
-    public SettingsToggleItemView(@NonNull Context context) {
-        super(context);
-
-        init(getContext(), null);
+    constructor(context: Context) : super(context) {
+        init(getContext(), null)
     }
 
-    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(getContext(), attrs);
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init(getContext(), attrs)
     }
 
-    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(getContext(), attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
+        init(getContext(), attrs)
     }
 
-    public SettingsToggleItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-
-        init(getContext(), attrs);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) {
+        init(getContext(), attrs)
     }
 
-    public void init(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        inflate(context, R.layout.item_settings_toggle, this);
+    fun init(context: Context, attrs: AttributeSet?) {
+        inflate(context, R.layout.item_settings_toggle, this)
 
         if (attrs != null) {
-            TypedArray typedArray =
-                    context.obtainStyledAttributes(attrs, R.styleable.SettingsToggleItem);
+            val typedArray =
+                context.obtainStyledAttributes(attrs, R.styleable.SettingsToggleItemView)
 
-            String description =
-                    typedArray.getString(R.styleable.SettingsToggleItem_settings_toggle_description);
-            setDescription(description);
+            val description =
+                typedArray.getString(R.styleable.SettingsToggleItemView_settings_toggle_description)
+            setDescription(description)
 
-            typedArray.recycle();
+            typedArray.recycle()
         }
 
-        initSwitchID(View.generateViewId());
+        initSwitchID(generateViewId())
     }
 
-    private void initSwitchID(int id) {
-        this.switchId = id;
+    private fun initSwitchID(id: Int) {
+        this.switchId = id
 
-        findViewById(R.id.switch_toggle).setId(this.switchId);
+        findViewById<View>(R.id.switch_toggle).id = switchId
     }
 
-    public void setDescription(String text) {
-        AppCompatTextView label = findViewById(R.id.switch_description);
-        if(label != null) {
-            label.setText(text);
-        }
+    private fun setDescription(text: String?) {
+        val label = findViewById<AppCompatTextView>(R.id.switch_description)
+        label?.text = text
     }
 
-    public void setSwitchClickListener(OnClickListener listener) {
-        SwitchCompat toggleSwitch = findViewById(this.switchId);
-
-        toggleSwitch.setOnClickListener(listener);
-    }
-
-    public void setChecked(boolean isChecked) {
-        SwitchCompat toggleSwitch = findViewById(this.switchId);
-        Log.d("GPVM", "Changing state of: " + toggleSwitch.getId());
-
-        toggleSwitch.setChecked(isChecked);
-    }
-
-    public boolean isChecked() {
-        SwitchCompat toggleSwitch = findViewById(this.switchId);
-        Log.d("GPVM", "Checking state of: " + toggleSwitch.getId());
-
-        return toggleSwitch.isChecked();
+    fun setSwitchClickListener(listener: OnClickListener?) {
+        val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
+        toggleSwitch?.setOnClickListener(listener)
     }
 
 }

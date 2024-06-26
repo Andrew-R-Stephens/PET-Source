@@ -91,7 +91,7 @@ class EvidenceViewModel : ViewModel() {
     private fun createRadioButtonsChecked() {
         _radioButtonsChecked.value.clear()
 
-        investigationModel?.evidenceList?.list?.forEach { _ ->
+        investigationModel?.evidenceListModel?.evidenceList?.forEach { _ ->
             _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
     }
@@ -123,7 +123,7 @@ class EvidenceViewModel : ViewModel() {
         rejectionPile?.let { rejectionPile ->
             for (i in rejectionPile.indices) {
                 rejectionPile[i] =
-                    investigationModel?.ghostList?.getAt(i)?.isForcefullyRejected == true
+                    investigationModel?.ghostListModel?.getAt(i)?.forcefullyRejected == true
             }
         }
     }

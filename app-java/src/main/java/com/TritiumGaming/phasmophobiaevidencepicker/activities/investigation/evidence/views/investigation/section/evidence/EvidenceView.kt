@@ -51,13 +51,12 @@ class EvidenceView : ConstraintLayout {
     @SuppressLint("ClickableViewAccessibility")
     fun build(evidenceViewModel: EvidenceViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
-        nameView.text =
-            evidenceViewModel.investigationModel?.evidenceList?.list?.get(groupIndex)?.name
+        nameView?.text = evidenceViewModel.investigationModel?.evidenceListModel
+            ?.evidenceList?.get(groupIndex)?.name
 
         val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
         setRulingGroup(radioGroupComposable, evidenceViewModel, groupIndex) {
-            onSelectEvidenceIcon(ghostList)
-        }
+            onSelectEvidenceIcon(ghostList) }
 
         visibility = INVISIBLE
         alpha = 0f

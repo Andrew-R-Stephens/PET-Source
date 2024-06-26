@@ -49,6 +49,9 @@ class DifficultyCarouselModel(
     }
     /* -- */
 
+    val currentDifficulty: Difficulty
+        get() = Difficulty.entries[currentIndex.value]
+
     val currentName: String
         get() = itemList[currentIndex.value].name
 

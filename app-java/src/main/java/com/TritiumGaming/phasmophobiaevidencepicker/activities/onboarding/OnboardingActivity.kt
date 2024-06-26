@@ -1,26 +1,20 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding
 
-import android.os.Bundle;
-import android.util.Log;
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+class OnboardingActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-public class OnboardingActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Log.d("Onboarding", "Creating Activity content view");
-        setContentView(R.layout.activity_onboarding);
+        Log.d("Onboarding", "Creating Activity content view")
+        setContentView(R.layout.activity_onboarding)
     }
 
-    @Override
-    public void finish() {
-        Log.d("Onboarding", "Finishing Activity!");
-        super.finish();
+    override fun finish() {
+        Log.d("Onboarding", "Finishing Activity!")
+        super.finish()
     }
 }

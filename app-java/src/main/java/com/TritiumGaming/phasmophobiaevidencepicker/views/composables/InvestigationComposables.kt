@@ -86,7 +86,7 @@ fun GhostList(
     maxFontSize: TextUnit = 96.sp
 ) {
     val ghostTypes = remember {
-        val list = evidenceViewModel?.investigationModel?.ghostList?.list
+        val list = evidenceViewModel?.investigationModel?.ghostListModel?.list
         list
     }
 
@@ -146,7 +146,7 @@ fun GhostView(
 
 @Composable
 fun GhostEvidenceGroup(
-    evidenceGroup: Array<EvidenceModel>? = arrayOf(
+    evidenceGroup: Array<EvidenceModel?>? = arrayOf(
         EvidenceModel(),
         EvidenceModel(),
         EvidenceModel()
@@ -158,17 +158,19 @@ fun GhostEvidenceGroup(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxSize()
     ) {
-        evidenceTypes?.forEach {
-            Image(
-                painterResource(id = it.icon),
-                contentDescription = "Evidence 1",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .sizeIn(48.dp, 48.dp, Dp.Unspecified, Dp.Unspecified)
-                    .weight(1f)
-                    .padding(4.dp, 0.dp)
-                    .aspectRatio(1f)
-            )
+        evidenceTypes?.forEach { evidenceType ->
+            evidenceType?.let {
+                Image(
+                    painterResource(id = it.icon),
+                    contentDescription = "Evidence 1",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .sizeIn(48.dp, 48.dp, Dp.Unspecified, Dp.Unspecified)
+                        .weight(1f)
+                        .padding(4.dp, 0.dp)
+                        .aspectRatio(1f)
+                )
+            }
         }
 
     }
@@ -179,8 +181,7 @@ fun EvidenceRulingList(
     evidenceViewModel: EvidenceViewModel? = viewModel()
 ) {
     val evidenceTypes = remember {
-        val list = evidenceViewModel?.investigationModel?.evidenceList?.list
-        list
+        evidenceViewModel?.investigationModel?.evidenceListModel?.evidenceList
     }
 
     Column(
@@ -288,7 +289,7 @@ fun RulingSelector(
         modifier = modifier,
         onClick = {
             evidenceViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            evidenceViewModel.investigationModel?.evidenceList?.list?.get(groupIndex)?.ruling =
+            evidenceViewModel.investigationModel?.evidenceListModel?.evidenceList?.get(groupIndex)?.ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
             evidenceViewModel.ghostOrderModel?.updateOrder()
 

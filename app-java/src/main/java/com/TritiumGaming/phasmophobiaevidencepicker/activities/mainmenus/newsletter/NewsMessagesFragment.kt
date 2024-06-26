@@ -15,11 +15,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newslet
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import io.realm.kotlin.internal.platform.currentTime
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 class NewsMessagesFragment : MainMenuFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,8 +23,6 @@ class NewsMessagesFragment : MainMenuFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // INITIALIZE VIEWS
-
         val titleTextView = view.findViewById<AppCompatTextView>(R.id.textView_title)
         val backButton = view.findViewById<PETImageButton>(R.id.button_left)
         val recyclerViewMessages = view.findViewById<RecyclerView>(R.id.recyclerview_messageslist)
@@ -44,20 +37,23 @@ class NewsMessagesFragment : MainMenuFragment() {
             } catch (e: IllegalStateException) { e.printStackTrace() }
 
             val inbox = newsLetterViewModel.getInbox(newsLetterViewModel.currentInboxType)
-            if (inbox != null) {
-                inbox.updateLastReadDate()
-                try { inbox.inboxType?.let {  inboxType ->
+            inbox?.let {
+                it.updateLastReadDate()
+                try { it.inboxType?.let {  inboxType ->
                     newsLetterViewModel.saveToFile(requireContext(), inboxType) } }
                 catch (e: IllegalStateException) { e.printStackTrace() }
             }
 
             // SET CONTENT
             newsLetterViewModel.currentInbox?.let { currentInbox ->
-                val adapter = MessagesAdapterView(currentInbox.messages) { position: Int ->
-                    newsLetterViewModel.setCurrentMessageId(position)
-                    findNavController(view)
-                        .navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
-                }
+                val adapter = MessagesAdapterView(
+                    currentInbox.messages, object: MessagesAdapterView.OnMessageListener {
+                    override fun onNoteClick(position: Int) {
+                        newsLetterViewModel.setCurrentMessageId(position)
+                        findNavController(view).navigate(
+                            R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                    }
+                })
                 recyclerViewMessages.adapter = adapter
                 try { recyclerViewMessages.layoutManager = LinearLayoutManager(requireContext()) }
                 catch (e: IllegalStateException) { e.printStackTrace() }
@@ -78,9 +74,4 @@ class NewsMessagesFragment : MainMenuFragment() {
         initMainMenuViewModel()
         initNewsletterViewModel()
     }
-
-    /*
-    override fun saveStates() {
-        super.saveStates()
-    }*/
 }

@@ -14,20 +14,18 @@ class InvestigationModel(
     context: Context,
     val evidenceViewModel: EvidenceViewModel
 ) {
-    val ghostList: GhostListModel =
-        GhostListModel()
-    val evidenceList: EvidenceListModel =
-        EvidenceListModel()
+    val ghostListModel: GhostListModel = GhostListModel()
+    val evidenceListModel: EvidenceListModel = EvidenceListModel()
 
     init {
-        evidenceList.init(context)
-        ghostList.init(context, this)
+        evidenceListModel.init(context)
+        ghostListModel.init(context, this)
     }
 
     /** Resets the Ruling for each Evidence type */
     fun reset() {
-        evidenceList.reset()
-        ghostList.reset()
+        evidenceListModel.reset()
+        ghostListModel.reset()
     }
 
 }

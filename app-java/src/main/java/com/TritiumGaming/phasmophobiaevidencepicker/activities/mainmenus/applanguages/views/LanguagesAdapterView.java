@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +21,7 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
     private final OnLanguageListener onLanguageListener;
 
     public LanguagesAdapterView(
-            ArrayList<String> languages,
-            int selected,
-            OnLanguageListener onLanguageListener) {
+            ArrayList<String> languages, int selected, OnLanguageListener onLanguageListener) {
         mPreviousIndex = selected;
         this.languages = languages;
         this.onLanguageListener = onLanguageListener;
@@ -62,26 +59,19 @@ public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterV
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppCompatTextView textView = holder.label_languageTitle;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             textView.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    30,
-                    1,
+                    12, 30, 1,
                     AppCompatTextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         } else {
             textView.setAutoSizeTextTypeUniformWithConfiguration(
-                    12,
-                    30,
-                    1,
-                    1);
-        }
+                    12, 30, 1, 1);
+        }*/
         textView.setText(languages.get(position));
         textView.setSelected(true);
 
-
         //color on item unselecting item
         holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);
-
     }
 
     @Override

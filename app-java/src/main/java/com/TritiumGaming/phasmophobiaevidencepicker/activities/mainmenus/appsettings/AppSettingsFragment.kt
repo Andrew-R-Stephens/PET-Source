@@ -1,125 +1,107 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.SeekBar;
-import android.widget.Toast;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.google.android.ump.FormError
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.QuerySnapshot
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.navigation.Navigation;
+class AppSettingsFragment : MainMenuFirebaseFragment() {
+    private var googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+    private val showEmail = false
+    private var loadThemes = true
 
-import java.util.HashMap;
+    private var isAlwaysOnToggle: SettingsToggleItemView? = null
+    private var networkToggle: SettingsToggleItemView? = null
+    private var huntWarningAudioToggle: SettingsToggleItemView? = null
+    private var reOrderGhostListToggle: SettingsToggleItemView? = null
+    private var enableLeftHandMode: SettingsToggleItemView? = null
 
-public class AppSettingsFragment extends MainMenuFirebaseFragment {
-
-    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
-
-    private boolean showEmail = false, loadThemes = true;
-
-    private SettingsToggleItemView toggle_isAlwaysOn, toggle_network,
-            toggle_huntwarningaudio, toggle_reorderGhostViews, toggle_leftHandMode;
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        super.init();
-
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.init()
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     @SuppressLint("ResourceType")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        super.onViewCreated(view, savedInstanceState);
+        val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
+        val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_left)
+        val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
 
-        final NavHeaderLayout navHeaderLayout = view.findViewById(R.id.navHeaderLayout);
-        final View listener_cancelClose = navHeaderLayout.findViewById(R.id.button_left);
-        final View listener_confirmClose = navHeaderLayout.findViewById(R.id.button_right);
-
-        final AppCompatButton btn_account_login =
-                view.findViewById(R.id.settings_account_login_button);
+        val accountLoginButton =
+            view.findViewById<AppCompatButton>(R.id.settings_account_login_button)
         /*final AppCompatButton btn_account_logout =
                 view.findViewById(R.id.settings_account_logout_button);
         final PETImageButton btn_account_delete =
                 view.findViewById(R.id.settings_account_delete_button);*/
-        final ConstraintLayout btn_account_infoContainer =
-                view.findViewById(R.id.constraintLayout_accountInformation);
-        final AppCompatTextView btn_account_info =
-                view.findViewById(R.id.settings_accountsettings_info);
+        val btn_account_infoContainer =
+            view.findViewById<ConstraintLayout>(R.id.constraintLayout_accountInformation)
+        val btn_account_info =
+            view.findViewById<AppCompatTextView>(R.id.settings_accountsettings_info)
 
-        final AppCompatTextView switch_huntwarning_timetext =
-                view.findViewById(R.id.seekbar_huntwarningtimeout_timetext);
-        final AppCompatTextView switch_huntwarning_othertext =
-                view.findViewById(R.id.seekbar_huntwarningtimeout_othertext);
+        val clockTimeTextView =
+            view.findViewById<AppCompatTextView>(R.id.seekbar_huntwarningtimeout_timetext)
+        val clockOtherTextView =
+            view.findViewById<AppCompatTextView>(R.id.seekbar_huntwarningtimeout_othertext)
 
-        toggle_isAlwaysOn = view.findViewById(R.id.toggle_alwaysOn);
-        toggle_network = view.findViewById(R.id.toggle_network);
-        toggle_leftHandMode = view.findViewById(R.id.toggle_leftHandMode);
-        toggle_reorderGhostViews = view.findViewById(R.id.toggle_reorderGhostViews);
-        toggle_huntwarningaudio = view.findViewById(R.id.toggle_huntwarningaudio);
+        isAlwaysOnToggle = view.findViewById(R.id.toggle_alwaysOn)
+        networkToggle = view.findViewById(R.id.toggle_network)
+        enableLeftHandMode = view.findViewById(R.id.toggle_leftHandMode)
+        reOrderGhostListToggle = view.findViewById(R.id.toggle_reorderGhostViews)
+        huntWarningAudioToggle = view.findViewById(R.id.toggle_huntwarningaudio)
 
-        SeekBar seekBar_huntwarningTimeout =
-                view.findViewById(R.id.settings_huntwarning_seekbar);
+        val seekbar = view.findViewById<SeekBar>(R.id.settings_huntwarning_seekbar)
 
-        final AppCompatTextView text_colorTheme_selectedname =
-                view.findViewById(R.id.colorblindmode_selectedname);
-        final AppCompatTextView text_fontStyle_selectedname =
-                view.findViewById(R.id.font_selectedname);
+        val colorThemeTextView =
+            view.findViewById<AppCompatTextView>(R.id.colorblindmode_selectedname)
+        val fontThemeTextView = view.findViewById<AppCompatTextView>(R.id.font_selectedname)
 
-        final PETImageButton btn_colorTheme_left =
-                view.findViewById(R.id.colorblindmode_leftbutton);
-        final PETImageButton btn_colorTheme_right =
-                view.findViewById(R.id.colorblindmode_rightbutton);
+        val colorThemePrevButton = view.findViewById<PETImageButton>(R.id.colorblindmode_leftbutton)
+        val colorThemeNextButton =
+            view.findViewById<PETImageButton>(R.id.colorblindmode_rightbutton)
 
-        final PETImageButton btn_fontStyle_left =
-                view.findViewById(R.id.font_leftbutton);
-        final PETImageButton btn_fontStyle_right =
-                view.findViewById(R.id.font_rightbutton);
+        val fontThemePrevButton = view.findViewById<PETImageButton>(R.id.font_leftbutton)
+        val fontThemeNextButton = view.findViewById<PETImageButton>(R.id.font_rightbutton)
 
-        try {
-            googleMobileAdsConsentManager = new GoogleMobileAdsConsentManager(requireActivity());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+        try { googleMobileAdsConsentManager = GoogleMobileAdsConsentManager(requireActivity()) }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+
+        accountLoginButton?.setOnClickListener { v: View? ->
+            manualSignInAccount()
+            view.invalidate()
         }
 
-        if(btn_account_login != null) {
-            btn_account_login.setOnClickListener(v -> {
-                manualSignInAccount();
-
-                view.invalidate();
-            });
-        }
         /*if(btn_account_logout != null) {
             btn_account_logout.setOnClickListener(v -> {
                 signOutAccount();
@@ -143,273 +125,205 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
 
         // SWITCHES
         // Screen Always On
-        if(getGlobalPreferencesViewModel() != null) {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
             // Always On Mode
-            if(toggle_isAlwaysOn != null) {
-                toggle_isAlwaysOn.setChecked(
-                        getGlobalPreferencesViewModel().isAlwaysOn());
-            }
+            isAlwaysOnToggle?.isChecked = globalPreferencesViewModel.isAlwaysOn
+
             // Allow Mobile Data
-            if(toggle_network != null) {
-                toggle_network.setChecked(
-                        getGlobalPreferencesViewModel().getNetworkPreference());
-            }
+            networkToggle?.isChecked = globalPreferencesViewModel.networkPreference
+
             // Allow Left Hand Mode
-            if(toggle_leftHandMode != null) {
-                toggle_leftHandMode.setChecked(
-                        getGlobalPreferencesViewModel().isLeftHandSupportEnabled());
-            }
+            enableLeftHandMode?.isChecked = globalPreferencesViewModel.isLeftHandSupportEnabled
+
             // Allow Hunt Warning Audio
-            if(toggle_huntwarningaudio != null) {
-                toggle_huntwarningaudio.setChecked(
-                        getGlobalPreferencesViewModel().isHuntWarningAudioAllowed());
-            }
+            huntWarningAudioToggle?.isChecked = globalPreferencesViewModel.isHuntWarningAudioAllowed
+
             // Allow Reorder Ghost Views
-            if(toggle_reorderGhostViews != null) {
-                toggle_reorderGhostViews.setChecked(
-                        getGlobalPreferencesViewModel().getReorderGhostViews());
-            }
+            reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.reorderGhostViews
+
 
             // COLORBLIND DATA
-            if(text_colorTheme_selectedname != null) {
-                ColorThemeControl colorThemesData =
-                        getGlobalPreferencesViewModel().getColorThemeControl();
-                try {
-                    text_colorTheme_selectedname.setText(colorThemesData.getCurrentName());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            val colorThemesData = globalPreferencesViewModel.colorThemeControl
+            try { colorThemeTextView?.setText(colorThemesData.currentName) }
+            catch (e: Exception) { e.printStackTrace() }
+
             // FONT-STYLE DATA
-            if(text_fontStyle_selectedname != null) {
-                FontThemeControl fontThemesData =
-                        getGlobalPreferencesViewModel().getFontThemeControl();
-                try {
-                    text_fontStyle_selectedname.setText(fontThemesData.getCurrentName());
-                } catch (Exception e) {
-                    e.printStackTrace();
+            val fontThemesData = globalPreferencesViewModel.fontThemeControl
+            try { fontThemeTextView?.setText(fontThemesData.currentName) }
+            catch (e: Exception) { e.printStackTrace() }
+
+            val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
+                when(showTime) {
+                    true -> {
+                        clockTimeTextView.visibility = VISIBLE
+                        clockOtherTextView.visibility = GONE
+                    }
+                    false -> {
+                        clockOtherTextView.visibility = VISIBLE
+                        clockTimeTextView.visibility = GONE
+                    }
                 }
             }
+
             // Hunt warning timeout setting
-            if (seekBar_huntwarningTimeout != null) {
-                seekBar_huntwarningTimeout.setMax(300001);
-                if (getGlobalPreferencesViewModel().getHuntWarningFlashTimeout() < 0) {
-                    seekBar_huntwarningTimeout.setProgress(seekBar_huntwarningTimeout.getMax());
-                } else {
-                    seekBar_huntwarningTimeout.setProgress(
-                            getGlobalPreferencesViewModel().getHuntWarningFlashTimeout());
-                }
-                seekBar_huntwarningTimeout.setOnSeekBarChangeListener(
-                        new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onProgressChanged(
-                                    SeekBar seekBar, int progress, boolean fromUser) {
+            seekbar?.let {
+                val seconds = 300
+                val millisPerSecond = 1000
+                seekbar.max = (seconds * millisPerSecond) + 1
+                if (globalPreferencesViewModel.huntWarningFlashTimeout < 0) {
+                    seekbar.progress = seekbar.max }
+                else { seekbar.progress = globalPreferencesViewModel.huntWarningFlashTimeout }
 
-                                if (fromUser) {
+                seekbar.setOnSeekBarChangeListener(
+                    object : OnSeekBarChangeListener {
+                        override fun onProgressChanged(
+                            seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                            if (fromUser) {
+                                globalPreferencesViewModel.huntWarningFlashTimeout = progress
 
-                                    getGlobalPreferencesViewModel().setHuntWarningFlashTimeout(progress);
+                                val progressMax =
+                                    (seconds * millisPerSecond) / seekbar.max.toDouble()
 
-                                    double progressMax = 300000 /
-                                            (double) seekBar_huntwarningTimeout.getMax();
-
-                                    if (progress < seekBar_huntwarningTimeout.getMax()) {
-                                        long breakdown = (long) (progressMax * progress / 1000L);
-                                        String text = FormatterUtils.millisToTime(
-                                                "%sm %ss", breakdown);
-                                        switch_huntwarning_timetext.setText(text);
-                                        switch_huntwarning_othertext.setText("");
-                                    } else if (progress == seekBar_huntwarningTimeout.getMax()) {
-                                        switch_huntwarning_timetext.setText("");
-                                        switch_huntwarning_othertext.setText(R.string.settings_huntwarningflashtimeout_never);
-                                    }
+                                if (progress < seekbar.max) {
+                                    val breakdown = (progressMax * progress / 1000L).toLong()
+                                    val text = millisToTime("%sm %ss", breakdown)
+                                    clockTimeTextView.text = text
+                                    showClockTime(true)
+                                } else if (progress == seekbar.max) {
+                                    showClockTime(false)
+                                    clockOtherTextView.setText(R.string.settings_huntwarningflashtimeout_never)
                                 }
                             }
+                        }
+                        override fun onStartTrackingTouch(seekBar: SeekBar) { }
+                        override fun onStopTrackingTouch(seekBar: SeekBar) { }
+                    })
 
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-                            }
+                val progressMax = 300000 / seekbar.max.toDouble()
 
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-                            }
-
-                        });
-
-                double progressMax = 300000 / (double) seekBar_huntwarningTimeout.getMax();
-
-                if (seekBar_huntwarningTimeout.getProgress() >= 0 &&
-                        seekBar_huntwarningTimeout.getProgress() <
-                                seekBar_huntwarningTimeout.getMax()) {
-                    long breakdown =
-                            (long) (progressMax * seekBar_huntwarningTimeout.getProgress() / 1000L);
-                    String text = FormatterUtils.millisToTime("%sm %ss", breakdown);
-
-                    switch_huntwarning_othertext.setText("");
-                    switch_huntwarning_timetext.setText(text);
-                } else {
-                    switch_huntwarning_othertext.setText(R.string.settings_huntwarningflashtimeout_never);
-                    switch_huntwarning_timetext.setText("");
-                }
+                if (seekbar.progress >= 0 && seekbar.progress < seekbar.max) {
+                    val breakdown =
+                        (progressMax * seekbar.progress / 1000L).toLong()
+                    val text = millisToTime("%sm %ss", breakdown)
+                    showClockTime(true)
+                    clockTimeTextView.text = text
+                } else { showClockTime(false) }
             }
         }
 
         // Screen Always On
-        if(toggle_isAlwaysOn != null) {
-            toggle_isAlwaysOn.setSwitchClickListener(v -> {
-                if (getGlobalPreferencesViewModel() != null) {
-                    getGlobalPreferencesViewModel().setAlwaysOn(toggle_isAlwaysOn.isChecked());
-                }
-            });
+        isAlwaysOnToggle?.setSwitchClickListener {
+            globalPreferencesViewModel?.isAlwaysOn = isAlwaysOnToggle?.isChecked == true
         }
         // Allow Mobile Data
-        if(toggle_network != null) {
-            toggle_network.setSwitchClickListener(v -> {
-                if (getGlobalPreferencesViewModel() != null) {
-                    getGlobalPreferencesViewModel().setNetworkPreference(toggle_network.isChecked());
-                }
-            });
+        networkToggle?.setSwitchClickListener {
+            globalPreferencesViewModel?.networkPreference = networkToggle?.isChecked == true
+
         }
         // Allow Left Hand Mode
-        if(toggle_leftHandMode != null) {
-            toggle_leftHandMode.setSwitchClickListener(v -> {
-                if (getGlobalPreferencesViewModel() != null) {
-                    getGlobalPreferencesViewModel().setLeftHandSupportEnabled(
-                            toggle_leftHandMode.isChecked());
-                }
-            });
+        enableLeftHandMode?.setSwitchClickListener {
+            globalPreferencesViewModel?.isLeftHandSupportEnabled =
+                enableLeftHandMode?.isChecked == true
         }
+
         // Allow Hunt Warning Audio
-        if(toggle_huntwarningaudio != null) {
-            toggle_huntwarningaudio.setSwitchClickListener(v -> {
-                if (getGlobalPreferencesViewModel() != null) {
-                    getGlobalPreferencesViewModel().setHuntWarningAudioAllowed(
-                            toggle_huntwarningaudio.isChecked());
-                }
-            });
-        }
+            huntWarningAudioToggle?.setSwitchClickListener {
+                globalPreferencesViewModel?.isHuntWarningAudioAllowed =
+                    huntWarningAudioToggle?.isChecked == true
+            }
         // Allow Ghost View Reordering
-        if(toggle_reorderGhostViews != null) {
-            toggle_reorderGhostViews.setSwitchClickListener(v -> {
-                if (getGlobalPreferencesViewModel() != null) {
-                    getGlobalPreferencesViewModel().setReorderGhostViews(
-                            toggle_reorderGhostViews.isChecked());
-                }
-            });
+        reOrderGhostListToggle?.setSwitchClickListener {
+            globalPreferencesViewModel?.reorderGhostViews =
+                reOrderGhostListToggle?.isChecked == true
         }
 
         // COLORBLIND LISTENERS
-        btn_colorTheme_left.setOnClickListener(v -> {
-            ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
-
-            themeControl.iterateSelectedIndex(-1);
-            if(text_colorTheme_selectedname != null) {
-                try {
-                    text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        colorThemePrevButton.setOnClickListener {
+            globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
+                themeControl.iterateSelectedIndex(-1)
+                try { colorThemeTextView?.text = getString(themeControl.currentName) }
+                catch (e: Exception) { e.printStackTrace() }
+                demoColorStyle(themeControl)
             }
-            demoColorStyle(themeControl);
-        });
+        }
 
-        btn_colorTheme_right.setOnClickListener(v -> {
-            ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
-
-            themeControl.iterateSelectedIndex(1);
-            if(text_colorTheme_selectedname != null) {
-                try {
-                    text_colorTheme_selectedname.setText(getString(themeControl.getCurrentName()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        colorThemeNextButton.setOnClickListener {
+            globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
+                themeControl.iterateSelectedIndex(1)
+                try { colorThemeTextView?.text = getString(themeControl.currentName) }
+                catch (e: Exception) { e.printStackTrace() }
+                demoColorStyle(themeControl)
             }
-            demoColorStyle(themeControl);
-        });
+        }
 
         // FONT-STYLE LISTENERS
-        btn_fontStyle_left.setOnClickListener(v -> {
-            FontThemeControl themeControl = getGlobalPreferencesViewModel().getFontThemeControl();
-
-            themeControl.iterateSelectedIndex(-1);
-            if(text_fontStyle_selectedname != null) {
-                try {
-                    text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
-                } catch (Exception e) {
-                    e.printStackTrace();
+        fontThemePrevButton.setOnClickListener {
+            globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
+                themeControl.iterateSelectedIndex(-1)
+                if (fontThemeTextView != null) {
+                    try { fontThemeTextView.text = getString(themeControl.currentName) }
+                    catch (e: Exception) { e.printStackTrace() }
                 }
+                demoFontStyle(themeControl)
             }
-            demoFontStyle(themeControl);
-            //demoStyles();
-        });
+        }
 
-        btn_fontStyle_right.setOnClickListener(v -> {
-            FontThemeControl themeControl = getGlobalPreferencesViewModel().getFontThemeControl();
-
-            themeControl.iterateSelectedIndex(1);
-            if(text_fontStyle_selectedname != null) {
-                try {
-                    text_fontStyle_selectedname.setText(getString(themeControl.getCurrentName()));
-                } catch (Exception e) {
-                    e.printStackTrace();
+        fontThemeNextButton.setOnClickListener {
+            globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
+                themeControl.iterateSelectedIndex(1)
+                if (fontThemeTextView != null) {
+                    try { fontThemeTextView.text = getString(themeControl.currentName) }
+                    catch (e: Exception) { e.printStackTrace() }
                 }
+                demoFontStyle(themeControl)
             }
-            demoFontStyle(themeControl);
-            //demoStyles();
-        });
+        }
 
         // CANCEL BUTTON
-        listener_cancelClose.setOnClickListener(v -> {
-            revertDemoChanges();
-
-            try {
-                Navigation.findNavController(v).popBackStack();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        });
+        cancelButton.setOnClickListener { v: View? ->
+            revertDemoChanges()
+            try { findNavController(v!!).popBackStack() }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+        }
 
         // CONFIRM BUTTON
-        listener_confirmClose.setOnClickListener(v -> {
-
-            Bundle params = new Bundle();
-            params.putString("event_type", "confirm_settings");
-            HashMap<String, String> settings = getGlobalPreferencesViewModel().getDataAsList();
-            for (String key : settings.keySet()) {
-                String value = settings.get(key);
-                params.putString(key, value);
+        confirmButton.setOnClickListener { v: View? ->
+            val params = Bundle()
+            params.putString("event_type", "confirm_settings")
+            globalPreferencesViewModel?.dataAsList?.let { settings ->
+                for (key in settings.keys) {
+                    val value = settings[key]
+                    params.putString(key, value)
+                }
+                analytics?.logEvent("event_settings", params)
             }
-            getAnalytics().logEvent("event_settings", params);
 
-            saveStates();
-
-            try {
-                Navigation.findNavController(v).popBackStack();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        });
+            saveStates()
+            try { findNavController(v!!).popBackStack() }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+        }
 
         // Include a privacy setting if applicable
-        if (googleMobileAdsConsentManager.isPrivacyOptionsRequired()) {
-            ConstraintLayout adsLayout = view.findViewById(R.id.constraintLayout_ads);
-            adsLayout.setVisibility(View.VISIBLE);
+        if (googleMobileAdsConsentManager?.isPrivacyOptionsRequired == true) {
+            val adsLayout = view.findViewById<ConstraintLayout>(R.id.constraintLayout_ads)
+            adsLayout.visibility = VISIBLE
 
-            AppCompatButton adsButton = view.findViewById(R.id.settings_ads_label);
-            adsButton.setOnClickListener(v -> showAdsConsentForm(v.getContext()));
+            val adsButton = view.findViewById<AppCompatButton>(R.id.settings_ads_label)
+            adsButton.setOnClickListener { v: View -> showAdsConsentForm(v.context) }
         }
 
-        if(loadThemes) {
-            getUserPurchaseHistory();
+        if (loadThemes) {
+            loadUserPurchaseHistory()
             //getMarketplaceColorThemes();
-            loadThemes = false;
+            loadThemes = false
         }
-/*
+
+        /*
 
         if(btn_account_delete != null) {
             btn_account_delete.setVisibility(View.GONE);
         }
-*/
-
+        */
     }
 
     /*
@@ -466,65 +380,48 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         }
     }
     */
-
-    @Override
-    protected void initViewModels() {
-        super.initViewModels();
+    override fun initViewModels() {
+        super.initViewModels()
     }
 
-    @Override
-    protected void backPressedHandler() {
-        revertDemoChanges();
+    override fun backPressedHandler() {
+        revertDemoChanges()
+
+        try { findNavController(requireView()).popBackStack() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
 
         try {
-            Navigation.findNavController(requireView()).popBackStack();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String message = getString(R.string.toast_discardchanges);
-            Toast toast = Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
+            val message = getString(R.string.toast_discardchanges)
+            val toast = Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2)
+            toast.show()
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    private void getUserPurchaseHistory() {
-        CollectionReference unlockHistoryCollection = null;
-        try {
-            unlockHistoryCollection =
-                    FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private fun loadUserPurchaseHistory() {
+        var unlockHistoryCollection: CollectionReference? = null
+        try { unlockHistoryCollection = FirestoreUnlockHistory.unlockHistoryCollection }
+        catch (e: Exception) { e.printStackTrace() }
 
-        if(unlockHistoryCollection == null) { return; }
+        if (unlockHistoryCollection == null) { return }
 
         try {
             unlockHistoryCollection.get()
-                    .addOnSuccessListener(task -> {
-                        for(DocumentSnapshot documentSnapshot : task.getDocuments()) {
-                            DocumentReference documentReference = documentSnapshot.getReference();
+                .addOnSuccessListener { task: QuerySnapshot ->
+                    for (documentSnapshot in task.documents) {
+                        val documentReference = documentSnapshot.reference
 
-                            String uuid = documentReference.getId();
-                            ThemeModel customTheme = getGlobalPreferencesViewModel().getColorThemeControl()
-                                    .getThemeByUUID(uuid);
+                        val uuid = documentReference.id
+                        val customTheme = globalPreferencesViewModel!!.colorThemeControl
+                            .getThemeByUUID(uuid)
 
-                            customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
-                        }
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("Firestore", "Could not retrieve unlock history!");
-                        e.printStackTrace();
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                        customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
+                    }
+                }
+                .addOnFailureListener { e: Exception ->
+                    Log.e("Firestore", "Could not retrieve unlock history!")
+                    e.printStackTrace()
+                }
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     /*
@@ -539,126 +436,89 @@ public class AppSettingsFragment extends MainMenuFirebaseFragment {
         refreshFragment();
     }
     */
+    private fun revertDemoChanges() {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            globalPreferencesViewModel.colorThemeControl.revertToSavedIndex()
+            globalPreferencesViewModel.fontThemeControl.revertToSavedIndex()
 
-    private void revertDemoChanges() {
-        getGlobalPreferencesViewModel().getColorThemeControl().revertToSavedIndex();
-        getGlobalPreferencesViewModel().getFontThemeControl().revertToSavedIndex();
-
-        try {
-            ((PETActivity) requireActivity()).changeTheme(
-                    getGlobalPreferencesViewModel().getColorTheme(),
-                    getGlobalPreferencesViewModel().getFontTheme());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            try { (requireActivity() as PETActivity).changeTheme(
+                    globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    private void demoColorStyle(@NonNull ColorThemeControl colorThemeControl) {
-        try {
-            ((PETActivity) requireActivity()).changeTheme(
-                    colorThemeControl.getThemeAtIndex(colorThemeControl.getSelectedIndex()),
-                    getGlobalPreferencesViewModel().getFontTheme());
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        refreshFragment();
-    }
-
-    private void demoFontStyle(@NonNull FontThemeControl fontThemeControl) {
-        try {
-            ((PETActivity) requireActivity()).changeTheme(
-                    getGlobalPreferencesViewModel().getColorTheme(),
-                    fontThemeControl.getThemeAtIndex(fontThemeControl.getSelectedIndex()));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        refreshFragment();
-    }
-
-    public void showAdsConsentForm(Context context) {
-
-        try {
-            // Handle changes to user consent.
-            googleMobileAdsConsentManager.showPrivacyOptionsForm(
-                    requireActivity(),
-                    formError -> {
-                        if (formError != null) {
-                            Toast.makeText(
-                                            context,
-                                            formError.getMessage(),
-                                            Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    }
-            );
-            Log.d("AdsConsent", "should show consent form");
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+    private fun demoColorStyle(colorThemeControl: ColorThemeControl) {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            try { (requireActivity() as PETActivity).changeTheme(
+                    colorThemeControl.getThemeAtIndex(colorThemeControl.selectedIndex),
+                    globalPreferencesViewModel.fontTheme)
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+            refreshFragment()
         }
     }
 
-    /**
-     * saveStates method
-     * <p>
-     * TODO
-     */
-    public void saveStates() {
+    private fun demoFontStyle(fontThemeControl: FontThemeControl) {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            try { (requireActivity() as PETActivity).changeTheme(
+                    globalPreferencesViewModel.colorTheme,
+                    fontThemeControl.getThemeAtIndex(fontThemeControl.selectedIndex))
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+            refreshFragment()
+        }
+    }
 
-        if (getGlobalPreferencesViewModel() != null) {
-            getGlobalPreferencesViewModel().getFontThemeControl().saveSelectedIndex();
-            getGlobalPreferencesViewModel().getColorThemeControl().saveSelectedIndex();
-
-            try {
-                getGlobalPreferencesViewModel().saveToFile(requireContext());
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
+    fun showAdsConsentForm(context: Context?) {
+        // Handle changes to user consent.
+        try { googleMobileAdsConsentManager?.showPrivacyOptionsForm(requireActivity()) {
+                formError: FormError? -> formError?.let {
+                Toast.makeText(context, formError.message, Toast.LENGTH_SHORT).show() }
             }
+            Log.d("AdsConsent", "should show consent form")
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    public override fun saveStates() {
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            globalPreferencesViewModel.fontThemeControl.saveSelectedIndex()
+            globalPreferencesViewModel.colorThemeControl.saveSelectedIndex()
+
+            try { globalPreferencesViewModel.saveToFile(requireContext()) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
 
             try {
-                PETActivity activity = ((PETActivity) requireActivity());
+                val activity = (requireActivity() as PETActivity)
                 activity.changeTheme(
-                        getGlobalPreferencesViewModel().getColorTheme(),
-                        getGlobalPreferencesViewModel().getFontTheme());
-                if (getGlobalPreferencesViewModel().isAlwaysOn()) {
-                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme
+                )
+                if (globalPreferencesViewModel.isAlwaysOn) {
+                    activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                 }
-                activity.recreate();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Log.e("Saver", "GPVM is null!");
+                activity.recreate()
+            } catch (e: IllegalStateException) { e.printStackTrace() }
         }
-
     }
 
-    @Override
-    protected void onSignInAccountSuccess() {
-
-        refreshFragment();
+    override fun onSignInAccountSuccess() {
+        refreshFragment()
 
         // Generate a Firestore document for the User with default data if needed
-        try {
-            FirestoreUser.Companion.buildUserDocument();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        try { buildUserDocument() }
+        catch (e: Exception) { throw RuntimeException(e) }
 
-        getUserPurchaseHistory();
+        loadUserPurchaseHistory()
     }
 
-    @Override
-    protected void onSignOutAccountSuccess() {
-        ColorThemeControl themeControl = getGlobalPreferencesViewModel().getColorThemeControl();
+    override fun onSignOutAccountSuccess() {
+        val themeControl = globalPreferencesViewModel!!.colorThemeControl
 
-        themeControl.revertAllUnlockedStatuses();
+        themeControl.revertAllUnlockedStatuses()
 
-        themeControl.iterateSelectedIndex(0);
-        themeControl.setSelectedIndex(0);
-        themeControl.saveIndex(0);
+        themeControl.iterateSelectedIndex(0)
+        themeControl.selectedIndex = 0
+        themeControl.saveIndex(0)
 
-        getGlobalPreferencesViewModel().saveColorSpace(requireContext());
+        globalPreferencesViewModel!!.saveColorSpace(requireContext())
 
-        demoColorStyle(themeControl);
+        demoColorStyle(themeControl)
     }
 }

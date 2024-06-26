@@ -1,75 +1,52 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.RecyclerView;
+class MessagesAdapterView(
+    private val messages: ArrayList<NewsletterMessageModel>,
+    private val onMessageListener: OnMessageListener)
+    : RecyclerView.Adapter<MessagesAdapterView.ViewHolder>() {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel;
+    class ViewHolder(view: View, onMessageListener: OnMessageListener)
+        : RecyclerView.ViewHolder(view), View.OnClickListener {
+        val messageTitleTextView: AppCompatTextView = itemView.findViewById(R.id.textView_messageName)
 
-import java.util.ArrayList;
+        private val onMessageListener: OnMessageListener
 
-public class MessagesAdapterView
-        extends RecyclerView.Adapter<MessagesAdapterView.ViewHolder> {
-
-    private final ArrayList<NewsletterMessageModel> messages;
-    private final OnMessageListener onMessageListener;
-
-    public MessagesAdapterView(
-            ArrayList<NewsletterMessageModel> messages,
-            OnMessageListener onMessageListener) {
-        this.messages = messages;
-        this.onMessageListener = onMessageListener;
-    }
-
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
-
-        public final AppCompatTextView label_messageTitle;
-        private final OnMessageListener onMessageListener;
-
-        public ViewHolder(@NonNull View view, OnMessageListener onMessageListener) {
-            super(view);
-            label_messageTitle = itemView.findViewById(R.id.textView_messageName);
-            view.setOnClickListener(this);
-            this.onMessageListener = onMessageListener;
+        init {
+            view.setOnClickListener(this)
+            this.onMessageListener = onMessageListener
         }
 
-        @Override
-        public void onClick(View v) {
-            this.onMessageListener.onNoteClick(getAdapterPosition());
+        override fun onClick(v: View) {
+            onMessageListener.onNoteClick(adapterPosition)
         }
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View messageView = inflater.inflate(
-                R.layout.item_newsletter_inbox_message, parent, false);
-        return new ViewHolder(messageView, this.onMessageListener);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val context = parent.context
+        val inflater = LayoutInflater.from(context)
+        val messageView = inflater.inflate(
+            R.layout.item_newsletter_inbox_message, parent, false)
+        return ViewHolder(messageView, this.onMessageListener)
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        AppCompatTextView textView = holder.label_messageTitle;
-        textView.setText(messages.get(position).getTitle());
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val textView = holder.messageTitleTextView
+        textView.text = messages[position].title
     }
 
-    @Override
-    public int getItemCount() {
-        return messages.size();
+    override fun getItemCount(): Int {
+        return messages.size
     }
 
-    public interface OnMessageListener {
-        void onNoteClick(int position);
+    interface OnMessageListener {
+        fun onNoteClick(position: Int)
     }
-
 }

@@ -74,17 +74,17 @@ class GhostPopupWindow : InvestigationPopupWindow {
         )
 
         evidenceViewModel.investigationModel?.let { investigationModel ->
-            for (i in investigationModel.ghostList
+            for (i in investigationModel.ghostListModel
                 .getAt(groupIndex).evidenceArray.indices) {
                 val evidenceIcon =
                     evidenceIconContainer.getChildAt(i) as AppCompatImageView
 
-                evidenceIcon.setImageResource(investigationModel.ghostList
+                evidenceIcon.setImageResource(investigationModel.ghostListModel
                         .getAt(groupIndex).evidence[i].icon
                 )
             }
 
-            ghostNameTextView.text = evidenceViewModel.investigationModel!!.ghostList
+            ghostNameTextView.text = evidenceViewModel.investigationModel!!.ghostListModel
                 .getAt(groupIndex).name
         }
         
