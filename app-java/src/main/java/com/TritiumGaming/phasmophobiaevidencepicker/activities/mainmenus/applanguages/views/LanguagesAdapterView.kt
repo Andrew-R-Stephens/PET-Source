@@ -1,82 +1,74 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.RecyclerView;
+class LanguagesAdapterView(
+    languages: ArrayList<String>,
+    selected: Int,
+    onLanguageListener: OnLanguageListener
+) : RecyclerView.Adapter<LanguagesAdapterView.ViewHolder>() {
+    private val languages: ArrayList<String>
+    private val onLanguageListener: OnLanguageListener
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton;
-
-import java.util.ArrayList;
-
-public class LanguagesAdapterView extends RecyclerView.Adapter<LanguagesAdapterView.ViewHolder> {
-
-    private static int mPreviousIndex = 0;
-    private final ArrayList<String> languages;
-    private final OnLanguageListener onLanguageListener;
-
-    public LanguagesAdapterView(
-            ArrayList<String> languages, int selected, OnLanguageListener onLanguageListener) {
-        mPreviousIndex = selected;
-        this.languages = languages;
-        this.onLanguageListener = onLanguageListener;
+    init {
+        mPreviousIndex = selected
+        this.languages = languages
+        this.onLanguageListener = onLanguageListener
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final AppCompatTextView label_languageTitle;
-        public final PETImageButton image;
-        public final Drawable background;
-        private final OnLanguageListener onLanguageListener;
+    class ViewHolder(view: View, onLanguageListener: OnLanguageListener) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
+        val languageTitleTextView: AppCompatTextView =
+            itemView.findViewById(R.id.textView_languageName)
+        val image: PETImageButton = itemView.findViewById(R.id.imageView_languageChoiceIcon)
+        val background: Drawable? =
+            itemView.findViewById<View>(R.id.constraintLayout73)?.background
+        private val onLanguageListener: OnLanguageListener
 
-        public ViewHolder(@NonNull View view, OnLanguageListener onLanguageListener) {
-            super(view);
-            label_languageTitle = itemView.findViewById(R.id.textView_languageName);
-            image = itemView.findViewById(R.id.imageView_languageChoiceIcon);
-            background = itemView.findViewById(R.id.constraintLayout73).getBackground();
-            view.setOnClickListener(this);
-            this.onLanguageListener = onLanguageListener;
+        init {
+            view.setOnClickListener(this)
+            this.onLanguageListener = onLanguageListener
         }
 
-        @Override
-        public void onClick(View v) {
-            this.onLanguageListener.onNoteClick(getAdapterPosition());
-            mPreviousIndex = getAdapterPosition();
+        override fun onClick(v: View) {
+            onLanguageListener.onNoteClick(adapterPosition)
+            mPreviousIndex = adapterPosition
         }
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View messageView = inflater.inflate(R.layout.item_language, parent, false);
-        return new LanguagesAdapterView.ViewHolder(messageView, this.onLanguageListener);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val context = parent.context
+        val inflater = LayoutInflater.from(context)
+        val messageView = inflater.inflate(R.layout.item_language, parent, false)
+        return ViewHolder(messageView, this.onLanguageListener)
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        AppCompatTextView textView = holder.label_languageTitle;
-        textView.setText(languages.get(position));
-        textView.setSelected(true);
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val textView = holder.languageTitleTextView
+        textView.text = languages[position]
+        textView.isSelected = true
 
         //color on item unselecting item
-        holder.image.setVisibility(mPreviousIndex == position ? View.VISIBLE: View.INVISIBLE);
-        holder.background.setLevel(mPreviousIndex == position ? 1: 0);
+        holder.image.visibility = if (mPreviousIndex == position) View.VISIBLE else View.INVISIBLE
+        holder.background?.setLevel(if (mPreviousIndex == position) 1 else 0)
     }
 
-    @Override
-    public int getItemCount() {
-        return languages.size();
+    override fun getItemCount(): Int {
+        return languages.size
     }
 
-    public interface OnLanguageListener {
-        void onNoteClick(int position);
+    interface OnLanguageListener {
+        fun onNoteClick(position: Int)
     }
 
+    companion object {
+        private var mPreviousIndex = 0
+    }
 }

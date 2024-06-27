@@ -23,7 +23,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setIconDropdownMenu
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -62,7 +61,7 @@ class StartScreenFragment : MainMenuFragment() {
         val buttonStart = view.findViewById<View>(R.id.button_start_solo)
         val iconApp = view.findViewById<AppCompatImageView>(R.id.icon_appicon)
         val buttonInfo = view.findViewById<ComposeView>(R.id.button_info)
-        val buttonSettings = view.findViewById<ComposeView>(R.id.button_settings)
+        val buttonMenu = view.findViewById<ComposeView>(R.id.button_settings)
         val buttonReview = view.findViewById<AppCompatImageView>(R.id.button_review)
         buttonMsgInbox = view.findViewById(R.id.button_inbox)
         val buttonLanguage = view.findViewById<View>(R.id.listener_language)
@@ -81,14 +80,16 @@ class StartScreenFragment : MainMenuFragment() {
         newsIcon = ComposeView(requireContext())
         newsIcon?.setContent { NewsAlert(false) }
 
-        buttonSettings.setContent {
+        buttonMenu.setContent {
             IconDropdownMenu(
                 R.drawable.ic_menu,
                 R.navigation.titlescreen_navgraph,
                 arrayOf(
+                    R.drawable.icon_ts_info,
                     R.drawable.icon_ts_gear,
                     R.drawable.icon_ts_globe),
                 arrayOf(
+                    R.id.appInfoFragment,
                     R.id.appSettingsFragment,
                     R.id.appLanguageFragment)
             ) { false }

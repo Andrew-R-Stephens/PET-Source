@@ -1,103 +1,84 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.introduction;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.introduction
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.animation.Animator
+import android.animation.AnimatorInflater
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.leanback.app.OnboardingSupportFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.leanback.app.OnboardingSupportFragment;
+class OnboardingFragment : OnboardingSupportFragment() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
+        logoResourceId = R.drawable.app_icon_sm
 
-public class OnboardingFragment extends OnboardingSupportFragment {
+        arrowColor = resources.getColor(R.color.white_M200)
+        arrowBackgroundColor = resources.getColor(R.color.red_M200)
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        dotBackgroundColor = resources.getColor(R.color.white_M200)
 
-        setLogoResourceId(R.drawable.app_icon_sm);
-
-        setArrowColor(getResources().getColor(R.color.white_M200));
-        setArrowBackgroundColor(getResources().getColor(R.color.red_M200));
-
-        setDotBackgroundColor(getResources().getColor(R.color.white_M200));
-
-        view.setBackgroundColor(getResources().getColor(R.color.black));
+        view.setBackgroundColor(resources.getColor(R.color.black))
     }
 
-    @Override
-    protected int getPageCount() {
-        return 2;
+    override fun getPageCount(): Int {
+        return 2
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
-    @Override
-    protected CharSequence getPageTitle(int pageIndex) {
-        switch (pageIndex) {
-            case 0, 1 -> {
-                return "Welcome P.E.T.!";
+    override fun getPageTitle(pageIndex: Int): CharSequence? {
+        return when (pageIndex) {
+            0, 1 -> {
+                "Welcome P.E.T.!"
             }
-            default -> {
-                return "?";
+
+            else -> {
+                "?"
             }
         }
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
-    @Override
-    protected CharSequence getPageDescription(int pageIndex) {
-        switch (pageIndex) {
-            case 0 -> {
-                return "This is the ultimate investigation tool for Phasmophobia!";
+    override fun getPageDescription(pageIndex: Int): CharSequence? {
+        return when (pageIndex) {
+            0 -> {
+                "This is the ultimate investigation tool for Phasmophobia!"
             }
-            case 1 -> {
-                return "With this companion tool by your side, your Phasmophobia investigations will be a breeze from now on!";
+
+            1 -> {
+                "With this companion tool by your side, your Phasmophobia investigations will be a breeze from now on!"
             }
-            default -> {
-                return "?";
+
+            else -> {
+                "?"
             }
         }
     }
 
-    @Override
-    protected void onPageChanged(int newPage, int previousPage) {
-        super.onPageChanged(newPage, previousPage);
+    override fun onPageChanged(newPage: Int, previousPage: Int) {
+        super.onPageChanged(newPage, previousPage)
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
-    @Override
-    protected View onCreateBackgroundView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return null;
+    override fun onCreateBackgroundView(inflater: LayoutInflater, container: ViewGroup): View? {
+        return null
     }
 
-    @NonNull
-    @Override
-    protected Animator onCreateTitleAnimator() {
+    override fun onCreateTitleAnimator(): Animator {
         return AnimatorInflater.loadAnimator(
-                getContext(),
-                R.animator.onboarding_reset_animation);
+            context,
+            R.animator.onboarding_reset_animation
+        )
     }
 
-    @NonNull
-    @Override
-    protected Animator onCreateDescriptionAnimator() {
+    override fun onCreateDescriptionAnimator(): Animator {
         return AnimatorInflater.loadAnimator(
-                getContext(),
-                R.animator.onboarding_reset_animation);
+            context,
+            R.animator.onboarding_reset_animation
+        )
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
-    @Override
-    protected View onCreateContentView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
+    override fun onCreateContentView(inflater: LayoutInflater, container: ViewGroup): View? {
         /*
         ImageView contentView = new ImageView(getContext());
         contentView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -105,13 +86,10 @@ public class OnboardingFragment extends OnboardingSupportFragment {
         contentView.setPadding(0, 0, 0, 0);
         return contentView;
         */
-        return null;
+        return null
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
-    @Override
-    protected View onCreateForegroundView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
+    override fun onCreateForegroundView(inflater: LayoutInflater, container: ViewGroup): View? {
         /*
         ImageView contentView = new ImageView(getContext());
         contentView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -119,17 +97,15 @@ public class OnboardingFragment extends OnboardingSupportFragment {
         contentView.setPadding(0, 32, 0, 32);
         return contentView;
         */
-        return null;
+        return null
     }
 
-    @Override
-    protected void onFinishFragment() {
+    override fun onFinishFragment() {
         try {
-            Log.d("Onboarding", "Finishing Fragment!");
-            requireActivity().finish();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+            Log.d("Onboarding", "Finishing Fragment!")
+            requireActivity().finish()
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
     }
-
 }

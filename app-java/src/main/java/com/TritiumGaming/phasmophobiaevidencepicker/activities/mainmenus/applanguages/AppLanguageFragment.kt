@@ -44,7 +44,7 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // DATA
         var selected = 0
-        var languageNames = ArrayList<String?>()
+        var languageNames: ArrayList<String> = ArrayList()
         try {
             languageNames = ArrayList(
                 listOf(*requireContext().resources.getStringArray(R.array.languages_name)))
@@ -62,6 +62,27 @@ class AppLanguageFragment : MainMenuFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
         for (i in languageNames.indices) {
+            val adapter = LanguagesAdapterView(languageNames, selected,
+                object: LanguagesAdapterView.OnLanguageListener {
+                    override fun onNoteClick(position: Int) {
+                        globalPreferencesViewModel?.setLanguage(position,
+                            this@AppLanguageFragment.resources
+                                .getStringArray(R.array.languages_abbreviation)
+                        )
+                        mainMenuViewModel?.canRefreshFragment = true
+
+                        this@AppLanguageFragment.configureLanguage()
+                        this@AppLanguageFragment.refreshFragment()
+                    }
+            })
+
+            recyclerViewLanguages.adapter = adapter
+            try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+        }
+
+        /*
+        for (i in languageNames.indices) {
             val adapter = LanguagesAdapterView(languageNames, selected) { position: Int ->
                 globalPreferencesViewModel?.setLanguage(position,
                     this@AppLanguageFragment.resources.getStringArray(R.array.languages_abbreviation)
@@ -75,7 +96,7 @@ class AppLanguageFragment : MainMenuFragment() {
             recyclerViewLanguages.adapter = adapter
             try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
             catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+        }*/
     }
 
     private fun handleDiscardChanges() {
