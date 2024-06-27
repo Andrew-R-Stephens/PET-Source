@@ -1,8 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
 
+import android.app.ActionBar
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
+import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
@@ -21,6 +24,10 @@ class ReviewPopupView: ConstraintLayout {
 
     private fun initView() {
         inflate(context, R.layout.popup_requestreview, this)
+
+        layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        setBackgroundColor(resources.getColor(R.color.black_A75))
 
         val acceptButton = findViewById<AppCompatButton>(R.id.label_accept)
         val declineButton = findViewById<AppCompatButton>(R.id.label_decline)

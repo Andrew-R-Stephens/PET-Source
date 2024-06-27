@@ -22,11 +22,67 @@ import androidx.compose.ui.unit.times
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
+import org.jetbrains.annotations.TestOnly
+
+@Preview
+@Composable
+fun TestAccountIcon() {
+    AccountIcon()
+}
+
+@Preview
+@Composable
+fun TestLanguageIcon() {
+    LanguageIcon()
+}
 
 @Composable
-@Preview
 fun AccountIcon() {
+    val borderColor =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
+    val backgroundColorResId =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.backgroundColorOnBackground))
+    val personTint =
+        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody))
 
+    val size = 48.dp
+    val borderWidth = 4.dp / 200.dp * size
+
+    Box(
+        modifier = Modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(backgroundColorResId)
+            .border(borderWidth, borderColor, CircleShape)
+    ) {
+        val contentScale = ContentScale.Inside
+        val contentDescription = "Outer Box"
+
+        if (FirestoreUser.currentFirebaseUser == null) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_person),
+                colorFilter = ColorFilter.tint(personTint),
+                contentDescription = contentDescription,
+                contentScale = contentScale,
+                modifier = Modifier
+                    .padding(4.dp)
+            )
+        } else {
+            val typedValue = TypedValue()
+            LocalContext.current.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
+            val imageResId = typedValue.resourceId
+
+            Image(
+                painter = painterResource(id = imageResId),
+                contentDescription = contentDescription,
+                contentScale = contentScale
+            )
+        }
+    }
+}
+
+@Composable
+fun LanguageIcon() {
     val borderColor =
         Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
     val backgroundColorResId =

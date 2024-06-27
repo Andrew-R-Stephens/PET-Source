@@ -4,8 +4,8 @@ import android.view.Gravity
 import android.view.View
 import android.widget.PopupWindow
 
-class ReviewPopupWindow(parentView: View, width: Int, height: Int,
-    popupView: ReviewPopupView = ReviewPopupView(parentView.context)) :
+class ReviewPopupWindow(parentView: View, width: Int, height: Int, popupView: ReviewPopupView =
+    ReviewPopupView(parentView.context)) :
     PopupWindow(popupView, width, height) {
 
     abstract class ReviewPopupListener {

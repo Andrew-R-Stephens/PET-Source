@@ -28,8 +28,8 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // INITIALIZE VIEWS
         val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
-        val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_left)
-        val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_right)
+        val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_left)
+        val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
 
         val recyclerViewLanguages = view.findViewById<RecyclerView>(R.id.recyclerview_languageslist)
 

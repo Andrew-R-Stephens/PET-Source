@@ -10,12 +10,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class LanguagesAdapterView(
-    languages: ArrayList<String>,
-    selected: Int,
-    onLanguageListener: OnLanguageListener
+    languages: ArrayList<String>, selected: Int, onLanguageListener: OnLanguageListener
 ) : RecyclerView.Adapter<LanguagesAdapterView.ViewHolder>() {
     private val languages: ArrayList<String>
     private val onLanguageListener: OnLanguageListener
+
+    companion object {
+        private var mPreviousIndex = 0
+    }
 
     init {
         mPreviousIndex = selected
@@ -25,11 +27,9 @@ class LanguagesAdapterView(
 
     class ViewHolder(view: View, onLanguageListener: OnLanguageListener) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
-        val languageTitleTextView: AppCompatTextView =
-            itemView.findViewById(R.id.textView_languageName)
-        val image: PETImageButton = itemView.findViewById(R.id.imageView_languageChoiceIcon)
-        val background: Drawable? =
-            itemView.findViewById<View>(R.id.constraintLayout73)?.background
+        val nameTextView: AppCompatTextView? = itemView.findViewById(R.id.textView_languageName)
+        val image: PETImageButton? = itemView.findViewById(R.id.imageView_languageChoiceIcon)
+        val background: Drawable? = nameTextView?.background
         private val onLanguageListener: OnLanguageListener
 
         init {
@@ -51,12 +51,12 @@ class LanguagesAdapterView(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val textView = holder.languageTitleTextView
-        textView.text = languages[position]
-        textView.isSelected = true
-
+        holder.nameTextView?.let { textView ->
+            textView.text = languages[position]
+            textView.isSelected = true
+        }
         //color on item unselecting item
-        holder.image.visibility = if (mPreviousIndex == position) View.VISIBLE else View.INVISIBLE
+        holder.image?.visibility = if (mPreviousIndex == position) View.VISIBLE else View.INVISIBLE
         holder.background?.setLevel(if (mPreviousIndex == position) 1 else 0)
     }
 
@@ -68,7 +68,4 @@ class LanguagesAdapterView(
         fun onNoteClick(position: Int)
     }
 
-    companion object {
-        private var mPreviousIndex = 0
-    }
 }

@@ -107,19 +107,27 @@ class StartScreenAnimationView : View {
 
     private fun initImages() {
         mainMenuViewModel?.animationModel?.let { animationModel ->
-            bitmapOrb = bitmapUtils?.setResource(R.drawable.anim_ghostorb)?.compileBitmaps(context)
+            try { bitmapOrb = bitmapUtils?.setResource(
+                R.drawable.anim_ghostorb)?.compileBitmaps(context)
+            } catch (e: Exception) { e.printStackTrace() }
 
-            bitmapFrost = bitmapUtils?.setResource(R.drawable.anim_frost)?.compileBitmaps(context)
+            try { bitmapFrost = bitmapUtils?.setResource(
+                R.drawable.anim_frost)?.compileBitmaps(context)
+            } catch (e: Exception) { e.printStackTrace() }
 
-            bitmapHand = bitmapUtils?.setResource(handResIds[animationModel.selectedHand])
-                ?.compileBitmaps(context)
-            bitmapWriting = bitmapUtils?.setResource(writingResIds[animationModel.selectedWriting])
-                ?.compileBitmaps(context)
+            try { bitmapHand = bitmapUtils?.setResource(
+                handResIds[animationModel.selectedHand])?.compileBitmaps(context)
+            } catch (e: Exception) { e.printStackTrace() }
 
-            bitmapMirror = bitmapUtils?.setResource(R.drawable.anim_mirror_crack)
-                ?.addResource(R.drawable.anim_mirror_gradient, PorterDuff.Mode.MULTIPLY)
-                ?.addResource(R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
-                ?.compileBitmaps(context)
+            try { bitmapWriting = bitmapUtils?.setResource(
+                writingResIds[animationModel.selectedWriting])?.compileBitmaps(context)
+            } catch (e: Exception) { e.printStackTrace() }
+
+            try { bitmapMirror = bitmapUtils?.setResource(R.drawable.anim_mirror_crack)
+                    ?.addResource(R.drawable.anim_mirror_gradient, PorterDuff.Mode.MULTIPLY)
+                    ?.addResource(R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
+                    ?.compileBitmaps(context)
+            } catch (e: Exception) { e.printStackTrace() }
         }
     }
 
