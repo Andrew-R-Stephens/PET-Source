@@ -1,468 +1,390 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketplaceMtxItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory.Companion.addPurchaseDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingFlowParams.ProductDetailsParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ConsumeParams
+import com.android.billingclient.api.ConsumeResponseListener
+import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.PurchasesUpdatedListener
+import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryPurchasesParams
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
+import com.google.common.collect.ImmutableList
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+class MarketplaceBillingFragment : MainMenuFragment() {
+    private var billingClient: BillingClient? = null
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.navigation.Navigation;
+    private var accountCreditsTextView: AppCompatTextView? = null
+    private var requestLoginLayout: ConstraintLayout? = null
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketplaceMtxItemModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory;
-import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener;
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingFlowParams;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ConsumeParams;
-import com.android.billingclient.api.ConsumeResponseListener;
-import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.QueryProductDetailsParams;
-import com.android.billingclient.api.QueryPurchasesParams;
-import com.google.android.gms.tasks.Task;
-import com.google.common.collect.ImmutableList;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
+    private var marketItemsMasterList: LinearLayout? = null
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MarketplaceBillingFragment extends MainMenuFragment {
-
-    private BillingClient billingClient;
-
-    private AppCompatTextView label_account_credits;
-    private ConstraintLayout constraint_requestlogin;
-
-    private LinearLayout list_mtx_items;
-
-    @Nullable
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_marketplace_mtx, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_marketplace_mtx, container, false)
     }
 
     @SuppressLint("ResourceType")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        AppCompatImageView back_button = view.findViewById(R.id.button_back);
-        constraint_requestlogin =
-                view.findViewById(R.id.constraint_requestlogin);
-        label_account_credits = view.findViewById(R.id.label_credits_actual);
-        list_mtx_items = view.findViewById(R.id.list_marketplace_items);
+        val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
+        val backButton = navHeaderLayout.findViewById<AppCompatImageView>(R.id.button_left)
 
-        initAccountView();
+        requestLoginLayout = view.findViewById(R.id.constraint_requestlogin)
+        accountCreditsTextView = view.findViewById(R.id.label_credits_actual)
+        marketItemsMasterList = view.findViewById(R.id.list_marketplace_items)
 
-        list_mtx_items.setVisibility(VISIBLE);
+        initAccountView()
 
-        back_button.setOnClickListener(v -> {
-            try {
-                Navigation.findNavController(v).popBackStack();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        });
+        marketItemsMasterList?.visibility = View.VISIBLE
 
-        requireActivity().runOnUiThread(() -> new Thread(this::initAccountCreditListener).start());
-
-        initBillingClient();
-
-    }
-
-    @Override
-    protected void initViewModels() {
-    }
-
-    private void initAccountView() {
-        FirebaseUser firebaseUser = null;
-        try {
-            firebaseUser = FirestoreUser.Companion.getCurrentFirebaseUser();
-        } catch (Exception e) {
-            e.printStackTrace();
+        backButton.setOnClickListener { v: View? ->
+            try { v?.let { findNavController(v).popBackStack() } }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
-        constraint_requestlogin.setVisibility(firebaseUser != null ? GONE : VISIBLE);
+
+        requireActivity().runOnUiThread { Thread { this.initAccountCreditListener() }.start() }
+
+        initBillingClient()
     }
 
-    private void initAccountCreditListener() {
+    override fun initViewModels() {
+    }
+
+    private fun initAccountView() {
         try {
-            DocumentReference creditDoc = FirestoreAccountCredit.Companion.getCreditsDocument();
+            requestLoginLayout?.visibility = currentFirebaseUser?.let { View.GONE } ?: View.VISIBLE
+        } catch (e: Exception) { e.printStackTrace()}
+    }
+
+    private fun initAccountCreditListener() {
+        try {
+            val creditDoc = creditsDocument
             creditDoc.get()
-                    .addOnCompleteListener(task -> {
-                        Long credits_read = task.getResult().get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
-                        long user_credits = credits_read != null ? credits_read : 0;
+                .addOnCompleteListener { task: Task<DocumentSnapshot> ->
+                    val creditsEarned = task.result.get(
+                        FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long::class.java) ?: 0
+                    accountCreditsTextView?.text = creditsEarned.toString() }
 
-                        label_account_credits.setText(String.valueOf(user_credits));
-                    });
-
-            creditDoc.addSnapshotListener((documentSnapshot, error) -> {
-                if(documentSnapshot == null) { return; }
-
-                Long credits_read = documentSnapshot.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long.class);
-                long user_credits = credits_read != null ? credits_read : 0;
-
-                label_account_credits.setText(String.valueOf(user_credits));
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initBillingClient() {
-        createBillingClient();
-        connectToGooglePlayBilling();
-    }
-
-    private void createBillingClient() {
-        billingClient = BillingClient.newBuilder(requireContext())
-                .setListener(purchasesUpdatedListener)
-                .enablePendingPurchases()
-                .build();
-
-        Log.d("Billing", "Pending purchases will be handled.");
-    }
-
-    private void connectToGooglePlayBilling() {
-        Log.d("Billing", "Attempting to setup Billing...");
-
-        billingClient.startConnection(new BillingClientStateListener() {
-            @Override
-            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
-                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                    Log.d("Billing", "Billing setup finished successfully!");
-                    // The BillingClient is ready. You can query purchases here.
-                    try {
-                        queryMarketplaceItems();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Log.d("Billing", "Billing setup unsuccessful.\nCode: " +
-                            billingResult.getResponseCode() + "\nDebug: " +
-                            billingResult.getDebugMessage());
-                }
-
-                billingClient.queryPurchasesAsync(QueryPurchasesParams.newBuilder()
-                                .setProductType(BillingClient.ProductType.INAPP).build(),
-                        (result, list) -> handlePendingPurchases(result, list));
+            creditDoc.addSnapshotListener {
+                documentSnapshot: DocumentSnapshot?, _: FirebaseFirestoreException? ->
+                documentSnapshot?.let {
+                    val creditsEarned = documentSnapshot.get(
+                        FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long::class.java) ?: 0
+                    accountCreditsTextView?.text = creditsEarned.toString() }
             }
-            @Override
-            public void onBillingServiceDisconnected() {
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    private fun initBillingClient() {
+        createBillingClient()
+        connectToGooglePlayBilling()
+    }
+
+    private fun createBillingClient() {
+        billingClient = BillingClient.newBuilder(requireContext())
+            .setListener(purchasesUpdatedListener)
+            .enablePendingPurchases()
+            .build()
+
+        Log.d("Billing", "Pending purchases will be handled.")
+    }
+
+    private fun connectToGooglePlayBilling() {
+        Log.d("Billing", "Attempting to setup Billing...")
+
+        billingClient?.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    Log.d("Billing", "Billing setup finished successfully!")
+                    // The BillingClient is ready. You can query purchases here.
+                    try { queryMarketplaceItems() }
+                    catch (e: Exception) { e.printStackTrace() }
+                } else { Log.d("Billing", ("Billing setup unsuccessful. " +
+                            "Code: ${billingResult.responseCode} " +
+                            "Debug: ${billingResult.debugMessage}").trimIndent()) }
+
+                billingClient?.queryPurchasesAsync(QueryPurchasesParams.newBuilder()
+                        .setProductType(BillingClient.ProductType.INAPP).build()
+                ) { result: BillingResult, list: List<Purchase>? ->
+                    handlePendingPurchases(result, list) }
+            }
+
+            override fun onBillingServiceDisconnected() {
                 // Try to restart the connection on the next request to
                 // Google Play by calling the startConnection() method.
-                Log.d("Billing", "Billing service disconnected.");
+                Log.d("Billing", "Billing service disconnected.")
 
-                connectToGooglePlayBilling();
+                connectToGooglePlayBilling()
             }
-        });
-
+        })
     }
 
     // Google Billing Library
-    private final PurchasesUpdatedListener purchasesUpdatedListener = this::handlePendingPurchases;
+    private val purchasesUpdatedListener =
+        PurchasesUpdatedListener { billingResult: BillingResult, list: List<Purchase>? ->
+            this.handlePendingPurchases(billingResult, list) }
 
-    private void handlePendingPurchases(@NonNull BillingResult billingResult,
-                                        @Nullable List<Purchase> list) {
-        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
-                list != null && !list.isEmpty()) {
+    private fun handlePendingPurchases(billingResult: BillingResult, list: List<Purchase>?) {
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && list != null && !list.isEmpty()) {
+            Log.d("Billing", "Processing OK purchase")
 
-            Log.d("Billing", "Processing OK purchase");
+            for (purchase in list) {
+                if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED &&
+                    !purchase.isAcknowledged) {
+                    try { requireActivity().runOnUiThread {
+                        Toast.makeText(requireActivity(), "Purchase successful!",
+                            Toast.LENGTH_LONG).show() }
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
 
-            for(Purchase purchase: list) {
-                if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED &&
-                        !purchase.isAcknowledged()) {
+                    val productString = StringBuilder()
+                    for (product in purchase.products) { productString.append(product).append("\n") }
 
-                    try {
-                        requireActivity().runOnUiThread(() -> Toast.makeText(
-                                        requireActivity(),
-                                        "Purchase successful!",
-                                        Toast.LENGTH_LONG)
-                                .show());
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-
-                    StringBuilder productString = new StringBuilder();
-                    for (String product : purchase.getProducts()) {
-                        productString.append(product).append("\n");
-                    }
-
-                    Log.d("Billing", "Purchase successful: " + productString);
+                    Log.d("Billing", "Purchase successful: $productString")
 
                     //Consume item process
-                    handlePurchase(purchase);
-                } else {
-                    Log.d("Billing", "Pending error: " + purchase.getPurchaseState());
-                }
+                    handlePurchase(purchase)
+                } else { Log.d("Billing", "Pending error: " + purchase.purchaseState) }
             }
-        } else {
-            Log.d("Billing", "Purchase error: Purchases list is empty");
-        }
+        } else { Log.d("Billing", "Purchase error: Purchases list is empty") }
     }
 
-    private void handlePurchase(@NonNull Purchase purchase) {
+    private fun handlePurchase(purchase: Purchase) {
+        val consumeParams =
+            ConsumeParams.newBuilder()
+                .setPurchaseToken(purchase.purchaseToken)
+                .build()
 
-        ConsumeParams consumeParams =
-                ConsumeParams.newBuilder()
-                        .setPurchaseToken(purchase.getPurchaseToken())
-                        .build();
+        val listener =
+            ConsumeResponseListener { billingResult: BillingResult, _: String? ->
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
 
-        ConsumeResponseListener listener = (billingResult, purchaseToken) -> {
-
-            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-
-                CollectionReference billablesCollection = null;
-                try {
-                    billablesCollection = FirestoreMicrotransactionBillables.Companion.getBillableCollection();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if(billablesCollection == null) { return; }
-
-                StringBuilder purchasesString = new StringBuilder();
-                for (String p : purchase.getProducts()) {
-
+                    var billableCollection: CollectionReference? = null
                     try {
-                        billablesCollection
-                            .whereEqualTo("product_id", p)
-                                .addSnapshotListener(
-                                    (querySnapshot, error) -> {
-                                        if(querySnapshot == null) { return; }
-                                        for(DocumentSnapshot documentSnapshot: querySnapshot.getDocuments()) {
-                                            String reward_item = documentSnapshot.get(
-                                                            "reward_item", String.class);
-                                            Long reward_amount = documentSnapshot.get(
-                                                            "reward_amount", Long.class);
+                        billableCollection = FirestoreMicrotransactionBillables.billableCollection }
+                    catch (e: Exception) { e.printStackTrace() }
 
-                                            if(reward_item == null || reward_amount == null) {
-                                                return;
-                                            }
+                    //if (billableCollection == null) { return@ConsumeResponseListener }
 
-                                            switch (reward_item) {
-                                                case "credit" -> {
+                    val purchasesString = StringBuilder()
+                    for (p in purchase.products) {
+                        try {
+                            billableCollection?.let {
+                                billableCollection.whereEqualTo("product_id", p)
+                                    .addSnapshotListener {
+                                        snapshot: QuerySnapshot?, _: FirebaseFirestoreException? ->
+
+                                        val firestoreProcessListener: OnFirestoreProcessListener =
+                                            object : OnFirestoreProcessListener() {
+                                            override fun onSuccess() {
+                                                Log.d("Billable",
+                                                    "Reward added successfully!") }
+                                            override fun onFailure() {
+                                                Log.d("Billable",
+                                                    "Reward adding failed!") } }
+                                        snapshot?.documents?.let { snapshotDocuments ->
+                                        for (documentSnapshot in snapshotDocuments) {
+                                            val rewardItem = documentSnapshot.get(
+                                                "reward_item", String::class.java)
+                                            val rewardAmount = documentSnapshot.get(
+                                                "reward_amount", Long::class.java)
+
+                                            if (rewardItem == null || rewardAmount == null) {
+                                                return@addSnapshotListener }
+
+                                            when (rewardItem) {
+                                                "credit" -> {
                                                     try {
-                                                        FirestoreAccountCredit.Companion.addCredits(reward_amount, null);
-                                                        FirestorePurchaseHistory.Companion.addPurchaseDocument(
-                                                                documentSnapshot.getReference(),
-                                                                purchase.getOrderId(), new OnFirestoreProcessListener() {
-                                                                    @Override
-                                                                    public void onSuccess() {
-                                                                        Log.d("Billable", "Reward added successfully!");
-                                                                    }
-                                                                    @Override
-                                                                    public void onFailure() {
-                                                                        Log.d("Billable", "Reward adding failed!");
-                                                                    }
-                                                                });
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
+                                                        addCredits(rewardAmount, null)
+                                                        addPurchaseDocument(
+                                                            documentSnapshot.reference,
+                                                            purchase.orderId,
+                                                            firestoreProcessListener)
+                                                    } catch (e: Exception) { e.printStackTrace() }
                                                 }
-                                                case "" -> {
-                                                    Log.d("Billable", "Reward type is empty");
+
+                                                "" -> {
+                                                    Log.d("Billable", "Reward type is empty")
                                                 }
                                             }
                                         }
                                     }
-                        );
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
 
-                    purchasesString.append(p).append(" ");
-                }
-
-                Log.d("Billing", "Purchase consumed: " + purchasesString);
-            } else {
-                Log.d("Billing", "Purchase error: "  +
-                        purchase.getProducts().get(0) + " ->\nError: [" +
-                        billingResult.getResponseCode() + "]\n" +
-                        billingResult.getDebugMessage() + " -> \n");
-            }
-        };
-
-        billingClient.consumeAsync(consumeParams, listener);
-    }
-
-    public void queryMarketplaceItems() throws Exception {
-        Log.d("Billing", "Obtaining list of Marketplace items from database...");
-
-        Task<QuerySnapshot> billablesQuery = null;
-        try {
-            billablesQuery = FirestoreMicrotransactionBillables.Companion.getBillablesWhere(
-                    "type", "credits", "tier", Query.Direction.ASCENDING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if(billablesQuery == null) {
-            Log.d("Billing", "Microtransaction query snapshot DNE.");
-            return;
-        }
-
-        billablesQuery
-            .addOnSuccessListener(snapshot -> {
-
-                List<QueryProductDetailsParams.Product> productsQueryList = new ArrayList<>();
-                for (DocumentSnapshot documentSnapshot : snapshot.getDocuments()) {
-
-                    if (!documentSnapshot.exists()) {
-                        continue;
-                    }
-
-                    String purchase_id =
-                            documentSnapshot.get("product_id", String.class);
-                    if (purchase_id == null) {
-                        continue;
-                    }
-
-                    Boolean active_status =
-                            documentSnapshot.get("active_status", Boolean.class);
-                    if (active_status == null || !active_status) {
-                        continue;
-                    }
-
-                    Log.d("Billing", "Building ProductDetail for " + purchase_id);
-                    QueryProductDetailsParams.Product product =
-                            QueryProductDetailsParams.Product.newBuilder()
-                                    .setProductId(purchase_id)
-                                    .setProductType(BillingClient.ProductType.INAPP)
-                                    .build();
-
-                    productsQueryList.add(product);
-                }
-
-                Log.d("Billing", "Finished querying database for MTX Billable items. " +
-                        productsQueryList.size() + " results.\n" +
-                        "Now querying Play Console for matching in-app products.");
-
-                QueryProductDetailsParams queryProductDetailsParams =
-                        QueryProductDetailsParams.newBuilder()
-                                .setProductList(productsQueryList)
-                                .build();
-
-                billingClient.queryProductDetailsAsync(
-                    queryProductDetailsParams,
-                    (billingResult, productDetailsList) -> {
-                        // check billingResult
-                        // process returned productDetailsList
-                        if (billingResult.getResponseCode() ==
-                            BillingClient.BillingResponseCode.OK &&
-                            !productDetailsList.isEmpty()) {
-
-                            Log.d("Billing",
-                                    "Finished querying Play Console in-app products. " +
-                                    productDetailsList.size() + " results.");
-                            try {
-                                requireActivity().runOnUiThread(() ->
-                                        buildMtxProductsList(productDetailsList));
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                                }
                             }
-                        }
-                    });
-            })
-            .addOnFailureListener(e -> {
-                Log.d("Billing", "Microtransaction query failed!");
-                e.printStackTrace();
-            }).addOnCompleteListener(task -> stopProgressBarLoop());
+                        } catch (e: Exception) { e.printStackTrace() }
+                        purchasesString.append(p).append(" ")
+                    }
+
+                    Log.d("Billing", "Purchase consumed: $purchasesString")
+                } else {
+                    Log.d("Billing",
+                        "Purchase error: ${purchase.products[0]} -> " +
+                                "Error: [${billingResult.responseCode}] " +
+                                "${billingResult.debugMessage} -> ")
+                }
+            }
+
+        billingClient?.consumeAsync(consumeParams, listener)
     }
 
-    private void stopProgressBarLoop() {
-        try {
-            ProgressBar progressbar = requireView().findViewById(R.id.market_progressbar);
-            progressbar.setVisibility(GONE);
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Throws(Exception::class)
+    fun queryMarketplaceItems() {
+        Log.d("Billing", "Obtaining list of Marketplace items from database...")
+
+        var billableQuery: Task<QuerySnapshot>? = null
+        try { billableQuery = getBillablesWhere(
+            "type", "credits", "tier", Query.Direction.ASCENDING)
+        } catch (e: Exception) { e.printStackTrace() }
+
+        if (billableQuery == null) {
+            Log.d("Billing", "Microtransaction query snapshot DNE.")
+            return
         }
+
+        billableQuery
+            .addOnSuccessListener(OnSuccessListener { snapshot: QuerySnapshot ->
+                val productsQueryList: MutableList<QueryProductDetailsParams.Product> = ArrayList()
+                for (documentSnapshot in snapshot.documents) {
+                    if (!documentSnapshot.exists()) { continue }
+
+                    val purchaseId =
+                        documentSnapshot.get("product_id", String::class.java) ?: continue
+
+                    val activeStatus =
+                        documentSnapshot.get("active_status", Boolean::class.java)
+                    if (activeStatus == null || !activeStatus) { continue }
+
+                    Log.d("Billing", "Building ProductDetail for $purchaseId")
+                    val product =
+                        QueryProductDetailsParams.Product.newBuilder()
+                            .setProductId(purchaseId)
+                            .setProductType(BillingClient.ProductType.INAPP)
+                            .build()
+
+                    productsQueryList.add(product)
+                }
+
+                Log.d("Billing",
+                    "Finished querying database for MTX Billable items. " +
+                            "${productsQueryList.size} results. Now querying Play Console for " +
+                            "matching in-app products.")
+
+                val queryProductDetailsParams =
+                    QueryProductDetailsParams.newBuilder()
+                        .setProductList(productsQueryList)
+                        .build()
+                billingClient?.queryProductDetailsAsync(queryProductDetailsParams) {
+                    billingResult: BillingResult, productDetailsList: List<ProductDetails?> ->
+                    // check if billingResult process returned productDetailsList
+                    if (billingResult.responseCode ==
+                        BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
+                        Log.d("Billing",
+                            "Finished querying Play Console in-app products. " +
+                                    "${productDetailsList.size} results.")
+                        try {
+                            requireActivity().runOnUiThread {
+                                buildMtxProductsList(productDetailsList) }
+                        } catch (e: Exception) { e.printStackTrace() }
+                    }
+                }
+            })
+            .addOnFailureListener { e: Exception ->
+                Log.d("Billing", "Microtransaction query failed!")
+                e.printStackTrace()
+            }.addOnCompleteListener { task: Task<QuerySnapshot>? -> stopProgressBarLoop() }
     }
 
-    private void buildMtxProductsList(@NonNull List<ProductDetails> productDetailsList) {
+    private fun stopProgressBarLoop() {
+        try { val progressbar = requireView().findViewById<ProgressBar>(R.id.market_progressbar)
+            progressbar.visibility = View.GONE
+        } catch (e: Exception) { e.printStackTrace() }
+    }
 
-        MarketplaceListLayout marketplaceList =
-                new MarketplaceListLayout(getContext(), null);
+    private fun buildMtxProductsList(productDetailsList: List<ProductDetails?>) {
+        val marketplaceList =
+            MarketplaceListLayout(context, null)
 
-        for (ProductDetails productDetails : productDetailsList) {
-
-            MarketplaceMtxItemModel mtxItem =
-                    new MarketplaceMtxItemModel(productDetails);
-            Log.d("Billing", "Adding " + mtxItem);
+        for (productDetails in productDetailsList) {
+            val mtxItem =
+                MarketplaceMtxItemModel(productDetails!!)
+            Log.d("Billing", "Adding $mtxItem")
 
             try {
-                BillableItemView marketplaceMtxView =
-                        buildMarketplaceMtxView(mtxItem);
-
-                list_mtx_items.addView(marketplaceMtxView);
-            } catch (Exception e) {
-                Log.d("Billing", "Failed! ");
-                e.printStackTrace();
+                val marketplaceMtxView = buildMarketplaceMtxView(mtxItem)
+                marketItemsMasterList?.addView(marketplaceMtxView)
+            } catch (e: Exception) {
+                Log.d("Billing", "Failed! ")
+                e.printStackTrace()
             }
         }
 
-        if(list_mtx_items.getChildCount() > 1) {
-            marketplaceList.setVisibility(VISIBLE);
-            list_mtx_items.addView(marketplaceList);
+        marketItemsMasterList?.let { marketItemsMasterList ->
+            if (marketItemsMasterList.childCount > 1) {
+                marketplaceList.visibility = View.VISIBLE
+                marketItemsMasterList.addView(marketplaceList)
+            }
         }
-
     }
 
-    @NonNull
-    private BillableItemView buildMarketplaceMtxView(MarketplaceMtxItemModel mtxItem) {
-        BillableItemView marketplaceMtxView =
-            new BillableItemView(requireContext(), null);
+    private fun buildMarketplaceMtxView(mtxItem: MarketplaceMtxItemModel): BillableItemView {
+        val marketplaceMtxView = BillableItemView(requireContext(), null)
 
-        marketplaceMtxView.setBillableItem(mtxItem);
-        marketplaceMtxView.setBuyButtonListener(v -> {
+        marketplaceMtxView.setBillableItem(mtxItem)
+        marketplaceMtxView.setBuyButtonListener {
+            val item = marketplaceMtxView.getBillableItem() ?: return@setBuyButtonListener
+            val productDetail = item.productDetails
 
-            MarketplaceMtxItemModel item = marketplaceMtxView.getBillableItem();
-            if(item == null) { return; }
-            ProductDetails productDetail = item.getProductDetails();
+            val productDetailsParamsList = ImmutableList.of(
+                ProductDetailsParams.newBuilder()
+                    .setProductDetails(productDetail)
+                    .build())
 
-            ImmutableList<BillingFlowParams.ProductDetailsParams> productDetailsParamsList =
-                    ImmutableList.of(
-                            BillingFlowParams.ProductDetailsParams.newBuilder()
-                                    .setProductDetails(productDetail)
-                                    .build()
-                    );
-
-            BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
-                    .setProductDetailsParamsList(productDetailsParamsList)
-                    .build();
+            val billingFlowParams = BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(productDetailsParamsList)
+                .build()
 
             // Launch the billing flow
-            billingClient.launchBillingFlow(requireActivity(), billingFlowParams);
-        });
-        return marketplaceMtxView;
+            billingClient?.launchBillingFlow(requireActivity(), billingFlowParams)
+        }
+        return marketplaceMtxView
     }
 }
 
