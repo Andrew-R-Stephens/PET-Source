@@ -12,6 +12,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -34,14 +35,10 @@ abstract class InvestigationFragment : PETFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         super.init()
 
-        try {
-            (requireActivity() as InvestigationActivity).initNavigationComponents()
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
+        try { (requireActivity() as InvestigationActivity).initNavigationComponents()
+        } catch (e: IllegalStateException) { e.printStackTrace() }
 
         initAd(view.findViewById(R.id.adView))
     }
@@ -55,8 +52,7 @@ abstract class InvestigationFragment : PETFragment {
 
     private fun initMapMenuViewModel() {
         if (mapMenuViewModel == null) {
-            mapMenuViewModel =
-                ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
+            mapMenuViewModel = ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
             mapMenuViewModel?.init(requireContext())
         }
     }
@@ -72,17 +68,17 @@ abstract class InvestigationFragment : PETFragment {
     private fun initinvestigationViewModel() {
         if (investigationViewModel == null) {
             investigationViewModel =
-                ViewModelProvider(requireActivity()).get(InvestigationViewModel::class.java)
+                ViewModelProvider(requireActivity())[InvestigationViewModel::class.java]
             investigationViewModel?.init(requireContext())
         }
     }
 
     protected fun initAd(mAdView: AdView?) {
-        if (mAdView == null) { return }
-
-        MobileAds.initialize(requireContext()) { }
-        adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest!!)
+        mAdView?.let {
+            MobileAds.initialize(requireContext()) { }
+            adRequest = AdRequest.Builder().build()
+            adRequest?.let { adRequest -> mAdView.loadAd(adRequest) }
+        }
     }
 
     override fun backPressedHandler() {
@@ -101,16 +97,8 @@ abstract class InvestigationFragment : PETFragment {
                 Log.d("Backstack", "Could not Pop")
                 requireActivity().finish()
             }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
-
-    /*
-    override fun saveStates() {
-        super.saveStates()
-    }
-    */
 
     abstract fun reset()
 

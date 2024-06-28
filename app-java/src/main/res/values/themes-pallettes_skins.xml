@@ -665,6 +665,7 @@
         <item name="light_inactive">@color/orange_M525</item>
         <item name="light_off">@color/red_M850</item>
         <item name="switchColorOn">#2667CD</item>
+        <item name="buttonColor">#7BCD26</item>
         <item name="buttonFilterOnPrimary">#CD2547</item>
         <item name="strikethroughColor">#CD2547</item>
         <item name="circleColor">#7BCD26</item>

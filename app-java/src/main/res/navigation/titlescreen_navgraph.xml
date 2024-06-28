@@ -128,7 +128,7 @@
         android:label="OnboardingActivity" />
     <fragment
         android:id="@+id/accountOverviewFragment"
-        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account.AccountOverviewFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account.AccountFragment"
         android:label="AccountOverviewFragment" >
         <action
             android:id="@+id/action_accountOverviewFragment_to_marketplaceFragment"

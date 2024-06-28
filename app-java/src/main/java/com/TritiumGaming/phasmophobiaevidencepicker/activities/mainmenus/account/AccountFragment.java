@@ -43,7 +43,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
 
-public class AccountOverviewFragment extends MainMenuFirebaseFragment {
+public class AccountFragment extends MainMenuFirebaseFragment {
 
     private boolean showEmail = false;
 
@@ -196,9 +196,9 @@ public class AccountOverviewFragment extends MainMenuFirebaseFragment {
         if (Build.VERSION.SDK_INT >= 26) {
             ft.setReorderingAllowed(false);
         }
-        ft.detach(AccountOverviewFragment.this).commitNow();
+        ft.detach(AccountFragment.this).commitNow();
         ft = getParentFragmentManager().beginTransaction();
-        ft.attach(AccountOverviewFragment.this).commitNow();
+        ft.attach(AccountFragment.this).commitNow();
     }
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(

@@ -5,24 +5,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.setti
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Availability
 
 class MarketThemeBundleModel(
-    uuid: String?,
-    theme: MarketThemeBundleModel,
-    themes: List<ThemeModel>
+    uuid: String?, theme: MarketThemeBundleModel, themes: List<ThemeModel>
 ) : MarketplaceItemModel(theme.buyCredits, theme.name) {
     var themes: ArrayList<ThemeModel>? = null
         private set
     private var unlockedState: Availability = Availability.LOCKED
-
-    init {
-        setUUID(uuid)
-        addThemes(themes)
-        setUnlockedState()
-    }
-
-    private fun addThemes(themes: List<ThemeModel>) {
-        this.themes = ArrayList()
-        this.themes?.addAll(themes)
-    }
 
     val isUnlocked: Boolean
         get() = unlockedState != Availability.LOCKED
@@ -52,21 +39,24 @@ class MarketThemeBundleModel(
             return lockedThemeCount
         }
 
-    private fun setUnlockedState() {
-        if (themes == null) {
-            return
-        }
+    init {
+        super.uuid = uuid
+        addThemes(themes)
+        setUnlockedState()
+    }
 
-        if (lockedItemCount <= 1) {
-            unlockedState = Availability.UNLOCKED_PURCHASE
-        }
+    private fun addThemes(themes: List<ThemeModel>) {
+        this.themes = ArrayList()
+        this.themes?.addAll(themes)
+    }
+
+    private fun setUnlockedState() {
+        themes?.let { if (lockedItemCount <= 1) { unlockedState = Availability.UNLOCKED_PURCHASE } }
     }
 
     override fun toString(): String {
         val themeOut = StringBuilder()
-        for (t in themes!!) {
-            themeOut.append(t)
-        }
+        themes?.let{ themes -> for (t in themes) { themeOut.append(t) }}
 
         return super.toString() + " " + buyCredits + " " + themeOut + " " + unlockedState
     }

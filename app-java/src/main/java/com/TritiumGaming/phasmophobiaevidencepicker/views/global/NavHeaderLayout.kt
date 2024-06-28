@@ -39,21 +39,12 @@ class NavHeaderLayout : ConstraintLayout {
 
             a.recycle()
 
-            try {
-                setCenterTitle(context.getString(centerTitleResId))
-            } catch (ex: NotFoundException) {
-                ex.printStackTrace()
-            }
-            try {
-                setLeftTitle(context.getString(leftTitleResId))
-            } catch (ex: NotFoundException) {
-                ex.printStackTrace()
-            }
-            try {
-                setRightTitle(context.getString(rightTitleResId))
-            } catch (ex: NotFoundException) {
-                ex.printStackTrace()
-            }
+            try { setCenterTitle(context.getString(centerTitleResId)) }
+            catch (ex: NotFoundException) { ex.printStackTrace() }
+            try { setLeftTitle(context.getString(leftTitleResId)) }
+            catch (ex: NotFoundException) { ex.printStackTrace() }
+            try { setRightTitle(context.getString(rightTitleResId)) }
+            catch (ex: NotFoundException) { ex.printStackTrace() }
 
             setButtonLeft(buttonTypeLeft)
             setButtonRight(buttonTypeRight)

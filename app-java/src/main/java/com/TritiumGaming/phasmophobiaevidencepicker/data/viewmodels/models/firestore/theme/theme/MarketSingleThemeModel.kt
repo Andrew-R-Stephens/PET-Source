@@ -30,7 +30,7 @@ class MarketSingleThemeModel : MarketplaceItemModel {
     }
 
     constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?) {
-        setUUID(uuid)
+        super.uuid = uuid
         this.theme = theme
         this.buyCredits = marketTheme.buyCredits
         this.group = marketTheme.group

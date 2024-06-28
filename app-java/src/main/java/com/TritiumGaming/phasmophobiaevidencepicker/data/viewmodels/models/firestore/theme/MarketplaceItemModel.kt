@@ -15,10 +15,6 @@ abstract class MarketplaceItemModel {
         this.name = name
     }
 
-    protected fun setUUID(uuid: String?) {
-        this.uuid = uuid
-    }
-
     override fun toString(): String {
         return "$uuid $name $buyCredits"
     }

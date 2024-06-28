@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -13,6 +14,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 abstract class PETFragment : Fragment {
 
     protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
+    protected var permissionsViewModel: PermissionsViewModel? = null
 
     protected var analytics: FirebaseAnalytics? = null
     protected var popupWindow: PopupWindow? = null
@@ -34,6 +36,13 @@ abstract class PETFragment : Fragment {
                     ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
                 globalPreferencesViewModel?.init(requireContext())
             } catch (e: IllegalStateException) { e.printStackTrace() }
+        }
+    }
+
+    private fun initPermissionsViewModel() {
+        if (permissionsViewModel == null) {
+            permissionsViewModel =
+                ViewModelProvider(requireActivity())[PermissionsViewModel::class.java]
         }
     }
 
