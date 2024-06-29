@@ -32,11 +32,11 @@ class MapModel {
     }
 
     constructor(worldMap: MapDesBlueprint.WorldMap) {
-        mapId = worldMap.map_id
-        mapName = worldMap.map_name
-        mapNameShort = worldMap.map_name_short
-        mapDimensions = MapDimensionModel(worldMap.map_dimensions.w, worldMap.map_dimensions.h)
-        for (f in worldMap.map_floors) {
+        mapId = worldMap.mapId
+        mapName = worldMap.mapName
+        mapNameShort = worldMap.mapNameShort
+        mapDimensions = MapDimensionModel(worldMap.mapDimensions.w, worldMap.mapDimensions.h)
+        for (f in worldMap.mapFloors) {
             f?.let { floorModel -> mapFloors.add(FloorModel(floorModel)) }
         }
         currentLayer =

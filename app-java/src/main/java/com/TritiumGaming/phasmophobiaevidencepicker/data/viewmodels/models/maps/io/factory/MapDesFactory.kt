@@ -56,10 +56,10 @@ object MapDesFactory {
                 val floorType = object : TypeToken<Map<String?, *>?>() {}.type
                 val mappedFloorItem = Gson().fromJson<Map<String, *>>(floorJSON, floorType)
 
-                val floor_id = getInt(mappedFloorItem["floor_id"])
-                val floor_number = getInt(mappedFloorItem["floor_number"])
+                val floorId = getInt(mappedFloorItem["floor_id"])
+                val floorNumber = getInt(mappedFloorItem["floor_number"])
                 val roomsJSON = getJSON(mappedFloorItem["floor_rooms"])
-                val poisJSON = getJSON(mappedFloorItem["floor_pois"])
+                val floorPOIsJSON = getJSON(mappedFloorItem["floor_pois"])
 
 
                 // All Rooms
@@ -71,8 +71,8 @@ object MapDesFactory {
                     // "room_iD" "room_name" "room_points"
 
                     val tempRoom = Room()
-                    val room_iD = getInt(mappedRoom["room_iD"])
-                    val room_name = getString(mappedRoom["room_name"])
+                    val roomID = getInt(mappedRoom["room_iD"])
+                    val roomName = getString(mappedRoom["room_name"])
                     val pointsListJSON = getJSON(mappedRoom["room_points"])
 
 
@@ -90,17 +90,17 @@ object MapDesFactory {
                     val pointsCollection = RoomPoints()
                     for (point in mappedPoints) {
                         val tempPoint = RoomPoint()
-                        val p_x = getFloat(point["x"])
-                        val p_y = getFloat(point["y"])
-                        tempPoint.x = p_x
-                        tempPoint.y = p_y
+                        val pX = getFloat(point["x"])
+                        val pY = getFloat(point["y"])
+                        tempPoint.x = pX
+                        tempPoint.y = pY
                         pointsCollection.points.add(tempPoint)
                     }
 
                     // ---
-                    tempRoom.room_iD = room_iD
-                    tempRoom.room_name = room_name
-                    tempRoom.room_points = pointsCollection
+                    tempRoom.roomId = roomID
+                    tempRoom.roomName = roomName
+                    tempRoom.roomPoints = pointsCollection
                     roomsCollection.add(tempRoom)
                 }
 
@@ -108,23 +108,23 @@ object MapDesFactory {
 
                 // All POIs
                 val poisType = object : TypeToken<ArrayList<Map<String?, *>?>?>() {}.type
-                val mappedPois = Gson().fromJson<ArrayList<Map<String, *>>>(poisJSON, poisType)
+                val mappedPois = Gson().fromJson<ArrayList<Map<String, *>>>(floorPOIsJSON, poisType)
 
                 val poisCollection = ArrayList<POI>()
                 for (mappedPoi in mappedPois) {
                     // "poi_iD" "poi_name" "poi_type" "x" "y"
                     val tempPOI = POI()
-                    val poi_iD = getInt(mappedPoi["poi_iD"])
-                    val poi_type = getInt(mappedPoi["poi_type"])
-                    val poi_x = getFloat(mappedPoi["x"])
-                    val poi_y = getFloat(mappedPoi["y"])
-                    val poi_name = getString(mappedPoi["poi_name"])
+                    val poiId = getInt(mappedPoi["poi_iD"])
+                    val poiType = getInt(mappedPoi["poi_type"])
+                    val poiX = getFloat(mappedPoi["x"])
+                    val poiY = getFloat(mappedPoi["y"])
+                    val poiName = getString(mappedPoi["poi_name"])
 
-                    tempPOI.poi_iD = poi_iD
-                    tempPOI.poi_name = poi_name
-                    tempPOI.poi_type = poi_type
-                    tempPOI.x = poi_x
-                    tempPOI.y = poi_y
+                    tempPOI.poiId = poiId
+                    tempPOI.poiName = poiName
+                    tempPOI.poiType = poiType
+                    tempPOI.x = poiX
+                    tempPOI.y = poiY
                     poisCollection.add(tempPOI)
                 }
 
@@ -132,10 +132,10 @@ object MapDesFactory {
 
                 // Add Floor
                 val floor = Floor()
-                floor.floor_number = floor_number
-                floor.floor_id = floor_id
-                floor.floor_rooms = roomsCollection
-                floor.floor_pois = poisCollection
+                floor.floorNumber = floorNumber
+                floor.floorId = floorId
+                floor.floorRooms = roomsCollection
+                floor.floorPOIs = poisCollection
                 mapFloors.add(FloorModel(floor))
             }
 

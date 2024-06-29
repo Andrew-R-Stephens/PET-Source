@@ -16,16 +16,16 @@ class FloorModel {
     val floorPOIs: ArrayList<PoiModel> = ArrayList()
 
     constructor(floor: Floor) {
-        floorImage = floor.image_file
-        floorId = floor.floor_id
-        floorName = floor.floor_name
-        floorLayer = FloorLayerType.entries[floor.floor_number]
+        floorImage = floor.imageFile
+        floorId = floor.floorId
+        floorName = floor.floorName
+        floorLayer = FloorLayerType.entries[floor.floorNumber]
 
-        for (r in floor.floor_rooms) {
-            floorRooms.add(RoomModel(r.room_iD, r.room_name, r.room_points))
+        for (r in floor.floorRooms) {
+            floorRooms.add(RoomModel(r.roomId, r.roomName, r.roomPoints))
         }
-        for (p in floor.floor_pois) {
-            floorPOIs.add(PoiModel(p.poi_iD, p.poi_name, p.poi_type, p.x, p.y))
+        for (p in floor.floorPOIs) {
+            floorPOIs.add(PoiModel(p.poiId, p.poiName, p.poiType, p.x, p.y))
         }
     }
 
