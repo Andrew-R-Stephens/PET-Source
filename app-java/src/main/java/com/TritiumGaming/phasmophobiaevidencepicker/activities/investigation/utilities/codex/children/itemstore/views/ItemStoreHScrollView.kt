@@ -1,25 +1,24 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.HorizontalScrollView;
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.HorizontalScrollView
 
-public class ItemStoreHScrollView extends HorizontalScrollView {
+class ItemStoreHScrollView : HorizontalScrollView {
+    constructor(context: Context?) : super(context)
 
-    public ItemStoreHScrollView(Context context) {
-        super(context);
-    }
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    public ItemStoreHScrollView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
-    public ItemStoreHScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    public ItemStoreHScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
+    constructor(
+        context: Context?,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
 }

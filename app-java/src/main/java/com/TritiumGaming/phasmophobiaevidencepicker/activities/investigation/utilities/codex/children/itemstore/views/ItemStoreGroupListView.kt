@@ -1,96 +1,85 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context
+import android.util.AttributeSet
+import android.view.ViewGroup
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
+class ItemStoreGroupListView : LinearLayoutCompat {
+    constructor(context: Context) : super(context)
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel;
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
-public class ItemStoreGroupListView extends LinearLayoutCompat {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr)
 
-    public static final int UNSPECIFIED_LAYOUT = -1;
-
-    public ItemStoreGroupListView(@NonNull Context context) {
-        super(context);
+    private fun initView(@LayoutRes layoutRes: Int) {
+        if (layoutRes == UNSPECIFIED_LAYOUT)
+            inflate(context, R.layout.item_itemstore_itemgroup, this)
+        else { inflate(context, layoutRes, this) }
     }
 
-    public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+    @JvmOverloads
+    fun build(@DrawableRes containerSrc: Int, group: ItemStoreGroupModel, hasTier: Boolean = false) {
+        initView(
+            if (group.size > 3) R.layout.item_itemstore_itemgroup_long
+            else R.layout.item_itemstore_itemgroup)
 
-    public ItemStoreGroupListView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+        var groupList = findViewById<ViewGroup>(R.id.groupList)
 
-    public void build(@DrawableRes int containerSrc, ItemStoreGroupModel group) {
-        build(containerSrc, group, false);
-    }
-
-    public void build(@DrawableRes int containerSrc, ItemStoreGroupModel group, boolean hasTier) {
-        initView(group.getSize() > 3 ?
-                R.layout.item_itemstore_itemgroup_long :
-                R.layout.item_itemstore_itemgroup);
-
-        ViewGroup groupList = findViewById(R.id.groupList);
-
-        if(group.getSize() > groupList.getChildCount()) {
-            for(int i = 0; i < group.getSize() - groupList.getChildCount(); i++) {
+        if (group.size > groupList.childCount) {
+            for (i in 0 until group.size - groupList.childCount) {
                 groupList.addView(
-                        inflate(getContext(), R.layout.item_itemstore_scrollview_image, null));
+                    inflate(context, R.layout.item_itemstore_scrollview_image, null)
+                )
             }
         }
-        groupList = findViewById(R.id.groupList);
+        groupList = findViewById(R.id.groupList)
 
-        int i = 0;
-        for(; (i < groupList.getChildCount()) && (i < group.getSize()); i++) {
-            ItemStoreItemView item = (ItemStoreItemView) groupList.getChildAt(i);
-            item.setImageResource(containerSrc);
-            item.setSelected(false);
-            item.setTier(hasTier ? i+1 : 0);
-            item.setEquipment(group.getItemImages().get(i));
+        var i = 0
+        while ((i < groupList.childCount) && (i < group.size)) {
+            val item = groupList.getChildAt(i) as ItemStoreItemView
+            item.setImageResource(containerSrc)
+            item.isSelected = false
+            item.setTier(if (hasTier) i + 1 else 0)
+            item.setEquipment(group.itemImages[i])
+            i++
         }
-        for(; i < groupList.getChildCount(); i++) {
-            View v = groupList.getChildAt(i);
-            v.setVisibility(GONE);
+        while (i < groupList.childCount) {
+            val v = groupList.getChildAt(i)
+            v.visibility = GONE
+            i++
         }
 
-        AppCompatTextView textView_name = this.findViewById(R.id.safehouse_shop_tool_label);
-        String title = getResources().getString(group.getNameData());
-        textView_name.setText(title);
-        textView_name.setSelected(true);
+        val nameTextView = this.findViewById<AppCompatTextView>(R.id.safehouse_shop_tool_label)
+        val title = resources.getString(group.nameData)
+        nameTextView.text = title
+        nameTextView.isSelected = true
 
-        this.setVisibility(View.INVISIBLE);
-        this.setAlpha(0);
+        this.visibility = INVISIBLE
+        this.alpha = 0f
     }
 
-    public void initView(@LayoutRes int layoutRes) {
-        if(layoutRes == UNSPECIFIED_LAYOUT)
-            inflate(getContext(), R.layout.item_itemstore_itemgroup, this);
-        else {
-            inflate(getContext(), layoutRes, this);
-        }
-    }
+    val items: Array<ItemStoreItemView?>
+        get() {
+            val layout = getChildAt(0) as LinearLayoutCompat
+            val container = layout.findViewById<ViewGroup>(R.id.groupList)
 
-    @NonNull
-    public ItemStoreItemView[] getItems() {
-        LinearLayoutCompat layout = (LinearLayoutCompat) getChildAt(0);
-        ViewGroup container = layout.findViewById(R.id.groupList);
+            val items = arrayOfNulls<ItemStoreItemView>(container.childCount)
 
-        ItemStoreItemView[] items = new ItemStoreItemView[container.getChildCount()];
+            for (i in 0 until container.childCount) {
+                items[i] = container.getChildAt(i) as ItemStoreItemView
+            }
 
-        for(int i = 0; i < container.getChildCount(); i++){
-            items[i] = (ItemStoreItemView) (container.getChildAt(i));
+            return items
         }
 
-        return items;
+    companion object {
+        const val UNSPECIFIED_LAYOUT: Int = -1
     }
 }

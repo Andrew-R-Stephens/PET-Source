@@ -1,82 +1,69 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account;
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account
 
-import static android.app.Activity.RESULT_OK;
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.os.Build
+import android.os.Bundle
+import android.text.SpannableString
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.obfuscateEmailSpannable
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.QuerySnapshot
+import java.util.List
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+class AccountFragment : MainMenuFirebaseFragment() {
+    private val showEmail = false
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentTransaction;
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.init()
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment;
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.FirebaseUiException;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.util.List;
-
-public class AccountFragment extends MainMenuFirebaseFragment {
-
-    private boolean showEmail = false;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        super.init();
-
-        return inflater.inflate(R.layout.fragment_account_overview, container, false);
+        return inflater.inflate(R.layout.fragment_account_overview, container, false)
     }
 
     @SuppressLint("ResourceType")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        final AppCompatButton btn_account_login =
-                view.findViewById(R.id.settings_account_login_button);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val btn_account_login =
+            view.findViewById<AppCompatButton>(R.id.settings_account_login_button)
         /*final AppCompatButton btn_account_logout =
                 view.findViewById(R.id.settings_account_logout_button);
         final AppCompatButton btn_account_delete =
                 view.findViewById(R.id.settings_account_delete_button);*/
-        final ConstraintLayout btn_account_infoContainer =
-                view.findViewById(R.id.constraintLayout_accountInformation);
-        final AppCompatTextView btn_account_info =
-                view.findViewById(R.id.settings_accountsettings_info);
+        val btn_account_infoContainer =
+            view.findViewById<ConstraintLayout>(R.id.constraintLayout_accountInformation)
+        val btn_account_info =
+            view.findViewById<AppCompatTextView>(R.id.settings_accountsettings_info)
 
-        btn_account_login.setOnClickListener(v -> {
-            manualSignInAccount();
+        btn_account_login.setOnClickListener { v: View? ->
+            manualSignInAccount()
+            view.invalidate()
+        }
 
-            view.invalidate();
-        });
-/*
+        /*
         btn_account_logout.setOnClickListener(v -> {
             signOutAccount();
 
@@ -88,30 +75,18 @@ public class AccountFragment extends MainMenuFirebaseFragment {
 
             view.invalidate();
         });*/
+        val accountEmail: String = currentFirebaseUser?.email ?: ""
 
-        final String accountEmail;
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser != null) {
-            accountEmail = firebaseUser.getEmail();
-        } else {
-            accountEmail = "";
-        }
-        SpannableString email_displayed =
-                new SpannableString(accountEmail);
+        val displayedEmail =
+            SpannableString(accountEmail)
 
-        SpannableString finalEmail_obfuscated = null;
+        var obfuscatedEmailFinal: SpannableString? = null
         try {
-            @ColorInt int obfuscationColor =
-                    ColorUtils.getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis);
-            SpannableString email_obfuscated = email_displayed;
-            if (accountEmail != null) {
-                email_obfuscated = FormatterUtils.obfuscateEmailSpannable(
-                        accountEmail, obfuscationColor);
-            }
-            finalEmail_obfuscated = email_obfuscated;
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
+            @ColorInt val obfuscationColor = getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis)
+            var obfuscatedEmailTemp = displayedEmail
+            obfuscatedEmailTemp = obfuscateEmailSpannable(accountEmail, obfuscationColor)
+            obfuscatedEmailFinal = obfuscatedEmailTemp
+        } catch (e: IllegalStateException) { e.printStackTrace() }
 
         /*
         SpannableString finalEmail_obfuscated1 = finalEmail_obfuscated;
@@ -148,217 +123,209 @@ public class AccountFragment extends MainMenuFirebaseFragment {
         btn_account_delete.setVisibility(View.GONE);*/
     }
 
-    @Override
-    protected void initViewModels() {
-        super.initViewModels();
+    override fun initViewModels() {
+        super.initViewModels()
     }
 
-    private void getUserPurchaseHistory() {
-        CollectionReference unlockHistoryCollection = null;
-        try {
-            unlockHistoryCollection =
-                    FirestoreUnlockHistory.Companion.getUnlockHistoryCollection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private val userPurchaseHistory: Unit
+        get() {
+            var unlockHistoryCollection: CollectionReference? = null
+            try {
+                unlockHistoryCollection =
+                    FirestoreUnlockHistory.unlockHistoryCollection
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
 
-        if(unlockHistoryCollection == null) { return; }
+            if (unlockHistoryCollection == null) {
+                return
+            }
 
-        try {
-            unlockHistoryCollection.get()
-                    .addOnSuccessListener(task -> {
-                        for(DocumentSnapshot documentSnapshot : task.getDocuments()) {
-                            DocumentReference documentReference = documentSnapshot.getReference();
+            try {
+                unlockHistoryCollection.get()
+                    .addOnSuccessListener { task: QuerySnapshot ->
+                        for (documentSnapshot in task.documents) {
+                            val documentReference = documentSnapshot.reference
 
-                            String uuid = documentReference.getId();
-                            ThemeModel customTheme =
-                                    getGlobalPreferencesViewModel()
-                                        .getColorThemeControl()
-                                        .getThemeByUUID(uuid);
-
-                            customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE);
+                            val uuid = documentReference.id
+                            val customTheme =
+                                globalPreferencesViewModel?.colorThemeControl?.getThemeByUUID(uuid)
+                            customTheme?.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                         }
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("Firestore", "Could not retrieve unlock history!");
-                        e.printStackTrace();
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
+                    }
+                    .addOnFailureListener { e: Exception ->
+                        Log.e("Firestore", "Could not retrieve unlock history!")
+                        e.printStackTrace()
+                    }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
-    }
 
     /**
      * refreshFragment
      */
-    public void refreshFragment() {
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+    public override fun refreshFragment() {
+        var ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) {
-            ft.setReorderingAllowed(false);
+            ft.setReorderingAllowed(false)
         }
-        ft.detach(AccountFragment.this).commitNow();
-        ft = getParentFragmentManager().beginTransaction();
-        ft.attach(AccountFragment.this).commitNow();
+        ft.detach(this@AccountFragment).commitNow()
+        ft = parentFragmentManager.beginTransaction()
+        ft.attach(this@AccountFragment).commitNow()
     }
 
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            result -> {
-                try {
-                    onSignInResultAccount(result);
-                } catch (RuntimeException e) {
-                    String message = "Login Error: " + e.getMessage();
-                    Toast toast = Toast.makeText(requireActivity(),
-                            message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
-                }
-            }
-    );
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { result: FirebaseAuthUIAuthenticationResult ->
+        try {
+            onSignInResultAccount(result)
+        } catch (e: RuntimeException) {
+            val message = "Login Error: " + e.message
+            val toast = Toast.makeText(
+                requireActivity(),
+                message,
+                com.google.android.material.R.integer.material_motion_duration_short_2
+            )
+            toast.show()
+        }
+    }
 
     /**
      *
      */
-    public void manualSignInAccount() {
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Log.d("ManuLogin", "User not null!");
-            return;
+    override fun manualSignInAccount() {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            Log.d("ManuLogin", "User not null!")
+            return
         }
-        Log.d("ManuLogin", "Continuing to sign-in.");
+        Log.d("ManuLogin", "Continuing to sign-in.")
 
         try {
-            if(!NetworkUtils.isNetworkAvailable(requireContext(),
-                    getGlobalPreferencesViewModel().getNetworkPreference())) {
+            if (!isNetworkAvailable(
+                    requireContext(),
+                    globalPreferencesViewModel!!.networkPreference
+                )
+            ) {
                 Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                        .show();
+                    .show()
 
-                return;
+                return
             }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return;
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            return
         }
 
-        List<AuthUI.IdpConfig> providers = List.of(
-                new AuthUI.IdpConfig.GoogleBuilder().build());
+        val providers = List.of(
+            GoogleBuilder().build()
+        )
 
         // Create and launch sign-in intent
-        Intent signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .setIsSmartLockEnabled(false)
-                .build();
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .setIsSmartLockEnabled(false)
+            .build()
 
-        signInLauncher.launch(signInIntent);
-
+        signInLauncher.launch(signInIntent)
     }
 
     /**
      *
      */
-    private void onSignInResultAccount(@NonNull FirebaseAuthUIAuthenticationResult result) {
-        IdpResponse response = result.getIdpResponse();
-        if (result.getResultCode() == RESULT_OK) {
+    private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
+        if (result.resultCode == Activity.RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirestoreUser.Companion.getCurrentFirebaseUser();
+            val user = currentFirebaseUser
 
-            if(user != null) {
-                String message = "Welcome " + user.getDisplayName();
-                Toast toast = Toast.makeText(requireActivity(),
-                        message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2);
-                toast.show();
+            if (user != null) {
+                val message = "Welcome " + user.displayName
+                val toast = Toast.makeText(
+                    requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2
+                )
+                toast.show()
 
-                refreshFragment();
+                refreshFragment()
 
                 // Generate a Firestore document for the User with default data if needed
                 try {
-                    FirestoreUser.Companion.buildUserDocument();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    buildUserDocument()
+                } catch (e: Exception) {
+                    throw RuntimeException(e)
                 }
 
-                getUserPurchaseHistory();
+                userPurchaseHistory
             }
         } else {
-
-            String message = "ERROR: (Error data could not be acquired).";
-            if(response != null) {
-                FirebaseUiException error = response.getError();
-                if(error != null) {
-                    message = "ERROR " + error.getErrorCode() + ": " + error.getMessage();
+            var message = "ERROR: (Error data could not be acquired)."
+            if (response != null) {
+                val error = response.error
+                if (error != null) {
+                    message = "ERROR " + error.errorCode + ": " + error.message
                 }
             }
 
-            Toast toast = Toast.makeText(requireActivity(),
-                    message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2);
-            toast.show();
+            val toast = Toast.makeText(
+                requireActivity(),
+                message,
+                com.google.android.material.R.integer.material_motion_duration_short_2
+            )
+            toast.show()
         }
     }
 
-    @Override
-    protected void onSignInAccountSuccess() {
-
+    override fun onSignInAccountSuccess() {
     }
 
-    @Override
-    protected void onSignOutAccountSuccess() {
-
+    override fun onSignOutAccountSuccess() {
     }
 
-    /**
-     *
-     */
-    public void signOutAccount() {
-
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            return;
+    override fun signOutAccount() {
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            return
         }
 
         try {
             AuthUI.getInstance()
-                    .signOut(requireContext())
-                    .addOnCompleteListener(task -> {
-
-                        String message = "User signed out";
-                        try {
-                            Toast.makeText(requireActivity(),
-                                    message,
-                                    com.google.android.material.R.integer.material_motion_duration_short_2).show();
-                        } catch (IllegalStateException e) {
-                            e.printStackTrace();
-                        }
-
-                        onSignOutAccountSuccess();
-
-                    });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
-     *
-     */
-    public void deleteAccount() {
-        AuthUI.getInstance()
-                .delete(requireContext())
-                .addOnCompleteListener(task -> {
-                    String message = "Successfully removed account.";
-                    Toast toast = Toast.makeText(requireActivity(),
+                .signOut(requireContext())
+                .addOnCompleteListener { task: Task<Void?>? ->
+                    val message = "User signed out"
+                    try {
+                        Toast.makeText(
+                            requireActivity(),
                             message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2);
-                    toast.show();
-
-                    refreshFragment();
-                });
+                            com.google.android.material.R.integer.material_motion_duration_short_2
+                        ).show()
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                    onSignOutAccountSuccess()
+                }
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
     }
 
-    @Override
-    public void onResume() {
+    override fun deleteAccount() {
+        AuthUI.getInstance()
+            .delete(requireContext())
+            .addOnCompleteListener { task: Task<Void?>? ->
+                val message = "Successfully removed account."
+                val toast = Toast.makeText(
+                    requireActivity(),
+                    message,
+                    com.google.android.material.R.integer.material_motion_duration_short_2
+                )
+                toast.show()
+                refreshFragment()
+            }
+    }
 
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
     }
 }

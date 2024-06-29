@@ -1,64 +1,58 @@
+package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
 
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views;
+import android.content.Context
+import android.graphics.drawable.LayerDrawable
+import android.util.AttributeSet
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.res.ResourcesCompat
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
-import android.content.Context;
-import android.graphics.drawable.LayerDrawable;
-import android.util.AttributeSet;
+class ItemStoreItemView : AppCompatImageView {
+    private var isSelected = false
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.content.res.ResourcesCompat;
-
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-
-public class ItemStoreItemView extends AppCompatImageView {
-
-    private boolean isSelected = false;
-
-    public ItemStoreItemView(@NonNull Context context) {
-        super(context);
-
-        setDefaults();
+    constructor(context: Context) : super(context) {
+        setDefaults()
     }
 
-    public ItemStoreItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        setDefaults();
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        setDefaults()
     }
 
-    public ItemStoreItemView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        setDefaults();
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        setDefaults()
     }
 
-    private void setDefaults() {
-
+    private fun setDefaults() {
     }
 
-    public void setTier(int tier) {
-        setImageLevel(tier);
+    fun setTier(tier: Int) {
+        setImageLevel(tier)
     }
 
-    public void setEquipment(@DrawableRes int res) {
-        LayerDrawable layerDrawable = (LayerDrawable) getDrawable();
-        layerDrawable.setDrawableByLayerId(R.id.ic_type, ResourcesCompat.getDrawable(
-                getResources(), res, getContext().getTheme()));
+    fun setEquipment(@DrawableRes res: Int) {
+        val layerDrawable = drawable as LayerDrawable
+        layerDrawable.setDrawableByLayerId(
+            R.id.ic_type, ResourcesCompat.getDrawable(
+                resources, res, context.theme
+            )
+        )
     }
 
-    public void setSelected(boolean isSelected) {
-        this.isSelected = isSelected;
+    override fun setSelected(isSelected: Boolean) {
+        this.isSelected = isSelected
 
-        setImageState(new int[]{
-                isSelected ? R.attr.state_selected : -R.attr.state_selected},
-                true);
+        setImageState(
+            intArrayOf(if (isSelected) R.attr.state_selected else -R.attr.state_selected),
+            true
+        )
     }
 
-    public boolean isSelected() {
-        return isSelected;
+    override fun isSelected(): Boolean {
+        return isSelected
     }
-
 }
