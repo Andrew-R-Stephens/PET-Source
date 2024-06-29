@@ -94,8 +94,8 @@
     </string-array>
     <integer-array name="messagecenter_inboxicons">
         <item>@drawable/icon_newspaper</item>
-        <item>@drawable/app_icon_sm</item>
-        <item>@drawable/phasmophobia_logo_letter_sm</item>
+        <item>@drawable/icon_logo_app</item>
+        <item>@drawable/icon_logo_phas</item>
     </integer-array>
 
     <!--

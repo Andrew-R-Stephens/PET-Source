@@ -140,7 +140,7 @@ class StartScreenFragment : MainMenuFragment() {
 
     private fun setBackgroundLogo(iconApp: AppCompatImageView) {
         bitmapUtils.clearResources()
-        bitmapUtils.setResource(R.drawable.app_icon_sm)
+        bitmapUtils.setResource(R.drawable.icon_logo_app)
 
         try { iconApp.setImageBitmap(bitmapUtils.compileBitmaps(requireContext())) }
         catch (e: IllegalStateException) { e.printStackTrace() }

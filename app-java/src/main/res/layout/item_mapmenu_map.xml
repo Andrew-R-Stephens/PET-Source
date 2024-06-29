@@ -32,7 +32,7 @@
             android:maxLines="2"
             android:text="@string/map_name_asylum"
             android:padding="2sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/textColorBody"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".3"

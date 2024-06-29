@@ -100,15 +100,8 @@ class NewsInboxesFragment : MainMenuFragment() {
         initNewsletterViewModel()
     }
 
-    /*
-    override fun saveStates() {
-        super.saveStates()
-    }
-    */
-
     override fun onPause() {
         saveStates()
-
         super.onPause()
     }
 }
