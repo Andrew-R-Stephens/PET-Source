@@ -1,163 +1,101 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory;
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory
 
-import android.util.Log;
-
-import androidx.annotation.Keep;
-import androidx.annotation.NonNull;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.Map;
+import android.util.Log
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
 @Keep
-public class MapDesBlueprint {
-
-    @SerializedName("maps")
-    public final ArrayList<Map<String, WorldMap>> maps = new ArrayList<>();
+class MapDesBlueprint {
+    @SerializedName("maps") val maps: ArrayList<Map<String, WorldMap>> = ArrayList()
 
     @Keep
-    public static class WorldMap {
-
-        @SerializedName("map_id")
-        public int map_id;
-        @SerializedName("map_name")
-        public String map_name;
-        @SerializedName("map_name_short")
-        public String map_name_short;
-        @SerializedName("map_floors")
-        public final ArrayList<Floor> map_floors = new ArrayList<>();
-        @SerializedName("map_dimensions")
-        public final WorldDimensions map_dimensions = new WorldDimensions();
+    class WorldMap {
+        @SerializedName("map_id") var map_id: Int = 0
+        @SerializedName("map_name") var map_name: String = ""
+        @SerializedName("map_name_short") var map_name_short: String = ""
+        @SerializedName("map_floors") val map_floors: ArrayList<Floor> = ArrayList()
+        @SerializedName("map_dimensions") val map_dimensions: WorldDimensions = WorldDimensions()
 
         @Keep
-        public static class WorldDimensions {
+        class WorldDimensions {
+            @SerializedName("w") var w: Int = 0
+            @SerializedName("h") var h: Int = 0
 
-            @SerializedName("w")
-            public int w;
-            @SerializedName("h")
-            public int h;
-
-            public void print() {
-                Log.d("Map", "Map Dimensions:\t\tW: " + w + ", H: " + h);
+            fun print() {
+                Log.d("Map", "Map Dimensions:\t\tW: $w, H: $h")
             }
-
         }
 
         @Keep
-        public static class Floor {
-
-            @SerializedName("floor_id")
-            public int floor_id;
-            @SerializedName("floor_number")
-            public int floor_number;
-            @SerializedName("floor_name")
-            public final String floor_name = "";
-            @SerializedName("image_file")
-            public final String image_file = "";
-            @NonNull
-            @SerializedName("floor_pois")
-            public ArrayList<POI> floor_pois = new ArrayList<>();
-            @NonNull
-            @SerializedName("floor_rooms")
-            public ArrayList<Room> floor_rooms = new ArrayList<>();
+        class Floor {
+            @SerializedName("floor_id") var floor_id: Int = 0
+            @SerializedName("floor_number") var floor_number: Int = 0
+            @SerializedName("floor_name") val floor_name: String = ""
+            @SerializedName("image_file") val image_file: String = ""
+            @SerializedName("floor_pois") var floor_pois: ArrayList<POI> = ArrayList()
+            @SerializedName("floor_rooms") var floor_rooms: ArrayList<Room> = ArrayList()
 
             @Keep
-            public static class Room {
+            class Room {
+                @SerializedName("room_iD") var room_iD: Int = 0
+                @SerializedName("room_name") var room_name: String = ""
+                @SerializedName("room_points") var room_points: RoomPoints = RoomPoints()
 
-                @SerializedName("room_iD")
-                public int room_iD;
-                @NonNull
-                @SerializedName("room_name")
-                public String room_name = "";
-
-                @NonNull
-                @SerializedName("room_points")
-                public RoomPoints room_points = new RoomPoints();
-
-                public void print() {
-                    Log.d("Maps", "\t\t" + room_iD + ": " + room_name);
-                    room_points.print();
+                fun print() {
+                    Log.d("Maps", "\t\t$room_iD: $room_name")
+                    room_points.print()
                 }
 
                 @Keep
-                public static class RoomPoints {
+                class RoomPoints {
+                    @SerializedName("points") val points: ArrayList<RoomPoint> = ArrayList()
 
-                    @SerializedName("points")
-                    public final ArrayList<RoomPoint> points = new ArrayList<>();
-
-                    public void print() {
-                        for (RoomPoint p : points) {
-                            p.print();
-                        }
-                    }
+                    fun print() { for (p in points) { p.print() } }
 
                     @Keep
-                    public static class RoomPoint {
+                    class RoomPoint {
+                        @SerializedName("x") var x: Float = 0f
+                        @SerializedName("y") var y: Float = 0f
 
-                        @SerializedName("x")
-                        public float x = 0;
-                        @SerializedName("y")
-                        public float y = 0;
-
-                        public void print() {
-                            Log.d("Maps", "\t\t\t\t[x: " + x + ", y: " + y + "]");
+                        fun print() {
+                            Log.d("Maps", "\t\t\t\t[x: $x, y: $y]")
                         }
                     }
-
                 }
-
             }
 
             @Keep
-            public static class POI {
+            class POI {
+                @SerializedName("poi_iD") var poi_iD: Int = 0
+                @SerializedName("poi_name") var poi_name: String = ""
+                @SerializedName("poi_type") var poi_type: Int = -1
+                @SerializedName("x") var x: Float = 0f
+                @SerializedName("y") var y: Float = 0f
 
-                @SerializedName("poi_iD")
-                public int poi_iD;
-                @NonNull
-                @SerializedName("poi_name")
-                public String poi_name = "";
-                @SerializedName("poi_type")
-                public int poi_type = -1;
-
-                @SerializedName("x")
-                public float x = 0;
-                @SerializedName("y")
-                public float y = 0;
-
-                public void print() {
-                    Log.d("Maps", "\t\t" + poi_iD + ": " + poi_name + ", " + poi_type + ", x: " + x + " y: " + y);
-                }
+                fun print() {
+                    Log.d("Maps", "\t\t$poi_iD: $poi_name, $poi_type, x: $x y: $y") }
             }
 
-            public void print() {
-                Log.d("Maps", "\t" + floor_number + ": " + floor_name + ", Room Count: " + floor_rooms.size() + "\n\tFloor image: " + image_file);
-                for (Room r : floor_rooms) {
-                   r.print();
-                }
-
-                for (POI p : floor_pois) {
-                    p.print();
-                }
+            fun print() {
+                Log.d("Maps",
+                    "\t$floor_number: $floor_name Room Count: $floor_rooms.size" +
+                            "\n\tFloor image: $image_file")
+                for (r in floor_rooms) { r.print() }
+                for (p in floor_pois) { p.print() }
             }
-
         }
 
-        public void print() {
-            Log.d("Maps", map_id + ": " + map_name + ", Floor Count: " + map_floors.size());
-            map_dimensions.print();
-            for (Floor f : map_floors) {
-                f.print();
-            }
+        fun print() {
+            Log.d("Maps", map_id.toString() + ": " + map_name + ", Floor Count: " + map_floors.size)
+            map_dimensions.print()
+            for (f in map_floors) { f.print() }
         }
     }
 
-    public void print() {
-        for (Map<String, WorldMap> m : maps) {
-            WorldMap map = m.get("map_data");
-            if(map != null) {
-                map.print();
-            }
+    fun print() {
+        for (m in maps) {
+            val map = m["map_data"]
+            map?.print()
         }
     }
 }
