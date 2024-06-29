@@ -11,7 +11,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.Newsl
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.initialization.InitializationStatus
 
 abstract class MainMenuFragment : PETFragment {
     protected var mainMenuViewModel: MainMenuViewModel? = null

@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions
 
 import android.content.Context
-import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 /**

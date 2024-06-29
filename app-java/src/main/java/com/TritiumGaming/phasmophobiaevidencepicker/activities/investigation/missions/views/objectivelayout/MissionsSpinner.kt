@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mi
 import android.content.Context
 import android.content.res.Resources.Theme
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter

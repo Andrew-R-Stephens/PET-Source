@@ -12,7 +12,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mis
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsSpinner
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel.Companion.NOT_COMPLETE
-import org.w3c.dom.Attr
 
 class MissionsItemLayout : LinearLayout {
 

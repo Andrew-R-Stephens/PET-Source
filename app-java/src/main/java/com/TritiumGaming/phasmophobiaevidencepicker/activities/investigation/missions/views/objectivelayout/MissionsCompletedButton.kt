@@ -2,8 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mi
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asComposeColorFilter
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute

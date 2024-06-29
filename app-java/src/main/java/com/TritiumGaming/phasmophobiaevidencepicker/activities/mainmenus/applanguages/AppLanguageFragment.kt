@@ -14,7 +14,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
-import java.util.Arrays
 
 class AppLanguageFragment : MainMenuFragment() {
     override fun onCreateView(

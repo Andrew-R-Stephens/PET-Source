@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.times
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
-import org.jetbrains.annotations.TestOnly
 
 @Preview
 @Composable

@@ -13,7 +13,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.MessagesAdapterView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-import io.realm.kotlin.internal.platform.currentTime
 
 class NewsMessagesFragment : MainMenuFragment() {
     override fun onCreateView(

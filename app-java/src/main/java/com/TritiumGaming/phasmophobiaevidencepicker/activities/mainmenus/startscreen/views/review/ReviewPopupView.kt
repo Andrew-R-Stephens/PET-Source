@@ -1,11 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
 
-import android.app.ActionBar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
-import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
