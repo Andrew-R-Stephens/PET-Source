@@ -23,11 +23,11 @@ Keystore.jks
 /app/release
 /app/local.properties
 /app/upload_certificate.pem
-/app-java/upload_certificate.pem
-/app-java/google-services.json
-/app-java/release/
-/app-java/libs/processing-core.jar
-/app-java/build/
+/app/upload_certificate.pem
+/app/google-services.json
+/app/release/
+/app/libs/processing-core.jar
+/app/build/
 /app-kotlin/google-services.json
 /app-kotlin/upload_certificate.pem
 /app-kotlin/release/
