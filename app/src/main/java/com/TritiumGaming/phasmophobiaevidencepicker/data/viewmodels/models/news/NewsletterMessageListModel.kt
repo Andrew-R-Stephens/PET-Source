@@ -5,128 +5,57 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+
 class NewsletterMessageListModel {
+
+    companion object {
+        fun formatToEpoch(stringDate: String?): Long {
+            stringDate ?: return 1L
+
+            val dateFormatter = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.ENGLISH)
+            var time = 1L
+            try { time = dateFormatter.parse(stringDate)?.time ?: time }
+            catch (e: ParseException) { e.printStackTrace() }
+
+            return time
+        }
+
+        fun formatFromEpoch(time: Long?): String? {
+            time ?: return formatFromEpoch(1L)
+
+            val parser = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.ENGLISH)
+            var stringDate: String? = null
+            try { stringDate = parser.format(time) }
+            catch (e: IllegalArgumentException) { e.printStackTrace() }
+
+            return stringDate
+        }
+    }
 
     var ready: Boolean = false
     private var requiresNotify: Boolean = false
 
-    var lastReadDate: String = "NA"
-        set(date) {
-            val parser =
-                SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
-            val simpleFormatter =
-                SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
-
-            var output = "NA"
-            try {
-                val formattedDate = parser.parse(date)
-                if (formattedDate != null) {
-                    output = simpleFormatter.format(formattedDate)
-                }
-            } catch (e: ParseException) {
-                output = date
-            }
-
-            field = output
-        }
-
-    private var mostRecentDateFound = "NA"
-        set(date) {
-            if (messages.isEmpty()) {
-                val parser =
-                    SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
-                val simpleFormatter =
-                    SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
-
-                var output = ""
-                try {
-                    val parsedDate = parser.parse(date)
-                    if (parsedDate != null) {
-                        output = simpleFormatter.format(parsedDate)
-                    }
-                } catch (e: ParseException) {
-                    e.printStackTrace()
-                }
-
-                field = output
-            }
-        }
+    var lastReadDate: Long = formatToEpoch(null)
+    private var newestMessageDate: Long = formatToEpoch(null)
 
     var inboxType: NewsletterViewModel.InboxType? = null
     val messages: ArrayList<NewsletterMessageModel> = ArrayList()
 
     fun add(msg: NewsletterMessageModel) {
-        mostRecentDateFound = msg.date
+        newestMessageDate = msg.date
 
         messages.add(msg)
     }
 
-    /*
-    fun setLastReadDate(date: String?) {
-        if (date == null) {
-            Log.d("Message Center", "Date is null")
-            return
-        }
-
-        val parser =
-            SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
-        val simpleFormatter =
-            SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
-
-        var output = "NA"
-        try {
-            val formattedDate = parser.parse(date)
-            if (formattedDate != null) {
-                output = simpleFormatter.format(formattedDate)
-            }
-        } catch (e: ParseException) {
-            output = date
-        }
-
-        lastReadDate = output
+    /** @return 1 if newestMessageDate is newer than parameter, -1 if older, and 0 if == **/
+    fun compareDates(specifiedDate: Long = newestMessageDate): Int {
+        val out = (specifiedDate - lastReadDate).toInt().coerceIn(-1, 1)
+        requiresNotify = out > 0
+        return out
     }
-    */
-
-    /*
-    private fun setMostRecentDate(date: String?) {
-        if (date == null) {
-            return
-        }
-
-        if (messages.isEmpty()) {
-            val parser =
-                SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH)
-            val simpleFormatter =
-                SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
-
-            var output = ""
-            try {
-                val parsedDate = parser.parse(date)
-                if (parsedDate != null) {
-                    output = simpleFormatter.format(parsedDate)
-                }
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-
-            mostRecentDateFound = output
-        }
-    }
-    */
-
-    fun compareDates(): Boolean {
-        return !mostRecentDateFound.equals(lastReadDate, ignoreCase = true)
-            .also { requiresNotify = it }
-    }
-
-    /*
-    fun getLastReadDate(): String {
-        return lastReadDate
-    }
-    */
 
     fun updateLastReadDate() {
-        lastReadDate = mostRecentDateFound
+        lastReadDate = newestMessageDate
 
         compareDates()
     }
@@ -140,4 +69,7 @@ class NewsletterMessageListModel {
         }
         return t.toString()
     }
+
 }
+
+typealias SDFDate = java.util.Date

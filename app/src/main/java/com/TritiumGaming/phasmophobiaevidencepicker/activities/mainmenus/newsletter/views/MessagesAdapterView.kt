@@ -4,18 +4,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class MessagesAdapterView(
-    private val messages: ArrayList<NewsletterMessageModel>,
+    private val currentInbow: NewsletterMessageListModel,
     private val onMessageListener: OnMessageListener)
     : RecyclerView.Adapter<MessagesAdapterView.ViewHolder>() {
 
+    private val messages: ArrayList<NewsletterMessageModel> = currentInbow.messages
+
     class ViewHolder(view: View, onMessageListener: OnMessageListener)
         : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val messageTitleTextView: AppCompatTextView = itemView.findViewById(R.id.textView_messageName)
+        val messageTitleTextView: AppCompatTextView =
+            itemView.findViewById(R.id.textView_messageName)
+        val icon: ComposeView? = itemView.findViewById(R.id.notificationComposable)
 
         private val onMessageListener: OnMessageListener
 
@@ -40,6 +47,10 @@ class MessagesAdapterView(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val textView = holder.messageTitleTextView
         textView.text = messages[position].title
+        val icon = holder.icon
+        icon?.setContent { NewsAlert(
+            currentInbow.compareDates(messages[position].date) > 0,
+            baseDrawableId = null ) }
     }
 
     override fun getItemCount(): Int {
@@ -49,4 +60,5 @@ class MessagesAdapterView(
     interface OnMessageListener {
         fun onNoteClick(position: Int)
     }
+
 }

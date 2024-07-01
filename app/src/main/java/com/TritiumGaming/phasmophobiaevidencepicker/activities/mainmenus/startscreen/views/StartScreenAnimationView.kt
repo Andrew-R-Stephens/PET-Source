@@ -65,9 +65,7 @@ class StartScreenAnimationView : View {
             super(context, attrs, defStyleAttr)
 
     fun init(
-        mainMenuViewModel: MainMenuViewModel?,
-        bitmapUtils: BitmapUtils?
-    ) {
+        mainMenuViewModel: MainMenuViewModel?, bitmapUtils: BitmapUtils?) {
         this.mainMenuViewModel = mainMenuViewModel
         this.bitmapUtils = bitmapUtils
 
@@ -132,18 +130,16 @@ class StartScreenAnimationView : View {
     }
 
     private fun buildImages() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel?.animationModel?.let { animationModel ->
             val screenW = Resources.getSystem().displayMetrics.widthPixels
             val screenH = Resources.getSystem().displayMetrics.heightPixels
 
-            val animationData = mainMenuViewModel.animationModel
-
-            for (g in animationData.currentPool) {
+            for (g in animationModel.currentPool) {
                 g.initDims(screenW, screenH)
             }
 
-            if (animationData.hasData()) {
-                for (animated in animationData.allPool) {
+            if (animationModel.hasData()) {
+                for (animated in animationModel.allPool) {
                     try {
                         when(animated) {
                             is AnimatedHandModel ->
@@ -165,7 +161,7 @@ class StartScreenAnimationView : View {
             //Add orbs
             for (i in 0 until orbCount) {
                 if (BitmapUtils.bitmapExists(bitmapOrb)) {
-                    animationData.addToAllPool(AnimatedOrbModel(screenW, screenH))
+                    animationModel.addToAllPool(AnimatedOrbModel(screenW, screenH))
                 }
             }
             //Add hands
@@ -175,7 +171,7 @@ class StartScreenAnimationView : View {
                         val bW = bitmapHand.width
                         val bH = bitmapHand.height
                         val data = AnimatedHandModel(screenW, screenH, bW, bH)
-                        animationData.addToAllPool(data)
+                        animationModel.addToAllPool(data)
                         try { bitmapHandRot = data.rotateBitmap(bitmapHand) }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
@@ -188,8 +184,8 @@ class StartScreenAnimationView : View {
                     bitmapWriting?.let { bitmapWriting ->
                         val bW = bitmapWriting.width
                         val bH = bitmapWriting.height
-                        val data = AnimatedWritingModel(screenW, screenH, bW, bH, animationData)
-                        animationData.addToAllPool(data)
+                        val data = AnimatedWritingModel(screenW, screenH, bW, bH, animationModel)
+                        animationModel.addToAllPool(data)
                         try { bitmapWritingRot = data.rotateBitmap(bitmapWriting) }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
@@ -199,19 +195,19 @@ class StartScreenAnimationView : View {
             //Add Frost
             for (i in 0 until frostCount) {
                 if (BitmapUtils.bitmapExists(bitmapFrost)) {
-                    animationData.addToAllPool(AnimatedFrostModel(screenW, screenH))
+                    animationModel.addToAllPool(AnimatedFrostModel(screenW, screenH))
                 }
             }
 
             //Add Mirror
             for (i in 0 until mirrorCount) {
                 if (BitmapUtils.bitmapExists(bitmapMirror)) {
-                    animationData.addToAllPool(AnimatedMirrorModel(screenW, screenH))
+                    animationModel.addToAllPool(AnimatedMirrorModel(screenW, screenH))
                 }
             }
 
             //Create Queue
-            animationData.queue = AnimatedQueueModel(animationData.allPoolSize, 750)
+            animationModel.queue = AnimatedQueueModel(animationModel.allPoolSize, 750)
         }
 
     }
@@ -463,13 +459,13 @@ class StartScreenAnimationView : View {
 
             threadTickAnim = Thread(
                 object : DeltaRunnable(context, fpsTarget = 30f, fpsMax = 60f) {
-                override fun runCondition(): Boolean { return canAnimate }
+                    override fun runCondition(): Boolean { return canAnimate }
 
-                override fun onTick() {
-                    try { this@StartScreenAnimationView.tick() }
-                    catch (e: Exception) { e.printStackTrace() }
-                }
-            })
+                    override fun onTick() {
+                        try { this@StartScreenAnimationView.tick() }
+                        catch (e: Exception) { e.printStackTrace() }
+                    }
+                })
             threadTickAnim?.start()
         }
     }

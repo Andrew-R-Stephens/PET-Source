@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.EaseOutQuad
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -22,48 +23,47 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 @Composable
 @Preview
-fun NewsAlert(isActive: Boolean = false) {
+fun NewsAlert(
+    isActive: Boolean = false,
+    @DrawableRes baseDrawableId: Int? = R.drawable.icon_ts_news,
+    @DrawableRes alertDrawableRes: Int = R.drawable.icon_ts_notify
+) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
+
+    baseDrawableId?.let {
+        Image(
+            painterResource(id = baseDrawableId),
+            contentDescription = "Background Image"
+        )
+    }
 
     Box(
         modifier = Modifier.size(48.dp)
     ) {
-        Image(
-            painterResource(id = R.drawable.icon_ts_news),
-            contentDescription = ""
-        )
+        val opacity = if (isActive) {
+            infiniteTransition.animateFloat(
+                initialValue = .4f,
+                targetValue = .9f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(
+                        durationMillis = 1000,
+                        easing = EaseOutQuad
+                    ),
+                    repeatMode = RepeatMode.Reverse
+                ), label = ""
+            ).value
+        } else 0f
 
-        val opacity =
-            if (isActive) {
-                infiniteTransition.animateFloat(
-                    initialValue = .4f,
-                    targetValue = .9f,
-                    animationSpec = infiniteRepeatable(
-                        animation = tween(
-                            durationMillis = 1000,
-                            easing = EaseOutQuad
-                        ),
-                        repeatMode = RepeatMode.Reverse
-                    ), label = ""
-                ).value
-            } else 0f
+        val alertScale = if(baseDrawableId != null) .5f else 1f
 
         Image(
-            painterResource(id = R.drawable.icon_ts_notify),
-            contentDescription = "",
+            painterResource(id = alertDrawableRes),
+            contentDescription = "Inbox Symbol",
             modifier = Modifier
                 .alpha(opacity)
-                .fillMaxSize(fraction = .5f)
+                .fillMaxSize(fraction = alertScale)
                 .align(Alignment.BottomEnd)
         )
-    }
-}
 
-fun setNewsAlertComposable(
-    recipientView: ComposeView?,
-    isActive: Boolean = false
-) {
-    recipientView?.setContent {
-        NewsAlert(isActive)
     }
 }

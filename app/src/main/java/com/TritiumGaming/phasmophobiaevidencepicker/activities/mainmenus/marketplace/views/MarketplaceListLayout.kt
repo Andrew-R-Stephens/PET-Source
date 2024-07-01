@@ -21,16 +21,10 @@ class MarketplaceListLayout : LinearLayout {
             super(context, attrs, defStyleAttr, defStyleRes) { initView() }
 
     fun initView() {
-        inflate(context, R.layout.layout_marketplace_grouplabel, this)
+        inflate(context, R.layout.layout_marketplace_list, this)
 
         layoutTransition = LayoutTransition()
-
         orientation = VERTICAL
-    }
-
-    override fun setOrientation(orientation: Int) {
-        super.setOrientation(orientation)
-        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
     }
 
     fun setLabel(text: String?) {
@@ -43,7 +37,7 @@ class MarketplaceListLayout : LinearLayout {
         label?.visibility = visibility
     }
 
-    fun validateItems() {
+    fun validateChildren() {
         for (i in 0 until childCount) {
             when(val child = getChildAt(i)) {
                 is ThemeSingleCardView -> child.validate()
@@ -51,4 +45,10 @@ class MarketplaceListLayout : LinearLayout {
             }
         }
     }
+
+    override fun setOrientation(orientation: Int) {
+        super.setOrientation(orientation)
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+    }
+
 }

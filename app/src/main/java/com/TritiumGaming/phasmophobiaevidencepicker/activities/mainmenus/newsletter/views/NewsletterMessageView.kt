@@ -2,13 +2,13 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsle
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.animation.AnimationUtils
 import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class NewsletterMessageView : ConstraintLayout {
 
@@ -25,28 +25,17 @@ class NewsletterMessageView : ConstraintLayout {
         inflate(context, R.layout.item_newsletter_inbox, this)
 
         var title: String? = null
-        @DrawableRes var icon: Int? = null
-        if (attrs != null) {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.NewsletterMessageView)
+        attrs?.let {
+            val a = context.obtainStyledAttributes(it, R.styleable.NewsletterMessageView)
             title = a.getString(R.styleable.NewsletterMessageView_inboxMessage_title)
-            icon = a.getResourceId(R.styleable.NewsletterMessageView_inboxMessage_icon,
-                    R.drawable.app_icon_sm)
             a.recycle()
         }
-
-        title?.let { setInboxTitle(it) }
-        icon?.let { setInboxIcon(it) }
+        title?.let { setTitle(it) }
 
         requestLayout()
     }
 
-    private fun setInboxIcon(icon: Int) {
-        val iconView = findViewById<AppCompatImageView>(R.id.inboxIcon)
-
-        iconView?.setImageResource(icon)
-    }
-
-    private fun setInboxTitle(title: String?) {
+    private fun setTitle(title: String?) {
         val titleView = findViewById<AppCompatTextView>(R.id.inboxTitle)
 
         titleView?.let {
@@ -55,13 +44,13 @@ class NewsletterMessageView : ConstraintLayout {
         }
     }
 
-    fun initNotify(context: Context, inboxData: NewsletterMessageListModel?) {
-        val notifyView = findViewById<AppCompatImageView>(R.id.notifyIcon)
-
-        val animation = AnimationUtils.loadAnimation(context, R.anim.notifyblink)
-        if (inboxData != null && inboxData.compareDates()) {
-            notifyView.alpha = 0.9f
-            notifyView.startAnimation(animation)
+    fun notify(inboxModel: NewsletterMessageListModel?) {
+        val notifyView = findViewById<ComposeView>(R.id.notificationComposable)
+        notifyView.setContent {
+            NewsAlert(
+                isActive = (inboxModel?.compareDates() ?: 0) > 0,
+                null
+            )
         }
     }
 }

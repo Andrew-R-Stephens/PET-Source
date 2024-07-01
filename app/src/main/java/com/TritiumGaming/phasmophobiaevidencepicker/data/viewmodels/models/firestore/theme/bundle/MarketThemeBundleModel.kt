@@ -4,9 +4,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.fires
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Availability
 
-class MarketThemeBundleModel(
-    uuid: String?, theme: MarketThemeBundleModel, themes: List<ThemeModel>
-) : MarketplaceItemModel(theme.buyCredits, theme.name) {
+class MarketThemeBundleModel: MarketplaceItemModel {
+
+    constructor(): super()
+
+    constructor(uuid: String? = null, theme: MarketThemeBundleModel, themes: List<ThemeModel>):
+            super(uuid, theme.buyCredits, theme.name) {
+        addThemes(themes)
+        setUnlockedState()
+    }
+
     var themes: ArrayList<ThemeModel>? = null
         private set
     private var unlockedState: Availability = Availability.LOCKED
@@ -29,21 +36,16 @@ class MarketThemeBundleModel(
 
     val lockedItemCount: Int
         get() {
-            var lockedThemeCount = themes!!.size
-
-            for (customTheme in themes!!) {
-                if (customTheme.isUnlocked) {
-                    lockedThemeCount--
+            themes?.let { themes ->
+                var lockedThemeCount = themes.size
+                for (customTheme in themes) {
+                    if (customTheme.isUnlocked) {
+                        lockedThemeCount--
+                    }
                 }
-            }
-            return lockedThemeCount
+                return lockedThemeCount
+            } ?: return 0
         }
-
-    init {
-        super.uuid = uuid
-        addThemes(themes)
-        setUnlockedState()
-    }
 
     private fun addThemes(themes: List<ThemeModel>) {
         this.themes = ArrayList()

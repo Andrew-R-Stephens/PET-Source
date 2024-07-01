@@ -12,11 +12,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newslet
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel.InboxType
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 class NewsInboxesFragment : MainMenuFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,12 +26,11 @@ class NewsInboxesFragment : MainMenuFragment() {
         newsLetterViewModel?.let { newsLetterViewModel ->
             for (inboxType in InboxType.entries.toTypedArray()) {
                 try {
-                    val inboxView =
-                        NewsletterInboxView(requireContext(), null)
-                    inboxView.setInboxTitle(inboxType.getName(requireContext()))
-                    inboxView.setInboxIcon(inboxType.getIcon(requireContext()))
-                    inboxView.initNotify(
-                        requireContext(), newsLetterViewModel.getInbox(inboxType))
+                    val inboxView = NewsletterInboxView(requireContext(), null)
+                    inboxView.setTitle(inboxType.getName(requireContext()))
+                    inboxView.notify(
+                        newsLetterViewModel.getInbox(inboxType),
+                        inboxType.getIcon(requireContext()))
 
                     when (inboxType) {
                         InboxType.GENERAL -> inboxView.setOnClickListener {
@@ -66,7 +60,7 @@ class NewsInboxesFragment : MainMenuFragment() {
         super.initAdView(view.findViewById(R.id.adView))
     }
 
-    fun navigateToInboxFragment(v: View) {
+    private fun navigateToInboxFragment(v: View) {
         findNavController(v).navigate(R.id.action_inboxFragment_to_inboxMessageListFragment)
     }
 
@@ -87,7 +81,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     }
 
     /** showPhasNewsPopup method */
-    fun gotoPhasNews(v: View) {
+    private fun gotoPhasNews(v: View) {
         try {
             newsLetterViewModel?.currentInboxType = InboxType.PHASMOPHOBIA
             navigateToInboxFragment(v)

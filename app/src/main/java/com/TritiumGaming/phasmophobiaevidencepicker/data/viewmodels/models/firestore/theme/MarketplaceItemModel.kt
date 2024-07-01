@@ -10,6 +10,12 @@ abstract class MarketplaceItemModel {
 
     constructor()
 
+    constructor(uuid: String?, buyCredits: Long, name: String?) {
+        this.uuid = uuid
+        this.buyCredits = buyCredits
+        this.name = name
+    }
+
     constructor(buyCredits: Long, name: String?) {
         this.buyCredits = buyCredits
         this.name = name

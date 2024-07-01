@@ -28,11 +28,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import java.util.Locale
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null
 
@@ -135,7 +130,9 @@ class StartScreenFragment : MainMenuFragment() {
 
     private fun loadMessageCenter() {
         try { newsLetterViewModel?.registerInboxes(requireContext()) }
-        catch (e: IllegalStateException) { e.printStackTrace() }
+        catch (e: IllegalStateException) {
+            Log.d("MessageCenter", "Failed registering inboxes")
+            e.printStackTrace() }
     }
 
     private fun setBackgroundLogo(iconApp: AppCompatImageView) {
@@ -301,8 +298,7 @@ class StartScreenFragment : MainMenuFragment() {
                     loadMessageCenter()
 
                     if (!newsLetterViewModel.isUpToDate) {
-                        Log.d("MessageCenter",
-                            "[Attempt $retries / $maxRetries ] " +
+                        Log.d("MessageCenter", "[Attempt $retries / $maxRetries ] " +
                                     "Inboxes are not up to date yet! Retrying...\n")
                         try { Thread.sleep(1000) }
                         catch (e: InterruptedException) { e.printStackTrace() }

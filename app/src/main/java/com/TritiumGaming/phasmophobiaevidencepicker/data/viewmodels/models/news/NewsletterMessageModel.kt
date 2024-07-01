@@ -1,29 +1,24 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news
 
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatFromEpoch
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatToEpoch
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils
 
 class NewsletterMessageModel(title: String, description: String, date: String) {
 
-    var title: String =
-        FontUtils.removeXMLImgSrcTags(title)
-    var description: String =
-        FontUtils.removeXMLImgSrcTags(description)
-    var date: String =
-        FontUtils.removeXMLPubDateClockTime(FontUtils.removeXMLPubDateClockTime(date))
+    var title: String = FontUtils.removeXMLImgSrcTags(title)
+    var description: String = FontUtils.removeXMLImgSrcTags(description)
+    var date: Long = formatToEpoch(FontUtils.removeXMLPubDateClockTime(date))
 
     fun hasContent(): Boolean {
-        return hasTitle() || hasDescription() || hasDate()
+        return description.isNotEmpty() || title.isNotEmpty()
     }
 
-    private fun hasDate(): Boolean {
-        return date.isNotEmpty()
+    fun getDateFormatted(): String {
+        return formatFromEpoch(date) ?: "NA"
     }
 
-    private fun hasDescription(): Boolean {
-        return description.isNotEmpty()
-    }
-
-    private fun hasTitle(): Boolean {
-        return title.isNotEmpty()
+    override fun toString(): String {
+        return "Title: $title\nDate: $date\nDescription: $description"
     }
 }

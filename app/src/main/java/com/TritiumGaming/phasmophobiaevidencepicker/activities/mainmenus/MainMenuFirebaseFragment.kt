@@ -4,11 +4,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.FirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 abstract class MainMenuFirebaseFragment : FirebaseFragment {
     protected var mainMenuViewModel: MainMenuViewModel? = null
 

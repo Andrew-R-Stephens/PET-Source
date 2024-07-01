@@ -11,19 +11,11 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
-/**
- * TitleScreenFragment class
- *
- * @author TritiumGamingStudios
- */
 class NewsMessageFragment : MainMenuFragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? { // OBTAIN VIEW MODEL REFERENCE
-
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):
+    View? {
         super.init()
 
         return inflater.inflate(R.layout.fragment_news_message, container, false)
@@ -45,7 +37,7 @@ class NewsMessageFragment : MainMenuFragment() {
         val message = newsLetterViewModel?.currentMessage
         message?.let {
             labelTitle.text = Html.fromHtml(message.title)
-            labelDate.text = Html.fromHtml(message.date)
+            labelDate.text = Html.fromHtml(message.getDateFormatted())
             labelContent.text = Html.fromHtml(message.description)
         } ?: {
             labelTitle.text = Html.fromHtml("Data unavailable")

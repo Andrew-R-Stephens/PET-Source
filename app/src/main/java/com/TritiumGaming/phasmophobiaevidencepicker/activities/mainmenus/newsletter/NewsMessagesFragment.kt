@@ -46,7 +46,7 @@ class NewsMessagesFragment : MainMenuFragment() {
             // SET CONTENT
             newsLetterViewModel.currentInbox?.let { currentInbox ->
                 val adapter = MessagesAdapterView(
-                    currentInbox.messages, object: MessagesAdapterView.OnMessageListener {
+                    currentInbox, object: MessagesAdapterView.OnMessageListener {
                     override fun onNoteClick(position: Int) {
                         newsLetterViewModel.setCurrentMessageId(position)
                         findNavController(view).navigate(
@@ -56,8 +56,9 @@ class NewsMessagesFragment : MainMenuFragment() {
                 recyclerViewMessages.adapter = adapter
                 try { recyclerViewMessages.layoutManager = LinearLayoutManager(requireContext()) }
                 catch (e: IllegalStateException) { e.printStackTrace() }
-            } ?: try { Log.d("InboxMessageListFrag", "Inbox does not exist! " +
-                    newsLetterViewModel.currentInboxType.getName(requireContext()))
+            } ?: try {
+                Log.d("MessageCenter", "Inbox does not exist! " +
+                        newsLetterViewModel.currentInboxType.getName(requireContext()))
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
 

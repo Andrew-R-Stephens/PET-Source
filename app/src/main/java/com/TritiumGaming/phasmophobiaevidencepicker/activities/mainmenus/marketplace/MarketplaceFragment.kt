@@ -60,6 +60,8 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.CoroutineScope
+
 
 class MarketplaceFragment : MainMenuFragment() {
     private var masterItemsList: LinearLayout? = null
@@ -77,6 +79,8 @@ class MarketplaceFragment : MainMenuFragment() {
     private var marketProgressBar: ProgressBar? = null
 
     private var rewardedAd: RewardedAd? = null
+
+    private var scope: CoroutineScope? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -209,13 +213,13 @@ class MarketplaceFragment : MainMenuFragment() {
     }
 
     private fun revalidateMarketplaceBundles() {
-        bundleMarketplaceList?.validateItems()
+        bundleMarketplaceList?.validateChildren()
     }
 
     private fun revalidateMarketplaceSingles() {
-        prestigeMarketplaceList?.validateItems()
-        eventMarketplaceList?.validateItems()
-        communityMarketplaceList?.validateItems()
+        prestigeMarketplaceList?.validateChildren()
+        eventMarketplaceList?.validateChildren()
+        communityMarketplaceList?.validateChildren()
     }
 
     private fun populateBundledThemes() {
@@ -466,6 +470,21 @@ class MarketplaceFragment : MainMenuFragment() {
             }
     }
 
+    fun onPurchaseSuccessAnimation(targetView: View, parentView: View) {
+        val marketItemAnimation =
+            targetView.animate()
+                .setDuration(300)
+                .translationX(parentView.width.toFloat())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationStart(animation: Animator) {
+                        super.onAnimationStart(animation)
+
+                        targetView.isEnabled = false
+                    }
+                })
+        marketItemAnimation.start()
+    }
+
     private fun buildMarketplaceBundleThemeView(
         list: MarketplaceListLayout, bundleThemes: MarketThemeBundleModel
     ): ThemeBundleCardView? {
@@ -487,7 +506,8 @@ class MarketplaceFragment : MainMenuFragment() {
                             addUnlockedDocuments(uuids, "Theme Bundle",
                                 object : OnFirestoreProcessListener() {
                                     override fun onSuccess() {
-                                        val marketItemAnimation =
+                                        onPurchaseSuccessAnimation(marketplaceBundleView, list)
+                                        /*val marketItemAnimation =
                                             marketplaceBundleView.animate()
                                                 .setDuration(300)
                                                 .translationX(list.width.toFloat())
@@ -498,7 +518,7 @@ class MarketplaceFragment : MainMenuFragment() {
                                                         marketplaceBundleView.isEnabled = false
                                                     }
                                                 })
-                                        marketItemAnimation.start()
+                                        marketItemAnimation.start()*/
                                     }
 
                                     override fun onFailure() {
@@ -550,7 +570,8 @@ class MarketplaceFragment : MainMenuFragment() {
                         val purchaseListener: OnFirestoreProcessListener =
                             object : OnFirestoreProcessListener() {
                                 override fun onSuccess() {
-                                    val marketItemAnimation =
+                                    onPurchaseSuccessAnimation(marketplaceItemView, list)
+                                    /*val marketItemAnimation =
                                         marketplaceItemView.animate()
                                             .setDuration(300)
                                             .translationX(list.width.toFloat())
@@ -567,7 +588,7 @@ class MarketplaceFragment : MainMenuFragment() {
                                                     list.removeView(marketplaceItemView)
                                                 }
                                             })
-                                    marketItemAnimation.start()
+                                    marketItemAnimation.start()*/
                                 }
 
                                 override fun onFailure() {
@@ -643,15 +664,12 @@ class MarketplaceFragment : MainMenuFragment() {
         signInLauncher.launch(signInIntent)
     }
 
-    /**
-     *
-     */
     private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
         if (result.resultCode == Activity.RESULT_OK) {
             // Successfully signed in
             currentFirebaseUser?.let { user ->
-                val message = "Welcome " + user.displayName
-                try { Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2).show() }
+                try { Toast.makeText(requireActivity(), "Welcome ${user.displayName}",
+                    Toast.LENGTH_SHORT).show() }
                 catch (e: IllegalStateException) { e.printStackTrace() }
 
                 refreshFragment()
@@ -679,10 +697,10 @@ class MarketplaceFragment : MainMenuFragment() {
             AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
                 override fun onAdLoaded(ad: RewardedAd) {
                     Log.d("RewardedAd", "Ad was loaded.")
+                    rewardedAd = ad
                     rewardedAd?.let { rewardedAd ->
                         val options = ServerSideVerificationOptions.Builder()
-                            .setCustomData("SAMPLE_CUSTOM_DATA_STRING")
-                            .build()
+                            .setCustomData("SAMPLE_CUSTOM_DATA_STRING").build()
                         rewardedAd.setServerSideVerificationOptions(options)
 
                         val rewardQuantity = rewardedAd.rewardItem.amount
@@ -696,7 +714,7 @@ class MarketplaceFragment : MainMenuFragment() {
 
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     Log.d("RewardedAd", loadAdError.toString())
-                    obtainCreditsTextView!!.enableAdWatchButton(false)
+                    obtainCreditsTextView?.enableAdWatchButton(false)
                     rewardedAd = null
                 }
             })
