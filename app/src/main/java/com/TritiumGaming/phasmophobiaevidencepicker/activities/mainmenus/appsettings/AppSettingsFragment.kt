@@ -66,14 +66,14 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         final PETImageButton btn_account_delete =
                 view.findViewById(R.id.settings_account_delete_button);*/
         val btn_account_infoContainer =
-            view.findViewById<ConstraintLayout>(R.id.constraintLayout_accountInformation)
+            view.findViewById<ConstraintLayout?>(R.id.constraintLayout_accountInformation)
         val btn_account_info =
-            view.findViewById<AppCompatTextView>(R.id.settings_accountsettings_info)
+            view.findViewById<AppCompatTextView?>(R.id.settings_accountsettings_info)
 
         val clockTimeTextView =
-            view.findViewById<AppCompatTextView>(R.id.seekbar_huntwarningtimeout_timetext)
+            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_timetext)
         val clockOtherTextView =
-            view.findViewById<AppCompatTextView>(R.id.seekbar_huntwarningtimeout_othertext)
+            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_othertext)
 
         isAlwaysOnToggle = view.findViewById(R.id.toggle_alwaysOn)
         networkToggle = view.findViewById(R.id.toggle_network)
@@ -81,23 +81,23 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         reOrderGhostListToggle = view.findViewById(R.id.toggle_reorderGhostViews)
         huntWarningAudioToggle = view.findViewById(R.id.toggle_huntwarningaudio)
 
-        val seekbar = view.findViewById<SeekBar>(R.id.settings_huntwarning_seekbar)
+        val seekbar = view.findViewById<SeekBar?>(R.id.settings_huntwarning_seekbar)
 
         val colorThemeTextView =
-            view.findViewById<AppCompatTextView>(R.id.colorblindmode_selectedname)
-        val fontThemeTextView = view.findViewById<AppCompatTextView>(R.id.font_selectedname)
+            view.findViewById<AppCompatTextView?>(R.id.colorblindmode_selectedname)
+        val fontThemeTextView = view.findViewById<AppCompatTextView?>(R.id.font_selectedname)
 
-        val colorThemePrevButton = view.findViewById<PETImageButton>(R.id.colorblindmode_leftbutton)
+        val colorThemePrevButton = view.findViewById<PETImageButton?>(R.id.colorblindmode_leftbutton)
         val colorThemeNextButton =
-            view.findViewById<PETImageButton>(R.id.colorblindmode_rightbutton)
+            view.findViewById<PETImageButton?>(R.id.colorblindmode_rightbutton)
 
-        val fontThemePrevButton = view.findViewById<PETImageButton>(R.id.font_leftbutton)
-        val fontThemeNextButton = view.findViewById<PETImageButton>(R.id.font_rightbutton)
+        val fontThemePrevButton = view.findViewById<PETImageButton?>(R.id.font_leftbutton)
+        val fontThemeNextButton = view.findViewById<PETImageButton?>(R.id.font_rightbutton)
 
         try { googleMobileAdsConsentManager = GoogleMobileAdsConsentManager(requireActivity()) }
         catch (e: IllegalStateException) { e.printStackTrace() }
 
-        accountLoginButton?.setOnClickListener { v: View? ->
+        accountLoginButton?.setOnClickListener {
             manualSignInAccount()
             view.invalidate()
         }
@@ -213,11 +213,13 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // Screen Always On
         isAlwaysOnToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.isAlwaysOn = isAlwaysOnToggle?.isChecked == true
+            globalPreferencesViewModel?.isAlwaysOn =
+                isAlwaysOnToggle?.isChecked == true
         }
         // Allow Mobile Data
         networkToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.networkPreference = networkToggle?.isChecked == true
+            globalPreferencesViewModel?.networkPreference =
+                networkToggle?.isChecked == true
 
         }
         // Allow Left Hand Mode
@@ -227,10 +229,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         // Allow Hunt Warning Audio
-            huntWarningAudioToggle?.setSwitchClickListener {
-                globalPreferencesViewModel?.isHuntWarningAudioAllowed =
-                    huntWarningAudioToggle?.isChecked == true
-            }
+        huntWarningAudioToggle?.setSwitchClickListener {
+            globalPreferencesViewModel?.isHuntWarningAudioAllowed =
+                huntWarningAudioToggle?.isChecked == true
+        }
         // Allow Ghost View Reordering
         reOrderGhostListToggle?.setSwitchClickListener {
             globalPreferencesViewModel?.reorderGhostViews =
@@ -260,10 +262,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         fontThemePrevButton.setOnClickListener {
             globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
-                if (fontThemeTextView != null) {
-                    try { fontThemeTextView.text = getString(themeControl.currentName) }
-                    catch (e: Exception) { e.printStackTrace() }
-                }
+                try { fontThemeTextView?.text = getString(themeControl.currentName) }
+                catch (e: Exception) { e.printStackTrace() }
                 demoFontStyle(themeControl)
             }
         }
@@ -271,10 +271,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         fontThemeNextButton.setOnClickListener {
             globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(1)
-                if (fontThemeTextView != null) {
-                    try { fontThemeTextView.text = getString(themeControl.currentName) }
-                    catch (e: Exception) { e.printStackTrace() }
-                }
+                try { fontThemeTextView?.text = getString(themeControl.currentName) }
+                catch (e: Exception) { e.printStackTrace() }
                 demoFontStyle(themeControl)
             }
         }
@@ -282,7 +280,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         // CANCEL BUTTON
         cancelButton.setOnClickListener { v: View? ->
             revertDemoChanges()
-            try { findNavController(v!!).popBackStack() }
+            try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
@@ -299,7 +297,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             }
 
             saveStates()
-            try { findNavController(v!!).popBackStack() }
+            try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
@@ -380,9 +378,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
     }
     */
-    override fun initViewModels() {
-        super.initViewModels()
-    }
 
     override fun backPressedHandler() {
         revertDemoChanges()
@@ -411,10 +406,9 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                         val documentReference = documentSnapshot.reference
 
                         val uuid = documentReference.id
-                        val customTheme = globalPreferencesViewModel!!.colorThemeControl
-                            .getThemeByUUID(uuid)
-
-                        customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
+                        val customTheme =
+                            globalPreferencesViewModel?.colorThemeControl?.getThemeByUUID(uuid)
+                        customTheme?.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                     }
                 }
                 .addOnFailureListener { e: Exception ->
@@ -436,6 +430,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         refreshFragment();
     }
     */
+
     private fun revertDemoChanges() {
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
             globalPreferencesViewModel.colorThemeControl.revertToSavedIndex()
@@ -447,10 +442,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    private fun demoColorStyle(colorThemeControl: ColorThemeControl) {
+    private fun demoColorStyle(colorThemeControl: ColorThemeControl?) {
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
             try { (requireActivity() as PETActivity).changeTheme(
-                    colorThemeControl.getThemeAtIndex(colorThemeControl.selectedIndex),
+                    colorThemeControl?.getThemeAtIndex(colorThemeControl.selectedIndex),
                     globalPreferencesViewModel.fontTheme)
             } catch (e: IllegalStateException) { e.printStackTrace() }
             refreshFragment()
@@ -467,7 +462,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    fun showAdsConsentForm(context: Context?) {
+    private fun showAdsConsentForm(context: Context?) {
         // Handle changes to user consent.
         try { googleMobileAdsConsentManager?.showPrivacyOptionsForm(requireActivity()) {
                 formError: FormError? -> formError?.let {
@@ -509,15 +504,15 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     }
 
     override fun onSignOutAccountSuccess() {
-        val themeControl = globalPreferencesViewModel!!.colorThemeControl
+        val themeControl = globalPreferencesViewModel?.colorThemeControl
 
-        themeControl.revertAllUnlockedStatuses()
+        themeControl?.revertAllUnlockedStatuses()
 
-        themeControl.iterateSelectedIndex(0)
-        themeControl.selectedIndex = 0
-        themeControl.saveIndex(0)
+        themeControl?.iterateSelectedIndex(0)
+        themeControl?.selectedIndex = 0
+        themeControl?.saveIndex(0)
 
-        globalPreferencesViewModel!!.saveColorSpace(requireContext())
+        globalPreferencesViewModel?.saveColorSpace(requireContext())
 
         demoColorStyle(themeControl)
     }

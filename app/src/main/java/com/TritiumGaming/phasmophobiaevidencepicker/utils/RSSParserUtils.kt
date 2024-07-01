@@ -78,7 +78,7 @@ class RSSParserUtils(
                             if (xpp.name.equals("item", ignoreCase = true)) {
                                 insideItem = false
                                 val message = NewsletterMessageModel(title, description, date)
-                                Log.d("MessageCenter", "New Message: $message")
+                                //Log.d("MessageCenter", "New Message: $message")
                                 messageList.add(message)
                                 //if (message.hasContent()) { messageList.add(message) }
                             }

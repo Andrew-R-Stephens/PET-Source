@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newslet
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class NewsMessagesFragment : MainMenuFragment() {
-    override fun onCreateView(
+
+    var recyclerViewMessages: RecyclerView? = null
+
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.init()
         return inflater.inflate(R.layout.fragment_news_messageslist, container, false)
@@ -24,10 +28,11 @@ class NewsMessagesFragment : MainMenuFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val titleTextView = view.findViewById<AppCompatTextView>(R.id.textView_title)
         val backButton = view.findViewById<PETImageButton>(R.id.button_left)
-        val recyclerViewMessages = view.findViewById<RecyclerView>(R.id.recyclerview_messageslist)
+        val markAsReadButton = view.findViewById<AppCompatButton>(R.id.markReadButton)
+        recyclerViewMessages = view.findViewById(R.id.recyclerview_messageslist)
 
         // SCROLL BAR
-        recyclerViewMessages.scrollBarFadeDuration = -1
+        recyclerViewMessages?.scrollBarFadeDuration = -1
 
         newsLetterViewModel?.let { newsLetterViewModel ->
             // SET VIEW TEXT
@@ -37,32 +42,19 @@ class NewsMessagesFragment : MainMenuFragment() {
 
             val inbox = newsLetterViewModel.getInbox(newsLetterViewModel.currentInboxType)
             inbox?.let {
-                //it.updateLastReadDate()
                 try { it.inboxType?.let {  inboxType ->
                     newsLetterViewModel.saveToFile(requireContext(), inboxType) } }
                 catch (e: IllegalStateException) { e.printStackTrace() }
             }
 
-            // SET CONTENT
-            newsLetterViewModel.currentInbox?.let { currentInbox ->
-                val adapter = MessagesAdapterView(
-                    currentInbox, object: MessagesAdapterView.OnMessageListener {
-                    override fun onNoteClick(position: Int) {
-                        newsLetterViewModel.currentMessageIndex = position
-                        newsLetterViewModel.currentMessage?.let { message ->
-                            newsLetterViewModel.currentInbox?.updateLastReadDate(message)
-                            findNavController(view).navigate(
-                                R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
-                        }
-                    }
-                })
-                recyclerViewMessages.adapter = adapter
-                try { recyclerViewMessages.layoutManager = LinearLayoutManager(requireContext()) }
-                catch (e: IllegalStateException) { e.printStackTrace() }
-            } ?: try {
-                Log.d("MessageCenter", "Inbox does not exist! " +
-                        newsLetterViewModel.currentInboxType.getName(requireContext()))
-            } catch (e: IllegalStateException) { e.printStackTrace() }
+            Thread {
+                requireActivity().runOnUiThread { populateAdapter(view) }
+            }.start()
+        }
+
+        markAsReadButton.setOnClickListener {
+            newsLetterViewModel?.currentInbox?.updateLastReadDate()
+            populateAdapter(view)
         }
 
         // LISTENERS
@@ -71,6 +63,29 @@ class NewsMessagesFragment : MainMenuFragment() {
         super.initAdView(view.findViewById(R.id.adView))
     }
 
+    private fun populateAdapter(view: View) {
+        newsLetterViewModel?.currentInbox?.let { currentInbox ->
+            val adapter = MessagesAdapterView(
+                currentInbox, object: MessagesAdapterView.OnMessageListener {
+                    override fun onNoteClick(position: Int) {
+                        newsLetterViewModel?.let { newsletterViewModel ->
+                            newsletterViewModel.currentMessageIndex = position
+                            newsletterViewModel.currentMessage?.let { message ->
+                                newsletterViewModel.currentInbox?.updateLastReadDate(message)
+                                findNavController(view).navigate(
+                                    R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                            }
+                        }
+                    }
+                })
+            recyclerViewMessages?.adapter = adapter
+            try { recyclerViewMessages?.layoutManager = LinearLayoutManager(requireContext()) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+        } ?: try {
+            Log.d("MessageCenter", "Inbox does not exist! " +
+                    newsLetterViewModel?.currentInboxType?.getName(requireContext()))
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+    }
 
     override fun initViewModels() {
         super.initViewModels()

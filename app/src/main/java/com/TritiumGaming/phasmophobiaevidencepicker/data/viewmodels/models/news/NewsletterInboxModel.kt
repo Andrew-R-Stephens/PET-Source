@@ -37,6 +37,9 @@ class NewsletterInboxModel {
     private var requiresNotify: Boolean = false
 
     var lastReadDate: Long = formatToEpoch(null)
+        set(value) {
+            field = value.coerceAtLeast(field)
+        }
 
     var inboxType: NewsletterViewModel.InboxType? = null
     val messages: ArrayList<NewsletterMessageModel> = ArrayList()
@@ -48,9 +51,11 @@ class NewsletterInboxModel {
     /** @return 1 if newestMessageDate is newer than parameter, -1 if older, and 0 if == **/
     fun compareDate(specifiedDate: Long = lastReadDate): Int {
         val out = (specifiedDate - lastReadDate).coerceIn(-1L, 1L).toInt()
+        /*
         Log.d("MessageCenter",
         "[Comparing] specifiedDate: $specifiedDate; specifiedDate: $specifiedDate; " +
                 "savedDate: $lastReadDate; difference: $out")
+        */
         return out
     }
 
@@ -65,6 +70,11 @@ class NewsletterInboxModel {
 
     fun updateLastReadDate(message: NewsletterMessageModel) {
         lastReadDate = message.date
+        compareDate()
+    }
+
+    fun updateLastReadDate() {
+        lastReadDate = messages[0].date
         compareDate()
     }
 

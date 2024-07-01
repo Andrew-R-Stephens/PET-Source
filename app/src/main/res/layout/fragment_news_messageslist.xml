@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,25 +11,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
         app:NavHeaderLayoutButtonLeft="back"
         app:NavHeaderLayoutButtonRight="none"
         app:NavHeaderLayoutCenterTitle="@string/messagecenter_inboxestitle_label"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/markReadButton"
+        style="?attr/quaternaryFont_Bold_AutoSqueeze"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="?attr/buttonColor"
+        android:maxLines="1"
+        android:text="@string/newsletter_markallread"
+        android:textColor="?attr/textColorBody"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout"
+        app:layout_constraintWidth_max="96dp"
+        app:layout_constraintWidth_min="48dp" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/icon_strikethrough_1"
         android:backgroundTint="#4AFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/markReadButton" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_messageslist"

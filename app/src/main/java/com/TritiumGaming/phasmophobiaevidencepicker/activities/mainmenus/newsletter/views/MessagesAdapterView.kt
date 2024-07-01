@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsle
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
@@ -47,10 +48,13 @@ class MessagesAdapterView(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val textView = holder.messageTitleTextView
         textView.text = messages[position].title
+        textView.isSelected = true
         val icon = holder.icon
-        icon?.setContent { NewsAlert(
-            currentInbow.compareDate(messages[position].date) > 0,
-            baseDrawableId = null ) }
+        if(currentInbow.compareDate(messages[position].date) > 0) {
+            icon?.setContent {
+                NewsAlert(true, baseDrawableId = null)
+            }
+        } else { icon?.visibility = GONE }
     }
 
     override fun getItemCount(): Int {

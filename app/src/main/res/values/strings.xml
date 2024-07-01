@@ -305,5 +305,6 @@
         File names
     -->
     <string name="mapsJson" translatable="false">maps.json</string>
+    <string name="newsletter_markallread" translatable="false">Mark All Read</string>
 
 </resources>
