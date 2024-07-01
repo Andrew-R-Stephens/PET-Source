@@ -1,12 +1,13 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news
 
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 
-class NewsletterMessageListModel {
+class NewsletterInboxModel {
 
     companion object {
         fun formatToEpoch(stringDate: String?): Long {
@@ -36,28 +37,35 @@ class NewsletterMessageListModel {
     private var requiresNotify: Boolean = false
 
     var lastReadDate: Long = formatToEpoch(null)
-    private var newestMessageDate: Long = formatToEpoch(null)
 
     var inboxType: NewsletterViewModel.InboxType? = null
     val messages: ArrayList<NewsletterMessageModel> = ArrayList()
 
     fun add(msg: NewsletterMessageModel) {
-        newestMessageDate = msg.date
-
         messages.add(msg)
     }
 
     /** @return 1 if newestMessageDate is newer than parameter, -1 if older, and 0 if == **/
-    fun compareDates(specifiedDate: Long = newestMessageDate): Int {
-        val out = (specifiedDate - lastReadDate).toInt().coerceIn(-1, 1)
-        requiresNotify = out > 0
+    fun compareDate(specifiedDate: Long = lastReadDate): Int {
+        val out = (specifiedDate - lastReadDate).coerceIn(-1L, 1L).toInt()
+        Log.d("MessageCenter",
+        "[Comparing] specifiedDate: $specifiedDate; specifiedDate: $specifiedDate; " +
+                "savedDate: $lastReadDate; difference: $out")
         return out
     }
 
-    fun updateLastReadDate() {
-        lastReadDate = newestMessageDate
+    fun compareDates(): Boolean {
+        messages.forEach { message ->
+            if(compareDate(message.date) > 0) {
+                return true
+            }
+        }
+        return false
+    }
 
-        compareDates()
+    fun updateLastReadDate(message: NewsletterMessageModel) {
+        lastReadDate = message.date
+        compareDate()
     }
 
     override fun toString(): String {
@@ -71,5 +79,3 @@ class NewsletterMessageListModel {
     }
 
 }
-
-typealias SDFDate = java.util.Date

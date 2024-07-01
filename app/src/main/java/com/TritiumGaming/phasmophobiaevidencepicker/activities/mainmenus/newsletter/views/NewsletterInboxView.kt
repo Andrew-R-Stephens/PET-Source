@@ -2,14 +2,12 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsle
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.animation.AnimationUtils
 import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class NewsletterInboxView : ConstraintLayout {
@@ -49,11 +47,11 @@ class NewsletterInboxView : ConstraintLayout {
         }
     }
 
-    fun notify(inboxModel: NewsletterMessageListModel?, @DrawableRes inboxIcon: Int) {
+    fun notify(inboxModel: NewsletterInboxModel?, @DrawableRes inboxIcon: Int) {
         val notifyView = findViewById<ComposeView>(R.id.notificationComposable)
         notifyView.setContent {
             NewsAlert(
-                isActive = (inboxModel?.compareDates() ?: 0) > 0,
+                isActive = inboxModel?.compareDates() ?: false,
                 inboxIcon
             )
         }

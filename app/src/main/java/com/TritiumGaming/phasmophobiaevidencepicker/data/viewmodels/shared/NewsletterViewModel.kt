@@ -5,20 +5,70 @@ import android.content.SharedPreferences
 import android.util.Log
 import androidx.annotation.DrawableRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatFromEpoch
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatToEpoch
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 
 class NewsletterViewModel : SharedViewModel() {
-    private var requiresNotify = false
 
+    companion object {
+        var KEY_INBOX_GENERAL: String? = null
+        var KEY_INBOX_PET: String? = null
+        var KEY_INBOX_PHASMOPHOBIA: String? = null
+
+        const val MAX_MESSAGE_COUNT: Int = 10
+    }
+
+    private var inboxMessageList: ArrayList<NewsletterInboxModel?>? = null
+
+    var requiresNotify = false
+
+    val currentInbox: NewsletterInboxModel?
+        get() {
+            inboxMessageList?.let { inboxMessageList ->
+                for (i in inboxMessageList.indices) {
+                    if (inboxMessageList[i]?.inboxType == currentInboxType) {
+                        return inboxMessageList[i] }
+                } }
+            return null
+        }
     var currentInboxType: InboxType = InboxType.GENERAL
-    private var currentMessageID = 0
-    private var inboxMessageList: ArrayList<NewsletterMessageListModel?>? = null
+
+    var currentMessageIndex: Int? = null
+    val currentMessage: NewsletterMessageModel?
+        get() { return currentMessageIndex?.let { id -> currentInbox?.messages?.get(id) } }
+
+    val isUpToDate: Boolean
+        get() {
+            if(inboxMessageList == null) { return false }
+
+            var isUpToDate = true
+            inboxMessageList?.let { inboxMessageList ->
+                for (inbox in inboxMessageList) {
+                    if (inbox?.ready == false) {
+                        isUpToDate = false
+                        break
+                    }
+                } }
+
+            return isUpToDate
+        }
+
+    fun addInbox(inbox: NewsletterInboxModel, type: InboxType?) {
+        inboxMessageList = inboxMessageList ?: ArrayList(MAX_MESSAGE_COUNT)
+
+        try {
+            inbox.compareDate()
+            inbox.ready = true
+            inbox.inboxType = type
+
+            inboxMessageList?.add(inbox)
+        }
+        catch (ex: NullPointerException) { ex.printStackTrace() }
+        catch (ex: ArrayIndexOutOfBoundsException) { ex.printStackTrace() }
+    }
 
     override fun setFileName() {
         fileName = R.string.preferences_newsletterFile_name
@@ -29,22 +79,23 @@ class NewsletterViewModel : SharedViewModel() {
 
         val sharedPref = getSharedPreferences(context)
 
+        KEY_INBOX_GENERAL = context.getString(R.string.preference_newsletter_lastreaddate_general)
+        KEY_INBOX_PET = context.getString(R.string.preference_newsletter_lastreaddate_pet)
+        KEY_INBOX_PHASMOPHOBIA = context.getString(R.string.preference_newsletter_lastreaddate_phas)
+
         getInbox(InboxType.GENERAL)?.let{ inbox ->
-            setLastReadDate(InboxType.GENERAL, sharedPref.getString(
-                    context.getString(R.string.preference_newsletter_lastreaddate_general), formatFromEpoch(inbox.lastReadDate))
-            )
+            val date = sharedPref.getLong(KEY_INBOX_GENERAL, inbox.lastReadDate)
+            setLastReadDate(InboxType.GENERAL, date)
         }
 
         getInbox(InboxType.PET)?.let { inbox ->
-            setLastReadDate(InboxType.PET, sharedPref.getString(
-                    context.getString(R.string.preference_newsletter_lastreaddate_pet), formatFromEpoch(inbox.lastReadDate))
-            )
+            val date = sharedPref.getLong(KEY_INBOX_PET, inbox.lastReadDate)
+            setLastReadDate(InboxType.PET, date)
         }
 
         getInbox(InboxType.PHASMOPHOBIA)?.let { inbox ->
-            setLastReadDate(InboxType.PHASMOPHOBIA, sharedPref.getString(
-                    context.getString(R.string.preference_newsletter_lastreaddate_phas), formatFromEpoch(inbox.lastReadDate))
-            )
+            val date = sharedPref.getLong(KEY_INBOX_PHASMOPHOBIA, inbox.lastReadDate)
+            setLastReadDate(InboxType.PHASMOPHOBIA, date)
         }
 
         saveToFile(context)
@@ -79,58 +130,12 @@ class NewsletterViewModel : SharedViewModel() {
             e.printStackTrace() }
     }
 
-    val isUpToDate: Boolean
-        get() {
-            if(inboxMessageList == null) { return false }
-
-            var isUpToDate = true
-            inboxMessageList?.let { inboxMessageList ->
-                for (inbox in inboxMessageList) {
-                    if (inbox?.ready == false) {
-                        isUpToDate = false
-                        break
-                    }
-                } }
-
-            return isUpToDate
-        }
-
-    fun addInbox(inbox: NewsletterMessageListModel, type: InboxType?) {
-        inboxMessageList = inboxMessageList ?: ArrayList(10)
-
-        try {
-            inbox.compareDates()
-            inbox.ready = true
-            inbox.inboxType = type
-
-            inboxMessageList?.add(inbox)
-        }
-        catch (ex: NullPointerException) { ex.printStackTrace() }
-        catch (ex: ArrayIndexOutOfBoundsException) { ex.printStackTrace() }
-    }
-
-    val currentInbox: NewsletterMessageListModel?
-        get() {
-            inboxMessageList?.let { inboxMessageList ->
-                for (i in inboxMessageList.indices) {
-                    if (inboxMessageList[i]?.inboxType == currentInboxType) {
-                        return inboxMessageList[i]
-                    }
-                }
-            }
-            return null
-        }
-
-    fun getInboxType(pos: Int): InboxType {
-        return InboxType.entries[pos]
-    }
-
-    fun getInbox(inboxType: InboxType): NewsletterMessageListModel? {
+    fun getInbox(inboxType: InboxType): NewsletterInboxModel? {
         if (inboxMessageList == null) {
             return null
         }
 
-        val list = arrayOfNulls<NewsletterMessageListModel>(inboxMessageList?.size ?: 0)
+        val list = arrayOfNulls<NewsletterInboxModel>(inboxMessageList?.size ?: 0)
         inboxMessageList?.toArray(list)
 
         list.forEachIndexed { index, listItem ->
@@ -142,57 +147,37 @@ class NewsletterViewModel : SharedViewModel() {
         return null
     }
 
-    fun setCurrentMessageId(position: Int) {
-        currentMessageID = position
+    private fun getLastReadDate(inboxType: InboxType): Long? {
+        return getInbox(inboxType)?.lastReadDate
     }
 
-    val currentMessage: NewsletterMessageModel?
-        get() { return currentInbox?.messages?.get(currentMessageID) }
-
-    private fun setLastReadDate(inboxType: InboxType, date: String?) {
-        getInbox(inboxType)?.lastReadDate = formatToEpoch(date)
-    }
-
-    private fun getLastReadDate(inboxType: InboxType): String? {
-        return formatFromEpoch(getInbox(inboxType)?.lastReadDate)
+    private fun setLastReadDate(inboxType: InboxType, time: Long) {
+        getInbox(inboxType)?.lastReadDate = time
     }
 
     fun compareAllInboxDates() {
-        val general = (getInbox(InboxType.GENERAL)?.compareDates() ?: 0) > 0
-        val pet = (getInbox(InboxType.PET)?.compareDates() ?: 0) > 0
-        val phasmophobia = (getInbox(InboxType.PHASMOPHOBIA)?.compareDates() ?: 0) > 0
+        val general = getInbox(InboxType.GENERAL)?.compareDates() ?: false
+        val pet = getInbox(InboxType.PET)?.compareDates() ?: false
+        val phasmophobia = getInbox(InboxType.PHASMOPHOBIA)?.compareDates() ?: false
 
         requiresNotify = general || pet || phasmophobia
     }
 
-    fun requiresNotify(): Boolean {
-        return requiresNotify
-    }
-
-    /** @noinspection SameParameterValue
-     */
     private fun saveLastReadDate(
         c: Context, editor: SharedPreferences.Editor?, localApply: Boolean, inboxType: InboxType) {
 
-        val target: String = when (inboxType) {
-            InboxType.PET -> c.resources.getString(
-                R.string.preference_newsletter_lastreaddate_pet
-            )
-            InboxType.PHASMOPHOBIA -> c.resources.getString(
-                R.string.preference_newsletter_lastreaddate_phas
-            )
-            InboxType.GENERAL -> c.resources.getString(
-                R.string.preference_newsletter_lastreaddate_general
-            )
+        val target: String? = when (inboxType) {
+            InboxType.PET -> KEY_INBOX_PET
+            InboxType.PHASMOPHOBIA -> KEY_INBOX_PHASMOPHOBIA
+            InboxType.GENERAL -> KEY_INBOX_GENERAL
         }
-        editor?.putString(target, getLastReadDate(inboxType))
+        getLastReadDate(inboxType)?.let { epochTime ->
+            target?.let { target ->
+                editor?.putLong(target, epochTime) } }
 
         if (localApply) { editor?.apply() }
     }
 
-    /**
-     * saveToFile method
-     */
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
@@ -205,9 +190,6 @@ class NewsletterViewModel : SharedViewModel() {
         Log.d("MessageCenter", "Saving all inboxes...")
     }
 
-    /**
-     * saveToFile method
-     */
     fun saveToFile(context: Context, inboxType: InboxType) {
         val editor = getEditor(context)
 
@@ -241,8 +223,8 @@ class NewsletterViewModel : SharedViewModel() {
     override fun toString(): String {
         val stringBuilder = StringBuilder()
 
-        for (data in inboxMessageList!!) {
-            stringBuilder.append(data).append("\n")
+        inboxMessageList?.let { inboxMessageList ->
+            for (data in inboxMessageList) { stringBuilder.append(data).append("\n") }
         }
 
         return stringBuilder.toString()

@@ -37,7 +37,7 @@ class NewsMessagesFragment : MainMenuFragment() {
 
             val inbox = newsLetterViewModel.getInbox(newsLetterViewModel.currentInboxType)
             inbox?.let {
-                it.updateLastReadDate()
+                //it.updateLastReadDate()
                 try { it.inboxType?.let {  inboxType ->
                     newsLetterViewModel.saveToFile(requireContext(), inboxType) } }
                 catch (e: IllegalStateException) { e.printStackTrace() }
@@ -48,9 +48,12 @@ class NewsMessagesFragment : MainMenuFragment() {
                 val adapter = MessagesAdapterView(
                     currentInbox, object: MessagesAdapterView.OnMessageListener {
                     override fun onNoteClick(position: Int) {
-                        newsLetterViewModel.setCurrentMessageId(position)
-                        findNavController(view).navigate(
-                            R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                        newsLetterViewModel.currentMessageIndex = position
+                        newsLetterViewModel.currentMessage?.let { message ->
+                            newsLetterViewModel.currentInbox?.updateLastReadDate(message)
+                            findNavController(view).navigate(
+                                R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                        }
                     }
                 })
                 recyclerViewMessages.adapter = adapter

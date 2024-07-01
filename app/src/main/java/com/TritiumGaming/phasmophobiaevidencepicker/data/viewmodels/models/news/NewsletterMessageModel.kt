@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatFromEpoch
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel.Companion.formatToEpoch
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel.Companion.formatFromEpoch
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel.Companion.formatToEpoch
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils
 
 class NewsletterMessageModel(title: String, description: String, date: String) {

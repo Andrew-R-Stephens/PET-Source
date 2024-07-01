@@ -277,7 +277,7 @@ class StartScreenFragment : MainMenuFragment() {
             Log.d("MessageCenter", "Could not connect to the internet.")
             newsLetterViewModel?.let { newsLetterViewModel ->
                 newsLetterViewModel.compareAllInboxDates()
-                if (newsLetterViewModel.requiresNotify()) {
+                if (newsLetterViewModel.requiresNotify) {
                     doNewsletterNotification()
                 }
             }
@@ -315,7 +315,7 @@ class StartScreenFragment : MainMenuFragment() {
                         Log.e("MessageCenter", "Initialization failed.")
                     }
                     newsLetterViewModel.compareAllInboxDates()
-                    if (newsLetterViewModel.requiresNotify()) {
+                    if (newsLetterViewModel.requiresNotify) {
                         requireActivity().runOnUiThread { this.doNewsletterNotification() }
                     }
                 } catch (e: IllegalStateException) { e.printStackTrace() }

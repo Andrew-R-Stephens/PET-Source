@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.utils
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel.InboxType
@@ -58,7 +58,7 @@ class RSSParserUtils(
                 var insideItem = false
                 var eventType = xpp.eventType
 
-                val messageList = NewsletterMessageListModel()
+                val messageList = NewsletterInboxModel()
                 var title = String()
                 var date = String()
                 var description = String()
