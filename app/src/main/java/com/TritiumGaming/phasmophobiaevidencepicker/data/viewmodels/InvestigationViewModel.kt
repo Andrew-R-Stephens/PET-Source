@@ -57,13 +57,8 @@ class InvestigationViewModel : ViewModel() {
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
-    fun hasSanityRunnable(): Boolean {
-        return sanityRunnable != null
-    }
-
     private fun createRadioButtonsChecked() {
         _radioButtonsChecked.value.clear()
-
         investigationModel?.evidenceListModel?.evidenceList?.forEach { _ ->
             _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
@@ -110,15 +105,12 @@ class InvestigationViewModel : ViewModel() {
         return false
     }
 
-    /*
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
-        if ((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds &&
-            (sanityModel?.sanityActual ?: 0L) < higherBounds) {
-
-            sanityModel?.setProgressManually(newValue.toLong())
+        if (((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds) &&
+            ((sanityModel?.sanityLevel?.value ?: 0f) < higherBounds)) {
+            sanityModel?.setStartTimeFromProgress(newValue)
         }
     }
-    */
 
     fun reset() {
         resetRadioButtonsChecked()

@@ -44,7 +44,7 @@ abstract class InvestigationFragment : PETFragment {
 
     override fun initViewModels() {
         initGlobalPreferencesViewModel()
-        initinvestigationViewModel()
+        initInvestigationViewModel()
         initObjectivesViewModel()
         initMapMenuViewModel()
     }
@@ -64,7 +64,7 @@ abstract class InvestigationFragment : PETFragment {
         }
     }
 
-    private fun initinvestigationViewModel() {
+    private fun initInvestigationViewModel() {
         if (investigationViewModel == null) {
             investigationViewModel =
                 ViewModelProvider(requireActivity())[InvestigationViewModel::class.java]

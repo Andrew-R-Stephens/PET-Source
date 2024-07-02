@@ -15,9 +15,7 @@ import kotlinx.coroutines.launch
 class SanitySeekBarView : AppCompatSeekBar {
 
     private lateinit var investigationViewModel: InvestigationViewModel
-
     var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
-    abstract class OnSanityBarProgressChangedListener { abstract fun onChange() }
 
     constructor(context: Context) : super(context)
 
@@ -62,4 +60,7 @@ class SanitySeekBarView : AppCompatSeekBar {
         }
     }
 
+    abstract class OnSanityBarProgressChangedListener {
+        abstract fun onChange()
+    }
 }

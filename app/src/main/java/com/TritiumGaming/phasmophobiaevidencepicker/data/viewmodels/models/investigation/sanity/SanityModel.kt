@@ -117,6 +117,8 @@ class SanityModel(
             return modifier
         }
 
+    init { insanityLevel = 0f }
+
     private fun resetFlashTimeoutStart() { flashTimeoutStart = -1 }
 
     /** @param progress specify the progress 0 - 100
@@ -235,8 +237,6 @@ class SanityModel(
         return output.toString()
 
     }
-
-    init { insanityLevel = 0f }
 
     /** Defaults all persistent data. */
     fun reset() {

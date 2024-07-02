@@ -27,7 +27,6 @@ class SanityRunnable (
      */
     override fun run() {
 
-        // val sanityModel = investigationViewModel?.sanityModel ?: return
         val timerModel = investigationViewModel?.timerModel ?: return
 
         /*
@@ -40,51 +39,47 @@ class SanityRunnable (
 
             investigationViewModel.sanityModel?.tick()
 
-            /*
-            if(investigationViewModel.timerModel == null) return
+            /** TODO : recreate the following action flow
 
-            if (phaseTimerData?.isPaused == false) {
+                if the timer is not paused {
+                    tick the SanityModel
+                    write sanity percent to display view
+                    set state of the setup phase view to "active"
+                    set state of the action phase view to "inactive"
 
-                sanityData.tick()
+                    if (huntAudio is both allowed) AND (huntAudio is not "triggered") AND (the phase is "action") {
+                        play the huntWarning audio
+                        set huntAudio as "triggered"
+                    }
 
-                // Populate the sanity percent text view with a value
-                sanityMeterTextView?.text = sanityData.toPercentString()
-                // Setup Warn is steady ON if setup phase activity is true
-                setupPhaseTextView?.setState((phaseTimerData?.isSetupPhase == true), true)
-                // Action Warn is steady ON if setup phase activity is false
-                actionPhaseTextView?.setState((phaseTimerData?.isSetupPhase == false), true)
+                    if (insanityPercent is below safe) AND (the phase is "action") AND (huntWarnView is allowed) {
+                        set huntWarnView to "active"
 
-                // Hunt Audio is ACTIVE if setup phase activity is false
-                if (globalPreferencesViewModel.isHuntWarningAudioAllowed &&
-                    (phaseTimerData?.isSetupPhase == false) && sanityData.warningAudioAllowed) {
-                    audio_huntWarn?.start()
-                    sanityData.warningAudioAllowed = false
-                }
+                        if (huntWarnView blink duration is not exceeded) {
+                            blink both huntWarnView and its text on and off in 500ms intervals
+                        }
+                        else {
+                            set both huntWarnView and its text to blink steady "on"
+                        }
+                    }
+                    else {
+                        set huuntWarnView to "inactive"
+                    }
 
-                if ((sanityData.insanityPercent.value < SanityModel.SAFE_MIN_BOUNDS) &&
-                    ((phaseTimerData?.isSetupPhase == false) && sanityData.canFlashWarning())) {
-                    if ((wait * (++flashTick)) > flashDuration) {
-                        println("Toggleable $wait $flashTick $flashDuration")
-                        huntWarningTextView?.toggleTextState(true)
-                        flashTick = 0.0
-                    } else {
-                        println("Not Toggleable $wait $flashTick $flashDuration")
-                        huntWarningTextView?.setState(true) }
-                } else {
-                    huntWarningTextView?.setState(false)
-                }
+                    update progressbar to proper value of insanityPercent
+                 }
+                 else {
+                    if (phase is "setup") {
+                        set huntWarnView to "active" and blink steady on
+                    }
+                 }
+             */
 
-                //if (!sanityData.paused.value) { sanitySeekBarView?.updateProgress() }
-
-            } else {
-                if(phaseTimerData?.isSetupPhase == true) {
-                    huntWarningTextView?.setState(true)
-                }
-            }
-            */
-
+            // If the timer is not paused
             if (!timerModel.paused.value) {
+                // If the huntAudio is allowed
                 if (globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
+                    // Play the huntWarning audio
                     huntWarningAudioListener?.play()
                 }
             }

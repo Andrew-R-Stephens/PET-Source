@@ -8,6 +8,8 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -53,9 +55,7 @@ class PhaseTimerLayout : ConstraintLayout {
     private fun setDefaults() {
     }
 
-    fun init(
-        investigationViewModel: InvestigationViewModel
-    ) {
+    fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
         playToggleButton.setOnClickListener {
@@ -63,8 +63,9 @@ class PhaseTimerLayout : ConstraintLayout {
         }
 
         skipButton.setOnClickListener {
-            //phaseTimerCountdownView.createTimer(false, 0L, 1000L)
-            //investigationViewModel.skipSanityToPercent(0, 50, 50)
+            investigationViewModel.skipSanityToPercent(
+                0, SanityModel.HALF_SANITY.toInt(), 50)
+            investigationViewModel.timerModel?.skipTimerTo(0L)
         }
 
         phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime

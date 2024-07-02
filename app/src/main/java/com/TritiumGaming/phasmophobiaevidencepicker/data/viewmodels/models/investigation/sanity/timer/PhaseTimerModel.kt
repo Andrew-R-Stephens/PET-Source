@@ -63,7 +63,7 @@ class PhaseTimerModel(
         _paused.value = true
         liveTimer?.cancel()
     }
-    private fun playTimer() {
+    fun playTimer() {
         _paused.value = false
         setLiveTimer()
         liveTimer?.start()
@@ -109,6 +109,12 @@ class PhaseTimerModel(
 
     fun hasTimeRemaining(): Boolean {
         return timeRemaining.value < TIME_MIN
+    }
+
+    fun skipTimerTo(time: Long){
+        setTimeRemaining(time)
+        resetTimer()
+        playTimer()
     }
 
     fun reset() {

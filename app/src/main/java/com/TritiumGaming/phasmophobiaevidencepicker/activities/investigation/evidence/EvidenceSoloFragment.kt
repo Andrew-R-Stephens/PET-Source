@@ -9,6 +9,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.jobs.DeltaRunnable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 /**
  * EvidenceSoloFragment class
@@ -17,7 +24,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
  */
 class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
 
-    private var sanityThread: Thread? = null //Thread that updates the sanity levels
+    @Deprecated("Replaced with Coroutine")
+    private var sanityThread: Thread? = null
+
+    private var scope: CoroutineScope? = CoroutineScope(Dispatchers.Default)
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,96 +40,42 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
             reset()
         }
 
-        enableUIThread()
+        startSanityThread()
     }
 
-    /**
-     * reset method
-     */
-    override fun reset() {
-        disableUIThread()
-
-        super.reset()
-
-        requestInvalidateComponents()
-
-        enableUIThread()
-    }
-
-    /**
-     * enableUIThread method
-     */
-    private fun enableUIThread() {
-        if (investigationViewModel?.sanityRunnable == null) {
-            try {
-                val appLang = (requireActivity() as InvestigationActivity).appLanguage
-                val runnable = SanityRunnable(investigationViewModel, globalPreferencesViewModel)
-                runnable.huntWarningAudioListener =
-                    object : SanityRunnable.HuntWarningAudioListener() {
-                        override fun init() { mediaPlayer = getHuntWarningAudio(appLang) }
-                        override fun play() {
-                            if(globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
-                                mediaPlayer?.start()
-                                investigationViewModel?.sanityModel?.warnTriggered = true
-                            }
-                        }
-                        override fun stop() { mediaPlayer?.release() }
-                    }
-                investigationViewModel?.sanityRunnable = runnable
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
-
-            Log.d("SanityThread", if(sanityThread == null) "DNE" else "Exists")
-            if (sanityThread == null) {
-                Log.d("SanityRunnable", if(investigationViewModel?.sanityRunnable == null) "DNE" else "Exists")
-                if (investigationViewModel?.hasSanityRunnable() == true) {
-                    sanityThread = object : Thread() {
-                        override fun run() {
-                            while (investigationViewModel?.timerModel?.paused?.value == false) {
-                                try {
-                                    update()
-                                    tick()
-                                } catch (e: InterruptedException) {
-                                    Log.e("EvidenceFragment",
-                                        "(SanityThread) InterruptedException error handled.")
-                                }
-                            }
-                        }
-
-                        @Throws(InterruptedException::class)
-                        private fun tick() {
-                            val now = System.nanoTime()
-                            val updateTime = System.nanoTime() - now
-                            val fpsTarget = 30
-                            val timeOptimal = (1000000000 / fpsTarget).toLong()
-
-                            var wait = (timeOptimal - updateTime) / 1000000
-                            if (wait < 0) { wait = 1 }
-
-                            investigationViewModel?.sanityRunnable?.wait = wait
-
-                            sleep(wait)
-                        }
-
-                        private fun update() {
-                            try {
-                                requireActivity().runOnUiThread(investigationViewModel?.sanityRunnable)
-                            } catch (e: IllegalStateException) {
-                                e.printStackTrace()
-                            }
+    private fun startSanityThread(){
+        try {
+            val appLang = (requireActivity() as InvestigationActivity).appLanguage
+            investigationViewModel?.sanityRunnable =
+                SanityRunnable(investigationViewModel, globalPreferencesViewModel)
+            investigationViewModel?.sanityRunnable?.huntWarningAudioListener =
+                object : SanityRunnable.HuntWarningAudioListener() {
+                    override fun init() { mediaPlayer = getHuntWarningAudio(appLang) }
+                    override fun play() {
+                        if(globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
+                            mediaPlayer?.start()
+                            investigationViewModel?.sanityModel?.warnTriggered = true
                         }
                     }
-                    sanityThread?.start()
+                    override fun stop() { mediaPlayer?.release() }
                 }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+
+        if (sanityThread != null) { return }
+
+        sanityThread = Thread(object : DeltaRunnable(context, 10f, 24f) {
+            override fun runCondition(): Boolean {
+                return investigationViewModel?.timerModel?.paused?.value == false }
+
+            override fun onTick() {
+                try { requireActivity().runOnUiThread(investigationViewModel?.sanityRunnable) }
+                catch (e: IllegalStateException) { e.printStackTrace() }
             }
-        }
+        })
+        sanityThread?.start()
     }
 
-    /**
-     * disableUIThread method
-     */
-    private fun disableUIThread() {
+    private fun stopSanityThread(){
         sanityThread?.interrupt()
 
         investigationViewModel?.let { investigationViewModel ->
@@ -127,6 +83,16 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
             investigationViewModel.sanityRunnable = null
         }
         sanityThread = null
+    }
+
+    override fun reset() {
+        stopSanityThread()
+
+        super.reset()
+
+        requestInvalidateComponents()
+
+        startSanityThread()
     }
 
     private fun getHuntWarningAudio(appLang: String): MediaPlayer? {
@@ -144,22 +110,18 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
         return p
     }
 
-    /**
-     * onPause method
-     */
     override fun onPause() {
-        disableUIThread()
+        //disableUIThread()
+        stopSanityThread()
 
         investigationViewModel?.sanityRunnable?.huntWarningAudioListener?.stop()
 
         super.onPause()
     }
 
-    /**
-     * onResume method
-     */
     override fun onResume() {
-        enableUIThread()
+        //enableUIThread()
+        startSanityThread()
 
         super.onResume()
     }
