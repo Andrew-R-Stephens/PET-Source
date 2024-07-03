@@ -35,9 +35,7 @@ class MapViewerFragment : InvestigationFragment() {
     private var poiSpinner: POISpinner? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_mapview, container, false)
     }
@@ -131,7 +129,6 @@ class MapViewerFragment : InvestigationFragment() {
 
 
     private fun showHelpPopup() {
-
         popupWindow?.dismiss()
 
         val popupInflater =
@@ -162,9 +159,7 @@ class MapViewerFragment : InvestigationFragment() {
                 try {
                     imageDisplay?.setMapImages(requireActivity())
                     imageDisplay?.setPoiImages(requireActivity())
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
-                }
+                } catch (e: IllegalStateException) { e.printStackTrace() }
             }
             mapMenuViewModel.imageDisplayThread?.start()
         }

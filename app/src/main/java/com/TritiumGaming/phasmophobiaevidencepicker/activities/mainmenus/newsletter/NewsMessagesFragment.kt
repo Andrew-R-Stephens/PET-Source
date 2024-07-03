@@ -34,6 +34,17 @@ class NewsMessagesFragment : MainMenuFragment() {
         // SCROLL BAR
         recyclerViewMessages?.scrollBarFadeDuration = -1
 
+        val updateStateOfMarkAsReadButton: () -> Unit = {
+            newsLetterViewModel?.currentInbox?.let { currentInbox ->
+                markAsReadButton?.let{ button ->
+                    val hasUnreadMessages = currentInbox.compareDates()
+                    button.isEnabled = hasUnreadMessages
+                    button.alpha = if(hasUnreadMessages) 1f else .4f
+                    button.isClickable = hasUnreadMessages
+                }
+            }
+        }
+
         newsLetterViewModel?.let { newsLetterViewModel ->
             // SET VIEW TEXT
             try {
@@ -47,14 +58,14 @@ class NewsMessagesFragment : MainMenuFragment() {
                 catch (e: IllegalStateException) { e.printStackTrace() }
             }
 
-            Thread {
-                requireActivity().runOnUiThread { populateAdapter(view) }
-            }.start()
+            updateStateOfMarkAsReadButton()
+            Thread { requireActivity().runOnUiThread { populateAdapter(view) } }.start()
         }
 
         markAsReadButton.setOnClickListener {
             newsLetterViewModel?.currentInbox?.updateLastReadDate()
-            populateAdapter(view)
+            updateStateOfMarkAsReadButton()
+            Thread { requireActivity().runOnUiThread { populateAdapter(view) } }.start()
         }
 
         // LISTENERS

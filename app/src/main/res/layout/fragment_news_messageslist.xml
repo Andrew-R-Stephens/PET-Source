@@ -30,6 +30,7 @@
         android:maxLines="1"
         android:text="@string/newsletter_markallread"
         android:textColor="?attr/textColorBody"
+        android:enabled="false"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -26,6 +26,7 @@ import com.google.common.primitives.Ints
  * @author TritiumGamingStudios
  */
 class MapMenuFragment : InvestigationFragment() {
+
     private var mapListModel: MapListModel? = null
 
     override fun onCreateView(
@@ -37,9 +38,8 @@ class MapMenuFragment : InvestigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try {
-            mapListModel = readMapsDataFromFile()
-        } catch (e: Exception) { e.printStackTrace() }
+        try { mapListModel = readMapsDataFromFile() }
+        catch (e: Exception) { e.printStackTrace() }
 
         // INITIALIZE VIEWS
         val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
@@ -77,13 +77,10 @@ class MapMenuFragment : InvestigationFragment() {
 
     @Throws(Exception::class)
     private fun readMapsDataFromFile(): MapListModel? {
-        val assets = requireActivity().assets
         val mapFileIO = MapFileIO()
-        val reader = mapFileIO.reader
+        val reader = mapFileIO.mapFileReader
 
-        mapFileIO.readFile(assets.open(getString(R.string.mapsJson)), reader)
-
-        reader.worldMapDeserializer
+        mapFileIO.readFile(requireActivity().assets, getString(R.string.mapsJson), reader)
         mapListModel = MapListModel(reader.worldMapDeserializer)
         mapListModel?.orderRooms()
 

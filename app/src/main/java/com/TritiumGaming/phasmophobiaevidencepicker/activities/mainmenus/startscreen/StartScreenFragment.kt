@@ -31,8 +31,6 @@ import java.util.Locale
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null
 
-    private val bitmapUtils = BitmapUtils()
-
     private var canLoadNewsletter = true
     private var newsletterThread: Thread? = null
 
@@ -54,7 +52,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         val labelLanguageName = view.findViewById<AppCompatTextView>(R.id.label_languageName)
         val buttonStart = view.findViewById<View>(R.id.button_start_solo)
-        val iconApp = view.findViewById<AppCompatImageView>(R.id.icon_appicon)
+        //val iconApp = view.findViewById<AppCompatImageView>(R.id.icon_appicon)
         val buttonInfo = view.findViewById<ComposeView>(R.id.button_info)
         val buttonMenu = view.findViewById<ComposeView>(R.id.button_settings)
         val buttonReview = view.findViewById<AppCompatImageView>(R.id.button_review)
@@ -105,7 +103,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         buttonMsgInbox?.setContent { NewsAlert(false) }
 
-        setBackgroundLogo(iconApp)
+        //setBackgroundLogo(iconApp)
         setLanguageName(labelLanguageName)
 
         super.initAdView(view.findViewById(R.id.adView))
@@ -133,14 +131,6 @@ class StartScreenFragment : MainMenuFragment() {
         catch (e: IllegalStateException) {
             Log.d("MessageCenter", "Failed registering inboxes")
             e.printStackTrace() }
-    }
-
-    private fun setBackgroundLogo(iconApp: AppCompatImageView) {
-        bitmapUtils.clearResources()
-        bitmapUtils.setResource(R.drawable.icon_logo_app)
-
-        try { iconApp.setImageBitmap(bitmapUtils.compileBitmaps(requireContext())) }
-        catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     private fun setLanguageName(labelLanguageName: AppCompatTextView) {
@@ -344,7 +334,6 @@ class StartScreenFragment : MainMenuFragment() {
             animationView.stopAnimThreads()
             animationView.stopAnimInitThreads()
             animationView.canAnimateBackground(false)
-            animationView.recycleBitmaps()
         }
 
         stopLoadNewsletterThread()
@@ -357,7 +346,7 @@ class StartScreenFragment : MainMenuFragment() {
     override fun onResume() {
         // START THREADS
         animationView?.let { animationView ->
-            animationView.startAnimInitThreads(mainMenuViewModel, bitmapUtils)
+            animationView.startAnimInitThreads(mainMenuViewModel)
             animationView.startAnimThreads()
         }
 
@@ -374,11 +363,4 @@ class StartScreenFragment : MainMenuFragment() {
         super.onDestroy()
     }
 
-    /** onLowMemory method */
-    override fun onLowMemory() {
-        // RECYCLE ANIMATION VIEW BITMAPS
-        animationView?.recycleBitmaps()
-
-        super.onLowMemory()
-    }
 }

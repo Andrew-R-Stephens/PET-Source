@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
@@ -134,15 +135,4 @@ fun SanityPie(
             .aspectRatio(1f)
             .fillMaxSize()
     )
-}
-
-fun setSanityMeterView(
-    composeView: ComposeView?,
-    investigationViewModel: InvestigationViewModel = InvestigationViewModel()
-) {
-    composeView?.setContent {
-        SanityMeterView(
-            investigationViewModel = investigationViewModel
-        )
-    }
 }

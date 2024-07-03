@@ -93,7 +93,7 @@
         <item>@string/messagecenter_inbox_phas</item>
     </string-array>
     <integer-array name="messagecenter_inboxicons">
-        <item>@drawable/icon_newspaper</item>
+        <item>@drawable/icon_ts_news</item>
         <item>@drawable/icon_logo_app</item>
         <item>@drawable/icon_logo_phas</item>
     </integer-array>
