@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,6 +51,9 @@ class SanityModel(
             Log.d("InsanityLevel", "$insanityLevel")
             updateSanityLevel()
         }
+    fun skipInsanity(newLevel: Float = HALF_SANITY) {
+        insanityLevel = newLevel.coerceAtLeast(insanityLevel)
+    }
 
     /** the sanity level missing, in percent.**/
     private val _sanityLevel = MutableStateFlow(currentMaxSanity - insanityLevel)
@@ -72,14 +76,6 @@ class SanityModel(
     var flashTimeoutMax: Long = -1
     /** The starting flash time, in milliseconds, for the hunt warning */
     private var flashTimeoutStart: Long = -1
-
-    private fun getNormalModifier(mapSize: Int): Float {
-        return DROP_MODIFIER_NORMAL[mapSize]
-    }
-
-    private fun getSetupModifier(mapSize: Int): Float {
-        return DROP_MODIFIER_SETUP[mapSize]
-    }
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
@@ -119,35 +115,6 @@ class SanityModel(
 
     init { insanityLevel = 0f }
 
-    private fun resetFlashTimeoutStart() { flashTimeoutStart = -1 }
-
-    /** @param progress specify the progress 0 - 100
-     * Resets the Warning Indicator to start flashing again, if necessary
-     * Sets the Start Time of the Sanity Drain, based on remaining time,
-     * sanity, difficulty and map size. */
-    fun setStartTimeFromProgress(progress: Int) {
-        val progressOverride =
-            MAX_SANITY - max(MIN_SANITY.toInt(), min(MAX_SANITY.toInt(), progress)).toFloat()
-        val multiplier = .001f
-
-        val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
-        val oldStartTime = investigationViewModel?.timerModel?.startTime
-        val newStartTime = (System.currentTimeMillis() + timeAddition)
-
-        Log.d("RateModifier",
-                    "ProgressOverride: $progressOverride" +
-                    " TimeAddition: $timeAddition" +
-                    "[ StartTime: $oldStartTime -> $newStartTime ]" +
-                    " DifficultyRate: $currentDifficultyModifier " +
-                    " MapRate: $currentMapSizeModifier" +
-                    " Modifier: $drainModifier")
-
-        investigationViewModel?.timerModel?.startTime = newStartTime
-        investigationViewModel?.sanityModel?.tick()
-
-        resetFlashTimeoutStart()
-    }
-
     /** Allow the Warning indicator to flash either off or on if:
      * The player's sanity is less than 70%
      * either if the Flash Timeout is infinite
@@ -166,8 +133,9 @@ class SanityModel(
      * time remaining.
      */
     fun tick() {
-        val tickMultiplier = .001f
+        Log.d("Tick", "Start Ticking!")
 
+        val tickMultiplier = .001f
         /*
         Multiplier which drops the rate to appropriate levels
         Algorithm which mimics in-game sanity drop, based on map size, difficulty level and
@@ -178,28 +146,72 @@ class SanityModel(
                 else investigationViewModel?.timerModel?.startTime ?: -1L
         )*/
 
-        if((investigationViewModel?.timerModel?.paused ?: true) == false) {
-            val startTime = max(investigationViewModel?.timerModel?.startTime ?: 0L, 0L)
+        investigationViewModel?.timerModel?.let { timerModel ->
+
+            val startTime = max(timerModel.startTime, PhaseTimerModel.TIME_MIN)
 
             val drainMultiplier = drainModifier * tickMultiplier
             val timeDifference = startTime - System.currentTimeMillis()
-            //Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
+            Log.d("Tick", "$drainMultiplier $timeDifference ${sanityLevel.value}")
             insanityLevel = MAX_SANITY - (timeDifference * drainMultiplier)
+
+            /*
+            If the Countdown timer still has time, and the player's sanity is less than or
+            equal to halfway gone, set the remaining sanity to half.
+            */
+            /*
+            if (sanityLevel.value <= HALF_SANITY &&
+                investigationViewModel?.timerModel?.hasTimeRemaining() == true
+            ) {
+                setStartTimeFromProgress(HALF_SANITY.toInt())
+            }
+            */
+
+            timerModel.updateCurrentPhase()
         }
 
-        Log.d("Tick", "Ticking!")
-        /*
-        If the Countdown timer still has time, and the player's sanity is less than or
-        equal to halfway gone, set the remaining sanity to half.
-        */
-        /*
-        if (sanityLevel.value <= HALF_SANITY &&
-            investigationViewModel?.timerModel?.hasTimeRemaining() == true
-        ) {
-            setStartTimeFromProgress(HALF_SANITY.toInt())
+        Log.d("Tick", "Finished Ticking!")
+    }
+
+    private fun resetFlashTimeoutStart() { flashTimeoutStart = -1 }
+
+    /** @param progress specify the progress 0 - 100
+     * Resets the Warning Indicator to start flashing again, if necessary
+     * Sets the Start Time of the Sanity Drain, based on remaining time,
+     * sanity, difficulty and map size. */
+    fun setStartTimeFromProgress(progress: Int) {
+        investigationViewModel?.timerModel?.let { timerModel ->
+            val progressOverride =
+                MAX_SANITY - max(MIN_SANITY.toInt(), min(MAX_SANITY.toInt(), progress)).toFloat()
+            val multiplier = .001f
+
+            val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
+            val oldStartTime = timerModel.startTime
+            val newStartTime = (System.currentTimeMillis() + timeAddition)
+
+            Log.d("RateModifier",
+                "ProgressOverride: $progressOverride" +
+                        " TimeAddition: $timeAddition" +
+                        "[ StartTime: $oldStartTime -> $newStartTime ]" +
+                        " DifficultyRate: $currentDifficultyModifier " +
+                        " MapRate: $currentMapSizeModifier" +
+                        " Modifier: $drainModifier")
+
+            if(!timerModel.paused.value) {
+                timerModel.startTime = newStartTime
+            }
+
+            tick()
+            resetFlashTimeoutStart()
         }
-        */
-        //investigationViewModel?.timerModel?.updateCurrentPhase()
+    }
+
+    private fun getNormalModifier(mapSize: Int): Float {
+        return DROP_MODIFIER_NORMAL[mapSize]
+    }
+
+    private fun getSetupModifier(mapSize: Int): Float {
+        return DROP_MODIFIER_SETUP[mapSize]
     }
 
     @SuppressLint("DefaultLocale")
@@ -244,4 +256,5 @@ class SanityModel(
         setStartTimeFromProgress((MAX_SANITY - currentMaxSanity).toInt())
         tick()
     }
+
 }

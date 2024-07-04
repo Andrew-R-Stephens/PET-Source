@@ -31,16 +31,13 @@ class SanitySeekBarView : AppCompatSeekBar {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
                     investigationViewModel.sanityModel?.setStartTimeFromProgress(progress)
-
-                    onProgressChangedListener?.onChange()
                 }
+                onProgressChangedListener?.onChange()
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-            }
+            override fun onStartTrackingTouch(seekBar: SeekBar) { }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-            }
+            override fun onStopTrackingTouch(seekBar: SeekBar) { }
         })
 
         initObservables()

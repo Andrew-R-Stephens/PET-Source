@@ -88,6 +88,7 @@ class SanityRunnable (
 
     var huntWarningAudioListener: HuntWarningAudioListener? = null
     abstract class HuntWarningAudioListener {
+        var lang: String? = null
         var mediaPlayer: MediaPlayer? = null
         abstract fun init()
         abstract fun play()

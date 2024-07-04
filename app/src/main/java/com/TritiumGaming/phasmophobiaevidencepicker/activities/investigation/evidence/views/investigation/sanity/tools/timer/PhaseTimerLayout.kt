@@ -65,7 +65,7 @@ class PhaseTimerLayout : ConstraintLayout {
         skipButton.setOnClickListener {
             investigationViewModel.skipSanityToPercent(
                 0, SanityModel.HALF_SANITY.toInt(), 50)
-            investigationViewModel.timerModel?.skipTimerTo(0L)
+            investigationViewModel.timerModel?.skipTimer(0)
         }
 
         phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime

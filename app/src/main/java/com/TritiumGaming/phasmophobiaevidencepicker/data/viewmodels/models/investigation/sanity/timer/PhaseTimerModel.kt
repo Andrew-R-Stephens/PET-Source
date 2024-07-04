@@ -3,7 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.os.CountDownTimer
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel.SanityConstants.MIN_SANITY
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,25 +20,18 @@ class PhaseTimerModel(
     companion object TimerConstraint {
         const val TIME_MIN = 0L
         const val TIME_DEFAULT = -1L
-        const val TIME_SECOND = 1000L
+        const val SECOND_IN_MILLIS = 1000L
     }
 
     private val _currentPhase: MutableStateFlow<Phase> = MutableStateFlow(Phase.SETUP)
     val currentPhase = _currentPhase.asStateFlow()
     fun updateCurrentPhase() {
         _currentPhase.value =
-            if (timeRemaining.value > TIME_MIN) {
-                Phase.SETUP
-            }
+            if (timeRemaining.value > TIME_MIN) { Phase.SETUP }
             else {
-                if((investigationViewModel.sanityModel?.sanityLevel?.value ?: 0f) <
-                    SanityModel.SAFE_MIN_BOUNDS
-                ) {
-                    Phase.HUNT
-                }
-                else {
-                    Phase.ACTION
-                }
+                if((investigationViewModel.sanityModel?.sanityLevel?.value ?: MIN_SANITY) <
+                    SAFE_MIN_BOUNDS) { Phase.HUNT }
+                else { Phase.ACTION }
             }
     }
 
@@ -49,7 +43,7 @@ class PhaseTimerModel(
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(millisInFuture: Long = timeRemaining.value,
-                             countDownInterval: Long = TIME_SECOND,
+                             countDownInterval: Long = SECOND_IN_MILLIS,
                              paused: Boolean = true) {
         liveTimer = object: CountDownTimer(millisInFuture, countDownInterval) {
             override fun onTick(millis: Long) { _timeRemaining.value = millis }
@@ -75,52 +69,48 @@ class PhaseTimerModel(
     fun resetTimer() {
         pauseTimer()
         resetStartTime()
+        investigationViewModel.sanityModel?.tick()
         setLiveTimer()
+    }
+    fun skipTimer(time: Long){
+        pauseTimer()
+        setTimeRemaining(time)
+        setLiveTimer()
+        investigationViewModel.sanityModel?.skipInsanity()
+        investigationViewModel.sanityModel?.tick()
+        playTimer()
     }
 
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
-    var startTime: Long = -1L
+    var startTime: Long = TIME_DEFAULT
         set(value) {
             field = value
             Log.d("StartTime", "Setting $field")
         }
 
-    /** */
-    val isNewCycle: Boolean = (startTime == -1L)
-
     val displayTime: String
         get() {
-            val breakdown = timeRemaining.value / 1000L
+            val breakdown = timeRemaining.value / SECOND_IN_MILLIS
             return millisToTime("%s:%s", breakdown)
         }
-
-    private fun resetStartTime() {
-        startTime = -1
-    }
-
-    fun initStartTime() {
-        startTime = System.currentTimeMillis()
-    }
 
     init {
         reset()
     }
+    private fun resetStartTime() {
+        startTime = TIME_DEFAULT
+    }
+
 
     fun hasTimeRemaining(): Boolean {
         return timeRemaining.value < TIME_MIN
     }
 
-    fun skipTimerTo(time: Long){
-        setTimeRemaining(time)
-        resetTimer()
-        playTimer()
-    }
-
     fun reset() {
         resetTimer()
         _timeRemaining.value =
-            investigationViewModel.difficultyCarouselModel?.currentTime ?: 0L
+            investigationViewModel.difficultyCarouselModel?.currentTime ?: TIME_MIN
         resetStartTime()
     }
 

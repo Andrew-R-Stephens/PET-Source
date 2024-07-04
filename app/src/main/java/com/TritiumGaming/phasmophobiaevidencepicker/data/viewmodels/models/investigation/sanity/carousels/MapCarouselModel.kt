@@ -30,16 +30,12 @@ class MapCarouselModel(
     }
     fun incrementIndex() {
         var i = currentIndex.value + 1
-        if (i >= itemCount) {
-            i = 0
-        }
+        if (i >= itemCount) { i = 0 }
         setIndex(i)
     }
     fun decrementIndex() {
         var i = currentIndex.value - 1
-        if (i < 0) {
-            i = itemCount - 1
-        }
+        if (i < 0) { i = itemCount - 1 }
         setIndex(i)
     }
     /* -- */
