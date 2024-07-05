@@ -3,8 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.os.CountDownTimer
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel.SanityConstants.MIN_SANITY
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,10 +43,13 @@ class PhaseTimerModel(
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(millisInFuture: Long = timeRemaining.value,
-                             countDownInterval: Long = SECOND_IN_MILLIS,
+                             countDownInterval: Long = 100L,
                              paused: Boolean = true) {
         liveTimer = object: CountDownTimer(millisInFuture, countDownInterval) {
-            override fun onTick(millis: Long) { _timeRemaining.value = millis }
+            override fun onTick(millis: Long) {
+                setTimeRemaining(millis)
+                investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
+            }
             override fun onFinish() { /* TODO not needed */ }
         }
     }
@@ -69,7 +72,7 @@ class PhaseTimerModel(
     fun resetTimer() {
         pauseTimer()
         resetStartTime()
-        investigationViewModel.sanityModel?.tick()
+        investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
         setLiveTimer()
     }
     fun skipTimer(time: Long){
@@ -77,7 +80,7 @@ class PhaseTimerModel(
         setTimeRemaining(time)
         setLiveTimer()
         investigationViewModel.sanityModel?.skipInsanity()
-        investigationViewModel.sanityModel?.tick()
+        investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
         playTimer()
     }
 
@@ -101,7 +104,6 @@ class PhaseTimerModel(
     private fun resetStartTime() {
         startTime = TIME_DEFAULT
     }
-
 
     fun hasTimeRemaining(): Boolean {
         return timeRemaining.value < TIME_MIN

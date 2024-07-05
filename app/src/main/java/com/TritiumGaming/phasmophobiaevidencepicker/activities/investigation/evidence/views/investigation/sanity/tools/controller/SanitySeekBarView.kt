@@ -30,8 +30,9 @@ class SanitySeekBarView : AppCompatSeekBar {
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    investigationViewModel.sanityModel?.setStartTimeFromProgress(progress)
+                    investigationViewModel.sanityModel?.progressToStartTime(progress)
                 }
+                //investigationViewModel.sanityModel?.tick()
                 onProgressChangedListener?.onChange()
             }
 

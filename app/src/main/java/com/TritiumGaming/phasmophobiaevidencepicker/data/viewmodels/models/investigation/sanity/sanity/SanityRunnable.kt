@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity
 
 import android.media.MediaPlayer
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel

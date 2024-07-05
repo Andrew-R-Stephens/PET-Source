@@ -3,18 +3,14 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.runnables.SanityRunnable
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.jobs.DeltaRunnable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 /**
@@ -23,11 +19,6 @@ import kotlinx.coroutines.launch
  * @author TritiumGamingStudios
  */
 class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
-
-    @Deprecated("Replaced with Coroutine")
-    private var sanityThread: Thread? = null
-
-    private var scope: CoroutineScope? = CoroutineScope(Dispatchers.Default)
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,6 +34,17 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
         startSanityThread()
     }
 
+    @Deprecated("Replaced with Coroutine")
+    private var sanityThread: Thread? = null
+
+    private var scope: CoroutineScope? = CoroutineScope(Dispatchers.Default)
+
+    private fun createSanityRoutine() {
+        scope?.launch {
+
+        }
+    }
+
     private fun createSanityThread() {
         sanityThread = Thread(object : DeltaRunnable(context, 10f, 24f) {
             override fun runCondition(): Boolean {
@@ -52,9 +54,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
             override fun onTick() {
                 try {
                     requireActivity().runOnUiThread(investigationViewModel?.sanityRunnable)
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
-                }
+                } catch (e: IllegalStateException) { e.printStackTrace() }
             }
         })
     }
@@ -77,9 +77,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                                 "de" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_de)
                                 else -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en)
                             }
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
-                        }
+                        } catch (e: IllegalStateException) { e.printStackTrace() }
                         return p
                     }
 

@@ -5,7 +5,7 @@ import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -13,6 +13,10 @@ class DifficultyCarouselModel(
     context: Context,
     val investigationViewModel: InvestigationViewModel
 ) {
+
+    companion object DifficultyConstraints {
+        val MODIFIER = floatArrayOf(1.0f, 1.5f, 2.0f)
+    }
 
     data class DifficultyData(val name: String = "NA", val time: Long)
 
@@ -30,8 +34,11 @@ class DifficultyCarouselModel(
     val currentIndex = _currentIndex.asStateFlow()
     private fun setIndex(index: Int) {
         _currentIndex.value = index
-        investigationViewModel.timerModel?.setTimeRemaining(currentTime)
-        investigationViewModel.timerModel?.resetTimer()
+        investigationViewModel.timerModel?.let { timerModel ->
+            timerModel.setTimeRemaining(currentTime)
+            timerModel.resetTimer()
+        }
+
     }
     fun incrementIndex() {
         var i = currentIndex.value + 1
@@ -67,15 +74,11 @@ class DifficultyCarouselModel(
         get() {
             val diffIndex =
                 investigationViewModel.difficultyCarouselModel?.currentIndex?.value ?: return 1f
-            if (diffIndex >= 0 && diffIndex < SanityModel.DIFFICULTY_MODIFIER.size) {
-                return SanityModel.DIFFICULTY_MODIFIER[diffIndex]
+            if (diffIndex >= 0 && diffIndex < MODIFIER.size) {
+                return MODIFIER[diffIndex]
             }
             return 1f
         }
-
-    fun isDifficulty(difficultyIndex: Int): Boolean {
-        return this.currentIndex.value == difficultyIndex
-    }
 
     private fun setList(allNames: MutableList<String>, allTimes: MutableList<Long>) {
         if (allNames.size == allTimes.size) {
@@ -90,9 +93,7 @@ class DifficultyCarouselModel(
         try {
             namesList = context.resources
                 .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
-        } catch (e: Resources.NotFoundException) {
-            e.printStackTrace()
-        }
+        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
         val timesList: MutableList<Long> = mutableListOf()
         try {
@@ -101,9 +102,7 @@ class DifficultyCarouselModel(
             timesListOut.forEachIndexed { index, it ->
                 timesList.add(index, it.toLong())
             }
-        } catch (e: Resources.NotFoundException) {
-            e.printStackTrace()
-        }
+        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
         setList(namesList, timesList)
     }

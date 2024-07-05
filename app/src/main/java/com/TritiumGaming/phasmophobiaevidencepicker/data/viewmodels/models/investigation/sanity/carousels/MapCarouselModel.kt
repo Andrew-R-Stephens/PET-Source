@@ -12,6 +12,11 @@ class MapCarouselModel(
     val investigationViewModel: InvestigationViewModel
 ) {
 
+    companion object MapConstraints {
+        val MODIFIER_NORMAL = floatArrayOf(.12f, .08f, .05f)
+        val MODIFIER_SETUP = floatArrayOf(.09f, .05f, .03f)
+    }
+
     data class MapSizeData(val name: String = "NA", val size: Int)
 
     /* List */
@@ -47,6 +52,18 @@ class MapCarouselModel(
     val currentMapSize: Int
         get() {
             return itemList[currentIndex.value].size
+        }
+
+    /** Based on current map size (Small, Medium, Large) and the stage of the investigation
+     * (Setup vs Hunt)
+     * Defaults if the selected index is out of range of available indexes.
+     * @returns the drop rate multiplier. */
+    val currentModifier: Float
+        get() {
+            if ((investigationViewModel.timerModel?.timeRemaining?.value ?: return 1f) <= 0L) {
+                return MODIFIER_NORMAL[currentMapSize]
+            }
+            return MODIFIER_SETUP[currentMapSize]
         }
 
     private fun setList(

@@ -19,7 +19,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMen
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
@@ -331,9 +330,8 @@ class StartScreenFragment : MainMenuFragment() {
 
         // STOP THREADS
         animationView?.let { animationView ->
-            animationView.stopAnimThreads()
-            animationView.stopAnimInitThreads()
-            animationView.canAnimateBackground(false)
+            animationView.stopAnimation()
+            animationView.canAnimate = false
         }
 
         stopLoadNewsletterThread()
@@ -345,10 +343,7 @@ class StartScreenFragment : MainMenuFragment() {
     /** onResume method */
     override fun onResume() {
         // START THREADS
-        animationView?.let { animationView ->
-            animationView.startAnimInitThreads(mainMenuViewModel)
-            animationView.startAnimThreads()
-        }
+        animationView?.init(mainMenuViewModel)
 
         startInitNewsletterThread()
 
