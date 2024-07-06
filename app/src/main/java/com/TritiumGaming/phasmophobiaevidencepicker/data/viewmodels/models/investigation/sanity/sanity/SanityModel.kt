@@ -54,6 +54,7 @@ class SanityModel(
     }
     fun skipInsanity(newLevel: Float = HALF_SANITY) {
         insanityLevel = newLevel.coerceAtLeast(insanityLevel)
+        progressToStartTime(insanityLevel)
     }
 
     /** the sanity level missing, in percent.**/

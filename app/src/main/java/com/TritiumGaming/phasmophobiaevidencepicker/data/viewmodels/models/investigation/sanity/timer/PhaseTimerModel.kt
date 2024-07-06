@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 
 import android.os.CountDownTimer
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.HALF_SANITY
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
@@ -82,8 +83,8 @@ class PhaseTimerModel(
         pauseTimer()
         setTimeRemaining(time)
         setLiveTimer()
-        investigationViewModel.sanityModel?.skipInsanity()
-        investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
+        //investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
+        investigationViewModel.sanityModel?.skipInsanity(HALF_SANITY)
         playTimer()
     }
 

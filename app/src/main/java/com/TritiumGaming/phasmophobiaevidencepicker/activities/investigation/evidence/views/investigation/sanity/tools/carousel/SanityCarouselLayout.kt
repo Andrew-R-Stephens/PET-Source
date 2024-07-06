@@ -55,8 +55,7 @@ abstract class SanityCarouselLayout : ConstraintLayout {
         setDefaults()
     }
 
-    private fun setDefaults() {
-    }
+    private fun setDefaults() { }
 
     open fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
