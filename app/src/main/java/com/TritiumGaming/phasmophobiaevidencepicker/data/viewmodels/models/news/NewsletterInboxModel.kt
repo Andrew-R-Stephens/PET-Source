@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news
 
-import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat

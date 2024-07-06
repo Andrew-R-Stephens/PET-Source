@@ -4,18 +4,15 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.jobs.DeltaRunnable
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 
 class StartScreenAnimationView : View {

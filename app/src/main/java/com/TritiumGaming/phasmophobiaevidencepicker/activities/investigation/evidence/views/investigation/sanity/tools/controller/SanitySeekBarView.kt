@@ -3,7 +3,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.lifecycle.findViewTreeLifecycleOwner

@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer
 
 import android.os.CountDownTimer
-import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
