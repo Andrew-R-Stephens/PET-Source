@@ -19,8 +19,8 @@ class PhaseTimerModel(
 
     companion object TimerConstraint {
         const val TIME_MIN = 0L
-        const val TIME_DEFAULT = -1L
         const val SECOND_IN_MILLIS = 1000L
+        const val TIME_DEFAULT = -1L
     }
 
     private val _currentPhase: MutableStateFlow<Phase> = MutableStateFlow(Phase.SETUP)
@@ -35,6 +35,12 @@ class PhaseTimerModel(
             }
     }
 
+    /** The Sanity Drain starting time, whenever the play button is activated.
+     * @return The Sanity drain start time. */
+    var startTime: Long = TIME_DEFAULT
+    fun invalidateStartTime() { startTime = System.currentTimeMillis() - timeRemaining.value}
+    private fun resetStartTime() { startTime = TIME_DEFAULT }
+
     private val _timeRemaining: MutableStateFlow<Long> = MutableStateFlow(TIME_DEFAULT)
     val timeRemaining = _timeRemaining.asStateFlow()
     fun setTimeRemaining(value: Long) {
@@ -42,14 +48,10 @@ class PhaseTimerModel(
     }
 
     private var liveTimer: CountDownTimer? = null
-    private fun setLiveTimer(millisInFuture: Long = timeRemaining.value,
-                             countDownInterval: Long = 100L,
-                             paused: Boolean = true) {
+    private fun setLiveTimer(
+        millisInFuture: Long = timeRemaining.value, countDownInterval: Long = 100L) {
         liveTimer = object: CountDownTimer(millisInFuture, countDownInterval) {
-            override fun onTick(millis: Long) {
-                setTimeRemaining(millis)
-                investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
-            }
+            override fun onTick(millis: Long) { setTimeRemaining(millis) }
             override fun onFinish() { /* TODO not needed */ }
         }
     }
@@ -61,13 +63,16 @@ class PhaseTimerModel(
         liveTimer?.cancel()
     }
     fun playTimer() {
+        //invalidateStartTime()
         _paused.value = false
         setLiveTimer()
         liveTimer?.start()
     }
     fun toggleTimer() {
-        if(paused.value) playTimer()
-        else pauseTimer()
+        if(paused.value) { playTimer()
+            investigationViewModel.sanityModel?.progressToStartTime()
+        }
+        else { pauseTimer() }
     }
     fun resetTimer() {
         pauseTimer()
@@ -75,7 +80,7 @@ class PhaseTimerModel(
         investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
         setLiveTimer()
     }
-    fun skipTimer(time: Long){
+    fun fastForwardTimer(time: Long){
         pauseTimer()
         setTimeRemaining(time)
         setLiveTimer()
@@ -83,14 +88,6 @@ class PhaseTimerModel(
         investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
         playTimer()
     }
-
-    /** The Sanity Drain starting time, whenever the play button is activated.
-     * @return The Sanity drain start time. */
-    var startTime: Long = TIME_DEFAULT
-        set(value) {
-            field = value
-            Log.d("StartTime", "Setting $field")
-        }
 
     val displayTime: String
         get() {
@@ -101,18 +98,10 @@ class PhaseTimerModel(
     init {
         reset()
     }
-    private fun resetStartTime() {
-        startTime = TIME_DEFAULT
-    }
-
-    fun hasTimeRemaining(): Boolean {
-        return timeRemaining.value < TIME_MIN
-    }
 
     fun reset() {
         resetTimer()
-        _timeRemaining.value =
-            investigationViewModel.difficultyCarouselModel?.currentTime ?: TIME_MIN
+        setTimeRemaining(investigationViewModel.difficultyCarouselModel?.currentTime ?: TIME_MIN)
         resetStartTime()
     }
 

@@ -44,5 +44,4 @@ abstract class DeltaRunnable(
 
     abstract fun runCondition(): Boolean
     abstract fun onTick()
-    //abstract fun onTick()
 }

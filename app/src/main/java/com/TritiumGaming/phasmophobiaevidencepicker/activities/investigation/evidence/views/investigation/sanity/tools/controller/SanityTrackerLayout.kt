@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -58,11 +57,10 @@ class SanityTrackerLayout : ConstraintLayout {
         sanitySeekBarView.onProgressChangedListener = object :
             SanitySeekBarView.OnSanityBarProgressChangedListener() {
             override fun onChange() {
-                Log.d("onChange", "${investigationViewModel.sanityModel?.toPercentString()}")
-                sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
+                sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
             }
         }
-        sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
+        sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
 
 
         initObservables(investigationViewModel)
@@ -71,7 +69,7 @@ class SanityTrackerLayout : ConstraintLayout {
     private fun initObservables(investigationViewModel: InvestigationViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
-                sanityPercentTextView.text = investigationViewModel.sanityModel?.toPercentString()
+                sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
             }
         }
     }

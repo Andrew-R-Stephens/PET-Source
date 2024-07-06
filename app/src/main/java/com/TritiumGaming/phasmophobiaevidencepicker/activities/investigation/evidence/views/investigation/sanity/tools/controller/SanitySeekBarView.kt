@@ -30,9 +30,8 @@ class SanitySeekBarView : AppCompatSeekBar {
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    investigationViewModel.sanityModel?.progressToStartTime(progress)
+                    investigationViewModel.sanityModel?.progressToStartTime(progress.toFloat())
                 }
-                //investigationViewModel.sanityModel?.tick()
                 onProgressChangedListener?.onChange()
             }
 
@@ -47,7 +46,6 @@ class SanitySeekBarView : AppCompatSeekBar {
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
-                Log.d("SanityLevel", "$it")
                 val newProgress = (100 - it).toInt()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     setProgress(newProgress, true)

@@ -42,8 +42,7 @@ class InvestigationViewModel : ViewModel() {
     fun init(context: Context) {
         initInvestigationModel(context)
 
-        mapCarouselModel =
-            mapCarouselModel ?: MapCarouselModel(context, this)
+        mapCarouselModel = mapCarouselModel ?: MapCarouselModel(context, this)
         difficultyCarouselModel =
             difficultyCarouselModel ?: DifficultyCarouselModel(context, this)
         timerModel = timerModel ?: PhaseTimerModel(this)
@@ -108,7 +107,7 @@ class InvestigationViewModel : ViewModel() {
     fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
         if (((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds) &&
             ((sanityModel?.sanityLevel?.value ?: 0f) < higherBounds)) {
-            sanityModel?.progressToStartTime(newValue)
+            sanityModel?.progressToStartTime(newValue.toFloat())
         }
     }
 

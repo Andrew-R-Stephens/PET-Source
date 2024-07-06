@@ -40,10 +40,7 @@ class StartScreenAnimationView : View {
                 object : DeltaRunnable(context, 24f, 24f) {
                     override fun runCondition(): Boolean { return canAnimate }
                     override fun onTick() {
-                        try {
-                            mainMenuViewModel?.animationModel?.tick(context)
-                            Log.d("tickJob", "tick")
-                        }
+                        try { mainMenuViewModel?.animationModel?.tick(context) }
                         catch (e: Exception) { e.printStackTrace() }
                     }
                 }.run()
@@ -74,20 +71,14 @@ class StartScreenAnimationView : View {
     }
 
     private fun startAnimation() {
-        Log.d("Job", "START animation coroutine")
         canAnimate = true
-
         tickJob?.start()
         drawJob?.start()
     }
 
     fun stopAnimation() {
-        Log.d("Job", "CANCEL animation coroutine")
         canAnimate = false
-        Log.d("Job", "STOP draw job")
         drawJob?.cancel("Cancelling drawJob")
-
-        Log.d("Job", "STOP tick job")
         tickJob?.cancel("Cancelling tickJob")
     }
 

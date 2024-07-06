@@ -6,6 +6,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel.TimerConstraint.TIME_MIN
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -24,6 +25,13 @@ class DifficultyCarouselModel(
 
     /* List */
     private var itemList = mutableListOf<DifficultyData>()
+    private fun setList(allNames: MutableList<String>, allTimes: MutableList<Long>) {
+        if (allNames.size == allTimes.size) {
+            for (i in allNames.indices) {
+                itemList.add(i, DifficultyData(allNames[i], allTimes[i]))
+            }
+        }
+    }
     private val itemCount: Int
         get() = itemList.size
     /* -- */
@@ -79,14 +87,6 @@ class DifficultyCarouselModel(
             }
             return 1f
         }
-
-    private fun setList(allNames: MutableList<String>, allTimes: MutableList<Long>) {
-        if (allNames.size == allTimes.size) {
-            for (i in allNames.indices) {
-                itemList.add(i, DifficultyData(allNames[i], allTimes[i]))
-            }
-        }
-    }
 
     init {
         var namesList: MutableList<String> = mutableListOf()

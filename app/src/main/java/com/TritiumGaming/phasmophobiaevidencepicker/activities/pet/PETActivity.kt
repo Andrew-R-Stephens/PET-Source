@@ -132,9 +132,9 @@ abstract class PETActivity : AppCompatActivity() {
     val appLanguage: String
         /** @return the abbreviation of the chosen language that's saved to file
          */
-        get() = globalPreferencesViewModel!!.languageName
+        get() = globalPreferencesViewModel?.languageName ?: Locale.getDefault().language
 
-    fun automaticSignInAccount() {
+    private fun automaticSignInAccount() {
         if (FirebaseAuth.getInstance().currentUser != null) {
             Log.d("AutoLogin", "User not null!")
             return

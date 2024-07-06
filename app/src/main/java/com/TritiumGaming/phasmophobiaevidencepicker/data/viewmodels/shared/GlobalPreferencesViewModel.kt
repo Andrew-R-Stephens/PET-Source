@@ -139,9 +139,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     }
 
     fun setLanguage(position: Int, languageNames: Array<String?>) {
-        if (position < 0 || position >= languageNames.size) {
-            return
-        }
+        if (position < 0 || position >= languageNames.size) { return }
 
         languageName = languageNames[position] ?: Locale.getDefault().language
     }
