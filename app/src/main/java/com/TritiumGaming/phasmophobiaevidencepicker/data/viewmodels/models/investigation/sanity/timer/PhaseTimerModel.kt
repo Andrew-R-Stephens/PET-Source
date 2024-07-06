@@ -63,7 +63,6 @@ class PhaseTimerModel(
         liveTimer?.cancel()
     }
     fun playTimer() {
-        //invalidateStartTime()
         _paused.value = false
         setLiveTimer()
         liveTimer?.start()

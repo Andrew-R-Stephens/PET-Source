@@ -84,7 +84,10 @@ class SanityModel(
             return difficultyModifier * mapModifier
         }
 
-    init { insanityLevel = 0f }
+    init {
+        //insanityLevel = 0f
+        reset()
+    }
 
     /** Allow the Warning indicator to flash either off or on if:
      * The player's sanity is less than 70%

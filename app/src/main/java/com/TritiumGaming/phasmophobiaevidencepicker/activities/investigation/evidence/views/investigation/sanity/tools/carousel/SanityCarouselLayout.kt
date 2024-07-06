@@ -2,6 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -40,9 +42,12 @@ abstract class SanityCarouselLayout : ConstraintLayout {
                 a.getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutTitle)
             val name =
                 a.getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutName)
+            val image =
+                a.getResourceId(R.styleable.SanityCarouselLayout_SanityCarouselLayoutImage, -1)
 
             setTitle(title)
             setName(name)
+            setImage(image)
 
             a.recycle()
         }
@@ -66,11 +71,18 @@ abstract class SanityCarouselLayout : ConstraintLayout {
         setTitle(context.getString(title))
     }
 
-    fun setTitle(title: String?) {
+    private fun setTitle(title: String?) {
         if(title.isNullOrEmpty()) return
 
-        val titleView = findViewById<AppCompatTextView>(R.id.carousel_title)
+        val titleView: AppCompatTextView? = findViewById(R.id.carousel_title)
         titleView?.text = title
+    }
+
+    private fun setImage(@DrawableRes drawableRes: Int) {
+        if(drawableRes == -1) return
+
+        val imageView: AppCompatImageView? = findViewById(R.id.carousel_image)
+        imageView?.setImageResource(drawableRes)
     }
 
     fun setName(name: Int) {
