@@ -32,19 +32,13 @@ abstract class SanityWarningView : AppCompatTextView {
     @ColorInt private var colorOff = 0
 
     constructor(context: Context) :
-            super(context) {
-        initView()
-    }
+            super(context) { initView() }
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) {
-        initView()
-    }
+            super(context, attrs) { initView() }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) {
-        initView()
-    }
+            super(context, attrs, defStyleAttr) { initView() }
 
     private fun initView() {
         colorActive = getColorFromAttribute(context, R.attr.light_active)

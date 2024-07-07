@@ -50,8 +50,7 @@ class MapCarouselLayout : SanityCarouselLayout {
             investigationViewModel.mapCarouselModel?.currentIndex?.collectLatest {
                 setName(
                     investigationViewModel.mapCarouselModel?.currentName
-                        ?.split(" ")?.get(0)
-                )
+                        ?.split(" ")?.get(0))
             }
         }
     }

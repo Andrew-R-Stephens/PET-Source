@@ -11,23 +11,23 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.Investigatio
 
 class SanityWarningLayout : ConstraintLayout {
 
-    private lateinit var sanityWarnSetupView: SanityWarnSetupView
-    private lateinit var sanityWarnActionView: SanityWarnActionView
-    private lateinit var sanityWarnHuntView: SanityWarnHuntView
+    private var sanityWarnSetupView: SanityWarnSetupView
+    private var sanityWarnActionView: SanityWarnActionView
+    private var sanityWarnHuntView: SanityWarnHuntView
 
     constructor(context: Context) :
-            super(context) { initView(null) }
+            super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(attrs) }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(attrs) }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    private fun initView(attrs: AttributeSet?) {
+    init {
         inflate(context, R.layout.layout_sanity_warnings, this)
 
         sanityWarnSetupView = findViewById(R.id.evidence_sanitymeter_phase_setup)
@@ -37,8 +37,7 @@ class SanityWarningLayout : ConstraintLayout {
         setDefaults()
     }
 
-    private fun setDefaults() {
-    }
+    private fun setDefaults() { }
 
     fun init(investigationViewModel: InvestigationViewModel) {
         sanityWarnSetupView.init(investigationViewModel)

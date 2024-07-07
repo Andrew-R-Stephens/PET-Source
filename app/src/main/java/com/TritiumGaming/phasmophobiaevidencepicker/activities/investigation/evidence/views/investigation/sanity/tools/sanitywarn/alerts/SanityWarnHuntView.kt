@@ -20,7 +20,7 @@ class SanityWarnHuntView : SanityWarningView {
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.timerModel?.currentPhase?.collectLatest {
-                setState(it == PhaseTimerModel.Phase.HUNT)
+                setState(it == PhaseTimerModel.Phase.HUNT, flashOn = true)
             }
         }
     }

@@ -13,26 +13,26 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.Investigatio
 
 class SanityToolsLayout : ConstraintLayout {
 
-    private lateinit var sanityWarningLayout: SanityWarningLayout
-    private lateinit var phaseTimerLayout: PhaseTimerLayout
-    private lateinit var sanityTrackerView: SanityTrackerLayout
+    private var sanityWarningLayout: SanityWarningLayout
+    private var phaseTimerLayout: PhaseTimerLayout
+    private var sanityTrackerView: SanityTrackerLayout
 
-    private lateinit var mapCarouselLayout: MapCarouselLayout
-    private lateinit var difficultyCarouselLayout: DifficultyCarouselLayout
+    private var mapCarouselLayout: MapCarouselLayout
+    private var difficultyCarouselLayout: DifficultyCarouselLayout
 
     constructor(context: Context) :
-            super(context) { initView(null) }
+            super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(attrs) }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(attrs) }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView( attrs) }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    private fun initView(attrs: AttributeSet?) {
+    init {
         inflate(context, R.layout.layout_sanity_tools, this)
 
         sanityWarningLayout = findViewById(R.id.sanityWarningLayout)
@@ -45,8 +45,7 @@ class SanityToolsLayout : ConstraintLayout {
         setDefaults()
     }
 
-    private fun setDefaults() {
-    }
+    private fun setDefaults() { }
 
     fun init(investigationViewModel: InvestigationViewModel) {
         sanityWarningLayout.init(investigationViewModel)

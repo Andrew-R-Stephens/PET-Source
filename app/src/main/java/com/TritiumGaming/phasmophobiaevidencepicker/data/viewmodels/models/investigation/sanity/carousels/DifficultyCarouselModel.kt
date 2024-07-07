@@ -4,16 +4,20 @@ import android.content.Context
 import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class DifficultyCarouselModel(
-    context: Context,
-    val investigationViewModel: InvestigationViewModel
+    context: Context, val investigationViewModel: InvestigationViewModel
 ) {
 
     companion object DifficultyConstraints {
         val MODIFIER = floatArrayOf(1.0f, 1.5f, 2.0f)
+
+        val INSANITY_START = floatArrayOf(100f, 100f, 100f, 100f, 70f)
     }
 
     data class DifficultyData(val name: String = "NA", val time: Long)
@@ -70,6 +74,9 @@ class DifficultyCarouselModel(
     val currentTime: Long
         get() = itemList[currentIndex.value].time
 
+    val currentStartSanity: Float
+        get() = INSANITY_START[currentIndex.value]
+
     val responseTypeKnown: Boolean
         get() = currentIndex.value < Difficulty.PROFESSIONAL.ordinal
 
@@ -86,21 +93,23 @@ class DifficultyCarouselModel(
         }
 
     init {
-        var namesList: MutableList<String> = mutableListOf()
-        try {
-            namesList = context.resources
-                .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
-        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
+        CoroutineScope(Dispatchers.Default).launch {
+            var namesList: MutableList<String> = mutableListOf()
+            try {
+                namesList = context.resources
+                    .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
+            } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
-        val timesList: MutableList<Long> = mutableListOf()
-        try {
-            val timesListOut = context.resources
-                .getStringArray(R.array.evidence_timer_difficulty_times_array)
-            timesListOut.forEachIndexed { index, it ->
-                timesList.add(index, it.toLong())
-            }
-        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
+            val timesList: MutableList<Long> = mutableListOf()
+            try {
+                val timesListOut = context.resources
+                    .getStringArray(R.array.evidence_timer_difficulty_times_array)
+                timesListOut.forEachIndexed { index, it ->
+                    timesList.add(index, it.toLong())
+                }
+            } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
-        setList(namesList, timesList)
+            setList(namesList, timesList)
+        }.start()
     }
 }

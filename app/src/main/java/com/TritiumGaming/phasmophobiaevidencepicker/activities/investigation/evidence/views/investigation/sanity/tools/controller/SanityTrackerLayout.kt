@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.setPadding
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -44,6 +45,7 @@ class SanityTrackerLayout : ConstraintLayout {
     }
 
     private fun setDefaults() {
+        setPadding(8)
     }
 
     fun init(investigationViewModel: InvestigationViewModel) {

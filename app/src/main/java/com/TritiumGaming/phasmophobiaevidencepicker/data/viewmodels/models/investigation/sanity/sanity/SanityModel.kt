@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity
 
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,7 @@ class SanityModel(
 
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
-    private var insanityLevel: Float = 0f
+    var insanityLevel: Float = 0f
         set(value) {
             field = max(min(MAX_SANITY, value), MIN_SANITY)
             updateSanityLevel()
@@ -86,7 +87,6 @@ class SanityModel(
         }
 
     init {
-        //insanityLevel = 0f
         reset()
     }
 
@@ -172,7 +172,8 @@ class SanityModel(
     /** Defaults all persistent data. */
     fun reset() {
         warnTriggered = false
-        progressToStartTime(MAX_SANITY - currentMaxSanity)
+        progressToStartTime(MAX_SANITY -
+                (investigationViewModel?.difficultyCarouselModel?.currentStartSanity ?: 0f))
         tick()
     }
 
