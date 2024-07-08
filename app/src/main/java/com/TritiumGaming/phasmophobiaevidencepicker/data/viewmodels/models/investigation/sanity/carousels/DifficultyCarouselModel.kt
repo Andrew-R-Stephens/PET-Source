@@ -93,23 +93,21 @@ class DifficultyCarouselModel(
         }
 
     init {
-        CoroutineScope(Dispatchers.Default).launch {
-            var namesList: MutableList<String> = mutableListOf()
-            try {
-                namesList = context.resources
-                    .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
-            } catch (e: Resources.NotFoundException) { e.printStackTrace() }
+        var namesList: MutableList<String> = mutableListOf()
+        try {
+            namesList = context.resources
+                .getStringArray(R.array.evidence_timer_difficulty_names_array).toMutableList()
+        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
-            val timesList: MutableList<Long> = mutableListOf()
-            try {
-                val timesListOut = context.resources
-                    .getStringArray(R.array.evidence_timer_difficulty_times_array)
-                timesListOut.forEachIndexed { index, it ->
-                    timesList.add(index, it.toLong())
-                }
-            } catch (e: Resources.NotFoundException) { e.printStackTrace() }
+        val timesList: MutableList<Long> = mutableListOf()
+        try {
+            val timesListOut = context.resources
+                .getStringArray(R.array.evidence_timer_difficulty_times_array)
+            timesListOut.forEachIndexed { index, it ->
+                timesList.add(index, it.toLong())
+            }
+        } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
-            setList(namesList, timesList)
-        }.start()
+        setList(namesList, timesList)
     }
 }

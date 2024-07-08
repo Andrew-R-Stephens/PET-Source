@@ -81,22 +81,20 @@ class MapCarouselModel(
     }
 
     init {
-        CoroutineScope(Dispatchers.Default).launch {
-            val typedArray: TypedArray =
-                context.resources.obtainTypedArray(R.array.maps_resources_array)
-            val names = mutableListOf<String>()
-            val sizes = mutableListOf<Int>()
-            for (i in 0 until typedArray.length()) {
-                val mapTypedArray: TypedArray =
-                    context.resources.obtainTypedArray(typedArray.getResourceId(i, 0))
-                names.add(i, mapTypedArray.getString(0) ?: "")
-                val sizeLayer = 6
-                sizes.add(i, mapTypedArray.getInt(sizeLayer, 0))
-                mapTypedArray.recycle()
-            }
-            typedArray.recycle()
+        val typedArray: TypedArray =
+            context.resources.obtainTypedArray(R.array.maps_resources_array)
+        val names = mutableListOf<String>()
+        val sizes = mutableListOf<Int>()
+        for (i in 0 until typedArray.length()) {
+            val mapTypedArray: TypedArray =
+                context.resources.obtainTypedArray(typedArray.getResourceId(i, 0))
+            names.add(i, mapTypedArray.getString(0) ?: "")
+            val sizeLayer = 6
+            sizes.add(i, mapTypedArray.getInt(sizeLayer, 0))
+            mapTypedArray.recycle()
+        }
+        typedArray.recycle()
 
-            setList(names, sizes)
-        }.start()
+        setList(names, sizes)
     }
 }

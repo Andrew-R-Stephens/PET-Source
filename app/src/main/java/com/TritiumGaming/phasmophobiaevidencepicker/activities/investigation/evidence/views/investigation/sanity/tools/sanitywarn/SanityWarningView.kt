@@ -1,117 +1,90 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
-import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.ui.platform.ComposeView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashBackground
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
 
 /**
- * WarnTextView class
+ * SanityWarningView class
  *
  * @author TritiumGamingStudios
  */
-abstract class SanityWarningView : AppCompatTextView {
+abstract class SanityWarningView : ConstraintLayout {
 
     lateinit var investigationViewModel: InvestigationViewModel
 
-    private companion object SanityState {
-        const val OFF = 0
-        const val INACTIVE = 1
-        const val ACTIVE = 2
-    }
+    private var flashView: ComposeView? = null
+    protected var labelView: AppCompatTextView? = null
 
-    private var state = false
-    private var flashOn = false
+    private var inactiveColor: Int = Color.WHITE
+    private var activeColor: Int = Color.WHITE
 
-    @ColorInt private var colorActive = 0
-    @ColorInt private var colorInactive = 0
-    @ColorInt private var colorOff = 0
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context) :
-            super(context) { initView() }
-
-    constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView() }
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView() }
+            super(context, attrs, defStyleAttr)
 
-    private fun initView() {
-        colorActive = getColorFromAttribute(context, R.attr.light_active)
-        colorInactive = getColorFromAttribute(context, R.attr.light_inactive)
-        colorOff = getColorFromAttribute(context, R.attr.light_off)
+    init {
+        inflate(context, R.layout.item_flashwarn, this)
 
-        setDefaults()
+        flashView = findViewById(R.id.flashComposable)
+        labelView = findViewById(R.id.flashLabel)
+
+        inactiveColor = ColorUtils.getColorFromAttribute(context, R.attr.light_off)
+        activeColor = ColorUtils.getColorFromAttribute(context, R.attr.light_inactive)
     }
 
-    private fun setDefaults() {
-        setBackgroundResource(R.drawable.rect_border)
-        background.setLevel(OFF)
-
-        setTextColor(colorOff)
-
-        gravity = Gravity.CENTER
-        maxLines = 1
-        setPaddingDefaults()
-    }
-
-    fun init(investigationViewModel: InvestigationViewModel) {
+    open fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
         initObservables()
     }
 
-    abstract fun initObservables()
+    fun setState(
+        phaseState: PhaseTimerModel.Phase, thisPhase: PhaseTimerModel.Phase, isActive: Boolean) {
+        val flashState: FlashState =
+            when(isActive) {
+                true -> {
+                    when (phaseState) {
+                        PhaseTimerModel.Phase.HUNT -> {
+                            if (phaseState == thisPhase &&
+                                investigationViewModel.sanityModel?.canFlashWarning == true) {
+                                FlashState.ACTIVE_ANIMATED
+                            } else
+                                FlashState.ACTIVE_STEADY
+                        }
 
-    fun toggleTextState(canFlash: Boolean) {
-        @ColorInt val color: Int
+                        PhaseTimerModel.Phase.SETUP, PhaseTimerModel.Phase.ACTION -> {
+                            FlashState.ACTIVE_STEADY
+                        }
+                    }
+                }
+                false -> {
+                    FlashState.OFF
+                }
+            }
 
-        if (this.state) {
-            flashOn = !flashOn
+        flashView?.setContent { FlashBackground(state = flashState) }
 
-            color = if (canFlash && flashOn) { colorActive }
-                else { colorInactive }
-
-        } else { color = colorOff }
-
-        setTextColor(color)
-    }
-
-
-    fun setState(state: Boolean) {
-        this.state = state
-
-        if (this.state) {
-            background.setLevel(ACTIVE)
-
-            if (flashOn) { setTextColor(colorActive) }
-            else { setTextColor(colorInactive) }
-
-        } else {
-            background.setLevel(OFF)
-            setTextColor(colorOff)
+        when(flashState) {
+            FlashState.OFF -> { labelView?.setTextColor(inactiveColor) }
+            else -> { labelView?.setTextColor(activeColor) }
         }
     }
 
-    fun setState(state: Boolean, flashOn: Boolean) {
-        this.flashOn = flashOn
-        setState(state)
-    }
+    abstract fun initObservables()
 
-    fun reset() {
-        setState(false)
-    }
-
-    private fun setPaddingDefaults() {
-        setPadding(
-            if (paddingLeft == 0) 4 else paddingLeft,
-            if (paddingTop == 0) 4 else paddingTop,
-            if (paddingRight == 0) 4 else paddingRight,
-            if (paddingBottom == 0) 4 else paddingBottom
-        )
-    }
 }
