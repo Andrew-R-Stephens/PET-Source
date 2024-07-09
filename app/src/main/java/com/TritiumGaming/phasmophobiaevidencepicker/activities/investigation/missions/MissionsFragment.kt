@@ -37,12 +37,12 @@ class MissionsFragment : InvestigationFragment() {
         super.init()
 
         // MISSIONS
-        val missionLayouts = ArrayList<MissionsItemLayout>()
+        val missionLayouts = ArrayList<MissionsItemLayout?>()
         missionLayouts.add(view.findViewById(R.id.objective1))
         missionLayouts.add(view.findViewById(R.id.objective2))
         missionLayouts.add(view.findViewById(R.id.objective3))
         for (i in missionLayouts.indices) {
-            objectivesViewModel?.let { missionLayouts[i].init(it, i) }
+            objectivesViewModel?.let { missionLayouts[i]?.init(it, i) }
         }
 
         // GHOST NAME
