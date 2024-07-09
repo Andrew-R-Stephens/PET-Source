@@ -21,6 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 /**
  * MapViewerFragment class
@@ -49,13 +50,13 @@ class MapViewerFragment : InvestigationFragment() {
         val selectorLayout = view.findViewById<LinearLayout>(R.id.linearlayout_floorindicators)
 
         val buttonLayerNext =
-            view.findViewById<AppCompatImageButton>(R.id.controller_nextLayerButton)
+            view.findViewById<PETImageButton>(R.id.controller_nextLayerButton)
         val buttonLayerPrev =
-            view.findViewById<AppCompatImageButton>(R.id.controller_prevLayerButton)
+            view.findViewById<PETImageButton>(R.id.controller_prevLayerButton)
 
-        val buttonBack = view.findViewById<AppCompatImageView>(R.id.button_back)
+        val buttonBack = view.findViewById<PETImageButton>(R.id.button_back)
         val mapName = view.findViewById<AppCompatTextView>(R.id.textview_title)
-        val buttonHelp = view.findViewById<ConstraintLayout>(R.id.listener_help)
+        val buttonHelp = view.findViewById<PETImageButton>(R.id.imageview_help)
 
         imageDisplay = view.findViewById(R.id.interactiveMapView)
         poiSpinner = view.findViewById(R.id.spinner_poiname)

@@ -38,7 +38,6 @@ class PhaseTimerModel(
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     var startTime: Long = TIME_DEFAULT
-    fun invalidateStartTime() { startTime = System.currentTimeMillis() - timeRemaining.value}
     private fun resetStartTime() { startTime = TIME_DEFAULT }
 
     private val _timeRemaining: MutableStateFlow<Long> = MutableStateFlow(TIME_DEFAULT)
@@ -46,6 +45,12 @@ class PhaseTimerModel(
     fun setTimeRemaining(value: Long) {
         _timeRemaining.value = value
     }
+
+    val displayTime: String
+        get() {
+            val breakdown = timeRemaining.value / SECOND_IN_MILLIS
+            return millisToTime("%s:%s", breakdown)
+        }
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
@@ -87,12 +92,6 @@ class PhaseTimerModel(
         investigationViewModel.sanityModel?.skipInsanity(HALF_SANITY)
         playTimer()
     }
-
-    val displayTime: String
-        get() {
-            val breakdown = timeRemaining.value / SECOND_IN_MILLIS
-            return millisToTime("%s:%s", breakdown)
-        }
 
     init {
         reset()

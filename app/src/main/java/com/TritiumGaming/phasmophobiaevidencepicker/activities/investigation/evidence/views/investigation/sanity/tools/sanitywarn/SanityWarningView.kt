@@ -3,17 +3,20 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashBackground
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 /**
  * SanityWarningView class
@@ -22,13 +25,19 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
  */
 abstract class SanityWarningView : ConstraintLayout {
 
-    lateinit var investigationViewModel: InvestigationViewModel
+    var investigationViewModel: InvestigationViewModel? = null
 
     private var flashView: ComposeView? = null
     protected var labelView: AppCompatTextView? = null
 
     private var inactiveColor: Int = Color.WHITE
     private var activeColor: Int = Color.WHITE
+
+    protected var thisPhase: PhaseTimerModel.Phase = PhaseTimerModel.Phase.SETUP
+    protected var currentPhase: PhaseTimerModel.Phase? = null
+
+    private var canFlash: Boolean = true
+    protected open var activeCondition: () -> Boolean = { false }
 
     constructor(context: Context) : super(context)
 
@@ -45,36 +54,43 @@ abstract class SanityWarningView : ConstraintLayout {
 
         inactiveColor = ColorUtils.getColorFromAttribute(context, R.attr.light_off)
         activeColor = ColorUtils.getColorFromAttribute(context, R.attr.light_inactive)
+
     }
 
     open fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
+        investigationViewModel.timerModel?.currentPhase?.value?.let { value ->
+            currentPhase = value
+        }
+
         initObservables()
+
+        update()
     }
 
-    fun setState(
-        phaseState: PhaseTimerModel.Phase, thisPhase: PhaseTimerModel.Phase, isActive: Boolean) {
+    private fun update() {
         val flashState: FlashState =
-            when(isActive) {
+            when(activeCondition()) {
                 true -> {
-                    when (phaseState) {
+                    when (currentPhase) {
                         PhaseTimerModel.Phase.HUNT -> {
-                            if (phaseState == thisPhase &&
-                                investigationViewModel.sanityModel?.canFlashWarning == true) {
-                                FlashState.ACTIVE_ANIMATED
-                            } else
-                                FlashState.ACTIVE_STEADY
+                            if (currentPhase == thisPhase)
+                                if(investigationViewModel?.phaseWarnModel?.canFlash?.value == true) {
+                                    FlashState.ACTIVE_ANIMATED
+                                } else { FlashState.ACTIVE_STEADY }
+
+                            else { FlashState.ACTIVE_STEADY }
                         }
 
                         PhaseTimerModel.Phase.SETUP, PhaseTimerModel.Phase.ACTION -> {
                             FlashState.ACTIVE_STEADY
                         }
+
+                        else -> { FlashState.OFF }
                     }
                 }
-                false -> {
-                    FlashState.OFF
-                }
+                false -> { FlashState.OFF }
             }
 
         flashView?.setContent { FlashBackground(state = flashState) }
@@ -85,6 +101,17 @@ abstract class SanityWarningView : ConstraintLayout {
         }
     }
 
-    abstract fun initObservables()
-
+    private fun initObservables() {
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            investigationViewModel?.timerModel?.currentPhase?.collectLatest {
+                currentPhase = it
+                update()
+            }
+        }
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            investigationViewModel?.phaseWarnModel?.canFlash?.collectLatest {
+                update()
+            }
+        }
+    }
 }

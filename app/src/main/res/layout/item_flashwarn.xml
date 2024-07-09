@@ -19,7 +19,7 @@
         style="?attr/tertiaryFont_BoldNarrow_AutoSqueeze"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="4dp"
+        android:padding="8dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

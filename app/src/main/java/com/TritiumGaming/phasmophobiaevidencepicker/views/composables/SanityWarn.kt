@@ -35,13 +35,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 
 @Composable
 @Preview
-fun FlashBackground(state: FlashState = FlashState.ACTIVE_STEADY) {
-
+fun FlashBackground(
+    state: FlashState = FlashState.ACTIVE_STEADY
+) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 
     val offColor = getColorFromAttribute(LocalContext.current, R.attr.light_off)
-    val inactiveColor =  getColorFromAttribute(LocalContext.current, R.attr.light_inactive)
-    val activeColor=  getColorFromAttribute(LocalContext.current, R.attr.light_active)
+    val inactiveColor = getColorFromAttribute(LocalContext.current, R.attr.light_inactive)
+    val activeColor= getColorFromAttribute(LocalContext.current, R.attr.light_active)
 
     val ratio = if (state == FlashState.ACTIVE_ANIMATED) {
         infiniteTransition.animateFloat(
@@ -68,9 +69,8 @@ fun FlashBackground(state: FlashState = FlashState.ACTIVE_STEADY) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .border(2.dp, Color(color), RoundedCornerShape(40))
+            .border(2.dp, Color(color), RoundedCornerShape(35))
             .background(Color.Transparent)
-            .padding(3.dp)
     )
 }
 

@@ -4,11 +4,8 @@ import android.content.Context
 import android.content.res.Resources
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class DifficultyCarouselModel(
     context: Context, val investigationViewModel: InvestigationViewModel
@@ -54,14 +51,14 @@ class DifficultyCarouselModel(
         if (i >= itemCount) { i = 0 }
 
         setIndex(i)
-        investigationViewModel.sanityModel?.warnTriggered = false
+        investigationViewModel.phaseWarnModel?.audioWarnTriggered = false
     }
     fun decrementIndex() {
         var i = currentIndex.value - 1
         if (i < 0) { i = itemCount - 1 }
 
         setIndex(i)
-        investigationViewModel.sanityModel?.warnTriggered = false
+        investigationViewModel.phaseWarnModel?.audioWarnTriggered = false
     }
     /* -- */
 

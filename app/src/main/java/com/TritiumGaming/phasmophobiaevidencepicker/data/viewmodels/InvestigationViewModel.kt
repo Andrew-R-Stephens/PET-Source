@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
@@ -12,8 +13,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.warning.PhaseWarningModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class InvestigationViewModel : ViewModel() {
 
@@ -26,6 +29,8 @@ class InvestigationViewModel : ViewModel() {
         private set
 
     var timerModel: PhaseTimerModel? = null
+        private set
+    var phaseWarnModel: PhaseWarningModel? = null
         private set
 
     var mapCarouselModel: MapCarouselModel? = null
@@ -46,6 +51,7 @@ class InvestigationViewModel : ViewModel() {
         difficultyCarouselModel =
             difficultyCarouselModel ?: DifficultyCarouselModel(context, this)
         timerModel = timerModel ?: PhaseTimerModel(this)
+        phaseWarnModel = phaseWarnModel ?: PhaseWarningModel(this)
 
         sanityModel = sanityModel ?: SanityModel(this)
     }
@@ -97,26 +103,20 @@ class InvestigationViewModel : ViewModel() {
         return rejectionPile
     }
 
-    fun getRejectedStatus(index: Int): Boolean {
-        getRejectionPile()?.let { pile ->
-            return !(index >= 0 && index < pile.size)
-        }
-        return false
-    }
-
-    fun skipSanityToPercent(lowerBounds: Int, higherBounds: Int, newValue: Int) {
-        if (((timerModel?.timeRemaining?.value ?: 0L) <= lowerBounds) &&
-            ((sanityModel?.sanityLevel?.value ?: 0f) < higherBounds)) {
-            sanityModel?.progressToStartTime(newValue.toFloat())
-        }
-    }
-
     fun reset() {
         resetRadioButtonsChecked()
         createRejectionPile()
         timerModel?.reset()
         investigationModel?.reset()
         sanityModel?.reset()
+        phaseWarnModel?.reset()
     }
+
+    /*
+    fun addObservers(observerBlocks: suspend () -> Unit) {
+        viewModelScope.launch {
+            observerBlocks()
+        }
+    }*/
 
 }

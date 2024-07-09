@@ -136,7 +136,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             enableLeftHandMode?.isChecked = globalPreferencesViewModel.isLeftHandSupportEnabled
 
             // Allow Hunt Warning Audio
-            huntWarningAudioToggle?.isChecked = globalPreferencesViewModel.isHuntWarningAudioAllowed
+            huntWarningAudioToggle?.isChecked = globalPreferencesViewModel.isHuntWarnAudioAllowed.value
 
             // Allow Reorder Ghost Views
             reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.reorderGhostViews
@@ -170,16 +170,16 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 val seconds = 300
                 val millisPerSecond = 1000
                 seekbar.max = (seconds * millisPerSecond) + 1
-                if (globalPreferencesViewModel.huntWarningFlashTimeout < 0) {
+                if (globalPreferencesViewModel.huntWarnFlashTimeMax.value < 0) {
                     seekbar.progress = seekbar.max }
-                else { seekbar.progress = globalPreferencesViewModel.huntWarningFlashTimeout }
+                else { seekbar.progress = globalPreferencesViewModel.huntWarnFlashTimeMax.value.toInt() }
 
                 seekbar.setOnSeekBarChangeListener(
                     object : OnSeekBarChangeListener {
                         override fun onProgressChanged(
                             seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                             if (fromUser) {
-                                globalPreferencesViewModel.huntWarningFlashTimeout = progress
+                                globalPreferencesViewModel.setHuntWarningFlashTimeMax(progress.toLong())
 
                                 val progressMax =
                                     (seconds * millisPerSecond) / seekbar.max.toDouble()
@@ -230,8 +230,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // Allow Hunt Warning Audio
         huntWarningAudioToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.isHuntWarningAudioAllowed =
-                huntWarningAudioToggle?.isChecked == true
+            globalPreferencesViewModel?.setHuntWarnAudioAllowed(
+                huntWarningAudioToggle?.isChecked == true)
         }
         // Allow Ghost View Reordering
         reOrderGhostListToggle?.setSwitchClickListener {

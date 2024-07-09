@@ -68,15 +68,6 @@ class SanityModel(
         investigationViewModel?.timerModel?.updateCurrentPhase()
     }
 
-    /** If the warning is within the appropriate range and condition for activation */
-    var warnTriggered = false
-        get() = field && (sanityLevel.value < SAFE_MIN_BOUNDS)
-
-    /** The max duration set for the hunt warning to flash, in milliseconds*/
-    var flashTimeoutMax: Long = -1
-    /** The starting flash time, in milliseconds, for the hunt warning */
-    private var flashTimeoutStart: Long = -1
-
     private val drainModifier: Float
         get() {
             val difficultyModifier =
@@ -86,22 +77,12 @@ class SanityModel(
             return difficultyModifier * mapModifier
         }
 
+    val isInsane: Boolean
+        get() = sanityLevel.value < SAFE_MIN_BOUNDS
+
     init {
         reset()
     }
-
-    /** Allow the Warning indicator to flash either off or on if:
-     * The player's sanity is less than 70%
-     * either if the Flash Timeout is infinite
-     * or if there is no time remaining on the countdown timer.
-     * @return if the Warning indicator can flash */
-    val canFlashWarning: Boolean
-        get() {
-            val temp = sanityLevel.value < SAFE_MIN_BOUNDS
-            if (temp && flashTimeoutMax == -1L) { return true }
-            if (temp && flashTimeoutStart == -1L) { flashTimeoutStart = System.currentTimeMillis() }
-            return (System.currentTimeMillis() - flashTimeoutStart) < flashTimeoutMax
-        }
 
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
@@ -111,8 +92,6 @@ class SanityModel(
         timeRemainingToInsanityLevel()
         investigationViewModel?.timerModel?.updateCurrentPhase()
     }
-
-    private fun resetFlashTimeoutStart() { flashTimeoutStart = -1 }
 
     /** @param progress specify the progress 0 - 100
      * Resets the Warning Indicator to start flashing again, if necessary
@@ -130,7 +109,7 @@ class SanityModel(
 
             timerModel.startTime = newStartTime
 
-            resetFlashTimeoutStart()
+            // TODO resetFlashTimeoutStart()
         }
     }
 
@@ -171,7 +150,7 @@ class SanityModel(
 
     /** Defaults all persistent data. */
     fun reset() {
-        warnTriggered = false
+        //TODO warnTriggered = false
         progressToStartTime(MAX_SANITY -
                 (investigationViewModel?.difficultyCarouselModel?.currentStartSanity ?: 0f))
         tick()

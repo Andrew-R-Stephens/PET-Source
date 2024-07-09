@@ -21,13 +21,11 @@ class SanityWarnHuntView : SanityWarningView {
 
     init {
         labelView?.text = resources.getString(R.string.investigation_sanity_huntwarn)
+        thisPhase = PhaseTimerModel.Phase.HUNT
     }
 
-    override fun initObservables() {
-        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.timerModel?.currentPhase?.collectLatest {
-                setState(it, PhaseTimerModel.Phase.HUNT,it == PhaseTimerModel.Phase.HUNT)
-            }
-        }
+    override var activeCondition: () -> Boolean = {
+        currentPhase == PhaseTimerModel.Phase.HUNT
     }
+
 }

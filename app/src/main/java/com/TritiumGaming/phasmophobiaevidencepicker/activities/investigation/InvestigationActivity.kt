@@ -29,10 +29,10 @@ open class InvestigationActivity : PETActivity() {
     protected var objectivesViewModel: ObjectivesViewModel? = null
     protected var mapMenuViewModel: MapMenuViewModel? = null
 
-    var drawerLayout: DrawerLayout? = null
-    var actionBarDrawerToggle: ActionBarDrawerToggle? = null
+    private var drawerLayout: DrawerLayout? = null
+    private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
 
-    var navigationBarView: NavigationBarView? = null
+    private var navigationBarView: NavigationBarView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ open class InvestigationActivity : PETActivity() {
 
         val factory: AndroidViewModelFactory? = super.initViewModels()
         factory?.let {
-            initinvestigationViewModel(factory)
+            initInvestigationViewModel(factory)
             initObjectivesViewModel(factory)
             initMapMenuViewModel(factory)
         }
@@ -61,7 +61,7 @@ open class InvestigationActivity : PETActivity() {
         objectivesViewModel = factory.create(ObjectivesViewModel::class.java)
     }
 
-    private fun initinvestigationViewModel(factory: AndroidViewModelFactory) {
+    private fun initInvestigationViewModel(factory: AndroidViewModelFactory) {
         investigationViewModel = factory.create(InvestigationViewModel::class.java)
     }
 

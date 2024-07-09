@@ -6,8 +6,12 @@ import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.warning.PhaseWarningModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.reviews.ReviewTrackingModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.util.Locale
 
 class GlobalPreferencesViewModel : SharedViewModel() {
@@ -30,14 +34,23 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     var languageName: String = Locale.getDefault().language
 
     // Generic settings
-    var huntWarningFlashTimeout: Int = -1 // Investigation behavior
-
     var isAlwaysOn: Boolean = false
-    var isHuntWarningAudioAllowed: Boolean = true // Investigation behavior
-
     var networkPreference: Boolean = true
-    var isLeftHandSupportEnabled: Boolean = false // Investigation behavior
-    var reorderGhostViews = true // Investigation behavior
+
+    // Investigation Behaviors
+    private val _huntWarnFlashTimeMax = MutableStateFlow(PhaseWarningModel.INFINITY)
+    val huntWarnFlashTimeMax: StateFlow<Long> = _huntWarnFlashTimeMax.asStateFlow()
+    fun setHuntWarningFlashTimeMax(maxTime: Long) {
+        _huntWarnFlashTimeMax.value = maxTime
+    }
+    var _isHuntWarnAudioAllowed = MutableStateFlow(true)
+    val isHuntWarnAudioAllowed: StateFlow<Boolean> = _isHuntWarnAudioAllowed.asStateFlow()
+    fun setHuntWarnAudioAllowed(isAllowed: Boolean) {
+        _isHuntWarnAudioAllowed.value = isAllowed
+    }
+
+    var isLeftHandSupportEnabled: Boolean = false
+    var reorderGhostViews = true
 
     // Title screen increments
     private var canShowIntroduction: Boolean = true
@@ -68,10 +81,15 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             Locale.getDefault().language
         isAlwaysOn =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
-        isHuntWarningAudioAllowed =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed), isHuntWarningAudioAllowed)
-        huntWarningFlashTimeout =
-            sharedPref.getInt(context.resources.getString(R.string.preference_huntWarningFlashTimeout), huntWarningFlashTimeout)
+
+        setHuntWarnAudioAllowed(
+            sharedPref.getBoolean(
+                context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
+                isHuntWarnAudioAllowed.value))
+        setHuntWarningFlashTimeMax(
+            sharedPref.getLong(
+                context.resources.getString(R.string.preference_huntWarningFlashTimeout),
+                huntWarnFlashTimeMax.value))
 
         isLeftHandSupportEnabled =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
@@ -186,7 +204,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     ) {
         editor.putBoolean(
             context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
-            isHuntWarningAudioAllowed
+            isHuntWarnAudioAllowed.value
         )
 
         if (localApply) { editor.apply() }
@@ -195,9 +213,9 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     private fun saveHuntWarningFlashTimeout(
         context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
     ) {
-        editor.putInt(
+        editor.putLong(
             context.resources.getString(R.string.preference_huntWarningFlashTimeout),
-            huntWarningFlashTimeout
+            huntWarnFlashTimeMax.value
         )
 
         if (localApply) { editor.apply() }
@@ -320,8 +338,8 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             settings["network_pref"] = networkPreference.toString()
             settings["language"] = languageName
             settings["always_on"] = isAlwaysOn.toString()
-            settings["warning_enabled"] = isHuntWarningAudioAllowed.toString()
-            settings["warning_timeout"] = huntWarningFlashTimeout.toString()
+            settings["warning_enabled"] = isHuntWarnAudioAllowed.value.toString()
+            settings["warning_timeout"] = huntWarnFlashTimeMax.value.toString()
             settings["color_theme"] = colorThemeID
             settings["font_type"] = fontThemeID
             settings["left_support"] = isLeftHandSupportEnabled.toString()
@@ -350,46 +368,43 @@ class GlobalPreferencesViewModel : SharedViewModel() {
             ) + "; Is Hunt Audio Allowed: " + sharedPref.getBoolean(
                 context.resources.getString(
                     R.string.preference_isHuntAudioWarningAllowed
-                ), isHuntWarningAudioAllowed
-            ) + "; Hunt Warning Flash Timeout: " + sharedPref.getInt(
+                ), isHuntWarnAudioAllowed.value
+            ) + "; Hunt Warning Flash Timeout: " + sharedPref.getLong(
                 context.resources.getString(
                     R.string.preference_huntWarningFlashTimeout
-                ), huntWarningFlashTimeout
+                ), huntWarnFlashTimeMax.value
             ) + "; Color Space: " + sharedPref.getString(
                 context.resources.getString(R.string.preference_savedTheme),
                 colorThemeID
             ) + "; ReviewRequestData: [" +
                     "Time Alive: " + sharedPref.getLong(
-                        context.resources.getString(R.string.reviewtracking_appTimeAlive),
-                        0
-                    ) +
+                context.resources.getString(R.string.reviewtracking_appTimeAlive),
+                0
+            ) +
                     "; Times Opened: " + sharedPref.getInt(
-                        context.resources.getString(R.string.reviewtracking_appTimesOpened),
-                        0
-                    ) +
+                context.resources.getString(R.string.reviewtracking_appTimesOpened),
+                0
+            ) +
                     "; Can Request Review: " + sharedPref.getBoolean(
-                        context.resources.getString(R.string.reviewtracking_canRequestReview),
-                        false
-                    ) + "]" +
+                context.resources.getString(R.string.reviewtracking_canRequestReview),
+                false
+            ) + "]" +
                     "; Can Show Introduction: " + sharedPref.getBoolean(
-                        context.resources.getString(
-                            R.string.tutorialTracking_canShowIntroduction
-                        ), false
-                    )
+                context.resources.getString(
+                    R.string.tutorialTracking_canShowIntroduction
+                ), false
+            )
         )
     }
 
-    /**
-     *
-     */
     fun printFromVariables() {
         Log.d(
             "GlobalPreferencesVars",
             "NetworkPreference: " + networkPreference +
                     "; Language: " + languageName +
                     "; Always On: " + isAlwaysOn +
-                    "; Is Hunt Audio Allowed: " + isHuntWarningAudioAllowed +
-                    "; Hunt Warning Flash Timeout: " + huntWarningFlashTimeout +
+                    "; Is Hunt Audio Allowed: " + isHuntWarnAudioAllowed +
+                    "; Hunt Warning Flash Timeout: " + huntWarnFlashTimeMax.value +
                     "; Color Space: " + colorThemeID +
                     "; Can Show Introduction: " + canShowIntroduction +
                     "; ReviewRequestData: [" + reviewRequestData.toString() + "]"

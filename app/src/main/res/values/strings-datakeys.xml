@@ -28,7 +28,7 @@
     <string name="preference_isAlwaysOn" translatable="false">isAlwaysOn</string>
     <string name="preference_isHuntAudioWarningAllowed" translatable="false">isHuntAudioWarningAllowed</string>
     <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
-    <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarningFlashTimeout</string>
+    <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarnFlashTimeMax</string>
     <string name="preference_enableReorderGhostViews" translatable="false">canReorderGhostViews</string>
     <!--<string name="preference_colorSpace" translatable="false">colorSpace</string>
     <string name="preference_fontType" translatable="false">fontType</string>-->

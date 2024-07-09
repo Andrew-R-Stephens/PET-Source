@@ -54,9 +54,9 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             View.SCROLLBAR_POSITION_RIGHT
 
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            investigationViewModel?.sanityModel?.flashTimeoutMax =
-                globalPreferencesViewModel.huntWarningFlashTimeout.toLong()
-
+            /*investigationViewModel?.phaseWarnModel?.flashTimeMax =
+                globalPreferencesViewModel.huntWarningFlashTimeMax.toLong()
+            */
             if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
                 ghostSection = columnLeft.getChildAt(0) as InvestigationSection
                 evidenceSection = columnRight.getChildAt(0) as InvestigationSection

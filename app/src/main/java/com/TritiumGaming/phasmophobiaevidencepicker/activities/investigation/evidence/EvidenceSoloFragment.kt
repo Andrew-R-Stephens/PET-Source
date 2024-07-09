@@ -45,50 +45,27 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
 
                 override fun onTick() {
 
-                    if (investigationViewModel?.timerModel?.paused?.value == false) {
-                        investigationViewModel?.sanityModel?.tick()
-                    }
-
                     /** TODO : recreate the following action flow
 
-                    if the timer is not paused {
-                    tick the SanityModel
-                    write sanity percent to display view
-                    set state of the setup phase view to "active"
-                    set state of the action phase view to "inactive"
-
                     if (huntAudio is both allowed) AND (huntAudio is not "triggered") AND (the phase is "action") {
-                    play the huntWarning audio
+                        play the huntWarning audio
                     set huntAudio as "triggered"
                     }
+                    */
 
-                    if (insanityPercent is below safe) AND (the phase is "action") AND (huntWarnView is allowed) {
-                    set huntWarnView to "active"
+                    investigationViewModel?.let { investigationViewModel ->
+                        if (investigationViewModel.timerModel?.paused?.value == false) {
+                            investigationViewModel.sanityModel?.tick()
 
-                    if (huntWarnView blink duration is not exceeded) {
-                    blink both huntWarnView and its text on and off in 500ms intervals
-                    }
-                    else {
-                    set both huntWarnView and its text to blink steady "on"
-                    }
-                    }
-                    else {
-                    set huuntWarnView to "inactive"
-                    }
+                            investigationViewModel.phaseWarnModel?.let { phaseWarnModel ->
+                                phaseWarnModel.updateTimeElapsed()
 
-                    update progressbar to proper value of insanityPercent
-                    }
-                    else {
-                    if (phase is "setup") {
-                    set huntWarnView to "active" and blink steady on
-                    }
-                    }
-                     */
-
-                    // If the huntAudio is allowed
-                    if (globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
-                        // Play the huntWarning audio
-                        huntWarningAudioListener?.play()
+                                // If the huntAudio is allowed
+                                if (phaseWarnModel.audioAllowed) {
+                                    huntWarningAudioListener?.play()
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -120,9 +97,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 }
 
                 override fun play() {
-                    if (globalPreferencesViewModel?.isHuntWarningAudioAllowed == true) {
+                    if (investigationViewModel?.phaseWarnModel?.audioAllowed == true) {
                         mediaPlayer?.start()
-                        investigationViewModel?.sanityModel?.warnTriggered = true
+                        investigationViewModel?.phaseWarnModel?.audioWarnTriggered = true
                     }
                 }
 

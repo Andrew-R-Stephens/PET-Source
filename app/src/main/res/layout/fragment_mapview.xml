@@ -8,15 +8,15 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
         android:id="@+id/button_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:adjustViewBounds="true"
-        android:padding="2dp"
         android:src="@android:drawable/ic_menu_revert"
         android:tint="@color/white"
         android:tintMode="multiply"
+        android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout_mapviewbody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -130,24 +130,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout89"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageview_flooricon"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/controller_prevLayerButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="16dp"
-                    android:adjustViewBounds="true"
-                    android:background="@color/transparent"
                     android:contentDescription="@string/app_name"
-                    android:padding="4dp"
                     android:src="@drawable/icon_arrow_fill_left"
-                    android:scaleType="centerInside"
                     android:tint="?attr/textColorBody"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textview_floorname"
@@ -167,16 +163,12 @@
                     app:layout_constraintStart_toEndOf="@+id/controller_prevLayerButton"
                     app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/controller_nextLayerButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="16dp"
-                    android:adjustViewBounds="true"
-                    android:background="@color/transparent"
                     android:contentDescription="@string/app_name"
-                    android:padding="4dp"
-                    android:scaleType="centerInside"
                     android:src="@drawable/icon_arrow_fill_right"
                     android:tint="?attr/textColorBody"
                     app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
@@ -221,10 +213,11 @@
                 android:id="@+id/spinner_poiname"
                 style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="4dp"
+                android:layout_height="48dp"
+                android:paddingTop="2dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
                 android:gravity="start|center"
                 android:spinnerMode="dropdown"
                 android:textColor="?attr/textColorBody"
@@ -237,27 +230,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/listener_help"
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+            android:id="@+id/imageview_help"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:src="@drawable/icon_help"
             android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageview_help"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/icon_help"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
