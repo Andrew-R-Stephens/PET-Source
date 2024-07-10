@@ -85,19 +85,6 @@ abstract class PETFragment : Fragment {
                 return false
             }
         } ?:  return false
-
-        /*
-        if (globalPreferencesViewModel == null) { return false }
-
-        try {
-            return (isNetworkAvailable(
-                requireContext(),
-                globalPreferencesViewModel.networkPreference))
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-            return false
-        }
-        */
     }
 
     protected open fun saveStates() {

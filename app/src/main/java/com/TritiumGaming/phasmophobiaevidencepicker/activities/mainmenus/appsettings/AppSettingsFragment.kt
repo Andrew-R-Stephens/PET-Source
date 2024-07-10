@@ -379,19 +379,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     }
     */
 
-    override fun backPressedHandler() {
-        revertDemoChanges()
-
-        try { findNavController(requireView()).popBackStack() }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-
-        try {
-            val message = getString(R.string.toast_discardchanges)
-            val toast = Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2)
-            toast.show()
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
     private fun loadUserPurchaseHistory() {
         var unlockHistoryCollection: CollectionReference? = null
         try { unlockHistoryCollection = FirestoreUnlockHistory.unlockHistoryCollection }
@@ -491,6 +478,19 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 activity.recreate()
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
+    }
+
+    override fun backPressedHandler() {
+        revertDemoChanges()
+
+        try { findNavController(requireView()).popBackStack() }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+
+        try {
+            val message = getString(R.string.toast_discardchanges)
+            val toast = Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2)
+            toast.show()
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     override fun onSignInAccountSuccess() {

@@ -21,21 +21,15 @@ import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import java.util.List
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
-/**
- * InvestigationActivity class
- *
- * @author TritiumGamingStudios
- */
 abstract class PETActivity : AppCompatActivity() {
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
 
     protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    protected var permissionsViewModel: PermissionsViewModel? = null
+    private var permissionsViewModel: PermissionsViewModel? = null
 
     private var consentInformation: ConsentInformation? = null
 
@@ -55,7 +49,7 @@ abstract class PETActivity : AppCompatActivity() {
 
     /** Set FirebaseAnalytics consent types to
      * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
-    protected fun initFirebaseAnalytics() {
+    private fun initFirebaseAnalytics() {
         //Obtain FirebaseAnalytics instance
         try { firebaseAnalytics = FirebaseAnalytics.getInstance(this)
             Log.d("Firebase", "Obtained instance.")
@@ -114,14 +108,14 @@ abstract class PETActivity : AppCompatActivity() {
         var isChanged = false
 
         val defaultLocale = Locale.getDefault()
-        val locale = Locale(language)
-        if (!(defaultLocale.language.equals(locale.language, ignoreCase = true))) {
+        val currentLocale = Locale(language)
+        if (!(defaultLocale.language.equals(currentLocale.language, ignoreCase = true))) {
             isChanged = true
         }
 
-        Locale.setDefault(locale)
+        Locale.setDefault(currentLocale)
         val config = resources.configuration
-        config.setLocale(locale)
+        config.setLocale(currentLocale)
         resources.updateConfiguration(config, resources.displayMetrics)
 
         return isChanged
@@ -134,9 +128,7 @@ abstract class PETActivity : AppCompatActivity() {
         }
         Log.d("AutoLogin", "User is null. Attempting silent log in.")
 
-        val providers = List.of(
-            GoogleBuilder().build()
-        )
+        val providers = listOf(GoogleBuilder().build())
 
         AuthUI.getInstance()
             .silentSignIn(this, providers)

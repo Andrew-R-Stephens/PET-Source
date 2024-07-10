@@ -25,14 +25,14 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @author TritiumGamingStudios
  */
 class MainMenuActivity : PETActivity() {
-    protected var onboardingViewModel: OnboardingViewModel? = null
-    protected var newsLetterViewModel: NewsletterViewModel? = null
+    private var onboardingViewModel: OnboardingViewModel? = null
+    private var newsLetterViewModel: NewsletterViewModel? = null
 
     private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
     private val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
-    protected var appUpdateManager: AppUpdateManager? = null
-    protected var updateType: Int = AppUpdateType.IMMEDIATE
+    private var appUpdateManager: AppUpdateManager? = null
+    private var updateType: Int = AppUpdateType.IMMEDIATE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,6 @@ class MainMenuActivity : PETActivity() {
     private fun initNewsletterViewModel(factory: AndroidViewModelFactory) {
         newsLetterViewModel = factory.create(NewsletterViewModel::class.java)
         newsLetterViewModel = ViewModelProvider(this)[NewsletterViewModel::class.java]
-        //newsLetterViewModel.init(this);
     }
 
     fun checkForAppUpdates(): Boolean {

@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 abstract class MainMenuFragment : PETFragment {
+
     protected var mainMenuViewModel: MainMenuViewModel? = null
     protected var newsLetterViewModel: NewsletterViewModel? = null
 
@@ -40,7 +41,6 @@ abstract class MainMenuFragment : PETFragment {
     private fun saveNewsletterViewModel() {
         try { newsLetterViewModel?.saveToFile(requireActivity()) }
         catch (e: IllegalStateException) { e.printStackTrace() }
-
     }
 
     protected fun initAdView(adView: AdView) {

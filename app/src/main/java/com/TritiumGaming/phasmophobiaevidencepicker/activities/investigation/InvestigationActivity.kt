@@ -41,7 +41,7 @@ open class InvestigationActivity : PETActivity() {
     }
 
     override fun initViewModels(): AndroidViewModelFactory? {
-        super.initViewModels()
+        //super.initViewModels()
 
         val factory: AndroidViewModelFactory? = super.initViewModels()
         factory?.let {
@@ -146,7 +146,7 @@ open class InvestigationActivity : PETActivity() {
         }
     }
 
-    fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
+    private fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
         navView?.let {
             this.navigationBarView = navView
 
