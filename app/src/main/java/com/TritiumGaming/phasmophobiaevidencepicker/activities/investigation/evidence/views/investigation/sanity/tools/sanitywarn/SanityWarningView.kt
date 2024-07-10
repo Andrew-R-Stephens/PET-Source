@@ -15,7 +15,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashBackground
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**

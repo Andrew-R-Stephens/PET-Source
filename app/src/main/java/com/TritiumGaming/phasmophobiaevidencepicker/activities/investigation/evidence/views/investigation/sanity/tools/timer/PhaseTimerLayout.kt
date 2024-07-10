@@ -8,7 +8,6 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

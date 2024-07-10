@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -16,7 +15,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesVi
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import kotlinx.coroutines.flow.collectLatest
 
 abstract class InvestigationFragment : PETFragment {
     protected var investigationViewModel: InvestigationViewModel? = null

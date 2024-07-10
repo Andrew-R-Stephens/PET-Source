@@ -7,9 +7,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class ReviewLauncher {

@@ -45,7 +45,7 @@ android {
     defaultConfig {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 91
         versionName = "8.2.2.1"
