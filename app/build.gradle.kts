@@ -110,7 +110,6 @@ dependencies {
 
     implementation (libs.android.support.multidex)
 
-    //noinspection GradleDependency
     implementation (libs.kotlin.stdlib)
     implementation (libs.google.gson)
 
@@ -181,7 +180,7 @@ dependencies {
     implementation (libs.droidsonroids.gifDrawable)
 
     // DO NOT UPDATE THIS -- BREAKING CHANGES
-    implementation (libs.commonsIo.core)
+    //implementation (libs.commonsIo.core)
 
     /*
         ---- START----
