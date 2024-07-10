@@ -43,66 +43,38 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // DATA
         var selected = 0
-        var languageNames: ArrayList<String> = ArrayList()
-        try {
-            languageNames = ArrayList(
-                listOf(*requireContext().resources.getStringArray(R.array.languages_name)))
-
-            globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-                selected = globalPreferencesViewModel.getLanguageIndex(ArrayList(
-                    listOf(*requireContext().resources.getStringArray(R.array.languages_abbreviation))
-                ))
-            }
-            mainMenuViewModel?.let { mainMenuViewModel ->
-                if (mainMenuViewModel.languageSelectedOriginal == -1) {
-                    mainMenuViewModel.languageSelectedOriginal = selected
-                }
-            }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-
-        for (i in languageNames.indices) {
-            val adapter = LanguagesAdapterView(languageNames, selected,
-                object: LanguagesAdapterView.OnLanguageListener {
-                    override fun onNoteClick(position: Int) {
-                        globalPreferencesViewModel?.setLanguage(position,
-                            this@AppLanguageFragment.resources
-                                .getStringArray(R.array.languages_abbreviation)
-                        )
-                        mainMenuViewModel?.canRefreshFragment = true
-
-                        this@AppLanguageFragment.configureLanguage()
-                        this@AppLanguageFragment.refreshFragment()
-                    }
-            })
-
-            recyclerViewLanguages.adapter = adapter
-            try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
-            catch (e: IllegalStateException) { e.printStackTrace() }
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            selected = globalPreferencesViewModel.getCurrentLanguageIndex()
         }
-
-        /*
-        for (i in languageNames.indices) {
-            val adapter = LanguagesAdapterView(languageNames, selected) { position: Int ->
-                globalPreferencesViewModel?.setLanguage(position,
-                    this@AppLanguageFragment.resources.getStringArray(R.array.languages_abbreviation)
-                )
-                mainMenuViewModel?.canRefreshFragment = true
-
-                this@AppLanguageFragment.configureLanguage()
-                this@AppLanguageFragment.refreshFragment()
+        mainMenuViewModel?.let { mainMenuViewModel ->
+            if (mainMenuViewModel.languageSelectedOriginal == -1) {
+                mainMenuViewModel.languageSelectedOriginal = selected
             }
+        }
+        globalPreferencesViewModel?.languageList?.let { languageList ->
+            for (i in languageList.indices) {
+                val adapter = LanguagesAdapterView(languageList, selected,
+                    object: LanguagesAdapterView.OnLanguageListener {
+                        override fun onNoteClick(position: Int) {
+                            globalPreferencesViewModel?.setCurrentLanguage(position)
+                            mainMenuViewModel?.canRefreshFragment = true
 
-            recyclerViewLanguages.adapter = adapter
-            try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
-            catch (e: IllegalStateException) { e.printStackTrace() }
-        }*/
+                            this@AppLanguageFragment.configureLanguage()
+                            this@AppLanguageFragment.refreshFragment()
+                        }
+                    })
+
+                recyclerViewLanguages.adapter = adapter
+                try { recyclerViewLanguages.layoutManager = LinearLayoutManager(requireContext()) }
+                catch (e: IllegalStateException) { e.printStackTrace() }
+            }
+        }
     }
 
     private fun handleDiscardChanges() {
         mainMenuViewModel?.let { mainMenuViewModel ->
-            globalPreferencesViewModel?.setLanguage(
-                mainMenuViewModel.languageSelectedOriginal,
-                resources.getStringArray(R.array.languages_abbreviation))
+            globalPreferencesViewModel?.setCurrentLanguage(
+                mainMenuViewModel.languageSelectedOriginal)
             Log.d("Languages",
                 "Set language = ${mainMenuViewModel.languageSelectedOriginal}")
         }
@@ -116,7 +88,7 @@ class AppLanguageFragment : MainMenuFragment() {
     private fun configureLanguage() {
         globalPreferencesViewModel?.let{ globalPreferencesViewModel ->
             try { (requireActivity() as MainMenuActivity).setLanguage(
-                    globalPreferencesViewModel.languageName)
+                    globalPreferencesViewModel.currentLanguageAbbr)
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }

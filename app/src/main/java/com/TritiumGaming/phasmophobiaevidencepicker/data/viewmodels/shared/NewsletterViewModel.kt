@@ -164,7 +164,7 @@ class NewsletterViewModel : SharedViewModel() {
     }
 
     private fun saveLastReadDate(
-        c: Context, editor: SharedPreferences.Editor?, localApply: Boolean, inboxType: InboxType) {
+        editor: SharedPreferences.Editor, localApply: Boolean, inboxType: InboxType) {
 
         val target: String? = when (inboxType) {
             InboxType.PET -> KEY_INBOX_PET
@@ -173,17 +173,17 @@ class NewsletterViewModel : SharedViewModel() {
         }
         getLastReadDate(inboxType)?.let { epochTime ->
             target?.let { target ->
-                editor?.putLong(target, epochTime) } }
+                save(target, epochTime, editor) } }
 
-        if (localApply) { editor?.apply() }
+        if (localApply) { editor.apply() }
     }
 
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
-        saveLastReadDate(context, editor, false, InboxType.GENERAL)
-        saveLastReadDate(context, editor, false, InboxType.PHASMOPHOBIA)
-        saveLastReadDate(context, editor, false, InboxType.PET)
+        saveLastReadDate(editor, false, InboxType.GENERAL)
+        saveLastReadDate(editor, false, InboxType.PHASMOPHOBIA)
+        saveLastReadDate(editor, false, InboxType.PET)
 
         editor.apply()
 
@@ -193,7 +193,7 @@ class NewsletterViewModel : SharedViewModel() {
     fun saveToFile(context: Context, inboxType: InboxType) {
         val editor = getEditor(context)
 
-        saveLastReadDate(context, editor, false, inboxType)
+        saveLastReadDate(editor, false, inboxType)
 
         editor.apply()
 

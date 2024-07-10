@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class LanguagesAdapterView(
-    languages: ArrayList<String>, selected: Int, onLanguageListener: OnLanguageListener
+    languages: ArrayList<GlobalPreferencesViewModel.LanguageObject>, selected: Int,
+    onLanguageListener: OnLanguageListener
 ) : RecyclerView.Adapter<LanguagesAdapterView.ViewHolder>() {
-    private val languages: ArrayList<String>
+    private val languages: ArrayList<GlobalPreferencesViewModel.LanguageObject>
     private val onLanguageListener: OnLanguageListener
 
     companion object {
@@ -52,7 +54,7 @@ class LanguagesAdapterView(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.nameTextView?.let { textView ->
-            textView.text = languages[position]
+            textView.text = languages[position].name
             textView.isSelected = true
         }
         //color on item unselecting item

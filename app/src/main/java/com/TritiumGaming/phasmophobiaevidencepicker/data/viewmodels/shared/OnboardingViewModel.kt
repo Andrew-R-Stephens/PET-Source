@@ -20,40 +20,19 @@ class OnboardingViewModel : SharedViewModel() {
 
         val sharedPref = getSharedPreferences(context)
 
-        showIntroduction = sharedPref.getBoolean(
-            context.resources.getString(R.string.onboarding_canShow_intro),
-            showIntroduction
-        )
+        showIntroduction = sharedPref.getBoolean(context.resources.getString(R.string.onboarding_canShow_intro), showIntroduction)
 
         saveToFile(context)
 
         return true
     }
 
-    fun saveCanShowIntroduction(
-        c: Context, editor: SharedPreferences.Editor?, localApply: Boolean
-    ) {
-        val editor = editor
-
-        editor!!.putBoolean(
-            c.resources.getString(R.string.tutorialTracking_canShowIntroduction),
-            showIntroduction
-        )
-
-        if (localApply) {
-            editor.apply()
-        }
-    }
-
-    /**
-     * saveToFile method
-     *
-     * @param context The Activity context.
-     */
+    /** @param context The Activity context. */
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
-        saveCanShowIntroduction(context, editor, false)
+        //saveCanShowIntroduction(context, editor, false)
+        save(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), showIntroduction, editor)
 
         editor.apply()
     }

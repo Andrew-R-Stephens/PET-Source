@@ -17,8 +17,10 @@ import java.util.Locale
 class GlobalPreferencesViewModel : SharedViewModel() {
 
     companion object Language {
-        const val DEFAULT_LANGUAGE = "en"
+        val DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
     }
+
+    data class LanguageObject(val name: String, val abbreviation: String)
 
     // Review Tracker
     lateinit var reviewRequestData: ReviewTrackingModel
@@ -31,7 +33,8 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         private set
 
     // Language
-    var languageName: String = Locale.getDefault().language
+    var languageList: ArrayList<LanguageObject> = ArrayList()
+    var currentLanguageAbbr: String = Locale.ENGLISH.language
 
     // Generic settings
     var isAlwaysOn: Boolean = false
@@ -43,7 +46,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     fun setHuntWarningFlashTimeMax(maxTime: Long) {
         _huntWarnFlashTimeMax.value = maxTime
     }
-    var _isHuntWarnAudioAllowed = MutableStateFlow(true)
+    private var _isHuntWarnAudioAllowed = MutableStateFlow(true)
     val isHuntWarnAudioAllowed: StateFlow<Boolean> = _isHuntWarnAudioAllowed.asStateFlow()
     fun setHuntWarnAudioAllowed(isAllowed: Boolean) {
         _isHuntWarnAudioAllowed.value = isAllowed
@@ -72,13 +75,27 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     override fun init(context: Context): Boolean {
         setFileName()
 
+        val languageNames = ArrayList(
+            listOf(*context.resources.getStringArray(R.array.languages_name)))
+        val languageAbbrs = ArrayList(
+            listOf(*context.resources.getStringArray(R.array.languages_abbreviation)))
+
+        languageList = ArrayList()
+        if(languageNames.size == languageAbbrs.size) {
+            languageNames.forEachIndexed { index: Int, name: String ->
+                languageList.add(LanguageObject(name, languageAbbrs[index]))
+            }
+        }
+
         val sharedPref = getSharedPreferences(context)
 
         networkPreference =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
-        languageName =
-            sharedPref.getString(context.resources.getString(R.string.preference_language), languageName) ?:
-            Locale.getDefault().language
+
+        currentLanguageAbbr = sharedPref.getString(
+            context.resources.getString(R.string.preference_language),
+            DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
+
         isAlwaysOn =
             sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
 
@@ -124,101 +141,23 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         reviewRequestData.incrementTimesOpened()
 
         try {
-            saveTimesOpened(context, getEditor(context), true)
+            save(context.resources.getString(R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, getEditor(context))
         } catch (e: NullPointerException) {
             e.printStackTrace()
         }
     }
 
-
-    /**
-     * Gets the language saved to GlobalPreferences file.
-     * Defaults to return 'en' if there is no previously saved preference.
-     *
-     * @return The language specified in the Preferences data, or otherwise English
-     */
-    fun getLanguage(context: Context): String {
-        val lang = context.getSharedPreferences(
-            context.resources.getString(fileName), Context.MODE_PRIVATE
-        ).getString("chosenLanguage", DEFAULT_LANGUAGE)
-
-        Log.d("Current Chosen Language", lang!!)
-
-        return lang
-    }
-
-    fun getLanguageIndex(languageNames: ArrayList<String?>): Int {
-        for (i in languageNames.indices) {
-            if (languageName.equals(languageNames[i], ignoreCase = true)) {
-                return i
-            }
-        }
+    fun getCurrentLanguageIndex(): Int {
+        for (i in languageList.indices) {
+            if (currentLanguageAbbr.equals(languageList[i].abbreviation, ignoreCase = true))
+            { return i } }
         return 0
     }
 
-    fun setLanguage(position: Int, languageNames: Array<String?>) {
-        if (position < 0 || position >= languageNames.size) { return }
+    fun setCurrentLanguage(position: Int) {
+        if (position < 0 || position >= languageList.size) { return }
 
-        languageName = languageNames[position] ?: Locale.getDefault().language
-    }
-
-    fun canShowIntroduction(): Boolean {
-        return canShowIntroduction && reviewRequestData.timesOpened <= 1
-    }
-
-    private fun saveNetworkPreference(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.preference_network),
-            networkPreference
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveChosenLanguage(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putString(
-            context.resources.getString(R.string.preference_language),
-            languageName
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveAlwaysOnState(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.preference_isAlwaysOn),
-            isAlwaysOn
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveHuntWarningAudioAllowed(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
-            isHuntWarnAudioAllowed.value
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveHuntWarningFlashTimeout(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putLong(
-            context.resources.getString(R.string.preference_huntWarningFlashTimeout),
-            huntWarnFlashTimeMax.value
-        )
-
-        if (localApply) { editor.apply() }
+        currentLanguageAbbr = languageList[position].abbreviation
     }
 
     fun saveColorSpace(c: Context) {
@@ -228,106 +167,26 @@ class GlobalPreferencesViewModel : SharedViewModel() {
     private fun saveColorSpace(
         context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
     ) {
-        editor.putString(
-            context.resources.getString(R.string.preference_savedTheme),
-            colorThemeID
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveFontType(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putString(context.resources.getString(R.string.preference_savedFont), fontThemeID)
-
-        if (localApply) {
-            editor.apply()
-        }
-    }
-
-    private fun saveAppTimeAlive(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putLong(
-            context.resources.getString(R.string.reviewtracking_appTimeAlive),
-            reviewRequestData.timeActive
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveTimesOpened(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putInt(
-            context.resources.getString(R.string.reviewtracking_appTimesOpened),
-            reviewRequestData.timesOpened
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveCanRequestReview(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.reviewtracking_canRequestReview),
-            reviewRequestData.wasRequested
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveIsLeftHandSupportEnabled(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.preference_isLeftHandSupportEnabled),
-            isLeftHandSupportEnabled
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveReorderGhostViews(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.preference_enableReorderGhostViews),
-            reorderGhostViews
-        )
-
-        if (localApply) { editor.apply() }
-    }
-
-    private fun saveCanShowIntroduction(
-        context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
-    ) {
-        editor.putBoolean(
-            context.resources.getString(R.string.tutorialTracking_canShowIntroduction),
-            canShowIntroduction
-        )
-
+        saveColorSpace(context, editor, localApply)
         if (localApply) { editor.apply() }
     }
 
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
-        saveNetworkPreference(context, editor, false)
-        saveChosenLanguage(context, editor, false)
-        saveAlwaysOnState(context, editor, false)
-        saveHuntWarningAudioAllowed(context, editor, false)
-        saveHuntWarningFlashTimeout(context, editor, false)
-        saveColorSpace(context, editor, false)
-        saveFontType(context, editor, false)
-        saveIsLeftHandSupportEnabled(context, editor, false)
-        saveReorderGhostViews(context, editor, false)
-        saveCanRequestReview(context, editor, false)
-        saveTimesOpened(context, editor, false)
-        saveAppTimeAlive(context, editor, false)
-        saveCanShowIntroduction(context, editor, false)
+        save(context.resources.getString(R.string.preference_network), networkPreference, editor)
+        save(context.resources.getString(R.string.preference_language), currentLanguageAbbr, editor)
+        save(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn, editor)
+        save(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
+        save(context.resources.getString(R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
+        save(context.resources.getString(R.string.preference_savedTheme), colorThemeID, editor)
+        save(context.resources.getString(R.string.preference_savedFont), fontThemeID, editor)
+        save(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled, editor)
+        save(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews, editor)
+        save(context.resources.getString(R.string.reviewtracking_canRequestReview),reviewRequestData.wasRequested, editor)
+        save(context.resources.getString(R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, editor)
+        save(context.resources.getString(R.string.reviewtracking_appTimeAlive), reviewRequestData.timeActive, editor)
+        save(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction, editor)
 
         editor.apply()
     }
@@ -336,7 +195,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         get() {
             val settings = HashMap<String, String?>()
             settings["network_pref"] = networkPreference.toString()
-            settings["language"] = languageName
+            settings["language"] = currentLanguageAbbr
             settings["always_on"] = isAlwaysOn.toString()
             settings["warning_enabled"] = isHuntWarnAudioAllowed.value.toString()
             settings["warning_timeout"] = huntWarnFlashTimeMax.value.toString()
@@ -361,7 +220,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
                 networkPreference
             ) + "; Language: " + sharedPref.getString(
                 context.resources.getString(R.string.preference_language),
-                languageName
+                currentLanguageAbbr
             ) + "; Always On: " + sharedPref.getBoolean(
                 context.resources.getString(R.string.preference_isAlwaysOn),
                 isAlwaysOn
@@ -401,7 +260,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         Log.d(
             "GlobalPreferencesVars",
             "NetworkPreference: " + networkPreference +
-                    "; Language: " + languageName +
+                    "; Language: " + currentLanguageAbbr +
                     "; Always On: " + isAlwaysOn +
                     "; Is Hunt Audio Allowed: " + isHuntWarnAudioAllowed +
                     "; Hunt Warning Flash Timeout: " + huntWarnFlashTimeMax.value +

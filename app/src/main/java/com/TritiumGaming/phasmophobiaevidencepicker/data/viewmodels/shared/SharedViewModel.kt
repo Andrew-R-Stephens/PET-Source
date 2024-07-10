@@ -2,8 +2,10 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 /** @noinspection SameParameterValue
  */
@@ -26,6 +28,32 @@ abstract class SharedViewModel : ViewModel() {
         val sharedPreferences = getSharedPreferences(context)
 
         return sharedPreferences.edit()
+    }
+
+    protected fun read(
+        key: String, value: Any, sharedPref: SharedPreferences): Any? {
+        return when(value) {
+            is Boolean -> { sharedPref.getBoolean(key, value) }
+            is Int -> { sharedPref.getInt(key, value) }
+            is Long -> { sharedPref.getLong(key, value) }
+            is Float -> { sharedPref.getFloat(key, value) }
+            is String -> { sharedPref.getString(key, value) }
+            else -> { null }
+        }
+    }
+
+    protected fun save(
+        key: String, value: Any, editor: SharedPreferences.Editor, localApply: Boolean = false
+    ) {
+        when(value) {
+            is Boolean -> { editor.putBoolean(key, value) }
+            is Int -> { editor.putInt(key, value) }
+            is Long -> { editor.putLong(key, value) }
+            is Float -> { editor.putFloat(key, value) }
+            is String -> { editor.putString(key, value) }
+        }
+
+        if (localApply) { editor.apply() }
     }
 
     abstract fun saveToFile(context: Context)
