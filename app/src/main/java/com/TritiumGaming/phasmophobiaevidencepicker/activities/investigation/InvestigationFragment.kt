@@ -52,7 +52,7 @@ abstract class InvestigationFragment : PETFragment {
     private fun initMapMenuViewModel() {
         if (mapMenuViewModel == null) {
             mapMenuViewModel = ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
-            mapMenuViewModel?.init(requireContext())
+            //mapMenuViewModel?.init(requireContext())
         }
     }
 
@@ -60,7 +60,7 @@ abstract class InvestigationFragment : PETFragment {
         if (objectivesViewModel == null) {
             objectivesViewModel =
                 ViewModelProvider(requireActivity())[ObjectivesViewModel::class.java]
-            objectivesViewModel?.init(requireContext())
+            //objectivesViewModel?.init(requireContext())
         }
     }
 
@@ -68,7 +68,7 @@ abstract class InvestigationFragment : PETFragment {
         if (investigationViewModel == null) {
             investigationViewModel =
                 ViewModelProvider(requireActivity())[InvestigationViewModel::class.java]
-            investigationViewModel?.init(requireContext())
+            //investigationViewModel?.init(requireContext())
         }
         investigationViewModel?.phaseWarnModel?.audioAllowed =
             globalPreferencesViewModel?.isHuntWarnAudioAllowed?.value == true

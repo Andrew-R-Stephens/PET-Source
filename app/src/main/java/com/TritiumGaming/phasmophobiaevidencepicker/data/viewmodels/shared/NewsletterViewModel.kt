@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
@@ -11,7 +12,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 
-class NewsletterViewModel : StoredViewModel() {
+class NewsletterViewModel(application: Application): SharedViewModel(application) {
 
     companion object {
         var KEY_INBOX_GENERAL: String? = null
@@ -74,14 +75,14 @@ class NewsletterViewModel : StoredViewModel() {
         fileName = R.string.preferences_newsletterFile_name
     }
 
-    override fun init(context: Context): Boolean {
+    init {
         setFileName()
 
-        val sharedPref = getSharedPreferences(context)
+        val sharedPref = getSharedPreferences(application)
 
-        KEY_INBOX_GENERAL = context.getString(R.string.preference_newsletter_lastreaddate_general)
-        KEY_INBOX_PET = context.getString(R.string.preference_newsletter_lastreaddate_pet)
-        KEY_INBOX_PHASMOPHOBIA = context.getString(R.string.preference_newsletter_lastreaddate_phas)
+        KEY_INBOX_GENERAL = application.getString(R.string.preference_newsletter_lastreaddate_general)
+        KEY_INBOX_PET = application.getString(R.string.preference_newsletter_lastreaddate_pet)
+        KEY_INBOX_PHASMOPHOBIA = application.getString(R.string.preference_newsletter_lastreaddate_phas)
 
         getInbox(InboxType.GENERAL)?.let{ inbox ->
             val date = sharedPref.getLong(KEY_INBOX_GENERAL, inbox.lastReadDate)
@@ -98,9 +99,7 @@ class NewsletterViewModel : StoredViewModel() {
             setLastReadDate(InboxType.PHASMOPHOBIA, date)
         }
 
-        saveToFile(context)
-
-        return true
+        saveToFile(application)
     }
 
     fun registerInboxes(context: Context) {

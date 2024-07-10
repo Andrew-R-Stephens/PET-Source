@@ -300,9 +300,9 @@ class StartScreenFragment : MainMenuFragment() {
                     else "could not be updated in time." } Loading completed.")
 
                 try {
-                    if (!newsLetterViewModel.init(requireContext())) {
+                    /*if (!newsLetterViewModel.init(requireContext())) {
                         Log.e("MessageCenter", "Initialization failed.")
-                    }
+                    }*/
                     newsLetterViewModel.compareAllInboxDates()
                     if (newsLetterViewModel.requiresNotify) {
                         requireActivity().runOnUiThread { this.doNewsletterNotification() }

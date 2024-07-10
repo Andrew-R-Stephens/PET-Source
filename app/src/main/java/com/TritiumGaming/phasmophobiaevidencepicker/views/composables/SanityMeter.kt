@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,9 +28,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.Investigatio
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 
 @Composable
-@Preview
 fun SanityMeterView(
-    investigationViewModel: InvestigationViewModel = InvestigationViewModel(),
+    investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
 ) {
     val sanityLevel = investigationViewModel.sanityModel?.sanityLevel?.collectAsState()
@@ -110,8 +110,8 @@ fun SanityImageLayer(
 @Composable
 fun SanityPie(
     modifier: Modifier = Modifier,
-    @ColorInt startColor: Int = R.color.white,
-    @ColorInt endColor: Int = Color(R.color.red).toArgb(),
+    @ColorInt startColor: Int = colorResource(R.color.white).toArgb(),
+    @ColorInt endColor: Int = colorResource(R.color.red).toArgb(),
     interpolation: Float = 1f
 ) {
     Box(

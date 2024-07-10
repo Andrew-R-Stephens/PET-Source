@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.Locale
 
-class GlobalPreferencesViewModel : StoredViewModel() {
+class GlobalPreferencesViewModel(application: Application): SharedViewModel(application) {
 
     companion object Language {
         val DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
@@ -72,13 +73,13 @@ class GlobalPreferencesViewModel : StoredViewModel() {
         fileName = R.string.preferences_globalFile_name
     }
 
-    override fun init(context: Context): Boolean {
+    init {
         setFileName()
 
         val languageNames = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.languages_name)))
+            listOf(*application.resources.getStringArray(R.array.languages_name)))
         val languageAbbrs = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.languages_abbreviation)))
+            listOf(*application.resources.getStringArray(R.array.languages_abbreviation)))
 
         languageList = ArrayList()
         if(languageNames.size == languageAbbrs.size) {
@@ -87,54 +88,52 @@ class GlobalPreferencesViewModel : StoredViewModel() {
             }
         }
 
-        val sharedPref = getSharedPreferences(context)
+        val sharedPref = getSharedPreferences(application)
 
         networkPreference =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
+            sharedPref.getBoolean(application.resources.getString(R.string.preference_network), networkPreference)
 
         currentLanguageAbbr = sharedPref.getString(
-            context.resources.getString(R.string.preference_language),
+            application.resources.getString(R.string.preference_language),
             DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
 
         isAlwaysOn =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
+            sharedPref.getBoolean(application.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
 
         setHuntWarnAudioAllowed(
             sharedPref.getBoolean(
-                context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
+                application.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
                 isHuntWarnAudioAllowed.value))
         setHuntWarningFlashTimeMax(
             sharedPref.getLong(
-                context.resources.getString(R.string.preference_huntWarningFlashTimeout),
+                application.resources.getString(R.string.preference_huntWarningFlashTimeout),
                 huntWarnFlashTimeMax.value))
 
         isLeftHandSupportEnabled =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
+            sharedPref.getBoolean(application.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
         canShowIntroduction =
-            sharedPref.getBoolean(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
+            sharedPref.getBoolean(application.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
 
         reorderGhostViews =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
+            sharedPref.getBoolean(application.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
 
         reviewRequestData = ReviewTrackingModel(
-            sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
-            sharedPref.getLong(context.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
-            sharedPref.getInt(context.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
+            sharedPref.getBoolean(application.resources.getString(R.string.reviewtracking_canRequestReview), false),
+            sharedPref.getLong(application.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
+            sharedPref.getInt(application.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
         )
 
-        fontThemeControl = FontThemeControl(context)
+        fontThemeControl = FontThemeControl(application)
         fontThemeControl.init(sharedPref.getString(
-                context.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
+            application.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
         )
 
-        colorThemeControl = ColorThemeControl(context)
+        colorThemeControl = ColorThemeControl(application)
         colorThemeControl.init(sharedPref.getString(
-                context.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
+            application.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
         )
 
-        saveToFile(context)
-
-        return true
+        saveToFile(application)
     }
 
     fun incrementAppOpenCount(context: Context) {

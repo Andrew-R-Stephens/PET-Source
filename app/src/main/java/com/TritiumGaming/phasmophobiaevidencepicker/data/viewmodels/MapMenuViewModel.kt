@@ -1,9 +1,11 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.DrawableRes
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel
@@ -14,7 +16,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.
  *
  * @author TritiumGamingStudios
  */
-class MapMenuViewModel : ViewModel() {
+class MapMenuViewModel(application: Application): AndroidViewModel(application) {
 
     var imageDisplayThread: Thread? = null
 
@@ -56,8 +58,8 @@ class MapMenuViewModel : ViewModel() {
             return mapThumbnails
         }
 
-    fun init(context: Context) {
-        if (mapsData.isEmpty()) buildMapData(context)
+    init {
+        if (mapsData.isEmpty()) buildMapData(application)
     }
 
     @SuppressLint("ResourceType")

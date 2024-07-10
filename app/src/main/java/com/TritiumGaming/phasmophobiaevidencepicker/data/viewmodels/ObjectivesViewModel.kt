@@ -1,10 +1,12 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
+import android.app.Application
 import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions.MissionsListModel
 
-class ObjectivesViewModel : ViewModel() {
+class ObjectivesViewModel(application: Application): AndroidViewModel(application) {
 
     companion object {
         const val UNKNOWN: Response = 0
@@ -27,8 +29,8 @@ class ObjectivesViewModel : ViewModel() {
     /* Response */
     var responseState: Response = UNKNOWN // alone , group
 
-    fun init(context: Context) {
-        missionsListModel = missionsListModel ?: MissionsListModel(context)
+    init {
+        missionsListModel = missionsListModel ?: MissionsListModel(application)
     }
 
     fun toggleCompletionStatus(spinnerIndex: Int) {

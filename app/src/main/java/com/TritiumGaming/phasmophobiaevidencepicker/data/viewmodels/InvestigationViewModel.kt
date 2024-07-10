@@ -1,8 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
+import android.app.Application
 import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
@@ -16,10 +18,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class InvestigationViewModel : ViewModel() {
-
-    private val _radioButtonsChecked :  MutableStateFlow<SnapshotStateList<Int>> = MutableStateFlow(mutableStateListOf())
-    val radioButtonsChecked = _radioButtonsChecked.asStateFlow()
+class InvestigationViewModel(application: Application): AndroidViewModel(application) {
 
     var investigationModel: InvestigationModel? = null
 
@@ -38,16 +37,14 @@ class InvestigationViewModel : ViewModel() {
 
     var sanityRunnable: SanityRunnable? = null
 
-    private var rejectionPile: BooleanArray? = null
-
     var isDrawerCollapsed = false
 
-    fun init(context: Context) {
-        initInvestigationModel(context)
+    init {
+        initInvestigationModel(application)
 
-        mapCarouselModel = mapCarouselModel ?: MapCarouselModel(context, this)
+        mapCarouselModel = mapCarouselModel ?: MapCarouselModel(application, this)
         difficultyCarouselModel =
-            difficultyCarouselModel ?: DifficultyCarouselModel(context, this)
+            difficultyCarouselModel ?: DifficultyCarouselModel(application, this)
         timerModel = timerModel ?: PhaseTimerModel(this)
         phaseWarnModel = phaseWarnModel ?: PhaseWarningModel(this)
 
@@ -57,64 +54,13 @@ class InvestigationViewModel : ViewModel() {
     private fun initInvestigationModel(context: Context) {
         investigationModel =
             investigationModel ?: InvestigationModel(context, this)
-        if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
-    }
-
-    private fun createRadioButtonsChecked() {
-        _radioButtonsChecked.value.clear()
-        investigationModel?.evidenceListModel?.evidenceList?.forEach { _ ->
-            _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
-        }
-    }
-
-    private fun resetRadioButtonsChecked() {
-        _radioButtonsChecked.value.fill(1)
-    }
-
-    fun setRadioButtonChecked(evidenceIndex: Int, buttonIndex: Int) {
-        try { _radioButtonsChecked.value[evidenceIndex] = buttonIndex }
-        catch (ex : IndexOutOfBoundsException) { ex.printStackTrace() }
-    }
-
-    private fun createRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
-    }
-
-    fun swapStatusInRejectedPile(index: Int): Boolean {
-        val pile = getRejectionPile()
-        pile!![index] = !pile[index]
-        return pile[index]
-    }
-
-    private fun updateRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
-        rejectionPile?.let { rejectionPile ->
-            for (i in rejectionPile.indices) {
-                rejectionPile[i] =
-                    investigationModel?.ghostListModel?.getAt(i)?.forcefullyRejected == true
-            }
-        }
-    }
-
-    fun getRejectionPile(): BooleanArray? {
-        rejectionPile ?: updateRejectionPile()
-        return rejectionPile
     }
 
     fun reset() {
-        resetRadioButtonsChecked()
-        createRejectionPile()
         timerModel?.reset()
         investigationModel?.reset()
         sanityModel?.reset()
         phaseWarnModel?.reset()
     }
-
-    /*
-    fun addObservers(observerBlocks: suspend () -> Unit) {
-        viewModelScope.launch {
-            observerBlocks()
-        }
-    }*/
 
 }

@@ -70,7 +70,7 @@ abstract class PETActivity : AppCompatActivity() {
         globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel::class.java)
         globalPreferencesViewModel =
             ViewModelProvider(this)[GlobalPreferencesViewModel::class.java]
-        globalPreferencesViewModel?.init(this@PETActivity)
+        //globalPreferencesViewModel?.init(this@PETActivity)
     }
 
     private fun initPermissionsViewModel(factory: AndroidViewModelFactory) {

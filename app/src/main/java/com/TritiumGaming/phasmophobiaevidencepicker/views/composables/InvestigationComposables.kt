@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
@@ -26,14 +27,13 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionS
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
 
 @Composable
-@Preview
 fun RulingGroup(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel = viewModel<InvestigationViewModel>(),
+    investigationModel: InvestigationModel,
     groupIndex: Int = 0,
     onClick: () -> Unit = {}
 ) {
-    val radioButtonState by investigationViewModel.radioButtonsChecked.collectAsState()
+    val radioButtonState by investigationModel.radioButtonsChecked.collectAsState()
 
     Row(
         modifier = modifier
@@ -43,7 +43,7 @@ fun RulingGroup(
     ) {
         EvidenceModel.Ruling.entries.forEachIndexed { index, _ ->
             RulingSelector(
-                investigationViewModel = investigationViewModel,
+                investigationModel = investigationModel,
                 groupIndex = groupIndex,
                 rulingType = SelectionState(index),
                 rulingState = index == radioButtonState[groupIndex],
@@ -55,21 +55,19 @@ fun RulingGroup(
                     .weight(1f)
             )
         }
-
     }
 }
 
 @Composable
-@Preview
 fun RulingSelector(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel = viewModel<InvestigationViewModel>(),
+    investigationModel: InvestigationModel,
     groupIndex: Int = 0,
     rulingType: SelectionState = Neutral,
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
-    val radioButtons = investigationViewModel.radioButtonsChecked.collectAsState()
+    val radioButtons = investigationModel.radioButtonsChecked.collectAsState()
 
     val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
@@ -85,14 +83,13 @@ fun RulingSelector(
     IconButton(
         modifier = modifier,
         onClick = {
-            investigationViewModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            investigationViewModel.investigationModel?.evidenceListModel?.evidenceList
-                ?.get(groupIndex)?.ruling =
+            investigationModel.setRadioButtonChecked(groupIndex, rulingType.value)
+            investigationModel.evidenceListModel.evidenceList[groupIndex].ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
+            investigationModel.ghostOrderModel.updateOrder()
 
             Log.d("Updated",
-                investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
+                investigationModel.ghostOrderModel.currOrder
                     .contentToString())
 
             onSelection()
@@ -122,27 +119,11 @@ fun RulingSelector(
 
 @JvmInline
 value class SelectionState(val value: Int) {
-
     companion object {
         val Negative = SelectionState(0)
         val Neutral = SelectionState(1)
         val Positive = SelectionState(2)
 
         fun values(): List<SelectionState> = listOf(Negative, Neutral, Positive)
-    }
-}
-
-fun setRulingGroup(
-    composeView: ComposeView?,
-    investigationViewModel: InvestigationViewModel = InvestigationViewModel(),
-    groupIndex: Int = 0,
-    onChange: () -> Unit = {}
-) {
-    composeView?.setContent {
-        RulingGroup(
-            investigationViewModel = investigationViewModel,
-            groupIndex = groupIndex,
-            onClick = onChange
-        )
     }
 }

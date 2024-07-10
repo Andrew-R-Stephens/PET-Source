@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.setRulingGroup
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.RulingGroup
 
 class EvidenceView : ConstraintLayout {
 
@@ -48,15 +48,20 @@ class EvidenceView : ConstraintLayout {
         layoutParams = params
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         nameView?.text = investigationViewModel.investigationModel?.evidenceListModel
             ?.evidenceList?.get(groupIndex)?.name
-
-        val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
-        setRulingGroup(radioGroupComposable, investigationViewModel, groupIndex) {
-            onSelectEvidenceIcon(ghostList) }
+        investigationViewModel.investigationModel?.let {
+            val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
+            radioGroupComposable?.setContent {
+                RulingGroup(
+                    investigationModel = it,
+                    groupIndex = groupIndex,
+                    onClick = { onSelectEvidenceIcon(ghostList) }
+                )
+            }
+        }
 
         visibility = INVISIBLE
         alpha = 0f
@@ -67,8 +72,7 @@ class EvidenceView : ConstraintLayout {
                     super.onAnimationStart(animation)
                     visibility = VISIBLE
                 }
-            }
-            )
+            })
             .alpha(1f)
             .setStartDelay((10f * groupIndex).toLong())
             .setDuration(100)

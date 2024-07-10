@@ -160,7 +160,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
     private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        investigationViewModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
+        investigationViewModel?.investigationModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
             if (rejectionStatus) { statusIcon.setImageLevel(1) }
             else {
                 val score = ghost.evidenceScore
@@ -177,7 +177,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
         override fun onFling(
             e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
             investigationViewModel?.let { investigationViewModel ->
-                val status = !investigationViewModel.swapStatusInRejectedPile(index)
+                investigationViewModel.investigationModel?.swapStatusInRejectedPile(index)
                 investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
                 investigationViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
                     redrawGhostRejectionStatus(ghostModel, index, true)
