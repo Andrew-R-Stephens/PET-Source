@@ -9,7 +9,7 @@ import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.tasks.Task
+import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class ReviewLauncher {
@@ -29,8 +29,11 @@ class ReviewLauncher {
                         Log.e("ReviewManager", "Task Successful")
                         // We can get the ReviewInfo object
                         try {
-                            manager.launchReviewFlow(activity, requestTask.result)
-                                .addOnCompleteListener { Log.d("ReviewFlow", "Complete.") }
+                            requestTask.result?.let { result ->
+                                manager.launchReviewFlow(activity, result)
+                                    .addOnCompleteListener { Log.d("ReviewFlow", "Complete.") }
+                            }
+
                         } catch (e: IllegalStateException) { e.printStackTrace() }
 
                         val intent = Intent(Intent.ACTION_VIEW)

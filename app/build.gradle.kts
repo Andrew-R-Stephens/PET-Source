@@ -161,11 +161,16 @@ dependencies {
     // IN-APP REVIEWS
     /* This dependency is downloaded from the Google’s Maven repository.
      * So, make sure you also include that repository in your project's build.gradle file.*/
-    implementation (libs.android.play.core)
+    implementation (libs.android.play.core.review)
     // For Kotlin users also add the Kotlin extensions library for Play Core:
-    implementation (libs.android.play.coreKtx)
-    // This dependency is downloaded from the Google’s Maven repository.
-    // So, make sure you also include that repository in your project's build.gradle file.
+    implementation (libs.android.play.coreKtx.review)
+
+    // IN-APP UPDATES
+    /* This dependency is downloaded from the Google’s Maven repository.
+     * So, make sure you also include that repository in your project's build.gradle file.*/
+    implementation (libs.android.play.core.update)
+    // For Kotlin users also add the Kotlin extensions library for Play Core:
+    implementation (libs.android.play.coreKtx.update)
 
     // FRAGMENTS
     // Java language implementation
