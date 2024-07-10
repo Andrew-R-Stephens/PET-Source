@@ -5,9 +5,7 @@ import android.content.SharedPreferences
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 
-/** @noinspection SameParameterValue
- */
-abstract class SharedViewModel : ViewModel() {
+abstract class StoredViewModel : ViewModel() {
 
     @StringRes protected var fileName: Int = 0
 

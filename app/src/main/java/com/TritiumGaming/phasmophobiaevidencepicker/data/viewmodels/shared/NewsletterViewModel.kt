@@ -11,7 +11,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 
-class NewsletterViewModel : SharedViewModel() {
+class NewsletterViewModel : StoredViewModel() {
 
     companion object {
         var KEY_INBOX_GENERAL: String? = null

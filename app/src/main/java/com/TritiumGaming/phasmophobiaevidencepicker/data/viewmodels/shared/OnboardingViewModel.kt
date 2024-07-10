@@ -6,7 +6,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 /** @noinspection SameParameterValue
  */
-class OnboardingViewModel : SharedViewModel() {
+class OnboardingViewModel : StoredViewModel() {
 
     var showIntroduction: Boolean = true
 

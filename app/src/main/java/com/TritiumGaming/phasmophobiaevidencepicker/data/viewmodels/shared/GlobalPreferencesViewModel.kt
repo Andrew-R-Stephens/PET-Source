@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.Locale
 
-class GlobalPreferencesViewModel : SharedViewModel() {
+class GlobalPreferencesViewModel : StoredViewModel() {
 
     companion object Language {
         val DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
