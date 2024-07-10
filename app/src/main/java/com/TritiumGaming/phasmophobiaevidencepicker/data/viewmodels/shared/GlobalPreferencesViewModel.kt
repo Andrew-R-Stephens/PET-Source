@@ -24,13 +24,13 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     data class LanguageObject(val name: String, val abbreviation: String)
 
     // Review Tracker
-    lateinit var reviewRequestData: ReviewTrackingModel
+    var reviewRequestData: ReviewTrackingModel
         private set
 
     // Persistent Styles
-    lateinit var fontThemeControl: FontThemeControl
+    var fontThemeControl: FontThemeControl
         private set
-    lateinit var colorThemeControl: ColorThemeControl
+    var colorThemeControl: ColorThemeControl
         private set
 
     // Language

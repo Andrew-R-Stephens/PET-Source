@@ -234,6 +234,9 @@ dependencies {
 
     implementation (libs.coilKt.compose)
 
+    // DataStore
+    implementation (libs.androidx.datastore.preferences)
+
     /*
         ----- END -----
     */
