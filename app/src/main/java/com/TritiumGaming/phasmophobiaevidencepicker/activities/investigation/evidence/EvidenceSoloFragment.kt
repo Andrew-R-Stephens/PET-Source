@@ -70,12 +70,8 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 }
             }
 
-        var appLang: String? = null
-        try { appLang = (requireActivity() as InvestigationActivity).appLanguage }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-
         val huntWarningListener: SanityRunnable.HuntWarningAudioListener? = null
-        appLang?.let { language ->
+        globalPreferencesViewModel?.currentLanguageAbbr?.let { language ->
             object : SanityRunnable.HuntWarningAudioListener() {
                 private fun createMediaPlayer(language: String): MediaPlayer? {
                     var p: MediaPlayer? = null
@@ -92,7 +88,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 }
 
                 override fun init() {
-                    lang = appLang
+                    lang = language
                     mediaPlayer = createMediaPlayer(language)
                 }
 

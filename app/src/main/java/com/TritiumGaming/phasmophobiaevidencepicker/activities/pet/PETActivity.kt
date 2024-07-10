@@ -80,9 +80,7 @@ abstract class PETActivity : AppCompatActivity() {
     }
 
     private fun initPermissionsViewModel(factory: AndroidViewModelFactory) {
-        permissionsViewModel = factory.create(
-            PermissionsViewModel::class.java
-        )
+        permissionsViewModel = factory.create(PermissionsViewModel::class.java)
         permissionsViewModel = ViewModelProvider(this)[PermissionsViewModel::class.java]
     }
 
@@ -128,11 +126,6 @@ abstract class PETActivity : AppCompatActivity() {
 
         return isChanged
     }
-
-    val appLanguage: String
-        /** @return the abbreviation of the chosen language that's saved to file
-         */
-        get() = globalPreferencesViewModel?.currentLanguageAbbr ?: Locale.getDefault().language
 
     private fun automaticSignInAccount() {
         if (FirebaseAuth.getInstance().currentUser != null) {

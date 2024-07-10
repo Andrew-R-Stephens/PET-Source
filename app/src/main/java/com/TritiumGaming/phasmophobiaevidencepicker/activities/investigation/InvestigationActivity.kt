@@ -67,7 +67,8 @@ open class InvestigationActivity : PETActivity() {
 
     override fun loadPreferences() {
         super.loadPreferences()
-        setLanguage(appLanguage)
+        globalPreferencesViewModel?.currentLanguageAbbr?.let { globalPreferencesViewModel ->
+            setLanguage(globalPreferencesViewModel) }
     }
 
     override fun onRequestPermissionsResult(

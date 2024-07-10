@@ -34,7 +34,7 @@ class GlobalPreferencesViewModel : SharedViewModel() {
 
     // Language
     var languageList: ArrayList<LanguageObject> = ArrayList()
-    var currentLanguageAbbr: String = Locale.ENGLISH.language
+    var currentLanguageAbbr: String = DEFAULT_LANGUAGE
 
     // Generic settings
     var isAlwaysOn: Boolean = false
@@ -141,7 +141,10 @@ class GlobalPreferencesViewModel : SharedViewModel() {
         reviewRequestData.incrementTimesOpened()
 
         try {
-            save(context.resources.getString(R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, getEditor(context))
+            save(
+                context.resources.getString(R.string.reviewtracking_appTimesOpened),
+                reviewRequestData.timesOpened,
+                getEditor(context))
         } catch (e: NullPointerException) {
             e.printStackTrace()
         }
