@@ -28,7 +28,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout88"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rect_border"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout95"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,27 +36,29 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.carousel.MapCarouselLayout
-                    android:id="@+id/mapCarouselView"
+                    android:id="@+id/mapCarouselLayout"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     app:SanityCarouselLayoutName="None"
                     app:SanityCarouselLayoutTitle="@string/investigation_timer_maplabel"
-                    app:layout_constraintBottom_toTopOf="@+id/difficultyCarouselView"
+                    app:SanityCarouselLayoutImage="@drawable/icon_nav_mapmenu2"
+                    app:layout_constraintBottom_toTopOf="@+id/difficultyCarouselLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.carousel.DifficultyCarouselLayout
-                    android:id="@+id/difficultyCarouselView"
+                    android:id="@+id/difficultyCarouselLayout"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     app:SanityCarouselLayoutName="None"
                     app:SanityCarouselLayoutTitle="@string/investigation_timer_difficulty_label"
+                    app:SanityCarouselLayoutImage="@drawable/ic_puzzle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mapCarouselView" />
+                    app:layout_constraintTop_toBottomOf="@+id/mapCarouselLayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,13 +76,13 @@
                     android:id="@+id/sanityWarningLayout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout93"
+                    app:layout_constraintBottom_toTopOf="@+id/phaseTimerLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.timer.PhaseTimerLayout
-                    android:id="@+id/constraintLayout93"
+                    android:id="@+id/phaseTimerLayout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
@@ -97,12 +99,13 @@
         <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.controller.SanityTrackerLayout
             android:id="@+id/sanityTrackerView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_border"
             android:padding="4dp"
-            app:layout_constraintHeight_percent=".2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
 

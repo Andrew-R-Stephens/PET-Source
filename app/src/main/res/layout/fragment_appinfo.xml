@@ -8,58 +8,6 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout38"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-            android:id="@+id/button_topnav_left"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:PETImageButtonType="back"
-            android:tint="?attr/textColorBody"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        &lt;!&ndash;
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-            android:id="@+id/popup_close_button"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:adjustViewBounds="true"
-            android:background="@color/transparent"
-            android:padding="4dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_negative_unselected"
-            android:tint="?attr/textColorSecondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        &ndash;&gt;
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/label_settingstitle"
-            style="?attr/primaryFont_Regular_AutoSqueeze"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="56dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_min="wrap"
-            app:layout_constraintStart_toEndOf="@+id/button_topnav_left"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
     <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
@@ -127,14 +75,13 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/aboutinfo_developerinfo_title"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/aboutinfo_developerinfo_title"
             android:textColor="?attr/textColorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout37"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -173,7 +120,7 @@
                     android:id="@+id/textview_devTitle_name"
                     style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="18dp"
                     android:gravity="center"
                     android:text="@string/aboutinfo_developerinfo_devname" />
 
@@ -191,7 +138,7 @@
                     android:id="@+id/textview_devEmail_name"
                     style="?attr/secondaryFont_Regular_AutoSqueeze"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="18dp"
                     android:gravity="center"
                     android:text="@string/aboutinfo_developerinfo_address" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -205,6 +152,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:padding="8dp"
             android:background="@drawable/listitem_circled"
             android:backgroundTint="?attr/light_inactive"
             android:backgroundTintMode="multiply"
@@ -224,6 +172,7 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_discord"
                 android:tint="?attr/textColorPrimary"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/appinfo_joinDiscord"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,13 +195,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/aboutinfo_specialthanks_title"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="36dp"
             android:gravity="center"
             android:text="@string/aboutinfo_specialthanks_title"
             android:textColor="?attr/textColorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/aboutapp_specialthanks_scrollview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_discord" />
 

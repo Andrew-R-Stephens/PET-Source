@@ -34,6 +34,7 @@
         android:id="@+id/constraintLayout65"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,41 +57,30 @@
             app:tint="#37AAAAAA"
             app:tintMode="multiply" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#00FFFFFF"
+        <GridView
+            android:id="@+id/grid_maps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="50sp"
+            android:gravity="center"
+            android:horizontalSpacing="20sp"
+            android:numColumns="4"
+            android:paddingStart="0sp"
+            android:paddingEnd="10sp"
+            android:requiresFadingEdge="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideOverlay"
+            android:verticalSpacing="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".85">
-
-            <GridView
-                android:id="@+id/grid_maps"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fadeScrollbars="false"
-                android:fadingEdge="vertical"
-                android:fadingEdgeLength="50sp"
-                android:gravity="center"
-                android:horizontalSpacing="20sp"
-                android:numColumns="4"
-                android:paddingStart="0sp"
-                android:paddingEnd="10sp"
-                android:requiresFadingEdge="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:scrollbarStyle="outsideOverlay"
-                android:verticalSpacing="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </GridView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintWidth_percent=".85"
+            app:srcCompat="@drawable/icon_map_sm"
+            app:tint="#37AAAAAA" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

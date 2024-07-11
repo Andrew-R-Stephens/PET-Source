@@ -16,70 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout38"
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+            android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            app:NavHeaderLayoutButtonLeft="back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-                android:id="@+id/button_topnav_left"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:PETImageButtonType="back"
-                android:tint="?attr/textColorBody"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-                android:id="@+id/popup_close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="@color/transparent"
-                android:padding="4dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_negative_unselected"
-                android:tint="?attr/textColorSecondary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            -->
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_settingstitle"
-                style="?attr/primaryFont_Regular_AutoSqueeze"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="56dp"
-                android:gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/label_version"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_min="30dp"
-                app:layout_constraintStart_toEndOf="@+id/button_topnav_left"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_version"
-                style="?attr/secondaryFont_Regular_AutoSqueeze"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/label_settingstitle"
-                app:layout_constraintHeight_min="18dp"
-                app:layout_constraintHeight_percent=".3"
-                app:layout_constraintStart_toStartOf="@+id/label_settingstitle"
-                app:layout_constraintTop_toBottomOf="@+id/label_settingstitle" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout39"
@@ -88,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout40"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
+            app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout">
 
             <ScrollView
                 android:id="@+id/scrollView2"
@@ -181,18 +125,29 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout39">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_version"
+                style="?attr/secondaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/aboutinfo_developerinfo_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/aboutinfo_developerinfo_title"
                 style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="36dp"
                 android:gravity="center"
                 android:text="@string/aboutinfo_developerinfo_title"
                 android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout37"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/label_version" />
 
             <ScrollView
                 android:id="@+id/constraintLayout37"
@@ -228,7 +183,7 @@
                         android:id="@+id/textview_devTitle_name"
                         style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="18dp"
                         android:gravity="center"
                         android:text="@string/aboutinfo_developerinfo_devname" />
 
@@ -246,7 +201,7 @@
                         android:id="@+id/textview_devEmail_name"
                         style="?attr/secondaryFont_Regular_AutoSqueeze"
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="18dp"
                         android:gravity="center"
                         android:text="@string/aboutinfo_developerinfo_address" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -257,13 +212,12 @@
                 android:id="@+id/aboutinfo_specialthanks_title"
                 style="?attr/primaryFont_Regular_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="36dp"
                 android:gravity="center"
                 android:text="@string/aboutinfo_specialthanks_title"
                 android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/aboutapp_specialthanks_scrollview"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout37" />
 
@@ -278,7 +232,6 @@
                 android:scrollbarThumbVertical="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutinfo_specialthanks_title"
                 tools:ignore="SpeakableTextPresentCheck">
