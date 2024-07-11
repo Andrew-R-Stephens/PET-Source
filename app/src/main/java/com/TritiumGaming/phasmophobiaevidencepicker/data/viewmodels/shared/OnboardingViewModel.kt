@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 /** @noinspection SameParameterValue

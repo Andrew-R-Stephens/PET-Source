@@ -146,7 +146,7 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:text="@string/map_floor_name_ground"
+                        android:text="@string/map_name_bleasdale"
                         app:layout_constraintBottom_toBottomOf="@+id/imageview_flooricon3"
                         app:layout_constraintEnd_toStartOf="@+id/textview_floorname"
                         app:layout_constraintStart_toEndOf="@+id/button_back"

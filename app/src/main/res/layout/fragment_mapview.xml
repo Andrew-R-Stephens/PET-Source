@@ -76,7 +76,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/map_name_asylum"
+                android:text="@string/map_name_bleasdale"
                 android:textColor="?attr/textColorBody"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearlayout_floorindicators"

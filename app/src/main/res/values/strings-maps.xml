@@ -9,7 +9,7 @@
     <string name="mapview_instruction_pan">Pan: Drag one finger</string>
 
     <!-- Map Names -->
-    <string name="map_name_asylum" translatable="false">Asylum</string>
+    <!--<string name="map_name_asylum" translatable="false">Asylum</string>-->
     <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
     <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
     <string name="map_name_campmaple" translatable="false">Maple Lodge</string>

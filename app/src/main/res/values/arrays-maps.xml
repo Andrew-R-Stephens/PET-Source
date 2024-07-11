@@ -74,7 +74,7 @@
     <!-- int - Map size (1-3) -->
     <!-- Drawable - Map Thumbnail -->
     <!-- Map images -->
-    <integer-array name= "map_asylum_array">
+    <!--<integer-array name= "map_asylum_array">
         <item>@string/map_name_asylum</item>
         <item>@array/map_asylum_image_array</item>
         <item>@array/map_asylum_image_array</item>
@@ -84,7 +84,7 @@
         <item>2</item>
         <item>@drawable/thumbnail_asylum</item>
         <item>@array/map_asylum_image_array</item>
-    </integer-array>
+    </integer-array>-->
     <integer-array name= "map_meadows_array">
         <item>@string/map_name_meadows</item>
         <item>@array/map_meadows_image_array</item>
@@ -390,10 +390,10 @@
     -->
 
     <!-- Map-Specific arrays of all their Layer names -->
-    <integer-array name="map_asylum_layerName_array">
+    <!--<integer-array name="map_asylum_layerName_array">
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
-    </integer-array>
+    </integer-array>-->
     <integer-array name="map_meadows_layerName_array">
         <item>@string/map_floor_name_basement</item>
         <item>@string/map_floor_name_first</item>
@@ -448,9 +448,9 @@
 
 
     <!-- Map-Specific arrays of all their image background resources -->
-    <integer-array name= "map_asylum_image_array">
-        <item>@drawable/map_coming_soon</item>
-    </integer-array>
+    <!--<integer-array name= "map_asylum_image_array">
+        <item>@drawable/map_sunnymeadows_basement</item>
+    </integer-array>-->
     <integer-array name= "map_meadows_image_array">
         <item>@drawable/map_sunnymeadows_basement</item>
         <item>@drawable/map_sunnymeadows_firstfloor</item>

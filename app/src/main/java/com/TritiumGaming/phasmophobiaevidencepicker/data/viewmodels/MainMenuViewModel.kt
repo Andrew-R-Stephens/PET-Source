@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.startscreen.AnimationModel
 import com.google.android.gms.ads.AdRequest
 
