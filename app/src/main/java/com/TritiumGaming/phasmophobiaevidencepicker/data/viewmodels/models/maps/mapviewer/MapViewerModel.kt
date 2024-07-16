@@ -26,11 +26,6 @@ class MapViewerModel {
     val floorName: Int
         get() = floorNames[currentFloor]
 
-    /*
-    val allCurrentFloorLayers: ArrayList<Int>
-        get() = allFloorLayers[currentFloor]
-    */
-
     fun addFloorLayer(floorIndex: Int, layer: Int) {
         if (allFloorLayers.isEmpty() || floorIndex >= allFloorLayers.size) {
             val temp = ArrayList<Int>()

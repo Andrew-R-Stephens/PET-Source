@@ -13,8 +13,8 @@ class MapDesBlueprint {
         @SerializedName("map_id") var mapId: Int = 0
         @SerializedName("map_name") var mapName: String = ""
         @SerializedName("map_name_short") var mapNameShort: String = ""
-        @SerializedName("map_floors") val mapFloors: ArrayList<Floor> = ArrayList()
-        @SerializedName("map_dimensions") val mapDimensions: WorldDimensions = WorldDimensions()
+        @SerializedName("map_floors") var mapFloors: ArrayList<Floor> = ArrayList()
+        @SerializedName("map_dimensions") var mapDimensions: WorldDimensions = WorldDimensions()
 
         @Keep
         class WorldDimensions {
@@ -30,8 +30,8 @@ class MapDesBlueprint {
         class Floor {
             @SerializedName("floor_id") var floorId: Int = 0
             @SerializedName("floor_number") var floorNumber: Int = 0
-            @SerializedName("floor_name") val floorName: String = ""
-            @SerializedName("image_file") val imageFile: String = ""
+            @SerializedName("floor_name") var floorName: String = ""
+            @SerializedName("image_file") var imageFile: String = ""
             @SerializedName("floor_pois") var floorPOIs: ArrayList<POI> = ArrayList()
             @SerializedName("floor_rooms") var floorRooms: ArrayList<Room> = ArrayList()
 
@@ -86,7 +86,7 @@ class MapDesBlueprint {
         }
 
         fun print() {
-            Log.d("Maps", mapId.toString() + ": " + mapName + ", Floor Count: " + mapFloors.size)
+            Log.d("Maps", "$mapId : $mapName, ($mapNameShort), Floor Count: $mapFloors.size")
             mapDimensions.print()
             for (f in mapFloors) { f.print() }
         }

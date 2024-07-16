@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel
@@ -58,11 +60,13 @@ class MapMenuViewModel(application: Application): AndroidViewModel(application) 
         }
 
     init {
-        if (mapsData.isEmpty()) buildMapData(application)
+        /*if (mapsData.isEmpty())*/ buildMapData(application)
     }
 
     @SuppressLint("ResourceType")
     fun buildMapData(context: Context) {
+        Log.d("Map", "Building map data")
+
         val resources: Resources = context.resources
         val allMapsTypedArray =
             resources.obtainTypedArray(R.array.maps_resources_array)
@@ -111,7 +115,7 @@ class MapMenuViewModel(application: Application): AndroidViewModel(application) 
         }
         allMapsTypedArray.recycle()
 
-        this.mapsData = tempMapsData // finaly set maps temp array into maps array
+        this.mapsData = tempMapsData // finally, set maps temp array into maps array
     }
 
     fun hasCurrentMapData(): Boolean {

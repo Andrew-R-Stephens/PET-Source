@@ -105,6 +105,12 @@
     <string name="map_floor_name_first">Primo Piano</string>
     <string name="map_floor_name_second">Secondo Piano</string>
     <string name="map_floor_name_third">Terzo Piano</string>
+    <string name="map_floor_name_fifth">Quinto Piano</string>
+    <string name="map_floor_name_sixth">Sesto Piano</string>
+    <string name="map_floor_name_seventh">Settimo Piano</string>
+    <string name="map_floor_name_eighth">Ottavo Piano</string>
+    <string name="map_floor_name_ninth">Nono Piano</string>
+    <string name="map_floor_name_tenth">Decimo Piano</string>
     <string name="map_floor_name_attic">Attico</string>
     <string name="map_floor_name_basement">Seminterrato</string>
 
@@ -658,4 +664,5 @@
 
     <string name="navigation_open_state">Cassetto di navigazione aperto.</string>
     <string name="navigation_closed_state">Cassetto di navigazione chiuso.</string>
+    <string name="map_floor_name_fourth">Quarto Piano</string>
 </resources>

@@ -107,6 +107,12 @@
     <string name="map_floor_name_first">第一层</string>
     <string name="map_floor_name_second">二楼</string>
     <string name="map_floor_name_third">三楼</string>
+    <string name="map_floor_name_fifth">五楼</string>
+    <string name="map_floor_name_sixth">六楼</string>
+    <string name="map_floor_name_seventh">七楼</string>
+    <string name="map_floor_name_eighth">八楼</string>
+    <string name="map_floor_name_ninth">九楼</string>
+    <string name="map_floor_name_tenth">十楼</string>
     <string name="map_floor_name_attic">阁楼</string>
     <string name="map_floor_name_basement">地下室</string>
 
@@ -655,4 +661,5 @@
     <string name="codex_section_more">更多即将推出</string>
     <string name="navigation_open_state">导航抽屉已打开。</string>
     <string name="navigation_closed_state">导航抽屉已关闭。</string>
+    <string name="map_floor_name_fourth">四楼</string>
 </resources>

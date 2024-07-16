@@ -607,6 +607,12 @@
     <string name="map_floor_name_first">Premier étage</string>
     <string name="map_floor_name_second">Deuxième étage</string>
     <string name="map_floor_name_third">Troisième étage</string>
+    <string name="map_floor_name_fifth">Cinquième étage</string>
+    <string name="map_floor_name_sixth">Sixième étage</string>
+    <string name="map_floor_name_seventh">Septième étage</string>
+    <string name="map_floor_name_eighth">Huitième étage</string>
+    <string name="map_floor_name_ninth">Neuvième étage</string>
+    <string name="map_floor_name_tenth">Dixième étage</string>
     <string name="map_floor_name_attic">Grenier</string>
     <string name="map_floor_name_basement">Sous-sol</string>
     <string name="general_codex_button">Manuscrit</string>
@@ -1185,4 +1191,5 @@
 
     <string name="navigation_open_state">Tiroir de navigation ouvert.</string>
     <string name="navigation_closed_state">Tiroir de navigation fermé.</string>
+    <string name="map_floor_name_fourth">Quatrième étage</string>
 </resources>

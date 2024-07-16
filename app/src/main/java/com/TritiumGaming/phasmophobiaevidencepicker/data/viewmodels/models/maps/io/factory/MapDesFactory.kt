@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory
 
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory.MapDesBlueprint.WorldMap
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory.MapDesBlueprint.WorldMap.Floor
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.factory.MapDesBlueprint.WorldMap.Floor.POI
@@ -12,29 +13,34 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlin.math.floor
 
 object MapDesFactory {
     fun parseMinified(
         mapDesBlueprint: MapDesBlueprint, mapModels: ArrayList<MapModel>) {
 
+        //Log.d("Map", "Blueprint: \n$mapDesBlueprint")
+
         for (mappedWorldMap in mapDesBlueprint.maps) {
             // ---
 
             val mappedWorldMapJSON = getJSON(mappedWorldMap)
-
             val mappedMapType = object : TypeToken<Map<String?, WorldMap?>?>() {}.type
-            val mappedMap =
-                Gson().fromJson<Map<String, WorldMap>>(mappedWorldMapJSON, mappedMapType)
+            val mappedMap = Gson().fromJson<Map<String, WorldMap>>(mappedWorldMapJSON, mappedMapType)
 
             val mapJSON = getJSON(mappedMap["map_data"])
-            val mapType = object : TypeToken<Map<String?, WorldMap?>?>() {}.type
-            val map = Gson().fromJson<Map<String, *>>(mapJSON, mapType)
+            //Log.d("Map", mapJSON)
+            /*val mapType = object : TypeToken<Map<String, WorldMap>>() {}.type
+            val map: Map<String, WorldMap> = Gson().fromJson(mapJSON, mapType)*/
+            val mapType = object : TypeToken<Map<String, Any>>() {}.type
+            val map: Map<String, Any> = Gson().fromJson(mapJSON, mapType)
 
             // ---
 
             // Dimensions
             val dimensionJSON = getJSON(map["map_dimensions"])
-            val mappedDimensionType = object : TypeToken<Map<String?, WorldDimensions?>?>() {}.type
+            //Log.d("Dimension", dimensionJSON)
+            val mappedDimensionType = object : TypeToken<Map<String?, Any>?>() {}.type
             val mappedDimension =
                 Gson().fromJson<Map<String, WorldDimensions>>(dimensionJSON, mappedDimensionType)
             val mapDimension = MapDimensionModel(
@@ -46,25 +52,30 @@ object MapDesFactory {
 
             // All Floors
             val floorsJSON = getJSON(map["map_floors"])
-            val floorsType = object : TypeToken<ArrayList<Map<String?, *>?>?>() {}.type
-            val mappedFloors = Gson().fromJson<ArrayList<Map<String, *>>>(floorsJSON, floorsType)
+            //Log.d("Floors", floorsJSON)
+            val floorsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+            val mappedFloors = Gson().fromJson<ArrayList<Map<String?, Any>>>(floorsJSON, floorsType)
 
             val mapFloors = ArrayList<FloorModel>()
             for (mappedFloor in mappedFloors) {
                 // Floor    "floor_id" "floor_number" "floor_pois" "floor_rooms"
                 val floorJSON = getJSON(mappedFloor)
-                val floorType = object : TypeToken<Map<String?, *>?>() {}.type
-                val mappedFloorItem = Gson().fromJson<Map<String, *>>(floorJSON, floorType)
+                //Log.d("Floor", floorJSON)
+                val floorType = object : TypeToken<Map<String?, Any>?>() {}.type
+                val mappedFloorItem = Gson().fromJson<Map<String, Any>>(floorJSON, floorType)
 
-                val floorId = getInt(mappedFloorItem["floor_id"])
-                val floorNumber = getInt(mappedFloorItem["floor_number"])
+                val floorId = mappedFloorItem["floor_id"].toString()
+                val floorName = mappedFloorItem["floor_name"].toString()
+                val floorNumber = mappedFloorItem["floor_number"].toString()
                 val roomsJSON = getJSON(mappedFloorItem["floor_rooms"])
                 val floorPOIsJSON = getJSON(mappedFloorItem["floor_pois"])
+                //Log.d("Floor","$floorId $floorName $floorNumber")
 
 
                 // All Rooms
-                val roomsType = object : TypeToken<ArrayList<Map<String?, *>?>?>() {}.type
-                val mappedRooms = Gson().fromJson<ArrayList<Map<String, *>>>(roomsJSON, roomsType)
+                val roomsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+                val mappedRooms = Gson().fromJson<ArrayList<Map<String, Any>>>(roomsJSON, roomsType)
+                //Log.d("Rooms", roomsJSON)
 
                 val roomsCollection = ArrayList<Room>()
                 for (mappedRoom in mappedRooms) {
@@ -74,18 +85,20 @@ object MapDesFactory {
                     val roomID = getInt(mappedRoom["room_iD"])
                     val roomName = getString(mappedRoom["room_name"])
                     val pointsListJSON = getJSON(mappedRoom["room_points"])
+                    //Log.d("RoomPoints", pointsListJSON)
 
 
                     // All Points
                     //"points" "x": "y":
-                    val pointsListType = object : TypeToken<Map<String?, *>?>() {}.type
+                    val pointsListType = object : TypeToken<Map<String?, Any>?>() {}.type
                     val mappedPointsList =
                         Gson().fromJson<Map<String, *>>(pointsListJSON, pointsListType)
 
                     val pointsJSON = getJSON(mappedPointsList["points"])
-                    val pointsType = object : TypeToken<ArrayList<Map<String?, *>?>?>() {}.type
+                    //Log.d("Points", pointsJSON)
+                    val pointsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
                     val mappedPoints =
-                        Gson().fromJson<ArrayList<Map<String, *>>>(pointsJSON, pointsType)
+                        Gson().fromJson<ArrayList<Map<String, Any>>>(pointsJSON, pointsType)
 
                     val pointsCollection = RoomPoints()
                     for (point in mappedPoints) {
@@ -107,8 +120,8 @@ object MapDesFactory {
                 // ---
 
                 // All POIs
-                val poisType = object : TypeToken<ArrayList<Map<String?, *>?>?>() {}.type
-                val mappedPois = Gson().fromJson<ArrayList<Map<String, *>>>(floorPOIsJSON, poisType)
+                val poisType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+                val mappedPois = Gson().fromJson<ArrayList<Map<String, Any>>>(floorPOIsJSON, poisType)
 
                 val poisCollection = ArrayList<POI>()
                 for (mappedPoi in mappedPois) {
@@ -125,18 +138,21 @@ object MapDesFactory {
                     tempPOI.poiType = poiType
                     tempPOI.x = poiX
                     tempPOI.y = poiY
+
                     poisCollection.add(tempPOI)
                 }
 
                 // ---
 
                 // Add Floor
-                val floor = Floor()
-                floor.floorNumber = floorNumber
-                floor.floorId = floorId
-                floor.floorRooms = roomsCollection
-                floor.floorPOIs = poisCollection
-                mapFloors.add(FloorModel(floor))
+                val tempFloor = Floor()
+                tempFloor.floorName = floorName
+                tempFloor.floorNumber = floorNumber.toDouble().toInt()
+                tempFloor.floorId = floorId.toDouble().toInt()
+                tempFloor.floorRooms = roomsCollection
+                tempFloor.floorPOIs = poisCollection
+
+                mapFloors.add(FloorModel(tempFloor))
             }
 
             // ---
@@ -144,11 +160,12 @@ object MapDesFactory {
             // Finalize MapModel
             val model = MapModel()
             model.mapId = map["map_id"].toString().toDouble().toInt()
-            model.mapName = (map["map_name"] as String?)!!
-            model.mapNameShort = (map["map_name_short"] as String?)!!
+            model.mapName = map["map_name"].toString()
+            model.mapNameShort = map["map_name_short"].toString()
             model.mapDimensions = mapDimension
             model.mapFloors = mapFloors
 
+            //Log.d("Map", "Adding Map model\n${model.print()}")
             mapModels.add(model)
         }
     }

@@ -9,17 +9,23 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.children
+import androidx.core.view.get
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.google.firebase.crashlytics.internal.model.CrashlyticsReport.Session.Event.Application.Execution.Thread.Frame
+import kotlin.math.absoluteValue
 
 /**
  * MapViewerFragment class
@@ -28,7 +34,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
  */
 class MapViewerFragment : InvestigationFragment() {
     private var imageDisplay: InteractiveMapView? = null
-
+    private var selectorList: LinearLayout? = null
+    private var selectorListWrapper: FrameLayout? = null
     private var selectorGroup: MapLayerSelectorGroup? = null
     private var layerName: AppCompatTextView? = null
     private var poiSpinner: POISpinner? = null
@@ -45,7 +52,8 @@ class MapViewerFragment : InvestigationFragment() {
 
         super.init()
 
-        val selectorLayout = view.findViewById<LinearLayout>(R.id.linearlayout_floorindicators)
+        selectorListWrapper = view.findViewById(R.id.linearlayout_floorindicators_wrapper)
+        selectorList = view.findViewById(R.id.linearlayout_floorindicators)
 
         val buttonLayerNext =
             view.findViewById<PETImageButton>(R.id.controller_nextLayerButton)
@@ -95,7 +103,14 @@ class MapViewerFragment : InvestigationFragment() {
 
             selectorGroup = MapLayerSelectorGroup(tempData.floorCount)
             for (i in 0 until (selectorGroup?.size ?: 0)) {
-                selectorLayout.addView(selectorGroup?.selectors?.get(i))
+                selectorList?.addView(selectorGroup?.selectors?.get(i))
+            }
+            selectorGroup?.listener = object: MapLayerSelectorGroupListener() {
+                override fun onSelect(index: Int) {
+                    selectorList?.let { list ->
+                        selectorListWrapper?.scrollTo(list[index].x.toInt(), 0)
+                    }
+                }
             }
 
             var mapNameStr: String? = tempData.mapName
@@ -212,6 +227,8 @@ class MapViewerFragment : InvestigationFragment() {
 
     /** The group of selectors which act to cycle between image layers  */
     private inner class MapLayerSelectorGroup(count: Int) {
+        var listener: MapLayerSelectorGroupListener? = null
+
         /** @return Selector array */
         val selectors: Array<MapLayerSelector?> = arrayOfNulls(count)
 
@@ -230,6 +247,7 @@ class MapViewerFragment : InvestigationFragment() {
             deSelectAll()
 
             selectors[index]?.isSelected = true
+            listener?.onSelect(index)
         }
 
         /** Deselects all Selectors */
@@ -245,7 +263,7 @@ class MapViewerFragment : InvestigationFragment() {
 
         /** A Selector which represents the current layer of the selected map */
         private inner class MapLayerSelector(context: Context) : AppCompatImageView(context) {
-            private val selectorImages: IntArray? = intArrayOf(
+            private val selectorImages: IntArray = intArrayOf(
                 R.drawable.icon_selector_unsel,
                 R.drawable.icon_selector_sel
             )
@@ -279,7 +297,7 @@ class MapViewerFragment : InvestigationFragment() {
 
             /** Updates the Selector icon to reflect its current selection state  */
             private fun updateImage() {
-                if (selectorImages?.size == 2) {
+                if (selectorImages.size == 2) {
                     if (!isSelected) {
                         setImageResource(selectorImages[0])
                     } else {
@@ -293,6 +311,11 @@ class MapViewerFragment : InvestigationFragment() {
                 return isSelected
             }
         }
+
+    }
+
+    abstract class MapLayerSelectorGroupListener {
+        abstract fun onSelect(index: Int)
     }
 }
 

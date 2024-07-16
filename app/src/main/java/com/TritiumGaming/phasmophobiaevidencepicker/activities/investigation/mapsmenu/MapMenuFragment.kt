@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ma
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,12 +43,12 @@ class MapMenuFragment : InvestigationFragment() {
         catch (e: Exception) { e.printStackTrace() }
 
         // INITIALIZE VIEWS
-        val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
+        //val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
 
         // BACKGROUND IMAGE
-        val bitmapUtils = BitmapUtils()
+        /*val bitmapUtils = BitmapUtils()
         bitmapUtils.setResource(R.drawable.icon_map_sm)
-        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()))
+        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()))*/
 
         val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
@@ -70,7 +71,8 @@ class MapMenuFragment : InvestigationFragment() {
                             navigateToBasicMapView(itemView)
                         }
                     }
-            }
+            } ?:  Toast.makeText(requireContext(),
+                "Error loading viewmodel map data!", Toast.LENGTH_LONG).show()
         } ?: Toast.makeText(requireContext(),
             "Error loading map data file!", Toast.LENGTH_LONG).show()
     }
@@ -92,7 +94,8 @@ class MapMenuFragment : InvestigationFragment() {
             .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
     }
 
-    inner class GridViewAdapter(mapNames: Array<String?>, @DrawableRes images: IntArray
+    inner class GridViewAdapter(
+        mapNames: Array<String?>, @DrawableRes images: IntArray
     ) : BaseAdapter() {
 
         private var mapNames = arrayOfNulls<String>(0)
@@ -102,6 +105,8 @@ class MapMenuFragment : InvestigationFragment() {
             if (mapNames.size == images.size) {
                 this.mapNames = mapNames
                 this.images = images
+            } else {
+                Log.d("MapMenu", "Name count: ${mapNames.size} Images count: ${images.size}")
             }
         }
 

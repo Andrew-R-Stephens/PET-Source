@@ -64,7 +64,7 @@
                 android:id="@+id/textview_title"
                 style="?attr/quaternaryFont_Bold_AutoSqueeze"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="26dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
@@ -79,22 +79,37 @@
                 android:text="@string/map_name_bleasdale"
                 android:textColor="?attr/textColorBody"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearlayout_floorindicators"
+                app:layout_constraintEnd_toStartOf="@+id/linearlayout_floorindicators_wrapper"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <LinearLayout
-                android:id="@+id/linearlayout_floorindicators"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
+            <HorizontalScrollView
+                android:id="@+id/linearlayout_floorindicators_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="center"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="16dp"
+                android:fillViewport="false"
                 android:orientation="horizontal"
+                android:padding="4dp"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="@+id/textview_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textview_title"
-                app:layout_constraintTop_toTopOf="@+id/textview_title" />
+                app:layout_constraintTop_toTopOf="@+id/textview_title"
+                app:layout_constraintWidth_percent="0.4">
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_floorindicators"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

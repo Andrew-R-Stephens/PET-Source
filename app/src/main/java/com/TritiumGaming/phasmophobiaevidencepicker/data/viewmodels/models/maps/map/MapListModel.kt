@@ -8,10 +8,10 @@ class MapListModel(worldMapDeserializer: MapDesBlueprint) {
     private var mapModels: ArrayList<MapModel> = ArrayList()
 
     init {
-        try {
-            MapDesFactory.parseMinified(worldMapDeserializer, mapModels)
-        } catch (e: JsonSyntaxException) {
+        try { MapDesFactory.parseMinified(worldMapDeserializer, mapModels) }
+        catch (e: JsonSyntaxException) {
             e.printStackTrace()
+            mapModels.clear()
             MapDesFactory.parseUnMinified(worldMapDeserializer, mapModels)
         }
     }

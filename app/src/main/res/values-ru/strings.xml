@@ -690,6 +690,12 @@
     <string name="map_floor_name_first">Первый этаж</string>
     <string name="map_floor_name_second">Второй этаж</string>
     <string name="map_floor_name_third">Третий этаж</string>
+    <string name="map_floor_name_fifth">Пятый этаж</string>
+    <string name="map_floor_name_sixth">Шестой этаж</string>
+    <string name="map_floor_name_seventh">Седьмой этаж</string>
+    <string name="map_floor_name_eighth">Восьмой этаж</string>
+    <string name="map_floor_name_ninth">Девятый этаж</string>
+    <string name="map_floor_name_tenth">Десятый этаж</string>
     <string name="map_floor_name_attic">Чердак</string>
     <string name="map_floor_name_basement">Подвал</string>
 
@@ -1632,4 +1638,5 @@
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
     <string name="navigation_closed_state">Ящик навигации закрыт.</string>
+    <string name="map_floor_name_fourth">Четвертый этаж</string>
 </resources>

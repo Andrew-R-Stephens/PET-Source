@@ -1,8 +1,8 @@
 [versions]
 activity-compose = "1.9.0"
-agp-version = "8.5.0"
+agp-version = "8.5.1"
 android-gif-drawable = "1.2.28"
-androidx-datastore = "1.0.0"
+androidx-datastore = "1.1.1"
 androidx-junit = "1.2.1"
 androidx-material = "1.6.8"
 appcompat = "1.7.0"

@@ -764,6 +764,12 @@
     <string name="map_floor_name_first">Erster Stock</string>
     <string name="map_floor_name_second">Zweiter Stock</string>
     <string name="map_floor_name_third">Dritte Stock</string>
+    <string name="map_floor_name_fifth">Fünfter Stock</string>
+    <string name="map_floor_name_sixth">Sechster Stock</string>
+    <string name="map_floor_name_seventh">Siebte Etage</string>
+    <string name="map_floor_name_eighth">Achter Stock</string>
+    <string name="map_floor_name_ninth">Neunter Stock</string>
+    <string name="map_floor_name_tenth">Zehnter Stock</string>
     <string name="map_floor_name_attic">Dachboden</string>
     <string name="map_floor_name_basement">Keller</string>
     <string name="general_codex_button">Kodex</string>
@@ -1186,4 +1192,5 @@
 
     <string name="navigation_open_state">Navigationsschublade geöffnet.</string>
     <string name="navigation_closed_state">Navigationsleiste geschlossen.</string>
+    <string name="map_floor_name_fourth">Vierter Stock</string>
 </resources>

@@ -56,15 +56,14 @@ class MapModel {
 
     @Synchronized
     fun print() {
-        Log.d("Maps", "$mapId $mapName")
-        mapDimensions.print()
+        Log.d("Maps", "$mapId $mapName $mapNameShort $mapDimensions")
         for (f in mapFloors) {
             f.print()
         }
     }
 
     override fun toString(): String {
-        return "\n[Map ID: $mapId] [Map Name: $mapName] [Dimensions: $mapDimensions] [Layer: $currentLayer] \nFloor Data:$mapFloors\n"
+        return "\n[Map ID: $mapId] [Map Name: $mapName, $mapNameShort] [Dimensions: $mapDimensions] [Layer: $currentLayer] \nFloor Data:$mapFloors\n"
     }
 
 }

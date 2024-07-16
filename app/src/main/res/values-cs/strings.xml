@@ -844,6 +844,12 @@
     <string name="map_floor_name_first">První Patro</string>
     <string name="map_floor_name_second">Druhé Patro</string>
     <string name="map_floor_name_third">Třetí Patro</string>
+    <string name="map_floor_name_fifth">Páté Patro</string>
+    <string name="map_floor_name_sixth">Šesté Patro</string>
+    <string name="map_floor_name_seventh">Sedmé Patro</string>
+    <string name="map_floor_name_eighth">Osmé Patro</string>
+    <string name="map_floor_name_ninth">Deváté Patro</string>
+    <string name="map_floor_name_tenth">"Desáté Patro "</string>
     <string name="map_floor_name_attic">Podkroví</string>
     <string name="map_floor_name_basement">Suterén</string>
 
@@ -1629,4 +1635,5 @@
 
     <string name="navigation_open_state">Navigační vysouvací panel byl otevřen.</string>
     <string name="navigation_closed_state">Zásuvka navigace uzavřena.</string>
+    <string name="map_floor_name_fourth">Čtvrté Patro</string>
 </resources>

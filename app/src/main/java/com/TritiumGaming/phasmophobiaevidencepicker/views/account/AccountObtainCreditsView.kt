@@ -1,132 +1,106 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.account;
+package com.TritiumGaming.phasmophobiaevidencepicker.views.account
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.text.Html;
-import android.util.AttributeSet;
+import android.content.Context
+import android.content.res.ColorStateList
+import android.text.Html
+import android.util.AttributeSet
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.intToHex
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.setColor
+import com.google.firebase.auth.FirebaseUser
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+class AccountObtainCreditsView : ConstraintLayout {
 
-import com.TritiumGaming.phasmophobiaevidencepicker.R;
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser;
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils;
-import com.google.firebase.auth.FirebaseUser;
+    constructor(context: Context) :
+            super(context) { init(getContext()) }
 
-public class AccountObtainCreditsView extends ConstraintLayout {
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { init(getContext()) }
 
-    private ColorStateList colorStateList;
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { init(getContext()) }
 
-    public AccountObtainCreditsView(@NonNull Context context) {
-        super(context);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) { init(getContext()) }
 
-        init(getContext());
-    }
-
-    public AccountObtainCreditsView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-
-        init(getContext());
-    }
-
-    public AccountObtainCreditsView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        init(getContext());
-    }
-
-    public AccountObtainCreditsView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-
-        init(getContext());
-    }
-
-    public void init(Context context) {
-        inflate(context, R.layout.layout_account_obtain_credits, this);
-
-        buildButtonStateColors(findViewById(R.id.button_ad_watch));
-        buildButtonStateColors(findViewById(R.id.settings_account_buy_button));
-        setWatchAdsLabelDescription();
-
-        FirebaseUser user = null;
-        try {
-            user = FirestoreUser.Companion.getCurrentFirebaseUser();
-        } catch (Exception e) {
-            e.printStackTrace();
+    fun init(context: Context?) {
+        inflate(context, R.layout.layout_account_obtain_credits, this)
+        findViewById<AppCompatButton>(R.id.button_ad_watch)?.let { b ->
+            buildButtonStateColors(b)
         }
-
-        setContainerVisibility(user);
-    }
-
-    private void setContainerVisibility(@Nullable FirebaseUser user) {
-        if(user == null) {
-            setVisibility(GONE);
-        } else {
-            setVisibility(VISIBLE);
+        findViewById<AppCompatButton>(R.id.settings_account_buy_button)?.let { b ->
+            buildButtonStateColors(b)
         }
+        setWatchAdsLabelDescription()
+
+        var user: FirebaseUser? = null
+        try { user = currentFirebaseUser }
+        catch (e: Exception) { e.printStackTrace() }
+
+        setContainerVisibility(user)
     }
 
-    public void setWatchAdsLabelDescription() {
-        setWatchAdsLabelDescription(-1);
+    private fun setContainerVisibility(user: FirebaseUser?) {
+        visibility = if (user == null) { GONE } else { VISIBLE }
     }
 
-    public void setWatchAdsLabelDescription(int quantity) {
-        AppCompatTextView label_description = findViewById(R.id.label_ads_description);
-        if(label_description == null) { return; }
+    private fun setWatchAdsLabelDescription() {
+        setWatchAdsLabelDescription(-1)
+    }
 
-        @ColorInt int color =
-                ColorUtils.getColorFromAttribute(getContext(), R.attr.textColorPrimary);
+    fun setWatchAdsLabelDescription(quantity: Int) {
+        val descriptionLabel =
+            findViewById<AppCompatTextView>(R.id.label_ads_description) ?: return
 
-        String descriptionQuantity = getResources().getQuantityString(
-                R.plurals.marketplace_description_watch_ad,
-                quantity, quantity);
-        String colorHex = ColorUtils.intToHex(color);
+        @ColorInt val color =
+            getColorFromAttribute(context, R.attr.textColorPrimary)
 
-        StringBuilder quantityStrTemp = new StringBuilder("<font color=")
-                .append(colorHex).append(">");
+        val descriptionQuantity = resources.getQuantityString(
+            R.plurals.marketplace_description_watch_ad,
+            quantity, quantity
+        )
+        val colorHex = intToHex(color)
+
+        val quantityStrTemp = StringBuilder("<font color=")
+            .append(colorHex).append(">")
         //String quantityStr = "";
-        if(quantity >= 0) {
-            quantityStrTemp.append(quantity);
+        if (quantity >= 0) {
+            quantityStrTemp.append(quantity)
         }
-        quantityStrTemp.append("</font>");
+        quantityStrTemp.append("</font>")
 
-        String descriptionFormat = getContext().getString(
-                R.string.marketplace_description_watch_ad,
-                quantityStrTemp.toString(), descriptionQuantity);
-        label_description.setText(Html.fromHtml(descriptionFormat));
+        val descriptionFormat = context.getString(
+            R.string.marketplace_description_watch_ad,
+            quantityStrTemp.toString(), descriptionQuantity
+        )
+        descriptionLabel.text = Html.fromHtml(descriptionFormat)
     }
 
-    public void buildButtonStateColors(@Nullable AppCompatButton button) {
-        if (button == null) {
-            return;
-        }
+    private fun buildButtonStateColors(button: AppCompatButton) {
 
-        ColorStateList colorStateList = button.getTextColors();
-        @ColorInt int defaultColor = colorStateList.getDefaultColor();
-        @ColorInt int disabledColor = ColorUtils.setColor(defaultColor, 50, -1, -1, -1);
+        var colorStateList = button.textColors
+        @ColorInt val defaultColor = colorStateList.defaultColor
+        @ColorInt val disabledColor = setColor(defaultColor, 50, -1, -1, -1)
 
-        int[][] states = new int[][]{
-                new int[]{android.R.attr.state_enabled},
-                new int[]{-android.R.attr.state_enabled}
-        };
-        int[] colors = {
-                defaultColor,
-                disabledColor
-        };
-        colorStateList = new ColorStateList(states, colors);
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_enabled),
+            intArrayOf(-android.R.attr.state_enabled)
+        )
+        val colors = intArrayOf(defaultColor, disabledColor)
+        colorStateList = ColorStateList(states, colors)
 
-        button.setTextColor(colorStateList);
+        button.setTextColor(colorStateList)
     }
 
-    public void enableAdWatchButton(boolean enable) {
-        AppCompatButton button = findViewById(R.id.button_ad_watch);
-        if(button == null) { return; }
+    fun enableAdWatchButton(enable: Boolean) {
+        val button = findViewById<AppCompatButton>(R.id.button_ad_watch) ?: return
 
-        button.setEnabled(enable);
+        button.isEnabled = enable
     }
-
 }
