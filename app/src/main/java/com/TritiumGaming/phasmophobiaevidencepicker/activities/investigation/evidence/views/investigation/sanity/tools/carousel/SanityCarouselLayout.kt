@@ -30,7 +30,7 @@ abstract class SanityCarouselLayout : ConstraintLayout {
             super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
 
     fun initView(attrs: AttributeSet?) {
-        inflate(context, R.layout.layout_sanity_carousel, this)
+        inflate(context, R.layout.layout_sanity_tool_carousel, this)
 
         leftButton = findViewById(R.id.carousel_prev)
         rightButton = findViewById(R.id.carousel_next)

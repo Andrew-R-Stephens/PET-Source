@@ -14,49 +14,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout31"
+        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+            android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:NavHeaderLayoutButtonLeft="back"
+            app:NavHeaderLayoutButtonRight="none"
+            app:NavHeaderLayoutCenterTitle="@string/messagecenter_inboxestitle_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/button_prev"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:padding="4dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_arrow_60_left"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/textColorSecondary" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textview_title"
-                style="@style/NorseRegular_Auto"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="56dp"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:text="@string/messagecenter_inboxestitle_label"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button_prev"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <GridLayout
             android:id="@+id/list_inboxes"
@@ -72,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31" />
+            app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

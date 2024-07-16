@@ -43,7 +43,7 @@ class GhostBoxFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val title = view.findViewById<AppCompatTextView>(R.id.textView_title)
-        val prev = view.findViewById<AppCompatImageView>(R.id.button_prev)
+        val prev = view.findViewById<AppCompatImageView>(R.id.button_left)
         val promptList1 = view.findViewById<LinearLayout>(R.id.linearlayout_scrollview_list1)
         val promptList2 = view.findViewById<LinearLayout>(R.id.linearlayout_scrollview_list2)
         val promptList3 = view.findViewById<LinearLayout>(R.id.linearlayout_scrollview_list3)

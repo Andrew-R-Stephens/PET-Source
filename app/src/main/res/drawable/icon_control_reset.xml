@@ -2,8 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:tintMode="multiply"
     android:tint="?attr/buttonIconTint"
-    android:height="200dp" android:viewportHeight="600"
-    android:viewportWidth="600" android:width="200dp" >
+    android:width="200dp" android:height="200dp"
+    android:viewportWidth="600" android:viewportHeight="600" >
 
     <group
         android:name="arrow">

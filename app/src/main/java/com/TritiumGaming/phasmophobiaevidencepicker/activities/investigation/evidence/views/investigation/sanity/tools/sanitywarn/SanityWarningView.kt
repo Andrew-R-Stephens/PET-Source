@@ -46,7 +46,7 @@ abstract class SanityWarningView : ConstraintLayout {
             super(context, attrs, defStyleAttr)
 
     init {
-        inflate(context, R.layout.item_flashwarn, this)
+        inflate(context, R.layout.item_sanity_tool_warn, this)
 
         flashView = findViewById(R.id.flashComposable)
         labelView = findViewById(R.id.flashLabel)

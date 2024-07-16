@@ -4,8 +4,10 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.compose.ui.platform.ComposeView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ResetButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,12 +27,18 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonReset = view.findViewById<AppCompatImageView>(R.id.button_reset)
+        //val buttonReset = view.findViewById<AppCompatImageView>(R.id.button_reset)
+        val buttonReset = view.findViewById<ComposeView>(R.id.button_reset)
+        buttonReset.setContent {
+            ResetButton(
+                onClick = { reset() }
+            )
+        }
 
-        buttonReset.setOnClickListener {
+        /*buttonReset.setOnClickListener {
             // TODO animate reset arrow
             reset()
-        }
+        }*/
 
     }
 

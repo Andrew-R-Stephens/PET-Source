@@ -41,7 +41,7 @@ class PhaseTimerLayout : ConstraintLayout {
             super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
 
     fun initView(attrs: AttributeSet?) {
-        inflate(context, R.layout.layout_phasetimer, this)
+        inflate(context, R.layout.layout_sanity_tool_timer, this)
 
         playToggleButton = findViewById(R.id.timer_play_pause)
         phaseTimerTextView = findViewById(R.id.evidence_timer_text)

@@ -1,19 +1,37 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
 import android.util.Log
+import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
+import androidx.compose.animation.core.Spring.StiffnessLow
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
@@ -21,6 +39,51 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
+
+@Preview
+@Composable
+fun ResetButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    var isRunning by remember{ mutableStateOf(false) }
+
+    val rotation by animateFloatAsState(
+        targetValue = if(isRunning) 1f else 0f,
+        animationSpec = spring(
+            stiffness = StiffnessLow,
+            dampingRatio = DampingRatioLowBouncy
+        ),
+        finishedListener = {
+            isRunning = false
+        },
+        label = "",
+    )
+
+    Box(
+        modifier = modifier
+            .size(48.dp)
+            .border(1.5.dp, Color.White, RoundedCornerShape(percent = 25))
+            .clickable {
+                onClick()
+                isRunning = true
+            }
+    )
+    {
+        Image(
+            painterResource(id = R.drawable.icon_control_reset),
+            contentDescription = "Reset Drawable",
+            modifier = Modifier
+                .fillMaxSize(.55f)
+                .align(Alignment.Center)
+                .clip(RectangleShape)
+                .rotate(
+                    if (isRunning) { rotation * -360f }
+                    else { 0f }
+                )
+        )
+    }
+}
 
 @Composable
 fun RulingGroup(

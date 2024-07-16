@@ -33,7 +33,7 @@
         android:right="8dp">
 
         <vector
-            android:drawable="@drawable/reset_action_animation"
+            android:drawable="@drawable/icon_control_reset"
             android:width="20dp"
             android:height="20dp"
             android:viewportWidth="600"

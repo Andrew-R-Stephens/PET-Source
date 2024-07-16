@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
     android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
         android:id="@+id/layout_evidence_tool_wrapper"
-        layout="@layout/item_evidence_tool_wrapper"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
@@ -26,7 +26,7 @@
         android:layout_height="0dp"
         android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout_sanityTracking"
+        app:layout_constraintStart_toEndOf="@+id/layout_sanity_tool"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -48,6 +48,18 @@
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/button_reset"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            tools:composableName="ResetButton"
+            app:layout_constraintBottom_toTopOf="@+id/button_toggleSanity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_toggleEmpty" />
+
+        <!--
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/button_reset"
             android:layout_width="wrap_content"
@@ -60,6 +72,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_toggleEmpty" />
+        -->
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/button_toggleEmpty"
@@ -82,7 +95,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
-        android:id="@+id/constraintLayout_sanityTracking"
+        android:id="@+id/layout_sanity_tool"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:animateLayoutChanges="true"

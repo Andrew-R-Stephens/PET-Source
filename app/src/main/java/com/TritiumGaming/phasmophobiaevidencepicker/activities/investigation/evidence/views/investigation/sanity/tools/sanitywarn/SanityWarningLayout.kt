@@ -28,7 +28,7 @@ class SanityWarningLayout : ConstraintLayout {
             super(context, attrs, defStyleAttr, defStyleRes)
 
     init {
-        inflate(context, R.layout.layout_sanity_warnings, this)
+        inflate(context, R.layout.layout_sanity_tool_warnings, this)
 
         sanityWarnSetupView = findViewById(R.id.evidence_sanitymeter_phase_setup)
         sanityWarnActionView = findViewById(R.id.evidence_sanitymeter_phase_action)

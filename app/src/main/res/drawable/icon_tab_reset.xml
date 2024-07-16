@@ -39,7 +39,7 @@
             android:insetBottom="8dp">
 
             <vector
-                android:drawable="@drawable/icon_reset_animated"
+                android:drawable="@drawable/icon_control_reset"
                 android:width="20dp"
                 android:height="20dp"
                 android:viewportWidth="600"

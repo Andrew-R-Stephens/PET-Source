@@ -35,7 +35,7 @@ class SanityTrackerLayout : ConstraintLayout {
             super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
 
     private fun initView(attrs: AttributeSet?) {
-        inflate(context, R.layout.layout_sanity_control, this)
+        inflate(context, R.layout.layout_sanity_tool_control, this)
 
         sanitySeekBarView = findViewById(R.id.evidence_sanitymeter_seekbar)
         sanityPercentTextView = findViewById(R.id.evidence_sanitymeter_percentage)
