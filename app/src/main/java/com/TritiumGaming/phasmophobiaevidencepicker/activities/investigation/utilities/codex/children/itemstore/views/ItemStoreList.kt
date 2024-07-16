@@ -2,8 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ut
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.ViewGroup
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 

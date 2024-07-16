@@ -14,18 +14,14 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
-import android.widget.ScrollView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.view.children
 import androidx.core.view.get
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-import com.google.firebase.crashlytics.internal.model.CrashlyticsReport.Session.Event.Application.Execution.Thread.Frame
-import kotlin.math.absoluteValue
 
 /**
  * MapViewerFragment class

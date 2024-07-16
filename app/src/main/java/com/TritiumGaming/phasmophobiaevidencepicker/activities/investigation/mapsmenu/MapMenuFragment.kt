@@ -18,7 +18,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileIO
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.google.common.primitives.Ints
 
 /**

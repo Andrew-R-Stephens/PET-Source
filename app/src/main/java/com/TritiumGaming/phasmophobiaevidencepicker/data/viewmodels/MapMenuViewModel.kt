@@ -7,7 +7,6 @@ import android.content.res.Resources
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel

@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +25,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreListModel
@@ -59,9 +60,9 @@ abstract class ItemStoreFragment : CodexFragment() {
         selColor = getColorFromAttribute(requireContext(), R.attr.codex5_sel)
 
         val titleView = view.findViewById<AppCompatTextView>(R.id.label_pagetitle)
-        val itemStore = view.findViewById<ViewGroup>(R.id.item_safehouse_itemstore)
+        val itemStore = view.findViewById<ItemStoreList>(R.id.item_safehouse_itemstore)
         val parent = itemStore.findViewById<LinearLayoutCompat>(R.id.linearLayout_itemStore_list)
-        val scrollViewPaginator = view.findViewById<GridLayout>(R.id.item_safehouse_itemstore_paginator)
+        val scrollViewPaginator = view.findViewById<ItemStoreScrollPaginator>(R.id.item_safehouse_itemstore_paginator)
         scrollView = view.findViewById(R.id.scrollView)
 
         setPageTitle(titleView)
@@ -176,47 +177,40 @@ abstract class ItemStoreFragment : CodexFragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     protected fun initScrollViewListeners(
-        scrollViewPaginator: GridLayout,
-        paginatorChildCount: Int
+        scrollViewPaginator: GridLayout, paginatorChildCount: Int
     ) {
         scrollViewPaginator.setOnTouchListener { v: View?, e: MotionEvent ->
-            val isPortrait =
-                resources.configuration.orientation ==
-                        Configuration.ORIENTATION_PORTRAIT
-            val maxDimTouchPos = if (isPortrait) e.y else e.x
-            val maxDimPercentage =
-                (maxDimTouchPos) / (if (isPortrait) scrollViewPaginator.height else scrollViewPaginator.width)
-            val markIndex = max(
-                0.0, min(
-                    paginatorChildCount.toDouble(),
-                    (paginatorChildCount * maxDimPercentage).toInt().toDouble()
-                )
-            ).toInt()
 
-            val scrollDistance =
-                if (isPortrait) scrollView!!.getChildAt(0).measuredHeight - scrollView!!.measuredHeight
-                else scrollView!!.getChildAt(0).measuredWidth - scrollView!!.measuredWidth
-            val percent = scrollDistance * ((markIndex) / (paginatorChildCount - 1).toFloat())
+            scrollView?.let { scrollView ->
+                val isPortrait =
+                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+                val maxDimTouchPos = if (isPortrait) e.y else e.x
+                val maxDimPercentage =
+                    (maxDimTouchPos) / (if (isPortrait) scrollViewPaginator.height else scrollViewPaginator.width)
+                val markIndex = max(
+                    0.0, min(
+                        paginatorChildCount.toDouble(),
+                        (paginatorChildCount * maxDimPercentage).toInt().toDouble()
+                    )
+                ).toInt()
 
-            when(scrollView) {
-                 is ItemStoreVScrollView ->
-                     (scrollView as ItemStoreVScrollView).smoothScrollTo(0, percent.toInt())
-                is ItemStoreHScrollView ->
-                    (scrollView as ItemStoreHScrollView).smoothScrollTo(percent.toInt(), 0)
+                val scrollDistance =
+                    if (isPortrait) scrollView.getChildAt(0).measuredHeight - scrollView.measuredHeight
+                    else scrollView.getChildAt(0).measuredWidth - scrollView.measuredWidth
+
+                val percent = scrollDistance * ((markIndex) / (paginatorChildCount - 1).toFloat())
+
+                when(scrollView) {
+                    is ItemStoreVScrollView -> scrollView.smoothScrollTo(0, percent.toInt())
+                    is ItemStoreHScrollView -> scrollView.smoothScrollTo(percent.toInt(), 0)
+                }
             }
 
             true
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scrollView?.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
-                doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount) } }
-        else {
-            viewTreeObserverListener = OnScrollChangedListener {
-                doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount) }
-            viewTreeObserverListener?.let { observer ->
-                scrollView?.viewTreeObserver?.addOnScrollChangedListener(observer) }
-        }
+        scrollView?.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
+            doScrollItemStoreScrollView(scrollViewPaginator, paginatorChildCount) }
     }
 
     protected fun addPaginatorIcon(scrollViewPaginator: GridLayout, icon: Int?) {
@@ -231,33 +225,36 @@ abstract class ItemStoreFragment : CodexFragment() {
         param.width = if (isPortrait) ViewGroup.LayoutParams.WRAP_CONTENT else 0
         param.height = if ((!isPortrait)) ViewGroup.LayoutParams.WRAP_CONTENT else 0
         equipmentView.layoutParams = param
-        equipmentView.setImageResource(icon!!)
-        setIconFilter(equipmentView,  /*"#2D3635"*/selColor, 1f)
+        icon?.let { ic -> equipmentView.setImageResource(ic) }
+        setIconFilter(equipmentView, selColor, 1f)
         scrollViewPaginator.addView(equipmentView)
     }
 
     protected fun doScrollItemStoreScrollView(paginatorGrid: GridLayout, paginatorChildCount: Int) {
-        val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
-        val scrollableLength =
-            if (isPortrait) scrollView!!.getChildAt(0).measuredHeight - scrollView!!.measuredHeight
-            else scrollView!!.getChildAt(0).measuredWidth - scrollView!!.measuredWidth
-        val scrollPos = (if (isPortrait) scrollView!!.scrollY else scrollView!!.scrollX).toFloat()
+        scrollView?.let { scrollView ->
+            val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+            val scrollableLength =
+                if (isPortrait) scrollView.getChildAt(0).measuredHeight - scrollView.measuredHeight
+                else scrollView.getChildAt(0).measuredWidth - scrollView.measuredWidth
+            val scrollPos = (if (isPortrait) scrollView.scrollY else scrollView.scrollX).toFloat()
 
-        val maxDimPercentage = scrollPos / scrollableLength
-        val markIndex = max(0.0, min((paginatorChildCount - 1).toDouble(),
-            (paginatorChildCount * maxDimPercentage).toInt().toDouble())).toInt()
+            val maxDimPercentage = scrollPos / scrollableLength
+            val markIndex = max(0.0, min((paginatorChildCount - 1).toDouble(),
+                (paginatorChildCount * maxDimPercentage).toInt().toDouble())).toInt()
 
-        Log.d("Scroll", "$paginatorChildCount $markIndex")
+            Log.d("Scroll", "$paginatorChildCount $markIndex")
 
-        for (j in 0 until paginatorChildCount) {
-            val icon = paginatorGrid.getChildAt(j)
+            for (j in 0 until paginatorChildCount) {
+                val icon = paginatorGrid.getChildAt(j)
+                    .findViewById<ImageView>(R.id.image_equipmentIcon)
+                setIconFilter(icon, selColor, 1f)
+            }
+            val icon = paginatorGrid.getChildAt(markIndex)
                 .findViewById<ImageView>(R.id.image_equipmentIcon)
-            setIconFilter(icon, selColor, 1f)
+
+            setIconFilter(icon, unselColor, 1f)
         }
-        val icon = paginatorGrid.getChildAt(markIndex)
-            .findViewById<ImageView>(R.id.image_equipmentIcon)
-        setIconFilter(icon, unselColor, 1f)
     }
 
     companion object {
@@ -304,8 +301,8 @@ abstract class ItemStoreFragment : CodexFragment() {
         protected fun openItemDataView(dataView: View) {
             if (dataView.visibility == View.VISIBLE) { return }
 
-            val isPortrait =
-                dataView.context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+            val isPortrait = dataView.context.resources.configuration.orientation ==
+                    Configuration.ORIENTATION_PORTRAIT
 
             dataView.visibility = View.VISIBLE
 
@@ -361,8 +358,7 @@ abstract class ItemStoreFragment : CodexFragment() {
     @SuppressLint("ResourceType")
     protected abstract fun buildStoreData()
 
-    protected abstract fun createGroup(
-        parent: LinearLayoutCompat, group: ItemStoreGroupModel)
+    protected abstract fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel)
 
     @SuppressLint("ResourceType")
     protected abstract fun buildGroupViews(
