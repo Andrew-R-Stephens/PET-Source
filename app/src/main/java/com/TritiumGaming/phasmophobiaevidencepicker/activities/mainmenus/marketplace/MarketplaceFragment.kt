@@ -51,6 +51,7 @@ import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
@@ -96,7 +97,7 @@ class MarketplaceFragment : MainMenuFragment() {
         val backButton = navHeaderLayout.findViewById<PETImageButton>(R.id.button_left)
 
         val accountLoginButton =
-            view.findViewById<AppCompatButton>(R.id.settings_account_login_button)
+            view.findViewById<SignInButton>(R.id.settings_account_login_button)
         val watchAdButton = view.findViewById<AppCompatButton>(R.id.button_ad_watch)
         val buyButton = view.findViewById<AppCompatButton>(R.id.settings_account_buy_button)
 
@@ -507,18 +508,6 @@ class MarketplaceFragment : MainMenuFragment() {
                                 object : OnFirestoreProcessListener() {
                                     override fun onSuccess() {
                                         onPurchaseSuccessAnimation(marketplaceBundleView, list)
-                                        /*val marketItemAnimation =
-                                            marketplaceBundleView.animate()
-                                                .setDuration(300)
-                                                .translationX(list.width.toFloat())
-                                                .setListener(object : AnimatorListenerAdapter() {
-                                                    override fun onAnimationStart(animation: Animator) {
-                                                        super.onAnimationStart(animation)
-
-                                                        marketplaceBundleView.isEnabled = false
-                                                    }
-                                                })
-                                        marketItemAnimation.start()*/
                                     }
 
                                     override fun onFailure() {
@@ -571,24 +560,6 @@ class MarketplaceFragment : MainMenuFragment() {
                             object : OnFirestoreProcessListener() {
                                 override fun onSuccess() {
                                     onPurchaseSuccessAnimation(marketplaceItemView, list)
-                                    /*val marketItemAnimation =
-                                        marketplaceItemView.animate()
-                                            .setDuration(300)
-                                            .translationX(list.width.toFloat())
-                                            .setListener(object : AnimatorListenerAdapter() {
-                                                override fun onAnimationStart(animation: Animator) {
-                                                    super.onAnimationStart(animation)
-
-                                                    marketplaceItemView.isEnabled = false
-                                                }
-
-                                                override fun onAnimationEnd(animation: Animator) {
-                                                    super.onAnimationEnd(animation)
-
-                                                    list.removeView(marketplaceItemView)
-                                                }
-                                            })
-                                    marketItemAnimation.start()*/
                                 }
 
                                 override fun onFailure() {

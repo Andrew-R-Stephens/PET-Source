@@ -31,6 +31,7 @@ class AccountObtainCreditsView : ConstraintLayout {
 
     fun init(context: Context?) {
         inflate(context, R.layout.layout_account_obtain_credits, this)
+
         findViewById<AppCompatButton>(R.id.button_ad_watch)?.let { b ->
             buildButtonStateColors(b)
         }

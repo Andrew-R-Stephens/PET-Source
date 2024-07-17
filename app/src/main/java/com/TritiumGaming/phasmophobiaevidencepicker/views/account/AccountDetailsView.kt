@@ -12,26 +12,17 @@ class AccountDetailsView : ConstraintLayout {
         init(getContext())
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?
-    ) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(getContext())
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int
-    ) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) {
         init(getContext())
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int, defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
+            super(context, attrs, defStyleAttr, defStyleRes) {
         init(getContext())
     }
 
@@ -39,12 +30,8 @@ class AccountDetailsView : ConstraintLayout {
         inflate(context, R.layout.layout_account_details_2, this)
 
         val user = FirestoreUser.currentFirebaseUser
+        setUsernameInitials(user)
 
-        //try {
-            setUsernameInitials(user)
-        /*} catch (e: Exception) {
-            e.printStackTrace()
-        }*/
         setContainerVisibility(user)
     }
 
@@ -54,10 +41,6 @@ class AccountDetailsView : ConstraintLayout {
 
     @Throws(Exception::class)
     private fun setUsernameInitials(user: FirebaseUser?) {
-        /*if (user == null) {
-            throw FirestoreUser.NullFirebaseUserException()
-        }*/
-
         val accountIcon = findViewById<AccountIconView>(R.id.account_icon)
         accountIcon?.createAccountInitials(user?.displayName)
     }

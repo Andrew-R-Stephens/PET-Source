@@ -4,142 +4,44 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
-import android.text.SpannableString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.obfuscateEmailSpannable
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
+import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
-import java.util.List
 
 class AccountFragment : MainMenuFirebaseFragment() {
-    private val showEmail = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.init()
-
-        return inflater.inflate(R.layout.fragment_account_overview, container, false)
-    }
-
-    @SuppressLint("ResourceType")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val btn_account_login =
-            view.findViewById<AppCompatButton>(R.id.settings_account_login_button)
-        /*final AppCompatButton btn_account_logout =
-                view.findViewById(R.id.settings_account_logout_button);
-        final AppCompatButton btn_account_delete =
-                view.findViewById(R.id.settings_account_delete_button);*/
-        val btn_account_infoContainer =
-            view.findViewById<ConstraintLayout>(R.id.constraintLayout_accountInformation)
-        val btn_account_info =
-            view.findViewById<AppCompatTextView>(R.id.settings_accountsettings_info)
-
-        btn_account_login.setOnClickListener { v: View? ->
-            manualSignInAccount()
-            view.invalidate()
-        }
-
-        /*
-        btn_account_logout.setOnClickListener(v -> {
-            signOutAccount();
-
-            view.invalidate();
-        });
-
-        btn_account_delete.setOnClickListener(v -> {
-            deleteAccount();
-
-            view.invalidate();
-        });*/
-        val accountEmail: String = currentFirebaseUser?.email ?: ""
-
-        val displayedEmail =
-            SpannableString(accountEmail)
-
-        var obfuscatedEmailFinal: SpannableString? = null
-        try {
-            @ColorInt val obfuscationColor = getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis)
-            var obfuscatedEmailTemp = displayedEmail
-            obfuscatedEmailTemp = obfuscateEmailSpannable(accountEmail, obfuscationColor)
-            obfuscatedEmailFinal = obfuscatedEmailTemp
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-
-        /*
-        SpannableString finalEmail_obfuscated1 = finalEmail_obfuscated;
-        btn_account_infoContainer.setOnClickListener(v -> {
-            showEmail = !showEmail;
-
-            if(showEmail) {
-                btn_account_info.setText(email_displayed);
-            } else {
-                btn_account_info.setText(
-                        finalEmail_obfuscated1 != null ? finalEmail_obfuscated1 : "?");
-            }
-        });
-        */
-
-        /*
-        if(firebaseUser == null) {
-            btn_account_login.setVisibility(View.VISIBLE);
-            btn_account_logout.setVisibility(View.GONE);
-            btn_account_infoContainer.setVisibility(View.GONE);
-            btn_account_delete.setVisibility(View.GONE);
-        } else {
-            btn_account_login.setVisibility(View.GONE);
-            btn_account_logout.setVisibility(View.VISIBLE);
-            btn_account_infoContainer.setVisibility(View.VISIBLE);
-            btn_account_delete.setVisibility(View.VISIBLE);
-            btn_account_info.setText(email_displayed);
-
-            if(!showEmail) {
-                btn_account_info.setText(finalEmail_obfuscated1);
-            }
-        }
-
-        btn_account_delete.setVisibility(View.GONE);*/
-    }
-
-    override fun initViewModels() {
-        super.initViewModels()
-    }
 
     private val userPurchaseHistory: Unit
         get() {
             var unlockHistoryCollection: CollectionReference? = null
-            try {
-                unlockHistoryCollection =
-                    FirestoreUnlockHistory.unlockHistoryCollection
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            try { unlockHistoryCollection = FirestoreUnlockHistory.unlockHistoryCollection }
+            catch (e: Exception) { e.printStackTrace() }
 
-            if (unlockHistoryCollection == null) {
-                return
-            }
+            if (unlockHistoryCollection == null) { return }
 
             try {
                 unlockHistoryCollection.get()
@@ -157,14 +59,59 @@ class AccountFragment : MainMenuFirebaseFragment() {
                         Log.e("Firestore", "Could not retrieve unlock history!")
                         e.printStackTrace()
                     }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            } catch (e: Exception) { e.printStackTrace() }
         }
 
-    /**
-     * refreshFragment
-     */
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        super.init()
+
+        return inflater.inflate(R.layout.fragment_account, container, false)
+    }
+
+    @SuppressLint("ResourceType")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val backButton: PETImageButton? = view.findViewById(R.id.button_left)
+
+        val accountDetailsList: View? = view.findViewById(R.id.scrollview_account_details)
+
+        val loginButton: SignInButton? = view.findViewById(R.id.settings_account_login_button)
+        val logoutButton: AppCompatButton? = view.findViewById(R.id.settings_account_logout_button)
+        val deleteButton: AppCompatButton? = view.findViewById(R.id.settings_account_delete_button)
+
+        val accountNameTextView: AppCompatTextView? = view.findViewById(R.id.account_name_in)
+        val accountEmailTextView: AppCompatTextView? = view.findViewById(R.id.account_email_in)
+
+        backButton?.setOnClickListener { v: View? ->
+            v?.let {
+                try { findNavController(v).popBackStack() }
+                catch (e: IllegalStateException) { e.printStackTrace() } }
+        }
+
+        loginButton?.setOnClickListener {
+            manualSignInAccount()
+            refreshFragment()
+        }
+
+        logoutButton?.setOnClickListener{
+            signOutAccount()
+        }
+
+        deleteButton?.setOnClickListener{
+            deleteAccount()
+            refreshFragment()
+        }
+
+        currentFirebaseUser?.let { user ->
+            accountNameTextView?.text = user.displayName
+            accountEmailTextView?.text = user.email
+            accountDetailsList?.visibility = VISIBLE
+        } ?: {
+            accountDetailsList?.visibility = GONE
+        }
+    }
+
     public override fun refreshFragment() {
         var ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) {
@@ -185,15 +132,12 @@ class AccountFragment : MainMenuFirebaseFragment() {
             val toast = Toast.makeText(
                 requireActivity(),
                 message,
-                com.google.android.material.R.integer.material_motion_duration_short_2
+                Toast.LENGTH_LONG
             )
             toast.show()
         }
     }
 
-    /**
-     *
-     */
     override fun manualSignInAccount() {
         if (FirebaseAuth.getInstance().currentUser != null) {
             Log.d("ManuLogin", "User not null!")
@@ -217,7 +161,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
             return
         }
 
-        val providers = List.of(
+        val providers = listOf(
             GoogleBuilder().build()
         )
 
@@ -245,7 +189,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
                 val toast = Toast.makeText(
                     requireActivity(),
                     message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2
+                    Toast.LENGTH_LONG
                 )
                 toast.show()
 
@@ -272,16 +216,22 @@ class AccountFragment : MainMenuFirebaseFragment() {
             val toast = Toast.makeText(
                 requireActivity(),
                 message,
-                com.google.android.material.R.integer.material_motion_duration_short_2
+                Toast.LENGTH_LONG
             )
             toast.show()
         }
     }
 
     override fun onSignInAccountSuccess() {
+        refreshFragment()
     }
 
     override fun onSignOutAccountSuccess() {
+        refreshFragment()
+    }
+
+    override fun onDeleteAccountSuccess() {
+        refreshFragment()
     }
 
     override fun signOutAccount() {
@@ -298,16 +248,12 @@ class AccountFragment : MainMenuFirebaseFragment() {
                         Toast.makeText(
                             requireActivity(),
                             message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2
+                            Toast.LENGTH_LONG
                         ).show()
-                    } catch (e: IllegalStateException) {
-                        e.printStackTrace()
-                    }
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
                     onSignOutAccountSuccess()
                 }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     override fun deleteAccount() {
@@ -318,14 +264,11 @@ class AccountFragment : MainMenuFirebaseFragment() {
                 val toast = Toast.makeText(
                     requireActivity(),
                     message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2
+                    Toast.LENGTH_LONG
                 )
                 toast.show()
                 refreshFragment()
             }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 }

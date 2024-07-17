@@ -27,7 +27,7 @@ abstract class FirebaseFragment : PETFragment {
                 Toast.makeText(
                     requireActivity(),
                     message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2
+                    Toast.LENGTH_LONG
                 ).show()
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
@@ -42,6 +42,8 @@ abstract class FirebaseFragment : PETFragment {
     protected abstract fun onSignInAccountSuccess()
 
     protected abstract fun onSignOutAccountSuccess()
+
+    protected abstract fun onDeleteAccountSuccess()
 
     open fun manualSignInAccount() {
         if (FirebaseAuth.getInstance().currentUser != null) {
@@ -107,7 +109,7 @@ abstract class FirebaseFragment : PETFragment {
                 val toast = Toast.makeText(
                     requireActivity(),
                     message,
-                    com.google.android.material.R.integer.material_motion_duration_short_2
+                    Toast.LENGTH_LONG
                 )
                 toast.show()
 
@@ -125,7 +127,7 @@ abstract class FirebaseFragment : PETFragment {
             val toast = Toast.makeText(
                 requireActivity(),
                 message,
-                com.google.android.material.R.integer.material_motion_duration_short_2
+                Toast.LENGTH_LONG
             )
             toast.show()
         }
@@ -148,7 +150,7 @@ abstract class FirebaseFragment : PETFragment {
                         Toast.makeText(
                             requireActivity(),
                             message,
-                            com.google.android.material.R.integer.material_motion_duration_short_2
+                            Toast.LENGTH_LONG
                         ).show()
                     } catch (e: IllegalStateException) {
                         e.printStackTrace()
@@ -172,7 +174,7 @@ abstract class FirebaseFragment : PETFragment {
                     Toast.makeText(
                         requireActivity(),
                         message,
-                        com.google.android.material.R.integer.material_motion_duration_short_2
+                        Toast.LENGTH_LONG
                     ).show()
                 } catch (e: IllegalStateException) {
                     e.printStackTrace()

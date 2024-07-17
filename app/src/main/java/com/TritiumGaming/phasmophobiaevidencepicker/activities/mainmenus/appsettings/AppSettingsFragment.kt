@@ -29,6 +29,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisT
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.google.android.gms.common.SignInButton
 import com.google.android.ump.FormError
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
@@ -60,11 +61,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
 
         val accountLoginButton =
-            view.findViewById<AppCompatButton>(R.id.settings_account_login_button)
-        /*final AppCompatButton btn_account_logout =
-                view.findViewById(R.id.settings_account_logout_button);
-        final PETImageButton btn_account_delete =
-                view.findViewById(R.id.settings_account_delete_button);*/
+            view.findViewById<SignInButton>(R.id.settings_account_login_button)
         val btn_account_infoContainer =
             view.findViewById<ConstraintLayout?>(R.id.constraintLayout_accountInformation)
         val btn_account_info =
@@ -488,7 +485,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         try {
             val message = getString(R.string.toast_discardchanges)
-            val toast = Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2)
+            val toast = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG)
             toast.show()
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
@@ -515,5 +512,11 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         globalPreferencesViewModel?.saveColorSpace(requireContext())
 
         demoColorStyle(themeControl)
+
+        refreshFragment()
+    }
+
+    override fun onDeleteAccountSuccess() {
+        refreshFragment()
     }
 }
