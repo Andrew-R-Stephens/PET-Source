@@ -22,107 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout27"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label_settingstitle"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:text="@string/settings_title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/listener_confirm"
-                app:layout_constraintStart_toEndOf="@+id/listener_cancel"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/listener_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-                    android:id="@+id/imageView2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    app:PETImageButtonType="cancel"
-                    android:clickable="false"
-                    android:tint="?attr/textColorBody"
-                    app:layout_constraintBottom_toTopOf="@+id/settings_cancel_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/settings_cancel_label"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_cancel_label"
-                    style="?attr/quaternaryFont_Regular_Manual"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name"
-                    android:ellipsize="marquee"
-                    android:gravity="center"
-                    android:scaleType="fitCenter"
-                    android:singleLine="true"
-                    android:text="@string/settings_cancel"
-                    android:textColor="?attr/textColorBodyEmphasis"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/listener_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
-                    android:id="@+id/imageView3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    app:PETImageButtonType="confirm"
-                    android:clickable="false"
-                    android:tint="?attr/textColorBody"
-                    app:layout_constraintBottom_toTopOf="@+id/settings_confirm_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/settings_confirm_label"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_confirm_label"
-                    style="?attr/quaternaryFont_Regular_Manual"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name"
-                    android:ellipsize="marquee"
-                    android:gravity="center"
-                    android:scaleType="fitCenter"
-                    android:singleLine="true"
-                    android:text="@string/settings_confirm"
-                    android:textColor="?attr/textColorBodyEmphasis"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
         <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
             android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
@@ -169,6 +68,7 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="8dp">
 
+                <!--
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_account_title"
                     style="?attr/primaryFont_Bold_Manual"
@@ -206,6 +106,7 @@
                         android:layout_height="wrap_content"/>
 
                 </androidx.cardview.widget.CardView>
+                -->
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_generalsettings_title"
@@ -300,29 +201,32 @@
                                 style="?attr/primaryFont_Regular_Manual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#00FFFFFF"
                                 android:ellipsize="marquee"
                                 android:gravity="center"
                                 android:singleLine="true"
                                 android:text="@string/settings_huntwarningflashtimeout_never"
                                 android:textAlignment="center"
                                 android:textSize="16sp"
-                                app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
-                                app:layout_constraintEnd_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
-                                app:layout_constraintStart_toStartOf="@+id/seekbar_huntwarningtimeout_timetext"
-                                app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext" />
+                                android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/settings_huntwarning_seekbar"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent=".4" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/seekbar_huntwarningtimeout_timetext"
                                 style="?attr/primaryFont_Regular_Manual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#00FFFFFF"
                                 android:ellipsize="marquee"
                                 android:ems="10"
                                 android:gravity="center"
                                 android:singleLine="true"
-                                android:text="@string/settings_huntwarningflashtimeout_never"
+                                android:visibility="visible"
+                                android:text="0:00"
                                 android:textAlignment="center"
                                 android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -346,11 +250,13 @@
                                 android:thumb="@drawable/seekbar_thumb"
                                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_huntwarningtimeout_timetext"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/seekbar_huntwarningtimeout_timetext"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/seekbar_huntwarningtimeout_timetext"
                                 app:layout_constraintWidth_percent=".6" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>

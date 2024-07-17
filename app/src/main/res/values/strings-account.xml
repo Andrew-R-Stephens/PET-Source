@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="account_title" translatable="false">My Account</string>
+    <string name="account_label_information" translatable="false">Account Information</string>
+    <string name="account_label_name" translatable="false">Name</string>
+    <string name="account_label_email" translatable="false">Email</string>
     <string name="account_button_login" translatable="false">Log in</string>
+    <string name="account_button_logout" translatable="false">Log Out</string>
+    <string name="account_button_deactivate" translatable="false">Deactivate Account</string>
+    <string name="account_deactivate_title" translatable="false">Account Deactivation</string>
+    <string name="account_deactivate_warning" translatable="false">By choosing to deactivate your account, you agree to the following:</string>
+    <string name="account_deactivate_warning_list_1" translatable="false">All P.E.T. account data will become unrecoverable.</string>
+    <string name="account_deactivate_warning_list_2" translatable="false">You will lose access to purchases, unlocks, and all other associated items.</string>
+    <string name="account_deactivate_warning_list_3" translatable="false">Should you rejoin with the same sign-in, previous account data will not transfer.</string>
+    <string name="account_deactivate_button_confirm" translatable="false">Confirm Deactivation</string>
+    <string name="account_deactivate_button_cancel" translatable="false">Nevermind</string>
 </resources>

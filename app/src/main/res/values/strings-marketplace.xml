@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="marketplace_account_title" translatable="false">My Account</string>
     <string name="marketplace_title" translatable="false">Marketplace</string>
     <string name="marketplace_connection_error" translatable="false">Uh oh! There was an error connecting to the marketplace.</string>
     <string name="marketplace_error_login_required" translatable="false">Please log in to claim Marketplace content.</string>

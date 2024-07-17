@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:NavHeaderLayoutButtonLeft="back"
-            app:NavHeaderLayoutCenterTitle="@string/marketplace_account_title"
+            app:NavHeaderLayoutCenterTitle="@string/account_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -90,50 +90,14 @@
                     style="?attr/quaternaryFont_Bold_Manual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Account Information"
+                    android:text="@string/account_label_information"
                     android:textSize="18sp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="?attr/backgroundColorOnBackground"
-                    android:layout_margin="8dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="8dp">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            style="?attr/quaternaryFont_Bold_Manual"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Name"
-                            android:paddingEnd="8dp"
-                            android:textSize="18sp" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/account_name_in"
-                            style="?attr/quaternaryFont_Bold_Manual"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="viewEnd"
-                            android:layout_weight="1"
-                            android:text=""
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="?attr/backgroundColorOnBackground"
-                    android:layout_margin="8dp" >
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="?attr/backgroundColorOnBackground">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -143,55 +107,106 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             style="?attr/quaternaryFont_Bold_Manual"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Email"
+                            android:paddingStart="0dp"
                             android:paddingEnd="8dp"
+                            android:text="@string/account_label_name"
                             android:textSize="18sp" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/account_email_in"
+                            android:id="@+id/account_name_in"
                             style="?attr/quaternaryFont_Bold_Manual"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:textAlignment="viewEnd"
                             android:layout_weight="1"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
                             android:text=""
+                            android:textAlignment="viewEnd"
                             android:textSize="18sp" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="?attr/quaternaryFont_Bold_Manual"
-                    android:id="@+id/settings_account_logout_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:minWidth="48dp"
-                    android:textColor="?attr/textColorBody"
-                    android:backgroundTint="@color/white_M300"
-                    android:backgroundTintMode="multiply"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:text="Log Out"
-                    android:textSize="18sp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="?attr/backgroundColorOnBackground">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="?attr/quaternaryFont_Bold_Manual"
-                    android:id="@+id/settings_account_delete_button"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="?attr/quaternaryFont_Bold_Manual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="8dp"
+                            android:text="@string/account_label_email"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/account_email_in"
+                            style="?attr/quaternaryFont_Bold_Manual"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:text=""
+                            android:textAlignment="viewEnd"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="64dp"
-                    android:minWidth="48dp"
-                    android:layout_gravity="center"
-                    android:textColor="?attr/textColorBody"
-                    android:text="Deactivate Account"
-                    android:backgroundTint="@color/red"
-                    android:backgroundTintMode="multiply"
-                    android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/settings_account_logout_button"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:layout_constraintDimensionRatio="16:10"
+                        android:layout_gravity="center"
+                        android:backgroundTint="?attr/codex3_buttonBackground"
+                        android:backgroundTintMode="multiply"
+                        android:minWidth="48dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/account_button_logout"
+                        android:textColor="?attr/backgroundColorOnBackground"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/settings_account_delete_button"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:layout_constraintDimensionRatio="16:10"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="64dp"
+                        android:backgroundTint="?attr/textColorBodyEmphasis"
+                        android:backgroundTintMode="multiply"
+                        android:minWidth="48dp"
+                        android:text="@string/account_button_deactivate"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/textColorBody"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

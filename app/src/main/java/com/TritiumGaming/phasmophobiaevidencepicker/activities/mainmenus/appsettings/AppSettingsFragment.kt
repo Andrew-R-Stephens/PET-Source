@@ -37,7 +37,6 @@ import com.google.firebase.firestore.QuerySnapshot
 class AppSettingsFragment : MainMenuFirebaseFragment() {
     private var googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
 
-    private val showEmail = false
     private var loadThemes = true
 
     private var isAlwaysOnToggle: SettingsToggleItemView? = null
@@ -45,6 +44,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     private var huntWarningAudioToggle: SettingsToggleItemView? = null
     private var reOrderGhostListToggle: SettingsToggleItemView? = null
     private var enableLeftHandMode: SettingsToggleItemView? = null
+
+    var seekbar: SeekBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -60,31 +61,27 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_left)
         val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
 
-        val accountLoginButton =
-            view.findViewById<SignInButton>(R.id.settings_account_login_button)
-        val btn_account_infoContainer =
-            view.findViewById<ConstraintLayout?>(R.id.constraintLayout_accountInformation)
-        val btn_account_info =
-            view.findViewById<AppCompatTextView?>(R.id.settings_accountsettings_info)
-
-        val clockTimeTextView =
-            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_timetext)
-        val clockOtherTextView =
-            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_othertext)
-
         isAlwaysOnToggle = view.findViewById(R.id.toggle_alwaysOn)
         networkToggle = view.findViewById(R.id.toggle_network)
         enableLeftHandMode = view.findViewById(R.id.toggle_leftHandMode)
         reOrderGhostListToggle = view.findViewById(R.id.toggle_reorderGhostViews)
         huntWarningAudioToggle = view.findViewById(R.id.toggle_huntwarningaudio)
 
-        val seekbar = view.findViewById<SeekBar?>(R.id.settings_huntwarning_seekbar)
+        val accountLoginButton =
+            view.findViewById<SignInButton>(R.id.settings_account_login_button)
+
+        val clockTimeTextView =
+            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_timetext)
+        val clockOtherTextView =
+            view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_othertext)
+        seekbar = view.findViewById(R.id.settings_huntwarning_seekbar)
 
         val colorThemeTextView =
             view.findViewById<AppCompatTextView?>(R.id.colorblindmode_selectedname)
         val fontThemeTextView = view.findViewById<AppCompatTextView?>(R.id.font_selectedname)
 
-        val colorThemePrevButton = view.findViewById<PETImageButton?>(R.id.colorblindmode_leftbutton)
+        val colorThemePrevButton =
+            view.findViewById<PETImageButton?>(R.id.colorblindmode_leftbutton)
         val colorThemeNextButton =
             view.findViewById<PETImageButton?>(R.id.colorblindmode_rightbutton)
 
@@ -98,27 +95,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             manualSignInAccount()
             view.invalidate()
         }
-
-        /*if(btn_account_logout != null) {
-            btn_account_logout.setOnClickListener(v -> {
-                signOutAccount();
-
-                view.invalidate();
-            });
-        }
-        if(btn_account_delete != null) {
-            btn_account_delete.setOnClickListener(v -> {
-                deleteAccount();
-
-                view.invalidate();
-            });
-        }*/
-
-        /*
-        initAccountView(
-                btn_account_login, btn_account_logout, btn_account_delete,
-                btn_account_infoContainer, btn_account_info);
-        */
 
         // SWITCHES
         // Screen Always On
@@ -156,14 +132,14 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                         clockOtherTextView.visibility = GONE
                     }
                     false -> {
-                        clockOtherTextView.visibility = VISIBLE
                         clockTimeTextView.visibility = GONE
+                        clockOtherTextView.visibility = VISIBLE
                     }
                 }
             }
 
             // Hunt warning timeout setting
-            seekbar?.let {
+            seekbar?.let { seekbar ->
                 val seconds = 300
                 val millisPerSecond = 1000
                 seekbar.max = (seconds * millisPerSecond) + 1
@@ -176,8 +152,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                         override fun onProgressChanged(
                             seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                             if (fromUser) {
-                                globalPreferencesViewModel.setHuntWarningFlashTimeMax(progress.toLong())
-
                                 val progressMax =
                                     (seconds * millisPerSecond) / seekbar.max.toDouble()
 
@@ -188,7 +162,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                                     showClockTime(true)
                                 } else if (progress == seekbar.max) {
                                     showClockTime(false)
-                                    clockOtherTextView.setText(R.string.settings_huntwarningflashtimeout_never)
                                 }
                             }
                         }
@@ -199,8 +172,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 val progressMax = 300000 / seekbar.max.toDouble()
 
                 if (seekbar.progress >= 0 && seekbar.progress < seekbar.max) {
-                    val breakdown =
-                        (progressMax * seekbar.progress / 1000L).toLong()
+                    val breakdown = (progressMax * seekbar.progress / 1000L).toLong()
                     val text = millisToTime("%sm %ss", breakdown)
                     showClockTime(true)
                     clockTimeTextView.text = text
@@ -313,68 +285,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             loadThemes = false
         }
 
-        /*
-
-        if(btn_account_delete != null) {
-            btn_account_delete.setVisibility(View.GONE);
-        }
-        */
     }
-
-    /*
-    private void initAccountView(AppCompatButton btn_account_login, AppCompatButton btn_account_logout, AppCompatButton btn_account_delete, ConstraintLayout btn_account_infoContainer, AppCompatTextView btn_account_info) {
-        String accountEmail = "";
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser != null) {
-            accountEmail = firebaseUser.getEmail();
-        }
-        SpannableString email_displayed =
-                new SpannableString(accountEmail);
-
-        TypedValue typedValue = new TypedValue();
-        @ColorInt int obfuscationColor = getResources().getColor(R.color.white);
-        try {
-            Resources.Theme theme = requireContext().getTheme();
-            theme.resolveAttribute(R.attr.textColorBodyEmphasis, typedValue, true);
-            obfuscationColor = typedValue.data;
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-        SpannableString email_obfuscated = email_displayed;
-        if(accountEmail != null) {
-            email_obfuscated = FormatterUtils.obfuscateEmailSpannable(
-                    accountEmail, obfuscationColor);
-        }
-        SpannableString finalEmail_obfuscated = email_obfuscated;
-
-        btn_account_infoContainer.setOnClickListener(v -> {
-            showEmail = !showEmail;
-
-            if (showEmail) {
-                btn_account_info.setText(email_displayed);
-            } else {
-                btn_account_info.setText(finalEmail_obfuscated);
-            }
-        });
-
-        if(firebaseUser == null) {
-            btn_account_login.setVisibility(View.VISIBLE);
-            btn_account_logout.setVisibility(View.GONE);
-            btn_account_infoContainer.setVisibility(View.GONE);
-            btn_account_delete.setVisibility(View.GONE);
-        } else {
-            btn_account_login.setVisibility(View.GONE);
-            btn_account_logout.setVisibility(View.VISIBLE);
-            btn_account_infoContainer.setVisibility(View.VISIBLE);
-            btn_account_delete.setVisibility(View.VISIBLE);
-            btn_account_info.setText(email_displayed);
-
-            if(!showEmail) {
-                btn_account_info.setText(email_obfuscated);
-            }
-        }
-    }
-    */
 
     private fun loadUserPurchaseHistory() {
         var unlockHistoryCollection: CollectionReference? = null
@@ -401,19 +312,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 }
         } catch (e: Exception) { e.printStackTrace() }
     }
-
-    /*
-    private void demoStyles() {
-        PETActivity activity = ((PETActivity)getActivity());
-        if(activity != null) {
-            activity.changeTheme(
-                    globalPreferencesViewModel.getColorTheme(),
-                    globalPreferencesViewModel.getFontTheme()
-            );
-        }
-        refreshFragment();
-    }
-    */
 
     private fun revertDemoChanges() {
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
@@ -458,6 +356,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
     public override fun saveStates() {
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            seekbar?.let{ seekbar ->
+                globalPreferencesViewModel.setHuntWarningFlashTimeMax(seekbar.progress.toLong())
+            }
+
             globalPreferencesViewModel.fontThemeControl.saveSelectedIndex()
             globalPreferencesViewModel.colorThemeControl.saveSelectedIndex()
 
