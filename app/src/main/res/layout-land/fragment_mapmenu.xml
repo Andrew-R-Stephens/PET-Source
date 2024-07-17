@@ -65,22 +65,20 @@
             android:fadingEdge="vertical"
             android:fadingEdgeLength="50sp"
             android:gravity="center"
-            android:horizontalSpacing="20sp"
+            android:horizontalSpacing="16sp"
             android:numColumns="4"
-            android:paddingStart="0sp"
-            android:paddingEnd="10sp"
-            android:requiresFadingEdge="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarStyle="outsideOverlay"
-            android:verticalSpacing="20sp"
+            android:paddingHorizontal="32sp"
+            android:requiresFadingEdge="vertical"
+            android:verticalSpacing="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".85"
-            app:srcCompat="@drawable/icon_map_sm"
-            app:tint="#37AAAAAA" />
+            app:srcCompat="@drawable/icon_map_sm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -41,14 +41,6 @@ class MapMenuFragment : InvestigationFragment() {
         try { mapListModel = readMapsDataFromFile() }
         catch (e: Exception) { e.printStackTrace() }
 
-        // INITIALIZE VIEWS
-        //val backgroundImage = view.findViewById<AppCompatImageView>(R.id.imageView)
-
-        // BACKGROUND IMAGE
-        /*val bitmapUtils = BitmapUtils()
-        bitmapUtils.setResource(R.drawable.icon_map_sm)
-        backgroundImage.setImageBitmap(bitmapUtils.compileBitmaps(requireContext()))*/
-
         val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
         mapListModel?.let { mapListModel ->
