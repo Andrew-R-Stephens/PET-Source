@@ -49,8 +49,10 @@ class EvidenceView : ConstraintLayout {
 
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
-        nameView?.text = investigationViewModel.investigationModel?.evidenceListModel
-            ?.evidenceList?.get(groupIndex)?.name
+        investigationViewModel.investigationModel?.evidenceListModel?.evidenceList
+            ?.get(groupIndex)?.name?.let{ resId ->
+            nameView?.text = context.getString(resId)
+        }
         investigationViewModel.investigationModel?.let {
             val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
             radioGroupComposable?.setContent {

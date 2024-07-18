@@ -67,7 +67,7 @@ class GhostView : ConstraintLayout {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
-        nameView.text = ghostModel?.name
+        nameView.text = ghostModel?.name?.let { resId -> context.getString(resId) }
 
         ghostModel?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
 

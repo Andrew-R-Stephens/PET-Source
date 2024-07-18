@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.miss
 
 import android.content.Context
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
 /**
  * ObjectivesData class
@@ -10,12 +11,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
  */
 class MissionsListModel(context: Context) {
 
-    val objectivesList = ArrayList<Objective>()
+    private val objectivesList = ArrayList<Objective>()
 
     init {
-        val objectives = context.resources.getStringArray(R.array.tasks_objectives_array)
-        for (i in objectives.indices) {
-            objectivesList.add(Objective(objectives[i]))
+        val missionsTypedArray = context.resources.obtainTypedArray(R.array.tasks_objectives_array)
+        val missionsArray = intArrayFromTypedArray(context.resources, missionsTypedArray)
+
+        for (i in missionsArray.indices) {
+            objectivesList.add(Objective(missionsArray[i]))
         }
     }
 
@@ -59,7 +62,7 @@ class MissionsListModel(context: Context) {
         objectivesList.forEach { objective -> objective.deselect() }
     }
 
-    class Objective(val content: String, var missionId: Int? = null) {
+    class Objective(val contentRes: Int, var missionId: Int? = null) {
         var selected: Boolean = false
 
         fun select(missionId: Int) {
@@ -73,11 +76,11 @@ class MissionsListModel(context: Context) {
         }
 
         fun getData(): String {
-            return "$selected $missionId $content"
+            return "$selected $missionId $contentRes"
         }
 
-        override fun toString(): String {
-            return content
+        fun getContent(context: Context): String {
+            return context.getString(contentRes)
         }
     }
 

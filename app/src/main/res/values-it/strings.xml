@@ -50,11 +50,14 @@
     <string name="settings_huntwarningflashtimeout_never">Mai timeout</string>
     <string name="settings_enableLeftHandSupport">Abilita la modalità per mancini</string>
     <string name="settings_enablehuntaudioqueue">Abilita l\'avviso audio di caccia</string>
+    <string name="settings_enableGhostReorder">Abilita il riordino dell\'elenco fantasma</string>
     <string name="settings_colorblindnessmode_title">Modalità daltonico</string>
     <string name="settings_colorblindnessmode_note">(Avrà effetto dopo aver lasciato le Impostazioni)</string>
 
     <!-- Colorblindness Types -->
 
+    <string name="settings_colortheme_title">Pelle</string>
+    <string name="settings_colortheme_note">(La selezione del daltonismo ha la precedenza)</string>
     <string name="settings_colorblindnessmode_normal">Nessuno</string>
     <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
@@ -717,157 +720,10 @@
 
     <string name="marketplace_button_purchase_credits">Acquistare crediti</string>
 
-    <plurals name="marketplace_description_watch_ad" translatable="false">
-
-        <item quantity="one">Companion Credit</item>
-
-        <item quantity="other">Companion Credits</item>
-
-    </plurals>
-
     <string name="marketplace_description_watch_ad">Guarda un annuncio per guadagnare %s %s.</string>
 
     <string name="marketplace_description_purchase_credits">Acquista direttamente i crediti.</string>
 
-    <!--
-          Sanity Drain Text
-      -->
-
-    <string name="shop_cursedpossessions_mirror_data_sanitydrain">&lt;a&gt;7%/s&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">&lt;a&gt;0 - 25%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">&lt;a&gt;2,5%/s entro ~2,5 milioni&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">&lt;a&gt;0 - 50%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">&lt;a&gt;16% pcandele accese&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">&lt;a&gt;Morte istantanea&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">&lt;a&gt;+25% or -25%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">&lt;a&gt;0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">&lt;a&gt;Imposta al 100%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">&lt;a&gt;Imposta su 0%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">&lt;a&gt;5% putilizzatori&lt;/a&gt;</string>
-
-    <!--
-          Alt Name Text
-      -->
-
-    <string name="shop_cursedpossessions_monkeypaw_data_altname">&lt;a&gt;Mano base&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypawwish_data_altname">&lt;a&gt;Desideri da collezione&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">&lt;a&gt;L\'Impiccato&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">&lt;a&gt;La Papessa&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_death">&lt;a&gt;Morte&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">&lt;a&gt;Il diavolo&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">&lt;a&gt;La ruota della fortuna&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">&lt;a&gt;L\'Eremita&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">&lt;a&gt;Il Matto&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">&lt;a&gt;La Luna&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">&lt;a&gt;Il sole&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">&lt;a&gt;La Torre&lt;/a&gt;</string>
-
-    <!--
-          Attributes Text
-      -->
-
-    <string name="shop_cursedpossessions_mirror_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypaw_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_musicbox_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_ouijaboard_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_summoningcircle_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">&lt;a&gt;&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_voodoodoll_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
-
-    <!--
-          Draw Chance Text
-      -->
-
-    <string name="shop_cursedpossessions_mirror_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_musicbox_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">&lt;a&gt;1%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">&lt;a&gt;2%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">&lt;a&gt;10%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">&lt;a&gt;10%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">&lt;a&gt;20%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">&lt;a&gt;10%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">&lt;a&gt;17% / 100%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">&lt;a&gt;5%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">&lt;a&gt;5%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">&lt;a&gt;20%&lt;/a&gt;</string>
-
-    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">&lt;a&gt;10%&lt;/a&gt;</string>
 
     <string name="store_title_cursedpossessions">Possedimenti maledetti</string>
 
@@ -886,79 +742,225 @@
     <string name="cursedpossessions_info_name_voodoodoll">Bambola voodoo</string>
 
     <!--
+          Sanity Drain Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain"><![CDATA[<a>7%/s</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain"><![CDATA[<a>0 - 25%</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain"><![CDATA[<a>2,5%/s entro ~2,5 milioni</a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 - 50%</a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16% pcandele accese</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman"><![CDATA[<a>Morte istantanea</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune"><![CDATA[<a>+25% or -25%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun"><![CDATA[<a>Imposta al 100%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower"><![CDATA[<a>Imposta su 0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain"><![CDATA[<a>5% putilizzatori</a>]]></string>
+
+    <!--
+          Alt Name Text
+      -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname"><![CDATA[<a>Mano base</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname"><![CDATA[<a>Desideri da collezione</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman"><![CDATA[<a>L\'Impiccato</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess"><![CDATA[<a>La Papessa</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death"><![CDATA[<a>Morte</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil"><![CDATA[<a>Il diavolo</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune"><![CDATA[<a>La ruota della fortuna</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit"><![CDATA[<a>L\'Eremita</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker"><![CDATA[<a>Il Matto</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon"><![CDATA[<a>La Luna</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun"><![CDATA[<a>Il sole</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower"><![CDATA[<a>La Torre</a>]]></string>
+
+    <!--
+          Attributes Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <!--
+          Draw Chance Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman"><![CDATA[<a>1%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess"><![CDATA[<a>2%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune"><![CDATA[<a>20%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker"><![CDATA[<a>17% / 100%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon"><![CDATA[<a>5%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun"><![CDATA[<a>5%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower"><![CDATA[<a>20%</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10%</a>]]></string>
+    <!--
           Flavor Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_flavortext">&lt;a&gt;Un grande specchio rotondo. Quando viene tenuto, chi lo impugna è spinto a esaminarlo... ma a un costo.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_flavortext"><![CDATA[<a>Un grande specchio rotondo. Quando viene tenuto, chi lo impugna è spinto a esaminarlo... ma a un costo.</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">&lt;a&gt;Un oggetto uscito direttamente dal folklore, questo oggetto è la manifestazione fisica di un desiderio andato a male.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext"><![CDATA[<a>Un oggetto uscito direttamente dal folklore, questo oggetto è la manifestazione fisica di un desiderio andato a male.</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">&lt;a&gt;Non si sa come la Zampa di Scimmia riesca a comprendere i desideri, ma questo è uno di questi. Sono stati scritti dal creatore di Monkey Paw o da una vittima?&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext"><![CDATA[<a>Non si sa come la Zampa di Scimmia riesca a comprendere i desideri, ma questo è uno di questi. Sono stati scritti dal creatore di Monkey Paw o da una vittima?</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_flavortext">&lt;a&gt;Una scatola di legno con meccanismi interni che le permettono di suonare una melodia. Questo riproduce una melodia chiamata \"Alla deriva\".&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_flavortext"><![CDATA[<a>Una scatola di legno con meccanismi interni che le permettono di suonare una melodia. Questo riproduce una melodia chiamata \"Alla deriva\".</a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">&lt;a&gt;Una tavola di legno con iscrizione abbinata a una planchette abbinata. Per qualche ragione, hai la sensazione che in realtà non dovrebbe essere rovinato.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext"><![CDATA[<a>Una tavola di legno con iscrizione abbinata a una planchette abbinata. Per qualche ragione, hai la sensazione che in realtà non dovrebbe essere rovinato.</a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">&lt;a&gt;Un pentagramma dipinto a terra con qualcosa che sembra sangue. È completato da cinque candele rosse avvolgenti che sembrano essere state utilizzate in precedenza.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext"><![CDATA[<a>Un pentagramma dipinto a terra con qualcosa che sembra sangue. È completato da cinque candele rosse avvolgenti che sembrano essere state utilizzate in precedenza.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di un uomo appeso per un piede al ramo di un grande albero.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di un uomo appeso per un piede al ramo di un grande albero.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine delle ali di un angelo.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine delle ali di un angelo.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una persona terrorizzata e in difficoltà.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una persona terrorizzata e in difficoltà.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una figura oscura in agguato.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una figura oscura in agguato.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine del sole e della luna giustapposte.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine del sole e della luna giustapposte.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una persona avvolta in una camicia di forza.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una persona avvolta in una camicia di forza.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di un pazzo medievale.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di un pazzo medievale.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine della Luna.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine della Luna.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine del Sole.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine del Sole.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">&lt;a&gt;Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una torre del castello.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower"><![CDATA[<a>Una carta da gioco dei Tarocchi, contrassegnata con l\'immagine di una torre del castello.</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">&lt;a&gt;Una piccola bambola intrisa dell\'essenza del fantasma, che lega per sempre le due entità insieme.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext"><![CDATA[<a>Una piccola bambola intrisa dell\'essenza del fantasma, che lega per sempre le due entità insieme.</a>]]></string>
 
     <!--
           Info Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_info">&lt;p&gt;Lo specchio infestato ti mostra qual è la stanza dei fantasmi/stanza preferita! Aiuta anche a confermare se il fantasma cambia la sua stanza preferita durante un\'indagine.&lt;/p&gt;&lt;p&gt;NON mostra dove si trova attualmente il fantasma.&lt;/p&gt;&lt;p&gt;Mentre si guarda allo specchio, si scarica 7% sanità al secondo e un minimo di 20% per di utilizzo.&lt;/p&gt;&lt;p&gt;Se esaurisci la sanità mentale, lo specchio si romperà e avrà inizio una caccia maledetta.&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_info"><![CDATA[<p>Lo specchio infestato ti mostra qual è la stanza dei fantasmi/stanza preferita! Aiuta anche a confermare se il fantasma cambia la sua stanza preferita durante un\'indagine.</p><p>NON mostra dove si trova attualmente il fantasma.</p><p>Mentre si guarda allo specchio, si scarica 7% sanità al secondo e un minimo di 20% per di utilizzo.</p><p>Se esaurisci la sanità mentale, lo specchio si romperà e avrà inizio una caccia maledetta.</p>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_info">&lt;h2&gt;Il numero di desideri che avrai dipenderà dalla tua difficoltà o dal moltiplicatore di ricompensa come segue...&lt;/h2&gt;Desidero vedere il fantasma:&lt;/h4&gt;&lt;a&gt;&lt;br&gt;Moltiplicatore 0x - 1,9x = 5 desideri&lt;br&gt;Moltiplicatore 2x - 2,9x = 4 desideri&lt;br&gt;Moltiplicatore 3x e superiore = 3 desideri&lt;/a&gt;&lt;h2&gt;TUTTI I DESIDERI&lt;/h2&gt;&lt;h4&gt;Desidero vedere il fantasma:&lt;/h4&gt;&lt;a&gt;+ Attiva un evento fantasma nella posizione fantasma.&lt;br&gt;- Blocca istantaneamente le porte di uscita.&lt;br&gt;- Avvia una caccia immediatamente dopo l\'evento fantasma.&lt;br&gt;- Riduce la visione del giocatore per il resto della caccia con un nebbia nera.&lt;/a&gt;&lt;h4&gt;Desidero l\'attività.&lt;/h4&gt;&lt;a&gt;+ Raddoppia tutta l\'attività dei fantasmi per 2 minuti, incluse interazioni, roaming e abilità.&lt;br&gt;- Rompe la scatola dei fusibili e blocca l\'uscita porte per 2 minuti.&lt;/a&gt;&lt;h4&gt;Desidero la sanità mentale.&lt;/h4&gt;&lt;a&gt;~ Porta la sanità mentale della squadra in media al 50%&lt;br&gt;- Imposta la stanza preferita dei fantasmi su una nuova stanza casuale&lt;br&gt;- Aumenta il drenaggio della sanità mentale del +50\\% of del tasso attuale per l\'intero gruppo.&lt;br&gt;- Nota: questo desiderio annullerà la debolezza di Goryo. Ciò significa che, nonostante il Goryo non sia in grado di cambiare stanza da solo, PUÒ farlo se viene utilizzato il desiderio di sanità mentale.&lt;/a&gt;&lt;h4&gt;Vorrei che il fantasma fosse intrappolato.&lt;/h4&gt;&lt;a&gt;+ Teletrasporto il fantasma nella sua stanza e chiude tutte le porte per 1 minuto.&lt;br&gt;+ Il fantasma non può cacciare, vagare o eseguire abilità mentre è chiuso nella sua stanza.&lt;br&gt;- Blocca tutte le porte della stanza che il giocatore che ha creato il desiderio è attualmente attivo per 1 minuto.&lt;br&gt;- Il fantasma sbloccherà tutte le porte dopo 1 minuto e inizierà la caccia.&lt;br&gt;~ 25\\% cpossibilità che le porte si sblocchino DOPO il periodo di grazia.&lt;/a&gt;&lt;h4&gt;Desidero la vita. / Desidero resuscitare il mio amico.&lt;/h4&gt;&lt;a&gt;+ Resuscita un giocatore morto.&lt;br&gt;- 50\\% cpossibilità di uccidere il giocatore che usa il desiderio.&lt;/a&gt;&lt;h4&gt;Desidero resuscitare il mio amico. per essere al sicuro&lt;/h4&gt;&lt;a&gt;+ Apre il nascondiglio più vicino.&lt;br&gt;- Distrugge le luci nella stanza.&lt;br&gt;- Il fantasma può sentire e percepire l\'equipaggiamento del giocatore che ha espresso il desiderio durante la caccia da qualsiasi punto della mappa per il resto della corsa.&lt;br&gt;+ Nota: questo può essere utilizzato a tuo vantaggio per attirare intenzionalmente un fantasma in un\'area più sicura per completare gli obiettivi di caccia.&lt;/a&gt;&lt;h4&gt;Desidero andarmene .&lt;/h4&gt;&lt;a&gt;+ Sblocca tutte le porte di uscita in qualsiasi momento, anche durante la caccia.&lt;br&gt;- Ti impedisce di muoverti istantaneamente, quindi ripristina lentamente la velocità di movimento in 5 secondi.&lt;br&gt;- Riduce la visione per 5 secondi per la persona che esprime il desiderio.&lt;/a&gt;&lt;h4&gt;Desidero conoscenza.&lt;/h4&gt;&lt;a&gt;+ Rimuove 1 prova errata e i corrispondenti tipi di fantasmi dal tuo diario, restringendo le tue scelte.&lt;br&gt;- Avvia una caccia vicino al giocatore.&lt;br&gt;- Per il resto del round, il giocatore che ha espresso il desiderio avrà una vista ridotta e un audio ovattato.&lt;br&gt;- Nota: morire ripristinerà le riduzioni audio e visive alla normalità e rimarranno normali se rianimato.&lt;/a&gt;&lt;h4&gt;Desidero [meteo].&lt;/h4&gt;&lt;a&gt;+ Se il tempo non è di tuo gradimento, potresti cambiarlo in Pioggia (x2), Neve, Sereno, Nebbia o l\'alba.&lt;br&gt;- Riduce la sanità mentale del 25\\% fo della persona che esprime il desiderio.&lt;br&gt;~ Nota: desiderare la pioggia ti darà una probabilità del 50\\% cdi ottenere la luce o l\'alba. pioggia battente.&lt;/a&gt;&lt;h4&gt;Desidero qualsiasi cosa.&lt;/h4&gt;&lt;a&gt;+ Non riesci a decidere cosa desideri desiderare? Lascia che sia la zampa a decidere per te. Esprimere qualsiasi desiderio ti garantirà uno dei desideri rimanenti (non utilizzati) per quel round.&lt;br&gt;~ Nota: anche se puoi utilizzare il desiderio Tutto più di una volta, non ti garantirà un desiderio che è già stato utilizzato in quella sessione.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_info"><![CDATA[<h2>Il numero di desideri che avrai dipenderà dalla tua difficoltà o dal moltiplicatore di ricompensa come segue...</h2>Desidero vedere il fantasma:</h4><a><br>Moltiplicatore 0x - 1,9x = 5 desideri<br>Moltiplicatore 2x - 2,9x = 4 desideri<br>Moltiplicatore 3x e superiore = 3 desideri</a><h2>TUTTI I DESIDERI</h2><h4>Desidero vedere il fantasma:</h4><a>+ Attiva un evento fantasma nella posizione fantasma.<br>- Blocca istantaneamente le porte di uscita.<br>- Avvia una caccia immediatamente dopo l\'evento fantasma.<br>- Riduce la visione del giocatore per il resto della caccia con un nebbia nera.</a><h4>Desidero l\'attività.</h4><a>+ Raddoppia tutta l\'attività dei fantasmi per 2 minuti, incluse interazioni, roaming e abilità.<br>- Rompe la scatola dei fusibili e blocca l\'uscita porte per 2 minuti.</a><h4>Desidero la sanità mentale.</h4><a>~ Porta la sanità mentale della squadra in media al 50%<br>- Imposta la stanza preferita dei fantasmi su una nuova stanza casuale<br>- Aumenta il drenaggio della sanità mentale del +50\\% of del tasso attuale per l\'intero gruppo.<br>- Nota: questo desiderio annullerà la debolezza di Goryo. Ciò significa che, nonostante il Goryo non sia in grado di cambiare stanza da solo, PUÒ farlo se viene utilizzato il desiderio di sanità mentale.</a><h4>Vorrei che il fantasma fosse intrappolato.</h4><a>+ Teletrasporto il fantasma nella sua stanza e chiude tutte le porte per 1 minuto.<br>+ Il fantasma non può cacciare, vagare o eseguire abilità mentre è chiuso nella sua stanza.<br>- Blocca tutte le porte della stanza che il giocatore che ha creato il desiderio è attualmente attivo per 1 minuto.<br>- Il fantasma sbloccherà tutte le porte dopo 1 minuto e inizierà la caccia.<br>~ 25\\% cpossibilità che le porte si sblocchino DOPO il periodo di grazia.</a><h4>Desidero la vita. / Desidero resuscitare il mio amico.</h4><a>+ Resuscita un giocatore morto.<br>- 50\\% cpossibilità di uccidere il giocatore che usa il desiderio.</a><h4>Desidero resuscitare il mio amico. per essere al sicuro</h4><a>+ Apre il nascondiglio più vicino.<br>- Distrugge le luci nella stanza.<br>- Il fantasma può sentire e percepire l\'equipaggiamento del giocatore che ha espresso il desiderio durante la caccia da qualsiasi punto della mappa per il resto della corsa.<br>+ Nota: questo può essere utilizzato a tuo vantaggio per attirare intenzionalmente un fantasma in un\'area più sicura per completare gli obiettivi di caccia.</a><h4>Desidero andarmene .</h4><a>+ Sblocca tutte le porte di uscita in qualsiasi momento, anche durante la caccia.<br>- Ti impedisce di muoverti istantaneamente, quindi ripristina lentamente la velocità di movimento in 5 secondi.<br>- Riduce la visione per 5 secondi per la persona che esprime il desiderio.</a><h4>Desidero conoscenza.</h4><a>+ Rimuove 1 prova errata e i corrispondenti tipi di fantasmi dal tuo diario, restringendo le tue scelte.<br>- Avvia una caccia vicino al giocatore.<br>- Per il resto del round, il giocatore che ha espresso il desiderio avrà una vista ridotta e un audio ovattato.<br>- Nota: morire ripristinerà le riduzioni audio e visive alla normalità e rimarranno normali se rianimato.</a><h4>Desidero [meteo].</h4><a>+ Se il tempo non è di tuo gradimento, potresti cambiarlo in Pioggia (x2), Neve, Sereno, Nebbia o l\'alba.<br>- Riduce la sanità mentale del 25\\% fo della persona che esprime il desiderio.<br>~ Nota: desiderare la pioggia ti darà una probabilità del 50\\% cdi ottenere la luce o l\'alba. pioggia battente.</a><h4>Desidero qualsiasi cosa.</h4><a>+ Non riesci a decidere cosa desideri desiderare? Lascia che sia la zampa a decidere per te. Esprimere qualsiasi desiderio ti garantirà uno dei desideri rimanenti (non utilizzati) per quel round.<br>~ Nota: anche se puoi utilizzare il desiderio Tutto più di una volta, non ti garantirà un desiderio che è già stato utilizzato in quella sessione.</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_info">&lt;a&gt;Nascosti in Sunny Meadows ci sono tag che ti daranno idee su cosa puoi desiderare quando usi la possessione maledetta Zampa di scimmia. Per trovarli, vai semplicemente a Sunny Meadows e guardati intorno. Una volta trovato, verrà aggiunto in modo permanente alla pagina 12 del tuo diario.&lt;/a&gt;&lt;ul&gt;&lt;li&gt;Desidero vedere il fantasma.&lt;/li&gt;&lt;li&gt;Desidero attività.&lt;/li&gt;&lt;li&gt;Desidero la sanità mentale.&lt;/li&gt;&lt;li&gt;Vorrei che il fantasma fosse intrappolato.&lt;/li&gt;&lt;li&gt;Desidero la vita.&lt;/li&gt;&lt;li&gt;Desidero essere al sicuro.&lt;/li&gt;&lt;li&gt;Desidero andarmene.&lt;/li&gt;&lt;li&gt;Desidero la conoscenza.&lt;/li&gt;&lt;li&gt;Desidero (il tempo).&lt;/li&gt;&lt;li&gt;Desidero qualsiasi cosa.&lt;/li&gt;{ /22}&lt;a&gt;Nota: non è necessario trovare i tag per utilizzare i desideri.&lt;/ul&gt; Sono lì solo per guidarti con un elenco di possibilità.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_info"><![CDATA[<a>Nascosti in Sunny Meadows ci sono tag che ti daranno idee su cosa puoi desiderare quando usi la possessione maledetta Zampa di scimmia. Per trovarli, vai semplicemente a Sunny Meadows e guardati intorno. Una volta trovato, verrà aggiunto in modo permanente alla pagina 12 del tuo diario.</a><ul><li>Desidero vedere il fantasma.</li><li>Desidero attività.</li><li>Desidero la sanità mentale.</li><li>Vorrei che il fantasma fosse intrappolato.</li><li>Desidero la vita.</li><li>Desidero essere al sicuro.</li><li>Desidero andarmene.</li><li>Desidero la conoscenza.</li><li>Desidero (il tempo).</li><li>Desidero qualsiasi cosa.</li>{ /22}<a>Nota: non è necessario trovare i tag per utilizzare i desideri.</ul> Sono lì solo per guidarti con un elenco di possibilità.</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_info">&lt;p&gt;Il carillon attira il fantasma! Durante il gioco, il fantasma cercherà il carillon. Ottimo per le foto e per controllare/forzare la caccia.&lt;/p&gt;&lt;p&gt;Stare vicino al carillon mentre è in riproduzione prosciugherà la tua sanità mentale.&lt;/p&gt;&lt;p&gt;Se lanci il carillon invece di posizionarlo, si romperà e darà inizio a una caccia maledetta.&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_info"><![CDATA[<p>Il carillon attira il fantasma! Durante il gioco, il fantasma cercherà il carillon. Ottimo per le foto e per controllare/forzare la caccia.</p><p>Stare vicino al carillon mentre è in riproduzione prosciugherà la tua sanità mentale.</p><p>Se lanci il carillon invece di posizionarlo, si romperà e darà inizio a una caccia maledetta.</p>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_info">&lt;p&gt;La tavola Ouija può essere utilizzata per forzare una caccia, trovare la stanza dei fantasmi, foto di interazioni con la fattoria, ecc.&lt;/p&gt;&lt;p&gt;Attiva la tavola, quindi fai domande o fai richieste. La scheda sarà attiva quando sarà presente la planchette. Saluta per disattivare la lavagna e la planchette verrà recuperata.&lt;/p&gt;&lt;p&gt;DITE SEMPRE ADDIO! Se la persona che ha evocato la planchette si allontana troppo da una tavola Ouija attiva, questa si distruggerà e inizierà una caccia maledetta.&lt;/p&gt;&lt;p&gt;Chiunque nelle vicinanze può parlare alla tavola.&lt;/p&gt;&lt;p&gt;Domande o richieste diverse richiederanno più buon senso di altre.&lt;/p&gt;&lt;a&gt;Alcune domande che puoi porre&lt;/a&gt;&lt;ul&gt;&lt;li&gt;Dove sei?&lt;/li&gt;&lt;li&gt;Dove\' cos\'è l\'osso?&lt;/li&gt;&lt;li&gt;Come sei morto?&lt;/li&gt;&lt;li&gt;Sono pazzo?&lt;/li&gt;&lt;li&gt;Quante persone ci sono nella stanza?&lt;/li&gt;&lt;li&gt;Come quanti anni hai?&lt;/li&gt;&lt;li&gt;Qual è la mia sanità mentale?&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Puoi attivare una caccia maledetta dicendo Nascondino. Avrai 5 secondi per scappare prima che il fantasma abbia la possibilità di cacciare.&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_info"><![CDATA[<p>La tavola Ouija può essere utilizzata per forzare una caccia, trovare la stanza dei fantasmi, foto di interazioni con la fattoria, ecc.</p><p>Attiva la tavola, quindi fai domande o fai richieste. La scheda sarà attiva quando sarà presente la planchette. Saluta per disattivare la lavagna e la planchette verrà recuperata.</p><p>DITE SEMPRE ADDIO! Se la persona che ha evocato la planchette si allontana troppo da una tavola Ouija attiva, questa si distruggerà e inizierà una caccia maledetta.</p><p>Chiunque nelle vicinanze può parlare alla tavola.</p><p>Domande o richieste diverse richiederanno più buon senso di altre.</p><a>Alcune domande che puoi porre</a><ul><li>Dove sei?</li><li>Dove\' cos\'è l\'osso?</li><li>Come sei morto?</li><li>Sono pazzo?</li><li>Quante persone ci sono nella stanza?</li><li>Come quanti anni hai?</li><li>Qual è la mia sanità mentale?</li></ul><p>Puoi attivare una caccia maledetta dicendo Nascondino. Avrai 5 secondi per scappare prima che il fantasma abbia la possibilità di cacciare.</p>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_info">&lt;p&gt;Chiunque si trovi vicino al cerchio di evocazione quando le candele sono accese perderà anche la sanità mentale&lt;/p&gt;&lt;p&gt;Quando tutte le candele saranno accese, verrà attivata una caccia maledetta. Il fantasma verrà intrappolato nel cerchio per 1 o più secondi prima di iniziare a vagare.&lt;/p&gt;&lt;p&gt;Si consiglia di scattare foto del fantasma durante il periodo di intrappolamento.&lt;/p&gt;&lt;p&gt;La caccia maledetta può essere annullato da un Crocifisso di livello 3.&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_info"><![CDATA[<p>Chiunque si trovi vicino al cerchio di evocazione quando le candele sono accese perderà anche la sanità mentale</p><p>Quando tutte le candele saranno accese, verrà attivata una caccia maledetta. Il fantasma verrà intrappolato nel cerchio per 1 o più secondi prima di iniziare a vagare.</p><p>Si consiglia di scattare foto del fantasma durante il periodo di intrappolamento.</p><p>La caccia maledetta può essere annullato da un Crocifisso di livello 3.</p>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">&lt;a&gt;Ti uccide all\'istante&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman"><![CDATA[<a>Ti uccide all\'istante</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">&lt;a&gt;Resuscita un giocatore morto. Se c\'è più di un giocatore morto, la carta resusciterà un giocatore morto casuale. Se non ci sono giocatori morti, la carta resusciterà il prossimo giocatore che morirà.</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess"><![CDATA[<a>Resuscita un giocatore morto. Se c\'è più di un giocatore morto, la carta resusciterà un giocatore morto casuale. Se non ci sono giocatori morti, la carta resusciterà il prossimo giocatore che morirà.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_death">&lt;a&gt;Impone una caccia ai fantasmi.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_death"><![CDATA[<a>Impone una caccia ai fantasmi.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_devil">&lt;a&gt;Forza un evento fantasma.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil"><![CDATA[<a>Forza un evento fantasma.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">&lt;a&gt;Ottieni 25\\% sanità [Green Burn], perdi 25\\% sanità [Red Burn]&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune"><![CDATA[<a>Ottieni 25\\% sanità [Green Burn], perdi 25\\% sanità [Red Burn]</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">&lt;a&gt;Teletrasporta e intrappola il fantasma nella sua stanza preferita per un minuto.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit"><![CDATA[<a>Teletrasporta e intrappola il fantasma nella sua stanza preferita per un minuto.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_joker">&lt;a&gt;Non fa nulla. Tecnicamente il Matto è già pescato e il gioco tira 1/9 in modo casuale per vedere quale carta verrà mostrata prima di rivelare il Matto.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker"><![CDATA[<a>Non fa nulla. Tecnicamente il Matto è già pescato e il gioco tira 1/9 in modo casuale per vedere quale carta verrà mostrata prima di rivelare il Matto.</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_moon">&lt;a&gt;Riduce la tua sanità mentale allo 0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon"><![CDATA[<a>Riduce la tua sanità mentale allo 0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_sun">&lt;a&gt;Ripristina la tua sanità mentale al 100%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun"><![CDATA[<a>Ripristina la tua sanità mentale al 100%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_tower">&lt;a&gt;Forza un\'interazione e raddoppia l\'attività dei fantasmi per 20 secondi.&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower"><![CDATA[<a>Forza un\'interazione e raddoppia l\'attività dei fantasmi per 20 secondi.</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_info">&lt;p&gt;Pungere la bambola voodoo forza un\'interazione!&lt;/p&gt;&lt;p&gt;Puoi pungere la bambola voodoo fino a 10 volte. Ogni puntura ha la possibilità di pungere il cuore, dando inizio a una caccia maledetta.&lt;/p&gt;&lt;p&gt;Ridurre la tua sanità mentale a 0\\% by usando la bambola attiverà tutti i perni e inizierà una caccia maledetta.&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Pungere la bambola voodoo forza un\'interazione!</p><p>Puoi pungere la bambola voodoo fino a 10 volte. Ogni puntura ha la possibilità di pungere il cuore, dando inizio a una caccia maledetta.</p><p>Ridurre la tua sanità mentale a 0\\% by usando la bambola attiverà tutti i perni e inizierà una caccia maledetta.</p>]]></string>
 
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">Credito accompagnatore</item>
+        <item quantity="other">Crediti complementari</item>
+    </plurals>
+
+    <string name="general_navigation_settings">Impostazioni</string>
+    <string name="general_navigation_system">Sistema</string>
 </resources>

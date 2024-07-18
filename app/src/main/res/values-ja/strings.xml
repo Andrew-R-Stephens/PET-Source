@@ -50,11 +50,14 @@
     <string name="settings_huntwarningflashtimeout_never">タイムアウトしない</string>
     <string name="settings_enableLeftHandSupport">左利きモードを有効にする</string>
     <string name="settings_enablehuntaudioqueue">ハント音声警告を有効にする</string>
+    <string name="settings_enableGhostReorder">ゴーストリストの並べ替えを有効にする</string>
     <string name="settings_colorblindnessmode_title">色覚異常モード</string>
     <string name="settings_colorblindnessmode_note">(設定を終了すると有効になります)</string>
 
     <!-- Colorblindness Types -->
 
+    <string name="settings_colortheme_title">肌</string>
+    <string name="settings_colortheme_note">（色覚異常の選択が優先されます）</string>
     <string name="settings_colorblindnessmode_normal">なし</string>
     <string name="settings_colorblindnessmode_monochromacy">アクロマトプシア</string>
     <string name="settings_colorblindnessmode_deuteranomaly">第二盲</string>
@@ -718,14 +721,6 @@
 
     <string name="marketplace_button_purchase_credits">クレジットを購入する</string>
 
-    <plurals name="marketplace_description_watch_ad" translatable="false">
-
-        <item quantity="one">Companion Credit</item>
-
-        <item quantity="other">Companion Credits</item>
-
-    </plurals>
-
     <string name="marketplace_description_watch_ad">広告を視聴して %s %s を獲得しましょう。</string>
 
     <string name="marketplace_description_purchase_credits">クレジットを直接購入します。</string>
@@ -734,141 +729,141 @@
           Sanity Drain Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_sanitydrain">&lt;a&gt;7%/秒&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain"><![CDATA[<a>7%/秒</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">&lt;a&gt;0 ～ 25%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain"><![CDATA[<a>0 ～ 25%</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">&lt;a&gt;約 2.5 m 以内で 2.5%/秒&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain"><![CDATA[<a>約 2.5 m 以内で 2.5%/秒</a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">&lt;a&gt;0 ～ 50%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 ～ 50%</a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">&lt;a&gt;16{1/4} 本のキャンドルが灯る&lt;/a&gt;% p</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16{1/4} 本のキャンドルが灯る</a>% p</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">&lt;a&gt;即死&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman"><![CDATA[<a>即死</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">&lt;a&gt;+25% or -25%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune"><![CDATA[<a>+25% or -25%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">&lt;a&gt;0%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon"><![CDATA[<a>0%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">&lt;a&gt;100%に設定&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun"><![CDATA[<a>100%に設定</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">&lt;a&gt;0%に設定&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower"><![CDATA[<a>0%に設定</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">&lt;a&gt;5% pユーザー&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain"><![CDATA[<a>5% pユーザー</a>]]></string>
 
     <!--
           Alt Name Text
       -->
 
-    <string name="shop_cursedpossessions_monkeypaw_data_altname">&lt;a&gt;ベースハンド&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_altname"><![CDATA[<a>ベースハンド</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_altname">&lt;a&gt;ウィッシュ コレクション&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname"><![CDATA[<a>ウィッシュ コレクション</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">&lt;a&gt;吊られた男&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman"><![CDATA[<a>吊られた男</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">&lt;a&gt;女教皇&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess"><![CDATA[<a>女教皇</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_death">&lt;a&gt;死&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death"><![CDATA[<a>死</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">&lt;a&gt;悪魔&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil"><![CDATA[<a>悪魔</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">&lt;a&gt;運命の輪&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune"><![CDATA[<a>運命の輪</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">&lt;a&gt;隠者&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit"><![CDATA[<a>隠者</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">&lt;a&gt;愚者&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker"><![CDATA[<a>愚者</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">&lt;a&gt;月&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon"><![CDATA[<a>月</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">&lt;a&gt;ザ・サン&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun"><![CDATA[<a>ザ・サン</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">&lt;a&gt;タワー&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower"><![CDATA[<a>タワー</a>]]></string>
 
     <!--
           Attributes Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower"><![CDATA[<a></a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute"><![CDATA[<a></a>]]></string>
 
     <!--
           Draw Chance Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">&lt;a&gt;1%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman"><![CDATA[<a>1%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">&lt;a&gt;2%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess"><![CDATA[<a>2%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">&lt;a&gt;10%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death"><![CDATA[<a>10%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">&lt;a&gt;10%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil"><![CDATA[<a>10%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">&lt;a&gt;20%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune"><![CDATA[<a>20%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">&lt;a&gt;10%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit"><![CDATA[<a>10%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">&lt;a&gt;17% / 100%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker"><![CDATA[<a>17% / 100%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">&lt;a&gt;5%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon"><![CDATA[<a>5%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">&lt;a&gt;5%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun"><![CDATA[<a>5%</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">&lt;a&gt;20%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower"><![CDATA[<a>20%</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">&lt;a&gt;10%&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10%</a>]]></string>
 
     <string name="store_title_cursedpossessions">呪われた所有物</string>
 
@@ -890,76 +885,83 @@
           Flavor Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_flavortext">&lt;a&gt;大きな丸い鏡。手に持つと、その剣を覗き見たくなりますが、それには代償が伴います。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_flavortext"><![CDATA[<a>大きな丸い鏡。手に持つと、その剣を覗き見たくなりますが、それには代償が伴います。</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">&lt;a&gt;民間伝承からそのまま引き出されたこの品は、願いが叶わなかったことを物理的に表したものです。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext"><![CDATA[<a>民間伝承からそのまま引き出されたこの品は、願いが叶わなかったことを物理的に表したものです。</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">&lt;a&gt;モンキーポーがどのようにして願いを理解できるのかは不明ですが、これはその願いの 1 つです。これらは、モンキー・ポーの作者によって書かれたものでしょうか、それとも被害者によって書かれたものでしょうか？&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext"><![CDATA[<a>モンキーポーがどのようにして願いを理解できるのかは不明ですが、これはその願いの 1 つです。これらは、モンキー・ポーの作者によって書かれたものでしょうか、それとも被害者によって書かれたものでしょうか？</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_flavortext">&lt;a&gt;メロディーを演奏できる内部機構を備えた木箱。これは「Adrift」というメロディーを演奏します。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_flavortext"><![CDATA[<a>メロディーを演奏できる内部機構を備えた木箱。これは「Adrift」というメロディーを演奏します。</a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">&lt;a&gt;刻印入りの木製ボードと、それに合わせたプランシェットのセットです。どういうわけか、これは本当にいじってはいけないものだという印象を受けます。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext"><![CDATA[<a>刻印入りの木製ボードと、それに合わせたプランシェットのセットです。どういうわけか、これは本当にいじってはいけないものだという印象を受けます。</a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">&lt;a&gt;地面に血のようなもので描かれた五芒星。以前使われていたと思われる 5 本の赤いキャンドルで囲まれています。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext"><![CDATA[<a>地面に血のようなもので描かれた五芒星。以前使われていたと思われる 5 本の赤いキャンドルで囲まれています。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">&lt;a&gt;大きな木の枝に足でぶら下がっている男性の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman"><![CDATA[<a>大きな木の枝に足でぶら下がっている男性の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">&lt;a&gt;天使の羽の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess"><![CDATA[<a>天使の羽の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">&lt;a&gt;恐怖に怯え、苦悩する人物が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death"><![CDATA[<a>恐怖に怯え、苦悩する人物が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">&lt;a&gt;潜んでいる影のような人物の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil"><![CDATA[<a>潜んでいる影のような人物の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">&lt;a&gt;太陽と月が並置されたイメージが描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune"><![CDATA[<a>太陽と月が並置されたイメージが描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">&lt;a&gt;拘束衣に包まれた人物の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit"><![CDATA[<a>拘束衣に包まれた人物の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">&lt;a&gt;中世の道化師の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker"><![CDATA[<a>中世の道化師の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">&lt;a&gt;月のイメージが描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon"><![CDATA[<a>月のイメージが描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">&lt;a&gt;太陽の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun"><![CDATA[<a>太陽の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">&lt;a&gt;城の塔の絵が描かれたタロットカード。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower"><![CDATA[<a>城の塔の絵が描かれたタロットカード。</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">&lt;a&gt;幽霊のエッセンスが染み込んだ小さな人形。幽霊と幽霊を永遠に結びつけます。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext"><![CDATA[<a>幽霊のエッセンスが染み込んだ小さな人形。幽霊と幽霊を永遠に結びつけます。</a>]]></string>
 
     <!--
           Info Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_info">&lt;p&gt;幽霊の出る鏡が、幽霊の部屋/お気に入りの部屋を教えてくれます。また、調査中にゴーストのお気に入りの部屋が変わったかどうかを確認するのにも役立ちます。&lt;/p&gt;&lt;p&gt;ゴーストの現在位置は表示されません。&lt;/p&gt;&lt;p&gt;鏡を覗き込むと、1 秒あたり 7% s の正気度が消費され、最低でも 20% p の正気度が消費されます。&lt;/p&gt;&lt;p&gt;正気がなくなると、鏡が壊れて呪われた狩りが始まります。&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_mirror_data_info"><![CDATA[<p>幽霊の出る鏡が、幽霊の部屋/お気に入りの部屋を教えてくれます。また、調査中にゴーストのお気に入りの部屋が変わったかどうかを確認するのにも役立ちます。</p><p>ゴーストの現在位置は表示されません。</p><p>鏡を覗き込むと、1 秒あたり 7% s の正気度が消費され、最低でも 20% p の正気度が消費されます。</p><p>正気がなくなると、鏡が壊れて呪われた狩りが始まります。</p>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_info">&lt;h2&gt;願いの数は、難易度や報酬の乗数によって次のように変わります...&lt;/h2&gt;幽霊を見たい:&lt;/h4&gt;&lt;a&gt;&lt;br&gt;0 倍 - 1.9 倍の乗数 = 願い 5 つ&lt;br&gt;2 倍 - 2.9 倍の乗数 = 願い 4 つ&lt;br&gt;3 倍以上の乗数 = 願い 3 つ&lt;/a&gt;&lt;h2&gt;すべての願い&lt;/h2&gt;&lt;h4&gt;幽霊を見たい:&lt;/h4&gt;&lt;a&gt;+ 幽霊の場所で幽霊イベントをトリガーします。&lt;br&gt;- 出口のドアを即座にロックします。&lt;br&gt;- 幽霊イベントの直後に狩りを開始します。&lt;br&gt;- 狩りの残りの間、黒い霧でプレイヤーの視界を狭めます。&lt;/a&gt;&lt;h4&gt;アクティビティを望みます。&lt;/h4&gt;&lt;a&gt;+ 2 分間、インタラクション、ローミング、アビリティを含むすべての幽霊アクティビティを 2 倍にします。&lt;br&gt;- ヒューズ ボックスを破壊し、出口のドアを 2 分間ロックします。分。&lt;/a&gt;&lt;h4&gt;正気を願います。&lt;/h4&gt;&lt;a&gt;~ チームの正気を平均 50%にします&lt;br&gt;- ゴーストのお気に入りの部屋を新しいランダムな部屋に設定します&lt;br&gt;- グループ全体の正気度の減少を現在のレートの +50\\{27/f 増加します。&lt;br&gt;- 注: この願いは Goryo の弱点を上書きします。% oつまり、ゴリョウは自力で部屋を変えることはできませんが、正気の願いを使えば部屋を変えることができます。&lt;/a&gt;&lt;h4&gt;ゴーストが閉じ込められていればいいのに。&lt;/h4&gt;&lt;a&gt;+ ゴーストを自分の部屋にテレポートさせ、1 分間すべてのドアをロックします。&lt;br&gt;+ ゴーストは部屋に閉じ込められている間、狩り、歩き回り、能力を使うことができません。&lt;br&gt;- 願い事をしたプレイヤーが現在いる部屋のドアをすべて 1 分間ロックします。&lt;br&gt;- ゴーストは 1 分後にすべてのドアのロックを解除し、狩りを始めます。&lt;br&gt;~ 25\\% c猶予期間後にドアがロック解除される可能性。&lt;/a&gt;&lt;h4&gt;私は人生を望みます。/ 友達を生き返らせたい。&lt;/h4&gt;&lt;a&gt;+ 死亡したプレイヤーを生き返らせます。&lt;br&gt;- 願いを唱えたプレイヤーを殺すチャンスが 50\\{3// あります。&lt;/a&gt;&lt;h4&gt;安全でいたい。&lt;/h4&gt;&lt;a&gt;+ 最も近い隠れ場所を開きます。&lt;br&gt;- 部屋の照明を壊します。&lt;br&gt;- 残りの実行中、ハント中に、ゴーストはマップ上のどこからでも願いを唱えたプレイヤーの装備を聞き、感知できます。&lt;br&gt;+ 注: これを利用して、ハント目的を達成するためにゴーストを意図的に安全な場所に誘い込むことができます。&lt;/a&gt;&lt;h4&gt;立ち去りたい。&lt;/h4&gt;&lt;a&gt;+ ハント中を含むいつでもすべての出口のドアのロックを解除します。&lt;br&gt;- 瞬時に移動できなくなり、その後 5 秒かけてゆっくりと移動速度が戻ります。&lt;br&gt;- 願いを唱えた人の視界が 5 秒間低下します。&lt;/a&gt;&lt;h4&gt;安全でいたい。知識。&lt;/h4&gt;&lt;a&gt;+ 日記から誤った証拠 1 つとそれに対応するゴーストの種類を削除し、選択肢を絞り込みます。&lt;br&gt;- プレイヤーの近くで狩りを開始します。&lt;br&gt;- ラウンドの残りの間、願い事をしたプレイヤーは視界が狭くなり、音声がこもります。&lt;br&gt;- 注: 死亡すると、音声と視覚の減少が通常の状態にリセットされ、復活した場合は通常の状態のままになります。&lt;/a&gt;&lt;h4&gt;[天気] を望みます。&lt;/h4&gt;&lt;a&gt;+ 天気が気に入らない場合は、雨 (x2)、雪、晴れ、霧、または日の出に変更することもできます。&lt;br&gt;- 願い事をした人の正気度が 25\\{29//減少します。&lt;br&gt;~ 注: 雨を願うと、小雨または大雨になる確率が 50\\{31// 増加します。&lt;/a&gt;&lt;h4&gt;何でも望みます。&lt;/h4&gt;&lt;a&gt;+ 何を願うか決められません何を願いたいですか？% c% f% c足に決めさせてください。何でも願いをかけると、そのラウンドで残っている（未使用の）願いの 1 つが叶います。&lt;br&gt;~ 注: 何でも願いは複数回使用できますが、その実行ですでに使用されている願いは叶えられません。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_info"><![CDATA[<h2>願いの数は、難易度や報酬の乗数によって次のように変わります…</h2>幽霊を見たい:</h4><a><br>0 倍 - 1.9 倍の乗数 = 願い 5 つ<br>2 倍 - 2.9 倍の乗数 = 願い 4 つ<br>3 倍以上の乗数 = 願い 3 つ</a><h2>すべての願い</h2><h4>幽霊を見たい:</h4><a>+ 幽霊の場所で幽霊イベントをトリガーします。<br>- 出口のドアを即座にロックします。<br>- 幽霊イベントの直後に狩りを開始します。<br>- 狩りの残りの間、黒い霧でプレイヤーの視界を狭めます。</a><h4>アクティビティを望みます。</h4><a>+ 2 分間、インタラクション、ローミング、アビリティを含むすべての幽霊アクティビティを 2 倍にします。<br>- ヒューズ ボックスを破壊し、出口のドアを 2 分間ロックします。分。</a><h4>正気を願います。</h4><a>~ チームの正気を平均 50%にします<br>- ゴーストのお気に入りの部屋を新しいランダムな部屋に設定します<br>- グループ全体の正気度の減少を現在のレートの +50\\{27/f 増加します。<br>- 注: この願いは Goryo の弱点を上書きします。% oつまり、ゴリョウは自力で部屋を変えることはできませんが、正気の願いを使えば部屋を変えることができます。</a><h4>ゴーストが閉じ込められていればいいのに。</h4><a>+ ゴーストを自分の部屋にテレポートさせ、1 分間すべてのドアをロックします。<br>+ ゴーストは部屋に閉じ込められている間、狩り、歩き回り、能力を使うことができません。<br>- 願い事をしたプレイヤーが現在いる部屋のドアをすべて 1 分間ロックします。<br>- ゴーストは 1 分後にすべてのドアのロックを解除し、狩りを始めます。<br>~ 25\\% c猶予期間後にドアがロック解除される可能性。</a><h4>私は人生を望みます。/ 友達を生き返らせたい。</h4><a>+ 死亡したプレイヤーを生き返らせます。<br>- 願いを唱えたプレイヤーを殺すチャンスが 50\\{3// あります。</a><h4>安全でいたい。</h4><a>+ 最も近い隠れ場所を開きます。<br>- 部屋の照明を壊します。<br>- 残りの実行中、ハント中に、ゴーストはマップ上のどこからでも願いを唱えたプレイヤーの装備を聞き、感知できます。<br>+ 注: これを利用して、ハント目的を達成するためにゴーストを意図的に安全な場所に誘い込むことができます。</a><h4>立ち去りたい。</h4><a>+ ハント中を含むいつでもすべての出口のドアのロックを解除します。<br>- 瞬時に移動できなくなり、その後 5 秒かけてゆっくりと移動速度が戻ります。<br>- 願いを唱えた人の視界が 5 秒間低下します。</a><h4>安全でいたい。知識。</h4><a>+ 日記から誤った証拠 1 つとそれに対応するゴーストの種類を削除し、選択肢を絞り込みます。<br>- プレイヤーの近くで狩りを開始します。<br>- ラウンドの残りの間、願い事をしたプレイヤーは視界が狭くなり、音声がこもります。<br>- 注: 死亡すると、音声と視覚の減少が通常の状態にリセットされ、復活した場合は通常の状態のままになります。</a><h4>[天気] を望みます。</h4><a>+ 天気が気に入らない場合は、雨 (x2)、雪、晴れ、霧、または日の出に変更することもできます。<br>- 願い事をした人の正気度が 25\\{29//減少します。<br>~ 注: 雨を願うと、小雨または大雨になる確率が 50\\{31// 増加します。</a><h4>何でも望みます。</h4><a>+ 何を願うか決められません何を願いたいですか？% c% f% c足に決めさせてください。何でも願いをかけると、そのラウンドで残っている（未使用の）願いの 1 つが叶います。<br>~ 注: 何でも願いは複数回使用できますが、その実行ですでに使用されている願いは叶えられません。</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_info">&lt;a&gt;サニーメドウズ全体に隠されたタグを見ると、モンキーポーの呪われた憑依物を使って何を願えばよいかがわかります。それらを見つけるには、単に Sunny Meadows に行って周囲を見回すだけです。見つかったら、日記の 12 ページに永久に追加されます。&lt;/a&gt;&lt;ul&gt;&lt;li&gt;幽霊に会いたい。&lt;/li&gt;&lt;li&gt;活動ができるように願う。&lt;/li&gt;&lt;li&gt;正気を取り戻せるように願う。&lt;/li&gt;&lt;li&gt;幽霊が閉じ込められていればいいのに。&lt;/li&gt;&lt;li&gt;命がほしい。&lt;/li&gt;&lt;li&gt;安全でいられるよう願う。&lt;/li&gt;&lt;li&gt;ここを去りたい。&lt;/li&gt;&lt;li&gt;知識がほしい。&lt;/li&gt;&lt;li&gt;天気がほしい。&lt;/li&gt;&lt;li&gt;何でもいいから。&lt;/li&gt;&lt;/ul&gt;&lt;a&gt;注: 願い事を使うのにタグを見つける必要はありません。これらは、可能性のリストを示してガイドするだけの存在です。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_info"><![CDATA[<a>サニーメドウズ全体に隠されたタグを見ると、モンキーポーの呪われた憑依物を使って何を願えばよいかがわかります。それらを見つけるには、単に Sunny Meadows に行って周囲を見回すだけです。見つかったら、日記の 12 ページに永久に追加されます。</a><ul><li>幽霊に会いたい。</li><li>活動ができるように願う。</li><li>正気を取り戻せるように願う。</li><li>幽霊が閉じ込められていればいいのに。</li><li>命がほしい。</li><li>安全でいられるよう願う。</li><li>ここを去りたい。</li><li>知識がほしい。</li><li>天気がほしい。</li><li>何でもいいから。</li></ul><a>注: 願い事を使うのにタグを見つける必要はありません。これらは、可能性のリストを示してガイドするだけの存在です。</a>]]></string>
 
-    <string name="shop_cursedpossessions_musicbox_data_info">&lt;p&gt;オルゴールが幽霊を誘い出す！演奏中、幽霊はオルゴールを探します。写真撮影や狩りの制御/強制に最適です。&lt;/p&gt;&lt;p&gt;オルゴールが鳴っているときに近くにいると、正気度が減ります。&lt;/p&gt;&lt;p&gt;オルゴールを置く代わりに投げると、壊れて呪われた狩りが始まります。&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_musicbox_data_info"><![CDATA[<p>オルゴールが幽霊を誘い出す！演奏中、幽霊はオルゴールを探します。写真撮影や狩りの制御/強制に最適です。</p><p>オルゴールが鳴っているときに近くにいると、正気度が減ります。</p><p>オルゴールを置く代わりに投げると、壊れて呪われた狩りが始まります。</p>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_info">&lt;p&gt;ウィジャボードは、強制的に狩りをさせたり、幽霊の部屋を見つけたり、交流写真を撮ったりするのに使用できます。&lt;/p&gt;&lt;p&gt;ボードを起動して、質問したり、リクエストしたりします。プランシェットが存在する場合、ボードはアクティブになります。ボードを非アクティブにするには、「さよなら」を言い、プランシェットを回収します。&lt;/p&gt;&lt;p&gt;必ず「さよなら」を言いましょう。プランシェットを召喚した人が、作動中のウィジャボードから離れすぎると、ウィジャボードは自壊し、呪われた狩りが始まります。&lt;/p&gt;&lt;p&gt;近くにいる人は誰でもボードに話しかけることができます。&lt;/p&gt;&lt;p&gt;質問や要求によって、他の質問や要求よりも多くの正気度を消費します。&lt;/p&gt;&lt;a&gt;ウィジャボードに尋ねることができる質問には、次のようなものがあります。&lt;/a&gt;&lt;ul&gt;&lt;li&gt;どこにいるの？&lt;/li&gt;&lt;li&gt;骨はどこにあるの？&lt;/li&gt;&lt;li&gt;どうやって死んだの？&lt;/li&gt;&lt;li&gt;私は気が狂っているの？&lt;/li&gt;&lt;li&gt;部屋には何人いるの？&lt;/li&gt;&lt;li&gt;あなたは何歳？&lt;/li&gt;&lt;li&gt;私の正気度はどのくらい？&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;「かくれんぼ」と言うと、呪われた狩りを開始できます。幽霊が狩りをする前に、5 秒以内に逃げなければなりません。&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_ouijaboard_data_info"><![CDATA[<p>ウィジャボードは、強制的に狩りをさせたり、幽霊の部屋を見つけたり、交流写真を撮ったりするのに使用できます。</p><p>ボードを起動して、質問したり、リクエストしたりします。プランシェットが存在する場合、ボードはアクティブになります。ボードを非アクティブにするには、「さよなら」を言い、プランシェットを回収します。</p><p>必ず「さよなら」を言いましょう。プランシェットを召喚した人が、作動中のウィジャボードから離れすぎると、ウィジャボードは自壊し、呪われた狩りが始まります。</p><p>近くにいる人は誰でもボードに話しかけることができます。</p><p>質問や要求によって、他の質問や要求よりも多くの正気度を消費します。</p><a>ウィジャボードに尋ねることができる質問には、次のようなものがあります。</a><ul><li>どこにいるの？</li><li>骨はどこにあるの？</li><li>どうやって死んだの？</li><li>私は気が狂っているの？</li><li>部屋には何人いるの？</li><li>あなたは何歳？</li><li>私の正気度はどのくらい？</li></ul><p>「かくれんぼ」と言うと、呪われた狩りを開始できます。幽霊が狩りをする前に、5 秒以内に逃げなければなりません。</p>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_info">&lt;p&gt;ろうそくが灯されているときに召喚サークルの近くにいる人も正気を失います。&lt;/p&gt;&lt;p&gt;すべてのろうそくが灯されると、呪われた狩りが始まります。ゴーストは、徘徊を始める前に 1 秒以上サークル内に閉じ込められます。&lt;/p&gt;&lt;p&gt;閉じ込められている間にゴーストの写真を撮ることをお勧めします。&lt;/p&gt;&lt;p&gt;呪われた狩りは、Tier 3 の十字架によってキャンセルできます。&lt;/p&gt;</string>
+    <string name="shop_cursedpossessions_summoningcircle_data_info"><![CDATA[<p>ろうそくが灯されているときに召喚サークルの近くにいる人も正気を失います。</p><p>すべてのろうそくが灯されると、呪われた狩りが始まります。ゴーストは、徘徊を始める前に 1 秒以上サークル内に閉じ込められます。</p><p>閉じ込められている間にゴーストの写真を撮ることをお勧めします。</p><p>呪われた狩りは、Tier 3 の十字架によってキャンセルできます。</p>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">&lt;a&gt;即死します&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman"><![CDATA[<a>即死します</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">&lt;a&gt;死亡したプレイヤーを復活させます。死亡したプレイヤーが複数いる場合は、カードによってランダムに 1 人の死亡したプレイヤーが復活します。死亡したプレイヤーがいない場合、カードは次の死亡したプレイヤーを復活させます。</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess"><![CDATA[<a>死亡したプレイヤーを復活させます。死亡したプレイヤーが複数いる場合は、カードによってランダムに 1 人の死亡したプレイヤーが復活します。死亡したプレイヤーがいない場合、カードは次の死亡したプレイヤーを復活させます。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_death">&lt;a&gt;幽霊狩りを強制する。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_death"><![CDATA[<a>幽霊狩りを強制する。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_devil">&lt;a&gt;ゴースト イベントを強制します。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil"><![CDATA[<a>ゴースト イベントを強制します。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">&lt;a&gt;25 獲得\\% sアニティ [グリーンバーン]、25 失う\\% sアニティ [レッドバーン]&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune"><![CDATA[<a>25 獲得\\% sアニティ [グリーンバーン]、25 失う\\% sアニティ [レッドバーン]</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">&lt;a&gt;テレポートして、幽霊をお気に入りの部屋に 1 分間閉じ込めます。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit"><![CDATA[<a>テレポートして、幽霊をお気に入りの部屋に 1 分間閉じ込めます。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_joker">&lt;a&gt;何もしません。愚者は技術的にはすでに引かれており、ゲームでは愚者を公開する前にどのカードが表示されるかを確認するために 1/9 をランダムにロールします。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker"><![CDATA[<a>何もしません。愚者は技術的にはすでに引かれており、ゲームでは愚者を公開する前にどのカードが表示されるかを確認するために 1/9 をランダムにロールします。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_moon">&lt;a&gt;正気度が 0%に低下します。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon"><![CDATA[<a>正気度が 0%に低下します。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_sun">&lt;a&gt;正気を 100% 回復します。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun"><![CDATA[<a>正気を 100% 回復します。</a>]]></string>
 
-    <string name="shop_cursedpossessions_tarotcards_data_info_tower">&lt;a&gt;強制的にインタラクションを実行し、ゴーストのアクティビティを 20 秒間 2 倍にします。&lt;/a&gt;</string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower"><![CDATA[<a>強制的にインタラクションを実行し、ゴーストのアクティビティを 20 秒間 2 倍にします。</a>]]></string>
 
-    <string name="shop_cursedpossessions_voodoodoll_data_info">&lt;p&gt;ブードゥー人形を刺すと、強制的にインタラクションが発生します。&lt;/p&gt;&lt;p&gt;ブードゥー人形は最大 10 回刺すことができます。刺すたびに心臓を刺す可能性があり、呪われた狩りが始まります。&lt;/p&gt;&lt;p&gt;人形を使用して正気度を 0\\{2//y に減らすと、すべてのピンがアクティブになり、呪われた狩りが始まります。&lt;/p&gt;% b</string>
+    <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>ブードゥー人形を刺すと、強制的にインタラクションが発生します。</p><p>ブードゥー人形は最大 10 回刺すことができます。刺すたびに心臓を刺す可能性があり、呪われた狩りが始まります。</p><p>人形を使用して正気度を 0\\{2//y に減らすと、すべてのピンがアクティブになり、呪われた狩りが始まります。</p>% b]]></string>
 
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">コンパニオン クレジット</item>
+        <item quantity="other">コンパニオン クレジット</item>
+    </plurals>
+
+    <string name="general_navigation_settings">設定</string>
+    <string name="general_navigation_system">システム</string>
 </resources>

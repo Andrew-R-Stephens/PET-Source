@@ -79,7 +79,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
                 val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
                 ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }
             }
-            ghostNameTextView.text = ghostModel.name
+            ghostNameTextView.text = context.getString(ghostModel.name)
         }
         
         //initialize info content scroller

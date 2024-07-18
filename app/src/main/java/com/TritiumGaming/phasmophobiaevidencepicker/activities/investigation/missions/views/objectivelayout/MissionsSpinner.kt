@@ -56,7 +56,7 @@ class MissionsSpinner : AppCompatSpinner {
                     currentMission?.let { currentMission ->
                         adapter?.let { adapter ->
                             for(i in 0 ..< adapter.count) {
-                                if(adapter.getItem(i) as Objective == currentMission) {
+                                if((adapter.getItem(i) as AdapterWrapper).objective == currentMission) {
                                     setSelection(i)
                                 }
                             }
@@ -64,7 +64,7 @@ class MissionsSpinner : AppCompatSpinner {
                     }
                 } else {
                     currentMission?.deselect()
-                    val newMission = parent.getItemAtPosition(position) as Objective
+                    val newMission = (parent.getItemAtPosition(position) as AdapterWrapper).objective
                     newMission.select(missionId)
                     currentMission = newMission
                 }
@@ -85,9 +85,21 @@ class MissionsSpinner : AppCompatSpinner {
         val availableObjectives =
             objectivesViewModel?.missionsListModel?.getMissionsBy(false, missionId)
 
-        availableObjectives?.let {
-            val adapter = ArrayAdapter(context, R.layout.popup_spinner, availableObjectives)
+        val objectiveWrappers: ArrayList<AdapterWrapper> = arrayListOf()
+        availableObjectives?.forEach { objective ->
+            objectiveWrappers.add(AdapterWrapper(
+                objective, context.getString(objective.contentRes)))
+        }
+
+        objectiveWrappers.let {
+            val adapter = ArrayAdapter(context, R.layout.popup_spinner, objectiveWrappers)
             setAdapter(adapter)
+        }
+    }
+
+    data class AdapterWrapper(val objective: Objective, val content: String) {
+        override fun toString(): String {
+            return content
         }
     }
 

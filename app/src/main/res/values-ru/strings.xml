@@ -64,9 +64,12 @@
     <string name="settings_huntwarningflashtimeout_never">Никогда тайм-аут</string>
     <string name="settings_enableLeftHandSupport">Включить режим для левшей</string>
     <string name="settings_enablehuntaudioqueue">Включить звуковое предупреждение об обнаружении</string>
+    <string name="settings_enableGhostReorder">Включить переупорядочение списка призраков</string>
     <string name="settings_colorblindnessmode_title">Режим дальтонизма</string>
     <string name="settings_colorblindnessmode_note">(Вступит в силу после выхода из настроек)</string>
     <!-- Colorblindness Types -->
+    <string name="settings_colortheme_title">Кожа</string>
+    <string name="settings_colortheme_note">(Выбор «Цветовая слепота» имеет приоритет)</string>
     <string name="settings_colorblindnessmode_normal">Нет</string>
 
     <!--
@@ -1753,8 +1756,8 @@
 
     <string name="shop_cursedpossessions_monkeypaw_data_info">
      <![CDATA[
-     <h2>Количество ваших желаний будет зависеть от вашей сложности или множителя награды следующим образом...</h2>
-     Я хочу увидеть призрака:</h4>
+     <h2>Количество ваших желаний будет зависеть от вашей сложности или множителя награды следующим образом</h2>
+
      <а>
      <br>
      Множитель 0x - 1,9x = 5 желаний<br>
@@ -2282,4 +2285,43 @@
      <a>10 %</a>
      ]]>
      </string>
+
+    <string name="marketplace_title">Торговая площадка</string>
+    <string name="marketplace_connection_error">Ой-ой! Произошла ошибка при подключении к торговой площадке.</string>
+    <string name="marketplace_error_login_required">Войдите в систему, чтобы заявить права на контент Marketplace.</string>
+    <string name="marketplace_button_watch_ad">Заработайте кредиты</string>
+    <string name="marketplace_button_purchase_credits">Купить кредиты</string>
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">Компанский бонус</item>
+        <item quantity="other">Сопутствующие кредиты</item>
+    </plurals>
+    <string name="marketplace_description_watch_ad">Посмотрите рекламу и заработайте %s %s.</string>
+    <string name="marketplace_description_purchase_credits">Приобрести кредиты напрямую.</string>
+
+    <string name="general_navigation_settings">Настройки</string>
+    <string name="general_navigation_system">Система</string>
+
+    <string name="account_title">Моя учетная запись</string>
+    <string name="account_label_information">Информация об аккаунте</string>
+    <string name="account_label_name">Имя</string>
+    <string name="account_label_email">Электронная почта</string>
+    <string name="account_button_login">Войти</string>
+    <string name="account_button_logout">Выйти</string>
+    <string name="account_button_deactivate">Деактивировать учетную запись</string>
+
+    <!-- Деактивировать -->
+    <string name="account_deactivate_title">Деактивация аккаунта</string>
+    <string name="account_deactivate_warning">Выбирая деактивацию своей учетной записи, вы соглашаетесь со следующим:</string>
+    <string name="account_deactivate_warning_list_1">Все P.E.T. данные аккаунта станут невосстановимыми.</string>
+    <string name="account_deactivate_warning_list_2">Вы потеряете доступ к покупкам, разблокировкам и всем другим связанным предметам.</string>
+    <string name="account_deactivate_warning_list_3">Если вы повторно присоединитесь с тем же входом, данные предыдущей учетной записи не будут перенесены.</string>
+    <string name="account_deactivate_button_confirm">Подтвердить деактивацию</string>
+    <string name="account_deactivate_button_cancel">Неважно</string>
+
+    <!-- Выход -->
+    <string name="account_logout_title">Выход</string>
+    <string name="account_logout_warning">Вы уверены, что хотите выйти?</string>
+    <string name="account_logout_button_confirm">Выход</string>
+    <string name="account_logout_button_cancel">Отмена</string>
+
 </resources>

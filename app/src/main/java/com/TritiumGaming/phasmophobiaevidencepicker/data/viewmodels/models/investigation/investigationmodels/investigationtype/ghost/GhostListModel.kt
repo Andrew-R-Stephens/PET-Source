@@ -3,34 +3,36 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.content.Context
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
 class GhostListModel {
 
-    fun init(c: Context, investigationData: InvestigationModel) {
+    fun init(context: Context, investigationData: InvestigationModel) {
         ghostList = ArrayList()
-        val ghostNames = c.resources.getStringArray(R.array.ghost_names)
+        val namesTypedArray = context.resources.obtainTypedArray(R.array.ghost_names)
+        val namesArray = intArrayFromTypedArray(context.resources, namesTypedArray)
 
         val typedArrayEvidence =
-            c.resources.obtainTypedArray(R.array.ghost_evidence_arrays)
+            context.resources.obtainTypedArray(R.array.ghost_evidence_arrays)
         val typedArrayRequiredEvidence =
-            c.resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
-        for (i in ghostNames.indices) {
-            val ghost = GhostModel(investigationData, i)
-            ghost.name = ghostNames[i]
+            context.resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
+        for (i in namesArray.indices) {
+            val ghost = GhostModel(investigationData, i, namesArray[i])
+            // ghost.name =
 
             // Set Normal Evidence
             val evidenceNameTypedArray =
-                c.resources.obtainTypedArray(typedArrayEvidence.getResourceId(i, 0))
+                context.resources.obtainTypedArray(typedArrayEvidence.getResourceId(i, 0))
             for (j in 0 until evidenceNameTypedArray.length()) {
-                ghost.addEvidence(evidenceNameTypedArray.getString(j)!!)
+                ghost.addEvidence(evidenceNameTypedArray.getString(j)!!, context)
             }
             evidenceNameTypedArray.recycle()
 
             // Set Required Evidence
             val requiredEvidenceNameTypedArray =
-                c.resources.obtainTypedArray(typedArrayRequiredEvidence.getResourceId(i, 0))
+                context.resources.obtainTypedArray(typedArrayRequiredEvidence.getResourceId(i, 0))
             for (j in 0 until requiredEvidenceNameTypedArray.length()) {
-                ghost.addNightmareEvidence(requiredEvidenceNameTypedArray.getString(j)!!)
+                ghost.addNightmareEvidence(requiredEvidenceNameTypedArray.getString(j)!!, context)
             }
             requiredEvidenceNameTypedArray.recycle()
 

@@ -116,8 +116,8 @@
 
     <string name="shop_cursedpossessions_monkeypaw_data_info">
         <![CDATA[
-            <h2>The number of wishes you have will depend on your difficulty or reward multiplier as follows...</h2>
-            I wish to see the ghost:</h4>
+            <h2>The number of wishes you have will depend on your difficulty or reward multiplier as follows:</h2>
+
             <a>
                 <br>
                 0x - 1.9x Multiplier = 5 wishes<br>

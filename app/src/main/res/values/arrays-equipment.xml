@@ -81,7 +81,7 @@
     </string-array>
 
     <!-- Evidence Names -->
-    <string-array name="evidence_type_names">
+    <integer-array name="evidence_type_names">
         <item>@string/evidence_type_dots</item>
         <item>@string/evidence_type_emf</item>
         <item>@string/evidence_type_ultraviolet</item>
@@ -89,7 +89,7 @@
         <item>@string/evidence_type_orbs</item>
         <item>@string/evidence_type_book</item>
         <item>@string/evidence_type_box</item>
-    </string-array>
+    </integer-array>
 
     <!-- Evidence Descriptions -->
     <string-array name="equipment_tiers_dots_description">
@@ -192,17 +192,6 @@
     </string-array>
 
     <!-- Evidence Icons -->
-    <!--
-    <integer-array name="evidence_icon_array">
-        <item>@drawable/icon_dots</item>
-        <item>@drawable/icon_emf5</item>
-        <item>@drawable/icon_fingerprints</item>
-        <item>@drawable/icon_freezing</item>
-        <item>@drawable/icon_orbs</item>
-        <item>@drawable/icon_writing</item>
-        <item>@drawable/icon_spiritbox</item>
-    </integer-array>
-    -->
     <integer-array name="evidence_icon_array">
         <item>@drawable/icon_ev_dots</item>
         <item>@drawable/icon_ev_emf</item>

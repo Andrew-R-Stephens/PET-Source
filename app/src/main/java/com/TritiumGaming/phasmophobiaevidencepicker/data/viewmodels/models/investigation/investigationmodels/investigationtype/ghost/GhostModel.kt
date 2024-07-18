@@ -1,17 +1,16 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost
 
+import android.content.Context
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
 
 class GhostModel(
-    val investigationData: InvestigationModel? = null,
-    var id: Int = 0
+    private var investigationModel: InvestigationModel? = null,
+    var id: Int = 0,
+    var name: Int = 0
 ) {
-    private var investigationModel: InvestigationModel? = null
-
-    var name: String = "NA"
 
     var forcefullyRejected: Boolean = false
 
@@ -53,7 +52,6 @@ class GhostModel(
          * Score sets to '-5' if an Evidence type is positive but not found in Ghost's Evidence
          * list.
          * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list.
-         *
          * @return numerical representation of the Ghost's Evidence score
          */
         get() {
@@ -125,26 +123,13 @@ class GhostModel(
             return posScore
         }
 
-    //constructor() { id = 0 }
-
-    /*
-    constructor(investigationData: InvestigationModel? = null, id: Int = 0) {
-        investigationData?.let { this.investigationModel = investigationData }
-        this.id = id
-    }
-    */
-
-    init {
-        investigationData?.let { this.investigationModel = investigationData }
-    }
-
     private fun addEvidence(e: EvidenceModel) {
         thisGhostEvidence.add(e)
     }
 
-    fun addEvidence(evidence: String) {
+    fun addEvidence(evidence: String, c: Context) {
         for (e in investigationModel!!.evidenceListModel.evidenceList) {
-            if (evidence == e.name) {
+            if (evidence == c.getString(e.name)) {
                 addEvidence(e)
                 break
             }
@@ -155,9 +140,9 @@ class GhostModel(
         thisGhostRequiredEvidence.add(e)
     }
 
-    fun addNightmareEvidence(evidence: String) {
+    fun addNightmareEvidence(evidence: String, c: Context) {
         for (e in investigationModel!!.evidenceListModel.evidenceList) {
-            if (evidence == e.name) {
+            if (evidence == c.getString(e.name)) {
                 addNightmareEvidence(e)
                 break
             }

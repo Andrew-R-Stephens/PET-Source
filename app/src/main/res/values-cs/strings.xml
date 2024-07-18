@@ -10,6 +10,8 @@
     <string name="general_tasks_button">Úkoly</string>
     <string name="general_codex_button">Kodex</string>
     <string name="general_evidence_reset_button">Resetovat</string>
+    <string name="general_navigation_settings">Nastavení</string>
+    <string name="general_navigation_system">Systém</string>
 
     <!--
         TITLESCREEN PAGE
@@ -73,9 +75,12 @@
     <string name="settings_huntwarningflashtimeout">Vypršel časový limit blesku upozornění na lov</string>
     <string name="settings_huntwarningflashtimeout_never">Nikdy vypršel časový limit</string>
     <string name="settings_enablehuntaudioqueue">Povolit zvukové varování lovu</string>
+    <string name="settings_enableGhostReorder">Povolit změnu pořadí seznamu duchů</string>
     <string name="settings_colorblindnessmode_title">Režim barvoslepé</string>
     <string name="settings_colorblindnessmode_note">(vstoupí v platnost po opuštění Nastavení)</string>
     <!-- Colorblindness Types -->
+    <string name="settings_colortheme_title">Kůže</string>
+    <string name="settings_colortheme_note">(Výběr barvosleposti má přednost)</string>
     <string name="settings_colorblindnessmode_normal">Žádné</string>
 
     <!--
@@ -1650,7 +1655,7 @@
      -->
     <string name="shop_cursedpossessions_mirror_data_flavortext">
      <![CDATA[
-     <a>Velké kulaté zrcadlo. Když je držen, je držitel přitahován, aby se do něj podíval... ale za cenu.</a>
+     <a>Velké kulaté zrcadlo. Když je držen, je držitel přitahován, aby se do něj podíval… ale za cenu.</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
@@ -1750,7 +1755,7 @@
     <string name="shop_cursedpossessions_monkeypaw_data_info">
      <![CDATA[
      <h2>Počet přání, která máte, bude záviset na vaší obtížnosti nebo násobiteli odměn následovně...</h2>
-     Přeji si vidět ducha:</h4>
+
      <a>
      <br>
      0x - 1,9x Násobitel = 5 přání<br>
@@ -2273,9 +2278,41 @@
      <a>20 %</a>
      ]]>
      </string>
-        <string name="shop_cursedpossessions_voodoodoll_data_drawchance">
-     <![CDATA[
-     <a>10 %</a>
-     ]]>
-     </string>
+        <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10 %</a>]]></string>
+
+    <string name="marketplace_title">Tržiště</string>
+    <string name="marketplace_connection_error">Ach! Při připojování k tržišti došlo k chybě.</string>
+    <string name="marketplace_error_login_required">Chcete-li nárokovat obsah z Marketplace, přihlaste se prosím.</string>
+    <string name="marketplace_button_watch_ad">Získejte kredity</string>
+    <string name="marketplace_button_purchase_credits">Nákup kreditů</string>
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">Doprovodný kredit</item>
+        <item quantity="other">Doprovodné kredity</item>
+    </plurals>
+    <string name="marketplace_description_watch_ad">Podívejte se na reklamu a vydělejte %s %s.</string>
+    <string name="marketplace_description_purchase_credits">Nakupujte kredity přímo.</string>
+
+    <string name="account_title">Můj účet</string>
+    <string name="account_label_information">Informace o účtu</string>
+    <string name="account_label_name">Název</string>
+    <string name="account_label_email">E-mail</string>
+    <string name="account_button_login">Přihlaste se</string>
+    <string name="account_button_logout">Odhlásit se</string>
+    <string name="account_button_deactivate">Deaktivovat účet</string>
+
+    <!-- Deaktivovat -->
+    <string name="account_deactivate_title">Deaktivace účtu</string>
+    <string name="account_deactivate_warning">Výběrem deaktivace účtu vyjadřujete souhlas s následujícím:</string>
+    <string name="account_deactivate_warning_list_1">Všechny P.E.T. data účtu budou neobnovitelná.</string>
+    <string name="account_deactivate_warning_list_2">Ztratíte přístup k nákupům, odemknutí a všem dalším souvisejícím položkám.</string>
+    <string name="account_deactivate_warning_list_3">Pokud se znovu připojíte se stejným přihlášením, data předchozího účtu se nepřenesou.</string>
+    <string name="account_deactivate_button_confirm">Potvrdit deaktivaci</string>
+    <string name="account_deactivate_button_cancel">Nevadí</string>
+
+    <!-- Odhlášení -->
+    <string name="account_logout_title">Odhlásit se</string>
+    <string name="account_logout_warning">Opravdu se chcete odhlásit?</string>
+    <string name="account_logout_button_confirm">Odhlásit se</string>
+    <string name="account_logout_button_cancel">Zrušit</string>
+
 </resources>

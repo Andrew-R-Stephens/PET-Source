@@ -6,22 +6,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 /**
  * Evidence enums
  */
-class EvidenceModel {
-
-    var name: String? = null
-
-    @DrawableRes var icon: Int = 0
-        @DrawableRes get
+class EvidenceModel(
+    var id: Int = 0,
+    var name: Int = 0,
+    @DrawableRes var icon: Int = R.drawable.icon_ev_dots
+) {
 
     var ruling: Ruling = Ruling.NEUTRAL
 
     enum class Ruling {
         NEGATIVE, NEUTRAL, POSITIVE
-    }
-
-    init {
-        name = "Null"
-        icon = R.drawable.icon_ev_dots
     }
 
     fun isRuling(r: Ruling): Boolean {

@@ -123,12 +123,6 @@ class MissionsFragment : InvestigationFragment() {
 
     override fun reset() { }
 
-    override fun onPause() {
-        //saveStates()
-
-        super.onPause()
-    }
-
     internal abstract inner class OnResponseChangeListener {
         abstract fun onChange()
     }
