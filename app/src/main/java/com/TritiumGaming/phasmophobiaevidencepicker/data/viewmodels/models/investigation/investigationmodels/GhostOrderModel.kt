@@ -29,9 +29,12 @@ class GhostOrderModel(
     private fun createPrevOrder() {
         prevOrder = IntArray(GhostListModel.count)
 
-        for (i in prevOrder!!.indices) {
-            prevOrder!![i] = i
+        prevOrder?.let { prevOrder ->
+            for (i in prevOrder.indices) {
+                prevOrder[i] = i
+            }
         }
+
     }
 
     /**
@@ -41,9 +44,12 @@ class GhostOrderModel(
     private fun createCurrOrder() {
         currOrder = IntArray(GhostListModel.count)
 
-        for (i in currOrder!!.indices) {
-            currOrder!![i] = i
+        currOrder?.let { currOrder ->
+            for (i in currOrder.indices) {
+                currOrder[i] = i
+            }
         }
+
     }
 
     fun updateOrder() {
@@ -70,10 +76,8 @@ class GhostOrderModel(
         // Order placeholder array based on scores
         var i = 0
         while (i < newOrder.size - 1) {
-            val ghostList = ghostListModel ?: GhostListModel()
-
-            val ratingA = ghostList.getAt(newOrder[i])?.evidenceScore ?: 0
-            val ratingB = ghostList.getAt(newOrder[i + 1])?.evidenceScore ?: 0
+            val ratingA = ghostListModel.getAt(newOrder[i])?.evidenceScore ?: 0
+            val ratingB = ghostListModel.getAt(newOrder[i + 1])?.evidenceScore ?: 0
 
             if (ratingA < ratingB) {
                 val t = newOrder[i + 1]
@@ -88,14 +92,6 @@ class GhostOrderModel(
         currOrder = newOrder
     }
 
-    fun getPrevOrder(): IntArray? {
-        if (prevOrder == null) {
-            createPrevOrder()
-        }
-
-        return prevOrder
-    }
-
     fun hasChanges(): Boolean {
         if (prevOrder == null) {
             createPrevOrder()
@@ -104,8 +100,12 @@ class GhostOrderModel(
             createCurrOrder()
         }
 
-        for (i in currOrder!!.indices) {
-            if (currOrder!![i] != prevOrder!![i]) return true
+        currOrder?.let { currOrder ->
+            prevOrder?.let { prevOrder ->
+                for (i in currOrder.indices) {
+                    if (currOrder[i] != prevOrder[i]) return true
+                }
+            }
         }
 
         return false

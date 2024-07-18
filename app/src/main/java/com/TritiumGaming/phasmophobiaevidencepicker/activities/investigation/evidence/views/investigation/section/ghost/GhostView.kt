@@ -21,7 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inves
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
-/*abstract */class GhostView : ConstraintLayout {
+class GhostView : ConstraintLayout {
 
     private var investigationViewModel: InvestigationViewModel? = null
     private var ghostModel: GhostModel? = null

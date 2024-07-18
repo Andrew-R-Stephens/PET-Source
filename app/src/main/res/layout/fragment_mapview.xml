@@ -133,7 +133,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="4dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon_stairs"
+                android:src="@drawable/ic_stairs"
                 android:scaleType="fitCenter"
                 android:tint="?attr/textColorBody"
                 app:layout_constraintDimensionRatio="1"

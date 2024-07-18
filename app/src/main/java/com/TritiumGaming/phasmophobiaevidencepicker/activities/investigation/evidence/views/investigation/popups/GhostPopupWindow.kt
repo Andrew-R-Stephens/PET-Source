@@ -14,6 +14,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
@@ -43,7 +44,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
         super.initView(R.layout.popup_info_ghost)
     }
 
-    fun build(investigationViewModel: InvestigationViewModel, ghostPopupData: GhostPopupModel,
+    fun build(investigationModel: InvestigationModel, ghostPopupData: GhostPopupModel,
               groupIndex: Int, adRequest: AdRequest?
     ) {
         var adRequest = adRequest
@@ -73,14 +74,12 @@ class GhostPopupWindow : InvestigationPopupWindow {
             resources.getString(R.string.popup_ghost_weakness)
         )
 
-        investigationViewModel.investigationModel?.ghostListModel?.let { ghostListModel ->
-            ghostListModel.getAt(groupIndex)?.let { ghostModel ->
-                for (i in ghostModel.evidenceArray.indices) {
-                    val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
-                    ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }
-                }
-                ghostNameTextView.text = ghostModel.name
+        investigationModel.ghostListModel.getAt(groupIndex)?.let { ghostModel ->
+            for (i in ghostModel.evidenceArray.indices) {
+                val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
+                ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }
             }
+            ghostNameTextView.text = ghostModel.name
         }
         
         //initialize info content scroller

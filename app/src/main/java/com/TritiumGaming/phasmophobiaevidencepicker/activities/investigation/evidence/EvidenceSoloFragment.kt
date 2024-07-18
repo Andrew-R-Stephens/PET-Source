@@ -26,18 +26,12 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //val buttonReset = view.findViewById<AppCompatImageView>(R.id.button_reset)
         val buttonReset = view.findViewById<ComposeView>(R.id.button_reset)
         buttonReset.setContent {
             ResetButton(
                 onClick = { reset() }
             )
         }
-
-        /*buttonReset.setOnClickListener {
-            // TODO animate reset arrow
-            reset()
-        }*/
 
     }
 
@@ -129,8 +123,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
 
     override fun reset() {
         stopSanityJob()
+
         super.reset()
-        requestInvalidateComponents()
+
         startSanityJob()
     }
 

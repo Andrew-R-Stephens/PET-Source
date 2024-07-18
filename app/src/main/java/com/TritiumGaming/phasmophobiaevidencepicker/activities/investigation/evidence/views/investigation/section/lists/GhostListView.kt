@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.ProgressBar
@@ -27,8 +28,8 @@ class GhostListView : InvestigationListView {
             super(context, attrs, defStyleAttr, defStyleRes)
 
     public override fun init(
-        globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        investigationViewModel: InvestigationViewModel?,
+        globalPreferencesViewModel: GlobalPreferencesViewModel,
+        investigationViewModel: InvestigationViewModel,
         popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?
     ) {
         super.init(globalPreferencesViewModel, investigationViewModel,
@@ -42,12 +43,14 @@ class GhostListView : InvestigationListView {
 
     override fun build() {
         investigationViewModel?.let { investigationViewModel ->
-            val newGhostOrder = investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
+            val newGhostOrder =
+                investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
 
-            newGhostOrder?.let {
-                this.weightSum = newGhostOrder.size.toFloat()
+            newGhostOrder?.let { ghostOrder ->
+                Log.d("GhostOrder", "Loading New ${newGhostOrder.joinToString()}")
+                this.weightSum = ghostOrder.size.toFloat()
 
-                for (index in newGhostOrder) {
+                for (index in ghostOrder) {
                     val ghostView = GhostView(context)
                     ghostView.ghostViewListener = object: GhostView.GhostViewListener() {
                         override fun onCreatePopup() {
@@ -55,8 +58,12 @@ class GhostListView : InvestigationListView {
 
                             val ghostPopupWindow = GhostPopupWindow(context)
                             ghostPopupWindow.popupWindow = popupWindow
-                            ghostPopupWindow.build(
-                                investigationViewModel, (popupData as GhostPopupModel), index, adRequest)
+                            investigationViewModel.investigationModel?.let { investigationModel ->
+                                ghostPopupWindow.build(
+                                    investigationModel, (popupData as GhostPopupModel),
+                                    index, adRequest
+                                )
+                            }
                         }
                     }
 

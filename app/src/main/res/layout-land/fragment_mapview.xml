@@ -162,7 +162,7 @@
                         android:layout_marginBottom="4dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/icon_stairs"
+                        android:src="@drawable/ic_stairs"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textview_floorname"

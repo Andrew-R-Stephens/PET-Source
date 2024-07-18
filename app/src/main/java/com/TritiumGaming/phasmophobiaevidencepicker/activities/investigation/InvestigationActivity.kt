@@ -41,8 +41,6 @@ open class InvestigationActivity : PETActivity() {
     }
 
     override fun initViewModels(): AndroidViewModelFactory? {
-        //super.initViewModels()
-
         val factory: AndroidViewModelFactory? = super.initViewModels()
         factory?.let {
             initInvestigationViewModel(factory)

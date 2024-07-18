@@ -40,10 +40,8 @@ abstract class InvestigationListView : LinearLayout {
 
     init {
         layoutParams = LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            1f
-        )
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+
         this.setHorizontalGravity(Gravity.CENTER_HORIZONTAL)
         layoutTransition = LayoutTransition()
         clipToPadding = false
@@ -52,8 +50,8 @@ abstract class InvestigationListView : LinearLayout {
     }
 
     protected open fun init(
-        globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        investigationViewModel: InvestigationViewModel?,
+        globalPreferencesViewModel: GlobalPreferencesViewModel,
+        investigationViewModel: InvestigationViewModel,
         popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?
     ) {
         this.globalPreferencesViewModel = globalPreferencesViewModel

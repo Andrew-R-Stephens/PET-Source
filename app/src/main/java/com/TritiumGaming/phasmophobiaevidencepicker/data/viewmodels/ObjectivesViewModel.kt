@@ -27,8 +27,8 @@ class ObjectivesViewModel(application: Application): AndroidViewModel(applicatio
     /* Response */
     var responseState: Response = UNKNOWN // alone , group
 
-    init {
-        missionsListModel = missionsListModel ?: MissionsListModel(application)
+    fun init() {
+        missionsListModel = missionsListModel ?: MissionsListModel(getApplication())
     }
 
     fun toggleCompletionStatus(spinnerIndex: Int) {

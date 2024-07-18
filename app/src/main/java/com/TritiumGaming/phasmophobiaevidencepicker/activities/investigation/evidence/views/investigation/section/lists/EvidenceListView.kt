@@ -29,8 +29,8 @@ class EvidenceListView : InvestigationListView {
             super(context, attrs, defStyleAttr, defStyleRes)
 
     fun init(
-        globalPreferencesViewModel: GlobalPreferencesViewModel?,
-        investigationViewModel: InvestigationViewModel?,
+        globalPreferencesViewModel: GlobalPreferencesViewModel,
+        investigationViewModel: InvestigationViewModel,
         popupWindow: PopupWindow?, progressBar: ProgressBar?, adRequest: AdRequest?,
         ghostList: GhostListView?
     ) {

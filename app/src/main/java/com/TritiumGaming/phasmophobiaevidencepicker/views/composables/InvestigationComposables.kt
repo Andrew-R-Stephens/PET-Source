@@ -1,7 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.util.Log
 import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
+import androidx.compose.animation.core.Spring.DampingRatioNoBouncy
 import androidx.compose.animation.core.Spring.StiffnessLow
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -33,12 +36,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
+import kotlinx.coroutines.flow.StateFlow
 
 @Preview
 @Composable
@@ -60,10 +65,12 @@ fun ResetButton(
         label = "",
     )
 
+    val foregroundColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+
     Box(
         modifier = modifier
             .size(48.dp)
-            .border(1.5.dp, Color.White, RoundedCornerShape(percent = 25))
+            .border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
             .clickable {
                 onClick()
                 isRunning = true
@@ -73,14 +80,65 @@ fun ResetButton(
         Image(
             painterResource(id = R.drawable.icon_control_reset),
             contentDescription = "Reset Drawable",
+            colorFilter = ColorFilter.tint(Color(foregroundColor)),
             modifier = Modifier
                 .fillMaxSize(.55f)
                 .align(Alignment.Center)
                 .clip(RectangleShape)
                 .rotate(
-                    if (isRunning) { rotation * -360f }
-                    else { 0f }
+                    if (isRunning) {
+                        rotation * -360f
+                    } else {
+                        0f
+                    }
                 )
+        )
+    }
+}
+
+@Composable
+fun CollapseButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    isCollapsedState: StateFlow<Boolean>,
+    orientation: Int = ORIENTATION_PORTRAIT
+) {
+    val collapsedState by isCollapsedState.collectAsState()
+
+    val rotation by animateFloatAsState(
+        targetValue = if(collapsedState) 1f else 0f,
+        animationSpec = spring(
+            stiffness = StiffnessLow,
+            dampingRatio = DampingRatioNoBouncy
+        ),
+        label = "",
+    )
+
+    val foregroundColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+
+    Box(
+        modifier = modifier
+            .size(48.dp)
+            .border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
+            .clickable {
+                onClick()
+            }
+    ) {
+        val orientationRotate = when(orientation) {
+            ORIENTATION_PORTRAIT -> 90
+            ORIENTATION_LANDSCAPE -> 180
+            else -> 0
+        }
+
+        Image(
+            painterResource(id = R.drawable.icon_arrow_fill_right),
+            contentDescription = "Reset Drawable",
+            colorFilter = ColorFilter.tint(Color(foregroundColor)),
+            modifier = Modifier
+                .fillMaxSize(.55f)
+                .align(Alignment.Center)
+                .clip(RectangleShape)
+                .rotate(orientationRotate + (rotation * 180f))
         )
     }
 }

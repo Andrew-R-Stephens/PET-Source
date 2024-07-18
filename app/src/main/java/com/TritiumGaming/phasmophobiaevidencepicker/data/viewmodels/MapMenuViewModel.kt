@@ -58,8 +58,8 @@ class MapMenuViewModel(application: Application): AndroidViewModel(application) 
             return mapThumbnails
         }
 
-    init {
-        /*if (mapsData.isEmpty())*/ buildMapData(application)
+    fun init() {
+        if (mapsData.isEmpty()) buildMapData(getApplication())
     }
 
     @SuppressLint("ResourceType")
