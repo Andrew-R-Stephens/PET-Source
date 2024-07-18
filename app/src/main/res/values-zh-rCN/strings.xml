@@ -662,4 +662,301 @@
     <string name="navigation_open_state">导航抽屉已打开。</string>
     <string name="navigation_closed_state">导航抽屉已关闭。</string>
     <string name="map_floor_name_fourth">四楼</string>
+
+
+    <string name="account_title">我的账户</string>
+
+    <string name="account_label_information">帐号信息</string>
+
+    <string name="account_label_name">姓名</string>
+
+    <string name="account_label_email">电子邮件</string>
+
+    <string name="account_button_login">登录</string>
+
+    <string name="account_button_logout">登出</string>
+
+    <string name="account_button_deactivate">关闭户口</string>
+
+    <!-- Deactivate -->
+
+    <string name="account_deactivate_title">帐号停用</string>
+
+    <string name="account_deactivate_warning">通过选择停用您的帐号，您同意以下事项：</string>
+
+    <string name="account_deactivate_warning_list_1">所有 P.E.T. 帐号数据将无法恢复。</string>
+
+    <string name="account_deactivate_warning_list_2">您将无法再购买、解锁以及所有其他相关物品。</string>
+
+    <string name="account_deactivate_warning_list_3">如果您使用相同的登录信息重新加入，以前的帐号数据将不会转移。</string>
+
+    <string name="account_deactivate_button_confirm">确认停用</string>
+
+    <string name="account_deactivate_button_cancel">没关系</string>
+
+    <!-- Logout -->
+
+    <string name="account_logout_title">登出</string>
+
+    <string name="account_logout_warning">您确定要退出吗？</string>
+
+    <string name="account_logout_button_confirm">登出</string>
+
+    <string name="account_logout_button_cancel">取消</string>
+
+    <string name="marketplace_title">市场</string>
+
+    <string name="marketplace_connection_error">哦哦！连接到市场时出现错误。</string>
+
+    <string name="marketplace_error_login_required">请登录以获取 Marketplace 内容。</string>
+
+    <string name="marketplace_button_watch_ad">赚取积分</string>
+
+    <string name="marketplace_button_purchase_credits">购买积分</string>
+
+    <plurals name="marketplace_description_watch_ad" translatable="false">
+
+        <item quantity="one">Companion Credit</item>
+
+        <item quantity="other">Companion Credits</item>
+
+    </plurals>
+
+    <string name="marketplace_description_watch_ad">观看广告即可赚取 %s %s。</string>
+
+    <string name="marketplace_description_purchase_credits">直接购买积分。</string>
+
+    <!--
+          Sanity Drain Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain">&lt;a&gt;7%/秒&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">&lt;a&gt;0 - 25%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">&lt;a&gt;约 2.5 米内 2.5%/秒&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">&lt;a&gt;0 - 50%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">&lt;a&gt;16% p 蜡烛点亮&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">&lt;a&gt;立即死亡&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">&lt;a&gt;+25% o或 -25%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">&lt;a&gt;设置为 100%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">&lt;a&gt;设置为 0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">&lt;a&gt;5% per 使用&lt;/a&gt;</string>
+
+    <!--
+          Alt Name Text
+      -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">&lt;a&gt;底手牌&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname">&lt;a&gt;愿望收藏品&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">&lt;a&gt;倒吊人&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">&lt;a&gt;女祭司&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death">&lt;a&gt;死亡&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">&lt;a&gt;魔鬼&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">&lt;a&gt;命运之轮&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">&lt;a&gt;隐士&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">&lt;a&gt;愚者&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">&lt;a&gt;月亮&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">&lt;a&gt;太阳报&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">&lt;a&gt;塔楼&lt;/a&gt;</string>
+
+    <!--
+          Attributes Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <!--
+          Draw Chance Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">&lt;a&gt;11 - 55%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">&lt;a&gt;-&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">&lt;a&gt;1%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">&lt;a&gt;2%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">&lt;a&gt;20%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">&lt;a&gt;17% / 100%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">&lt;a&gt;5%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">&lt;a&gt;5%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">&lt;a&gt;20%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="store_title_cursedpossessions">诅咒之物</string>
+
+    <string name="cursedpossessions_info_name_mirror">闹鬼的镜子</string>
+
+    <string name="cursedpossessions_info_name_monkeypaw">猴爪</string>
+
+    <string name="cursedpossessions_info_name_musicbox">音乐盒</string>
+
+    <string name="cursedpossessions_info_name_ouijaboard">占卜板</string>
+
+    <string name="cursedpossessions_info_name_summoningcircle">召唤之环</string>
+
+    <string name="cursedpossessions_info_name_tarotcards">塔罗牌</string>
+
+    <string name="cursedpossessions_info_name_voodoodoll">巫毒娃娃</string>
+
+    <!--
+          Flavor Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_flavortext">&lt;a&gt;一面又大又圆的镜子。当持有者持有它时，持有者会被吸引去查看它……但要付出代价。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">&lt;a&gt;这件物品是直接从民间传说中取出的物品，是愿望破灭的具体体现。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">&lt;a&gt;尚不清楚猴爪如何能够理解愿望，但这是其中之一。这些是 Monkey Paw 的创造者写下的，还是受害者写的？&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_flavortext">&lt;a&gt;一个木盒，其内部装有可以演奏旋律的机械装置。这首歌曲演奏的是一首名为“Adrift”的旋律。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">&lt;a&gt;一块刻有字的木板，配上与之相配的占卜板。出于某种原因，你会觉得它真的不应该被弄乱。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">&lt;a&gt;地上用类似血液的东西画了一个五角星。它由五根看起来以前用过的红色蜡烛组成。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">&lt;a&gt;一张塔罗牌，上面画着一个男人用脚吊在一根大树枝上的图案。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">&lt;a&gt;一张塔罗牌，上面有天使翅膀的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">&lt;a&gt;一张塔罗牌，上面画着一个惊恐万分、痛苦不堪的人的形象。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">&lt;a&gt;一张塔罗牌，上面画着一个潜伏的阴影人物的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">&lt;a&gt;一张塔罗牌，上面标有并列的太阳和月亮的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">&lt;a&gt;一张塔罗牌，上面画着一个身穿紧身衣的人的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">&lt;a&gt;一张塔罗牌，上面标有中世纪傻瓜的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">&lt;a&gt;一张塔罗牌，上面标有月亮的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">&lt;a&gt;一张塔罗牌，上面标有太阳的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">&lt;a&gt;一张塔罗牌，上面标有城堡塔的图像。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">&lt;a&gt;一个被注入了鬼魂精华的小娃娃，永远将两个实体束缚在一起。&lt;/a&gt;</string>
+
+    <!--
+          Info Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_info">&lt;p&gt;闹鬼镜子会告诉你什么是鬼屋/最喜欢的房间！它还有助于确认鬼魂在调查过程中是否改变了它最喜欢的房间。&lt;/p&gt;&lt;p&gt;它不会显示鬼魂当前所在的位置。&lt;/p&gt;&lt;p&gt;照镜子时，它会每秒消耗 7% s 理智，至少使用 20% p 次。&lt;/p&gt;&lt;p&gt;如果你的理智耗尽，镜子就会破碎，诅咒狩猎就会开始。&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info">&lt;h2&gt;您可许的愿望数量取决于您的难度或奖励乘数，如下所示...&lt;/h2&gt;我希望看到鬼魂&lt;/h4&gt;：&lt;a&gt;&lt;br&gt;0x - 1.9x 乘数 = 5 个愿望&lt;br&gt;2x - 2.9x 乘数 = 4 个愿望&lt;br&gt;3x 及更高乘数 = 3 个愿望&lt;/a&gt;&lt;h2&gt;所有愿望&lt;/h2&gt;&lt;h4&gt;我希望看到鬼魂&lt;/h4&gt;：&lt;a&gt;+ 在鬼魂位置触发鬼魂事件。&lt;br&gt;- 立即锁上出口门。&lt;br&gt;- 在鬼魂事件发生后立即开始狩猎。&lt;br&gt;- 使用黑雾降低玩家在狩猎剩余时间内的视野。&lt;/a&gt;&lt;h4&gt;我希望活动。&lt;/h4&gt;&lt;a&gt;+ 将所有鬼魂活动加倍，持续 2 分钟，包括互动、漫游和能力。&lt;br&gt;- 打破保险丝盒并锁上出口门 2 分钟。&lt;/a&gt;&lt;h4&gt;我希望恢复理智。&lt;/h4&gt;&lt;a&gt;~ 将团队理智平均化为 50%&lt;br&gt;- 将鬼魂最喜欢的房间设置为新的随机房间&lt;br&gt;- 将整个团队的理智消耗速度提高 +50\\% of。&lt;br&gt;- 注意：此愿望将覆盖 Goryo 的弱点。这意味着尽管 Goryo 无法自行更换房间，但如果使用理智愿望，它就可以。&lt;/a&gt;&lt;h4&gt;我希望鬼魂被困住。&lt;/h4&gt;&lt;a&gt;+ 将鬼魂传送到它的房间并锁上所有门 1 分钟。&lt;br&gt;+ 鬼魂在被锁在房间里时无法狩猎、漫游或执行能力。&lt;br&gt;- 锁上许愿玩家当前所在房间的所有门 1 分钟。&lt;br&gt;- 鬼魂会在 1 分钟后解锁所有门，并开始狩猎。&lt;br&gt;宽限期后，门解锁的机会约为 25\\% c。&lt;/a&gt;&lt;h4&gt;我希望活下去。/ 我希望复活我的朋友。&lt;/h4&gt;&lt;a&gt;+ 复活一名死去的玩家。&lt;br&gt;- 有 50\\% c 的机会杀死许愿的玩家。&lt;/a&gt;&lt;h4&gt;我希望安全&lt;/h4&gt;&lt;a&gt;+ 打开最近的藏身之处。&lt;br&gt;- 打碎房间里的灯。&lt;br&gt;- 在接下来的狩猎过程中，鬼魂可以在地图上的任何地方听到并感知许愿玩家的装备。&lt;br&gt;+ 注意：您可以利用此功能，故意将鬼魂引诱到更安全的区域以完成狩猎目标。&lt;/a&gt;&lt;h4&gt;我希望离开。&lt;/h4&gt;&lt;a&gt;+ 随时解锁所有出口门，包括在狩猎期间。&lt;br&gt;- 立即阻止您移动，然后在 5 秒内缓慢恢复移动速度。&lt;br&gt;- 降低许愿者的视野 5 秒。&lt;/a&gt;&lt;h4&gt;我希望获得知识。&lt;/h4&gt;&lt;a&gt;+ 移除从你的日记中找出 1 个错误证据和相应的鬼魂类型，缩小你的选择范围。&lt;br&gt;- 在玩家附近开始狩猎。&lt;br&gt;- 在本回合的剩余时间里，许愿的玩家的视野会变窄，声音也会变得模糊。&lt;br&gt;- 注意：死亡会使声音和视觉效果的减少恢复正常，复活后也会保持正常。&lt;/a&gt;&lt;h4&gt;我希望 [天气]。&lt;/h4&gt;&lt;a&gt;+ 如果天气不符合你的喜好，你可以将其更改为雨 (x2)、雪、晴、雾或日出。&lt;br&gt;- 使许愿者的理智降低 25\\% f。&lt;br&gt;~ 注意：许愿下雨会使你有 50\\% c 的机会下到小雨或大雨。&lt;/a&gt;&lt;h4&gt;我希望任何事情。&lt;/h4&gt;&lt;a&gt;+ 无法决定你想要许什么愿？让爪子替你决定。许下任何愿望都会让您实现该轮剩余的（未使用的）愿望之一。&lt;br&gt;~ 注意：虽然您可以多次使用任何愿望，但它不会实现您在该轮中已经使用过的愿望。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">&lt;a&gt;在 Sunny Meadows 各处都隐藏着标签，这些标签会告诉您使用 Monkey Paw 诅咒附身时可以许什么愿。要找到它们，只需进入 Sunny Meadows 并环顾四周。一旦找到，它将永久添加到你的日记的第 12 页。&lt;/a&gt;&lt;ul&gt;&lt;li&gt;我希望看到鬼魂。&lt;/li&gt;&lt;li&gt;我希望它活动。&lt;/li&gt;&lt;li&gt;我希望它保持理智。&lt;/li&gt;&lt;li&gt;我希望鬼魂被困住。&lt;/li&gt;&lt;li&gt;我希望它能活下去。&lt;/li&gt;&lt;li&gt;我希望它平安无事。&lt;/li&gt;&lt;li&gt;我希望离开。&lt;/li&gt;&lt;li&gt;我希望得到知识。&lt;/li&gt;&lt;li&gt;我希望（天气）。&lt;/li&gt;&lt;li&gt;我希望得到任何东西。&lt;/li&gt;&lt;/ul&gt;&lt;a&gt;注意：你无需找到标签即可使用愿望。它们只是向您提供一系列可能性作为指导。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_info">&lt;p&gt;音乐盒引来鬼魂！演奏时，鬼魂会寻找音乐盒。非常适合拍照和控制/强制狩猎。&lt;/p&gt;&lt;p&gt;在音乐盒播放时靠近它会耗尽你的理智。&lt;/p&gt;&lt;p&gt;如果你扔掉音乐盒而不是放置它，它会破碎并开始诅咒狩猎。&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_info">&lt;p&gt;通灵板可用于强制狩猎、寻找鬼屋、农场互动照片等。&lt;/p&gt;&lt;p&gt;激活通灵板，然后提问或提出请求。当占卜板存在时，棋盘就会处于活动状态。说再见即可停用该板，占卜板将被取回。&lt;/p&gt;&lt;p&gt;永远说再见！如果召唤占卜板的人离激活的通灵板太远，通灵板就会自我毁灭并开始诅咒狩猎。&lt;/p&gt;&lt;p&gt;附近的任何人都可以与通灵板对话。&lt;/p&gt;&lt;p&gt;不同的问题或请求需要的理智程度会有所不同。&lt;/p&gt;&lt;a&gt;你可以问它的问题&lt;/a&gt;&lt;ul&gt;&lt;li&gt;你在哪里？&lt;/li&gt;&lt;li&gt;骨头在哪里？&lt;/li&gt;&lt;li&gt;你是怎么死的？&lt;/li&gt;&lt;li&gt;我疯了吗？&lt;/li&gt;&lt;li&gt;房间里有多少人？&lt;/li&gt;&lt;li&gt;你多大了？&lt;/li&gt;&lt;li&gt;我的理智程度如何？&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;你可以说“捉迷藏”来触发诅咒狩猎。在鬼魂开始追捕之前，你有 5 秒钟的时间逃离。&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_info">&lt;p&gt;当蜡烛点燃时，召唤圈附近的任何人也会失去理智。&lt;/p&gt;&lt;p&gt;当所有蜡烛都点燃时，就会触发诅咒狩猎。幽灵会被困在圆圈内 1 秒或更长时间，然后才会开始游走。&lt;/p&gt;&lt;p&gt;建议在诱捕期间拍摄幽灵的照片。&lt;/p&gt;&lt;p&gt;诅咒狩猎可以通过 3 级十字架取消。&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">&lt;a&gt;立即杀死你&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">&lt;a&gt;复活死亡的玩家。如果有多个玩家死亡，该卡将复活一名随机死亡的玩家。如果没有玩家死亡，那么该卡将复活下一个死亡的玩家。</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_death">&lt;a&gt;强制捉鬼。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil">&lt;a&gt;强制发生幽灵事件。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">&lt;a&gt;获得 25\\% s 灵度 [绿色燃烧]，失去 25\\% s 灵度 [红色燃烧]&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">&lt;a&gt;将鬼魂传送并困在其最喜欢的房间一分钟。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker">&lt;a&gt;不执行任何操作。从技术上讲，愚人牌已经抽出，游戏会随机掷出 1/9 来看看它会显示哪张牌，然后再揭开愚人牌。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon">&lt;a&gt;将你的理智值降至 0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun">&lt;a&gt;将您的理智恢复到 100%。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower">&lt;a&gt;强制互动并使幽灵活动加倍，持续 20 秒。&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_info">&lt;p&gt;刺破巫毒娃娃会强制进行互动！&lt;/p&gt;&lt;p&gt;您最多可以刺破巫毒娃娃 10 次。每次刺击都有一定几率刺穿心脏，从而开始一场诅咒狩猎。&lt;/p&gt;&lt;p&gt;使用娃娃将您的理智降至 0\\% by 将激活所有针脚并开始一场诅咒狩猎。&lt;/p&gt;</string>
+
+
 </resources>

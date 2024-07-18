@@ -67,9 +67,7 @@ abstract class FirebaseFragment : PETFragment {
 
                 return
             }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
+        } catch (e: IllegalStateException) { e.printStackTrace() }
 
 
         val providers = List.of(
@@ -90,9 +88,6 @@ abstract class FirebaseFragment : PETFragment {
         signInLauncher.launch(signInIntent)
     }
 
-    /**
-     *
-     */
     private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
         val response = result.idpResponse
 
@@ -133,9 +128,6 @@ abstract class FirebaseFragment : PETFragment {
         }
     }
 
-    /**
-     *
-     */
     open fun signOutAccount() {
         if (FirebaseAuth.getInstance().currentUser == null) {
             return
@@ -162,9 +154,6 @@ abstract class FirebaseFragment : PETFragment {
         }
     }
 
-    /**
-     *
-     */
     open fun deleteAccount() {
         AuthUI.getInstance()
             .delete(requireContext())

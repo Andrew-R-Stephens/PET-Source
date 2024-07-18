@@ -23,8 +23,8 @@
     <string name="general_navigation_secondary">Secondary</string>
     <string name="general_navigation_alternative">Alternative</string>
     <string name="general_navigation_tools">Tools</string>
-    <string name="general_navigation_settings" translatable="false">Settings</string>
-    <string name="general_navigation_system" translatable="false">System</string>
+    <string name="general_navigation_settings">Settings</string>
+    <string name="general_navigation_system">System</string>
 
 
     <string name="general_evidence_reset_button">Reset</string>
@@ -120,11 +120,11 @@
     <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
     <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Warning Audio</string>
-    <string name="settings_enableGhostReorder" translatable="false">Enable Ghost List Reordering</string>
+    <string name="settings_enableGhostReorder">Enable Ghost List Reordering</string>
     <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
-    <string name="settings_colortheme_title" translatable="false">Skin</string>
-    <string name="settings_colortheme_note" translatable="false">(Colorblindness selection takes precedence)</string>
+    <string name="settings_colortheme_title">Skin</string>
+    <string name="settings_colortheme_note">(Colorblindness selection takes precedence)</string>
 
     <!-- Colorblindness Types -->
     <string name="settings_colorblindnessmode_normal">None</string>

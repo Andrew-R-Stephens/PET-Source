@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -22,6 +24,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.LogoutDialog
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
@@ -34,6 +38,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 
 class AccountFragment : MainMenuFirebaseFragment() {
+
+    var logoutDialog: ComposeView? = null
+    var deactivateDialog: ComposeView? = null
 
     private val userPurchaseHistory: Unit
         get() {
@@ -83,6 +90,9 @@ class AccountFragment : MainMenuFirebaseFragment() {
         val accountNameTextView: AppCompatTextView? = view.findViewById(R.id.account_name_in)
         val accountEmailTextView: AppCompatTextView? = view.findViewById(R.id.account_email_in)
 
+        logoutDialog = view.findViewById(R.id.logoutComposable)
+        deactivateDialog = view.findViewById(R.id.deactivateComposable)
+
         backButton?.setOnClickListener { v: View? ->
             v?.let {
                 try { findNavController(v).popBackStack() }
@@ -95,12 +105,27 @@ class AccountFragment : MainMenuFirebaseFragment() {
         }
 
         logoutButton?.setOnClickListener{
-            signOutAccount()
+            logoutDialog?.setContent {
+                LogoutDialog(
+                    onConfirm = {
+                        signOutAccount()
+                    },
+                    onCancel = { logoutDialog?.visibility = GONE }
+                )
+            }
+            logoutDialog?.visibility = VISIBLE
         }
 
         deleteButton?.setOnClickListener{
-            deleteAccount()
-            refreshFragment()
+            deactivateDialog?.setContent {
+                DeleteAccountDialog(
+                    onConfirm = {
+                        deleteAccount()
+                    },
+                    onCancel = { deactivateDialog?.visibility = GONE }
+                )
+            }
+            deactivateDialog?.visibility = VISIBLE
         }
 
         currentFirebaseUser?.let { user ->
@@ -175,9 +200,6 @@ class AccountFragment : MainMenuFirebaseFragment() {
         signInLauncher.launch(signInIntent)
     }
 
-    /**
-     *
-     */
     private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
         val response = result.idpResponse
         if (result.resultCode == Activity.RESULT_OK) {
@@ -228,10 +250,12 @@ class AccountFragment : MainMenuFirebaseFragment() {
 
     override fun onSignOutAccountSuccess() {
         refreshFragment()
+        logoutDialog?.visibility = GONE
     }
 
     override fun onDeleteAccountSuccess() {
         refreshFragment()
+        deactivateDialog?.visibility = GONE
     }
 
     override fun signOutAccount() {
@@ -242,7 +266,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         try {
             AuthUI.getInstance()
                 .signOut(requireContext())
-                .addOnCompleteListener { task: Task<Void?>? ->
+                .addOnCompleteListener {
                     val message = "User signed out"
                     try {
                         Toast.makeText(
@@ -251,6 +275,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
                             Toast.LENGTH_LONG
                         ).show()
                     } catch (e: IllegalStateException) { e.printStackTrace() }
+
                     onSignOutAccountSuccess()
                 }
         } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -259,7 +284,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
     override fun deleteAccount() {
         AuthUI.getInstance()
             .delete(requireContext())
-            .addOnCompleteListener { task: Task<Void?>? ->
+            .addOnCompleteListener {
                 val message = "Successfully removed account."
                 val toast = Toast.makeText(
                     requireActivity(),
@@ -267,7 +292,8 @@ class AccountFragment : MainMenuFirebaseFragment() {
                     Toast.LENGTH_LONG
                 )
                 toast.show()
-                refreshFragment()
+
+                onDeleteAccountSuccess()
             }
     }
 

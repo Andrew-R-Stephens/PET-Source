@@ -1636,4 +1636,5 @@
     <string name="navigation_open_state">Navigační vysouvací panel byl otevřen.</string>
     <string name="navigation_closed_state">Zásuvka navigace uzavřena.</string>
     <string name="map_floor_name_fourth">Čtvrté Patro</string>
+
 </resources>

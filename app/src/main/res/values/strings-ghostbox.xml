@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ghostbox_title">Ghost Box</string>
+    <string name="ghostbox_title" translatable="false">Ghost Box</string>
 </resources>

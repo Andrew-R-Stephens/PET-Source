@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
     android:id="@+id/popup_main_relativelayout"
     android:layout_width="match_parent"
@@ -11,6 +12,7 @@
     android:gravity="center_horizontal|center_vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -120,9 +122,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:singleLine="true"
                             android:ellipsize="marquee"
                             android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"
                             android:text=""
                             android:textAlignment="viewEnd"
                             android:textSize="18sp" />
@@ -158,9 +160,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:singleLine="true"
                             android:ellipsize="marquee"
                             android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"
                             android:text=""
                             android:textAlignment="viewEnd"
                             android:textSize="18sp" />
@@ -172,30 +174,29 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_account_logout_button"
                         style="?attr/quaternaryFont_Bold_Manual"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        app:layout_constraintDimensionRatio="16:10"
                         android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
                         android:backgroundTint="?attr/codex3_buttonBackground"
                         android:backgroundTintMode="multiply"
                         android:minWidth="48dp"
-                        android:layout_marginTop="16dp"
                         android:text="@string/account_button_logout"
                         android:textColor="?attr/backgroundColorOnBackground"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintDimensionRatio="16:10" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/settings_account_delete_button"
                         style="?attr/quaternaryFont_Bold_Manual"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        app:layout_constraintDimensionRatio="16:10"
                         android:layout_gravity="center"
                         android:layout_marginTop="64dp"
                         android:backgroundTint="?attr/textColorBodyEmphasis"
@@ -204,7 +205,8 @@
                         android:text="@string/account_button_deactivate"
                         android:textAllCaps="true"
                         android:textColor="?attr/textColorBody"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintDimensionRatio="16:10" />
 
                 </LinearLayout>
 
@@ -213,5 +215,27 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/deactivateComposable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountComposablesKt.DeleteAccountDialog" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/logoutComposable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountComposablesKt.LogoutDialog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

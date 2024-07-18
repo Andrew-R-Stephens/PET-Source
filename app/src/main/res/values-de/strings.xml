@@ -1193,4 +1193,292 @@
     <string name="navigation_open_state">Navigationsschublade geöffnet.</string>
     <string name="navigation_closed_state">Navigationsleiste geschlossen.</string>
     <string name="map_floor_name_fourth">Vierter Stock</string>
+
+
+    <!--
+          Sanity Drain Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain">&lt;a&gt;7%/s&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">&lt;a&gt;0–25%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">&lt;a&gt;2,5%/s innerhalb von ~2,5 m&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">&lt;a&gt;0–50%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">&lt;a&gt;16% per Kerze angezündet&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">&lt;a&gt;Sofortiger Tod&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">&lt;a&gt;+25% ooder -25%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">&lt;a&gt;0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">&lt;a&gt;Auf 100%einstellen&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">&lt;a&gt;Auf 0%setzen&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">&lt;a&gt;5% per-Nutzung&lt;/a&gt;</string>
+
+    <!--
+          Alt Name Text
+      -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">&lt;a&gt;Basishand&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname">&lt;a&gt;Wunsch-Sammlerstück&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">&lt;a&gt;Der Gehängte&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">&lt;a&gt;Die Hohepriesterin&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death">&lt;a&gt;Tod&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">&lt;a&gt;Der Teufel&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">&lt;a&gt;Das Rad des Schicksals&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">&lt;a&gt;Der Einsiedler&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">&lt;a&gt;Der Narr&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">&lt;a&gt;Der Mond&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">&lt;a&gt;Die Sonne&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">&lt;a&gt;Der Turm&lt;/a&gt;</string>
+
+    <!--
+          Attributes Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">&lt;a&gt;&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">&lt;a&gt;&lt;/a&gt;</string>
+
+    <!--
+          Draw Chance Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_drawchance">&lt;a&gt;–&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">&lt;a&gt;11 – 55%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">&lt;a&gt;11 – 55%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">&lt;a&gt;–&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">&lt;a&gt;–&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">&lt;a&gt;–&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">&lt;a&gt;1%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">&lt;a&gt;2%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">&lt;a&gt;20%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">&lt;a&gt;17% / 100%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">&lt;a&gt;5%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">&lt;a&gt;5%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">&lt;a&gt;20%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">&lt;a&gt;10%&lt;/a&gt;</string>
+
+    <string name="store_title_cursedpossessions">Verfluchte Besitztümer</string>
+
+    <string name="cursedpossessions_info_name_mirror">Spukspiegel</string>
+
+    <string name="cursedpossessions_info_name_monkeypaw">Affenpfote</string>
+
+    <string name="cursedpossessions_info_name_musicbox">Musikbox</string>
+
+    <string name="cursedpossessions_info_name_ouijaboard">Ouija-Brett</string>
+
+    <string name="cursedpossessions_info_name_summoningcircle">Beschwörungskreis</string>
+
+    <string name="cursedpossessions_info_name_tarotcards">Tarot-Karten</string>
+
+    <string name="cursedpossessions_info_name_voodoodoll">Voodoo-Puppe</string>
+
+    <!--
+          Flavor Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_flavortext">&lt;a&gt;Ein großer, runder Spiegel. Wenn man es in der Hand hält, wird der Träger dazu verleitet, hineinzuschauen … aber das hat seinen Preis.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">&lt;a&gt;Dieser Gegenstand ist ein direkt aus der Folklore stammender Gegenstand und die physische Manifestation eines fehlgeschlagenen Wunsches.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">&lt;a&gt;Es ist nicht bekannt, wie Monkey Paw Wünsche verstehen kann, aber dies ist einer davon. Wurden diese vom Erfinder von Monkey Paw oder einem Opfer aufgeschrieben?&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_flavortext">&lt;a&gt;Eine Holzkiste mit inneren Mechanismen, die es ermöglichen, eine Melodie zu spielen. Dieses spielt eine Melodie namens „Adrift“.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">&lt;a&gt;Ein beschriftetes Holzbrett, das mit einer dazu passenden Planchette gepaart ist. Aus irgendeinem Grund hat man das Gefühl, dass man damit wirklich nicht herumspielen sollte.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">&lt;a&gt;Ein Pentagramm, das mit etwas, das wie Blut aussieht, auf den Boden gemalt wurde. Abgerundet wird das Ganze durch fünf rote Kerzen, die aussehen, als wären sie schon einmal benutzt worden.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild eines Mannes, der mit seinen Füßen an einem großen Ast hängt.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild der Flügel eines Engels.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild einer verängstigten Person in Not.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild einer lauernden, schattenhaften Gestalt.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild der Sonne und des Mondes in nebeneinanderliegender Darstellung.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild einer Person in einer Zwangsjacke.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild eines mittelalterlichen Narren.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild des Mondes.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild der Sonne.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">&lt;a&gt;Eine Tarot-Spielkarte mit dem Bild eines Burgturms.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">&lt;a&gt;Eine kleine Puppe, die mit der Essenz des Geistes erfüllt wurde und die beiden Wesen für immer miteinander verbindet.&lt;/a&gt;</string>
+
+    <!--
+          Info Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_info">&lt;p&gt;Der Spukspiegel zeigt Ihnen, welches das Geisterzimmer/Lieblingszimmer ist! Außerdem lässt sich damit feststellen, ob der Geist während einer Untersuchung seinen Lieblingsraum wechselt.&lt;/p&gt;&lt;p&gt;Es zeigt dir NICHT an, wo sich der Geist gerade befindet.&lt;/p&gt;&lt;p&gt;Beim Blick in den Spiegel verbraucht er 7% s Geisteszustand pro Sekunde und mindestens 20% per Nutzung.&lt;/p&gt;&lt;p&gt;Wenn dir der Verstand ausgeht, zerbricht der Spiegel und eine verfluchte Jagd beginnt.&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info">&lt;h2&gt;Die Anzahl Ihrer Wünsche hängt wie folgt von Ihrem Schwierigkeitsgrad oder Belohnungsmultiplikator ab …&lt;/h2&gt;Ich möchte den Geist sehen:&lt;/h4&gt;&lt;a&gt;&lt;br&gt;0x – 1,9x Multiplikator = 5 Wünsche&lt;br&gt;2x – 2,9x Multiplikator = 4 Wünsche&lt;br&gt;3x und höher Multiplikator = 3 Wünsche&lt;/a&gt;&lt;h2&gt;ALLE WÜNSCHE&lt;/h2&gt;&lt;h4&gt;Ich möchte den Geist sehen:&lt;/h4&gt;&lt;a&gt;+ Löst am Standort des Geistes ein Geister-Ereignis aus.&lt;br&gt;- Verriegelt sofort die Ausgangstüren.&lt;br&gt;- Startet unmittelbar nach dem Geister-Ereignis eine Jagd.&lt;br&gt;- Reduziert die Sicht des Spielers für den Rest der Jagd mit einem schwarzen Nebel.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir Aktivität.&lt;/h4&gt;&lt;a&gt;+ Verdoppelt für 2 Minuten alle Geisteraktivitäten, einschließlich Interaktionen, Herumstreunen und Fähigkeiten.&lt;br&gt;- Zerstört den Sicherungskasten und verriegelt die Ausgangstüren für 2 Minuten.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir geistige Gesundheit.&lt;/h4&gt;&lt;a&gt;~ Setzt die geistige Gesundheit des Teams auf 50%&lt;br&gt;- Setzt den Lieblingsraum des Geistes auf einen neuen, zufälligen Raum&lt;br&gt;- Erhöht den geistigen Verlust um +50\\% oder aktuellen Rate für die gesamte Gruppe.&lt;br&gt;- Hinweis: Dieser Wunsch wird Goryos Schwäche außer Kraft setzen. Das bedeutet, dass der Goryo zwar nicht von selbst den Raum wechseln kann, dies aber KANN, wenn der Wunsch nach geistiger Gesundheit verwendet wird.&lt;/a&gt;&lt;h4&gt;Ich wünschte, der Geist wäre gefangen.&lt;/h4&gt;&lt;a&gt;+ Teleportiert den Geist in seinen Raum und verriegelt alle Türen für 1 Minute.&lt;br&gt;+ Der Geist kann nicht jagen, umherstreifen oder Fähigkeiten ausführen, während er in seinem Raum eingesperrt ist.&lt;br&gt;- Verriegelt alle Türen zu dem Raum, in dem sich der Spieler, der den Wunsch geäußert hat, gerade befindet, für 1 Minute.&lt;br&gt;- Der Geist wird nach 1 Minute alle Türen öffnen und eine Jagd beginnen.&lt;br&gt;~ 25\\% cChance, dass die Türen NACH der Schonfrist geöffnet werden.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir Leben. / Ich möchte meinen Freund wiederbeleben.&lt;/h4&gt;&lt;a&gt;+ Belebt einen toten Spieler wieder.&lt;br&gt;- 50\\% cChance, den Spieler zu töten, der den Wunsch äußert.&lt;/a&gt;&lt;h4&gt;Ich möchte in Sicherheit sein&lt;/h4&gt;&lt;a&gt;+ Öffnet das nächste Versteck.&lt;br&gt;- Zerstört die Lichter im Raum.&lt;br&gt;- Der Geist kann während der Jagd für den Rest des Laufs von überall auf der Karte aus die Ausrüstung des Spielers hören und spüren, der den Wunsch geäußert hat.&lt;br&gt;+ Hinweis: Dies kann zu Ihrem Vorteil genutzt werden, um einen Geist absichtlich in einen sichereren Bereich zu locken, um Jagdziele zu erreichen.&lt;/a&gt;&lt;h4&gt;Ich möchte gehen.&lt;/h4&gt;&lt;a&gt;+ Öffnet jederzeit alle Ausgangstüren, auch während der Jagd.&lt;br&gt;- Verhindert sofort, dass Sie sich bewegen, und stellt dann langsam über 5 Sekunden die Bewegungsgeschwindigkeit wieder her.&lt;br&gt;- Reduziert die Sicht der Person, die den Wunsch äußert, für 5 Sekunden.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir Wissen.&lt;/h4&gt;&lt;a&gt;+ Entfernt 1 falschen Beweis und den entsprechenden Geistertyp aus Ihrem Tagebuch und schränkt so Ihre Auswahl ein.&lt;br&gt;- Startet eine Jagd in der Nähe des Spielers.&lt;br&gt;- Für den Rest der Runde hat der Spieler, der sich etwas gewünscht hat, eine eingeschränkte Sicht und gedämpfte Audiodaten.&lt;br&gt;- Hinweis: Beim Sterben werden Audio- und visuelle Einschränkungen auf den Normalwert zurückgesetzt und bleiben nach einer Wiederbelebung normal.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir [Wetter].&lt;/h4&gt;&lt;a&gt;+ Wenn Ihnen das Wetter nicht gefällt, können Sie es in Regen (x2), Schnee, klar, Nebel oder Sonnenaufgang ändern.&lt;br&gt;- Reduziert die geistige Gesundheit um 25\\% foder die Person, die sich etwas gewünscht hat.&lt;br&gt;~ Hinweis: Wenn Sie sich Regen wünschen, haben Sie eine 50\\% cChance, entweder leichten oder starken Regen zu bekommen.&lt;/a&gt;&lt;h4&gt;Ich wünsche mir alles.&lt;/h4&gt;&lt;a&gt;+ Sie können sich nicht entscheiden, was Sie sich wünschen möchten? Lassen Sie die Pfote für Sie entscheiden. Wenn Sie sich etwas wünschen, wird Ihnen einer der verbleibenden (ungenutzten) Wünsche für diese Runde erfüllt.&lt;br&gt;~ Hinweis: Sie können zwar einen beliebigen Wunsch mehr als einmal verwenden, aber ein Wunsch, der in diesem Durchgang bereits genutzt wurde, wird Ihnen nicht erfüllt.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">&lt;a&gt;Überall auf Sunny Meadows sind Tags versteckt, die Ihnen Ideen geben, was Sie sich wünschen können, wenn Sie die verfluchte Besessenheit „Monkey Paw“ nutzen. Um sie zu finden, gehen Sie einfach in Sunny Meadows und sehen Sie sich um. Sobald es gefunden wurde, wird es dauerhaft zu Seite 12 Ihres Tagebuchs hinzugefügt.&lt;/a&gt;&lt;ul&gt;&lt;li&gt;Ich möchte den Geist sehen.&lt;/li&gt;&lt;li&gt;Ich wünsche mir Aktivität.&lt;/li&gt;&lt;li&gt;Ich wünsche mir geistige Gesundheit.&lt;/li&gt;&lt;li&gt;Ich wünschte, der Geist wäre gefangen.&lt;/li&gt;&lt;li&gt;Ich wünsche mir Leben.&lt;/li&gt;&lt;li&gt;Ich wünsche mir Sicherheit.&lt;/li&gt;&lt;li&gt;Ich möchte gehen.&lt;/li&gt;&lt;li&gt;Ich wünsche mir Wissen.&lt;/li&gt;&lt;li&gt;Ich wünsche mir (Wetter).&lt;/li&gt;&lt;li&gt;Ich wünsche mir irgendetwas.&lt;/li&gt;&lt;/ul&gt;&lt;a&gt;Hinweis: Sie müssen die Tags nicht finden, um die Wünsche zu verwenden. Sie dienen lediglich dazu, Sie mit einer Liste von Möglichkeiten anzuleiten.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_info">&lt;p&gt;Die Spieluhr lockt das Gespenst an! Während des Spielens sucht das Gespenst die Spieluhr auf. Ideal für Fotos und zum Kontrollieren/Erzwingen einer Jagd.&lt;/p&gt;&lt;p&gt;Wenn Sie sich in der Nähe der Spieluhr aufhalten, während sie spielt, wird das Ihre geistige Gesundheit gefährden.&lt;/p&gt;&lt;p&gt;Wenn Sie die Spieluhr werfen, anstatt sie zu platzieren, wird sie zerbrechen und eine verfluchte Jagd beginnen.&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_info">&lt;p&gt;Mit dem Ouija-Brett können Sie eine Jagd erzwingen, den Geisterraum finden, Interaktionsfotos erstellen usw.&lt;/p&gt;&lt;p&gt;Aktivieren Sie das Brett und stellen Sie dann Fragen oder äußern Sie Bitten. Das Brett ist aktiv, wenn die Planchette vorhanden ist. Verabschieden Sie sich, um das Brett zu deaktivieren. Die Planchette wird dann abgerufen.&lt;/p&gt;&lt;p&gt;SAGEN SIE IMMER AUF WIEDERSEHEN! Wenn die Person, die die Planchette beschworen hat, zu weit von einem aktiven Ouija-Brett weggeht, zerstört es sich selbst und beginnt eine verfluchte Jagd.&lt;/p&gt;&lt;p&gt;Jeder in der Nähe kann mit dem Brett sprechen.&lt;/p&gt;&lt;p&gt;Unterschiedliche Fragen oder Bitten erfordern mehr Verstand als andere.&lt;/p&gt;&lt;a&gt;Einige Fragen, die Sie stellen können:&lt;/a&gt;&lt;ul&gt;&lt;li&gt;Wo bist du?&lt;/li&gt;&lt;li&gt;Wo ist der Knochen?&lt;/li&gt;&lt;li&gt;Wie bist du gestorben?&lt;/li&gt;&lt;li&gt;Bin ich verrückt?&lt;/li&gt;&lt;li&gt;Wie viele Leute sind im Raum?&lt;/li&gt;&lt;li&gt;Wie alt bist du?&lt;/li&gt;&lt;li&gt;Wie steht es um meinen Verstand?&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Sie können eine verfluchte Jagd auslösen, indem Sie „Verstecken“ sagen. Sie haben 5 Sekunden Zeit, um zu entkommen, bevor der Geist die Chance hat, Sie zu jagen.&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_info">&lt;p&gt;Jeder, der sich in der Nähe des Beschwörungskreises aufhält, wenn Kerzen angezündet werden, verliert außerdem den Verstand.&lt;/p&gt;&lt;p&gt;Wenn alle Kerzen angezündet sind, wird eine verfluchte Jagd ausgelöst. Der Geist bleibt mindestens eine Sekunde lang im Kreis gefangen, bevor er umherwandert.&lt;/p&gt;&lt;p&gt;Es wird empfohlen, während der Gefangenschaft Fotos vom Geist zu machen.&lt;/p&gt;&lt;p&gt;Die verfluchte Jagd kann durch ein Kruzifix der Stufe 3 abgebrochen werden.&lt;/p&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">&lt;a&gt;Tötet dich sofort&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">&lt;a&gt;Belebt einen toten Spieler wieder. Wenn mehr als ein Spieler tot ist, lässt die Karte einen zufällig ausgewählten toten Spieler wiederbeleben. Wenn es keine toten Spieler gibt, lässt die Karte den nächsten Spieler wieder aufleben, der stirbt.</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_death">&lt;a&gt;Erzwingt eine Geisterjagd.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil">&lt;a&gt;Erzwingt ein Ghost-Ereignis.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">&lt;a&gt;Gewinne 25 \\% sAnität [Grünes Brennen], verliere 25 \\% sAnität [Rotes Brennen]&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">&lt;a&gt;Teleportiert den Geist und hält ihn für eine Minute in seinem Lieblingszimmer gefangen.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker">&lt;a&gt;Tut nichts. Technisch gesehen wurde der Narr bereits gezogen und das Spiel würfelt zufällig 1/9, um zu sehen, welche Karte angezeigt wird, bevor der Narr aufgedeckt wird.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon">&lt;a&gt;Reduziert Ihre geistige Gesundheit auf 0%&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun">&lt;a&gt;Stellen Sie Ihre geistige Gesundheit zu 100 % wieder her.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower">&lt;a&gt;Erzwingt eine Interaktion und verdoppelt die Geisteraktivität für 20 Sekunden.&lt;/a&gt;</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_info">&lt;p&gt;Das Stechen in die Voodoo-Puppe erzwingt eine Interaktion!&lt;/p&gt;&lt;p&gt;Sie können die Voodoo-Puppe bis zu zehnmal stechen. Bei jedem Stich besteht die Chance, das Herz zu treffen, wodurch eine verfluchte Jagd beginnt.&lt;/p&gt;&lt;p&gt;Wenn Sie Ihren Verstand mithilfe der Puppe auf 0 % b reduzieren, werden alle Nadeln aktiviert und eine verfluchte Jagd beginnt.&lt;/p&gt;</string>
+
+    <string name="account_title">Mein Konto</string>
+
+    <string name="account_label_information">Kontoinformationen</string>
+
+    <string name="account_label_name">Name</string>
+
+    <string name="account_label_email">Email</string>
+
+    <string name="account_button_login">Anmeldung</string>
+
+    <string name="account_button_logout">Ausloggen</string>
+
+    <string name="account_button_deactivate">Benutzerkonto deaktivieren</string>
+
+    <!-- Deactivate -->
+
+    <string name="account_deactivate_title">Kontodeaktivierung</string>
+
+    <string name="account_deactivate_warning">Indem Sie Ihr Konto deaktivieren, stimmen Sie Folgendem zu:</string>
+
+    <string name="account_deactivate_warning_list_1">Sämtliche P.E.T.-Kontodaten können nicht wiederhergestellt werden.</string>
+
+    <string name="account_deactivate_warning_list_2">Sie verlieren den Zugriff auf Käufe, Freischaltungen und alle anderen zugehörigen Elemente.</string>
+
+    <string name="account_deactivate_warning_list_3">Sollten Sie sich mit denselben Anmeldedaten erneut anmelden, werden die vorherigen Kontodaten nicht übertragen.</string>
+
+    <string name="account_deactivate_button_confirm">Deaktivierung bestätigen</string>
+
+    <string name="account_deactivate_button_cancel">Egal</string>
+
+    <!-- Logout -->
+
+    <string name="account_logout_title">Ausloggen</string>
+
+    <string name="account_logout_warning">Möchten Sie sich wirklich abmelden?</string>
+
+    <string name="account_logout_button_confirm">Ausloggen</string>
+
+    <string name="account_logout_button_cancel">Stornieren</string>
+
+    <string name="marketplace_title">Marktplatz</string>
+
+    <string name="marketplace_connection_error">Oh oh! Beim Verbinden mit dem Marktplatz ist ein Fehler aufgetreten.</string>
+
+    <string name="marketplace_error_login_required">Bitte melden Sie sich an, um Marketplace-Inhalte anzufordern.</string>
+
+    <string name="marketplace_button_watch_ad">Credits verdienen</string>
+
+    <string name="marketplace_button_purchase_credits">Credits kaufen</string>
+
+    <string name="marketplace_description_watch_ad">Sehen Sie sich eine Anzeige an, um %s %s zu verdienen.</string>
+
+    <string name="marketplace_description_purchase_credits">Kaufen Sie Guthaben direkt.</string>
+
 </resources>

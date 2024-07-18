@@ -179,7 +179,7 @@ abstract class ItemStoreFragment : CodexFragment() {
     protected fun initScrollViewListeners(
         scrollViewPaginator: GridLayout, paginatorChildCount: Int
     ) {
-        scrollViewPaginator.setOnTouchListener { v: View?, e: MotionEvent ->
+        scrollViewPaginator.setOnTouchListener { _: View?, e: MotionEvent ->
 
             scrollView?.let { scrollView ->
                 val isPortrait =
