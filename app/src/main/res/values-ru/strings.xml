@@ -1639,4 +1639,647 @@
     <string name="navigation_open_state">Отдел навигации открыт.</string>
     <string name="navigation_closed_state">Ящик навигации закрыт.</string>
     <string name="map_floor_name_fourth">Четвертый этаж</string>
+
+    <string name="store_title_cursedpossessions">Проклятые владения</string>
+    <string name="cursedpossessions_info_name_mirror">Зеркало с привидениями</string>
+    <string name="cursedpossessions_info_name_monkeypaw">Обезьянья лапа</string>
+    <string name="cursedpossessions_info_name_musicbox">Музыкальная шкатулка</string>
+    <string name="cursedpossessions_info_name_ouijaboard">Доска для спиритических сеансов</string>
+    <string name="cursedpossessions_info_name_summoningcircle">Круг призыва</string>
+    <string name="cursedpossessions_info_name_tarotcards">Карты Таро</string>
+    <string name="cursedpossessions_info_name_voodoodoll">Кукла Вуду</string>
+
+    <!--
+ Вкусный текст
+ -->
+    <string name="shop_cursedpossessions_mirror_data_flavortext">
+     <![CDATA[
+     <a>Большое круглое зеркало. Когда он удерживается, владельцу хочется заглянуть в него... но за это приходится платить.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
+     <![CDATA[
+     <a>Предмет, взятый прямо из фольклора, является физическим проявлением «неудавшегося желания».</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">
+     <![CDATA[
+     <a>Неизвестно, как Обезьянья Лапа способна понимать желания, но это одно из них. Были ли они записаны создателем Обезьяньей Лапы или жертвой?</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_musicbox_data_flavortext">
+     <![CDATA[
+     <a>Деревянная шкатулка с внутренними механизмами, позволяющими воспроизводить мелодию. Этот играет мелодию под названием «Drift».</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_ouijaboard_data_flavortext">
+     <![CDATA[
+     <a>Деревянная доска с надписью в сочетании с соответствующей планшеткой. По какой-то причине у вас возникает ощущение, что с этим действительно не стоит связываться.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_summoningcircle_data_flavortext">
+     <![CDATA[
+     <a>Пентаграмма, нарисованная на земле чем-то вроде крови. Его дополняют пять красных свечей, которые, похоже, использовались ранее.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением человека, висящего за ногу на большой ветке дерева.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением крыльев ангела.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением напуганного человека, попавшего в беду.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением скрытой призрачной фигуры.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением солнца и луны, расположенными рядом.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением человека, закутанного в смирительную рубашку.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением средневекового дурака.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением Луны.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением Солнца.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">
+     <![CDATA[
+     <a>Игральная карта Таро с изображением Замковой башни.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_voodoodoll_data_flavortext">
+     <![CDATA[
+     <a>Маленькая кукла, пропитанная сущностью призрака, навсегда связавшая две сущности вместе.</a>
+     ]]>
+     </string>
+
+    <!--
+     Информационный текст
+     -->
+    <string name="shop_cursedpossessions_mirror_data_info">
+     <![CDATA[
+     <p>Зеркало с привидениями покажет вам, что такое комната/любимая комната призраков! Это также помогает проверить, не меняет ли призрак свою любимую комнату во время расследования.</p>
+
+     <p>Он НЕ показывает вам, где в данный момент находится призрак.</p>
+     <p>При взгляде в зеркало теряет 7% здравомыслия в секунду и минимум 20% за одно использование.</p>
+     <p>Если у вас закончится рассудок, зеркало разобьется и начнется проклятая охота.</p>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info">
+     <![CDATA[
+     <h2>Количество ваших желаний будет зависеть от вашей сложности или множителя награды следующим образом...</h2>
+     Я хочу увидеть призрака:</h4>
+     <а>
+     <br>
+     Множитель 0x - 1,9x = 5 желаний<br>
+     Множитель 2x–2,9x = 4 желания<br>
+     Множитель 3х и выше = 3 желания
+     </а>
+
+     <h2>ВСЕ ПОЖЕЛАНИЯ</h2>
+
+     <h4>Я хочу увидеть призрака:</h4>
+     <а>
+     + Запускает событие призрака в месте появления призрака.<br>
+     - Мгновенно запирает выходную дверь.<br>
+     - Начинает охоту сразу после события с призраком.<br>
+     - Уменьшает обзор игрока до конца охоты из-за черного тумана.
+     </а>
+
+     <h4>Желаю активности.</h4>
+     <а>
+     + Удваивает всю активность призраков на 2 минуты, включая взаимодействия, перемещение и способности.<br>
+     - Ломает блок предохранителей и запирает выходную дверь на 2 минуты.
+     </а>
+
+     <h4>Я желаю здравомыслия.</h4>
+     <а>
+     ~ Усредняет здравомыслие команды до 50\%<br>
+     - Устанавливает любимую комнату призраков в новую, случайную комнату<br>
+     - Увеличивает потерю рассудка на +50\% от текущего показателя для всей группы.<br>
+     - Примечание: это желание преодолеет слабость Горё. Это означает, что, несмотря на то, что Горё не может менять комнаты самостоятельно, он МОЖЕТ, если используется здравомыслие.
+     </а>
+
+     <h4>Я бы хотел, чтобы призрак оказался в ловушке.</h4>
+     <а>
+     + Телепортирует призрака в его комнату и запирает все двери на 1 минуту.<br>
+     + Призрак не может охотиться, бродить или выполнять какие-либо действия, находясь запертым в своей комнате.<br>
+     - Запирает все двери в комнате, в которой сейчас находится игрок, загадавший желание, на 1 минуту.<br>
+     - Призрак откроет все двери через 1 минуту и ​​начнет охоту.<br>
+     ~ 25% шанс того, что двери откроются ПОСЛЕ льготного периода.
+     </а>
+
+     <h4>Я желаю жизни. / Я хочу оживить своего друга.</h4>
+     <а>
+     + Оживляет мертвого игрока.<br>
+     - 50\% шанс убить игрока, который использует желание.
+     </а>
+
+     <h4>Я хочу быть в безопасности</h4>
+     <а>
+     + Открывает ближайшее укрытие.<br>
+     - Выбивает свет в комнате.<br>
+     - Призрак может слышать и чувствовать снаряжение игрока, загадавшего желание во время охоты, из любой точки карты до конца забега.<br>
+     + Примечание. Это можно использовать в своих интересах, чтобы намеренно заманить призрака в более безопасное место для выполнения задач охоты.
+     </а>
+
+     <h4>Я хочу уйти.</h4>
+     <а>
+     + Открывает все выходные двери в любое время, в том числе во время охоты.<br>
+     - Не дает вам мгновенно двигаться, затем медленно возвращает скорость движения в течение 5 секунд.<br>
+     - Уменьшает обзор на 5 секунд у загадывающего желание.
+     </а>
+
+     <h4>Я желаю знаний.</h4>
+     <а>
+     + Удаляет из вашего журнала 1 неверное свидетельство и соответствующие типы призраков, сужая ваш выбор.<br>
+     - Начинает охоту рядом с игроком.<br>
+     - До конца раунда у игрока, загадавшего желание, будет снижено зрение и приглушен звук.<br>
+     - Примечание: смерть приведет к сбросу звуковых и визуальных эффектов до нормального состояния и останется нормальным при возрождении.
+     </а>
+
+     <h4>Я желаю [погоды].</h4>
+     <а>
+     + Если погода вам не нравится, вы можете изменить ее на «Дождь» (x2), «Снег», «Ясно», «Туман» или «Восход солнца».<br>
+     - Снижает здравомыслие на 25% у человека, загадывающего желание.<br>
+     ~ Примечание: желание дождя даст вам 50% шанс получить легкий или сильный дождь.
+     </а>
+
+     <h4>Я желаю всего.</h4>
+     <а>
+     + Не можете решить, чего хотите пожелать? Пусть лапа решит за вас. Желание чего-либо исполнит одно из оставшихся (неиспользованных) желаний в этом раунде.<br>
+     ~ Примечание: хотя вы можете использовать «Любое желание» более одного раза, оно не исполнит желание, которое уже было использовано в этом забеге.
+     </а>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">
+     <![CDATA[
+     <a>По всему Солнечному лугу спрятаны метки, которые дадут вам представление о том, чего вы можете пожелать при использовании проклятого владения Обезьяньей Лапы. Чтобы найти их, просто зайдите в Солнечные Луга и осмотритесь. Найдя его, он будет навсегда добавлен на страницу 12 вашего журнала.</a>
+     <ул>
+     <li>Я хочу увидеть призрак.</li>
+     <li>Желаю активности.</li>
+     <li>Я желаю здравомыслия.</li>
+     <li>Хотелось бы, чтобы призрак оказался в ловушке.</li>
+     <li>Я желаю жизни.</li>
+     <li>Я хочу быть в безопасности.</li>
+     <li>Я хочу уйти.</li>
+     <li>Желаю знаний.</li>
+     <li>Я желаю (погоды).</li>
+     <li>Я желаю всего.</li>
+     </ul>
+     <a>Примечание: вам не обязательно находить теги, чтобы использовать пожелания. Они нужны только для того, чтобы предоставить вам список возможностей.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_musicbox_data_info">
+     <![CDATA[
+     <p>Музыкальная шкатулка соблазняет призрака! Во время игры призрак будет искать музыкальную шкатулку. Отлично подходит для фотографий и управления/принуждения к охоте.</p>
+
+     <p>Нахождение рядом с музыкальной шкатулкой во время ее воспроизведения лишает вас рассудка.</p>
+     <p>Если вы бросите музыкальную шкатулку вместо того, чтобы поставить ее на место, она разобьется и начнется проклятая охота.</p>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_ouijaboard_data_info">
+     <![CDATA[
+     <p>Доску для спиритических сеансов можно использовать для охоты, поиска комнаты с привидениями, фотографий взаимодействия на ферме и т. д.</p>
+
+     <p>Активируйте доску, затем задавайте вопросы или отправляйте запросы. Доска будет активна, когда планшетка присутствует. Скажите «до свидания», чтобы деактивировать доску, и планшет будет получен.</p>
+     <p>ВСЕГДА ПРОЩАЙТЕСЬ! Если человек, вызвавший планшетку, отойдет слишком далеко от активной доски для спиритических сеансов, она уничтожит себя и начнет проклятую охоту.</p>
+     <p>Любой, кто находится поблизости, может говорить с доской.</p>
+     <p>Разные вопросы или запросы требуют больше здравомыслия, чем другие.</p>
+
+     <a>Некоторые вопросы, которые вы можете задать</a>
+     <ул>
+     <li>Где ты?</li>
+     <li>Где кость?</li>
+     <li>Как ты умер?</li>
+     <li>Я сошел с ума?</li>
+     <li>Сколько человек в комнате?</li>
+     <li>Сколько вам лет?</li>
+     <li>Какое у меня здравомыслие?</li>
+     </ul>
+
+     <p>Вы можете вызвать Проклятую охоту, сказав «Прятки». У вас будет 5 секунд, чтобы уйти, прежде чем призрак сможет начать охоту.</p>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_summoningcircle_data_info">
+     <![CDATA[
+     <p>Любой, кто окажется рядом с кругом призыва при зажженных свечах, также потеряет рассудок</p>
+     <p>Когда все свечи зажгутся, начнется Проклятая охота. Призрак будет заперт в круге на 1 или более секунд, прежде чем начнет перемещаться.</p>
+     <p>Рекомендуется сфотографировать призрак во время его ловли.</p>
+     <p>Проклятую охоту можно отменить с помощью Распятия 3-го уровня.</p>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">
+     <![CDATA[
+     <a>Мгновенно убивает</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_priestess">
+     <![CDATA[
+     <a>Воскрешает мертвого игрока. Если мертвых игроков более одного, карта воскресит случайного мертвого игрока. Если мертвых игроков нет, карта воскресит следующего игрока, который умрет.
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_death">
+     <![CDATA[
+     <a>Принудительно начинает охоту на призраков.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_devil">
+     <![CDATA[
+     <a>Вызывает призрачное событие.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_fortune">
+     <![CDATA[
+     <a>Получите 25% здравомыслия [Зеленый ожог], потеряйте 25% здравомыслия [Красный ожог]</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_hermit">
+     <![CDATA[
+     <a>Телепортируется и запирает призрака в его любимой комнате на минуту.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_joker">
+     <![CDATA[
+     <a>Ничего не делает. Технически дурак уже нарисован, и игра случайным образом бросает 1/9, чтобы увидеть, какую карту он отобразит, прежде чем раскрыть дурака.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_moon">
+     <![CDATA[
+     <a>Снижает ваше здравомыслие до 0%</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_sun">
+     <![CDATA[
+     <a>Восстановите свое здравомыслие до 100%.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_info_tower">
+     <![CDATA[
+     <a>Принудительно выполняет взаимодействие и удваивает активность призраков на 20 секунд.</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_voodoodoll_data_info">
+     <![CDATA[
+     <p>Укол куклы вуду вызывает взаимодействие!</p>
+     <p>Куклу вуду можно уколоть до 10 раз. У каждого укола есть шанс уколоть сердце, после чего начнется проклятая охота.</p>
+     <p>Понижение вашего здравомыслия до 0% с помощью Куклы активирует все булавки и начнет проклятую охоту.</p>
+     ]]>
+     </string>
+
+    <!--
+ Текст утечки здравомыслия
+ -->
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain">
+ <![CDATA[
+ <a>7 %/с</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">
+ <![CDATA[
+ <a>0–25 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">
+ <![CDATA[
+ <a>2,5%/с в пределах ~2,5 м</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">
+ <![CDATA[
+ <a>0–50 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">
+ <![CDATA[
+ <a>16 % за зажженную свечу</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">
+ <![CDATA[
+ <a>Мгновенная смерть</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">
+ <![CDATA[
+ <a>+25% или -25%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">
+ <![CDATA[
+ <а>0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">
+ <![CDATA[
+ <a>Установить на 100%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">
+ <![CDATA[
+ <a>Установить на 0%</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">
+ <![CDATA[
+ <a>5 % за использование</a>
+ ]]>
+ </string>
+
+
+    <!--
+    Альтернативный текст имени
+    -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">
+     <![CDATA[
+     <a>Базовая рука</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypawwish_data_altname">
+     <![CDATA[
+     <a>Коллекционная коллекция желаний</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">
+     <![CDATA[
+     <a>Повешенный</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">
+     <![CDATA[
+     <a>Верховная жрица</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_death">
+     <![CDATA[
+     <a>Смерть</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_devil">
+     <![CDATA[
+     <a>Дьявол</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">
+     <![CDATA[
+     <a>Колесо Фортуны</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">
+     <![CDATA[
+     <a>Отшельник</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_joker">
+     <![CDATA[
+     <a>Дурак</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_moon">
+     <![CDATA[
+     <a>Луна</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_sun">
+     <![CDATA[
+     <a>Солнце</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_altname_tower">
+     <![CDATA[
+     <a>Башня</a>
+     ]]>
+     </string>
+
+    <!--
+     Текст атрибутов
+     -->
+    <string name="shop_cursedpossessions_mirror_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypaw_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypawwish_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_musicbox_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_ouijaboard_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_summoningcircle_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_death">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_voodoodoll_data_attribute">
+     <![CDATA[
+     <а></а>
+     ]]>
+     </string>
+
+    <!--
+    Нарисовать текст шанса
+    -->
+    <string name="shop_cursedpossessions_mirror_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypaw_data_drawchance">
+     <![CDATA[
+     <a>11–55 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">
+     <![CDATA[
+     <a>11–55 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_musicbox_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_ouijaboard_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_summoningcircle_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">
+     <![CDATA[
+     <a>1%</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">
+     <![CDATA[
+     <a>2%</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">
+     <![CDATA[
+     <a>20 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">
+     <![CDATA[
+     <a>17 %/100 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">
+     <![CDATA[
+     <a>5 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">
+     <![CDATA[
+     <a>5 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">
+     <![CDATA[
+     <a>20 %</a>
+     ]]>
+     </string>
+        <string name="shop_cursedpossessions_voodoodoll_data_drawchance">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
 </resources>
