@@ -22,16 +22,11 @@ abstract class FirebaseFragment : PETFragment {
         try {
             onSignInResultAccount(result)
         } catch (runtimeException: RuntimeException) {
-            val message = "Login Error: " + runtimeException.message
+            val message = "${getString(R.string.alert_account_login_failure)}: ${runtimeException.message}"
             try {
-                Toast.makeText(
-                    requireActivity(),
-                    message,
-                    Toast.LENGTH_LONG
-                ).show()
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
+                Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
             }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
@@ -60,10 +55,8 @@ abstract class FirebaseFragment : PETFragment {
             ) {
                 Toast.makeText(
                     requireActivity(),
-                    "Internet not available.",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
+                    getString(R.string.alert_internet_unavailable),
+                    Toast.LENGTH_SHORT).show()
 
                 return
             }
@@ -100,31 +93,21 @@ abstract class FirebaseFragment : PETFragment {
                 throw RuntimeException(e)
             }
             if (user != null) {
-                val message = "Welcome " + user.displayName
-                val toast = Toast.makeText(
-                    requireActivity(),
-                    message,
-                    Toast.LENGTH_LONG
-                )
+                val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
+                val toast = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG)
                 toast.show()
 
                 onSignInAccountSuccess()
             }
         } else {
-            var message = "ERROR: (Error data could not be acquired)."
+            var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
             if (response != null) {
                 val error = response.error
                 if (error != null) {
-                    message = "ERROR " + error.errorCode + ": " + error.message
+                    message = "${getString(R.string.alert_error_generic)} ${ error.errorCode } ${error.message}"
                 }
             }
-
-            val toast = Toast.makeText(
-                requireActivity(),
-                message,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -136,17 +119,13 @@ abstract class FirebaseFragment : PETFragment {
         try {
             AuthUI.getInstance()
                 .signOut(requireContext())
-                .addOnCompleteListener { task: Task<Void?>? ->
-                    val message = "User signed out"
+                .addOnCompleteListener {
+                    val message = getString(R.string.alert_account_logout_success)
                     try {
                         Toast.makeText(
-                            requireActivity(),
-                            message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } catch (e: IllegalStateException) {
-                        e.printStackTrace()
+                            requireActivity(), message, Toast.LENGTH_LONG).show()
                     }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
                     onSignOutAccountSuccess()
                 }
         } catch (e: IllegalStateException) {
@@ -157,15 +136,12 @@ abstract class FirebaseFragment : PETFragment {
     open fun deleteAccount() {
         AuthUI.getInstance()
             .delete(requireContext())
-            .addOnCompleteListener { task: Task<Void?>? ->
-                val message = "Successfully removed account."
+            .addOnCompleteListener {
+                val message = getString(R.string.alert_account_remove_success)
                 try {
-                    Toast.makeText(
-                        requireActivity(),
-                        message,
-                        Toast.LENGTH_LONG
-                    ).show()
-                } catch (e: IllegalStateException) {
+                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
+                }
+                catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
                 refreshFragment()

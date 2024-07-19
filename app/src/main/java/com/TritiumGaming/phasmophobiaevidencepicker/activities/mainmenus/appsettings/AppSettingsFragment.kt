@@ -387,8 +387,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         try {
             val message = getString(R.string.toast_discardchanges)
-            val toast = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG)
-            toast.show()
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 

@@ -26,7 +26,6 @@ class PhaseWarningModel(
     fun updateTimeElapsed() {
         _timeElapsed.value = System.currentTimeMillis() - flashTimeStart
         updateCanFlash()
-        Log.d("Flash", "Start: $flashTimeStart, Max: $flashTimeMax Elapsed: ${timeElapsed.value} CanFlash: ${canFlash.value}")
     }
 
     /** Allow the Warning indicator to flash either off or on if:

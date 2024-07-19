@@ -247,8 +247,11 @@ class MarketplaceFragment : MainMenuFragment() {
                     marketProgressBar?.visibility = View.GONE
                     marketplaceErrorTextView?.visibility = View.VISIBLE
 
-                    try { Toast.makeText(requireActivity(), "Could not access the marketplace.",
-                        Toast.LENGTH_SHORT).show() }
+                    try {
+                        Toast.makeText(requireActivity(),
+                        getString(R.string.alert_marketplace_access_failure),
+                        Toast.LENGTH_SHORT).show()
+                    }
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }
 
@@ -275,8 +278,10 @@ class MarketplaceFragment : MainMenuFragment() {
                             null, null, processCompleteListener) } }
                 else {
                     processCompleteListener.onFailure()
-                    Toast.makeText(requireActivity(), "Internet not available.",
-                        Toast.LENGTH_SHORT).show() }
+                    Toast.makeText(requireActivity(),
+                        getString(R.string.alert_internet_unavailable),
+                        Toast.LENGTH_SHORT).show()
+                }
             }
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
@@ -312,8 +317,12 @@ class MarketplaceFragment : MainMenuFragment() {
                     marketProgressBar?.visibility = View.GONE
                     marketplaceErrorTextView?.visibility = View.VISIBLE
 
-                    try { Toast.makeText(requireActivity(), "Could not access the marketplace.",
-                        Toast.LENGTH_SHORT).show() }
+                    try {
+                        Toast.makeText(
+                            requireActivity(),
+                            getString(R.string.alert_marketplace_access_failure),
+                            Toast.LENGTH_SHORT).show()
+                    }
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }
 
@@ -330,8 +339,12 @@ class MarketplaceFragment : MainMenuFragment() {
 
         try {
             if (!isNetworkAvailable(requireContext(), globalPreferencesViewModel!!.networkPreference)) {
-                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(),
+                    getString(R.string.alert_internet_unavailable),
+                    Toast.LENGTH_SHORT).show()
+
                 processCompleteListener.onFailure()
+
                 return
             }
 
@@ -517,14 +530,21 @@ class MarketplaceFragment : MainMenuFragment() {
                                 })
                         } catch (e: Exception) { e.printStackTrace() }
 
-                        try { Toast.makeText(requireActivity(), "Skin purchased!",
-                            Toast.LENGTH_SHORT).show() }
+                        try {
+                            Toast.makeText(
+                                requireActivity(),
+                                getString(R.string.alert_marketplace_purchase_success_skin),
+                                Toast.LENGTH_SHORT).show()
+                        }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
 
                     override fun onFailure() {
-                        try { Toast.makeText(requireActivity(),
-                            "Not enough credits for purchase!", Toast.LENGTH_SHORT).show() }
+                        try {
+                            Toast.makeText(requireActivity(),
+                            getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                            Toast.LENGTH_SHORT).show()
+                        }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
 
@@ -573,14 +593,20 @@ class MarketplaceFragment : MainMenuFragment() {
                                 "Single Theme", purchaseListener) }
                         catch (e: Exception) { e.printStackTrace() }
 
-                        try { Toast.makeText(requireActivity(), "Skin purchased!",
-                            Toast.LENGTH_SHORT).show() }
+                        try {
+                            Toast.makeText(requireActivity(),
+                            getString(R.string.alert_marketplace_purchase_success_skin),
+                            Toast.LENGTH_SHORT).show()
+                        }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
 
                     override fun onFailure() {
-                        try { Toast.makeText(requireActivity(),
-                            "Not enough credits for purchase!", Toast.LENGTH_SHORT).show() }
+                        try {
+                            Toast.makeText(requireActivity(),
+                            getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                            Toast.LENGTH_SHORT).show()
+                        }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
 
@@ -601,8 +627,10 @@ class MarketplaceFragment : MainMenuFragment() {
         result: FirebaseAuthUIAuthenticationResult ->
         try { onSignInResultAccount(result) }
         catch (runtimeException: RuntimeException) {
-            val message = "Login Error: " + runtimeException.message
-            try { Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show() }
+            val message = "${getString(R.string.alert_account_login_failure)}: ${runtimeException.message}"
+            try {
+                Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+            }
             catch (ise: IllegalStateException) { ise.printStackTrace() }
         }
     }
@@ -616,8 +644,10 @@ class MarketplaceFragment : MainMenuFragment() {
 
         try { globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
                 if (!isNetworkAvailable(requireContext(), networkPreference)) {
-                    Toast.makeText(requireActivity(),
-                        "Internet not available.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireActivity(), getString(R.string.alert_internet_unavailable),
+                        Toast.LENGTH_SHORT).show()
+
                     return
                 }
             }
@@ -639,8 +669,11 @@ class MarketplaceFragment : MainMenuFragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             // Successfully signed in
             currentFirebaseUser?.let { user ->
-                try { Toast.makeText(requireActivity(), "Welcome ${user.displayName}",
-                    Toast.LENGTH_SHORT).show() }
+                try {
+                    Toast.makeText(requireActivity(),
+                    "${getString(R.string.alert_account_welcome)} ${user.displayName}",
+                    Toast.LENGTH_SHORT).show()
+                }
                 catch (e: IllegalStateException) { e.printStackTrace() }
 
                 refreshFragment()
@@ -651,10 +684,12 @@ class MarketplaceFragment : MainMenuFragment() {
                 catch (e: Exception) { e.printStackTrace() }
             }
         } else {
-            var message = "ERROR: (Error data could not be acquired)."
+            var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
             result.idpResponse?.error?.let {  error ->
-                message = "ERROR " + error.errorCode + ": " + error.message }
-            try { Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show() }
+                message = "${getString(R.string.alert_error_generic)} ${ error.errorCode }: ${ error.message }" }
+            try {
+                Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+            }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
@@ -712,8 +747,12 @@ class MarketplaceFragment : MainMenuFragment() {
                     if (isNetworkAvailable(requireContext(), networkPreference)) {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
-                    } else { Toast.makeText(requireActivity(),
-                        "Internet not available.", Toast.LENGTH_SHORT).show() }
+                    } else {
+                        Toast.makeText(
+                            requireActivity(),
+                            getString(R.string.alert_internet_unavailable),
+                            Toast.LENGTH_SHORT).show()
+                    }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }

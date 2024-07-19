@@ -63,9 +63,9 @@ class MapMenuFragment : InvestigationFragment() {
                         }
                     }
             } ?:  Toast.makeText(requireContext(),
-                "Error loading viewmodel map data!", Toast.LENGTH_LONG).show()
+                getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
         } ?: Toast.makeText(requireContext(),
-            "Error loading map data file!", Toast.LENGTH_LONG).show()
+            getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
 
     @Throws(Exception::class)

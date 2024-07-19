@@ -13,9 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
@@ -32,7 +30,6 @@ import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.gms.common.SignInButton
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
@@ -150,16 +147,10 @@ class AccountFragment : MainMenuFirebaseFragment() {
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { result: FirebaseAuthUIAuthenticationResult ->
-        try {
-            onSignInResultAccount(result)
-        } catch (e: RuntimeException) {
-            val message = "Login Error: " + e.message
-            val toast = Toast.makeText(
-                requireActivity(),
-                message,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+        try { onSignInResultAccount(result) }
+        catch (e: RuntimeException) {
+            val message = "${getString(R.string.alert_account_login_failure)}: ${e.message}"
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -176,8 +167,10 @@ class AccountFragment : MainMenuFirebaseFragment() {
                     globalPreferencesViewModel!!.networkPreference
                 )
             ) {
-                Toast.makeText(requireActivity(), "Internet not available.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.alert_internet_unavailable),
+                    Toast.LENGTH_SHORT).show()
 
                 return
             }
@@ -207,13 +200,8 @@ class AccountFragment : MainMenuFirebaseFragment() {
             val user = currentFirebaseUser
 
             if (user != null) {
-                val message = "Welcome " + user.displayName
-                val toast = Toast.makeText(
-                    requireActivity(),
-                    message,
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
+                val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
+                Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
 
                 refreshFragment()
 
@@ -227,20 +215,14 @@ class AccountFragment : MainMenuFirebaseFragment() {
                 userPurchaseHistory
             }
         } else {
-            var message = "ERROR: (Error data could not be acquired)."
+            var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
             if (response != null) {
                 val error = response.error
                 if (error != null) {
-                    message = "ERROR " + error.errorCode + ": " + error.message
+                    message = "${getString(R.string.alert_error_generic)} ${error.errorCode}: ${error.message}"
                 }
             }
-
-            val toast = Toast.makeText(
-                requireActivity(),
-                message,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -267,14 +249,9 @@ class AccountFragment : MainMenuFirebaseFragment() {
             AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener {
-                    val message = "User signed out"
-                    try {
-                        Toast.makeText(
-                            requireActivity(),
-                            message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } catch (e: IllegalStateException) { e.printStackTrace() }
+                    val message = getString(R.string.alert_account_remove_success)
+                    try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
 
                     onSignOutAccountSuccess()
                 }
@@ -285,7 +262,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         AuthUI.getInstance()
             .delete(requireContext())
             .addOnCompleteListener {
-                val message = "Successfully removed account."
+                val message = getString(R.string.alert_account_remove_success)
                 val toast = Toast.makeText(
                     requireActivity(),
                     message,

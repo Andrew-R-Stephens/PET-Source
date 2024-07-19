@@ -21,7 +21,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CollapseButton
-import io.realm.kotlin.Configuration
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -102,7 +102,7 @@ class AppLanguageFragment : MainMenuFragment() {
         handleDiscardChanges()
 
         val message = getString(R.string.toast_discardchanges)
-        try { Toast.makeText(requireActivity(), message, com.google.android.material.R.integer.material_motion_duration_short_2).show() }
+        try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
         catch (e: IllegalStateException) { e.printStackTrace() }
     }
 

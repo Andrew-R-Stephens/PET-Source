@@ -170,8 +170,11 @@ class MarketplaceBillingFragment : MainMenuFragment() {
                 if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED &&
                     !purchase.isAcknowledged) {
                     try { requireActivity().runOnUiThread {
-                        Toast.makeText(requireActivity(), "Purchase successful!",
-                            Toast.LENGTH_LONG).show() }
+                        Toast.makeText(
+                            requireActivity(),
+                            getString(R.string.alert_marketplace_purchase_success_generic),
+                            Toast.LENGTH_LONG).show()
+                    }
                     } catch (e: IllegalStateException) { e.printStackTrace() }
 
                     val productString = StringBuilder()
