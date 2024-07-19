@@ -965,10 +965,24 @@
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Picar o boneco vodu força uma interação!</p><p>Você pode picar o boneco vodu até 10 vezes. Cada picada tem a chance de picar o coração, o que iniciará uma caçada amaldiçoada.</p><p>Reduzir sua sanidade a 0\\% by usando a boneca ativará todos os alfinetes e iniciará uma caçada amaldiçoada.</p>]]></string>
 
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Crédito de acompanhante</item>
+        <item quantity="one">%d Crédito de acompanhante</item>
+        <item quantity="many">Créditos de acompanhante</item>
         <item quantity="other">Créditos de acompanhante</item>
     </plurals>
 
     <string name="general_navigation_settings">Configurações</string>
     <string name="general_navigation_system">Sistema</string>
+
+    <string name="alert_error_generic">Erro!</string>
+    <string name="alert_success_generic">Sucesso!</string>
+    <string name="alert_account_welcome">Bem-vindo</string>
+    <string name="alert_account_data_failure">Não foi possível adquirir os dados.</string>
+    <string name="alert_account_remove_success">Conta removida com sucesso.</string>
+    <string name="alert_account_logout_success">Usuário desconectado.</string>
+    <string name="alert_account_login_failure">Erro de login.</string>
+    <string name="alert_internet_unavailable">Internet não disponível.</string>
+    <string name="alert_marketplace_access_failure">Não foi possível acessar o mercado.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin comprado!</string>
+    <string name="alert_marketplace_purchase_success_generic">Compra bem-sucedida!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Créditos insuficientes para compra!</string>
 </resources>

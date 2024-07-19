@@ -747,11 +747,11 @@
 
     <string name="shop_cursedpossessions_mirror_data_sanitydrain"><![CDATA[<a>7%/s</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain"><![CDATA[<a>0 - 25%</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain"><![CDATA[<a>0 – 25%</a>]]></string>
 
     <string name="shop_cursedpossessions_musicbox_data_sanitydrain"><![CDATA[<a>2,5%/s entro ~2,5 milioni</a>]]></string>
 
-    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 - 50%</a>]]></string>
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 – 50%</a>]]></string>
 
     <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16% pcandele accese</a>]]></string>
 
@@ -849,9 +849,9 @@
 
     <string name="shop_cursedpossessions_mirror_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
 
     <string name="shop_cursedpossessions_musicbox_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
@@ -884,7 +884,7 @@
           Flavor Text
       -->
 
-    <string name="shop_cursedpossessions_mirror_data_flavortext"><![CDATA[<a>Un grande specchio rotondo. Quando viene tenuto, chi lo impugna è spinto a esaminarlo... ma a un costo.</a>]]></string>
+    <string name="shop_cursedpossessions_mirror_data_flavortext"><![CDATA[<a>Un grande specchio rotondo. Quando viene tenuto, chi lo impugna è spinto a esaminarlo… ma a un costo.</a>]]></string>
 
     <string name="shop_cursedpossessions_monkeypaw_data_flavortext"><![CDATA[<a>Un oggetto uscito direttamente dal folklore, questo oggetto è la manifestazione fisica di un desiderio andato a male.</a>]]></string>
 
@@ -924,7 +924,7 @@
 
     <string name="shop_cursedpossessions_mirror_data_info"><![CDATA[<p>Lo specchio infestato ti mostra qual è la stanza dei fantasmi/stanza preferita! Aiuta anche a confermare se il fantasma cambia la sua stanza preferita durante un\'indagine.</p><p>NON mostra dove si trova attualmente il fantasma.</p><p>Mentre si guarda allo specchio, si scarica 7% sanità al secondo e un minimo di 20% per di utilizzo.</p><p>Se esaurisci la sanità mentale, lo specchio si romperà e avrà inizio una caccia maledetta.</p>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_info"><![CDATA[<h2>Il numero di desideri che avrai dipenderà dalla tua difficoltà o dal moltiplicatore di ricompensa come segue...</h2>Desidero vedere il fantasma:</h4><a><br>Moltiplicatore 0x - 1,9x = 5 desideri<br>Moltiplicatore 2x - 2,9x = 4 desideri<br>Moltiplicatore 3x e superiore = 3 desideri</a><h2>TUTTI I DESIDERI</h2><h4>Desidero vedere il fantasma:</h4><a>+ Attiva un evento fantasma nella posizione fantasma.<br>- Blocca istantaneamente le porte di uscita.<br>- Avvia una caccia immediatamente dopo l\'evento fantasma.<br>- Riduce la visione del giocatore per il resto della caccia con un nebbia nera.</a><h4>Desidero l\'attività.</h4><a>+ Raddoppia tutta l\'attività dei fantasmi per 2 minuti, incluse interazioni, roaming e abilità.<br>- Rompe la scatola dei fusibili e blocca l\'uscita porte per 2 minuti.</a><h4>Desidero la sanità mentale.</h4><a>~ Porta la sanità mentale della squadra in media al 50%<br>- Imposta la stanza preferita dei fantasmi su una nuova stanza casuale<br>- Aumenta il drenaggio della sanità mentale del +50\\% of del tasso attuale per l\'intero gruppo.<br>- Nota: questo desiderio annullerà la debolezza di Goryo. Ciò significa che, nonostante il Goryo non sia in grado di cambiare stanza da solo, PUÒ farlo se viene utilizzato il desiderio di sanità mentale.</a><h4>Vorrei che il fantasma fosse intrappolato.</h4><a>+ Teletrasporto il fantasma nella sua stanza e chiude tutte le porte per 1 minuto.<br>+ Il fantasma non può cacciare, vagare o eseguire abilità mentre è chiuso nella sua stanza.<br>- Blocca tutte le porte della stanza che il giocatore che ha creato il desiderio è attualmente attivo per 1 minuto.<br>- Il fantasma sbloccherà tutte le porte dopo 1 minuto e inizierà la caccia.<br>~ 25\\% cpossibilità che le porte si sblocchino DOPO il periodo di grazia.</a><h4>Desidero la vita. / Desidero resuscitare il mio amico.</h4><a>+ Resuscita un giocatore morto.<br>- 50\\% cpossibilità di uccidere il giocatore che usa il desiderio.</a><h4>Desidero resuscitare il mio amico. per essere al sicuro</h4><a>+ Apre il nascondiglio più vicino.<br>- Distrugge le luci nella stanza.<br>- Il fantasma può sentire e percepire l\'equipaggiamento del giocatore che ha espresso il desiderio durante la caccia da qualsiasi punto della mappa per il resto della corsa.<br>+ Nota: questo può essere utilizzato a tuo vantaggio per attirare intenzionalmente un fantasma in un\'area più sicura per completare gli obiettivi di caccia.</a><h4>Desidero andarmene .</h4><a>+ Sblocca tutte le porte di uscita in qualsiasi momento, anche durante la caccia.<br>- Ti impedisce di muoverti istantaneamente, quindi ripristina lentamente la velocità di movimento in 5 secondi.<br>- Riduce la visione per 5 secondi per la persona che esprime il desiderio.</a><h4>Desidero conoscenza.</h4><a>+ Rimuove 1 prova errata e i corrispondenti tipi di fantasmi dal tuo diario, restringendo le tue scelte.<br>- Avvia una caccia vicino al giocatore.<br>- Per il resto del round, il giocatore che ha espresso il desiderio avrà una vista ridotta e un audio ovattato.<br>- Nota: morire ripristinerà le riduzioni audio e visive alla normalità e rimarranno normali se rianimato.</a><h4>Desidero [meteo].</h4><a>+ Se il tempo non è di tuo gradimento, potresti cambiarlo in Pioggia (x2), Neve, Sereno, Nebbia o l\'alba.<br>- Riduce la sanità mentale del 25\\% fo della persona che esprime il desiderio.<br>~ Nota: desiderare la pioggia ti darà una probabilità del 50\\% cdi ottenere la luce o l\'alba. pioggia battente.</a><h4>Desidero qualsiasi cosa.</h4><a>+ Non riesci a decidere cosa desideri desiderare? Lascia che sia la zampa a decidere per te. Esprimere qualsiasi desiderio ti garantirà uno dei desideri rimanenti (non utilizzati) per quel round.<br>~ Nota: anche se puoi utilizzare il desiderio Tutto più di una volta, non ti garantirà un desiderio che è già stato utilizzato in quella sessione.</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypaw_data_info"><![CDATA[<h2>Il numero di desideri che avrai dipenderà dalla tua difficoltà o dal moltiplicatore di ricompensa come segue…</h2>Desidero vedere il fantasma:</h4><a><br>Moltiplicatore 0x - 1,9x = 5 desideri<br>Moltiplicatore 2x - 2,9x = 4 desideri<br>Moltiplicatore 3x e superiore = 3 desideri</a><h2>TUTTI I DESIDERI</h2><h4>Desidero vedere il fantasma:</h4><a>+ Attiva un evento fantasma nella posizione fantasma.<br>- Blocca istantaneamente le porte di uscita.<br>- Avvia una caccia immediatamente dopo l\'evento fantasma.<br>- Riduce la visione del giocatore per il resto della caccia con un nebbia nera.</a><h4>Desidero l\'attività.</h4><a>+ Raddoppia tutta l\'attività dei fantasmi per 2 minuti, incluse interazioni, roaming e abilità.<br>- Rompe la scatola dei fusibili e blocca l\'uscita porte per 2 minuti.</a><h4>Desidero la sanità mentale.</h4><a>~ Porta la sanità mentale della squadra in media al 50%<br>- Imposta la stanza preferita dei fantasmi su una nuova stanza casuale<br>- Aumenta il drenaggio della sanità mentale del +50\\% of del tasso attuale per l\'intero gruppo.<br>- Nota: questo desiderio annullerà la debolezza di Goryo. Ciò significa che, nonostante il Goryo non sia in grado di cambiare stanza da solo, PUÒ farlo se viene utilizzato il desiderio di sanità mentale.</a><h4>Vorrei che il fantasma fosse intrappolato.</h4><a>+ Teletrasporto il fantasma nella sua stanza e chiude tutte le porte per 1 minuto.<br>+ Il fantasma non può cacciare, vagare o eseguire abilità mentre è chiuso nella sua stanza.<br>- Blocca tutte le porte della stanza che il giocatore che ha creato il desiderio è attualmente attivo per 1 minuto.<br>- Il fantasma sbloccherà tutte le porte dopo 1 minuto e inizierà la caccia.<br>~ 25\\% cpossibilità che le porte si sblocchino DOPO il periodo di grazia.</a><h4>Desidero la vita. / Desidero resuscitare il mio amico.</h4><a>+ Resuscita un giocatore morto.<br>- 50\\% cpossibilità di uccidere il giocatore che usa il desiderio.</a><h4>Desidero resuscitare il mio amico. per essere al sicuro</h4><a>+ Apre il nascondiglio più vicino.<br>- Distrugge le luci nella stanza.<br>- Il fantasma può sentire e percepire l\'equipaggiamento del giocatore che ha espresso il desiderio durante la caccia da qualsiasi punto della mappa per il resto della corsa.<br>+ Nota: questo può essere utilizzato a tuo vantaggio per attirare intenzionalmente un fantasma in un\'area più sicura per completare gli obiettivi di caccia.</a><h4>Desidero andarmene .</h4><a>+ Sblocca tutte le porte di uscita in qualsiasi momento, anche durante la caccia.<br>- Ti impedisce di muoverti istantaneamente, quindi ripristina lentamente la velocità di movimento in 5 secondi.<br>- Riduce la visione per 5 secondi per la persona che esprime il desiderio.</a><h4>Desidero conoscenza.</h4><a>+ Rimuove 1 prova errata e i corrispondenti tipi di fantasmi dal tuo diario, restringendo le tue scelte.<br>- Avvia una caccia vicino al giocatore.<br>- Per il resto del round, il giocatore che ha espresso il desiderio avrà una vista ridotta e un audio ovattato.<br>- Nota: morire ripristinerà le riduzioni audio e visive alla normalità e rimarranno normali se rianimato.</a><h4>Desidero [meteo].</h4><a>+ Se il tempo non è di tuo gradimento, potresti cambiarlo in Pioggia (x2), Neve, Sereno, Nebbia o l\'alba.<br>- Riduce la sanità mentale del 25\\% fo della persona che esprime il desiderio.<br>~ Nota: desiderare la pioggia ti darà una probabilità del 50\\% cdi ottenere la luce o l\'alba. pioggia battente.</a><h4>Desidero qualsiasi cosa.</h4><a>+ Non riesci a decidere cosa desideri desiderare? Lascia che sia la zampa a decidere per te. Esprimere qualsiasi desiderio ti garantirà uno dei desideri rimanenti (non utilizzati) per quel round.<br>~ Nota: anche se puoi utilizzare il desiderio Tutto più di una volta, non ti garantirà un desiderio che è già stato utilizzato in quella sessione.</a>]]></string>
 
     <string name="shop_cursedpossessions_monkeypawwish_data_info"><![CDATA[<a>Nascosti in Sunny Meadows ci sono tag che ti daranno idee su cosa puoi desiderare quando usi la possessione maledetta Zampa di scimmia. Per trovarli, vai semplicemente a Sunny Meadows e guardati intorno. Una volta trovato, verrà aggiunto in modo permanente alla pagina 12 del tuo diario.</a><ul><li>Desidero vedere il fantasma.</li><li>Desidero attività.</li><li>Desidero la sanità mentale.</li><li>Vorrei che il fantasma fosse intrappolato.</li><li>Desidero la vita.</li><li>Desidero essere al sicuro.</li><li>Desidero andarmene.</li><li>Desidero la conoscenza.</li><li>Desidero (il tempo).</li><li>Desidero qualsiasi cosa.</li>{ /22}<a>Nota: non è necessario trovare i tag per utilizzare i desideri.</ul> Sono lì solo per guidarti con un elenco di possibilità.</a>]]></string>
 
@@ -958,9 +958,23 @@
 
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Credito accompagnatore</item>
+        <item quantity="many">Crediti complementari</item>
         <item quantity="other">Crediti complementari</item>
     </plurals>
 
     <string name="general_navigation_settings">Impostazioni</string>
     <string name="general_navigation_system">Sistema</string>
+
+    <string name="alert_error_generic">Errore!</string>
+    <string name="alert_success_generic">Successo!</string>
+    <string name="alert_account_welcome">Benvenuto</string>
+    <string name="alert_account_data_failure">Impossibile acquisire i dati.</string>
+    <string name="alert_account_remove_success">Account rimosso con successo.</string>
+    <string name="alert_account_logout_success">L\'utente si è disconnesso.</string>
+    <string name="alert_account_login_failure">Errore di accesso.</string>
+    <string name="alert_internet_unavailable">Internet non disponibile.</string>
+    <string name="alert_marketplace_access_failure">Impossibile accedere al mercato.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin acquistata!</string>
+    <string name="alert_marketplace_purchase_success_generic">Acquisto riuscito!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Crediti insufficienti per l\'acquisto!</string>
 </resources>

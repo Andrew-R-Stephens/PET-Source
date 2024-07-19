@@ -1657,7 +1657,7 @@
  -->
     <string name="shop_cursedpossessions_mirror_data_flavortext">
      <![CDATA[
-     <a>Большое круглое зеркало. Когда он удерживается, владельцу хочется заглянуть в него... но за это приходится платить.</a>
+     <a>Большое круглое зеркало. Когда он удерживается, владельцу хочется заглянуть в него… но за это приходится платить.</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
@@ -2292,7 +2292,9 @@
     <string name="marketplace_button_watch_ad">Заработайте кредиты</string>
     <string name="marketplace_button_purchase_credits">Купить кредиты</string>
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Компанский бонус</item>
+        <item quantity="one">%d Компанский бонус</item>
+        <item quantity="few">Сопутствующие кредиты</item>
+        <item quantity="many">Сопутствующие кредиты</item>
         <item quantity="other">Сопутствующие кредиты</item>
     </plurals>
     <string name="marketplace_description_watch_ad">Посмотрите рекламу и заработайте %s %s.</string>
@@ -2323,5 +2325,16 @@
     <string name="account_logout_warning">Вы уверены, что хотите выйти?</string>
     <string name="account_logout_button_confirm">Выход</string>
     <string name="account_logout_button_cancel">Отмена</string>
-
+    <string name="alert_error_generic">Ошибка!</string>
+    <string name="alert_success_generic">Успех!</string>
+    <string name="alert_account_welcome">Добро пожаловать</string>
+    <string name="alert_account_data_failure">Не удалось получить данные.</string>
+    <string name="alert_account_remove_success">Аккаунт успешно удален.</string>
+    <string name="alert_account_logout_success">Пользователь вышел из системы.</string>
+    <string name="alert_account_login_failure">Ошибка входа.</string>
+    <string name="alert_internet_unavailable">Интернет недоступен.</string>
+    <string name="alert_marketplace_access_failure">Не удалось получить доступ к торговой площадке.</string>
+    <string name="alert_marketplace_purchase_success_skin">Скин куплен!</string>
+    <string name="alert_marketplace_purchase_success_generic">Покупка прошла успешно!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Недостаточно кредитов для покупки!</string>
 </resources>

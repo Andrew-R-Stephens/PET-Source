@@ -1754,7 +1754,7 @@
 
     <string name="shop_cursedpossessions_monkeypaw_data_info">
      <![CDATA[
-     <h2>Počet přání, která máte, bude záviset na vaší obtížnosti nebo násobiteli odměn následovně...</h2>
+     <h2>Počet přání, která máte, bude záviset na vaší obtížnosti nebo násobiteli odměn následovně…</h2>
 
      <a>
      <br>
@@ -2287,6 +2287,8 @@
     <string name="marketplace_button_purchase_credits">Nákup kreditů</string>
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Doprovodný kredit</item>
+        <item quantity="few">Doprovodné kredity</item>
+        <item quantity="many">Doprovodné kredity</item>
         <item quantity="other">Doprovodné kredity</item>
     </plurals>
     <string name="marketplace_description_watch_ad">Podívejte se na reklamu a vydělejte %s %s.</string>
@@ -2310,9 +2312,16 @@
     <string name="account_deactivate_button_cancel">Nevadí</string>
 
     <!-- Odhlášení -->
-    <string name="account_logout_title">Odhlásit se</string>
-    <string name="account_logout_warning">Opravdu se chcete odhlásit?</string>
-    <string name="account_logout_button_confirm">Odhlásit se</string>
-    <string name="account_logout_button_cancel">Zrušit</string>
-
+    <string name="alert_error_generic">Chyba!</string>
+    <string name="alert_success_generic">Úspěch!</string>
+    <string name="alert_account_welcome">Vítejte</string>
+    <string name="alert_account_data_failure">Data nelze získat.</string>
+    <string name="alert_account_remove_success">Účet byl úspěšně odstraněn.</string>
+    <string name="alert_account_logout_success">Uživatel je odhlášen.</string>
+    <string name="alert_account_login_failure">Chyba přihlášení.</string>
+    <string name="alert_internet_unavailable">Internet není dostupný.</string>
+    <string name="alert_marketplace_access_failure">Nepodařilo se získat přístup k tržišti.</string>
+    <string name="alert_marketplace_purchase_success_skin">Kup zakoupen!</string>
+    <string name="alert_marketplace_purchase_success_generic">Nákup byl úspěšný!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Nedostatek kreditů k nákupu!</string>
 </resources>

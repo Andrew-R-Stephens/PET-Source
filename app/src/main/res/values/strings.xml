@@ -310,17 +310,17 @@
     <!--
         Toast and other alerts
     -->
-    <string name="alert_error_generic" translatable="false">Error!</string>
-    <string name="alert_success_generic" translatable="false">Success!</string>
-    <string name="alert_account_welcome" translatable="false">Welcome</string>
-    <string name="alert_account_data_failure" translatable="false">Data could not be acquired.</string>
-    <string name="alert_account_remove_success" translatable="false">Successfully removed account.</string>
-    <string name="alert_account_logout_success" translatable="false">User signed out.</string>
-    <string name="alert_account_login_failure" translatable="false">Login Error.</string>
-    <string name="alert_internet_unavailable" translatable="false">Internet not available.</string>
-    <string name="alert_marketplace_access_failure" translatable="false">Could not access the marketplace.</string>
-    <string name="alert_marketplace_purchase_success_skin" translatable="false">Skin purchased!</string>
-    <string name="alert_marketplace_purchase_success_generic" translatable="false">Purchase successful!</string>
-    <string name="alert_marketplace_purchase_failure_skin_credits" translatable="false">Not enough credits for purchase!</string>
+    <string name="alert_error_generic">Error!</string>
+    <string name="alert_success_generic">Success!</string>
+    <string name="alert_account_welcome">Welcome</string>
+    <string name="alert_account_data_failure">Data could not be acquired.</string>
+    <string name="alert_account_remove_success">Successfully removed account.</string>
+    <string name="alert_account_logout_success">User signed out.</string>
+    <string name="alert_account_login_failure">Login Error.</string>
+    <string name="alert_internet_unavailable">Internet not available.</string>
+    <string name="alert_marketplace_access_failure">Could not access the marketplace.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
+    <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>
 
 </resources>

@@ -737,7 +737,7 @@
 
     <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 ～ 50%</a>]]></string>
 
-    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16{1/4} 本のキャンドルが灯る</a>% p</a>]]></string>
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16{¼} 本のキャンドルが灯る</a>% p</a>]]></string>
 
     <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman"><![CDATA[<a>即死</a>]]></string>
 
@@ -833,9 +833,9 @@
 
     <string name="shop_cursedpossessions_mirror_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
 
-    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 - 55%</a>]]></string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
 
     <string name="shop_cursedpossessions_musicbox_data_drawchance"><![CDATA[<a>-</a>]]></string>
 
@@ -958,10 +958,22 @@
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>ブードゥー人形を刺すと、強制的にインタラクションが発生します。</p><p>ブードゥー人形は最大 10 回刺すことができます。刺すたびに心臓を刺す可能性があり、呪われた狩りが始まります。</p><p>人形を使用して正気度を 0\\{2//y に減らすと、すべてのピンがアクティブになり、呪われた狩りが始まります。</p>% b]]></string>
 
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">コンパニオン クレジット</item>
         <item quantity="other">コンパニオン クレジット</item>
     </plurals>
 
     <string name="general_navigation_settings">設定</string>
     <string name="general_navigation_system">システム</string>
+
+    <string name="alert_error_generic">エラー!</string>
+    <string name="alert_success_generic">成功!</string>
+    <string name="alert_account_welcome">ようこそ</string>
+    <string name="alert_account_data_failure">データを取得できませんでした。</string>
+    <string name="alert_account_remove_success">アカウントが正常に削除されました。</string>
+    <string name="alert_account_logout_success">ユーザーはサインアウトしました。</string>
+    <string name="alert_account_login_failure">ログイン エラーです。</string>
+    <string name="alert_internet_unavailable">インターネットが利用できません。</string>
+    <string name="alert_marketplace_access_failure">マーケットプレイスにアクセスできませんでした。</string>
+    <string name="alert_marketplace_purchase_success_skin">スキン購入済みです!</string>
+    <string name="alert_marketplace_purchase_success_generic">購入に成功しました!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">購入に必要なクレジットが足りません!</string>
 </resources>
