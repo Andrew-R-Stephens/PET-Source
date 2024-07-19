@@ -5,6 +5,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.FirebaseFragm
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MainMenuViewModel
 
 abstract class MainMenuFirebaseFragment : FirebaseFragment {
+
     protected var mainMenuViewModel: MainMenuViewModel? = null
 
     constructor() : super()
@@ -19,10 +20,6 @@ abstract class MainMenuFirebaseFragment : FirebaseFragment {
                     ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
-    }
-
-    override fun backPressedHandler() {
-        super.backPressedHandler()
     }
 
     override fun saveStates() {}

@@ -42,6 +42,127 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 
 @Preview
 @Composable
+fun MarketplaceDialog(
+    onConfirm: () -> Unit = { }
+) {
+
+    val title = stringResource(id = R.string.marketplace_acknowledgement_title)
+
+    val content: @Composable () -> Unit = {
+
+        Text(
+            text = stringResource(id = R.string.marketplace_acknowledgement_warning),
+            style = TextStyle(
+                fontSize = 14.sp,
+                color = Color(
+                    getColorFromAttribute(
+                        LocalContext.current, R.attr.textColorBody
+                    )
+                )
+            )
+        )
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_1),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+
+            Text(
+                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_2),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+
+            Text(
+                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_3),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+
+            Text(
+                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_4),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+
+    val confirmButton: @Composable () -> Unit = {
+        TextButton(
+            content = {
+                Text(
+                    text = stringResource(id = R.string.marketplace_acknowledgement_button_confirm),
+                    maxLines = 1,
+                    style = TextStyle(fontSize = 18.sp)
+                )
+            },
+            contentPadding = PaddingValues(8.dp),
+            colors = ButtonColors(
+                contentColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.backgroundColorOnBackground
+                    )
+                ),
+                containerColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.textColorBody
+                    )
+                ),
+                disabledContentColor = Color.Blue,
+                disabledContainerColor = Color.Green
+            ),
+            shape = RoundedCornerShape(percent = 20),
+            onClick = { onConfirm() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        )
+    }
+
+
+    Dialog(
+        title = title,
+        content = { content() },
+        confirmButton = { confirmButton() }
+    )
+}
+
+//@Preview
+@Composable
 fun LogoutDialog(
     onConfirm: () -> Unit = { },
     onCancel: () -> Unit = { }
@@ -149,6 +270,19 @@ fun DeleteAccountDialog(
     val title = stringResource(id = R.string.account_deactivate_title)
 
     val content: @Composable () -> Unit = {
+
+        Text(
+            text = stringResource(id = R.string.account_deactivate_warning),
+            style = TextStyle(
+                fontSize = 14.sp,
+                color = Color(
+                    getColorFromAttribute(
+                        LocalContext.current, R.attr.textColorBody
+                    )
+                )
+            )
+        )
+
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
@@ -270,8 +404,8 @@ fun DeleteAccountDialog(
 
 }
 
+//@Preview
 @Composable
-@Preview
 fun Dialog(
     title: String = "",
     content: @Composable () -> Unit = { },

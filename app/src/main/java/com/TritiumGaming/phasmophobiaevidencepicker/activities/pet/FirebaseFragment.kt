@@ -4,7 +4,6 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.firebase.ui.auth.AuthUI
@@ -12,12 +11,10 @@ import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import java.util.List
 
 abstract class FirebaseFragment : PETFragment {
 
-    protected val signInLauncher = registerForActivityResult(
+    private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { result: FirebaseAuthUIAuthenticationResult ->
         try {
@@ -34,12 +31,6 @@ abstract class FirebaseFragment : PETFragment {
     protected constructor() : super()
 
     protected constructor(layout: Int) : super(layout)
-
-    protected abstract fun onSignInAccountSuccess()
-
-    protected abstract fun onSignOutAccountSuccess()
-
-    protected abstract fun onDeleteAccountSuccess()
 
     open fun manualSignInAccount() {
         if (FirebaseAuth.getInstance().currentUser != null) {
@@ -87,13 +78,7 @@ abstract class FirebaseFragment : PETFragment {
 
         // Successfully signed in
         if (result.resultCode == Activity.RESULT_OK) {
-            val user: FirebaseUser?
-            try {
-                user = currentFirebaseUser
-            } catch (e: Exception) {
-                throw RuntimeException(e)
-            }
-            if (user != null) {
+            currentFirebaseUser?.let { user ->
                 val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
                 val toast = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG)
                 toast.show()
@@ -102,11 +87,8 @@ abstract class FirebaseFragment : PETFragment {
             }
         } else {
             var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
-            if (response != null) {
-                val error = response.error
-                if (error != null) {
-                    message = "${getString(R.string.alert_error_generic)} ${ error.errorCode } ${error.message}"
-                }
+            response?.error?.let { error ->
+                message = "${getString(R.string.alert_error_generic)} ${ error.errorCode } ${error.message}"
             }
             Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
         }
@@ -121,32 +103,36 @@ abstract class FirebaseFragment : PETFragment {
             AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener {
-                    val message = getString(R.string.alert_account_logout_success)
-                    try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
+                    try {
+                        val message = getString(R.string.alert_account_logout_success)
+                        Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
                     catch (e: IllegalStateException) { e.printStackTrace() }
 
                     onSignOutAccountSuccess()
                 }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
         }
+        catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     open fun deleteAccount() {
         AuthUI.getInstance()
             .delete(requireContext())
             .addOnCompleteListener {
-                val message = getString(R.string.alert_account_remove_success)
                 try {
+                    val message = getString(R.string.alert_account_remove_success)
                     Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
                 }
-                catch (e: IllegalStateException) {
-                    e.printStackTrace()
-                }
+                catch (e: IllegalStateException) { e.printStackTrace() }
 
                 onDeleteAccountSuccess()
             }
     }
+
+    protected abstract fun onSignInAccountSuccess()
+
+    protected abstract fun onSignOutAccountSuccess()
+
+    protected abstract fun onDeleteAccountSuccess()
 
     abstract override fun saveStates()
 }

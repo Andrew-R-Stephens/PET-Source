@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.ThemeBundleCardView
@@ -64,7 +65,8 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineScope
 
 
-class MarketplaceFragment : MainMenuFragment() {
+class MarketplaceFragment : MainMenuFirebaseFragment() {
+
     private var masterItemsList: LinearLayout? = null
 
     private var bundleMarketplaceList: MarketplaceListLayout? = null
@@ -120,15 +122,15 @@ class MarketplaceFragment : MainMenuFragment() {
 
         watchAdButton.setOnClickListener { showRewardedAd() }
 
-        buyButton.setOnClickListener { v: View? -> this.gotoBillingMarketplace() }
-
-        if (currentFirebaseUser == null) { marketProgressBar?.visibility = View.GONE }
+        buyButton.setOnClickListener { _: View? -> this.gotoBillingMarketplace() }
 
         // CANCEL BUTTON
         backButton.setOnClickListener { v: View? ->
             try { v?.let{ findNavController(it).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
+
+        if (currentFirebaseUser == null) { marketProgressBar?.visibility = View.GONE }
 
         obtainCreditsTextView?.enableAdWatchButton(false)
         requireActivity().runOnUiThread { loadRewardedAd(null) }
@@ -393,21 +395,24 @@ class MarketplaceFragment : MainMenuFragment() {
                     }
 
                     marketSingleThemeTemp?.let { singleThemeTemp ->
-                        val customTheme = globalPreferencesViewModel!!.colorThemeControl.getThemeByUUID(uuid)
+                        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+                            val customTheme =
+                                globalPreferencesViewModel.colorThemeControl.getThemeByUUID(uuid)
 
-                        val marketSingleThemeFinal =
-                            MarketSingleThemeModel(uuid, singleThemeTemp, customTheme)
+                            val marketSingleThemeFinal =
+                                MarketSingleThemeModel(uuid, singleThemeTemp, customTheme)
 
-                        try {
-                            val marketplaceItem =
-                                buildMarketplaceSingleThemeView(list, marketSingleThemeFinal)
-                            if (!marketSingleThemeFinal.isUnlocked) {
-                                list.addView(marketplaceItem)
-                                list.requestLayout()
-                                list.invalidate()
+                            try {
+                                val marketplaceItem =
+                                    buildMarketplaceSingleThemeView(list, marketSingleThemeFinal)
+                                if (!marketSingleThemeFinal.isUnlocked) {
+                                    list.addView(marketplaceItem)
+                                    list.requestLayout()
+                                    list.invalidate()
+                                }
+                            } catch (e: IllegalStateException) {
+                                e.printStackTrace()
                             }
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
                         }
                     }
                 }
@@ -476,7 +481,7 @@ class MarketplaceFragment : MainMenuFragment() {
                 }
             }
         }).addOnFailureListener { listener.onFailure() }
-            .addOnCompleteListener { task: Task<QuerySnapshot>? ->
+            .addOnCompleteListener {
                 if (list.childCount <= 1) {
                     list.visibility = View.GONE
                 }
@@ -623,75 +628,21 @@ class MarketplaceFragment : MainMenuFragment() {
         return marketplaceItemView
     }
 
-    private val signInLauncher = registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
-        result: FirebaseAuthUIAuthenticationResult ->
-        try { onSignInResultAccount(result) }
-        catch (runtimeException: RuntimeException) {
-            val message = "${getString(R.string.alert_account_login_failure)}: ${runtimeException.message}"
-            try {
-                Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-            }
-            catch (ise: IllegalStateException) { ise.printStackTrace() }
-        }
+    override fun onSignInAccountSuccess() {
+        refreshFragment()
+
+        // Generate a Firestore document for the User with default data if needed
+        try { buildUserDocument().get().addOnCompleteListener {
+            initAccountCreditListener() } }
+        catch (e: Exception) { e.printStackTrace() }
     }
 
-    private fun manualSignInAccount() {
-        if (currentFirebaseUser != null) {
-            Log.d("ManuLogin", "User null!")
-            return
-        }
-        Log.d("ManuLogin", "Continuing to sign-in.")
-
-        try { globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                if (!isNetworkAvailable(requireContext(), networkPreference)) {
-                    Toast.makeText(
-                        requireActivity(), getString(R.string.alert_internet_unavailable),
-                        Toast.LENGTH_SHORT).show()
-
-                    return
-                }
-            }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-
-        val providers = listOf(GoogleBuilder().build())
-
-        // Create and launch sign-in intent
-        val signInIntent = AuthUI.getInstance()
-            .createSignInIntentBuilder()
-            .setAvailableProviders(providers)
-            .setIsSmartLockEnabled(false)
-            .build()
-
-        signInLauncher.launch(signInIntent)
+    override fun onSignOutAccountSuccess() {
+        refreshFragment()
     }
 
-    private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
-        if (result.resultCode == Activity.RESULT_OK) {
-            // Successfully signed in
-            currentFirebaseUser?.let { user ->
-                try {
-                    Toast.makeText(requireActivity(),
-                    "${getString(R.string.alert_account_welcome)} ${user.displayName}",
-                    Toast.LENGTH_SHORT).show()
-                }
-                catch (e: IllegalStateException) { e.printStackTrace() }
-
-                refreshFragment()
-
-                // Generate a Firestore document for the User with default data if needed
-                try { buildUserDocument().get().addOnCompleteListener {
-                    initAccountCreditListener() } }
-                catch (e: Exception) { e.printStackTrace() }
-            }
-        } else {
-            var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
-            result.idpResponse?.error?.let {  error ->
-                message = "${getString(R.string.alert_error_generic)} ${ error.errorCode }: ${ error.message }" }
-            try {
-                Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-            }
-            catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+    override fun onDeleteAccountSuccess() {
+        TODO("Not yet implemented")
     }
 
     interface OnAdLoadedListener {
