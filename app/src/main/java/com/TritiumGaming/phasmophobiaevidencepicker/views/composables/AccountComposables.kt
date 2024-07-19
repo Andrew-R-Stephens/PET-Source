@@ -47,250 +47,97 @@ fun LogoutDialog(
     onConfirm: () -> Unit = { },
     onCancel: () -> Unit = { }
 ) {
-    val backgroundColor = ColorUtils.interpolate(
-        getColorFromAttribute(LocalContext.current, R.attr.backgroundColor),
-        Color.Transparent.hashCode(), .75f)
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(backgroundColor))
-        .padding(8.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                .background(
-                    Color(
-                        getColorFromAttribute(
-                            LocalContext.current,
-                            R.attr.backgroundColorOnBackground
-                        )
+    val title = stringResource(id = R.string.account_logout_title)
+
+    val content: @Composable () -> Unit = {
+        Text(
+            text = stringResource(id = R.string.account_logout_warning),
+            style = TextStyle(
+                fontSize = 18.sp,
+                color = Color(
+                    getColorFromAttribute(
+                        LocalContext.current, R.attr.textColorBody
                     )
                 )
-                .padding(16.dp)
-                .align(Alignment.Center)
-                .wrapContentWidth()
-                .wrapContentHeight()
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.icon_logo_app),
-                        contentDescription = "Phasmophobia Evidence Tool Logo",
-                        modifier = Modifier
-                            .size(64.dp)
-                            .background(
-                                Color(
-                                    getColorFromAttribute(
-                                        LocalContext.current,
-                                        R.attr.backgroundColor
-                                    )
-                                ),
-                                CircleShape
-                            )
-                            .padding(8.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-
-                Text(
-                    text = stringResource(id = R.string.account_logout_title),
-                    maxLines = 1,
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        color = Color(getColorFromAttribute(
-                            LocalContext.current, R.attr.theme_colorPrimary)))
-                )
-
-                Column(
-                    modifier = Modifier
-                        .wrapContentHeight()
-                ) {
-
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(18.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1f)
-                            .verticalScroll(rememberScrollState())
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.account_logout_warning),
-                            style = TextStyle(
-                                fontSize = 18.sp,
-                                color = Color(getColorFromAttribute(
-                                    LocalContext.current, R.attr.textColorBody)))
-                        )
-
-                    }
-
-                    val configuration = LocalConfiguration.current
-                    when (configuration.orientation) {
-                        Configuration.ORIENTATION_PORTRAIT -> {
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(24.dp),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(PaddingValues(top = 8.dp))
-                            ) {
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_logout_button_cancel),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.backgroundColorOnBackground
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onCancel() },
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(48.dp)
-                                )
-
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_logout_button_confirm),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.theme_colorPrimary
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onConfirm() },
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(48.dp)
-                                )
-
-                            }
-                        }
-
-                        else -> {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(24.dp),
-                                modifier = Modifier
-                                    .padding(PaddingValues(top = 8.dp))
-                                    .fillMaxWidth()
-                                    .wrapContentHeight()
-                            ) {
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_logout_button_cancel),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.backgroundColorOnBackground
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onCancel() },
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .weight(1f)
-                                        .height(48.dp)
-                                )
-
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_logout_button_confirm),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.theme_colorPrimary
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onConfirm() },
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .weight(1f)
-                                        .height(48.dp)
-                                )
-
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-
+            )
+        )
     }
+
+    val cancelButton: @Composable () -> Unit = {
+        TextButton(
+            content = {
+                Text(
+                    text = stringResource(id = R.string.account_logout_button_cancel),
+                    maxLines = 1,
+                    style = TextStyle(fontSize = 18.sp)
+                )
+            },
+            contentPadding = PaddingValues(8.dp),
+            colors = ButtonColors(
+                contentColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.backgroundColorOnBackground
+                    )
+                ),
+                containerColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.textColorBody
+                    )
+                ),
+                disabledContentColor = Color.Blue,
+                disabledContainerColor = Color.Green
+            ),
+            shape = RoundedCornerShape(percent = 20),
+            onClick = { onCancel() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        )
+    }
+
+    val confirmButton: @Composable () -> Unit = {
+        TextButton(
+            content = {
+                Text(
+                    text = stringResource(id = R.string.account_logout_button_confirm),
+                    maxLines = 1,
+                    style = TextStyle(fontSize = 18.sp)
+                )
+            },
+            contentPadding = PaddingValues(8.dp),
+            colors = ButtonColors(
+                contentColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.backgroundColor
+                    )
+                ),
+                containerColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.theme_colorPrimary
+                    )
+                ),
+                disabledContentColor = Color.Blue,
+                disabledContainerColor = Color.Green
+            ),
+            shape = RoundedCornerShape(percent = 20),
+            onClick = { onConfirm() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        )
+    }
+
+    Dialog(
+        title = title,
+        content = { content() },
+        cancelButton = { cancelButton() },
+        confirmButton = { confirmButton() }
+    )
 }
 
 @Preview
@@ -300,6 +147,138 @@ fun DeleteAccountDialog(
     onCancel: () -> Unit = { }
 ) {
 
+    val title = stringResource(id = R.string.account_deactivate_title)
+
+    val content: @Composable () -> Unit = {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.account_deactivate_warning_list_1),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+
+            Text(
+                text = stringResource(id = R.string.account_deactivate_warning_list_2),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+
+            Text(
+                text = stringResource(id = R.string.account_deactivate_warning_list_3),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.textColorBody
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    val cancelButton: @Composable () -> Unit = {
+        TextButton(
+            content = {
+                Text(
+                    text = stringResource(id = R.string.account_deactivate_button_cancel),
+                    maxLines = 1,
+                    style = TextStyle(fontSize = 18.sp)
+                )
+            },
+            contentPadding = PaddingValues(8.dp),
+            colors = ButtonColors(
+                contentColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.backgroundColorOnBackground
+                    )
+                ),
+                containerColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.textColorBody
+                    )
+                ),
+                disabledContentColor = Color.Blue,
+                disabledContainerColor = Color.Green
+            ),
+            shape = RoundedCornerShape(percent = 20),
+            onClick = { onCancel() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        )
+    }
+
+    val confirmButton: @Composable () -> Unit = {
+        TextButton(
+            content = {
+                Text(
+                    text = stringResource(id = R.string.account_deactivate_button_confirm),
+                    maxLines = 1,
+                    style = TextStyle(fontSize = 18.sp)
+                )
+            },
+            contentPadding = PaddingValues(8.dp),
+            colors = ButtonColors(
+                contentColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.backgroundColor
+                    )
+                ),
+                containerColor = Color(
+                    getColorFromAttribute(
+                        LocalContext.current,
+                        R.attr.theme_colorPrimary
+                    )
+                ),
+                disabledContentColor = Color.Blue,
+                disabledContainerColor = Color.Green
+            ),
+            shape = RoundedCornerShape(percent = 20),
+            onClick = { onConfirm() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        )
+    }
+
+    Dialog(
+        title = title,
+        content = { content() },
+        cancelButton = { cancelButton() },
+        confirmButton = { confirmButton() }
+    )
+
+}
+
+@Composable
+@Preview
+fun Dialog(
+    title: String = "",
+    content: @Composable () -> Unit = { },
+    confirmButton: @Composable () -> Unit = { },
+    cancelButton: @Composable () -> Unit = { }
+) {
     val backgroundColor = ColorUtils.interpolate(
         getColorFromAttribute(LocalContext.current, R.attr.backgroundColor),
         Color.Transparent.hashCode(), .75f)
@@ -327,13 +306,11 @@ fun DeleteAccountDialog(
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
 
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.icon_logo_app),
@@ -355,7 +332,7 @@ fun DeleteAccountDialog(
                 }
 
                 Text(
-                    text = stringResource(id = R.string.account_deactivate_title),
+                    text = title,
                     maxLines = 1,
                     style = TextStyle(
                         fontSize = 24.sp,
@@ -364,8 +341,7 @@ fun DeleteAccountDialog(
                 )
 
                 Column(
-                    modifier = Modifier
-                        .wrapContentHeight()
+                    modifier = Modifier.wrapContentHeight()
                 ) {
 
                     Column(
@@ -375,57 +351,7 @@ fun DeleteAccountDialog(
                             .weight(1f)
                             .verticalScroll(rememberScrollState())
                     ) {
-                        Text(
-                            text = stringResource(id = R.string.account_deactivate_warning),
-                            style = TextStyle(
-                                fontSize = 18.sp,
-                                color = Color(getColorFromAttribute(
-                                    LocalContext.current, R.attr.textColorBody)))
-                        )
-
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(12.dp),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .align(Alignment.CenterHorizontally)
-                        ) {
-                            Text(
-                                text = stringResource(id = R.string.account_deactivate_warning_list_1),
-                                style = TextStyle(
-                                    fontSize = 14.sp,
-                                    color = Color(
-                                        getColorFromAttribute(
-                                            LocalContext.current, R.attr.textColorBody
-                                        )
-                                    )
-                                )
-                            )
-
-                            Text(
-                                text = stringResource(id = R.string.account_deactivate_warning_list_2),
-                                style = TextStyle(
-                                    fontSize = 14.sp,
-                                    color = Color(
-                                        getColorFromAttribute(
-                                            LocalContext.current, R.attr.textColorBody
-                                        )
-                                    )
-                                )
-                            )
-
-                            Text(
-                                text = stringResource(id = R.string.account_deactivate_warning_list_3),
-                                style = TextStyle(
-                                    fontSize = 14.sp,
-                                    color = Color(
-                                        getColorFromAttribute(
-                                            LocalContext.current, R.attr.textColorBody
-                                        )
-                                    )
-                                )
-                            )
-                        }
+                        content()
                     }
 
                     val configuration = LocalConfiguration.current
@@ -437,73 +363,22 @@ fun DeleteAccountDialog(
                                     .fillMaxWidth()
                                     .padding(PaddingValues(top = 8.dp))
                             ) {
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_deactivate_button_cancel),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.backgroundColorOnBackground
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onCancel() },
+                                Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(48.dp)
-                                )
-
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_deactivate_button_confirm),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.theme_colorPrimary
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onConfirm() },
+                                ) {
+                                    cancelButton()
+                                }
+                                Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(48.dp)
-                                )
-
+                                ) {
+                                    confirmButton()
+                                }
                             }
                         }
-
                         else -> {
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(24.dp),
@@ -512,71 +387,22 @@ fun DeleteAccountDialog(
                                     .fillMaxWidth()
                                     .wrapContentHeight()
                             ) {
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_deactivate_button_cancel),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.backgroundColorOnBackground
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onCancel() },
+                                Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .weight(1f)
                                         .height(48.dp)
-                                )
-
-                                TextButton(
-                                    content = {
-                                        Text(
-                                            text = stringResource(id = R.string.account_deactivate_button_confirm),
-                                            maxLines = 1,
-                                            style = TextStyle(fontSize = 18.sp)
-                                        )
-                                    },
-                                    contentPadding = PaddingValues(8.dp),
-                                    colors = ButtonColors(
-                                        contentColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.textColorBody
-                                            )
-                                        ),
-                                        containerColor = Color(
-                                            getColorFromAttribute(
-                                                LocalContext.current,
-                                                R.attr.theme_colorPrimary
-                                            )
-                                        ),
-                                        disabledContentColor = Color.Blue,
-                                        disabledContainerColor = Color.Green
-                                    ),
-                                    shape = RoundedCornerShape(percent = 20),
-                                    onClick = { onConfirm() },
+                                ) {
+                                    cancelButton()
+                                }
+                                Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .weight(1f)
                                         .height(48.dp)
-                                )
+                                ) {
+                                    confirmButton()
+                                }
 
                             }
                         }
@@ -587,5 +413,4 @@ fun DeleteAccountDialog(
         }
 
     }
-
 }

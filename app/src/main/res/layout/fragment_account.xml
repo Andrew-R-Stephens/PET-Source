@@ -199,12 +199,12 @@
                         android:layout_height="48dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="64dp"
-                        android:backgroundTint="?attr/textColorBodyEmphasis"
+                        android:backgroundTint="?attr/theme_colorPrimary"
+                        android:textColor="?attr/backgroundColor"
                         android:backgroundTintMode="multiply"
                         android:minWidth="48dp"
                         android:text="@string/account_button_deactivate"
                         android:textAllCaps="true"
-                        android:textColor="?attr/textColorBody"
                         android:textSize="18sp"
                         app:layout_constraintDimensionRatio="16:10" />
 
