@@ -38,7 +38,7 @@ class PoiModel {
     }
 
     fun hasName(): Boolean {
-        return !name.isEmpty()
+        return name.isNotEmpty()
     }
 
     fun hasId(): Boolean {

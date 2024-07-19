@@ -108,7 +108,7 @@ internal class Order3(
         // From Numerical Recipes, 5.6, Quadratic and Cubic Equations
         if (ycoeff3 == 0.0) {
             // The cubic degenerated to quadratic (or line or ...).
-            return Order2.Companion.TforY(y, ycoeff0, ycoeff1, ycoeff2)
+            return Order2.TforY(y, ycoeff0, ycoeff1, ycoeff2)
         }
         val a = ycoeff2 / ycoeff3
         val b = ycoeff1 / ycoeff3

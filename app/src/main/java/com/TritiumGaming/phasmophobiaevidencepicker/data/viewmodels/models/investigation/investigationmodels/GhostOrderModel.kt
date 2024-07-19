@@ -76,8 +76,8 @@ class GhostOrderModel(
         // Order placeholder array based on scores
         var i = 0
         while (i < newOrder.size - 1) {
-            val ratingA = ghostListModel.getAt(newOrder[i])?.evidenceScore ?: 0
-            val ratingB = ghostListModel.getAt(newOrder[i + 1])?.evidenceScore ?: 0
+            val ratingA = ghostListModel.getAt(newOrder[i]).evidenceScore
+            val ratingB = ghostListModel.getAt(newOrder[i + 1]).evidenceScore
 
             if (ratingA < ratingB) {
                 val t = newOrder[i + 1]

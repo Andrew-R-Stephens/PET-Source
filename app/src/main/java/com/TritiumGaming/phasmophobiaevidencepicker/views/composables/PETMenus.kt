@@ -38,6 +38,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavDeepLinkBuilder
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import org.jetbrains.annotations.TestOnly
+import kotlin.math.min
 
 @TestOnly
 @Preview
@@ -144,7 +145,7 @@ fun SecondarySelectors(
     @IntegerRes routes: Array<Int> = arrayOf(R.id.appSettingsFragment)
 ) {
     Column {
-        val maxRange = Math.min(contentArray.size, routes.size)
+        val maxRange = min(contentArray.size, routes.size)
 
         for (index in 0..<maxRange) {
             val content = contentArray[index]

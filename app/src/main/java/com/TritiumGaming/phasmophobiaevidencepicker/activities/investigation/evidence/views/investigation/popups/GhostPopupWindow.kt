@@ -73,7 +73,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
             resources.getString(R.string.popup_ghost_weakness)
         )
 
-        investigationModel.ghostListModel.getAt(groupIndex)?.let { ghostModel ->
+        investigationModel.ghostListModel.getAt(groupIndex).let { ghostModel ->
             for (i in ghostModel.evidenceArray.indices) {
                 val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
                 ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }

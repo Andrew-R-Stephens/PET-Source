@@ -2302,7 +2302,7 @@
     <string name="account_button_logout">Odhlásit se</string>
     <string name="account_button_deactivate">Deaktivovat účet</string>
 
-    <!-- Deaktivovat -->
+    <!-- Deactivate -->
     <string name="account_deactivate_title">Deaktivace účtu</string>
     <string name="account_deactivate_warning">Výběrem deaktivace účtu vyjadřujete souhlas s následujícím:</string>
     <string name="account_deactivate_warning_list_1">Všechny P.E.T. data účtu budou neobnovitelná.</string>
@@ -2310,6 +2310,11 @@
     <string name="account_deactivate_warning_list_3">Pokud se znovu připojíte se stejným přihlášením, data předchozího účtu se nepřenesou.</string>
     <string name="account_deactivate_button_confirm">Potvrdit deaktivaci</string>
     <string name="account_deactivate_button_cancel">Nevadí</string>
+    <!-- Logout -->
+    <string name="account_logout_title">Odhlásit se</string>
+    <string name="account_logout_warning">Opravdu se chcete odhlásit?</string>
+    <string name="account_logout_button_confirm">Odhlásit se</string>
+    <string name="account_logout_button_cancel">Zrušit</string>
 
     <!-- Odhlášení -->
     <string name="alert_error_generic">Chyba!</string>

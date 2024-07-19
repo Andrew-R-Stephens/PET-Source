@@ -4,19 +4,20 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import java.util.List
 
 abstract class FirebaseFragment : PETFragment {
-    private val signInLauncher = registerForActivityResult(
+
+    protected val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { result: FirebaseAuthUIAuthenticationResult ->
         try {
@@ -63,7 +64,7 @@ abstract class FirebaseFragment : PETFragment {
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
 
-        val providers = List.of(
+        val providers = listOf(
             GoogleBuilder().build()
         )
 
@@ -121,11 +122,9 @@ abstract class FirebaseFragment : PETFragment {
                 .signOut(requireContext())
                 .addOnCompleteListener {
                     val message = getString(R.string.alert_account_logout_success)
-                    try {
-                        Toast.makeText(
-                            requireActivity(), message, Toast.LENGTH_LONG).show()
-                    }
+                    try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
                     catch (e: IllegalStateException) { e.printStackTrace() }
+
                     onSignOutAccountSuccess()
                 }
         } catch (e: IllegalStateException) {
@@ -144,7 +143,8 @@ abstract class FirebaseFragment : PETFragment {
                 catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
-                refreshFragment()
+
+                onDeleteAccountSuccess()
             }
     }
 

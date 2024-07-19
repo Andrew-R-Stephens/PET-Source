@@ -36,8 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class AccountFragment : MainMenuFirebaseFragment() {
 
-    var logoutDialog: ComposeView? = null
-    var deactivateDialog: ComposeView? = null
+    private var confirmationDialog: ComposeView? = null
 
     private val userPurchaseHistory: Unit
         get() {
@@ -87,8 +86,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         val accountNameTextView: AppCompatTextView? = view.findViewById(R.id.account_name_in)
         val accountEmailTextView: AppCompatTextView? = view.findViewById(R.id.account_email_in)
 
-        logoutDialog = view.findViewById(R.id.logoutComposable)
-        deactivateDialog = view.findViewById(R.id.deactivateComposable)
+        confirmationDialog = view.findViewById(R.id.confirmationDialog)
 
         backButton?.setOnClickListener { v: View? ->
             v?.let {
@@ -98,31 +96,26 @@ class AccountFragment : MainMenuFirebaseFragment() {
 
         loginButton?.setOnClickListener {
             manualSignInAccount()
-            refreshFragment()
         }
 
         logoutButton?.setOnClickListener{
-            logoutDialog?.setContent {
+            confirmationDialog?.setContent {
                 LogoutDialog(
-                    onConfirm = {
-                        signOutAccount()
-                    },
-                    onCancel = { logoutDialog?.visibility = GONE }
+                    onConfirm = { signOutAccount() },
+                    onCancel = { confirmationDialog?.visibility = GONE }
                 )
             }
-            logoutDialog?.visibility = VISIBLE
+            confirmationDialog?.visibility = VISIBLE
         }
 
         deleteButton?.setOnClickListener{
-            deactivateDialog?.setContent {
+            confirmationDialog?.setContent {
                 DeleteAccountDialog(
-                    onConfirm = {
-                        deleteAccount()
-                    },
-                    onCancel = { deactivateDialog?.visibility = GONE }
+                    onConfirm = { deleteAccount() },
+                    onCancel = { confirmationDialog?.visibility = GONE }
                 )
             }
-            deactivateDialog?.visibility = VISIBLE
+            confirmationDialog?.visibility = VISIBLE
         }
 
         currentFirebaseUser?.let { user ->
@@ -144,134 +137,37 @@ class AccountFragment : MainMenuFirebaseFragment() {
         ft.attach(this@AccountFragment).commitNow()
     }
 
-    private val signInLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    ) { result: FirebaseAuthUIAuthenticationResult ->
-        try { onSignInResultAccount(result) }
-        catch (e: RuntimeException) {
-            val message = "${getString(R.string.alert_account_login_failure)}: ${e.message}"
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
-        }
-    }
-
-    override fun manualSignInAccount() {
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            Log.d("ManuLogin", "User not null!")
-            return
-        }
-        Log.d("ManuLogin", "Continuing to sign-in.")
-
-        try {
-            if (!isNetworkAvailable(
-                    requireContext(),
-                    globalPreferencesViewModel!!.networkPreference
-                )
-            ) {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.alert_internet_unavailable),
-                    Toast.LENGTH_SHORT).show()
-
-                return
-            }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-            return
-        }
-
-        val providers = listOf(
-            GoogleBuilder().build()
-        )
-
-        // Create and launch sign-in intent
-        val signInIntent = AuthUI.getInstance()
-            .createSignInIntentBuilder()
-            .setAvailableProviders(providers)
-            .setIsSmartLockEnabled(false)
-            .build()
-
-        signInLauncher.launch(signInIntent)
-    }
-
-    private fun onSignInResultAccount(result: FirebaseAuthUIAuthenticationResult) {
-        val response = result.idpResponse
-        if (result.resultCode == Activity.RESULT_OK) {
-            // Successfully signed in
-            val user = currentFirebaseUser
-
-            if (user != null) {
-                val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
-                Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
-
-                refreshFragment()
-
-                // Generate a Firestore document for the User with default data if needed
-                try {
-                    buildUserDocument()
-                } catch (e: Exception) {
-                    throw RuntimeException(e)
-                }
-
-                userPurchaseHistory
-            }
-        } else {
-            var message = "${getString(R.string.alert_error_generic)} ${getString(R.string.alert_account_data_failure)}"
-            if (response != null) {
-                val error = response.error
-                if (error != null) {
-                    message = "${getString(R.string.alert_error_generic)} ${error.errorCode}: ${error.message}"
-                }
-            }
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
-        }
-    }
 
     override fun onSignInAccountSuccess() {
-        refreshFragment()
+        // Successfully signed in
+        val user = currentFirebaseUser
+
+        if (user != null) {
+            val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
+
+            refreshFragment()
+
+            // Generate a Firestore document for the User with default data if needed
+            try {
+                buildUserDocument()
+            } catch (e: Exception) {
+                throw RuntimeException(e)
+            }
+
+            userPurchaseHistory
+        }
     }
 
     override fun onSignOutAccountSuccess() {
+        confirmationDialog?.visibility = GONE
         refreshFragment()
-        logoutDialog?.visibility = GONE
+
     }
 
     override fun onDeleteAccountSuccess() {
+        confirmationDialog?.visibility = GONE
         refreshFragment()
-        deactivateDialog?.visibility = GONE
-    }
-
-    override fun signOutAccount() {
-        if (FirebaseAuth.getInstance().currentUser == null) {
-            return
-        }
-
-        try {
-            AuthUI.getInstance()
-                .signOut(requireContext())
-                .addOnCompleteListener {
-                    val message = getString(R.string.alert_account_remove_success)
-                    try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
-                    catch (e: IllegalStateException) { e.printStackTrace() }
-
-                    onSignOutAccountSuccess()
-                }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    override fun deleteAccount() {
-        AuthUI.getInstance()
-            .delete(requireContext())
-            .addOnCompleteListener {
-                val message = getString(R.string.alert_account_remove_success)
-                val toast = Toast.makeText(
-                    requireActivity(),
-                    message,
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
-
-                onDeleteAccountSuccess()
-            }
     }
 
 }

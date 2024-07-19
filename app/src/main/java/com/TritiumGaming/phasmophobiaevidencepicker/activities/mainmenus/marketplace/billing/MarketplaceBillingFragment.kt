@@ -163,7 +163,9 @@ class MarketplaceBillingFragment : MainMenuFragment() {
             this.handlePendingPurchases(billingResult, list) }
 
     private fun handlePendingPurchases(billingResult: BillingResult, list: List<Purchase>?) {
-        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && list != null && !list.isEmpty()) {
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK &&
+            list?.isNotEmpty() == true) {
+
             Log.d("Billing", "Processing OK purchase")
 
             for (purchase in list) {

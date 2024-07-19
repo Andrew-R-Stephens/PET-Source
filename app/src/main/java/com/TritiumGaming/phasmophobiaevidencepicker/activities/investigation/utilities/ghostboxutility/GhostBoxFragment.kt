@@ -108,7 +108,7 @@ class GhostBoxFragment :
                         else {
                             Log.d("TTS",
                                 "TTS is null, or RECORD_AUDIO is " +
-                                        "${permissionsViewModel!!.isRecordAudioAllowed}") }
+                                        "${permissionsViewModel.isRecordAudioAllowed}") }
                     }
                 }.start()
             }

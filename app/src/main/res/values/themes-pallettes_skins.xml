@@ -2183,7 +2183,7 @@
 
         <item name="codex6_gridBackground">#40001021</item>
 
-        <item name="theme_badge">@drawable/app_icon_sm</item>
+        <item name="theme_badge">@drawable/theme_badge_strategemhero</item>
         <item name="theme_title">@string/settings_skin_strategemHero</item>
 
         <item name="navigationFooterIcon">@color/white</item>

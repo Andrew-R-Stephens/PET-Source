@@ -136,7 +136,7 @@ class BitmapUtils {
     fun compileNextBitmap(context: Context, previousBitmap: Bitmap?): Bitmap? {
         currentLayer++
         return createBitmap(
-            context, previousBitmap, layers.get(currentLayer).drawableRes, null)
+            context, previousBitmap, layers[currentLayer].drawableRes, null)
     }
 
     fun hasNextBitmap(): Boolean {

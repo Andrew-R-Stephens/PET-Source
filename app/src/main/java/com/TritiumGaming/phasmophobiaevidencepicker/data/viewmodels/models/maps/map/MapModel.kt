@@ -37,7 +37,7 @@ class MapModel {
         mapNameShort = worldMap.mapNameShort
         mapDimensions = MapDimensionModel(worldMap.mapDimensions.w, worldMap.mapDimensions.h)
         for (f in worldMap.mapFloors) {
-            f?.let { floorModel -> mapFloors.add(FloorModel(floorModel)) }
+            f.let { floorModel -> mapFloors.add(FloorModel(floorModel)) }
         }
         currentLayer =
             if (mapFloors.isNotEmpty()) { mapFloors[0].floorLayer }

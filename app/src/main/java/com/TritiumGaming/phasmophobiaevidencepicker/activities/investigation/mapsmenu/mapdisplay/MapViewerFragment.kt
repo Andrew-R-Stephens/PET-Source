@@ -228,7 +228,6 @@ class MapViewerFragment : InvestigationFragment() {
         /** @return Selector array */
         val selectors: Array<MapLayerSelector?> = arrayOfNulls(count)
 
-        /** @param count - the total number of Selectors, based on map layers */
         init {
             for (i in selectors.indices) {
                 selectors[i] = MapLayerSelector(requireContext())

@@ -27,7 +27,7 @@ class FirestorePurchaseHistory {
                 .addOnSuccessListener { unused: Void? ->
                     Log.d(
                         "Firestore",
-                        COLLECTION_PURCHASE_HISTORY + " successfully INITIALIZED!"
+                        "$COLLECTION_PURCHASE_HISTORY successfully INITIALIZED!"
                     )
                 }
                 .addOnFailureListener { e: Exception ->

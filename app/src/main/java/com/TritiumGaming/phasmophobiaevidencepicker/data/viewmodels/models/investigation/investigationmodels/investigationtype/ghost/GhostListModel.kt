@@ -42,8 +42,8 @@ class GhostListModel {
         typedArrayRequiredEvidence.recycle()
     }
 
-    fun getAt(index: Int): GhostModel? {
-        return ghostList.get(index)
+    fun getAt(index: Int): GhostModel {
+        return ghostList[index]
     }
 
     /** Resets the Ruling for each Evidence type  */
