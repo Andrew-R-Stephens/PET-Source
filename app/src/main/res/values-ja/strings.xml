@@ -976,4 +976,21 @@
     <string name="alert_marketplace_purchase_success_skin">スキン購入済みです!</string>
     <string name="alert_marketplace_purchase_success_generic">購入に成功しました!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">購入に必要なクレジットが足りません!</string>
+
+
+    <!-- Acknowledgement -->
+
+    <string name="marketplace_acknowledgement_title">マーケットプレイス契約</string>
+
+    <string name="marketplace_acknowledgement_warning">Phasmophobia Evidence Tool の「マーケット」を使用すると、次の内容に暗黙的に同意したことになります。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_1">「コンテンツ」、「アイテム」、「ロック解除」という用語は、画像、名前、その他の資産を指します。「開発者」という用語は Tritium Studios を指します。「P.E.T.」または「このアプリ」という用語は、「Phasmophobia Evidence Tool」というアプリを指します。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">「P.E.T.」は、提供されるコンテンツに類似する可能性のある他の団体とは一切関係がありません。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">過去または現在のすべてのコンテンツは、「P.E.T.」内の装飾目的のみに存在します。コンテンツは「P.E.T.」の外部で引き換えたり譲渡したりすることはできず、「Phasmophobia」などのゲームに限らず、外部のエンティティに影響を与えることはありません。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">すべての取引は最終的なものとなります。コンテンツは部分的にしか完成していなかったり、壊れていたり、バグがあったりする可能性があります。コンテンツは開発者によって将来無効化、削除、または変更される可能性があります。アカウントがコンテンツにアクセスできなくなった場合やコンテンツに変更があった場合の認定は、開発者の指示によります。</string>
+
+    <string name="marketplace_acknowledgement_button_confirm">わかった！</string>
 </resources>

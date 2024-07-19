@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.firebase.ui.auth.AuthUI
@@ -54,10 +55,7 @@ abstract class FirebaseFragment : PETFragment {
             }
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
-
-        val providers = listOf(
-            GoogleBuilder().build()
-        )
+        val providers = listOf(GoogleBuilder().build())
 
         // Create and launch sign-in intent
         val signInIntent = AuthUI.getInstance()
@@ -82,6 +80,9 @@ abstract class FirebaseFragment : PETFragment {
                 val message = "${getString(R.string.alert_account_welcome)} ${user.displayName}"
                 val toast = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG)
                 toast.show()
+
+                try { buildUserDocument() }
+                catch (e: Exception) { throw RuntimeException(e) }
 
                 onSignInAccountSuccess()
             }

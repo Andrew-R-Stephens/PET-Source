@@ -395,9 +395,9 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         refreshFragment()
 
         // Generate a Firestore document for the User with default data if needed
-        try { buildUserDocument() }
+        /*try { buildUserDocument() }
         catch (e: Exception) { throw RuntimeException(e) }
-
+*/
         loadUserPurchaseHistory()
     }
 

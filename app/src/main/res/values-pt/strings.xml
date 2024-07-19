@@ -985,4 +985,20 @@
     <string name="alert_marketplace_purchase_success_skin">Skin comprado!</string>
     <string name="alert_marketplace_purchase_success_generic">Compra bem-sucedida!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Créditos insuficientes para compra!</string>
+
+    <!-- Acknowledgement -->
+
+    <string name="marketplace_acknowledgement_title">Acordo de Mercado</string>
+
+    <string name="marketplace_acknowledgement_warning">Ao usar o \"Mercado\" da Phasmophobia Evidence Tool, você concorda implicitamente com o seguinte:</string>
+
+    <string name="marketplace_acknowledgement_warning_list_1">Os termos “conteúdo”, “itens” e “desbloqueios” referem-se a imagens, nomes e outros ativos. O termo \"desenvolvedor\" refere-se ao Tritium Studios. O termo \"P.E.T.\" ou \"este aplicativo\" refere-se ao aplicativo \"Phasmophobia Evidence Tool\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" não é afiliado a nenhuma outra entidade que possa ou não compartilhar o conteúdo fornecido.</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">Todo o conteúdo, passado ou presente, existe apenas para fins cosméticos em \"P.E.T.\". O conteúdo não pode ser resgatado ou transferido fora do \"P.E.T.\" e não tem impacto sobre quaisquer entidades externas, como, mas não se limitando a, jogos como \"Phasmophobia\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">Todas as transações são finais. O conteúdo pode estar parcialmente completo, quebrado ou com erros. O conteúdo pode ser desativado, removido ou modificado no futuro pelo desenvolvedor. O credenciamento para perda de acesso ao conteúdo da sua conta ou para qualquer alteração no conteúdo fica a critério do desenvolvedor.</string>
+
+    <string name="marketplace_acknowledgement_button_confirm">Entendi!</string>
 </resources>

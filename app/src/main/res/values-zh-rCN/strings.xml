@@ -852,4 +852,20 @@
     <string name="alert_marketplace_purchase_success_skin">已购买皮肤！</string>
     <string name="alert_marketplace_purchase_success_generic">购买成功！</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">购买积分不足！</string>
+
+    <!-- Acknowledgement -->
+
+    <string name="marketplace_acknowledgement_title">市场协议</string>
+
+    <string name="marketplace_acknowledgement_warning">通过使用 Phasmophobia Evidence Tool 的“市场”，您隐含地同意以下内容：</string>
+
+    <string name="marketplace_acknowledgement_warning_list_1">术语“内容”、“物品”和“解锁”指的是图像、名称和其他资产。“开发商”一词指的是 Tritium Studios。术语“P.E.T.”或“此应用程序”指的是应用程序“Phasmophobia Evidence Tool”。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">“P.E.T.”不与任何其他实体关联，这些实体可能与所提供的内容相似或不相似。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">所有内容，无论是过去还是现在，都仅用于“P.E.T.”内的美观目的。内容无法在“P.E.T.”之外兑换或转移，并且不会对任何外部实体产生影响，例如但不限于“Phasmophobia”等游戏。</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">所有交易均为最终交易。内容可能部分完整、损坏或有错误。开发者将来可能会禁用、删除或修改内容。您的帐号失去对内容的访问权限或任何内容更改的认证均由开发者决定。</string>
+
+    <string name="marketplace_acknowledgement_button_confirm">知道了！</string>
 </resources>

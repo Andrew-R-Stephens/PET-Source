@@ -149,11 +149,11 @@ class AccountFragment : MainMenuFirebaseFragment() {
             refreshFragment()
 
             // Generate a Firestore document for the User with default data if needed
-            try {
+            /*try {
                 buildUserDocument()
             } catch (e: Exception) {
                 throw RuntimeException(e)
-            }
+            }*/
 
             userPurchaseHistory
         }

@@ -2329,4 +2329,30 @@
     <string name="alert_marketplace_purchase_success_skin">Kup zakoupen!</string>
     <string name="alert_marketplace_purchase_success_generic">Nákup byl úspěšný!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Nedostatek kreditů k nákupu!</string>
+
+    <!-- Poděkování -->
+    <string name="marketplace_acknowledgement_title">Smlouva o tržišti</string>
+    <string name="marketplace_acknowledgement_warning">Pomocí nástroje Phasmophobia Evidence Tool
+     \"Market\", implicitně souhlasíte s následujícím:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">
+     Termíny \"obsah\", \"položky\" a \"odemknutí\" označují obrázky, jména a další položky.
+     Termín \"vývojář\" odkazuje na Tritium Studios. Termín \"P.E.T.\" nebo \"tato aplikace\" odkazuje na
+     aplikaci \"Phasmophobia Evidence Tool\".
+     </string>
+    <string name="marketplace_acknowledgement_warning_list_2">
+     \"P.E.T.\" není přidružen k žádnému jinému subjektu, který může nebo nemusí mít podobný
+     poskytovaný obsah.
+     </string>
+        <string name="marketplace_acknowledgement_warning_list_3">
+     Veškerý obsah, minulý nebo současný, existuje výhradně pro kosmetické účely v rámci \"P.E.T.\".
+     Obsah nelze uplatnit ani převést mimo \"P.E.T.\" a nemá na žádný vliv
+     externí entity, jako jsou, ale nejen, hry jako \"Phasmophobia\".
+     </string>
+    <string name="marketplace_acknowledgement_warning_list_4">
+     Všechny transakce jsou konečné. Obsah může být částečně úplný, poškozený nebo chybný.
+     Vývojář může obsah v budoucnu deaktivovat, odstranit nebo upravit.
+     Akreditace pro váš účet ztrátou přístupu k obsahu nebo pro jakoukoli změnu obsahu je
+     ponecháno na příkaz vývojáře.
+     </string>
+    <string name="marketplace_acknowledgement_button_confirm">Rozumím!</string>
 </resources>

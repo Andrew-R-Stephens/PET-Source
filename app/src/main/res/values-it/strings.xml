@@ -977,4 +977,21 @@
     <string name="alert_marketplace_purchase_success_skin">Skin acquistata!</string>
     <string name="alert_marketplace_purchase_success_generic">Acquisto riuscito!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Crediti insufficienti per l\'acquisto!</string>
+
+
+    <!-- Acknowledgement -->
+
+    <string name="marketplace_acknowledgement_title">Contratto di mercato</string>
+
+    <string name="marketplace_acknowledgement_warning">Utilizzando il \"Mercato\" dello strumento Phasmophobia Evidence, accetti implicitamente quanto segue:</string>
+
+    <string name="marketplace_acknowledgement_warning_list_1">I termini \"contenuto\", \"elementi\" e \"sblocchi\" si riferiscono a immagini, nomi e altre risorse. Il termine \"sviluppatore\" si riferisce a Tritium Studios. Il termine \"P.E.T.\" o \"questa app\" si riferisce all\'app \"Phasmophobia Evidence Tool\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" non è affiliato con nessun\'altra entità che può o meno condividere in modo simile il contenuto fornito.</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">Tutti i contenuti, passati o presenti, esistono esclusivamente per scopi cosmetici all\'interno di \"P.E.T.\". I contenuti non possono essere riscattati o trasferiti al di fuori di \"P.E.T.\" e non ha alcun impatto su entità esterne come, ma non solo, giochi come \"Phasmophobia\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">Tutte le transazioni sono definitive. Il contenuto potrebbe essere parzialmente completo, rotto o difettoso. Il contenuto potrebbe essere disabilitato, rimosso o modificato in futuro dallo sviluppatore. L\'accreditamento per la perdita dell\'accesso ai contenuti da parte del tuo account o per qualsiasi modifica dei contenuti è lasciato alla volontà dello sviluppatore.</string>
+
+    <string name="marketplace_acknowledgement_button_confirm">Fatto!</string>
 </resources>

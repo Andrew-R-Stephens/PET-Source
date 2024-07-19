@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -16,6 +18,7 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
@@ -30,16 +33,22 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.removeCredits
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.preferencesDocument
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.setMarketplaceAgreementState
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.MarketplaceDialog
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.firebase.ui.auth.AuthUI
@@ -79,6 +88,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private var obtainCreditsTextView: AccountObtainCreditsView? = null
 
+    private var confirmationDialog: ComposeView? = null
+
     private var marketProgressBar: ProgressBar? = null
 
     private var rewardedAd: RewardedAd? = null
@@ -102,6 +113,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             view.findViewById<SignInButton>(R.id.settings_account_login_button)
         val watchAdButton = view.findViewById<AppCompatButton>(R.id.button_ad_watch)
         val buyButton = view.findViewById<AppCompatButton>(R.id.settings_account_buy_button)
+
+        confirmationDialog = view.findViewById(R.id.confirmationDialog)
 
         obtainCreditsTextView = view.findViewById(R.id.layout_account_obtainCredits)
 
@@ -130,7 +143,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
-        if (currentFirebaseUser == null) { marketProgressBar?.visibility = View.GONE }
+        if (currentFirebaseUser == null) { marketProgressBar?.visibility = GONE }
 
         obtainCreditsTextView?.enableAdWatchButton(false)
         requireActivity().runOnUiThread { loadRewardedAd(null) }
@@ -139,6 +152,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             Thread { this.initAccountCreditListener() }.start() }
         requireActivity().runOnUiThread {
             Thread { this.populateMarketplaceUnPurchasedItems() }.start() }
+
+        requireActivity().runOnUiThread {
+            Thread { initAgreementDialog() }.start() }
+
     }
 
     private fun gotoBillingMarketplace() {
@@ -148,8 +165,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private fun initAccountCreditListener() {
         try {
-            val creditDoc = creditsDocument
-            creditDoc.get()
+            creditsDocument.get()
                 .addOnSuccessListener { task: DocumentSnapshot ->
                     val userCredits =
                         task.get(FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long::class.java) ?: 0
@@ -160,12 +176,40 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     e.printStackTrace()
                 }
 
-            creditDoc.addSnapshotListener { documentSnapshot: DocumentSnapshot?, _: FirebaseFirestoreException? ->
+            creditsDocument.addSnapshotListener { documentSnapshot: DocumentSnapshot?, _: FirebaseFirestoreException? ->
                 if (documentSnapshot == null) { return@addSnapshotListener }
                 val userCredits = documentSnapshot.get(
                     FirestoreAccountCredit.FIELD_CREDITS_EARNED, Long::class.java) ?: 0
                 accountCreditsTextView?.text = userCredits.toString()
             }
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    private fun initAgreementDialog() {
+        try {
+            preferencesDocument.get()
+                .addOnSuccessListener { task: DocumentSnapshot ->
+                    val shown = task.get(
+                        FirestoreAccountPreferences.FIELD_MARKETPLACE_AGREEMENT_SHOWN,
+                        Boolean::class.java)
+                    if(shown == false) {
+                        confirmationDialog?.setContent {
+                            MarketplaceDialog(
+                                onConfirm = { confirmationDialog?.visibility = GONE }
+                            )
+                        }
+                        confirmationDialog?.visibility = VISIBLE
+                        try { setMarketplaceAgreementState(true) }
+                        catch (e: Exception) { e.printStackTrace() }
+                        Log.d("Firestore", "Showing user agreement.")
+                    } else {
+                        Log.d("Firestore", "User was already shown agreement.")
+                    }
+                }
+                .addOnFailureListener { e: Exception ->
+                    Log.e("Firestore", "Could get user's account preferences!")
+                    e.printStackTrace()
+                }
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -320,8 +364,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     marketplaceErrorTextView?.visibility = View.VISIBLE
 
                     try {
-                        Toast.makeText(
-                            requireActivity(),
+                        Toast.makeText(requireActivity(),
                             getString(R.string.alert_marketplace_access_failure),
                             Toast.LENGTH_SHORT).show()
                     }
@@ -536,8 +579,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         } catch (e: Exception) { e.printStackTrace() }
 
                         try {
-                            Toast.makeText(
-                                requireActivity(),
+                            Toast.makeText(requireActivity(),
                                 getString(R.string.alert_marketplace_purchase_success_skin),
                                 Toast.LENGTH_SHORT).show()
                         }
@@ -630,11 +672,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     override fun onSignInAccountSuccess() {
         refreshFragment()
-
-        // Generate a Firestore document for the User with default data if needed
-        try { buildUserDocument().get().addOnCompleteListener {
-            initAccountCreditListener() } }
-        catch (e: Exception) { e.printStackTrace() }
     }
 
     override fun onSignOutAccountSuccess() {
@@ -699,8 +736,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {
-                        Toast.makeText(
-                            requireActivity(),
+                        Toast.makeText(requireActivity(),
                             getString(R.string.alert_internet_unavailable),
                             Toast.LENGTH_SHORT).show()
                     }

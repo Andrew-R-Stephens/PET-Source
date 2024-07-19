@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.userDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.FirestoreTransactionHistory
 import com.google.firebase.firestore.CollectionReference
 
@@ -16,6 +17,7 @@ class FirestoreAccount {
         @Throws(Exception::class)
         fun init() {
             FirestoreAccountCredit.init()
+            FirestoreAccountPreferences.init()
             FirestoreTransactionHistory.init()
         }
 

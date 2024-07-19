@@ -19,8 +19,7 @@ class FirestoreAccountCredit {
 
         val creditsDocument: DocumentReference
             @Throws(Exception::class)
-            get() = accountCollection
-                .document(DOCUMENT_CREDITS)
+            get() = accountCollection.document(DOCUMENT_CREDITS)
 
         @Throws(Exception::class)
         fun init() {
@@ -65,13 +64,13 @@ class FirestoreAccountCredit {
             data[FIELD_CREDITS_EARNED] = FieldValue.increment(creditAmount)
 
             creditDocument.update(data)
-                .addOnSuccessListener { unused: Void? ->
+                .addOnSuccessListener {
                     callback?.onSuccess()
                 }
-                .addOnFailureListener { e: Exception? ->
+                .addOnFailureListener {
                     callback?.onFailure()
                 }
-                .addOnCompleteListener { task: Task<Void?>? ->
+                .addOnCompleteListener {
                     callback?.onComplete()
                 }
         }

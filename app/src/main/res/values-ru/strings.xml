@@ -2337,4 +2337,30 @@
     <string name="alert_marketplace_purchase_success_skin">Скин куплен!</string>
     <string name="alert_marketplace_purchase_success_generic">Покупка прошла успешно!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостаточно кредитов для покупки!</string>
+
+    <!-- Подтверждение -->
+    <string name="marketplace_acknowledgement_title">Соглашение торговой площадки</string>
+    <string name="marketplace_acknowledgement_warning">С помощью инструмента выявления фазмофобии
+     \"Рынок\", вы безоговорочно соглашаетесь со следующим:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">
+     Термины «контент», «элементы» и «разблокировка» относятся к изображениям, именам и другим ресурсам.
+     Термин «разработчик» относится к Tritium Studios. Термин «P.E.T.» или «это приложение» относится к
+     приложение «Инструмент доказательства фазмофобии».
+     </string>
+    <string name="marketplace_acknowledgement_warning_list_2">
+     «P.E.T.» не является аффилированным лицом ни с какой другой организацией, которая может иметь или не иметь сходства с
+     предоставленный контент.
+     </string>
+    <string name="marketplace_acknowledgement_warning_list_3">
+     Весь контент, прошлый или настоящий, существует исключительно в косметических целях в рамках «P.E.T.».
+     Контент не может быть использован или передан за пределы «P.E.T.» и не влияет ни на какие
+     внешние сущности, такие как, помимо прочего, такие игры, как «Фазмофобия».
+     </string>
+    <string name="marketplace_acknowledgement_warning_list_4">
+     Все транзакции являются окончательными. Содержимое может быть частично полным, неработающим или содержать ошибки.
+     Содержимое может быть отключено, удалено или изменено разработчиком в будущем.
+     Аккредитация вашей учетной записи при потере доступа к контенту или любых изменениях в контенте
+     оставлено на усмотрение разработчика.
+     </string>
+    <string name="marketplace_acknowledgement_button_confirm">Понятно!</string>
 </resources>
