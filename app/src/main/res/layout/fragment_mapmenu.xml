@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_map_sm"
+            app:srcCompat="@drawable/ic_map_menu"
             app:tint="#37AAAAAA"
             app:tintMode="multiply" />
 
