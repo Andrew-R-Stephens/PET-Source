@@ -672,6 +672,11 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     override fun onSignInAccountSuccess() {
         refreshFragment()
+
+        // Generate a Firestore document for the User with default data if needed
+        try { buildUserDocument().get().addOnCompleteListener {
+            initAccountCreditListener() } }
+        catch (e: Exception) { e.printStackTrace() }
     }
 
     override fun onSignOutAccountSuccess() {
