@@ -2,11 +2,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.fire
 
 abstract class MarketplaceItemModel {
     var uuid: String? = null
-        protected set
     var name: String? = null
-        protected set
     var buyCredits: Long = 0L
-        protected set
     var priority: Long? = 0L
 
     constructor()

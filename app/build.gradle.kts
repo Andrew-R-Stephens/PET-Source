@@ -47,8 +47,8 @@ android {
 
         minSdk = 23
         targetSdk = 34
-        versionCode = 98
-        versionName = "8.2.2.8"
+        versionCode = 100
+        versionName = "8.2.2.10"
 
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
@@ -78,8 +78,6 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-
-            isDebuggable = true
 
             proguardFiles (getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE

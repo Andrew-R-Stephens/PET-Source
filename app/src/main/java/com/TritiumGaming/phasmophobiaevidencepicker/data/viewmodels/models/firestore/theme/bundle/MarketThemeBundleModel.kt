@@ -8,10 +8,13 @@ class MarketThemeBundleModel: MarketplaceItemModel {
 
     constructor()
 
+    constructor(buyCredits: Long? = 0, name: String? = null):
+            super(buyCredits = buyCredits ?: 0, name = name)
+
     constructor(uuid: String? = null, theme: MarketThemeBundleModel, themes: List<ThemeModel>):
             super(uuid, theme.buyCredits, theme.name) {
-        addThemes(themes)
-        setUnlockedState()
+                addThemes(themes)
+                setUnlockedState()
     }
 
     var themes: ArrayList<ThemeModel>? = null

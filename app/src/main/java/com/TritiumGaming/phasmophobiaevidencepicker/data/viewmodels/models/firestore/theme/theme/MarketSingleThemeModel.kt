@@ -20,6 +20,11 @@ class MarketSingleThemeModel : MarketplaceItemModel {
 
     constructor()
 
+    constructor(buyCredits: Long? = 0L, group: String? = null, name: String? = null):
+            super(name = name, buyCredits = buyCredits ?: 0L) {
+        this.group = group
+    }
+
     constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?):
             super(uuid, marketTheme.buyCredits, marketTheme.name) {
         this.theme = theme
