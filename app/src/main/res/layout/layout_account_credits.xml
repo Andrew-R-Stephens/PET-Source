@@ -33,7 +33,7 @@
                 android:layout_marginEnd="8dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_shop_cost"
+                android:src="@drawable/ic_shop_cost"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/label_credits_actual"
                 app:layout_constraintHeight_min="36dp"

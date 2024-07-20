@@ -19,7 +19,7 @@
      -->
     <integer-array name="shop_cursedpossessions_mirror" >
         <item>@string/cursedpossessions_info_name_mirror</item>
-        <item>@drawable/icon_cp_mirror</item>
+        <item>@drawable/ic_map_cp_mirror</item>
         <item>@array/cursedpossessions_mirror_images</item>
         <item>@array/cursedpossessions_mirror_data_flavortext</item>
         <item>@array/cursedpossessions_mirror_data_info</item>
@@ -30,7 +30,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_monkeypaw" >
         <item>@string/cursedpossessions_info_name_monkeypaw</item>
-        <item>@drawable/icon_cp_paw</item>
+        <item>@drawable/ic_map_cp_paw</item>
         <item>@array/cursedpossessions_monkeypaw_images</item>
         <item>@array/cursedpossessions_monkeypaw_data_flavortext</item>
         <item>@array/cursedpossessions_monkeypaw_data_info</item>
@@ -41,7 +41,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_musicbox" >
         <item>@string/cursedpossessions_info_name_musicbox</item>
-        <item>@drawable/icon_cp_musicbox</item>
+        <item>@drawable/ic_map_cp_musicbox</item>
         <item>@array/cursedpossessions_musicbox_images</item>
         <item>@array/cursedpossessions_musicbox_data_flavortext</item>
         <item>@array/cursedpossessions_musicbox_data_info</item>
@@ -52,7 +52,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_ouijaboard" >
         <item>@string/cursedpossessions_info_name_ouijaboard</item>
-        <item>@drawable/icon_cp_ouija</item>
+        <item>@drawable/ic_map_cp_ouija</item>
         <item>@array/cursedpossessions_ouijaboard_images</item>
         <item>@array/cursedpossessions_ouijaboard_data_flavortext</item>
         <item>@array/cursedpossessions_ouijaboard_data_info</item>
@@ -63,7 +63,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_summoningcircle" >
         <item>@string/cursedpossessions_info_name_summoningcircle</item>
-        <item>@drawable/icon_cp_candle</item>
+        <item>@drawable/ic_map_cp_candle</item>
         <item>@array/cursedpossessions_summoningcircle_images</item>
         <item>@array/cursedpossessions_summoningcircle_data_flavortext</item>
         <item>@array/cursedpossessions_summoningcircle_data_info</item>
@@ -74,7 +74,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_tarotcards" >
         <item>@string/cursedpossessions_info_name_tarotcards</item>
-        <item>@drawable/icon_cp_tarot</item>
+        <item>@drawable/ic_map_cp_tarot</item>
         <item>@array/cursedpossessions_tarotcards_images</item>
         <item>@array/cursedpossessions_tarotcards_data_flavortext</item>
         <item>@array/cursedpossessions_tarotcards_data_info</item>
@@ -85,7 +85,7 @@
     </integer-array>
     <integer-array name="shop_cursedpossessions_voodoodoll" >
         <item>@string/cursedpossessions_info_name_voodoodoll</item>
-        <item>@drawable/icon_cp_doll</item>
+        <item>@drawable/ic_map_cp_doll</item>
         <item>@array/cursedpossessions_voodoodoll_images</item>
         <item>@array/cursedpossessions_voodoodoll_data_flavortext</item>
         <item>@array/cursedpossessions_voodoodoll_data_info</item>

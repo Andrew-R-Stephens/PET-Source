@@ -185,7 +185,7 @@
                 android:padding="8dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
-                android:src="@drawable/icon_shop_cost"
+                android:src="@drawable/ic_shop_cost"
                 android:tintMode="multiply"
                 android:tint="?attr/backgroundColorOnBackground"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:padding="1dp"
-                    android:src="@drawable/icon_shop_chance"
+                    android:src="@drawable/ic_shop_chance"
                     android:tint="?attr/codex3_popupAttrIcons"
                     android:tintMode="multiply"
                     app:layout_constraintBottom_toBottomOf="parent"

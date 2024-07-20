@@ -46,7 +46,7 @@
                 android:layout_width="12dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon_arrow_topright"
+                android:src="@drawable/ic_arrow_topright"
                 android:tint="?attr/codex1_cardArrow"
                 android:tintMode="multiply"
                 app:layout_constraintEnd_toEndOf="parent"

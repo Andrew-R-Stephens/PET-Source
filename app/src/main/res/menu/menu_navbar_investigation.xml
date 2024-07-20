@@ -5,7 +5,7 @@
         <item
             android:id="@+id/open_menu"
             android:title="@string/general_navigation_menu"
-            android:icon="@drawable/icon_nav_hambmenu_selector"/>
+            android:icon="@drawable/ic_nav_hambmenu_selector"/>
         <item
             android:id="@+id/evidenceFragment"
             android:title="@string/investigation_section_title_evidence"

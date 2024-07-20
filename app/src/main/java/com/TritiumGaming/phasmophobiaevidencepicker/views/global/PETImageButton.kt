@@ -27,7 +27,7 @@ open class PETImageButton : AppCompatImageButton {
                 setImageResource(
                     attrArray.getResourceId(
                         R.styleable.PETImageButton_PETImageButtonBackground,
-                        R.drawable.icon_button_designs
+                        R.drawable.ic_button_designs
                     )
                 )
 

@@ -77,7 +77,7 @@ fun ResetButton(
     )
     {
         Image(
-            painterResource(id = R.drawable.icon_control_reset),
+            painterResource(id = R.drawable.ic_control_reset),
             contentDescription = "Reset Drawable",
             colorFilter = ColorFilter.tint(Color(foregroundColor)),
             modifier = Modifier
@@ -130,7 +130,7 @@ fun CollapseButton(
         }
 
         Image(
-            painterResource(id = R.drawable.icon_arrow_fill_right),
+            painterResource(id = R.drawable.ic_arrow_fill_right),
             contentDescription = "Reset Drawable",
             colorFilter = ColorFilter.tint(Color(foregroundColor)),
             modifier = Modifier
@@ -191,9 +191,9 @@ fun RulingSelector(
 
     val rulingDrawable =
         when(rulingType) {
-            Negative -> Pair(R.drawable.icon_selector_neg_unsel, negativeColor)
-            Positive -> Pair(R.drawable.icon_selector_pos_unsel, positiveColor)
-            else -> Pair(R.drawable.icon_selector_inc_unsel, neutralColor)
+            Negative -> Pair(R.drawable.ic_selector_neg_unsel, negativeColor)
+            Positive -> Pair(R.drawable.ic_selector_pos_unsel, positiveColor)
+            else -> Pair(R.drawable.ic_selector_inc_unsel, neutralColor)
     }
 
     IconButton(
@@ -224,7 +224,7 @@ fun RulingSelector(
 
             if (rulingState) {
                 Image(
-                    painterResource(id = R.drawable.icon_selector_selected),
+                    painterResource(id = R.drawable.ic_selector_selected),
                     contentDescription = "State Drawable",
                     colorFilter = ColorFilter.tint(rulingDrawable.second)
                 )

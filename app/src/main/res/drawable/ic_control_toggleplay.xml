@@ -2,11 +2,11 @@
   <item
       android:minLevel="0"
       android:maxLevel="0"
-      android:drawable="@drawable/icon_control_pause"
+      android:drawable="@drawable/ic_control_pause"
     />
   <item
       android:minLevel="1"
       android:maxLevel="1"
-      android:drawable="@drawable/icon_control_play"
+      android:drawable="@drawable/ic_control_play"
     />
 </level-list>

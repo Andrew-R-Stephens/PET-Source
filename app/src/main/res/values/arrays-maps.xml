@@ -13,20 +13,20 @@
         }
     -->
     <integer-array name="poi_resources_array">
-        <item>@drawable/icon_power</item>
-        <item>@drawable/icon_key_car</item>
-        <item>@drawable/icon_key_cabin</item>
+        <item>@drawable/ic_map_power</item>
+        <item>@drawable/ic_map_key_car</item>
+        <item>@drawable/ic_map_key_cabin</item>
         <item>@drawable/icon_difficulties</item>
-        <item>@drawable/icon_cp_musicbox</item>
-        <item>@drawable/icon_cp_mirror</item>
-        <item>@drawable/icon_cp_ouija</item>
-        <item>@drawable/icon_cp_candle</item>
-        <item>@drawable/icon_cp_tarot</item>
-        <item>@drawable/icon_cp_doll</item>
-        <item>@drawable/icon_cp_paw</item>
-        <item>@drawable/icon_cp_pawwish</item>
+        <item>@drawable/ic_map_cp_musicbox</item>
+        <item>@drawable/ic_map_cp_mirror</item>
+        <item>@drawable/ic_map_cp_ouija</item>
+        <item>@drawable/ic_map_cp_candle</item>
+        <item>@drawable/ic_map_cp_tarot</item>
+        <item>@drawable/ic_map_cp_doll</item>
+        <item>@drawable/ic_map_cp_paw</item>
+        <item>@drawable/ic_map_cp_pawwish</item>
         <item>@drawable/icon_difficulties</item>
-        <item>@drawable/icon_truck</item>
+        <item>@drawable/ic_map_truck</item>
         <item>@drawable/icon_difficulties</item>
     </integer-array>
 

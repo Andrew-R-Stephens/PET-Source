@@ -38,7 +38,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_settings"
-                tools:composableName="StartScreenSettingsIconDropdown"
+                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:adjustViewBounds="true"
@@ -51,7 +51,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_inbox"
-                tools:composableName="NewsAlert"
+                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AnimsKt.NewsAlert"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:adjustViewBounds="true"
@@ -69,7 +69,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ts_review"
+                android:src="@drawable/ic_review"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_info"
                 app:layout_constraintStart_toEndOf="@+id/button_inbox"
@@ -77,7 +77,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_info"
-                tools:composableName="StartScreenSettingsIconDropdown"
+                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:adjustViewBounds="true"
@@ -171,14 +171,11 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout34"
             app:layout_constraintVertical_bias="0.0">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/icon_language"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_ts_globe"
+                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CustomImageKt.LanguageIcon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
@@ -21,6 +22,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startsc
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.LanguageIcon
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -51,15 +53,14 @@ class StartScreenFragment : MainMenuFragment() {
 
         val labelLanguageName = view.findViewById<AppCompatTextView>(R.id.label_languageName)
         val buttonStart = view.findViewById<View>(R.id.button_start_solo)
-        //val iconApp = view.findViewById<AppCompatImageView>(R.id.icon_appicon)
         val buttonInfo = view.findViewById<ComposeView>(R.id.button_info)
         val buttonMenu = view.findViewById<ComposeView>(R.id.button_settings)
+        val languageIcon = view.findViewById<ComposeView>(R.id.icon_language)
         val buttonReview = view.findViewById<AppCompatImageView>(R.id.button_review)
         buttonMsgInbox = view.findViewById(R.id.button_inbox)
         val buttonLanguage = view.findViewById<View>(R.id.listener_language)
 
         // LISTENERS
-        buttonInfo.setOnClickListener { v: View -> this.gotoAppInfoFragment(v) }
         buttonLanguage.setOnClickListener { v: View -> this.gotoLanguagesFragment(v) }
         buttonMsgInbox?.setOnClickListener { v: View -> this.gotoMessageCenterFragment(v) }
         buttonStart.setOnClickListener {
@@ -72,14 +73,19 @@ class StartScreenFragment : MainMenuFragment() {
         newsIcon = ComposeView(requireContext())
         newsIcon?.setContent { NewsAlert(false) }
 
+        languageIcon?.setContent { LanguageIcon() }
+
         buttonMenu.setContent {
+            val translationIcon: @Composable () -> Unit = { LanguageIcon() }
+
             IconDropdownMenu(
                 R.drawable.ic_menu,
                 R.navigation.titlescreen_navgraph,
                 arrayOf(
-                    R.drawable.icon_ts_info,
-                    R.drawable.icon_ts_gear,
-                    R.drawable.icon_ts_globe),
+                    R.drawable.ic_info,
+                    R.drawable.ic_gear,
+                    translationIcon
+                ),
                 arrayOf(
                     R.id.appInfoFragment,
                     R.id.appSettingsFragment,

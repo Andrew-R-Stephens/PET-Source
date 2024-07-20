@@ -193,13 +193,13 @@
 
     <!-- Evidence Icons -->
     <integer-array name="evidence_icon_array">
-        <item>@drawable/icon_ev_dots</item>
-        <item>@drawable/icon_ev_emf</item>
-        <item>@drawable/icon_ev_uv</item>
-        <item>@drawable/icon_ev_freezing</item>
-        <item>@drawable/icon_ev_orbs</item>
-        <item>@drawable/icon_ev_writing</item>
-        <item>@drawable/icon_ev_spiritbox</item>
+        <item>@drawable/ic_ev_dots</item>
+        <item>@drawable/ic_ev_emf</item>
+        <item>@drawable/ic_ev_uv</item>
+        <item>@drawable/ic_ev_freezing</item>
+        <item>@drawable/ic_ev_orbs</item>
+        <item>@drawable/ic_ev_writing</item>
+        <item>@drawable/ic_ev_spiritbox</item>
     </integer-array>
 
     <!-- Evidence Example Image -->

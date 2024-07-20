@@ -259,8 +259,8 @@ class MapViewerFragment : InvestigationFragment() {
         /** A Selector which represents the current layer of the selected map */
         private inner class MapLayerSelector(context: Context) : AppCompatImageView(context) {
             private val selectorImages: IntArray = intArrayOf(
-                R.drawable.icon_selector_unsel,
-                R.drawable.icon_selector_sel
+                R.drawable.ic_selector_unsel,
+                R.drawable.ic_selector_sel
             )
             private var isSelected = false
 

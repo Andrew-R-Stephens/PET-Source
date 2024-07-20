@@ -72,7 +72,7 @@
                         android:padding="8dp"
                         android:contentDescription="@string/app_name"
                         android:rotation="270"
-                        android:src="@drawable/icon_arrow_fill_right"
+                        android:src="@drawable/ic_arrow_fill_right"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -97,7 +97,7 @@
                         android:padding="8dp"
                         android:contentDescription="@string/app_name"
                         android:rotation="270"
-                        android:src="@drawable/icon_arrow_fill_left"
+                        android:src="@drawable/ic_arrow_fill_left"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/controller_nextLayerButton"
                         app:layout_constraintStart_toStartOf="@+id/controller_nextLayerButton"
@@ -204,7 +204,7 @@
                         android:layout_marginBottom="4dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/icon_room"
+                        android:src="@drawable/ic_room"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -232,7 +232,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:padding="4dp"
-                    android:src="@drawable/icon_help"
+                    android:src="@drawable/ic_help"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 

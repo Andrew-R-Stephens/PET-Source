@@ -38,18 +38,19 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavDeepLinkBuilder
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import org.jetbrains.annotations.TestOnly
-import kotlin.math.min
 
 @TestOnly
 @Preview
 @Composable
 fun TestMenuIcons() {
+
     IconDropdownMenu(
         R.drawable.ic_menu,
         R.navigation.titlescreen_navgraph,
         arrayOf(
-            R.drawable.icon_ts_gear,
-            R.drawable.icon_ts_globe),
+            R.drawable.ic_gear,
+            R.drawable.ic_person
+        ),
         arrayOf(
             R.id.appSettingsFragment,
             R.id.appLanguageFragment)
@@ -83,6 +84,7 @@ fun IconDropdownMenu(
             .wrapContentSize(Alignment.TopStart)
             .background(Color.Transparent)
     ) {
+
         Box {
             PrimarySelector(
                 { SelectorContent(primaryContent) },
@@ -125,7 +127,9 @@ fun IconDropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
-                    .width(48.dp).padding(4.dp).align(Alignment.Center)
+                    .width(48.dp)
+                    .padding(4.dp)
+                    .align(Alignment.Center)
             ) {
                 SecondarySelectors(
                     navDeepLinkBuilder = navDeepLinkBuilder,
@@ -145,7 +149,7 @@ fun SecondarySelectors(
     @IntegerRes routes: Array<Int> = arrayOf(R.id.appSettingsFragment)
 ) {
     Column {
-        val maxRange = min(contentArray.size, routes.size)
+        val maxRange = contentArray.size.coerceAtMost(routes.size)
 
         for (index in 0..<maxRange) {
             val content = contentArray[index]
@@ -196,10 +200,17 @@ fun SelectorContent(
     when(content) {
         is Int -> SelectorContent(content)
         is View -> SelectorContent(contentView = content)
-        is Composable -> SelectorContent(
-            composable = { content }
-        )
+        else -> {
+            (content as? @Composable () -> Unit)?.let { composable ->
+                SelectorContent(
+                    composable = composable
+                )
+            }
+
+        }
     }
+
+
 }
 
 @Composable

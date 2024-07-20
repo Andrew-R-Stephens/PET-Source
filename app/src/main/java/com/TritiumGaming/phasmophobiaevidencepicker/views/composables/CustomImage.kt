@@ -5,10 +5,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -25,14 +27,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 
 @Preview
 @Composable
-fun TestAccountIcon() {
-    AccountIcon()
-}
-
-@Preview
-@Composable
 fun TestLanguageIcon() {
-    LanguageIcon()
+    AccountIcon()
 }
 
 @Composable
@@ -60,7 +56,7 @@ fun AccountIcon() {
         if (FirestoreUser.currentFirebaseUser == null) {
             Image(
                 painter = painterResource(id = R.drawable.ic_person),
-                colorFilter = ColorFilter.tint(personTint),
+                //colorFilter = ColorFilter.tint(personTint),
                 contentDescription = contentDescription,
                 contentScale = contentScale,
                 modifier = Modifier
@@ -81,46 +77,35 @@ fun AccountIcon() {
 }
 
 @Composable
+@Preview
 fun LanguageIcon() {
-    val borderColor =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
-    val backgroundColorResId =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.backgroundColorOnBackground))
-    val personTint =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody))
-
     val size = 48.dp
-    val borderWidth = 4.dp / 200.dp * size
 
     Box(
         modifier = Modifier
             .size(size)
-            .clip(CircleShape)
-            .background(backgroundColorResId)
-            .border(borderWidth, borderColor, CircleShape)
     ) {
         val contentScale = ContentScale.Inside
         val contentDescription = "Outer Box"
 
-        if (FirestoreUser.currentFirebaseUser == null) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_person),
-                colorFilter = ColorFilter.tint(personTint),
-                contentDescription = contentDescription,
-                contentScale = contentScale,
-                modifier = Modifier
-                    .padding(4.dp)
-            )
-        } else {
-            val typedValue = TypedValue()
-            LocalContext.current.theme.resolveAttribute(R.attr.theme_badge, typedValue, true)
-            val imageResId = typedValue.resourceId
+        Image(
+            painter = painterResource(id = R.drawable.ic_globe),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+        )
 
-            Image(
-                painter = painterResource(id = imageResId),
-                contentDescription = contentDescription,
-                contentScale = contentScale
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.ic_translate),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = Modifier
+                .padding(4.dp)
+                .fillMaxSize(.5f)
+                .align(Alignment.BottomEnd)
+        )
+
     }
 }

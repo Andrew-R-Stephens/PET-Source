@@ -24,8 +24,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 @Preview
 fun NewsAlert(
     isActive: Boolean = false,
-    @DrawableRes baseDrawableId: Int? = R.drawable.icon_ts_news,
-    @DrawableRes alertDrawableRes: Int = R.drawable.icon_ts_notify
+    @DrawableRes baseDrawableId: Int? = R.drawable.ic_news,
+    @DrawableRes alertDrawableRes: Int = R.drawable.ic_notify
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 

@@ -5,7 +5,7 @@
         <item
             android:id="@+id/action_home"
             android:title="@string/general_navigation_home"
-            android:icon="@drawable/icon_nav_home"/>
+            android:icon="@drawable/ic_nav_home"/>
     </group>
 
     <group android:checkableBehavior="none">

@@ -170,7 +170,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_discord"
+                android:src="@drawable/ic_discord"
                 android:tint="?attr/textColorPrimary"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintBottom_toBottomOf="parent"

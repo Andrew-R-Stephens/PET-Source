@@ -283,9 +283,9 @@ fun TierEmblem(
     tintMode: BlendMode = BlendMode.SrcIn
 ) {
     val image = when(tierLevel) {
-        One -> R.drawable.icon_tier_1
-        Two -> R.drawable.icon_tier_2
-        Three -> R.drawable.icon_tier_3
+        One -> R.drawable.ic_tier_1
+        Two -> R.drawable.ic_tier_2
+        Three -> R.drawable.ic_tier_3
         else -> { 0 }
     }
 
