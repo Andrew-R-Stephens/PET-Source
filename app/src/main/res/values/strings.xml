@@ -315,6 +315,7 @@
     <string name="alert_account_welcome">Welcome</string>
     <string name="alert_account_data_failure">Data could not be acquired.</string>
     <string name="alert_account_remove_success">Successfully removed account.</string>
+    <string name="alert_account_remove_failure" translatable="false">Account removal failed.</string>
     <string name="alert_account_logout_success">User signed out.</string>
     <string name="alert_account_login_failure">Login Error.</string>
     <string name="alert_internet_unavailable">Internet not available.</string>

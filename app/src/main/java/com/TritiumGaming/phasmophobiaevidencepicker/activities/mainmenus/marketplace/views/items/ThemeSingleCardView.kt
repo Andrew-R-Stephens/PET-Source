@@ -13,16 +13,26 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
 class ThemeSingleCardView : MaterialCardView {
-    private var theme: MarketSingleThemeModel? = null
+
+    var themeModel: MarketSingleThemeModel? = null
+        set(value) {
+            field = value
+
+            setPurchasable()
+            setCreditCost()
+        }
+
+    val creditCost: Long
+        get() = themeModel?.buyCredits ?: 0
 
     constructor(context: Context) : super(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) { initView(context) }
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(context) }
+            super(context, attrs, defStyleAttr)
 
-    fun initView(context: Context?) {
+    init {
         inflate(context, R.layout.item_marketplace_theme, this)
 
         layoutParams = LinearLayout.LayoutParams(
@@ -42,26 +52,15 @@ class ThemeSingleCardView : MaterialCardView {
     }
 
     private fun setPurchasable() {
-        theme?.let { theme ->
+        themeModel?.let { theme ->
             if (theme.isUnlocked) visibility = GONE
-            run {}
         }
     }
 
-    fun setCreditCost() {
+    private fun setCreditCost() {
         val creditsLabel = findViewById<AppCompatTextView>(R.id.label_credits_cost)
 
-        theme?.let { theme -> creditsLabel?.text = theme.buyCredits.toString() }
-    }
-
-    val creditCost: Long
-        get() = theme?.buyCredits ?: 0
-
-    fun setTheme(theme: MarketSingleThemeModel?) {
-        this.theme = theme
-
-        setPurchasable()
-        setCreditCost()
+        themeModel?.let { theme -> creditsLabel?.text = theme.buyCredits.toString() }
     }
 
     fun validate() { setPurchasable() }

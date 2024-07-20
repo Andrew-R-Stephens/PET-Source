@@ -10,17 +10,17 @@ import com.google.android.material.card.MaterialCardView
 
 
 class ThemeBundleImageView : MaterialCardView {
+
     private var theme: ThemeModel? = null
 
-    constructor(context: Context) : super(context, null) { initView(context) }
+    constructor(context: Context) : super(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(context) }
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(context) }
+            super(context, attrs, defStyleAttr)
 
-    fun initView(context: Context?) {
+    init {
         inflate(context, R.layout.item_marketplace_bundle_image, this)
 
         setCardBackgroundColor(resources.getColor(R.color.transparent))

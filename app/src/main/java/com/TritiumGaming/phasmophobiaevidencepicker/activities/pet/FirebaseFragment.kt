@@ -118,7 +118,7 @@ abstract class FirebaseFragment : PETFragment {
     open fun deleteAccount() {
         AuthUI.getInstance()
             .delete(requireContext())
-            .addOnCompleteListener {
+            .addOnSuccessListener {
                 try {
                     val message = getString(R.string.alert_account_remove_success)
                     Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
@@ -126,6 +126,14 @@ abstract class FirebaseFragment : PETFragment {
                 catch (e: IllegalStateException) { e.printStackTrace() }
 
                 onDeleteAccountSuccess()
+            }
+            .addOnFailureListener {
+                try {
+                    val message = getString(R.string.alert_account_remove_failure)
+                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
+                }
+                catch (e: IllegalStateException) { e.printStackTrace() }
+
             }
     }
 

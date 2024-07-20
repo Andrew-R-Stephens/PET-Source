@@ -14,17 +14,34 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
 class ThemeBundleCardView : MaterialCardView {
-    private var bundle: MarketThemeBundleModel? = null
+
+    var bundle: MarketThemeBundleModel? = null
+        set(value) {
+            field = value
+
+            field?.let { bundle ->
+                val titleView = findViewById<AppCompatTextView>(R.id.label_bundleTitle)
+                titleView?.text = bundle.name
+
+                val costView = findViewById<AppCompatTextView>(R.id.label_credits_cost)
+                costView?.text = bundle.discountedBuyCredits.toString()
+
+                buildThemes()
+            }
+        }
+
+    val creditCost: Long
+        get() = bundle?.discountedBuyCredits ?: 0
+
 
     constructor(context: Context) : super(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(context) }
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(context) }
+            super(context, attrs, defStyleAttr)
 
-    fun initView(context: Context?) {
+    init {
         inflate(context, R.layout.item_marketplace_bundle, this)
 
         layoutParams = LinearLayout.LayoutParams(
@@ -41,24 +58,6 @@ class ThemeBundleCardView : MaterialCardView {
 
         useCompatPadding = true
         clipToPadding = false
-    }
-
-    val creditCost: Long
-        get() = bundle?.discountedBuyCredits ?: 0
-
-
-    fun setBundle(bundlePassed: MarketThemeBundleModel?) {
-        this.bundle = bundlePassed
-
-        this.bundle?.let { bundle ->
-            val titleView = findViewById<AppCompatTextView>(R.id.label_bundleTitle)
-            titleView?.text = bundle.name
-
-            val costView = findViewById<AppCompatTextView>(R.id.label_credits_cost)
-            costView?.text = bundle.discountedBuyCredits.toString()
-
-            buildThemes()
-        }
     }
 
     private fun buildThemes() {
@@ -105,7 +104,7 @@ class ThemeBundleCardView : MaterialCardView {
         return isAvailable
     }
 
-    fun setCreditCost() {
+    private fun setCreditCost() {
         val creditsTextView = findViewById<AppCompatTextView>(R.id.label_credits_cost)
 
         bundle?.let { bundle -> creditsTextView.text = bundle.discountedBuyCredits.toString() }

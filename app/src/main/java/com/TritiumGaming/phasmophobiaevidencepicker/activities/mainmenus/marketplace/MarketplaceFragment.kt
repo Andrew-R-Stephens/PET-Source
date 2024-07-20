@@ -44,6 +44,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
+import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.unlockHistoryCollection
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
@@ -72,6 +73,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class MarketplaceFragment : MainMenuFirebaseFragment() {
@@ -94,7 +98,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private var rewardedAd: RewardedAd? = null
 
-    private var scope: CoroutineScope? = null
+    private var scopeIO: CoroutineScope? = CoroutineScope(Dispatchers.IO)
+    private var scopeMain: CoroutineScope? = CoroutineScope(Dispatchers.Main)
+
+    private var launchAgreementDialogJob: Job? =  scopeIO?.launch{
+        initAgreementDialog()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -143,18 +152,25 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
-        if (currentFirebaseUser == null) { marketProgressBar?.visibility = GONE }
+        if (currentFirebaseUser == null) {
+            marketProgressBar?.visibility = GONE
+            marketplaceErrorTextView?.visibility = VISIBLE
+        }
 
         obtainCreditsTextView?.enableAdWatchButton(false)
-        requireActivity().runOnUiThread { loadRewardedAd(null) }
+        scopeMain?.launch {
+            loadRewardedAd(null)
+        }?.start()
 
-        requireActivity().runOnUiThread {
-            Thread { this.initAccountCreditListener() }.start() }
-        requireActivity().runOnUiThread {
-            Thread { this.populateMarketplaceUnPurchasedItems() }.start() }
+        scopeIO?.launch {
+            initAccountCreditListener()
+        }?.start()
 
-        requireActivity().runOnUiThread {
-            Thread { initAgreementDialog() }.start() }
+        scopeIO?.launch {
+            populateMarketplaceUnPurchasedItems()
+        }?.start()
+
+        launchAgreementDialogJob?.start()
 
     }
 
@@ -214,11 +230,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun populateMarketplaceUnPurchasedItems() {
-        var unlockHistoryCollection: CollectionReference? = null
-        try { unlockHistoryCollection = FirestoreUnlockHistory.unlockHistoryCollection }
-        catch (e: Exception) { e.printStackTrace() }
-        if (unlockHistoryCollection == null) { return }
-
         try {
             unlockHistoryCollection.get()
                 .addOnSuccessListener { task: QuerySnapshot ->
@@ -229,13 +240,14 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                         }
                     }
+
                     populateBundledThemes()
                     populateIndividualThemes()
                 }
                 .addOnFailureListener { e: Exception ->
                     Log.e("Firestore", "Could not populate user's unlock history!")
-                    marketProgressBar?.visibility = View.GONE
-                    marketplaceErrorTextView?.visibility = View.VISIBLE
+                    marketProgressBar?.visibility = GONE
+                    marketplaceErrorTextView?.visibility = VISIBLE
                     e.printStackTrace()
                 }
         } catch (e: Exception) { e.printStackTrace() }
@@ -253,8 +265,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     }
                 }
 
-                revalidateMarketplaceBundles()
-                revalidateMarketplaceSingles()
+                CoroutineScope(Dispatchers.Main).launch {
+                    revalidateMarketplaceBundles()
+                    revalidateMarketplaceSingles()
+                }.start()
             })
         } catch (e: Exception) { e.printStackTrace() }
     }
@@ -275,12 +289,11 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         bundleMarketplaceList?.let { list ->
             list.setLabel("Theme Bundles")
-            list.showLabel(View.GONE)
-        } ?: return
+            list.showLabel(GONE)
 
-        masterItemsList?.addView(bundleMarketplaceList)
+            masterItemsList?.addView(bundleMarketplaceList)
 
-        val processCompleteListener: OnFirestoreProcessListener =
+            val processCompleteListener: OnFirestoreProcessListener =
             object : OnFirestoreProcessListener() {
                 var thrown: Boolean = false
                 var labelShown: Boolean = true
@@ -290,13 +303,13 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     labelShown = false
 
-                    marketProgressBar?.visibility = View.GONE
-                    marketplaceErrorTextView?.visibility = View.VISIBLE
+                    marketProgressBar?.visibility = GONE
+                    marketplaceErrorTextView?.visibility = VISIBLE
 
                     try {
                         Toast.makeText(requireActivity(),
-                        getString(R.string.alert_marketplace_access_failure),
-                        Toast.LENGTH_SHORT).show()
+                            getString(R.string.alert_marketplace_access_failure),
+                            Toast.LENGTH_SHORT).show()
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }
@@ -309,27 +322,29 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     if (!thrown) thrown = true
 
                     if (labelShown) {
-                        bundleMarketplaceList?.showLabel(View.VISIBLE)
+                        bundleMarketplaceList?.showLabel(VISIBLE)
                     }
 
-                    marketProgressBar?.visibility = View.GONE
+                    marketProgressBar?.visibility = GONE
                 }
             }
 
-        try {
-            globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                if (isNetworkAvailable(requireContext(), networkPreference)) {
-                    bundleMarketplaceList?.let { bundle ->
-                        addMarketplaceBundleThemes(bundle, null, null,
-                            null, null, processCompleteListener) } }
-                else {
-                    processCompleteListener.onFailure()
-                    Toast.makeText(requireActivity(),
-                        getString(R.string.alert_internet_unavailable),
-                        Toast.LENGTH_SHORT).show()
+            try {
+                globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
+                    if (isNetworkAvailable(requireContext(), networkPreference)) {
+                        addMarketplaceBundleThemes(list, null, null,
+                            null, null, processCompleteListener)
+                    }
+                    else {
+                        processCompleteListener.onFailure()
+
+                        Toast.makeText(requireActivity(),
+                            getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+        }
+
     }
 
     private fun populateIndividualThemes() {
@@ -360,8 +375,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 override fun onFailure() {
                     if (!thrown) thrown = true
 
-                    marketProgressBar?.visibility = View.GONE
-                    marketplaceErrorTextView?.visibility = View.VISIBLE
+                    marketProgressBar?.visibility = GONE
+                    marketplaceErrorTextView?.visibility = VISIBLE
 
                     try {
                         Toast.makeText(requireActivity(),
@@ -378,7 +393,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                 override fun onComplete() {
                     if (!thrown) thrown = true
-                    marketProgressBar?.visibility = View.GONE
+                    marketProgressBar?.visibility = GONE
                 }
             }
 
@@ -462,8 +477,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
         }).addOnFailureListener { listener.onFailure()
         }.addOnCompleteListener { listener.onComplete()
-            if (list.childCount <= 1) { list.visibility = View.GONE }
-            else { list.showLabel(View.VISIBLE) }
+            if (list.childCount <= 1) { list.visibility = GONE }
+            else { list.showLabel(VISIBLE) }
         }
     }
 
@@ -481,6 +496,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         query.addOnSuccessListener(OnSuccessListener { snapshot: QuerySnapshot ->
             listener.onSuccess()
+
             for (documentSnapshot in snapshot.documents) {
                 if (!documentSnapshot.exists()) {
                     Log.d("Firestore", "Bundle document snapshot DNE.")
@@ -526,7 +542,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         }).addOnFailureListener { listener.onFailure() }
             .addOnCompleteListener {
                 if (list.childCount <= 1) {
-                    list.visibility = View.GONE
+                    list.visibility = GONE
                 }
                 listener.onComplete()
             }
@@ -554,13 +570,15 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         try { marketplaceBundleView = ThemeBundleCardView(requireContext(), null) }
         catch (e: IllegalStateException) { e.printStackTrace()
             return null }
-        marketplaceBundleView.setBundle(bundleThemes)
+
+        marketplaceBundleView.bundle = bundleThemes
 
         val buyButtonListener = View.OnClickListener { _: View? ->
             val buyButtonCallback: OnFirestoreProcessListener =
                 object : OnFirestoreProcessListener() {
                     override fun onSuccess() {
                         val uuids: ArrayList<String> = ArrayList()
+
                         bundleThemes.themes?.forEach { bundleTheme ->
                             bundleTheme.iD?.let { iD -> uuids.add(iD) } }
 
@@ -617,7 +635,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             ContextThemeWrapper(requireContext(), marketSingleTheme.style),
             null, marketSingleTheme.style)
 
-        marketplaceItemView.setTheme(marketSingleTheme)
+        marketplaceItemView.themeModel = marketSingleTheme
 
         val buyButtonListener = View.OnClickListener {
             val buyButtonCallback: OnFirestoreProcessListener =

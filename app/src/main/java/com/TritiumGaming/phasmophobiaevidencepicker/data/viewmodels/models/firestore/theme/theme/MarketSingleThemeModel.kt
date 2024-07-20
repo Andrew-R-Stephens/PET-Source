@@ -10,15 +10,11 @@ class MarketSingleThemeModel : MarketplaceItemModel {
     private var theme: ThemeModel? = null
 
     val isUnlocked: Boolean
-        get() = theme!!.isUnlocked
+        get() = theme?.isUnlocked == true
 
     val style: Int
         get() {
-            if (theme != null) {
-                return theme!!.style
-            }
-
-            return defaultTheme.style
+            return theme?.style ?: defaultTheme.style
         }
 
     constructor()
