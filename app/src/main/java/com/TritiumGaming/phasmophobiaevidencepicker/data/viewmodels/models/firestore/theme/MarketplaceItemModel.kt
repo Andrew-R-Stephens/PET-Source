@@ -5,20 +5,17 @@ abstract class MarketplaceItemModel {
         protected set
     var name: String? = null
         protected set
-    var buyCredits: Long = 0
+    var buyCredits: Long = 0L
         protected set
+    var priority: Long? = 0L
 
     constructor()
 
-    constructor(uuid: String?, buyCredits: Long, name: String?) {
+    constructor(uuid: String? = null, buyCredits: Long = 0, name: String? = null, priority: Long? = 0L) {
         this.uuid = uuid
         this.buyCredits = buyCredits
         this.name = name
-    }
-
-    constructor(buyCredits: Long, name: String?) {
-        this.buyCredits = buyCredits
-        this.name = name
+        this.priority = priority
     }
 
     override fun toString(): String {

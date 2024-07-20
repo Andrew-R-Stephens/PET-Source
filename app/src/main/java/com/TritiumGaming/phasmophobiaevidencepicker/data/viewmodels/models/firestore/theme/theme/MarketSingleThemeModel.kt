@@ -5,9 +5,10 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.setti
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Companion.defaultTheme
 
 class MarketSingleThemeModel : MarketplaceItemModel {
-    var group: String? = null
 
     private var theme: ThemeModel? = null
+
+    var group: String? = null
 
     val isUnlocked: Boolean
         get() = theme?.isUnlocked == true
@@ -19,21 +20,13 @@ class MarketSingleThemeModel : MarketplaceItemModel {
 
     constructor()
 
-    constructor(buyCredits: Long, group: String?, name: String?) {
-        this.buyCredits = buyCredits
-        this.group = group
-        this.name = name
-    }
-
-    constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?) {
-        super.uuid = uuid
+    constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?):
+            super(uuid, marketTheme.buyCredits, marketTheme.name) {
         this.theme = theme
-        this.buyCredits = marketTheme.buyCredits
         this.group = marketTheme.group
-        this.name = marketTheme.name
     }
 
     override fun toString(): String {
-        return super.toString() + " " + buyCredits + " " + group + " " + theme
+        return "${ super.toString() } $group $theme"
     }
 }

@@ -14,6 +14,13 @@ import com.google.android.material.card.MaterialCardView
 
 class ThemeSingleCardView : MaterialCardView {
 
+    constructor(context: Context) : super(context, null)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr)
+
     var themeModel: MarketSingleThemeModel? = null
         set(value) {
             field = value
@@ -25,13 +32,6 @@ class ThemeSingleCardView : MaterialCardView {
     val creditCost: Long
         get() = themeModel?.buyCredits ?: 0
 
-    constructor(context: Context) : super(context, null)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr)
-
     init {
         inflate(context, R.layout.item_marketplace_theme, this)
 
@@ -40,7 +40,7 @@ class ThemeSingleCardView : MaterialCardView {
             ViewGroup.LayoutParams.WRAP_CONTENT)
 
         val strokeColor =
-            getColorFromAttribute(getContext(), R.attr.backgroundColorOnBackground)
+            getColorFromAttribute(context, R.attr.backgroundColorOnBackground)
 
         radius = 16f
 

@@ -6,7 +6,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.setti
 
 class MarketThemeBundleModel: MarketplaceItemModel {
 
-    constructor(): super()
+    constructor()
 
     constructor(uuid: String? = null, theme: MarketThemeBundleModel, themes: List<ThemeModel>):
             super(uuid, theme.buyCredits, theme.name) {
@@ -23,13 +23,11 @@ class MarketThemeBundleModel: MarketplaceItemModel {
 
     val discountedBuyCredits: Long
         get() {
-            val lockedThemeCount = lockedItemCount
+            if (lockedItemCount == 0) { return 0 }
 
-            if (lockedThemeCount == 0) {
-                return 0
-            }
-
-            val ratio = lockedThemeCount / themes!!.size.toDouble()
+            val ratio = themes?.size?.let { size ->
+                lockedItemCount / (size.toDouble().coerceAtLeast(1.0))
+            } ?: 1.0
 
             return (buyCredits * ratio).toLong()
         }
@@ -60,6 +58,6 @@ class MarketThemeBundleModel: MarketplaceItemModel {
         val themeOut = StringBuilder()
         themes?.let{ themes -> for (t in themes) { themeOut.append(t) }}
 
-        return super.toString() + " " + buyCredits + " " + themeOut + " " + unlockedState
+        return "${ super.toString() } $themeOut $unlockedState"
     }
 }

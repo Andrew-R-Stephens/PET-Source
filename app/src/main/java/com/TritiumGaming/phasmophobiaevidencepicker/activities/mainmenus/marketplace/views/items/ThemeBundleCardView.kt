@@ -49,7 +49,7 @@ class ThemeBundleCardView : MaterialCardView {
             ViewGroup.LayoutParams.WRAP_CONTENT)
 
         val strokeColor =
-            getColorFromAttribute(getContext(), R.attr.backgroundColorOnBackground)
+            getColorFromAttribute(context, R.attr.backgroundColorOnBackground)
 
         radius = 16f
 

@@ -293,7 +293,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
             masterItemsList?.addView(bundleMarketplaceList)
 
-            val processCompleteListener: OnFirestoreProcessListener =
+            val listener: OnFirestoreProcessListener =
             object : OnFirestoreProcessListener() {
                 var thrown: Boolean = false
                 var labelShown: Boolean = true
@@ -308,14 +308,34 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     try {
                         Toast.makeText(requireActivity(),
+                            "Test Failure 1",
+                            Toast.LENGTH_SHORT).show()
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
+
+                    /*
+                    try {
+                        Toast.makeText(requireActivity(),
                             getString(R.string.alert_marketplace_access_failure),
                             Toast.LENGTH_SHORT).show()
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
+                    */
                 }
 
                 override fun onSuccess() {
                     if (!thrown) thrown = true
+
+                    if (labelShown) {
+                        bundleMarketplaceList?.showLabel(VISIBLE)
+                    }
+
+                    marketProgressBar?.visibility = GONE
+
+                    try {
+                        Toast.makeText(requireActivity(),
+                            "Test Success 1",
+                            Toast.LENGTH_SHORT).show()
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
                 }
 
                 override fun onComplete() {
@@ -326,6 +346,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     }
 
                     marketProgressBar?.visibility = GONE
+
+                    try {
+                        Toast.makeText(requireActivity(),
+                            "Test Complete 1",
+                            Toast.LENGTH_SHORT).show()
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
                 }
             }
 
@@ -333,10 +359,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
                     if (isNetworkAvailable(requireContext(), networkPreference)) {
                         addMarketplaceBundleThemes(list, null, null,
-                            null, null, processCompleteListener)
+                            null, null, listener)
                     }
                     else {
-                        processCompleteListener.onFailure()
+                        listener.onFailure()
 
                         Toast.makeText(requireActivity(),
                             getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
@@ -389,11 +415,23 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 override fun onSuccess() {
                     if (!thrown) thrown = true
                     labelShown = true
+
+                    try {
+                        Toast.makeText(requireActivity(),
+                            "Test Success 2",
+                            Toast.LENGTH_SHORT).show()
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
                 }
 
                 override fun onComplete() {
                     if (!thrown) thrown = true
                     marketProgressBar?.visibility = GONE
+
+                    try {
+                        Toast.makeText(requireActivity(),
+                            "Test Complete 2",
+                            Toast.LENGTH_SHORT).show()
+                    } catch (e: IllegalStateException) { e.printStackTrace() }
                 }
             }
 
@@ -494,52 +532,59 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             return
         }
 
-        query.addOnSuccessListener(OnSuccessListener { snapshot: QuerySnapshot ->
-            listener.onSuccess()
+        query
+            .addOnSuccessListener(OnSuccessListener { snapshot: QuerySnapshot ->
+                listener.onSuccess()
 
-            for (documentSnapshot in snapshot.documents) {
-                if (!documentSnapshot.exists()) {
-                    Log.d("Firestore", "Bundle document snapshot DNE.")
-                    continue
-                }
+                for (documentSnapshot in snapshot.documents) {
+                    if (!documentSnapshot.exists()) {
+                        Log.d("Firestore", "Bundle document snapshot DNE.")
 
-                documentSnapshot.data?.let { data ->
-                    val docId = documentSnapshot.reference.id
-
-                    val documentReferences = data["items"] as List<*>?
-                    val themeIDs = ArrayList<String>()
-                    documentReferences?.let { docRefs ->
-                        for (item in docRefs) {
-                            if (item is DocumentReference) { themeIDs.add(item.id) } }
+                        continue
                     }
 
-                    var tempBundle: MarketThemeBundleModel? = null
-                    try { tempBundle = documentSnapshot.toObject(MarketThemeBundleModel::class.java) }
-                    catch (e: Exception) {
-                        Log.d("Firestore", "Error CREATING PETTheme!")
-                        e.printStackTrace()
-                    }
+                    documentSnapshot.data?.let { data ->
+                        val docId = documentSnapshot.reference.id
 
-                    tempBundle?.let { bundleTemp ->
-                        val customThemes = ArrayList<ThemeModel>()
-                        for (themeID in themeIDs) {
-                            globalPreferencesViewModel?.colorThemeControl?.let { control ->
-                                customThemes.add(control.getThemeByUUID(themeID)) } }
-                        val finalBundle = MarketThemeBundleModel(docId, bundleTemp, customThemes)
-                        if (!finalBundle.isUnlocked) {
-                            val marketplaceItemView =
-                                buildMarketplaceBundleThemeView(list, finalBundle)
+                        val documentReferences = data["items"] as List<*>?
+                        val themeIDs = ArrayList<String>()
+                        documentReferences?.let { docRefs ->
+                            for (item in docRefs) {
+                                if (item is DocumentReference) { themeIDs.add(item.id) } }
+                        }
 
-                            marketplaceItemView?.let { view ->
-                                list.addView(view)
-                                list.requestLayout()
-                                list.invalidate()
+                        try {
+                            val tempBundle = documentSnapshot.toObject(
+                                MarketThemeBundleModel::class.java)
+
+                            tempBundle?.let { bundleTemp ->
+                                val customThemes = ArrayList<ThemeModel>()
+                                for (themeID in themeIDs) {
+                                    globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                                        customThemes.add(control.getThemeByUUID(themeID)) } }
+                                val finalBundle = MarketThemeBundleModel(docId, bundleTemp, customThemes)
+                                if (!finalBundle.isUnlocked) {
+                                    val marketplaceItemView =
+                                        buildMarketplaceBundleThemeView(list, finalBundle)
+
+                                    marketplaceItemView?.let { view ->
+                                        list.addView(view)
+                                        list.requestLayout()
+                                        list.invalidate()
+                                    }
+                                }
                             }
                         }
+                        catch (e: Exception) {
+                            Log.d("Firestore", "Error CREATING PETTheme!")
+                            e.printStackTrace()
+                        }
+
                     }
                 }
-            }
-        }).addOnFailureListener { listener.onFailure() }
+
+            })
+            .addOnFailureListener { listener.onFailure() }
             .addOnCompleteListener {
                 if (list.childCount <= 1) {
                     list.visibility = GONE
@@ -587,11 +632,23 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 object : OnFirestoreProcessListener() {
                                     override fun onSuccess() {
                                         onPurchaseSuccessAnimation(marketplaceBundleView, list)
+
+                                        try {
+                                            Toast.makeText(requireActivity(),
+                                                "Test Success 3",
+                                                Toast.LENGTH_SHORT).show()
+                                        } catch (e: IllegalStateException) { e.printStackTrace() }
                                     }
 
                                     override fun onFailure() {
                                         Log.d("Firestore",
                                             "Could not add/retrieve purchase document!")
+
+                                        try {
+                                            Toast.makeText(requireActivity(),
+                                                "Test Success 3",
+                                                Toast.LENGTH_SHORT).show()
+                                        } catch (e: IllegalStateException) { e.printStackTrace() }
                                     }
                                 })
                         } catch (e: Exception) { e.printStackTrace() }
@@ -615,6 +672,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     override fun onComplete() {
                         Log.d("Bundle", "Bundle process completed.")
+
+                        try {
+                            Toast.makeText(requireActivity(),
+                                "Test Complete 3",
+                                Toast.LENGTH_SHORT).show()
+                        } catch (e: IllegalStateException) { e.printStackTrace() }
                     }
                 }
             try { removeCredits(marketplaceBundleView.creditCost, buyButtonCallback) }
@@ -631,6 +694,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     private fun buildMarketplaceSingleThemeView(
         list: MarketplaceListLayout, marketSingleTheme: MarketSingleThemeModel
     ): ThemeSingleCardView {
+
         val marketplaceItemView = ThemeSingleCardView(
             ContextThemeWrapper(requireContext(), marketSingleTheme.style),
             null, marketSingleTheme.style)
@@ -640,11 +704,20 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         val buyButtonListener = View.OnClickListener {
             val buyButtonCallback: OnFirestoreProcessListener =
                 object : OnFirestoreProcessListener() {
+
                     override fun onSuccess() {
+
                         val purchaseListener: OnFirestoreProcessListener =
+
                             object : OnFirestoreProcessListener() {
                                 override fun onSuccess() {
                                     onPurchaseSuccessAnimation(marketplaceItemView, list)
+
+                                    try {
+                                        Toast.makeText(requireActivity(),
+                                            "Test Success 4",
+                                            Toast.LENGTH_SHORT).show()
+                                    } catch (e: IllegalStateException) { e.printStackTrace() }
                                 }
 
                                 override fun onFailure() {
@@ -664,6 +737,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             Toast.LENGTH_SHORT).show()
                         }
                         catch (e: IllegalStateException) { e.printStackTrace() }
+
                     }
 
                     override fun onFailure() {
@@ -677,6 +751,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     override fun onComplete() {
                         Log.d("Bundle", "Single theme process completed.")
+
+                        try {
+                            Toast.makeText(requireActivity(),
+                                "Test Complete 4",
+                                Toast.LENGTH_SHORT).show()
+                        } catch (e: IllegalStateException) { e.printStackTrace() }
                     }
                 }
             try { removeCredits(marketplaceItemView.creditCost, buyButtonCallback) }
@@ -710,31 +790,39 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun loadRewardedAd(listener: OnAdLoadedListener?) {
-        RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
-            AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
-                override fun onAdLoaded(ad: RewardedAd) {
-                    Log.d("RewardedAd", "Ad was loaded.")
-                    rewardedAd = ad
-                    rewardedAd?.let { rewardedAd ->
-                        val options = ServerSideVerificationOptions.Builder()
-                            .setCustomData("SAMPLE_CUSTOM_DATA_STRING").build()
-                        rewardedAd.setServerSideVerificationOptions(options)
+        try {
+            RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
+                AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
+                    override fun onAdLoaded(ad: RewardedAd) {
+                        Log.d("RewardedAd", "Ad was loaded.")
+                        rewardedAd = ad
+                        rewardedAd?.let { rewardedAd ->
+                            val options = ServerSideVerificationOptions.Builder()
+                                .setCustomData("SAMPLE_CUSTOM_DATA_STRING").build()
+                            rewardedAd.setServerSideVerificationOptions(options)
 
-                        val rewardQuantity = rewardedAd.rewardItem.amount
-                        obtainCreditsTextView?.let { textView ->
-                            textView.setWatchAdsLabelDescription(rewardQuantity)
-                            textView.enableAdWatchButton(true)
+                            val rewardQuantity = rewardedAd.rewardItem.amount
+                            obtainCreditsTextView?.let { textView ->
+                                textView.setWatchAdsLabelDescription(rewardQuantity)
+                                textView.enableAdWatchButton(true)
+                            }
+                            listener?.onAdLoaded()
                         }
-                        listener?.onAdLoaded()
                     }
-                }
 
-                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                    Log.d("RewardedAd", loadAdError.toString())
-                    obtainCreditsTextView?.enableAdWatchButton(false)
-                    rewardedAd = null
-                }
-            })
+                    override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                        Log.d("RewardedAd", loadAdError.toString())
+                        obtainCreditsTextView?.enableAdWatchButton(false)
+                        rewardedAd = null
+                    }
+                })
+        } catch (e: IllegalStateException) {
+            try {
+                Toast.makeText(requireActivity(),
+                    "Failed to load rewarded ad.",
+                    Toast.LENGTH_SHORT).show()
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+        }
     }
 
     fun showRewardedAd() {
