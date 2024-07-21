@@ -23,7 +23,6 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager

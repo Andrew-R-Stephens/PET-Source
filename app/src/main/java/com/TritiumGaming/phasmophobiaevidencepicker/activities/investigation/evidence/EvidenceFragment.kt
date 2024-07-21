@@ -31,7 +31,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     private var investigationSectionWrapper: InvestigationSectionWrapper? = null

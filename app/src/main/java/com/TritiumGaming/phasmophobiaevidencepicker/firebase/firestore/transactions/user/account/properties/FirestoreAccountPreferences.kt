@@ -2,7 +2,6 @@ package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transact
 
 import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount.Companion.accountCollection
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference

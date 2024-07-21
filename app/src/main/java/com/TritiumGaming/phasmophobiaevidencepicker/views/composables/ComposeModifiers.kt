@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
-import android.content.res.Configuration
 import androidx.compose.foundation.ScrollState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -8,7 +7,6 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DisplayOrientation.HORIZONTAL

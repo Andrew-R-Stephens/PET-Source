@@ -3,10 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
-import androidx.compose.ui.platform.ComposeView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ResetButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
