@@ -234,7 +234,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     populateBundlesList()
                     populateThemesLists()
 
-                    toToast("Test Success 0")
+                    testToast("Test Success 0")
 
                 }
                 .addOnFailureListener { e: Exception ->
@@ -243,7 +243,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     marketplaceErrorTextView?.visibility = VISIBLE
                     e.printStackTrace()
 
-                    toToast("Test Failure 0")
+                    testToast("Test Failure 0")
 
                 }
         } catch (e: Exception) { e.printStackTrace() }
@@ -302,7 +302,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     marketProgressBar?.visibility = GONE
                     marketplaceErrorTextView?.visibility = VISIBLE
 
-                    toToast("Test Failure 1")
+                    testToast("Test Failure 1")
 
                     /*
                     try {
@@ -323,7 +323,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     marketProgressBar?.visibility = GONE
 
-                    toToast("Test Success 1")
+                    testToast("Test Success 1")
                 }
 
                 override fun onComplete() {
@@ -335,7 +335,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     marketProgressBar?.visibility = GONE
 
-                    toToast("Test Complete 1")
+                    testToast("Test Complete 1")
                 }
             }
 
@@ -400,14 +400,14 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     if (!thrown) thrown = true
                     labelShown = true
 
-                    toToast("Test Success 2")
+                    testToast("Test Success 2")
                 }
 
                 override fun onComplete() {
                     if (!thrown) thrown = true
                     marketProgressBar?.visibility = GONE
 
-                    toToast("Test Complete 2")
+                    testToast("Test Complete 2")
                 }
             }
 
@@ -448,7 +448,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         if (query == null) {
             listener.onFailure()
-            toToast("Test Failed. Theme query null")
+            testToast("Test Failed. Theme query null")
 
             return
         }
@@ -460,7 +460,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     if (!documentSnapshot.exists()) {
                         Log.d("Firestore", "Theme document snapshot DNE.")
 
-                        toToast("Test Failed. Theme doc DNE")
+                        testToast("Test Failed. Theme doc DNE")
 
                     } else {
                         val uuid = documentSnapshot.reference.id
@@ -477,7 +477,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 tempTheme.buyCredits = map["buyCredits"] as Long
                             }
 
-                            toToast("Test Success. Created Theme Model")
+                            testToast("Test Success. Created Theme Model")
 
                             globalPreferencesViewModel?.let { globalPreferencesViewModel ->
                                 val customTheme =
@@ -495,12 +495,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                         list.invalidate()
                                     }
 
-                                    toToast("Test Success. Created Theme View")
+                                    testToast("Test Success. Created Theme View")
 
                                 } catch (e: IllegalStateException) {
                                     e.printStackTrace()
 
-                                    toToast("Test Failed. Error creating Theme View")
+                                    testToast("Test Failed. Error creating Theme View")
                                 }
                             }
                         }
@@ -508,7 +508,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             Log.d("Firestore", "Error CREATING Theme Model!")
                             e.printStackTrace()
 
-                            toToast("Test Failed. Error creating Theme Model")
+                            testToast("Test Failed. Error creating Theme Model")
                         }
                     }
                 }
@@ -516,14 +516,14 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             .addOnFailureListener {
             listener.onFailure()
 
-                toToast("Test Failure. Create Theme Model/Views")
+                testToast("Test Failure. Create Theme Model/Views")
             }
             .addOnCompleteListener {
                 listener.onComplete()
                 if (list.childCount <= 1) { list.visibility = GONE }
                 else { list.showLabel(VISIBLE) }
 
-                toToast("Test Complete. Create Theme Model/Views")
+                testToast("Test Complete. Create Theme Model/Views")
             }
     }
 
@@ -537,7 +537,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         if (query == null) {
             listener.onFailure()
 
-            toToast("Test Failed. Bundle query null")
+            testToast("Test Failed. Bundle query null")
 
             return
         }
@@ -550,7 +550,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     if (!documentSnapshot.exists()) {
                         Log.d("Firestore", "Bundle document snapshot DNE.")
 
-                        toToast("Test Failed. Bundle doc DNE")
+                        testToast("Test Failed. Bundle doc DNE")
 
                         continue
                     }
@@ -575,7 +575,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 tempBundle.buyCredits = map["buyCredits"] as Long
                             }
 
-                            toToast("Test Success. Created Temp Bundle Model")
+                            testToast("Test Success. Created Temp Bundle Model")
 
                             val customThemes = ArrayList<ThemeModel>()
                             for (themeID in themeIDs) {
@@ -594,12 +594,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                         list.invalidate()
                                     }
 
-                                    toToast("Test Success. Created Bundle View")
+                                    testToast("Test Success. Created Bundle View")
 
                                 } catch (e: IllegalStateException) {
                                     e.printStackTrace()
 
-                                    toToast("Test Failed. Error creating Bundle View")
+                                    testToast("Test Failed. Error creating Bundle View")
 
                                 }
                             }
@@ -609,7 +609,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             Log.d("Firestore", "Error CREATING Bundle Modal!")
                             e.printStackTrace()
 
-                            toToast("Test Failure. Create Bundle Model")
+                            testToast("Test Failure. Create Bundle Model")
 
                         }
 
@@ -620,7 +620,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             .addOnFailureListener {
                 listener.onFailure()
 
-                toToast("Test Failure. Create Bundle Model/Views")
+                testToast("Test Failure. Create Bundle Model/Views")
 
             }
             .addOnCompleteListener {
@@ -628,7 +628,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 else { list.showLabel(VISIBLE) }
                 listener.onComplete()
 
-                toToast("Test Complete. Create Bundle Model/Views")
+                testToast("Test Complete. Create Bundle Model/Views")
             }
     }
 
@@ -671,14 +671,14 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 object : OnFirestoreProcessListener() {
                                     override fun onSuccess() {
                                         onPurchaseSuccessAnimation(marketplaceBundleView, list)
-                                        toToast("Test Success 3")
+                                        testToast("Test Success 3")
                                     }
 
                                     override fun onFailure() {
                                         Log.d("Firestore",
                                             "Could not add/retrieve purchase document!")
 
-                                        toToast("Test Failure 3")
+                                        testToast("Test Failure 3")
                                     }
                                 })
                         } catch (e: Exception) { e.printStackTrace() }
@@ -703,7 +703,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     override fun onComplete() {
                         Log.d("Bundle", "Bundle process completed.")
 
-                        toToast("Test Complete 3")
+                        testToast("Test Complete 3")
                     }
                 }
             try { removeCredits(marketplaceBundleView.creditCost, buyButtonCallback) }
@@ -739,7 +739,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 override fun onSuccess() {
                                     onPurchaseSuccessAnimation(marketplaceItemView, list)
 
-                                    toToast("Test Success 4")
+                                    testToast("Test Success 4")
                                 }
 
                                 override fun onFailure() {
@@ -759,7 +759,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             Toast.LENGTH_SHORT).show()
                         }
                         catch (e: IllegalStateException) { e.printStackTrace() }
-
                     }
 
                     override fun onFailure() {
@@ -774,7 +773,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     override fun onComplete() {
                         Log.d("Bundle", "Single theme process completed.")
 
-                        toToast("Test Complete 4")
+                        testToast("Test Complete 4")
                     }
                 }
             try { removeCredits(marketplaceItemView.creditCost, buyButtonCallback) }
@@ -835,7 +834,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     }
                 })
         } catch (e: IllegalStateException) {
-            toToast("Failed to load rewarded ad.")
+            testToast("Failed to load rewarded ad.")
         }
     }
 
@@ -870,13 +869,20 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    fun toToast(message: String) {
-        scopeMain?.launch {
-            try {
-                Toast.makeText(requireActivity(),
-                    message,
-                    Toast.LENGTH_SHORT).show()
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }?.start()
+    fun testToast(message: String) {
+        val enabled = false
+        if(enabled) {
+            scopeMain?.launch {
+                try {
+                    Toast.makeText(
+                        requireActivity(),
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } catch (e: IllegalStateException) {
+                    e.printStackTrace()
+                }
+            }?.start()
+        }
     }
 }

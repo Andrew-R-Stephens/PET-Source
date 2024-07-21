@@ -216,9 +216,8 @@ abstract class ItemStoreFragment : CodexFragment() {
     protected fun addPaginatorIcon(scrollViewPaginator: GridLayout, icon: Int?) {
         val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
-        val inflater = layoutInflater
         val equipmentView =
-            inflater.inflate(R.layout.item_itemstore_scrollview_paginator_icon, null) as AppCompatImageView
+            layoutInflater.inflate(R.layout.item_itemstore_scrollview_paginator_icon, null) as AppCompatImageView
         val param = GridLayout.LayoutParams()
         param.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
         param.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
