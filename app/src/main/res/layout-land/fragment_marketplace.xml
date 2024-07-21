@@ -37,11 +37,11 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         app:layout_constrainedWidth="true"
-        app:layout_constraintWidth_percent=".5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout82"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider">
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintWidth_percent=".4">
 
         <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
             android:id="@+id/layout_account_requestlogin"

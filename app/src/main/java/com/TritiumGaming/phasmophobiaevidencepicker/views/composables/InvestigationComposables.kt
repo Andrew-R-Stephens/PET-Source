@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +43,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Preview
@@ -96,11 +98,11 @@ fun ResetButton(
 }
 
 @Composable
+@Preview
 fun CollapseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    isCollapsedState: StateFlow<Boolean>,
-    orientation: Int = ORIENTATION_PORTRAIT
+    isCollapsedState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
     val collapsedState by isCollapsedState.collectAsState()
 
@@ -118,23 +120,24 @@ fun CollapseButton(
     Box(
         modifier = modifier
             .size(48.dp)
-            .border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
+            //.border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
             .clickable {
                 onClick()
             }
     ) {
-        val orientationRotate = when(orientation) {
+
+        val orientationRotate = when(LocalConfiguration.current.orientation) {
             ORIENTATION_PORTRAIT -> 90
             ORIENTATION_LANDSCAPE -> 180
             else -> 0
         }
 
         Image(
-            painterResource(id = R.drawable.ic_arrow_fill_right),
+            painterResource(id = R.drawable.ic_arrow_chevron_right),
             contentDescription = "Reset Drawable",
             colorFilter = ColorFilter.tint(Color(foregroundColor)),
             modifier = Modifier
-                .fillMaxSize(.55f)
+                .fillMaxSize(/*.55f*/)
                 .align(Alignment.Center)
                 .clip(RectangleShape)
                 .rotate(orientationRotate + (rotation * 180f))

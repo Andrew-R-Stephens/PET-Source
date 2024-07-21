@@ -26,13 +26,6 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonReset = view.findViewById<ComposeView>(R.id.button_reset)
-        buttonReset.setContent {
-            ResetButton(
-                onClick = { reset() }
-            )
-        }
-
     }
 
     private fun createSanityRunnable() {

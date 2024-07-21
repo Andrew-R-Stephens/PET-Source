@@ -12,19 +12,20 @@
         android:id="@+id/layout_evidence_tool_wrapper"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:animateLayoutChanges="true"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout41"
+        app:layout_constraintBottom_toTopOf="@+id/sanityToolbarComposable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!--
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout41"
+        android:id="@+id/sanityToolbarComposable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
@@ -67,6 +68,18 @@
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    -->
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/sanityToolbarComposable"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_sanity_tool"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityToolComposablesKt.InvestigationToolbar" />
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
         android:id="@+id/layout_sanity_tool"

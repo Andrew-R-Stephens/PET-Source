@@ -188,8 +188,7 @@ fun SecondarySelector(
             navDeepLinkBuilder
                 .setDestination(navigationRoute)
                 .createPendingIntent().send()
-        },
-        /*modifier = modifier.padding(4.dp)*/
+        }
     ) { contentView() }
 }
 
@@ -209,8 +208,6 @@ fun SelectorContent(
 
         }
     }
-
-
 }
 
 @Composable
@@ -243,20 +240,4 @@ fun SelectorContent(
     composable: @Composable () -> Unit
 ) {
     composable()
-}
-
-fun setIconDropdownMenu(
-    recipientView: ComposeView?,
-    primaryContent: Any,
-    @NavigationRes navGraphId: Int,
-    secondaryContentArray: Array<Any>,
-    @IntegerRes navigationRoutes: Array<Int>
-) {
-    recipientView?.setContent {
-        IconDropdownMenu(
-            primaryContent = primaryContent,
-            navGraphId = navGraphId,
-            secondaryContentArray = secondaryContentArray,
-            navigationRoutes = navigationRoutes)
-    }
 }
