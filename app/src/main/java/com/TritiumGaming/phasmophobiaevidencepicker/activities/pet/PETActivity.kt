@@ -105,17 +105,17 @@ abstract class PETActivity : AppCompatActivity() {
 
     /** @param language The desired new language */
     fun setLanguage(language: String): Boolean {
-        var isChanged = false
+        val languageLocale = Locale(language)
+        val currentLocale = Locale.getDefault()
 
-        val defaultLocale = Locale.getDefault()
-        val currentLocale = Locale(language)
-        if (!(defaultLocale.language.equals(currentLocale.language, ignoreCase = true))) {
+        var isChanged = false
+        if (!(currentLocale.language.equals(languageLocale.language, ignoreCase = true))) {
             isChanged = true
         }
 
-        Locale.setDefault(currentLocale)
+        Locale.setDefault(languageLocale)
         val config = resources.configuration
-        config.setLocale(currentLocale)
+        config.setLocale(languageLocale)
         resources.updateConfiguration(config, resources.displayMetrics)
 
         return isChanged

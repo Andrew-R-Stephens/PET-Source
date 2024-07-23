@@ -119,6 +119,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         }
     }
 
+    /*
     public override fun refreshFragment() {
         var ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) {
@@ -128,6 +129,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         ft = parentFragmentManager.beginTransaction()
         ft.attach(this@AccountFragment).commitNow()
     }
+    */
 
 
     override fun onSignInAccountSuccess() {

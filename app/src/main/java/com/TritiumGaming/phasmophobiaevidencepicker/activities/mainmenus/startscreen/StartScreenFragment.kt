@@ -2,6 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.starts
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,6 +22,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startsc
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DropdownClickPair
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DropdownNavigationPair
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.LanguageIcon
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
@@ -82,18 +85,52 @@ class StartScreenFragment : MainMenuFragment() {
                 R.drawable.ic_menu,
                 R.navigation.titlescreen_navgraph,
                 arrayOf(
+                    DropdownNavigationPair(R.drawable.ic_info, R.id.appInfoFragment),
+                    DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
+                    DropdownNavigationPair(translationIcon, R.id.appLanguageFragment),
+                    DropdownClickPair(R.drawable.ic_discord) {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW, Uri.parse(
+                                    "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
+                                )
+                            )
+                        )
+                    }
+                )
+            ) { false }
+
+            /*
+            IconDropdownMenu(
+                R.drawable.ic_menu,
+                R.navigation.titlescreen_navgraph,
+                arrayOf(
                     R.drawable.ic_info,
                     R.drawable.ic_gear,
-                    translationIcon
+                    translationIcon,
+                    R.drawable.ic_discord
                 ),
                 arrayOf(
                     R.id.appInfoFragment,
                     R.id.appSettingsFragment,
-                    R.id.appLanguageFragment)
+                    R.id.appLanguageFragment,
+                    R.id.)
             ) { false }
+            */
         }
 
         buttonInfo.setContent {
+
+            IconDropdownMenu(
+                AccountIconView(requireContext()),
+                R.navigation.titlescreen_navgraph,
+                arrayOf(
+                    DropdownNavigationPair(R.drawable.ic_person, R.id.accountOverviewFragment),
+                        DropdownNavigationPair(R.drawable.ic_store, R.id.marketplaceFragment)
+                )
+            )
+
+            /*
             IconDropdownMenu(
                 AccountIconView(requireContext()),
                 R.navigation.titlescreen_navgraph,
@@ -104,6 +141,7 @@ class StartScreenFragment : MainMenuFragment() {
                     R.id.accountOverviewFragment,
                     R.id.marketplaceFragment)
             )
+            */
         }
 
         buttonMsgInbox?.setContent { NewsAlert(false) }
@@ -190,9 +228,11 @@ class StartScreenFragment : MainMenuFragment() {
 
         // REQUEST REVIEW LISTENER
         globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            if (globalPreferencesViewModel.reviewRequestData.timesOpened > 2) {
+            if (globalPreferencesViewModel.reviewRequestData.canShowReviewButton()) {
                 buttonReview.setOnClickListener {
-                    try { showReviewPopup(requireView()) }
+                    try {
+                        showReviewPopup(requireView())
+                    }
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }
             } else { disableButton() }
@@ -210,13 +250,14 @@ class StartScreenFragment : MainMenuFragment() {
                     globalPreferencesViewModel.reviewRequestData.wasRequested = true
                     try {
                         requireActivity().runOnUiThread {
-                            try { showReviewPopup(requireView()) }
+                            try {
+                                showReviewPopup(requireView())
+                            }
                             catch (e: IllegalStateException) { e.printStackTrace() }
                         }
                         globalPreferencesViewModel.saveToFile(requireContext())
-                    } catch (e: IllegalStateException) {
-                        e.printStackTrace()
                     }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
                 }.start()
             } else {
                 Log.d("Review", "Review Request Denied")
@@ -306,9 +347,6 @@ class StartScreenFragment : MainMenuFragment() {
                     else "could not be updated in time." } Loading completed.")
 
                 try {
-                    /*if (!newsLetterViewModel.init(requireContext())) {
-                        Log.e("MessageCenter", "Initialization failed.")
-                    }*/
                     newsLetterViewModel.compareAllInboxDates()
                     if (newsLetterViewModel.requiresNotify) {
                         requireActivity().runOnUiThread { this.doNewsletterNotification() }
@@ -341,7 +379,6 @@ class StartScreenFragment : MainMenuFragment() {
         }
 
         stopLoadNewsletterThread()
-
 
         super.onPause()
     }

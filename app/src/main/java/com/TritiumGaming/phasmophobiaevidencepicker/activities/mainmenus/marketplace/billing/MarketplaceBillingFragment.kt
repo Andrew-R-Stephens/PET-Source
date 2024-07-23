@@ -14,10 +14,10 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.BillableItemView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.MarketBillableView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketplaceMtxItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketMicroTransactionModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
@@ -48,7 +48,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 
-class MarketplaceBillingFragment : MainMenuFragment() {
+class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
     private var billingClient: BillingClient? = null
 
     private var accountCreditsTextView: AppCompatTextView? = null
@@ -58,7 +58,7 @@ class MarketplaceBillingFragment : MainMenuFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_marketplace_mtx, container, false)
+        return inflater.inflate(R.layout.fragment_marketplace_billables, container, false)
     }
 
     @SuppressLint("ResourceType")
@@ -135,7 +135,7 @@ class MarketplaceBillingFragment : MainMenuFragment() {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     Log.d("Billing", "Billing setup finished successfully!")
                     // The BillingClient is ready. You can query purchases here.
-                    try { queryMarketplaceItems() }
+                    try { queryMicroTransactionItems() }
                     catch (e: Exception) { e.printStackTrace() }
                 } else { Log.d("Billing", ("Billing setup unsuccessful. " +
                             "Code: ${billingResult.responseCode} " +
@@ -166,32 +166,45 @@ class MarketplaceBillingFragment : MainMenuFragment() {
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK &&
             list?.isNotEmpty() == true) {
 
-            Log.d("Billing", "Processing OK purchase")
+            confirmPurchases(list)
 
-            for (purchase in list) {
-                if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED &&
-                    !purchase.isAcknowledged) {
-                    try { requireActivity().runOnUiThread {
-                        Toast.makeText(
-                            requireActivity(),
-                            getString(R.string.alert_marketplace_purchase_success_generic),
-                            Toast.LENGTH_LONG).show()
-                    }
-                    } catch (e: IllegalStateException) { e.printStackTrace() }
-
-                    val productString = StringBuilder()
-                    for (product in purchase.products) { productString.append(product).append("\n") }
-
-                    Log.d("Billing", "Purchase successful: $productString")
-
-                    //Consume item process
-                    handlePurchase(purchase)
-                } else { Log.d("Billing", "Pending error: " + purchase.purchaseState) }
-            }
         } else { Log.d("Billing", "Purchase error: Purchases list is empty") }
     }
 
-    private fun handlePurchase(purchase: Purchase) {
+    private fun confirmPurchases(list: List<Purchase>) {
+        Log.d("Billing", "Processing OK purchase")
+
+        for (purchase in list) {
+            if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED &&
+                !purchase.isAcknowledged
+            ) {
+                try {
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(
+                            requireActivity(),
+                            getString(R.string.alert_marketplace_purchase_success_generic),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } catch (e: IllegalStateException) { e.printStackTrace() }
+
+                val productString = StringBuilder()
+                for (product in purchase.products) {
+                    productString.append(product).append("\n")
+                }
+
+                Log.d("Billing", "Purchase successful: $productString")
+
+                //Consume item process
+                consumePurchase(purchase)
+
+            } else {
+                Log.d("Billing", "Pending error: " + purchase.purchaseState)
+            }
+        }
+    }
+
+    private fun consumePurchase(purchase: Purchase) {
         val consumeParams =
             ConsumeParams.newBuilder()
                 .setPurchaseToken(purchase.purchaseToken)
@@ -224,6 +237,7 @@ class MarketplaceBillingFragment : MainMenuFragment() {
                                             override fun onFailure() {
                                                 Log.d("Billable",
                                                     "Reward adding failed!") } }
+
                                         snapshot?.documents?.let { snapshotDocuments ->
                                         for (documentSnapshot in snapshotDocuments) {
                                             val rewardItem = documentSnapshot.get(
@@ -271,7 +285,7 @@ class MarketplaceBillingFragment : MainMenuFragment() {
     }
 
     @Throws(Exception::class)
-    fun queryMarketplaceItems() {
+    fun queryMicroTransactionItems() {
         Log.d("Billing", "Obtaining list of Marketplace items from database...")
 
         var billableQuery: Task<QuerySnapshot>? = null
@@ -349,11 +363,11 @@ class MarketplaceBillingFragment : MainMenuFragment() {
 
         for (productDetails in productDetailsList) {
             val mtxItem =
-                MarketplaceMtxItemModel(productDetails!!)
+                MarketMicroTransactionModel(productDetails!!)
             Log.d("Billing", "Adding $mtxItem")
 
             try {
-                val marketplaceMtxView = buildMarketplaceMtxView(mtxItem)
+                val marketplaceMtxView = buildMicroTransactionView(mtxItem)
                 marketItemsMasterList?.addView(marketplaceMtxView)
             } catch (e: Exception) {
                 Log.d("Billing", "Failed! ")
@@ -369,12 +383,12 @@ class MarketplaceBillingFragment : MainMenuFragment() {
         }
     }
 
-    private fun buildMarketplaceMtxView(mtxItem: MarketplaceMtxItemModel): BillableItemView {
-        val marketplaceMtxView = BillableItemView(requireContext(), null)
+    private fun buildMicroTransactionView(mtxItem: MarketMicroTransactionModel): MarketBillableView {
+        val microTransationView = MarketBillableView(requireContext(), null)
 
-        marketplaceMtxView.setBillableItem(mtxItem)
-        marketplaceMtxView.setBuyButtonListener {
-            val item = marketplaceMtxView.getBillableItem() ?: return@setBuyButtonListener
+        microTransationView.setBillableItem(mtxItem)
+        microTransationView.setBuyButtonListener {
+            val item = microTransationView.getBillableItem() ?: return@setBuyButtonListener
             val productDetail = item.productDetails
 
             val productDetailsParamsList = ImmutableList.of(
@@ -389,8 +403,22 @@ class MarketplaceBillingFragment : MainMenuFragment() {
             // Launch the billing flow
             billingClient?.launchBillingFlow(requireActivity(), billingFlowParams)
         }
-        return marketplaceMtxView
+        return microTransationView
     }
+
+
+    override fun onSignInAccountSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSignOutAccountSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDeleteAccountSuccess() {
+        TODO("Not yet implemented")
+    }
+
 }
 
 

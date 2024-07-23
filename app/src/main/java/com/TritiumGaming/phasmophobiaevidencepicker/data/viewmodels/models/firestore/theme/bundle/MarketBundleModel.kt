@@ -1,17 +1,17 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketItemModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Availability
 
-class MarketThemeBundleModel: MarketplaceItemModel {
+class MarketBundleModel: MarketItemModel {
 
     constructor()
 
     constructor(buyCredits: Long? = 0, name: String? = null):
             super(buyCredits = buyCredits ?: 0, name = name)
 
-    constructor(uuid: String? = null, theme: MarketThemeBundleModel, themes: List<ThemeModel>):
+    constructor(uuid: String? = null, theme: MarketBundleModel, themes: List<ThemeModel>):
             super(uuid, theme.buyCredits, theme.name) {
                 addThemes(themes)
                 setUnlockedState()

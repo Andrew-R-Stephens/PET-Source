@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketSingleThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
-class ThemeSingleCardView : MaterialCardView {
+class MarketThemeView : MaterialCardView {
 
     constructor(context: Context) : super(context, null)
 
@@ -21,7 +21,7 @@ class ThemeSingleCardView : MaterialCardView {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
 
-    var themeModel: MarketSingleThemeModel? = null
+    var themeModel: MarketThemeModel? = null
         set(value) {
             field = value
 

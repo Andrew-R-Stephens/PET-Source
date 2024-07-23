@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.fire
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetails.OneTimePurchaseOfferDetails
 
-class MarketplaceMtxItemModel(val productDetails: ProductDetails) {
+class MarketMicroTransactionModel(val productDetails: ProductDetails) {
     private val productID: String
         get() = productDetails.productId
 
@@ -24,7 +24,7 @@ class MarketplaceMtxItemModel(val productDetails: ProductDetails) {
         }
 
     private val currencyCode: String
-        get() = purchaseDetails!!.priceCurrencyCode
+        get() = purchaseDetails?.priceCurrencyCode ?: "USD"
 
     override fun toString(): String {
         return productID + " " + name + " " + purchaseDetails +

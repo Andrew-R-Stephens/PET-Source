@@ -22,10 +22,10 @@ import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.ThemeBundleCardView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.ThemeSingleCardView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketThemeBundleModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketSingleThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
@@ -72,10 +72,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private var masterItemsList: LinearLayout? = null
 
-    private var bundleMarketplaceList: MarketplaceListLayout? = null
-    private var prestigeMarketplaceList: MarketplaceListLayout? = null
-    private var eventMarketplaceList: MarketplaceListLayout? = null
-    private var communityMarketplaceList: MarketplaceListLayout? = null
+    private var bundleList: MarketplaceListLayout? = null
+    private var themePrestigeList: MarketplaceListLayout? = null
+    private var themeEventList: MarketplaceListLayout? = null
+    private var themeCommunityList: MarketplaceListLayout? = null
 
     private var accountCreditsTextView: AppCompatTextView? = null
     private var marketplaceErrorTextView: AppCompatTextView? = null
@@ -134,7 +134,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         watchAdButton.setOnClickListener { showRewardedAd() }
 
-        buyButton.setOnClickListener { _: View? -> this.gotoBillingMarketplace() }
+        buyButton.setOnClickListener { this.gotoBillingMarketplace() }
 
         // CANCEL BUTTON
         backButton.setOnClickListener { v: View? ->
@@ -144,7 +144,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         if (currentFirebaseUser == null) {
             marketProgressBar?.visibility = GONE
-            marketplaceErrorTextView?.visibility = VISIBLE
+            // marketplaceErrorTextView?.visibility = VISIBLE
         }
 
         obtainCreditsTextView?.enableAdWatchButton(false)
@@ -178,7 +178,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     accountCreditsTextView?.text = userCredits.toString()
                 }
                 .addOnFailureListener { e: Exception ->
-                    Log.e("Firestore", "Could get user's account credit count!")
+                    Log.e("Firestore", "Could not get user's account credit count!")
                     e.printStackTrace()
                 }
 
@@ -270,24 +270,24 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun revalidateBundles() {
-        bundleMarketplaceList?.validateChildren()
+        bundleList?.validateChildren()
     }
 
     private fun revalidateThemes() {
-        prestigeMarketplaceList?.validateChildren()
-        eventMarketplaceList?.validateChildren()
-        communityMarketplaceList?.validateChildren()
+        themePrestigeList?.validateChildren()
+        themeEventList?.validateChildren()
+        themeCommunityList?.validateChildren()
     }
 
     private fun populateBundlesList() {
-        try { bundleMarketplaceList = MarketplaceListLayout(requireContext()) }
+        try { bundleList = MarketplaceListLayout(requireContext()) }
         catch (e: IllegalStateException) { e.printStackTrace() }
 
-        bundleMarketplaceList?.let { list ->
+        bundleList?.let { list ->
             list.setLabel("Theme Bundles")
             list.showLabel(GONE)
 
-            masterItemsList?.addView(bundleMarketplaceList)
+            masterItemsList?.addView(bundleList)
 
             val listener: OnFirestoreProcessListener =
             object : OnFirestoreProcessListener() {
@@ -304,21 +304,19 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     testToast("Test Failure 1")
 
-                    /*
                     try {
                         Toast.makeText(requireActivity(),
                             getString(R.string.alert_marketplace_access_failure),
                             Toast.LENGTH_SHORT).show()
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
-                    */
                 }
 
                 override fun onSuccess() {
                     if (!thrown) thrown = true
 
                     if (labelShown) {
-                        bundleMarketplaceList?.showLabel(VISIBLE)
+                        bundleList?.showLabel(VISIBLE)
                     }
 
                     marketProgressBar?.visibility = GONE
@@ -330,7 +328,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     if (!thrown) thrown = true
 
                     if (labelShown) {
-                        bundleMarketplaceList?.showLabel(VISIBLE)
+                        bundleList?.showLabel(VISIBLE)
                     }
 
                     marketProgressBar?.visibility = GONE
@@ -342,8 +340,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             try {
                 globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
                     if (isNetworkAvailable(requireContext(), networkPreference)) {
-                        addBundles(list, null, null,
-                            null, null, listener)
+                        addBundles(list, listener = listener)
                     }
                     else {
                         listener.onFailure()
@@ -359,22 +356,22 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private fun populateThemesLists() {
         try {
-            prestigeMarketplaceList = MarketplaceListLayout(requireContext())
-            eventMarketplaceList = MarketplaceListLayout(requireContext())
-            communityMarketplaceList = MarketplaceListLayout(requireContext())
+            themePrestigeList = MarketplaceListLayout(requireContext())
+            themeEventList = MarketplaceListLayout(requireContext())
+            themeCommunityList = MarketplaceListLayout(requireContext())
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
-        if (prestigeMarketplaceList == null || eventMarketplaceList == null ||
-            communityMarketplaceList == null) { return }
+        if (themePrestigeList == null || themeEventList == null ||
+            themeCommunityList == null) { return }
 
-        prestigeMarketplaceList?.setLabel("Prestige Themes")
-        eventMarketplaceList?.setLabel("Event Themes")
-        communityMarketplaceList?.setLabel("Community Themes")
+        themePrestigeList?.setLabel("Prestige Themes")
+        themeEventList?.setLabel("Event Themes")
+        themeCommunityList?.setLabel("Community Themes")
 
         masterItemsList?.let { masterList ->
-            masterList.addView(prestigeMarketplaceList)
-            masterList.addView(eventMarketplaceList)
-            masterList.addView(communityMarketplaceList)
+            masterList.addView(themePrestigeList)
+            masterList.addView(themeEventList)
+            masterList.addView(themeCommunityList)
         }
 
         val processCompleteListener: OnFirestoreProcessListener =
@@ -422,15 +419,15 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 return
             }
 
-            prestigeMarketplaceList?.let { list ->
+            themePrestigeList?.let { list ->
                 addThemes(list, "group", "Prestige",
                     "priority", Query.Direction.ASCENDING, processCompleteListener)
             }
-            eventMarketplaceList?.let { list ->
+            themeEventList?.let { list ->
                 addThemes(list, "group", "Event",
                     null, null, processCompleteListener)
             }
-            communityMarketplaceList?.let { list ->
+            themeCommunityList?.let { list ->
                 addThemes(list, "group", "Community",
                     null, null, processCompleteListener)
             }
@@ -438,8 +435,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun addThemes(
-        list: MarketplaceListLayout, field: String, value: String,
-        orderField: String?, order: Query.Direction?,
+        list: MarketplaceListLayout, field: String = "group", value: String? = null,
+        orderField: String? = null, order: Query.Direction? = null,
         listener: OnFirestoreProcessListener
     ) {
         var query: Task<QuerySnapshot>? = null
@@ -465,12 +462,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                     } else {
                         val uuid = documentSnapshot.reference.id
                         try {
-                            /*
-                            val marketSingleThemeTemp =
-                                documentSnapshot.toObject(MarketSingleThemeModel::class.java)
-                            */
 
-                            val tempTheme = MarketSingleThemeModel()
+                            val tempTheme = MarketThemeModel()
                             documentSnapshot.data?.let { map ->
                                 tempTheme.name = map["name"] as String?
                                 tempTheme.group = map["group"] as String?
@@ -484,7 +477,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                     globalPreferencesViewModel.colorThemeControl.getThemeByUUID(uuid)
 
                                 val marketSingleThemeFinal =
-                                    MarketSingleThemeModel(uuid, tempTheme, customTheme)
+                                    MarketThemeModel(uuid, tempTheme, customTheme)
 
                                 try {
                                     val marketplaceItem =
@@ -528,10 +521,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun addBundles(
-        list: MarketplaceListLayout, field: String?, value: String?,
-        orderField: String?, order: Query.Direction?, listener: OnFirestoreProcessListener) {
+        list: MarketplaceListLayout, listener: OnFirestoreProcessListener) {
+
         var query: Task<QuerySnapshot>? = null
-        try { query = getBundleWhere(field, value, orderField, order) }
+        try { query = getBundleWhere() }
         catch (e: Exception) { e.printStackTrace() }
 
         if (query == null) {
@@ -566,10 +559,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         }
 
                         try {
-                            /*val tempBundle = documentSnapshot.toObject(
-                                MarketThemeBundleModel::class.java)*/
 
-                            val tempBundle = MarketThemeBundleModel()
+                            val tempBundle = MarketBundleModel()
                             documentSnapshot.data?.let { map ->
                                 tempBundle.name = map["name"] as String?
                                 tempBundle.buyCredits = map["buyCredits"] as Long
@@ -581,7 +572,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             for (themeID in themeIDs) {
                                 globalPreferencesViewModel?.colorThemeControl?.let { control ->
                                     customThemes.add(control.getThemeByUUID(themeID)) } }
-                            val finalBundle = MarketThemeBundleModel(docId, tempBundle, customThemes)
+                            val finalBundle = MarketBundleModel(docId, tempBundle, customThemes)
                             if (!finalBundle.isUnlocked) {
 
                                 try {
@@ -648,18 +639,24 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun buildBundleView(
-        list: MarketplaceListLayout, bundleThemes: MarketThemeBundleModel
-    ): ThemeBundleCardView? {
-        val marketplaceBundleView: ThemeBundleCardView
-        try { marketplaceBundleView = ThemeBundleCardView(requireContext(), null) }
-        catch (e: IllegalStateException) { e.printStackTrace()
-            return null }
+        list: MarketplaceListLayout, bundleThemes: MarketBundleModel
+    ): MarketBundleView? {
 
-        marketplaceBundleView.bundle = bundleThemes
+        val bundleView: MarketBundleView
+        try {
+            bundleView = MarketBundleView(requireContext(), null) }
+        catch (e: IllegalStateException) { e.printStackTrace()
+            return null
+        }
+
+        bundleView.bundle = bundleThemes
 
         val buyButtonListener = View.OnClickListener { _: View? ->
+
             val buyButtonCallback: OnFirestoreProcessListener =
+
                 object : OnFirestoreProcessListener() {
+
                     override fun onSuccess() {
                         val uuids: ArrayList<String> = ArrayList()
 
@@ -670,7 +667,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             addUnlockedDocuments(uuids, "Theme Bundle",
                                 object : OnFirestoreProcessListener() {
                                     override fun onSuccess() {
-                                        onPurchaseSuccessAnimation(marketplaceBundleView, list)
+                                        onPurchaseSuccessAnimation(bundleView, list)
                                         testToast("Test Success 3")
                                     }
 
@@ -706,26 +703,29 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         testToast("Test Complete 3")
                     }
                 }
-            try { removeCredits(marketplaceBundleView.creditCost, buyButtonCallback) }
+
+            try {
+                removeCredits(bundleView.creditCost, buyButtonCallback)
+            }
             catch (e: Exception) { throw RuntimeException(e) }
         }
 
-        marketplaceBundleView.setBuyButtonListener(buyButtonListener)
+        bundleView.setBuyButtonListener(buyButtonListener)
 
-        return marketplaceBundleView
+        return bundleView
     }
 
 
     @Throws(IllegalStateException::class)
     private fun buildThemeView(
-        list: MarketplaceListLayout, marketSingleTheme: MarketSingleThemeModel
-    ): ThemeSingleCardView {
+        list: MarketplaceListLayout, singleThemeModel: MarketThemeModel
+    ): MarketThemeView {
 
-        val marketplaceItemView = ThemeSingleCardView(
-            ContextThemeWrapper(requireContext(), marketSingleTheme.style),
-            null, marketSingleTheme.style)
+        val themeView = MarketThemeView(
+            ContextThemeWrapper(requireContext(), singleThemeModel.style),
+            null, singleThemeModel.style)
 
-        marketplaceItemView.themeModel = marketSingleTheme
+        themeView.themeModel = singleThemeModel
 
         val buyButtonListener = View.OnClickListener {
             val buyButtonCallback: OnFirestoreProcessListener =
@@ -737,7 +737,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             object : OnFirestoreProcessListener() {
                                 override fun onSuccess() {
-                                    onPurchaseSuccessAnimation(marketplaceItemView, list)
+                                    onPurchaseSuccessAnimation(themeView, list)
 
                                     testToast("Test Success 4")
                                 }
@@ -749,23 +749,22 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             }
 
                         try {
-                            addUnlockDocument(marketSingleTheme.uuid.toString(),
+                            addUnlockDocument(singleThemeModel.uuid.toString(),
                                 "Single Theme", purchaseListener) }
                         catch (e: Exception) { e.printStackTrace() }
 
                         try {
-                            Toast.makeText(requireActivity(),
-                            getString(R.string.alert_marketplace_purchase_success_skin),
-                            Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireActivity(), getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
                         }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
 
                     override fun onFailure() {
                         try {
-                            Toast.makeText(requireActivity(),
-                            getString(R.string.alert_marketplace_purchase_failure_skin_credits),
-                            Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireActivity(), getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                                Toast.LENGTH_SHORT).show()
                         }
                         catch (e: IllegalStateException) { e.printStackTrace() }
                     }
@@ -776,13 +775,13 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         testToast("Test Complete 4")
                     }
                 }
-            try { removeCredits(marketplaceItemView.creditCost, buyButtonCallback) }
+            try { removeCredits(themeView.creditCost, buyButtonCallback) }
             catch (e: Exception) { throw RuntimeException(e) }
         }
 
-        marketplaceItemView.setBuyButtonListener(buyButtonListener)
+        themeView.setBuyButtonListener(buyButtonListener)
 
-        return marketplaceItemView
+        return themeView
     }
 
     override fun onSignInAccountSuccess() {
@@ -843,9 +842,10 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             rewardedAd.show(requireActivity()) { rewardItem: RewardItem ->
                 // Handle the reward.
                 Log.d("RewardedAd", "The user earned the reward.")
-                val rewardAmount = rewardItem.amount
 
-                try { addCredits(rewardAmount.toLong()) }
+                try {
+                    addCredits(rewardItem.amount.toLong())
+                }
                 catch (e: Exception) { e.printStackTrace() }
 
                 // A watched ad cannot be re-watched, so chamber another ad
@@ -860,9 +860,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {
-                        Toast.makeText(requireActivity(),
-                            getString(R.string.alert_internet_unavailable),
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireActivity(), getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -874,14 +873,9 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         if(enabled) {
             scopeMain?.launch {
                 try {
-                    Toast.makeText(
-                        requireActivity(),
-                        message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
+                    Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
                 }
+                catch (e: IllegalStateException) { e.printStackTrace() }
             }?.start()
         }
     }

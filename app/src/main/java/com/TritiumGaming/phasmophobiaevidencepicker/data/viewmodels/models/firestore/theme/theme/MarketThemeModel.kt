@@ -1,10 +1,10 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketplaceItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.MarketItemModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel.Companion.defaultTheme
 
-class MarketSingleThemeModel : MarketplaceItemModel {
+class MarketThemeModel : MarketItemModel {
 
     private var theme: ThemeModel? = null
 
@@ -25,7 +25,7 @@ class MarketSingleThemeModel : MarketplaceItemModel {
         this.group = group
     }
 
-    constructor(uuid: String?, marketTheme: MarketSingleThemeModel, theme: ThemeModel?):
+    constructor(uuid: String?, marketTheme: MarketThemeModel, theme: ThemeModel?):
             super(uuid, marketTheme.buyCredits, marketTheme.name) {
         this.theme = theme
         this.group = marketTheme.group

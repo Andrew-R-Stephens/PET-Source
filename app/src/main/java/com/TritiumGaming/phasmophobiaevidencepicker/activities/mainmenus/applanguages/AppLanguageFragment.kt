@@ -86,10 +86,11 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun configureLanguage() {
-        globalPreferencesViewModel?.let{ globalPreferencesViewModel ->
-            try { (requireActivity() as MainMenuActivity).setLanguage(
-                    globalPreferencesViewModel.currentLanguageAbbr)
-            } catch (e: IllegalStateException) { e.printStackTrace() }
+        globalPreferencesViewModel?.currentLanguageAbbr?.let{ currLangAbbr ->
+            try {
+                (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
+            }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 

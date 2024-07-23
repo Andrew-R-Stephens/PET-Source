@@ -1,5 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.widget.PopupWindow
 import androidx.activity.OnBackPressedCallback
@@ -10,6 +11,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.PermissionsV
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.GlobalPreferencesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.google.firebase.analytics.FirebaseAnalytics
+
 
 abstract class PETFragment : Fragment {
 
@@ -32,7 +34,8 @@ abstract class PETFragment : Fragment {
 
     protected fun initGlobalPreferencesViewModel() {
         if (globalPreferencesViewModel == null) {
-            try { globalPreferencesViewModel =
+            try {
+                globalPreferencesViewModel =
                     ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
                 //globalPreferencesViewModel?.init(requireContext())
             } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -41,8 +44,10 @@ abstract class PETFragment : Fragment {
 
     private fun initPermissionsViewModel() {
         if (permissionsViewModel == null) {
-            permissionsViewModel =
-                ViewModelProvider(requireActivity())[PermissionsViewModel::class.java]
+            try {
+                permissionsViewModel =
+                    ViewModelProvider(requireActivity())[PermissionsViewModel::class.java]
+            } catch (e: IllegalStateException) { e.printStackTrace()}
         }
     }
 
@@ -56,11 +61,14 @@ abstract class PETFragment : Fragment {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
+    //@SuppressLint("DetachAndAttachSameFragment")
     protected open fun refreshFragment() {
-        val ft = parentFragmentManager.beginTransaction()
+        var ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
         ft.detach(this@PETFragment).commitNow()
         //ft = parentFragmentManager.beginTransaction()
+        ft = parentFragmentManager.beginTransaction()
+        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
         ft.attach(this@PETFragment).commitNow()
     }
 

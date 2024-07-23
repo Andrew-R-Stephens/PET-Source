@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.ThemeBundleCardView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.ThemeSingleCardView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
 
 class MarketplaceListLayout : LinearLayout {
     constructor(context: Context?) : super(context) { initView() }
@@ -40,8 +40,8 @@ class MarketplaceListLayout : LinearLayout {
     fun validateChildren() {
         for (i in 0 until childCount) {
             when(val child = getChildAt(i)) {
-                is ThemeSingleCardView -> child.validate()
-                is ThemeBundleCardView -> child.validate()
+                is MarketThemeView -> child.validate()
+                is MarketBundleView -> child.validate()
             }
         }
     }

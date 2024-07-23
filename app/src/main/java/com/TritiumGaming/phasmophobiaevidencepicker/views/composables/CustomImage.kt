@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -22,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
+import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 @Preview
 @Composable
@@ -33,11 +34,11 @@ fun TestLanguageIcon() {
 @Composable
 fun AccountIcon() {
     val borderColor =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
+        Color(getColorFromAttribute(LocalContext.current, R.attr.theme_colorPrimary))
     val backgroundColorResId =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.backgroundColorOnBackground))
-    val personTint =
-        Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody))
+        Color(getColorFromAttribute(LocalContext.current, R.attr.backgroundColorOnBackground))
+    /*val personTint =
+        Color(getColorFromAttribute(LocalContext.current, R.attr.textColorBody))*/
 
     val size = 48.dp
     val borderWidth = 4.dp / 200.dp * size
@@ -93,7 +94,6 @@ fun LanguageIcon() {
             contentScale = contentScale,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(4.dp)
         )
 
         Image(
@@ -103,6 +103,39 @@ fun LanguageIcon() {
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.5f)
+                .align(Alignment.BottomEnd)
+        )
+
+    }
+}
+
+@Composable
+@Preview
+fun DiscordIcon() {
+    val size = 48.dp
+
+    Box(
+        modifier = Modifier
+            .size(size)
+    ) {
+        val contentScale = ContentScale.Inside
+        val contentDescription = "Outer Box"
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_discord),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = Modifier
+                .fillMaxSize()
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_open_in_new),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = Modifier
+                .padding(4.dp)
+                .fillMaxSize(.4f)
                 .align(Alignment.BottomEnd)
         )
 

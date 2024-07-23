@@ -186,4 +186,12 @@
     <color name="black_A75">#BF000000</color>
     <color name="black_M50">#080808</color>
 
+    <color name="discord_color_blurple">#5865F2</color>
+    <color name="discord_color_green">#57F287</color>
+    <color name="discord_color_yellow">#FEE75C</color>
+    <color name="discord_color_fuchsia">#EB459E</color>
+    <color name="discord_color_red">#ED4245</color>
+    <color name="discord_color_white">#FFFFFF</color>
+    <color name="discord_color_black">#000000</color>
+
 </resources>

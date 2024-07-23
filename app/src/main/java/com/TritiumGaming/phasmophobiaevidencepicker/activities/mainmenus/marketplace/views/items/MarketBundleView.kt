@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketThemeBundleModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
-class ThemeBundleCardView : MaterialCardView {
+class MarketBundleView : MaterialCardView {
 
-    var bundle: MarketThemeBundleModel? = null
+    var bundle: MarketBundleModel? = null
         set(value) {
             field = value
 
@@ -65,7 +65,7 @@ class ThemeBundleCardView : MaterialCardView {
 
         bundle?.themes?.let { themes ->
             for (theme in themes) {
-                val card = ThemeBundleImageView(
+                val card = MarketBundleImageView(
                     ContextThemeWrapper(context, theme.style), null, theme.style)
                 card.setTheme(theme)
 
@@ -89,7 +89,7 @@ class ThemeBundleCardView : MaterialCardView {
         bundle?.let {
             for (i in 0 until themesList.childCount) {
                 val child = themesList.getChildAt(i)
-                if (child is ThemeBundleImageView) { child.validate() }
+                if (child is MarketBundleImageView) { child.validate() }
             }
 
             setCreditCost()

@@ -1,6 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme
 
-abstract class MarketplaceItemModel {
+abstract class MarketItemModel {
     var uuid: String? = null
     var name: String? = null
     var buyCredits: Long = 0L

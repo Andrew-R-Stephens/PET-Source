@@ -105,7 +105,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         val buttonReset = view.findViewById<ComposeView?>(R.id.button_reset)
         initResetButton(buttonReset)
 
-        val setupToolbar = CoroutineScope(Dispatchers.Main).launch {
+        /*
+        val setupToolbarJob = CoroutineScope(Dispatchers.Main).launch {
             val sanityToolbarComposable: ComposeView? =
                 view.findViewById(R.id.sanityToolbarComposable)
             sanityToolbarComposable?.setContent {
@@ -140,7 +141,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 )
             }
         }
-        setupToolbar.start()
+        setupToolbarJob.start()
+        */
 
         popupWindow = PopupWindow(
             RelativeLayout.LayoutParams.MATCH_PARENT,

@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketplaceMtxItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketMicroTransactionModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
-class BillableItemView : MaterialCardView {
+class MarketBillableView : MaterialCardView {
 
-    private var billableItem: MarketplaceMtxItemModel? = null
+    private var billableItem: MarketMicroTransactionModel? = null
 
     constructor(context: Context) : this(context, null) { init(context) }
 
@@ -42,7 +42,7 @@ class BillableItemView : MaterialCardView {
         clipToPadding = false
     }
 
-    fun setBillableItem(billableItem: MarketplaceMtxItemModel?) {
+    fun setBillableItem(billableItem: MarketMicroTransactionModel?) {
         this.billableItem = billableItem
 
         update()
@@ -80,7 +80,7 @@ class BillableItemView : MaterialCardView {
         buyButton?.setOnClickListener(buyButtonListener)
     }
 
-    fun getBillableItem(): MarketplaceMtxItemModel? {
+    fun getBillableItem(): MarketMicroTransactionModel? {
         return billableItem
     }
 }

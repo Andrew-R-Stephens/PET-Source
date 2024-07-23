@@ -15,10 +15,10 @@ class FirestoreMerchandiseBundle {
             get() = merchandiseDocument.collection(COLLECTION_BUNDLES)
 
         fun getBundleWhere(
-            filterField: String?,
-            value: String?,
-            orderField: String?,
-            order: Query.Direction?
+            filterField: String? = null,
+            value: String? = null,
+            orderField: String? = null,
+            order: Query.Direction? = Query.Direction.DESCENDING
         ): Task<QuerySnapshot> {
             var query: Query = bundlesCollection
             if (filterField != null && value != null) {

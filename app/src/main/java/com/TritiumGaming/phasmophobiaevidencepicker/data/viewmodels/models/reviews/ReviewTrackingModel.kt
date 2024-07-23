@@ -6,6 +6,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.revi
  * @author TritiumGamingStudios
  */
 class ReviewTrackingModel(wasRequested: Boolean, timeActive: Long, timesOpened: Int) {
+
+    companion object {
+        private const val MAX_TIMES_OPENED_TARGET: Int = 5
+    }
+
     // Checks if the Review was already requested
     var wasRequested: Boolean = false
 
@@ -14,7 +19,6 @@ class ReviewTrackingModel(wasRequested: Boolean, timeActive: Long, timesOpened: 
 
     // Count of times app was opened / target count to trigger review request
     var timesOpened: Int = 0
-    protected val TARGET_TIMES_OPENED: Int = 5
 
     init {
         this.wasRequested = wasRequested
@@ -27,7 +31,11 @@ class ReviewTrackingModel(wasRequested: Boolean, timeActive: Long, timesOpened: 
     }
 
     fun canRequestReview(): Boolean {
-        return (!wasRequested) && (timesOpened >= TARGET_TIMES_OPENED)
+        return (!wasRequested) && (timesOpened >= MAX_TIMES_OPENED_TARGET)
+    }
+
+    fun canShowReviewButton(): Boolean {
+        return (wasRequested) && (timesOpened >= MAX_TIMES_OPENED_TARGET)
     }
 
     override fun toString(): String {

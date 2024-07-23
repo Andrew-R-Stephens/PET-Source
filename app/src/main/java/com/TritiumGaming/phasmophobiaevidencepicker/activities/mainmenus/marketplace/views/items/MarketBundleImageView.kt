@@ -9,7 +9,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.setti
 import com.google.android.material.card.MaterialCardView
 
 
-class ThemeBundleImageView : MaterialCardView {
+class MarketBundleImageView : MaterialCardView {
 
     private var theme: ThemeModel? = null
 

@@ -4,17 +4,19 @@ import android.content.Context
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
 import androidx.annotation.NavigationRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
@@ -38,6 +40,12 @@ import androidx.navigation.NavDeepLinkBuilder
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import org.jetbrains.annotations.TestOnly
 
+abstract class DropdownPair
+data class DropdownClickPair(val content: Any, val onClick: () -> Unit = {}):
+    DropdownPair()
+data class DropdownNavigationPair(val content: Any, val navigationRoute: Int):
+    DropdownPair()
+
 @TestOnly
 @Preview
 @Composable
@@ -47,12 +55,10 @@ fun TestMenuIcons() {
         R.drawable.ic_menu,
         R.navigation.titlescreen_navgraph,
         arrayOf(
-            R.drawable.ic_gear,
-            R.drawable.ic_person
+            DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
+            DropdownNavigationPair(R.drawable.ic_person, R.id.appLanguageFragment),
+            DropdownClickPair(R.drawable.ic_discord) { }
         ),
-        arrayOf(
-            R.id.appSettingsFragment,
-            R.id.appLanguageFragment)
     ) { false }
 }
 
@@ -60,8 +66,7 @@ fun TestMenuIcons() {
 fun IconDropdownMenu(
     primaryContent: Any = Any(),
     @NavigationRes navGraphId: Int = R.navigation.titlescreen_navgraph,
-    secondaryContentArray: Array<Any> = arrayOf(),
-    @IntegerRes navigationRoutes: Array<Int> = arrayOf(),
+    secondaryContentArray: Array<DropdownPair> = arrayOf(),
     showExpandIcon: () -> Boolean = { true }
 ) {
     val localContext: Context = LocalContext.current
@@ -128,12 +133,12 @@ fun IconDropdownMenu(
                 modifier = Modifier
                     .width(48.dp)
                     .padding(4.dp)
-                    .align(Alignment.Center)
+                    .align(Alignment.Center),
+                scrollState = rememberScrollState()
             ) {
                 SecondarySelectors(
                     navDeepLinkBuilder = navDeepLinkBuilder,
-                    contentArray = secondaryContentArray,
-                    routes = navigationRoutes
+                    contentArray = secondaryContentArray
                 )
             }
         }
@@ -144,22 +149,29 @@ fun IconDropdownMenu(
 fun SecondarySelectors(
     modifier: Modifier = Modifier,
     navDeepLinkBuilder: NavDeepLinkBuilder,
-    contentArray: Array<Any>,
-    @IntegerRes routes: Array<Int> = arrayOf(R.id.appSettingsFragment)
+    contentArray: Array<DropdownPair>
 ) {
-    Column {
-        val maxRange = contentArray.size.coerceAtMost(routes.size)
-
-        for (index in 0..<maxRange) {
-            val content = contentArray[index]
-            val route = routes[index]
-
-            SecondarySelector(
-                navDeepLinkBuilder = navDeepLinkBuilder,
-                navigationRoute = route,
-                { SelectorContent(content) },
-                modifier = Modifier
-            )
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        for (index in contentArray.indices) {
+            when(val content = contentArray[index]) {
+                is DropdownClickPair -> {
+                    SecondarySelector(
+                        content.onClick,
+                        { SelectorContent(content.content) },
+                        modifier = Modifier
+                    )
+                }
+                is DropdownNavigationPair -> {
+                    SecondarySelector(
+                        navDeepLinkBuilder = navDeepLinkBuilder,
+                        navigationRoute = content.navigationRoute,
+                        { SelectorContent(content.content) },
+                        modifier = Modifier
+                    )
+                }
+            }
         }
     }
 }
@@ -192,6 +204,17 @@ fun SecondarySelector(
 }
 
 @Composable
+fun SecondarySelector(
+    onClick: () -> Unit = {},
+    contentView: @Composable () -> Unit,
+    modifier: Modifier
+) {
+    IconButton(
+        onClick = { onClick() }
+    ) { contentView() }
+}
+
+@Composable
 fun SelectorContent(
     content: Any
 ) {
@@ -215,7 +238,9 @@ fun SelectorContent(
 ) {
     Image(
         painter = painterResource(id = image),
-        contentDescription = "Image"
+        contentDescription = "Image",
+        modifier = Modifier
+            .aspectRatio(1f)
     )
 }
 
@@ -224,7 +249,9 @@ fun SelectorContent(
     contentView: View
 ) {
     AndroidView(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .aspectRatio(1f),
         factory = {
             contentView
         },
@@ -238,5 +265,10 @@ fun SelectorContent(
 fun SelectorContent(
     composable: @Composable () -> Unit
 ) {
-    composable()
+    Box(
+        modifier = Modifier
+            .aspectRatio(1f)
+    ) {
+        composable()
+    }
 }

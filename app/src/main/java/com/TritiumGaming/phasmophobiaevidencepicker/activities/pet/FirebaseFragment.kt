@@ -55,7 +55,9 @@ abstract class FirebaseFragment : PETFragment {
             }
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
-        val providers = listOf(GoogleBuilder().build())
+        val providers = listOf(
+            GoogleBuilder().build()
+        )
 
         // Create and launch sign-in intent
         val signInIntent = AuthUI.getInstance()

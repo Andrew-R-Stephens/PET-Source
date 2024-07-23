@@ -3,6 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
@@ -17,7 +18,7 @@ import java.util.Locale
 class GlobalPreferencesViewModel(application: Application): SharedViewModel(application) {
 
     companion object Language {
-        val DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
+        var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
     }
 
     data class LanguageObject(val name: String, val abbreviation: String)
@@ -87,14 +88,22 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
             }
         }
 
+        // OVERRIDE DEFAULT LANGUAGE
+        languageList.forEach { language ->
+            if(language.abbreviation.equals(Locale.getDefault().language, ignoreCase = true)) {
+                DEFAULT_LANGUAGE = Locale.getDefault().language
+            }
+        }
+
         val sharedPref = getSharedPreferences(application)
+
+        currentLanguageAbbr = sharedPref.getString(
+            application.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
+        ) ?: DEFAULT_LANGUAGE
+
 
         networkPreference =
             sharedPref.getBoolean(application.resources.getString(R.string.preference_network), networkPreference)
-
-        currentLanguageAbbr = sharedPref.getString(
-            application.resources.getString(R.string.preference_language),
-            DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
 
         isAlwaysOn =
             sharedPref.getBoolean(application.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)

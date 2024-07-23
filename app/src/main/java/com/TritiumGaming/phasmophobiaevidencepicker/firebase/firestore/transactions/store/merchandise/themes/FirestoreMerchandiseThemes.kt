@@ -15,9 +15,9 @@ class FirestoreMerchandiseThemes {
             get() = merchandiseDocument.collection(COLLECTION_THEMES)
 
         fun getThemesWhere(
-            filterField: String, value: String?,
-            orderField: String?,
-            order: Query.Direction?
+            filterField: String = "group", value: String? = null,
+            orderField: String? = null,
+            order: Query.Direction? = Query.Direction.DESCENDING
         ): Task<QuerySnapshot> {
             val query = themeCollection
                 .whereEqualTo(filterField, value)
