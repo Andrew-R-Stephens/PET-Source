@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

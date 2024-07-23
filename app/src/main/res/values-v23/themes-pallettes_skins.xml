@@ -93,5 +93,11 @@
 
         <item name="buttonColor">#f55656</item>
         <item name="colorOnButton">#afb7be</item>
+
+        <item name="actionMenuTextColor">?attr/textColorBody</item>
+        <item name="android:textColor">?attr/textColorPrimary</item>
+        <item name="android:color">?attr/textColorPrimary</item>
+        <item name="android:titleTextColor">?attr/textColorPrimary</item>
+        <item name="android:subtitleTextColor">?attr/textColorBody</item>
     </style>
 </resources>

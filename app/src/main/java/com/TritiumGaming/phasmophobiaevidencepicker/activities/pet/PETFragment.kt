@@ -1,6 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.widget.PopupWindow
 import androidx.activity.OnBackPressedCallback

@@ -11,10 +11,7 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import android.widget.ScrollView
-import android.widget.Toast
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
@@ -24,9 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CollapseButton
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationToolbar
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ResetButton
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ToolBarItemPair
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
