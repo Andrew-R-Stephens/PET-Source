@@ -8,6 +8,7 @@
     <string name="titlescreen_button">Comenzar Cacería</string>
     <string name="investigation_timer_difficulty_label">Dificultad:</string>
     <string name="investigation_timer_difficulty_default">Ninguna</string>
+    <string name="investigation_your_sanity_level_title">Tu nivel de cordura</string>
     <string name="investigation_timer_label">Tiempo de preparacion:</string>
     <string name="investigation_timer_difficulty_1">Aficionado</string>
     <string name="investigation_timer_difficulty_2">Intermedia</string>
@@ -1490,6 +1491,8 @@
 
     <string name="marketplace_button_purchase_credits">Comprar créditos</string>
 
+    <string name="marketplace_label_purchased">desbloqueado</string>
+    <string name="marketplace_label_bundle_includes">Incluye</string>
     <string name="marketplace_description_watch_ad">Mira un anuncio para ganar %s %s.</string>
 
     <string name="marketplace_description_purchase_credits">Compra créditos directamente.</string>
@@ -1503,15 +1506,18 @@
     <string name="general_navigation_settings">Configuración</string>
     <string name="general_navigation_system">Sistema</string>
 
+    <string name="newsletter_markallread">Marcar todo como leido</string>
     <string name="alert_error_generic">¡Error!</string>
     <string name="alert_success_generic">¡Éxito!</string>
     <string name="alert_account_welcome">Bienvenido</string>
     <string name="alert_account_data_failure">No se pudieron adquirir datos.</string>
     <string name="alert_account_remove_success">Cuenta eliminada correctamente.</string>
+    <string name="alert_account_remove_failure">Error al eliminar la cuenta.</string>
     <string name="alert_account_logout_success">El usuario cerró sesión.</string>
     <string name="alert_account_login_failure">Error de inicio de sesión.</string>
     <string name="alert_internet_unavailable">Internet no disponible.</string>
     <string name="alert_marketplace_access_failure">No se pudo acceder al mercado.</string>
+    <string name="alert_marketplace_transaction_failure">Error con la transacción del mercado.</string>
     <string name="alert_marketplace_purchase_success_skin">¡Piel comprada!</string>
     <string name="alert_marketplace_purchase_success_generic">¡Compra exitosa!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">¡No hay suficientes créditos para la compra!</string>
@@ -1532,4 +1538,10 @@
     <string name="marketplace_acknowledgement_warning_list_4">Todas las transacciones son definitivas. El contenido puede estar parcialmente completo, roto o con errores. El desarrollador puede desactivar, eliminar o modificar el contenido en el futuro. La acreditación por la pérdida de acceso al contenido de su cuenta o por cualquier cambio en el contenido queda a instancias del desarrollador.</string>
 
     <string name="marketplace_acknowledgement_button_confirm">¡Entiendo!</string>
+    <string name="marketplace_list_bundles">Paquetes temáticos</string>
+    <string name="marketplace_list_prestige">Temas de prestigio</string>
+    <string name="marketplace_list_event">Temas de eventos</string>
+    <string name="marketplace_list_community">Temas de la comunidad</string>
+    <string name="marketplace_button_item_get">Conseguir</string>
+    <string name="marketplace_purchase_equip">¿Equipar el tema %1$s?</string>
 </resources>

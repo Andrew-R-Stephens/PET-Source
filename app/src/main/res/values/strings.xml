@@ -186,7 +186,7 @@
     <!-- Team Data -->
     <string name="investigation_average_sanity_title" translatable="false">Average Sanity</string>
     <string name="investigation_prep_time_title" translatable="false">Prep Time</string>
-    <string name="investigation_your_sanity_level_title" translatable="false">Your Sanity level</string>
+    <string name="investigation_your_sanity_level_title">Your Sanity level</string>
 
     <!-- Solo/Team Data -->
     <string name="investigation_timer_label">Preparation Time:</string>
@@ -305,7 +305,7 @@
         File names
     -->
     <string name="mapsJson" translatable="false">maps.json</string>
-    <string name="newsletter_markallread" translatable="false">Mark All Read</string>
+    <string name="newsletter_markallread">Mark All Read</string>
 
     <!--
         Toast and other alerts
@@ -315,11 +315,12 @@
     <string name="alert_account_welcome">Welcome</string>
     <string name="alert_account_data_failure">Data could not be acquired.</string>
     <string name="alert_account_remove_success">Successfully removed account.</string>
-    <string name="alert_account_remove_failure" translatable="false">Account removal failed.</string>
+    <string name="alert_account_remove_failure">Account removal failed.</string>
     <string name="alert_account_logout_success">User signed out.</string>
     <string name="alert_account_login_failure">Login Error.</string>
     <string name="alert_internet_unavailable">Internet not available.</string>
     <string name="alert_marketplace_access_failure">Could not access the marketplace.</string>
+    <string name="alert_marketplace_transaction_failure">Error with marketplace transaction.</string>
     <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
     <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>

@@ -12,6 +12,7 @@
     android:gravity="center_horizontal|center_vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -24,8 +25,8 @@
             android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:NavHeaderLayoutCenterTitle="@string/marketplace_title"
             app:NavHeaderLayoutButtonLeft="back"
+            app:NavHeaderLayoutCenterTitle="@string/marketplace_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,8 +55,8 @@
             android:id="@+id/layout_account_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
             android:paddingHorizontal="8dp"
+            android:paddingBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/layout_account_obtainCredits"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,13 +105,13 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="8dp"
             android:fillViewport="true"
             android:measureAllChildren="true"
+            android:requiresFadingEdge="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarStyle="outsideInset"
-            android:fadingEdgeLength="8dp"
-            android:fadingEdge="vertical"
-            android:requiresFadingEdge="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +128,19 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/equipDialog"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DialogComposablesKt.EquipConfirmationDialog" />
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/confirmationDialog"

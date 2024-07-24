@@ -10,17 +10,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketp
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
 
 class MarketplaceListLayout : LinearLayout {
-    constructor(context: Context?) : super(context) { initView() }
+    constructor(context: Context?) : super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) { initView() }
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView() }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView() }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    fun initView() {
+    init {
         inflate(context, R.layout.layout_marketplace_list, this)
 
         layoutTransition = LayoutTransition()

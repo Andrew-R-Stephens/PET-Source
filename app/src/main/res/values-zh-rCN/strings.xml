@@ -83,6 +83,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_your_sanity_level_title">您的理智水平</string>
     <string name="investigation_timer_label">准备时间：</string>
     <string name="investigation_timer_difficulty_default">没有任何</string>
     <string name="investigation_timer_difficulty_1">业余</string>
@@ -696,6 +697,8 @@
     <string name="marketplace_error_login_required">请登录以获取 Marketplace 内容。</string>
     <string name="marketplace_button_watch_ad">赚取积分</string>
     <string name="marketplace_button_purchase_credits">购买积分</string>
+    <string name="marketplace_label_purchased">已解锁</string>
+    <string name="marketplace_label_bundle_includes">包括</string>
     <string name="marketplace_description_watch_ad">观看广告即可赚取 %s %s。</string>
     <string name="marketplace_description_purchase_credits">直接购买积分。</string>
 
@@ -840,15 +843,18 @@
     <string name="general_navigation_settings">设置</string>
     <string name="general_navigation_system">系统</string>
 
+    <string name="newsletter_markallread">标记全部已读</string>
     <string name="alert_error_generic">错误！</string>
     <string name="alert_success_generic">成功！</string>
     <string name="alert_account_welcome">欢迎</string>
     <string name="alert_account_data_failure">无法获取数据。</string>
     <string name="alert_account_remove_success">已成功删除帐户。</string>
+    <string name="alert_account_remove_failure">帐户删除失败。</string>
     <string name="alert_account_logout_success">用户已退出。</string>
     <string name="alert_account_login_failure">登录错误。</string>
     <string name="alert_internet_unavailable">互联网不可用。</string>
     <string name="alert_marketplace_access_failure">无法访问市场。</string>
+    <string name="alert_marketplace_transaction_failure">市场交易错误。</string>
     <string name="alert_marketplace_purchase_success_skin">已购买皮肤！</string>
     <string name="alert_marketplace_purchase_success_generic">购买成功！</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">购买积分不足！</string>
@@ -868,4 +874,10 @@
     <string name="marketplace_acknowledgement_warning_list_4">所有交易均为最终交易。内容可能部分完整、损坏或有错误。开发者将来可能会禁用、删除或修改内容。您的帐号失去对内容的访问权限或任何内容更改的认证均由开发者决定。</string>
 
     <string name="marketplace_acknowledgement_button_confirm">知道了！</string>
+    <string name="marketplace_list_bundles">主题包</string>
+    <string name="marketplace_list_prestige">Prestige 主题</string>
+    <string name="marketplace_list_event">活动主题</string>
+    <string name="marketplace_list_community">社区主题</string>
+    <string name="marketplace_button_item_get">获取</string>
+    <string name="marketplace_purchase_equip">装备 %1$s 主题？</string>
 </resources>

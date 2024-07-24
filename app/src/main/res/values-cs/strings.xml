@@ -87,6 +87,7 @@
         EVIDENCE PAGE
     -->
     <!-- Page Details -->
+    <string name="investigation_your_sanity_level_title">Vaše úroveň příčetnosti</string>
     <string name="investigation_timer_label">Čas přípravy:</string>
     <string name="investigation_timer_difficulty_default">Žádné</string>
     <string name="investigation_timer_difficulty_1">Amatér</string>
@@ -2291,6 +2292,8 @@
         <item quantity="many">Doprovodné kredity</item>
         <item quantity="other">Doprovodné kredity</item>
     </plurals>
+    <string name="marketplace_label_purchased">Odemčený</string>
+    <string name="marketplace_label_bundle_includes">Zahrnuje</string>
     <string name="marketplace_description_watch_ad">Podívejte se na reklamu a vydělejte %s %s.</string>
     <string name="marketplace_description_purchase_credits">Nakupujte kredity přímo.</string>
 
@@ -2317,15 +2320,18 @@
     <string name="account_logout_button_cancel">Zrušit</string>
 
     <!-- Odhlášení -->
+    <string name="newsletter_markallread">Označit vše jako přečtené</string>
     <string name="alert_error_generic">Chyba!</string>
     <string name="alert_success_generic">Úspěch!</string>
     <string name="alert_account_welcome">Vítejte</string>
     <string name="alert_account_data_failure">Data nelze získat.</string>
     <string name="alert_account_remove_success">Účet byl úspěšně odstraněn.</string>
+    <string name="alert_account_remove_failure">Odebrání účtu se nezdařilo.</string>
     <string name="alert_account_logout_success">Uživatel je odhlášen.</string>
     <string name="alert_account_login_failure">Chyba přihlášení.</string>
     <string name="alert_internet_unavailable">Internet není dostupný.</string>
     <string name="alert_marketplace_access_failure">Nepodařilo se získat přístup k tržišti.</string>
+    <string name="alert_marketplace_transaction_failure">Chyba při transakci na tržišti.</string>
     <string name="alert_marketplace_purchase_success_skin">Kup zakoupen!</string>
     <string name="alert_marketplace_purchase_success_generic">Nákup byl úspěšný!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Nedostatek kreditů k nákupu!</string>
@@ -2355,4 +2361,10 @@
      ponecháno na příkaz vývojáře.
      </string>
     <string name="marketplace_acknowledgement_button_confirm">Rozumím!</string>
+    <string name="marketplace_list_bundles">Tématické balíčky</string>
+    <string name="marketplace_list_prestige">Prestižní témata</string>
+    <string name="marketplace_list_event">Témata událostí</string>
+    <string name="marketplace_list_community">Témata komunity</string>
+    <string name="marketplace_button_item_get">Dostat</string>
+    <string name="marketplace_purchase_equip">Vybavit motiv %1$s?</string>
 </resources>

@@ -38,6 +38,15 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavigationBar
+        android:id="@+id/layout_navigation_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--
     <include
         android:id="@+id/layout_navigation_bar"
         layout="@layout/layout_navigationfooter"
@@ -46,5 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    -->
 
 </merge>

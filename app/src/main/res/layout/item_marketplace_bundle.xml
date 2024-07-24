@@ -50,7 +50,7 @@
             android:paddingHorizontal="8dp"
             style="?attr/quaternaryFont_Bold_Manual"
             android:gravity="start"
-            android:text="Includes:"
+            android:text="@string/marketplace_label_bundle_includes"
             android:textAllCaps="true"
             android:textSize="14sp"
             android:textColor="?attr/backgroundColor"
@@ -122,13 +122,13 @@
                 android:text="GET"
                 android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatimg"
+                app:layout_constraintEnd_toStartOf="@+id/creditsIcon"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatimg"
+                android:id="@+id/creditsIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:padding="8dp"
@@ -156,7 +156,7 @@
                 android:textColor="?attr/backgroundColorOnBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/appCompatimg"
+                app:layout_constraintStart_toEndOf="@+id/creditsIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

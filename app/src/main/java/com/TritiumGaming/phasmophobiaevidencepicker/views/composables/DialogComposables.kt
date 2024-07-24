@@ -1,8 +1,15 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
 
 import android.content.res.Configuration
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,27 +27,40 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
-@Preview
 @Composable
 fun MarketplaceDialog(
     onConfirm: () -> Unit = { }
@@ -161,7 +181,6 @@ fun MarketplaceDialog(
     )
 }
 
-//@Preview
 @Composable
 fun LogoutDialog(
     onConfirm: () -> Unit = { },
@@ -260,7 +279,6 @@ fun LogoutDialog(
     )
 }
 
-@Preview
 @Composable
 fun DeleteAccountDialog(
     onConfirm: () -> Unit = { },
@@ -545,5 +563,113 @@ fun Dialog(
             }
         }
 
+    }
+}
+
+@Preview
+@Composable
+fun EquipConfirmationDialog (
+    targetTitle: String = "<theme>",
+    onConfirm: () -> Unit = {},
+    timeout: Long = 1000L
+) {
+    var visible by remember { mutableStateOf(true) }
+
+    var timeLeft by remember { mutableLongStateOf(timeout) }
+
+    LaunchedEffect(key1 = timeLeft) {
+        visible = true
+        while (timeLeft > 0L) {
+            val delayTime = 5L
+            delay(delayTime)
+            timeLeft -= delayTime
+        }
+        visible = false
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        AnimatedVisibility(
+            visible,
+            enter = slideIn(tween(500, easing = LinearOutSlowInEasing)) { fullSize ->
+                IntOffset(0, fullSize.height)
+            },
+            exit = slideOut(tween(250, easing = LinearOutSlowInEasing)) { fullSize ->
+                IntOffset(0, fullSize.height)
+            }
+        ) {
+            Box(modifier = Modifier
+                .clip(RoundedCornerShape(25))
+                .progressGradient(
+                    progress = timeLeft / (timeout.toFloat()),
+                    gradientColor = Color(getColorFromAttribute(
+                        LocalContext.current, R.attr.theme_colorPrimary)),
+                    gradientAlpha = 1f
+                )
+                .padding(0.dp, 2.dp, 0.dp, 2.dp)
+            ) {
+
+                Row(
+                    verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .background(Color(getColorFromAttribute(
+                            LocalContext.current, R.attr.backgroundColorOnBackground)),
+                            RoundedCornerShape(24))
+                        .padding(8.dp)
+                        .height(48.dp)
+                ) {
+                    Text(
+                        text = "$targetTitle?",
+                        fontSize = 18.sp,
+                        color = Color(getColorFromAttribute(LocalContext.current, R.attr.textColorBody)),
+                        modifier = Modifier
+                            .weight(1f)
+                            .align(Alignment.CenterVertically)
+                            .padding(8.dp),
+                        textAlign = TextAlign.Start
+                    )
+
+                    Button(
+                        contentPadding = PaddingValues(8.dp),
+                        colors = ButtonColors(
+                            contentColor = Color(
+                                getColorFromAttribute(
+                                    LocalContext.current,
+                                    R.attr.backgroundColor
+                                )
+                            ),
+                            containerColor = Color(
+                                getColorFromAttribute(
+                                    LocalContext.current,
+                                    R.attr.theme_colorPrimary
+                                )
+                            ),
+                            disabledContentColor = Color.Blue,
+                            disabledContainerColor = Color.Green
+                        ),
+                        shape = RoundedCornerShape(percent = 50),
+                        onClick = {
+                            onConfirm()
+                            timeLeft = 0L
+                        },
+                        modifier = Modifier
+                            .size(48.dp)
+                            .wrapContentWidth()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_arrow_chevron_right),
+                            colorFilter = ColorFilter.tint(Color(getColorFromAttribute(
+                                LocalContext.current, R.attr.textColorBody))),
+                            contentDescription = ""
+                        )
+                    }
+                }
+            }
+        }
     }
 }

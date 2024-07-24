@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="marketplace_title">Marketplace</string>
+    <string name="marketplace_list_bundles">Theme Bundles</string>
+    <string name="marketplace_list_prestige">Prestige Themes</string>
+    <string name="marketplace_list_event">Event Themes</string>
+    <string name="marketplace_list_community">Community Themes</string>
     <string name="marketplace_connection_error">Uh oh! There was an error connecting to the marketplace.</string>
     <string name="marketplace_error_login_required">Please log in to claim Marketplace content.</string>
     <string name="marketplace_button_watch_ad">Earn Credits</string>
+    <string name="marketplace_button_item_get">Get</string>
     <string name="marketplace_button_purchase_credits">Purchase Credits</string>
+    <string name="marketplace_label_purchased">Unlocked</string>
+    <string name="marketplace_label_bundle_includes">Includes</string>
+    <string name="marketplace_purchase_equip">Equip %1$s theme?</string>
+
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Companion Credit</item>
         <item quantity="other">Companion Credits</item>

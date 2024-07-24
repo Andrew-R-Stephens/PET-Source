@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
@@ -12,7 +13,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
-class MarketThemeView : MaterialCardView {
+class MarketThemeView : MarketItemView {
 
     constructor(context: Context) : super(context, null)
 
@@ -29,31 +30,31 @@ class MarketThemeView : MaterialCardView {
             setCreditCost()
         }
 
-    val creditCost: Long
+    override val creditCost: Long
         get() = themeModel?.buyCredits ?: 0
 
     init {
         inflate(context, R.layout.item_marketplace_theme, this)
+        setBuyButtonListener()
 
-        layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT)
-
-        val strokeColor =
-            getColorFromAttribute(context, R.attr.backgroundColorOnBackground)
-
-        radius = 16f
-
-        setStrokeColor(interpolate(resources.getColor(R.color.white), strokeColor, .25f))
-        strokeWidth = 3
-
-        useCompatPadding = true
-        clipToPadding = false
+        setPurchasable()
     }
 
     private fun setPurchasable() {
         themeModel?.let { theme ->
-            if (theme.isUnlocked) visibility = GONE
+            if (theme.isUnlocked) {
+                //visibility = GONE
+                val buyButton = findViewById<View?>(R.id.button_transactItem)
+                buyButton?.isEnabled = false
+                buyButton?.alpha = .25f
+
+                val creditsIcon = findViewById<AppCompatImageView>(R.id.creditsIcon)
+                creditsIcon?.alpha = .25f
+
+                val creditsTextView = findViewById<AppCompatTextView>(R.id.label_credits_cost)
+                //creditsTextView?.text = context.getString(R.string.marketplace_label_purchased)
+                creditsTextView?.alpha = .25f
+            }
         }
     }
 
@@ -63,11 +64,6 @@ class MarketThemeView : MaterialCardView {
         themeModel?.let { theme -> creditsLabel?.text = theme.buyCredits.toString() }
     }
 
-    fun validate() { setPurchasable() }
+    override fun validate() { setPurchasable() }
 
-    fun setBuyButtonListener(buyButtonListener: OnClickListener?) {
-        val buyButton = findViewById<View>(R.id.button_transactItem)
-
-        buyButton?.setOnClickListener(buyButtonListener)
-    }
 }

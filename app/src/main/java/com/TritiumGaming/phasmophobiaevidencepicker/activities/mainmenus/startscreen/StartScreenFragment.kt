@@ -100,23 +100,6 @@ class StartScreenFragment : MainMenuFragment() {
                 )
             ) { false }
 
-            /*
-            IconDropdownMenu(
-                R.drawable.ic_menu,
-                R.navigation.titlescreen_navgraph,
-                arrayOf(
-                    R.drawable.ic_info,
-                    R.drawable.ic_gear,
-                    translationIcon,
-                    R.drawable.ic_discord
-                ),
-                arrayOf(
-                    R.id.appInfoFragment,
-                    R.id.appSettingsFragment,
-                    R.id.appLanguageFragment,
-                    R.id.)
-            ) { false }
-            */
         }
 
         buttonInfo.setContent {
@@ -130,18 +113,6 @@ class StartScreenFragment : MainMenuFragment() {
                 )
             )
 
-            /*
-            IconDropdownMenu(
-                AccountIconView(requireContext()),
-                R.navigation.titlescreen_navgraph,
-                arrayOf(
-                    R.drawable.ic_person,
-                    R.drawable.ic_store),
-                arrayOf(
-                    R.id.accountOverviewFragment,
-                    R.id.marketplaceFragment)
-            )
-            */
         }
 
         buttonMsgInbox?.setContent { NewsAlert(false) }

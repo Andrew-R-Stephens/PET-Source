@@ -1,7 +1,5 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +21,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketItemView.MarketItemOnPurchaseListener
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
@@ -44,6 +43,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transacti
 import com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore.OnFirestoreProcessListener
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.EquipConfirmationDialog
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.MarketplaceDialog
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
@@ -66,6 +66,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 
 class MarketplaceFragment : MainMenuFirebaseFragment() {
@@ -83,6 +84,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     private var obtainCreditsTextView: AccountObtainCreditsView? = null
 
     private var confirmationDialog: ComposeView? = null
+    private var equipDialog: ComposeView? = null
 
     private var marketProgressBar: ProgressBar? = null
 
@@ -134,7 +136,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         watchAdButton.setOnClickListener { showRewardedAd() }
 
-        buyButton.setOnClickListener { this.gotoBillingMarketplace() }
+        buyButton.setOnClickListener { v -> this.gotoBillingMarketplace(v) }
 
         // CANCEL BUTTON
         backButton.setOnClickListener { v: View? ->
@@ -164,9 +166,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     }
 
-    private fun gotoBillingMarketplace() {
-        findNavController(requireActivity(),
-            R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
+    private fun gotoBillingMarketplace(v: View) {
+        findNavController(v).navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
+    }
+
+    private fun gotoSettingsMarketplace(v: View) {
+        findNavController(v).navigate(R.id.action_marketplaceFragment_to_appSettingsFragment)
     }
 
     private fun initAccountCreditListener() {
@@ -205,7 +210,9 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             )
                         }
                         confirmationDialog?.visibility = VISIBLE
-                        try { setMarketplaceAgreementState(true) }
+                        try {
+                            setMarketplaceAgreementState(true)
+                        }
                         catch (e: Exception) { e.printStackTrace() }
                         Log.d("Firestore", "Showing user agreement.")
                     } else {
@@ -287,7 +294,12 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             list.setLabel("Theme Bundles")
             list.showLabel(GONE)
 
-            masterItemsList?.addView(bundleList)
+            try {
+                masterItemsList?.addView(bundleList)
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+
 
             val listener: OnFirestoreProcessListener =
             object : OnFirestoreProcessListener() {
@@ -369,9 +381,13 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         themeCommunityList?.setLabel("Community Themes")
 
         masterItemsList?.let { masterList ->
-            masterList.addView(themePrestigeList)
-            masterList.addView(themeEventList)
-            masterList.addView(themeCommunityList)
+
+            try { masterList.addView(themePrestigeList) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+            try { masterList.addView(themeEventList) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
+            try { masterList.addView(themeCommunityList) }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
         val processCompleteListener: OnFirestoreProcessListener =
@@ -480,13 +496,11 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                     MarketThemeModel(uuid, tempTheme, customTheme)
 
                                 try {
-                                    val marketplaceItem =
-                                        buildThemeView(list, marketSingleThemeFinal)
-                                    if (!marketSingleThemeFinal.isUnlocked) {
-                                        list.addView(marketplaceItem)
-                                        list.requestLayout()
-                                        list.invalidate()
-                                    }
+                                    val themeView = buildThemeView(marketSingleThemeFinal)
+
+                                    list.addView(themeView)
+                                    list.requestLayout()
+                                    list.invalidate()
 
                                     testToast("Test Success. Created Theme View")
 
@@ -573,26 +587,23 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                 globalPreferencesViewModel?.colorThemeControl?.let { control ->
                                     customThemes.add(control.getThemeByUUID(themeID)) } }
                             val finalBundle = MarketBundleModel(docId, tempBundle, customThemes)
-                            if (!finalBundle.isUnlocked) {
 
-                                try {
-                                    val bundleView =
-                                        buildBundleView(list, finalBundle)
+                            try {
+                                val bundleView =
+                                    buildBundleView(finalBundle)
 
-                                    bundleView?.let { view ->
-                                        list.addView(view)
-                                        list.requestLayout()
-                                        list.invalidate()
-                                    }
-
-                                    testToast("Test Success. Created Bundle View")
-
-                                } catch (e: IllegalStateException) {
-                                    e.printStackTrace()
-
-                                    testToast("Test Failed. Error creating Bundle View")
-
+                                bundleView?.let { view ->
+                                    list.addView(view)
+                                    list.requestLayout()
+                                    list.invalidate()
                                 }
+
+                                testToast("Test Success. Created Bundle View")
+
+                            } catch (e: IllegalStateException) {
+                                e.printStackTrace()
+
+                                testToast("Test Failed. Error creating Bundle View")
                             }
 
                         }
@@ -603,7 +614,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             testToast("Test Failure. Create Bundle Model")
 
                         }
-
                     }
                 }
 
@@ -623,24 +633,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
     }
 
-    fun onPurchaseSuccessAnimation(targetView: View, parentView: View) {
-        val marketItemAnimation =
-            targetView.animate()
-                .setDuration(300)
-                .translationX(parentView.width.toFloat())
-                .setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationStart(animation: Animator) {
-                        super.onAnimationStart(animation)
-
-                        targetView.isEnabled = false
-                    }
-                })
-        marketItemAnimation.start()
-    }
-
-    private fun buildBundleView(
-        list: MarketplaceListLayout, bundleThemes: MarketBundleModel
-    ): MarketBundleView? {
+    private fun buildBundleView(bundleModel: MarketBundleModel): MarketBundleView? {
 
         val bundleView: MarketBundleView
         try {
@@ -649,77 +642,81 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             return null
         }
 
-        bundleView.bundle = bundleThemes
+        bundleView.bundle = bundleModel
 
-        val buyButtonListener = View.OnClickListener { _: View? ->
+        bundleView.onPurchaseListener = object:MarketItemOnPurchaseListener() {
+            override fun onPurchase() {
 
-            val buyButtonCallback: OnFirestoreProcessListener =
+                val buyButtonCallback: OnFirestoreProcessListener =
 
-                object : OnFirestoreProcessListener() {
+                    object : OnFirestoreProcessListener() {
 
-                    override fun onSuccess() {
-                        val uuids: ArrayList<String> = ArrayList()
+                        override fun onSuccess() {
+                            val uuids: ArrayList<String> = ArrayList()
 
-                        bundleThemes.themes?.forEach { bundleTheme ->
-                            bundleTheme.iD?.let { iD -> uuids.add(iD) } }
+                            bundleModel.themes?.forEach { bundleTheme ->
+                                bundleTheme.iD?.let { iD -> uuids.add(iD) } }
 
-                        try {
-                            addUnlockedDocuments(uuids, "Theme Bundle",
-                                object : OnFirestoreProcessListener() {
-                                    override fun onSuccess() {
-                                        onPurchaseSuccessAnimation(bundleView, list)
-                                        testToast("Test Success 3")
-                                    }
+                            try {
+                                addUnlockedDocuments(uuids, "Theme Bundle",
+                                    object : OnFirestoreProcessListener() {
 
-                                    override fun onFailure() {
-                                        Log.d("Firestore",
-                                            "Could not add/retrieve purchase document!")
+                                        override fun onSuccess() {
+                                            onPurchaseSuccess(bundleModel)
 
-                                        testToast("Test Failure 3")
-                                    }
-                                })
-                        } catch (e: Exception) { e.printStackTrace() }
+                                            testToast("Test Success 3")
+                                        }
 
-                        try {
-                            Toast.makeText(requireActivity(),
-                                getString(R.string.alert_marketplace_purchase_success_skin),
-                                Toast.LENGTH_SHORT).show()
+                                        override fun onFailure() {
+                                            Log.d("Firestore",
+                                                "Could not add/retrieve purchase document!")
+                                            try {
+                                                Toast.makeText(requireActivity(),
+                                                    getString(R.string.alert_marketplace_transaction_failure),
+                                                    Toast.LENGTH_SHORT).show()
+                                            }
+                                            catch (e: IllegalStateException) { e.printStackTrace() }
+                                            testToast("Test Failure 3")
+                                        }
+
+                                    })
+                            } catch (e: Exception) { e.printStackTrace() }
+
+                            try {
+                                Toast.makeText(requireActivity(),
+                                    getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
+                            }
+                            catch (e: IllegalStateException) { e.printStackTrace() }
                         }
-                        catch (e: IllegalStateException) { e.printStackTrace() }
-                    }
 
-                    override fun onFailure() {
-                        try {
-                            Toast.makeText(requireActivity(),
-                            getString(R.string.alert_marketplace_purchase_failure_skin_credits),
-                            Toast.LENGTH_SHORT).show()
+                        override fun onFailure() {
+                            try {
+                                Toast.makeText(requireActivity(),
+                                    getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                            catch (e: IllegalStateException) { e.printStackTrace() }
                         }
-                        catch (e: IllegalStateException) { e.printStackTrace() }
+
+                        override fun onComplete() {
+                            Log.d("Bundle", "Bundle process completed.")
+
+                            testToast("Test Complete 3")
+                        }
                     }
 
-                    override fun onComplete() {
-                        Log.d("Bundle", "Bundle process completed.")
-
-                        testToast("Test Complete 3")
-                    }
+                try {
+                    removeCredits(bundleView.creditCost, buyButtonCallback)
                 }
-
-            try {
-                removeCredits(bundleView.creditCost, buyButtonCallback)
+                catch (e: Exception) { throw RuntimeException(e) }
             }
-            catch (e: Exception) { throw RuntimeException(e) }
         }
-
-        bundleView.setBuyButtonListener(buyButtonListener)
 
         return bundleView
     }
 
-
     @Throws(IllegalStateException::class)
-    private fun buildThemeView(
-        list: MarketplaceListLayout, singleThemeModel: MarketThemeModel
-    ): MarketThemeView {
+    private fun buildThemeView(singleThemeModel: MarketThemeModel): MarketThemeView {
 
         val themeView = MarketThemeView(
             ContextThemeWrapper(requireContext(), singleThemeModel.style),
@@ -727,62 +724,96 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         themeView.themeModel = singleThemeModel
 
-        val buyButtonListener = View.OnClickListener {
-            val buyButtonCallback: OnFirestoreProcessListener =
-                object : OnFirestoreProcessListener() {
+        themeView.onPurchaseListener = object:MarketItemOnPurchaseListener() {
+            override fun onPurchase() {
+                val buyButtonCallback: OnFirestoreProcessListener =
+                    object : OnFirestoreProcessListener() {
 
-                    override fun onSuccess() {
+                        override fun onSuccess() {
 
-                        val purchaseListener: OnFirestoreProcessListener =
+                            val purchaseListener: OnFirestoreProcessListener =
 
-                            object : OnFirestoreProcessListener() {
-                                override fun onSuccess() {
-                                    onPurchaseSuccessAnimation(themeView, list)
+                                object : OnFirestoreProcessListener() {
+                                    override fun onSuccess() {
+                                        onPurchaseSuccess(singleThemeModel)
+                                        testToast("Test Success 4")
+                                    }
 
-                                    testToast("Test Success 4")
+                                    override fun onFailure() {
+                                        Log.d("Firestore",
+                                            "Could not add/retrieve purchase document!")
+                                    }
                                 }
 
-                                override fun onFailure() {
-                                    Log.d("Firestore",
-                                        "Could not add/retrieve purchase document!")
-                                }
+                            try {
+                                addUnlockDocument(singleThemeModel.uuid.toString(),
+                                    "Single Theme", purchaseListener) }
+                            catch (e: Exception) { e.printStackTrace() }
+
+                            try {
+                                Toast.makeText(
+                                    requireActivity(), getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
                             }
-
-                        try {
-                            addUnlockDocument(singleThemeModel.uuid.toString(),
-                                "Single Theme", purchaseListener) }
-                        catch (e: Exception) { e.printStackTrace() }
-
-                        try {
-                            Toast.makeText(
-                                requireActivity(), getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
+                            catch (e: IllegalStateException) { e.printStackTrace() }
                         }
-                        catch (e: IllegalStateException) { e.printStackTrace() }
-                    }
 
-                    override fun onFailure() {
-                        try {
-                            Toast.makeText(
-                                requireActivity(), getString(R.string.alert_marketplace_purchase_failure_skin_credits),
-                                Toast.LENGTH_SHORT).show()
+                        override fun onFailure() {
+                            try {
+                                Toast.makeText(
+                                    requireActivity(), getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                            catch (e: IllegalStateException) { e.printStackTrace() }
                         }
-                        catch (e: IllegalStateException) { e.printStackTrace() }
-                    }
 
-                    override fun onComplete() {
-                        Log.d("Bundle", "Single theme process completed.")
+                        override fun onComplete() {
+                            Log.d("Bundle", "Single theme process completed.")
 
-                        testToast("Test Complete 4")
+                            testToast("Test Complete 4")
+                        }
                     }
+                try {
+                    removeCredits(themeView.creditCost, buyButtonCallback)
                 }
-            try { removeCredits(themeView.creditCost, buyButtonCallback) }
-            catch (e: Exception) { throw RuntimeException(e) }
+                catch (e: Exception) { throw RuntimeException(e) }
+            }
         }
-
-        themeView.setBuyButtonListener(buyButtonListener)
 
         return themeView
     }
+
+    private fun onPurchaseSuccess(bundleModel: MarketBundleModel) {
+        equipDialog = null
+        equipDialog = view?.findViewById(R.id.equipDialog)
+        equipDialog?.let { dialog ->
+            dialog.setContent {
+                EquipConfirmationDialog(
+                    onConfirm = { gotoSettingsMarketplace(dialog) },
+                    targetTitle = String.format(
+                        Locale.getDefault(), getString(R.string.marketplace_purchase_equip),
+                        bundleModel.name),
+                    timeout = 3000L
+                )
+            }
+        }
+    }
+
+    private fun onPurchaseSuccess(themeModel: MarketThemeModel) {
+        equipDialog = null
+        equipDialog = view?.findViewById(R.id.equipDialog)
+        equipDialog?.let { dialog ->
+            dialog.setContent {
+                EquipConfirmationDialog(
+                    onConfirm = { gotoSettingsMarketplace(dialog) },
+                    targetTitle = String.format(
+                        Locale.getDefault(), getString(R.string.marketplace_purchase_equip),
+                        themeModel.name),
+                    timeout = 3000L
+                )
+            }
+        }
+    }
+
 
     override fun onSignInAccountSuccess() {
         refreshFragment()

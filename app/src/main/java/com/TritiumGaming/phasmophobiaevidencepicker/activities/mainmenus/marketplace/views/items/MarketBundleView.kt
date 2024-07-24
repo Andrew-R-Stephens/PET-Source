@@ -6,6 +6,7 @@ import android.view.ContextThemeWrapper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
@@ -13,7 +14,17 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFro
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
 
-class MarketBundleView : MaterialCardView {
+class MarketBundleView : MarketItemView {
+
+    constructor(context: Context) : super(context, null)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr)
+
+    override val creditCost: Long
+        get() = bundle?.discountedBuyCredits ?: 0
 
     var bundle: MarketBundleModel? = null
         set(value) {
@@ -27,37 +38,15 @@ class MarketBundleView : MaterialCardView {
                 costView?.text = bundle.discountedBuyCredits.toString()
 
                 buildThemes()
+
+                validate()
             }
         }
 
-    val creditCost: Long
-        get() = bundle?.discountedBuyCredits ?: 0
-
-
-    constructor(context: Context) : super(context, null)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr)
-
     init {
         inflate(context, R.layout.item_marketplace_bundle, this)
+        setBuyButtonListener()
 
-        layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT)
-
-        val strokeColor =
-            getColorFromAttribute(context, R.attr.backgroundColorOnBackground)
-
-        radius = 16f
-
-        setStrokeColor(interpolate(resources.getColor(R.color.white), strokeColor, .25f))
-        strokeWidth = 3
-
-        useCompatPadding = true
-        clipToPadding = false
     }
 
     private fun buildThemes() {
@@ -78,10 +67,9 @@ class MarketBundleView : MaterialCardView {
         }
     }
 
-    fun validate() {
-        if (validateVisibility()) {
-            validateThemesList()
-        }
+    override fun validate() {
+        validateVisibility()
+        validateThemesList()
     }
 
     private fun validateThemesList() {
@@ -99,7 +87,18 @@ class MarketBundleView : MaterialCardView {
     private fun validateVisibility(): Boolean {
         val isAvailable = bundle?.let { it.lockedItemCount > 1 } ?: false
 
-        visibility = if (isAvailable) VISIBLE else GONE
+        if(!isAvailable) {
+            val buyButton = findViewById<View?>(R.id.button_transactItem)
+            buyButton?.isEnabled = false
+            buyButton?.alpha = .25f
+
+            val creditsIcon = findViewById<AppCompatImageView>(R.id.creditsIcon)
+            creditsIcon?.alpha = .25f
+
+            val creditsTextView = findViewById<AppCompatTextView>(R.id.label_credits_cost)
+            /*creditsTextView?.text = context.getString(R.string.marketplace_label_purchased)*/
+            creditsTextView?.alpha = .25f
+        }
 
         return isAvailable
     }
@@ -110,9 +109,4 @@ class MarketBundleView : MaterialCardView {
         bundle?.let { bundle -> creditsTextView.text = bundle.discountedBuyCredits.toString() }
     }
 
-    fun setBuyButtonListener(buyButtonListener: OnClickListener?) {
-        val buyButton = findViewById<View>(R.id.button_transactItem)
-
-        buyButton?.setOnClickListener(buyButtonListener)
-    }
 }

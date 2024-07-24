@@ -82,6 +82,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_your_sanity_level_title">あなたの正気度</string>
     <string name="investigation_timer_label">準備時間：</string>
     <string name="investigation_timer_difficulty_default">なし</string>
     <string name="investigation_timer_difficulty_1">アマチュア</string>
@@ -721,6 +722,8 @@
 
     <string name="marketplace_button_purchase_credits">クレジットを購入する</string>
 
+    <string name="marketplace_label_purchased">ロック解除</string>
+    <string name="marketplace_label_bundle_includes">含まれるもの</string>
     <string name="marketplace_description_watch_ad">広告を視聴して %s %s を獲得しましょう。</string>
 
     <string name="marketplace_description_purchase_credits">クレジットを直接購入します。</string>
@@ -964,15 +967,18 @@
     <string name="general_navigation_settings">設定</string>
     <string name="general_navigation_system">システム</string>
 
+    <string name="newsletter_markallread">すべて既読にする</string>
     <string name="alert_error_generic">エラー!</string>
     <string name="alert_success_generic">成功!</string>
     <string name="alert_account_welcome">ようこそ</string>
     <string name="alert_account_data_failure">データを取得できませんでした。</string>
     <string name="alert_account_remove_success">アカウントが正常に削除されました。</string>
+    <string name="alert_account_remove_failure">アカウントの削除に失敗しました。</string>
     <string name="alert_account_logout_success">ユーザーはサインアウトしました。</string>
     <string name="alert_account_login_failure">ログイン エラーです。</string>
     <string name="alert_internet_unavailable">インターネットが利用できません。</string>
     <string name="alert_marketplace_access_failure">マーケットプレイスにアクセスできませんでした。</string>
+    <string name="alert_marketplace_transaction_failure">マーケットプレイス取引でエラーが発生しました。</string>
     <string name="alert_marketplace_purchase_success_skin">スキン購入済みです!</string>
     <string name="alert_marketplace_purchase_success_generic">購入に成功しました!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">購入に必要なクレジットが足りません!</string>
@@ -993,4 +999,10 @@
     <string name="marketplace_acknowledgement_warning_list_4">すべての取引は最終的なものとなります。コンテンツは部分的にしか完成していなかったり、壊れていたり、バグがあったりする可能性があります。コンテンツは開発者によって将来無効化、削除、または変更される可能性があります。アカウントがコンテンツにアクセスできなくなった場合やコンテンツに変更があった場合の認定は、開発者の指示によります。</string>
 
     <string name="marketplace_acknowledgement_button_confirm">わかった！</string>
+    <string name="marketplace_list_bundles">テーマバンドル</string>
+    <string name="marketplace_list_prestige">プレステージテーマ</string>
+    <string name="marketplace_list_event">イベントテーマ</string>
+    <string name="marketplace_list_community">コミュニティテーマ</string>
+    <string name="marketplace_button_item_get">入手</string>
+    <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
 </resources>

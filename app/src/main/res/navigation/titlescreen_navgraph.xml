@@ -113,6 +113,9 @@
         <action
             android:id="@+id/action_marketplaceFragment_to_marketplaceBillingFragment"
             app:destination="@id/marketplaceBillingFragment" />
+        <action
+            android:id="@+id/action_marketplaceFragment_to_appSettingsFragment"
+            app:destination="@id/appSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/marketplaceBillingFragment"

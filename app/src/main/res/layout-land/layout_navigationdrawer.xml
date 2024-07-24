@@ -6,6 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavigationBar
+        android:id="@+id/layout_navigation_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
     <include
         android:id="@+id/layout_navigation_bar"
         layout="@layout/layout_navigationfooter"
@@ -15,6 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    -->
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/layout_navigation_drawer"
@@ -33,8 +44,6 @@
             android:layout_height="match_parent"
             app:navGraph="@navigation/investigation_navgraph" />
 
-        <!-- this the navigation view which draws and shows the navigation drawer -->
-        <!-- include the menu created in the menu folder -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/layout_navigation_drawer_view"
             android:theme="@style/NavigationDrawerStyle"
