@@ -755,7 +755,7 @@
     <string name="map_info_help_zoom">Acerque y aleje un mapa pellizcando o extendiendo dos dedos.</string>
     <string name="map_info_help_click">Toque con un dedo cualquier mapa para obtener el nombre y el límite de cualquier habitación.</string>
     <string name="map_info_help_rooms">Seleccione una habitación en el menú desplegable Habitaciones para mostrar la ubicación y los límites de esa habitación.</string>
-    <string name="map_info_help_floors">Itere entre pisos para verlo e interactuar con él.</string>
+    <string name="map_info_help_floors">Cicle entre pisos para verlo e interactuar con él.</string>
     <string name="map_info_help_pois">Las posiciones de las cajas de fusibles y los elementos malditos se indican mediante iconos relevantes.</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
@@ -915,9 +915,9 @@
     <string name="spiritbox_entry_q7_3">Qué podemos hacer para ayudar?</string>
     <string name="spiritbox_entry_q7_9">¿Qué quieres?</string>
     <string name="spiritbox_entry_q7_11">¿Por qué estás aquí?</string>
-    <string name="review_requesttitle">¡Considere la calificación P.E.T.!</string>
-    <string name="review_accept">¡Aceptar!</string>
-    <string name="review_decline">Disminución</string>
+    <string name="review_requesttitle">¡Considere calificar la PET!</string>
+    <string name="review_accept">¡Claro!</string>
+    <string name="review_decline">¡No Gracias!</string>
     <string name="investigation_timer_difficulty_4">Pesadilla</string>
     <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopía</string>
@@ -1481,9 +1481,9 @@
 
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>¡Pinchar el muñeco vudú fuerza una interacción!</p><p>Puedes pinchar el muñeco vudú hasta 10 veces. Cada pinchazo tiene la posibilidad de pinchar el corazón, lo que iniciará una cacería maldita.</p><p>Reducir tu cordura a 0\\% by usando la muñeca activará todos los pines e iniciará una cacería maldita.</p><p>3}</p>]]></string>
 
-    <string name="marketplace_title">Mercado</string>
+    <string name="marketplace_title">Tienda</string>
 
-    <string name="marketplace_connection_error">¡UH oh! Se produjo un error al conectarse al mercado.</string>
+    <string name="marketplace_connection_error">¡UH oh! Se produjo un error al conectarse al tienda.</string>
 
     <string name="marketplace_error_login_required">Inicie sesión para reclamar el contenido del Marketplace.</string>
 
@@ -1516,8 +1516,8 @@
     <string name="alert_account_logout_success">El usuario cerró sesión.</string>
     <string name="alert_account_login_failure">Error de inicio de sesión.</string>
     <string name="alert_internet_unavailable">Internet no disponible.</string>
-    <string name="alert_marketplace_access_failure">No se pudo acceder al mercado.</string>
-    <string name="alert_marketplace_transaction_failure">Error con la transacción del mercado.</string>
+    <string name="alert_marketplace_access_failure">No se pudo acceder al tienda.</string>
+    <string name="alert_marketplace_transaction_failure">Error con la transacción del tienda.</string>
     <string name="alert_marketplace_purchase_success_skin">¡Piel comprada!</string>
     <string name="alert_marketplace_purchase_success_generic">¡Compra exitosa!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">¡No hay suficientes créditos para la compra!</string>
@@ -1525,9 +1525,9 @@
 
     <!-- Acknowledgement -->
 
-    <string name="marketplace_acknowledgement_title">Acuerdo de mercado</string>
+    <string name="marketplace_acknowledgement_title">Acuerdo de tienda</string>
 
-    <string name="marketplace_acknowledgement_warning">Al utilizar el \"Mercado\" de Phasmophobia Evidence Tool, usted acepta implícitamente lo siguiente:</string>
+    <string name="marketplace_acknowledgement_warning">Al utilizar el \"Tienda\" de Phasmophobia Evidence Tool, usted acepta implícitamente lo siguiente:</string>
 
     <string name="marketplace_acknowledgement_warning_list_1">Los términos \"contenido\", \"elementos\" y \"desbloqueos\" se refieren a imágenes, nombres y otros activos. El término \"desarrollador\" se refiere a Tritium Studios. El término \"P.E.T.\" o \"esta aplicación\" se refiere a la aplicación \"Herramienta de evidencia de phasmofobia\".</string>
 

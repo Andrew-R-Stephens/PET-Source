@@ -175,18 +175,6 @@ class StartScreenFragment : MainMenuFragment() {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
     }
 
-    private fun gotoMarketplaceFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_marketplaceFragment)
-    }
-
-    private fun gotoAppInfoFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_appInfoFragment)
-    }
-
-    private fun gotoAppSettingsFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_appSettingsFragment)
-    }
-
     private fun gotoLanguagesFragment(v: View) {
         findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
     }

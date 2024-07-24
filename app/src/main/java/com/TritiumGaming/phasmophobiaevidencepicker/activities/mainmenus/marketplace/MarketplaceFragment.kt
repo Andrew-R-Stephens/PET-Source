@@ -116,6 +116,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         val buyButton = view.findViewById<AppCompatButton>(R.id.settings_account_buy_button)
 
         confirmationDialog = view.findViewById(R.id.confirmationDialog)
+        equipDialog = view.findViewById(R.id.equipDialog)
 
         obtainCreditsTextView = view.findViewById(R.id.layout_account_obtainCredits)
 
@@ -602,7 +603,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             } catch (e: IllegalStateException) {
                                 e.printStackTrace()
-
                                 testToast("Test Failed. Error creating Bundle View")
                             }
 
@@ -610,9 +610,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         catch (e: Exception) {
                             Log.d("Firestore", "Error CREATING Bundle Modal!")
                             e.printStackTrace()
-
                             testToast("Test Failure. Create Bundle Model")
-
                         }
                     }
                 }
@@ -783,8 +781,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun onPurchaseSuccess(bundleModel: MarketBundleModel) {
-        equipDialog = null
-        equipDialog = view?.findViewById(R.id.equipDialog)
         equipDialog?.let { dialog ->
             dialog.setContent {
                 EquipConfirmationDialog(
@@ -799,8 +795,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
     }
 
     private fun onPurchaseSuccess(themeModel: MarketThemeModel) {
-        equipDialog = null
-        equipDialog = view?.findViewById(R.id.equipDialog)
         equipDialog?.let { dialog ->
             dialog.setContent {
                 EquipConfirmationDialog(

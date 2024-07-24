@@ -23,13 +23,13 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     data class LanguageObject(val name: String, val abbreviation: String)
 
     // Review Tracker
-    var reviewRequestData: ReviewTrackingModel
+    var reviewRequestData: ReviewTrackingModel = ReviewTrackingModel()
         private set
 
     // Persistent Styles
-    var fontThemeControl: FontThemeControl
+    var fontThemeControl: FontThemeControl = FontThemeControl(application)
         private set
-    var colorThemeControl: ColorThemeControl
+    var colorThemeControl: ColorThemeControl = ColorThemeControl(application)
         private set
 
     // Language
@@ -72,13 +72,13 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         fileName = R.string.preferences_globalFile_name
     }
 
-    init {
+    fun init(context: Context) {
         setFileName()
 
         val languageNames = ArrayList(
-            listOf(*application.resources.getStringArray(R.array.languages_name)))
+            listOf(*context.resources.getStringArray(R.array.languages_name)))
         val languageAbbrs = ArrayList(
-            listOf(*application.resources.getStringArray(R.array.languages_abbreviation)))
+            listOf(*context.resources.getStringArray(R.array.languages_abbreviation)))
 
         languageList = ArrayList()
         if(languageNames.size == languageAbbrs.size) {
@@ -94,53 +94,53 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
             }
         }
 
-        val sharedPref = getSharedPreferences(application)
+        val sharedPref = getSharedPreferences(context)
 
         currentLanguageAbbr = sharedPref.getString(
-            application.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
+            context.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
         ) ?: DEFAULT_LANGUAGE
 
 
         networkPreference =
-            sharedPref.getBoolean(application.resources.getString(R.string.preference_network), networkPreference)
+            sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
 
         isAlwaysOn =
-            sharedPref.getBoolean(application.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
+            sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
 
         setHuntWarnAudioAllowed(
             sharedPref.getBoolean(
-                application.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
+                context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
                 isHuntWarnAudioAllowed.value))
         setHuntWarningFlashTimeMax(
             sharedPref.getLong(
-                application.resources.getString(R.string.preference_huntWarningFlashTimeout),
+                context.resources.getString(R.string.preference_huntWarningFlashTimeout),
                 huntWarnFlashTimeMax.value))
 
         isLeftHandSupportEnabled =
-            sharedPref.getBoolean(application.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
+            sharedPref.getBoolean(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
         canShowIntroduction =
-            sharedPref.getBoolean(application.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
+            sharedPref.getBoolean(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
 
         reorderGhostViews =
-            sharedPref.getBoolean(application.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
+            sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
 
         reviewRequestData = ReviewTrackingModel(
-            sharedPref.getBoolean(application.resources.getString(R.string.reviewtracking_canRequestReview), false),
-            sharedPref.getLong(application.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
-            sharedPref.getInt(application.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
+            sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
+            sharedPref.getLong(context.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
+            sharedPref.getInt(context.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
         )
 
-        fontThemeControl = FontThemeControl(application)
+        fontThemeControl = FontThemeControl(context)
         fontThemeControl.init(sharedPref.getString(
-            application.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
+            context.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
         )
 
-        colorThemeControl = ColorThemeControl(application)
+        colorThemeControl = ColorThemeControl(context)
         colorThemeControl.init(sharedPref.getString(
-            application.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
+            context.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
         )
 
-        saveToFile(application)
+        saveToFile(context)
     }
 
     fun incrementAppOpenCount(context: Context) {

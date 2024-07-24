@@ -36,7 +36,7 @@ abstract class PETFragment : Fragment {
             try {
                 globalPreferencesViewModel =
                     ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
-                //globalPreferencesViewModel?.init(requireContext())
+                globalPreferencesViewModel?.init(requireContext())
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }

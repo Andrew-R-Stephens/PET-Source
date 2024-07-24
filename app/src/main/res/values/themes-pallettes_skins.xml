@@ -1907,6 +1907,9 @@
     </style>
 
     <style name="Whiteboard" parent="Skin">
+
+        <item name="android:windowLightStatusBar">true</item>
+
         <!--
         #383839 blackish
         #394494 blue
