@@ -3,6 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import android.widget.Toast
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
 import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
@@ -35,6 +37,12 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     // Language
     var languageList: ArrayList<LanguageObject> = ArrayList()
     var currentLanguageAbbr: String = DEFAULT_LANGUAGE
+        set(value) {
+            testToast("$field -> $value")
+            Log.d("Language", "Previous language was $field")
+            field = value
+            Log.d("Language", "Current language is $field")
+        }
 
     // Generic settings
     var isAlwaysOn: Boolean = false
@@ -219,4 +227,13 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
             return settings
         }
 
+    fun testToast(text: String) {
+        if(true) {
+            try {
+                Toast.makeText(getApplication(), text, Toast.LENGTH_SHORT).show()
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
