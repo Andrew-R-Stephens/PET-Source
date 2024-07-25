@@ -33,9 +33,15 @@ abstract class MainMenuFragment : PETFragment {
     }
 
     protected fun initNewsletterViewModel() {
-        try { newsLetterViewModel = newsLetterViewModel ?:
-            ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+        if(newsLetterViewModel == null) {
+            try {
+                newsLetterViewModel =
+                    ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
+                newsLetterViewModel?.init(requireContext())
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun saveNewsletterViewModel() {

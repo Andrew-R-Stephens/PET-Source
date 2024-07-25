@@ -75,14 +75,14 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
         fileName = R.string.preferences_newsletterFile_name
     }
 
-    init {
+    fun init(context: Context) {
         setFileName()
 
-        val sharedPref = getSharedPreferences(application)
+        val sharedPref = getSharedPreferences(context)
 
-        KEY_INBOX_GENERAL = application.getString(R.string.preference_newsletter_lastreaddate_general)
-        KEY_INBOX_PET = application.getString(R.string.preference_newsletter_lastreaddate_pet)
-        KEY_INBOX_PHASMOPHOBIA = application.getString(R.string.preference_newsletter_lastreaddate_phas)
+        KEY_INBOX_GENERAL = context.getString(R.string.preference_newsletter_lastreaddate_general)
+        KEY_INBOX_PET = context.getString(R.string.preference_newsletter_lastreaddate_pet)
+        KEY_INBOX_PHASMOPHOBIA = context.getString(R.string.preference_newsletter_lastreaddate_phas)
 
         getInbox(InboxType.GENERAL)?.let{ inbox ->
             val date = sharedPref.getLong(KEY_INBOX_GENERAL, inbox.lastReadDate)
@@ -99,7 +99,7 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
             setLastReadDate(InboxType.PHASMOPHOBIA, date)
         }
 
-        saveToFile(application)
+        saveToFile(context)
     }
 
     fun registerInboxes(context: Context) {
