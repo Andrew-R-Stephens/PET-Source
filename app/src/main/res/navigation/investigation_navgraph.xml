@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_codexFragment_to_cursedPossessionsFragment"
             app:destination="@id/cursedPosessionsFragment" />
+        <action
+            android:id="@+id/action_codexFragment_to_achievementsFragment"
+            app:destination="@id/achievementsFragment" />
     </fragment>
     <fragment
         android:id="@+id/evidenceFragment"
@@ -95,4 +98,8 @@
         android:id="@+id/cursedPosessionsFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.children.PossessionsFragment"
         android:label="CursedPosessionsFragment" />
+    <fragment
+        android:id="@+id/achievementsFragment"
+        android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.children.AchievementsFragment"
+        android:label="AchievementsFragment" />
 </navigation>

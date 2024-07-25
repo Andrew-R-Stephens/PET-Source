@@ -10,30 +10,29 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 
 class ItemStoreItemView : AppCompatImageView {
 
-    private var isSelected = false
-
-    constructor(context: Context) : super(context) { setDefaults() }
+    constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { setDefaults() }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { setDefaults() }
+            super(context, attrs, defStyleAttr)
 
-    private fun setDefaults() {
-    }
+    private var isSelected = false
 
     fun setTier(tier: Int) {
         setImageLevel(tier)
     }
 
     fun setEquipment(@DrawableRes res: Int) {
-        val layerDrawable = drawable as LayerDrawable
-        layerDrawable.setDrawableByLayerId(
-            R.id.ic_type, ResourcesCompat.getDrawable(
-                resources, res, context.theme
+        if(drawable is LayerDrawable) {
+            val layerDrawable = drawable as LayerDrawable
+            layerDrawable.setDrawableByLayerId(
+                R.id.ic_type, ResourcesCompat.getDrawable(
+                    resources, res, context.theme
+                )
             )
-        )
+        }
     }
 
     override fun setSelected(isSelected: Boolean) {

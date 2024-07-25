@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.ghostbox
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.ghostbox
 
 import android.content.Context
 import androidx.annotation.ArrayRes

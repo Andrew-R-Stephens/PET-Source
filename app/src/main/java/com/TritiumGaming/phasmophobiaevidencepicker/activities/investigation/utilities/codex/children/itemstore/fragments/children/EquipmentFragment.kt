@@ -16,9 +16,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.equipment.ItemStoreEquipmentItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.equipment.ItemStoreEquipmentGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.equipment.ItemStoreEquipmentItemModel
 
 class EquipmentFragment : ItemStoreFragment() {
     @SuppressLint("ResourceType")

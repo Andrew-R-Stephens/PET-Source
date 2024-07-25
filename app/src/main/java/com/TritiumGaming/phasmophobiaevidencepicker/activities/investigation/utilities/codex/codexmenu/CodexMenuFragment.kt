@@ -34,6 +34,14 @@ class CodexMenuFragment : CodexFragment() {
             v?.let { findNavController(v)
                     .navigate(R.id.action_codexFragment_to_cursedPossessionsFragment) } }
 
+        /*
+        val gotoAchievements =
+            gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option3)
+        gotoAchievements?.setOnClickListener { v: View? ->
+            v?.let { findNavController(v)
+                    .navigate(R.id.action_codexFragment_to_achievementsFragment) } }
+        */
+
         stylizeLogo(view.findViewById(R.id.label_codex_ghostos))
     }
 

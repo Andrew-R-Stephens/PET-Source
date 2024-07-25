@@ -28,8 +28,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.codex.itemstore.ItemStoreListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import kotlin.math.max
 import kotlin.math.min
@@ -62,7 +62,7 @@ abstract class ItemStoreFragment : CodexFragment() {
         val titleView = view.findViewById<AppCompatTextView>(R.id.label_pagetitle)
         val itemStore = view.findViewById<ItemStoreList>(R.id.item_safehouse_itemstore)
         scrollView = itemStore.findViewById(R.id.scrollView_vert) ?: itemStore.findViewById(R.id.scrollView_horiz)
-        val parent = itemStore.findViewById<LinearLayoutCompat>(R.id.linearLayout_itemStore_list)
+        val parent = scrollView?.findViewById<LinearLayoutCompat?>(R.id.linearLayout_itemStore_list)
         val scrollViewPaginator = view.findViewById<ItemStoreScrollPaginator>(R.id.item_safehouse_itemstore_paginator)
 
         setPageTitle(titleView)
@@ -77,7 +77,7 @@ abstract class ItemStoreFragment : CodexFragment() {
             try {
                 requireActivity().runOnUiThread {
                     Log.d("Err", "Building Store Views")
-                    buildGroupViews(parent, scrollViewPaginator)
+                    parent?.let { buildGroupViews(it, scrollViewPaginator) }
                     Log.d("Err", "Finished Building Store Views")
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -216,17 +216,18 @@ abstract class ItemStoreFragment : CodexFragment() {
     protected fun addPaginatorIcon(scrollViewPaginator: GridLayout, icon: Int?) {
         val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
-        val equipmentView =
+        val iconView =
             layoutInflater.inflate(R.layout.item_itemstore_scrollview_paginator_icon, null) as AppCompatImageView
         val param = GridLayout.LayoutParams()
         param.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
         param.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
         param.width = if (isPortrait) ViewGroup.LayoutParams.WRAP_CONTENT else 0
         param.height = if ((!isPortrait)) ViewGroup.LayoutParams.WRAP_CONTENT else 0
-        equipmentView.layoutParams = param
-        icon?.let { ic -> equipmentView.setImageResource(ic) }
-        setIconFilter(equipmentView, selColor, 1f)
-        scrollViewPaginator.addView(equipmentView)
+        iconView.layoutParams = param
+        icon?.let { ic -> iconView.setImageResource(ic) }
+
+        setIconFilter(iconView, selColor, 1f)
+        scrollViewPaginator.addView(iconView)
     }
 
     protected fun doScrollItemStoreScrollView(paginatorGrid: GridLayout, paginatorChildCount: Int) {

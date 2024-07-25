@@ -26,7 +26,7 @@ import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigationUtils.ghostbox.GhostBoxUtilityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.ghostbox.GhostBoxUtilityModel
 import java.util.Locale
 
 class GhostBoxFragment :
