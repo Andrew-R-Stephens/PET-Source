@@ -17,7 +17,7 @@ class MapCarouselModel(
         val MODIFIER_SETUP = floatArrayOf(.09f, .05f, .03f)
     }
 
-    data class MapSizeData(val name: String = "NA", val size: Int)
+    data class MapSizeData(val name: Int = 0, val size: Int)
 
     /* List */
     private var itemList = mutableListOf<MapSizeData>()
@@ -45,9 +45,8 @@ class MapCarouselModel(
     }
     /* -- */
 
-    val currentName: String
+    val currentName: Int
         get() = itemList[currentIndex.value].name
-            .split(" ").getOrNull(0) ?: "NA"
 
     val currentMapSize: Int
         get() {
@@ -67,7 +66,7 @@ class MapCarouselModel(
         }
 
     private fun setList(
-        names: MutableList<String> = mutableListOf(),
+        names: MutableList<Int> = mutableListOf(),
         sizes: MutableList<Int> = mutableListOf()
     ) {
         if (names.size == sizes.size) {
@@ -80,12 +79,12 @@ class MapCarouselModel(
     init {
         val typedArray: TypedArray =
             context.resources.obtainTypedArray(R.array.maps_resources_array)
-        val names = mutableListOf<String>()
+        val names = mutableListOf<Int>()
         val sizes = mutableListOf<Int>()
         for (i in 0 until typedArray.length()) {
             val mapTypedArray: TypedArray =
                 context.resources.obtainTypedArray(typedArray.getResourceId(i, 0))
-            names.add(i, mapTypedArray.getString(0) ?: "")
+            names.add(i, mapTypedArray.getResourceId(0, 0))
             val sizeLayer = 6
             sizes.add(i, mapTypedArray.getInt(sizeLayer, 0))
             mapTypedArray.recycle()

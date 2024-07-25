@@ -1,7 +1,7 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels
 
 import android.content.Context
-import android.content.res.Resources
+import android.content.res.TypedArray
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,13 +17,13 @@ class DifficultyCarouselModel(
         val INSANITY_START = floatArrayOf(100f, 100f, 100f, 100f, 70f)
     }
 
-    data class DifficultyData(val name: String = "NA", val time: Long)
+    data class DifficultyData(val name: Int = 0, val time: Long)
 
     enum class Difficulty { AMATEUR, INTERMEDIATE, PROFESSIONAL, NIGHTMARE, INSANITY }
 
     /* List */
     private var itemList = mutableListOf<DifficultyData>()
-    private fun setList(allNames: MutableList<String>, allTimes: MutableList<Long>) {
+    private fun setList(allNames: MutableList<Int>, allTimes: MutableList<Long>) {
         if (allNames.size == allTimes.size) {
             for (i in allNames.indices) {
                 itemList.add(i, DifficultyData(allNames[i], allTimes[i]))
@@ -65,7 +65,7 @@ class DifficultyCarouselModel(
     val currentDifficulty: Difficulty
         get() = Difficulty.entries[currentIndex.value]
 
-    val currentName: String
+    val currentName: Int
         get() = itemList[currentIndex.value].name
 
     val currentTime: Long
@@ -90,6 +90,25 @@ class DifficultyCarouselModel(
         }
 
     init {
+        val names = mutableListOf<Int>()
+        val namesTypedArray: TypedArray =
+            context.resources.obtainTypedArray(R.array.evidence_timer_difficulty_names_array)
+        for (i in 0 until namesTypedArray.length()) {
+            names.add(i, namesTypedArray.getResourceId(i, 0))
+        }
+        namesTypedArray.recycle()
+
+        val times = mutableListOf<Long>()
+        val timesListOut =
+            context.resources.getStringArray(R.array.evidence_timer_difficulty_times_array)
+        timesListOut.forEachIndexed { index, it ->
+            times.add(index, it.toLong())
+        }
+
+        setList(names, times)
+
+
+        /*
         var namesList: MutableList<String> = mutableListOf()
         try {
             namesList = context.resources
@@ -106,5 +125,6 @@ class DifficultyCarouselModel(
         } catch (e: Resources.NotFoundException) { e.printStackTrace() }
 
         setList(namesList, timesList)
+        */
     }
 }

@@ -40,17 +40,17 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 investigationViewModel.sanityModel?.reset()
             }
         }
-
-        setName(investigationViewModel.difficultyCarouselModel?.currentName)
+        investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->
+            setName(context.getString(nameRes))
+        }
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
-                setName(
-                    investigationViewModel.difficultyCarouselModel?.currentName
-                        ?.split(" ")?.get(0)
-                )
+                investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->
+                    setName(context.getString(nameRes))
+                }
             }
         }
     }

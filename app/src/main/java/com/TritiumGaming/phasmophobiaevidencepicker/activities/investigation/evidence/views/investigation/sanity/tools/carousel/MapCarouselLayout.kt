@@ -42,15 +42,17 @@ class MapCarouselLayout : SanityCarouselLayout {
             }
         }
 
-        setName(investigationViewModel.mapCarouselModel?.currentName)
+        investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
+            setName(context.getString(nameRes).split(" ")[0])
+        }
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.mapCarouselModel?.currentIndex?.collectLatest {
-                setName(
-                    investigationViewModel.mapCarouselModel?.currentName
-                        ?.split(" ")?.get(0))
+                investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
+                    setName(context.getString(nameRes).split(" ")[0])
+                }
             }
         }
     }

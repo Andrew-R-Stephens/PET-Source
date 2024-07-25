@@ -10,9 +10,6 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
-import com.google.android.material.card.MaterialCardView
 
 class MarketBundleView : MarketItemView {
 

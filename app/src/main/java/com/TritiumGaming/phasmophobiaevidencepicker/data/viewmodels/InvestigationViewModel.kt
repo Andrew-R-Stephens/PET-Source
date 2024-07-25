@@ -33,9 +33,11 @@ class InvestigationViewModel(application: Application): AndroidViewModel(applica
         investigationModel =
             investigationModel ?: InvestigationModel(getApplication(), this)
 
-        mapCarouselModel = mapCarouselModel ?: MapCarouselModel(getApplication(), this)
-        difficultyCarouselModel =
-            difficultyCarouselModel ?: DifficultyCarouselModel(getApplication(), this)
+        mapCarouselModel = mapCarouselModel
+            ?: MapCarouselModel(getApplication(), this)
+        difficultyCarouselModel = difficultyCarouselModel
+            ?: DifficultyCarouselModel(getApplication(), this)
+
         timerModel = timerModel ?: PhaseTimerModel(this)
         phaseWarnModel = phaseWarnModel ?: PhaseWarningModel(this)
 
