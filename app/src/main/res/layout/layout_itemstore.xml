@@ -9,7 +9,7 @@
     tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList">
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/scrollView_vert"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

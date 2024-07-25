@@ -125,6 +125,7 @@ class StartScreenFragment : MainMenuFragment() {
         try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdates()) {
                 initReviewRequest(buttonReview) } }
         catch (e: IllegalStateException) { e.printStackTrace() }
+        catch (e: SendIntentException) { e.printStackTrace() }
 
         try { doReviewRequest() }
         catch (e: SendIntentException) { e.printStackTrace() }

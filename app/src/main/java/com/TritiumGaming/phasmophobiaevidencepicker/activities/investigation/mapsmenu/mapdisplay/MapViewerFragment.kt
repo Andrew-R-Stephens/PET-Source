@@ -168,8 +168,11 @@ class MapViewerFragment : InvestigationFragment() {
             mapMenuViewModel.imageDisplayThread = Thread {
                 try {
                     imageDisplay?.setMapImages(requireActivity())
-                    imageDisplay?.setPoiImages(requireActivity())
-                } catch (e: IllegalStateException) { e.printStackTrace() }
+                    try { imageDisplay?.setPoiImages(requireActivity()) }
+                    catch (e: Exception) { e.printStackTrace() }
+                }
+                catch (e: IllegalStateException) { e.printStackTrace() }
+
             }
             mapMenuViewModel.imageDisplayThread?.start()
         }

@@ -296,7 +296,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ScrollView
+            <HorizontalScrollView
                 android:id="@id/textview_itemshop_attributes_wrapper"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -306,11 +306,10 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="4dp"
                 android:layout_weight="1"
-                android:requiresFadingEdge="vertical"
+                android:requiresFadingEdge="horizontal"
                 android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:scrollbarStyle="insideInset"
                 android:paddingBottom="2dp"
-                app:layout_constraintHeight_percent=".25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -319,8 +318,8 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_itemshop_attributes"
                     style="?attr/quaternaryFont_Bold_Manual"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:maxLines="2"
                     android:padding="4dp"
                     android:textColor="?attr/codex3_popupAttrText"
@@ -329,7 +328,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </ScrollView>
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

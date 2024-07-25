@@ -295,6 +295,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         bitmapUtils = null
     }
 
+    @Throws(Exception::class)
     fun setPoiImages(a: Activity) {
         val typedArray =
             a.resources.obtainTypedArray(R.array.poi_resources_array)

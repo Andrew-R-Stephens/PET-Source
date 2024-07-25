@@ -14,9 +14,11 @@ class ItemStoreItemView : AppCompatImageView {
 
     constructor(context: Context) : super(context) { setDefaults() }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) { setDefaults() }
+    constructor(context: Context, attrs: AttributeSet?) :
+            super(context, attrs) { setDefaults() }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setDefaults() }
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+            super(context, attrs, defStyleAttr) { setDefaults() }
 
     private fun setDefaults() {
     }

@@ -61,9 +61,9 @@ abstract class ItemStoreFragment : CodexFragment() {
 
         val titleView = view.findViewById<AppCompatTextView>(R.id.label_pagetitle)
         val itemStore = view.findViewById<ItemStoreList>(R.id.item_safehouse_itemstore)
+        scrollView = itemStore.findViewById(R.id.scrollView_vert) ?: itemStore.findViewById(R.id.scrollView_horiz)
         val parent = itemStore.findViewById<LinearLayoutCompat>(R.id.linearLayout_itemStore_list)
         val scrollViewPaginator = view.findViewById<ItemStoreScrollPaginator>(R.id.item_safehouse_itemstore_paginator)
-        scrollView = view.findViewById(R.id.scrollView)
 
         setPageTitle(titleView)
         setDataViewLayout(view)
