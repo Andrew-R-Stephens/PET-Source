@@ -566,20 +566,25 @@ fun Dialog(
 fun EquipConfirmationDialog (
     targetTitle: String = "<theme>",
     onConfirm: () -> Unit = {},
-    timeout: Long = 1000L
+    timeout: Long = 1000L,
+    isReset: Boolean = true,
+    isInit: Boolean = true
 ) {
-    var visible by remember { mutableStateOf(true) }
-
+    var title by remember { mutableStateOf("") }
+    title = targetTitle
+    var isVisible by remember { mutableStateOf(true) }
     var timeLeft by remember { mutableLongStateOf(timeout) }
 
-    LaunchedEffect(key1 = timeLeft) {
-        visible = true
-        while (timeLeft > 0L) {
+    LaunchedEffect(title) {
+        timeLeft = timeout
+        isVisible = true
+        while (timeLeft > 0L && isVisible) {
             val delayTime = 5L
             delay(delayTime)
             timeLeft -= delayTime
         }
-        visible = false
+        timeLeft = 0L
+        isVisible = false
     }
 
     Box(
@@ -587,7 +592,7 @@ fun EquipConfirmationDialog (
         contentAlignment = Alignment.BottomCenter
     ) {
         AnimatedVisibility(
-            visible,
+            isVisible,
             enter = slideIn(tween(500, easing = LinearOutSlowInEasing)) { fullSize ->
                 IntOffset(0, fullSize.height)
             },
@@ -599,11 +604,14 @@ fun EquipConfirmationDialog (
                 .clip(RoundedCornerShape(25))
                 .progressGradient(
                     progress = timeLeft / (timeout.toFloat()),
-                    gradientColor = Color(getColorFromAttribute(
-                        LocalContext.current, R.attr.theme_colorPrimary)),
+                    gradientColor = Color(
+                        getColorFromAttribute(
+                            LocalContext.current, R.attr.theme_colorPrimary
+                        )
+                    ),
                     gradientAlpha = 1f
                 )
-                .padding(0.dp, 2.dp, 0.dp, 2.dp)
+                .padding(0.dp, 1.dp, 0.dp, 1.dp)
             ) {
 
                 Row(
@@ -612,9 +620,14 @@ fun EquipConfirmationDialog (
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .background(Color(getColorFromAttribute(
-                            LocalContext.current, R.attr.backgroundColorOnBackground)),
-                            RoundedCornerShape(24))
+                        .background(
+                            Color(
+                                getColorFromAttribute(
+                                    LocalContext.current, R.attr.backgroundColorOnBackground
+                                )
+                            ),
+                            RoundedCornerShape(24)
+                        )
                         .padding(8.dp)
                         .height(48.dp)
                 ) {
@@ -650,7 +663,8 @@ fun EquipConfirmationDialog (
                         shape = RoundedCornerShape(percent = 50),
                         onClick = {
                             onConfirm()
-                            timeLeft = 0L
+                            timeLeft = timeout
+                            isVisible = false
                         },
                         modifier = Modifier
                             .size(48.dp)

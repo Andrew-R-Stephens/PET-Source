@@ -123,10 +123,10 @@ fun Modifier.progressGradient(
                     -gradientLength to gradientColor,
                     progress to gradientColor,
                     progress+gradientLength to Color.Transparent,
-                    startX = 0f,
+                    startX = -gradientLength,
                     endX = size.width
                 ),
-                blendMode = BlendMode.Multiply
+                blendMode = BlendMode.SrcOver
             )
 
             drawContent()
