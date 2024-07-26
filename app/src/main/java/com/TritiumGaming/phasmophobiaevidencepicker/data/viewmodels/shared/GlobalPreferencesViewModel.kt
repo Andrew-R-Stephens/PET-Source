@@ -37,12 +37,6 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     // Language
     var languageList: ArrayList<LanguageObject> = ArrayList()
     var currentLanguageAbbr: String = DEFAULT_LANGUAGE
-        set(value) {
-            testToast("$field -> $value")
-            Log.d("Language", "Previous language was $field")
-            field = value
-            Log.d("Language", "Current language is $field")
-        }
 
     // Generic settings
     var isAlwaysOn: Boolean = false
@@ -227,13 +221,4 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
             return settings
         }
 
-    fun testToast(text: String) {
-        if(true) {
-            try {
-                Toast.makeText(getApplication(), text, Toast.LENGTH_SHORT).show()
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
-        }
-    }
 }
