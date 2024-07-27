@@ -1,22 +1,22 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
 
-import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.NewsletterViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared.OnboardingViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.appupdate.AppUpdateOptions
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -25,14 +25,24 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @author TritiumGamingStudios
  */
 class MainMenuActivity : PETActivity() {
+
     private var onboardingViewModel: OnboardingViewModel? = null
     private var newsLetterViewModel: NewsletterViewModel? = null
 
-    private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
-    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
+    //private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
+    //private val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     private var appUpdateManager: AppUpdateManager? = null
-    private var updateType: Int = AppUpdateType.IMMEDIATE
+    private var updateType: Int = IMMEDIATE
+    private var activityUpdateResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartIntentSenderForResult()) {
+                result: androidx.activity.result.ActivityResult ->
+            // handle callback
+            if (result.resultCode != RESULT_OK) {
+                print("Update flow failed! Result code: " + result.resultCode);
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +52,6 @@ class MainMenuActivity : PETActivity() {
 
         //requestOnboardingActivity();
 
-        //showConsentForm();
-        //requestAdsConsentInformation(); Moved to PETActivity
         createConsentInformation()
     }
 
@@ -68,6 +76,75 @@ class MainMenuActivity : PETActivity() {
         newsLetterViewModel = ViewModelProvider(this)[NewsletterViewModel::class.java]
     }
 
+    public override fun loadPreferences() {
+        super.loadPreferences()
+
+        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+            globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
+
+            //set language
+            if (setLanguage(globalPreferencesViewModel.currentLanguageAbbr)) {
+                recreate()
+            }
+        }
+    }
+
+    /*
+    fun requestOnboardingActivity() {
+        if (onboardingViewModel != null && onboardingViewModel!!.showIntroduction) {
+            Log.d("Onboarding", "Starting Activity")
+            startActivity(Intent(this, OnboardingActivity::class.java))
+        }
+    }
+    */
+
+    fun checkForAppUpdate(): Boolean {
+        appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
+
+        val hasUpdate = AtomicBoolean(false)
+
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
+            val isUpdateAvailable =
+                appUpdateInfo.updateAvailability() == UPDATE_AVAILABLE
+            val isUpdateAllowed = updateType == IMMEDIATE
+
+            if (isUpdateAvailable && isUpdateAllowed) {
+                try {
+                    requestAppUpdate(appUpdateInfo)
+                    hasUpdate.set(true)
+                } catch (e: SendIntentException) { throw RuntimeException(e) }
+            }
+        }
+
+        return hasUpdate.get()
+    }
+
+    private fun requestAppUpdate(appUpdateInfo: AppUpdateInfo) {
+        appUpdateManager?.startUpdateFlowForResult(
+            appUpdateInfo, activityUpdateResultLauncher,
+            AppUpdateOptions.newBuilder(IMMEDIATE).build())
+    }
+
+    private fun completePendingAppUpdate() {
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
+            val isUpdateInProgress =
+                appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                if (isUpdateInProgress) {
+                    appUpdateManager?.startUpdateFlowForResult(
+                        appUpdateInfo, activityUpdateResultLauncher,
+                        AppUpdateOptions.newBuilder(IMMEDIATE).build()
+                    )
+                }
+            }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        completePendingAppUpdate()
+    }
+
+    /*
     fun checkForAppUpdates(): Boolean {
         appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
 
@@ -104,13 +181,6 @@ class MainMenuActivity : PETActivity() {
 
     }
 
-    fun requestOnboardingActivity() {
-        if (onboardingViewModel != null && onboardingViewModel!!.showIntroduction) {
-            Log.d("Onboarding", "Starting Activity")
-            startActivity(Intent(this, OnboardingActivity::class.java))
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -122,16 +192,10 @@ class MainMenuActivity : PETActivity() {
         }
     }
 
-    public override fun loadPreferences() {
-        super.loadPreferences()
-
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
-
-            //set language
-            if (setLanguage(globalPreferencesViewModel.currentLanguageAbbr)) {
-                recreate()
-            }
+    fun requestOnboardingActivity() {
+        if (onboardingViewModel != null && onboardingViewModel!!.showIntroduction) {
+            Log.d("Onboarding", "Starting Activity")
+            startActivity(Intent(this, OnboardingActivity::class.java))
         }
     }
 
@@ -140,4 +204,6 @@ class MainMenuActivity : PETActivity() {
 
         completePendingAppUpdates()
     }
+    */
+
 }

@@ -122,7 +122,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         super.initAdView(view.findViewById(R.id.adView))
 
-        try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdates()) {
+        try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdate()) {
                 initReviewRequest(buttonReview) } }
         catch (e: IllegalStateException) { e.printStackTrace() }
         catch (e: SendIntentException) { e.printStackTrace() }
