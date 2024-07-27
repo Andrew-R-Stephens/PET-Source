@@ -13,18 +13,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.Investigatio
 
 class SanityToolsLayout : ConstraintLayout {
 
-    private var sanityWarningLayout: SanityWarningLayout
-    private var phaseTimerLayout: PhaseTimerLayout
-    private var sanityTrackerView: SanityTrackerLayout
+    private var sanityWarningLayout: SanityWarningLayout? = null
+    private var phaseTimerLayout: PhaseTimerLayout? = null
+    private var sanityTrackerView: SanityTrackerLayout? = null
 
-    private var mapCarouselLayout: MapCarouselLayout
-    private var difficultyCarouselLayout: DifficultyCarouselLayout
+    private var mapCarouselLayout: MapCarouselLayout? = null
+    private var difficultyCarouselLayout: DifficultyCarouselLayout? = null
 
-    constructor(context: Context) :
-            super(context)
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
@@ -48,11 +46,11 @@ class SanityToolsLayout : ConstraintLayout {
     private fun setDefaults() { }
 
     fun init(investigationViewModel: InvestigationViewModel) {
-        sanityWarningLayout.init(investigationViewModel)
-        phaseTimerLayout.init(investigationViewModel)
-        sanityTrackerView.init(investigationViewModel)
+        sanityWarningLayout?.init(investigationViewModel)
+        phaseTimerLayout?.init(investigationViewModel)
+        sanityTrackerView?.init(investigationViewModel)
 
-        mapCarouselLayout.init(investigationViewModel)
-        difficultyCarouselLayout.init(investigationViewModel)
+        mapCarouselLayout?.init(investigationViewModel)
+        difficultyCarouselLayout?.init(investigationViewModel)
     }
 }

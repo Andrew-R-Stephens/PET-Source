@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class SanitySeekBarView : AppCompatSeekBar {
 
-    private lateinit var investigationViewModel: InvestigationViewModel
+    private var investigationViewModel: InvestigationViewModel? = null
     var onProgressChangedListener: OnSanityBarProgressChangedListener? = null
 
     constructor(context: Context) : super(context)
@@ -45,7 +45,7 @@ class SanitySeekBarView : AppCompatSeekBar {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
+            investigationViewModel?.sanityModel?.sanityLevel?.collectLatest {
                 val newProgress = (100 - it).toInt()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     setProgress(newProgress, true)

@@ -57,8 +57,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
         }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.init()
 
         return inflater.inflate(R.layout.fragment_account, container, false)

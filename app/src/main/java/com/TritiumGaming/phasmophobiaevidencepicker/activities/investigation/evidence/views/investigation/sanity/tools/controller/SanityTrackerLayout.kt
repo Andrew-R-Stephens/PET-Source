@@ -18,23 +18,23 @@ class SanityTrackerLayout : ConstraintLayout {
 
     private var investigationViewModel: InvestigationViewModel? = null
 
-    private lateinit var sanitySeekBarView: SanitySeekBarView
-    private lateinit var sanityPercentTextView: AppCompatTextView
-    private lateinit var sanityMeterView: ComposeView
+    private var sanitySeekBarView: SanitySeekBarView? = null
+    private var sanityPercentTextView: AppCompatTextView? = null
+    private var sanityMeterView: ComposeView? = null
 
     constructor(context: Context) :
-            super(context) { initView(null) }
+            super(context)
 
     constructor(context: Context, attrs: AttributeSet?) :
-            super(context, attrs) { initView(attrs) }
+            super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-            super(context, attrs, defStyleAttr) { initView(attrs) }
+            super(context, attrs, defStyleAttr)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-            super(context, attrs, defStyleAttr, defStyleRes) { initView(attrs) }
+            super(context, attrs, defStyleAttr, defStyleRes)
 
-    private fun initView(attrs: AttributeSet?) {
+    init {
         inflate(context, R.layout.layout_sanity_tool_control, this)
 
         sanitySeekBarView = findViewById(R.id.evidence_sanitymeter_seekbar)
@@ -51,18 +51,20 @@ class SanityTrackerLayout : ConstraintLayout {
     fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
-        sanityMeterView.apply {
+        sanityMeterView?.apply {
             setContent { SanityMeterView(investigationViewModel) }
         }
 
-        sanitySeekBarView.init(investigationViewModel)
-        sanitySeekBarView.onProgressChangedListener = object :
-            SanitySeekBarView.OnSanityBarProgressChangedListener() {
-            override fun onChange() {
-                sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
+        sanitySeekBarView?.let { sanitySeekBarView ->
+            sanitySeekBarView.init(investigationViewModel)
+            sanitySeekBarView.onProgressChangedListener = object :
+                SanitySeekBarView.OnSanityBarProgressChangedListener() {
+                override fun onChange() {
+                    sanityPercentTextView?.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
+                }
             }
         }
-        sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
+        sanityPercentTextView?.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
 
 
         initObservables(investigationViewModel)
@@ -71,7 +73,7 @@ class SanityTrackerLayout : ConstraintLayout {
     private fun initObservables(investigationViewModel: InvestigationViewModel) {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.sanityModel?.sanityLevel?.collectLatest {
-                sanityPercentTextView.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
+                sanityPercentTextView?.text = investigationViewModel.sanityModel?.sanityLevelAsPercent()
             }
         }
     }

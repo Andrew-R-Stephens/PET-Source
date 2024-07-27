@@ -6,12 +6,15 @@
             <size
                 android:width="15dp"
                 android:height="15dp" />
+            <!--
             <gradient
                 android:type="radial"
                 android:gradientRadius="70dp"
                 android:startColor="?attr/progressBarColorThumbGradientStart"
                 android:centerColor="?attr/progressBarColorThumbGradientEnd" />
-
+                -->
+            <solid
+                android:color="?attr/progressBarColorThumbOutline" />
         </shape>
     </item>
 
