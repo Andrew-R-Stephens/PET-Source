@@ -59,7 +59,7 @@ class MapMenuFragment : InvestigationFragment() {
                             mapMenuViewModel.currentMapIndex = position
                             mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
 
-                            navigateToBasicMapView(itemView)
+                            navigateToMapView(itemView)
                         }
                     }
             } ?:  Toast.makeText(requireContext(),
@@ -80,9 +80,13 @@ class MapMenuFragment : InvestigationFragment() {
         return mapListModel
     }
 
-    private fun navigateToBasicMapView(view: View) {
-        findNavController(view)
-            .navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
+    private fun navigateToMapView(view: View) {
+        //findNavController(view).navigate(R.id.mapViewerFragment)
+        try {
+            findNavController(view).navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     inner class GridViewAdapter(

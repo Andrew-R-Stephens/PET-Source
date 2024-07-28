@@ -47,11 +47,18 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_evidenceFragment_to_mapViewerFragment"
+            app:destination="@id/mapViewerFragment" />
     </fragment>
     <fragment
         android:id="@+id/objectivesFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.MissionsFragment"
-        android:label="ObjectivesFragment" />
+        android:label="ObjectivesFragment" >
+        <action
+            android:id="@+id/action_objectivesFragment_to_mapViewerFragment"
+            app:destination="@id/mapViewerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapMenuFragment"
         android:name="com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.MapMenuFragment"
