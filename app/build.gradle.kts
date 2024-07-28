@@ -48,8 +48,8 @@ android {
 
         minSdk = 23
         targetSdk = 34
-        versionCode = 112
-        versionName = "9.0.1.3"
+        versionCode = 113
+        versionName = "9.0.2"
 
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
