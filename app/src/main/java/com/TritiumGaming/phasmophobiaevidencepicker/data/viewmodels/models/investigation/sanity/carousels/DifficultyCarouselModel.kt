@@ -44,7 +44,6 @@ class DifficultyCarouselModel(
             timerModel.setTimeRemaining(currentTime)
             timerModel.resetTimer()
         }
-
     }
     fun incrementIndex() {
         var i = currentIndex.value + 1
@@ -60,6 +59,7 @@ class DifficultyCarouselModel(
         setIndex(i)
         investigationViewModel.phaseWarnModel?.audioWarnTriggered = false
     }
+
     /* -- */
 
     val currentDifficulty: Difficulty
@@ -67,6 +67,9 @@ class DifficultyCarouselModel(
 
     val currentName: Int
         get() = itemList[currentIndex.value].name
+    fun getNameAt(index: Int): Int {
+        return itemList[index].name
+    }
 
     val currentTime: Long
         get() = itemList[currentIndex.value].time

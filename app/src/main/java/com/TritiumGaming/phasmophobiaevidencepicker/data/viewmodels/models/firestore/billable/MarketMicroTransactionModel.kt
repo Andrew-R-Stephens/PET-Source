@@ -4,6 +4,7 @@ import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetails.OneTimePurchaseOfferDetails
 
 class MarketMicroTransactionModel(val productDetails: ProductDetails) {
+
     private val productID: String
         get() = productDetails.productId
 
@@ -27,8 +28,7 @@ class MarketMicroTransactionModel(val productDetails: ProductDetails) {
         get() = purchaseDetails?.priceCurrencyCode ?: "USD"
 
     override fun toString(): String {
-        return productID + " " + name + " " + purchaseDetails +
-                " " + purchaseAmount + " " + currencyCode
+        return "$productID $name $purchaseDetails $purchaseAmount $currencyCode"
     }
 }
 

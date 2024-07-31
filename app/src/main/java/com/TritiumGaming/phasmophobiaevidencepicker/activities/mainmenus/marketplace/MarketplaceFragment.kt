@@ -164,15 +164,18 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         }?.start()
 
         launchAgreementDialogJob?.start()
-
     }
 
     private fun gotoBillingMarketplace(v: View) {
-        findNavController(v).navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
+        try {
+            findNavController(v).navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun gotoSettingsMarketplace(v: View) {
-        findNavController(v).navigate(R.id.action_marketplaceFragment_to_appSettingsFragment)
+        try {
+            findNavController(v).navigate(R.id.action_marketplaceFragment_to_appSettingsFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun initAccountCreditListener() {
@@ -868,9 +871,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 // Handle the reward.
                 Log.d("RewardedAd", "The user earned the reward.")
 
-                try {
-                    addCredits(rewardItem.amount.toLong())
-                }
+                // Accredit account
+                try { addCredits(rewardItem.amount.toLong()) }
                 catch (e: Exception) { e.printStackTrace() }
 
                 // A watched ad cannot be re-watched, so chamber another ad

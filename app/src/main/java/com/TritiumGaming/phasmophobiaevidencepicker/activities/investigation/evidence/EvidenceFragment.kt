@@ -11,7 +11,10 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import android.widget.ScrollView
+import android.widget.Toast
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
@@ -20,8 +23,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.InvestigationSection
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel.Companion.TOOL_MODIFIER_DETAILS
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel.Companion.TOOL_SANITY
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CollapseButton
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationToolbar
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ModifiersButton
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ResetButton
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityButton
+import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ToolBarItemPair
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -94,13 +103,15 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         ghostScrollview?.addView(ghostList)
         evidenceScrollview?.addView(evidenceList)
 
+        /*
         val toggleCollapseButton: ComposeView? = view.findViewById(R.id.button_toggleSanity)
         initCollapsible(toggleCollapseButton)
 
         val buttonReset = view.findViewById<ComposeView?>(R.id.button_reset)
         initResetButton(buttonReset)
+        */
 
-        /*
+        initCollapsible(null)
         val setupToolbarJob = CoroutineScope(Dispatchers.Main).launch {
             val sanityToolbarComposable: ComposeView? =
                 view.findViewById(R.id.sanityToolbarComposable)
@@ -108,8 +119,11 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 val collapseButton: @Composable () -> Unit = {
                     investigationViewModel?.investigationModel?.let { investigationModel ->
                         CollapseButton(
-                            isCollapsedState = investigationModel.isSanityDrawerCollapsed,
-                            onClick = { investigationModel.toggleDrawerState() }
+                            isCollapsedState =
+                                investigationModel.isInvestigationToolsDrawerCollapsed,
+                            onClick = {
+                                investigationModel.toggleInvestigationToolsDrawerState()
+                            }
                         )
                     }
                 }
@@ -120,13 +134,33 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                     )
                 }
 
+                val sanityDisplayButton: @Composable () -> Unit = {
+                    investigationViewModel?.investigationModel?.let { investigationModel ->
+                        SanityButton(
+                            onClick = {
+                                investigationModel.setInvestigationToolsCategory(TOOL_SANITY)
+                            }
+                        )
+                    }
+                }
+
+                val modifierDisplayButton: @Composable () -> Unit = {
+                    investigationViewModel?.investigationModel?.let { investigationModel ->
+                        ModifiersButton(
+                            onClick = {
+                                investigationModel.setInvestigationToolsCategory(
+                                    TOOL_MODIFIER_DETAILS)
+                            }
+                        )
+                    }
+                }
+
                 val toolsList: Array<ToolBarItemPair> = arrayOf(
                     ToolBarItemPair(collapseButton) {
                         try {
                             Toast.makeText(requireActivity(), "Hi!", Toast.LENGTH_SHORT).show()
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
                         }
+                        catch (e: IllegalStateException) { e.printStackTrace() }
                     },
                     ToolBarItemPair(resetButton),
                     ToolBarItemPair(View(LocalContext.current))
@@ -137,7 +171,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             }
         }
         setupToolbarJob.start()
-        */
 
         popupWindow = PopupWindow(
             RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -157,21 +190,20 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 onClick = { reset() }
             )
         }
-
     }
 
     private fun initCollapsible(toggleCollapseButton: ComposeView?) {
         investigationViewModel?.investigationModel?.let { investigationModel ->
             toggleCollapseButton?.setContent {
                 CollapseButton(
-                    isCollapsedState = investigationModel.isSanityDrawerCollapsed,
-                    onClick = { investigationModel.toggleDrawerState() }
+                    isCollapsedState = investigationModel.isInvestigationToolsDrawerCollapsed,
+                    onClick = { investigationModel.toggleInvestigationToolsDrawerState() }
                 )
             }
         }
 
         lifecycleScope.launch {
-            investigationViewModel?.investigationModel?.isSanityDrawerCollapsed
+            investigationViewModel?.investigationModel?.isInvestigationToolsDrawerCollapsed
                 ?.collectLatest { state ->
                 sanityToolsLayout?.visibility = when (state) {
                     true -> View.GONE
@@ -182,7 +214,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
         // SANITY COLLAPSIBLE
         toggleCollapseButton?.setOnClickListener {
-            when (investigationViewModel?.investigationModel?.isSanityDrawerCollapsed?.value == true) {
+            when (investigationViewModel?.investigationModel?.isInvestigationToolsDrawerCollapsed?.value == true) {
                 true ->
                     sanityToolsLayout?.animate()
                         ?.setListener(object : AnimatorListenerAdapter() {
@@ -193,7 +225,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 sanityToolsLayout?.visibility = View.VISIBLE
-                                investigationViewModel?.investigationModel?.setDrawerState(false)
+                                investigationViewModel?.investigationModel?.setInvestigationToolsDrawerState(false)
                             }
                         })?.start()
                 false -> {
@@ -207,7 +239,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationStart(animation)
                                 sanityToolsLayout?.visibility = View.GONE
-                                investigationViewModel?.investigationModel?.setDrawerState(true)
+                                investigationViewModel?.investigationModel?.setInvestigationToolsDrawerState(true)
                             }
                         })?.start()
                 }

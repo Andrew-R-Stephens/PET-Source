@@ -24,15 +24,22 @@ class CodexMenuFragment : CodexFragment() {
         val gridView = view.findViewById<GridLayout>(R.id.grid_codex)
         val gotoCodex = gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option1)
         gotoCodex.setOnClickListener { v: View? ->
-            v?.let { findNavController(v)
-                .navigate(R.id.action_codexFragment_to_equipmentStoreFragment) }
-        }
+            v?.let {
+                try {
+                    findNavController(v).navigate(R.id.action_codexFragment_to_equipmentStoreFragment)
+                } catch (e: IllegalArgumentException) { e.printStackTrace() }
+            }
 
-        val gotoCursedPossessions =
-            gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option2)
-        gotoCursedPossessions?.setOnClickListener { v: View? ->
-            v?.let { findNavController(v)
-                    .navigate(R.id.action_codexFragment_to_cursedPossessionsFragment) } }
+            val gotoCursedPossessions =
+                gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option2)
+            gotoCursedPossessions?.setOnClickListener { v: View? ->
+                v?.let {
+                    try {
+                        findNavController(v).navigate(R.id.action_codexFragment_to_cursedPossessionsFragment)
+                    } catch (e: IllegalArgumentException) { e.printStackTrace() }
+                }
+            }
+        }
 
         /*
         val gotoAchievements =

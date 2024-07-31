@@ -173,11 +173,15 @@ class StartScreenFragment : MainMenuFragment() {
     }
 
     private fun gotoMessageCenterFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
+        try {
+            findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun gotoLanguagesFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
+        try {
+            findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun initReviewRequest(buttonReview: AppCompatImageView) {

@@ -17,7 +17,7 @@ class GhostOrderModel(
      * createOrder
      * Initializes both current and previous order of ghosts to default order
      */
-    fun createOrder() {
+    private fun createOrder() {
         createPrevOrder()
         createCurrOrder()
     }

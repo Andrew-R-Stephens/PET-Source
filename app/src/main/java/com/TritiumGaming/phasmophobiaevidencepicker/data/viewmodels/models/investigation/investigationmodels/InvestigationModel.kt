@@ -18,8 +18,14 @@ import kotlinx.coroutines.flow.asStateFlow
 class InvestigationModel(
     context: Context, var investigationViewModel: InvestigationViewModel?
 ) {
+    companion object {
+        const val TOOL_SANITY = 0
+        const val TOOL_MODIFIER_DETAILS = 1
+    }
+
     val ghostListModel: GhostListModel = GhostListModel()
     val evidenceListModel: EvidenceListModel = EvidenceListModel()
+
     val ghostOrderModel: GhostOrderModel = GhostOrderModel(ghostListModel)
 
     private val _radioButtonsChecked : MutableStateFlow<SnapshotStateList<Int>> =
@@ -63,13 +69,19 @@ class InvestigationModel(
         return rejectionPile
     }
 
-    private val _isSanityDrawerCollapsed: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isSanityDrawerCollapsed = _isSanityDrawerCollapsed.asStateFlow()
-    fun setDrawerState(isCollapsed: Boolean) {
-        _isSanityDrawerCollapsed.value = isCollapsed
+    private val _isInvestigationToolsDrawerCollapsed: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isInvestigationToolsDrawerCollapsed = _isInvestigationToolsDrawerCollapsed.asStateFlow()
+    fun setInvestigationToolsDrawerState(isCollapsed: Boolean) {
+        _isInvestigationToolsDrawerCollapsed.value = isCollapsed
     }
-    fun toggleDrawerState() {
-        _isSanityDrawerCollapsed.value = !isSanityDrawerCollapsed.value
+    fun toggleInvestigationToolsDrawerState() {
+        _isInvestigationToolsDrawerCollapsed.value = !isInvestigationToolsDrawerCollapsed.value
+    }
+
+    private val _investigationToolsCategory: MutableStateFlow<Int> = MutableStateFlow(TOOL_SANITY)
+    val investigationToolsCategory = _investigationToolsCategory.asStateFlow()
+    fun setInvestigationToolsCategory(categoryIndex: Int) {
+        _investigationToolsCategory.value = categoryIndex
     }
 
     init {

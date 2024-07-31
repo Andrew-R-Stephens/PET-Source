@@ -17,11 +17,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout41"
+        app:layout_constraintStart_toEndOf="@+id/sanityToolbarComposable"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/sanityToolbarComposable"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layout_sanity_tool"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityToolComposablesKt.InvestigationToolbar" />
+
+    <!--
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout41"
+        android:id="@+id/sanityToolbarComposable"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:animateLayoutChanges="true"
@@ -65,6 +77,7 @@
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    -->
 
     <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
         android:id="@+id/layout_sanity_tool"

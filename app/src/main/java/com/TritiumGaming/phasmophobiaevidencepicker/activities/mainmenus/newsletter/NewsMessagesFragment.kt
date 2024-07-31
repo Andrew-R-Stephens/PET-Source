@@ -83,8 +83,9 @@ class NewsMessagesFragment : MainMenuFragment() {
                             newsletterViewModel.currentMessageIndex = position
                             newsletterViewModel.currentMessage?.let { message ->
                                 newsletterViewModel.currentInbox?.updateLastReadDate(message)
-                                findNavController(view).navigate(
-                                    R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                                try {
+                                    findNavController(view).navigate(R.id.action_inboxMessageListFragment_to_inboxMessageFragment)
+                                } catch (e: IllegalArgumentException) { e.printStackTrace() }
                             }
                         }
                     }

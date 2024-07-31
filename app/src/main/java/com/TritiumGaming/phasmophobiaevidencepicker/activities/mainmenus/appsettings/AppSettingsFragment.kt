@@ -13,9 +13,7 @@ import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
@@ -271,11 +269,18 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // Include a privacy setting if applicable
         if (googleMobileAdsConsentManager?.isPrivacyOptionsRequired == true) {
-            val adsLayout = view.findViewById<ConstraintLayout>(R.id.constraintLayout_ads)
-            adsLayout.visibility = VISIBLE
+            val adsLayout = view.findViewById<View?>(R.id.container_gdpr_settings)
+            adsLayout?.visibility = VISIBLE
 
-            val adsButton = view.findViewById<AppCompatButton>(R.id.settings_ads_label)
-            adsButton.setOnClickListener { v: View -> showAdsConsentForm(v.context) }
+            val adsButton = view.findViewById<View?>(R.id.button_gdpr_ads)
+            adsButton?.setOnClickListener { v: View -> showAdsConsentForm(v.context) }
+        }
+
+        val gotoMarketplaceButton = view.findViewById<View?>(R.id.button_marketplace)
+        gotoMarketplaceButton?.setOnClickListener{ v ->
+            revertDemoChanges()
+            try { v?.let { view -> findNavController(view).navigate(R.id.marketplaceFragment) } }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
         if (loadThemes) {
@@ -394,9 +399,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         refreshFragment()
 
         // Generate a Firestore document for the User with default data if needed
-        /*try { buildUserDocument() }
+        /*
+        try { buildUserDocument() }
         catch (e: Exception) { throw RuntimeException(e) }
-*/
+        */
         loadUserPurchaseHistory()
     }
 

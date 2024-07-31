@@ -72,9 +72,7 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
             proguardFile("$playCoreDirectory/proguard/common.pgcfg")
             proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
@@ -82,11 +80,8 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
             proguardFile("$playCoreDirectory/proguard/common.pgcfg")
             proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
@@ -106,7 +101,14 @@ android {
         getByName("main") {
             java.srcDir("src/main/java")
             java.srcDir("src/main/kotlin")
+            // Potential fix for librealmc
+            jniLibs.srcDir("src/main/jniLibs")
         }
+    }
+
+    // Potential fix for librealmc
+    packaging {
+        resources.excludes.add("lib/arm64-v8a/librealm-jni.so")
     }
 }
 

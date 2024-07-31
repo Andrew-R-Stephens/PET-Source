@@ -115,20 +115,15 @@ class AccountFragment : MainMenuFirebaseFragment() {
         } ?: {
             accountDetailsList?.visibility = GONE
         }
-    }
 
-    /*
-    public override fun refreshFragment() {
-        var ft = parentFragmentManager.beginTransaction()
-        if (Build.VERSION.SDK_INT >= 26) {
-            ft.setReorderingAllowed(false)
+
+        val gotoMarketplaceButton = view.findViewById<View?>(R.id.button_marketplace)
+        gotoMarketplaceButton?.setOnClickListener{ v ->
+            try { v?.let { view -> findNavController(view).navigate(R.id.marketplaceFragment) } }
+            catch (e: IllegalStateException) { e.printStackTrace() }
         }
-        ft.detach(this@AccountFragment).commitNow()
-        ft = parentFragmentManager.beginTransaction()
-        ft.attach(this@AccountFragment).commitNow()
-    }
-    */
 
+    }
 
     override fun onSignInAccountSuccess() {
         // Successfully signed in
