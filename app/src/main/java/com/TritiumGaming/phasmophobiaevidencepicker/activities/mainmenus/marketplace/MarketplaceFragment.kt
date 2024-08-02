@@ -160,22 +160,14 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         }?.start()
 
         scopeIO?.launch {
-            populateAvailableItems()
+            if(currentFirebaseUser != null) {
+                populateAvailableItems()
+            } else {
+                //TODO populateDemoItems()
+            }
         }?.start()
 
         launchAgreementDialogJob?.start()
-    }
-
-    private fun gotoBillingMarketplace(v: View) {
-        try {
-            findNavController(v).navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
-        } catch (e: IllegalArgumentException) { e.printStackTrace() }
-    }
-
-    private fun gotoSettingsMarketplace(v: View) {
-        try {
-            findNavController(v).navigate(R.id.action_marketplaceFragment_to_appSettingsFragment)
-        } catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun initAccountCreditListener() {
@@ -331,9 +323,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 override fun onSuccess() {
                     if (!thrown) thrown = true
 
-                    if (labelShown) {
-                        bundleList?.showLabel(VISIBLE)
-                    }
+                    if (labelShown) { bundleList?.showLabel(VISIBLE) }
 
                     marketProgressBar?.visibility = GONE
 
@@ -343,9 +333,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 override fun onComplete() {
                     if (!thrown) thrown = true
 
-                    if (labelShown) {
-                        bundleList?.showLabel(VISIBLE)
-                    }
+                    if (labelShown) { bundleList?.showLabel(VISIBLE) }
 
                     marketProgressBar?.visibility = GONE
 
@@ -493,11 +481,11 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             testToast("Test Success. Created Theme Model")
 
                             globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-                                val customTheme =
+                                val localThemeModel =
                                     globalPreferencesViewModel.colorThemeControl.getThemeByUUID(uuid)
 
                                 val marketSingleThemeFinal =
-                                    MarketThemeModel(uuid, tempTheme, customTheme)
+                                    MarketThemeModel(uuid, tempTheme, localThemeModel)
 
                                 try {
                                     val themeView = buildThemeView(marketSingleThemeFinal)
@@ -525,7 +513,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 }
             })
             .addOnFailureListener {
-            listener.onFailure()
+                listener.onFailure()
 
                 testToast("Test Failure. Create Theme Model/Views")
             }
@@ -586,11 +574,11 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             testToast("Test Success. Created Temp Bundle Model")
 
-                            val customThemes = ArrayList<ThemeModel>()
+                            val localThemeModels = ArrayList<ThemeModel>()
                             for (themeID in themeIDs) {
                                 globalPreferencesViewModel?.colorThemeControl?.let { control ->
-                                    customThemes.add(control.getThemeByUUID(themeID)) } }
-                            val finalBundle = MarketBundleModel(docId, tempBundle, customThemes)
+                                    localThemeModels.add(control.getThemeByUUID(themeID)) } }
+                            val finalBundle = MarketBundleModel(docId, tempBundle, localThemeModels)
 
                             try {
                                 val bundleView =
@@ -783,6 +771,18 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         return themeView
     }
 
+    private fun gotoBillingMarketplace(v: View) {
+        try {
+            findNavController(v).navigate(R.id.action_marketplaceFragment_to_marketplaceBillingFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
+    }
+
+    private fun gotoSettingsMarketplace(v: View) {
+        try {
+            findNavController(v).navigate(R.id.action_marketplaceFragment_to_appSettingsFragment)
+        } catch (e: IllegalArgumentException) { e.printStackTrace() }
+    }
+
     private fun onPurchaseSuccess(bundleModel: MarketBundleModel) {
         equipDialog?.let { dialog ->
             dialog.setContent {
@@ -810,7 +810,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
         }
     }
-
 
     override fun onSignInAccountSuccess() {
         refreshFragment()
@@ -859,10 +858,9 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         obtainCreditsTextView?.enableAdWatchButton(false)
                         rewardedAd = null
                     }
-                })
-        } catch (e: IllegalStateException) {
-            testToast("Failed to load rewarded ad.")
-        }
+                }
+            )
+        } catch (e: IllegalStateException) { testToast("Failed to load rewarded ad.") }
     }
 
     fun showRewardedAd() {
@@ -887,8 +885,9 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {
-                        Toast.makeText(
-                            requireActivity(), getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireActivity(),
+                            getString(R.string.alert_internet_unavailable),
+                            Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -899,9 +898,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         val enabled = false
         if(enabled) {
             scopeMain?.launch {
-                try {
-                    Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-                }
+                try { Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show() }
                 catch (e: IllegalStateException) { e.printStackTrace() }
             }?.start()
         }

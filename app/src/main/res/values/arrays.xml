@@ -5,7 +5,7 @@
         TITLESCREEN PAGE
     -->
     <!-- Language Data -->
-    <string-array name="languages_name">
+    <string-array name="language_names">
         <item>@string/language_fullName_chinese_s</item>
         <item>@string/language_fullName_german</item>
         <item>@string/language_fullName_english</item>
@@ -17,7 +17,7 @@
         <item>@string/language_fullName_japanese</item>
         <item>@string/language_fullName_portuguese</item>
     </string-array>
-    <string-array name="languages_abbreviation">
+    <string-array name="language_codes">
         <item>@string/language_abbrName_chinese_simplified</item>
         <item>@string/language_abbrName_german</item>
         <item>@string/language_abbrName_english</item>

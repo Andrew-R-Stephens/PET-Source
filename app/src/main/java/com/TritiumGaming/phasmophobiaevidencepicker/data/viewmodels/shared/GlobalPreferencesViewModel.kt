@@ -33,6 +33,8 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         private set
 
     // Language
+    // TODO encapsulate language controller
+    //  var languagesModel: LanguagesModel = LanguagesModel(application)
     var languageList: ArrayList<LanguageObject> = ArrayList()
     var currentLanguageAbbr: String = DEFAULT_LANGUAGE
 
@@ -76,14 +78,14 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         setFileName()
 
         val languageNames = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.languages_name)))
-        val languageAbbrs = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.languages_abbreviation)))
+            listOf(*context.resources.getStringArray(R.array.language_names)))
+        val languageCodes = ArrayList(
+            listOf(*context.resources.getStringArray(R.array.language_codes)))
 
         languageList = ArrayList()
-        if(languageNames.size == languageAbbrs.size) {
+        if(languageNames.size == languageCodes.size) {
             languageNames.forEachIndexed { index: Int, name: String ->
-                languageList.add(LanguageObject(name, languageAbbrs[index]))
+                languageList.add(LanguageObject(name, languageCodes[index]))
             }
         }
 
