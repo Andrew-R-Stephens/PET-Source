@@ -46,16 +46,18 @@ class TasksViewModel(
     private val tasksUiModelFlow = combine(
         repository.tasks,
         userPreferencesFlow
-    ) { tasks: List<Task>, userPreferences: UserPreferencesRepository.UserPreferences ->
-        return@combine TasksUiModel(
-            tasks = filterSortTasks(
-                tasks,
-                userPreferences.showCompleted,
-                userPreferences.sortOrder
-            ),
-            showCompleted = userPreferences.showCompleted,
-            sortOrder = userPreferences.sortOrder
-        )
+    ) {
+        tasks: List<Task>,
+        userPreferences: UserPreferencesRepository.UserPreferences ->
+            return@combine TasksUiModel(
+                tasks = filterSortTasks(
+                    tasks,
+                    userPreferences.showCompleted,
+                    userPreferences.sortOrder
+                ),
+                showCompleted = userPreferences.showCompleted,
+                sortOrder = userPreferences.sortOrder
+            )
     }
     val tasksUiModel = tasksUiModelFlow.asLiveData()
 

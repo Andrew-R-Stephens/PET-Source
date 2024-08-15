@@ -36,7 +36,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     // TODO encapsulate language controller
     //  var languagesModel: LanguagesModel = LanguagesModel(application)
     var languageList: ArrayList<LanguageObject> = ArrayList()
-    var currentLanguageAbbr: String = DEFAULT_LANGUAGE
+    var currentLanguageCode: String = DEFAULT_LANGUAGE
 
     // Generic settings
     var isAlwaysOn: Boolean = false
@@ -98,7 +98,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
 
         val sharedPref = getSharedPreferences(context)
 
-        currentLanguageAbbr = sharedPref.getString(
+        currentLanguageCode = sharedPref.getString(
             context.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
         ) ?: DEFAULT_LANGUAGE
 
@@ -160,7 +160,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
 
     fun getCurrentLanguageIndex(): Int {
         for (i in languageList.indices) {
-            if (currentLanguageAbbr.equals(languageList[i].abbreviation, ignoreCase = true))
+            if (currentLanguageCode.equals(languageList[i].abbreviation, ignoreCase = true))
             { return i } }
         return 0
     }
@@ -168,7 +168,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     fun setCurrentLanguage(position: Int) {
         if (position < 0 || position >= languageList.size) { return }
 
-        currentLanguageAbbr = languageList[position].abbreviation
+        currentLanguageCode = languageList[position].abbreviation
     }
 
     fun saveColorSpace(c: Context) {
@@ -186,7 +186,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         val editor = getEditor(context)
 
         save(context.resources.getString(R.string.preference_network), networkPreference, editor)
-        save(context.resources.getString(R.string.preference_language), currentLanguageAbbr, editor)
+        save(context.resources.getString(R.string.preference_language), currentLanguageCode, editor)
         save(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn, editor)
         save(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
         save(context.resources.getString(R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
@@ -206,7 +206,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         get() {
             val settings = HashMap<String, String?>()
             settings["network_pref"] = networkPreference.toString()
-            settings["language"] = currentLanguageAbbr
+            settings["language"] = currentLanguageCode
             settings["always_on"] = isAlwaysOn.toString()
             settings["warning_enabled"] = isHuntWarnAudioAllowed.value.toString()
             settings["warning_timeout"] = huntWarnFlashTimeMax.value.toString()

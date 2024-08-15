@@ -52,7 +52,7 @@ class TasksActivity : AppCompatActivity() {
                 UserPreferencesRepository(dataStore, this)
             )
         )[TasksViewModel::class.java]
-
+        
     }
 
 }

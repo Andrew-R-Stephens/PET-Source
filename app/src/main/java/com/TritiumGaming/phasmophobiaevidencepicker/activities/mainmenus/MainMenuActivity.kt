@@ -83,7 +83,7 @@ class MainMenuActivity : PETActivity() {
             globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
 
             //set language
-            if (setLanguage(globalPreferencesViewModel.currentLanguageAbbr)) {
+            if (setLanguage(globalPreferencesViewModel.currentLanguageCode)) {
                 recreate()
             }
         }

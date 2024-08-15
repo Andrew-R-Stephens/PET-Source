@@ -86,7 +86,7 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun configureLanguage() {
-        globalPreferencesViewModel?.currentLanguageAbbr?.let{ currLangAbbr ->
+        globalPreferencesViewModel?.currentLanguageCode?.let{ currLangAbbr ->
             try {
                 (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
             }
