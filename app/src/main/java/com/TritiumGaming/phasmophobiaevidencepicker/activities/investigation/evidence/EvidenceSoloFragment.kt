@@ -1,8 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence
 
 import android.media.MediaPlayer
-import android.os.Bundle
-import android.view.View
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
 import kotlinx.coroutines.CoroutineScope
@@ -20,11 +18,6 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
 
     private var sanityScope: CoroutineScope? = CoroutineScope(Dispatchers.Default)
     private var sanityJob: Job? = null
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 
     private fun createSanityRunnable() {
         investigationViewModel?.sanityRunnable =

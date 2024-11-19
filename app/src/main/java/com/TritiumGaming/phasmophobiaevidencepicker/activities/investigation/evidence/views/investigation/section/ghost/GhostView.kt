@@ -62,7 +62,7 @@ class GhostView : ConstraintLayout {
     @SuppressLint("ClickableViewAccessibility")
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int) {
         this.investigationViewModel = investigationViewModel
-        this.ghostModel = investigationViewModel.investigationModel?.ghostListModel?.getAt(groupIndex)
+        this.ghostModel = investigationViewModel.investigationModel?.ghostRepository?.getAt(groupIndex)
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
@@ -179,7 +179,7 @@ class GhostView : ConstraintLayout {
             investigationViewModel?.let { investigationViewModel ->
                 investigationViewModel.investigationModel?.swapStatusInRejectedPile(index)
                 investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
-                investigationViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
+                investigationViewModel.investigationModel?.ghostRepository?.getAt(index)?.let { ghostModel ->
                     redrawGhostRejectionStatus(ghostModel, index, true)
                 }
             }

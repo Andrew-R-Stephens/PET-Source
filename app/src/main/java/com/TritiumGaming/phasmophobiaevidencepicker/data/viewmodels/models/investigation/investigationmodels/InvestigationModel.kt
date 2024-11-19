@@ -3,9 +3,9 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.inve
 import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostRepository
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,10 +24,10 @@ class InvestigationModel(
         const val TOOL_MODIFIER_DETAILS = 1
     }
 
-    val ghostListModel: GhostListModel = GhostListModel()
-    val evidenceListModel: EvidenceListModel = EvidenceListModel()
+    val ghostRepository: GhostRepository = GhostRepository()
+    val evidenceRepository: EvidenceRepository = EvidenceRepository()
 
-    val ghostOrderModel: GhostOrderModel = GhostOrderModel(ghostListModel)
+    val ghostOrderModel: GhostOrderModel = GhostOrderModel(ghostRepository)
 
     private val _radioButtonsChecked : MutableStateFlow<SnapshotStateList<Int>> =
         MutableStateFlow(mutableStateListOf())
@@ -38,7 +38,8 @@ class InvestigationModel(
     }
     private fun createRadioButtonsChecked() {
         _radioButtonsChecked.value.clear()
-        evidenceListModel.evidenceList.forEach { _ ->
+
+        evidenceRepository.evidenceList.forEach { _ ->
             _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
     }
@@ -48,7 +49,7 @@ class InvestigationModel(
 
     private var rejectionPile: BooleanArray? = null
     private fun createRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
+        rejectionPile = BooleanArray(GhostRepository.count)
     }
     fun swapStatusInRejectedPile(index: Int): Boolean {
         val pile = getRejectionPile()
@@ -56,12 +57,13 @@ class InvestigationModel(
         return pile[index]
     }
     private fun updateRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
+        rejectionPile = BooleanArray(GhostRepository.count)
         rejectionPile?.let { rejectionPile ->
             for (i in rejectionPile.indices) {
                 rejectionPile[i] =
-                    investigationViewModel?.investigationModel?.ghostListModel
-                        ?.getAt(i)?.forcefullyRejected == true
+                    ghostRepository.getAt(i).forcefullyRejected == true
+                    /*investigationViewModel?.investigationModel?.ghostRepository
+                        ?.getAt(i)?.forcefullyRejected == true*/
             }
         }
     }
@@ -86,16 +88,16 @@ class InvestigationModel(
     }
 
     init {
-        evidenceListModel.init(context)
-        ghostListModel.init(context, this)
+        evidenceRepository.init(context)
+        ghostRepository.init(context, this)
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
     /** Resets the Ruling for each Evidence type */
     fun reset() {
         resetRadioButtonsChecked()
-        evidenceListModel.reset()
-        ghostListModel.reset()
+        evidenceRepository.reset()
+        ghostRepository.reset()
         ghostOrderModel.reset()
         createRejectionPile()
     }

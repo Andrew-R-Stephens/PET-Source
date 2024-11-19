@@ -68,19 +68,12 @@ class GhostModel(
                 isNightmare -> 2
                 else -> 3
             }
-            /*
-            val maxPosScore =
-                if (isInsanity) 1
-                else
-                    if (isNightmare) 2
-                    else 3
-            */
 
             var posScore = 0
             var negScore = 0
 
             investigationModel?.let { investigationData ->
-                for (e in investigationData.evidenceListModel.evidenceList) {
+                for (e in investigationData.evidenceRepository.evidenceList) {
                     var isContained = false
                     for (eThis in thisGhostEvidence) {
                         if (e == eThis) {
@@ -128,7 +121,7 @@ class GhostModel(
     }
 
     fun addEvidence(evidence: String, c: Context) {
-        for (e in investigationModel!!.evidenceListModel.evidenceList) {
+        for (e in investigationModel!!.evidenceRepository.evidenceList) {
             if (evidence == c.getString(e.name)) {
                 addEvidence(e)
                 break
@@ -141,7 +134,7 @@ class GhostModel(
     }
 
     fun addNightmareEvidence(evidence: String, c: Context) {
-        for (e in investigationModel!!.evidenceListModel.evidenceList) {
+        for (e in investigationModel!!.evidenceRepository.evidenceList) {
             if (evidence == c.getString(e.name)) {
                 addNightmareEvidence(e)
                 break

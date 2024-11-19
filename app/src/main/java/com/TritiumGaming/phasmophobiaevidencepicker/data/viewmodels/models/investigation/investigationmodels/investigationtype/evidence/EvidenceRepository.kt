@@ -4,7 +4,7 @@ import android.content.Context
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
-class EvidenceListModel {
+class EvidenceRepository {
 
     val evidenceList: ArrayList<EvidenceModel> = ArrayList(0)
 
@@ -12,13 +12,13 @@ class EvidenceListModel {
         get() = evidenceList.size
 
 
-    fun init(c: Context) {
+    fun init(context: Context) {
         evidenceList.clear()
 
-        val namesTypedArray = c.resources.obtainTypedArray(R.array.evidence_type_names)
-        val namesArray = intArrayFromTypedArray(c.resources, namesTypedArray)
+        val namesTypedArray = context.resources.obtainTypedArray(R.array.evidence_type_names)
+        val namesArray = intArrayFromTypedArray(context.resources, namesTypedArray)
 
-        val typedArray = c.resources.obtainTypedArray(R.array.evidence_icon_array)
+        val typedArray = context.resources.obtainTypedArray(R.array.evidence_icon_array)
 
         for (i in namesArray.indices) {
             val evidence = EvidenceModel(i, namesArray[i])

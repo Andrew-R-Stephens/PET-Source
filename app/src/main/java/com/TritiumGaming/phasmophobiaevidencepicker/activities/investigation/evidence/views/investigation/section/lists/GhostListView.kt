@@ -7,12 +7,16 @@ import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.ProgressBar
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.GhostPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.ghost.GhostView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import com.google.android.gms.ads.AdRequest
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class GhostListView : InvestigationListView {
     constructor(context: Context?) :
@@ -105,4 +109,15 @@ class GhostListView : InvestigationListView {
         reorder()
     }
 
+    override fun initObservables() {
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            investigationViewModel?.difficultyCarouselModel?.currentIndex?.collectLatest {
+                investigationViewModel?.difficultyCarouselModel?.currentName?.let {
+                    attemptInvalidate(
+                        globalPreferencesViewModel?.reorderGhostViews ?: false
+                    )
+                }
+            }
+        }
+    }
 }

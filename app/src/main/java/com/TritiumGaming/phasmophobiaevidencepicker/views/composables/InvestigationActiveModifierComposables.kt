@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostRepository
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.MapCarouselModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
@@ -49,7 +49,7 @@ fun ActiveModifierDetails(
                 investigationViewModel.timerModel?.let { PhaseModifierDetails(it) }
                 investigationViewModel.mapCarouselModel?.let { MapModifierDetails(it) }
                 investigationViewModel.difficultyCarouselModel?.let { DifficultyModifierDetails(it) }
-                investigationViewModel.investigationModel?.ghostListModel?.let { ActiveGhostModifierDetails(it) }
+                investigationViewModel.investigationModel?.ghostRepository?.let { ActiveGhostModifierDetails(it) }
             }
         }
     }
@@ -125,7 +125,7 @@ fun DifficultyModifierDetails(difficultyCarouselModel: DifficultyCarouselModel) 
 }
 
 @Composable
-fun ActiveGhostModifierDetails(ghostListModel: GhostListModel) {
+fun ActiveGhostModifierDetails(ghostListModel: GhostRepository) {
     CategoryColumn {
         TextCategoryTitle(text = "Ghosts")
 

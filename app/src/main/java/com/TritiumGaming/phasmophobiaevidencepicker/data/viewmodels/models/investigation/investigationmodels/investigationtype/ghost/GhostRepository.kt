@@ -5,7 +5,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
-class GhostListModel {
+class GhostRepository {
 
     fun init(context: Context, investigationData: InvestigationModel) {
         ghostList = ArrayList()
@@ -16,6 +16,7 @@ class GhostListModel {
             context.resources.obtainTypedArray(R.array.ghost_evidence_arrays)
         val typedArrayRequiredEvidence =
             context.resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
+
         for (i in namesArray.indices) {
             val ghost = GhostModel(investigationData, i, namesArray[i])
             // ghost.name =

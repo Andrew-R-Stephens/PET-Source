@@ -30,6 +30,7 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 investigationViewModel.difficultyCarouselModel?.decrementIndex()
                 print("Decrementing Diff")
                 investigationViewModel.sanityModel?.reset()
+                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
             }
         }
 
@@ -38,6 +39,7 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 investigationViewModel.difficultyCarouselModel?.incrementIndex()
                 print("Incrementing Diff")
                 investigationViewModel.sanityModel?.reset()
+                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
             }
         }
         investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->

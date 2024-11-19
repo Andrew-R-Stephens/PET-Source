@@ -49,7 +49,7 @@ class EvidenceView : ConstraintLayout {
 
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
-        investigationViewModel.investigationModel?.evidenceListModel?.evidenceList
+        investigationViewModel.investigationModel?.evidenceRepository?.evidenceList
             ?.get(groupIndex)?.name?.let{ resId ->
             nameView?.text = context.getString(resId)
         }

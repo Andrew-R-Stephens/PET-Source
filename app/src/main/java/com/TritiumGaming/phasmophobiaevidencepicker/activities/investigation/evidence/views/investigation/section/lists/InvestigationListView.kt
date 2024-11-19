@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.ProgressBar
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.InvestigationPopupModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import com.google.android.gms.ads.AdRequest
 
 abstract class InvestigationListView : LinearLayout {
@@ -60,6 +60,8 @@ abstract class InvestigationListView : LinearLayout {
 
         this.popupWindow = popupWindow
         this.progressBar = progressBar
+
+        initObservables()
     }
 
     fun createViews() {
@@ -86,4 +88,5 @@ abstract class InvestigationListView : LinearLayout {
     }
 
     protected abstract fun build()
+    protected abstract fun initObservables()
 }

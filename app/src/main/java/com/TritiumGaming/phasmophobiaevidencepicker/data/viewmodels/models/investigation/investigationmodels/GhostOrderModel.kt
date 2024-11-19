@@ -1,9 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostRepository
 
 class GhostOrderModel(
-    private val ghostListModel: GhostListModel
+    private val ghostListModel: GhostRepository
 ) {
 
     private var prevOrder: IntArray? = null
@@ -27,7 +27,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createPrevOrder() {
-        prevOrder = IntArray(GhostListModel.count)
+        prevOrder = IntArray(GhostRepository.count)
 
         prevOrder?.let { prevOrder ->
             for (i in prevOrder.indices) {
@@ -42,7 +42,7 @@ class GhostOrderModel(
      * Initializes both current and previous order of ghosts to default order
      */
     private fun createCurrOrder() {
-        currOrder = IntArray(GhostListModel.count)
+        currOrder = IntArray(GhostRepository.count)
 
         currOrder?.let { currOrder ->
             for (i in currOrder.indices) {
@@ -53,7 +53,7 @@ class GhostOrderModel(
     }
 
     fun updateOrder() {
-        val newOrder = IntArray(GhostListModel.count)
+        val newOrder = IntArray(GhostRepository.count)
 
         // Replace previous with current
         if (currOrder == null) {
